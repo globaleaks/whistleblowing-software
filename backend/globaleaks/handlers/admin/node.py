@@ -42,6 +42,7 @@ def db_admin_serialize_node(store, language):
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
         'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
+        'tor2web_custodian': GLSettings.memory_copy.tor2web_custodian,
         'tor2web_whistleblower': GLSettings.memory_copy.tor2web_whistleblower,
         'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
@@ -61,6 +62,7 @@ def db_admin_serialize_node(store, language):
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
         'disable_key_code_hint': node.disable_key_code_hint,
+        'enable_simplified_login': node.enable_simplified_login,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order
@@ -87,8 +89,6 @@ def db_update_node(store, request, wizard_done, language):
     fill_localized_keys(request, models.Node.localized_strings, language)
 
     admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
-
-    admin.mail_address = request['email']
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)

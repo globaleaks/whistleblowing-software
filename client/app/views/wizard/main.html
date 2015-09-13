@@ -58,7 +58,7 @@
             <span data-translate>Email Address</span>
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8"  data-ng-class="{'has-error': wizardForm.adminemail.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.adminemail.$error.required}">
             <input name="adminemail" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="help-block">
               <span data-translate>Enter your email address</span>
@@ -152,8 +152,8 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8">
-            <span data-translate>By default receivers password is:</span> <span class="label label-primary">globaleaks</span></br>
-            <span data-translate>The system forces users to change the password at first login.</span>
+            <div data-translate-values="{default_user_password: 'globaleaks'}" data-translate>DEFAULT_USER_PASSWORD</div>
+            <div data-translate>The system forces users to change the password at first login.</div>
           </div>
         </div>
         <div class="form-group col-md-12">

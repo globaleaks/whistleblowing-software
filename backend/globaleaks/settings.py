@@ -193,6 +193,7 @@ class GLSettingssClass(object):
         self.defaults.tor2web_admin = True
 
         self.defaults.tor2web_whistleblower = False
+        self.defaults.tor2web_custodian = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.allow_unencrypted = False
@@ -231,6 +232,7 @@ class GLSettingssClass(object):
         # https://github.com/globaleaks/GlobaLeaks/issues/510
         self.defaults.lifetimes = {
             'admin': (60 * 60),
+            'custodian': (60 * 60),
             'receiver': (60 * 60),
             'wb': (60 * 60)
         }

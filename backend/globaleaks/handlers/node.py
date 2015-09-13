@@ -62,6 +62,7 @@ def anon_serialize_node(store, language):
         'maximum_textsize': node.maximum_textsize,
         'maximum_filesize': node.maximum_filesize,
         'tor2web_admin': GLSettings.memory_copy.tor2web_admin,
+        'tor2web_custodian': GLSettings.memory_copy.tor2web_custodian,
         'tor2web_whistleblower': GLSettings.memory_copy.tor2web_whistleblower,
         'tor2web_receiver': GLSettings.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSettings.memory_copy.tor2web_unauth,
@@ -80,6 +81,7 @@ def anon_serialize_node(store, language):
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
         'disable_key_code_hint': node.disable_key_code_hint,
+        'enable_simplified_login': node.enable_simplified_login,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
@@ -241,6 +243,7 @@ def anon_serialize_receiver(receiver, language):
     ret_dict = {
         'name': receiver.user.name,
         'id': receiver.id,
+        'username': receiver.user.username,
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,

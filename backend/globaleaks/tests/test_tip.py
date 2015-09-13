@@ -77,10 +77,10 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def access_receivers_tip(self):
-        auth1, _, _, _ = yield authentication.login(self.receiver1_desc['id'], helpers.VALID_PASSWORD1, False)
+        auth1, _, _, _ = yield authentication.login(self.receiver1_desc['username'], helpers.VALID_PASSWORD1, False)
         self.assertEqual(auth1, self.receiver1_desc['id'])
 
-        auth2, _, _, _ = yield authentication.login(self.receiver2_desc['id'], helpers.VALID_PASSWORD1, False)
+        auth2, _, _, _ = yield authentication.login(self.receiver2_desc['username'], helpers.VALID_PASSWORD1, False)
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         for i in range(1, 2):

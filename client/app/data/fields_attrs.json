@@ -1,0 +1,16 @@
+{
+  "inputbox": [
+    {"name": "min_len", "type": "int", "value": "-1"},
+    {"name": "max_len", "type": "int", "value": "-1"},
+    {"name": "regexp", "type": "unicode", "value": ""}
+  ],
+  "textarea": [
+    {"name": "min_len", "type": "int", "value": "-1"},
+    {"name": "max_len", "type": "int", "value": "-1"},
+    {"name": "regexp", "type": "unicode", "value": ""}
+  ],
+  "tos": [
+    {"name": "clause", "type": "unicode"," value": ""},
+    {"name": "agreement_statement", "type": "unicode", "value": ""}
+  ]
+}

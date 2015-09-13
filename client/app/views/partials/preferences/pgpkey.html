@@ -1,0 +1,49 @@
+<div data-ng-show="preferences.pgp_key_info">
+  <div class="alert alert-success">
+    <span data-translate>Encryption is enabled!</span>
+    <span data-translate>Email notifications will be encrypted.</span>
+  </div>
+
+  <div>
+    <div data-translate>Details of the PGP key:</div>
+    <div>
+      <span data-translate>The fingerprint is:</span>
+      <b>{{preferences.pgp_key_fingerprint}}</b>
+    </div>
+  </div>
+
+  <div>
+    <pre>{{preferences.pgp_key_info}}</pre>
+  </div>
+
+  <div class="form-group" data-ng-show="preferences.pgp_key_fingerprint">
+    <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
+    <label data-translate>Remove the PGP key</label>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="alert alert-danger" data-ng-hide="preferences.pgp_key_fingerprint" data-ng-click="pgp_marketing = ! pgp_marketing" data-ng-init="pgp_marketing=false">
+  <div data-translate>Encryption is not enabled!</div>
+  <div data-translate>Email notifications won't be encrypted.</div>
+</div>
+
+<div class="form-group" data-ng-hide="preferences.pgp_key_fingerprint">
+  <button class="btn btn-success" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
+    <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
+    <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
+    <span data-translate>Configure a PGP key</span>
+  </button>
+
+  <div data-ng-show="send_key">
+    <label data-translate>Paste the PGP key here:</label>
+    <textarea class="form-control" data-ng-model="preferences.pgp_key_public"></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Update notification and encryption settings</span>
+  </button>
+</div>

@@ -2,13 +2,17 @@
 
 angular.module('GLServices', ['ngResource']).
   factory('Authentication', ['$http', '$location', '$routeParams',
-                             '$rootScope', '$timeout', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, ReceiverPreferences) {
+                             '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
+    function($http, $location, $routeParams, $rootScope, $timeout, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
-        $rootScope.login = function(username, password, role, cb) {
+        $rootScope.login = function(username, password, cb) {
           $rootScope.loginInProgress = true;
+
+          if (username == 'whistleblower') {
+            self.role = 'wb';
+          }
 
           var success_fn = function(response) {
             self.id = response.session_id;
@@ -25,22 +29,14 @@ angular.module('GLServices', ['ngResource']).
             if (self.role === 'admin') {
               self.homepage = '#/admin/landing';
               self.auth_landing_page = '/admin/landing';
-            }
-
-            if (self.role === 'receiver') {
+              $rootScope.preferences = UserPreferences.get();
+            } else if (self.role === 'receiver') {
               self.homepage = '#/receiver/tips';
-              if (self.password_change_needed) {
-                  self.auth_landing_page = '/receiver/firstlogin';
-              } else {
-                  self.auth_landing_page = '/receiver/tips';
-              }
+              self.auth_landing_page = '/receiver/tips';
               $rootScope.preferences = ReceiverPreferences.get();
-            }
-
-            if (self.role === 'wb') {
+            } else if (self.role === 'wb') {
               self.auth_landing_page = '/status';
             }
-
             // reset login state before returning
             $rootScope.loginInProgress = false;
 
@@ -51,23 +47,25 @@ angular.module('GLServices', ['ngResource']).
             if ($routeParams.src) {
               $location.path($routeParams.src);
             } else {
-              $location.path(self.auth_landing_page);
+              // Override the auth_landing_page if a password change is needed
+              if (self.password_change_needed) {
+                $location.path('/forcedpasswordchange');
+              } else {
+                $location.path(self.auth_landing_page);
+              }
             }
 
             $location.search('');
           }
 
-          if (role == 'wb') {
+          if (self.role == 'wb') {
             return $http.post('receiptauth', {'receipt': password}).
             success(success_fn).
             error(function(response) {
               $rootScope.loginInProgress = false;
             });
           } else {
-            return $http.post('authentication',
-                              {'username': username,
-                               'password': password,
-                               'role': role}).
+            return $http.post('authentication', {'username': username, 'password': password}).
             success(success_fn).
             error(function(response) {
               $rootScope.loginInProgress = false;
@@ -86,9 +84,9 @@ angular.module('GLServices', ['ngResource']).
           self.homepage = null;
           self.auth_langing_page = null;
 
-          if (role === 'wb') {
+          if (self.role === 'wb') {
             $location.path('/');
-          } else if (role === 'admin') {
+          } else if (self.role === 'admin') {
             $location.path('/admin');
           } else {
             $location.path('/login');
@@ -544,7 +542,7 @@ angular.module('GLServices', ['ngResource']).
   factory('WhistleblowerTip', ['$rootScope',
     function($rootScope){
     return function(keycode, fn) {
-      $rootScope.login('', keycode, 'wb').then(function() {
+      $rootScope.login('whistleblower', keycode).then(function() {
         fn();
       });
     };
@@ -600,6 +598,15 @@ angular.module('GLServices', ['ngResource']).
             }
           }
         ),
+        adminUsersResource = $resource('admin/users'),
+        adminUserResource = $resource('admin/user/:user_id',
+          {user_id: '@id'},
+          {
+            update: {
+              method: 'PUT'
+            }
+          }
+        ),
         adminReceiversResource = $resource('admin/receivers'),
         adminReceiverResource = $resource('admin/receiver/:receiver_id',
           {receiver_id: '@id'},
@@ -619,6 +626,8 @@ angular.module('GLServices', ['ngResource']).
       adminFieldResource.prototype.toString = function() { return "field"; };
       adminFieldTemplateResource.prototype.toString = function() { return "field emplate"; };
       adminFieldTemplatesResource.prototype.toString = function() { return "field templates"; };
+      adminUsersResource.prototype.toString = function() { return "users"; };
+      adminUserResource.prototype.toString = function() { return "user"; };
       adminReceiversResource.prototype.toString = function() { return "receivers"; };
       adminReceiverResource.prototype.toString = function() { return "receiver"; };
       adminNotificationResource.prototype.toString = function() { return "notification settings"; };
@@ -630,6 +639,8 @@ angular.module('GLServices', ['ngResource']).
       self.field_templates = adminFieldTemplatesResource.query();
       self.fieldtemplate = adminFieldTemplateResource;
       self.field = adminFieldResource;
+      self.user = adminUserResource;
+      self.users = adminUsersResource.query();
       self.receiver = adminReceiverResource;
       self.receivers = adminReceiversResource.query();
       self.notification = adminNotificationResource.get();
@@ -753,10 +764,41 @@ angular.module('GLServices', ['ngResource']).
           return field;
         };
 
+        self.new_user = function () {
+          var user = new adminUserResource();
+          user.username = '';
+          user.role = 'receiver';
+          user.state = 'enable';
+          user.password = '';
+          user.old_password = '';
+          user.password_change_needed = true;
+          user.state = 'enabled';
+          user.name = '';
+          user.description = '';
+          user.mail_address = '';
+          user.pgp_key_info = '';
+          user.pgp_key_fingerprint = '';
+          user.pgp_key_remove = false;
+          user.pgp_key_public = '';
+          user.pgp_key_expiration = '';
+          user.pgp_key_status = 'ignored';
+          user.language = 'en';
+          user.timezone = 0;
+          return user;
+        };
+
         self.new_receiver = function () {
           var receiver = new adminReceiverResource();
+          receiver.username = '';
+          receiver.role = 'receiver';
+          receiver.state = 'enable';
+          receiver.configuration = 'default';
           receiver.password = '';
+          receiver.old_password = '';
+          receiver.password_change_needed = true;
+          receiver.state = 'enabled';
           receiver.contexts = [];
+          receiver.name = '';
           receiver.description = '';
           receiver.mail_address = '';
           receiver.ping_mail_address = '';
@@ -771,9 +813,6 @@ angular.module('GLServices', ['ngResource']).
           receiver.pgp_key_expiration = '';
           receiver.pgp_key_status = 'ignored';
           receiver.presentation_order = 0;
-          receiver.state = 'enable';
-          receiver.configuration = 'default';
-          receiver.password_change_needed = true;
           receiver.language = 'en';
           receiver.timezone = 0;
           receiver.tip_expiration_threshold = 72;
@@ -784,6 +823,9 @@ angular.module('GLServices', ['ngResource']).
 
       });
     }
+}]).
+  factory('UserPreferences', ['$resource', function($resource) {
+    return $resource('preferences', {}, {'update': {method: 'PUT'}});
 }]).
   factory('TipOverview', ['$resource', function($resource) {
     return $resource('admin/overview/tips');

@@ -5,7 +5,7 @@ describe('receiver first login', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('globaleaks').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-          expect(browser.getLocationAbsUrl()).toContain('/receiver/firstlogin');
+          expect(browser.getLocationAbsUrl()).toContain('/forcedpasswordchange');
           deferred.fulfill();
         });
       });
@@ -15,7 +15,7 @@ describe('receiver first login', function() {
   });
   it('should be able to change password from the default one', function() {
     var deferred = protractor.promise.defer();
-    browser.setLocation('/receiver/firstlogin');
+    browser.setLocation('/forcedpasswordchange');
     element(by.model('preferences.old_password')).sendKeys('globaleaks').then(function() {
       element(by.model('preferences.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.model('preferences.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {

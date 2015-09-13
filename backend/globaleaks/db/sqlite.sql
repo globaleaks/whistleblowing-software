@@ -22,7 +22,6 @@ CREATE TABLE user (
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
     UNIQUE (username),
-    UNIQUE(name),
     PRIMARY KEY (id)
 );
 
@@ -145,6 +144,7 @@ CREATE TABLE node (
     maximum_textsize INTEGER NOT NULL,
     maximum_filesize INTEGER NOT NULL,
     tor2web_admin INTEGER NOT NULL,
+    tor2web_custodian INTEGER NOT NULL,
     tor2web_whistleblower INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
@@ -160,6 +160,7 @@ CREATE TABLE node (
     disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
     disable_key_code_hint INTEGER NOT NULL,
+    enable_simplified_login INTEGER NOT NULL,
     enable_custom_privacy_badge INTEGER NOT NULL,
     custom_privacy_badge_tor BLOB NOT NULL,
     custom_privacy_badge_none BLOB NOT NULL,
@@ -222,6 +223,18 @@ CREATE TABLE notification (
     exception_email_pgp_key_fingerprint TEXT,
     exception_email_pgp_key_public TEXT,
     exception_email_pgp_key_expiration INTEGER,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE admin (
+    id TEXT NOT NULL,
+    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE custodian (
+    id TEXT NOT NULL,
+    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

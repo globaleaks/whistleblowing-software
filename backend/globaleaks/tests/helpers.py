@@ -40,6 +40,7 @@ from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers.admin.user import create_admin, create_custodian
 from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
 from globaleaks.handlers.submission import create_submission
@@ -187,23 +188,25 @@ class TestGL(unittest.TestCase):
         self.dummySteps = dummyStuff.dummySteps
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
-        self.dummyReceiverUser_1 = self.get_dummy_receiver_user('receiver1')
-        self.dummyReceiverUser_2 = self.get_dummy_receiver_user('receiver2')
+        self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
+        self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
+        self.dummyReceiverUser_1 = self.get_dummy_user('receiver', 'receiver1')
+        self.dummyReceiverUser_2 = self.get_dummy_user('receiver', 'receiver2')
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')  # the one without PGP
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')  # the one with PGP
 
         if self.encryption_scenario == 'MIXED':
-            self.dummyReceiver_1['pgp_key_public'] = None
-            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiverUser_1['pgp_key_public'] = None
+            self.dummyReceiverUser_2['pgp_key_public'] = VALID_PGP_KEY1
         elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
-            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY2
+            self.dummyReceiverUser_1['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiverUser_2['pgp_key_public'] = VALID_PGP_KEY2
         elif self.encryption_scenario == 'ONE_VALID_ONE_EXPIRED':
-            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
-            self.dummyReceiver_2['pgp_key_public'] = EXPIRED_PGP_KEY
+            self.dummyReceiverUser_1['pgp_key_public'] = VALID_PGP_KEY1
+            self.dummyReceiverUser_2['pgp_key_public'] = EXPIRED_PGP_KEY
         elif self.encryption_scenario == 'ALL_PLAINTEXT':
-            self.dummyReceiver_1['pgp_key_public'] = None
-            self.dummyReceiver_2['pgp_key_public'] = None
+            self.dummyReceiverUser_1['pgp_key_public'] = None
+            self.dummyReceiverUser_2['pgp_key_public'] = None
 
         self.dummyNode = dummyStuff.dummyNode
 
@@ -219,22 +222,23 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    def get_dummy_receiver_user(self, descpattern):
-        new_ru = dict(MockDict().dummyReceiverUser)
-        new_ru['username'] = new_ru['name'] = new_ru['mail_address'] = \
+    def get_dummy_user(self, role, descpattern):
+        new_u = dict(MockDict().dummyUser)
+        new_u['role'] = role
+        new_u['username'] = new_u['name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (descpattern, descpattern))
-        new_ru['description'] = u""
-        new_ru['password'] = VALID_PASSWORD1
-        new_ru['state'] = u'enabled'
+        new_u['description'] = u""
+        new_u['password'] = VALID_PASSWORD1
+        new_u['state'] = u'enabled'
 
-        return new_ru
+        return new_u
 
     def get_dummy_receiver(self, descpattern):
-        new_ru = self.get_dummy_receiver_user(descpattern)
+        new_u = self.get_dummy_user('receiver', descpattern)
         new_r = dict(MockDict().dummyReceiver)
         new_r['ping_mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
 
-        return sum_dicts(new_r, new_ru)
+        return sum_dicts(new_r, new_u)
 
     def get_dummy_field(self):
         return {
@@ -449,12 +453,22 @@ class TestGLWithPopulatedDB(TestGL):
     def fill_data(self):
         yield do_appdata_init()
 
+        # fill_data/create_admin
+        self.dummyAdmin = yield create_admin(copy.deepcopy(self.dummyAdminUser), 'en')
+        self.dummyAdminUser['id'] = self.dummyAdmin['id']
+
+        # fill_data/create_custodian
+        self.dummyCustodian = yield create_custodian(copy.deepcopy(self.dummyCustodianUser), 'en')
+        self.dummyCustodianUser['id'] = self.dummyCustodian['id']
+
         receivers_ids = []
 
         # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver(self.dummyReceiver_1, 'en')
+        self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
+        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
         receivers_ids.append(self.dummyReceiver_1['id'])
-        self.dummyReceiver_2 = yield create_receiver(self.dummyReceiver_2, 'en')
+        self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
+        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids.append(self.dummyReceiver_2['id'])
 
         # fill_data/create_context
@@ -663,9 +677,10 @@ class MockDict():
     """
 
     def __init__(self):
-        self.dummyReceiverUser = {
+        self.dummyUser = {
             'username': u'maker@iz.cool.yeah',
-            'password': VALID_HASH1,
+            'password': VALID_PASSWORD1,
+            'old_password': '',
             'salt': VALID_SALT1,
             'role': u'receiver',
             'state': u'enabled',
@@ -680,17 +695,14 @@ class MockDict():
             'pgp_key_fingerprint': u'',
             'pgp_key_status': u'disabled',
             'pgp_key_public': u'',
-            'pgp_key_expiration': u'1970-01-01 00:00:00.000000'
+            'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
+            'pgp_key_remove': False
         }
 
-        self.dummyReceiver = {
-            'password': VALID_PASSWORD1,
-            'password_change_needed': False,
-            'name': u'Ned Stark',
-            'description': u'King MockDummy Receiver',
-            # Email can be different from the user, but at the creation time is used
-            # the same address, therefore we keep the same of dummyReceiver.username
-            'mail_address': self.dummyReceiverUser['username'],
+        self.dummyReceiver = copy.deepcopy(self.dummyUser)
+
+        self.dummyReceiver = sum_dicts(self.dummyReceiver, {
+            'mail_address': self.dummyUser['username'],
             'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'can_postpone_expiration': True,
@@ -699,8 +711,6 @@ class MockDict():
             'ping_notification': True,
             'tip_expiration_threshold': 72,
             'presentation_order': 0,
-            'timezone': 0,
-            'language': u'en',
             'configuration': 'default',
             'pgp_key_info': u'',
             'pgp_key_fingerprint': u'',
@@ -708,7 +718,7 @@ class MockDict():
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
             'pgp_key_remove': False
-        }
+        })
 
         self.dummyFieldTemplates = [
             {
@@ -927,6 +937,7 @@ class MockDict():
             'maximum_namesize': GLSettings.defaults.maximum_namesize,
             'maximum_textsize': GLSettings.defaults.maximum_textsize,
             'tor2web_admin': True,
+            'tor2web_custodian': True,
             'tor2web_whistleblower': True,
             'tor2web_receiver': True,
             'tor2web_unauth': True,
@@ -947,6 +958,7 @@ class MockDict():
             'default_language': u'en',
             'admin_timezone': 0,
             'admin_language': u'en',
+            'enable_simplified_login': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',

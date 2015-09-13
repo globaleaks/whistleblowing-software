@@ -151,6 +151,9 @@ def accept_tor2web(role):
     elif role == 'admin':
         return GLSettings.memory_copy.tor2web_admin
 
+    elif role == 'custodian':
+        return GLSettings.memory_copy.tor2web_custodian
+
     else:
         return GLSettings.memory_copy.tor2web_unauth
 
@@ -168,7 +171,7 @@ def transport_security_check(wrapped_handler_role):
             enhance performance instead of searching in te DB at every handler
             connection.
             """
-            tor2web_roles = ['wb', 'receiver', 'admin', 'unauth']
+            tor2web_roles = ['wb', 'receiver', 'admin', 'custodian', 'unauth']
 
             assert wrapped_handler_role in tor2web_roles
 

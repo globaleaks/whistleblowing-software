@@ -197,8 +197,16 @@ class Replacer2324(TableReplacer):
         new_node = self.get_right_model("Node", 24)()
 
         for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'enable_simplified_login':
+                new_node.enable_simplified_login = True
+                continue
+
             if v.name == 'tor2web_whistleblower':
                 new_node.tor2web_whistleblower = old_node.tor2web_submission
+                continue
+
+            if v.name == 'tor2web_custodian':
+                new_node.tor2web_custodian = False
                 continue
 
             if v.name == 'header_title_tippage':
