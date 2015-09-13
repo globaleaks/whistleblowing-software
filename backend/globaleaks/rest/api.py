@@ -9,7 +9,19 @@ from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, token, \
-                                collection, langfiles, css, wizard, base
+                                collection, langfiles, css, wizard, \
+                                base, user
+
+from globaleaks.handlers.admin.node import *
+from globaleaks.handlers.admin.receiver import *
+from globaleaks.handlers.admin.context import *
+from globaleaks.handlers.admin.step import *
+from globaleaks.handlers.admin.field import *
+from globaleaks.handlers.admin.langfiles import *
+from globaleaks.handlers.admin.staticfiles import *
+from globaleaks.handlers.admin.overview import *
+from globaleaks.handlers.admin.statistics import *
+from globaleaks.handlers.admin.notification import *
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
@@ -47,6 +59,9 @@ spec = [
     # Fake file hosting the Ahmia.fi descriptor
     (r'/description.json', node.AhmiaDescriptionHandler),
 
+    # User Preferences Handler
+    (r'/preferences', user.UserInstance),
+
     ## Token Handlers ##
     (r'/token', token.TokenCreate),
     (r'/token/' + token_string, token.TokenInstance),
@@ -78,6 +93,9 @@ spec = [
 
     ## Admin Handlers ##
     (r'/admin/node', admin.node.NodeInstance),
+    (r'/admin/users', admin.user.UsersCollection),
+    (r'/admin/user', admin.user.UserCreate),
+    (r'/admin/user/' + uuid_regexp, admin.user.UserInstance),
     (r'/admin/contexts', admin.context.ContextsCollection),
     (r'/admin/context', admin.context.ContextCreate),
     (r'/admin/context/' + uuid_regexp, admin.context.ContextInstance),

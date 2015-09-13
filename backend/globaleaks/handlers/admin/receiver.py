@@ -6,14 +6,13 @@
 #
 
 import os
-import shutil
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.handlers.admin.user import *
+from globaleaks.handlers.admin.user import db_create_user, db_admin_update_user, db_create_receiver
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import transact, transact_ro, GLSettings
@@ -30,6 +29,8 @@ def admin_serialize_receiver(receiver, language):
     """
     ret_dict = {
         'id': receiver.id,
+        'username': receiver.user.username,
+        'role': receiver.user.role,
         'name': receiver.user.name,
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
@@ -77,52 +78,6 @@ def get_receiver_list(store, language):
     return receiver_list
 
 
-def create_random_receiver_portrait(receiver_uuid):
-    """
-    By default take a picture and put in the receiver face,
-    """
-    try:
-        shutil.copy(
-            os.path.join(GLSettings.static_source, "default-profile-picture.png"),
-            os.path.join(GLSettings.static_path, "%s.png" % receiver_uuid)
-        )
-    except Exception as excep:
-        log.err("Unable to copy default receiver portrait in a new receiver! %s" % excep.message)
-        raise excep
-
-
-def db_create_receiver(store, request, language):
-    """
-    Creates a new receiver.
-    Returns:
-        (dict) the configured receiver
-    """
-    user = db_create_user(store, request, language)
-
-    fill_localized_keys(request, models.Receiver.localized_strings, language)
-
-    receiver = models.Receiver(request)
-
-    # Set receiver.id = receiver.user.username = receiver.user.id
-    receiver.id = user.username = user.id
-
-    store.add(receiver)
-
-    create_random_receiver_portrait(receiver.id)
-
-    contexts = request.get('contexts', [])
-    for context_id in contexts:
-        context = models.Context.get(store, context_id)
-        if not context:
-            log.err("Creation error: invalid Context can't be associated")
-            raise errors.ContextIdNotFound
-        context.receivers.add(receiver)
-
-    log.debug("Created new receiver")
-
-    return receiver
-
-
 @transact
 def create_receiver(store, request, language):
     receiver = db_create_receiver(store, request, language)
@@ -158,7 +113,7 @@ def update_receiver(store, receiver_id, request, language):
     raises :class:`globaleaks.errors.ReceiverIdNotFound` if the receiver does
     not exist.
     """
-    db_update_user(store, receiver_id, request, language)
+    db_admin_update_user(store, receiver_id, request, language)
 
     receiver = models.Receiver.get(store, receiver_id)
 
@@ -223,7 +178,7 @@ class ReceiverCreate(BaseHandler):
 
         Request: AdminReceiverDesc
         Response: AdminReceiverDesc
-        Errors: InvalidInputFormat, ContextIdNotFound
+        Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         request = self.validate_message(self.request.body,
                                         requests.AdminReceiverDesc)
@@ -262,7 +217,7 @@ class ReceiverInstance(BaseHandler):
         Parameters: receiver_id
         Request: AdminReceiverDesc
         Response: AdminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverIdNotFound, ContextId
+        Errors: InvalidInputFormat, ReceiverIdNotFound, ContextIdNotFound
         """
         request = self.validate_message(self.request.body, requests.AdminReceiverDesc)
 
@@ -285,8 +240,6 @@ class ReceiverInstance(BaseHandler):
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
         yield delete_receiver(receiver_id)
-
-        # get the updated list of receivers, and update the cache
         GLApiCache.invalidate()
 
         self.set_status(200) # OK and return not content

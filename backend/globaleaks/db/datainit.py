@@ -9,6 +9,7 @@ import re
 import os
 
 from globaleaks import models
+from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.security import get_salt, hash_password
@@ -74,20 +75,16 @@ def init_db(store, result, node_dict, appdata_dict):
 
     store.add(node)
 
-    admin_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-    admin_password = hash_password(u"globaleaks", admin_salt)
-
     admin_dict = {
         'username': u'admin',
-        'password': admin_password,
-        'salt': admin_salt,
+        'password': u'globaleaks',
         'role': u'admin',
         'state': u'enabled',
         'name': u'Admin',
-        'description': {},
+        'description': u'',
         'mail_address': u'',
-        'language': u"en",
-        'timezone': 0,
+        'language': GLSettings.defaults.language,
+        'timezone': GLSettings.defaults.timezone,
         'password_change_needed': False,
         'pgp_key_status': 'disabled',
         'pgp_key_info': '',
@@ -96,8 +93,8 @@ def init_db(store, result, node_dict, appdata_dict):
         'pgp_key_expiration': datetime_null()
     }
 
-    admin = models.User(admin_dict)
-    store.add(admin)
+    admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
+    admin.user.password_change_needed = False
 
     notification = models.Notification()
     for k in appdata_dict['templates']:
@@ -119,6 +116,7 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
         GLSettings.memory_copy.tor2web_admin = node.tor2web_admin
+        GLSettings.memory_copy.tor2web_custodian = node.tor2web_custodian
         GLSettings.memory_copy.tor2web_whistleblower = node.tor2web_whistleblower
         GLSettings.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSettings.memory_copy.tor2web_unauth = node.tor2web_unauth

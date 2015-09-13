@@ -1,5 +1,4 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, $modal) {
-
   $scope.save_receiver = function(receiver, cb) {
     if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';
@@ -96,7 +95,6 @@ GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CO
     };
 
     $scope.updateReceiverImgUrl();
-
 }]);
 
 GLClient.controller('AdminReceiverAddCtrl', ['$scope',
@@ -116,5 +114,4 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope',
         $scope.new_receiver = {};
       });
     };
-
 }]);

@@ -11,10 +11,6 @@ from globaleaks.handlers.admin import receiver
 from globaleaks.models import Receiver
 from globaleaks.utils.utility import uuid4
 
-# special guest:
-
-stuff = u"³²¼½¬¼³²"
-
 
 class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiversCollection
@@ -32,25 +28,15 @@ class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        self.dummyReceiver_1['name'] = 'beppe'
-
-        self.dummyReceiver_1['mail_address'] =  "test@globaleaks.org"
-        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
+        self.dummyReceiver_1['username'] = 'beppe'
 
         handler = self.request(self.dummyReceiver_1, role='admin')
         yield handler.post()
 
     @inlineCallbacks
     def test_post_invalid_mail_address(self):
-        self.dummyReceiver_1['name'] = 'beppe'
+        self.dummyReceiver_1['username'] = 'beppe'
         self.dummyReceiver_1['mail_address'] = "[est@globaleaks.org"
-        self.dummyReceiver_1['password'] = helpers.VALID_PASSWORD1
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
 
         handler = self.request(self.dummyReceiver_1, role='admin')
 
@@ -70,7 +56,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_change_name(self):
-        self.dummyReceiver_1['context_id'] = ''
         self.dummyReceiver_1['name'] = u'new unique name %d' % random.randint(1, 10000)
 
         handler = self.request(self.dummyReceiver_1, role='admin')
@@ -79,12 +64,8 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_change_valid_password(self):
-        self.dummyReceiver_1['context_id'] = ''
         self.dummyReceiver_1['name'] = u'trick to verify the update is accepted'
         self.dummyReceiver_1['password'] = u'12345678antani'
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
 
         handler = self.request(self.dummyReceiver_1, role='admin')
         yield handler.put(self.dummyReceiver_1['id'])
@@ -92,26 +73,15 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_change_invalid_password(self):
-        self.dummyReceiver_1['context_id'] = ''
         self.dummyReceiver_1['name'] = u'trick to verify the update is accepted'
         self.dummyReceiver_1['password'] = u'toosimplepassword'
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
 
         handler = self.request(self.dummyReceiver_1, role='admin')
         yield self.assertFailure(handler.put(self.dummyReceiver_1['id']), InvalidInputFormat)
 
     @inlineCallbacks
     def test_put_invalid_context_id(self):
-        self.dummyReceiver_1['name'] = u'justalazyupdate'
         self.dummyReceiver_1['contexts'] = [unicode(uuid4())]
-        self.dummyReceiver_1['name'] = u'another unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver_1['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
-        self.dummyReceiver_1['password'] = u'12345678andaletter'
-
-        for attrname in Receiver.localized_strings:
-            self.dummyReceiver_1[attrname] = stuff
 
         handler = self.request(self.dummyReceiver_1, role='admin')
 

@@ -11,6 +11,15 @@
     </div>
 
     <div class="form-group">
+      <input data-ng-model="admin.node.tor2web_custodian" type="checkbox">
+      <label data-translate>Allow Custodian access via Tor2web</label>
+      <div data-ng-show="admin.node.tor2web_admin">
+        <span class="label label-info" data-translate>Enabled</span>
+        <span data-translate>Custodians can access via Tor2web.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
       <input data-ng-model="admin.node.tor2web_receiver" type="checkbox">
       <label data-translate>Allow Receivers access via Tor2web</label>
       <div data-ng-show="admin.node.tor2web_receiver">

@@ -15,7 +15,7 @@ from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.admin.user import admin_serialize_user
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.admin.notification import get_notification
@@ -36,7 +36,7 @@ class PGPCheckSchedule(GLJob):
     def get_admin_users(self, store):
         admins_users = []
         for admin in store.find(models.User, models.User.role == u'admin'):
-            admins_users.append(admin_serialize_user(admin, 'en'))
+            admins_users.append(user_serialize_user(admin, 'en'))
 
         return admins_users
 

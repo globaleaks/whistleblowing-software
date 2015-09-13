@@ -2,9 +2,10 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
   $scope.loginUsername = "";
   $scope.loginPassword = "";
 
-  if ($location.path() === '/admin') {
-    $scope.loginRole = "admin";
+  if ($location.path() === '/login' && $scope.node.enable_simplified_login) {
+    $scope.simplifiedLogin = true;
   } else {
-    $scope.loginRole = "receiver";
+    $scope.simplifiedLogin = false;
   }
+
 }]);

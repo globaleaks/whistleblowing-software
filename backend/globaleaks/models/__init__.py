@@ -435,6 +435,7 @@ class Node(Model):
     maximum_textsize = Int()
     maximum_filesize = Int()
     tor2web_admin = Bool()
+    tor2web_custodian = Bool()
     tor2web_whistleblower = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
@@ -457,6 +458,8 @@ class Node(Model):
 
     whistleblowing_question = JSON(validator=longlocal_v)
     whistleblowing_button = JSON(validator=longlocal_v)
+
+    enable_simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
     custom_privacy_badge_tor = JSON(validator=longlocal_v)
@@ -482,10 +485,11 @@ class Node(Model):
                 'maximum_filesize', 'default_timezone',
                 'show_contexts_in_alphabetical_order',
                 'submission_minimum_delay',
-                'submission_maximum_ttl']
+                'submission_maximum_ttl',
+                'enable_simplified_login']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
-                 'tor2web_unauth', 'can_postpone_expiration',
+                 'tor2web_custodian', 'tor2web_unauth', 'can_postpone_expiration',
                  'can_delete_submission', 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
@@ -633,15 +637,24 @@ class Admin(Model):
     pass
 
 
+class Custodian(Model):
+    """
+    This model keeps track of custodians settings.
+    """
+    # currently custodians do not need special settings but
+    # but the model is anyhow needed in order to allow the grouping
+    pass
+
+
 class Receiver(Model):
     """
     This model keeps track of receivers settings.
     """
-    configuration = Unicode()
+    configuration = Unicode(default=u"default")
     # configurations: 'default', 'forcefully_selected', 'unselectable'
 
     # Can be changed by the user itself
-    ping_mail_address = Unicode()
+    ping_mail_address = Unicode(default=u"")
 
     # Admin chosen options
     can_delete_submission = Bool(default=False)
@@ -669,15 +682,6 @@ class Receiver(Model):
         'tip_notification',
         'ping_notification'
     ]
-
-
-class Custodian(Model):
-    """
-    This model keeps track of receivers settings.
-    """
-    # currently custodians do not need special settings but
-    # but the model is anyhow needed in order to allow the grouping
-    pass
 
 
 class EventLogs(Model):
@@ -828,6 +832,7 @@ class FieldAnswerGroup(Model):
 
     unicode_keys = ['fieldanswer_id']
     int_keys = ['number']
+
 
 class ArchivedSchema(Model):
     hash = Unicode()

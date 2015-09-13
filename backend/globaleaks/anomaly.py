@@ -398,6 +398,7 @@ class Alarm(object):
 
         admin_email = yield _get_node_admin_email()
         admin_language = yield _get_admin_user_language()
+
         notification_settings = yield get_notification(admin_language)
 
         # and now, processing the template

@@ -17,6 +17,10 @@
       "maximum_textsize": 4096,
       "maximum_namesize": 128,
       "tor2web_admin": false,
+      "tor2web_receiver": false,
+      "tor2web_custodian": false,
+      "tor2web_whistleblower": false,
+      "tor2web_unauth": true,
       "exception_email": "globaleaks-stackexception@lists.globaleaks.org",
       "last_update": null,
       "can_delete_submission": false,
@@ -57,7 +61,6 @@
       "description": {
         "en": ""
       },
-      "tor2web_receiver": false,
       "wizard_done": false,
       "disable_privacy_badge": false,
       "disable_security_awareness_badge": false,
@@ -94,9 +97,7 @@
         "lv": "darbojas, izmantojot GlobaLeaks, autorties\u012bbas pieder Hermes Center for Transparency and Digital Human Rights",
         "nb_NO": "stolt drevet av GlobaLeaks, kopirett Hermes Center for Transparency and Digital Human Rights  / Hermes senter for etterettlighet og digitale menneskerettigheter"
       },
-      "tor2web_unauth": true,
       "maximum_filesize": 30,
-      "tor2web_whistleblower": false,
       "public_site": "",
       "hidden_service": "",
       "context_selector_label": {"en": ""},
@@ -104,6 +105,7 @@
       "security_awareness_text": {"en": ""},
       "whistleblowing_question": {"en": ""},
       "whistleblowing_button": {"en": ""},
+      "enable_simplified_login": false,
       "enable_custom_privacy_badge": false,
       "custom_privacy_badge_tor": {"en": ""},
       "custom_privacy_badge_none": {"en": ""},

@@ -1,0 +1,250 @@
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+  <div class="col-md-9">
+    <div class="adminConfigSection" data-ng-controller="AdminUserAddCtrl">
+      <div class="row">
+        <form name="newUser" novalidate>
+          <div class="addUser col-md-6">
+            <div class="editorTitle">
+              <span data-translate>Add new user</span>
+            </div>
+            <div class="form-group">
+              <label data-translate>Username</label>
+              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
+              <div class="text-red" data-ng-show="newUser.username.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-translate>Name</label>
+              <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
+              <div class="text-red" data-ng-show="newUser.name.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-translate>Role</label>
+              <select name="role" class="form-control" data-ng-model="new_user.role" required>
+                <option value="admin" data-translate>Admin</option>
+                <option value="receiver" data-translate>Receiver</option>
+                <option value="custodian" data-translate>Custodian</option>
+              </select>
+              <div class="text-red" data-ng-show="newUser.role.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-translate>Email Address</label>
+              <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+              <div class="text-red" data-ng-show="newUser.email.$error.pattern">
+                <span data-translate>Invalid email address</span>
+              </div>
+              <div class="text-red" data-ng-show="newUser.email.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label data-translate>Password</label>
+              <input type="hidden" data-ng-init="new_user.password = 'globaleaks'" />
+              <div>
+                <div data-translate-values="{default_user_password: 'globaleaks'}" data-translate>DEFAULT_USER_PASSWORD</div>
+                <div data-translate>The system forces users to change the password at first login.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="pull-left btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user()" type="submit">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                <span data-translate>Add</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="adminConfigSection" ng-controller="AdminUsersCtrl" data-ng-show="admin.users.length > 0">
+      <div class="editorTitle">
+        <span data-translate>Configured users:</span>
+      </div>
+      <div class="userList" data-ng-repeat="user in admin.users | orderBy:'presentation_order'">
+        <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
+          <div class="configItem userItem">
+            <div class="editorHeader row" data-ng-click="toggleEditing($event)">
+              <span class="col-md-7 editorHeaderTitle">
+                <span>{{user.name}}</span>
+              </span>
+              <span class="col-md-5">
+                <span class="pull-right">
+                  <button class="actionButton btn btn-xs btn-default"
+                    data-ng-show="!editing"
+                    data-ng-click="toggleEditing($event)">
+                    <span data-translate>Edit</span>
+                  </button>
+                  <button class="actionButton btn btn-xs btn-success"
+                    data-ng-show="editing"
+                    data-ng-click="save_user(user)">
+                    <span data-translate>Save</span>
+                  </button>
+                  <button 
+                    class="actionButton btn btn-xs btn-default"
+                    data-ng-show="editing"
+                    data-ng-click="toggleEditing($event)">
+                    <span data-translate>Cancel</span>
+                  </button>
+                  <button class="actionButton btn btn-xs btn-danger"
+                    data-ng-click="userDeleteDialog($event, user)"
+                    popover="{{'Delete' | translate}}"
+                    popover-placement="right"
+                    popover-trigger="mouseenter">
+                    <span data-translate>Delete</span>
+                  </button>
+                  <span data-ng-if="admin.users.length > 1">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave($event, user)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                      <i class="glyphicon glyphicon-menu-up"></i>
+                    </button>
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave($event, user)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                      <i class="glyphicon glyphicon-menu-down"></i>
+                    </button>
+                  </span>
+                </span>
+              </span>
+            </div>
+            <div class="editor" data-ng-if="editing">
+              <hr />
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
+                    <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
+                      <div flow-init="{target: 'admin/staticfiles/' + user.id, headers: get_auth_headers()}"
+                          flow-files-submitted="$flow.upload()"
+                          flow-file-success="updateuserImgUrl()"
+                          flow-name="flowObj"
+                          class="uploadfile">
+                        <div flow-btn>
+                          <span class="col-md-12 changePicture">
+                            <span data-translate>Change picture</span>
+                          </span>
+                          <img data-ng-src="{{userImgUrl}}" class="img-thumbnail baseimage">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Username</label>
+                    <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
+                    <div class="text-red" data-ng-show="editUser.name.$error.required">
+                      <span data-translate>This field is mandatory</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Name</label>
+                    <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.name" type="text" required />
+                    <div class="text-red" data-ng-show="editUser.name.$error.required">
+                      <span data-translate>This field is mandatory</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Email Address</label>
+                    <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
+                    <div class="text-red" data-ng-show="editUser.email.$error.required">
+                      <span data-translate>This field is mandatory</span>
+                    </div>
+                    <div class="text-red" data-ng-show="editUser.email.$error.pattern">
+                      <span data-translate>Invalid email address</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Password</label>
+                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" />
+                    <p class="text-red" data-ng-show="unsafe_password">
+                      <span data-translate>The choosen password is unsafe, it should have</span>:
+                    </p>
+                    <ul>
+                      <li class="text-red" data-ng-hide="pwdHasLetter">
+                        <span data-translate>At least one letter</span>
+                      </li>
+                      <li class="text-red" data-ng-hide="pwdHasNumber">
+                        <span data-translate>At least one number</span>
+                      </li>
+                      <li class="text-red" data-ng-hide="pwdValidLength">
+                        <span data-translate>At least 8 characters</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="form-group">
+                    <input data-ng-model="user.password_change_needed" type="checkbox" />
+                    <label data-translate>Force password change</label>
+                    <div data-ng-show="user.password_change_needed">
+                      <span class="label label-info" data-translate>Now enabled:</span>
+                      <span data-translate>The user will be forced to change its password on next login.</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Description</label>
+                    <div>
+                      <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}">{{user.description}}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Status</label>
+                    <select class="form-control" data-ng-model="user.state">
+                      <option value="disabled" data-translate>Disabled</option>
+                      <option value="enabled" data-translate>Enabled</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Language</label>
+                    <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Timezone</label>
+                    <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group" data-ng-show="user.pgp_key_info">
+                    <div class="alert alert-success">
+                      <div data-translate>Encryption is enabled!</div>
+                      <div data-translate>Email notifications will be encrypted.</div>
+                    </div>
+                    <div>
+                      <div data-translate>Details of the PGP key:</div>
+                      <div>
+                        <span data-translate>The fingerprint is:</span>
+                        <b>{{user.pgp_key_fingerprint}}</b>
+                      </div>
+                    </div>
+                    <div>
+                      <pre>{{user.pgp_key_info}}</pre>
+                    </div>
+                    <div class="form-group">
+                      <input data-ng-model="user.pgp_key_remove" type="checkbox" />
+                      <label data-translate>Remove the PGP key</label>
+                    </div>
+                  </div>
+                  <div class="form-group" data-ng-hide="user.pgp_key_fingerprint">
+                    <div class="alert alert-danger">
+                      <div data-translate>Encryption is not enabled!</div>
+                      <div data-translate>Email notifications won't be encrypted.</div>
+                    </div>
+                    <a class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
+                      <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
+                      <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
+                      <span data-translate>Configure a PGP key</span>
+                    </a>
+                    <div data-ng-show="send_key">
+                      <br />
+                      <label data-translate>Paste the PGP key here:</label>
+                      <textarea class="form-control" data-ng-model="user.pgp_key_public"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

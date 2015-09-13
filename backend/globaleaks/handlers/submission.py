@@ -17,9 +17,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.models import Node, Context, Receiver, \
     InternalTip, ReceiverTip, WhistleblowerTip, \
     InternalFile, FieldAnswer, FieldAnswerGroup, ArchivedSchema
-from globaleaks.anomaly import Alarm
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin import db_get_context_steps
+from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import errors, requests

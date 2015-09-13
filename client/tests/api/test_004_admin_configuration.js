@@ -28,13 +28,14 @@ var valid_admin_login = {
 }
 
 var receiver = {
+  role: 'receiver',
+  username: '',
+  name: '',
   can_delete_submission: false,
-  comment_notification: false,
   contexts: [],
   timezone: 0,
   language: 'en',
   description: '',
-  file_notification: false,
   pgp_key_public: '',
   pgp_key_expiration: '',
   pgp_key_fingerprint: '',
@@ -43,16 +44,15 @@ var receiver = {
   pgp_key_status: 'ignored',
   mail_address: 'receiver1@antani.gov', // used 'Receiver N' for population
   ping_mail_address: '',
-  message_notification: false,
-  name: 'receiver1@antani.gov', // used 'receiverN@antani.gov' for population
   password: 'ringobongos3cur1ty',
+  old_password: '',
+  password_change_needed: false,
   can_postpone_expiration: true,
   presentation_order: 0,
   tip_notification: false,
   ping_notification: false,
   tip_expiration_threshold: 72,
   configuration: 'default',
-  password_change_needed: false,
   state: 'enabled'
 }
 
@@ -330,7 +330,7 @@ for (var i=0; i<population_order; i++) {
       it('responds 201 on POST /admin/receiver ' + i + ' (authenticated, valid receiver)', function (done) {
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.name = 'Receiver ' + i;
+        newObject.username = 'receiver ' + i;
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
 

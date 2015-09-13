@@ -9,6 +9,8 @@
 
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
+user_roles_regexp                 = r'^(admin|custodian|receiver)$'
+user_states_regexp                = r'^(enabled|disabled)$'
 receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
 email_regexp                      = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,9}$|^$'
 email_regexp_or_empty             = r'^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,9}$|^$'
@@ -19,7 +21,7 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
 tip_operation_regexp              = r'^postpone$|^label$'
 token_type_regexp                 = r'^submission$'
-field_type                        = (r'^('
+field_type_regexp                 = (r'^('
                                      'inputbox|'
                                      'textarea|'
                                      'selectbox|'
@@ -82,11 +84,37 @@ SubmissionDesc = {
     'answers': dict
 }
 
-ReceiverReceiverDesc = {
+UserUserDesc = {
+    'username': unicode,
     'name': unicode,
     'description': unicode,
+    'role': user_roles_regexp,
     'password': unicode,
     'old_password': unicode,
+    'password_change_needed': bool,
+    'state': user_states_regexp,
+    'mail_address': email_regexp,
+    'pgp_key_remove': bool,
+    'pgp_key_fingerprint': unicode,
+    'pgp_key_expiration': unicode,
+    'pgp_key_info': unicode,
+    'pgp_key_public': unicode,
+    'pgp_key_status': unicode,
+    'language': unicode,
+    'timezone': int
+}
+
+AdminUserDesc = UserUserDesc # currently the same
+
+ReceiverReceiverDesc = {
+    'username': unicode,
+    'name': unicode,
+    'description': unicode,
+    'role': user_roles_regexp,
+    'password': unicode,
+    'old_password': unicode,
+    'role': user_roles_regexp,
+    'password_change_needed': bool,
     'mail_address': email_regexp,
     'ping_mail_address': email_regexp,
     'pgp_key_remove': bool,
@@ -147,6 +175,7 @@ AdminNodeDesc = {
     'maximum_textsize': int,
     'maximum_filesize': int,
     'tor2web_admin': bool,
+    'tor2web_custodian': bool,
     'tor2web_whistleblower': bool,
     'tor2web_receiver': bool,
     'tor2web_unauth': bool,
@@ -161,6 +190,7 @@ AdminNodeDesc = {
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
     'configured': bool,
+    'enable_simplified_login': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
@@ -248,6 +278,8 @@ AdminContextDesc = {
 }
 
 AdminReceiverDesc = {
+    'username': unicode,
+    'role': user_roles_regexp,
     'name': unicode,
     'description': unicode,
     'password': unicode,
@@ -267,7 +299,7 @@ AdminReceiverDesc = {
     'presentation_order': int,
     'language': unicode,
     'timezone': int,
-    'state': unicode,
+    'state': user_states_regexp,
     'configuration': unicode,
     'password_change_needed': bool,
     'tip_expiration_threshold': int
@@ -290,6 +322,7 @@ NodeDesc = {
     'maximum_textsize': int,
     'maximum_filesize': int,
     'tor2web_admin': bool,
+    'tor2web_custodian': bool,
     'tor2web_whistleblower': bool,
     'tor2web_receiver': bool,
     'tor2web_unauth': bool,
@@ -303,6 +336,7 @@ NodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
+    'enable_simplified_login': bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
@@ -375,7 +409,7 @@ ReceiverDesc = {
      'presentation_order': int,
      'pgp_key_status': unicode,
      'id': uuid_regexp,
-     'state': unicode
+     'state': user_states_regexp
 }
 
 ReceiverCollectionDesc = [ReceiverDesc]
@@ -451,7 +485,7 @@ FieldDesc = {
     'required': bool,
     'preview': bool,
     'stats_enabled': bool,
-    'type': field_type,
+    'type': field_type_regexp,
     'attrs': dict,
     'options': [FieldOptionDesc],
     'children': list,

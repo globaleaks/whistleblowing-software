@@ -86,7 +86,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': self.dummyReceiver_1['username'],
             'password': helpers.VALID_PASSWORD1
         })
         success = yield handler.post()
@@ -96,7 +96,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_accept_receiver_login_in_tor2web(self):
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': self.dummyReceiver_1['username'],
             'password': helpers.VALID_PASSWORD1
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.tor2web_receiver = True
@@ -106,7 +106,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     def test_deny_receiver_login_in_tor2web(self):
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': self.dummyReceiver_1['username'],
             'password': helpers.VALID_PASSWORD1
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.tor2web_receiver = False
@@ -144,7 +144,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_successful_receiver_logout(self):
         # Login
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': self.dummyReceiver_1['username'],
             'password': helpers.VALID_PASSWORD1
         })
         yield handler.post()

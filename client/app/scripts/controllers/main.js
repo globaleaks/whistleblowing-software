@@ -425,6 +425,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     }, function (newVal, oldVal) {
       if (newVal !== undefined) {
         $scope.session_id = Authentication.id;
+        $scope.username = Authentication.username;
         $scope.role = Authentication.role;
         $scope.auth_landing_page = Authentication.auth_landing_page;
         $scope.homepage = Authentication.homepage;

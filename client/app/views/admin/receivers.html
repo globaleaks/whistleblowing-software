@@ -9,6 +9,13 @@
               <span data-translate>Add new receiver</span>
             </div>
             <div class="form-group">
+              <label data-translate>Username</label>
+              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.username" type="text" required />
+              <div class="text-red" data-ng-show="newReceiver.username.$error.required">
+                <span data-translate>This field is mandatory</span>
+              </div>
+            </div>
+            <div class="form-group">
               <label data-translate>Name</label>
               <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.name" type="text" required />
               <div class="text-red" data-ng-show="newReceiver.name.$error.required">
@@ -29,8 +36,8 @@
               <label data-translate>Password</label>
               <input type="hidden" data-ng-init="new_receiver.password = 'globaleaks'" />
               <div>
-                <span data-translate>By default receivers password is:</span> <span class="label label-primary">globaleaks</span><br />
-                <span data-translate>The system forces users to change the password at first login.</span>
+                <div data-translate-values="{default_user_password: 'globaleaks'}" data-translate>DEFAULT_USER_PASSWORD</div>
+                <div data-translate>The system forces users to change the password at first login.</div>
               </div>
             </div>
             <div class="form-group">
@@ -147,10 +154,10 @@
                   </div>
                   <div class="form-group">
                     <input data-ng-model="receiver.password_change_needed" type="checkbox" />
-                    <label data-translate>Force Password Change</label>
+                    <label data-translate>Force password change</label>
                     <div data-ng-show="receiver.password_change_needed">
                       <span class="label label-info" data-translate>Now enabled:</span>
-                      <span data-translate>The Receiver will be forced to change its password on next login.</span>
+                      <span data-translate>The user will be forced to change its password on next login.</span>
                     </div>
                   </div>
                   <div class="form-group">
@@ -249,15 +256,16 @@
                   </div>
                   <div class="form-group" data-ng-show="receiver.pgp_key_info">
                     <div class="alert alert-success">
-                      <span data-translate>Encryption is enabled!</span>
-                      <span data-translate>Notifications and Files will be encrypted.</span>
+                      <div data-translate>Encryption is enabled!</div>
+                      <div data-translate>Email notifications will be encrypted.</div>
                     </div>
-                    <p>
-                      <span data-translate>PGP Key details</span>
-                      <br />
-                      <span data-translate>The fingerprint is:</span>
-                      <b>{{receiver.pgp_key_fingerprint}}</b>
-                    </p>
+                    <div>
+                      <div data-translate>Details of the PGP key:</div>
+                      <div>
+                        <span data-translate>The fingerprint is:</span>
+                        <b>{{receiver.pgp_key_fingerprint}}</b>
+                      </div>
+                    </div>
                     <div>
                       <pre>{{receiver.pgp_key_info}}</pre>
                     </div>
@@ -268,8 +276,8 @@
                   </div>
                   <div class="form-group" data-ng-hide="receiver.pgp_key_fingerprint">
                     <div class="alert alert-danger">
-                      <span data-translate>Encryption is not enabled!</span>
-                      <span data-translate>Notifications and Files won't be encrypted.</span>
+                      <div data-translate>Encryption is not enabled!</div>
+                      <div data-translate>Email notifications won't be encrypted.</div>
                     </div>
                     <a class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
                       <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
@@ -278,7 +286,7 @@
                     </a>
                     <div data-ng-show="send_key">
                       <br />
-                      <label data-translate>Paste the PGP Key here:</label>
+                      <label data-translate>Paste the PGP key here:</label>
                       <textarea class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
                     </div>
                   </div>

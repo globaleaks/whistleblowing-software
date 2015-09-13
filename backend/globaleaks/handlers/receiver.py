@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
-from globaleaks.handlers.admin.user import db_update_user, parse_pgp_options
+from globaleaks.handlers.user import db_user_update_user, parse_pgp_options
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list
@@ -26,26 +26,30 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 def receiver_serialize_receiver(receiver, node, language):
     ret_dict = {
         'id': receiver.id,
+        'username': receiver.user.username,
+        'role': receiver.user.role,
         'name': receiver.user.name,
+        'description': receiver.user.description,
+        'password': u'',
+        'old_password': u'',
+        'password_change_needed': receiver.user.password_change_needed,
+        'username': receiver.user.username,
+        'mail_address': receiver.user.mail_address,
+        'language': receiver.user.language,
+        'timezone': receiver.user.timezone,
         'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
-        'username': receiver.user.username,
+        'tip_notification': receiver.tip_notification,
+        'ping_notification': receiver.ping_notification,
+        'ping_mail_address': receiver.ping_mail_address,
+        'tip_expiration_threshold': receiver.tip_expiration_threshold,
+        'contexts': [c.id for c in receiver.contexts],
         'pgp_key_info': receiver.user.pgp_key_info,
         'pgp_key_fingerprint': receiver.user.pgp_key_fingerprint,
         'pgp_key_public': receiver.user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
         'pgp_key_status': receiver.user.pgp_key_status,
         'pgp_key_remove': False,
-        'tip_notification': receiver.tip_notification,
-        'ping_notification': receiver.ping_notification,
-        'mail_address': receiver.user.mail_address,
-        'ping_mail_address': receiver.ping_mail_address,
-        'tip_expiration_threshold': receiver.tip_expiration_threshold,
-        'contexts': [c.id for c in receiver.contexts],
-        'password': u'',
-        'old_password': u'',
-        'language': receiver.user.language,
-        'timezone': receiver.user.timezone
     }
 
     for context in receiver.contexts:
@@ -55,23 +59,6 @@ def receiver_serialize_receiver(receiver, node, language):
     get_localized_values(ret_dict, receiver.user, ['description'], language)
 
     return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
-
-
-def serialize_event(evnt):
-    """
-    At the moment is not important to extract relevant information from the event_description but
-    in the future it would be a nice improvement to get for example the beginning of the comment,
-    or the filename/filetype, etc)
-    """
-    ret_dict = {
-        'id': evnt.id,
-        'creation_date': datetime_to_ISO8601(evnt.creation_date),
-        'title': evnt.title,
-        'mail_sent': evnt.mail_sent,
-        'tip_id': evnt.receivertip_id
-    }
-
-    return ret_dict
 
 
 @transact_ro
@@ -125,10 +112,9 @@ def db_update_user(store, user_id, request, language):
     return user
 
 
-
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
-    db_update_user(store, receiver_id, request, language)
+    user = db_user_update_user(store, receiver_id, request, language)
 
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
@@ -220,12 +206,12 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
 
 class ReceiverInstance(BaseHandler):
     """
-    This class permit to the receiver to modify some of their fields:
-        Receiver.description
-        Receiver.password
-
-    and permit the overall view of all the Tips related to the receiver
-    GET and PUT /receiver/preferences
+    This handler allow receivers to modify some of their fields:
+        - language
+        - timezone
+        - password
+        - notification settings
+        - pgp key
     """
 
     @transport_security_check('receiver')
@@ -235,7 +221,7 @@ class ReceiverInstance(BaseHandler):
         """
         Parameters: None
         Response: ReceiverReceiverDesc
-        Errors: TipIdNotFound, InvalidInputFormat, InvalidAuthentication
+        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
                                                       self.request.language)
@@ -252,17 +238,14 @@ class ReceiverInstance(BaseHandler):
         Parameters: None
         Request: ReceiverReceiverDesc
         Response: ReceiverReceiverDesc
-        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication, TipIdNotFound
+        Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
         request = self.validate_message(self.request.body, requests.ReceiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
                                                          request, self.request.language)
 
-        # get the updated list of receivers, and update the cache
-        public_receivers_list = yield get_public_receiver_list(self.request.language)
         GLApiCache.invalidate('receivers')
-        GLApiCache.set('receivers', self.request.language, public_receivers_list)
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -301,7 +284,7 @@ class TipsOperations(BaseHandler):
     def put(self):
         """
         Parameters: ReceiverOperationDesc
-        Response: None
+        Res
         Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
         """
         request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)

@@ -50,10 +50,10 @@ describe('GET /receivers', function () {
 
         validate_mandatory_headers(res.headers);
 
-        receiver_id = JSON.parse(JSON.stringify(res.body))[0]['id'];
+        receiver_username = JSON.parse(JSON.stringify(res.body))[0]['username'];
 
         valid_login = {
-          'username': receiver_id,
+          'username': receiver_username,
           'password': 'ringobongos3cur1ty'
         }
 

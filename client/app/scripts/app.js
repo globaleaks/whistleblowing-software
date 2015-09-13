@@ -48,15 +48,15 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: ''
       }).
-      when('/receiver/firstlogin', {
-        templateUrl: 'views/receiver/firstlogin.html',
-        controller: 'ReceiverFirstLoginCtrl',
-        header_title: 'Receiver First Login',
+      when('/forcedpasswordchange', {
+        templateUrl: 'views/forced_password_change.html',
+        controller: 'ForcedPasswordChangeCtrl',
+        header_title: 'Change your password',
         header_subtitle: ''
       }).
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
-        controller: 'ReceiverPreferencesCtrl',
+        controller: 'PreferencesCtrl',
         header_title: 'Receiver Interface',
         header_subtitle: 'Preferences'
       }).
@@ -90,6 +90,12 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Fields Configuration'
       }).
+      when('/admin/users', {
+        templateUrl: 'views/admin/users.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration Interface',
+        header_subtitle: 'Users Configuration'
+      }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
@@ -108,11 +114,11 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration Interface',
         header_subtitle: 'Advanced Settings'
       }).
-      when('/admin/password', {
-        templateUrl: 'views/admin/password.html',
-        controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Password Configuration'
+      when('/user/preferences', {
+        templateUrl: 'views/user/preferences.html',
+        controller: 'PreferencesCtrl',
+        header_title: 'User Preferences',
+        header_subtitle: ''
       }).
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
@@ -151,7 +157,13 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: 'Recent Activities'
       }).
       when('/admin', {
-        templateUrl: 'views/admin.html',
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        header_title: 'Login',
+        header_subtitle: ''
+      }).
+      when('/custodian', {
+        templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
         header_subtitle: ''
