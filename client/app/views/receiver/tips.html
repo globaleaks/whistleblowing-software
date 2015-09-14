@@ -77,10 +77,8 @@
         <tr>
           <th data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission"></th>
           <th data-ng-if="contexts.length > 1">
-            <span ng-click="sortKey = 'context'; sortReverse = !sortReverse"
-               popover="{{'Context' | translate}}"
-               popover-placement=""
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'context'; sortReverse = !sortReverse">
+              <span data-translate>Context</span>
               <i class="glyphicon glyphicon-inbox"></i>
               <span class="btn btn-xs" ng-show="sortKey == 'context'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
@@ -89,11 +87,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'label'; sortReverse = !sortReverse"
-               popover="{{'Label' | translate}}"
-               popover-placement=""
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'label'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-tag"></i>
+              <span data-translate>Label</span>
               <span class="btn btn-xs" ng-show="sortKey == 'label'">
                  <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                  <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -101,11 +97,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse"
-               popover="{{'Submission Date' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'creation_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-time"></i>
+              <span data-translate>Submission Date</span>
               <span class="btn btn-xs" ng-show="sortKey == 'creation_date'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -113,11 +107,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse"
-               popover="{{'Expiration Date' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-hourglass"></i>
+              <span data-translate>Expiration Date</span>
               <span class="btn btn-xs" ng-show="sortKey == 'expiration_date'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -125,11 +117,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'files'; sortReverse = !sortReverse"
-               popover="{{'Files' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'files'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-file"></i>
+              <span data-translate>Files</span>
               <span class="btn btn-xs" ng-show="sortKey == 'files'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -137,11 +127,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'comments'; sortReverse = !sortReverse"
-               popover="{{'Comments' | translate}}"
-               popover-placement="top"
-                  popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'comments'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-comment"></i>
+              <span data-translate>Comments</span>
               <span class="btn btn-xs" ng-show="sortKey == 'comments'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -149,11 +137,9 @@
             </span>
           </th>
           <th>
-            <span ng-click="sortKey = 'messages'; sortReverse = !sortReverse"
-               popover="{{'Private Messages' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span ng-click="sortKey = 'messages'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-envelope"></i>
+              <span data-translate>Messages</span>
               <span class="btn btn-xs" ng-show="sortKey == 'messages'">
                 <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
                 <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
@@ -161,17 +147,15 @@
             </span>
           </th>
           <th>
-            <span popover="{{'Connection' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span>
               <i class="glyphicon glyphicon-send"></i>
-            </span>
+              <span data-translate>Connection</span>
+              <span data-translate></span>
           </th>
           <th>
-            <span popover="{{'Preview' | translate}}"
-               popover-placement="top"
-               popover-trigger="mouseenter">
+            <span>
               <i class="glyphicon glyphicon-list-alt"></i>
+              <span data-translate>Preview</span>
             </span>
           </th>
         </tr>
