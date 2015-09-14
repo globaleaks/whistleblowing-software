@@ -115,8 +115,8 @@ spec = [
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.glclient_path}),
 
-    (r'/S/current', exporter.CurrentStats),
-    (r'/S/reportevent/(\w+)', exporter.ReportEvent),
+    (r'/s/current', exporter.CurrentStats),
+    (r'/s/reportevent/(\w+)', exporter.ReportEvent),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSettings.glclient_path})
