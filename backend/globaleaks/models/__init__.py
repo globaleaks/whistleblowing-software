@@ -319,6 +319,17 @@ class WhistleblowerTip(Model):
     access_counter = Int(default=0)
 
 
+class IdentityAccessRequests(Model):
+    context_id = Unicode()
+    receivertip_id = Unicode()
+    custodian_id = Unicode()
+    request_date = DateTime(default_factory=datetime_now)
+    request_motivation = Unicode()
+    answer_date = DateTime(default_factory=datetime_null)
+    answer_motivation = Unicode()
+    answer = Unicode()
+
+
 class InternalFile(Model):
     """
     This model keeps track of files before they are packaged
