@@ -122,6 +122,22 @@ CREATE TABLE internaltip (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE identityaccessrequest (
+    id TEXT NOT NULL,
+    context_id TEXT NOT NULL,
+    receivertip_id TEXT NOT NULL,
+    custodian_id TEXT NOT NULL,
+    request_date TEXT NOT NULL,
+    request_motivation TEXT NOT NULL,
+    answer_date TEXT NOT NULL,
+    answer_motivation TEXT NOT NULL,
+    answer TEXT NOT NULL,
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    FOREIGN KEY (custodian_id) REFERENCES custodian(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE node (
     id TEXT NOT NULL,
     description BLOB NOT NULL,
