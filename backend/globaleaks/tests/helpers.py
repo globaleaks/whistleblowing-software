@@ -307,7 +307,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['files'] = []
         dummySubmissionDict['human_captcha_answer'] = 0
         dummySubmissionDict['graph_captcha_answer'] = ''
-        dummySubmissionDict['proof_of_work'] = 0
+        dummySubmissionDict['proof_of_work_answer'] = 0
         dummySubmissionDict['answers'] = yield self.fill_random_answers(context_id)
 
         defer.returnValue(dummySubmissionDict)

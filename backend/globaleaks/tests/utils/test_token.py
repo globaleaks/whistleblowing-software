@@ -31,6 +31,10 @@ class TestToken(helpers.TestGL):
         pollute_events_for_testing()
         yield anomaly.compute_activity_level()
 
+        # Token submission
+        st = Token('submission')
+        st.generate_token_challenge(TestToken.shared_alarm_obj.get_token_difficulty())
+
     def test_token(self):
         st = Token('submission')
 
@@ -108,8 +112,53 @@ class TestToken(helpers.TestGL):
             token.use()
 
         # validate with right value but with no additional
-        # attemps available: FAIL
+        # attempts available: FAIL
         self.assertRaises(
             errors.TokenFailure,
             token.use
         )
+
+
+    def test_proof_of_work_right_answer(self):
+        # This is at the beginning
+        event.EventTrackQueue.reset()
+
+        token = Token('submission')
+
+        difficulty = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': True,
+        }
+
+        token.generate_token_challenge(difficulty)
+
+        token = TokenList.get(token.id)
+        # Note, this solution works with two '00' at the end, if the
+        # difficulty changes, also this dummy value has to.
+        token.proof_of_work = { 'question': "7GJ4Sl37AEnP10Zk9p7q" }
+
+        # validate with right value: OK
+        self.assertFalse(token.update({'proof_of_work_answer': 26}))
+
+    def test_proof_of_work_right_answer(self):
+        token = Token('submission')
+
+        difficulty = {
+            'human_captcha': False,
+            'graph_captcha': False,
+            'proof_of_work': True,
+        }
+
+        token.generate_token_challenge(difficulty)
+
+        token = TokenList.get(token.id)
+        # Note, this solution works with two '00' at the end, if the
+        # difficulty changes, also this dummy value has to.
+        token.proof_of_work = { 'question': "7GJ4Sl37AEnP10Zk9p7q" }
+
+        # validate with right value: OK
+        self.assertTrue(token.update({'proof_of_work_answer': 0}))
+
+        # verify that the challenge is changed
+        self.assertNotEqual(token.human_captcha['question'], 'XXX')
