@@ -161,14 +161,14 @@ class Token(TempObj):
                 'answer': u"%d" % (random_a + random_b)
             }
 
+        if challenges_dict['graph_captcha']:
+            # still not implemented
+            pass
+
         if challenges_dict['proof_of_work']:
             self.proof_of_work = {
                 'question': rstr.xeger(r'[A-Za-z0-9]{20}')
             }
-
-        if challenges_dict['graph_captcha']:
-            # still not implemented
-            pass
 
     def timedelta_check(self):
         """
@@ -192,19 +192,22 @@ class Token(TempObj):
         # If the code reach here, the time delta is good.
 
     def human_captcha_check(self, resolved_human_captcha):
-        if int(self.human_captcha['answer']) != int(resolved_human_captcha):
-            log.debug("Failed human captcha: expected %s got %s" % (
-                (self.human_captcha['answer'], resolved_human_captcha)
-            ))
+        try:
+            if int(self.human_captcha['answer']) != int(resolved_human_captcha):
+                log.debug("Failed human captcha resolution: expected '%s', got '%s'" % (
+                    (self.human_captcha['answer'], resolved_human_captcha)
+                ))
+                return True
+
+            log.debug("Successful human captcha validation: got answer '%s'" % resolved_human_captcha)
+
+            # mark the captcha as solved
+            self.human_captcha = False
+
+            return False
+        except Exception as e:
+            log.debug("Exception while validating the human captcha: %s" % e)
             return True
-
-        log.debug("Successful human captcha resolution: %s" %
-                  resolved_human_captcha)
-
-        # mark the captcha as solved
-        self.human_captcha = False
-
-        return False
 
     def graph_captcha_check(self, resolved_graph_captcha):
         return False
@@ -218,23 +221,24 @@ class Token(TempObj):
 
         try:
             int_pow = int(resolved_proof_of_work)
-        except Exception as xxx:
-            log.err("Int conversion of %s: %s" % (resolved_proof_of_work, xxx))
-            raise errors.TokenFailure("Failed Proof of Work, not an Integer")
 
-        resolved = "%s%d" % (self.proof_of_work['question'], int_pow)
-        x = sha256(bytes(resolved))
-        if not x.endswith(HASH_ENDS_WITH):
-            log.debug("PoW failure, expected '%s' at the end of the hash %s (seeds %s + %d)" % 
-                    (HASH_ENDS_WITH, x, 
-                     self.proof_of_work['question'], int_pow )
-                )
-            raise errors.TokenFailure("Invalid Proof of Work")
-        else:
-            log.debug("PoW failure! got '%s' at the end of the hash %s (seeds %s + %d)" % 
-                    (HASH_ENDS_WITH, x, 
-                     self.proof_of_work['question'], int_pow )
-                )
+            resolved = "%s%d" % (self.proof_of_work['question'], int_pow)
+            x = sha256(bytes(resolved))
+            if not x.endswith(HASH_ENDS_WITH):
+                log.debug("Failed proof of work validation: expected '%s' at the end of the hash %s (seeds %s + %d)" %
+                          (HASH_ENDS_WITH, x, self.proof_of_work['question'], int_pow))
+                return True
+
+            log.debug("Successful proof of work validation! got '%s' at the end of the hash %s (seeds %s + %d)" %
+                      (HASH_ENDS_WITH, x, self.proof_of_work['question'], int_pow))
+
+            # mark the proof_of_work as solved
+            self.proof_of_work = False
+
+            return False
+        except Exception as e:
+            log.debug("Exception while validating the proof of work: %s" % e)
+            return True
 
     def validity_checks(self):
         self.timedelta_check()
@@ -248,13 +252,19 @@ class Token(TempObj):
         error = False
 
         if self.human_captcha is not False:
-            error |= self.human_captcha_check(request['human_captcha_answer'])
+            if 'human_captcha_answer' in request:
+                error |= self.human_captcha_check(request['human_captcha_answer'])
+            else:
+                error = True
 
         if not error and self.graph_captcha is not False:
             raise errors.TokenFailure("Graphical Captcha error! NotYetImplemented")
 
         if not error and self.proof_of_work is not False:
-            error |= self.proof_of_work_check(request['proof_of_work_answer'])
+            if 'proof_of_work_answer' in request:
+                error |= self.proof_of_work_check(request['proof_of_work_answer'])
+            else:
+                error = True
 
         if error:
             # change questions!

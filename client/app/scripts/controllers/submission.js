@@ -79,23 +79,18 @@ GLClient.controller('SubmissionCtrl',
   }
 
   var isAGoodPOW = function(binaryhash) {
-
-    if (binaryhash.charCodeAt(31) == 0 /* && binaryhash.charCodeAt(30) == 0 */ ) {
-      /* console.log("Test, here is just reported one zero ? " + binaryhash.charCodeAt(31).toString(16)); */
+    if (binaryhash.charCodeAt(31) == 0) {
       // Note: one ZERO check here, means TWO in the backend
       verification = "";
       for (k = 0; k < 32; k++) {
         verification = (verification + binaryhash.charCodeAt(k).toString(16));
       }
-      console.log("Match! " + verification);
       return true;
     }
     return false;
-
   }
 
   var iterateOverSHA = function() {
-
     /* temporarly this section of code is put in the countdown */
     console.log("Hashcash bruteforce starts now");
     console.log($scope.submission._submission.proof_of_work);
@@ -103,7 +98,7 @@ GLClient.controller('SubmissionCtrl',
       tobehashed = ($scope.submission._submission.proof_of_work + i);
       x = openpgp.crypto.hash.sha256(tobehashed);
 
-      if ( isAGoodPOW(x) ) {
+      if (isAGoodPOW(x)) {
         console.log("Success at " + i);
         return i;
       }
