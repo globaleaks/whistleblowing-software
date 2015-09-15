@@ -11,6 +11,7 @@ import re
 import pickle
 import shutil
 import scrypt
+import random
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -41,6 +42,72 @@ def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
     h.update(data)
     return binascii.b2a_hex(h.finalize())
+
+
+def overwrite_and_remove(absolutefpath, overwrite_number=1):
+    """
+    Overwrite with a fixed pattern and a random pattern.
+
+    Note: also the original size of the file is deleted (round to 1024
+          and then increase to 3, at every loop)
+    """
+    if random.randint(1, 5) == 3:
+        # "never let attackers do assumptions"
+        overwrite_number += 1
+
+    try:
+        filesize = os.path.getsize(absolutefpath)
+        log.debug("Starting 'secure' delete with %d steps, over %d bytes" %
+                  (overwrite_number, filesize))
+    except OSError as ose:
+        log.err("Unable to open for secure delete %s: %s, trying insecure delete" %
+                (ose, absolutefpath))
+        try:
+            os.remove(absolutefpath)
+        except OSError as remove_ose:
+            log.err("Unable to perform standard delete on %s: %s" %
+                    (remove_ose, absolutefpath))
+        return
+
+    # in the following loop, the file is open and closed on purpose, to trigger flush operations
+    fixed_string = "ABCD" * 1024
+    for times in xrange(overwrite_number):
+        log.debug("Iterating for %d over %d times, on %d bytes" %
+                  (times, overwrite_number, filesize))
+
+        bytecnt = 0
+        fixed_pattern_fp = file(absolutefpath, 'rwa+')
+        fixed_pattern_fp.seek(0)
+        while bytecnt < filesize:
+            fixed_pattern_fp.write(fixed_string)
+            bytecnt += len(fixed_string)
+        fixed_pattern_fp.close()
+
+        log.debug("Written %d fixed pattern" % bytecnt)
+
+        OPTIMIZATION_RANDOM_BLOCK = 5001
+        bytecnt = 0
+
+        random_pattern = ""
+        for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
+            random_pattern += str(random.randrange(256))
+
+        random_pattern_fp = file(absolutefpath, 'rwa+')
+        random_pattern_fp.seek(0)
+        while bytecnt < filesize:
+            random_pattern_fp.write(random_pattern)
+            bytecnt += OPTIMIZATION_RANDOM_BLOCK
+        random_pattern_fp.close()
+        log.debug("Written %d random byte pattern" % bytecnt)
+
+    try:
+        os.remove(absolutefpath)
+        log.debug("performed the os.remove command")
+    except OSError as remove_ose:
+        log.err("Unable to perform unlink operation after the overwrites %s: %s" %
+                (remove_ose, absolutefpath))
+
+
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """
