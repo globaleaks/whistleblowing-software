@@ -9,7 +9,6 @@
 import os
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -24,6 +23,7 @@ from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Node, Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema
 from globaleaks.rest import errors
+from globaleaks.security import overwrite_and_remove
 
 
 def receiver_serialize_tip(store, internaltip, language):
@@ -155,11 +155,8 @@ def db_delete_itip(store, itip, itip_number=0):
         abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
         if os.path.isfile(abspath):
-            log.debug("Removing internalfile %s" % abspath)
-            try:
-                os.remove(abspath)
-            except OSError as excep:
-                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+            log.debug("Removing internalfile in secure way %s" % abspath)
+            overwrite_and_remove(abspath)
 
         rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
         for rfile in rfiles:
@@ -171,11 +168,8 @@ def db_delete_itip(store, itip, itip_number=0):
             abspath = os.path.join(GLSettings.submission_path, rfile.file_path)
 
             if os.path.isfile(abspath):
-                log.debug("Removing receiverfile %s" % abspath)
-                try:
-                    os.remove(abspath)
-                except OSError as excep:
-                    log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+                log.debug("Removing receiverfile in secure way %s" % abspath)
+                overwrite_and_remove(abspath)
 
     if itip_number:
         log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
