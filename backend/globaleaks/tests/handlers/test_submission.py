@@ -12,8 +12,7 @@ from globaleaks.handlers.admin import create_receiver
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 from globaleaks.utils.token import Token
-from globaleaks.handlers.admin import get_context_steps
-from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionInstance
+from globaleaks.handlers.submission import SubmissionCreate, SubmissionInstance
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission
