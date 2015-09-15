@@ -33,8 +33,10 @@
     "FileSaver.js": "0.0.2",
     "jquery": "2.1.4",
     "ng-flow": "2.6.1",
+    "openpgp": "1.2.0",
     "spin.js": "2.3.2",
-    "stacktrace-js": "0.6.4"
+    "stacktrace-js": "0.6.4",
+    "openpgpjs": "https://github.com/hellais/openpgpjs/archive/feature/deterministic.zip"
   },
   "resolutions": {
     "bootstrap": "3.3.5"
