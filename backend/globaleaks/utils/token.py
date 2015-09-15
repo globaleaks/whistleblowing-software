@@ -17,6 +17,7 @@ from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSettings
+from globaleaks.security import sha256
 
 
 # needed in order to allow UT override
@@ -85,6 +86,11 @@ class Token(TempObj):
         self.uploaded_files = []
 
         self.id = rstr.xeger(r'[A-Za-z0-9]{42}')
+
+        # initialization of token configuration
+        self.human_captcha = False
+        self.graph_captcha = False
+        self.proof_of_work = False
 
         TempObj.__init__(self,
                          TokenList.token_dict,
@@ -156,8 +162,9 @@ class Token(TempObj):
             }
 
         if challenges_dict['proof_of_work']:
-            # still not implemented
-            pass
+            self.proof_of_work = {
+                'question': rstr.xeger(r'[A-Za-z0-9]{20}')
+            }
 
         if challenges_dict['graph_captcha']:
             # still not implemented
@@ -166,7 +173,7 @@ class Token(TempObj):
     def timedelta_check(self):
         """
         This timedelta check verify that the current time fits between
-        the start validity time and the end vality time.
+        the start validity time and the end validity time.
         """
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=self.start_validity_secs))
@@ -203,7 +210,31 @@ class Token(TempObj):
         return False
 
     def proof_of_work_check(self, resolved_proof_of_work):
-        return False
+        """
+        :param resolved_proof_of_work: a string, that has to be an integer
+        :return:
+        """
+        HASH_ENDS_WITH = '00'
+
+        try:
+            int_pow = int(resolved_proof_of_work)
+        except Exception as xxx:
+            log.err("Int conversion of %s: %s" % (resolved_proof_of_work, xxx))
+            raise errors.TokenFailure("Failed Proof of Work, not an Integer")
+
+        resolved = "%s%d" % (self.proof_of_work['question'], int_pow)
+        x = sha256(bytes(resolved))
+        if not x.endswith(HASH_ENDS_WITH):
+            log.debug("PoW failure, expected '%s' at the end of the hash %s (seeds %s + %d)" % 
+                    (HASH_ENDS_WITH, x, 
+                     self.proof_of_work['question'], int_pow )
+                )
+            raise errors.TokenFailure("Invalid Proof of Work")
+        else:
+            log.debug("PoW failure! got '%s' at the end of the hash %s (seeds %s + %d)" % 
+                    (HASH_ENDS_WITH, x, 
+                     self.proof_of_work['question'], int_pow )
+                )
 
     def validity_checks(self):
         self.timedelta_check()
@@ -219,13 +250,11 @@ class Token(TempObj):
         if self.human_captcha is not False:
             error |= self.human_captcha_check(request['human_captcha_answer'])
 
-        # Raise an exception if, by mistake, we ask for something not yet supported
         if not error and self.graph_captcha is not False:
             raise errors.TokenFailure("Graphical Captcha error! NotYetImplemented")
 
-        # Raise an exception if, by mistake, we ask for something not yet supported
         if not error and self.proof_of_work is not False:
-            raise errors.TokenFailure("Proof of Work error! NotYetImplemented")
+            error |= self.proof_of_work_check(request['proof_of_work_answer'])
 
         if error:
             # change questions!
@@ -239,7 +268,7 @@ class Token(TempObj):
         if self.human_captcha is not False or \
            self.graph_captcha is not False or \
            self.proof_of_work is not False:
-             raise errors.TokenFailure("Token still require user action to be used.")
+             raise errors.TokenFailure("Token still requires user action to be used.")
 
         self.remaining_uses -= 1
         if self.remaining_uses <= 0:

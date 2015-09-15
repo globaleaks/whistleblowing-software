@@ -69,7 +69,7 @@ TokenReqDesc = {
 TokenAnswerDesc = {
     'human_captcha_answer': int,
     'graph_captcha_answer': unicode,
-    'proof_of_work': int
+    'proof_of_work_answer': int,
 }
 
 SubmissionDesc = {
