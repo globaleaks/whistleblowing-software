@@ -237,6 +237,9 @@ class Alarm(object):
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
+        # a proof of work is always required
+        self.difficulty_dict['proof_of_work'] = True
+
         log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
             self.current_time,
             "Y" if self.difficulty_dict['human_captcha'] else "N",

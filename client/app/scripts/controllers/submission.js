@@ -21,7 +21,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.openProblemDialog($scope.submission);
       }
     });
-  }
+  };
 
   $scope.openProblemDialog = function(submission){
     if ($scope.problemModal) {
@@ -78,9 +78,43 @@ GLClient.controller('SubmissionCtrl',
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
+  var isAGoodPOW = function(binaryhash) {
+
+    if (binaryhash.charCodeAt(31) == 0 /* && binaryhash.charCodeAt(30) == 0 */ ) {
+      /* console.log("Test, here is just reported one zero ? " + binaryhash.charCodeAt(31).toString(16)); */
+      // Note: one ZERO check here, means TWO in the backend
+      verification = "";
+      for (k = 0; k < 32; k++) {
+        verification = (verification + binaryhash.charCodeAt(k).toString(16));
+      }
+      console.log("Match! " + verification);
+      return true;
+    }
+    return false;
+
+  }
+
+  var iterateOverSHA = function() {
+
+    /* temporarly this section of code is put in the countdown */
+    console.log("Hashcash bruteforce starts now");
+    console.log($scope.submission._submission.proof_of_work);
+    for (i = 0; i < 256 * 2; i++) {
+      tobehashed = ($scope.submission._submission.proof_of_work + i);
+      x = openpgp.crypto.hash.sha256(tobehashed);
+
+      if ( isAGoodPOW(x) ) {
+        console.log("Success at " + i);
+        return i;
+      }
+
+    }
+    console.log("FAIL :(( ");
+    return 12345;
+  }
+
   var startCountdown = function() {
     $scope.submission.wait = true;
-
     $scope.submission.countdown = $scope.submission._token.start_validity_secs;
 
     var countDown = function () {
@@ -162,6 +196,10 @@ GLClient.controller('SubmissionCtrl',
       startCountdown();
 
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
+
+      proof_of_work_answer = iterateOverSHA();
+      console.log("Using answer " + proof_of_work_answer);
+      $scope.submission._submission.proof_of_work_answer = proof_of_work_answer;
 
       if ($scope.problemToBeSolved) {
         $scope.openProblemDialog($scope.submission);
@@ -275,5 +313,4 @@ controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filte
 
     return ret;
   };
-
 }]);
