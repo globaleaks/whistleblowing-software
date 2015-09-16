@@ -9,7 +9,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, token, \
-                                collection, langfiles, css, wizard
+                                collection, langfiles, css, wizard, log
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.handlers import exporter
 
@@ -71,11 +71,16 @@ spec = [
     (r'/wbtip/receivers', wbtip.WBTipReceiversCollection),
     (r'/wbtip/upload', files.FileAdd),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
+    (r'/wbtip/logs/(\d+)', log.WbLogCollection),
 
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
+    (r'/receiver/logs/(\d+)', log.ReceiverLogCollection),
+
+    ## Receiver Tips Handlers ##
     (r'/rtip/operations', receiver.TipsOperations),
+    (r'/rtip/logs/(\d+)', log.RtipLogCollection),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.NodeInstance),
@@ -104,6 +109,7 @@ spec = [
     (r'/admin/overview/tips', admin.overview.Tips),
     (r'/admin/overview/users', admin.overview.Users),
     (r'/admin/overview/files', admin.overview.Files),
+    (r'/admin/logs/(\d+)', log.AdminLogCollection),
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##

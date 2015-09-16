@@ -17,6 +17,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils import utility, tempobj
 from globaleaks.utils.utility import log
 from globaleaks.third_party import rstr
+from globaleaks.utils.logger import adminLog, receiverLog
 
 # needed in order to allow UT override
 reactor_override = None
@@ -317,6 +318,12 @@ class AuthenticationHandler(BaseHandler):
             'status': session.user_status,
             'password_change_needed': pcn,
         }
+
+        if role == 'admin':
+            adminLog(['normal', 'warning', 'mail'], 5, [])
+        elif role == 'receiver':
+            adminLog('normal', 6, [user_id])
+            receiverLog(['normal', 'mail'], 7, [], user_id)
 
         self.write(auth_answer)
 
