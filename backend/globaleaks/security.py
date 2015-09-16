@@ -45,69 +45,72 @@ def sha512(data):
     return binascii.b2a_hex(h.finalize())
 
 
-def overwrite_and_remove(absolutefpath, overwrite_number=1):
-    """
-    Overwrite with a fixed pattern and a random pattern.
+def _overwrite(absolutefpath, pattern):
+    filesize = os.path.getsize(absolutefpath)
+    bytecnt = 0
+    fp = file(absolutefpath, 'rwa+')
+    fp.seek(0)
+    while bytecnt < filesize:
+        fp.write(pattern)
+        bytecnt += len(pattern)
+    fp.close()
 
-    Note: also the original size of the file is deleted (round to 1024
-          and then increase to 3, at every loop)
+
+def overwrite_and_remove(absolutefpath, iterations_number=1):
+    """
+    Overwrite the file with all_zeros, all_ones, random patterns
+
+    Note: At each iteration the original size of the file is altered.
     """
     if random.randint(1, 5) == 3:
         # "never let attackers do assumptions"
-        overwrite_number += 1
+        iterations_number += 1
 
     try:
         filesize = os.path.getsize(absolutefpath)
-        log.debug("Starting 'secure' delete with %d steps, over %d bytes" %
-                  (overwrite_number, filesize))
+        log.debug("Starting secure deletion of file %s" % absolutefpath)
     except OSError as ose:
-        log.err("Unable to open for secure delete %s: %s, trying insecure delete" %
+        log.err("Unable to open for secure delete %s: %s, trying standard delete" %
                 (ose, absolutefpath))
         try:
             os.remove(absolutefpath)
         except OSError as remove_ose:
             log.err("Unable to perform standard delete on %s: %s" %
                     (remove_ose, absolutefpath))
+
+        log.debug("Performed standard deletion of file: %s" % absolutefpath)
         return
 
     # in the following loop, the file is open and closed on purpose, to trigger flush operations
-    fixed_string = "ABCD" * 1024
-    for times in xrange(overwrite_number):
-        log.debug("Iterating for %d over %d times, on %d bytes" %
-                  (times, overwrite_number, filesize))
+    all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
+    all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
 
-        bytecnt = 0
-        fixed_pattern_fp = file(absolutefpath, 'rwa+')
-        fixed_pattern_fp.seek(0)
-        while bytecnt < filesize:
-            fixed_pattern_fp.write(fixed_string)
-            bytecnt += len(fixed_string)
-        fixed_pattern_fp.close()
-
-        log.debug("Written %d fixed pattern" % bytecnt)
-
-        OPTIMIZATION_RANDOM_BLOCK = 5001
-        bytecnt = 0
+    for iteration in xrange(iterations_number):
+        OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
 
         random_pattern = ""
         for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
             random_pattern += str(random.randrange(256))
 
-        random_pattern_fp = file(absolutefpath, 'rwa+')
-        random_pattern_fp.seek(0)
-        while bytecnt < filesize:
-            random_pattern_fp.write(random_pattern)
-            bytecnt += OPTIMIZATION_RANDOM_BLOCK
-        random_pattern_fp.close()
-        log.debug("Written %d random byte pattern" % bytecnt)
+        log.debug("Excecuting rewrite iteration (%d out of %d)" %
+                  (iteration, iterations_number))
+
+        _overwrite(absolutefpath, all_zeros)
+        log.debug("Overwritten file %s with all zeros pattern" % absolutefpath)
+
+        _overwrite(absolutefpath, all_ones)
+        log.debug("Overwritten file %s with all ones pattern" % absolutefpath)
+
+        _overwrite(absolutefpath, random_pattern)
+        log.debug("Overwritten file %s with random pattern" % absolutefpath)
 
     try:
         os.remove(absolutefpath)
-        log.debug("performed the os.remove command")
     except OSError as remove_ose:
-        log.err("Unable to perform unlink operation after the overwrites %s: %s" %
-                (remove_ose, absolutefpath))
+        log.err("Unable to perform unlink operation on file %s: %s" %
+                (absolutefpath, remove_ose))
 
+    log.debug("Performed deletion of file file: %s" % absolutefpath)
 
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
