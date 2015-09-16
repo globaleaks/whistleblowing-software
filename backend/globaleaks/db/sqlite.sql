@@ -429,4 +429,10 @@ CREATE TABLE archivedschema (
     schema BLOB NOT NULL,
     UNIQUE (hash, type, language),
     PRIMARY KEY (id)
-)
+);
+
+CREATE TABLE securefiledelete (
+    id TEXT NOT NULL,
+    filepath TEXT NOT NULL,
+    PRIMARY KEY (id)
+);

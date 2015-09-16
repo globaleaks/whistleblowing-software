@@ -815,6 +815,10 @@ class Anomalies(Model):
     events = JSON()
 
 
+class SecureFileDelete(Model):
+    filepath = Unicode()
+
+
 class ApplicationData(Model):
     """
     Exists only one instance of this class, because the ApplicationData
