@@ -21,7 +21,8 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Node, Notification, Comment, Message, \
-    ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema
+    ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
+    SecureFileDelete
 from globaleaks.rest import errors
 from globaleaks.security import overwrite_and_remove
 
@@ -150,13 +151,15 @@ def db_access_tip(store, user_id, tip_id):
     return rtip
 
 
-def db_delete_itip(store, itip, itip_number=0):
+def db_delete_itip(store, itip):
     for ifile in itip.internalfiles:
         abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
         if os.path.isfile(abspath):
-            log.debug("Removing internalfile in secure way %s" % abspath)
-            overwrite_and_remove(abspath)
+            log.debug("Marking internalfile %s for secure deletion" % abspath)
+            secure_file_delete = SecureFileDelete()
+            secure_file_delete.filepath = abspath
+            store.add(secure_file_delete)
 
         rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
         for rfile in rfiles:
@@ -168,14 +171,12 @@ def db_delete_itip(store, itip, itip_number=0):
             abspath = os.path.join(GLSettings.submission_path, rfile.file_path)
 
             if os.path.isfile(abspath):
-                log.debug("Removing receiverfile in secure way %s" % abspath)
-                overwrite_and_remove(abspath)
+                log.debug("Marking receiverfile %s for secure deletion" % abspath)
+                secure_file_delete = SecureFileDelete()
+                secure_file_delete.filepath = abspath
+                store.add(secure_file_delete)
 
-    if itip_number:
-        log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
-                  (itip.id, itip_number) )
-    else:
-        log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
+        log.debug("Removing InternalTip %s" % itip.id)
 
     store.remove(itip)
 
