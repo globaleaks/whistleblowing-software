@@ -90,26 +90,10 @@ GLClient.controller('SubmissionCtrl',
     return false;
   }
 
-  var iterateOverSHA = function() {
-    /* temporarly this section of code is put in the countdown */
-    console.log("Hashcash bruteforce starts now");
-    console.log($scope.submission._submission.proof_of_work);
-    for (i = 0; i < 256 * 2; i++) {
-      tobehashed = ($scope.submission._submission.proof_of_work + i);
-      x = openpgp.crypto.hash.sha256(tobehashed);
-
-      if (isAGoodPOW(x)) {
-        console.log("Success at " + i);
-        return i;
-      }
-
-    }
-    console.log("FAIL :(( ");
-    return 12345;
-  }
-
   var startCountdown = function() {
     $scope.submission.wait = true;
+    $scope.submission.pow = false;
+
     $scope.submission.countdown = $scope.submission._token.start_validity_secs;
 
     var countDown = function () {
@@ -192,9 +176,21 @@ GLClient.controller('SubmissionCtrl',
 
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
-      proof_of_work_answer = iterateOverSHA();
-      console.log("Using answer " + proof_of_work_answer);
-      $scope.submission._submission.proof_of_work_answer = proof_of_work_answer;
+      var worker = new Worker('/scripts/crypto/proof-of-work.worker.js');
+
+      worker.onmessage = function(e) {
+        $scope.submission._token.proof_of_work_answer = e.data;
+        $scope.submission._token.$update(function(token) {
+          $scope.submission._token = token;
+          $scope.submission.pow = true;
+        });
+
+        worker.terminate();
+      };
+
+      worker.postMessage({
+        pow: $scope.submission._token.proof_of_work,
+      });
 
       if ($scope.problemToBeSolved) {
         $scope.openProblemDialog($scope.submission);
@@ -230,11 +226,13 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
+      console.log("a");
       $scope.prepareSubmission(context, $scope.receivers_ids);
     }
 
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function (newVal, oldVal) {
+      console.log("b");
       if (newVal && newVal !== oldVal) {
         if ($scope.submission && $scope.selected_context) {
           $scope.prepareSubmission($scope.selected_context, []);

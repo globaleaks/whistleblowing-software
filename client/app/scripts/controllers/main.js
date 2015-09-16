@@ -221,7 +221,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       list.splice(index, 1);
     };
 
-    var init = function () {
+    $scope.init = function () {
       var deferred = $q.defer();
 
       $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
@@ -295,7 +295,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
         set_language($rootScope.language);
 
-
         var q1 = Contexts.query(function (contexts) {
           $rootScope.contexts = contexts;
         });
@@ -335,7 +334,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $rootScope.successes = [];
       $rootScope.errors = [];
       GLCache.removeAll();
-      init().then(function() {
+      $scope.init().then(function() {
         $route.reload();
 
         if (new_path) {
@@ -431,7 +430,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal) {
+      if (newVal && newVal !== oldVal && oldVal != undefined) {
         $rootScope.$broadcast("REFRESH");
       }
     });
@@ -444,7 +443,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
        }
     }
 
-    init();
+    $scope.init();
 
   }
 

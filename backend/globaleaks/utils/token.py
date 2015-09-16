@@ -77,8 +77,6 @@ class Token(TempObj):
 
         self.remaining_uses = uses
 
-        self.generate_token_challenge()
-
         # creation_date of token assignment
         self.creation_date = datetime.utcnow()
 
@@ -91,6 +89,8 @@ class Token(TempObj):
         self.human_captcha = False
         self.graph_captcha = False
         self.proof_of_work = False
+
+        self.generate_token_challenge()
 
         TempObj.__init__(self,
                          TokenList.token_dict,
@@ -140,7 +140,7 @@ class Token(TempObj):
             'proof_of_work': self.proof_of_work['question'] if self.proof_of_work else False,
             'human_captcha_answer': 0,
             'graph_captcha_answer': '',
-            'proof_of_work': 0
+            'proof_of_work_answer': 0
         }
 
     def generate_token_challenge(self, challenges_dict = None):
@@ -169,6 +169,8 @@ class Token(TempObj):
             self.proof_of_work = {
                 'question': rstr.xeger(r'[A-Za-z0-9]{20}')
             }
+
+        print self.proof_of_work
 
     def timedelta_check(self):
         """

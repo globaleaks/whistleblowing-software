@@ -324,6 +324,20 @@ module.exports = function(grunt) {
     Gettext = require("node-gettext"),
     dynamic_strings = readDynamicStrings();
 
+  grunt.registerTask('copyBowerSources', function() {
+    var files = [
+      ['app/components/scrypt-async/scrypt-async.min.js', 'app/scripts/crypto/scrypt-async.min.js'],
+      ['app/components/openpgpjs/dist/openpgp.min.js', 'app/scripts/crypto/openpgp.min.js'],
+      ['app/components/openpgpjs/dist/openpgp.worker.min.js', 'app/scripts/crypto/openpgp.worker.min.js']
+    ]
+
+    grunt.file.mkdir('app/scripts/crypto');
+
+    for (var x in files) {
+        grunt.file.copy(files[x][0], files[x][1])
+    }
+  });
+
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var rm_rf = function(dir) {
       var s = fs.statSync(dir);
@@ -780,7 +794,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('setupDependencies', ['bower:install']);
+  grunt.registerTask('setupDependencies', ['bower:install', 'copyBowerSources']);
 
   // Run this task to update translation related files
   grunt.registerTask('updateTranslations', ['confirm', 'updateTranslationsSource', 'makeTranslations', 'makeAppData']);

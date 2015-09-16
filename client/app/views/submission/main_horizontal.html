@@ -57,8 +57,8 @@
   </div>
   <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
     <button id="SubmitButton" class="btn btn-success" data-ng-click="submission.submit()" data-ng-disabled="submission.isDisabled() || isUploading() || submissionForm.$invalid" type="submit">
-      <i data-ng-show="submission.wait" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
-      <i data-ng-hide="submission.wait" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+      <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+      <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
       <span data-translate>Submit</span>
       <span data-ng-show="submission.wait">({{submission.countdown}})</span>
     </button>
