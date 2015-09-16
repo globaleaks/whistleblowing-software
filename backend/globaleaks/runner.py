@@ -14,7 +14,7 @@ from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
-    pgp_check_sched, mailflush_sched
+    pgp_check_sched, mailflush_sched, secure_file_delete_sched
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
@@ -46,7 +46,10 @@ def start_asynchronous():
     reactor.callLater(20, notification.start, GLSettings.notification_delta)
 
     mailflush = mailflush_sched.MailflushSchedule()
-    reactor.callLater(40, mailflush.start, GLSettings.mailflush_delta)
+    reactor.callLater(30, mailflush.start, GLSettings.mailflush_delta)
+
+    secure_file_delete = secure_file_delete_sched.SecureFileDeleteSchedule()
+    reactor.callLater(40, secure_file_delete.start, GLSettings.secure_file_delete_delta)
 
     # The Tip cleaning scheduler need to be executed every day at midnight
     current_time = datetime_now()

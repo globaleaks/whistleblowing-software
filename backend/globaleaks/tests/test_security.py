@@ -118,6 +118,7 @@ class TestGLSecureFiles(helpers.TestGL):
         a.write(antani)
         self.assertTrue(antani == a.read())
         self.assertRaises(AssertionError, a.write, antani)
+        a.close()
 
     def test_temporary_file_avoid_delete(self):
         a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
@@ -128,6 +129,7 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertTrue(os.path.exists(a.filepath))
         b = GLSecureFile(a.filepath)
         self.assertTrue(antani == b.read())
+        b.close()
 
     def test_temporary_file_lost_key_due_to_eventual_bug_or_reboot(self):
         a = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
@@ -138,3 +140,4 @@ class TestGLSecureFiles(helpers.TestGL):
         self.assertTrue(os.path.exists(a.filepath))
         os.remove(a.keypath)
         self.assertRaises(IOError, GLSecureFile, a.filepath)
+        a.close()

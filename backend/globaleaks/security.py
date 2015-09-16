@@ -11,6 +11,7 @@ import re
 import pickle
 import shutil
 import scrypt
+import random
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -41,6 +42,75 @@ def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
     h.update(data)
     return binascii.b2a_hex(h.finalize())
+
+
+def _overwrite(absolutefpath, pattern):
+    filesize = os.path.getsize(absolutefpath)
+    bytecnt = 0
+    fp = file(absolutefpath, 'rwa+')
+    fp.seek(0)
+    while bytecnt < filesize:
+        fp.write(pattern)
+        bytecnt += len(pattern)
+    fp.close()
+
+
+def overwrite_and_remove(absolutefpath, iterations_number=1):
+    """
+    Overwrite the file with all_zeros, all_ones, random patterns
+
+    Note: At each iteration the original size of the file is altered.
+    """
+    if random.randint(1, 5) == 3:
+        # "never let attackers do assumptions"
+        iterations_number += 1
+
+    try:
+        filesize = os.path.getsize(absolutefpath)
+        log.debug("Starting secure deletion of file %s" % absolutefpath)
+    except OSError as ose:
+        log.err("Unable to open for secure delete %s: %s, trying standard delete" %
+                (ose, absolutefpath))
+        try:
+            os.remove(absolutefpath)
+        except OSError as remove_ose:
+            log.err("Unable to perform standard delete on %s: %s" %
+                    (remove_ose, absolutefpath))
+
+        log.debug("Performed standard deletion of file: %s" % absolutefpath)
+        return
+
+    # in the following loop, the file is open and closed on purpose, to trigger flush operations
+    all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
+    all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
+
+    for iteration in xrange(iterations_number):
+        OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
+
+        random_pattern = ""
+        for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
+            random_pattern += str(random.randrange(256))
+
+        log.debug("Excecuting rewrite iteration (%d out of %d)" %
+                  (iteration, iterations_number))
+
+        _overwrite(absolutefpath, all_zeros)
+        log.debug("Overwritten file %s with all zeros pattern" % absolutefpath)
+
+        _overwrite(absolutefpath, all_ones)
+        log.debug("Overwritten file %s with all ones pattern" % absolutefpath)
+
+        _overwrite(absolutefpath, random_pattern)
+        log.debug("Overwritten file %s with random pattern" % absolutefpath)
+
+    try:
+        os.remove(absolutefpath)
+    except OSError as remove_ose:
+        log.err("Unable to perform unlink operation on file %s: %s" %
+                (absolutefpath, remove_ose))
+
+    log.debug("Performed deletion of file file: %s" % absolutefpath)
+
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
     """

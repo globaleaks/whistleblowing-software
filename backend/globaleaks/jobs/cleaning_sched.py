@@ -75,7 +75,7 @@ class CleaningSchedule(GLJob):
         return itip_id_list
 
     @transact
-    def perform_cleaning(self, store, itip_id, tip_id_number):
+    def perform_cleaning(self, store, itip_id):
         itip = store.find(InternalTip, InternalTip.id == itip_id).one()
         # Is happen that itip was NoneType, so, we are managing this condition
         if itip:
@@ -108,7 +108,7 @@ class CleaningSchedule(GLJob):
 
         itip_list_id = yield self.get_cleaning_map()
         for i, itip_id in enumerate(itip_list_id):
-            yield self.perform_cleaning(itip_id, i + 1)
+            yield self.perform_cleaning(itip_id)
 
         yield self.perform_stats_cleaning()
         yield ExpiringRTipEvent().process_events()

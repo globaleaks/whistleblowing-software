@@ -176,7 +176,7 @@ class GLSettingssClass(object):
         self.delivery_delta = 20
         self.anomaly_delta = 10
         self.mailflush_delta = 300
-
+        self.secure_file_delete_delta = 3600
 
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
