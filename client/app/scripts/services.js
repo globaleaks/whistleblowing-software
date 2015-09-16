@@ -263,6 +263,7 @@ angular.module('GLServices', ['ngResource']).
       self.isDisabled = function() {
         return (self.count_selected_receivers() == 0 ||
                 self.wait ||
+                !self.pow ||
                 self.done);
       }
 
@@ -374,7 +375,7 @@ angular.module('GLServices', ['ngResource']).
           answers: angular.copy(self.answers),
           human_captcha_answer: 0,
           proof_of_work_answer: 0,
-          graph_captcha_answer: "",
+          graph_captcha_answer: ""
         });
 
         self._token = new tokenResource({'type': 'submission'}).$save(function(token) {
