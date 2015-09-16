@@ -3,7 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.jobs import secure_file_delete_sched
+from globaleaks.jobs import pgp_check_sched
 
 class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ONE_VALID_ONE_EXPIRED'
