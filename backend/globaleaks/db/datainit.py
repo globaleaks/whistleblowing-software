@@ -127,6 +127,10 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
         GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
+        GLSettings.memory_copy.human_captcha = node.human_captcha
+        GLSettings.memory_copy.graph_captcha = node.graph_captcha
+        GLSettings.memory_copy.proof_of_work = node.proof_of_work
+
         GLSettings.memory_copy.default_language = node.default_language
         GLSettings.memory_copy.default_timezone = node.default_timezone
         GLSettings.memory_copy.languages_enabled  = node.languages_enabled

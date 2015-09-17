@@ -152,7 +152,7 @@ class Token(TempObj):
         if challenges_dict is None:
             challenges_dict = Alarm().get_token_difficulty()
 
-        if challenges_dict['human_captcha']:
+        if GLSettings.memory_copy.human_captcha and challenges_dict['human_captcha']:
             random_a = randint(0, 99)
             random_b = randint(0, 99)
 
@@ -161,11 +161,11 @@ class Token(TempObj):
                 'answer': u"%d" % (random_a + random_b)
             }
 
-        if challenges_dict['graph_captcha']:
+        if GLSettings.memory_copy.graph_captcha and challenges_dict['graph_captcha']:
             # still not implemented
             pass
 
-        if challenges_dict['proof_of_work']:
+        if GLSettings.memory_copy.proof_of_work:
             self.proof_of_work = {
                 'question': rstr.xeger(r'[A-Za-z0-9]{20}')
             }

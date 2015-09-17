@@ -22,14 +22,16 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(token['start_validity_secs'], 0)
         self.assertEqual(token['end_validity_secs'], 10800)
         self.assertEqual(token['remaining_uses'], Token.MAX_USES)
-        self.assertEqual(token['proof_of_work'], 0)
-        self.assertEqual(token['graph_captcha'], False)
-        self.assertEqual(token['human_captcha'], False)
-        self.assertEqual(token['graph_captcha_answer'], '')
-        self.assertEqual(token['human_captcha_answer'], 0)
+        self.assertEqual(token['graph_captcha_answer'], 0)
+        self.assertEqual(token['human_captcha_answer'], '')
+        self.assertEqual(token['proof_of_work_answer'], 0)
 
     @inlineCallbacks
     def test_post(self):
+        event.EventTrackQueue.reset()
+
+        yield anomaly.compute_activity_level()
+
         handler = self.request({'type': 'submission'})
 
         yield handler.post()

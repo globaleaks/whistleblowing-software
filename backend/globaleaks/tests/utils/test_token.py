@@ -83,11 +83,12 @@ class TestToken(helpers.TestGL):
         token = Token('submission')
 
         token.human_captcha = {'question': '1 + 0','answer': 1}
+        token.proof_of_work = False
 
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
 
-        # verify that the challenge is changed
+        # verify that the challenge is marked as solved
         self.assertFalse(token.human_captcha)
 
     def test_token_update_wrong_answer(self):
@@ -103,7 +104,8 @@ class TestToken(helpers.TestGL):
     def test_token_uses_limit(self):
         token = Token('submission')
 
-        token.human_captcha = {'question': '1 + 0','answer': 1}
+        token.human_captcha = False
+        token.proof_of_work = False
 
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
@@ -127,8 +129,7 @@ class TestToken(helpers.TestGL):
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': True,
+            'graph_captcha': False
         }
 
         token.generate_token_challenge(difficulty)
@@ -141,13 +142,15 @@ class TestToken(helpers.TestGL):
         # validate with right value: OK
         self.assertFalse(token.update({'proof_of_work_answer': 26}))
 
+        # verify that the challenge is marked as solved
+        self.assertFalse(token.proof_of_work)
+
     def test_proof_of_work_right_answer(self):
         token = Token('submission')
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': True,
+            'graph_captcha': False
         }
 
         token.generate_token_challenge(difficulty)

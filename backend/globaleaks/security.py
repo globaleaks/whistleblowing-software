@@ -338,29 +338,23 @@ def check_password(guessed_password, base64_stored, salt_input):
     return binascii.b2a_hex(hashed_guessed) == base64_stored
 
 
-def change_password(base64_stored, old_password, new_password, salt_input):
+def change_password(old_password_hash, old_password, new_password, salt):
     """
-    @param old_password: The old password in string, expected to be the same.
-        If you're workin in Administrative context, just use set_receiver_password
-        and override the old one.
-
-    @param base64_stored:
-    @param salt_input:
-        You're fine with these
-
-    @param new_password:
-        Not security enforced, if wanted, need to be client or handler checked
+    @param old_password_hash: the stored password hash.
+    @param old_password: The user provided old password for password change protection.
+    @param new_password: The user provided new password.
+    @param salt: The salt to be used for password hashing.
 
     @return:
         the scrypt hash in base64 of the new password
     """
-    if not check_password(old_password, base64_stored, salt_input):
-        log.err("change_password_error: provided invalid old_password")
+    if not check_password(old_password, old_password_hash, salt):
+        log.err("change_password(): Error - provided invalid old_password")
         raise errors.InvalidOldPassword
 
     check_password_format(new_password)
 
-    return hash_password(new_password, salt_input)
+    return hash_password(new_password, salt)
 
 
 class GLBPGP(object):
@@ -369,7 +363,6 @@ class GLBPGP(object):
     I'm not quite confident on creating an object that operates on the filesystem knowing
     that would be run also on the Storm cycle.
     """
-
     def __init__(self):
         """
         every time is needed, a new keyring is created here.

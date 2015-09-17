@@ -129,6 +129,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_subm['wb_steps'] = yield self.fill_random_answers(new_context_output['id'])
 
         token = Token('submission')
+        token.proof_of_work = False
         yield self.emulate_file_upload(token, 3)
 
         new_subm_output = yield submission.create_submission(token.id, new_subm, False, 'en')

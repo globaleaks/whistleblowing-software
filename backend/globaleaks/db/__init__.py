@@ -101,7 +101,7 @@ def create_tables(create_node=True):
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
-            'enable_simplified_login': True,
+            'simplified_login': True,
             'enable_custom_privacy_badge': False,
             'disable_key_code_hint': False,
             'custom_privacy_badge_tor': dict({GLSettings.defaults.language: u""}),

@@ -7,7 +7,7 @@ from globaleaks.tests import helpers
 
 from globaleaks import models
 from globaleaks.handlers import admin, rtip, receiver
-from globaleaks.jobs import cleaning_sched
+from globaleaks.jobs import cleaning_sched, secure_file_delete_sched
 from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import transact, GLSettings
 
@@ -98,6 +98,8 @@ class TipCleaning(TestCleaning):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
+        yield secure_file_delete_sched.SecureFileDeleteSchedule().operation()
+
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
 
@@ -112,6 +114,8 @@ class TipCleaning(TestCleaning):
         yield self.force_tip_expire()
 
         yield cleaning_sched.CleaningSchedule().operation()
+
+        yield secure_file_delete_sched.SecureFileDeleteSchedule().operation()
 
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])

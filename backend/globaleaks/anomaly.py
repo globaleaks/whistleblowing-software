@@ -215,8 +215,7 @@ class Alarm(object):
 
         self.difficulty_dict = {
             'human_captcha': False,
-            'graph_captcha': False,
-            'proof_of_work': False
+            'graph_captcha': False
         }
 
 
@@ -237,8 +236,8 @@ class Alarm(object):
         if Alarm.stress_levels['activity'] >= 1:
             self.difficulty_dict['human_captcha'] = True
 
-        # a proof of work is always required
-        self.difficulty_dict['proof_of_work'] = True
+        # a proof of work is always required (if enabled at node level)
+        self.difficulty_dict['proof_of_work'] = GLSettings.memory_copy.proof_of_work
 
         log.debug("get_token_difficulty in %s is: HC:%s, GC:%s, PoW:%s" % (
             self.current_time,

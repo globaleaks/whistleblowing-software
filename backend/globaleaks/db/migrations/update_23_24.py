@@ -197,8 +197,8 @@ class Replacer2324(TableReplacer):
         new_node = self.get_right_model("Node", 24)()
 
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'enable_simplified_login':
-                new_node.enable_simplified_login = True
+            if v.name == 'simplified_login':
+                new_node.simplified_login = True
                 continue
 
             if v.name == 'tor2web_whistleblower':
@@ -207,6 +207,18 @@ class Replacer2324(TableReplacer):
 
             if v.name == 'tor2web_custodian':
                 new_node.tor2web_custodian = False
+                continue
+
+            if v.name == 'human_captcha':
+                new_node.human_captcha = True
+                continue
+
+            if v.name == 'graph_captcha':
+                new_node.graph_captcha = True
+                continue
+
+            if v.name == 'proof_of_work':
+                new_node.proof_of_work = True
                 continue
 
             if v.name == 'header_title_tippage':
