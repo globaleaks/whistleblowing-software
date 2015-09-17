@@ -504,6 +504,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     def perform_submission_start(self):
         self.dummyToken = token.Token(token_kind='submission')
+        self.dummyToken.proof_of_work = False
 
     @inlineCallbacks
     def perform_submission_uploads(self):
@@ -958,7 +959,7 @@ class MockDict():
             'default_language': u'en',
             'admin_timezone': 0,
             'admin_language': u'en',
-            'enable_simplified_login': False,
+            'simplified_login': False,
             'enable_custom_privacy_badge': False,
             'custom_privacy_badge_tor': u'',
             'custom_privacy_badge_none': u'',

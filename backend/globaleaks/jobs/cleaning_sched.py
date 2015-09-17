@@ -79,7 +79,7 @@ class CleaningSchedule(GLJob):
         itip = store.find(InternalTip, InternalTip.id == itip_id).one()
         # Is happen that itip was NoneType, so, we are managing this condition
         if itip:
-            db_delete_itip(store, itip, tip_id_number)
+            db_delete_itip(store, itip)
         else:
             log.err("DB Inconsistency ? InternalTip to be deleted %s is None" % itip_id)
 

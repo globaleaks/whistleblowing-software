@@ -105,7 +105,7 @@
       "security_awareness_text": {"en": ""},
       "whistleblowing_question": {"en": ""},
       "whistleblowing_button": {"en": ""},
-      "enable_simplified_login": false,
+      "simplified_login": false,
       "enable_custom_privacy_badge": false,
       "custom_privacy_badge_tor": {"en": ""},
       "custom_privacy_badge_none": {"en": ""},

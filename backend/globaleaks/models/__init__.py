@@ -467,10 +467,14 @@ class Node(Model):
     disable_security_awareness_questions = Bool(default=False)
     disable_key_code_hint = Bool(default=False)
 
+    human_captcha = Bool(default=True)
+    graph_captcha = Bool(default=True)
+    proof_of_work = Bool(default=True)
+
     whistleblowing_question = JSON(validator=longlocal_v)
     whistleblowing_button = JSON(validator=longlocal_v)
 
-    enable_simplified_login = Bool(default=True)
+    simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
     custom_privacy_badge_tor = JSON(validator=longlocal_v)
@@ -497,7 +501,7 @@ class Node(Model):
                 'show_contexts_in_alphabetical_order',
                 'submission_minimum_delay',
                 'submission_maximum_ttl',
-                'enable_simplified_login']
+                'simplified_login']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
                  'tor2web_custodian', 'tor2web_unauth', 'can_postpone_expiration',
@@ -505,7 +509,10 @@ class Node(Model):
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
-                 'disable_key_code_hint']
+                 'disable_key_code_hint',
+                 'human_captcha',
+                 'graph_captcha',
+                 'proof_of_work']
 
     # wizard_done is not checked because it's set by the backend
 

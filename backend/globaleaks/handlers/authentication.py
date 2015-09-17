@@ -90,9 +90,7 @@ def update_session(session):
 def authenticated(role):
     """
     Decorator for authenticated sessions.
-    If the user (could be admin/receiver/wb) is not authenticated, return
-    a http 412 error.
-    Otherwise, update the current session and then fire :param:`method`.
+    If the user is not authenticated, return a http 412 error.
     """
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
@@ -147,6 +145,9 @@ def accept_tor2web(role):
 
     elif role == 'receiver':
         return GLSettings.memory_copy.tor2web_receiver
+
+    elif role == 'custodian':
+        return GLSettings.memory_copy.tor2web_custodian
 
     elif role == 'admin':
         return GLSettings.memory_copy.tor2web_admin
@@ -252,6 +253,10 @@ class AuthenticationHandler(BaseHandler):
     session_id = None
 
     def generate_session(self, user_id, role, status):
+        """
+        Args:
+            role: can be either 'admin', 'wb', 'receiver' or 'custodian'
+        """
         session = GLSession(user_id, role, status)
         self.session_id = session.id
         return session

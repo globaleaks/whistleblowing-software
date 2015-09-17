@@ -48,6 +48,7 @@ class TestTip(helpers.TestGL):
         dummySubmissionDict = yield self.get_dummy_submission(self.context_desc['id'])
 
         token = Token(token_kind='submission')
+        token.proof_of_work = False
 
         self.submission_desc = yield submission.create_submission(token.id, dummySubmissionDict, False, 'en')
 
