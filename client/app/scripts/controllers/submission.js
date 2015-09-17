@@ -226,13 +226,11 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
-      console.log("a");
       $scope.prepareSubmission(context, $scope.receivers_ids);
     }
 
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function (newVal, oldVal) {
-      console.log("b");
       if (newVal && newVal !== oldVal) {
         if ($scope.submission && $scope.selected_context) {
           $scope.prepareSubmission($scope.selected_context, []);
