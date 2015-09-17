@@ -32,12 +32,14 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def create_submission(self, request):
         token = Token('submission')
+        token.proof_of_work = False
         output = yield create_submission(token.id, request, True, 'en')
         returnValue(output)
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
         token = Token('submission')
+        token.proof_of_work = False
         yield self.emulate_file_upload(token, 3)
         output = yield create_submission(token.id, request, False, 'en')
         returnValue(output)
@@ -123,6 +125,7 @@ class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         token = Token('submission')
+        token.proof_of_work = False
 
         handler = self.request(self.submission_desc)
         yield handler.put(token.id)

@@ -170,8 +170,6 @@ class Token(TempObj):
                 'question': rstr.xeger(r'[A-Za-z0-9]{20}')
             }
 
-        print self.proof_of_work
-
     def timedelta_check(self):
         """
         This timedelta check verify that the current time fits between
