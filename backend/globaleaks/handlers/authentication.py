@@ -320,10 +320,10 @@ class AuthenticationHandler(BaseHandler):
         }
 
         if role == 'admin':
-            adminLog(['normal', 'warning', 'mail'], 5, [])
+            adminLog(['normal', 'warning', 'mail'], 'LOGIN_1', [])
         elif role == 'receiver':
-            adminLog('normal', 6, [user_id])
-            receiverLog(['normal', 'mail'], 7, [], user_id)
+            adminLog('normal', 'LOGIN_2', [user_id])
+            receiverLog(['normal', 'mail'], 'LOGIN_3', [], user_id)
 
         self.write(auth_answer)
 

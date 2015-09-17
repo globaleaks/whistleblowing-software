@@ -14,61 +14,73 @@ from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.utils.logger import LoggedEvent
+from globaleaks.utils.logger import LoggedEvent, LogQueue
 
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.rest import errors
 
 
 class BaseLogCollection(BaseHandler):
+    pass
 
-    def serialize_all_logs(self):
-        """
-        This function is just for development testing
-        """
-        import pprint
-        pprint.pprint(LoggedEvent.LogQueue)
-
-        return_list = []
-
-        for log_id, log_info in LoggedEvent.LogQueue.iteritems():
-            return_list.append(
-                LoggedEvent.get(log_id).serialize_log()
-            )
-
-        return return_list
 
 
 class AdminLogCollection(BaseLogCollection):
 
-    # @transport_security_check('admin')
-    # @authenticated('admin')
-    # @inlineCallbacks
+    @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
     def get(self, paging):
-        self.finish(self.serialize_all_logs())
+
+        unimplemented_paging = 50
+        logslist = LogQueue.picklogs('admin', unimplemented_paging)
+
+        retlist = []
+        for le in logslist:
+            retlist.append(le.serialize_log())
+        self.finish(retlist)
+
 
 
 class ReceiverLogCollection(BaseLogCollection):
 
-    # @transport_security_check('receiver')
-    # @authenticated('receiver')
-    # @inlineCallbacks
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
     def get(self, paging):
-        self.finish(self.serialize_all_logs())
+
+        unimplemented_paging = 50
+        logslist = LogQueue.picklogs(
+                LogQueue.create_subject_uuid('receiver', self.current_user.user_id),
+                unimplemented_paging )
+
+        retlist = []
+        for le in logslist:
+            retlist.append(le.serialize_log())
+        self.finish(retlist)
+
 
 class WbLogCollection(BaseLogCollection):
 
-    # @transport_security_check('wb')
-    # @authenticated('wb')
-    # @inlineCallbacks
+    @transport_security_check('wb')
+    @authenticated('wb')
+    @inlineCallbacks
     def get(self, paging):
-        self.finish(self.serialize_all_logs())
+
+        unimplemented_paging = 50
+        raise Exception("To be implemented")
+
 
 
 class RtipLogCollection(BaseLogCollection):
 
-    # @transport_security_check('receiver')
-    # @authenticated('receiver')
-    # @inlineCallbacks
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
     def get(self, paging):
-        self.finish(self.serialize_all_logs())
+
+        unimplemented_paging = 50
+        raise Exception("To be implemented")
+
+
+

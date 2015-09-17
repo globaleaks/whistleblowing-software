@@ -824,6 +824,21 @@ class ApplicationData(Model):
     fields = JSON()
 
 
+class Log(BaseModel):
+    """
+    Note -- is BaseModel because Log.id is Integer
+    """
+    id = Int(primary=True)
+    code = Unicode()
+    args = JSON()
+    log_date = DateTime()
+    subject = Unicode()
+    subject_id = Unicode()
+    repeated = Int()
+    last_repetition_date = DateTime()
+
+
+
 class FieldField(BaseModel):
     """
     Class used to implement references between Fields and Fields!
@@ -1050,4 +1065,4 @@ models_list = [Node, User, Context, Receiver, ReceiverContext,
                Field, FieldOption, FieldField, Step, StepField,
                InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
                InternalFile, ReceiverFile, Notification,
-               Stats, Anomalies, ApplicationData, EventLogs]
+               Stats, Anomalies, ApplicationData, EventLogs, Log]

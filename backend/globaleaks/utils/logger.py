@@ -19,26 +19,32 @@ from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
 
-from globaleaks.utils.tempobj import TempObj
-from globaleaks.utils.utility import ISO8601_to_datetime, datetime_to_ISO8601, datetime_now
-
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 from globaleaks.settings import GLSettings
 
-
-_LOG_CODE = {
-    # format: UNIQUE_CODE : [ "String with optionally %d %s..", NUMBER_OF_ARGS ]
-    1 : [ "Something is happen without argument ", 0 ],
-    2 : [ "Something is happen with an argument, look: %s", 1 ],
-    3 : [ "Something is happen with many details %s %s %d", 3],
-    4 : [ "Something boring here", 0 ],
-
-    # Something more serious for the first test
-    5 : [ "Admin logged in the system", 0 ],
-    6 : [ "Receiver %s logged in the system", 1 ],
-
+Login_messages = {
+    # Admin
+    'LOGIN_1' : [ "Admin logged in the system", 0 ],
+    'LOGIN_2' : [ "Receiver %s logged in the system", 1 ],
     # Used for Receiver
-    7 : [ "You logged in the system ", 0 ]
+    'LOGIN_3' : [ "You logged in the system", 0 ]
 }
+
+Tip_messages = {
+    # Admin
+    'TIP_1' : [ "Tip in context %s is going to expire and has never been accessed by your receivers", 1 ],
+}
+
+Security_messages  = {
+    # Receiver
+    'SECURITY_1' : [ "Someone has put a wrong password in the login interface", 0 ]
+}
+
+_LOG_CODE = {}
+_LOG_CODE.update(Login_messages)
+_LOG_CODE.update(Tip_messages)
+_LOG_CODE.update(Security_messages)
+
 
 def _log_parameter_check(alarm_level, code, args):
     """
@@ -46,7 +52,7 @@ def _log_parameter_check(alarm_level, code, args):
     is not making mistakes. Checks the integrity of the log data
 
     :param alarm_level: list or keyword between 'normal', 'warning', 'mail'
-    :param code: a numeric unique identifier of the error, usable for translations
+    :param code: a unique string identifier of the EventHappened
     :param args: list of argument.
 
     :return: No return, or AssertionError
@@ -61,8 +67,7 @@ def _log_parameter_check(alarm_level, code, args):
         assert alarm_level in acceptable_level, \
             "%s not in %s" % (alarm_level, acceptable_level)
 
-    assert isinstance(code, int), "Log Code %s has to be an Integer" % code
-    assert code in _LOG_CODE, "Log Code %d is not implemented yet" % code
+    assert code in _LOG_CODE, "Log Code %s is not implemented" % code
 
     assert isinstance(args, list), "Expected a list as argument, not %s" % type(args)
     assert len(args) == _LOG_CODE[code][1], "Invalid number of arguments, expected %d got %d" % (
@@ -92,61 +97,167 @@ def tipLog(alarm_level, code, args, tip_id):
     }, subject='itip', subject_id=tip_id)
 
 
+class LogQueue(object):
 
-reactor_override = None
+    _all_queues = {}
 
-class LoggedEvent(TempObj):
-    """
-    This
-    """
+    def __init__(self, subject_uuid):
 
-    _incremental_id = 0
-    LogQueue = dict()
+        if subject_uuid in LogQueue._all_queues:
+            # The queue already exists
+            pass
+        else:
+            LogQueue._all_queues.update({
+                subject_uuid : []
+            })
+        self.subject_uuid = subject_uuid
+
 
     @classmethod
-    def get(cls, log_id):
-        return LoggedEvent.LogQueue[log_id]
+    def create_subject_uuid(cls, subject, subject_id):
+        """
+        Just create the unique key used in the LogQueue._all_queues dictionary,
+        in order to keep the log of a specific user/role/tip.
+        """
+        if subject == 'receiver':
+            subject_uuid = "receiver_%s" % subject_id
+        elif subject == 'itip':
+            subject_uuid = "itip_%s" % subject_id
+        elif subject == 'admin':
+            subject_uuid = "admin"
+        else:
+            raise Exception("Invalid condition %s" % subject)
+
+        return subject_uuid
+
+
+    def add(self, logentry):
+        LogQueue._all_queues[ self.subject_uuid ].append(logentry)
+
+
+    @classmethod
+    def picklast(cls, subject_uuid):
+        """
+        This is used to check if a new Log event is the same of the
+        previous. we pick the last. compare with LoggedEvent.match()
+        """
+        try:
+            return LogQueue._all_queues[ subject_uuid ][-1]
+        except KeyError:
+            return None
+
+
+    @classmethod
+    def picklogs(cls, subject_uuid, amount):
+        """
+        by subject, pick the last Nth logs, request by paging.
+        This may interact with database if required, but hopefully the
+        default behavior is to access cache.
+        """
+        x = LogQueue._all_queues[ subject_uuid ][-50:]
+        x.reverse()
+        return x
+
+
+
+class LoggedEvent(object):
+    """
+    This is the Logged Event we keep in memory, in order to keep track of the latest
+    event, and optimize repeated event printing.
+    """
+    _incremental_id = 0
 
     @classmethod
     def get_unique_log_id(cls):
         cls._incremental_id += 1
         return cls._incremental_id
 
+
     @classmethod
     def get_last_log_id(cls):
         return cls._incremental_id
 
+
     def serialize_log(self):
-        return {
+        log_dict = {
             'log_code': self.log_code,
             'msg': _LOG_CODE[self.log_code][0],
             'args': self.args,
             'log_date': datetime_to_ISO8601(self.log_date),
-            # 'repeated': self.repeated,
-            'subject': self.subject_kind,
+            'subject': self.subject,
             'subject_id': self.subject_id,
         }
+        if self.repeated:
+            log_dict.update({
+                'repeated': self.repeated,
+                'last_repetition_date': datetime_to_ISO8601(self.last_repetition_date)
+            })
+        else:
+            log_dict.update({
+                'repeated': 0,
+                'last_repetition_date': None
+            })
+        return log_dict
 
-    def __init__(self, log_info, subject, subject_id=None, debug=False):
 
+    def match(self, code, args):
+        """
+        Clean this things, this is just for pdb
+        """
+        if not self.log_code == code:
+            return False
+
+        if not self.args == args:
+            return False
+
+        return True
+
+
+    def mark_repetition(self):
+        self.repeated += 1
+        self.last_repetition_date = datetime_now()
+
+
+    def __init__(self, log_info, subject, subject_id=None):
+        # Looks if the last event recorded on the same subject, is the same kind,
+        # In this case, increment the event counter in the previous one.
+
+        subject_uuid = LogQueue.create_subject_uuid(subject, subject_id)
+        last_subject_log = LogQueue.picklast( subject_uuid )
+
+        # If happen, Object is not really created/memorized
+        if last_subject_log and last_subject_log.match(log_info['code'], log_info['args']):
+            last_subject_log.mark_repetition()
+            return
+
+        self.id = LoggedEvent.get_unique_log_id()
         self.log_code = log_info['code']
         self.args = log_info['args']
         self.log_date = datetime_now()
-        self.subject_kind = subject
+        self.subject = subject
         self.subject_id = subject_id
-        self.debug = debug
-        self.id = LoggedEvent.get_unique_log_id()
+        self.repeated = 0
+        self.last_repetition_date = None
 
-        TempObj.__init__(self,
-                         LoggedEvent.LogQueue,
-                         self.id,
-                         # seconds of validity, depends on the flushing ratio,
-                         60 * 10,
-                         reactor_override)
-
-        self.expireCallbacks.append(self.id)
+        LogQueue(subject_uuid).add(self)
 
 
+#    def __repr__(self):
+#        simple = "%d| %s [%s] %s" % \
+#                 ( self.id,
+#                   datetime_to_ISO8601(self.log_date)[11:-8],
+#                   self.subject,
+#                   _LOG_CODE[self.log_code][0] )
+#
+#        if self.repeated:
+#            return "%s + %d times (last %s)" % \
+#                 ( simple,
+#                   self.repeated,
+#                   datetime_to_ISO8601(self.last_repetition_date)[11:-8] )
+#        else:
+#            return simple
+#
+#
 ########## copied from utility.py to put all the log related function here
 ########## They has to be updated anyway
 

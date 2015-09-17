@@ -430,3 +430,15 @@ CREATE TABLE archivedschema (
     UNIQUE (hash, type, language),
     PRIMARY KEY (id)
 )
+
+CREATE TABLE log (
+  id INT NOT NULL,
+  code TEXT NOT NULL,
+  args VARCHAR,
+  log_date TEXT NOT NULL,
+  subject TEXT NOT NULL CHECK(type IN ('admin', 'receiver', 'itip')),
+  subject_id TEXT,
+  repeated INT,
+  last_repetition_date TEXT,
+  PRIMARY KEY (id)
+)
