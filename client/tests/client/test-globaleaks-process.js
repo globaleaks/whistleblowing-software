@@ -40,6 +40,10 @@ describe('globaLeaks process', function() {
     var deferred = protractor.promise.defer();
 
     browser.get('/#/submission');
+
+    var remote = require('selenium-webdriver/remote');
+    browser.setFileDetector(new remote.FileDetector());
+
     element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
       element(by.id('NextStepButton')).click().then(function () {
         element(by.id('step-1')).element(by.id('field-0-input-0')).sendKeys(tip_text).then(function () {
@@ -179,6 +183,9 @@ describe('globaLeaks process', function() {
 
   it('Whistleblower should be able to attach a new file to the first submission', function() {
     var deferred = protractor.promise.defer();
+
+    var remote = require('selenium-webdriver/remote');
+    browser.setFileDetector(new remote.FileDetector());
 
     login_whistleblower(receipts[0]).then(function () {
       browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
