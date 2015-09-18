@@ -70,7 +70,10 @@ describe('globaLeaks process', function() {
           } else {
             element(by.id('NextStepButton')).click().then(function () {
               element(by.id('step-2')).element(by.id('field-0-input-0')).click().then(function () {
-                element(by.id('SubmitButton')).click().then(function() {
+                var submit_button = element(by.id('SubmitButton'));
+                var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+                browser.wait(isClickable, 5000);
+                submit_button.click().then(function() {
                   expect(browser.getLocationAbsUrl()).toContain('/receipt');
                   element(by.id('KeyCode')).getText().then(function (txt) {
                     receipts.unshift(txt);
