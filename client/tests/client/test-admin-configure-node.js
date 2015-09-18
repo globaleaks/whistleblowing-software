@@ -1,5 +1,7 @@
 describe('adming configure node', function() {
   it('should configure node', function() {
+    var deferred = protractor.promise.defer();
+
     browser.setLocation('admin/advanced_settings');
 
     /// simplify the configuration in order to simplfy initial tests
@@ -20,8 +22,10 @@ describe('adming configure node', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-
+      deferred.fulfill();
     });
+
+    return deferred;
 
   });
 });
