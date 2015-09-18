@@ -42,11 +42,6 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/fonts/glyphicons-halflings-regular.woff',
-    'type': 'application/font-woff',
-    'status': 200
-  },
-  {
     'url': '/node',
     'type': 'application/json',
     'status': 200
