@@ -22,9 +22,8 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(token['start_validity_secs'], 0)
         self.assertEqual(token['end_validity_secs'], 10800)
         self.assertEqual(token['remaining_uses'], Token.MAX_USES)
-        self.assertEqual(token['graph_captcha_answer'], 0)
-        self.assertEqual(token['human_captcha_answer'], '')
-        self.assertEqual(token['proof_of_work_answer'], 0)
+        self.assertEqual(token['human_captcha_answer'], 0)
+        self.assertEqual(token['graph_captcha_answer'], '')
 
     @inlineCallbacks
     def test_post(self):
@@ -54,6 +53,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         token = Token('submission')
 
         token.human_captcha = {'question': 'XXX','answer': 1}
+        token.proof_of_work = False
 
         request_payload = token.serialize()
 
@@ -74,6 +74,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         token = Token('submission')
 
         token.human_captcha = {'question': 'XXX','answer': 1}
+        token.proof_of_work = False
 
         request_payload = token.serialize()
 
