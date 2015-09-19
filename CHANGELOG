@@ -1,3 +1,7 @@
+Changes in version 2.60.110 - 2015-09-19
+    o Improve unit testing
+    o Update translations
+
 Changes in version 2.60.109 - 2015-09-16
     o Minor bugfixing of UI and migration scripts
 
