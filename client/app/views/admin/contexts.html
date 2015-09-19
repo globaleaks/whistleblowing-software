@@ -129,12 +129,10 @@
                             <option value="horizontal" data-translate>horizontal</option>
                           </select>
                         </div>
-                        <div>
+                        <div class="form-group">
                           <input data-ng-model="context.show_context" value="{{context.show_context}}" type="checkbox" />
-                          <label>
-                            <span data-translate>Allow selection of this context through the context selector picker.</span>
-                            <span data-translate>If disabled, submissions for this context will be allowed only accessing through direct link</span>
-                          </label>
+                          <label data-translate>Allow selection of this context through the context selector picker.</label>
+                          <div data-translate>If disabled, submissions for this context will be possible only accessing through direct link.</div>
                         </div>
                         <div class="form-group">
                           <label data-translate>Submitted tip expiry time (days)</label>

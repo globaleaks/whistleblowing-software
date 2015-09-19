@@ -78,6 +78,9 @@ GLClient.controller('SubmissionCtrl',
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
+  $scope.contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
+  $scope.contexts = $filter('orderBy')($scope.contexts, $scope.contextsOrderPredicate);
+
   var isAGoodPOW = function(binaryhash) {
     if (binaryhash.charCodeAt(31) == 0) {
       // Note: one ZERO check here, means TWO in the backend
@@ -220,8 +223,8 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.context_id) {
       context = $filter('filter')($rootScope.contexts,
                                   {"id": $scope.context_id})[0];
-    } else if ($rootScope.contexts.length == 1) {
-      context = $rootScope.contexts[0];
+    } else if ($scope.contexts.length == 1) {
+      context = $scope.contexts[0];
     }
 
     if (context) {
