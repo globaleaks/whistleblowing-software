@@ -422,23 +422,17 @@ class BaseHandler(RequestHandler):
     @inlineCallbacks
     def uniform_answers_delay(self):
         """
-        @return: nothing. just put a delay to normalize a minimum
-           amount of time used by requests. this impairs time execution analysis
+        @return: nothing.
 
-        this safety measure, able to counteract some side channel attacks, is
-        automatically disabled when the option -z and -l DEBUG are present
-        (because it mean that globaleaks is runned in development mode)
+        the function perform a sleep uniforming requests to the side_channels_guard
+        defined in GLSettings.side_channels_guard in order to counteract some
+        side channel attacks.
         """
-
-        if GLSettings.loglevel == logging.DEBUG and GLSettings.devel_mode:
-            return
-
-        uniform_delay = GLSettings.delay_threshold  # default 0.800
         request_time = self.request.request_time()
-        needed_diff = uniform_delay - request_time
+        needed_delay = GLSettings.side_channels_guard - request_time
 
-        if needed_diff > 0:
-            yield deferred_sleep(needed_diff)
+        if needed_delay > 0:
+            yield deferred_sleep(needed_delay)
 
     @property
     def current_user(self):

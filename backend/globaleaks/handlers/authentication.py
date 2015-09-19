@@ -306,7 +306,7 @@ class AuthenticationHandler(BaseHandler):
             'user_id': session.user_id,
             'session_expiration': int(GLSettings.sessions[session.id].getTime()),
             'status': session.user_status,
-            'password_change_needed': pcn,
+            'password_change_needed': pcn
         }
 
         self.write(auth_answer)
@@ -353,7 +353,7 @@ class ReceiptAuthHandler(AuthenticationHandler):
             'role': 'wb',
             'session_id': session.id,
             'user_id': session.user_id,
-            'session_expiration': int(GLSettings.sessions[session.id].getTime()),
+            'session_expiration': int(GLSettings.sessions[session.id].getTime())
         }
 
         self.write(auth_answer)

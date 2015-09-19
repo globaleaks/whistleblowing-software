@@ -246,8 +246,8 @@ class GLSettingssClass(object):
         # create_tables() and for every node+notif update
         self.memory_copy = OD(self.defaults)
 
-        # Default delay threshold
-        self.delay_threshold = 0.800
+        # Default request time uniform value
+        self.side_channels_guard = 0.150
 
         # unchecked_tor_input contains information that cannot be validated now
         # due to complex inclusions or requirements. Data is used in
@@ -447,15 +447,7 @@ class GLSettingssClass(object):
             quit(-1)
         self.socks_port = self.cmdline_options.socks_port
 
-        try:
-            self.delay_threshold = (int(self.cmdline_options.delay) / 1000.0)
-
-            if self.delay_threshold > 2:
-                print "[?] Are you sure ? You've set a security delay of", \
-                    self.delay_threshold, "seconds"
-        except ValueError:
-            print "Invalid delay inserted, a number of milliseconds is required"
-            quit(-1)
+        self.side_channels_guard = self.cmdline_options.side_channels_guard / 1000.0
 
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk

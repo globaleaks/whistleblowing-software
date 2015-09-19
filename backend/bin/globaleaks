@@ -134,9 +134,9 @@ GLSettings.parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=GLSettings.socks_port)
 
-GLSettings.parser.add_option("-t", "--delay", type="int",
-    help="security delay threshold to prevent side channels analysis (ms) [default: 800]",
-    dest="delay", default=800)
+GLSettings.parser.add_option("-t", "--side-channels-guard", type="int",
+    help="security guard time to wich uniform request times to reduce side channels analysis (ms) [default: 150]",
+    dest="side_channels_guard", default=150)
 
 GLSettings.parser.add_option("-d", "--disable-mail-torification", action='store_true',
     help="disable mail torification [default: False]",
