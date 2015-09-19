@@ -24,5 +24,4 @@ exports.config = {
   jasmineNodeOpts: {
    isVerbose: true,
   }
-
-}
+};
