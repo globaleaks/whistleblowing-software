@@ -129,10 +129,11 @@
                             <option value="horizontal" data-translate>horizontal</option>
                           </select>
                         </div>
-                        <div class="form-group">
+                        <div>
+                          <input data-ng-model="context.show_context" value="{{context.show_context}}" type="checkbox" />
                           <label>
-                            <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
-                            <span data-translate>Show receivers in alphabetical order</span>
+                            <span data-translate>Allow selection of this context through the context selector picker.</span>
+                            <span data-translate>If disabled, submissions for this context will be allowed only accessing through direct link</span>
                           </label>
                         </div>
                         <div class="form-group">
@@ -143,6 +144,12 @@
                         <div class="form-group">
                           <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox" />
                           <label data-translate>Show receiver selection step</label>
+                        </div>
+                        <div class="form-group" data-ng-show="context.show_receivers">
+                          <label>
+                            <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
+                            <span data-translate>Show receivers in alphabetical order</span>
+                          </label>
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
                           <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox" />
