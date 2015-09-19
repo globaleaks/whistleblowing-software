@@ -397,6 +397,10 @@ class Replacer2324(TableReplacer):
         for old_obj in old_objs:
             new_obj = self.get_right_model("Context", 24)()
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'show_context':
+                    new_obj.show_context = True
+                    continue
+
                 if v.name == 'enable_messages':
                     new_obj.enable_messages = old_obj.enable_private_messages
                     continue

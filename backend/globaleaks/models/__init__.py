@@ -208,6 +208,7 @@ class Context(Model):
     This model keeps track of contexts settings.
     """
     show_small_cards = Bool(default=False)
+    show_context = Bool(default=True)
     show_receivers = Bool(default=True)
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
@@ -243,7 +244,8 @@ class Context(Model):
                  'presentation_order' ]
 
     bool_keys = [ 'select_all_receivers',
-                  'show_small_cards', 'show_receivers',
+                  'show_small_cards',
+                  'show_context', 'show_receivers',
                   'enable_comments', 'enable_messages',
                   'enable_two_way_communication',
                   'enable_attachments']

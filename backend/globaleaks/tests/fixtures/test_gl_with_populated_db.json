@@ -244,6 +244,7 @@
       "id": "34948a37-201e-44e0-bede-67212f1b7ee6",
       "tip_timetolive": 1728000,
       "show_small_cards": false,
+      "show_context": true,
       "show_receivers": false,
       "select_all_receivers": true,
       "description": {

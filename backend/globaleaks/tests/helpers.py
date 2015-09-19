@@ -898,6 +898,7 @@ class MockDict():
             'receivers': [],
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
+            'show_context': True,
             'show_receivers': False,
             'enable_comments': True,
             'enable_messages': True,
