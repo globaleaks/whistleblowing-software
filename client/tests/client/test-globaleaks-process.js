@@ -1,3 +1,9 @@
+browser.getCapabilities().then(function(s) {
+  browser.testFileUpload = function() {
+    return (s.caps_.platform === 'LINUX') || (['firefox', 'safari'].indexOf(s.caps_.browserName) !== -1);
+  };
+});
+
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
   var receipts = [];
@@ -46,9 +52,25 @@ describe('globaLeaks process', function() {
 
     element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
       element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-1')).element(by.id('field-0-input-0')).sendKeys(tip_text).then(function () {
-          browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-          element(by.id('step-1')).element(by.id('field-3')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+        element(by.id('step-1')).element(by.id('field-0-input-0')).sendKeys('topsecret').then(function () {
+
+          // Currently the saucelabs file test seems to work only on linux
+          if (browser.testFileUpload()) {
+            browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+            element(by.id('step-1')).element(by.id('field-3')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+              element(by.id('NextStepButton')).click().then(function () {
+                element(by.id('step-2')).element(by.id('field-0-input-0')).click().then(function () {
+                  element(by.id('SubmitButton')).click().then(function() {
+                    expect(browser.getLocationAbsUrl()).toContain('/receipt');
+                    element(by.id('KeyCode')).getText().then(function (txt) {
+                      receipts.unshift(txt);
+                      deferred.fulfill();
+                    });
+                  });
+                });
+               });
+            });
+          } else {
             element(by.id('NextStepButton')).click().then(function () {
               element(by.id('step-2')).element(by.id('field-0-input-0')).click().then(function () {
                 element(by.id('SubmitButton')).click().then(function() {
@@ -58,9 +80,10 @@ describe('globaLeaks process', function() {
                     deferred.fulfill();
                   });
                 });
-              });
+               });
             });
-          });
+          }
+
         });
       });
     });
@@ -188,11 +211,15 @@ describe('globaLeaks process', function() {
     browser.setFileDetector(new remote.FileDetector());
 
     login_whistleblower(receipts[0]).then(function () {
-      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-      element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
-        // TODO: test file addition
+      if (browser.testFileUpload()) {
+        browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+        element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+          // TODO: test file addition
+          deferred.fulfill();
+        });
+      } else {
         deferred.fulfill();
-      });
+      }
     });
 
     return deferred;
