@@ -48,7 +48,7 @@ describe('globaLeaks process', function() {
     browser.get('/#/submission');
     element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
       element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-1')).element(by.id('field-0-input-0')).sendKeys(tip_text).then(function () {
+        element(by.id('step-1')).element(by.id('field-0-input-0')).sendKeys('topsecret').then(function () {
 
           // Currently the saucelabs file test seems to work only on linux
           if (browser.testFileUpload()) {
