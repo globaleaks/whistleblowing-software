@@ -661,6 +661,7 @@ angular.module('GLServices', ['ngResource']).
           context.tip_timetolive = 15;
           context.maximum_selectable_receivers = 0;
           context.show_small_cards = false;
+          context.show_context = true;
           context.show_receivers = true;
           context.enable_comments = true;
           context.enable_messages = false;
