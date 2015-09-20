@@ -420,7 +420,7 @@ class BaseHandler(RequestHandler):
             RequestHandler.write(self, chunk)
 
     @inlineCallbacks
-    def uniform_answer_timing(self):
+    def uniform_answers_delay(self):
         """
         @return: nothing.
 
