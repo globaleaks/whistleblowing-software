@@ -857,10 +857,9 @@ class FieldAnswerGroup(Model):
 class ArchivedSchema(Model):
     hash = Unicode()
     type = Unicode()
-    language = Unicode()
     schema = JSON()
 
-    unicode_keys = ['hash', 'language']
+    unicode_keys = ['hash']
 
 
 class Step(Model):

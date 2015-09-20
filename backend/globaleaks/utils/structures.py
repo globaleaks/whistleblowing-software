@@ -42,7 +42,10 @@ class Rosetta(object):
         if not isinstance(translated_dict, dict):
             return ""
 
-        if language in translated_dict:
+        if language is None:
+            # When language is None we export the full language dictionary
+            return translated_dict
+        elif language in translated_dict:
             return translated_dict[language]
         elif default_language in translated_dict:
             return translated_dict[default_language]
