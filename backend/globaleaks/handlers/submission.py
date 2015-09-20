@@ -12,9 +12,9 @@ import json
 
 from storm.expr import And, In
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet import threads, defer
 
-from globaleaks.models import Node, Context, Receiver, \
+from globaleaks.models import Context, Receiver, \
     InternalTip, ReceiverTip, WhistleblowerTip, \
     InternalFile, FieldAnswer, FieldAnswerGroup, ArchivedSchema
 from globaleaks.handlers.base import BaseHandler
@@ -64,20 +64,15 @@ def db_serialize_questionnaire_answers_recursively(answers):
         if answer.is_leaf:
             ret[answer.key] = answer.value
         else:
-            ret[answer.key] = []
-            for group in answer.groups.order_by(FieldAnswerGroup.number):
-                ret[answer.key].append(db_serialize_questionnaire_answers_recursively(group.fieldanswers))
-
+            ret[answer.key] = [db_serialize_questionnaire_answers_recursively(group.fieldanswers)
+                               for group in answer.groups.order_by(FieldAnswerGroup.number)]
     return ret
 
 
 def db_serialize_questionnaire_answers(store, internaltip):
     questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
-    answers_ids = []
-    for s in questionnaire:
-        for f in s['children']:
-            answers_ids.append(f['id'])
+    answers_ids = [f['id'] for s in questionnaire for f in s['children']]
 
     answers = store.find(FieldAnswer, And(FieldAnswer.internaltip_id == internaltip.id,
                                           In(FieldAnswer.key, answers_ids)))
@@ -120,10 +115,10 @@ def db_save_questionnaire_answers(store, internaltip, answers):
 
 def extract_answers_preview(questionnaire, answers):
     preview = {}
-    for s in questionnaire:
-        for f in s['children']:
-            if f['preview'] and f['id'] in answers:
-                preview[f['id']] = copy.deepcopy(answers[f['id']])
+
+    preview.update({f['id']: copy.deepcopy(answers[f['id']])
+      for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
+
     return preview
 
 
@@ -141,10 +136,12 @@ def wb_serialize_internaltip(store, internaltip):
     return response
 
 
-def db_archive_questionnaire_schema(store, submission):
-    if (store.find(ArchivedSchema, 
-                   ArchivedSchema.hash == submission.questionnaire_hash).count() <= 0):
+@transact
+def archive_questionnaire_schema(store, submission_id):
+    submission = store.find(InternalTip, InternalTip.id == submission_id).one()
 
+    if store.find(ArchivedSchema, 
+                  ArchivedSchema.hash == submission.questionnaire_hash).count() <= 0:
         # FIXME: this activity is really expensive ad should be optimize.
         #        specifically the routine cause the first submission that happen after
         #        a questionnaire change to be particularly slow.
@@ -156,17 +153,11 @@ def db_archive_questionnaire_schema(store, submission):
             aqs.schema = db_get_context_steps(store, submission.context_id, lang)
             store.add(aqs)
 
-            preview = []
-            for s in aqs.schema:
-                for f in s['children']:
-                    if f['preview']:
-                        preview.append(f)
-
             aqsp = ArchivedSchema()
             aqsp.hash = submission.questionnaire_hash
             aqsp.type = u'preview'
             aqsp.language = lang
-            aqsp.schema = preview
+            aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
             store.add(aqsp)
 
 
@@ -191,20 +182,15 @@ def db_create_whistleblower_tip(store, internaltip):
     """
     wbtip = WhistleblowerTip()
 
-    node = store.find(Node).one()
-
     receipt = unicode(rstr.xeger(GLSettings.receipt_regexp))
 
-    wbtip.receipt_hash = hash_password(receipt, node.receipt_salt)
+    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wbtip.access_counter = 0
     wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)
 
-    created_rtips = []
-
-    for receiver in internaltip.receivers:
-        rtip_id = db_create_receivertip(store, receiver, internaltip)
+    created_rtips = [db_create_receivertip(store, receiver, internaltip) for receiver in internaltip.receivers]
 
     internaltip.new = False
 
@@ -250,34 +236,6 @@ def import_receivers(store, submission, receiver_id_list):
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")
 
-
-def verify_fields_recursively(fields, wb_fields):
-    for f in fields:
-        if f not in wb_fields:
-            raise errors.SubmissionValidationFailure("missing field (no structure present): %s" % f)
-
-        if fields[f]['required'] and ('value' not in wb_fields[f] or
-                                              wb_fields[f]['value'] == ''):
-            raise errors.SubmissionValidationFailure("missing required field (no value provided): %s" % f)
-
-        if isinstance(wb_fields[f]['value'], unicode):
-            if len(wb_fields[f]['value']) > GLSettings.memory_copy.maximum_textsize:
-                raise errors.InvalidInputFormat("field value overcomes size limitation")
-
-        indexed_fields = {}
-        for f_c in fields[f]['children']:
-            indexed_fields[f_c['id']] = copy.deepcopy(f_c)
-
-        indexed_wb_fields = {}
-        for f_c in wb_fields[f]['children']:
-            indexed_wb_fields[f_c['id']] = copy.deepcopy(f_c)
-
-        verify_fields_recursively(indexed_fields, indexed_wb_fields)
-
-    for wbf in wb_fields:
-        if wbf not in fields:
-            raise errors.SubmissionValidationFailure("provided unexpected field %s" % wbf)
-
 def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
@@ -318,7 +276,9 @@ def db_create_submission(store, token_id, request, t2w, language):
 
         store.add(submission)
 
-        db_archive_questionnaire_schema(store, submission)
+        # this transact is voluntarly runned without a yeld in order to
+        # defer it to a threead.
+        archive_questionnaire_schema(submission.id)
 
         db_save_questionnaire_answers(store, submission, answers)
     except Exception as excep:
@@ -369,7 +329,7 @@ class SubmissionInstance(BaseHandler):
     """
     @transport_security_check('wb')
     @unauthenticated
-    @inlineCallbacks
+    @defer.inlineCallbacks
     def put(self, token_id):
         """
         Parameter: token_id

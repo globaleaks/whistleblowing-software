@@ -68,14 +68,9 @@ def get_receiver_list(store, language):
     Returns:
         (list) the list of receivers
     """
-    receiver_list = []
-
     receivers = store.find(models.Receiver)
 
-    for receiver in receivers:
-        receiver_list.append(admin_serialize_receiver(receiver, language))
-
-    return receiver_list
+    return [admin_serialize_receiver(receiver, language) for receiver in receivers]
 
 
 @transact

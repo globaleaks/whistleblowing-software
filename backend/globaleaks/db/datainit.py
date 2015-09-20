@@ -135,6 +135,8 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.default_timezone = node.default_timezone
         GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
+        GLSettings.memory_copy.receipt_salt  = node.receipt_salt
+
         # Email settings are copyed because they are used when an exception raises
         # and we can't go to check in the DB, because that's shall be exception source
         notif = store.find(models.Notification).one()
