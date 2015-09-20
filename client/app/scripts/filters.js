@@ -19,7 +19,9 @@ angular.module('GLFilters', [])
           return value;
         }
 
-        if (value.length <= max) return value;
+        if (value.length <= max) {
+          return value;
+        }
 
         value = value.substr(0, max);
         if (wordwise) {
@@ -35,6 +37,7 @@ angular.module('GLFilters', [])
   filter('prettyBytes', function() {
     return function (bytes) {
         var ret;
+
         if      (bytes>=1000000000) {ret='' + Math.floor(bytes/1000000000) + 'GB';}
         else if (bytes>=1000000)    {ret='' + Math.floor(bytes/1000000) + 'MB';}
         else                        {ret='' + Math.floor(bytes/1000) + 'KB';}
@@ -58,4 +61,4 @@ angular.module('GLFilters', [])
     return function(tip) {
         return new Date((new Date()).getTime() + tip.timetolive * 1000);
     };
-}])
+}]);

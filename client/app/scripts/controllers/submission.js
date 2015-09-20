@@ -91,7 +91,7 @@ GLClient.controller('SubmissionCtrl',
       return true;
     }
     return false;
-  }
+  };
 
   var startCountdown = function() {
     $scope.submission.wait = true;
@@ -109,7 +109,7 @@ GLClient.controller('SubmissionCtrl',
     };
 
     countDown();
-  }
+  };
 
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
@@ -244,12 +244,12 @@ GLClient.controller('SubmissionCtrl',
   });
 
 }]).
-controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
+controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.uploads = {};
   $scope.fieldsLevel = -1;
   $scope.fields = $scope.step.children;
 }]).
-controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filter) {
+controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   $scope.getAnswersEntries = function(entry) {
     if (entry === undefined) {
       return $scope.submission._submission.answers[$scope.field.id];
@@ -272,6 +272,8 @@ controller('SubmissionFieldCtrl', ['$scope', '$filter', function ($scope, $filte
     if (toplevel) {
       ret += "submission-step" + stepIndex + "-field" + fieldIndex + " ";
     }
+
+    var n = 0;
 
     if (field.width !== 0) {
       n = field.width;

@@ -1,5 +1,5 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
-  $scope.disabled = false
+  $scope.disabled = false;
 
   $scope.onFileAdded = function($event, $file, $flow) {
     if ($file.size > $scope.node.maximum_filesize * 1024 * 1024) {

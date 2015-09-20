@@ -113,21 +113,21 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     $scope.moveUpAndSave = function(event, elem) {
       $scope.moveUp(event, elem);
       $scope.save_step(elem);
-    }
+    };
 
     $scope.moveDownAndSave = function(event, elem) {
       $scope.moveDown(event, elem);
       $scope.save_step(elem);
-    }
+    };
 
     $scope.moveLeftAndSave = function(event, elem) {
       $scope.moveLeft(event, elem);
       $scope.save_step(elem);
-    }
+    };
 
     $scope.moveRightAndSave = function(event, elem) {
       $scope.moveRight(event, elem);
       $scope.save_step(elem);
-    }
+    };
   }
 ]);

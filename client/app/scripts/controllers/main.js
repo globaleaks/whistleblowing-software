@@ -26,7 +26,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.today = function() {
       return new Date();
-    }
+    };
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
@@ -41,11 +41,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.eventDismiss = function(event) {
       event.stopPropagation();
-    }
+    };
 
     $scope.go = function (hash) {
       $location.path(hash);
-    }
+    };
 
     $scope.randomFluff = function () {
       return Math.random() * 1000000 + 1000000;
@@ -75,7 +75,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
               path === '/submission' ||
               path === '/receipt' ||
               path === '/status');
-    }
+    };
 
     $scope.showLoginForm = function () {
       return (!$scope.isHomepage() &&
@@ -86,7 +86,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return (!$rootScope.embedded &&
               !$rootScope.node.disable_privacy_badge &&
               $scope.isAWhistleblowerPage());
-    }
+    };
 
     $scope.hasSubtitle = function () {
       return $scope.header_subtitle !== '';
@@ -165,46 +165,48 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.getXOrderProperty = function(elem) {
       return 'x';
-    }
+    };
 
     $scope.getYOrderProperty = function(elem) {
       var key = 'presentation_order';
-      if (elem[key] === undefined)
-          key = 'y';
+      if (elem[key] === undefined) {
+        key = 'y';
+      }
       return key;
-    }
+    };
 
     $scope.moveUp = function(event, elem) {
       var key = $scope.getYOrderProperty(elem);
       elem[key] -= 1;
 
       event.stopPropagation();
-    }
+    };
 
     $scope.moveDown = function(event, elem) {
       var key = $scope.getYOrderProperty(elem);
       elem[key] += 1;
 
       event.stopPropagation();
-    }
+    };
 
     $scope.moveLeft = function(event, elem) {
       var key = $scope.getXOrderProperty(elem);
       elem[key] -= 1;
 
       event.stopPropagation();
-    }
+    };
 
     $scope.moveRight = function(event, elem) {
       var key = $scope.getXOrderProperty(elem);
       elem[key] += 1;
 
       event.stopPropagation();
-    }
+    };
 
     $scope.assignUniqueOrderIndex = function(elements) {
-      if (elements.length <= 0)
-          return;
+      if (elements.length <= 0) [
+        return;
+      }
 
       var key = $scope.getYOrderProperty(elements[0]);
       if (elements.length) {
@@ -215,11 +217,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           i += 1;
         });
       }
-    }
+    };
 
     $scope.minY = function(arr) {
       return $filter('min')($filter('map')(arr, 'y'));
-    }
+    };
 
     $scope.closeAlert = function(list, index) {
       list.splice(index, 1);
@@ -279,7 +281,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.set_title();
 
         var set_language = function(language) {
-          if (language == undefined || $rootScope.node.languages_enabled.indexOf(language) == -1) {
+          if (language === undefined || $rootScope.node.languages_enabled.indexOf(language) === -1) {
             language = node.default_language;
             $rootScope.default_language = node.default_language;
           }
@@ -315,7 +317,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       });
 
       return deferred.promise;
-
     };
 
     $scope.view_tip = function(keycode) {
@@ -331,7 +332,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.remove = function(array, index){
       array.splice(index, 1);
-    }
+    };
 
     $rootScope.reload = function(new_path) {
       $scope.started = false;
@@ -357,7 +358,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       var sum = 0;
 
       angular.forEach(uploads, function(flow, key) {
-        if (flow != undefined) {
+        if (flow !== undefined) {
           sum += flow.files.length;
         }
       });
@@ -380,7 +381,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
       angular.forEach(uploads, function(flow, key) {
         var x = flow.timeRemaining();
-        if (x == 'Infinity') {
+        if (x === 'Infinity') {
           return 'Infinity';
         }
         sum += x;
@@ -398,7 +399,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         n += 1;
       });
 
-      if (n == 0 || sum == 0) {
+      if (n === 0 || sum === 0) {
         return 1;
       }
 
@@ -406,7 +407,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
   //////////////////////////////////////////////////////////////////
-
 
     $scope.$on( "$routeChangeStart", function(event, next, current) {
       $scope.route_check();
@@ -446,10 +446,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
          e.preventDefault();
          $rootScope.$broadcast("REFRESH");
        }
-    }
+    };
 
     $scope.init();
-
   }
 
 ]);

@@ -47,12 +47,12 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
   $scope.moveUpAndSave = function(event, elem) {
     $scope.moveUp(event, elem);
     $scope.save_receiver(elem);
-  }
+  };
 
   $scope.moveDownAndSave = function(event, elem) {
     $scope.moveDown(event, elem);
     $scope.save_receiver(elem);
-  }
+  };
 
 }]);
 
@@ -62,7 +62,7 @@ GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CO
     $scope.editing = false;
 
     $scope.toggleEditing = function (e) {
-      $scope.editing = $scope.editing ^ 1;
+      $scope.editing = !$scope.editing;
       e.stopPropagation();
     };
 

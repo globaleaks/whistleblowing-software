@@ -10,7 +10,7 @@ angular.module('GLServices', ['ngResource']).
         $rootScope.login = function(username, password, cb) {
           $rootScope.loginInProgress = true;
 
-          if (username == 'whistleblower') {
+          if (username === 'whistleblower') {
             self.role = 'wb';
           }
 
@@ -58,7 +58,7 @@ angular.module('GLServices', ['ngResource']).
             $location.search('');
           }
 
-          if (self.role == 'wb') {
+          if (self.role === 'wb') {
             return $http.post('receiptauth', {'receipt': password}).
             success(success_fn).
             error(function(response) {
@@ -99,7 +99,7 @@ angular.module('GLServices', ['ngResource']).
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
-          if (self.role == 'wb') {
+          if (self.role === 'wb') {
             $http['delete']('receiptauth').then(self.logout_performed,
                                                    self.logout_performed);
           } else {
@@ -130,8 +130,7 @@ angular.module('GLServices', ['ngResource']).
 }]).
   factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
   function($q, $injector, $rootScope, $location) {
-    var requestTimeout = 30000,
-      $http = null, $modal = null;
+    var $http = null;
 
     $rootScope.showRequestBox = false;
     
@@ -253,11 +252,7 @@ angular.module('GLServices', ['ngResource']).
         }
     );
 
-    var isReceiverInContext = function(receiver, context) {
-      return receiver.contexts.indexOf(context.id);
-    };
-
-    return function(fn, context_id, receivers_ids) {
+    return function(fn) {
       /**
        * This factory returns a Submission object that will call the fn
        * callback once all the information necessary for creating a submission
@@ -275,11 +270,11 @@ angular.module('GLServices', ['ngResource']).
       self.done = false;
 
       self.isDisabled = function() {
-        return (self.count_selected_receivers() == 0 ||
+        return (self.count_selected_receivers() === 0 ||
                 self.wait ||
                 !self.pow ||
                 self.done);
-      }
+      };
 
       self.count_selected_receivers = function () {
         var count = 0;
@@ -315,7 +310,7 @@ angular.module('GLServices', ['ngResource']).
               if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
                 if (receiver.configuration === 'default') {
                   self.receivers_selected[receiver.id] = self.context.select_all_receivers;
-                } else if (receiver.configuration == 'forcefully_selected') {
+                } else if (receiver.configuration === 'forcefully_selected') {
                   self.receivers_selected[receiver.id] = true;
                 }
               }
@@ -341,14 +336,14 @@ angular.module('GLServices', ['ngResource']).
             });
           }
         }
-      }
+      };
 
       self.prepare_answers_structure = function(steps) {
         var empty_answers  = {};
 
         var prepare_answers_structure_recursively = function(field) {
           var answer = {};
-          if (field.type == 'fieldgroup') {
+          if (field.type === 'fieldgroup') {
             angular.forEach(field.children, function(field) {
               answer[field.id] = prepare_answers_structure_recursively(field);
             });
@@ -357,7 +352,7 @@ angular.module('GLServices', ['ngResource']).
           empty_answers[field.id] = angular.copy(answer);
 
           return [answer];
-        }
+        };
 
         var answers = {};
         angular.forEach(steps, function(step) {
@@ -367,7 +362,7 @@ angular.module('GLServices', ['ngResource']).
         });
 
         return [answers, empty_answers];
-      }
+      };
 
       /**
        * @name Submission.create
@@ -501,7 +496,7 @@ angular.module('GLServices', ['ngResource']).
 
           angular.forEach(tip.receivers, function(r1) {
             angular.forEach($rootScope.receivers, function(r2) {
-              if (r2.id == r1.id) {
+              if (r2.id === r1.id) {
                 tip.msg_receivers_selector.push({
                   key: r2.id,
                   value: r2.name
@@ -683,7 +678,7 @@ angular.module('GLServices', ['ngResource']).
           step.children = [];
           step.context_id = context_id;
           return step;
-        }
+        };
 
         self.field_attrs = {
           "inputbox": {
@@ -708,7 +703,7 @@ angular.module('GLServices', ['ngResource']).
           } else {
             return {};
           }
-        }
+        };
 
         self.new_field = function(step_id, fieldgroup_id) {
           var field = new adminFieldResource();
@@ -823,7 +818,7 @@ angular.module('GLServices', ['ngResource']).
         fn(this);
 
       });
-    }
+    };
 }]).
   factory('UserPreferences', ['$resource', function($resource) {
     return $resource('preferences', {}, {'update': {method: 'PUT'}});

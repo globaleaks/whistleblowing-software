@@ -3,8 +3,7 @@
  against public resources.
  */
 
-var request = require('supertest'),
-  should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
@@ -24,7 +23,7 @@ var validate_mandatory_headers = function(headers) {
   };
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
@@ -45,10 +44,8 @@ describe('Iteration...', function(){
           contexts = res.body;
           console.log("Generating " + contexts.length * submission_number + " submissions...");
 
-          for (i=0; i < contexts.length ; i++) {
-
-            for(k = 0; k < submission_number ; k++ ) {
-
+          for (var i=0; i < contexts.length ; i++) {
+            for(var k = 0; k < submission_number ; k++) {
                   var new_submission = {};
                   new_submission.context_id = contexts[i].id;
                   new_submission.receivers = contexts[i].receivers;
@@ -66,7 +63,6 @@ describe('Iteration...', function(){
                       if (err) {
                         return done(err);
                       } else {
-
                         var token = res.body;
 
                         validate_mandatory_headers(res.headers);

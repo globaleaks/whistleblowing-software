@@ -37,7 +37,7 @@ angular.module('GLDirectives', []).
       element.fadeOut(fadeout_delay);
     };
 }).
-  directive('keycodevalidator', ['$q', '$timeout', function($q, $timeout) {
+  directive('keycodevalidator', [function() {
     return {
       require: 'ngModel',
       link: function(scope, elem, attrs, ngModel) {
