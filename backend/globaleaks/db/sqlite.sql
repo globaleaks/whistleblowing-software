@@ -481,9 +481,8 @@ CREATE TABLE archivedschema (
     hash TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('questionnaire',
                                        'preview')),
-    language TEXT NOT NULL,
     schema BLOB NOT NULL,
-    UNIQUE (hash, type, language),
+    UNIQUE (hash, type),
     PRIMARY KEY (id)
 );
 

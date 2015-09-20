@@ -14,6 +14,7 @@ from storm.expr import And, In
 
 from twisted.internet import threads, defer
 
+from globaleaks import models
 from globaleaks.models import Context, Receiver, \
     InternalTip, ReceiverTip, WhistleblowerTip, \
     InternalFile, FieldAnswer, FieldAnswerGroup, ArchivedSchema
@@ -25,26 +26,47 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256
 from globaleaks.settings import transact, GLSettings
 from globaleaks.third_party import rstr
+from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
+
+def _db_get_archived_fieldattr(fieldattr, language):
+    return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_strings, language)
+
+def _db_get_archived_fieldoption(fieldoption, language):
+    return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_strings, language)
+
+def _db_get_archived_field_recursively(field, language):
+    for key, value in field['attrs'].iteritems():
+        if field['attrs'][key]['type'] == u'localized':
+             if language in field['attrs'][key]['value']:
+                 field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
+             else:
+                 field['attrs'][key]['value'] = ""
+
+    for o in field['options']:
+        _db_get_archived_fieldoption(o, language)
+
+    for c in field['children']:
+        _db_get_archived_field_recursively(c, language)
+
+    return get_localized_values(field, field, models.Field.localized_strings, language)
 
 
 def _db_get_archived_questionnaire_schema(store, hash, type, language):
     aqs = store.find(ArchivedSchema,
                      ArchivedSchema.hash == hash,
-                     ArchivedSchema.type == type,
-                     ArchivedSchema.language == unicode(language)).one()
-
-    if not aqs:
-        aqs = store.find(ArchivedSchema,
-                         ArchivedSchema.hash == hash,
-                         ArchivedSchema.type == type,
-                         ArchivedSchema.language == unicode(GLSettings.memory_copy.default_language)).one()
+                     ArchivedSchema.type == type).one()
 
     if not aqs:
         log.err("Unable to find questionnaire schema with hash %s" % hash)
         questionnaire = []
     else:
-        questionnaire = aqs.schema
+        questionnaire = copy.deepcopy(aqs.schema)
+
+    for step in questionnaire:
+        for field in step['children']:
+            _db_get_archived_field_recursively(field, language)
+        get_localized_values(step, step, models.Step.localized_strings, language)
 
     return questionnaire
 
@@ -117,7 +139,7 @@ def extract_answers_preview(questionnaire, answers):
     preview = {}
 
     preview.update({f['id']: copy.deepcopy(answers[f['id']])
-      for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
+        for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
 
     return preview
 
@@ -136,29 +158,21 @@ def wb_serialize_internaltip(store, internaltip):
     return response
 
 
-@transact
-def archive_questionnaire_schema(store, submission_id):
-    submission = store.find(InternalTip, InternalTip.id == submission_id).one()
-
+def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
     if store.find(ArchivedSchema, 
-                  ArchivedSchema.hash == submission.questionnaire_hash).count() <= 0:
-        # FIXME: this activity is really expensive ad should be optimize.
-        #        specifically the routine cause the first submission that happen after
-        #        a questionnaire change to be particularly slow.
-        for lang in GLSettings.memory_copy.languages_enabled:
-            aqs = ArchivedSchema()
-            aqs.hash = submission.questionnaire_hash
-            aqs.type = u'questionnaire'
-            aqs.language = lang
-            aqs.schema = db_get_context_steps(store, submission.context_id, lang)
-            store.add(aqs)
+                  ArchivedSchema.hash == questionnaire_hash).count() <= 0:
 
-            aqsp = ArchivedSchema()
-            aqsp.hash = submission.questionnaire_hash
-            aqsp.type = u'preview'
-            aqsp.language = lang
-            aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
-            store.add(aqsp)
+        aqs = ArchivedSchema()
+        aqs.hash = questionnaire_hash
+        aqs.type = u'questionnaire'
+        aqs.schema = questionnaire
+        store.add(aqs)
+
+        aqsp = ArchivedSchema()
+        aqsp.hash = questionnaire_hash
+        aqsp.type = u'preview'
+        aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
+        store.add(aqsp)
 
 
 def db_create_receivertip(store, receiver, internaltip):
@@ -268,17 +282,15 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission.enable_attachments = context.enable_attachments
 
     try:
-        questionnaire = db_get_context_steps(store, context.id, GLSettings.memory_copy.default_language)
-        questionnaire_hash = sha256(json.dumps(questionnaire))
+        questionnaire = db_get_context_steps(store, context.id, None)
+        questionnaire_hash = unicode(sha256(json.dumps(questionnaire)))
 
         submission.questionnaire_hash = questionnaire_hash
         submission.preview = extract_answers_preview(questionnaire, answers)
 
         store.add(submission)
 
-        # this transact is voluntarly runned without a yeld in order to
-        # defer it to a threead.
-        archive_questionnaire_schema(submission.id)
+        db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash)
 
         db_save_questionnaire_answers(store, submission, answers)
     except Exception as excep:
