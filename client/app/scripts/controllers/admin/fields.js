@@ -101,7 +101,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.addOption = function (field) {
-      var var new_option = {
+      var new_option = {
         'id': '',
         'label': '',
         'score_points': 0,

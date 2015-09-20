@@ -204,7 +204,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.assignUniqueOrderIndex = function(elements) {
-      if (elements.length <= 0) [
+      if (elements.length <= 0) {
         return;
       }
 
