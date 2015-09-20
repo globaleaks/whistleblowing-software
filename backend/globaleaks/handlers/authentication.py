@@ -294,9 +294,11 @@ class AuthenticationHandler(BaseHandler):
 
         using_tor2web = get_tor2web_header(self.request.headers)
 
-        user_id, status, role, pcn = yield login(username, password, using_tor2web)
-
-        yield self.uniform_answers_delay()
+        try:
+            user_id, status, role, pcn = yield login(username, password, using_tor2web)
+        finally:
+            # Always uniform the answers timing even if an exception is raised
+            yield self.uniform_answer_timing()
 
         session = self.generate_session(user_id, role, status)
 
@@ -343,9 +345,11 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         using_tor2web = get_tor2web_header(self.request.headers)
 
-        user_id = yield login_wb(receipt, using_tor2web)
-
-        yield self.uniform_answers_delay()
+        try:
+            user_id = yield login_wb(receipt, using_tor2web)
+        finally:
+            # Always uniform the answers timing even if an exception is raised
+            yield self.uniform_answer_timing()
 
         session = self.generate_session(user_id, 'wb', 'Enabled')
 
