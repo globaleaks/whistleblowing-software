@@ -210,14 +210,14 @@ class Replacer2223(TableReplacer):
 
         new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
 
-        aqs = self.store_new.find(ArchivedSchema,
-                                  ArchivedSchema.hash == unicode(new_obj.questionnaire_hash),
-                                  ArchivedSchema.type == u'questionnaire',
-                                  ArchivedSchema.language == unicode(old_node.default_language)).one()
+        aqs = self.store_new.find(self.get_right_model("ArchivedSchema", 22),
+                                  self.get_right_model("ArchivedSchema", 22).hash == unicode(new_obj.questionnaire_hash),
+                                  self.get_right_model("ArchivedSchema", 22).type == u'questionnaire',
+                                  self.get_right_model("ArchivedSchema", 22).language == unicode(old_node.default_language)).one()
 
         if not aqs:
             for lang in old_node.languages_enabled:
-                aqs = ArchivedSchema()
+                aqs = self.get_right_model("ArchivedSchema", 22)()
                 aqs.hash = new_obj.questionnaire_hash
                 aqs.type = u'questionnaire'
                 aqs.language = lang
@@ -230,7 +230,7 @@ class Replacer2223(TableReplacer):
                         if f['preview']:
                             preview.append(f)
 
-                aqsp = ArchivedSchema()
+                aqsp = self.get_right_model("ArchivedSchema", 22)()
                 aqsp.hash = new_obj.questionnaire_hash
                 aqsp.type = u'preview'
                 aqsp.language = lang

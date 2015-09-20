@@ -187,6 +187,14 @@ class Field_v_23(Model):
     type = Unicode()
 
 
+class ArchivedSchema_v_23(Model):
+    __storm_table__ = 'archivedschema'
+    hash = Unicode()
+    type = Unicode()
+    language = Unicode()
+    schema = JSON()
+
+
 class Replacer2324(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_tippage" % self.std_fancy
@@ -474,6 +482,31 @@ class Replacer2324(TableReplacer):
 
                 # Optiuonal refereences should be threated in a special manner
                 if v.name == 'template_id' and old_obj.template_id is None:
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_ArchivedSchema(self):
+        print "%s ArchivedSchema migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("ArchivedSchema", 23))
+
+        for old_obj in old_objs:
+            new_obj = self.store_new.find(self.get_right_model("ArchivedSchema", 24),
+                                          self.get_right_model("ArchivedSchema", 24).hash == old_objs.questionnaire_hash).one()
+
+            if not new_obj:
+                new_obj = self.get_right_model("ArchivedSchema", 24)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'value':
+                    if not isinstance(new_obj.value, dict):
+                        new_obj.value = {}
+                    new_obj.value[old_obj.language] = old_obj.value
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

@@ -21,7 +21,7 @@ from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, In
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, Anomalies_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
-    Context_v_23, InternalTip_v_23, Field_v_23
+    Context_v_23, InternalTip_v_23, Field_v_23, ArchivedSchema_v_23
 
 
 table_history = {
@@ -54,7 +54,7 @@ table_history = {
     'FieldAnswer': [models.FieldAnswer, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'FieldAnswerGroup': [models.FieldAnswerGroup, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'FieldAnswerGroupFieldAnswer': [models.FieldAnswerGroupFieldAnswer, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'ArchivedSchema': [models.ArchivedSchema, None, None, None, None, None, None, None, None, None, None, None, None, None]
+    'ArchivedSchema': [ArchivedSchema_v_23, None, None, None, None, None, None, None, None, None, None, None, None, models.ArchivedSchema]
 }
 
 
