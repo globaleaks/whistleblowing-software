@@ -15,9 +15,6 @@ from storm.expr import And, In
 from twisted.internet import threads, defer
 
 from globaleaks import models
-from globaleaks.models import Context, Receiver, \
-    InternalTip, ReceiverTip, WhistleblowerTip, \
-    InternalFile, FieldAnswer, FieldAnswerGroup, ArchivedSchema
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
@@ -53,9 +50,9 @@ def _db_get_archived_field_recursively(field, language):
 
 
 def _db_get_archived_questionnaire_schema(store, hash, type, language):
-    aqs = store.find(ArchivedSchema,
-                     ArchivedSchema.hash == hash,
-                     ArchivedSchema.type == type).one()
+    aqs = store.find(models.ArchivedSchema,
+                     models.ArchivedSchema.hash == hash,
+                     models.ArchivedSchema.type == type).one()
 
     if not aqs:
         log.err("Unable to find questionnaire schema with hash %s" % hash)
@@ -87,7 +84,7 @@ def db_serialize_questionnaire_answers_recursively(answers):
             ret[answer.key] = answer.value
         else:
             ret[answer.key] = [db_serialize_questionnaire_answers_recursively(group.fieldanswers)
-                               for group in answer.groups.order_by(FieldAnswerGroup.number)]
+                               for group in answer.groups.order_by(models.FieldAnswerGroup.number)]
     return ret
 
 
@@ -96,8 +93,8 @@ def db_serialize_questionnaire_answers(store, internaltip):
 
     answers_ids = [f['id'] for s in questionnaire for f in s['children']]
 
-    answers = store.find(FieldAnswer, And(FieldAnswer.internaltip_id == internaltip.id,
-                                          In(FieldAnswer.key, answers_ids)))
+    answers = store.find(models.FieldAnswer, And(models.FieldAnswer.internaltip_id == internaltip.id,
+                                          In(models.FieldAnswer.key, answers_ids)))
 
     return db_serialize_questionnaire_answers_recursively(answers)
 
@@ -106,7 +103,7 @@ def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
     ret = []
 
     for key, value in entries.iteritems():
-        field_answer = FieldAnswer()
+        field_answer = models.FieldAnswer()
         field_answer.internaltip_id = internaltip_id
         field_answer.key = key
         store.add(field_answer)
@@ -115,7 +112,7 @@ def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
             field_answer.value = ""
             n = 0
             for entries in value:
-                group = FieldAnswerGroup({
+                group = models.FieldAnswerGroup({
                   'fieldanswer_id': field_answer.id,
                   'number': n
                 })
@@ -159,16 +156,16 @@ def wb_serialize_internaltip(store, internaltip):
 
 
 def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
-    if store.find(ArchivedSchema, 
-                  ArchivedSchema.hash == questionnaire_hash).count() <= 0:
+    if store.find(models.ArchivedSchema, 
+                  models.ArchivedSchema.hash == questionnaire_hash).count() <= 0:
 
-        aqs = ArchivedSchema()
+        aqs = models.ArchivedSchema()
         aqs.hash = questionnaire_hash
         aqs.type = u'questionnaire'
         aqs.schema = questionnaire
         store.add(aqs)
 
-        aqsp = ArchivedSchema()
+        aqsp = models.ArchivedSchema()
         aqsp.hash = questionnaire_hash
         aqsp.type = u'preview'
         aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
@@ -177,11 +174,11 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
 
 def db_create_receivertip(store, receiver, internaltip):
     """
-    Create ReceiverTip for the required tier of Receiver.
+    Create models.ReceiverTip for the required tier of models.Receiver.
     """
-    log.debug('Creating ReceiverTip for receiver: %s' % receiver.id)
+    log.debug('Creating models.ReceiverTip for receiver: %s' % receiver.id)
 
-    receivertip = ReceiverTip()
+    receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.receiver_id = receiver.id
 
@@ -194,7 +191,7 @@ def db_create_whistleblower_tip(store, internaltip):
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
-    wbtip = WhistleblowerTip()
+    wbtip = models.WhistleblowerTip()
 
     receipt = unicode(rstr.xeger(GLSettings.receipt_regexp))
 
@@ -209,7 +206,7 @@ def db_create_whistleblower_tip(store, internaltip):
     internaltip.new = False
 
     if len(created_rtips):
-        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtips))
+        log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
 
     return receipt
 
@@ -223,14 +220,14 @@ def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
     if not len(receiver_id_list):
-        log.err("Receivers required to be selected, not empty")
+        log.err("models.Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed almost one receiver selected")
 
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
         raise errors.InvalidInputFormat("provided an invalid number of receivers")
 
-    for receiver in store.find(Receiver, In(Receiver.id, receiver_id_list)):
+    for receiver in store.find(models.Receiver, In(models.Receiver.id, receiver_id_list)):
         if context not in receiver.contexts:
             raise errors.InvalidInputFormat("forged receiver selection, you fuzzer! <:")
 
@@ -241,13 +238,13 @@ def import_receivers(store, submission, receiver_id_list):
                 continue
             submission.receivers.add(receiver)
         except Exception as excep:
-            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver.id, excep))
+            log.err("models.Receiver %s can't be assigned to the tip [%s]" % (receiver.id, excep))
             continue
 
         log.debug("+receiver [%s] In tip (%s) #%d" % \
                   (receiver.user.name, submission.id, submission.receivers.count() ))
     if submission.receivers.count() == 0:
-        log.err("Receivers required to be selected, not empty")
+        log.err("models.Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")
 
 def db_create_submission(store, token_id, request, t2w, language):
@@ -258,15 +255,15 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     answers = request['answers']
 
-    context = store.find(Context, Context.id == request['context_id']).one()
+    context = store.find(models.Context, models.Context.id == request['context_id']).one()
     if not context:
         # this can happen only if the context is removed
         # between submission POST and PUT.. :) that's why is better just
         # ignore this check, take che cached and wait the reference below fault
-        log.err("Context requested: [%s] not found!" % request['context_id'])
-        raise errors.ContextIdNotFound
+        log.err("models.Context requested: [%s] not found!" % request['context_id'])
+        raise errors.models.ContextIdNotFound
 
-    submission = InternalTip()
+    submission = models.InternalTip()
 
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
@@ -305,7 +302,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     try:
         for filedesc in token.uploaded_files:
-            associated_f = InternalFile()
+            associated_f = models.InternalFile()
             associated_f.name = filedesc['filename']
             associated_f.description = ""
             associated_f.content_type = filedesc['content_type']
