@@ -65,12 +65,8 @@ def get_context_list(store, language):
     :return: a dictionary representing the serialization of the contexts.
     """
     contexts = store.find(models.Context)
-    context_list = []
 
-    for context in contexts:
-        context_list.append(admin_serialize_context(store, context, language))
-
-    return context_list
+    return [admin_serialize_context(store, context, language) for context in contexts]
 
 
 def acquire_context_timetolive(timetolive):

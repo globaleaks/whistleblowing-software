@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import And
 
 from globaleaks import security
-from globaleaks.models import Node, User
+from globaleaks.models import User
 from globaleaks.settings import transact_ro, GLSettings
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
@@ -199,8 +199,7 @@ def login_wb(store, receipt, using_tor2web):
     """
     Login wb return the WhistleblowerTip.id
     """
-    node = store.find(Node).one()
-    hashed_receipt = security.hash_password(receipt, node.receipt_salt)
+    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 

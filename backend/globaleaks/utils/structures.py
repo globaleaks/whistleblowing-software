@@ -23,21 +23,13 @@ class Rosetta(object):
         self._localized_keys = keys
 
     def acquire_storm_object(self, obj):
-        self._localized_strings = {
-            key: getattr(obj, key) for key in self._localized_keys
-        }
+        self._localized_strings = {key: getattr(obj, key) for key in self._localized_keys}
 
     def acquire_multilang_dict(self, obj):
-        self._localized_strings = {
-            key: obj[key] for key in self._localized_keys
-        }
+        self._localized_strings = {key: obj[key] for key in self._localized_keys}
 
     def singlelang_to_multilang_dict(self, obj, language):
-        ret = {
-            key: {language: obj[key]} for key in self._localized_keys
-        }
-
-        return ret
+        return {key: {language: obj[key]} for key in self._localized_keys}
 
     def dump_localized_key(self, key, language):
         default_language = GLSettings.memory_copy.default_language
@@ -62,8 +54,7 @@ def fill_localized_keys(dictionary, keys, language):
 
     multilang_dict = mo.singlelang_to_multilang_dict(dictionary, language)
 
-    for key in keys:
-        dictionary[key] = multilang_dict[key]
+    dictionary.update({key: multilang_dict[key] for key in keys})
 
     return dictionary
 
@@ -75,8 +66,7 @@ def get_localized_values(dictionary, obj, keys, language):
     elif isinstance(obj, Model):
         mo.acquire_storm_object(obj)
 
-    for key in keys:
-        dictionary[key] = mo.dump_localized_key(key, language)
+    dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
 
     return dictionary
 
