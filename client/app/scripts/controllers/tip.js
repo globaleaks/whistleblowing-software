@@ -32,7 +32,7 @@ GLClient.controller('TipCtrl',
       }
 
       return false;
-    }
+    };
 
     $scope.filterFields = function(field) {
       return field.type !== 'fileupload';
@@ -76,7 +76,7 @@ GLClient.controller('TipCtrl',
       new Tip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
 
-        $scope.showEditLabelInput = $scope.tip.label == '';
+        $scope.showEditLabelInput = $scope.tip.label === '';
 
         $scope.tip_unencrypted = false;
         angular.forEach(tip.receivers, function(receiver){
@@ -107,13 +107,13 @@ GLClient.controller('TipCtrl',
     $scope.editLabel = function(event) {
       $scope.showEditLabelInput = true;
       event.stopPropagation();
-    }
+    };
 
     $scope.updateLabel = function(event, label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
       event.stopPropagation();
-    }
+    };
 
     $scope.newComment = function() {
       $scope.tip.newComment($scope.tip.newCommentContent);

@@ -65,9 +65,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
         }
       }
     });
-
   };
-
 }]);
 
 TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'Tip', 'selected_tips', 'operation',
@@ -93,7 +91,5 @@ TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstan
       $scope.selected_tips = [];
       $route.reload();
     });
-
   };
-
 }];

@@ -106,7 +106,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .attr("width", gridSize)
           .attr("height", gridSize)
           .style("fill", function(d) {
-              return colors[0]
+              return colors[0];
           }).on("mouseenter", function(d) {
               if (d.valid === 0) {
                 $scope.blob = d;

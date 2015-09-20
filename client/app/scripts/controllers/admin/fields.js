@@ -1,5 +1,4 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
-                    function($scope, $filter) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
     $scope.admin.field_templates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -33,11 +32,11 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', '$filter',
 
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
-    $scope.editable = $scope.field.is_template || $scope.field.template_id == '';
+    $scope.editable = $scope.field.is_template || $scope.field.template_id === '';
     $scope.editing = false;
 
     $scope.toggleEditing = function (e) {
-      $scope.editing = $scope.editing ^ 1;
+      $scope.editing = !$scope.editing;
       e.stopPropagation();
     };
 
@@ -90,18 +89,19 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     };
 
     $scope.shouldShowOptions = function(field) {
-      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'].indexOf(field.type) > -1)
+      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'].indexOf(field.type) > -1) {
         return true;
-      else
+      } else {
         return false;
-    }
+      }
+    };
 
     $scope.addField = function(field) {
       $scope.field.children.push(field);
     };
 
     $scope.addOption = function (field) {
-      new_option = {
+      var var new_option = {
         'id': '',
         'label': '',
         'score_points': 0,
@@ -134,22 +134,22 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     $scope.moveUpAndSave = function(event, elem) {
       $scope.moveUp(event, elem);
       $scope.save_field(elem);
-    }
+    };
 
     $scope.moveDownAndSave = function(event, elem) {
       $scope.moveDown(event, elem);
       $scope.save_field(elem);
-    }
+    };
 
     $scope.moveLeftAndSave = function(event, elem) {
       $scope.moveLeft(event, elem);
       $scope.save_field(elem);
-    }
+    };
 
     $scope.moveRightAndSave = function(event, elem) {
       $scope.moveRight(event, elem);
       $scope.save_field(elem);
-    }
+    };
 
     $scope.new_field = {};
 
@@ -162,7 +162,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
 
       field.is_template = $scope.field.is_template;
 
-      if (field.type == 'fileupload') {
+      if (field.type === 'fileupload') {
         field.multi_entry = true;
       }
 

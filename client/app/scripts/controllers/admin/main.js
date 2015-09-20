@@ -102,7 +102,7 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
     };
 
     $scope.newItemOrder = function(objects, key) {
-      if (objects.length == 0) {
+      if (objects.length === 0) {
         return 0;
       }
 
@@ -114,10 +114,8 @@ function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CON
       });
 
       return max + 1;
-    }
-
+    };
   });
-
 }]);
 
 GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',

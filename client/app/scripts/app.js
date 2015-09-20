@@ -271,7 +271,7 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
 
         var $rootScope = $injector.get('$rootScope');
 
-        if ($rootScope.exceptions_count == undefined) {
+        if ($rootScope.exceptions_count === undefined) {
           $rootScope.exceptions_count = 0;
         }
 
