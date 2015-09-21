@@ -116,7 +116,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     total_ramdisk_string = bytes_to_pretty_str(total_ramdisk_bytes)
 
     def info_msg_0(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "free_disk_megabytes <= 300 or free_disk_percentage <= 3"
+        return "free_disk_megabytes <= 200 or free_disk_percentage <= 3"
 
     def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
         return "free_ramdisk_bytes <= 2048"
@@ -130,7 +130,7 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
         {
-            'condition': free_disk_megabytes <= 300 or free_disk_percentage <= 3,
+            'condition': free_disk_megabytes <= 200 or free_disk_percentage <= 3,
             'info_msg': info_msg_0,
             'stress_level': 3,
             'accept_submissions': False
