@@ -115,11 +115,11 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
         GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
-        GLSettings.memory_copy.tor2web_admin = node.tor2web_admin
-        GLSettings.memory_copy.tor2web_custodian = node.tor2web_custodian
-        GLSettings.memory_copy.tor2web_whistleblower = node.tor2web_whistleblower
-        GLSettings.memory_copy.tor2web_receiver = node.tor2web_receiver
-        GLSettings.memory_copy.tor2web_unauth = node.tor2web_unauth
+        GLSettings.memory_copy.tor2web_access['admin'] = node.tor2web_admin
+        GLSettings.memory_copy.tor2web_access['custodian'] = node.tor2web_custodian
+        GLSettings.memory_copy.tor2web_access['whistleblower'] = node.tor2web_whistleblower
+        GLSettings.memory_copy.tor2web_access['receiver'] = node.tor2web_receiver
+        GLSettings.memory_copy.tor2web_access['unauth'] = node.tor2web_unauth
 
         GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
         GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl

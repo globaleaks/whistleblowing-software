@@ -22,15 +22,10 @@ class TestStaticFileInstance(helpers.TestHandler):
     fakeFile['filename'] = 'imag0005.jpg'
 
     @inlineCallbacks
-    def test_file_delete_it(self):
-        realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
-        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
-        self.assertTrue('filelocation' in dumped_file)
+    def test_get_globaleaks_logo(self):
+        handler = self.request({}, role='admin')
 
-        self.responses = []
-
-        handler = self.request(role='admin')
-        yield handler.delete(self.fakeFile['filename'])
+        yield handler.get(filename='globaleaks_logo')
 
     @inlineCallbacks
     def test_post_globaleaks_logo(self):

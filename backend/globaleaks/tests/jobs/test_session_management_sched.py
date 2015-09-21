@@ -17,7 +17,7 @@ class TestSessionManagementSched(helpers.TestGL):
         authentication.GLSession('admin', 'admin', 'enabled') # 3!
 
         self.assertEqual(len(GLSettings.sessions), 3)
-        authentication.reactor_override.advance(GLSettings.defaults.lifetimes['admin'])
+        authentication.reactor_override.advance(GLSettings.defaults.authentication_lifetime)
         self.assertEqual(len(GLSettings.sessions), 0)
 
         yield session_management_sched.SessionManagementSchedule().operation()

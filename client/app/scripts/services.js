@@ -11,7 +11,7 @@ angular.module('GLServices', ['ngResource']).
           $rootScope.loginInProgress = true;
 
           if (username === 'whistleblower') {
-            self.role = 'wb';
+            self.role = 'whistleblower';
           }
 
           var success_fn = function(response) {
@@ -34,7 +34,7 @@ angular.module('GLServices', ['ngResource']).
               self.homepage = '#/receiver/tips';
               self.auth_landing_page = '/receiver/tips';
               $rootScope.preferences = ReceiverPreferences.get();
-            } else if (self.role === 'wb') {
+            } else if (self.role === 'whistleblower') {
               self.auth_landing_page = '/status';
             }
             // reset login state before returning
@@ -58,7 +58,7 @@ angular.module('GLServices', ['ngResource']).
             $location.search('');
           }
 
-          if (self.role === 'wb') {
+          if (self.role === 'whistleblower') {
             return $http.post('receiptauth', {'receipt': password}).
             success(success_fn).
             error(function(response) {
@@ -84,7 +84,7 @@ angular.module('GLServices', ['ngResource']).
           self.homepage = null;
           self.auth_langing_page = null;
 
-          if (self.role === 'wb') {
+          if (self.role === 'whistleblower') {
             $location.path('/');
           } else if (self.role === 'admin') {
             $location.path('/admin');
@@ -99,7 +99,7 @@ angular.module('GLServices', ['ngResource']).
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
-          if (self.role === 'wb') {
+          if (self.role === 'whistleblower') {
             $http['delete']('receiptauth').then(self.logout_performed,
                                                    self.logout_performed);
           } else {
@@ -184,11 +184,11 @@ angular.module('GLServices', ['ngResource']).
           } else {
             var redirect_path = '/login';
 
-            // If we are wb on the status page, redirect to homepage
+            // If we are whistleblowers on the status page, redirect to homepage
             if (source_path === '/status') {
               redirect_path = '/';
             }
-            // If we are admin on the /admin(/*) pages, redirect to /admin
+            // If we are admins on the /admin(/*) pages, redirect to /admin
             else if (source_path.indexOf('/admin') === 0) {
               redirect_path = '/admin';
             }
