@@ -158,8 +158,8 @@ class TipKeyword(_KeyWord):
         making that if one of these function return None, the entire line is stripped.
         This can avoid the awkward effect of 'Public Url: [Ask to your admin about Tor]'
         """
-        if not GLSettings.memory_copy.tor2web_receiver:
-            retstr = "[Ask to your admin about Tor]"
+        if not GLSettings.memory_copy.tor2web_access['receiver']:
+            retstr = "DISABLED"
         elif len(self.node['public_site']):
             retstr =  '%s/#/status/%s' % ( self.node['public_site'], self.tip['id'] )
         else:

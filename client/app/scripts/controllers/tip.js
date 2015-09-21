@@ -42,7 +42,7 @@ GLClient.controller('TipCtrl',
       return receiver.configuration !== 'hidden';
     };
 
-    if (Authentication.role === 'wb') {
+    if (Authentication.role === 'whistleblower') {
       $scope.fileupload_url = '/wbtip/upload';
 
       new WBTip(function(tip) {
@@ -94,7 +94,7 @@ GLClient.controller('TipCtrl',
       });
     } else {
       if($location.path() === '/status') {
-        // wb
+        // whistleblower
         $location.path('/');
       } else {
         // receiver

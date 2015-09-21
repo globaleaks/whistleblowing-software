@@ -106,7 +106,7 @@ class WBTipInstance(BaseHandler):
     """
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -178,7 +178,7 @@ class WBTipCommentCollection(BaseHandler):
     """
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -191,7 +191,7 @@ class WBTipCommentCollection(BaseHandler):
         self.finish(wb_comment_list)
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def post(self):
         """
@@ -252,7 +252,7 @@ class WBTipReceiversCollection(BaseHandler):
     """
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -348,7 +348,7 @@ class WBTipMessageCollection(BaseHandler):
     """
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def get(self, receiver_id):
         messages = yield get_messages_content(self.current_user.user_id, receiver_id)
@@ -357,7 +357,7 @@ class WBTipMessageCollection(BaseHandler):
         self.finish(messages)
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def post(self, receiver_id):
         request = self.validate_message(self.request.body, requests.CommentDesc)

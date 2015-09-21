@@ -168,7 +168,7 @@ class FileAdd(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
 
     @transport_security_check('whistleblower')
-    @authenticated('wb')
+    @authenticated('whistleblower')
     @inlineCallbacks
     def post(self, *args):
         """
