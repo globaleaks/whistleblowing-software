@@ -27,7 +27,7 @@ If you need to contact us privately to propose Whistleblowing specific projects,
 [![Saucelabs Test Status](https://saucelabs.com/browser-matrix/globaleaks.svg)](https://saucelabs.com/u/globaleaks)
 
 ## Donate
-To support GlobaLeaks Project you can help us with donations that will goes entirely for the software development!
+To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development!
 
 [![Bitcoin](https://bitpay.com/img/donate-button.svg)](https://www.globaleaks.org/bitcoin.html) [![PayPal](https://www.paypalobjects.com/en_US/i/btn/x-click-butcc-donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id= 22CAHH6GRRCTC)  [![Subscription](https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif)](https://globaleaks.org/paypal.html)  [![Flattr](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=GlobaLeaks&url=https://github.com/globaleaks/globaleaks&title=GlobaLeaks&language=en&tags=github&category=software)
 
