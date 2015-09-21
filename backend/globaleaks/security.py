@@ -48,12 +48,11 @@ def sha512(data):
 def _overwrite(absolutefpath, pattern):
     filesize = os.path.getsize(absolutefpath)
     bytecnt = 0
-    fp = file(absolutefpath, 'rwa+')
-    fp.seek(0)
-    while bytecnt < filesize:
-        fp.write(pattern)
-        bytecnt += len(pattern)
-    fp.close()
+    with open(absolutefpath, 'w+') as f:
+        f.seek(0)
+        while bytecnt < filesize:
+            f.write(pattern)
+            bytecnt += len(pattern)
 
 
 def overwrite_and_remove(absolutefpath, iterations_number=1):
