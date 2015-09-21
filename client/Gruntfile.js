@@ -358,7 +358,16 @@ module.exports = function(grunt) {
         grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
     }
 
-    var dirs = ['data', 'img', 'l10n']
+    var dirs = ['data', 'img', 'l10n', 'scripts']
+    for (var x in dirs) {
+      grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
+      });
+    }
+
+    grunt.file.mkdir('build/scripts');
+
+    var dirs = ['scripts/crypto']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
