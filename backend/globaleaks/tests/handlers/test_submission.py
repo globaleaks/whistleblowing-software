@@ -61,7 +61,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        wb_access_id = yield authentication.login_whisleblower(self.submission_desc['receipt'], False)
+        wb_access_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
@@ -110,7 +110,7 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wb_access_id = yield authentication.login_whisleblower(self.submission_desc['receipt'], False)
+        wb_access_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
 
         wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
 
