@@ -12,14 +12,14 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin.field import db_import_fields
+from globaleaks.handlers.admin.field import db_import_fields, db_update_field
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import anon_serialize_step
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import transact, transact_ro, GLSettings
-
 from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.utils.utility import log
 
 
 def db_create_step(store, step, language):
@@ -53,8 +53,7 @@ def create_step(store, step, language):
     return anon_serialize_step(store, s, language)
 
 
-@transact
-def update_step(store, step_id, request, language):
+def db_update_step(store, step_id, request, language):
     """
     Update the specified step with the details.
     raises :class:`globaleaks.errors.StepIdNotFound` if the step does
@@ -82,8 +81,14 @@ def update_step(store, step_id, request, language):
         log.err('Unable to update step: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    return anon_serialize_step(store, step, language)
+    return step
 
+
+@transact
+def update_step(store, step_id, request, language):
+    step = db_update_step(store, step_id, request, language)
+
+    return anon_serialize_step(store, step, language)
 
 @transact_ro
 def get_step(store, step_id, language):
@@ -134,7 +139,7 @@ def db_update_steps(store, context_id, steps, language):
 
     for step in steps:
         step['context_id'] = context_id
-        steps_ids.append(db_update_step(store, step['id'], step, language))
+        steps_ids.append(db_update_step(store, step['id'], step, language).id)
 
     store.find(models.Step, And(models.Step.context_id == context_id, Not(In(models.Step.id, steps_ids)))).remove()
 
