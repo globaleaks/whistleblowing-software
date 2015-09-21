@@ -65,7 +65,7 @@ class TestTip(helpers.TestGL):
     @inlineCallbacks
     def wb_auth_with_receipt(self):
         if not self.wb_tip_id:
-            self.wb_tip_id = yield authentication.login_wb(self.submission_desc['receipt'], False)
+            self.wb_tip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
             # is the self.current_user.user_id
 
         self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
