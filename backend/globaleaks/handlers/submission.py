@@ -336,7 +336,7 @@ class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
     """
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @unauthenticated
     @defer.inlineCallbacks
     def put(self, token_id):

@@ -167,7 +167,7 @@ class FileAdd(BaseHandler):
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, *args):
@@ -220,7 +220,7 @@ class FileInstance(BaseHandler):
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @unauthenticated
     @inlineCallbacks
     def post(self, token_id):

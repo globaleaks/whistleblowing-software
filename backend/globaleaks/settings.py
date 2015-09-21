@@ -185,17 +185,20 @@ class GLSettingssClass(object):
         # the admin using the Admin interface (advanced settings)
         self.defaults = OD()
 
+        self.defaults.tor2web_access = {}
+
         # default tor2web_admin setting is set to True;
         # the setting is then switched based on automatic user detection during wizard:
         #
         # - if the admin performs the wizard via tor2web the permission is kept True
         # - if the admin performs the wizard via Tor the permission is set to False
-        self.defaults.tor2web_admin = True
+        self.defaults.tor2web_access['admin'] = True
 
-        self.defaults.tor2web_whistleblower = False
-        self.defaults.tor2web_custodian = False
-        self.defaults.tor2web_receiver = False
-        self.defaults.tor2web_unauth = True
+        self.defaults.tor2web_access['whistleblower'] = False
+        self.defaults.tor2web_access['custodian'] = False
+        self.defaults.tor2web_access['receiver'] = False
+        self.defaults.tor2web_access['unauth'] = True
+
         self.defaults.allow_unencrypted = False
         self.defaults.allow_iframes_inclusion = False
         self.defaults.maximum_namesize = 128
@@ -227,15 +230,7 @@ class GLSettingssClass(object):
         self.defaults.accept_submissions = True
         self.defaults.minimum_megabytes_required = 1024  # 1 GB, or the node is disabled
 
-        # a dict to keep track of the lifetime of the session. at the moment
-        # not exported in the UI.
-        # https://github.com/globaleaks/GlobaLeaks/issues/510
-        self.defaults.lifetimes = {
-            'admin': (60 * 60),
-            'custodian': (60 * 60),
-            'receiver': (60 * 60),
-            'wb': (60 * 60)
-        }
+        self.defaults.authentication_lifetime = 60 * 60
 
         # A lot of operations performed massively by globaleaks
         # should avoid to fetch continuously variables from the DB so that

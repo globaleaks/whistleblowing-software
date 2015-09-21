@@ -308,9 +308,6 @@ class DeliverySchedule(GLJob):
         """
         receiverfiles_maps = yield receiverfile_planning()
 
-        if len(receiverfiles_maps) == 0:
-            return
-
-        process_files(receiverfiles_maps)
-
-        yield update_internalfile_and_store_receiverfiles(receiverfiles_maps)
+        if len(receiverfiles_maps):
+            process_files(receiverfiles_maps)
+            yield update_internalfile_and_store_receiverfiles(receiverfiles_maps)

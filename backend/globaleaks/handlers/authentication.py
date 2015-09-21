@@ -30,7 +30,7 @@ class GLSession(tempobj.TempObj):
         tempobj.TempObj.__init__(self,
                                  GLSettings.sessions,
                                  rstr.xeger(r'[A-Za-z0-9]{42}'),
-                                 GLSettings.defaults.lifetimes[user_role],
+                                 GLSettings.defaults.authentication_lifetime,
                                  reactor_override)
 
     def __repr__(self):
@@ -58,13 +58,10 @@ def random_login_delay():
     failed_attempts = GLSettings.failed_login_attempts
 
     if failed_attempts >= 5:
-        min_sleep = failed_attempts if failed_attempts < 42 else 42
-
         n = failed_attempts * failed_attempts
-        if n < 42:
-            max_sleep = n
-        else:
-            max_sleep = 42
+
+        min_sleep = failed_attempts if failed_attempts < 42 else 42
+        max_sleep = n if n < 42 else 42
 
         return utility.randint(min_sleep, max_sleep)
 
@@ -140,23 +137,7 @@ def get_tor2web_header(request_headers):
 
 
 def accept_tor2web(role):
-    if role == 'wb':
-        return GLSettings.memory_copy.tor2web_whistleblower
-
-    elif role == 'receiver':
-        return GLSettings.memory_copy.tor2web_receiver
-
-    elif role == 'custodian':
-        return GLSettings.memory_copy.tor2web_custodian
-
-    elif role == 'admin':
-        return GLSettings.memory_copy.tor2web_admin
-
-    elif role == 'custodian':
-        return GLSettings.memory_copy.tor2web_custodian
-
-    else:
-        return GLSettings.memory_copy.tor2web_unauth
+    return GLSettings.memory_copy.tor2web_access[role]
 
 
 def transport_security_check(wrapped_handler_role):
@@ -172,7 +153,7 @@ def transport_security_check(wrapped_handler_role):
             enhance performance instead of searching in te DB at every handler
             connection.
             """
-            tor2web_roles = ['wb', 'receiver', 'admin', 'custodian', 'unauth']
+            tor2web_roles = ['whistleblower', 'receiver', 'admin', 'custodian', 'unauth']
 
             assert wrapped_handler_role in tor2web_roles
 
@@ -195,9 +176,9 @@ def transport_security_check(wrapped_handler_role):
 
 
 @transact_ro  # read only transact; manual commit on success needed
-def login_wb(store, receipt, using_tor2web):
+def login_whistleblower(store, receipt, using_tor2web):
     """
-    Login wb return the WhistleblowerTip.id
+    login_whistleblower returns the WhistleblowerTip.id
     """
     hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wb_tip = store.find(WhistleblowerTip,
@@ -208,11 +189,11 @@ def login_wb(store, receipt, using_tor2web):
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if using_tor2web and not accept_tor2web('wb'):
-        log.err("Denied login request on Tor2web for role 'wb'")
+    if using_tor2web and not accept_tor2web('whistleblower'):
+        log.err("Denied login request on Tor2web for role 'whistleblower'")
         raise errors.TorNetworkRequired
     else:
-        log.debug("Accepted login request on Tor2web for role 'wb'")
+        log.debug("Accepted login request on Tor2web for role 'whistleblower'")
 
     log.debug("Whistleblower login: Valid receipt")
     wb_tip.last_access = utility.datetime_now()
@@ -254,7 +235,7 @@ class AuthenticationHandler(BaseHandler):
     def generate_session(self, user_id, role, status):
         """
         Args:
-            role: can be either 'admin', 'wb', 'receiver' or 'custodian'
+            role: can be either 'admin', 'whistleblower', 'receiver' or 'custodian'
         """
         session = GLSession(user_id, role, status)
         self.session_id = session.id
@@ -342,14 +323,14 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         using_tor2web = get_tor2web_header(self.request.headers)
 
-        user_id = yield login_wb(receipt, using_tor2web)
+        user_id = yield login_whistleblower(receipt, using_tor2web)
 
         yield self.uniform_answers_delay()
 
-        session = self.generate_session(user_id, 'wb', 'Enabled')
+        session = self.generate_session(user_id, 'whistleblower', 'Enabled')
 
         auth_answer = {
-            'role': 'wb',
+            'role': 'whistleblower',
             'session_id': session.id,
             'user_id': session.user_id,
             'session_expiration': int(GLSettings.sessions[session.id].getTime())

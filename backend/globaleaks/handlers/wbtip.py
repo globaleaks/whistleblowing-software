@@ -105,7 +105,7 @@ class WBTipInstance(BaseHandler):
     promote, and perform other operations in this protected environment.
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def get(self):
@@ -177,7 +177,7 @@ class WBTipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def get(self):
@@ -190,7 +190,7 @@ class WBTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(wb_comment_list)
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def post(self):
@@ -251,7 +251,7 @@ class WBTipReceiversCollection(BaseHandler):
     GET /tip/receivers
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def get(self):
@@ -347,7 +347,7 @@ class WBTipMessageCollection(BaseHandler):
     Supports the creation of a new message for the requested receiver
     """
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def get(self, receiver_id):
@@ -356,7 +356,7 @@ class WBTipMessageCollection(BaseHandler):
         self.set_status(200)
         self.finish(messages)
 
-    @transport_security_check('wb')
+    @transport_security_check('whistleblower')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, receiver_id):

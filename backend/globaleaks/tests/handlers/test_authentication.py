@@ -54,8 +54,11 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.AuthenticationHandler
 
+    # since all logins for roles admin, receiver and custodian happen
+    # in the same way, the following tests are performed on the admin user.
+
     @inlineCallbacks
-    def test_successful_admin_login(self):
+    def test_successful_login(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks',
@@ -65,56 +68,26 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSettings.sessions.keys()), 1)
 
     @inlineCallbacks
-    def test_accept_admin_login_in_tor2web(self):
+    def test_accept_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks'
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_admin = True
+        GLSettings.memory_copy.tor2web_access['admin'] = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSettings.sessions.keys()), 1)
 
-    def test_deny_admin_login_in_tor2web(self):
+    def test_deny_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks'
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_admin = False
+        GLSettings.memory_copy.tor2web_access['admin'] = False
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
-    def test_successful_receiver_login(self):
-        handler = self.request({
-            'username': self.dummyReceiver_1['username'],
-            'password': helpers.VALID_PASSWORD1
-        })
-        success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSettings.sessions.keys()), 1)
-
-    @inlineCallbacks
-    def test_accept_receiver_login_in_tor2web(self):
-        handler = self.request({
-            'username': self.dummyReceiver_1['username'],
-            'password': helpers.VALID_PASSWORD1
-        }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_receiver = True
-        yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSettings.sessions.keys()), 1)
-
-    def test_deny_receiver_login_in_tor2web(self):
-        handler = self.request({
-            'username': self.dummyReceiver_1['username'],
-            'password': helpers.VALID_PASSWORD1
-        }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_receiver = False
-        yield handler.post()
-        self.assertFailure(handler.post(), errors.TorNetworkRequired)
-
-    @inlineCallbacks
-    def test_successful_admin_logout(self):
+    def test_successful_logout(self):
         # Login
         handler = self.request({
             'username': 'admin',
@@ -141,35 +114,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSettings.sessions.keys()), 0)
 
     @inlineCallbacks
-    def test_successful_receiver_logout(self):
-        # Login
-        handler = self.request({
-            'username': self.dummyReceiver_1['username'],
-            'password': helpers.VALID_PASSWORD1
-        })
-        yield handler.post()
-        self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSettings.sessions.keys()), 1)
-
-        # Logout
-        session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSettings.sessions.keys()), 0)
-
-        # A second logout must not be accepted (this validate also X-Session reuse)
-        handler = self.request({}, headers={'X-Session': session_id})
-
-        self.assertRaises(errors.NotAuthenticated, handler.delete)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSettings.sessions.keys()), 0)
-
-
-    @inlineCallbacks
-    def test_invalid_admin_login_wrong_password(self):
+    def test_invalid_login_wrong_password(self):
         handler = self.request({
             'username': 'admin',
             'password': 'INVALIDPASSWORD'
@@ -178,27 +123,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     @inlineCallbacks
-    def test_invalid_receiver_login_wrong_password(self):
-        handler = self.request({
-            'username': 'scemo',
-            'password': 'INVALIDPASSWORD'
-        })
-
-        yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
-
-    @inlineCallbacks
-    def test_invalid_whistleblower_login_wrong_receipt(self):
-        handler = self.request({
-            'username': '',
-            'password': 'INVALIDPASSWORD'
-        })
-
-        yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
-
-    @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': 'admin',
             'password': 'INVALIDPASSWORD'
         })
 
@@ -212,7 +139,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_bruteforce_login_protection(self):
         handler = self.request({
-            'username': self.dummyReceiver_1['id'],
+            'username': 'admin',
             'password': 'INVALIDPASSWORD'
         })
 
@@ -241,6 +168,14 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.ReceiptAuthHandler
 
     @inlineCallbacks
+    def test_invalid_whistleblower_login(self):
+        handler = self.request({
+            'receipt': 'INVALIDRECEIPT'
+        })
+
+        yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
+
+    @inlineCallbacks
     def test_successful_whistleblower_login(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
@@ -255,18 +190,19 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
-        })
-        GLSettings.memory_copy.tor2web_whistleblower = True
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSettings.memory_copy.tor2web_access['whistleblower'] = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSettings.sessions.keys()), 1)
 
+    @inlineCallbacks
     def test_deny_whistleblower_login_in_tor2web(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSettings.memory_copy.tor2web_whistleblower = False
+        GLSettings.memory_copy.tor2web_access['whistleblower'] = False
         self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks

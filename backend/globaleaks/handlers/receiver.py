@@ -73,45 +73,6 @@ def get_receiver_settings(store, receiver_id, language):
     return receiver_serialize_receiver(receiver, node, language)
 
 
-def db_update_user(store, user_id, request, language):
-    """
-    Updates the specified user.
-    This version of the function is specific for the receiver that with comparison
-    the admin can change only few things:
-      - preferred language
-      - preferred timezone
-      - the password (with old password check)
-      - pgp key
-    raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
-    """
-    user = User.get(store, user_id)
-
-    if not user:
-        raise errors.UserIdNotFound
-
-    user.language = request.get('language', GLSettings.memory_copy.default_language)
-    user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
-
-    new_password = request['password']
-    old_password = request['old_password']
-
-    if len(new_password) and len(old_password):
-        user.password = change_password(user.password,
-                                        old_password,
-                                        new_password,
-                                        user.salt)
-
-        if user.password_change_needed:
-            user.password_change_needed = False
-
-        user.password_change_date = datetime_now()
-
-    # The various options related in manage PGP keys are used here.
-    parse_pgp_options(user, request)
-
-    return user
-
-
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
     user = db_user_update_user(store, receiver_id, request, language)
