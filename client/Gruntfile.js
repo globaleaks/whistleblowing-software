@@ -327,8 +327,8 @@ module.exports = function(grunt) {
   grunt.registerTask('copyBowerSources', function() {
     var files = [
       ['app/components/scrypt-async/scrypt-async.min.js', 'app/scripts/crypto/scrypt-async.min.js'],
-      ['app/components/openpgpjs/dist/openpgp.min.js', 'app/scripts/crypto/openpgp.min.js'],
-      ['app/components/openpgpjs/dist/openpgp.worker.min.js', 'app/scripts/crypto/openpgp.worker.min.js']
+      ['app/components/openpgp/dist/openpgp.min.js', 'app/scripts/crypto/openpgp.min.js'],
+      ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/scripts/crypto/openpgp.worker.min.js']
     ]
 
     grunt.file.mkdir('app/scripts/crypto');
