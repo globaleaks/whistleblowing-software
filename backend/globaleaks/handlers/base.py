@@ -122,6 +122,8 @@ class BaseHandler(RequestHandler):
     filehandler = False
 
     def __init__(self, application, request, **kwargs):
+        RequestHandler.__init__(self, application, request, **kwargs)
+
         self.name = type(self).__name__
 
         self.handler_time_analysis_begin()
@@ -129,8 +131,6 @@ class BaseHandler(RequestHandler):
 
         self.req_id = GLSettings.requests_counter
         GLSettings.requests_counter += 1
-
-        super(BaseHandler, self).__init__(application, request, **kwargs)
 
     def set_default_headers(self):
         """
