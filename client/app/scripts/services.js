@@ -707,11 +707,11 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_field = function(step_id, fieldgroup_id) {
           var field = new adminFieldResource();
+          field.instance = 'instance';
           field.descriptor_id = '';
           field.label = '';
           field.type = 'inputbox';
           field.description = '';
-          field.is_template = false;
           field.hint = '';
           field.multi_entry = false;
           field.multi_entry_hint = '';
@@ -738,10 +738,10 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_field_template = function (fieldgroup_id) {
           var field = new adminFieldTemplateResource();
+          field.instance = 'template';
           field.label = '';
           field.type = 'inputbox';
           field.description = '';
-          field.is_template = true;
           field.hint = '';
           field.multi_entry = false;
           field.multi_entry_hint = '';

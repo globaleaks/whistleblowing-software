@@ -192,8 +192,8 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
+        'instance': field.instance,
         'type': f_to_serialize.type,
-        'is_template': field.is_template,
         'template_id': field.template.id if field.template else '',
         'step_id': step_id,
         'fieldgroup_id': fieldgroup_id,

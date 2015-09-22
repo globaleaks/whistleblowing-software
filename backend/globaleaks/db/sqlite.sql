@@ -376,7 +376,6 @@ CREATE TABLE field (
     required INTEGER NOT NULL DEFAULT 0,
     preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
-    is_template INTEGER NOT NULL DEFAULT 0,
     template_id TEXT,
     activated_by_score INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
@@ -394,6 +393,9 @@ CREATE TABLE field (
                                        'date',
                                        'email',
                                        'fieldgroup')),
+    instance TEXT NOT NULL CHECK (instance IN ('instance',
+                                               'reference',
+                                               'template')),
     FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );

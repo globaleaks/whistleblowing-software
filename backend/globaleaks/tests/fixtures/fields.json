@@ -2,6 +2,7 @@
   {
     "fields": {
       "id": "25521164-0d0f-4f80-9e9c-93f72e815105",
+      "instance": "template",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
@@ -9,12 +10,13 @@
       "description": {"en": "description"},
       "hint": {"en": "hint"},
       "multi_entry": false,
-      "is_template": true,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -22,19 +24,21 @@
   {
     "fields": {
       "id": "25521164-1d0f-5f80-8e8c-93f73e815156",
+      "instance": "template",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "surname"},
       "description": {"en": "description"},
       "hint": {"en":"hint"},
-      "is_template": true,
       "multi_entry": false,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -42,19 +46,21 @@
   {
     "fields": {
       "id": "98891164-1a0b-5b80-8b8b-93b73b815156",
+      "instance": "template",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "gender"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": true,
       "multi_entry": true,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "selectbox"
     },
     "class": "Field"
@@ -62,19 +68,21 @@
   {
     "fields": {
       "id": "27121164-0d0f-4180-9e9c-b1f72e815105",
+      "instance": "template",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "birthdate"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": true,
       "multi_entry": false,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -82,19 +90,21 @@
   {
     "fields": {
       "id": "37242164-1b1f-1110-1e1c-b1f12e815105",
+      "instance": "template",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "generalities"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": true,
       "multi_entry": true,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "fieldgroup"
     },
     "class": "Field"
@@ -139,6 +149,7 @@
   {
     "fields": {
       "id": "15521164-0d0f-4f80-9e9c-93f72e815105",
+      "instance": "instance",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
@@ -146,12 +157,13 @@
       "description": {"en": "description"},
       "hint": {"en": "hint"},
       "multi_entry": false,
-      "is_template": false,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -159,19 +171,21 @@
   {
     "fields": {
       "id": "15521164-1d0f-5f80-8e8c-93f73e815156",
+      "instance": "instance",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "surnamea"},
       "description": {"en": "description"},
       "hint": {"en":"hint"},
-      "is_template": false,
       "multi_entry": false,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -179,19 +193,21 @@
   {
     "fields": {
       "id": "18891164-1a0b-5b80-8b8b-93b73b815156",
+      "instance": "instance",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "gender"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": false,
       "multi_entry": true,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "selectbox"
     },
     "class": "Field"
@@ -199,19 +215,21 @@
   {
     "fields": {
       "id": "17121164-0d0f-4180-9e9c-b1f72e815105",
+      "instance": "instance",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "birthdate"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": false,
       "multi_entry": false,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
       "x": 0,
       "y": 0,
+      "width": 0,
       "type": "inputbox"
     },
     "class": "Field"
@@ -219,18 +237,21 @@
   {
     "fields": {
       "id": "17242164-1b1f-1110-1e1c-b1f12e815105",
+      "instance": "instance",
       "template_id": "",
       "step_id": "",
       "fieldgroup_id": "",
       "label": {"en": "generalities"},
       "description": {"en": "description"},
       "hint": {"en": "hint"},
-      "is_template": false,
       "multi_entry": true,
+      "multi_enty_hint": "",
       "required": true,
       "preview": true,
       "stats_enabled": true,
+      "x": 0,
       "y": 0,
+      "width": 0,
       "type": "fieldgroup"
     },
     "class": "Field"

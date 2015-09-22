@@ -59,7 +59,7 @@ var receiver = {
 var fields = [
   {
     id: '',
-    is_template: false,
+    instance: 'instance',
     template_id: '',
     step_id: '',
     fieldgroup_id: '',
@@ -81,7 +81,7 @@ var fields = [
   },
   {
     id: '',
-    is_template: false,
+    instance: 'instance',
     template_id: '',
     step_id: '',
     fieldgroup_id: '',
@@ -103,7 +103,7 @@ var fields = [
   },
   {
     id: '',
-    is_template: false,
+    instance: 'instance',
     template_id: '',
     step_id: '',
     fieldgroup_id: '',
@@ -125,7 +125,7 @@ var fields = [
   },
   {
     id: '',
-    is_template: false,
+    instance: 'instance',
     template_id: '',
     step_id: '',
     fieldgroup_id: '',
@@ -147,7 +147,7 @@ var fields = [
   },
   {
     id: '',
-    is_template: false,
+    instance: 'instance',
     template_id: '',
     step_id: '',
     fieldgroup_id: '',

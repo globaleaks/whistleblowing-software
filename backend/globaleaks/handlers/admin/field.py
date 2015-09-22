@@ -50,13 +50,13 @@ def associate_field(store, field, step=None, fieldgroup=None):
     :param store: the store on which perform queries.
     """
     if step:
-        if field.is_template:
+        if field.instance == 'template':
             raise errors.InvalidInputFormat("Cannot associate a field template to a step")
 
         step.children.add(field)
 
     if fieldgroup:
-        if field.is_template != fieldgroup.is_template:
+        if field.instance != fieldgroup.instance:
             raise errors.InvalidInputFormat("Cannot associate field templates with fields")
 
         ancestors = set(fieldtree_ancestors(store, field.id))
@@ -188,17 +188,17 @@ def field_integrity_check(store, field):
     Preliminar validations of field descriptor in relation to:
     - step_id
     - fieldgroup_id
-    - is_template
+    - instannce
 
     :param field: the field dict to be validated
     """
     step = None
     fieldgroup = None
 
-    if field['is_template'] == '' and (field['step_id'] == '' and field['fieldgroup_id'] == ''):
+    if field['instance'] != 'template' and (field['step_id'] == '' and field['fieldgroup_id'] == ''):
         raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
 
-    if field['is_template'] != '' and (field['step_id'] != '' and field['fieldgroup_id'] != ''):
+    if field['instance'] != 'template' and (field['step_id'] != '' and field['fieldgroup_id'] != ''):
         raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
 
     if field['step_id'] != '':
@@ -211,7 +211,7 @@ def field_integrity_check(store, field):
         if not fieldgroup:
             raise errors.FieldIdNotFound
 
-    return field['is_template'], step, fieldgroup
+    return field['instance'], step, fieldgroup
 
 
 def db_create_field(store, field, language):
@@ -227,7 +227,7 @@ def db_create_field(store, field, language):
 
     fill_localized_keys(field, models.Field.localized_strings, language)
 
-    if field['template_id'] == '':
+    if field['instance'] != 'reference':
         field['template_id'] = None
 
     f = models.Field.new(store, field)
@@ -259,7 +259,7 @@ def db_update_field(store, field_id, field, language):
 
     fill_localized_keys(field, models.Field.localized_strings, language)
 
-    if field['template_id'] == '':
+    if field['instance'] != 'reference':
         field['template_id'] = None
 
     f = models.Field.get(store, field_id)
@@ -270,7 +270,7 @@ def db_update_field(store, field_id, field, language):
         # make not possible to change field type
         field['type'] = f.type
 
-        if field['template_id'] is None:
+        if field['instance'] != 'reference':
             # children handling:
             #  - old children are cleared
             #  - new provided childrens are evaluated and added
@@ -347,7 +347,6 @@ def get_field(store, field_id, language):
 
     :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
-    :param is_template: a boolean specifying if the requested field needs to be a template
     :param language: the language in which to localize data
     :return: the currently configured field.
     :rtype: dict
@@ -369,7 +368,6 @@ def delete_field(store, field_id):
 
     :param store: the store on which perform queries.
     :param field_id: the id corresponding to the field.
-    :param is_template: a boolean specifying if the requested field needs to be a template
     :raises FieldIdNotFound: if no such field is found.
     """
     field = store.find(models.Field, models.Field.id == field_id).one()
@@ -396,10 +394,9 @@ def fieldtree_ancestors(store, field_id):
 
 
 @transact_ro
-def get_field_list(store, is_template, language):
+def get_fieldtemplates_list(store, language):
     """
-    Serialize all the root fields (templates or not templates)
-    localizing their content depending on the language.
+    Serialize all the field templates localizing their content depending on the language.
 
     :param store: the store on which perform queries.
     :param language: the language of the field definition dict
@@ -408,9 +405,9 @@ def get_field_list(store, is_template, language):
     """
     ret = []
 
-    for f in store.find(models.Field, models.Field.is_template == is_template):
-        if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
-            ret.append(anon_serialize_field(store, f, language))
+    for f in store.find(models.Field, models.Field.instance == u'template'):
+        #if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
+        ret.append(anon_serialize_field(store, f, language))
 
     return ret
 
@@ -426,7 +423,7 @@ class FieldTemplatesCollection(BaseHandler):
         :return: the list of field templates registered on the node.
         :rtype: list
         """
-        response = yield get_field_list(True, self.request.language)
+        response = yield get_fieldtemplates_list(self.request.language)
         self.set_status(200)
         self.finish(response)
 

@@ -21,6 +21,10 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
 tip_operation_regexp              = r'^postpone$|^label$'
 token_type_regexp                 = r'^submission$'
+field_instance_regexp             = (r'^('
+                                     'instance|'
+                                     'reference|'
+                                     'template)$')
 field_type_regexp                 = (r'^('
                                      'inputbox|'
                                      'textarea|'
@@ -34,6 +38,7 @@ field_type_regexp                 = (r'^('
                                      'email|'
                                      'date|'
                                      'fieldgroup)$')
+
 
 DateType = r'(.*)'
 
@@ -479,6 +484,7 @@ FieldOptionDesc = {
 }
 
 FieldDesc = {
+    'instance': field_instance_regexp,
     'template_id': uuid_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': uuid_regexp_or_empty,
@@ -496,8 +502,7 @@ FieldDesc = {
     'type': field_type_regexp,
     'attrs': dict,
     'options': [FieldOptionDesc],
-    'children': list,
-    'is_template': bool,
+    'children': list
 }
 
 WizardStepDesc = {
