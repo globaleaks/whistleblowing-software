@@ -3,7 +3,7 @@
 ### Setting up development environment
 
    npm install -d
-   bower update -f
+   grunt setupDependencies
 
    more infos at: https://github.com/globaleaks/GlobaLeaks/wiki/Setting-up-development-environment
 
@@ -13,7 +13,7 @@
 
 ### Helps for lazy developers
 
-   npm install -d && bower update -f && grunt build
+   npm install -d && grunt setupDependencies && grunt build
 
 ### Fetch updated translation
 
@@ -28,13 +28,10 @@
       mv globaleaks_glclient-02-enpo.pot pot/en.po
 
 
-### Run mocha Tests
+### gl-admin
 
 In GLBackend reset to the default password:
 
-    bin/globaleaksadmin resetpass workingdir/db/glbackend-10.db globaleaks
+    bin/gl-admin resetpass workingdir/db/glbackend-*.db globaleaks
 
-In GLClient run the mocha tests:
-
-    node_modules/mocha/bin/mocha -R list tests/glbackend/test_00*
 
