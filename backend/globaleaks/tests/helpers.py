@@ -121,7 +121,7 @@ def import_fixture(store, fixture):
     with open(os.path.join(FIXTURES_PATH, fixture)) as f:
         data = json.loads(f.read())
         for mock in data:
-            if mock['class'] == 'Field' and mock['fields']['template_id'] == '':
+            if mock['class'] == 'Field' and mock['fields']['instance'] != 'reference':
                 del mock['fields']['template_id']
             mock_class = getattr(models, mock['class'])
             db_forge_obj(store, mock_class, mock['fields'])
@@ -242,7 +242,7 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_field(self):
         return {
-            'is_template': False,
+            'instance': 'instance',
             'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
@@ -482,7 +482,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data: create fields and associate them to the context steps
         for idx, field in enumerate(self.dummyFields):
-            field['is_template'] = False
+            field['instance'] = 'instance'
             if idx <= 2:
                 # "Field 1", "Field 2" and "Generalities" are associated to the first step
                 field['step_id'] = self.dummyContext['steps'][0]['id']
@@ -724,7 +724,7 @@ class MockDict():
         self.dummyFieldTemplates = [
             {
                 'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-                'is_template': True,
+                'instance': 'template',
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -745,7 +745,7 @@ class MockDict():
             },
             {
                 'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-                'is_template': True,
+                'instance': 'template',
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -766,7 +766,7 @@ class MockDict():
             },
             {
                 'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
-                'is_template': True,
+                'instance': 'template',
                 'step_id': '',
                 'template_id': '',
                 'fieldgroup_id': '',
@@ -787,7 +787,7 @@ class MockDict():
             },
             {
                 'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
-                'is_template': True,
+                'instance': 'template',
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -808,7 +808,7 @@ class MockDict():
             },
             {
                 'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-                'is_template': True,
+                'instance': 'template',
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -829,7 +829,7 @@ class MockDict():
             },
             {
                 'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-                'is_template': True,
+                'instance': 'template',
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',

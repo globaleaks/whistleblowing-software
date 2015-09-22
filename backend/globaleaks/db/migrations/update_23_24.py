@@ -476,6 +476,15 @@ class Replacer2324(TableReplacer):
             new_obj = self.get_right_model("Field", 24)()
 
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'instance':
+                    if old_obj.is_template:
+                        new_obj.instance = 'template'
+                    elif old_obj.template_id != '':
+                        new_obj.instance = 'reference'
+                    else:
+                        new_obj.instance = 'instance'
+                    continue
+
                 if v.name == 'activated_by_score':
                     new_obj.activated_by_score = 0
                     continue

@@ -32,7 +32,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
 
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
-    $scope.editable = $scope.field.is_template || $scope.field.template_id === '';
+    $scope.editable = $scope.field.instance != 'reference';
     $scope.editing = false;
 
     $scope.toggleEditing = function (e) {
@@ -122,7 +122,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       $scope.assignUniqueOrderIndex(field.options);
 
       var updated_field;
-      if (field.is_template) {
+      if (field.instance == 'template') {
         updated_field = new $scope.admin.fieldtemplate(field);
       } else {
         updated_field = new $scope.admin.field(field);
@@ -160,7 +160,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       field.attrs = $scope.admin.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.field.children, 'y');
 
-      field.is_template = $scope.field.is_template;
+      field.instance = $scope.field.instance;
 
       if (field.type === 'fileupload') {
         field.multi_entry = true;
@@ -176,7 +176,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       var field = $scope.admin.new_field_from_template(template_id, '', $scope.field.id);
 
       if ($scope.$parent.field) {
-        field.is_template = $scope.$parent.field.is_template;
+        field.instance = $scope.$parent.field.instance;
         field.y = $scope.newItemOrder($scope.$parent.field.children, 'y');
       } else {
         field.y = $scope.newItemOrder($scope.step.children, 'y');
@@ -200,7 +200,7 @@ GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
 
     $scope.add_field = function() {
       var field = $scope.admin.new_field_template($scope.field ? $scope.field.id : '');
-      field.is_template = true;
+      field.instance = 'template';
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
       field.attrs = $scope.admin.get_field_attrs(field.type);

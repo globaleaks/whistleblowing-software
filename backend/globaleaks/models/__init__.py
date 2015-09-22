@@ -736,10 +736,6 @@ class Field(Model):
     # when encryption is enabled.
     stats_enabled = Bool(default=False)
 
-    # This indicates that this field should be used as a template for composing
-    # new steps.
-    is_template = Bool(default=False)
-
     activated_by_score = Int(default=0)
 
     # This reference when != NULL means that the field is referencing a
@@ -747,23 +743,13 @@ class Field(Model):
     template_id = Unicode(validator=shorttext_v)
 
     type = Unicode(default=u'inputbox')
-    # Supported field types:
-    # * inputbox
-    # * textarea
-    # * selectbox
-    # * checkbox
-    # * modal
-    # * dialog
-    # * tos
-    # * email
-    # * number
-    # * date
-    # * fieldgroup
 
-    unicode_keys = ['template_id', 'type']
+    instance = Unicode(default=u'instance')
+
+    unicode_keys = ['template_id', 'type', 'instance']
     int_keys = ['x', 'y', 'width', 'activated_by_score']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
-    bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled', 'is_template']
+    bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
 
     def delete(self, store):
         for child in self.children:
