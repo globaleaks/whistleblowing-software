@@ -279,15 +279,9 @@
                       <div data-translate>Encryption is not enabled!</div>
                       <div data-translate>Email notifications won't be encrypted.</div>
                     </div>
-                    <a class="btn btn-info" data-ng-init="send_key=false" data-ng-click="send_key = !send_key">
-                      <i class="glyphicon glyphicon-plus" data-ng-hide="send_key"></i>
-                      <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
-                      <span data-translate>Configure a PGP key</span>
-                    </a>
-                    <div data-ng-show="send_key">
-                      <br />
-                      <label data-translate>Paste the PGP key here:</label>
-                      <textarea class="form-control" data-ng-model="receiver.pgp_key_public"></textarea>
+                    <div>
+                      <label data-translate>Configure a PGP key</label>
+                      <textarea class="form-control" placeholder="{{Paste here the PGP key | translate}}" data-ng-model="receiver.pgp_key_public"></textarea>
                     </div>
                   </div>
                 </div>

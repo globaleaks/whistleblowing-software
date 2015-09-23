@@ -188,7 +188,6 @@ def apply_cli_options(store):
     Remind: GLSettings.unchecked_tor_input contain data that are not
     checked until this function!
     """
-
     node = store.find(models.Node).one()
 
     verb = "Hardwriting"
