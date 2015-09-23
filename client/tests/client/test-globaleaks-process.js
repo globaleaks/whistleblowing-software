@@ -257,7 +257,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to postpone all tips (2 remaining out of 3)', function() {
+  it('Receiver should be able to postpone all tips', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {
@@ -266,24 +266,6 @@ describe('globaLeaks process', function() {
           element(by.id('modal-action-ok')).click().then(function() {
             expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
             //TODO: check postpone
-            deferred.fulfill();
-          });
-        });
-      });
-    });
-
-    return deferred;
-  });
-
-  it('Receiver should be able to delete all tips (2 remaining out of 3)', function() {
-    var deferred = protractor.promise.defer();
-
-    login_receiver(receiver_username, receiver_password).then(function () {
-      element(by.id('tip-action-select-all')).click().then(function() {
-        element(by.id('tip-action-delete-selected')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
-            //TODO: check delete
             deferred.fulfill();
           });
         });
