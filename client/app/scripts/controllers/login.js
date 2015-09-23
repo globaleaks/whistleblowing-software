@@ -7,5 +7,4 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
   } else {
     $scope.simplifiedLogin = false;
   }
-
 }]);

@@ -121,6 +121,10 @@ th {
   float: left;
 }
 
+#UserBox {
+  text-transform: lowercase;
+}
+
 #PageTitle {
   font-size: 32px;
   font-weight: bold;

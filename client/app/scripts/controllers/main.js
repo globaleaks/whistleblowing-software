@@ -20,6 +20,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.reset_session = function() {
       $scope.session_id = undefined;
       $scope.role = undefined;
+      $scope.preferencespage = undefined;
       $scope.auth_landing_page = undefined;
       $scope.homepage = undefined;
     };
@@ -427,6 +428,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.session_id = Authentication.id;
         $scope.username = Authentication.username;
         $scope.role = Authentication.role;
+        $scope.preferencespage = Authentication.preferencespage;
         $scope.auth_landing_page = Authentication.auth_landing_page;
         $scope.homepage = Authentication.homepage;
       } else {

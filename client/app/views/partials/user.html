@@ -6,14 +6,18 @@
   </div>
   <div id="LoginStatusBox" class="row" data-ng-if="showLoginForm() || session_id">
     <div data-ng-show="session_id" class="pull-right">
-      <span id="RoleBox">
+      <span id="LoginRoleText">
         <label>
           <span data-translate>Currently logged in</span>
-          (<a href="{{homepage}}">{{username}}</a>)
+          (<a href="{{homepage}}">{{role}}</a>)
         </label>
       </span>
-      <span>|</span>
-      <span id="LogoutBox">
+      <span class="text-separator">|</span>
+      <span id="LoginPreferencesText">
+        <a href="{{preferencespage}}" data-translate>Preferences</a>
+      </span>
+      <span class="text-separator">|</span>
+      <span id="LoginLogoutText">
         <a href="" data-ng-click="logout()" data-translate>Logout</a>
       </span>
     </div>

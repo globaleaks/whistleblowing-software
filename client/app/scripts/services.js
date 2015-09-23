@@ -10,10 +10,6 @@ angular.module('GLServices', ['ngResource']).
         $rootScope.login = function(username, password, cb) {
           $rootScope.loginInProgress = true;
 
-          if (username === 'whistleblower') {
-            self.role = 'whistleblower';
-          }
-
           var success_fn = function(response) {
             self.id = response.session_id;
             self.user_id = response.user_id;
@@ -28,10 +24,17 @@ angular.module('GLServices', ['ngResource']).
 
             if (self.role === 'admin') {
               self.homepage = '#/admin/landing';
+              self.preferencespage = '#/user/preferences';
               self.auth_landing_page = '/admin/landing';
+              $rootScope.preferences = UserPreferences.get();
+            } else if (self.role === 'custodian') {
+              self.homepage = '#/custodian/identityrequests';
+              self.preferencespage = '#/user/preferences';
+              self.auth_landing_page = '/custodian/identityrequests';
               $rootScope.preferences = UserPreferences.get();
             } else if (self.role === 'receiver') {
               self.homepage = '#/receiver/tips';
+              self.preferencespage = '#/receiver/preferences';
               self.auth_landing_page = '/receiver/tips';
               $rootScope.preferences = ReceiverPreferences.get();
             } else if (self.role === 'whistleblower') {
@@ -58,7 +61,7 @@ angular.module('GLServices', ['ngResource']).
             $location.search('');
           }
 
-          if (self.role === 'whistleblower') {
+          if (username === 'whistleblower') {
             return $http.post('receiptauth', {'receipt': password}).
             success(success_fn).
             error(function(response) {
