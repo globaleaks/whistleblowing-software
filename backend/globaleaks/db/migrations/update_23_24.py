@@ -502,11 +502,14 @@ class Replacer2324(TableReplacer):
     def migrate_ArchivedSchema(self):
         print "%s ArchivedSchema migration assistant" % self.std_fancy
 
+        # Marking to avoid count check for ArchivedSchema
+        self.fail_on_count_mismatch["ArchivedSchema"] = False
+
         old_objs = self.store_old.find(self.get_right_model("ArchivedSchema", 23))
 
         for old_obj in old_objs:
             new_obj = self.store_new.find(self.get_right_model("ArchivedSchema", 24),
-                                          self.get_right_model("ArchivedSchema", 24).hash == old_objs.questionnaire_hash).one()
+                                          self.get_right_model("ArchivedSchema", 24).hash == old_obj.hash).one()
 
             if not new_obj:
                 new_obj = self.get_right_model("ArchivedSchema", 24)()

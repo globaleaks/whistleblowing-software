@@ -29,18 +29,9 @@ def db_create_admin(store, request, language):
     """
     user = db_create_user(store, request, language)
 
-    fill_localized_keys(request, models.Admin.localized_strings, language)
-
-    admin = models.Admin(request)
-
-    # set admin.id = user.id
-    admin.id = user.id
-
-    store.add(admin)
-
     log.debug("Created new admin")
 
-    return admin
+    return user
 
 @transact
 def create_admin(store, request, language):
@@ -49,12 +40,12 @@ def create_admin(store, request, language):
     In the future this will serialize the admin model with its peculiatieis.
     """
     admin = db_create_admin(store, request, language)
-    return user_serialize_user(admin.user, language)
+    return user_serialize_user(admin, language)
 
 @transact
 def create_admin_user(store, request, language):
     admin = db_create_admin(store, request, language)
-    return user_serialize_user(admin.user, language)
+    return user_serialize_user(admin, language)
 
 
 def db_create_custodian(store, request, language):
@@ -65,18 +56,9 @@ def db_create_custodian(store, request, language):
     """
     user = db_create_user(store, request, language)
 
-    fill_localized_keys(request, models.Admin.localized_strings, language)
-
-    custodian = models.Custodian(request)
-
-    # set custodian.id = user.id
-    custodian.id = user.id
-
-    store.add(custodian)
-
     log.debug("Created new custodian")
 
-    return custodian
+    return user
 
 
 @transact
@@ -86,13 +68,13 @@ def create_custodian(store, request, language):
     In the future this will serialize the admin model with its peculiatieis.
     """
     custodian = db_create_custodian(store, request, language)
-    return user_serialize_user(custodian.user, language)
+    return user_serialize_user(custodian, language)
 
 
 @transact
 def create_custodian_user(store, request, language):
     custodian = db_create_custodian(store, request, language)
-    return user_serialize_user(custodian.user, language)
+    return user_serialize_user(custodian, language)
 
 
 def db_create_receiver(store, request, language):

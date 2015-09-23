@@ -94,7 +94,7 @@ def init_db(store, result, node_dict, appdata_dict):
     }
 
     admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
-    admin.user.password_change_needed = False
+    admin.password_change_needed = False
 
     notification = models.Notification()
     for k in appdata_dict['templates']:

@@ -293,11 +293,9 @@ class Replacer1415(TableReplacer):
                     continue
 
                 setattr(new_context, v.name, getattr(old_context, v.name))
-
            
             for f in old_context.unique_fields:
                 try:
-
                     field_dict = {}
                     field_dict['label'] = {}
                     field_dict['hint'] = {}
@@ -346,6 +344,7 @@ class Replacer1415(TableReplacer):
                     step1.children.add(field)
 
                 except Exception:
+                    self.entries_count['Context'] -= 1
                     continue
 
             self.store_new.add(new_context)
@@ -471,6 +470,7 @@ class Replacer1415(TableReplacer):
                     setattr(new_itip, v.name, getattr(old_itip, v.name))
 
             except Exception:
+                self.entries_count['InternalTip'] -= 1
                 continue
 
             self.store_new.add(new_itip)

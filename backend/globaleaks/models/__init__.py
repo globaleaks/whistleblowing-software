@@ -321,7 +321,7 @@ class WhistleblowerTip(Model):
     access_counter = Int(default=0)
 
 
-class IdentityAccessRequests(Model):
+class IdentityAccessRequest(Model):
     context_id = Unicode()
     receivertip_id = Unicode()
     custodian_id = Unicode()
@@ -646,24 +646,6 @@ class Notification(Model):
         'disable_receivers_notification_emails',
         'send_email_for_every_event'
     ]
-
-
-class Admin(Model):
-    """
-    This model keeps track of admins settings.
-    """
-    # currently admin do not need special settings but
-    # but the model is anyhow needed in order to allow the grouping
-    pass
-
-
-class Custodian(Model):
-    """
-    This model keeps track of custodians settings.
-    """
-    # currently custodians do not need special settings but
-    # but the model is anyhow needed in order to allow the grouping
-    pass
 
 
 class Receiver(Model):
@@ -1023,9 +1005,7 @@ Context.steps = ReferenceSet(Context.id, Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
 
-Admin.user = Reference(Admin.id, User.id)
 Receiver.user = Reference(Receiver.id, User.id)
-Custodian.user = Reference(Custodian.id, User.id)
 
 Receiver.internaltips = ReferenceSet(
     Receiver.id,
@@ -1128,9 +1108,17 @@ Receiver.contexts = ReferenceSet(
     Context.id
 )
 
-models_list = [Node, User, Context, Receiver, ReceiverContext,
-               Field, FieldOption, FieldField, Step, StepField,
+models_list = [Node,
+               User,
+               Receiver, Context, ReceiverContext,
+               Field, FieldOption, FieldAttr, FieldField,
+               FieldAnswer, FieldAnswerGroup,
                OptionActivateField, OptionActivateStep,
-               InternalTip, ReceiverTip, WhistleblowerTip, Comment, Message,
+               Step, StepField,
+               InternalTip, ReceiverTip, WhistleblowerTip,
+               Comment, Message,
                InternalFile, ReceiverFile, Notification,
-               Stats, Anomalies, ApplicationData, EventLogs]
+               Stats, Anomalies, EventLogs,
+               SecureFileDelete,
+               IdentityAccessRequest,
+               ArchivedSchema, ApplicationData]

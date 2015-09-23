@@ -10,6 +10,7 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks import models
 from globaleaks.settings import GLSettings
 
 def variableToSQL(var, db_type):
@@ -107,6 +108,7 @@ def generateCreateQuery(model):
                 primary_keys.append(name)
 
     query += varsToParametersSQL(variables, primary_keys, GLSettings.db_type)
+
     return query
 
 class TableReplacer(object):
@@ -157,7 +159,6 @@ class TableReplacer(object):
             # return here and manage the migrant versions here:
 
         for k, v in self.table_history.iteritems():
-
             create_query = self.get_right_sql_version(k, self.start_ver + 1)
             if not create_query:
                 # table not present in the version
@@ -197,12 +198,11 @@ class TableReplacer(object):
             return self.table_history[table_name][table_index]
 
         # else, it's none, and we've to take the previous valid version
-        while version >= 0:
+        while table_index >= 0:
             if self.table_history[table_name][table_index]:
                 return self.table_history[table_name][table_index]
             table_index -= 1
 
-        # This never want happen
         return None
 
     def get_right_sql_version(self, model_name, version):
@@ -300,141 +300,49 @@ class TableReplacer(object):
         self._perform_copy_list("Message")
 
     def migrate_Stats(self):
-        """
-        Stats has been created between 14 and 15
-        and is not migrated since 17
-        """
-        if self.start_ver < 17:
-            return
-
         self._perform_copy_list("Stats")
 
     def migrate_ApplicationData(self):
-        """
-        There is no need to migrate it the application data.
-        Default application data is loaded by the application
-        and stored onto the db at each new start.
-        """
         return
 
     def migrate_Field(self):
-        """
-        Field has been created between 14 and 15!
-        """
-        if self.start_ver < 15:
-            return
-
         self._perform_copy_list("Field")
 
     def migrate_FieldAttr(self):
-        """
-        FieldAttr has been created between 22 and 23!
-        """
-        if self.start_ver < 23:
-            return
-
         self._perform_copy_list("FieldAttr")
 
     def migrate_FieldOption(self):
-        """
-        FieldOption has been created between 14 and 15!
-        """
-        if self.start_ver < 15:
-            return
-
         self._perform_copy_list("FieldOption")
 
     def migrate_OptionActivateField(self):
-        """
-        OptionActivateField has been created between 23 and 24!
-        """
-        if self.start_ver < 24:
-            return
-
         self._perform_copy_list("OptionActivateField")
 
     def migrate_OptionActivateStep(self):
-        """
-        OptionActivateStep has been created between 23 and 24!
-        """
-        if self.start_ver < 24:
-            return
-
         self._perform_copy_list("OptionActivateStep")
 
     def migrate_FieldField(self):
-        """
-        FieldField has been created between 14 and 15!
-        """
-        if self.start_ver < 15:
-            return
-
         self._perform_copy_list("FieldField")
 
     def migrate_Step(self):
-        """
-        Step has been created between 14 and 15!
-        """
-        if self.start_ver < 15:
-            return
-
         self._perform_copy_list("Step")
 
     def migrate_StepField(self):
-        """
-        StepField has been created between 14 and 15!
-        """
-        if self.start_ver < 15:
-            return
-
         self._perform_copy_list("StepField")
 
     def migrate_Anomalies(self):
-        """
-        Anomalies has been created between 14 and 15!
-        should be dropped before 23
-        """
-        if self.start_ver < 23:
-            return
-
         self._perform_copy_list("Anomalies")
 
     def migrate_EventLogs(self):
-        """
-        EventLogs has been created between 15 and 16!
-        should be dropped before 20
-        """
-        if self.start_ver < 20:
-            return
-
         self._perform_copy_list("EventLogs")
 
     def migrate_FieldAnswer(self):
-        """
-        FieldAnswer has been created between 22 and 23!
-        """
-        if self.start_ver < 23:
-            return
+        self._perform_copy_list("FieldAnswer")
 
     def migrate_FieldAnswerGroup(self):
-        """
-        FieldAnswerGroup has been created between 22 and 23!
-        """
-        if self.start_ver < 23:
-            return
+        self._perform_copy_list("FieldAnswerGroup")
 
     def migrate_FieldAnswerGroupFieldAnswer(self):
-        """
-        FieldGroupFieldAnswer has been created between 22 and 23!
-        """
-        if self.start_ver < 23:
-            return
+        self._perform_copy_list("FieldAnswerGroupFieldAnswer")
 
     def migrate_ArchivedSchema(self):
-        """
-        ArchivedSchema has been created between 22 and 23!
-        """
-        if self.start_ver < 23:
-            return
-
         self._perform_copy_list("ArchivedSchema")

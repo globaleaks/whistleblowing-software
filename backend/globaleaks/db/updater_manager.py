@@ -19,13 +19,15 @@ from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notif
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
 from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
-    Field_v_22, FieldOption_v_22, Notification_v_22, Anomalies_v_22, InternalTip_v_22
+    Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
     Context_v_23, InternalTip_v_23, Field_v_23, ArchivedSchema_v_23
 
 
 table_history = {
     'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, None, None, models.Node],
+    'IdentityAccessRequest': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.IdentityAccessRequest],
+    'SecureFileDelete': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.SecureFileDelete],
     'User': [User_v_14, None, None, None, User_v_20, None, None, None, None, None, User_v_23, None, None, models.User],
     'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context],
     'Receiver': [Receiver_v_14, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, Receiver_v_23, None, None, models.Receiver],
@@ -39,22 +41,22 @@ table_history = {
     'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None, None],
     'Message': [Message_v_19, None, None, None, None, None, None, None, None, models.Message, None, None, None, None],
-    'Stats': [Stats_v_14, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None, None, None],
+    'Stats': [None, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None, None, None],
     'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [Field_v_20, None, None, None, None, None, None, None, None, None, Field_v_22, None, Field_v_23, models.Field],
-    'FieldAttr': [models.FieldAttr, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldOption': [FieldOption_v_20, None, None, None, None, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption, None],
-    'OptionActivateField': [models.OptionActivateField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'OptionActivateStep': [models.OptionActivateStep, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldField': [models.FieldField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Step': [Step_v_20, None, None, None, None, None, None, None, None, None, models.Step, None, None, None],
-    'StepField': [models.StepField, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Anomalies': [Anomalies_v_22, None, None, None, None, None, None, None, None, None, None, None, models.Anomalies, None],
-    'EventLogs': [models.EventLogs, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldAnswer': [models.FieldAnswer, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldAnswerGroup': [models.FieldAnswerGroup, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'FieldAnswerGroupFieldAnswer': [models.FieldAnswerGroupFieldAnswer, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'ArchivedSchema': [ArchivedSchema_v_23, None, None, None, None, None, None, None, None, None, None, None, None, models.ArchivedSchema]
+    'Field': [None, None, None, None, Field_v_20, None, None, None, None, None, Field_v_22, None, Field_v_23, models.Field],
+    'FieldAttr': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAttr, None],
+    'FieldOption': [None, None, None, None, FieldOption_v_20, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption, None],
+    'OptionActivateField': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.OptionActivateField],
+    'OptionActivateStep': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.OptionActivateStep],
+    'FieldField': [None, None, None, None, models.FieldField, None, None, None, None, None, None, None, None, None],
+    'Step': [None, None, None, None, Step_v_20, None, None, None, None, None, models.Step, None, None, None],
+    'StepField': [None, None, None, None, models.StepField, None, None, None, None, None, None, None, None, None],
+    'Anomalies': [None, None, None, None, None, None, None, None, None, None, None, None, models.Anomalies, None],
+    'EventLogs': [None, None, None, None, None, None, None, None, None, models.EventLogs, None, None, None, None],
+    'FieldAnswer': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswer, None],
+    'FieldAnswerGroup': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswerGroup, None],
+    'FieldAnswerGroupFieldAnswer': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswerGroupFieldAnswer, None],
+    'ArchivedSchema': [None, None, None, None, None, None, None, None, None, None, None, None, ArchivedSchema_v_23, models.ArchivedSchema]
 }
 
 
@@ -121,15 +123,48 @@ def perform_version_update(starting_ver, ending_ver):
                 print "initialize of updater class: %s " % excep.message
                 raise excep
 
-            for model in models.models_list:
-                migrate_function = 'migrate_%s' % model.__name__
-                function_pointer = getattr(updater_code, migrate_function)
+            updater_code.entries_count = {}
+            updater_code.fail_on_count_mismatch = {}
+            updater_code.fail_on_count_mismatch['ApplicationData'] = False
 
-                try:
-                    function_pointer()
-                except Exception as excep:
-                    print "Failure in %s: %s " % (migrate_function, excep)
-                    raise excep
+            for model in models.models_list:
+                updater_code.fail_on_count_mismatch[model.__name__] = True
+                m = updater_code.get_right_model(model.__name__, starting_ver)
+                if m is not None:
+                    updater_code.entries_count[model.__name__] = updater_code.store_old.find(m).count()
+                else:
+                    updater_code.entries_count[model.__name__] = 0
+
+            for model in models.models_list:
+                m = updater_code.get_right_model(model.__name__, starting_ver)
+                if m is not None:
+                    migrate_function = 'migrate_%s' % model.__name__
+                    function_pointer = getattr(updater_code, migrate_function)
+
+                    try:
+                        function_pointer()
+                    except Exception as excep:
+                        print "Failure in %s: %s " % (migrate_function, excep)
+                        raise excep
+
+            print "Migration stats:"
+            for model in models.models_list:
+                if model.__name__ == 'ApplicationData':
+                    continue
+
+                m = updater_code.get_right_model(model.__name__, starting_ver)
+                if m is not None:
+                   count = updater_code.store_new.find(m).count()
+                   if updater_code.entries_count[model.__name__] != count:
+                       if updater_code.fail_on_count_mismatch[model.__name__]:
+                           raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
+                                                (model.__name__, count, updater_code.entries_count[model.__name__]))
+                       else:
+                           print " * %s table migrated (entries count changed from %d to %d)" % \
+                               (model.__name__, updater_code.entries_count[model.__name__], count)
+                   else:
+                       print " * %s table migrated (%d entry(s))" % \
+                           (model.__name__, updater_code.entries_count[model.__name__])
 
             # epilogue can be used to perform operation once, not related to the tables
             updater_code.epilogue()
