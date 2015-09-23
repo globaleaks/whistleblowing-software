@@ -137,13 +137,6 @@ class Notification_v_22(Model):
     notification_suspension_time=Int()
 
 
-class Anomalies_v_22(Model):
-    __storm_table__ = 'anomalies'
-    stored_when = Unicode()
-    alarm = Int()
-    events = JSON()
-
-
 class Replacer2223(TableReplacer):
     def fix_field_answer_id(self, f):
         if f['id'] == '':
@@ -210,14 +203,14 @@ class Replacer2223(TableReplacer):
 
         new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
 
-        aqs = self.store_new.find(self.get_right_model("ArchivedSchema", 22),
-                                  self.get_right_model("ArchivedSchema", 22).hash == unicode(new_obj.questionnaire_hash),
-                                  self.get_right_model("ArchivedSchema", 22).type == u'questionnaire',
-                                  self.get_right_model("ArchivedSchema", 22).language == unicode(old_node.default_language)).one()
+        aqs = self.store_new.find(self.get_right_model("ArchivedSchema", 23),
+                                  self.get_right_model("ArchivedSchema", 23).hash == unicode(new_obj.questionnaire_hash),
+                                  self.get_right_model("ArchivedSchema", 23).type == u'questionnaire',
+                                  self.get_right_model("ArchivedSchema", 23).language == unicode(old_node.default_language)).one()
 
         if not aqs:
             for lang in old_node.languages_enabled:
-                aqs = self.get_right_model("ArchivedSchema", 22)()
+                aqs = self.get_right_model("ArchivedSchema", 23)()
                 aqs.hash = new_obj.questionnaire_hash
                 aqs.type = u'questionnaire'
                 aqs.language = lang
@@ -230,7 +223,7 @@ class Replacer2223(TableReplacer):
                         if f['preview']:
                             preview.append(f)
 
-                aqsp = self.get_right_model("ArchivedSchema", 22)()
+                aqsp = self.get_right_model("ArchivedSchema", 23)()
                 aqsp.hash = new_obj.questionnaire_hash
                 aqsp.type = u'preview'
                 aqsp.language = lang
@@ -240,7 +233,6 @@ class Replacer2223(TableReplacer):
         db_save_questionnaire_answers(self.store_new, new_obj, answers)
 
         new_obj.preview = extract_answers_preview(questionnaire, answers)
-
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
@@ -291,6 +283,7 @@ class Replacer2223(TableReplacer):
 
         for old_obj in old_objs:
             if old_obj.type == u'system':
+                self.entries_count['Comment'] -= 1
                 continue
 
             new_obj = self.get_right_model("Comment", 23)()
@@ -382,7 +375,10 @@ class Replacer2223(TableReplacer):
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
-            if not skip_add:
-                self.store_new.add(new_obj)
+            if skip_add:
+                self.entries_count['FieldOption'] -= 1
+                continue
+
+            self.store_new.add(new_obj)
 
         self.store_new.commit()

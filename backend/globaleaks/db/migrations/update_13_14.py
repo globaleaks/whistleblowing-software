@@ -133,11 +133,9 @@ class Replacer1314(TableReplacer):
         old_contexts = self.store_old.find(self.get_right_model("Context", 13))
 
         for old_context in old_contexts:
-
             new_context = self.get_right_model("Context", 14)()
 
             for k, v in new_context._storm_columns.iteritems():
-
                 if v.name == 'enable_private_messages':
                     new_context.enable_private_messages = True
                     continue
