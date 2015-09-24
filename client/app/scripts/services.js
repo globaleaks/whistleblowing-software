@@ -777,6 +777,9 @@ angular.module('GLServices', ['ngResource']).
   factory('ActivitiesCollection', ['$resource', function($resource) {
     return $resource('admin/activities/details');
 }]).
+  factory('LogCollection', ['$resource', function($resource) {
+    return $resource('admin/logs/0');
+}]).
   factory('StaticFiles', ['$resource', function($resource) {
     return $resource('admin/staticfiles');
 }]).

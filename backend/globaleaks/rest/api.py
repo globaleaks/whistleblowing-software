@@ -110,6 +110,7 @@ spec = [
     (r'/admin/overview/users', admin.overview.Users),
     (r'/admin/overview/files', admin.overview.Files),
     (r'/admin/logs/(\d+)', log.AdminLogCollection),
+    (r'/admin/logmanagement', log.AdminLogManagement), # You just saw a violation of the naming convention!
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##

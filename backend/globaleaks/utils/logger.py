@@ -21,29 +21,38 @@ from twisted.python.failure import Failure
 
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import log
 
 Login_messages = {
     # Admin
-    'LOGIN_1' : [ "Admin logged in the system", 0 ],
-    'LOGIN_2' : [ "Receiver %s logged in the system", 1 ],
+    'LOGIN_1' : [ "admin logged in the system", 0 ],
+    'LOGIN_2' : [ "receiver %s logged in the system", 1 ],
     # Used for Receiver
-    'LOGIN_3' : [ "You logged in the system", 0 ]
+    'LOGIN_3' : [ "you logged in the system", 0 ]
 }
 
 Tip_messages = {
     # Admin
-    'TIP_1' : [ "Tip in context %s is going to expire and has never been accessed by your receivers", 1 ],
+    'TIP_0' : [ "submission has been created in context %s", 1],
+    'TIP_1' : [ "submission in context %s is going to expire and has never been accessed by your receivers", 1 ],
 }
 
 Security_messages  = {
     # Receiver
-    'SECURITY_1' : [ "Someone has put a wrong password in the login interface", 0 ]
+    'SECURITY_1' : [ "someone has put a wrong password in the login interface", 0 ]
 }
+
+Network_messages = {
+    # Admin
+    'MAILFAIL_0' : [ "unable to deliver mail to %s: %s", 2]
+}
+
 
 _LOG_CODE = {}
 _LOG_CODE.update(Login_messages)
 _LOG_CODE.update(Tip_messages)
 _LOG_CODE.update(Security_messages)
+_LOG_CODE.update(Network_messages)
 
 
 def _log_parameter_check(alarm_level, code, args):
@@ -79,21 +88,24 @@ def adminLog(alarm_level, code, args):
     _log_parameter_check(alarm_level, code, args)
     LoggedEvent({
         'code' : code,
-        'args' : args
+        'args' : args,
+        'level': alarm_level,
     }, subject='admin')
 
 def receiverLog(alarm_level, code, args, user_id):
     _log_parameter_check(alarm_level, code, args)
     LoggedEvent({
         'code' : code,
-        'args' : args
+        'args' : args,
+        'level': alarm_level
     }, subject='receiver', subject_id=user_id)
 
 def tipLog(alarm_level, code, args, tip_id):
     _log_parameter_check(alarm_level, code, args)
     LoggedEvent({
         'code' : code,
-        'args' : args
+        'args' : args,
+        'level': alarm_level
     }, subject='itip', subject_id=tip_id)
 
 
@@ -154,9 +166,12 @@ class LogQueue(object):
         This may interact with database if required, but hopefully the
         default behavior is to access cache.
         """
-        x = LogQueue._all_queues[ subject_uuid ][-50:]
-        x.reverse()
-        return x
+        try:
+            x = LogQueue._all_queues[ subject_uuid ][-amount]
+            x.reverse()
+            return x
+        except KeyError:
+            return None
 
 
 
@@ -186,6 +201,8 @@ class LoggedEvent(object):
             'log_date': datetime_to_ISO8601(self.log_date),
             'subject': self.subject,
             'subject_id': self.subject_id,
+            'level': self.level,
+            'mail': self.mail
         }
         if self.repeated:
             log_dict.update({
@@ -230,6 +247,21 @@ class LoggedEvent(object):
             last_subject_log.mark_repetition()
             return
 
+        if 'mail' in log_info['level']:
+            self.mail = True
+        else:
+            self.mail = False
+
+        self.level = 1
+        # if is 'normal' just left the default value, 1
+
+        if 'warning' in log_info['level']:
+            self.level = 1
+
+        if 'debug' in log_info['level']:
+            self.level = 0
+
+        self.mail_sent = False
         self.id = LoggedEvent.get_unique_log_id()
         self.log_code = log_info['code']
         self.args = log_info['args']
@@ -239,25 +271,28 @@ class LoggedEvent(object):
         self.repeated = 0
         self.last_repetition_date = None
 
+        if GLSettings.loglevel == logging.DEBUG:
+            log.debug( _LOG_CODE[ self.log_code][0] % self.args )
+
         LogQueue(subject_uuid).add(self)
 
 
-#    def __repr__(self):
-#        simple = "%d| %s [%s] %s" % \
-#                 ( self.id,
-#                   datetime_to_ISO8601(self.log_date)[11:-8],
-#                   self.subject,
-#                   _LOG_CODE[self.log_code][0] )
-#
-#        if self.repeated:
-#            return "%s + %d times (last %s)" % \
-#                 ( simple,
-#                   self.repeated,
-#                   datetime_to_ISO8601(self.last_repetition_date)[11:-8] )
-#        else:
-#            return simple
-#
-#
+    def __repr__(self):
+        simple = "%d| %s [%s] %s" % \
+                 ( self.id,
+                   datetime_to_ISO8601(self.log_date)[11:-8],
+                   self.subject,
+                   _LOG_CODE[self.log_code][0] )
+
+        if self.repeated:
+            return "%s + %d times (last %s)" % \
+                 ( simple,
+                   self.repeated,
+                   datetime_to_ISO8601(self.last_repetition_date)[11:-8] )
+        else:
+            return simple
+
+
 ########## copied from utility.py to put all the log related function here
 ########## They has to be updated anyway
 

@@ -14,7 +14,7 @@ from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
-    pgp_check_sched, mailflush_sched
+    pgp_check_sched, mailflush_sched, log_sched
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
@@ -38,6 +38,9 @@ def start_asynchronous():
 
     resources_check = statistics_sched.ResourcesCheckSchedule()
     reactor.callLater(0, resources_check.start, GLSettings.anomaly_delta)
+
+    logdump = log_sched.LogSchedule()
+    reactor.callLater(0, logdump.start, GLSettings.log_flush_delta)
 
     delivery = delivery_sched.DeliverySchedule()
     reactor.callLater(10, delivery.start, GLSettings.delivery_delta)

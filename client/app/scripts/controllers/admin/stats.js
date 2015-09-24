@@ -208,8 +208,9 @@ GLClient.controller('AnomaliesCtrl', ['$scope', 'Node', 'AnomaliesHistCollection
     $scope.anomalies = AnomaliesHistCollection.query();
 }]);
 
-GLClient.controller('ActivitiesCtrl', ['$scope', 'Node', 'ActivitiesCollection',
-  function($scope, Node, ActivitiesCollection) {
+GLClient.controller('ActivitiesCtrl', ['$scope', 'Node', 'ActivitiesCollection', 'LogCollection',
+  function($scope, Node, ActivitiesCollection, LogCollection) {
 
     $scope.activities = ActivitiesCollection.query();
+    $scope.adminlog = LogCollection.query();
 }]);

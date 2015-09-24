@@ -21,6 +21,7 @@ from globaleaks.anomaly import Alarm
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
+from globaleaks.utils.logger import adminLog
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256
@@ -347,6 +348,10 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission_dict = wb_serialize_internaltip(store, submission)
 
     submission_dict.update({'receipt': receipt})
+
+    print "Logging with", context.name
+    # TODO localisation not in 'en'
+    adminLog(['normal'], 'TIP_0', [ context.name['en'] ])
 
     return submission_dict
 

@@ -259,6 +259,11 @@ AdminReceiverDesc = {
     'tip_expiration_threshold': int
 }
 
+# Violation of Name convention! (why we use -Desc as suffix ?)
+AdminLogManagement = {
+    'log_level': int,
+}
+
 NodeDesc = {
     'name': unicode,
     'description': unicode,

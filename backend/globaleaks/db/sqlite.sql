@@ -429,16 +429,20 @@ CREATE TABLE archivedschema (
     schema BLOB NOT NULL,
     UNIQUE (hash, type, language),
     PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE log (
-  id INT NOT NULL,
-  code TEXT NOT NULL,
-  args VARCHAR,
-  log_date TEXT NOT NULL,
-  subject TEXT NOT NULL CHECK(type IN ('admin', 'receiver', 'itip')),
-  subject_id TEXT,
-  repeated INT,
-  last_repetition_date TEXT,
-  PRIMARY KEY (id)
-)
+    id INTEGER NOT NULL,
+    code TEXT NOT NULL,
+    args VARCHAR,
+    log_date TEXT NOT NULL,
+    subject TEXT NOT NULL CHECK(subject IN ('admin', 'receiver', 'itip')),
+    subject_id TEXT,
+    log_level INTEGER,
+    mail INTEGER,
+    mail_sent INTEGER,
+    repeated INTEGER,
+    last_repetition_date TEXT,
+    UNIQUE (id),
+    PRIMARY KEY (id)
+);

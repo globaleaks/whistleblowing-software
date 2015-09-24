@@ -834,6 +834,9 @@ class Log(BaseModel):
     log_date = DateTime()
     subject = Unicode()
     subject_id = Unicode()
+    log_level = Int()
+    mail = Bool()
+    mail_sent = Bool()
     repeated = Int()
     last_repetition_date = DateTime()
 

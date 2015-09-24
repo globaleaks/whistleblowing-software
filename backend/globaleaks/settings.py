@@ -175,6 +175,7 @@ class GLSettingssClass(object):
         self.notification_delta = 120
         self.delivery_delta = 20
         self.anomaly_delta = 10
+        self.log_flush_delta = 10
         self.mailflush_delta = 300
 
 
