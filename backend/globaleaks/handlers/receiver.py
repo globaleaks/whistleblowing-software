@@ -14,7 +14,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
-from globaleaks.models import User, Receiver, ReceiverTip, ReceiverFile, Message, Node
+from globaleaks.models import User, Receiver, ReceiverTip, ReceiverFile, Message
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
@@ -23,7 +23,7 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, node, language):
+def receiver_serialize_receiver(receiver, language):
     ret_dict = {
         'id': receiver.id,
         'username': receiver.user.username,
@@ -37,8 +37,8 @@ def receiver_serialize_receiver(receiver, node, language):
         'mail_address': receiver.user.mail_address,
         'language': receiver.user.language,
         'timezone': receiver.user.timezone,
-        'can_postpone_expiration': node.can_postpone_expiration or receiver.can_postpone_expiration,
-        'can_delete_submission': node.can_delete_submission or receiver.can_delete_submission,
+        'can_postpone_expiration': GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
+        'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'ping_mail_address': receiver.ping_mail_address,
@@ -68,9 +68,7 @@ def get_receiver_settings(store, receiver_id, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    node = store.find(Node).one()
-
-    return receiver_serialize_receiver(receiver, node, language)
+    return receiver_serialize_receiver(receiver, language)
 
 
 @transact
@@ -92,9 +90,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     receiver.tip_notification = request['tip_notification']
     receiver.ping_notification = request['ping_notification']
 
-    node = store.find(Node).one()
-
-    return receiver_serialize_receiver(receiver, node, language)
+    return receiver_serialize_receiver(receiver, language)
 
 
 @transact_ro
@@ -131,15 +127,13 @@ def get_receivertip_list(store, receiver_id, language):
 
 @transact
 def perform_tips_operation(store, receiver_id, operation, rtips_ids):
-    node = store.find(Node).one()
-
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
     rtips = store.find(ReceiverTip, And(ReceiverTip.receiver_id == receiver_id,
                                         In(ReceiverTip.id, rtips_ids)))
 
     if operation == 'postpone':
-        can_postpone_expiration = node.can_postpone_expiration or receiver.can_postpone_expiration
+        can_postpone_expiration = GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration
         if not can_postpone_expiration:
             raise errors.ForbiddenOperation
 
@@ -147,7 +141,7 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
             db_postpone_expiration_date(rtip)
 
     elif operation == 'delete':
-        can_delete_submission =  node.can_delete_submission or receiver.can_delete_submission
+        can_delete_submission =  GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission
         if not can_delete_submission:
             raise errors.ForbiddenOperation
 
@@ -207,7 +201,7 @@ class ReceiverInstance(BaseHandler):
 class TipsCollection(BaseHandler):
     """
     This interface return the summary list of the Tips available for the authenticated Receiver
-    GET /tips/<receiver_token_auth/tip
+    GET /tips
     """
 
     @transport_security_check('receiver')
@@ -215,7 +209,6 @@ class TipsCollection(BaseHandler):
     @inlineCallbacks
     def get(self):
         """
-        Parameters: tip_auth_token
         Response: receiverTipList
         Errors: InvalidAuthentication
         """

@@ -121,6 +121,9 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.tor2web_access['receiver'] = node.tor2web_receiver
         GLSettings.memory_copy.tor2web_access['unauth'] = node.tor2web_unauth
 
+        GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
+        GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
+
         GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
         GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
 
