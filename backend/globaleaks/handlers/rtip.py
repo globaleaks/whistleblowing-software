@@ -203,9 +203,7 @@ def delete_rtip(store, user_id, tip_id):
     """
     rtip = db_access_tip(store, user_id, tip_id)
 
-    node = store.find(Node).one()
-
-    if not (node.can_delete_submission or
+    if not (GLSettings.memory_copy.can_delete_submission or
                 rtip.receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
@@ -216,15 +214,13 @@ def delete_rtip(store, user_id, tip_id):
 def postpone_expiration_date(store, user_id, tip_id):
     rtip = db_access_tip(store, user_id, tip_id)
 
-    node = store.find(Node).one()
-
-    if not (node.can_postpone_expiration or
+    if not (GLSettings.memory_copy.can_postpone_expiration or
                 rtip.receiver.can_postpone_expiration):
 
         raise errors.ExtendTipLifeNotEnabled
 
     log.debug("Postpone check: Node %s, Receiver %s" % (
-       "True" if node.can_postpone_expiration else "False",
+       "True" if GLSettings.memory_copy.can_postpone_expiration else "False",
        "True" if rtip.receiver.can_postpone_expiration else "False"
     ))
 
