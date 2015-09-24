@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 import unittest
-import random
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.handlers import custodian
-from globaleaks.rest import errors
 
 
 class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
@@ -33,7 +31,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get(iars[0]['id'])
 
         self.responses[0]['response'] = 'authorized'
-        self.responses[0]['response_motivation'] = 'ou iea!'
+        self.responses[0]['response_motivation'] = 'oh yeah!'
 
         handler = self.request(self.responses[0], user_id = self.dummyCustodian['id'], role='custodian')
         yield handler.put(iars[0]['id'])
