@@ -20,7 +20,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
 
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSettings
-from globaleaks.models import Node, Notification, Comment, Message, \
+from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
     SecureFileDelete
 from globaleaks.rest import errors
