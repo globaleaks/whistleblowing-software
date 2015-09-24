@@ -586,6 +586,7 @@ class Notification(Model):
     disable_receivers_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
+    tip_expiration_threshold = Int(default=72)
     notification_threshold_per_hour = Int(default=20)
     notification_suspension_time=Int(default=(2 * 3600))
 
@@ -637,6 +638,7 @@ class Notification(Model):
 
     int_keys = [
         'port',
+        'tip_expiration_threshold',
         'notification_threshold_per_hour',
         'notification_suspension_time',
     ]

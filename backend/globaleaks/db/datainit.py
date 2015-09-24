@@ -147,6 +147,7 @@ def db_update_memory_variables(store):
         GLSettings.memory_copy.notif_username = notif.username
         GLSettings.memory_copy.notif_security = notif.security
 
+        GLSettings.memory_copy.tip_expiration_threshold = notif.tip_expiration_threshold
         GLSettings.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
         GLSettings.memory_copy.notification_suspension_time = notif.notification_suspension_time
 
