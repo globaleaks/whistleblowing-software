@@ -64,7 +64,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'Receiver Interface',
-        header_subtitle: 'Your Tips'
+        header_subtitle: 'List of submissions'
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
