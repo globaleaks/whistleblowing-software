@@ -87,9 +87,9 @@ angular.module('GLServices', ['ngResource']).
           self.homepage = null;
           self.auth_langing_page = null;
 
-          if (self.role === 'whistleblower') {
+          if (role === 'whistleblower') {
             $location.path('/');
-          } else if (self.role === 'admin') {
+          } else if (role === 'admin') {
             $location.path('/admin');
           } else {
             $location.path('/login');
