@@ -1,5 +1,4 @@
 <form name="wizardForm" novalidate>
-
   <div id="WizardStep1" data-ng-show="step == 1">
     <div class="title1" data-translate>Welcome to GlobaLeaks!</div>
     <div data-translate>The following step by step wizard will guide you through configuring your whistleblowing site.</div>
@@ -76,7 +75,7 @@
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required}">
             <input name="password" class="form-control" data-ng-model="admin.node.password" type="password" required>
             <div class="help-block">
-              <span data-translate>Enter a new GlobaLeaks server password</span>
+              <span data-translate>Enter a password for the user 'admin':</span>
             </div>
             <div class="text-red" data-ng-show="unsafe_password">
               <span data-translate>The choosen password is unsafe, it should have</span>:
@@ -112,7 +111,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>There are three types of users in GlobaLeaks: the administrator, the receiver and the whistleblower. Your username for accessing the server as the administrator will be 'admin'.</span>
+          <span data-translate>The username for accessing the server as the administrator will be 'admin'.</span>
         </p>
       </div>
     </div>
@@ -152,8 +151,10 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8">
-            <div data-translate-values="{default_user_password: 'globaleaks'}" data-translate>DEFAULT_USER_PASSWORD</div>
-            <div data-translate>The system forces users to change the password at first login.</div>
+            <div>
+              <span data-translate>By default receivers password is:</span>
+              <span class="label label-primary">globaleaks</span>
+            </div>
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -175,7 +176,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>Receivers are very important for a GlobaLeaks based project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
+          <span data-translate>Receivers are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
         </p>
       </div>
       <div class="col-md-6">
@@ -221,9 +222,7 @@
       <div class="col-md-10">
         <div class="congratulations">
           <div class="title1" data-translate>Congratulations!</div>
-          <div>
-            <span data-translate>You have finished configuring your GlobaLeaks site. You are now ready to further tweak it with the admin interface.</span>
-          </div>
+          <div data-translate>You have finished completed the platform wizard. You are now ready to further tweak the platform with the admin interface.</div>
         </div>
       </div>
       <div class="pager pull-right">

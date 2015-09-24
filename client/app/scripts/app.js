@@ -20,7 +20,7 @@ var GLClient = angular.module('GLClient', [
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
-        header_title: 'GlobaLeaks Wizard',
+        header_title: 'Platform Wizard',
         header_subtitle: 'Step-by-step setup'
       }).
       when('/submission', {

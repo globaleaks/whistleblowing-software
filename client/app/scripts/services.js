@@ -768,7 +768,7 @@ angular.module('GLServices', ['ngResource']).
           user.username = '';
           user.role = 'receiver';
           user.state = 'enable';
-          user.password = '';
+          user.password = 'globaleaks';
           user.old_password = '';
           user.password_change_needed = true;
           user.state = 'enabled';
@@ -792,7 +792,7 @@ angular.module('GLServices', ['ngResource']).
           receiver.role = 'receiver';
           receiver.state = 'enable';
           receiver.configuration = 'default';
-          receiver.password = '';
+          receiver.password = 'globaleaks';
           receiver.old_password = '';
           receiver.password_change_needed = true;
           receiver.state = 'enabled';
@@ -902,7 +902,6 @@ angular.module('GLServices', ['ngResource']).
        *  @param {string} password the new password model name.
        *  @param {string} check_password need to be equal to the new password.
        **/
-
       scope.invalid = true;
 
       scope.mismatch_password = false;
@@ -916,8 +915,8 @@ angular.module('GLServices', ['ngResource']).
       var validatePasswordChange = function () {
 
         if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
-          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
+          scope.pwdValidLength = (scope.$eval(password)).length >= 8;
+          scope.pwdHasLetter = (/[A-z]/.test(scope.$eval(password))) ? true : false;
           scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
           scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
         } else {
