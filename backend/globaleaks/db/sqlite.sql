@@ -125,17 +125,15 @@ CREATE TABLE internaltip (
 
 CREATE TABLE identityaccessrequest (
     id TEXT NOT NULL,
-    context_id TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
-    custodian_id TEXT NOT NULL,
     request_date TEXT NOT NULL,
     request_motivation TEXT NOT NULL,
-    answer_date TEXT NOT NULL,
-    answer_motivation TEXT NOT NULL,
-    answer TEXT NOT NULL,
-    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    response_date TEXT NOT NULL,
+    response_user_id TEXT,
+    response_motivation TEXT NOT NULL,
+    response TEXT NOT NULL,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
-    FOREIGN KEY (custodian_id) REFERENCES custodian(id) ON DELETE CASCADE,
+    FOREIGN KEY (response_user_id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

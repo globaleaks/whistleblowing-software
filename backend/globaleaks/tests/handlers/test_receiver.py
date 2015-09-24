@@ -3,16 +3,16 @@ import unittest
 import random
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
-from globaleaks.tests.handlers.test_user import TestUserInstance
 from globaleaks.handlers import receiver, admin
 from globaleaks.rest import errors
+from globaleaks.tests import helpers
+from globaleaks.tests.handlers.test_user import TestUserInstance
 
 
 class TestReceiverInstance(TestUserInstance):
     _handler = receiver.ReceiverInstance
 
-    # This test has for inharitance all the tests of TestReceiverInstance
+    # This test has for inharitance all the tests of TestUserInstance
 
     @inlineCallbacks
     def test_ping_mail_change(self):
@@ -38,19 +38,6 @@ class TestTipsCollection(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         handler = self.request(user_id=self.dummyReceiver_1['id'], role='receiver')
         yield handler.get()
-
-    @inlineCallbacks
-    def test_serialisation_receivertiplist(self):
-        handler = self.request(user_id = self.dummyReceiver_1['id'], role='receiver')
-
-        yield handler.get()
-
-        expected_keys = ['creation_date', 'context_name', 'id', 'file_counter', 'questionnaire_hash', 'preview_schema', 'expiration_date', 'message_counter', 'access_counter', 'label', 'tor2web', 'comment_counter', 'last_access', 'preview']
-        for receivertiplist_key in self.responses[0][0].keys():
-            self.assertTrue(receivertiplist_key in expected_keys, "Missing %s key")
-            expected_keys.remove(receivertiplist_key)
-
-        self.assertTrue(len(expected_keys) == 0, "A key(s) has been removed from handler: %s" % expected_keys)
 
 
 class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
@@ -107,4 +94,3 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
 
         self.assertEqual(len(rtips), 0)
-

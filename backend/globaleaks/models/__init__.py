@@ -322,20 +322,23 @@ class WhistleblowerTip(Model):
 
 
 class IdentityAccessRequest(Model):
-    context_id = Unicode()
+    """
+    This model keeps track of identity access requests by receivers and
+    of the answers by custodians.
+    """
     receivertip_id = Unicode()
-    custodian_id = Unicode()
     request_date = DateTime(default_factory=datetime_now)
-    request_motivation = Unicode()
-    answer_date = DateTime(default_factory=datetime_null)
-    answer_motivation = Unicode()
-    answer = Unicode()
+    request_motivation = Unicode(default=u"")
+    response_date = DateTime(default_factory=datetime_null)
+    response_user_id = Unicode()
+    response_motivation = Unicode(default=u"")
+    response = Unicode(default=u"pending")
 
 
 class InternalFile(Model):
     """
     This model keeps track of files before they are packaged
-    for specific receivers
+    for specific receivers.
     """
     creation_date = DateTime(default_factory=datetime_now)
 
@@ -1048,6 +1051,11 @@ ReceiverTip.messages = ReferenceSet(
     Message.receivertip_id
 )
 
+ReceiverTip.identityaccessrequests = ReferenceSet(
+    ReceiverTip.id,
+    IdentityAccessRequest.receivertip_id
+)
+
 InternalTip.internalfiles = ReferenceSet(
     InternalTip.id,
     InternalFile.internaltip_id
@@ -1092,6 +1100,11 @@ Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
+
+IdentityAccessRequest.receivertip = Reference(
+    IdentityAccessRequest.receivertip_id,
+    ReceiverTip.id
+)
 
 EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
 EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)

@@ -167,3 +167,32 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
             yield handler.get(rtip_desc['rtip_id'])
+
+
+class TestReceiverIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.ReceiverIdentityAccessRequestsCollection
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+
+    @inlineCallbacks
+    def test_get(self):
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+
+            yield handler.get(rtip_desc['rtip_id'])
+
+    @inlineCallbacks
+    def test_post(self):
+        body = {
+            'request_motivation': ''
+        }
+
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
+
+            yield handler.post(rtip_desc['rtip_id'])

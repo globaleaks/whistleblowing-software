@@ -12,6 +12,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
     db_serialize_questionnaire_answers
 from globaleaks.rest import requests
@@ -22,7 +23,7 @@ from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
-    SecureFileDelete
+    SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors
 from globaleaks.security import overwrite_and_remove
 
@@ -262,6 +263,17 @@ def get_comment_list_receiver(store, user_id, tip_id):
 
     return comment_list
 
+@transact
+def create_identityaccessrequest(store, user_id, tip_id, request):
+    rtip = db_access_tip(store, user_id, tip_id)
+
+    iar = IdentityAccessRequest()
+    iar.request_motivation = request['request_motivation']
+    iar.receivertip_id = rtip.id
+    store.add(iar)
+
+    return serialize_identityaccessrequest(iar)
+
 
 @transact
 def create_comment_receiver(store, user_id, tip_id, request):
@@ -319,6 +331,14 @@ def create_message_receiver(store, user_id, tip_id, request):
 
     return receiver_serialize_message(msg)
 
+
+@transact
+def get_identityaccessrequests_list(store, user_id, tip_id):
+    rtip = db_access_tip(store, user_id, tip_id)
+
+    iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
+
+    return [serialize_identityaccessrequest(iar) for iar in iars]
 
 
 class RTipInstance(BaseHandler):
@@ -504,3 +524,41 @@ class ReceiverMsgCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.finish(message)
+
+
+class ReceiverIdentityAccessRequestsCollection(BaseHandler):
+    """
+    This interface return the list of identity access requests performed
+    on the tip and allow to perform new ones.
+    """
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self, tip_id):
+        """
+        Response: identityaccessrequestsList
+        Errors: InvalidAuthentication
+        """
+        answer = yield get_identityaccessrequests_list(self.current_user.user_id, tip_id)
+
+        self.set_status(200)
+        self.finish(answer)
+
+    @transport_security_check('receiver')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Request: IdentityAccessRequestDesc
+        Response: IdentityAccessRequestDesc
+        Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
+        """
+        request = self.validate_message(self.request.body, requests.ReceiverIdentityAccessRequestDesc)
+
+        identityaccessrequest = yield create_identityaccessrequest(self.current_user.user_id,
+                                                                   tip_id,
+                                                                   request)
+
+        self.set_status(201)
+        self.finish(identityaccessrequest)

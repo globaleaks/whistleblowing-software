@@ -73,11 +73,12 @@ spec = [
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
+    (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
+    (r'/rtip/' + uuid_regexp + '/identityaccessrequests', rtip.ReceiverIdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
     (r'/rtip/' + uuid_regexp + '/collection(?:/(zipstored|zipdeflated))?',
             collection.CollectionDownload),
-    (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
