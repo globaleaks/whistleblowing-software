@@ -91,8 +91,8 @@ def receiverfile_planning(store):
     ifiles = store.find(InternalFile, InternalFile.new == True)[:GLSettings.jobs_operation_limit]
 
     if ifilescnt > GLSettings.jobs_operation_limit:
-        log.debug("Delivery iterating over %d InternalFile from a Queue of %d" % (
-            GLSettings.jobs_operation_limit, ifilescnt ))
+        log.debug("Delivery iterating over %d InternalFile from a queue of %d" % (
+            GLSettings.jobs_operation_limit, ifilescnt))
     elif ifilescnt:
         log.debug("Delivery iterating over %d InternalFile" % ifilescnt)
     else:

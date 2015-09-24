@@ -275,6 +275,10 @@ class Replacer2324(TableReplacer):
         new_notification = self.get_right_model("Notification", 24)()
 
         for _, v in new_notification._storm_columns.iteritems():
+            if v.name == 'tip_expiration_threshold':
+                new_notification.tip_expiration_threshold = 72 # that is the current default
+                continue
+
             if v.name == 'exception_email_address':
                 old_notification.exception_email_address = old_node.exception_email
                 continue
