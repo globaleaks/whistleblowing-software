@@ -1,9 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-    <p>
-      <b><span data-translate>You're running GlobaLeaks version</span> {{admin.node.version}}</b>
-    </p>
-
+    <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
     <div class="form-group">
       <label data-translate>Landing Page</label>
       <select name="type" class="form-control" data-ng-model="admin.node.landing_page" required>
@@ -27,11 +24,11 @@
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.allow_iframes_inclusion" type="checkbox" />
-        <span data-translate>Allow other websites to include the GlobaLeaks-platform inside iframes</span>
+        <span data-translate>Allow other websites to include the platform inside iframes</span>
       </label>
       <div data-ng-if="admin.node.allow_iframes_inclusion">
         <span class="label label-danger" data-translate>Danger</span>
-        <span data-translate>By enabling this option, you are allowing other websites to include the GlobaLeaks-platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
+        <span data-translate>By enabling this option, you are allowing other websites to include the platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
       </div>
     </div>
 
