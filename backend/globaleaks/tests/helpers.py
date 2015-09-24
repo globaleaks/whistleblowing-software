@@ -41,7 +41,6 @@ from globaleaks.handlers.admin.context import create_context, get_context, updat
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
-from globaleaks.handlers.rtip import receiver_serialize_tip
 from globaleaks.handlers.wbtip import wb_serialize_tip
 from globaleaks.handlers.submission import create_submission
 from globaleaks.jobs import statistics_sched, mailflush_sched
@@ -406,9 +405,9 @@ class TestGL(unittest.TestCase):
     def get_rtips(self, store):
         rtips_desc = []
         rtips = store.find(ReceiverTip)
-        for rtip in rtips:
-            itip = receiver_serialize_tip(store, rtip.internaltip, 'en')
-            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id, 'itip': itip})
+        for r in rtips:
+            itip = rtip.receiver_serialize_tip(store, r.internaltip, 'en')
+            rtips_desc.append({'rtip_id': r.id, 'receiver_id': r.receiver_id, 'itip': itip})
 
         return rtips_desc
 
@@ -530,6 +529,10 @@ class TestGLWithPopulatedDB(TestGL):
             'content': 'message!',
         }
 
+        identityaccessrequestCreation = {
+            'request_motivation': 'request motivation'
+        }
+
         self.dummyRTips = yield self.get_rtips()
 
         for rtip_desc in self.dummyRTips:
@@ -540,6 +543,10 @@ class TestGLWithPopulatedDB(TestGL):
             yield rtip.create_message_receiver(rtip_desc['receiver_id'],
                                                rtip_desc['rtip_id'],
                                                messageCreation)
+
+            yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
+                                                    rtip_desc['rtip_id'],
+                                                    identityaccessrequestCreation)
 
         self.dummyWBTips = yield self.get_wbtips()
 

@@ -8,13 +8,12 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
-from globaleaks.handlers.user import db_user_update_user, parse_pgp_options
+from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import get_public_receiver_list
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
-from globaleaks.models import User, Receiver, ReceiverTip, ReceiverFile, Message
+from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
@@ -190,7 +189,8 @@ class ReceiverInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.ReceiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
-                                                         request, self.request.language)
+                                                         request,
+                                                         self.request.language)
 
         GLApiCache.invalidate('receivers')
 

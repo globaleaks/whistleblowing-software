@@ -38,6 +38,10 @@ field_type_regexp                 = (r'^('
                                      'email|'
                                      'date|'
                                      'fieldgroup)$')
+identityaccessresponse_regexp    = (r'^('
+                                     'pending|'
+                                     'authorized|'
+                                     'denied)$')
 
 
 DateType = r'(.*)'
@@ -394,6 +398,15 @@ FileOverviewDesc = {
     'creation_date': DateType,
     'id': uuid_regexp,
     'size': int
+}
+
+ReceiverIdentityAccessRequestDesc = {
+    'request_motivation': unicode
+}
+
+CustodianIdentityAccessRequestDesc = {
+    'response': identityaccessresponse_regexp,
+    'response_motivation': unicode
 }
 
 FilesOverviewDesc = [FileOverviewDesc]
