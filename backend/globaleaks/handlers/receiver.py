@@ -104,23 +104,15 @@ def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
     for rtip in rtiplist:
-        # TODO this store find in a potentially long loop is bad, is easier store in
-        # InternalTip the file counter number...
-        rfiles_n = store.find(ReceiverFile,
-                              (ReceiverFile.internaltip_id == rtip.internaltip.id,
-                               ReceiverFile.receiver_id == receiver_id)).count()
-
-        message_counter = store.find(Message,
-                                     Message.receivertip_id == rtip.id).count()
         single_tip_sum = dict({
             'id': rtip.id,
             'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
             'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'access_counter': rtip.access_counter,
-            'file_counter': rfiles_n,
+            'file_counter': rtip.internaltip.internalfiles.count(),
             'comment_counter': rtip.internaltip.comments.count(),
-            'message_counter': message_counter,
+            'message_counter': rtip.messages.count(),
             'tor2web': rtip.internaltip.tor2web,
             'questionnaire_hash': rtip.internaltip.questionnaire_hash,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
