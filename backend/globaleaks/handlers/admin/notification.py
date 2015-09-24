@@ -69,6 +69,7 @@ def admin_serialize_notification(notif, language):
         'disable_receivers_notification_emails': notif.disable_receivers_notification_emails,
         'send_email_for_every_event': notif.send_email_for_every_event,
         'reset_templates': False,
+        'tip_expiration_threshold': notif.tip_expiration_threshold,
         'notification_threshold_per_hour': notif.notification_threshold_per_hour,
         'notification_suspension_time': notif.notification_suspension_time,
         'exception_email_address': notif.exception_email_address,

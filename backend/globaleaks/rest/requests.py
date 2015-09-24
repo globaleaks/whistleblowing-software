@@ -253,6 +253,7 @@ AdminNotificationDesc = {
     'disable_admin_notification_emails': bool,
     'disable_receivers_notification_emails': bool,
     'send_email_for_every_event': bool,
+    'tip_expiration_threshold': int,
     'notification_threshold_per_hour': int,
     'notification_suspension_time': int,
     'reset_templates': bool,

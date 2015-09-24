@@ -75,6 +75,7 @@ def get_receiver_list(store, language):
 
 @transact
 def create_receiver(store, request, language):
+    request['tip_expiration_threshold'] = GLSettings.memory_copy.tip_expiration_threshold
     receiver = db_create_receiver(store, request, language)
     return admin_serialize_receiver(receiver, language)
 

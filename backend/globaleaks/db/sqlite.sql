@@ -232,6 +232,7 @@ CREATE TABLE notification (
     zip_description BLOB,
     ping_mail_template BLOB,
     ping_mail_title BLOB,
+    tip_expiration_threshold INTEGER NOT NULL,
     notification_threshold_per_hour INTEGER NOT NULL,
     notification_suspension_time INTEGER NOT NULL,
     disable_admin_notification_emails INTEGER NOT NULL,
