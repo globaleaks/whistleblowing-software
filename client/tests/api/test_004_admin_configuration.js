@@ -170,6 +170,8 @@ var fields = [
 ]
 
 var context = {
+  name: 'Context 1',
+  description: 'XXXXX ħ ÐÐ',
   presentation_order: 0,
   tip_timetolive: 15,
   can_postpone_expiration: false,
@@ -185,26 +187,9 @@ var context = {
   show_receivers_in_alphabetical_order: false,
   steps_arrangement: 'horizontal',
   reset_steps: false,
-  description: 'XXXXX ħ ÐÐ',
-  name: 'Context 1',
-  steps: [
-     {
-       label: 'Step 1',
-       description: 'Step Description',
-       hint: 'Step Hint',
-       presentation_order: 0,
-       children: {}
-     },
-     {
-       label: 'Step 2',
-       description: 'Step Description',
-       hint: 'Step Hint',
-       presentation_order: 0,
-       children: {}
-    }
-  ],
   maximum_selectable_receivers:0,
-  receivers: []
+  receivers: [],
+  custodians: []
 }
 
 var validate_mandatory_headers = function(headers) {

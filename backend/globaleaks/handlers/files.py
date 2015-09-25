@@ -15,7 +15,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.handlers.rtip import db_access_tip
+from globaleaks.handlers.rtip import db_access_rtip
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
@@ -126,14 +126,14 @@ def dump_file_fs(uploaded_file):
 
 
 @transact_ro
-def get_itip_id_by_wbtip_id(store, wb_tip_id):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == wb_tip_id).one()
+def get_itip_id_by_wbtip_id(store, wbtip_id):
+    wbtip = store.find(WhistleblowerTip,
+                       WhistleblowerTip.id == wbtip_id).one()
 
-    if not wb_tip:
+    if not wbtip:
         raise errors.InvalidAuthentication
 
-    return wb_tip.internaltip.id
+    return wbtip.internaltip.id
 
 
 # This is different from FileInstance, just because there are a different authentication requirements
@@ -237,11 +237,11 @@ class FileInstance(BaseHandler):
 
 
 @transact
-def download_file(store, user_id, tip_id, file_id):
+def download_file(store, user_id, rtip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
-    db_access_tip(store, user_id, tip_id)
+    db_access_rtip(store, user_id, rtip_id)
 
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
@@ -258,11 +258,11 @@ def download_file(store, user_id, tip_id, file_id):
 
 
 @transact
-def download_all_files(store, user_id, tip_id):
-    db_access_tip(store, user_id, tip_id)
+def download_all_files(store, user_id, rtip_id):
+    db_access_rtip(store, user_id, rtip_id)
 
     rfiles = store.find(ReceiverFile,
-                        ReceiverFile.receivertip_id == unicode(tip_id))
+                        ReceiverFile.receivertip_id == unicode(rtip_id))
 
     files_list = []
     for sf in rfiles:
@@ -278,8 +278,8 @@ class Download(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, tip_id, rfile_id):
-        rfile = yield download_file(self.current_user.user_id, tip_id, rfile_id)
+    def post(self, rtip_id, rfile_id):
+        rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
 
         # keys:  'file_path'  'size' : 'content_type' 'file_name'
 

@@ -61,12 +61,12 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        wb_access_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
-        wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
+        wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
-        self.assertTrue('answers' in wb_tip)
+        self.assertTrue('answers' in wbtip_desc)
 
     @inlineCallbacks
     def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
@@ -110,11 +110,11 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wb_access_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
 
-        wb_tip = yield wbtip.get_tip(wb_access_id, 'en')
+        wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
-        self.assertTrue('answers' in wb_tip)
+        self.assertTrue('answers' in wbtip_desc)
 
 
 class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):

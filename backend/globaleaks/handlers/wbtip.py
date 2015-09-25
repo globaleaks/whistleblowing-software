@@ -10,6 +10,8 @@ from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.rtip import db_get_itip_receivers_list, \
+    serialize_comment, serialize_message
 from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
     db_serialize_questionnaire_answers
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -48,33 +50,32 @@ def wb_serialize_tip(store, internaltip, language):
 
 
 def wb_serialize_file(internalfile):
-    wb_file_desc = {
+    return {
         'id': internalfile.id,
         'name': internalfile.name,
         'content_type': internalfile.content_type,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'size': internalfile.size,
     }
-    return wb_file_desc
 
 
-def db_get_files_wb(store, wb_tip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    file_list = []
-    for internalfile in wbtip.internaltip.internalfiles:
-        file_list.append(wb_serialize_file(internalfile))
-
-    file_list.reverse()
-
-    return file_list
-
-
-def db_get_internaltip_wb(store, tip_id, language):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
+def db_access_wbtip(store, wbtip_id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wbtip_id)).one()
 
     if not wbtip:
         raise errors.TipReceiptNotFound
+
+    return wbtip
+
+
+def db_get_files_wb(store, wbtip_id):
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    return [wb_serialize_file(internalfile) for internalfile in wbtip.internaltip.internalfiles]
+
+
+def db_get_wbtip(store, wbtip_id, language):
+    wbtip = db_access_wbtip(store, wbtip_id)
 
     # there is not a limit in the WB access counter, but is kept track
     wbtip.access_counter += 1
@@ -85,15 +86,95 @@ def db_get_internaltip_wb(store, tip_id, language):
     tip_desc['access_counter'] = wbtip.access_counter
     tip_desc['id'] = wbtip.id
 
+    tip_desc['files'] = db_get_files_wb(store, wbtip_id)
+
     return tip_desc
 
 
 @transact
-def get_tip(store, tip_id, language):
-    answer = db_get_internaltip_wb(store, tip_id, language)
-    answer['files'] = db_get_files_wb(store, tip_id)
+def get_wbtip(store, wbtip_id, language):
+    return db_get_wbtip(store, wbtip_id, language)
 
-    return answer
+
+@transact_ro
+def get_wbtip_receivers_list(store, wbtip_id, language):
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    return db_get_itip_receivers_list(store, wbtip.internaltip, language)
+
+
+@transact_ro
+def get_comment_list_wb(store, wbtip_id):
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    return [serialize_comment(comment) for comment in wbtip.internaltip.comments]
+
+
+@transact
+def create_comment_wb(store, wbtip_id, request):
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    comment = Comment()
+    comment.content = request['content']
+    comment.internaltip_id = wbtip.internaltip.id
+    comment.author = u'whistleblower'
+    comment.type = u'whistleblower'
+
+    wbtip.internaltip.comments.add(comment)
+
+    return serialize_comment(comment)
+
+
+@transact
+def get_messages_content(store, wbtip_id, receiver_id):
+    """
+    Get the messages content and mark all the unread
+    messages as "read"
+    """
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
+                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
+
+    if not rtip:
+        raise errors.TipIdNotFound
+
+    messages_list = []
+    for msg in rtip.messages:
+        messages_list.append(serialize_message(msg))
+
+        if not msg.visualized and msg.type == u'receiver':
+            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
+            msg.visualized = True
+
+    return messages_list
+
+
+@transact
+def create_message_wb(store, wbtip_id, receiver_id, request):
+    wbtip = db_access_wbtip(store, wbtip_id)
+
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
+                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
+
+    if not rtip:
+        raise errors.TipIdNotFound
+
+    msg = Message()
+    msg.content = request['content']
+    msg.receivertip_id = rtip.id
+    msg.author = u'whistleblower'
+    msg.visualized = False
+
+    msg.type = u'whistleblower'
+
+    try:
+        store.add(msg)
+    except DatabaseError as dberror:
+        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.user.name, dberror))
+        raise dberror
+
+    return serialize_message(msg)
 
 
 class WBTipInstance(BaseHandler):
@@ -117,56 +198,10 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_tip(self.current_user.user_id, 'en')
+        answer = yield get_wbtip(self.current_user.user_id, 'en')
 
         self.set_status(200)
         self.finish(answer)
-
-
-def wb_serialize_comment(comment):
-    comment_desc = {
-        'comment_id': comment.id,
-        'type': comment.type,
-        'content': comment.content,
-        'author': comment.author,
-        'creation_date': datetime_to_ISO8601(comment.creation_date)
-    }
-
-    return comment_desc
-
-
-@transact_ro
-def get_comment_list_wb(store, wb_tip_id):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wb_tip:
-        raise errors.TipReceiptNotFound
-
-    comment_list = []
-    for comment in wb_tip.internaltip.comments:
-        comment_list.append(wb_serialize_comment(comment))
-
-    return comment_list
-
-
-@transact
-def create_comment_wb(store, wb_tip_id, request):
-    wbtip = store.find(WhistleblowerTip,
-                       WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wbtip:
-        raise errors.TipReceiptNotFound
-
-    comment = Comment()
-    comment.content = request['content']
-    comment.internaltip_id = wbtip.internaltip.id
-    comment.author = u'whistleblower'
-    comment.type = u'whistleblower'
-
-    wbtip.internaltip.comments.add(comment)
-
-    return wb_serialize_comment(comment)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -176,7 +211,6 @@ class WBTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-
     @transport_security_check('whistleblower')
     @authenticated('whistleblower')
     @inlineCallbacks
@@ -207,44 +241,6 @@ class WBTipCommentCollection(BaseHandler):
         self.finish(answer)
 
 
-@transact_ro
-def get_receiver_list_wb(store, wb_tip_id, language):
-    """
-    @return:
-        This function contain the serialization of the receiver, this function is
-        used only by /wbtip/receivers API
-
-        The returned struct contain information on read/unread messages
-    """
-    receiver_list = []
-
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wb_tip:
-        raise errors.TipReceiptNotFound
-
-    for rtip in wb_tip.internaltip.receivertips:
-        message_counter = store.find(Message,
-                                     Message.receivertip_id == rtip.id).count()
-
-        receiver_desc = {
-            "name": rtip.receiver.user.name,
-            "id": rtip.receiver.id,
-            "pgp_key_status": rtip.receiver.user.pgp_key_status,
-            "access_counter": rtip.access_counter,
-            "message_counter": message_counter,
-            "creation_date": datetime_to_ISO8601(datetime_now()),
-        }
-
-        mo = Rosetta(rtip.receiver.localized_strings)
-        mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_localized_key("description", language)
-        receiver_list.append(receiver_desc)
-
-    return receiver_list
-
-
 class WBTipReceiversCollection(BaseHandler):
     """
     This interface return the list of the Receiver active in a Tip.
@@ -259,84 +255,10 @@ class WBTipReceiversCollection(BaseHandler):
         Parameters: None
         Response: actorsReceiverList
         """
-        answer = yield get_receiver_list_wb(self.current_user.user_id, self.request.language)
+        answer = yield get_wbtip_receivers_list(self.current_user.user_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
-
-
-def wb_serialize_message(msg):
-    return {
-        'id': msg.id,
-        'creation_date': datetime_to_ISO8601(msg.creation_date),
-        'content': msg.content,
-        'visualized': msg.visualized,
-        'type': msg.type,
-        'author': msg.author
-    }
-
-
-@transact
-def get_messages_content(store, wb_tip_id, receiver_id):
-    """
-    Get the messages content and mark all the unread
-    messages as "read"
-    """
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wb_tip:
-        raise errors.TipReceiptNotFound
-
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wb_tip.internaltip.id,
-                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    messages_list = []
-    for msg in rtip.messages:
-        messages_list.append(wb_serialize_message(msg))
-
-        if not msg.visualized and msg.type == u'receiver':
-            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
-            msg.visualized = True
-
-    return messages_list
-
-
-@transact
-def create_message_wb(store, wb_tip_id, receiver_id, request):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wb_tip:
-        log.err("Invalid wb_tip supply: %s" % wb_tip)
-        raise errors.TipReceiptNotFound
-
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wb_tip.internaltip.id,
-                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
-
-    if not rtip:
-        log.err("No ReceiverTip found: receiver_id %s itip %s" %
-                (receiver_id, wb_tip.internaltip.id))
-        raise errors.TipIdNotFound
-
-    msg = Message()
-    msg.content = request['content']
-    msg.receivertip_id = rtip.id
-    msg.author = u'whistleblower'
-    msg.visualized = False
-
-    msg.type = u'whistleblower'
-
-    try:
-        store.add(msg)
-    except DatabaseError as dberror:
-        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.user.name, dberror))
-        raise dberror
-
-    return wb_serialize_message(msg)
 
 
 class WBTipMessageCollection(BaseHandler):

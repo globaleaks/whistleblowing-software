@@ -182,7 +182,7 @@ class MessageEventLogger(EventLogger):
     model = models.Message
 
     def process_event(self, store, message):
-        message_desc = rtip.receiver_serialize_message(message)
+        message_desc = rtip.serialize_message(message)
 
         # message.type can be 'receiver' or 'wb' at the moment, we care of the latter
         if message.type == u"receiver":
@@ -211,7 +211,7 @@ class CommentEventLogger(EventLogger):
     model = models.Comment
 
     def process_event(self, store, comment):
-        comment_desc = rtip.receiver_serialize_comment(comment)
+        comment_desc = rtip.serialize_comment(comment)
 
         context_desc = admin.context.admin_serialize_context(store,
                                                              comment.internaltip.context,
