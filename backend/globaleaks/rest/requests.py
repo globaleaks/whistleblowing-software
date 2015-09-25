@@ -275,8 +275,8 @@ AdminContextDesc = {
     'description': unicode,
     'maximum_selectable_receivers': int,
     'tip_timetolive': int,
+    'custodians': [uuid_regexp],
     'receivers': [uuid_regexp],
-    'steps': list,
     'show_context': bool,
     'select_all_receivers': bool,
     'show_receivers': bool,
@@ -441,10 +441,13 @@ ReceiverDesc = {
 ReceiverCollectionDesc = [ReceiverDesc]
 
 ContextDesc = {
-    'select_all_receivers': bool,
+    'id': uuid_regexp,
     'name': unicode,
-    'presentation_order': int,
     'description': unicode,
+    'presentation_order': int,
+    'custodians': [uuid_regexp],
+    'receivers': [uuid_regexp],
+    'select_all_receivers': bool,
     'tip_timetolive': int,
     'show_context': bool,
     'show_receivers': bool,
@@ -454,8 +457,6 @@ ContextDesc = {
     'enable_messages': bool,
     'enable_two_way_communication': bool,
     'enable_attachments': bool,
-    'id': uuid_regexp,
-    'receivers': [uuid_regexp],
     'show_receivers_in_alphabetical_order': bool
 }
 

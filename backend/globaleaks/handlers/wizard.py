@@ -18,34 +18,30 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
-    node = request['node']
-    context = request['context']
-    receiver = request['receiver']
-
-    node['default_language'] = language
-    node['languages_enabled'] = [language]
+    request['node']['default_language'] = language
+    request['node']['languages_enabled'] = [language]
 
     # Header title of the homepage is initially set with the node title
-    node['header_title_homepage'] = node['name']
+    request['node']['header_title_homepage'] = request['node']['name']
 
     try:
-        db_update_node(store, node, True, language)
+        db_update_node(store, request['node'], True, language)
 
     except Exception as excep:
         log.err("Failed Node initialization %s" % excep)
         raise excep
 
     try:
-        context_dict = db_create_context(store, context, language)
+        context = db_create_context(store, request['context'], language)
     except Exception as excep:
         log.err("Failed Context initialization %s" % excep)
         raise excep
 
     # associate the new context to the receiver
-    receiver['contexts'] = [context_dict['id']]
+    request['receiver']['contexts'] = [context.id]
 
     try:
-        db_create_receiver(store, receiver, language)
+        db_create_receiver(store, request['receiver'], language)
     except Exception as excep:
         log.err("Failed Receiver Initialization %s" % excep)
         raise excep

@@ -33,6 +33,7 @@ def admin_serialize_context(store, context, language):
 
     ret_dict = {
         'id': context.id,
+        'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
         # tip expressed in day, submission in hours
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
@@ -76,66 +77,24 @@ def acquire_context_timetolive(timetolive):
     return timetolive * (24 * 60 * 60)
 
 
-def db_create_context(store, request, language):
-    """
-    Creates a new context from the request of a client.
+def db_associate_context_receivers(store, context, receivers_ids):
+    context.receivers.clear()
 
-    We associate to the context the list of receivers and if the receiver is
-    not valid we raise a ReceiverIdNotFound exception.
-
-    Args:
-        (dict) the request containing the keys to set on the model.
-
-    Returns:
-        (dict) representing the configured context
-    """
-    receivers = request.get('receivers', [])
-    steps = request.get('steps', [])
-
-    fill_localized_keys(request, models.Context.localized_strings, language)
-
-    context = models.Context(request)
-
-    # Integrity checks related on name (need to exists, need to be unique)
-    # are performed only using the default language at the moment (XXX)
-    try:
-        context_name = request['name'][language]
-    except Exception as excep:
-        raise errors.InvalidInputFormat("language %s do not provide name: %s" %
-                                       (language, excep) )
-    if len(context_name) < 1:
-        log.err("Invalid request: name is an empty string")
-        raise errors.InvalidInputFormat("Context name is missing (1 char required)")
-
-    if request['select_all_receivers']:
-        if request['maximum_selectable_receivers']:
-            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
-                      request['maximum_selectable_receivers'])
-        request['maximum_selectable_receivers'] = 0
-
-    # tip_timetolive to be converted in seconds since hours and days
-    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
-
-    c = store.add(context)
-
-    for receiver_id in receivers:
+    for receiver_id in receivers_ids:
         receiver = models.Receiver.get(store, receiver_id)
         if not receiver:
-            log.err("Creation error: unexistent context can't be associated")
             raise errors.ReceiverIdNotFound
-        c.receivers.add(receiver)
-
-    # context steps are initialized with the application default
-    db_setup_default_steps(store, c.id)
-
-    log.debug("Created context %s (using %s)" % (context_name, language) )
-
-    return admin_serialize_context(store, context, language)
+        context.receivers.add(receiver)
 
 
-@transact
-def create_context(*args):
-    return db_create_context(*args)
+def db_associate_context_custodians(store, context, custodians_ids):
+    context.custodians.clear()
+
+    for custodian_id in custodians_ids:
+        custodian = models.Custodian.get(store, custodian_id)
+        if not custodian:
+            raise errors.CustodianIdNotFound
+        context.custodians.add(custodian)
 
 
 @transact_ro
@@ -172,7 +131,6 @@ def get_context_steps(*args):
     return db_get_context_steps(*args)
 
 
-@transact
 def db_reset_steps(store, context_id):
     store.find(models.Step, models.Step.context_id == context_id).remove()
 
@@ -187,6 +145,65 @@ def db_setup_default_steps(store, context_id):
         db_import_fields(store, s, None, f_children)
         s.context_id = context_id
 
+
+def db_update_context(store, context, request, language):
+    fill_localized_keys(request, models.Context.localized_strings, language)
+
+    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
+
+    if request['select_all_receivers']:
+        if request['maximum_selectable_receivers']:
+            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
+                      request['maximum_selectable_receivers'])
+        request['maximum_selectable_receivers'] = 0
+
+    context.update(request)
+
+    if request['reset_steps']:
+        db_reset_steps(store, context.id)
+        db_setup_default_steps(store, context.id)
+
+    db_associate_context_custodians(store, context, request['custodians'])
+    db_associate_context_receivers(store, context, request['receivers'])
+
+    return context
+
+
+def db_create_context(store, request, language):
+    context = models.Context()
+
+    store.add(context)
+
+    request['reset_steps'] = True
+
+    context = db_update_context(store, context, request, language)
+
+    return context
+
+
+@transact
+def create_context(store, request, language):
+    """
+    Creates a new context from the request of a client.
+
+    We associate to the context the list of receivers and if the receiver is
+    not valid we raise a ReceiverIdNotFound exception.
+
+    Args:
+        (dict) the request containing the keys to set on the model.
+
+    Returns:
+        (dict) representing the configured context
+    """
+    context = models.Context()
+
+    store.add(context)
+
+    request['reset_steps'] = True
+
+    context = db_update_context(store, context, request, language)
+
+    return admin_serialize_context(store, context, language)
 
 @transact
 def update_context(store, context_id, request, language):
@@ -206,38 +223,11 @@ def update_context(store, context_id, request, language):
             (dict) the serialized object updated
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
-
+    
     if not context:
         raise errors.ContextIdNotFound
 
-    receivers = request.get('receivers', [])
-    steps = request.get('steps', [])
-
-    fill_localized_keys(request, models.Context.localized_strings, language)
-
-    for receiver in context.receivers:
-        context.receivers.remove(receiver)
-
-    for receiver_id in receivers:
-        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
-        if not receiver:
-            log.err("Update error: unexistent receiver can't be associated")
-            raise errors.ReceiverIdNotFound
-        context.receivers.add(receiver)
-
-    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
-
-    if request['select_all_receivers']:
-        if request['maximum_selectable_receivers']:
-            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
-                       request['maximum_selectable_receivers'])
-        request['maximum_selectable_receivers'] = 0
-
-    context.update(request)
-
-    if request['reset_steps']:
-        db_reset_steps(store, context.id)
-        db_setup_default_steps(store, context.id)
+    context = db_update_context(store, context, request, language)
 
     return admin_serialize_context(store, context, language)
 

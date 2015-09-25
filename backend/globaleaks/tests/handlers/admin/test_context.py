@@ -32,8 +32,6 @@ class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
         for attrname in Context.localized_strings:
             self.dummyContext[attrname] = stuff
 
-        self.dummyContext['steps'][0]['children'] = []
-
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 

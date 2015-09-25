@@ -238,21 +238,21 @@
   },
   {
     "fields": {
+      "id": "34948a37-201e-44e0-bede-67212f1b7ee6",
+      "name": {
+        "en": "Already localized name"
+      },
+      "description": {
+        "en": "Already localized desc"
+      },
       "presentation_order": 0,
       "creation_date": "2014-09-13 09:01:53.682297",
       "last_update": null,
-      "id": "34948a37-201e-44e0-bede-67212f1b7ee6",
       "tip_timetolive": 1728000,
       "show_small_cards": false,
       "show_context": true,
       "show_receivers": false,
       "select_all_receivers": true,
-      "description": {
-        "en": "Already localized desc"
-      },
-      "name": {
-        "en": "Already localized name"
-      },
       "maximum_selectable_receivers": 0,
       "enable_comments": true,
       "enable_messages": true,

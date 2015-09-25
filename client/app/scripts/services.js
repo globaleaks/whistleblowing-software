@@ -653,8 +653,7 @@ angular.module('GLServices', ['ngResource']).
           var context = new adminContextResource();
           context.name = "";
           context.description = "";
-          context.steps = [];
-          context.receivers = [];
+          context.presentation_order = 0;
           context.tip_timetolive = 15;
           context.show_context = true;
           context.show_receivers = true;
@@ -665,10 +664,12 @@ angular.module('GLServices', ['ngResource']).
           context.enable_messages = false;
           context.enable_two_way_communication = true;
           context.enable_attachments = true;
-          context.presentation_order = 0;
           context.show_receivers_in_alphabetical_order = true;
           context.steps_arrangement = 'horizontal';
           context.reset_steps = false;
+          context.custodians = [];
+          context.receivers = [];
+          context.steps = [];
           return context;
         };
 

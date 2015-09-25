@@ -429,6 +429,10 @@ class Replacer2324(TableReplacer):
                     new_obj.enable_attachments = True
                     continue
 
+                if v.name == 'enable_whistleblower_identity_feature':
+                    new_obj.enable_whistleblower_identity_feature = False
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)

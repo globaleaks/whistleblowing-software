@@ -459,18 +459,17 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_custodian
         self.dummyCustodian = yield create_custodian(copy.deepcopy(self.dummyCustodianUser), 'en')
         self.dummyCustodianUser['id'] = self.dummyCustodian['id']
-
-        receivers_ids = []
+        custodians_ids = [self.dummyCustodian['id']]
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        receivers_ids.append(self.dummyReceiver_1['id'])
         self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
-        receivers_ids.append(self.dummyReceiver_2['id'])
+        receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         # fill_data/create_context
+        self.dummyContext['custodians'] = custodians_ids
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
@@ -898,11 +897,13 @@ class MockDict():
             # localized stuff
             'name': u'Already localized name',
             'description': u'Already localized desc',
+            'presentation_order': 0,
+            'custodians': [],
+            'receivers': [],
             'steps': [],
             'select_all_receivers': True,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
-            'receivers': [],
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
             'show_context': True,
@@ -911,7 +912,6 @@ class MockDict():
             'enable_messages': True,
             'enable_two_way_communication': True,
             'enable_attachments': True,
-            'presentation_order': 0,
             'show_receivers_in_alphabetical_order': False,
             'steps_arrangement': 'horizontal',
             'reset_steps': False
