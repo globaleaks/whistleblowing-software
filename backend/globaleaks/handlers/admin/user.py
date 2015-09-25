@@ -56,6 +56,15 @@ def db_create_custodian(store, request, language):
     """
     user = db_create_user(store, request, language)
 
+    fill_localized_keys(request, models.Custodian.localized_strings, language)
+
+    custodian = models.Custodian(request)
+
+    # set custodian.id = user.id
+    custodian.id = user.id
+
+    store.add(custodian)
+
     log.debug("Created new custodian")
 
     return user

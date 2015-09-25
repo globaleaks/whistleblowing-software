@@ -54,7 +54,10 @@ def update_identityaccessrequest(store, user_id, identityaccessrequest_id, reque
 
     iar.response_date = datetime_now()
     iar.response_user_id = user_id
-    iar.response = request['response']
+
+    if iar.response == 'pending':
+        iar.response = request['response']
+
     iar.response_motivation = request['response_motivation']
 
     return serialize_identityaccessrequest(iar)

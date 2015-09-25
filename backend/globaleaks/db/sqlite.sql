@@ -64,6 +64,7 @@ CREATE TABLE context (
     enable_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
     enable_two_way_communication INTEGER NOT NULL,
+    enable_whistleblower_identity_feature INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
     steps_arrangement TEXT NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
@@ -245,12 +246,6 @@ CREATE TABLE notification (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE admin (
-    id TEXT NOT NULL,
-    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE custodian (
     id TEXT NOT NULL,
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
@@ -284,6 +279,16 @@ CREATE TABLE eventlogs (
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
+
+
+CREATE TABLE custodian_context (
+    context_id TEXT NOT NULL,
+    custodian_id TEXT NOT NULL,
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (custodian_id) REFERENCES custodian(id) ON DELETE CASCADE,
+    PRIMARY KEY (context_id, custodian_id)
+);
+
 
 CREATE TABLE receiver_context (
     context_id TEXT NOT NULL,

@@ -102,16 +102,10 @@ def anon_serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    receivers = [r.id for r in context.receivers]
-    if not len(receivers):
-        return None
-
-    steps = [anon_serialize_step(store, s, language) for s in context.steps]
-
     ret_dict = {
         'id': context.id,
+        'presentation_order': context.presentation_order,
         'tip_timetolive': context.tip_timetolive,
-        'description': context.description,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
@@ -121,11 +115,12 @@ def anon_serialize_context(store, context, language):
         'enable_messages': context.enable_messages,
         'enable_two_way_communication': context.enable_two_way_communication,
         'enable_attachments': context.enable_attachments,
-        'presentation_order': context.presentation_order,
+        'enable_whistleblower_identity_feature': context.enable_whistleblower_identity_feature,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'steps_arrangement': context.steps_arrangement,
-        'receivers': receivers,
-        'steps': steps
+        'custodians': [r.id for r in context.custodians],
+        'receivers': [r.id for r in context.receivers],
+        'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
@@ -158,7 +153,6 @@ def anon_serialize_field(store, field, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-
     # naif likes if we add reference links
     # this code is inspired by:
     #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
@@ -267,10 +261,8 @@ def get_public_context_list(store, language):
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(store, context, language)
-        # context not yet ready for submission return None
-        if context_desc:
-            context_list.append(context_desc)
+        if context.receivers.count():
+           context_list.append(anon_serialize_context(store, context, language))
 
     return context_list
 

@@ -216,18 +216,13 @@ class Context(Model):
     enable_messages = Bool(default=False)
     enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
+    enable_whistleblower_identity_feature = Bool(default=True)
 
     tip_timetolive = Int()
 
     # localized strings
     name = JSON(validator=shortlocal_v)
     description = JSON(validator=longlocal_v)
-
-    # receivers = ReferenceSet(
-    #                         Context.id,
-    #                         ReceiverContext.context_id,
-    #                         ReceiverContext.receiver_id,
-    #                         Receiver.id)
 
     steps_arrangement = Unicode(default=u'horizontal')
 
@@ -264,11 +259,6 @@ class InternalTip(Model):
     creation_date = DateTime(default_factory=datetime_now)
 
     context_id = Unicode()
-    # context = Reference(InternalTip.context_id, Context.id)
-    # comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
-    # receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
-    # internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
-    # receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
     questionnaire_hash = Unicode()
     preview = JSON()
@@ -293,8 +283,6 @@ class ReceiverTip(Model):
     """
     internaltip_id = Unicode()
     receiver_id = Unicode()
-    # internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
-    # receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
@@ -315,7 +303,6 @@ class WhistleblowerTip(Model):
     download.
     """
     internaltip_id = Unicode()
-    # internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt_hash = Unicode()
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
@@ -343,7 +330,6 @@ class InternalFile(Model):
     creation_date = DateTime(default_factory=datetime_now)
 
     internaltip_id = Unicode()
-    # internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
     name = Unicode(validator=longtext_v)
     file_path = Unicode()
@@ -363,11 +349,6 @@ class ReceiverFile(Model):
     internalfile_id = Unicode()
     receiver_id = Unicode()
     receivertip_id = Unicode()
-    # internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
-    # receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
-    # internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
-    # receivertip = Reference(ReceiverFile.receivertip_id, ReceiverTip.id)
-
     file_path = Unicode()
     size = Int()
     downloads = Int(default=0)
@@ -653,6 +634,15 @@ class Notification(Model):
     ]
 
 
+class Custodian(Model):
+    """
+    This model keeps track of custodians settings.
+    """
+    # currently custodians do not need special settings but
+    # but the model is anyhow needed in order to allow the grouping
+    pass
+
+
 class Receiver(Model):
     """
     This model keeps track of receivers settings.
@@ -671,11 +661,6 @@ class Receiver(Model):
     ping_notification = Bool(default=False)
 
     tip_expiration_threshold = Int(default=72)
-
-    # contexts = ReferenceSet("Context.id",
-    #                         "ReceiverContext.context_id",
-    #                         "ReceiverContext.receiver_id",
-    #                         "Receiver.id")
 
     presentation_order = Int(default=0)
 
@@ -905,6 +890,16 @@ class StepField(BaseModel):
 
 
 # Follow classes used for Many to Many references
+class CustodianContext(BaseModel):
+    """
+    Class used to implement references between Receivers and Contexts
+    """
+    __storm_table__ = 'custodian_context'
+    __storm_primary__ = 'context_id', 'custodian_id'
+    context_id = Unicode()
+    custodian_id = Unicode()
+
+
 class ReceiverContext(BaseModel):
     """
     Class used to implement references between Receivers and Contexts
@@ -1010,6 +1005,7 @@ Context.steps = ReferenceSet(Context.id, Step.context_id)
 
 Step.context = Reference(Step.context_id, Context.id)
 
+Custodian.user = Reference(Custodian.id, User.id)
 Receiver.user = Reference(Receiver.id, User.id)
 
 Receiver.internaltips = ReferenceSet(
@@ -1116,6 +1112,13 @@ Context.receivers = ReferenceSet(
     Receiver.id
 )
 
+Context.custodians = ReferenceSet(
+    Context.id,
+    CustodianContext.context_id,
+    CustodianContext.custodian_id,
+    Custodian.id
+)
+
 Receiver.contexts = ReferenceSet(
     Receiver.id,
     ReceiverContext.receiver_id,
@@ -1124,8 +1127,8 @@ Receiver.contexts = ReferenceSet(
 )
 
 models_list = [Node,
-               User,
-               Receiver, Context, ReceiverContext,
+               User, Custodian, Receiver,
+               Context, CustodianContext, ReceiverContext,
                Field, FieldOption, FieldAttr, FieldField,
                FieldAnswer, FieldAnswerGroup,
                OptionActivateField, OptionActivateStep,
