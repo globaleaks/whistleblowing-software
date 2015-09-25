@@ -284,23 +284,6 @@ def get_public_receivers_list(store, language):
     return receivers_list
 
 
-@transact_ro
-def get_public_receivers_list(store, language):
-    receivers_list = []
-    receivers = store.find(models.Receiver)
-
-    for receiver in receivers:
-        if receiver.user.state == u'disabled':
-            continue
-
-        receiver_desc = anon_serialize_receiver(receiver, language)
-        # receiver not yet ready for submission return None
-        if receiver_desc:
-            receivers_list.append(receiver_desc)
-
-    return receivers_list
-
-
 class NodeInstance(BaseHandler):
     @transport_security_check("unauth")
     @unauthenticated
