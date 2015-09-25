@@ -93,8 +93,39 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     return ret_dict
 
 
-def db_get_files_receiver(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def serialize_comment(comment):
+    return {
+        'id': comment.id,
+        'author': comment.author,
+        'type': comment.type,
+        'creation_date': datetime_to_ISO8601(comment.creation_date),
+        'content': comment.content
+    }
+
+
+def serialize_message(msg):
+    return {
+        'id': msg.id,
+        'author': msg.author,
+        'type': msg.type,
+        'creation_date': datetime_to_ISO8601(msg.creation_date),
+        'content': msg.content,
+        'visualized': msg.visualized
+    }
+
+
+def db_access_rtip(store, user_id, rtip_id):
+    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(rtip_id),
+                      ReceiverTip.receiver_id == user_id).one()
+
+    if not rtip:
+        raise errors.TipIdNotFound
+
+    return rtip
+
+
+def db_get_files_receiver(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     receiver_files = store.find(ReceiverFile,
                                 (ReceiverFile.internaltip_id == rtip.internaltip_id,
@@ -103,22 +134,24 @@ def db_get_files_receiver(store, user_id, tip_id):
     files_list = []
     for receiverfile in receiver_files:
         internalfile = receiverfile.internalfile
-        files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
+        files_list.append(receiver_serialize_file(internalfile, receiverfile, rtip_id))
 
     return files_list
 
 
-def db_get_tip_receiver(store, user_id, tip_id, language):
-    rtip = db_access_tip(store, user_id, tip_id)
+def db_get_rtip(store, user_id, rtip_id, language):
+    rtip = db_access_rtip(store, user_id, rtip_id)
+
+    db_increment_receiver_access_count(store, user_id, rtip_id)
 
     notif = store.find(Notification).one()
 
     if not notif.send_email_for_every_event:
         # If Receiver is accessing this Tip, Events related can be removed before
         # Notification is sent. This is a Twitter/Facebook -like behavior.
-        store.find(EventLogs, EventLogs.receivertip_id == tip_id).remove()
+        store.find(EventLogs, EventLogs.receivertip_id == rtip_id).remove()
         # Note - before the check was:
-        # store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
+        # store.find(EventLogs, And(EventLogs.receivertip_id == rtip_id,
         #                          EventLogs.mail_sent == True)).remove()
 
     tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
@@ -129,11 +162,14 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     tip_desc['receiver_id'] = user_id
     tip_desc['label'] = rtip.label
 
+    tip_desc['collection'] = '/rtip/' + rtip_id + '/collection'
+    tip_desc['files'] = db_get_files_receiver(store, user_id, rtip_id)
+
     return tip_desc
 
 
-def db_increment_receiver_access_count(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def db_increment_receiver_access_count(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
@@ -142,16 +178,6 @@ def db_increment_receiver_access_count(store, user_id, tip_id):
               (rtip.id, rtip.receiver.user.name, rtip.access_counter))
 
     return rtip.access_counter
-
-
-def db_access_tip(store, user_id, tip_id):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id),
-                      ReceiverTip.receiver_id == user_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    return rtip
 
 
 def db_delete_itip(store, itip):
@@ -197,12 +223,12 @@ def db_postpone_expiration_date(rtip):
 
 
 @transact
-def delete_rtip(store, user_id, tip_id):
+def delete_rtip(store, user_id, rtip_id):
     """
     Delete internalTip is possible only to Receiver with
     the dedicated property.
     """
-    rtip = db_access_tip(store, user_id, tip_id)
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_delete_submission or
                 rtip.receiver.can_delete_submission):
@@ -212,8 +238,8 @@ def delete_rtip(store, user_id, tip_id):
 
 
 @transact
-def postpone_expiration_date(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def postpone_expiration_date(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_postpone_expiration or
                 rtip.receiver.can_postpone_expiration):
@@ -234,8 +260,8 @@ def postpone_expiration_date(store, user_id, tip_id):
 
 
 @transact
-def assign_rtip_label(store, user_id, tip_id, label_content):
-    rtip = db_access_tip(store, user_id, tip_id)
+def assign_rtip_label(store, user_id, rtip_id, label_content):
+    rtip = db_access_rtip(store, user_id, rtip_id)
     if rtip.label:
         log.debug("Updating ReceiverTip label from '%s' to '%s'" % (rtip.label, label_content))
     else:
@@ -244,28 +270,23 @@ def assign_rtip_label(store, user_id, tip_id, label_content):
 
 
 @transact
-def get_tip(store, user_id, tip_id, language):
-    db_increment_receiver_access_count(store, user_id, tip_id)
-    answer = db_get_tip_receiver(store, user_id, tip_id, language)
-    answer['collection'] = '/rtip/' + tip_id + '/collection'
-    answer['files'] = db_get_files_receiver(store, user_id, tip_id)
-
-    return answer
+def get_rtip(store, user_id, rtip_id, language):
+    return db_get_rtip(store, user_id, rtip_id, language)
 
 
 @transact_ro
-def get_comment_list_receiver(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def get_comment_list_receiver(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     comment_list = []
     for comment in rtip.internaltip.comments:
-        comment_list.append(receiver_serialize_comment(comment))
+        comment_list.append(serialize_comment(comment))
 
     return comment_list
 
 @transact
-def create_identityaccessrequest(store, user_id, tip_id, request):
-    rtip = db_access_tip(store, user_id, tip_id)
+def create_identityaccessrequest(store, user_id, rtip_id, request):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     iar = IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
@@ -276,8 +297,8 @@ def create_identityaccessrequest(store, user_id, tip_id, request):
 
 
 @transact
-def create_comment_receiver(store, user_id, tip_id, request):
-    rtip = db_access_tip(store, user_id, tip_id)
+def create_comment_receiver(store, user_id, rtip_id, request):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     comment = Comment()
     comment.content = request['content']
@@ -287,27 +308,16 @@ def create_comment_receiver(store, user_id, tip_id, request):
 
     rtip.internaltip.comments.add(comment)
 
-    return receiver_serialize_comment(comment)
-
-
-def receiver_serialize_message(msg):
-    return {
-        'id': msg.id,
-        'creation_date': datetime_to_ISO8601(msg.creation_date),
-        'content': msg.content,
-        'visualized': msg.visualized,
-        'type': msg.type,
-        'author': msg.author
-    }
+    return serialize_comment(comment)
 
 
 @transact
-def get_messages_list(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def get_messages_list(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     content_list = []
     for msg in rtip.messages:
-        content_list.append(receiver_serialize_message(msg))
+        content_list.append(serialize_message(msg))
 
         if not msg.visualized and msg.type == u'whistleblower':
             log.debug("Marking as read message [%s] from %s" % (msg.content, msg.author))
@@ -317,8 +327,8 @@ def get_messages_list(store, user_id, tip_id):
 
 
 @transact
-def create_message_receiver(store, user_id, tip_id, request):
-    rtip = db_access_tip(store, user_id, tip_id)
+def create_message_receiver(store, user_id, rtip_id, request):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     msg = Message()
     msg.content = request['content']
@@ -329,12 +339,12 @@ def create_message_receiver(store, user_id, tip_id, request):
 
     store.add(msg)
 
-    return receiver_serialize_message(msg)
+    return serialize_message(msg)
 
 
 @transact
-def get_identityaccessrequests_list(store, user_id, tip_id):
-    rtip = db_access_tip(store, user_id, tip_id)
+def get_identityaccessrequests_list(store, user_id, rtip_id):
+    rtip = db_access_rtip(store, user_id, rtip_id)
 
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
 
@@ -357,13 +367,13 @@ class RTipInstance(BaseHandler):
 
         tip_id can be a valid tip_id (Receiver case) or a random one (because is
         ignored, only authenticated user with whistleblower token can access to
-        the wb_tip, this is why tip_is is not checked if self.is_whistleblower)
+        the wbtip, this is why tip_is is not checked if self.is_whistleblower)
 
         This method is decorated as @unauthenticated because in the handler
         the various cases are managed differently.
         """
 
-        answer = yield get_tip(self.current_user.user_id, tip_id, 'en')
+        answer = yield get_rtip(self.current_user.user_id, tip_id, 'en')
 
         self.set_status(200)
         self.finish(answer)
@@ -399,18 +409,6 @@ class RTipInstance(BaseHandler):
 
         self.set_status(200)  # Success
         self.finish()
-
-
-def receiver_serialize_comment(comment):
-    comment_desc = {
-        'comment_id': comment.id,
-        'type': comment.type,
-        'content': comment.content,
-        'author': comment.author,
-        'creation_date': datetime_to_ISO8601(comment.creation_date)
-    }
-
-    return comment_desc
 
 
 class RTipCommentCollection(BaseHandler):
@@ -453,26 +451,30 @@ class RTipCommentCollection(BaseHandler):
         self.finish(answer)
 
 
-@transact_ro
-def get_receiver_list_receiver(store, user_id, tip_id, language):
-    rtip = db_access_tip(store, user_id, tip_id)
+def db_get_itip_receivers_list(store, itip, language):
+    receivers_list = []
 
-    receiver_list = []
-    for rtip in rtip.internaltip.receivertips:
+    for rtip in itip.receivertips:
         receiver_desc = {
-            "pgp_key_status": rtip.receiver.user.pgp_key_status,
-            "name": unicode(rtip.receiver.user.name),
-            "receiver_id": unicode(rtip.receiver.id),
+            "id": rtip.receiver.id,
+            "name": rtip.receiver.user.name,
             "access_counter": rtip.access_counter,
+            "pgp_key_status": rtip.receiver.user.pgp_key_status
         }
 
         mo = Rosetta(rtip.receiver.localized_strings)
         mo.acquire_storm_object(rtip.receiver)
         receiver_desc["description"] = mo.dump_localized_key("description", language)
+        receivers_list.append(receiver_desc)
 
-        receiver_list.append(receiver_desc)
+    return receivers_list
 
-    return receiver_list
+
+@transact_ro
+def get_rtip_receivers_list(store, user_id, rtip_id, language):
+    rtip = db_access_rtip(store, user_id, rtip_id)
+
+    return db_get_itip_receivers_list(store, rtip.internaltip, language)
 
 
 class RTipReceiversCollection(BaseHandler):
@@ -484,13 +486,13 @@ class RTipReceiversCollection(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, tip_id):
+    def get(self, rtip_id):
         """
         Parameters: None
         Response: actorsReceiverList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receiver_list_receiver(self.current_user.user_id, tip_id, self.request.language)
+        answer = yield get_rtip_receivers_list(self.current_user.user_id, rtip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)

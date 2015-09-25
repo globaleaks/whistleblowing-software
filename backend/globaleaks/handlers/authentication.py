@@ -181,10 +181,10 @@ def login_whistleblower(store, receipt, using_tor2web):
     login_whistleblower returns the WhistleblowerTip.id
     """
     hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.receipt_salt)
-    wb_tip = store.find(WhistleblowerTip,
+    wbtip = store.find(WhistleblowerTip,
                         WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 
-    if not wb_tip:
+    if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
@@ -196,9 +196,9 @@ def login_whistleblower(store, receipt, using_tor2web):
         log.debug("Accepted login request on Tor2web for role 'whistleblower'")
 
     log.debug("Whistleblower login: Valid receipt")
-    wb_tip.last_access = utility.datetime_now()
+    wbtip.last_access = utility.datetime_now()
     store.commit()  # the transact was read only! on success we apply the commit()
-    return wb_tip.id
+    return wbtip.id
 
 
 @transact_ro  # read only transact; manual commit on success needed

@@ -268,8 +268,8 @@ def get_public_context_list(store, language):
 
 
 @transact_ro
-def get_public_receiver_list(store, language):
-    receiver_list = []
+def get_public_receivers_list(store, language):
+    receivers_list = []
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
@@ -279,9 +279,26 @@ def get_public_receiver_list(store, language):
         receiver_desc = anon_serialize_receiver(receiver, language)
         # receiver not yet ready for submission return None
         if receiver_desc:
-            receiver_list.append(receiver_desc)
+            receivers_list.append(receiver_desc)
 
-    return receiver_list
+    return receivers_list
+
+
+@transact_ro
+def get_public_receivers_list(store, language):
+    receivers_list = []
+    receivers = store.find(models.Receiver)
+
+    for receiver in receivers:
+        if receiver.user.state == u'disabled':
+            continue
+
+        receiver_desc = anon_serialize_receiver(receiver, language)
+        # receiver not yet ready for submission return None
+        if receiver_desc:
+            receivers_list.append(receiver_desc)
+
+    return receivers_list
 
 
 class NodeInstance(BaseHandler):
@@ -344,5 +361,5 @@ class ReceiversCollection(BaseHandler):
         Gets all the receivers.
         """
         ret = yield GLApiCache.get('receivers', self.request.language,
-                                   get_public_receiver_list, self.request.language)
+                                   get_public_receivers_list, self.request.language)
         self.finish(ret)

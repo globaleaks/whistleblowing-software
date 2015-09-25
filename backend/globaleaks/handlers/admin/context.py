@@ -223,7 +223,7 @@ def update_context(store, context_id, request, language):
             (dict) the serialized object updated
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
-    
+
     if not context:
         raise errors.ContextIdNotFound
 

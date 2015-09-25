@@ -18,7 +18,7 @@ class TestTip(helpers.TestGL):
     submission_desc = None
 
     # filled while the emulation tests
-    itip_id = wb_tip_id = rtip1_id = rtip2_id = None
+    itip_id = wbtip_id = rtip1_id = rtip2_id = None
     wb_data = receiver1_data = receiver2_data = None
 
     commentCreation = {
@@ -64,15 +64,15 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
-        if not self.wb_tip_id:
-            self.wb_tip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        if not self.wbtip_id:
+            self.wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
             # is the self.current_user.user_id
 
-        self.assertTrue(re.match(requests.uuid_regexp, self.wb_tip_id))
+        self.assertTrue(re.match(requests.uuid_regexp, self.wbtip_id))
 
     @inlineCallbacks
     def wb_retrive_tip_data(self):
-        self.wb_data = yield wbtip.get_tip(self.wb_tip_id, 'en')
+        self.wb_data = yield wbtip.get_wbtip(self.wbtip_id, 'en')
 
         self.assertEqual(self.wb_data['answers'], self.submission_desc['answers'])
 
@@ -85,12 +85,12 @@ class TestTip(helpers.TestGL):
         self.assertEqual(auth2, self.receiver2_desc['id'])
 
         for i in range(1, 2):
-            self.receiver1_data = yield rtip.get_tip(auth1, self.rtip1_id, 'en')
+            self.receiver1_data = yield rtip.get_rtip(auth1, self.rtip1_id, 'en')
             self.assertEqual(self.receiver1_data['answers'], self.submission_desc['answers'])
             self.assertEqual(self.receiver1_data['access_counter'], i)
 
         for i in range(1, 2):
-            self.receiver2_data = yield rtip.get_tip(auth2, self.rtip2_id, 'en')
+            self.receiver2_data = yield rtip.get_rtip(auth2, self.rtip2_id, 'en')
             self.assertEqual(self.receiver2_data['answers'], self.submission_desc['answers'])
             self.assertEqual(self.receiver2_data['access_counter'], i)
 
@@ -101,11 +101,11 @@ class TestTip(helpers.TestGL):
         """
         auth_receiver_1 = self.receiver1_desc['id']
 
-        yield self.assertFailure(rtip.get_tip(auth_receiver_1, self.rtip2_id, 'en'),
+        yield self.assertFailure(rtip.get_rtip(auth_receiver_1, self.rtip2_id, 'en'),
                                  errors.TipIdNotFound)
 
     @inlineCallbacks
-    def receiver1_get_tip_list(self):
+    def receiver1_get_rtip_list(self):
         tiplist = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
 
         # this test has been added to test issue/515
@@ -141,30 +141,30 @@ class TestTip(helpers.TestGL):
     @inlineCallbacks
     def wb_RW_comments(self):
         self.commentCreation['content'] = unicode("I'm a WB comment")
-        yield wbtip.create_comment_wb(self.wb_tip_id, self.commentCreation)
+        yield wbtip.create_comment_wb(self.wbtip_id, self.commentCreation)
 
-        cl = yield wbtip.get_comment_list_wb(self.wb_tip_id)
+        cl = yield wbtip.get_comment_list_wb(self.wbtip_id)
         self.assertEqual(len(cl), 3)
 
     @inlineCallbacks
-    def wb_get_receiver_list(self, language):
-        receiver_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id, language)
-        self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
+    def wb_get_receivers_list(self, language):
+        receivers_list = yield wbtip.get_wbtip_receivers_list(self.wbtip_id, language)
+        self.assertEqual(len(receivers_list), 2)
+        self.assertEqual(receivers_list[0]['access_counter'] + receivers_list[1]['access_counter'], 2)
 
     @inlineCallbacks
-    def receiver_get_receiver_list(self, language):
-        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver1_desc['id'], self.rtip1_id, language)
-        self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
+    def receiver_get_rtip_receivers_list(self, language):
+        receivers_list = yield rtip.get_rtip_receivers_list(self.receiver1_desc['id'], self.rtip1_id, language)
+        self.assertEqual(len(receivers_list), 2)
+        self.assertEqual(receivers_list[0]['access_counter'] + receivers_list[1]['access_counter'], 2)
 
-        receiver_list = yield rtip.get_receiver_list_receiver(self.receiver2_desc['id'], self.rtip2_id, language)
-        self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 2)
+        receivers_list = yield rtip.get_rtip_receivers_list(self.receiver2_desc['id'], self.rtip2_id, language)
+        self.assertEqual(len(receivers_list), 2)
+        self.assertEqual(receivers_list[0]['access_counter'] + receivers_list[1]['access_counter'], 2)
 
     @inlineCallbacks
     def fail_postpone_expiration_date(self):
-        tip_expiring = yield rtip.get_tip(
+        tip_expiring = yield rtip.get_rtip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         yield self.assertFailure(rtip.postpone_expiration_date(
@@ -172,7 +172,7 @@ class TestTip(helpers.TestGL):
                                      self.rtip1_id),
                                  errors.ExtendTipLifeNotEnabled)
 
-        tip_not_postponeed = yield rtip.get_tip(
+        tip_not_postponeed = yield rtip.get_rtip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         self.assertEqual(tip_expiring['expiration_date'], tip_not_postponeed['expiration_date'])
@@ -189,7 +189,7 @@ class TestTip(helpers.TestGL):
         self.assertTrue(isinstance(context_list, list))
         self.assertEqual(len(context_list), 1)
 
-        yield rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en')
+        yield rtip.get_rtip(self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         # TODO implement a more complete test
 
@@ -212,14 +212,14 @@ class TestTip(helpers.TestGL):
         Tests with receiver1 and update with receiver2 is equal
         to use the the same receiver
         """
-        tip_expiring = yield rtip.get_tip(
+        tip_expiring = yield rtip.get_rtip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         yield rtip.postpone_expiration_date(
                     self.receiver2_desc['id'],
                     self.rtip2_id)
 
-        tip_postponeed = yield rtip.get_tip(
+        tip_postponeed = yield rtip.get_rtip(
             self.receiver1_desc['id'], self.rtip1_id, 'en')
 
         self.assertNotEqual(tip_expiring['expiration_date'], tip_postponeed['expiration_date'])
@@ -235,7 +235,7 @@ class TestTip(helpers.TestGL):
     def receiver1_delete_tip(self):
         yield rtip.delete_rtip(self.receiver1_desc['id'], self.rtip1_id)
 
-        self.assertFailure(rtip.get_tip(self.receiver1_desc['id'], self.rtip1_id, 'en'),
+        self.assertFailure(rtip.get_rtip(self.receiver1_desc['id'], self.rtip1_id, 'en'),
                            errors.TipIdNotFound)
 
         count = yield self.get_count_of_itip_using_archived_schema(self.rtip1_questionnaire_hash)
@@ -243,15 +243,14 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def check_wb_messages_expected(self, expected_msgs):
-        x = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver1_desc['id'])
+        x = yield wbtip.get_messages_content(self.wbtip_id, self.receiver1_desc['id'])
         self.assertEqual(len(x), expected_msgs)
 
-        y = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver2_desc['id'])
+        y = yield wbtip.get_messages_content(self.wbtip_id, self.receiver2_desc['id'])
         self.assertEqual(len(y), expected_msgs)
 
     @inlineCallbacks
     def check_receiver_messages_expected(self, expected_msgs):
-
         x = yield rtip.get_messages_list(self.receiver1_desc['id'], self.rtip1_id)
         self.assertEqual(len(x), expected_msgs)
 
@@ -264,48 +263,30 @@ class TestTip(helpers.TestGL):
 
     @inlineCallbacks
     def do_wb_messages(self):
-        before = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
+        before = yield wbtip.get_wbtip_receivers_list(self.wbtip_id, 'en')
 
         # the direct message has been sent to the receiver 1, and receiver 1
         # is on the element [0] of the list.
         self.assertEqual(len(before), 2)
-        self.assertEqual(before[0]['message_counter'], 0)
 
         msgrequest = { 'content': u'a msg from wb to receiver1' }
-        x = yield wbtip.create_message_wb(self.wb_tip_id,
+        x = yield wbtip.create_message_wb(self.wbtip_id,
                                           self.receiver1_desc['id'], msgrequest)
 
         self.assertEqual(x['author'], u'whistleblower')
 
-        after = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
-
-        for receivers_message in after:
-            if receivers_message['id'] == self.receiver1_desc['id']:
-                self.assertEqual(receivers_message['message_counter'], 1)
-            else:
-                self.assertEqual(receivers_message['message_counter'], 0)
-
         # and now, two messages for the second receiver
         msgrequest = { 'content': u'#1/2 msg from wb to receiver2' }
-        yield wbtip.create_message_wb(self.wb_tip_id,
+        yield wbtip.create_message_wb(self.wbtip_id,
                                           self.receiver2_desc['id'], msgrequest)
         msgrequest = { 'content': u'#2/2 msg from wb to receiver2' }
-        yield wbtip.create_message_wb(self.wb_tip_id,
+        yield wbtip.create_message_wb(self.wbtip_id,
                                           self.receiver2_desc['id'], msgrequest)
-
-        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
-
-        for receivers_message in end:
-            if receivers_message['id'] == self.receiver2_desc['id']:
-                self.assertEqual(receivers_message['message_counter'], 2)
-            else: # the messages from Receiver1 are not changed, right ?
-                self.assertEqual(receivers_message['message_counter'], 1)
 
     @inlineCallbacks
     def do_receivers_messages_and_unread_verification(self):
         # Receiver1 check the presence of the whistleblower message (only 1)
         x = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
-        self.assertEqual(x[0]['message_counter'], 1)
 
         # Receiver1 send one message
         msgrequest = { 'content': u'Receiver1 send a message to WB' }
@@ -315,20 +296,17 @@ class TestTip(helpers.TestGL):
         self.assertEqual(k['content'], msgrequest['content'])
 
         # Whistleblower check the presence of receiver1 unread message
-        receiver_info_list = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
+        receiver_info_list = yield wbtip.get_wbtip_receivers_list(self.wbtip_id, 'en')
 
         for r in receiver_info_list:
             if r['id'] == self.receiver1_desc['id']:
                 self.assertEqual(r['name'], self.receiver1_desc['name'])
-                self.assertEqual(r['message_counter'], 2)
             else:
                 self.assertEqual(r['name'], self.receiver2_desc['name'])
-                self.assertEqual(r['message_counter'], 2)
 
         # Receiver2 check the presence of the whistleblower message (2 expected)
         a = yield receiver.get_receivertip_list(self.receiver1_desc['id'], 'en')
         self.assertEqual(len(a), 1)
-        self.assertEqual(a[0]['message_counter'], 2)
 
         # Receiver2 READ the messages from the whistleblower
         unread = yield rtip.get_messages_list(self.receiver2_desc['id'], self.rtip2_id)
@@ -349,24 +327,14 @@ class TestTip(helpers.TestGL):
                                            self.rtip2_id, msgrequest)
 
         # Whistleblower read the messages from Receiver2
-        wunread = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver2_desc['id'])
+        wunread = yield wbtip.get_messages_content(self.wbtip_id, self.receiver2_desc['id'])
         self.assertEqual(len(wunread), 4) # two msg from Wb, two from R2
         self.assertFalse(wunread[2]['visualized'])
         self.assertFalse(wunread[3]['visualized'])
 
-        wreaded = yield wbtip.get_messages_content(self.wb_tip_id, self.receiver2_desc['id'])
+        wreaded = yield wbtip.get_messages_content(self.wbtip_id, self.receiver2_desc['id'])
         self.assertTrue(wreaded[2]['visualized'])
         self.assertTrue(wreaded[3]['visualized'])
-
-        # Whistleblower check 0 unread messages from Receiver2, and still 1 from R1
-        end = yield wbtip.get_receiver_list_wb(self.wb_tip_id, 'en')
-        
-
-        for recv in end:
-            if recv['id'] == self.receiver2_desc['id']:
-                self.assertEqual(recv['message_counter'], 4)
-            else:
-                self.assertEqual(recv['message_counter'], 2)
 
     @inlineCallbacks
     def do_full_receiver_wb_workflow(self):
@@ -384,11 +352,11 @@ class TestTip(helpers.TestGL):
         # end direct messages block
 
         # this is the only test on receiver handler and not in tip handler:
-        yield self.receiver1_get_tip_list()
+        yield self.receiver1_get_rtip_list()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list(GLSettings.memory_copy.default_language)
-        yield self.receiver_get_receiver_list(GLSettings.memory_copy.default_language)
+        yield self.wb_get_receivers_list(GLSettings.memory_copy.default_language)
+        yield self.receiver_get_rtip_receivers_list(GLSettings.memory_copy.default_language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
         yield self.verify_default_expiration_date()
