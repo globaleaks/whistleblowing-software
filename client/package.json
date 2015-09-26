@@ -24,7 +24,6 @@
     "grunt-manifest": "0.4.4",
     "grunt-mocha-phantomjs": "2.0.0",
     "grunt-mocha-test": "0.12.7",
-    "grunt-protractor-coverage": "0.2.15",
     "grunt-protractor-runner": "2.1.0",
     "grunt-saucelabs": "8.6.1",
     "grunt-string-replace": "1.2.0",
