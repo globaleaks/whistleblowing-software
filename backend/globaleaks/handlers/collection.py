@@ -15,7 +15,7 @@ from globaleaks.settings import transact_ro
 from globaleaks.plugins.base import Event
 from globaleaks.jobs.notification_sched import serialize_receivertip
 from globaleaks.models import ReceiverTip, ReceiverFile
-from globaleaks.utils.zipstream import ZipStream, get_compression_opts
+from globaleaks.utils.zipstream import ZipStream
 from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
 
@@ -86,14 +86,8 @@ class CollectionDownload(BaseHandler):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def post(self, rtip_id, compression):
+    def post(self, rtip_id):
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
-
-        if compression is None:
-            compression = 'zipdeflated'
-
-        opts = get_compression_opts(compression)
-
         node_dict = yield admin.node.admin_serialize_node(self.request.language)
         receiver_dict = yield get_receiver_from_rtip(rtip_id, self.request.language)
         rtip_dict = yield get_rtip_info(rtip_id, self.request.language)
@@ -125,10 +119,9 @@ class CollectionDownload(BaseHandler):
 
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % opts['filename'])
+        self.set_header('Content-Disposition', 'attachment; filename=\"collection.zip\"')
 
-        if compression in ['zipstored', 'zipdeflated']:
-            for data in ZipStream(files_dict, opts['compression_type']):
-                self.write(data)
+        for data in ZipStream(files_dict):
+            self.write(data)
 
         self.finish()

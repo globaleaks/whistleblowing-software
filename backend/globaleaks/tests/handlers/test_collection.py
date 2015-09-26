@@ -28,28 +28,10 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
         return rtips_desc
 
     @inlineCallbacks
-    def download(self, compression):
+    def test_download(self):
         rtips_desc = yield self.get_rtips()
 
         for rtip_desc in rtips_desc:
             handler = self.request({}, role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
-            yield handler.post(rtip_desc['rtip_id'], compression)
-
-    @inlineCallbacks
-    def test_post_download_zipstored(self):
-        yield self.download('zipstored')
-
-    @inlineCallbacks
-    def test_post_download_zipdeflated(self):
-        yield self.download('zipdeflated')
-
-    @inlineCallbacks
-    def test_post_download_zipstored_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSettings.submission_path)
-        yield self.download('zipstored')
-
-    @inlineCallbacks
-    def test_post_download_zipdeflated_with_files_removed_due_to_whatever(self):
-        shutil.rmtree(GLSettings.submission_path)
-        yield self.download('zipdeflated')
+            yield handler.post(rtip_desc['rtip_id'])

@@ -23,31 +23,14 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 
-def get_field_association(store, field_id):
-    """
-    Return a boolean tuple representing the field association (step, fieldgroup) [true, false]
-
-    :param store: the store on which perform queries.
-    """
-    ret1 = None
-    ret2 = None
-
-    sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
-    if sf:
-        ret1 = sf.step_id
-
-    ff = store.find(models.FieldField, models.FieldField.child_id == field_id).one()
-    if ff:
-        ret2 = ff.parent_id
-
-    return ret1, ret2
-
-
 def associate_field(store, field, step=None, fieldgroup=None):
     """
     Associate a field to a specified step or fieldgroup
 
     :param store: the store on which perform queries.
+    :param field: the field to be associated.
+    :param step: the step to which associate the field
+    :param fieldgroup: the fieldgroup to which associate the field
     """
     if step:
         if field.instance == 'template':
@@ -70,16 +53,17 @@ def associate_field(store, field, step=None, fieldgroup=None):
         fieldgroup.children.add(field)
 
 
-def disassociate_field(store, field_id):
+def disassociate_field(store, field):
     """
     Disassociate a field from the eventually associated step or fieldgroup
 
     :param store: the store on which perform queries.
+    :param field: the field to be deassociated.
     """
-    sf = store.find(models.StepField, models.StepField.field_id == field_id).one()
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
     if sf:
         store.remove(sf)
-    ff = store.find(models.FieldField, models.FieldField.child_id == field_id).one()
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
     if ff:
         store.remove(ff)
 
@@ -288,7 +272,7 @@ def db_update_field(store, field_id, field, language):
                 c = db_update_field(store, child['id'], child, language)
 
                 # remove current step/field fieldgroup/field association
-                disassociate_field(store, c.id)
+                disassociate_field(store, c)
 
                 f.children.add(c)
 
@@ -312,7 +296,7 @@ def db_update_field(store, field_id, field, language):
             f.update(partial_update)
 
         # remove current step/field fieldgroup/field association
-        disassociate_field(store, field_id)
+        disassociate_field(store, f)
 
         associate_field(store, f, step, fieldgroup)
     except Exception as dberror:

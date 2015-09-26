@@ -32,13 +32,6 @@ def db_create_step(store, step, language):
      fill_localized_keys(step, models.Step.localized_strings, language)
 
      s = models.Step.new(store, step)
-     for f in step['children']:
-         field = models.Field.get(store, f['id'])
-         if not field:
-             log.err("Creation error: unexistent field can't be associated")
-             raise errors.FieldIdNotFound
-
-         db_update_field(store, f['id'], f, language)
 
      return s
 
@@ -124,24 +117,6 @@ def delete_step(store, step_id):
         raise errors.StepIdNotFound
 
     step.delete(store)
-
-
-def db_update_steps(store, context_id, steps, language):
-    """
-    Update steps
-
-    :param store: the store on which perform queries.
-    :param context: the context on which register specified steps.
-    :param steps: a dictionary containing the steps to be updated.
-    :param language: the language of the specified steps.
-    """
-    steps_ids = []
-
-    for step in steps:
-        step['context_id'] = context_id
-        steps_ids.append(db_update_step(store, step['id'], step, language).id)
-
-    store.find(models.Step, And(models.Step.context_id == context_id, Not(In(models.Step.id, steps_ids)))).remove()
 
 
 class StepCreate(BaseHandler):

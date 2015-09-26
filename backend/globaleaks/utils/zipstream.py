@@ -76,16 +76,6 @@ _FH_FILENAME_LENGTH = 10
 _FH_EXTRA_FIELD_LENGTH = 11
 
 
-def get_compression_opts(compression):
-    if compression == 'zipstored':
-        return {'filename': 'collection.zip',
-                'compression_type': ZIP_STORED}
-
-    elif compression == 'zipdeflated':
-        return {'filename': 'collection.zip',
-                'compression_type': ZIP_DEFLATED}
-
-
 class ZipInfo(object):
     """Class with attributes describing each file in the ZIP archive."""
 
