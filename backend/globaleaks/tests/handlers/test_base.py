@@ -109,15 +109,15 @@ class TestValidate(unittest.TestCase):
         self.assertFalse(base.validate_host("invalid.onion:12345"))  # gabanbus i miss you!
 
 
-class TestValidate(helpers.TestHandler):
-    _handler = base.TimingStats
+class TestTimingStats(helpers.TestHandler):
+    _handler = base.TimingStatsHandler
 
     @inlineCallbacks
-    def test_get_feature_enabled(self):
+    def test_get_feature_disabled(self):
         GLSettings.log_timing_stats = False
 
-        base.TimingStats.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
-        base.TimingStats.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
+        base.TimingStatsHandler.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
+        base.TimingStatsHandler.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
 
         handler = self.request()
 
@@ -125,17 +125,17 @@ class TestValidate(helpers.TestHandler):
 
         splits = self.responses[0].split("\n")
 
-        self.assertEqual(len(splitss), 2)
+        self.assertEqual(len(splits), 2)
 
-        self.assertEqual(splits[0], "method,uri,start_time,run_time")
+        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
         self.assertEqual(splits[1], "")
 
     @inlineCallbacks
     def test_get_feature_enabled(self):
         GLSettings.log_timing_stats = True
 
-        base.TimingStats.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
-        base.TimingStats.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
+        base.TimingStatsHandler.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
+        base.TimingStatsHandler.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
 
         handler = self.request()
 
@@ -145,7 +145,7 @@ class TestValidate(helpers.TestHandler):
 
         self.assertEqual(len(splits), 4)
 
-        self.assertEqual(splits[0], "method,uri,start_time,run_time")
-        self.assertEqual(splits[1], "JOB,Session Management,1443252274.44,0")
-        self.assertEqual(splits[2], "GET,/styles/main.css,1443252277.68,0")
+        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
+        self.assertEqual(splits[1], "uncategorized,JOB,Session Management,1443252274.44,0")
+        self.assertEqual(splits[2], "uncategorized,GET,/styles/main.css,1443252277.68,0")
         self.assertEqual(splits[3], "")

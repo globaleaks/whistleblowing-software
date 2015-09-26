@@ -545,7 +545,7 @@ class BaseHandler(RequestHandler):
             send_exception_email(error, mail_reason="Handler Time Exceeded")
 
         if GLSettings.log_timing_stats:
-            TimingStats.log_measured_timing(self.request.method, self.request.uri, self.start_time, current_run_time)
+            TimingStatsHandler.log_measured_timing(self.request.method, self.request.uri, self.start_time, current_run_time)
 
 
     def handler_request_logging_begin(self):
@@ -624,7 +624,7 @@ class BaseRedirectHandler(BaseHandler, RedirectHandler):
     pass
 
 
-class TimingStats(BaseHandler):
+class TimingStatsHandler(BaseHandler):
     TimingsTracker = []
 
     @staticmethod
@@ -635,8 +635,8 @@ class TimingStats(BaseHandler):
         if uri == '/s/timings':
             return
 
-        if len(TimingStats.TimingsTracker) > 999:
-            TimingStats.TimingsTracker = TimingStats.TimingsTracker[999:]
+        if len(TimingStatsHandler.TimingsTracker) > 999:
+            TimingStatsHandler.TimingsTracker = TimingStatsHandler.TimingsTracker[999:]
 
         if method == 'PUT' and uri.startswith('/submission'):
             category = 'submission'
@@ -649,7 +649,7 @@ class TimingStats(BaseHandler):
         else:
             category = 'uncategorized'
 
-        TimingStats.TimingsTracker.append({
+        TimingStatsHandler.TimingsTracker.append({
             'category': category,
             'method': method,
             'uri': uri,
@@ -659,7 +659,7 @@ class TimingStats(BaseHandler):
 
     def get(self):
         csv = "category,method,uri,start_time,run_time\n"
-        for measure in TimingStats.TimingsTracker:
+        for measure in TimingStatsHandler.TimingsTracker:
             csv += "%s,%s,%s,%s,%d\n" % (measure['category'],
                                          measure['method'],
                                          measure['uri'],
