@@ -643,13 +643,13 @@ class TimingStatsHandler(BaseHandler):
         if uri == '/s/timings':
             return
 
-        if len(TimingStatsHandler.TimingsTracker) > 999:
-            TimingStatsHandler.TimingsTracker = TimingStatsHandler.TimingsTracker[999:]
+	TimingStatsHandler.TimingsTracker = \
+            TimingStatsHandler.TimingsTracker[999:] if len(TimingStatsHandler.TimingsTracker) > 999 else TimingStatsHandler.TimingsTracker
 
-        if method == 'PUT' and uri.startswith('/submission'):
-            category = 'submission'
-        elif method == 'POST' and uri.startswith('/submission'):
+        if method == 'POST' and uri == '/token':
             category = 'token'
+        elif method == 'PUT' and uri.startswith('/submission'):
+            category = 'submission'
         elif method == 'POST' and uri == '/wbtip/comments':
             category = 'comment'
         elif method == 'JOB' and uri == 'Delivery':
