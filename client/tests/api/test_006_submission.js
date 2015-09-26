@@ -11,7 +11,10 @@ var host = 'http://127.0.0.1:8082';
 var app = request(host);
 
 var population_order = 4;
-var submission_population_order = 4;
+var submission_population_order = 10;
+var comments_population_order = 10;
+
+var authentication;
 
 var receivers = new Array();
 var receivers_ids = new Array();
@@ -197,9 +200,9 @@ for (var i=0; i<submission_population_order; i++) {
       it('responds with ', function(done){
         var new_submission = {};
         new_submission.id = submission_tokens[i].id;
-        new_submission.context_id = contexts_ids[i];
+        new_submission.context_id = contexts_ids[0];
         new_submission.receivers = receivers_ids;
-        new_submission.answers = fill_answers(contexts[i].steps);
+        new_submission.answers = fill_answers(contexts[0].steps);
 
         app
           .put('/submission/' + submission_tokens[i].id)
@@ -268,15 +271,37 @@ for (var i=0; i<1; i++){
   })(i);
 }
 
-for (var i=1; i<submission_population_order; i++){
+describe('POST /receiptauth', function () {
+  it('responds 200 on valid wb login', function (done) {
+    var credentials = valid_login(0);
+    app
+      .post('/receiptauth')
+      .send(credentials)
+      .expect(200)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
+
+        authentication = res.body;
+
+        done();
+      });
+  })
+});
+
+for (var i=1; i<comments_population_order; i++) {
   (function (i) {
-    describe('POST /receiptauth', function () {
+    describe('POST /wbtip/comments', function () {
       it('responds 200 on valid wb login', function (done) {
         var credentials = valid_login(i);
         app
-          .post('/receiptauth')
-          .send(credentials)
-          .expect(200)
+          .post('/wbtip/comments')
+          .send({"content": "COMMENT!"})
+          .set('X-Session', authentication['session_id'])
+          .expect(201)
           .end(function (err, res) {
 
             if (err) {
@@ -289,6 +314,5 @@ for (var i=1; i<submission_population_order; i++){
           });
       })
     })
-
   })(i);
 }
