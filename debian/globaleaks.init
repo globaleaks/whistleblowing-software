@@ -214,13 +214,7 @@ do_start()
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
                     --tor-dir=${TOR_DIR}
-                    --loglevel=${LOGLEVEL}
-                    --http-log=${HTTPLOG}"
-
-
-    if [ "${STORMDEBUG}" -eq "1" ]; then
-        GLBACKEND_ARGS+=" --storm-debug"
-    fi
+                    --loglevel=${LOGLEVEL}"
 
     if [ "${DISABLE_MAIL_TORIFICATION}" -eq "1" ]; then
         GLBACKEND_ARGS+=" --disable-mail-torification"

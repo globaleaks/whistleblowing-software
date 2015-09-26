@@ -192,7 +192,7 @@ GLSettings.parser.add_option("-k", "--kill", type="int",
 
 GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
-    dest="skip_wizard")
+    dest="skip_wizard", default=False)
 
 GLSettings.parser.add_option("-C", "--glc-path", type='string',
     help="specify GLClient path [default: %default]",
@@ -216,11 +216,11 @@ GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
 
 GLSettings.parser.add_option("-j", "--request-log", action="store_true",
     help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="log_requests_responses")
+    dest="log_requests_responses", default=False)
 
 GLSettings.parser.add_option("-S", "--request-stats", action='store_true',
     help="enable requests timing stats (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="log_timing_stats")
+    dest="log_timing_stats", default=False)
 
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,
