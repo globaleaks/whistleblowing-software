@@ -28,6 +28,8 @@ class AdminLanguageFileHandler(BaseHandler):
     This class is used to return the custom translation files;
     if the file are not present, default translations are returned
     """
+    handler_exec_time_threshold = 3600
+    filehandler = True
 
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSettings.static_path_l10n, '%s.json' % lang))

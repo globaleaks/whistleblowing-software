@@ -120,6 +120,8 @@ class GLHTTPConnection(HTTPConnection):
 class BaseHandler(RequestHandler):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
 
+    filehandler = False
+
     def __init__(self, application, request, **kwargs):
         self.name = type(self).__name__
 
@@ -348,11 +350,14 @@ class BaseHandler(RequestHandler):
           - The performance analysts
           - the Request/Response logging
         """
-        for event in outcoming_event_monitored:
-            if event['status_checker'](self._status_code) and \
-                   event['method'] == self.request.method and \
-                   event['handler_check'](self.request.uri):
-                EventTrack(event, self.request.request_time())
+        # file uploads works on chunk basis so that we count 1 the file upload
+        # as a whole in function get_file_upload()
+        if not self.filehandler:
+            for event in outcoming_event_monitored:
+                if event['status_checker'](self._status_code) and \
+                        event['method'] == self.request.method and \
+                        event['handler_check'](self.request.uri):
+                    EventTrack(event, self.request.request_time())
 
         self.handler_time_analysis_end()
         self.handler_request_logging_end()
@@ -489,6 +494,16 @@ class BaseHandler(RequestHandler):
             uploaded_file['body_len'] = int(self.request.arguments['flowTotalSize'][0])
             uploaded_file['body_filepath'] = f.filepath
             uploaded_file['body'] = f
+
+            upload_time = time.time() - f.creation_date
+
+            # file uploads works on chunk basis so that we count 1 the file upload
+            # as a whole in function get_file_upload()
+            for event in outcoming_event_monitored:
+                if event['status_checker'](self._status_code) and \
+                        event['method'] == self.request.method and \
+                        event['handler_check'](self.request.uri):
+                    EventTrack(event, upload_time)
 
             return uploaded_file
 
