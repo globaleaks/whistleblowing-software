@@ -187,7 +187,7 @@ GLSettings.parser.add_option("-c", "--start-clean", action='store_true',
     dest="start_clean", default=GLSettings.start_clean)
 
 GLSettings.parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
+    help="signal to send to the current globaleaks process (if exists)",
     dest="kill", default=0)
 
 GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
@@ -199,7 +199,7 @@ GLSettings.parser.add_option("-C", "--glc-path", type='string',
     dest="glc_path", default=GLSettings.glc_path)
 
 GLSettings.parser.add_option("-R", "--ramdisk", type="string",
-    help="optionally specify a path used as ramdisk storage [default: absent]",
+    help="optionally specify a path used as ramdisk storage",
     dest="ramdisk")
 
 GLSettings.parser.add_option("-z", "--devel-mode", type='string',
@@ -207,12 +207,12 @@ GLSettings.parser.add_option("-z", "--devel-mode", type='string',
     dest="developer_name")
 
 GLSettings.parser.add_option("--XXX", type='string',
-    help="hardcore debug only options: check NOTES.md file [AVAILABLE ONLY IN DEVEL MODE]",
+    help="hardcore debug only options: check NOTES.md file (AVAILABLE ONLY IN DEVEL MODE)",
     dest="xxx")
 
 GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
-    help="enable orm debugging (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="storm_debug", default=GLSettings.storm_debug)
+    help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
+    dest="orm_debug", default=GLSettings.orm_debug)
 
 GLSettings.parser.add_option("-j", "--request-log", action="store_true",
     help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",
