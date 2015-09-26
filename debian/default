@@ -3,23 +3,6 @@
 #   DEBUG, INFO, ERROR, CRITICAL
 LOGLEVEL=CRITICAL
 
-# HTTPLOG = [http log_level]
-#   permits to configure the number of globaleaks http loglevel
-#
-#   Examples:
-#     -1: disabled
-#      N: logs the first N requests/responses
-#      0: unlimited
-HTTPLOG=-1
-
-# STORMDEBUG = [0/1]
-#   permits to enable storm query debugging
-#
-#   Examples:
-#      0: disabled
-#      1: enabled
-STORMDEBUG=0
-
 # USERNAME = [user_name]
 #   permits to configure the user privileges of the globaleaks process
 USERNAME=globaleaks
