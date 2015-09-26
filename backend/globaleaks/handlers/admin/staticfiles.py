@@ -115,6 +115,8 @@ class StaticFileInstance(BaseHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
+    handler_exec_time_threshold = 3600
+    filehandler = True
 
     @transport_security_check('admin')
     @authenticated('admin')

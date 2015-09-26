@@ -142,6 +142,7 @@ class FileAdd(BaseHandler):
     WhistleBlower interface for upload a new file in an already completed submission
     """
     handler_exec_time_threshold = 3600
+    filehandler = True
 
     @inlineCallbacks
     def handle_file_append(self, itip_id):
@@ -192,6 +193,7 @@ class FileInstance(BaseHandler):
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
     handler_exec_time_threshold = 3600
+    filehandler = True
 
     @inlineCallbacks
     def handle_file_upload(self, token_id):

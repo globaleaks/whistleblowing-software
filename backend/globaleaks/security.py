@@ -11,6 +11,7 @@ import re
 import pickle
 import shutil
 import scrypt
+import time
 
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
@@ -20,7 +21,7 @@ from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, datetime_to_day_str
+from globaleaks.utils.utility import log, datetime_to_day_str, datetime_now
 from globaleaks.settings import GLSettings
 from globaleaks.third_party.rstr import xeger
 
@@ -54,6 +55,8 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         filedir: directory where to store files
         """
+        self.creation_date = time.time()
+
         self.create_key()
 
         # XXX remind enhance file name with incremental number
