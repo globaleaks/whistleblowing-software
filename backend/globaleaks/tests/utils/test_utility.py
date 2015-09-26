@@ -155,3 +155,9 @@ class TestUtility(unittest.TestCase):
         utility.log.err("err")
         utility.log.debug("debug")
         utility.log.msg("msg")
+
+    def test_caller_name(self):
+        def abcdef():
+            return utility.caller_name()
+
+        self.assertEqual(abcdef(), 'globaleaks.tests.utils.test_utility.TestUtility.test_caller_name')
