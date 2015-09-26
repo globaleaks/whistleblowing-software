@@ -3,13 +3,14 @@
 #   *********
 #
 # Base class for implement the scheduled tasks
-
 import sys
 import time
 
 from twisted.internet import task, defer, reactor
 from twisted.python.failure import Failure
 
+from globaleaks.handlers.base import TimingStats
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log
@@ -63,9 +64,7 @@ class GLJob(task.LoopingCall):
 
         self.iterations += 1
 
-        if self.name == 'Delivery':
-            from globaleaks.handlers.exporter import add_measured_event
-            add_measured_event(None, None, current_run_time, self.iterations, self.start_time)
+        TimingStats.log_measured_timing("JOB", self.name, self.start_time, current_run_time)
 
     @defer.inlineCallbacks
     def _operation(self):

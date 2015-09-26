@@ -125,8 +125,8 @@ class GLSettingssClass(object):
 
         # debug defaults
         self.storm_debug = False
-        self.http_log = -1
-        self.http_requests_counter = 0
+        self.log_requests_responses = -1
+        self.requests_counter = 0
         self.loglevel = "CRITICAL"
 
         # files and paths
@@ -268,7 +268,7 @@ class GLSettingssClass(object):
         self.devel_mode = False
         self.developer_name = ''
         self.skip_wizard = False
-        self.timing_stats = False
+        self.log_timing_stats = False
         self.glc_path = None
 
         # Number of failed login enough to generate an alarm
@@ -432,8 +432,6 @@ class GLSettingssClass(object):
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        self.http_log = self.cmdline_options.http_log
-
         self.accepted_hosts = list(set(self.bind_addresses + \
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
 
@@ -534,8 +532,8 @@ class GLSettingssClass(object):
             quit(-1)
 
         if self.devel_mode:
-          if self.cmdline_options.timing_stats:
-              self.timing_stats = True
+          self.log_timing_stats = self.cmdline_options.log_timing_stats
+          self.log_requests_responses = self.cmdline_options.log_requests_responses
 
           # hardcore extremely dangerous --XXX option trigger
           # one,two,three
