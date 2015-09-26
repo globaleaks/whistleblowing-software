@@ -124,7 +124,7 @@ class GLSettingssClass(object):
         self.db_version = DATABASE_VERSION
 
         # debug defaults
-        self.storm_debug = False
+        self.orm_debug = False
         self.log_requests_responses = -1
         self.requests_counter = 0
         self.loglevel = "CRITICAL"
@@ -384,7 +384,6 @@ class GLSettingssClass(object):
     def set_glc_path(self, glcp):
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
 
-
     def enable_debug_mode(self):
         import signal
 
@@ -421,8 +420,6 @@ class GLSettingssClass(object):
         assert self.cmdline_options is not None
 
         self.nodaemon = self.cmdline_options.nodaemon
-
-        self.storm_debug = self.cmdline_options.storm_debug
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
@@ -466,7 +463,6 @@ class GLSettingssClass(object):
         # be included here.
         # This cause that *content* validation cannot be done here, but when GL is started.
         if self.cmdline_options.tor_dir and self.validate_tor_dir_struct(self.cmdline_options.tor_dir):
-
             hostname_tor_file = os.path.join(self.cmdline_options.tor_dir, 'hostname')
 
             if not os.access(hostname_tor_file, os.R_OK):
@@ -515,8 +511,7 @@ class GLSettingssClass(object):
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
 
-        if self.cmdline_options.skip_wizard:
-            self.skip_wizard = True
+        self.skip_wizard = self.cmdline_options.skip_wizard
 
         if self.cmdline_options.glc_path:
             self.set_glc_path(self.cmdline_options.glc_path)
@@ -532,6 +527,7 @@ class GLSettingssClass(object):
             quit(-1)
 
         if self.devel_mode:
+          self.orm_debug = self.cmdline_options.orm_debug
           self.log_timing_stats = self.cmdline_options.log_timing_stats
           self.log_requests_responses = self.cmdline_options.log_requests_responses
 
@@ -775,7 +771,7 @@ class transact(object):
         self.store = None
         self.method = method
         self.instance = None
-        self.debug = GLSettings.storm_debug
+        self.debug = GLSettings.orm_debug
 
         if self.debug:
             tracer.debug(self.debug, sys.stdout)
