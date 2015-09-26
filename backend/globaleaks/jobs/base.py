@@ -9,7 +9,7 @@ import time
 from twisted.internet import task, defer, reactor
 from twisted.python.failure import Failure
 
-from globaleaks.handlers.base import TimingStats
+from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.utils.monitor import ResourceMonitor
@@ -64,7 +64,7 @@ class GLJob(task.LoopingCall):
 
         self.iterations += 1
 
-        TimingStats.log_measured_timing("JOB", self.name, self.start_time, current_run_time)
+        TimingStatsHandler.log_measured_timing("JOB", self.name, self.start_time, current_run_time)
 
     @defer.inlineCallbacks
     def _operation(self):
