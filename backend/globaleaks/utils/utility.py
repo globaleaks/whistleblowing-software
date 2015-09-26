@@ -359,7 +359,7 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
 
 def datetime_to_ISO8601(date):
     """
-    conver a datetime in ISO8601 format and UTC timezone
+    conver a datetime into ISO8601 date
     """
     if date is None:
         date = datetime_null()
@@ -368,7 +368,9 @@ def datetime_to_ISO8601(date):
 
 
 def ISO8601_to_datetime(isodate):
-
+    """
+    convert an ISO8601 date into a datetime
+    """
     isodate = isodate[:19] # we srip the eventual Z at the end
 
     try:
