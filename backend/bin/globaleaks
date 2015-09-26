@@ -113,14 +113,6 @@ GLSettings.parser.add_option("-l", "--loglevel", type="choice",
     help="set log level [default: %default]",
     dest="loglevel", default=GLSettings.loglevel)
 
-GLSettings.parser.add_option("-s", "--storm-debug", action='store_true',
-    help="enable storm debugging [default: %default]",
-    dest="storm_debug", default=GLSettings.storm_debug)
-
-GLSettings.parser.add_option("-j", "--http-log", type="int",
-    help="enable HTTP I/O logging and limit the number of logged Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
-    dest="http_log", default=GLSettings.http_log)
-
 GLSettings.parser.add_option("-i", "--ip", type="string",
     help="IP address(s) used for listening [default: %default]",
     dest="ip", default=GLSettings.bind_addresses)
@@ -134,11 +126,11 @@ GLSettings.parser.add_option("-a", "--accept-host", type="string",
             "If some hosts are specified, defaults are not more included in the allowed list) [default: %default]",
     dest="host_list", default=GLSettings.accepted_hosts)
 
-GLSettings.parser.add_option("-o", "--socks-host", type="string",
+GLSettings.parser.add_option("-s", "--socks-host", type="string",
     help="set Socks host to use for Tor [default: %default]",
     dest="socks_host", default=GLSettings.socks_host)
 
-GLSettings.parser.add_option("-P", "--socks-port", type="int",
+GLSettings.parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=GLSettings.socks_port)
 
@@ -162,11 +154,11 @@ GLSettings.parser.add_option("-e", "--disable-client-exception-notification", ac
     help="disable_client_exception_notification [default: False]",
     dest="disable_client_exception_notification", default=False)
 
-GLSettings.parser.add_option("-A", "--disks-alarm-threshold", type='int',
+GLSettings.parser.add_option("-m", "--disks-alarm-threshold", type='int',
     help="takes 1, 2, 3, set disk alarm threshold [default: 0]",
     dest="disk_alarm_threshold", default=0)
 
-GLSettings.parser.add_option("-D", "--tor-dir", type="string",
+GLSettings.parser.add_option("-x", "--tor-dir", type="string",
     help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
     dest="tor_dir")
 
@@ -198,7 +190,7 @@ GLSettings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
-GLSettings.parser.add_option("-x", "--skip-wizard", action='store_true',
+GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard")
 
@@ -218,9 +210,17 @@ GLSettings.parser.add_option("--XXX", type='string',
     help="hardcore debug only options: check NOTES.md file [AVAILABLE ONLY IN DEVEL MODE]",
     dest="xxx")
 
-GLSettings.parser.add_option("-S", "--stats", action='store_true',
-    help="Statistics enabled, dump verbose debugging timing infos [AVAILABLE ONLY IN DEVEL MODE]",
-    dest="timing_stats")
+GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
+    help="enable orm debugging (AVAILABLE ONLY IN DEVEL MODE)",
+    dest="storm_debug", default=GLSettings.storm_debug)
+
+GLSettings.parser.add_option("-j", "--request-log", action="store_true",
+    help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",
+    dest="log_requests_responses")
+
+GLSettings.parser.add_option("-S", "--request-stats", action='store_true',
+    help="enable requests timing stats (AVAILABLE ONLY IN DEVEL MODE)",
+    dest="log_timing_stats")
 
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSettings.version_string,

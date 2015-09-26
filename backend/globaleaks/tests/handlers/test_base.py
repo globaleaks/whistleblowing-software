@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
 import json
 
+from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
+
 from globaleaks.handlers import base
 from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
 
 
 class MockHandler(base.BaseHandler):
@@ -12,7 +17,6 @@ class MockHandler(base.BaseHandler):
 
 class TestValidate(unittest.TestCase):
     _handler = base.BaseHandler
-
     def test_validate_jmessage_valid(self):
         dummy_message = {'spam': 'ham', 'firstd': {3: 4}, 'fields': "CIAOCIAO", 'nest': [{1: 2, 3: 4}]}
         dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
@@ -103,3 +107,45 @@ class TestValidate(unittest.TestCase):
         self.assertTrue(base.validate_host("thirteenchars123.onion:31337"))
         self.assertFalse(base.validate_host("invalid.onion"))
         self.assertFalse(base.validate_host("invalid.onion:12345"))  # gabanbus i miss you!
+
+
+class TestValidate(helpers.TestHandler):
+    _handler = base.TimingStats
+
+    @inlineCallbacks
+    def test_get_feature_enabled(self):
+        GLSettings.log_timing_stats = False
+
+        base.TimingStats.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
+        base.TimingStats.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
+
+        handler = self.request()
+
+        yield handler.get()
+
+        splits = self.responses[0].split("\n")
+
+        self.assertEqual(len(splitss), 2)
+
+        self.assertEqual(splits[0], "method,uri,start_time,run_time")
+        self.assertEqual(splits[1], "")
+
+    @inlineCallbacks
+    def test_get_feature_enabled(self):
+        GLSettings.log_timing_stats = True
+
+        base.TimingStats.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
+        base.TimingStats.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
+
+        handler = self.request()
+
+        yield handler.get()
+
+        splits = self.responses[0].split("\n")
+
+        self.assertEqual(len(splits), 4)
+
+        self.assertEqual(splits[0], "method,uri,start_time,run_time")
+        self.assertEqual(splits[1], "JOB,Session Management,1443252274.44,0")
+        self.assertEqual(splits[2], "GET,/styles/main.css,1443252277.68,0")
+        self.assertEqual(splits[3], "")

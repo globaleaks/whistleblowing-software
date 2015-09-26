@@ -9,9 +9,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, submission, rtip, wbtip, receiver, \
                                 files, authentication, admin, token, \
-                                collection, langfiles, css, wizard
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
-from globaleaks.handlers import exporter
+                                collection, langfiles, css, wizard, base
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
@@ -34,8 +32,8 @@ spec = [
     (r'/exception', exception.ExceptionHandler),
 
     ## Some Useful Redirects ##
-    (r'/login', BaseRedirectHandler, {'url': '/#/login'}),
-    (r'/admin', BaseRedirectHandler, {'url': '/#/admin'}),
+    (r'/login', base.BaseRedirectHandler, {'url': '/#/login'}),
+    (r'/admin', base.BaseRedirectHandler, {'url': '/#/admin'}),
 
     ## Authentication Handler ##
     (r'/authentication', authentication.AuthenticationHandler),
@@ -107,19 +105,18 @@ spec = [
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##
-    (r'/(favicon.ico)', BaseStaticFileHandler),
-    (r'/(robots.txt)', BaseStaticFileHandler),
-    (r'/static/(.*)', BaseStaticFileHandler),
+    (r'/(favicon.ico)', base.BaseStaticFileHandler),
+    (r'/(robots.txt)', base.BaseStaticFileHandler),
+    (r'/static/(.*)', base.BaseStaticFileHandler),
     (r'/styles.css', css.LTRCSSFileHandler),
     (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.glclient_path}),
 
-    (r'/s/current', exporter.CurrentStats),
-    (r'/s/reportevent/(\w+)', exporter.ReportEvent),
+    (r'/s/timingstats', base.TimingStats),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]*)', BaseStaticFileHandler, {'path': GLSettings.glclient_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.glclient_path})
 ]
 
 

@@ -17,7 +17,9 @@ import types
 
 from StringIO import StringIO
 
-from twisted.internet import fdesc
+from cryptography.hazmat.primitives.constant_time import bytes_eq
+
+from twisted.internet import fdesc, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
@@ -33,8 +35,7 @@ from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 from globaleaks.utils.monitor import ResourceMonitor
-from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, \
-    datetime_now, datetime_null, deferred_sleep
+from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -119,19 +120,16 @@ class GLHTTPConnection(HTTPConnection):
 class BaseHandler(RequestHandler):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
 
-    start_time = datetime_null()
-
     def __init__(self, application, request, **kwargs):
-        super(BaseHandler, self).__init__(application, request, **kwargs)
-
         self.name = type(self).__name__
-
-        GLSettings.http_requests_counter += 1
-        self.req_id = GLSettings.http_requests_counter
 
         self.handler_time_analysis_begin()
         self.handler_request_logging_begin()
 
+        self.req_id = GLSettings.requests_counter
+        GLSettings.requests_counter += 1
+
+        super(BaseHandler, self).__init__(application, request, **kwargs)
 
     def set_default_headers(self):
         """
@@ -170,12 +168,7 @@ class BaseHandler(RequestHandler):
         if not lang:
             # before was used the Client language. but shall be unsupported
             # lang = self.request.headers.get('Accepted-Language', None)
-
-            if hasattr(GLSettings.memory_copy, 'default_language') and GLSettings.memory_copy.default_language:
-                lang = GLSettings.memory_copy.default_language
-            else:
-                # May happen is not yet initialized and here is requested
-                lang = "en"
+            lang = GLSettings.memory_copy.default_language
 
         self.request.language = lang
 
@@ -516,7 +509,7 @@ class BaseHandler(RequestHandler):
             exc_type, exc_value, exc_tb = sys.exc_info()
 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
-            if GLSettings.http_log and e.log_message:
+            if GLSettings.log_requests_responses and e.log_message:
                 string_format = "%d %s: " + e.log_message
                 args = [e.status_code, self._request_summary()] + list(e.args)
                 msg = lambda *args: string_format % args
@@ -528,7 +521,7 @@ class BaseHandler(RequestHandler):
                 return self.send_error(e.status_code, exception=e)
         else:
             log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb))
-            if GLSettings.http_log:
+            if GLSettings.log_requests_responses:
                 log.msg(e)
             mail_exception_handler(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
@@ -538,7 +531,7 @@ class BaseHandler(RequestHandler):
 
     def handler_time_analysis_end(self):
         """
-        If the software is running with the option -S --stats (GLSetting.timing_stats)
+        If the software is running with the option -S --stats (GLSetting.log_timing_stats)
         then we are doing performance testing, having our mailbox spammed is not important,
         so we just skip to report the anomaly.
         """
@@ -551,17 +544,15 @@ class BaseHandler(RequestHandler):
 
             send_exception_email(error, mail_reason="Handler Time Exceeded")
 
-        if GLSettings.timing_stats:
-            from globaleaks.handlers.exporter import add_measured_event
-            add_measured_event(self.request.method, self.request.uri,
-                               current_run_time, self.req_id, self.start_time)
+        if GLSettings.log_timing_stats:
+            TimingStats.log_measured_timing(self.request.method, self.request.uri, self.start_time, current_run_time)
 
 
     def handler_request_logging_begin(self):
-        if GLSettings.devel_mode and GLSettings.http_log >= 0:
+        if GLSettings.devel_mode and GLSettings.log_requests_responses:
             try:
                 content = (">" * 15)
-                content += (" Request %d " % GLSettings.http_requests_counter)
+                content += (" Request %d " % GLSettings.requests_counter)
                 content += (">" * 15) + "\n\n"
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
@@ -582,27 +573,16 @@ class BaseHandler(RequestHandler):
                 self.do_verbose_log(content)
 
             except Exception as excep:
-                log.err("JSON logging fail (prepare): %s" % excep.message)
+                log.err("HTTP Request logging fail: %s" % excep.message)
                 return
 
-            if 0 < GLSettings.http_log < GLSettings.http_requests_counter:
-                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSettings.http_log)
-                GLSettings.http_log = -1
-
     def handler_request_logging_end(self):
-        if GLSettings.devel_mode and GLSettings.http_log >= 0:
+        if GLSettings.devel_mode and GLSettings.log_requests_responses:
             try:
                 content = ("<" * 15)
                 content += (" Response %d " % self.req_id)
                 content += ("<" * 15) + "\n\n"
-                content += "status code: " + str(self._status_code) + "\n\n"
-
-                content += "response-headers:\n"
-                for k, v in self._headers.iteritems():
-                    content += "%s: %s\n" % (k, v)
-
-                if self._write_buffer is not None:
-                    content += "\nresponse-body: " + str(self._write_buffer) + "\n"
+                content += "\nbody: " + str(self._write_buffer) + "\n"
 
                 self.do_verbose_log(content)
             except Exception as excep:
@@ -642,3 +622,48 @@ class BaseStaticFileHandler(BaseHandler):
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     pass
+
+
+class TimingStats(BaseHandler):
+    TimingsTracker = []
+
+    @staticmethod
+    def log_measured_timing(method, uri, start_time, run_time):
+        if not GLSettings.log_timing_stats:
+            return
+
+        if uri == '/s/timings':
+            return
+
+        if len(TimingStats.TimingsTracker) > 999:
+            TimingStats.TimingsTracker = TimingStats.TimingsTracker[999:]
+
+        if method == 'PUT' and uri.startswith('/submission'):
+            category = 'submission'
+        elif method == 'POST' and uri.startswith('/submission'):
+            category = 'token'
+        elif method == 'POST' and uri == '/wbtip/comments':
+            category = 'comment'
+        elif method == 'JOB' and uri == 'Delivery':
+            category = 'delivery'
+        else:
+            category = 'uncategorized'
+
+        TimingStats.TimingsTracker.append({
+            'category': category,
+            'method': method,
+            'uri': uri,
+            'start_time': start_time,
+            'run_time': run_time
+        })
+
+    def get(self):
+        csv = "category,method,uri,start_time,run_time\n"
+        for measure in TimingStats.TimingsTracker:
+            csv += "%s,%s,%s,%s,%d\n" % (measure['category'],
+                                         measure['method'],
+                                         measure['uri'],
+                                         measure['start_time'],
+                                         measure['run_time'])
+        self.set_status(200)
+        self.finish(csv)

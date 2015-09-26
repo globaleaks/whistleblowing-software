@@ -20,7 +20,7 @@ from globaleaks.handlers.base import GLHTTPConnection
 application = Application('GLBackend')
 
 settings = dict(cookie_secret=randbits(128),
-                debug=GLSettings.http_log,
+                debug=GLSettings.log_requests_responses,
                 gzip=True)
 
 # Initialize the web API event listener, handling all the synchronous operations
