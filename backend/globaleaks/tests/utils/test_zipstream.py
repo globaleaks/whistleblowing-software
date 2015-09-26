@@ -8,7 +8,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.db.datainit import load_appdata
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from globaleaks.utils.zipstream import ZipStream, get_compression_opts
+from globaleaks.utils.zipstream import ZipStream
 
 class TestCollection(helpers.TestGL):
     files = []
@@ -23,11 +23,9 @@ class TestCollection(helpers.TestGL):
 
 
     def test_collection(self):
-        for compression in ['zipstored', 'zipdeflated']:
-            with open(self.test_collection_file, 'w') as f:
-                opts = get_compression_opts(compression)
-                for data in ZipStream(self.files, opts['compression_type']):
-                    f.write(data)
+        with open(self.test_collection_file, 'w') as f:
+            for data in ZipStream(self.files):
+                f.write(data)
 
-            with ZipFile(self.test_collection_file, 'r') as f:
-                self.assertIsNone(f.testzip())
+        with ZipFile(self.test_collection_file, 'r') as f:
+            self.assertIsNone(f.testzip())
