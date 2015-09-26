@@ -101,7 +101,7 @@ def receiverfile_planning(store):
     for ifile in ifiles:
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
-            error = "Failed to handle receiverfiles creation for ifilee %s (%d retries)" % \
+            error = "Failed to handle receiverfiles creation for ifile %s (%d retries)" % \
                     (ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
             log.err(error)
             send_exception_email(error)
