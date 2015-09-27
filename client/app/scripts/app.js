@@ -212,7 +212,7 @@ var GLClient = angular.module('GLClient', [
 }]).
   factory("stacktraceService", function() {
     return({
-      print: printStackTrace
+      print: StackTrace.get()
     });
 }).
   config(exceptionConfig).
