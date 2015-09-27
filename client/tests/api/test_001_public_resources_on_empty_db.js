@@ -98,10 +98,8 @@ public_resources.forEach(function(req){
           if (req['type'] == 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
-            done();
-          } else {
-           done();
-          }
+          };
+          done();
         } 
       });
     })
@@ -118,16 +116,13 @@ public_resources.forEach(function(req){
         if (err) {
           return done(err);
         } else {
-
           validate_mandatory_headers(res.headers);
 
           if (req['type'] == 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
-            done();
-          } else {
-           done();
           }
+          done();
         }
       });
     })
@@ -144,16 +139,13 @@ public_resources.forEach(function(req){
         if (err) {
           return done(err);
         } else {
-
           validate_mandatory_headers(res.headers);
 
           if (req['type'] == 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
-            done();
-          } else {
-           done();
           }
+          done();
         }
       });
     })

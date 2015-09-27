@@ -43,7 +43,6 @@ describe('GET /receivers', function () {
       .get('/receivers')
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -69,7 +68,6 @@ describe('POST /authentication', function () {
       .send(invalid_login)
       .expect(401)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -88,7 +86,6 @@ describe('POST /authentication', function () {
       .send(valid_login)
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }

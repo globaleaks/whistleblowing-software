@@ -217,7 +217,6 @@ describe('POST /authentication', function () {
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -238,7 +237,6 @@ describe('GET /admin/node', function () {
       .set('X-Session', authentication['session_id'])
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -265,7 +263,6 @@ describe('PUT /admin/node', function () {
       .set('X-Session', authentication['session_id'])
       .expect(202)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -292,7 +289,6 @@ for (var i=0; i<population_order / 2; i++) {
         .set('X-Session', authentication['session_id'])
         .expect(201)
         .end(function (err, res) {
-
           if (err) {
             return done(err);
           }
@@ -304,7 +300,6 @@ for (var i=0; i<population_order / 2; i++) {
           contexts_ids.push(res.body.id);
 
           done();
-
         });
     })
   })
@@ -327,7 +322,6 @@ for (var i=0; i<population_order; i++) {
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
-
             if (err) {
               return done(err);
             }
@@ -339,7 +333,6 @@ for (var i=0; i<population_order; i++) {
             receivers_ids.push(res.body.id);
 
             done();
-
         });
       })
     })
@@ -363,7 +356,6 @@ for (var i=population_order/2; i<population_order; i++) {
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
-
             if (err) {
               return done(err);
             }
@@ -375,7 +367,6 @@ for (var i=population_order/2; i<population_order; i++) {
             contexts_ids.push(res.body.id);
 
             done();
-
         });
       })
     })
@@ -409,7 +400,6 @@ for (var i=0; i<population_order; i++) {
                 fields_ids.push(res.body.id);
 
                 done();
-
               });
         })
       })
