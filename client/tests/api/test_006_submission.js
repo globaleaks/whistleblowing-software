@@ -92,7 +92,6 @@ describe('GET /contexts', function(){
           contexts = res.body;
 
           for (var i=0; i<population_order; i++) {
-
             contexts_ids.push(contexts[i].id);
 
             if(contexts[i].receivers.length != population_order) {
@@ -125,7 +124,6 @@ describe('GET /receivers', function(){
           receivers = res.body;
 
           for (var i=0; i<population_order; i++) {
-
             receivers_ids.push(receivers[i].id);
 
             if(receivers[i].contexts.length != population_order) {
@@ -280,7 +278,6 @@ for (var i=1; i<comments_population_order; i++) {
           .set('X-Session', authentication['session_id'])
           .expect(201)
           .end(function (err, res) {
-
             if (err) {
               return done(err);
             }

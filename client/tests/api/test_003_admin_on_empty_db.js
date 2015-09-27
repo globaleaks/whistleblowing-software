@@ -153,7 +153,6 @@ describe('POST /authentication', function () {
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
@@ -196,7 +195,6 @@ admin_resources.forEach(function (req) {
         .set('X-Session', authentication['session_id'])
         .expect(req['status_POST'])
         .end(function (err, res) {
-
           if (err) {
             return done(err);
           }
@@ -217,7 +215,6 @@ admin_resources.forEach(function (req) {
         .set('X-Session', authentication['session_id'])
         .expect(req['status_PUT'])
         .end(function (err, res) {
-
           if (err) {
             return done(err);
           }
@@ -238,7 +235,6 @@ admin_resources.forEach(function (req) {
         .set('X-Session', authentication['session_id'])
         .expect(req['status_DELETE'])
         .end(function (err, res) {
-
           if (err) {
             return done(err);
           }
