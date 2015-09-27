@@ -292,7 +292,6 @@ describe('PUT /admin/node', function () {
 for (var i=0; i<population_order / 2; i++) {
   describe('POST /admin/context', function () {
     it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
-
       var newObject = JSON.parse(JSON.stringify(context));
       newObject.name = 'Context ' + i;
       newObject.presentation_order = i;
@@ -323,11 +322,10 @@ for (var i=0; i<population_order / 2; i++) {
 }
 
 // we popolate population_order receivers
-describe('POST /admin/receiver', function () {
-  for (var i=0; i<population_order; i++) {
-    (function (i) {
+for (var i=0; i<population_order; i++) {
+  (function (i) {
+    describe('POST /admin/receiver', function () {
       it('responds 201 on POST /admin/receiver ' + i + ' (authenticated, valid receiver)', function (done) {
-
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
         newObject.name = 'Receiver ' + i;
@@ -355,14 +353,14 @@ describe('POST /admin/receiver', function () {
 
         });
       })
-    })(i);
-  }
-})
+    })
+  })(i);
+}
 
 // we popolate population_order/2 contexts
-describe('POST /admin/context', function () {
-  for (var i=population_order/2; i<population_order; i++) {
-    (function (i) {
+for (var i=population_order/2; i<population_order; i++) {
+  (function (i) {
+    describe('POST /admin/context', function () {
       it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
         var newObject = JSON.parse(JSON.stringify(context));
         newObject.name = 'Context ' + i ;
@@ -391,17 +389,16 @@ describe('POST /admin/context', function () {
 
         });
       })
-    })(i);
-  }
-})
+    })
+  })(i);
+}
 
 // we popolate fields for each context
-describe('POST /admin/field', function () {
-  for (var i=0; i<population_order; i++) {
-    for (var j=0; j<fields.length; j++) {
-      (function (i, j) {
+for (var i=0; i<population_order; i++) {
+  for (var j=0; j<fields.length; j++) {
+    (function (i, j) {
+      describe('POST /admin/field', function () {
         it('responds 201 on POST /admin/field, valid field', function (done) {
-
             var newObject = JSON.parse(JSON.stringify(fields[j]));
             newObject.step_id = contexts[i]['steps'][0]['id'];
 
@@ -426,7 +423,7 @@ describe('POST /admin/field', function () {
 
               });
         })
-      })(i, j);
-    }
+      })
+    })(i, j);
   }
-})
+}

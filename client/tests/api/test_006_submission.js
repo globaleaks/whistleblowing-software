@@ -63,7 +63,7 @@ var fill_field_recursively = function(answers, field) {
   };
 }
 
-var fill_answers= function(steps) {
+var fill_answers = function(steps) {
   answers = {}
   for (i in steps) {
     for (c in steps[i].children) {
@@ -140,9 +140,9 @@ describe('GET /receivers', function(){
   })
 })
 
-describe('POST /token', function(){
-  for (var i=0; i<submission_population_order; i++) {
-    (function (i) {
+for (var i=0; i<submission_population_order; i++) {
+  (function (i) {
+    describe('POST /token', function(){
       it('responds with ', function(done){
         var new_submission_token = {'type': 'submission'};
         app
@@ -162,14 +162,13 @@ describe('POST /token', function(){
             }
           });
       })
-    })(i);
+    })
+  })(i);
+}
 
-  }
-})
-
-describe('PUT /token/token_id', function(){
-  for (var i=0; i<submission_population_order; i++) {
-    (function (i) {
+for (var i=0; i<submission_population_order; i++) {
+  (function (i) {
+    describe('PUT /token/token_id', function(){
       it('responds with ', function(done){
         if(submission_tokens[i].human_captcha) {
           submission_tokens[i].human_captcha_answer = eval(submission_tokens[i].human_captcha);
@@ -192,13 +191,13 @@ describe('PUT /token/token_id', function(){
           done();
         }
       })
-    })(i);
-  }
-})
+    })
+  })(i);
+}
 
-describe('PUT /submission/submission_id', function(){
-  for (var i=0; i<submission_population_order; i++) {
-    (function (i) {
+for (var i=0; i<submission_population_order; i++) {
+  (function (i) {
+    describe('PUT /submission/submission_id', function(){
       it('responds with ', function(done){
         var new_submission = {};
         new_submission.id = submission_tokens[i].id;
@@ -225,9 +224,9 @@ describe('PUT /submission/submission_id', function(){
             }
           });
       })
-    })(i);
-  }
-})
+    })
+  })(i);
+}
 
 // full test on first submission only
 for (var i=0; i<1; i++){
