@@ -49,7 +49,7 @@ var valid_login = function(i) {
   }
 }
 
-var invalid_login = function(i) {
+var invalid_login = function() {
   return {
     'receipt': 'antani'
   }
@@ -227,49 +227,26 @@ for (var i=0; i<submission_population_order; i++) {
   })(i);
 }
 
-// full test on first submission only
-for (var i=0; i<1; i++){
-  (function (i) {
-    describe('POST /receiptauth', function () {
-      it('responds 401 on invalid wb login', function (done) {
-        var credentials = invalid_login(i);
-        app
-          .post('/receiptauth')
-          .send(credentials)
-          .expect(401)
-          .end(function (err, res) {
-            if (err) {
-              return done(err);
-            }
+describe('POST /receiptauth', function () {
+  it('responds 401 on invalid wb login', function (done) {
+    var credentials = invalid_login();
+    app
+      .post('/receiptauth')
+      .send(credentials)
+      .expect(401)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
 
-            validate_mandatory_headers(res.headers);
+        validate_mandatory_headers(res.headers);
 
-            done();
-          });
-      })
-    })
+        authentication = res.body;
 
-    describe('POST /receiptauth', function () {
-      it('responds 200 on valid wb login', function (done) {
-        var credentials = valid_login(i);
-        app
-          .post('/receiptauth')
-          .send(credentials)
-          .expect(200)
-          .end(function (err, res) {
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            done();
-          });
-      })
-    })
-
-  })(i);
-}
+        done();
+      });
+  })
+});
 
 describe('POST /receiptauth', function () {
   it('responds 200 on valid wb login', function (done) {
@@ -295,7 +272,7 @@ describe('POST /receiptauth', function () {
 for (var i=1; i<comments_population_order; i++) {
   (function (i) {
     describe('POST /wbtip/comments', function () {
-      it('responds 200 on valid wb login', function (done) {
+      it('responds 201 on wb adding a comment on an existent submission', function (done) {
         var credentials = valid_login(i);
         app
           .post('/wbtip/comments')
