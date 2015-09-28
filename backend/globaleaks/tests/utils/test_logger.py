@@ -2,7 +2,10 @@
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, tipLog, LogQueue
+from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, \
+    tipLog, LogQueue, initialize_LoggedEvent
+from globaleaks.tests.jobs.test_log_sched import push_admin_logs
+import pprint
 
 
 class TestCollection(helpers.TestGL):
@@ -11,20 +14,22 @@ class TestCollection(helpers.TestGL):
     def setUp(self):
         yield helpers.TestGL.setUp(self)
 
+    @inlineCallbacks
     def test_adminLog(self):
-        adminLog(['normal'], 'LOGIN_1', [])
-        adminLog(['normal'], 'LOGIN_2', ['args'])
-        adminLog(['normal'], 'LOGIN_1', [])
-        adminLog(['normal'], 'LOGIN_1', [])
 
-        x = LogQueue.picklogs('admin', 50)
+        yield initialize_LoggedEvent()
+        logs_number = 10
+        push_admin_logs(logs_number)
 
-        self.assertTrue(len(x) == 3)
-        self.assertEqual(x[0].repeated, 1)
-        self.assertEqual(x[1].log_code, 'LOGIN_2')
+        x =  yield LogQueue.picklogs('admin', 50)
+
+        pprint.pprint(x)
+        self.assertTrue(len(x) == 4)
 
 
+    @inlineCallbacks
     def test_receiverLog(self):
+        yield initialize_LoggedEvent()
         fake_uuidv4 = 'blah-this-is-an-UUID-v4'
         other_receiver = 'CallMeOther,ButIamWorkingHardLikeEveryOtherReceiver'
 
@@ -35,10 +40,17 @@ class TestCollection(helpers.TestGL):
         receiverLog(['normal'], 'LOGIN_3', [], other_receiver)
         receiverLog(['mail', 'normal'], 'SECURITY_1', [], fake_uuidv4)
 
-        x = LogQueue.picklogs(
+        x = yield LogQueue.picklogs(
             LogQueue.create_subject_uuid('receiver', fake_uuidv4),
             50
         )
-        self.assertEqual(x[0].repeated, 1)
-        self.assertEqual(x[1].repeated, 1)
+        pprint.pprint(x)
+
+    @inlineCallbacks
+    def test_picklogs(self):
+
+        yield initialize_LoggedEvent()
+        fake_uuidv4 = 'blah-this-is-an-UUID-v4'
+
+        adm = yield LogQueue.picklogs('admin', 10)
 

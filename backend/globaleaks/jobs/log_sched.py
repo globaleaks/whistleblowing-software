@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 #   log_sched
-#   ****************
+#   *********
 #
 import os
 from twisted.internet.defer import inlineCallbacks, returnValue
@@ -12,7 +12,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.models import Stats, Anomalies, Log
 from globaleaks.utils.utility import log, datetime_now, datetime_null
-from globaleaks.utils.logger import LogQueue, LoggedEvent
+from globaleaks.utils.logger import LogQueue, LoggedEvent, initialize_LoggedEvent
 
 
 class LogSchedule(GLJob):
@@ -32,15 +32,11 @@ class LogSchedule(GLJob):
         max_id_check = store.find(Log)
         max_id_check.order_by(Desc(Log.id))
 
-        if max_id_check.count() < 2:
-            print "spiacente! si esce"
-            return
-
-        print "Desc", max_id_check[-1], max_id_check[0]
-
-        max_id_check = store.find(Log)
-        max_id_check.order_by(Asc(Log.id))
-        print "Asc", max_id_check[-1], max_id_check[0]
+        if max_id_check.count() == 0:
+            print "First initialization!?"
+            LogSchedule.highest_logged_id = 1
+        else:
+            LogSchedule.highest_logged_id = max_id_check[0].id
 
 
     @transact
@@ -48,20 +44,19 @@ class LogSchedule(GLJob):
 
         for who, whatzz in LogQueue._all_queues.iteritems():
             for what in whatzz:
-                print who, what
                 nl = Log()
 
                 nl.id = what.id
                 nl.code = what.log_code
                 nl.args = what.args
-                nl.log_date = what.log_code
+                nl.log_date = what.log_date
                 nl.subject = what.subject
-                nl.subject_id = what.subject_id
                 nl.log_level = what.level
                 nl.mail = what.mail
                 nl.mail_sent = False
-                nl.repeated = what.repeated
-                nl.last_repetition_date = what.last_repetition_date
+
+                if nl.id > LogSchedule.highest_logged_id:
+                    LogSchedule.highest_logged_id = nl.id
 
                 store.add(nl)
 
@@ -71,10 +66,13 @@ class LogSchedule(GLJob):
     @inlineCallbacks
     def operation(self):
 
+        if not LoggedEvent._incremental_id:
+            yield initialize_LoggedEvent()
+
         if not LogSchedule.highest_logged_id:
             yield self.initialize_highest_id()
 
-        if LoggedEvent.get_last_log_id() > LogSchedule.highest_logged_id:
+        if LoggedEvent._incremental_id > LogSchedule.highest_logged_id:
             yield self.dump_fresh_logs()
 
         returnValue(None)

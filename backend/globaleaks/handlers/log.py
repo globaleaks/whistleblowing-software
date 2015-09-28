@@ -63,11 +63,11 @@ class AdminLogCollection(BaseLogCollection):
 
     # @transport_security_check('admin')
     # @authenticated('admin')
-    # @inlineCallbacks
+    @inlineCallbacks
     def get(self, paging):
 
         unimplemented_paging = 50
-        logslist = LogQueue.picklogs('admin', unimplemented_paging)
+        logslist = yield LogQueue.picklogs('admin', unimplemented_paging)
 
         self.finish(self.serialize_logs(logslist))
 
@@ -75,12 +75,12 @@ class ReceiverLogCollection(BaseLogCollection):
 
     @transport_security_check('receiver')
     @authenticated('receiver')
-    # @inlineCallbacks
+    @inlineCallbacks
     def get(self, paging):
 
         unimplemented_paging = 50
 
-        logslist = LogQueue.picklogs(
+        logslist = yield LogQueue.picklogs(
                 LogQueue.create_subject_uuid('receiver', self.current_user.user_id),
                 unimplemented_paging )
 

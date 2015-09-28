@@ -832,14 +832,11 @@ class Log(BaseModel):
     code = Unicode()
     args = JSON()
     log_date = DateTime()
+    # This is the identification string, is composed by a 'admin' or 'receiver_$UUIDv4'
     subject = Unicode()
-    subject_id = Unicode()
     log_level = Int()
     mail = Bool()
     mail_sent = Bool()
-    repeated = Int()
-    last_repetition_date = DateTime()
-
 
 
 class FieldField(BaseModel):

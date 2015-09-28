@@ -441,8 +441,6 @@ CREATE TABLE log (
     log_level INTEGER,
     mail INTEGER,
     mail_sent INTEGER,
-    repeated INTEGER,
-    last_repetition_date TEXT,
     UNIQUE (id),
     PRIMARY KEY (id)
 );

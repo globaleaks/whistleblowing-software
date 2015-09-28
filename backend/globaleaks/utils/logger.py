@@ -18,10 +18,13 @@ from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
+from twisted.internet.defer import returnValue, inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
-from globaleaks.settings import GLSettings
+from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.utils.utility import log
+from globaleaks.models import Log
 
 Login_messages = {
     # Admin
@@ -157,21 +160,55 @@ class LogQueue(object):
             return LogQueue._all_queues[ subject_uuid ][-1]
         except KeyError:
             return None
+        except IndexError:
+            return None
 
 
     @classmethod
-    def picklogs(cls, subject_uuid, amount):
+    @transact_ro
+    def picklogs(store, _, subject_uuid, amount):
         """
         by subject, pick the last Nth logs, request by paging.
         This may interact with database if required, but hopefully the
         default behavior is to access cache.
         """
+
+        memory_avail = []
         try:
             x = LogQueue._all_queues[ subject_uuid ][-amount]
             x.reverse()
-            return x
+            # the amount of data in memory are enough
+            returnValue(x)
         except KeyError:
-            return None
+            # subject has not entries
+            pass
+        except IndexError:
+            # the "-$number" is not enough, we keep them all
+            all = LogQueue._all_queues[ subject_uuid ]
+            all.reverse()
+
+            recorded_l = store.find(Log, Log.subject == subject_uuid)[-amount]
+            print "Availzz:", recorded_l.count()
+            for r in recorded_l:
+                print r
+
+
+
+
+@transact_ro
+def initialize_LoggedEvent(store):
+
+    if not LoggedEvent._incremental_id:
+        last_log = store.find(Log)
+        last_log.order_by(Desc(Log.id))
+        if last_log.count() > 0:
+            x = last_log[0]
+            print "***", x.id
+            LoggedEvent._incremental_id = x.id
+        else:
+            LoggedEvent._incremental_id = 1
+
+    returnValue(LoggedEvent._incremental_id)
 
 
 
@@ -184,13 +221,10 @@ class LoggedEvent(object):
 
     @classmethod
     def get_unique_log_id(cls):
-        cls._incremental_id += 1
-        return cls._incremental_id
 
-
-    @classmethod
-    def get_last_log_id(cls):
-        return cls._incremental_id
+        assert LoggedEvent._incremental_id, "Missing initialization of _incremental_id!"
+        LoggedEvent._incremental_id += 1
+        return LoggedEvent._incremental_id
 
 
     def serialize_log(self):
@@ -200,22 +234,10 @@ class LoggedEvent(object):
             'args': self.args,
             'log_date': datetime_to_ISO8601(self.log_date),
             'subject': self.subject,
-            'subject_id': self.subject_id,
             'level': self.level,
             'mail': self.mail
         }
-        if self.repeated:
-            log_dict.update({
-                'repeated': self.repeated,
-                'last_repetition_date': datetime_to_ISO8601(self.last_repetition_date)
-            })
-        else:
-            log_dict.update({
-                'repeated': 0,
-                'last_repetition_date': None
-            })
         return log_dict
-
 
     def match(self, code, args):
         """
@@ -229,23 +251,7 @@ class LoggedEvent(object):
 
         return True
 
-
-    def mark_repetition(self):
-        self.repeated += 1
-        self.last_repetition_date = datetime_now()
-
-
     def __init__(self, log_info, subject, subject_id=None):
-        # Looks if the last event recorded on the same subject, is the same kind,
-        # In this case, increment the event counter in the previous one.
-
-        subject_uuid = LogQueue.create_subject_uuid(subject, subject_id)
-        last_subject_log = LogQueue.picklast( subject_uuid )
-
-        # If happen, Object is not really created/memorized
-        if last_subject_log and last_subject_log.match(log_info['code'], log_info['args']):
-            last_subject_log.mark_repetition()
-            return
 
         if 'mail' in log_info['level']:
             self.mail = True
@@ -266,16 +272,15 @@ class LoggedEvent(object):
         self.log_code = log_info['code']
         self.args = log_info['args']
         self.log_date = datetime_now()
-        self.subject = subject
-        self.subject_id = subject_id
-        self.repeated = 0
-        self.last_repetition_date = None
+
+        subject_uuid = LogQueue.create_subject_uuid(subject, subject_id)
+        self.subject = subject_uuid
 
         if GLSettings.loglevel == logging.DEBUG:
             log.debug( _LOG_CODE[ self.log_code][0] % self.args )
 
         LogQueue(subject_uuid).add(self)
-
+        print "+++", self
 
     def __repr__(self):
         simple = "%d| %s [%s] %s" % \
@@ -283,14 +288,7 @@ class LoggedEvent(object):
                    datetime_to_ISO8601(self.log_date)[11:-8],
                    self.subject,
                    _LOG_CODE[self.log_code][0] )
-
-        if self.repeated:
-            return "%s + %d times (last %s)" % \
-                 ( simple,
-                   self.repeated,
-                   datetime_to_ISO8601(self.last_repetition_date)[11:-8] )
-        else:
-            return simple
+        return simple
 
 
 ########## copied from utility.py to put all the log related function here
