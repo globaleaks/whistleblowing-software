@@ -6,14 +6,11 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks import models
-from globaleaks.handlers import admin, rtip, receiver
-from globaleaks.jobs import cleaning_sched
-from globaleaks.utils.utility import is_expired, datetime_null
-from globaleaks.settings import transact, GLSettings
-from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, tipLog, LogQueue, initialize_LoggedEvent
+from globaleaks.settings import transact
+from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, \
+    tipLog, LogQueue, initialize_LoggedEvent
 
 from globaleaks.jobs.log_sched import LogSchedule
-
 
 
 def push_admin_logs(howmany):
@@ -46,6 +43,7 @@ class TestLogFlush(helpers.TestGLWithPopulatedDB):
 
         yield initialize_LoggedEvent()
         FUFFA_NUMBER = 42
+        push_admin_logs(FUFFA_NUMBER)
 
         yield LogSchedule().dump_fresh_logs()
 
@@ -60,8 +58,8 @@ class TestLogFlush(helpers.TestGLWithPopulatedDB):
         yield initialize_LoggedEvent()
         FUFFA_NUMBER = 120
         push_admin_logs(FUFFA_NUMBER)
-        yield LogSchedule().dump_fresh_logs()
 
+        yield LogSchedule().dump_fresh_logs()
         yield self.pull_logs(FUFFA_NUMBER)
 
 

@@ -436,7 +436,7 @@ CREATE TABLE log (
     code TEXT NOT NULL,
     args VARCHAR,
     log_date TEXT NOT NULL,
-    subject TEXT NOT NULL CHECK(subject IN ('admin', 'receiver', 'itip')),
+    subject TEXT NOT NULL,
     subject_id TEXT,
     log_level INTEGER,
     mail INTEGER,

@@ -3,7 +3,7 @@
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, \
-    tipLog, LogQueue, initialize_LoggedEvent
+    tipLog, LogQueue, initialize_LoggedEvent, picklogs
 from globaleaks.tests.jobs.test_log_sched import push_admin_logs
 import pprint
 
@@ -21,10 +21,10 @@ class TestCollection(helpers.TestGL):
         logs_number = 10
         push_admin_logs(logs_number)
 
-        x =  yield LogQueue.picklogs('admin', 50)
+        x =  yield picklogs('admin', 50)
 
-        pprint.pprint(x)
-        self.assertTrue(len(x) == 4)
+
+        self.assertTrue(len(x) == logs_number)
 
 
     @inlineCallbacks
@@ -40,7 +40,7 @@ class TestCollection(helpers.TestGL):
         receiverLog(['normal'], 'LOGIN_3', [], other_receiver)
         receiverLog(['mail', 'normal'], 'SECURITY_1', [], fake_uuidv4)
 
-        x = yield LogQueue.picklogs(
+        x = yield picklogs(
             LogQueue.create_subject_uuid('receiver', fake_uuidv4),
             50
         )
@@ -50,7 +50,11 @@ class TestCollection(helpers.TestGL):
     def test_picklogs(self):
 
         yield initialize_LoggedEvent()
+        push_admin_logs(10)
         fake_uuidv4 = 'blah-this-is-an-UUID-v4'
 
-        adm = yield LogQueue.picklogs('admin', 10)
+        adm = yield picklogs('admin', 10)
+
+        print adm
+        self.assertTrue(False)
 

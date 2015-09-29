@@ -9,13 +9,14 @@
 
 import os
 import logging
+import operator
 
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc, And
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.utils.logger import LoggedEvent, LogQueue
+from globaleaks.utils.logger import LoggedEvent, LogQueue, picklogs
 from globaleaks.rest import requests
 
 from globaleaks.settings import transact, transact_ro, GLSettings
@@ -57,6 +58,8 @@ class BaseLogCollection(BaseHandler):
         retlist = []
         for le in logslist:
             retlist.append(le.serialize_log())
+
+        retlist.sort(key=operator.itemgetter('id'))
         return retlist
 
 class AdminLogCollection(BaseLogCollection):
@@ -67,7 +70,7 @@ class AdminLogCollection(BaseLogCollection):
     def get(self, paging):
 
         unimplemented_paging = 50
-        logslist = yield LogQueue.picklogs('admin', unimplemented_paging)
+        logslist = yield picklogs('admin', unimplemented_paging)
 
         self.finish(self.serialize_logs(logslist))
 
@@ -80,7 +83,7 @@ class ReceiverLogCollection(BaseLogCollection):
 
         unimplemented_paging = 50
 
-        logslist = yield LogQueue.picklogs(
+        logslist = yield picklogs(
                 LogQueue.create_subject_uuid('receiver', self.current_user.user_id),
                 unimplemented_paging )
 
@@ -91,23 +94,30 @@ class WbLogCollection(BaseLogCollection):
 
     @transport_security_check('wb')
     @authenticated('wb')
-    # @inlineCallbacks
+    @inlineCallbacks
     def get(self, paging):
 
         unimplemented_paging = 50
-        raise Exception("To be implemented")
 
+        logslist = yield picklogs(
+            LogQueue.create_subject_uuid('itip', self.current_user.user_id),
+            unimplemented_paging )
+
+        self.finish(self.serialize_logs(logslist))
 
 
 class RtipLogCollection(BaseLogCollection):
 
     @transport_security_check('receiver')
     @authenticated('receiver')
-    # @inlineCallbacks
+    @inlineCallbacks
     def get(self, paging):
 
         unimplemented_paging = 50
-        raise Exception("To be implemented")
 
+        logslist = yield picklogs(
+            LogQueue.create_subject_uuid('itip', self.current_user.user_id),
+            unimplemented_paging )
 
+        self.finish(self.serialize_logs(logslist))
 

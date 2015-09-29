@@ -464,6 +464,7 @@ angular.module('GLServices', ['ngResource']).
     var receiversResource = $resource('wbtip/receivers', {}, {});
     var commentsResource = $resource('wbtip/comments', {}, {});
     var messageResource = $resource('wbtip/messages/:id', {id: '@id'}, {});
+    var tipActivities = $resource('wbtip/activities', {}, {});
 
     return function(fn) {
       var self = this;
@@ -531,6 +532,9 @@ angular.module('GLServices', ['ngResource']).
   factory('ReceiverTips', ['$rootScope', '$resource', function($rootScope, $resource) {
     $rootScope.selected_tip_list = [];
     return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
+}]).
+  factory('ReceiverLogCollection', ['$resource', function($resource) {
+    return $resource('receiver/logs/0');
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
     return $resource('receiver/notifications');
@@ -806,8 +810,8 @@ angular.module('GLServices', ['ngResource']).
       var validatePasswordChange = function () {
         if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
           scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
-          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
+          scope.pwdHasLetter = !!( /[A-z]/.test(scope.$eval(password)));
+          scope.pwdHasNumber = !!( /\d/.test(scope.$eval(password)));
           scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
         } else {
           /*

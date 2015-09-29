@@ -18,7 +18,6 @@ from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
-from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.expr import Desc
 
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
@@ -89,7 +88,7 @@ def _log_parameter_check(alarm_level, code, args):
 
 def adminLog(alarm_level, code, args):
     _log_parameter_check(alarm_level, code, args)
-    LoggedEvent({
+    LoggedEvent().create({
         'code' : code,
         'args' : args,
         'level': alarm_level,
@@ -97,7 +96,7 @@ def adminLog(alarm_level, code, args):
 
 def receiverLog(alarm_level, code, args, user_id):
     _log_parameter_check(alarm_level, code, args)
-    LoggedEvent({
+    LoggedEvent().create({
         'code' : code,
         'args' : args,
         'level': alarm_level
@@ -105,7 +104,7 @@ def receiverLog(alarm_level, code, args, user_id):
 
 def tipLog(alarm_level, code, args, tip_id):
     _log_parameter_check(alarm_level, code, args)
-    LoggedEvent({
+    LoggedEvent().create({
         'code' : code,
         'args' : args,
         'level': alarm_level
@@ -123,7 +122,7 @@ class LogQueue(object):
             pass
         else:
             LogQueue._all_queues.update({
-                subject_uuid : []
+                subject_uuid : {}
             })
         self.subject_uuid = subject_uuid
 
@@ -135,64 +134,74 @@ class LogQueue(object):
         in order to keep the log of a specific user/role/tip.
         """
         if subject == 'receiver':
-            subject_uuid = "receiver_%s" % subject_id
+            subject_uuid = unicode("receiver_%s" % subject_id)
         elif subject == 'itip':
-            subject_uuid = "itip_%s" % subject_id
+            subject_uuid = unicode("itip_%s" % subject_id)
         elif subject == 'admin':
-            subject_uuid = "admin"
+            subject_uuid = unicode("admin")
         else:
             raise Exception("Invalid condition %s" % subject)
 
         return subject_uuid
 
 
-    def add(self, logentry):
-        LogQueue._all_queues[ self.subject_uuid ].append(logentry)
+    def add(self, log_id, logentry):
+        LogQueue._all_queues[ self.subject_uuid ].update(
+            {log_id : logentry})
 
 
     @classmethod
-    def picklast(cls, subject_uuid):
-        """
-        This is used to check if a new Log event is the same of the
-        previous. we pick the last. compare with LoggedEvent.match()
-        """
+    def is_present(cls, subject_uuid, id):
+
         try:
-            return LogQueue._all_queues[ subject_uuid ][-1]
+            return id in LogQueue._all_queues[ subject_uuid ]
         except KeyError:
-            return None
-        except IndexError:
-            return None
+            return False
 
 
-    @classmethod
-    @transact_ro
-    def picklogs(store, _, subject_uuid, amount):
-        """
-        by subject, pick the last Nth logs, request by paging.
-        This may interact with database if required, but hopefully the
-        default behavior is to access cache.
-        """
 
-        memory_avail = []
-        try:
-            x = LogQueue._all_queues[ subject_uuid ][-amount]
-            x.reverse()
-            # the amount of data in memory are enough
-            returnValue(x)
-        except KeyError:
-            # subject has not entries
-            pass
-        except IndexError:
-            # the "-$number" is not enough, we keep them all
-            all = LogQueue._all_queues[ subject_uuid ]
-            all.reverse()
 
-            recorded_l = store.find(Log, Log.subject == subject_uuid)[-amount]
-            print "Availzz:", recorded_l.count()
+@transact_ro
+def picklogs(store, subject_uuid, amount):
+    """
+    by subject, pick the last Nth logs, request by paging.
+    This may interact with database if required, but hopefully the
+    default behavior is to access cache.
+    """
+
+    try:
+        subject_dict = LogQueue._all_queues[ subject_uuid ]
+        # [last, last-1, last-2]
+        x = subject_dict.values()
+        # In this way, we are taking the first (the last, in LIFO) logs in queue
+        retval = x[:amount] if len(x) > amount else x
+
+        least_id = subject_dict.keys()[-1]
+
+        if len(retval) < amount:
+            db_query_rl = store.find(Log, Log.subject == unicode(subject_uuid), Log.id < least_id)
+            db_query_rl.order_by(Desc(Log.id))
+            recorded_l = db_query_rl[:(amount - len(retval))]
+
             for r in recorded_l:
-                print r
+                entry = LoggedEvent()
+                entry.reload(r)
+                retval.append(entry)
 
+    except KeyError:
+        LogQueue._all_queues.update({subject_uuid : {}})
+        retval = []
 
+        retrieved = store.find(Log, Log.subject == unicode(subject_uuid))
+        retrieved.order_by(Desc(Log.id))
+        loglist = retrieved[:amount]
+
+        for l in loglist:
+            entry = LoggedEvent()
+            entry.reload(l)
+            retval.append(entry)
+
+    return retval
 
 
 @transact_ro
@@ -203,12 +212,12 @@ def initialize_LoggedEvent(store):
         last_log.order_by(Desc(Log.id))
         if last_log.count() > 0:
             x = last_log[0]
-            print "***", x.id
             LoggedEvent._incremental_id = x.id
         else:
             LoggedEvent._incremental_id = 1
 
-    returnValue(LoggedEvent._incremental_id)
+    log.debug("Restarting of Log framework, since ID %d" % LoggedEvent._incremental_id)
+    return LoggedEvent._incremental_id
 
 
 
@@ -235,7 +244,9 @@ class LoggedEvent(object):
             'log_date': datetime_to_ISO8601(self.log_date),
             'subject': self.subject,
             'level': self.level,
-            'mail': self.mail
+            'mail': self.mail,
+            'mail_sent': self.mail_sent,
+            'id': self.id
         }
         return log_dict
 
@@ -251,7 +262,26 @@ class LoggedEvent(object):
 
         return True
 
-    def __init__(self, log_info, subject, subject_id=None):
+    def __init__(self):
+
+        self.id = 0
+
+
+    def reload(self, storm_Log_entry):
+
+        self.id = storm_Log_entry.id
+        self.log_code = storm_Log_entry.code
+        self.args = storm_Log_entry.args
+        self.subject = storm_Log_entry.subject
+        self.mail = storm_Log_entry.mail
+        self.mail_sent = storm_Log_entry.mail_sent
+        self.level = storm_Log_entry.log_level
+        self.log_date = storm_Log_entry.log_date
+
+        LogQueue(self.subject).add(self.id, self)
+
+
+    def create(self, log_info, subject, subject_id=None):
 
         if 'mail' in log_info['level']:
             self.mail = True
@@ -279,16 +309,10 @@ class LoggedEvent(object):
         if GLSettings.loglevel == logging.DEBUG:
             log.debug( _LOG_CODE[ self.log_code][0] % self.args )
 
-        LogQueue(subject_uuid).add(self)
-        print "+++", self
+        LogQueue(subject_uuid).add(self.id, self)
 
     def __repr__(self):
-        simple = "%d| %s [%s] %s" % \
-                 ( self.id,
-                   datetime_to_ISO8601(self.log_date)[11:-8],
-                   self.subject,
-                   _LOG_CODE[self.log_code][0] )
-        return simple
+        return "Log ID %d" % self.id
 
 
 ########## copied from utility.py to put all the log related function here

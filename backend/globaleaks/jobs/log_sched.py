@@ -33,7 +33,7 @@ class LogSchedule(GLJob):
         max_id_check.order_by(Desc(Log.id))
 
         if max_id_check.count() == 0:
-            print "First initialization!?"
+            log.debug("First initialization spotted!")
             LogSchedule.highest_logged_id = 1
         else:
             LogSchedule.highest_logged_id = max_id_check[0].id
@@ -41,26 +41,61 @@ class LogSchedule(GLJob):
 
     @transact
     def dump_fresh_logs(self, store):
+        """
+        Look in the current memory storage of Logs, if there is
+        something not yet logged in the DB.
 
-        for who, whatzz in LogQueue._all_queues.iteritems():
-            for what in whatzz:
+        In the meanwhile, if the number of entries overcome the
+        50 elements, delete the old one. This mean that, worst case
+        scenario, we have in memory 50 Object x (Tip Numb + Receiver Num + Admin)
+        """
+
+        for subject_uuid, log_sub_dict in LogQueue._all_queues.iteritems():
+
+            cnt = 0
+            for id, what in log_sub_dict.iteritems():
+
+                cnt += 1
+                if cnt > 50:
+                    log.debug("TODO implement memory preserver here! %d, in %s" %
+                              (cnt, subject_uuid))
+
+                if id <= LogSchedule.highest_logged_id:
+                    continue
+
                 nl = Log()
 
-                nl.id = what.id
+                nl.id = id
                 nl.code = what.log_code
                 nl.args = what.args
                 nl.log_date = what.log_date
-                nl.subject = what.subject
+                nl.subject = unicode(what.subject)
                 nl.log_level = what.level
                 nl.mail = what.mail
                 nl.mail_sent = False
 
-                if nl.id > LogSchedule.highest_logged_id:
-                    LogSchedule.highest_logged_id = nl.id
+                if id > LogSchedule.highest_logged_id:
+                    LogSchedule.highest_logged_id = id
 
                 store.add(nl)
 
-        print "done!"
+
+    def clean_itip_log_in_memory(self, internaltip_id):
+        """
+        :param internaltip_id:
+
+        When an InternalTip get deleted, all the logs will remain in the
+        DB, but not in memory. This is the function to clean it.
+        """
+        subject_uuid = 'itip_%s' % internaltip_id
+        if subject_uuid in LogQueue._all_queues:
+            print "Going to delete section of", subject_uuid
+            import pprint
+            pprint.pprint(LogQueue._all_queues)
+            LogQueue._all_queues.remove(subject_uuid)
+            pprint.pprint(LogQueue._all_queues)
+        else:
+            print "No traces of", subject_uuid
 
 
     @inlineCallbacks
