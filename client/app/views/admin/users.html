@@ -46,7 +46,7 @@
             <div class="form-group">
               <label data-translate>Password</label>
               <div>
-                <span data-translate>By default receivers password is:</span>
+                <span data-translate>Default user password is:</span>
                 <span class="label label-primary">globaleaks</span>
               </div>
               <div data-translate>The system forces users to change the password at first login.</div>
@@ -233,10 +233,9 @@
                       <i class="glyphicon glyphicon-minus" data-ng-show="send_key"></i>
                       <span data-translate>Configure a PGP key</span>
                     </a>
-                    <div data-ng-show="send_key">
-                      <br />
-                      <label data-translate>Paste the PGP key here:</label>
-                      <textarea class="form-control" data-ng-model="user.pgp_key_public"></textarea>
+                    <div>
+                      <label data-translate>Configure a PGP key for encryption of email notifications</label>
+                      <textarea class="form-control" placeholder="{{'Copy and paste here the PGP public key' | translate}}" data-ng-model="receiver.pgp_key_public"></textarea>
                     </div>
                   </div>
                 </div>
