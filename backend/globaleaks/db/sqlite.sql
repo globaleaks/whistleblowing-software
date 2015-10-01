@@ -306,23 +306,6 @@ CREATE TABLE receiver_internaltip (
     PRIMARY KEY (receiver_id, internaltip_id)
 );
 
-CREATE TABLE field_field (
-    parent_id TEXT NOT NULL,
-    child_id TEXT NOT NULL,
-    FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
-    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (parent_id, child_id)
-);
-
-CREATE TABLE step_field (
-    step_id TEXT NOT NULL,
-    field_id TEXT NOT NULL,
-    UNIQUE (field_id),
-    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
-    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (step_id, field_id)
-);
-
 CREATE TABLE receivertip (
     id TEXT NOT NULL,
     access_counter INTEGER NOT NULL,
@@ -381,6 +364,8 @@ CREATE TABLE field (
     preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     template_id TEXT,
+    step_id TEXT,
+    fieldgroup_id TEXT,
     activated_by_score INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
@@ -401,6 +386,8 @@ CREATE TABLE field (
                                                'reference',
                                                'template')),
     FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    FOREIGN KEY (fieldgroup_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

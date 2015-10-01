@@ -36,7 +36,6 @@ def uuid4():
     debug option is enabled here, the UUIDv4 is not randomic
     """
     if len(GLSettings.debug_option_UUID_human) > 1:
-
         GLSettings.debug_UUID_human_counter += 1
         str_padding = 8 - len(GLSettings.debug_option_UUID_human)
         int_padding = 12 - len("%d" % GLSettings.debug_UUID_human_counter)

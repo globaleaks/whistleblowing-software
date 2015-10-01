@@ -3,25 +3,16 @@
 # validator
 # *********
 #
-# Utility to validated data recorded in the ORM, these function are 
-# called automatically by Storm ORM.
-#
-# they are five: short text validator,
-# long text validator,
-# short localized text validator,
-# long localized text validator,
-#                dictionary validator
+# Utilities to validate data recorded in the ORM
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
-from globaleaks.rest import errors
+from globaleaks.rest import requests, errors
 from globaleaks.utils.utility import log
 
 
 def shorttext_v(_self, attr, value):
     """
-    Validator for 'name' element, receiver, context, node, and few others
-        are here checked
     """
     if isinstance(value, str):
         value = unicode(value)
@@ -38,8 +29,6 @@ def shorttext_v(_self, attr, value):
 
 def longtext_v(_self, attr, value):
     """
-    Validator for every generic text element stored in the DB,
-    in future may check for markdown
     """
     if not attr:
         return value
@@ -61,8 +50,6 @@ def longtext_v(_self, attr, value):
 
 def dict_v(_self, attr, value):
     """
-    Validate dict content, every key, if unicode, have not to
-    overcome the generic length limit.
     """
     if not value:
         return {}
@@ -88,8 +75,6 @@ def dict_v(_self, attr, value):
 
 def shortlocal_v(_self, attr, value):
     """
-    Validate a dict containing a localized content (a dictionary having as a key
-        one of the supported languages)
     """
     dict_v(None, attr, value)
 
@@ -138,5 +123,3 @@ def longlocal_v(_self, attr, value):
         longtext_v(None, attr, text)
 
     return value
-
-

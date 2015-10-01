@@ -194,12 +194,11 @@ class TableReplacer(object):
             raise ValueError('Version supplied must be less or equal to {}'.format(
                 DATABASE_VERSION))
 
-        if self.table_history[table_name][table_index]:
-            return self.table_history[table_name][table_index]
+        if self.table_history[table_name][table_index] == -1:
+            return None
 
-        # else, it's none, and we've to take the previous valid version
         while table_index >= 0:
-            if self.table_history[table_name][table_index]:
+            if self.table_history[table_name][table_index] != 0:
                 return self.table_history[table_name][table_index]
             table_index -= 1
 
@@ -214,7 +213,7 @@ class TableReplacer(object):
         """
 
         modelobj = self.get_right_model(model_name, version)
-        if not modelobj:
+        if modelobj is None:
             return None
 
         right_query = generateCreateQuery(modelobj)

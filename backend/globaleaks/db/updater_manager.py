@@ -21,44 +21,44 @@ from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, In
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
-    Context_v_23, InternalTip_v_23, Field_v_23, ArchivedSchema_v_23
+    Context_v_23, InternalTip_v_23, Field_v_23, ArchivedSchema_v_23, FieldField_v_23, StepField_v_23
 
 
 table_history = {
-    'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, None, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, None, None, models.Node],
-    'IdentityAccessRequest': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.IdentityAccessRequest],
-    'SecureFileDelete': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.SecureFileDelete],
-    'User': [User_v_14, None, None, None, User_v_20, None, None, None, None, None, User_v_23, None, None, models.User],
-    'Custodian': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.Custodian],
-    'Receiver': [Receiver_v_14, None, None, None, Receiver_v_15, Receiver_v_16, Receiver_v_19, None, None, Receiver_v_20, Receiver_v_23, None, None, models.Receiver],
-    'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, None, None, None, None, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context],
-    'ReceiverFile': [ReceiverFile_v_19, None, None, None, None, None, None, None, None, models.ReceiverFile, None, None, None, None],
-    'Notification': [Notification_v_14, None, None, None, Notification_v_15, Notification_v_16, Notification_v_19, None, None, Notification_v_20, Notification_v_22, None, Notification_v_23, models.Notification],
-    'Comment': [Comment_v_14, None, None, None, Comment_v_19, None, None, None, None, Comment_v_22, None, None, models.Comment, None],
-    'InternalTip': [InternalTip_v_14, None, None, None, InternalTip_v_19, None, None, None, None, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip],
-    'InternalFile': [InternalFile_v_19, None, None, None, None, None, None, None, None, InternalFile_v_22, None, None, models.InternalFile, None],
-    'WhistleblowerTip': [models.WhistleblowerTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'ReceiverTip': [ReceiverTip_v_19, None, None, None, None, None, None, None, None, models.ReceiverTip, None, None, None, None],
-    'ReceiverInternalTip': [models.ReceiverInternalTip, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'CustodianContext': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.CustodianContext],
-    'ReceiverContext': [models.ReceiverContext, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Message': [Message_v_19, None, None, None, None, None, None, None, None, models.Message, None, None, None, None],
-    'Stats': [None, None, None, None, Stats_v_16, None, models.Stats, None, None, None, None, None, None, None],
-    'ApplicationData': [models.ApplicationData, None, None, None, None, None, None, None, None, None, None, None, None, None],
-    'Field': [None, None, None, None, Field_v_20, None, None, None, None, None, Field_v_22, None, Field_v_23, models.Field],
-    'FieldAttr': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAttr, None],
-    'FieldOption': [None, None, None, None, FieldOption_v_20, None, None, None, None, None, FieldOption_v_22, None, models.FieldOption, None],
-    'OptionActivateField': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.OptionActivateField],
-    'OptionActivateStep': [None, None, None, None, None, None, None, None, None, None, None, None, None, models.OptionActivateStep],
-    'FieldField': [None, None, None, None, models.FieldField, None, None, None, None, None, None, None, None, None],
-    'Step': [None, None, None, None, Step_v_20, None, None, None, None, None, models.Step, None, None, None],
-    'StepField': [None, None, None, None, models.StepField, None, None, None, None, None, None, None, None, None],
-    'Anomalies': [None, None, None, None, None, None, None, None, None, None, None, None, models.Anomalies, None],
-    'EventLogs': [None, None, None, None, None, None, None, None, None, models.EventLogs, None, None, None, None],
-    'FieldAnswer': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswer, None],
-    'FieldAnswerGroup': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswerGroup, None],
-    'FieldAnswerGroupFieldAnswer': [None, None, None, None, None, None, None, None, None, None, None, None, models.FieldAnswerGroupFieldAnswer, None],
-    'ArchivedSchema': [None, None, None, None, None, None, None, None, None, None, None, None, ArchivedSchema_v_23, models.ArchivedSchema]
+    'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, models.Node],
+    'IdentityAccessRequest': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest],
+    'SecureFileDelete': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete],
+    'User': [User_v_14, 0, 0, 0, User_v_20, 0, 0, 0, 0, 0, User_v_23, 0, 0, models.User],
+    'Custodian': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian],
+    'Receiver': [Receiver_v_14, 0, 0, 0, Receiver_v_15, Receiver_v_16, Receiver_v_19, 0, 0, Receiver_v_20, Receiver_v_23, 0, 0, models.Receiver],
+    'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context],
+    'ReceiverFile': [ReceiverFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverFile, 0, 0, 0, 0],
+    'Notification': [Notification_v_14, 0, 0, 0, Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, models.Notification],
+    'Comment': [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0],
+    'InternalTip': [InternalTip_v_14, 0, 0, 0, InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip],
+    'InternalFile': [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, models.InternalFile, 0],
+    'WhistleblowerTip': [models.WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'ReceiverTip': [ReceiverTip_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverTip, 0, 0, 0, 0],
+    'ReceiverInternalTip': [models.ReceiverInternalTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'CustodianContext': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext],
+    'ReceiverContext': [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Message': [Message_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0],
+    'Stats': [-1, -1, -1, -1, Stats_v_16, 0, models.Stats, 0, 0, 0, 0, 0, 0, 0],
+    'ApplicationData': [models.ApplicationData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'Field': [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field],
+    'FieldAttr': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAttr, 0],
+    'FieldOption': [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, models.FieldOption, 0],
+    'OptionActivateField': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateField],
+    'OptionActivateStep': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateStep],
+    'Step': [-1, -1, -1, -1, Step_v_20, 0, 0, 0, 0, 0, models.Step, 0, 0, 0],
+    'Anomalies': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0],
+    'EventLogs': [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.EventLogs, 0, 0, 0, 0],
+    'FieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0],
+    'FieldAnswerGroup': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0],
+    'FieldAnswerGroupFieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroupFieldAnswer, 0],
+    'ArchivedSchema': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema],
+    'FieldField': [-1, -1, -1, -1, FieldField_v_23, 0, 0, 0, 0, 0, 0, 0, 0, -1],
+    'StepField': [-1, -1, -1, -1, StepField_v_23, 0, 0, 0, 0, 0, 0, 0, 0, -1]
 }
 
 
@@ -129,18 +129,24 @@ def perform_version_update(starting_ver, ending_ver):
             updater_code.fail_on_count_mismatch = {}
             updater_code.fail_on_count_mismatch['ApplicationData'] = False
 
-            for model in models.models_list:
-                updater_code.fail_on_count_mismatch[model.__name__] = True
-                m = updater_code.get_right_model(model.__name__, starting_ver)
-                if m is not None:
-                    updater_code.entries_count[model.__name__] = updater_code.store_old.find(m).count()
-                else:
-                    updater_code.entries_count[model.__name__] = 0
+            for model_name, _ in table_history.iteritems():
+                updater_code.fail_on_count_mismatch[model_name] = True
 
-            for model in models.models_list:
-                m = updater_code.get_right_model(model.__name__, starting_ver)
-                if m is not None:
-                    migrate_function = 'migrate_%s' % model.__name__
+                m_from = updater_code.get_right_model(model_name, starting_ver)
+                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
+
+                if m_from is not None and m_to is not None:
+                    updater_code.entries_count[model_name] = updater_code.store_old.find(m_from).count()
+                else:
+                    updater_code.entries_count[model_name] = 0
+
+            for model_name, _ in table_history.iteritems():
+                m_from = updater_code.get_right_model(model_name, starting_ver)
+                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
+
+                if m_from is not None and m_to is not None:
+                    print model_name
+                    migrate_function = 'migrate_%s' % model_name
                     function_pointer = getattr(updater_code, migrate_function)
 
                     try:
@@ -150,23 +156,25 @@ def perform_version_update(starting_ver, ending_ver):
                         raise excep
 
             print "Migration stats:"
-            for model in models.models_list:
-                if model.__name__ == 'ApplicationData':
+            for model_name, _ in table_history.iteritems():
+                if model_name == 'ApplicationData':
                     continue
 
-                m = updater_code.get_right_model(model.__name__, starting_ver)
-                if m is not None:
-                   count = updater_code.store_new.find(m).count()
-                   if updater_code.entries_count[model.__name__] != count:
-                       if updater_code.fail_on_count_mismatch[model.__name__]:
+                m_from = updater_code.get_right_model(model_name, starting_ver)
+                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
+
+                if m_from is not None and m_to is not None:
+                   count = updater_code.store_new.find(m_to).count()
+                   if updater_code.entries_count[model_name] != count:
+                       if updater_code.fail_on_count_mismatch[model_name]:
                            raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
-                                                (model.__name__, count, updater_code.entries_count[model.__name__]))
+                                                (model_name, count, updater_code.entries_count[model_name]))
                        else:
                            print " * %s table migrated (entries count changed from %d to %d)" % \
-                               (model.__name__, updater_code.entries_count[model.__name__], count)
+                               (model_name, updater_code.entries_count[model_name], count)
                    else:
                        print " * %s table migrated (%d entry(s))" % \
-                           (model.__name__, updater_code.entries_count[model.__name__])
+                           (model_name, updater_code.entries_count[model_name])
 
             # epilogue can be used to perform operation once, not related to the tables
             updater_code.epilogue()

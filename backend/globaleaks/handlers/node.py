@@ -164,12 +164,6 @@ def anon_serialize_field(store, field, language):
 
     options = [anon_serialize_option(o, language) for o in f_to_serialize.options]
 
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
-    step_id = sf.step_id if sf else ''
-
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    fieldgroup_id = ff.parent_id if ff else ''
-
     fields = []
     for f in f_to_serialize.children:
         fields.append(anon_serialize_field(store, f, language))
@@ -188,9 +182,9 @@ def anon_serialize_field(store, field, language):
         'id': field.id,
         'instance': field.instance,
         'type': f_to_serialize.type,
-        'template_id': field.template.id if field.template else '',
-        'step_id': step_id,
-        'fieldgroup_id': fieldgroup_id,
+        'template_id': field.template_id if field.template_id else '',
+        'step_id': field.step_id if field.step_id else '',
+        'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
