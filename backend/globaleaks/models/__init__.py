@@ -710,15 +710,23 @@ class Field(Model):
 
     activated_by_score = Int(default=0)
 
-    # This reference when != NULL means that the field is referencing a
-    # field template
-    template_id = Unicode(validator=shorttext_v)
+    # This reference when != NULL means
+    # that the field is referencing a template
+    template_id = Unicode()
+
+    # This reference when != NULL means
+    # that the field is associated to a step
+    step_id = Unicode()
+
+    # This reference when != NULL means
+    # that the field is associated to a fieldgroup
+    fieldgroup_id = Unicode()
 
     type = Unicode(default=u'inputbox')
 
     instance = Unicode(default=u'instance')
 
-    unicode_keys = ['template_id', 'type', 'instance']
+    unicode_keys = ['type', 'instance']
     int_keys = ['x', 'y', 'width', 'activated_by_score']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
@@ -862,33 +870,6 @@ class ApplicationData(Model):
     fields = JSON()
 
 
-class FieldField(BaseModel):
-    """
-    Class used to implement references between Fields and Fields!
-    parent - child relation used to implement fieldgroups
-    """
-    __storm_table__ = 'field_field'
-    __storm_primary__ = 'parent_id', 'child_id'
-
-    parent_id = Unicode()
-    child_id = Unicode()
-
-    unicode_keys = ['parent_id', 'child_id']
-
-
-class StepField(BaseModel):
-    """
-    Class used to implement references between Steps and Fields!
-    """
-    __storm_table__ = 'step_field'
-    __storm_primary__ = 'step_id', 'field_id'
-
-    step_id = Unicode()
-    field_id = Unicode()
-
-    unicode_keys = ['step_id', 'field_id']
-
-
 # Follow classes used for Many to Many references
 class CustodianContext(BaseModel):
     """
@@ -941,9 +922,17 @@ Field.options = ReferenceSet(
 
 Field.children = ReferenceSet(
     Field.id,
-    FieldField.parent_id,
-    FieldField.child_id,
+    Field.fieldgroup_id
+)
+
+Field.fieldgroup = Reference(
+    Field.fieldgroup_id,
     Field.id
+)
+
+Field.step = Reference(
+    Field.step_id,
+    Step.id
 )
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
@@ -996,9 +985,7 @@ Receiver.internaltips = ReferenceSet(
 
 Step.children = ReferenceSet(
     Step.id,
-    StepField.step_id,
-    StepField.field_id,
-    Field.id
+    Field.step_id
 )
 
 Context.steps = ReferenceSet(Context.id, Step.context_id)
@@ -1129,10 +1116,10 @@ Receiver.contexts = ReferenceSet(
 models_list = [Node,
                User, Custodian, Receiver,
                Context, CustodianContext, ReceiverContext,
-               Field, FieldOption, FieldAttr, FieldField,
+               Field, FieldOption, FieldAttr,
                FieldAnswer, FieldAnswerGroup,
                OptionActivateField, OptionActivateStep,
-               Step, StepField,
+               Step,
                InternalTip, ReceiverTip, WhistleblowerTip,
                Comment, Message,
                InternalFile, ReceiverFile, Notification,

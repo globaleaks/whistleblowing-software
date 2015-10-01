@@ -4,7 +4,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.db.datainit import load_appdata
-from globaleaks.models import Model
+from globaleaks.models import BaseModel, Model
 from globaleaks.utils.utility import datetime_null, every_language
 
 
@@ -195,6 +195,29 @@ class ArchivedSchema_v_23(Model):
     schema = JSON()
 
 
+class FieldField_v_23(BaseModel):
+    """
+    Class used to implement references between Fields and Fields!
+    parent - child relation used to implement fieldgroups
+    """
+    __storm_table__ = 'field_field'
+    __storm_primary__ = 'parent_id', 'child_id'
+
+    parent_id = Unicode()
+    child_id = Unicode()
+
+
+class StepField_v_23(BaseModel):
+    """
+    Class used to implement references between Steps and Fields!
+    """
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+
+    step_id = Unicode()
+    field_id = Unicode()
+
+
 class Replacer2324(TableReplacer):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_tippage" % self.std_fancy
@@ -267,7 +290,7 @@ class Replacer2324(TableReplacer):
         self.store_new.commit()
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant:" % self.std_fancy
+        print "%s Notification migration assistant" % self.std_fancy
 
         old_node = self.store_old.find(self.get_right_model("Node", 23)).one()
 
@@ -499,6 +522,22 @@ class Replacer2324(TableReplacer):
 
                 # Optiuonal refereences should be threated in a special manner
                 if v.name == 'template_id' and old_obj.template_id is None:
+                    continue
+
+                if v.name == 'step_id':
+                    m = self.get_right_model("StepField", 23)
+                    sf = self.store_old.find(m, m.field_id == old_obj.id).one()
+                    if sf:
+                        print "s"
+                        new_obj.step_id = sf.step_id
+                    continue
+
+                if v.name == 'fieldgroup_id':
+                    m = self.get_right_model("FieldField", 23)
+                    ff = self.store_old.find(m, m.child_id == old_obj.id).one()
+                    if ff:
+                        print "g"
+                        new_obj.fieldgroup_id = ff.parent_id
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

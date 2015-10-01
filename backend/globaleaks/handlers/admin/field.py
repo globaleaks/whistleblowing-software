@@ -42,7 +42,7 @@ def associate_field(store, field, step=None, fieldgroup=None):
         if field.instance != fieldgroup.instance:
             raise errors.InvalidInputFormat("Cannot associate field templates with fields")
 
-        ancestors = set(fieldtree_ancestors(store, field.id))
+        ancestors = set(fieldtree_ancestors(store, field))
 
         if field.id in [field.template_id, fieldgroup.id] or \
            field.template_id == fieldgroup.id or \
@@ -60,12 +60,8 @@ def disassociate_field(store, field):
     :param store: the store on which perform queries.
     :param field: the field to be deassociated.
     """
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
-    if sf:
-        store.remove(sf)
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    if ff:
-        store.remove(ff)
+    field.step_id = None
+    field.fieldgroud_id = None
 
 
 def db_import_fields(store, step, fieldgroup, fields):
@@ -214,14 +210,17 @@ def db_create_field(store, field, language):
     if field['instance'] != 'reference':
         field['template_id'] = None
 
+    if field['step_id'] == '':
+        field['step_id'] = None
+
+    if field['fieldgroup_id'] == '':
+        field['fieldgroup_id'] = None
+
     f = models.Field.new(store, field)
 
     if field['template_id'] is None:
         db_update_fieldattrs(store, f.id, field['attrs'], language)
         db_update_fieldoptions(store, f.id, field['options'], language)
-
-        for child in field['children']:
-            db_update_field(store, child['id'], child, language)
 
     associate_field(store, f, step, fieldgroup)
 
@@ -246,6 +245,12 @@ def db_update_field(store, field_id, field, language):
     if field['instance'] != 'reference':
         field['template_id'] = None
 
+    if field['step_id'] == '':
+        field['step_id'] = None
+
+    if field['fieldgroup_id'] == '':
+        field['fieldgroup_id'] = None
+
     f = models.Field.get(store, field_id)
     if not f:
         raise errors.FieldIdNotFound
@@ -262,7 +267,7 @@ def db_update_field(store, field_id, field, language):
             if len(children) and f.type != 'fieldgroup':
                 raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
 
-            ancestors = set(fieldtree_ancestors(store, f.id))
+            ancestors = set(fieldtree_ancestors(store, f))
 
             f.children.clear()
             for child in children:
@@ -361,7 +366,7 @@ def delete_field(store, field_id):
     field.delete(store)
 
 
-def fieldtree_ancestors(store, field_id):
+def fieldtree_ancestors(store, field):
     """
     Given a field_id, recursively extract its parents.
 
@@ -369,12 +374,9 @@ def fieldtree_ancestors(store, field_id):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
-    for parent in parents:
-        if parent.parent_id != field_id:
-            yield parent.parent_id
-            for grandpa in fieldtree_ancestors(store, parent.parent_id):
-                yield grandpa
+    if field.fieldgroup:
+        yield field.fieldgroup.id
+        yield fieldtree_ancestors(store, field.fieldgroup)
 
 
 @transact_ro

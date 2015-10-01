@@ -260,7 +260,7 @@ Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
 class Replacer2021(TableReplacer):
     def migrate_Node(self):
-        print "%s Node migration assistant:" % self.std_fancy
+        print "%s Node migration assistant" % self.std_fancy
 
         old_node = self.store_old.find(self.get_right_model("Node", 20)).one()
         new_node = self.get_right_model("Node", 21)()
@@ -281,7 +281,7 @@ class Replacer2021(TableReplacer):
         self.store_new.commit()
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant:" % self.std_fancy
+        print "%s Notification migration assistant" % self.std_fancy
 
         appdata_dict = load_appdata()
 

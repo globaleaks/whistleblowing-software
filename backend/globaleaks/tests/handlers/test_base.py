@@ -94,10 +94,10 @@ class TestValidate(unittest.TestCase):
         self.assertTrue(handler.validate_python_type(u'foca', unicode))
         self.assertTrue(handler.validate_python_type(None, dict))
 
-    def test_validate_GLtype_valid(self):
+    def test_validate_regexp_valid(self):
         handler = MockHandler()
-        self.assertTrue(handler.validate_GLtype('Foca', '\w+'))
-        self.assertFalse(handler.validate_GLtype('Foca', '\d+'))
+        self.assertTrue(handler.validate_regexp('Foca', '\w+'))
+        self.assertFalse(handler.validate_regexp('Foca', '\d+'))
 
 
     def test_validate_host(self):

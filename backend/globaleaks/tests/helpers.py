@@ -120,10 +120,18 @@ def import_fixture(store, fixture):
     with open(os.path.join(FIXTURES_PATH, fixture)) as f:
         data = json.loads(f.read())
         for mock in data:
-            if mock['class'] == 'Field' and mock['fields']['instance'] != 'reference':
-                del mock['fields']['template_id']
+            if mock['class'] == 'Field':
+                if mock['fields']['instance'] != 'reference':
+                    del mock['fields']['template_id']
+
+                if mock['fields']['step_id'] == '':
+                    del mock['fields']['step_id']
+                if mock['fields']['fieldgroup_id'] == '':
+                    del mock['fields']['fieldgroup_id']
+
             mock_class = getattr(models, mock['class'])
             db_forge_obj(store, mock_class, mock['fields'])
+            store.commit()
 
 
 def get_file_upload(self):
@@ -265,8 +273,6 @@ class TestGL(unittest.TestCase):
     @transact
     def create_dummy_field(self, store, **custom_attrs):
         field = self.get_dummy_field()
-
-        field['template_id'] = None
 
         fill_localized_keys(field, models.Field.localized_strings, 'en')
 
