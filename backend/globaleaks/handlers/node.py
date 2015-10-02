@@ -225,7 +225,7 @@ def anon_serialize_receiver(receiver, language):
     ret_dict = {
         'name': receiver.user.name,
         'id': receiver.id,
-        'username': receiver.user.username,
+        'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
