@@ -6,7 +6,7 @@
     "bower": "*"
   },
   "devDependencies": {
-    "chai": "3.2.0",
+    "chai": "3.3.0",
     "grunt": "0.4.5",
     "grunt-angular-templates": "0.5.7",
     "grunt-bower-task": "0.4.0",
@@ -28,10 +28,10 @@
     "grunt-saucelabs": "8.6.1",
     "grunt-string-replace": "1.2.0",
     "grunt-usemin": "3.1.1",
-    "mocha": "2.3.2",
-    "mocha-phantomjs": "3.6.0",
+    "mocha": "2.3.3",
+    "mocha-phantomjs": "4.0.1",
     "node-gettext": "0.2.14",
-    "phantomjs": "1.9.7-15",
+    "phantomjs": "1.9.18",
     "should": "7.1.0",
     "superagent": "1.4.0",
     "supertest": "1.1.0"
