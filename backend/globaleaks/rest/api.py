@@ -2,7 +2,9 @@
 #   API
 #   ***
 #
-#   This file contains the URI mapping for the GlobaLeaks API.
+#   This file defines the URI mapping for the GlobaLeaks API and its factory
+from twisted.application import internet
+from cyclone import web
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
@@ -22,6 +24,8 @@ from globaleaks.handlers.admin.staticfiles import *
 from globaleaks.handlers.admin.overview import *
 from globaleaks.handlers.admin.statistics import *
 from globaleaks.handlers.admin.notification import *
+
+from globaleaks.utils.utility import randbits
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 field_regexp = uuid_regexp
@@ -138,4 +142,12 @@ spec = [
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.glclient_path})
 ]
 
+def get_api_factory():
+    settings = dict(cookie_secret=randbits(128),
+                    debug=GLSettings.log_requests_responses,
+                    gzip=True)
 
+    GLAPIFactory = web.Application(spec, **settings)
+    GLAPIFactory.protocol = base.GLHTTPConnection
+
+    return GLAPIFactory

@@ -275,7 +275,7 @@ args +=['--logfile', os.devnull]
 sys.argv[1:] = args
 
 
-def run_glbackend():
+def run_backend():
     # Check DB version and eventually convert them,
     # this step is made before the twisted start
     check_db_files()
@@ -304,5 +304,5 @@ def run_glbackend():
             quit(-1)
 
 # "And now his watch begins"
-run_glbackend()
+run_backend()
 # "And now his watch is ended"

@@ -8,27 +8,16 @@
 # We also set to kill the threadpool (the one used by Storm) when the
 # application shuts down.
 
-from twisted.application.service import Application
-from twisted.application import internet
-from cyclone import web
+from twisted.application import internet, service
 
-from globaleaks.utils.utility import randbits
-from globaleaks.settings import GLSettings
 from globaleaks.rest import api
-from globaleaks.handlers.base import GLHTTPConnection
+from globaleaks.settings import GLSettings
 
-application = Application('GLBackend')
-
-settings = dict(cookie_secret=randbits(128),
-                debug=GLSettings.log_requests_responses,
-                gzip=True)
-
-# Initialize the web API event listener, handling all the synchronous operations
-GLBackendAPIFactory = web.Application(api.spec, **settings)
-GLBackendAPIFactory.protocol = GLHTTPConnection
+application = service.Application('GLBackend')
+api_factory = api.get_api_factory()
 
 for ip in GLSettings.bind_addresses:
-    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, GLBackendAPIFactory, interface=ip)
+    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, api_factory, interface=ip)
     GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour
