@@ -163,33 +163,6 @@ class TestTimingStats(helpers.TestHandler):
         self.assertEqual(splits[7], "")
 
     @inlineCallbacks
-    def test_get_feature_enabled(self):
-        GLSettings.log_timing_stats = True
-
-        base.TimingStatsHandler.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
-        base.TimingStatsHandler.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
-        base.TimingStatsHandler.log_measured_timing("JOB", "Delivery", 1443252279.0, 0)
-        base.TimingStatsHandler.log_measured_timing("POST", "/token", 1443252280.0, 0)
-        base.TimingStatsHandler.log_measured_timing("PUT", "/submission/XXA82cSXFHTOoVroWlOGqg2VF8XtJQ57QIYM09YanY", 1443252281.0, 0)
-        base.TimingStatsHandler.log_measured_timing("POST", "/wbtip/comments", 1443252282.0, 0)
-        handler = self.request()
-
-        yield handler.get()
-
-        splits = self.responses[0].split("\n")
-
-        self.assertEqual(len(splits), 8)
-
-        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
-        self.assertEqual(splits[1], "uncategorized,JOB,Session Management,1443252274.44,0")
-        self.assertEqual(splits[2], "uncategorized,GET,/styles/main.css,1443252277.68,0")
-        self.assertEqual(splits[3], "delivery,JOB,Delivery,1443252279.0,0")
-        self.assertEqual(splits[4], "token,POST,/token,1443252280.0,0")
-        self.assertEqual(splits[5], "submission,PUT,/submission/XXA82cSXFHTOoVroWlOGqg2VF8XtJQ57QIYM09YanY,1443252281.0,0")
-        self.assertEqual(splits[6], "comment,POST,/wbtip/comments,1443252282.0,0")
-        self.assertEqual(splits[7], "")
-
-    @inlineCallbacks
     def test_get_feature_enabled_discard_timingstatss_handler_logging(self):
         GLSettings.log_timing_stats = True
 
