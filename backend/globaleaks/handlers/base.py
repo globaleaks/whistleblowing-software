@@ -452,20 +452,6 @@ class BaseHandler(RequestHandler):
             return None
         return session
 
-    @property
-    def is_whistleblower(self):
-        if not self.current_user or 'role' not in self.current_user:
-            raise errors.NotAuthenticated
-
-        return self.current_user['role'] == 'wb'
-
-    @property
-    def is_receiver(self):
-        if not self.current_user or 'role' not in self.current_user:
-            raise errors.NotAuthenticated
-
-        return self.current_user['role'] == 'receiver'
-
     def get_file_upload(self):
         try:
             if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize:
