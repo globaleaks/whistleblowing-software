@@ -440,7 +440,7 @@ CREATE TABLE optionactivatestep (
     PRIMARY KEY (option_id, step_id)
 );
 
-CREATE INDEX optionactivatestep__field_id_index ON optionactivatestep(field_id);
+CREATE INDEX optionactivatestep__step_id_index ON optionactivatestep(step_id);
 
 CREATE TABLE step (
     id TEXT NOT NULL,

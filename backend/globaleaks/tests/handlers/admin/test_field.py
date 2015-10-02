@@ -232,12 +232,10 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
 
             # parent MUST not refer to itself in child
-            print "a"
             generalities_fieldgroup = yield self._get_field(generalities_fieldgroup_id)
             self.responses[0]['children'] = [generalities_fieldgroup]
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
-            print "b"
 
             # a child not of type 'fieldgroup' MUST never have children.
             yield handler.get(name_field_id)

@@ -317,6 +317,18 @@ class GLSettingssClass(object):
         self.disable_backend_exception_notification = False
         self.disable_client_exception_notification = False
 
+        self.mail_counters = {}
+
+    def increment_mail_counter(self, receiver_id):
+        if receiver_id in self.mail_counters:
+            self.mail_counters[receiver_id] += 1
+        else:
+            self.mail_counters[receiver_id] = 1
+
+    def get_mail_counter(self, receiver_id):
+        if receiver_id not in self.mail_counters:
+            return 0
+        return self.mail_counters[receiver_id]
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'

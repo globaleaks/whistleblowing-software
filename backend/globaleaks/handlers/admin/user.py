@@ -18,7 +18,7 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601, uuid4
+from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
 
 
 def db_create_admin(store, request, language):
@@ -107,7 +107,6 @@ def db_create_receiver(store, request, language):
     for context_id in contexts:
         context = models.Context.get(store, context_id)
         if not context:
-            log.err("Creation error: invalid Context can't be associated")
             raise errors.ContextIdNotFound
         context.receivers.add(receiver)
 

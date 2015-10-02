@@ -84,10 +84,8 @@ def db_import_fields(store, step, fieldgroup, fields):
             f.options.add(o)
 
         if (step):
-            f.step_id = step.id
             step.children.add(f)
         else:
-            f.fieldgroup_id = fieldgroup.id
             fieldgroup.children.add(f)
 
         if f_children:

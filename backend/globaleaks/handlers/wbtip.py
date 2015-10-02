@@ -60,7 +60,7 @@ def wb_serialize_file(internalfile):
 
 
 def db_access_wbtip(store, wbtip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wbtip_id)).one()
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == wbtip_id).one()
 
     if not wbtip:
         raise errors.TipReceiptNotFound
@@ -134,7 +134,7 @@ def get_messages_content(store, wbtip_id, receiver_id):
     wbtip = db_access_wbtip(store, wbtip_id)
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
-                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
+                      ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
         raise errors.TipIdNotFound
@@ -155,7 +155,7 @@ def create_message_wb(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
-                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
+                      ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
         raise errors.TipIdNotFound

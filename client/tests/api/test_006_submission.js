@@ -127,7 +127,7 @@ describe('GET /receivers', function(){
             receivers_ids.push(receivers[i].id);
 
             if(receivers[i].contexts.length != population_order) {
-              throw '/receivers didn\'t return ' + population_order + ' receivers associated to each receiver';
+              throw '/receivers didn\'t return ' + population_order + ' contexts associated to each receiver';
             }
           }
 

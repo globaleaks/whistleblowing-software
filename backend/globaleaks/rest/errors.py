@@ -27,6 +27,19 @@ class GLException(HTTPError):
             self.error_code, self.status_code
         )
 
+
+class InternalServerError(GLException):
+    """
+    The context_id used do not exist in the database.
+    """
+    error_code = 1
+    status_code = 500 # Internal Server Error
+
+    def __init__(self, error_str):
+        self.reason = "InternalServerError [%s]" % error_str
+        self.arguments = [error_str]
+
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not
