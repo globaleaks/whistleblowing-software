@@ -62,9 +62,8 @@ def get_context_list(store, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the contexts.
     """
-    contexts = store.find(models.Context)
-
-    return [admin_serialize_context(store, context, language) for context in contexts]
+    return [admin_serialize_context(store, context, language)
+        for context in store.find(models.Context)]
 
 
 def acquire_context_timetolive(timetolive):
@@ -134,8 +133,7 @@ def db_reset_steps(store, context):
 
 def db_setup_default_steps(store, context):
     appdata = store.find(models.ApplicationData).one()
-    steps = copy.deepcopy(appdata.fields)
-    for step in steps:
+    for step in copy.deepcopy(appdata.fields):
         f_children = copy.deepcopy(step['children'])
         del step['children']
         s = models.db_forge_obj(store, models.Step, step)
@@ -223,7 +221,6 @@ def update_context(store, context_id, request, language):
             (dict) the serialized object updated
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
-
     if not context:
         raise errors.ContextIdNotFound
 
@@ -242,7 +239,6 @@ def delete_context(store, context_id):
         context_id: the context id of the context to remove.
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
-
     if not context:
         log.err("Invalid context requested in removal")
         raise errors.ContextIdNotFound

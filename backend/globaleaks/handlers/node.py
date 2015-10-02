@@ -162,12 +162,6 @@ def anon_serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
-    options = [anon_serialize_option(o, language)
-        for o in f_to_serialize.options]
-
-    fields = [anon_serialize_field(store, f, language)
-        for f in f_to_serialize.children]
-
     attrs = {}
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
         attrs[attr.name] = {}
@@ -194,9 +188,9 @@ def anon_serialize_field(store, field, language):
         'y': field.y,
         'width': field.width,
         'activated_by_score': field.activated_by_score,
-        'activated_by_options': activated_by_options,
-        'options': options,
-        'children': fields
+        'activated_by_options': [activation.option_id for activation in field.activated_by_options],
+        'options': [anon_serialize_option(o, language) for o in f_to_serialize.options],
+        'children': [anon_serialize_field(store, f, language) for f in f_to_serialize.children]
     }
 
     return get_localized_values(ret_dict, f_to_serialize, field.localized_strings, language)
@@ -210,13 +204,11 @@ def anon_serialize_step(store, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    fields = [anon_serialize_field(store, f, language) for f in step.children]
-
     ret_dict = {
         'id': step.id,
         'context_id': step.context.id,
         'presentation_order': step.presentation_order,
-        'children': fields
+        'children': [anon_serialize_field(store, f, language) for f in step.children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_strings, language)

@@ -134,18 +134,12 @@ def get_stats(store, week_delta):
 
 @transact
 def delete_weekstats_history(store):
-    """
-    Note: all the stats has to be in memory before being
-        delete. In the long term this shall cause a memory exhaustion
-    """
-
     allws = store.find(Stats)
-    log.info("Deleting %d entries from hourly statistics table"
-             % allws.count())
+
+    log.info("Deleting %d entries from Stats table" % allws.count())
 
     allws.remove()
 
-    # Now you're like a gringo without history, please invade Iraq
     log.info("Week statistics removal completed.")
 
 
@@ -167,18 +161,14 @@ def get_anomaly_history(store, limit):
             })
         anomaly_history.append(anomaly_entry)
 
-    return list(anomaly_history)
+    return anomaly_history
 
 
 @transact
 def delete_anomaly_history(store):
-    """
-    Note: all the anomalies has to be in memory before being
-        delete. In the long term this shall cause a memory exhaustion
-    """
     allanom = store.find(Anomalies)
-    log.info("Deleting %d entries from Anomalies History table"
-             % allanom.count())
+
+    log.info("Deleting %d entries from Anomalies table" % allanom.count())
 
     allanom.remove()
 
