@@ -102,13 +102,13 @@ def dump_static_file(uploaded_file, filelocation):
 
 
 @transact_ro
-def receiver_picture_path(store, receiver_uuid):
-    receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
+def receiver_picture_path(store, receiver_id):
+    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    return os.path.join(GLSettings.static_path, "%s.png" % receiver_uuid)
+    return os.path.join(GLSettings.static_path, "%s.png" % receiver_id)
 
 
 class StaticFileInstance(BaseHandler):

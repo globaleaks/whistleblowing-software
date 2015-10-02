@@ -145,7 +145,6 @@ def perform_version_update(starting_ver, ending_ver):
                 m_to = updater_code.get_right_model(model_name, starting_ver + 1)
 
                 if m_from is not None and m_to is not None:
-                    print model_name
                     migrate_function = 'migrate_%s' % model_name
                     function_pointer = getattr(updater_code, migrate_function)
 

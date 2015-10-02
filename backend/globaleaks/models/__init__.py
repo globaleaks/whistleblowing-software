@@ -234,16 +234,17 @@ class Context(Model):
 
     localized_strings = ['name', 'description']
 
-    int_keys = [ 'maximum_selectable_receivers',
-                 'show_receivers_in_alphabetical_order',
-                 'presentation_order' ]
+    int_keys = ['tip_timetolive',
+                'maximum_selectable_receivers',
+                'show_receivers_in_alphabetical_order',
+                'presentation_order' ]
 
-    bool_keys = [ 'select_all_receivers',
-                  'show_small_cards',
-                  'show_context', 'show_receivers',
-                  'enable_comments', 'enable_messages',
-                  'enable_two_way_communication',
-                  'enable_attachments']
+    bool_keys = ['select_all_receivers',
+                 'show_small_cards',
+                 'show_context', 'show_receivers',
+                 'enable_comments', 'enable_messages',
+                 'enable_two_way_communication',
+                 'enable_attachments']
 
 
 class InternalTip(Model):

@@ -204,10 +204,12 @@ class BaseHandler(RequestHandler):
         """
         Return True if the python class matches the given regexp.
         """
-        if isinstance(value, (str, unicode)):
-            return bool(re.match(type, value))
-        else:
+        try:
+            value = unicode(value)
+        except Exception as e:
             return False
+
+        return bool(re.match(type, value))
 
     @staticmethod
     def validate_type(value, type):

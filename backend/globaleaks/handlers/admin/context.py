@@ -18,7 +18,7 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.third_party import rstr
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601, uuid4
+from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
 
 
 def admin_serialize_context(store, context, language):
@@ -29,13 +29,10 @@ def admin_serialize_context(store, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
-    steps = [anon_serialize_step(store, s, language) for s in context.steps]
-
     ret_dict = {
         'id': context.id,
         'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
-        # tip expressed in day, submission in hours
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
@@ -50,7 +47,7 @@ def admin_serialize_context(store, context, language):
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'steps_arrangement': context.steps_arrangement,
         'reset_steps': False,
-        'steps': steps
+        'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
 
     return get_localized_values(ret_dict, context, context.localized_strings, language)
@@ -131,11 +128,11 @@ def get_context_steps(*args):
     return db_get_context_steps(*args)
 
 
-def db_reset_steps(store, context_id):
-    store.find(models.Step, models.Step.context_id == context_id).remove()
+def db_reset_steps(store, context):
+    store.find(models.Step, models.Step.context_id == context.id).remove()
 
 
-def db_setup_default_steps(store, context_id):
+def db_setup_default_steps(store, context):
     appdata = store.find(models.ApplicationData).one()
     steps = copy.deepcopy(appdata.fields)
     for step in steps:
@@ -143,13 +140,13 @@ def db_setup_default_steps(store, context_id):
         del step['children']
         s = models.db_forge_obj(store, models.Step, step)
         db_import_fields(store, s, None, f_children)
-        s.context_id = context_id
+        s.context_id = context.id
 
 
-def db_update_context(store, context, request, language):
+def fill_context_request(request, language):
     fill_localized_keys(request, models.Context.localized_strings, language)
 
-    context.tip_timetolive = acquire_context_timetolive(int(request['tip_timetolive']))
+    request['tip_timetolive'] = acquire_context_timetolive(int(request['tip_timetolive']))
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
@@ -157,11 +154,16 @@ def db_update_context(store, context, request, language):
                       request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
+    return request
+
+def db_update_context(store, context, request, language):
+    request = fill_context_request(request, language)
+
     context.update(request)
 
     if request['reset_steps']:
-        db_reset_steps(store, context.id)
-        db_setup_default_steps(store, context.id)
+        db_reset_steps(store, context)
+        db_setup_default_steps(store, context)
 
     db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
@@ -170,13 +172,16 @@ def db_update_context(store, context, request, language):
 
 
 def db_create_context(store, request, language):
-    context = models.Context()
+    request = fill_context_request(request, language)
+
+    context = models.Context(request)
 
     store.add(context)
 
-    request['reset_steps'] = True
+    db_setup_default_steps(store, context)
 
-    context = db_update_context(store, context, request, language)
+    db_associate_context_custodians(store, context, request['custodians'])
+    db_associate_context_receivers(store, context, request['receivers'])
 
     return context
 
@@ -195,15 +200,10 @@ def create_context(store, request, language):
     Returns:
         (dict) representing the configured context
     """
-    context = models.Context()
-
-    store.add(context)
-
-    request['reset_steps'] = True
-
-    context = db_update_context(store, context, request, language)
+    context = db_create_context(store, request, language)
 
     return admin_serialize_context(store, context, language)
+
 
 @transact
 def update_context(store, context_id, request, language):

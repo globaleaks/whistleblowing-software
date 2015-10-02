@@ -528,7 +528,6 @@ class Replacer2324(TableReplacer):
                     m = self.get_right_model("StepField", 23)
                     sf = self.store_old.find(m, m.field_id == old_obj.id).one()
                     if sf:
-                        print "s"
                         new_obj.step_id = sf.step_id
                     continue
 
@@ -536,7 +535,6 @@ class Replacer2324(TableReplacer):
                     m = self.get_right_model("FieldField", 23)
                     ff = self.store_old.find(m, m.child_id == old_obj.id).one()
                     if ff:
-                        print "g"
                         new_obj.fieldgroup_id = ff.parent_id
                     continue
 

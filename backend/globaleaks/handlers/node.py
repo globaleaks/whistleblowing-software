@@ -118,7 +118,7 @@ def anon_serialize_context(store, context, language):
         'enable_whistleblower_identity_feature': context.enable_whistleblower_identity_feature,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'steps_arrangement': context.steps_arrangement,
-        'custodians': [r.id for r in context.custodians],
+        'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
@@ -162,11 +162,11 @@ def anon_serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
-    options = [anon_serialize_option(o, language) for o in f_to_serialize.options]
+    options = [anon_serialize_option(o, language)
+        for o in f_to_serialize.options]
 
-    fields = []
-    for f in f_to_serialize.children:
-        fields.append(anon_serialize_field(store, f, language))
+    fields = [anon_serialize_field(store, f, language)
+        for f in f_to_serialize.children]
 
     attrs = {}
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
@@ -210,9 +210,7 @@ def anon_serialize_step(store, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    fields = []
-    for f in step.children:
-        fields.append(anon_serialize_field(store, f, language))
+    fields = [anon_serialize_field(store, f, language) for f in step.children]
 
     ret_dict = {
         'id': step.id,
@@ -335,7 +333,7 @@ class ReceiversCollection(BaseHandler):
     @inlineCallbacks
     def get(self):
         """
-        Gets all the receivers.
+        Get all the receivers.
         """
         ret = yield GLApiCache.get('receivers', self.request.language,
                                    get_public_receivers_list, self.request.language)

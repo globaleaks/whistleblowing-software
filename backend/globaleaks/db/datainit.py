@@ -41,11 +41,7 @@ def load_appdata():
                 appdata_dict = json.loads(json_string)
                 return appdata_dict
 
-    if appdata_dict is None:
-        # on this condition appdata is set to empty
-        return dict({'version': 1, 'fields': []})
-
-    return appdata_dict
+    raise errors.InternalServerError("Unable to load application data")
 
 
 @transact

@@ -274,8 +274,8 @@ describe('PUT /admin/node', function () {
   })
 })
 
-// we popolate population_order/2 contexts
-for (var i=0; i<population_order / 2; i++) {
+// we popolate population_order contexts
+for (var i=0; i<population_order; i++) {
   describe('POST /admin/context', function () {
     it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
       var newObject = JSON.parse(JSON.stringify(context));
@@ -339,22 +339,18 @@ for (var i=0; i<population_order; i++) {
   })(i);
 }
 
-// we popolate population_order/2 contexts
-for (var i=population_order/2; i<population_order; i++) {
+// we popolate population_order contexts
+for (var i=0; i<population_order; i++) {
   (function (i) {
-    describe('POST /admin/context', function () {
-      it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
-        var newObject = JSON.parse(JSON.stringify(context));
-        newObject.name = 'Context ' + i ;
-        newObject.presentation_order = i;
-        newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
-        newObject.receivers = receivers_ids;
+    describe('PUT /admin/context', function () {
+      it('responds 202 on PUT /admin/context ' + i + ' (authenticated, valid context)', function (done) {
+        contexts[i].receivers = receivers_ids;
 
         app
-          .post('/admin/context')
-          .send(newObject)
+          .put('/admin/context/' + contexts[i].id)
+          .send(contexts[i])
           .set('X-Session', authentication['session_id'])
-          .expect(201)
+          .expect(202)
           .end(function (err, res) {
             if (err) {
               return done(err);
@@ -362,47 +358,11 @@ for (var i=population_order/2; i<population_order; i++) {
 
             validate_mandatory_headers(res.headers);
 
-            contexts.push(res.body);
-
-            contexts_ids.push(res.body.id);
+            contexts[i] = res.body;
 
             done();
         });
       })
     })
   })(i);
-}
-
-// we popolate fields for each context
-for (var i=0; i<population_order; i++) {
-  for (var j=0; j<fields.length; j++) {
-    (function (i, j) {
-      describe('POST /admin/field', function () {
-        it('responds 201 on POST /admin/field, valid field', function (done) {
-            var newObject = JSON.parse(JSON.stringify(fields[j]));
-            newObject.step_id = contexts[i]['steps'][0]['id'];
-
-            app
-              .post('/admin/field')
-              .send(newObject)
-              .set('X-Session', authentication['session_id'])
-              .expect(201)
-              .end(function (err, res) {
-
-                if (err) {
-                  return done(err);
-                }
-
-                validate_mandatory_headers(res.headers);
-
-                fields.push(res.body);
-
-                fields_ids.push(res.body.id);
-
-                done();
-              });
-        })
-      })
-    })(i, j);
-  }
 }

@@ -20,116 +20,11 @@ from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log, datetime_now
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.tempobj import TempObj
 
 reactor_override = None
 
 
-class LastHourMailQueue(object):
-    """
-    This class has only a class variable, used to stock the queue of the
-    event happened on the latest minutes.
-    """
-
-    # This event queue is used by the tempObj
-    event_queue = {}
-
-    # This dict is used specifically for mail tracking
-    per_receiver_lastmails = {}
-    _counter = 0
-
-    # This list is used to keep track of the currently suspended mail
-    receivers_in_threshold = []
-
-    # This is the utility dict required by TempObj
-    blocked_in_queue = {}
-
-    @staticmethod
-    def mail_number(receiver_id):
-        if receiver_id not in LastHourMailQueue.per_receiver_lastmails:
-            return 0
-        return LastHourMailQueue.per_receiver_lastmails[receiver_id]
-
-    @staticmethod
-    def get_incremental_number():
-        LastHourMailQueue._counter += 1
-        return LastHourMailQueue._counter
-
-
-class ReceiverDeniedEmail(TempObj):
-    def __init__(self, receiver_id, debug=False):
-        self.debug = debug
-        self.creation_date = datetime_now()
-        self.receiver_id = receiver_id
-
-        if receiver_id in LastHourMailQueue.receivers_in_threshold:
-            log.err("Implementation error ? Receiver %s already present" % receiver_id)
-
-        TempObj.__init__(self,
-                         LastHourMailQueue.blocked_in_queue,
-                         random.randint(0, 0xffff),
-                         # seconds of validity:
-                         GLSettings.memory_copy.notification_suspension_time,
-                         reactor_override)
-
-        log.info("Temporary disable emails for receiver %s for four hours" % self.receiver_id)
-        LastHourMailQueue.receivers_in_threshold.append(receiver_id)
-        self.expireCallbacks.append(self.reactivate_receiver_mails)
-
-    def reactivate_receiver_mails(self):
-        # Receiver return to be usable
-        log.info("Expiring email suspension for %s" % self.receiver_id)
-        if self.receiver_id not in LastHourMailQueue.receivers_in_threshold:
-            log.err("Error while reactivating mails for a receiver")
-        else:
-            LastHourMailQueue.receivers_in_threshold.remove(self.receiver_id)
-
-    def generate_anomaly_email(self, plausible_event):
-
-        anomalevent = OD()
-        anomalevent.type = u'receiver_notification_limit_reached'
-        anomalevent.notification_settings = plausible_event.notification_settings
-        anomalevent.node_info = plausible_event.node_info
-        anomalevent.context_info = None
-        anomalevent.receiver_info = plausible_event.receiver_info
-        anomalevent.tip_info = None
-        anomalevent.subevent_info = None
-        anomalevent.orm_id = 0
-
-        return anomalevent
-
-
-class MailActivities(TempObj):
-    def __init__(self, receiver_id, receiver_name, debug=False):
-
-        self.debug = debug
-        self.creation_date = datetime_now()
-        self.receiver_id = receiver_id
-        self.event_id = LastHourMailQueue.get_incremental_number()
-
-        # This variable is just used for debug/log purpose
-        self.receiver_name = receiver_name
-
-        TempObj.__init__(self,
-                         LastHourMailQueue.event_queue,
-                         self.event_id,
-                         # seconds of validity:
-                         3600,
-                         reactor_override)
-
-        LastHourMailQueue.per_receiver_lastmails.setdefault(receiver_id, 0)
-        LastHourMailQueue.per_receiver_lastmails[receiver_id] += 1
-
-        self.expireCallbacks.append(self.manage_mail_expiration)
-
-    def manage_mail_expiration(self):
-        LastHourMailQueue.per_receiver_lastmails[self.receiver_id] -= 1
-
-    def __repr__(self):
-        return self.receiver_id
-
-
-class NotificationMail:
+class NotificationMail(object):
     def __init__(self, plugin_used):
         self.plugin_used = plugin_used
 
@@ -292,32 +187,35 @@ def filter_notification_event(notifque):
     for ne in _tmp_list:
         receiver_id = ne['receiver_info']['id']
 
-        # It add automatically a mail in to the last hour email queue,
-        # events here expire after 1 hour; this means that if receiver
-        # get one email every 3 minutes, with default threshold (20).
-        # NEVER trigger this alarm, because at the 21 the first is
-        # already expired.
-        MailActivities(receiver_id, ne['receiver_info']['name'])
+        sent_emails = GLSettings.get_mail_counter(receiver_id)
 
-        email_sent_last_60min = LastHourMailQueue.mail_number(receiver_id)
-
-        if receiver_id in LastHourMailQueue.receivers_in_threshold:
-            log.debug("Receiver %s is currently suspended against new mail" %
+        if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
+            log.debug("Discarding email for receiver %s due to threshold already exceeded for the current hour" %
                       receiver_id)
             orm_id_to_be_skipped.append(ne['orm_id'])
             continue
 
-        if email_sent_last_60min >= GLSettings.memory_copy.notification_threshold_per_hour:
-            log.info("Threshold reach of %d email with limit of %d for receiver %s" % (
-                email_sent_last_60min,
+        GLSettings.increment_mail_counter(receiver_id)
+
+        if sent_emails + 1 >= GLSettings.memory_copy.notification_threshold_per_hour:
+            log.info("Reached threshold of %d emails with limit of %d for receiver %s" % (
+                sent_emails,
                 GLSettings.memory_copy.notification_threshold_per_hour,
                 receiver_id)
             )
-            rde = ReceiverDeniedEmail(receiver_id)
 
             # Append
-            anomaly_event = rde.generate_anomaly_email(ne)
-            return_filtered_list.append(anomaly_event)
+            anomalyevent = OD()
+            anomalyevent.type = u'receiver_notification_limit_reached'
+            anomalyevent.notification_settings = plausible_event.notification_settings
+            anomalyevent.node_info = plausible_event.node_info
+            anomalyevent.context_info = None
+            anomalyevent.receiver_info = plausible_event.receiver_info
+            anomalyevent.tip_info = None
+            anomalyevent.subevent_info = None
+            anomalyevent.orm_id = 0
+
+            return_filtered_list.append(anomalevent)
 
             orm_id_to_be_skipped.append(ne['orm_id'])
             continue
@@ -389,7 +287,6 @@ class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
-
         queue_events = yield load_complete_events()
 
         if not len(queue_events):
@@ -430,4 +327,3 @@ class MailflushSchedule(GLJob):
             # it is needed by Templating()
             yield self.ping_mail_flush(filtered_events[0].notification_settings,
                                        receivers_synthesis)
-

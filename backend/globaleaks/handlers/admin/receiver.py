@@ -120,8 +120,7 @@ def update_receiver(store, receiver_id, request, language):
 
     contexts = request.get('contexts', [])
 
-    for context in receiver.contexts:
-        receiver.contexts.remove(context)
+    receiver.contexts.clear()
 
     for context_id in contexts:
         context = models.Context.get(store, context_id)
