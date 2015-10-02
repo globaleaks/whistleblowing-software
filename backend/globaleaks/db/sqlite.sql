@@ -391,6 +391,10 @@ CREATE TABLE field (
     PRIMARY KEY (id)
 );
 
+CREATE INDEX field__template_id_index ON field(template_id);
+CREATE INDEX field__step_id_index ON field(step_id);
+CREATE INDEX field__fieldgroup_id_index ON field(fieldgroup_id);
+
 CREATE TABLE fieldattr (
     id TEXT NOT NULL,
     field_id TEXT NOT NULL,
@@ -400,10 +404,11 @@ CREATE TABLE fieldattr (
                                        'unicode',
                                        'localized')),
     value TEXT NOT NULL,
-    UNIQUE (field_id, name),
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
+
+CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 
 CREATE TABLE fieldoption (
     id TEXT NOT NULL,
@@ -413,8 +418,9 @@ CREATE TABLE fieldoption (
     score_points INTEGER NOT NULL,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-
 );
+
+CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
 
 CREATE TABLE optionactivatefield (
     option_id TEXT NOT NULL,
@@ -424,6 +430,8 @@ CREATE TABLE optionactivatefield (
     PRIMARY KEY (option_id, field_id)
 );
 
+CREATE INDEX optionactivatefield__field_id_index ON optionactivatefield(field_id);
+
 CREATE TABLE optionactivatestep (
     option_id TEXT NOT NULL,
     step_id TEXT NOT NULL,
@@ -431,6 +439,8 @@ CREATE TABLE optionactivatestep (
     FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
     PRIMARY KEY (option_id, step_id)
 );
+
+CREATE INDEX optionactivatestep__field_id_index ON optionactivatestep(field_id);
 
 CREATE TABLE step (
     id TEXT NOT NULL,
@@ -443,6 +453,8 @@ CREATE TABLE step (
     PRIMARY KEY (id)
 );
 
+CREATE INDEX step__field_id_index ON step(context_id);
+
 CREATE TABLE fieldanswer (
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
@@ -451,6 +463,8 @@ CREATE TABLE fieldanswer (
     value TEXT NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE INDEX internaltip_id_index ON fieldanswer(internaltip_id);
 
 CREATE TABLE fieldanswergroup (
     id TEXT NOT NULL,
