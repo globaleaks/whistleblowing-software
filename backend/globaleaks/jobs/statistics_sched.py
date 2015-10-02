@@ -136,7 +136,7 @@ class StatisticsSchedule(GLJob):
         # ------- END Stats section -------------
 
         # ------- BEGIN Mail thresholds management -----------
-        for k, v in GLSettings.mail_counters:
+        for k, v in GLSettings.mail_counters.iteritems():
             if v > GLSettings.memory_copy.notification_threshold_per_hour:
                 GLSettings.mail_counters[k] -= GLSettings.memory_copy.notification_threshold_per_hour
             else:
