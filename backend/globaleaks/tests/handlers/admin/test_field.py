@@ -237,7 +237,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(self.responses[0], role='admin')
             self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
 
-            # a child not of type 'fieldgroup' MUST never have children.
+            # a field not of type 'fieldgroup' MUST never have children.
             yield handler.get(name_field_id)
             sex_field = yield self._get_field(sex_field_id)
             self.responses[2]['children'] = [sex_field]

@@ -68,9 +68,8 @@ def get_receiver_list(store, language):
     Returns:
         (list) the list of receivers
     """
-    receivers = store.find(models.Receiver)
-
-    return [admin_serialize_receiver(receiver, language) for receiver in receivers]
+    return [admin_serialize_receiver(receiver, language)
+        for receiver in store.find(models.Receiver)]
 
 
 @transact
@@ -89,7 +88,6 @@ def db_get_receiver(store, receiver_id):
 
     """
     receiver = models.Receiver.get(store, receiver_id)
-
     if not receiver:
         raise errors.ReceiverIdNotFound
 
@@ -98,8 +96,7 @@ def db_get_receiver(store, receiver_id):
 
 @transact_ro
 def get_receiver(store, receiver_id, language):
-    receiver = db_get_receiver(store, receiver_id)
-    return admin_serialize_receiver(receiver, language)
+    return admin_serialize_receiver(db_get_receiver(store, receiver_id), language)
 
 
 @transact
@@ -112,7 +109,6 @@ def update_receiver(store, receiver_id, request, language):
     db_admin_update_user(store, receiver_id, request, language)
 
     receiver = models.Receiver.get(store, receiver_id)
-
     if not receiver:
         raise errors.ReceiverIdNotFound
 

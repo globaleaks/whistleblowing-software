@@ -23,16 +23,13 @@ from globaleaks.utils.token import TokenList
 
 
 def serialize_file(internalfile):
-    file_desc = {
+    return {
         'size': internalfile.size,
         'content_type': internalfile.content_type,
         'name': internalfile.name,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'id': internalfile.id
     }
-
-    return file_desc
-
 
 def serialize_receiver_file(receiverfile):
     internalfile = receiverfile.internalfile
@@ -109,11 +106,11 @@ def dump_file_fs(uploaded_file):
                                          os.path.basename(uploaded_file['body_filepath']))
 
     log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
-              (uploaded_file['body_len'],
-               uploaded_file['filename'],
-               uploaded_file['body_filepath'],
-               encrypted_destination)
-              )
+        (uploaded_file['body_len'],
+         uploaded_file['filename'],
+         uploaded_file['body_filepath'],
+         encrypted_destination)
+    )
 
     shutil.move(uploaded_file['body_filepath'], encrypted_destination)
 

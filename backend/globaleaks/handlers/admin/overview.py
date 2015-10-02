@@ -129,7 +129,6 @@ def collect_files_overview(store):
     submission_dir = os.path.join(GLSettings.working_path, GLSettings.submission_path)
     disk_files = os.listdir(submission_dir)
     stored_ifiles = store.find(models.InternalFile)
-    stored_ifiles.order_by(Desc(models.InternalFile.creation_date))
     stored_rfiles = store.find(models.ReceiverFile)
 
     # ifile evaluation

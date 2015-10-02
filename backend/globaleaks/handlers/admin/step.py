@@ -31,9 +31,7 @@ def db_create_step(store, step, language):
      """
      fill_localized_keys(step, models.Step.localized_strings, language)
 
-     s = models.Step.new(store, step)
-
-     return s
+     return models.Step.new(store, step)
 
 
 @transact
@@ -41,9 +39,7 @@ def create_step(store, step, language):
     """
     Transaction that perform db_create_step
     """
-    s = db_create_step(store, step, language)
-
-    return anon_serialize_step(store, s, language)
+    return anon_serialize_step(store, db_create_step(store, step, language), language)
 
 
 def db_update_step(store, step_id, request, language):
@@ -59,29 +55,22 @@ def db_update_step(store, step_id, request, language):
     :return: a serialization of the object
     """
     step = models.Step.get(store, step_id)
-    try:
-        if not step:
-            raise errors.StepIdNotFound
+    if not step:
+        raise errors.StepIdNotFound
 
-        fill_localized_keys(request, models.Step.localized_strings, language)
+    fill_localized_keys(request, models.Step.localized_strings, language)
 
-        step.update(request)
+    step.update(request)
 
-        for child in request['children']:
-            db_update_field(store, child['id'], child, language)
-
-    except Exception as dberror:
-        log.err('Unable to update step: {e}'.format(e=dberror))
-        raise errors.InvalidInputFormat(dberror)
+    for child in request['children']:
+        db_update_field(store, child['id'], child, language)
 
     return step
 
 
 @transact
 def update_step(store, step_id, request, language):
-    step = db_update_step(store, step_id, request, language)
-
-    return anon_serialize_step(store, step, language)
+    return anon_serialize_step(store, db_update_step(store, step_id, request, language), language)
 
 @transact_ro
 def get_step(store, step_id, language):

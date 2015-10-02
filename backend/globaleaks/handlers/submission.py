@@ -142,7 +142,7 @@ def extract_answers_preview(questionnaire, answers):
 
 
 def wb_serialize_internaltip(store, internaltip):
-    response = {
+    return {
         'id': internaltip.id,
         'context_id': internaltip.context_id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),

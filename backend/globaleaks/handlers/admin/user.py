@@ -39,13 +39,12 @@ def create_admin(store, request, language):
     Currently this function simply serialize the admin user.
     In the future this will serialize the admin model with its peculiatieis.
     """
-    admin = db_create_admin(store, request, language)
-    return user_serialize_user(admin, language)
+    return user_serialize_user(db_create_admin(store, request, language), language)
+
 
 @transact
 def create_admin_user(store, request, language):
-    admin = db_create_admin(store, request, language)
-    return user_serialize_user(admin, language)
+    return user_serialize_user(db_create_admin(store, request, language), language)
 
 
 def db_create_custodian(store, request, language):
@@ -76,14 +75,12 @@ def create_custodian(store, request, language):
     Currently this function simply serialize the custodian user.
     In the future this will serialize the admin model with its peculiatieis.
     """
-    custodian = db_create_custodian(store, request, language)
-    return user_serialize_user(custodian, language)
+    return user_serialize_user(db_create_custodian(store, request, language), language)
 
 
 @transact
 def create_custodian_user(store, request, language):
-    custodian = db_create_custodian(store, request, language)
-    return user_serialize_user(custodian, language)
+    return user_serialize_user(db_create_custodian(store, request, language), language)
 
 
 def db_create_receiver(store, request, language):
@@ -147,7 +144,7 @@ def db_create_user(store, request, language):
     password_salt = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
     password_hash = security.hash_password(password, password_salt)
 
-    user_dict = {
+    user = models.User({
         'username': request['username'],
         'password': password_hash,
         'salt': password_salt,
@@ -159,9 +156,7 @@ def db_create_user(store, request, language):
         'timezone': 0,
         'password_change_needed': True,
         'mail_address': request['mail_address']
-    }
-
-    user = models.User(user_dict)
+    })
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -179,7 +174,6 @@ def db_admin_update_user(store, user_id, request, language):
     raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
     """
     user = models.User.get(store, user_id)
-
     if not user:
         raise errors.UserIdNotFound
 
@@ -209,8 +203,7 @@ def db_admin_update_user(store, user_id, request, language):
 
 @transact
 def admin_update_user(store, user_id, request, language):
-    user = db_admin_update_user(store, user_id, request, language)
-    return user_serialize_user(user, language)
+    return user_serialize_user(db_admin_update_user(store, user_id, request, language), language)
 
 
 def db_get_user(store, user_id):
@@ -219,7 +212,6 @@ def db_get_user(store, user_id):
     not exist.
     Returns:
         (dict) the user
-
     """
     user = models.User.get(store, user_id)
 
@@ -252,14 +244,8 @@ def get_users_list(store, language):
     Returns:
         (list) the list of users
     """
-    user_list = []
-
     users = store.find(models.User)
-
-    for user in users:
-        user_list.append(user_serialize_user(user, language))
-
-    return user_list
+    return [user_serialize_user(user, language) for user in users]
 
 
 class UsersCollection(BaseHandler):

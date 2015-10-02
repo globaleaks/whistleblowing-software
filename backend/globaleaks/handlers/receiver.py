@@ -49,10 +49,8 @@ def receiver_serialize_receiver(receiver, language):
         'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
         'pgp_key_status': receiver.user.pgp_key_status,
         'pgp_key_remove': False,
+        'contexts': [context.id for context in receiver.contexts]
     }
-
-    for context in receiver.contexts:
-        ret_dict['contexts'].append(context.id)
 
     # description and eventually other localized strings should be taken from user model
     get_localized_values(ret_dict, receiver.user, ['description'], language)
@@ -75,12 +73,10 @@ def update_receiver_settings(store, receiver_id, request, language):
     user = db_user_update_user(store, receiver_id, request, language)
 
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-
     if not receiver:
         raise errors.ReceiverIdNotFound
 
     ping_mail_address = request['ping_mail_address']
-
     if ping_mail_address != receiver.ping_mail_address:
         log.info("Ping email going to be updated, %s => %s" % (
             receiver.ping_mail_address, ping_mail_address))
@@ -203,7 +199,6 @@ class TipsCollection(BaseHandler):
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips
     """
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
