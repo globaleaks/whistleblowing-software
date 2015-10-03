@@ -240,16 +240,12 @@ class Replacer2324(TableReplacer):
                 new_node.tor2web_custodian = False
                 continue
 
-            if v.name == 'human_captcha':
-                new_node.human_captcha = True
+            if v.name == 'enable_captcha':
+                new_node.enable_captcha = True
                 continue
 
-            if v.name == 'graph_captcha':
-                new_node.graph_captcha = True
-                continue
-
-            if v.name == 'proof_of_work':
-                new_node.proof_of_work = True
+            if v.name == 'enable_proof_of_work':
+                new_node.enable_proof_of_work = True
                 continue
 
             if v.name == 'header_title_tippage':

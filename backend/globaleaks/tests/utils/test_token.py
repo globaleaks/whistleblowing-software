@@ -33,7 +33,7 @@ class TestToken(helpers.TestGL):
 
         # Token submission
         st = Token('submission')
-        st.generate_token_challenge(TestToken.shared_alarm_obj.get_token_difficulty())
+        st.generate_token_challenge()
 
     def test_token(self):
         st = Token('submission')
@@ -129,7 +129,8 @@ class TestToken(helpers.TestGL):
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False
+            'graph_captcha': False,
+            'proof_of_work': False
         }
 
         token.generate_token_challenge(difficulty)
@@ -150,7 +151,8 @@ class TestToken(helpers.TestGL):
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False
+            'graph_captcha': False,
+            'proof_of_work': False
         }
 
         token.generate_token_challenge(difficulty)

@@ -248,7 +248,7 @@ describe('GET /admin/node', function () {
         /* adding various keys needed next POST */
         node['allow_unencrypted'] = true;
         node['languages_enabled'] = ['en', 'it'];
-        node['proof_of_work'] = false;
+        node['enable_proof_of_work'] = false;
 
         done();
       });
