@@ -345,6 +345,10 @@ class Replacer2324(TableReplacer):
                     new_user.description = old_receiver.description
                     continue
 
+                if v.name == 'deletable':
+                    new_user.deletable = True
+                    continue
+
                 if v.name == 'pgp_key_status':
                     new_user.pgp_key_status = old_receiver.pgp_key_status
                     continue
@@ -392,6 +396,10 @@ class Replacer2324(TableReplacer):
 
             if v.name == 'description':
                 new_admin.description = {'en': ''}
+                continue
+
+            if v.name == 'deletable':
+                new_admin.deletable = False
                 continue
 
             if v.name == 'pgp_key_status':
@@ -510,6 +518,10 @@ class Replacer2324(TableReplacer):
                         new_obj.instance = 'reference'
                     else:
                         new_obj.instance = 'instance'
+                    continue
+
+                if v.name == 'editable':
+                    new_obj.editable = False
                     continue
 
                 if v.name == 'activated_by_score':

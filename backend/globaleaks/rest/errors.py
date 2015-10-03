@@ -175,7 +175,22 @@ class SubmissionValidationFailure(GLException):
         self.arguments = [wrong_field]
 
 
-# UNUSED ERROR CODE 23 24 HERE!
+class UserNotDeletable(GLException):
+    """
+    The selected user is not deletable
+    """
+    reason = "The selected user is not deletable"
+    error_code = 23
+    status_code = 403 # Forbidden
+
+
+class FieldNotModiable(GLException):
+    """
+    The selected user is not deletable
+    """
+    reason = "The selected field is not modifiable"
+    error_code = 24
+    status_code = 403 # Forbidden
 
 
 class ForbiddenOperation(GLException):

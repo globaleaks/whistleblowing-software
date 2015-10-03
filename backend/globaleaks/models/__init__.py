@@ -171,6 +171,8 @@ class User(Model):
     password = Unicode()
     salt = Unicode()
 
+    deletable = Bool(default=True)
+
     name = Unicode(validator=shorttext_v)
     description = JSON(validator=longlocal_v)
 
@@ -201,6 +203,8 @@ class User(Model):
     localized_strings = ['description']
 
     int_keys = ['timezone', 'password_change_needed']
+
+    bool_keys = ['deletable']
 
 
 class Context(Model):
@@ -724,11 +728,12 @@ class Field(Model):
     type = Unicode(default=u'inputbox')
 
     instance = Unicode(default=u'instance')
+    editable = Bool(default=True)
 
     unicode_keys = ['type', 'instance']
     int_keys = ['x', 'y', 'width', 'activated_by_score']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
-    bool_keys = ['multi_entry', 'preview', 'required', 'stats_enabled']
+    bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
 
     def delete(self, store):
         for child in self.children:

@@ -150,6 +150,7 @@ def db_create_user(store, request, language):
         'salt': password_salt,
         'role': request['role'],
         'state': u'enabled',
+        'deletable': request['deletable'],
         'name': request['name'],
         'description': request['description'],
         'language': u'en',
@@ -231,6 +232,11 @@ def get_user(store, user_id, language):
 def delete_user(store, user_id):
     user = db_get_user(store, user_id)
 
+    if not user.deletable:
+        print "a"
+        raise errors.UserNotDeletable
+
+    print "b"
     user_picture = os.path.join(GLSettings.static_path, "%s.png" % user_id)
     if os.path.exists(user_picture):
         os.remove(user_picture)

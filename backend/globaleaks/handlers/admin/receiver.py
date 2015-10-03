@@ -32,6 +32,7 @@ def admin_serialize_receiver(receiver, language):
         'username': receiver.user.username,
         'role': receiver.user.role,
         'name': receiver.user.name,
+        'deletable': receiver.user.deletable,
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'username': receiver.user.username,
@@ -133,6 +134,9 @@ def update_receiver(store, receiver_id, request, language):
 @transact
 def delete_receiver(store, receiver_id):
     receiver = db_get_receiver(store, receiver_id)
+
+    if not receiver.user.deletable:
+        raise errors.UserNotDeletable
 
     portrait = os.path.join(GLSettings.static_path, "%s.png" % receiver_id)
     if os.path.exists(portrait):

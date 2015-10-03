@@ -60,6 +60,7 @@
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
+                data-ng-show="field.modifiable"
                 data-ng-click="fieldDeleteDialog($event, field)"
                 popover="{{Delete | translate}}"
                 popover-placement="right"
