@@ -91,6 +91,7 @@
                     <span data-translate>Cancel</span>
                   </button>
                   <button class="actionButton btn btn-xs btn-danger"
+                    data-ng-show="user.deletable"
                     data-ng-click="userDeleteDialog($event, user)"
                     popover="{{'Delete' | translate}}"
                     popover-placement="right"

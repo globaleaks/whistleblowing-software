@@ -712,6 +712,7 @@ angular.module('GLServices', ['ngResource']).
         self.new_field = function(step_id, fieldgroup_id) {
           var field = new adminFieldResource();
           field.instance = 'instance';
+          field.modifiablee = 'true';
           field.descriptor_id = '';
           field.label = '';
           field.type = 'inputbox';
@@ -769,6 +770,7 @@ angular.module('GLServices', ['ngResource']).
           user.username = '';
           user.role = 'receiver';
           user.state = 'enable';
+          user.deletable = 'true';
           user.password = 'globaleaks';
           user.old_password = '';
           user.password_change_needed = true;
@@ -792,6 +794,7 @@ angular.module('GLServices', ['ngResource']).
           receiver.username = '';
           receiver.role = 'receiver';
           receiver.state = 'enable';
+          receiver.deletable = 'true';
           receiver.configuration = 'default';
           receiver.password = 'globaleaks';
           receiver.old_password = '';

@@ -74,8 +74,10 @@ def init_db(store, result, node_dict, appdata_dict):
     admin_dict = {
         'username': u'admin',
         'password': u'globaleaks',
+        'deeletable': False,
         'role': u'admin',
         'state': u'enabled',
+        'deletable': False,
         'name': u'Admin',
         'description': u'',
         'mail_address': u'',

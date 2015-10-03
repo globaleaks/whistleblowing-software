@@ -236,6 +236,13 @@ def create_field(store, field, language):
 
 
 def db_update_field(store, field_id, field, language):
+    f = models.Field.get(store, field_id)
+    if not f:
+        raise errors.FieldIdNotFound
+
+    if not f.modifiable:
+        raise errors.FieldNotModifiable
+
     _, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
@@ -248,10 +255,6 @@ def db_update_field(store, field_id, field, language):
 
     if field['fieldgroup_id'] == '':
         field['fieldgroup_id'] = None
-
-    f = models.Field.get(store, field_id)
-    if not f:
-        raise errors.FieldIdNotFound
 
     try:
         # make not possible to change field type
@@ -360,6 +363,9 @@ def delete_field(store, field_id):
     field = store.find(models.Field, models.Field.id == field_id).one()
     if not field:
         raise errors.FieldIdNotFound
+
+    if not field.modifiable:
+        raise errors.FieldNotModifiable
 
     field.delete(store)
 

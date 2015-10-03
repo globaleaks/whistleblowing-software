@@ -82,8 +82,14 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.put(self.dummyAdminUser['id']), InvalidInputFormat)
 
     @inlineCallbacks
-    def test_delete(self):
+    def test_delete_first_admin_user_should_fail(self):
         handler = self.request(self.dummyAdminUser, role='admin')
-        yield handler.delete(self.dummyAdminUser['id'])
-        yield self.assertFailure(handler.get(self.dummyAdminUser['id']),
+        yield self.assertFailure(handler.delete(self.dummyAdminUser['id']),
+                                 errors.UserNotDeletable)
+
+    @inlineCallbacks
+    def test_delete_receiver_should_succeed(self):
+        handler = self.request(self.dummyReceiverUser_1, role='admin')
+        yield handler.delete(self.dummyReceiverUser_1['id'])
+        yield self.assertFailure(handler.get(self.dummyReceiverUser_1['id']),
                                  errors.UserIdNotFound)
