@@ -1,14 +1,10 @@
 # -*- encoding: utf-8 -*-
-import os
 
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.tests import helpers
-
 from globaleaks import models
 from globaleaks.settings import transact
-from globaleaks.utils.logger import LoggedEvent, adminLog, receiverLog, \
-    tipLog, LogQueue, initialize_LoggedEvent
+from globaleaks.utils.logger import adminLog, LogQueue, picklogs
 
 from globaleaks.jobs.log_sched import LogSchedule
 
@@ -25,37 +21,35 @@ class TestLogFlush(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_initialize_high_id(self):
 
-        yield initialize_LoggedEvent()
         FUFFA_NUMBER = 100
         push_admin_logs(FUFFA_NUMBER)
-
         yield LogSchedule().dump_fresh_logs()
-
         nextrun = LogSchedule()
-
         yield nextrun.initialize_highest_id()
-
         self.assertEqual(nextrun.highest_logged_id, FUFFA_NUMBER)
 
 
     @inlineCallbacks
     def test_stored_log(self):
 
-        yield initialize_LoggedEvent()
         FUFFA_NUMBER = 42
         push_admin_logs(FUFFA_NUMBER)
-
         yield LogSchedule().dump_fresh_logs()
-
         adminLog(['normal'], 'LOGIN_2', ['a'])
-        # TODO continue
 
+        # The memory get flushed
+        LogQueue._all_queues = {}
+
+        # and therefore this call pull also from the DB
+        x = yield picklogs('admin', FUFFA_NUMBER + 1)
+        self.assertEqual(len(x), FUFFA_NUMBER + 1)
+        print x
+        import pdb; pdb.set_trace()
 
 
     @inlineCallbacks
     def test_dump_fresh_log(self):
 
-        yield initialize_LoggedEvent()
         FUFFA_NUMBER = 120
         push_admin_logs(FUFFA_NUMBER)
 

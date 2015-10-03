@@ -20,6 +20,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 from globaleaks.utils.structures import Rosetta
+from globaleaks.utils.logger import receiverLog, adminLog
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.models import Node, Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema
@@ -177,14 +178,36 @@ def db_delete_itip(store, itip, itip_number=0):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
+        # Loop over receiver tips to log properly for each case (expired, never access)
+        for rtips in ifile.internaltip.receivertips:
+            receiverLog(['normal'], 'TIP_20', [ rtips.label ], rtips.receiver.user.id)
+
+            if itip_number:
+                receiverLog(['mail', 'normal'], 'TIP_2',
+                            [ itip.context.name, "Cleaning"], rtips.receiver.user.id )
+
+            if rtips.access_counter == 0:
+                # Deleted by expire, and never accessed :(
+                adminLog(['warning'], 'TIP_1', [ rtips.receiver.name ])
+                receiverLog(['mail', 'warning'], 'TIP_22',
+                            [ itip.context.name ], rtips.receiver.user.id )
+            else:
+                # Deleted by Receiver, and never accessed
+                receiverLog(['warning', 'mail'], 'TIP_22',
+                            [ itip.context.name ], rtips.receiver.user.id )
+
+
     if itip_number:
         log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
                   (itip.id, itip_number) )
+        adminLog(['normal'], 'TIP_2', [ itip.context.name, "Cleaning" ])
     else:
         log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
+        adminLog(['normal'], 'TIP_2', [ itip.context.name, "Receiver command" ])
 
     store.remove(itip)
 
+    # What is this ?
     if store.find(InternalTip, InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
         store.find(ArchivedSchema, ArchivedSchema.hash == itip.questionnaire_hash).remove()
 

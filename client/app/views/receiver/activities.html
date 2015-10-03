@@ -1,0 +1,52 @@
+<div id="ReceiverToolbar" class="row">
+  <div class="col-md-12">
+    <div class="pull-left">
+
+      <a id="link-tiplist"
+         href="#/receiver/tips"
+         popover="{{'Tips' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
+        <span class="glyphicon glyphicon-th-list"></span>
+      </a>
+
+      <a id="receiver-link-preferences"
+         href="#/receiver/preferences"
+         popover="{{'Preferences' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
+        <span class="glyphicon glyphicon-cog"></span>
+      </a>
+      <a id="link-reload"
+         data-ng-click="reload()"
+         popover="{{'Refresh tip list' | translate}}"
+         popover-placement="top"
+         popover-trigger="mouseenter"
+         class="btn btn-default">
+        <span class="glyphicon glyphicon-refresh"></span>
+      </a>
+
+    </div>
+  </div>
+</div>
+<div class="row" id="ReceiverLogsCtrl">
+  <div class="col-md-12">
+
+
+
+      <h2 class="log">Warning</h2>
+      <div class="warning log" id="log-{{acct.id}}" data-ng-repeat="acct in activities | orderBy:sortKey:sortReverse | filter:search">
+          {{acct.id}}
+          {{acct.message}}
+      </div>
+
+      <h2 class="log">Normal</h2>
+      <div class="normal log"id="log-{{acct.id}}" data-ng-repeat="acct in activities | orderBy:sortKey:sortReverse | filter:search">
+          {{acct.id}}
+          {{acct.message}}
+      </div>
+
+  </div> 
+</div>

@@ -36,12 +36,19 @@ Login_messages = {
 Tip_messages = {
     # Admin
     'TIP_0' : [ "submission has been created in context %s", 1],
-    'TIP_1' : [ "submission in context %s is going to expire and has never been accessed by your receivers", 1 ],
+    'TIP_1' : [ "submission is going to expire and has never been accessed by receiver %s", 1 ],
+    'TIP_2' : [ "tip deleted from context %s (%s)", 2],
+    # Receiver
+    'TIP_20': [ "tip with label: %s deleted ", 1],
+    'TIP_21': [ "tip delivered to you, in %s", 1],
+    'TIP_22': [ "tip deleted from %s, is never been accessed by you", 1],
 }
 
 Security_messages  = {
+    # Admin
+    'SECURITY_0' : [ "system boot", 0],
     # Receiver
-    'SECURITY_1' : [ "someone has put a wrong password in the login interface", 0 ]
+    'SECURITY_20' : [ "someone has put a wrong password in the login interface", 0 ],
 }
 
 Network_messages = {
@@ -246,7 +253,8 @@ class LoggedEvent(object):
             'level': self.level,
             'mail': self.mail,
             'mail_sent': self.mail_sent,
-            'id': self.id
+            'id': self.id,
+            'message': self.log_message
         }
         return log_dict
 
@@ -277,6 +285,7 @@ class LoggedEvent(object):
         self.mail_sent = storm_Log_entry.mail_sent
         self.level = storm_Log_entry.log_level
         self.log_date = storm_Log_entry.log_date
+        self.log_message = storm_Log_entry.log_message
 
         LogQueue(self.subject).add(self.id, self)
 
@@ -306,8 +315,20 @@ class LoggedEvent(object):
         subject_uuid = LogQueue.create_subject_uuid(subject, subject_id)
         self.subject = subject_uuid
 
-        if GLSettings.loglevel == logging.DEBUG:
-            log.debug( _LOG_CODE[ self.log_code][0] % self.args )
+        if len(self.args) == 0:
+            assert 0 == _LOG_CODE[ self.log_code ][1]
+            log_str = _LOG_CODE[ self.log_code][0]
+        elif len(self.args) == 1:
+            assert 1 == _LOG_CODE[ self.log_code ][1]
+            log_str = (_LOG_CODE[ self.log_code][0] % self.args[0] )
+        elif len(self.args) == 2:
+            assert 2 == _LOG_CODE[ self.log_code ][1]
+            log_str = (_LOG_CODE[ self.log_code][0] % (self.args[0], self.args[1])  )
+        else:
+            raise Exception("!!?")
+
+        log.debug("Log of: [%s]" % log_str)
+        self.log_message = unicode(log_str)
 
         LogQueue(subject_uuid).add(self.id, self)
 

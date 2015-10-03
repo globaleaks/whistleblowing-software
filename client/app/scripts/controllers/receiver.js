@@ -98,6 +98,15 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'changeP
 
 }]);
 
+GLClient.controller('ReceiverLogsCtrl', ['$scope', '$http', '$route', '$location', 'ReceiverLogs',
+  function($scope, $http, $location, $modal, ReceiverLogs) {
+
+    $scope.activities = ReceiverLogs.query();
+
+    console.log($scope.activities);
+
+  }]);
+
 GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$modal', 'ReceiverTips',
   function($scope, $http, $route, $location, $modal, ReceiverTips) {
   $scope.tips = ReceiverTips.query();

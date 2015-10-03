@@ -17,6 +17,7 @@ from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
+from globaleaks.utils.logger import initialize_LoggedEvent
 
 import sys
 reload(sys)
@@ -171,6 +172,8 @@ class TestGL(unittest.TestCase):
         anomaly.Alarm.reset()
         event.EventTrackQueue.reset()
         statistics_sched.StatisticsSchedule.reset()
+
+        yield initialize_LoggedEvent()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 

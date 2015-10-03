@@ -437,7 +437,7 @@ CREATE TABLE log (
     args VARCHAR,
     log_date TEXT NOT NULL,
     subject TEXT NOT NULL,
-    subject_id TEXT,
+    log_message TEXT NOT NULL,
     log_level INTEGER,
     mail INTEGER,
     mail_sent INTEGER,

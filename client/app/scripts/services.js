@@ -533,8 +533,8 @@ angular.module('GLServices', ['ngResource']).
     $rootScope.selected_tip_list = [];
     return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('ReceiverLogCollection', ['$resource', function($resource) {
-    return $resource('receiver/logs/0');
+  factory('ReceiverLogs', ['$resource', function($resource) {
+    return $resource('receiver/logs/0', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
     return $resource('receiver/notifications');

@@ -834,6 +834,7 @@ class Log(BaseModel):
     log_date = DateTime()
     # This is the identification string, is composed by a 'admin' or 'receiver_$UUIDv4'
     subject = Unicode()
+    log_message = Unicode()
     log_level = Int()
     mail = Bool()
     mail_sent = Bool()

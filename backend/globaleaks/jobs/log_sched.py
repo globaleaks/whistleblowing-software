@@ -73,6 +73,7 @@ class LogSchedule(GLJob):
                 nl.log_level = what.level
                 nl.mail = what.mail
                 nl.mail_sent = False
+                nl.log_message = what.log_message
 
                 if id > LogSchedule.highest_logged_id:
                     LogSchedule.highest_logged_id = id
