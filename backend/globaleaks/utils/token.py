@@ -150,9 +150,19 @@ class Token(TempObj):
         self.proof_of_work = False
 
         if challenges_dict is None:
-            challenges_dict = Alarm().get_token_difficulty()
+            challenges_dict = {
+                'human_captcha': False,
+                'graph_captcha': False,
+                'proof_of_work': False
+            }
 
-        if GLSettings.memory_copy.human_captcha and challenges_dict['human_captcha']:
+            if Alarm.stress_levels['activity'] >= 1:
+                challenges_dict['human_captcha'] = True and GLSettings.memory_copy.enable_captcha
+
+            # a proof of work is always required (if enabled at node level)
+            challenges_dict['proof_of_work'] = GLSettings.memory_copy.enable_proof_of_work
+
+        if challenges_dict['human_captcha']:
             random_a = randint(0, 99)
             random_b = randint(0, 99)
 
@@ -161,11 +171,11 @@ class Token(TempObj):
                 'answer': u"%d" % (random_a + random_b)
             }
 
-        if GLSettings.memory_copy.graph_captcha and challenges_dict['graph_captcha']:
+        if challenges_dict['graph_captcha']:
             # still not implemented
             pass
 
-        if GLSettings.memory_copy.proof_of_work:
+        if challenges_dict['proof_of_work']:
             self.proof_of_work = {
                 'question': rstr.xeger(r'[A-Za-z0-9]{20}')
             }
@@ -258,7 +268,7 @@ class Token(TempObj):
                 error = True
 
         if not error and self.graph_captcha is not False:
-            raise errors.TokenFailure("Graphical Captcha error! NotYetImplemented")
+            raise errors.TokenFailure("Graphical captcha error: not yet implemented")
 
         if not error and self.proof_of_work is not False:
             if 'proof_of_work_answer' in request:

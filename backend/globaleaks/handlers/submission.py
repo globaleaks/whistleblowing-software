@@ -247,6 +247,7 @@ def import_receivers(store, submission, receiver_id_list):
         log.err("models.Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")
 
+
 def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)

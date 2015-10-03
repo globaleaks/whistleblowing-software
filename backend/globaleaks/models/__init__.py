@@ -454,9 +454,8 @@ class Node(Model):
     disable_security_awareness_questions = Bool(default=False)
     disable_key_code_hint = Bool(default=False)
 
-    human_captcha = Bool(default=True)
-    graph_captcha = Bool(default=True)
-    proof_of_work = Bool(default=True)
+    enable_captcha = Bool(default=True)
+    enable_proof_of_work = Bool(default=True)
 
     whistleblowing_question = JSON(validator=longlocal_v)
     whistleblowing_button = JSON(validator=longlocal_v)
@@ -497,9 +496,8 @@ class Node(Model):
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
                  'disable_key_code_hint',
-                 'human_captcha',
-                 'graph_captcha',
-                 'proof_of_work']
+                 'enable_captcha',
+                 'enable_proof_of_work']
 
     # wizard_done is not checked because it's set by the backend
 
