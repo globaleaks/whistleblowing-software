@@ -105,15 +105,13 @@ class TestPGP(TestHandlerWithPopulatedDB):
         doubletest = yield get_context_list('en')
         self.assertEqual(len(doubletest), 2)
 
-        yanr = dict(MockDict().dummyReceiver)
-        yanr['username'] = u"Receiver1"
+        yanr = self.get_dummy_receiver("antani1")
         yanr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         yanr['contexts'] = [ new_context_output['id']]
         yanr_output = yield receiver.create_receiver(yanr, 'en')
         self.receiver_assertions(yanr, yanr_output)
 
-        asdr = dict(MockDict().dummyReceiver)
-        asdr['username'] = u"Receiver2"
+        asdr = self.get_dummy_receiver("antani2")
         asdr['pgp_key_public'] = unicode(VALID_PGP_KEY1)
         asdr['contexts'] = [ new_context_output['id']]
         asdr_output = yield receiver.create_receiver(asdr, 'en')

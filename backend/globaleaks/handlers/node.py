@@ -174,6 +174,7 @@ def anon_serialize_field(store, field, language):
     ret_dict = {
         'id': field.id,
         'instance': field.instance,
+        'editable': field.editable,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
         'step_id': field.step_id if field.step_id else '',

@@ -352,9 +352,8 @@ NodeDesc = {
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
     'simplified_login': bool,
-    'human_captcha': bool,
-    'graph_captcha': bool,
-    'proof_of_work':  bool,
+    'enable_captcha': bool,
+    'enable_proof_of_work':  bool,
     'enable_custom_privacy_badge': bool,
     'custom_privacy_badge_tor': unicode,
     'custom_privacy_badge_none': unicode,
@@ -501,6 +500,7 @@ FieldOptionDesc = {
 
 FieldDesc = {
     'instance': field_instance_regexp,
+    'editable': bool,
     'template_id': uuid_regexp_or_empty,
     'step_id': uuid_regexp_or_empty,
     'fieldgroup_id': uuid_regexp_or_empty,

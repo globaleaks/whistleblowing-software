@@ -252,6 +252,7 @@ class TestGL(unittest.TestCase):
     def get_dummy_field(self):
         return {
             'instance': 'instance',
+            'editable': True,
             'template_id': '',
             'step_id': '',
             'fieldgroup_id': '',
@@ -269,7 +270,7 @@ class TestGL(unittest.TestCase):
             'children': [],
             'y': 1,
             'x': 1,
-            'width': 0
+            'width': 0 
         }
 
     @transact
@@ -739,6 +740,7 @@ class MockDict():
             {
                 'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
                 'instance': 'template',
+                'editable': True,
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -760,6 +762,7 @@ class MockDict():
             {
                 'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
                 'instance': 'template',
+                'editable': True,
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -781,6 +784,7 @@ class MockDict():
             {
                 'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
                 'instance': 'template',
+                'editable': True,
                 'step_id': '',
                 'template_id': '',
                 'fieldgroup_id': '',
@@ -802,6 +806,7 @@ class MockDict():
             {
                 'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
                 'instance': 'template',
+                'editable': True,
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -823,6 +828,7 @@ class MockDict():
             {
                 'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
                 'instance': 'template',
+                'editable': True,
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
@@ -844,6 +850,7 @@ class MockDict():
             {
                 'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
                 'instance': 'template',
+                'editable': True,
                 'template_id': '',
                 'step_id': '',
                 'fieldgroup_id': '',
