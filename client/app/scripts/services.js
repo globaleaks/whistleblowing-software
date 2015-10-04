@@ -534,7 +534,8 @@ angular.module('GLServices', ['ngResource']).
     return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverLogs', ['$resource', function($resource) {
-    return $resource('receiver/logs/0', {}, {'update': {method: 'PUT'}});
+    return $resource('receiver/logs/:filter/0', {filter: '@filter'}, {});
+    /* return $resource('receiver/logs/0', {}, {'update': {method: 'PUT'}}); */
 }]).
   factory('ReceiverNotification', ['$resource', function($resource) {
     return $resource('receiver/notifications');
@@ -781,8 +782,8 @@ angular.module('GLServices', ['ngResource']).
   factory('ActivitiesCollection', ['$resource', function($resource) {
     return $resource('admin/activities/details');
 }]).
-  factory('LogCollection', ['$resource', function($resource) {
-    return $resource('admin/logs/0');
+  factory('AdminLogCollection', ['$resource', function($resource) {
+    return $resource('admin/logs/:filter/0', {filter: '@filter'}, {});
 }]).
   factory('StaticFiles', ['$resource', function($resource) {
     return $resource('admin/staticfiles');

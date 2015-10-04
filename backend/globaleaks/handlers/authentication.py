@@ -225,6 +225,7 @@ def login(store, username, password, role):
                                 User.state != u'disabled')).one()
 
     if not user or not security.check_password(password,  user.password, user.salt):
+
         log.debug("Login: Invalid credentials (%s)" % role)
         return None, None, None
 
@@ -296,11 +297,20 @@ class AuthenticationHandler(BaseHandler):
             else:
                 log.debug("Accepted login request on Tor2web for role '%s'" % role)
 
-        if role == 'receiver' or role == 'admin':
+        if role == 'receiver':
             user_id, status, pcn = yield login(username, password, role)
-
+            if not user_id:
+                # we record only for 'admin' now because otherwise we have to
+                # pick the associated user, that can or not exists...
+                adminLog(['warning', 'mail'], 'SECURITY_2', [username])
+        elif role == 'admin':
+            user_id, status, pcn = yield login(username, password, role)
+            if not user_id:
+                adminLog(['warning', 'mail'], 'SECURITY_1', [])
         elif role == 'wb':
             user_id, status, pcn = yield login_wb(password)
+        else:
+            raise errors.InvalidInputError("Wrong role keyword received")
 
         yield self.uniform_answers_delay()
 

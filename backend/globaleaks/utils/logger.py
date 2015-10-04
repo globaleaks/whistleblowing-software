@@ -36,19 +36,24 @@ Login_messages = {
 Tip_messages = {
     # Admin
     'TIP_0' : [ "submission has been created in context %s", 1],
-    'TIP_1' : [ "submission is going to expire and has never been accessed by receiver %s", 1 ],
-    'TIP_2' : [ "tip deleted from context %s (%s)", 2],
+    'TIP_1' : [ "submission delete and has never been accessed by receiver %s", 1 ],
+    'TIP_2' : [ "submission expired and has never been accessed by receiver %s", 1 ],
+    'TIP_3' : [ "tip deleted from context %s", 1],
+    'TIP_4' : [ "tip expired from context %s", 1],
     # Receiver
     'TIP_20': [ "tip with label: %s deleted ", 1],
     'TIP_21': [ "tip delivered to you, in %s", 1],
-    'TIP_22': [ "tip deleted from %s, is never been accessed by you", 1],
+    'TIP_22': [ "tip expired from %s, and never accessed by you", 1],
+    'TIP_23': [ "tip deleted from %s (by %s), is never been accessed by you", 2],
 }
 
 Security_messages  = {
     # Admin
     'SECURITY_0' : [ "system boot", 0],
+    'SECURITY_1' : [ "wrong administrative password attempt password", 0 ],
+    'SECURITY_2' : [ "wrong receiver (username %s) password attempt happened", 1 ],
     # Receiver
-    'SECURITY_20' : [ "someone has put a wrong password in the login interface", 0 ],
+    'SECURITY_20' : [ "wrong receiver password attempt happened", 0 ],
 }
 
 Network_messages = {
@@ -166,49 +171,90 @@ class LogQueue(object):
             return False
 
 
-
-
 @transact_ro
-def picklogs(store, subject_uuid, amount):
+def picklogs(store, subject_uuid, amount, filter_value):
     """
     by subject, pick the last Nth logs, request by paging.
     This may interact with database if required, but hopefully the
     default behavior is to access cache.
     """
 
-    try:
-        subject_dict = LogQueue._all_queues[ subject_uuid ]
-        # [last, last-1, last-2]
-        x = subject_dict.values()
-        # In this way, we are taking the first (the last, in LIFO) logs in queue
-        retval = x[:amount] if len(x) > amount else x
+    # VERY DEBUG-ISH JUST FOR NOW
+    x = store.find(Log)
+    list_t = []
+    for y in x:
+        if not y.subject in list_t:
+            print y.subject
+            list_t.append(y.subject)
+    # VERY DEBUG-ISH JUST FOR NOW
+    # VERY DEBUG-ISH JUST FOR NOW
 
-        least_id = subject_dict.keys()[-1]
+    assert filter_value in [ 1, 0, -1 ]
+    print "Filtervalue", filter_value, LogQueue._all_queues.keys()
+
+    try:
+        memory_avail = LogQueue._all_queues[ subject_uuid ]
+
+        retval = {}
+        for id, elem in memory_avail.iteritems():
+
+            if filter_value != -1 and filter_value != elem.level:
+                continue
+
+            # if is == -1 ('all') or is equal to the request, we keep from memory
+            retval.update({ id: elem })
+
+        # Create the query used if the memory supply are not enough
+        if filter_value == 1:
+            db_query_rl = store.find(Log,
+                                     Log.log_level == 1,
+                                     Log.subject == unicode(subject_uuid))
+        elif filter_value == 0:
+            db_query_rl = store.find(Log,
+                                     Log.log_level == 0,
+                                     Log.subject == unicode(subject_uuid))
+        else:
+            db_query_rl = store.find(Log,
+                                     Log.subject == unicode(subject_uuid))
 
         if len(retval) < amount:
-            db_query_rl = store.find(Log, Log.subject == unicode(subject_uuid), Log.id < least_id)
             db_query_rl.order_by(Desc(Log.id))
-            recorded_l = db_query_rl[:(amount - len(retval))]
+            recorded_l = db_query_rl[:(amount - len(retval.keys()))]
 
             for r in recorded_l:
                 entry = LoggedEvent()
                 entry.reload(r)
-                retval.append(entry)
+                retval.update({entry.id : entry})
 
     except KeyError:
         LogQueue._all_queues.update({subject_uuid : {}})
-        retval = []
+        retval = {}
 
-        retrieved = store.find(Log, Log.subject == unicode(subject_uuid))
-        retrieved.order_by(Desc(Log.id))
-        loglist = retrieved[:amount]
+        if filter_value == 1:
+            db_query_rl = store.find(Log,
+                                     Log.log_level == 1,
+                                     Log.subject == unicode(subject_uuid))
+        elif filter_value == 0:
+            db_query_rl = store.find(Log,
+                                     Log.log_level == 0,
+                                     Log.subject == unicode(subject_uuid))
+        else:
+            db_query_rl = store.find(Log,
+                                     Log.subject == unicode(subject_uuid))
+
+
+        db_query_rl.order_by(Desc(Log.id))
+        loglist = db_query_rl[:amount]
 
         for l in loglist:
             entry = LoggedEvent()
+            # Reload, also, update the LogQueue
             entry.reload(l)
-            retval.append(entry)
+            retval.update({ entry.id : entry })
 
-    return retval
+
+    # Only the values, not the ID, they are just important to ensure unique results
+    return retval.values()
 
 
 @transact_ro
@@ -287,6 +333,7 @@ class LoggedEvent(object):
         self.log_date = storm_Log_entry.log_date
         self.log_message = storm_Log_entry.log_message
 
+        # Update the Queue, because after has to be still full
         LogQueue(self.subject).add(self.id, self)
 
 
@@ -297,8 +344,8 @@ class LoggedEvent(object):
         else:
             self.mail = False
 
-        self.level = 1
-        # if is 'normal' just left the default value, 1
+        self.level = 0
+        # if is 'normal' just left the default value, 0
 
         if 'warning' in log_info['level']:
             self.level = 1
@@ -333,7 +380,7 @@ class LoggedEvent(object):
         LogQueue(subject_uuid).add(self.id, self)
 
     def __repr__(self):
-        return "Log ID %d" % self.id
+        return "Log %d lvl %d\t %s" % (self.id,self.level, self.log_message)
 
 
 ########## copied from utility.py to put all the log related function here

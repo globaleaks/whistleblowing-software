@@ -2,8 +2,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.utils.logger import receiverLog, LogQueue, \
-    initialize_LoggedEvent, picklogs
+from globaleaks.utils.logger import receiverLog, LogQueue, picklogs
 from globaleaks.tests.jobs.test_log_sched import push_admin_logs
 
 def push_receiver_logs(fake_uuidv4, number):
@@ -20,14 +19,14 @@ class TestCollection(helpers.TestGL):
     def test_adminLog(self):
         logs_number = 10
         push_admin_logs(logs_number)
-        x =  yield picklogs('admin', logs_number)
+        x =  yield picklogs('admin', logs_number, -1)
         self.assertTrue(len(x) == logs_number)
 
     @inlineCallbacks
     def test_picklogs_more_than(self):
         logs_number = 10
         push_admin_logs(logs_number)
-        x =  yield picklogs('admin', logs_number * 2)
+        x =  yield picklogs('admin', logs_number * 2, -1)
         self.assertTrue(len(x) == logs_number)
 
     @inlineCallbacks
@@ -37,17 +36,17 @@ class TestCollection(helpers.TestGL):
 
         receiverLog(['mail'], 'LOGIN_3', [], fake_uuidv4)
         receiverLog(['mail'], 'LOGIN_3', [], fake_uuidv4)
-        receiverLog(['mail', 'normal'], 'SECURITY_1', [], fake_uuidv4)
+        receiverLog(['mail', 'normal'], 'SECURITY_20', [], fake_uuidv4)
         receiverLog(['normal'], 'LOGIN_3', [], other_receiver)
-        receiverLog(['mail', 'normal'], 'SECURITY_1', [], fake_uuidv4)
+        receiverLog(['mail', 'normal'], 'SECURITY_20', [], fake_uuidv4)
 
         x = yield picklogs(
             LogQueue.create_subject_uuid('receiver', fake_uuidv4),
-            50 )
+            50, -1 )
         self.assertEqual(len(x), 4)
         x = yield picklogs(
             LogQueue.create_subject_uuid('receiver', other_receiver),
-            50 )
+            50, -1 )
         self.assertEqual(len(x), 1)
 
 
@@ -57,13 +56,13 @@ class TestCollection(helpers.TestGL):
         NUMBER = 10
         push_admin_logs(NUMBER)
 
-        adm = yield picklogs('admin', NUMBER)
+        adm = yield picklogs('admin', NUMBER, -1)
         self.assertEqual(len(adm), NUMBER )
 
         fake_uuidv4 = 'blah-this-is-an-UUID-v4'
         push_receiver_logs(fake_uuidv4, NUMBER)
-        rcvr = yield picklogs("receiver_%s" % fake_uuidv4, NUMBER)
+        rcvr = yield picklogs("receiver_%s" % fake_uuidv4, NUMBER, -1)
         self.assertEqual(len(rcvr), NUMBER)
 
-        adm = yield picklogs('admin', NUMBER)
+        adm = yield picklogs('admin', NUMBER, -1)
         self.assertEqual(len(adm), NUMBER )

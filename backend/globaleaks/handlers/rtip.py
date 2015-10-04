@@ -113,7 +113,10 @@ def db_get_tip_receiver(store, user_id, tip_id, language):
     if not notif.send_email_for_every_event:
         # If Receiver is accessing this Tip, Events related can be removed before
         # Notification is sent. This is a Twitter/Facebook -like behavior.
-        store.find(EventLogs, EventLogs.receivertip_id == tip_id).remove()
+        po = store.find(EventLogs, EventLogs.receivertip_id == tip_id)
+        if po.count():
+            log.debug("Mail effectively suppressed")
+            po.remove()
         # Note - before the check was:
         # store.find(EventLogs, And(EventLogs.receivertip_id == tip_id,
         #                          EventLogs.mail_sent == True)).remove()
@@ -152,6 +155,7 @@ def db_access_tip(store, user_id, tip_id):
 
 
 def db_delete_itip(store, itip, itip_number=0):
+    # Maybe this call can be improved with the
     for ifile in itip.internalfiles:
         abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
 
@@ -178,32 +182,40 @@ def db_delete_itip(store, itip, itip_number=0):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
+        print "JUST TO BE SURE", itip_number, "itip_number has to be != 0"
+
         # Loop over receiver tips to log properly for each case (expired, never access)
         for rtips in ifile.internaltip.receivertips:
             receiverLog(['normal'], 'TIP_20', [ rtips.label ], rtips.receiver.user.id)
 
-            if itip_number:
-                receiverLog(['mail', 'normal'], 'TIP_2',
-                            [ itip.context.name, "Cleaning"], rtips.receiver.user.id )
+            """
+            'TIP_1' : [ "submission is going to expire and has never been accessed by receiver %s", 1 ],
+            'TIP_2' : [ "tip deleted from context %s (%s)", 2],
+            'TIP_22': [ "tip expired from %s, and never accessed by you", 1],
+            'TIP_23': [ "tip deleted from %s (by %s), is never been accessed by you", 2],
+            """
 
-            if rtips.access_counter == 0:
-                # Deleted by expire, and never accessed :(
+            if itip_number != 0 and rtips.access_counter == 0:
                 adminLog(['warning'], 'TIP_1', [ rtips.receiver.name ])
+                receiverLog(['mail', 'warning'], 'TIP_23',
+                            [ itip.context.name, "a Receiver" ], rtips.receiver.user.id )
+            elif itip_number == 0 and rtips.access_counter == 0:
+                adminLog(['warning'], 'TIP_2', [ rtips.receiver.name ])
                 receiverLog(['mail', 'warning'], 'TIP_22',
                             [ itip.context.name ], rtips.receiver.user.id )
-            else:
-                # Deleted by Receiver, and never accessed
-                receiverLog(['warning', 'mail'], 'TIP_22',
+            elif itip_number == 0 and rtips.access_counter != 0:
+                adminLog([ 'normal'], 'TIP_3', [ itip.context.name ])
+                receiverLog(['mail', 'normal'], 'TIP_3', [ itip.context.name ], rtips.receiver.user.id )
+            elif itip_number != 0 and rtips.access_counter != 0:
+                adminLog([ 'normal'], 'TIP_4', [ itip.context.name ])
+                receiverLog(['mail', 'normal'], 'TIP_4',
                             [ itip.context.name ], rtips.receiver.user.id )
-
 
     if itip_number:
         log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
                   (itip.id, itip_number) )
-        adminLog(['normal'], 'TIP_2', [ itip.context.name, "Cleaning" ])
     else:
         log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
-        adminLog(['normal'], 'TIP_2', [ itip.context.name, "Receiver command" ])
 
     store.remove(itip)
 

@@ -50,21 +50,24 @@ class LogSchedule(GLJob):
         scenario, we have in memory 50 Object x (Tip Numb + Receiver Num + Admin)
         """
 
+        import pprint
+        amount_of_flusged_logs = 0
         for subject_uuid, log_sub_dict in LogQueue._all_queues.iteritems():
 
+            print "subject_uuid as key of the queue:", \
+                subject_uuid, len(LogQueue._all_queues[subject_uuid])
             cnt = 0
             for id, what in log_sub_dict.iteritems():
-
                 cnt += 1
                 if cnt > 50:
                     log.debug("TODO implement memory preserver here! %d, in %s" %
                               (cnt, subject_uuid))
-
                 if id <= LogSchedule.highest_logged_id:
                     continue
 
-                nl = Log()
+                print "Dump new log", what
 
+                nl = Log()
                 nl.id = id
                 nl.code = what.log_code
                 nl.args = what.args
@@ -79,6 +82,9 @@ class LogSchedule(GLJob):
                     LogSchedule.highest_logged_id = id
 
                 store.add(nl)
+                amount_of_flusged_logs += 1
+
+        return amount_of_flusged_logs
 
 
     def clean_itip_log_in_memory(self, internaltip_id):

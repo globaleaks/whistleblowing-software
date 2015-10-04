@@ -101,8 +101,8 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'changeP
 GLClient.controller('ReceiverLogsCtrl', ['$scope', '$http', '$route', '$location', 'ReceiverLogs',
   function($scope, $http, $location, $modal, ReceiverLogs) {
 
-    $scope.activities = ReceiverLogs.query();
-
+    $scope.warning = ReceiverLogs.query({filter: 'warning'});
+    $scope.activities = ReceiverLogs.query({filter: 'activities'});
     console.log($scope.activities);
 
   }]);

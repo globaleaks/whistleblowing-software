@@ -76,7 +76,7 @@ spec = [
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
-    (r'/receiver/logs/(\d+)', log.ReceiverLogCollection),
+    (r'/receiver/logs/(\w+)/(\d+)', log.ReceiverLogCollection),
 
     ## Receiver Tips Handlers ##
     (r'/rtip/operations', receiver.TipsOperations),
@@ -109,7 +109,7 @@ spec = [
     (r'/admin/overview/tips', admin.overview.Tips),
     (r'/admin/overview/users', admin.overview.Users),
     (r'/admin/overview/files', admin.overview.Files),
-    (r'/admin/logs/(\d+)', log.AdminLogCollection),
+    (r'/admin/logs/(\w+)/(\d+)', log.AdminLogCollection),
     (r'/admin/logmanagement', log.AdminLogManagement), # You just saw a violation of the naming convention!
     (r'/admin/wizard', wizard.FirstSetup),
 

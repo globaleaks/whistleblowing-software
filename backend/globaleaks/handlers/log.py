@@ -52,6 +52,21 @@ class AdminLogManagement(BaseHandler):
 
 class BaseLogCollection(BaseHandler):
 
+    def get_filter(self, requested_level):
+        """
+        :param requested_level:
+        :return:
+        """
+        levels = { 'activities' : 0,
+                    'warning' : 1,
+                    'all': -1 }
+
+        if not requested_level in levels:
+            raise errors.InvalidInputFormat("only one of [%s] can be accepted" % levels)
+
+        return levels[requested_level]
+
+
     def serialize_logs(self, logslist):
         if not logslist:
             return []
@@ -64,13 +79,15 @@ class BaseLogCollection(BaseHandler):
 
 class AdminLogCollection(BaseLogCollection):
 
-    # @transport_security_check('admin')
-    # @authenticated('admin')
+    @transport_security_check('admin')
+    @authenticated('admin')
     @inlineCallbacks
-    def get(self, paging):
+    def get(self, filterkey, paging):
 
         unimplemented_paging = 50
-        logslist = yield picklogs('admin', unimplemented_paging)
+
+        filtervalue = self.get_filter(filterkey)
+        logslist = yield picklogs('admin', unimplemented_paging, filtervalue )
 
         self.finish(self.serialize_logs(logslist))
 
@@ -79,13 +96,14 @@ class ReceiverLogCollection(BaseLogCollection):
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
-    def get(self, paging):
+    def get(self, filterkey, paging):
 
         unimplemented_paging = 50
 
+        filtervalue = self.get_filter(filterkey)
         logslist = yield picklogs(
                 LogQueue.create_subject_uuid('receiver', self.current_user.user_id),
-                unimplemented_paging )
+                unimplemented_paging, filtervalue )
 
         self.finish(self.serialize_logs(logslist))
 
@@ -101,7 +119,7 @@ class WbLogCollection(BaseLogCollection):
 
         logslist = yield picklogs(
             LogQueue.create_subject_uuid('itip', self.current_user.user_id),
-            unimplemented_paging )
+            unimplemented_paging, -1)
 
         self.finish(self.serialize_logs(logslist))
 
@@ -117,7 +135,7 @@ class RtipLogCollection(BaseLogCollection):
 
         logslist = yield picklogs(
             LogQueue.create_subject_uuid('itip', self.current_user.user_id),
-            unimplemented_paging )
+            unimplemented_paging, -1 )
 
         self.finish(self.serialize_logs(logslist))
 
