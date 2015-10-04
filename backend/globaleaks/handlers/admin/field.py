@@ -240,8 +240,8 @@ def db_update_field(store, field_id, field, language):
     if not f:
         raise errors.FieldIdNotFound
 
-    if not f.modifiable:
-        raise errors.FieldNotModifiable
+    if not f.editable:
+        raise errors.FieldNotEditable
 
     _, step, fieldgroup = field_integrity_check(store, field)
 
@@ -364,8 +364,8 @@ def delete_field(store, field_id):
     if not field:
         raise errors.FieldIdNotFound
 
-    if not field.modifiable:
-        raise errors.FieldNotModifiable
+    if not field.editable:
+        raise errors.FieldNotEditable
 
     field.delete(store)
 

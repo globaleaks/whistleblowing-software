@@ -184,11 +184,11 @@ class UserNotDeletable(GLException):
     status_code = 403 # Forbidden
 
 
-class FieldNotModiable(GLException):
+class FieldNotEditable(GLException):
     """
-    The selected user is not deletable
+    The selected user is not eeditable
     """
-    reason = "The selected field is not modifiable"
+    reason = "The selected field is not editable"
     error_code = 24
     status_code = 403 # Forbidden
 
