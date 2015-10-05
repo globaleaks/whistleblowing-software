@@ -7,7 +7,7 @@ from globaleaks.handlers import custodian
 
 
 class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = custodian.CustodianIdentityAccessRequestInstance
+    _handler = custodian.IdentityAccessRequestInstance
 
     @inlineCallbacks
     def setUp(self):
@@ -40,7 +40,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = custodian.CustodianIdentityAccessRequestsCollection
+    _handler = custodian.IdentityAccessRequestsCollection
 
     @inlineCallbacks
     def setUp(self):

@@ -1093,6 +1093,11 @@ IdentityAccessRequest.receivertip = Reference(
     ReceiverTip.id
 )
 
+IdentityAccessRequest.response_user = Reference(
+    IdentityAccessRequest.response_user_id,
+    Custodian.id
+)
+
 EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
 EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)
 

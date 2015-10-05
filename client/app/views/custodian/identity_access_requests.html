@@ -1,0 +1,77 @@
+<div data-ng-controller="CustodianIdentityAccessRequestsCtrl">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="pull-left">
+        <a id="link-tiplist"
+           href="#/receiver/tips"
+           popover="{{'Tips' | translate}}"
+           popover-placement="top"
+           popover-trigger="mouseenter"
+           class="btn btn-default">
+          <span class="glyphicon glyphicon-th-list"></span>
+        </a>
+
+        <span id="tip-action-postpone"
+              data-ng-if="preferences.can_postpone_expiration"
+              data-ng-click="tip_postpone()"
+              popover="{{'Postpone tip expiration date' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
+          <i class="glyphicon glyphicon-time"></i>
+        </span>
+
+        <span id="tip-action-delete"
+              data-ng-if="preferences.can_delete_submission"
+              data-ng-click="tip_delete()"
+              popover="{{'Delete tip' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
+          <span class="glyphicon glyphicon-trash"></span>
+        </span>
+
+        <span id="link-reload"
+              data-ng-click="reload()"
+              popover="{{'Refresh page' | translate}}"
+              popover-placement="top"
+              popover-trigger="mouseenter"
+              class="btn btn-default">
+          <span class="glyphicon glyphicon-refresh"></span>
+        </span>
+      </div>
+
+      <div class="pull-right">
+        <a id="link-preferences"
+           data-ng-click="workflow=workflow==4?4:workflow+1"
+           class="btn btn-default">
+          <span class="glyphicon glyphicon-cog"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-condensed table-striped" >
+        <thead>
+          <tr>
+            <th class="col-md-2">Data Richiesta</th>
+            <th class="col-md-2">Utente Richiedente</th>
+            <th class="col-md-5">Motivazione Richiesta</th>
+            <th class="col-md-3">Authorization</th>
+            </tr>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="iar-{{$index}}" data-ng-repeat="iar in iars | filter:search" >
+            <td class="col-md-2">{{iar.request_date}}</td>
+            <td class="col-md-2">{{iar.request_user_name}}</td>
+            <td class="col-md-5">{{iar.request_motivation}}</td>
+            <td class="col-md-3"><button class="btn btn-xs btn-primary">Autorizza</button>&nbsp;<button class="btn btn-xs btn-danger">Nega</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -168,6 +168,11 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: ''
       }).
+      when('/custodian/identityaccessrequests', {
+        templateUrl: 'views/custodian/identity_access_requests.html',
+        header_title: 'Custodian of the identities',
+        header_subtitle: 'List of access requests to whistleblowers\' identities'
+      }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',

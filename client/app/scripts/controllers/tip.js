@@ -1,6 +1,7 @@
-GLClient.controller('TipCtrl',
+GLClient.controller('StatusCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'Tip', 'WBTip', 'ReceiverPreferences',
   function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, Tip, WBTip, ReceiverPreferences) {
+
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.target_file = '#';
@@ -46,6 +47,7 @@ GLClient.controller('TipCtrl',
       $scope.fileupload_url = '/wbtip/upload';
 
       new WBTip(function(tip) {
+
         $scope.tip = tip;
 
         angular.forEach($scope.contexts, function(context, k){
@@ -73,7 +75,8 @@ GLClient.controller('TipCtrl',
     } else if (Authentication.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
-      new Tip({id: $scope.tip_id}, function(tip) {
+      new Tip({tip_id: $scope.tip_id}, function(tip) {
+
         $scope.tip = tip;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
@@ -128,7 +131,7 @@ GLClient.controller('TipCtrl',
     $scope.tip_delete = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/tip_operation_delete.html',
-        controller: 'TipOperationsCtrl',
+        controller: TipOperationsCtrl,
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -143,7 +146,7 @@ GLClient.controller('TipCtrl',
     $scope.tip_postpone = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/tip_operation_postpone.html',
-        controller: 'TipOperationsCtrl',
+        controller: TipOperationsCtrl,
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -153,7 +156,19 @@ GLClient.controller('TipCtrl',
           }
         }
       });
-    }
+    };
+
+    $scope.file_identity_access_request = function () {
+      var modalInstance = $modal.open({
+        templateUrl: 'views/partials/tip_operation_file_identity_access_request.html',
+        controller: IdentityAccessRequestCtrl,
+        resolve: {
+          tip: function () {
+            return $scope.tip;
+          }
+        }
+      });
+    };
 }]);
 
 GLClient.controller('TipOperationsCtrl',
@@ -181,5 +196,24 @@ GLClient.controller('TipOperationsCtrl',
           $route.reload();
         });
     }
+  };
+}]);
+
+GLClient.controller('IdentityAccessRequestCtrl', 
+  ['$scope', '$http', '$route', '$modalInstance', 'tip',
+   function ($scope, $http, $route, $modalInstance, tip) {
+  $scope.tip = tip;
+
+  $scope.cancel = function () {
+    $modalInstance.close();
+  };
+
+  $scope.ok = function () {
+    $modalInstance.close();
+
+    return $http.post('/rtip/' + tip.id + '/identityaccessrequests', {'request_motivation': $scope.request_motivation}).
+        success(function(data, status, headers, config){
+          $route.reload();
+        });
   };
 }]);
