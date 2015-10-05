@@ -212,7 +212,7 @@ var GLClient = angular.module('GLClient', [
 }]).
   factory("stacktraceService", function() {
     return({
-      print: StackTrace.get()
+      fromError: StackTrace.fromError
     });
 }).
   config(exceptionConfig).
@@ -287,17 +287,17 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
         $delegate(exception, cause);
 
         var errorMessage = exception.toString();
-        var stackTrace = stacktraceService.print({e: exception});
+        stacktraceService.fromError(exception).then(function(result) {
+          var errorData = angular.toJson({
+            errorUrl: $window.location.href,
+            errorMessage: errorMessage,
+            stackTrace: result,
+            agent: navigator.userAgent
+          });
 
-        var errorData = angular.toJson({
-          errorUrl: $window.location.href,
-          errorMessage: errorMessage,
-          stackTrace: stackTrace,
-          agent: navigator.userAgent
+          var $http = $injector.get('$http');
+
+          $http.post('exception', errorData);
         });
-
-        var $http = $injector.get('$http');
-
-        $http.post('exception', errorData);
     };
 }
