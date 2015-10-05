@@ -30,14 +30,14 @@ Login_messages = {
     'LOGIN_1' : [ "admin logged in the system", 0 ],
     'LOGIN_2' : [ "receiver %s logged in the system", 1 ],
     # Used for Receiver
-    'LOGIN_3' : [ "you logged in the system", 0 ]
+    'LOGIN_20' : [ "you logged in the system", 0 ]
 }
 
 Tip_messages = {
     # Admin
-    'TIP_0' : [ "submission has been created in context %s", 1],
-    'TIP_1' : [ "submission delete and has never been accessed by receiver %s", 1 ],
-    'TIP_2' : [ "submission expired and has never been accessed by receiver %s", 1 ],
+    'TIP_0' : [ "submission has been created in context %s, %d recipients", 2],
+    'TIP_1' : [ "submission delete and has never been accessed by receiver %s", 1],
+    'TIP_2' : [ "submission expired and has never been accessed by receiver %s", 1],
     'TIP_3' : [ "tip deleted from context %s", 1],
     'TIP_4' : [ "tip expired from context %s", 1],
     # Receiver
@@ -45,15 +45,16 @@ Tip_messages = {
     'TIP_21': [ "tip delivered to you, in %s", 1],
     'TIP_22': [ "tip expired from %s, and never accessed by you", 1],
     'TIP_23': [ "tip deleted from %s (by %s), is never been accessed by you", 2],
+    'TIP_24': [ "receiver %s extended expiration date", 1],
 }
 
 Security_messages  = {
     # Admin
     'SECURITY_0' : [ "system boot", 0],
-    'SECURITY_1' : [ "wrong administrative password attempt password", 0 ],
-    'SECURITY_2' : [ "wrong receiver (username %s) password attempt happened", 1 ],
+    'SECURITY_1' : [ "wrong administrative password attempt password", 0],
+    'SECURITY_2' : [ "wrong receiver (username %s) password attempt happened", 1],
     # Receiver
-    'SECURITY_20' : [ "wrong receiver password attempt happened", 0 ],
+    'SECURITY_20' : [ "wrong receiver password attempt happened", 0],
 }
 
 Network_messages = {
@@ -188,9 +189,10 @@ def picklogs(store, subject_uuid, amount, filter_value):
             list_t.append(y.subject)
     # VERY DEBUG-ISH JUST FOR NOW
     # VERY DEBUG-ISH JUST FOR NOW
-
     assert filter_value in [ 1, 0, -1 ]
     print "Filtervalue", filter_value, LogQueue._all_queues.keys()
+    # VERY DEBUG-ISH JUST FOR NOW
+    # VERY DEBUG-ISH JUST FOR NOW
 
     try:
         memory_avail = LogQueue._all_queues[ subject_uuid ]
@@ -290,19 +292,33 @@ class LoggedEvent(object):
 
 
     def serialize_log(self):
-        log_dict = {
-            'log_code': self.log_code,
-            'msg': _LOG_CODE[self.log_code][0],
-            'args': self.args,
-            'log_date': datetime_to_ISO8601(self.log_date),
-            'subject': self.subject,
-            'level': self.level,
-            'mail': self.mail,
-            'mail_sent': self.mail_sent,
-            'id': self.id,
-            'message': self.log_message
-        }
-        return log_dict
+        try:
+            return {
+                'log_code': self.log_code,
+                'msg': _LOG_CODE[self.log_code][0],
+                'args': self.args,
+                'log_date': datetime_to_ISO8601(self.log_date),
+                'subject': self.subject,
+                'level': self.level,
+                'mail': self.mail,
+                'mail_sent': self.mail_sent,
+                'id': self.id,
+                'message': self.log_message
+            }
+        except KeyError:
+            return {
+                'log_code': self.log_code,
+                'msg': u'đđ ¿ LOST ¿ ðð',
+                'args': self.args,
+                'log_date': datetime_to_ISO8601(self.log_date),
+                'subject': self.subject,
+                'level': self.level,
+                'mail': self.mail,
+                'mail_sent': self.mail_sent,
+                'id': self.id,
+                'message': self.log_message
+            }
+
 
     def match(self, code, args):
         """

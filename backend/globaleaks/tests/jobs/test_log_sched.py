@@ -22,7 +22,8 @@ class TestLogFlush(helpers.TestGLWithPopulatedDB):
     def test_initialize_high_id(self):
         FUFFA_NUMBER = 10
         push_admin_logs(FUFFA_NUMBER)
-        yield LogSchedule().dump_fresh_logs()
+        number_dumped = yield LogSchedule().dump_fresh_logs()
+        self.assertEqual(FUFFA_NUMBER, number_dumped)
         nextrun = LogSchedule()
         yield nextrun.initialize_highest_id()
         self.assertEqual(nextrun.highest_logged_id, FUFFA_NUMBER)

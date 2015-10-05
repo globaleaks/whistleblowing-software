@@ -219,6 +219,10 @@ def create_whistleblower_tip(*args):
 
 
 def import_receivers(store, submission, receiver_id_list):
+    """
+    :param receiver_id_list: [ uuidv4, uuidv4 ]
+    :return: the number of receiver which the submission will be destinated
+    """
     context = submission.context
 
     if not len(receiver_id_list):
@@ -248,6 +252,8 @@ def import_receivers(store, submission, receiver_id_list):
     if submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")
+
+    return submission.receivers.count()
 
 
 def verify_fields_recursively(fields, wb_fields):
@@ -320,7 +326,7 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise excep
 
     try:
-        import_receivers(store, submission, request['receivers'])
+        true_rcvrs_number = import_receivers(store, submission, request['receivers'])
     except Exception as excep:
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
@@ -344,15 +350,12 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise excep
 
     receipt = db_create_whistleblower_tip(store, submission)
-
     submission_dict = wb_serialize_internaltip(store, submission)
-
     submission_dict.update({'receipt': receipt})
-
-    print "Logging with", context.name
-    # TODO localisation not in 'en'
-    adminLog(['normal'], 'TIP_0', [ context.name['en'] ])
-
+    adminLog(['normal'], 'TIP_0', [
+        context.name[GLSettings.memory_copy.default_language],
+        true_rcvrs_number
+    ])
     return submission_dict
 
 

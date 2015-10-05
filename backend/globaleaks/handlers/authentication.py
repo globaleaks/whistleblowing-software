@@ -333,7 +333,7 @@ class AuthenticationHandler(BaseHandler):
             adminLog(['normal', 'warning', 'mail'], 'LOGIN_1', [])
         elif role == 'receiver':
             adminLog('normal', 'LOGIN_2', [user_id])
-            receiverLog(['normal', 'mail'], 'LOGIN_3', [], user_id)
+            receiverLog(['normal', 'mail'], 'LOGIN_20', [], user_id)
 
         self.write(auth_answer)
 

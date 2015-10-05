@@ -34,10 +34,10 @@ class TestCollection(helpers.TestGL):
         fake_uuidv4 = 'blah-this-is-an-UUID-v4'
         other_receiver = 'CallMeOther,ButIamWorkingHardLikeEveryOtherReceiver'
 
-        receiverLog(['mail'], 'LOGIN_3', [], fake_uuidv4)
-        receiverLog(['mail'], 'LOGIN_3', [], fake_uuidv4)
+        receiverLog(['mail'], 'LOGIN_20', [], fake_uuidv4)
+        receiverLog(['mail'], 'LOGIN_20', [], fake_uuidv4)
         receiverLog(['mail', 'normal'], 'SECURITY_20', [], fake_uuidv4)
-        receiverLog(['normal'], 'LOGIN_3', [], other_receiver)
+        receiverLog(['normal'], 'LOGIN_20', [], other_receiver)
         receiverLog(['mail', 'normal'], 'SECURITY_20', [], fake_uuidv4)
 
         x = yield picklogs(

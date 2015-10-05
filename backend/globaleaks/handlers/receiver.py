@@ -21,6 +21,7 @@ from globaleaks.security import change_password
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.logger import receiverLog
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, node, language):
@@ -185,9 +186,10 @@ def perform_tips_operation(store, receiver_id, operation, rtips_ids):
 
         for rtip in rtips:
             db_postpone_expiration_date(rtip)
+            receiverLog(['normal'], 'TIP_24', [receiver_id], rtip.receiver.id)
 
     elif operation == 'delete':
-        can_delete_submission =  node.can_delete_submission or receiver.can_delete_submission
+        can_delete_submission = node.can_delete_submission or receiver.can_delete_submission
         if not can_delete_submission:
             raise errors.ForbiddenOperation
 

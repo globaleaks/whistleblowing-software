@@ -182,40 +182,37 @@ def db_delete_itip(store, itip, itip_number=0):
                 except OSError as excep:
                     log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
-        print "JUST TO BE SURE", itip_number, "itip_number has to be != 0"
-
         # Loop over receiver tips to log properly for each case (expired, never access)
         for rtips in ifile.internaltip.receivertips:
             receiverLog(['normal'], 'TIP_20', [ rtips.label ], rtips.receiver.user.id)
 
-            """
-            'TIP_1' : [ "submission is going to expire and has never been accessed by receiver %s", 1 ],
-            'TIP_2' : [ "tip deleted from context %s (%s)", 2],
-            'TIP_22': [ "tip expired from %s, and never accessed by you", 1],
-            'TIP_23': [ "tip deleted from %s (by %s), is never been accessed by you", 2],
-            """
-
-            if itip_number != 0 and rtips.access_counter == 0:
+            if itip_number == 0 and rtips.access_counter == 0:
                 adminLog(['warning'], 'TIP_1', [ rtips.receiver.name ])
                 receiverLog(['mail', 'warning'], 'TIP_23',
-                            [ itip.context.name, "a Receiver" ], rtips.receiver.user.id )
-            elif itip_number == 0 and rtips.access_counter == 0:
+                            [ itip.context.name[GLSettings.memory_copy.default_language],
+                              "a Receiver" ],
+                            rtips.receiver.user.id )
+            elif itip_number != 0 and rtips.access_counter == 0:
                 adminLog(['warning'], 'TIP_2', [ rtips.receiver.name ])
                 receiverLog(['mail', 'warning'], 'TIP_22',
-                            [ itip.context.name ], rtips.receiver.user.id )
+                            [ itip.context.name[GLSettings.memory_copy.default_language] ],
+                            rtips.receiver.user.id )
             elif itip_number == 0 and rtips.access_counter != 0:
-                adminLog([ 'normal'], 'TIP_3', [ itip.context.name ])
-                receiverLog(['mail', 'normal'], 'TIP_3', [ itip.context.name ], rtips.receiver.user.id )
+                receiverLog(['mail', 'normal'], 'TIP_3',
+                            [ itip.context.name ],
+                            rtips.receiver.user.id )
             elif itip_number != 0 and rtips.access_counter != 0:
-                adminLog([ 'normal'], 'TIP_4', [ itip.context.name ])
                 receiverLog(['mail', 'normal'], 'TIP_4',
-                            [ itip.context.name ], rtips.receiver.user.id )
+                            [ itip.context.name[GLSettings.memory_copy.default_language] ],
+                            rtips.receiver.user.id )
 
     if itip_number:
+        adminLog([ 'normal'], 'TIP_4', [ itip.context.name ])
         log.debug("Removing from Cleaning operation InternalTip (%s) N# %d" %
                   (itip.id, itip_number) )
     else:
         log.debug("Removing InternalTip as commanded by Receiver (%s)" % itip.id)
+        adminLog([ 'normal'], 'TIP_3', [ itip.context.name ])
 
     store.remove(itip)
 
@@ -267,6 +264,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     ))
 
     db_postpone_expiration_date(rtip)
+    receiverLog(['normal'], 'TIP_24', [user_id], user_id)
 
     log.debug(" [%s] in %s has postponed expiration time to %s" % (
         rtip.receiver.name,
