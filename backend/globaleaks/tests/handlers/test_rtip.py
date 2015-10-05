@@ -169,8 +169,8 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['rtip_id'])
 
 
-class TestReceiverIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.ReceiverIdentityAccessRequestsCollection
+class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.IdentityAccessRequestsCollection
 
     @inlineCallbacks
     def setUp(self):

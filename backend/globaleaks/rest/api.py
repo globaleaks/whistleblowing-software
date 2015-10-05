@@ -9,7 +9,10 @@ from cyclone import web
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
-                                node, submission, rtip, wbtip, receiver, \
+                                node, \
+                                admin, receiver, custodian, \
+                                submission, \
+                                rtip, wbtip, \
                                 files, authentication, admin, token, \
                                 collection, langfiles, css, wizard, \
                                 base, user
@@ -78,7 +81,7 @@ spec = [
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
-    (r'/rtip/' + uuid_regexp + '/identityaccessrequests', rtip.ReceiverIdentityAccessRequestsCollection),
+    (r'/rtip/' + uuid_regexp + '/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
     (r'/rtip/' + uuid_regexp + '/collection', collection.CollectionDownload),
@@ -94,6 +97,8 @@ spec = [
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
     (r'/rtip/operations', receiver.TipsOperations),
+
+    (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
 
     ## Admin Handlers ##
     (r'/admin/node', admin.node.NodeInstance),

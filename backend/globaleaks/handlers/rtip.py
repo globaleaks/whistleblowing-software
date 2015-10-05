@@ -285,7 +285,7 @@ def get_comment_list_receiver(store, user_id, rtip_id):
     return comment_list
 
 @transact
-def create_identityaccessrequest(store, user_id, rtip_id, request):
+def create_identityaccessrequest(store, user_id, rtip_id, request, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     iar = IdentityAccessRequest()
@@ -293,7 +293,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request):
     iar.receivertip_id = rtip.id
     store.add(iar)
 
-    return serialize_identityaccessrequest(iar)
+    return serialize_identityaccessrequest(iar, language)
 
 
 @transact
@@ -343,12 +343,12 @@ def create_message_receiver(store, user_id, rtip_id, request):
 
 
 @transact
-def get_identityaccessrequests_list(store, user_id, rtip_id):
+def get_identityaccessrequests_list(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
 
-    return [serialize_identityaccessrequest(iar) for iar in iars]
+    return [serialize_identityaccessrequest(iar, language) for iar in iars]
 
 
 class RTipInstance(BaseHandler):
@@ -528,7 +528,7 @@ class ReceiverMsgCollection(BaseHandler):
         self.finish(message)
 
 
-class ReceiverIdentityAccessRequestsCollection(BaseHandler):
+class IdentityAccessRequestsCollection(BaseHandler):
     """
     This interface return the list of identity access requests performed
     on the tip and allow to perform new ones.
@@ -542,7 +542,9 @@ class ReceiverIdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequests_list(self.current_user.user_id, tip_id)
+        answer = yield get_identityaccessrequests_list(self.current_user.user_id,
+                                                       tip_id,
+                                                       self.request.language)
 
         self.set_status(200)
         self.finish(answer)
@@ -560,7 +562,8 @@ class ReceiverIdentityAccessRequestsCollection(BaseHandler):
 
         identityaccessrequest = yield create_identityaccessrequest(self.current_user.user_id,
                                                                    tip_id,
-                                                                   request)
+                                                                   request,
+                                                                   self.request.language)
 
         self.set_status(201)
         self.finish(identityaccessrequest)

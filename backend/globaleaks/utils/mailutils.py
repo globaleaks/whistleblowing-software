@@ -67,13 +67,13 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param security: may need to be STRING, here is converted at start
     @param event: the event description, needed to keep track of failure/success
     """
-
     notif_retries = 2
     notif_timeout = 10
 
     def printError(method, reason, event):
         if event:
-            log.err("** failed notification within event %s" % event.type)
+            log.err("** failed notification for an event of type: %s" % event.type)
+
 
         if isinstance(reason, Failure):
             log.err("Failed to connect to %s:%d (Sock Error: %s) (Method: %s)" %

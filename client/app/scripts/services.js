@@ -28,9 +28,9 @@ angular.module('GLServices', ['ngResource']).
               self.auth_landing_page = '/admin/landing';
               $rootScope.preferences = UserPreferences.get();
             } else if (self.role === 'custodian') {
-              self.homepage = '#/custodian/identityrequests';
+              self.homepage = '#/custodian/identityaccessrequests';
               self.preferencespage = '#/user/preferences';
-              self.auth_landing_page = '/custodian/identityrequests';
+              self.auth_landing_page = '/custodian/identityaccessrequests';
               $rootScope.preferences = UserPreferences.get();
             } else if (self.role === 'receiver') {
               self.homepage = '#/receiver/tips';
@@ -548,12 +548,11 @@ angular.module('GLServices', ['ngResource']).
   factory('ReceiverPreferences', ['$resource', function($resource) {
     return $resource('receiver/preferences', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('ReceiverTips', ['$rootScope', '$resource', function($rootScope, $resource) {
-    $rootScope.selected_tip_list = [];
+  factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('ReceiverNotification', ['$resource', function($resource) {
-    return $resource('receiver/notifications');
+  factory('IdentityAccessRequests', ['$resource', function($resource) {
+    return $resource('custodian/identityaccessrequests', {}, {'update': {method: 'PUT'}});
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
     return $resource('admin/overview/users');

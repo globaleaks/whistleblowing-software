@@ -15,41 +15,46 @@ from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password
 from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
-def serialize_identityaccessrequest(identityaccessrequest):
-    iar_desc = dict({
+def serialize_identityaccessrequest(identityaccessrequest, language):
+    iar = {
         'id': identityaccessrequest.id,
         'receivertip_id': identityaccessrequest.receivertip_id,
         'request_date': datetime_to_ISO8601(identityaccessrequest.request_date),
-        'request_user_id': identityaccessrequest.receivertip.receiver.id,
+        'request_user_name': identityaccessrequest.receivertip.receiver.user.name,
         'request_motivation': identityaccessrequest.request_motivation,
         'response_date': datetime_to_ISO8601(identityaccessrequest.request_date),
-        'response_user_id': identityaccessrequest.response_user_id if identityaccessrequest.response_user_id is not None else '',
+        'response_user_name': identityaccessrequest.response_user.name \
+            if identityaccessrequest.response_user is not None else '',
         'response': identityaccessrequest.response,
         'response_motivation': identityaccessrequest.response_motivation,
-    })
+        'submission_date': datetime_to_ISO8601(identityaccessrequest.receivertip.internaltip.creation_date)
+    }
 
-    return iar_desc
+    mo = Rosetta(rtip.internaltip.context.localized_strings)
+    mo.acquire_storm_object(rtip.internaltip.context)
+    iar["submission_context"] = mo.dump_localized_key('name', language)
 
-
-@transact_ro
-def get_identityaccessrequests_list(store):
-    iars = store.find(IdentityAccessRequest)
-
-    return [serialize_identityaccessrequest(iar) for iar in iars]
+    return iar
 
 
 @transact_ro
-def get_identityaccessrequest(store, identityaccessrequest_id):
+def get_identityaccessrequests_list(store, language):
+    return [serialize_identityaccessrequest(iar, language)
+        for iar in store.find(IdentityAccessRequest)]
+
+
+@transact_ro
+def get_identityaccessrequest(store, identityaccessrequest_id, language):
     iar = store.find(IdentityAccessRequest, IdentityAccessRequest.id == identityaccessrequest_id).one()
-
-    return serialize_identityaccessrequest(iar)
+    return serialize_identityaccessrequest(iar, language)
 
 
 @transact
-def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request):
+def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request, language):
     iar = store.find(IdentityAccessRequest, IdentityAccessRequest.id == identityaccessrequest_id).one()
 
     iar.response_date = datetime_now()
@@ -60,10 +65,10 @@ def update_identityaccessrequest(store, user_id, identityaccessrequest_id, reque
 
     iar.response_motivation = request['response_motivation']
 
-    return serialize_identityaccessrequest(iar)
+    return serialize_identityaccessrequest(iar, language)
 
 
-class CustodianIdentityAccessRequestInstance(BaseHandler):
+class IdentityAccessRequestInstance(BaseHandler):
     """
     This handler allow custodians to manage an identity access request by a receiver
     """
@@ -76,7 +81,8 @@ class CustodianIdentityAccessRequestInstance(BaseHandler):
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        identityaccessrequest = yield get_identityaccessrequest(identityaccessrequest_id)
+        identityaccessrequest = yield get_identityaccessrequest(identityaccessrequest_id,
+                                                                self.request.language)
 
         self.set_status(200)
         self.finish(identityaccessrequest)
@@ -96,13 +102,14 @@ class CustodianIdentityAccessRequestInstance(BaseHandler):
 
         identityaccessrequest = yield update_identityaccessrequest(self.current_user.user_id,
                                                                    identityaccessrequest_id,
-                                                                   request)
+                                                                   request,
+                                                                   self.request.language)
 
         self.set_status(200)
         self.finish(identityaccessrequest)
 
 
-class CustodianIdentityAccessRequestsCollection(BaseHandler):
+class IdentityAccessRequestsCollection(BaseHandler):
     """
     This interface return the list of the requests of access to whislteblower identities
     GET /identityrequests
@@ -116,7 +123,7 @@ class CustodianIdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequests_list()
+        answer = yield get_identityaccessrequests_list(self.request.language)
 
         self.set_status(200)
         self.finish(answer)
