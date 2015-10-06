@@ -53,7 +53,8 @@ var receiver = {
   ping_notification: false,
   tip_expiration_threshold: 72,
   configuration: 'default',
-  state: 'enabled'
+  state: 'enabled',
+  deletable: 'true'
 }
 
 var fields = [

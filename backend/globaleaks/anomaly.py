@@ -13,6 +13,7 @@
 from twisted.internet import defer
 
 from globaleaks import models, event
+from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings, transact_ro
@@ -97,12 +98,13 @@ def compute_activity_level():
                          Alarm.stress_levels['activity']))
 
 
-    mailinfo = yield Alarm.admin_alarm_generate_mail(current_event_matrix)
-    if isinstance(mailinfo, dict):
-        yield Alarm.send_anomaly_email(
-            mailinfo['admin_email'],
-            mailinfo['message']
-        )
+    mailinfos = yield Alarm.admin_alarm_generate_mail(current_event_matrix)
+    for mailinfo in mailinfos:
+        if isinstance(mailinfo, dict):
+            yield Alarm.send_anomaly_email(
+                mailinfo['mail_address'],
+                mailinfo['message']
+            )
 
     defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
@@ -236,19 +238,11 @@ class Alarm(object):
         Admin notification is disable or if another Anomaly has been
         raised in the last 15 minutes, email is not send.
         """
+        ret = []
+
         do_not_stress_admin_with_more_than_an_email_every_minutes = 120
         # if emergency is set to True, the previous time check is ignored.
         emergency_notification = False
-
-        @transact_ro
-        def _get_node_admin_email(store):
-            node = store.find(models.Node).one()
-            return node.email
-
-        @transact_ro
-        def _get_admin_user_language(store):
-            admin_user = store.find(models.User, models.User.username == u'admin').one()
-            return admin_user.language
 
         # THE THREE FUNCTIONS BELOW ARE POORLY SUBOPTIMAL,
         # AND THIS IS BAD: REFACTOR TO BE DONE ON THIS SUBJECT
@@ -358,91 +352,92 @@ class Alarm(object):
                     Alarm.stress_levels['disk_space'] or
                     Alarm.stress_levels['notification']):
             # lucky, no stress activities recorded: no mail needed
-            defer.returnValue(None)
+            defer.returnValue([])
 
         if GLSettings.memory_copy.disable_admin_notification_emails:
             # event_matrix is {} if we are here only for disk
             log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
                       "[%s]" % event_matrix if event_matrix else "")
-            defer.returnValue(None)
+            defer.returnValue([])
 
         if Alarm.last_alarm_email and not emergency_notification:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
-                defer.returnValue(None)
+                defer.returnValue([])
                 # This is skipped then:
                 log.debug("Alert [%s] want be sent, but the threshold of %d minutes still unexpired %s" % (
                     Alarm.stress_levels,
                     do_not_stress_admin_with_more_than_an_email_every_minutes,
                     datetime_to_ISO8601(Alarm.last_alarm_email)))
 
-        admin_email = yield _get_node_admin_email()
-        admin_language = yield _get_admin_user_language()
+        admin_users = yield get_admin_users()
+        for u in admin_users:
+            notification_settings = yield get_notification(u['language'])
 
-        notification_settings = yield get_notification(admin_language)
+            # and now, processing the template
+            message = yield _get_message_template()
+            message_title = notification_settings['admin_anomaly_mail_title']
+            recursion_time = 2
 
-        # and now, processing the template
-        message = yield _get_message_template()
-        message_title = notification_settings['admin_anomaly_mail_title']
-        recursion_time = 2
+            # since the ActivityDetails, we've to manage recursion
+            while recursion_time:
+                recursion_time -= 1
 
-        # since the ActivityDetails, we've to manage recursion
-        while recursion_time:
-            recursion_time -= 1
+                for keyword, templ_funct in KeyWordTemplate.iteritems():
 
+                    where = message.find(keyword)
+                    if where == -1:
+                        continue
+
+                    # based on the type of templ_funct, we've to use 'yield' or not
+                    # cause some returns a deferred.
+                    if isinstance(templ_funct, type(sendmail)):
+                        content = templ_funct()
+                    else:
+                        content = yield templ_funct()
+
+                    message = "%s%s%s" % (
+                        message[:where],
+                        content,
+                        message[where + len(keyword):])
+
+            # message title, we can't put the loop together at the moment
             for keyword, templ_funct in KeyWordTemplate.iteritems():
 
-                where = message.find(keyword)
+                where = message_title.find(keyword)
                 if where == -1:
                     continue
 
-                # based on the type of templ_funct, we've to use 'yield' or not
-                # cause some returns a deferred.
                 if isinstance(templ_funct, type(sendmail)):
                     content = templ_funct()
                 else:
                     content = yield templ_funct()
 
-                message = "%s%s%s" % (
-                    message[:where],
+                message_title = "%s%s%s" % (
+                    message_title[:where],
                     content,
-                    message[where + len(keyword):])
+                    message_title[where + len(keyword):])
 
-        # message title, we can't put the loop together at the moment
-        for keyword, templ_funct in KeyWordTemplate.iteritems():
+            message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                      GLSettings.memory_copy.notif_source_email,
+                                      u['mail_address'],
+                                      u['mail_address'],
+                                      message_title,
+                                      message)
 
-            where = message_title.find(keyword)
-            if where == -1:
-                continue
+            log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
+                      'the next mail should be in %d minutes' %
+                      (event_matrix,
+                       GLSettings.memory_copy.notif_server,
+                       GLSettings.memory_copy.notif_port,
+                       do_not_stress_admin_with_more_than_an_email_every_minutes))
 
-            if isinstance(templ_funct, type(sendmail)):
-                content = templ_funct()
-            else:
-                content = yield templ_funct()
+            ret.append({
+                'mail_address': u['mail_address'],
+                'message': message
+            })
 
-            message_title = "%s%s%s" % (
-                message_title[:where],
-                content,
-                message_title[where + len(keyword):])
-
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
-                                  admin_email,
-                                  admin_email,
-                                  message_title,
-                                  message)
-
-        log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
-                  'the next mail should be in %d minutes' %
-                  (event_matrix,
-                   GLSettings.memory_copy.notif_server,
-                   GLSettings.memory_copy.notif_port,
-                   do_not_stress_admin_with_more_than_an_email_every_minutes))
-
-        defer.returnValue({
-            'admin_email': admin_email,
-            'message': message,
-        })
+        defer.returnValue(ret)
 
 
     @staticmethod

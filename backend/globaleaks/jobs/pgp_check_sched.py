@@ -19,6 +19,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.admin.notification import get_notification
+from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
@@ -31,14 +32,6 @@ __all__ = ['PGPCheckSchedule']
 
 class PGPCheckSchedule(GLJob):
     name = "PGP Check"
-
-    @transact_ro
-    def get_admin_users(self, store):
-        admins_users = []
-        for admin in store.find(models.User, models.User.role == u'admin'):
-            admins_users.append(user_serialize_user(admin, 'en'))
-
-        return admins_users
 
     @transact
     def pgp_validation_check(self, store):
@@ -80,23 +73,24 @@ class PGPCheckSchedule(GLJob):
         title = Templating().format_template(
             notification_settings['admin_pgp_alert_mail_title'], fakeevent)
 
-        to_address = node_desc['email']
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
-                                  to_address,
-                                  to_address,
-                                  title,
-                                  body)
+        admin_users = yield get_admin_users()
+        for u in admin_users:
+            message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                      GLSettings.memory_copy.notif_source_email,
+                                      u['mail_address'],
+                                      u['mail_address'],
+                                      title,
+                                      body)
 
-        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                       authentication_password=GLSettings.memory_copy.notif_password,
-                       from_address=GLSettings.memory_copy.notif_source_email,
-                       to_address=to_address,
-                       message_file=message,
-                       smtp_host=GLSettings.memory_copy.notif_server,
-                       smtp_port=GLSettings.memory_copy.notif_port,
-                       security=GLSettings.memory_copy.notif_security,
-                       event=None)
+            yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                           authentication_password=GLSettings.memory_copy.notif_password,
+                           from_address=GLSettings.memory_copy.notif_source_email,
+                           to_address=u['mail_address'],
+                           message_file=message,
+                           smtp_host=GLSettings.memory_copy.notif_server,
+                           smtp_port=GLSettings.memory_copy.notif_port,
+                           security=GLSettings.memory_copy.notif_security,
+                           event=None)
 
     @inlineCallbacks
     def send_pgp_alerts(self, receiver_desc):
@@ -141,7 +135,7 @@ class PGPCheckSchedule(GLJob):
 
         if expired_or_expiring:
             if not GLSettings.memory_copy.disable_admin_notification_emails:
-                admins_descs = yield self.get_admin_users()
+                admins_descs = yield get_admin_users()
                 for admin_desc in admins_descs:
                     yield self.send_admin_pgp_alerts(admin_desc, expired_or_expiring)
 

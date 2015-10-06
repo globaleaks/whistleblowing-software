@@ -13,11 +13,18 @@ class TestFirstSetup(helpers.TestHandler):
         # so only valid requests are the one with steps = []
         self.dummyContext['steps'] = []
 
+        admin = {
+          'old_password': 'globaleaks',
+          'password': 'P4ssword', # <- hackingteam password! :)
+          'mail_address': 'evilaliv3@globaleaks.org'
+        }
+
         wizard_blob = {
-            'receiver' : self.get_dummy_receiver("christianice"),
-            'fields' : self.dummyFields,
-            'context' : self.dummyContext,
-            'node' : self.dummyNode,
+            'node': self.dummyNode,
+            'admin': admin,
+            'receiver': self.get_dummy_receiver("christianice"),
+            'context': self.dummyContext,
+            'fields': self.dummyFields
         }
 
         handler = self.request(wizard_blob, role='admin')

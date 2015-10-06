@@ -34,8 +34,8 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
         'submission_date': datetime_to_ISO8601(identityaccessrequest.receivertip.internaltip.creation_date)
     }
 
-    mo = Rosetta(rtip.internaltip.context.localized_strings)
-    mo.acquire_storm_object(rtip.internaltip.context)
+    mo = Rosetta(identityaccessrequest.receivertip.internaltip.context.localized_strings)
+    mo.acquire_storm_object(identityaccessrequest.receivertip.internaltip.context)
     iar["submission_context"] = mo.dump_localized_key('name', language)
 
     return iar

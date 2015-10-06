@@ -417,7 +417,6 @@ class Node(Model):
     name = Unicode(validator=shorttext_v)
     public_site = Unicode(validator=shorttext_v)
     hidden_service = Unicode(validator=shorttext_v)
-    email = Unicode(validator=shorttext_v)
     receipt_salt = Unicode(validator=shorttext_v)
 
     languages_enabled = JSON()
@@ -483,7 +482,7 @@ class Node(Model):
 
     show_contexts_in_alphabetical_order = Bool(default=False)
 
-    unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
+    unicode_keys = ['name', 'public_site', 'hidden_service',
                     'default_language', 'landing_page']
 
     int_keys = ['maximum_namesize', 'maximum_textsize',
@@ -1095,7 +1094,7 @@ IdentityAccessRequest.receivertip = Reference(
 
 IdentityAccessRequest.response_user = Reference(
     IdentityAccessRequest.response_user_id,
-    Custodian.id
+    User.id
 )
 
 EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)

@@ -2,6 +2,8 @@
 #
 # wizard
 
+from globaleaks import models
+from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin.context import db_create_context
@@ -18,46 +20,49 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
-    request['node']['default_language'] = language
-    request['node']['languages_enabled'] = [language]
-
-    # Header title of the homepage is initially set with the node title
-    request['node']['header_title_homepage'] = request['node']['name']
-
     try:
+        request['node']['default_language'] = language
+        request['node']['languages_enabled'] = [language]
+
+        # Header title of the homepage is initially set with the node title
+        request['node']['header_title_homepage'] = request['node']['name']
+
         db_update_node(store, request['node'], True, language)
-
-    except Exception as excep:
-        log.err("Failed Node initialization %s" % excep)
-        raise excep
-
-    try:
         context = db_create_context(store, request['context'], language)
-    except Exception as excep:
-        log.err("Failed Context initialization %s" % excep)
-        raise excep
 
-    # associate the new context to the receiver
-    request['receiver']['contexts'] = [context.id]
+        # associate the new context to the receiver
+        request['receiver']['contexts'] = [context.id]
 
-    try:
         db_create_receiver(store, request['receiver'], language)
+
+        admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
+
+        admin.mail_address = request['admin']['mail_address']
+
+        password = request['admin']['password']
+        old_password = request['admin']['old_password']
+
+        if password and old_password and len(password) and len(old_password):
+            admin.password = security.change_password(admin.password,
+                                                      old_password,
+                                                      password,
+                                                      admin.salt)
     except Exception as excep:
-        log.err("Failed Receiver Initialization %s" % excep)
+        log.err("Failed wizard initialization %s" % excep)
         raise excep
+
+
 
 
 class FirstSetup(BaseHandler):
     """
     """
-
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
         """
-
         request = self.validate_message(self.request.body,
                                         requests.WizardFirstSetupDesc)
 
