@@ -30,13 +30,18 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
     $scope.finish = function() {
       if (!finished) {
-        $scope.admin.node.old_password = 'globaleaks';
-
         /* configure tor2web admin right based on detected user access */
         $scope.admin.node.tor2web_admin = !$scope.anonymous;
 
+        var admin = {
+          'mail_address': $scope.admin_mail_address,
+          'old_password': 'globaleaks',
+          'password': $scope.admin_password,
+        };
+
         $scope.wizard = {
           'node': $scope.admin.node,
+          'admin': admin,
           'receiver': $scope.receiver,
           'context': $scope.context
         };
@@ -65,9 +70,11 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
                                          // the system will then force the user to change the password
                                          // at first login
           $scope.context = $scope.admin.new_context();
-          passwordWatcher($scope, 'admin.node.password');
-          changePasswordWatcher($scope, "admin.node.old_password",
-            "admin.node.password", "admin.node.check_password");
+          passwordWatcher($scope, 'admin_password');
+          changePasswordWatcher($scope,
+                                "globaleaks",
+                                "admin_password",
+                                "admin_check_password");
         });
       });
     }

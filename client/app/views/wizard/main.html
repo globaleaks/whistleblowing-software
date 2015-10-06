@@ -58,7 +58,7 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.adminemail.$error.required}">
-            <input name="adminemail" class="form-control" data-ng-model="admin.node.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
+            <input name="adminemail" class="form-control" data-ng-model="admin_mail_address" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="help-block">
               <span data-translate>Enter your email address</span>
             </div>
@@ -73,7 +73,7 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required}">
-            <input name="password" class="form-control" data-ng-model="admin.node.password" type="password" required>
+            <input name="password" class="form-control" data-ng-model="admin_password" type="password" required>
             <div class="help-block">
               <span data-translate>Enter a password for the user 'admin':</span>
             </div>
@@ -99,7 +99,7 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required}">
-            <input name="checkpassword" class="form-control" data-ng-model="admin.node.check_password" type="password" required>
+            <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" required>
             <div class="help-block">
               <span data-translate>Please confirm it</span>
             </div>

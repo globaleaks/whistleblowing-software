@@ -174,9 +174,6 @@ AdminNodeDesc = {
     'whistleblowing_button': unicode,
     'hidden_service': hidden_service_regexp_or_empty,
     'public_site': https_url_regexp_or_empty,
-    'email': email_regexp_or_empty, # FIXME old versions of globaleaks have an empty value
-    'password': unicode,            # and in addition the email is not set before wizard.
-    'old_password': unicode,
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
@@ -521,6 +518,12 @@ FieldDesc = {
     'children': list
 }
 
+WizardAdminDesc = {
+    'password': unicode,
+    'old_password': unicode,
+    'mail_address': unicode
+}
+
 WizardStepDesc = {
     'label': dict,
     'hint': dict,
@@ -540,9 +543,10 @@ WizardAppdataDesc = {
 }
 
 WizardFirstSetupDesc = {
+    'node': AdminNodeDesc,
+    'admin': WizardAdminDesc,
     'receiver': AdminReceiverDesc,
-    'context': AdminContextDesc,
-    'node': AdminNodeDesc
+    'context': AdminContextDesc
 }
 
 ExceptionDesc = {

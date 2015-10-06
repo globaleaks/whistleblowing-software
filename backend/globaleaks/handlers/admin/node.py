@@ -32,7 +32,6 @@ def db_admin_serialize_node(store, language):
         'presentation': node.presentation,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
-        'email': node.email,
         'version': GLSettings.version_string,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': node.languages_enabled,
@@ -89,15 +88,6 @@ def db_update_node(store, request, wizard_done, language):
     node = store.find(models.Node).one()
 
     fill_localized_keys(request, models.Node.localized_strings, language)
-
-    admin = store.find(models.User, (models.User.username == unicode('admin'))).one()
-
-    password = request.get('password', None)
-    old_password = request.get('old_password', None)
-
-    if password and old_password and len(password) and len(old_password):
-        admin.password = security.change_password(admin.password,
-                                    old_password, password, admin.salt)
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []

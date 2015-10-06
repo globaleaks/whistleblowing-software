@@ -77,8 +77,6 @@ def create_tables(create_node=True):
             'whistleblowing_button': dict({GLSettings.defaults.language: u""}),
             'hidden_service': u"",
             'public_site': u"",
-            'email': u"",
-            'receipt_regexp': u"[0-9]{16}",
             # advanced settings
             'maximum_filesize': GLSettings.defaults.maximum_filesize,
             'maximum_namesize': GLSettings.defaults.maximum_namesize,

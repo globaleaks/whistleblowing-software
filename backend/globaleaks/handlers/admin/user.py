@@ -228,6 +228,12 @@ def get_user(store, user_id, language):
     return user_serialize_user(user, language)
 
 
+@transact_ro
+def get_admin_users(store):
+    return [user_serialize_user(user, GLSettings.memory_copy.default_language)
+            for user in store.find(models.User,models.User.role == u'admin')]
+
+
 @transact
 def delete_user(store, user_id):
     user = db_get_user(store, user_id)

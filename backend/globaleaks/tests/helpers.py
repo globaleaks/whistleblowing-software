@@ -554,7 +554,8 @@ class TestGLWithPopulatedDB(TestGL):
 
             yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
                                                     rtip_desc['rtip_id'],
-                                                    identityaccessrequestCreation)
+                                                    identityaccessrequestCreation,
+                                                    'en')
 
         self.dummyWBTips = yield self.get_wbtips()
 
