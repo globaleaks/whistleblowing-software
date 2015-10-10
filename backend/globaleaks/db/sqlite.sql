@@ -130,12 +130,12 @@ CREATE TABLE identityaccessrequest (
     receivertip_id TEXT NOT NULL,
     request_date TEXT NOT NULL,
     request_motivation TEXT NOT NULL,
-    response_date TEXT NOT NULL,
-    response_user_id TEXT,
-    response_motivation TEXT NOT NULL,
-    response TEXT NOT NULL,
+    reply_date TEXT NOT NULL,
+    reply_user_id TEXT,
+    reply_motivation TEXT NOT NULL,
+    reply TEXT NOT NULL,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
-    FOREIGN KEY (response_user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (reply_user_id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
