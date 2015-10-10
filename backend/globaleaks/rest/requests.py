@@ -38,7 +38,7 @@ field_type_regexp                 = (r'^('
                                      'email|'
                                      'date|'
                                      'fieldgroup)$')
-identityaccessresponse_regexp    = (r'^('
+identityaccessreply_regexp        = (r'^('
                                      'pending|'
                                      'authorized|'
                                      'denied)$')
@@ -402,8 +402,8 @@ ReceiverIdentityAccessRequestDesc = {
 }
 
 CustodianIdentityAccessRequestDesc = {
-    'response': identityaccessresponse_regexp,
-    'response_motivation': unicode
+    'reply': identityaccessreply_regexp,
+    'reply_motivation': unicode
 }
 
 FilesOverviewDesc = [FileOverviewDesc]

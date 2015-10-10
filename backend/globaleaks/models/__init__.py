@@ -321,10 +321,10 @@ class IdentityAccessRequest(Model):
     receivertip_id = Unicode()
     request_date = DateTime(default_factory=datetime_now)
     request_motivation = Unicode(default=u"")
-    response_date = DateTime(default_factory=datetime_null)
-    response_user_id = Unicode()
-    response_motivation = Unicode(default=u"")
-    response = Unicode(default=u"pending")
+    reply_date = DateTime(default_factory=datetime_null)
+    reply_user_id = Unicode()
+    reply_motivation = Unicode(default=u"")
+    reply = Unicode(default=u"pending")
 
 
 class InternalFile(Model):
@@ -1092,8 +1092,8 @@ IdentityAccessRequest.receivertip = Reference(
     ReceiverTip.id
 )
 
-IdentityAccessRequest.response_user = Reference(
-    IdentityAccessRequest.response_user_id,
+IdentityAccessRequest.reply_user = Reference(
+    IdentityAccessRequest.reply_user_id,
     User.id
 )
 

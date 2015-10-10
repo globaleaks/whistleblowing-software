@@ -26,11 +26,11 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
         'request_date': datetime_to_ISO8601(identityaccessrequest.request_date),
         'request_user_name': identityaccessrequest.receivertip.receiver.user.name,
         'request_motivation': identityaccessrequest.request_motivation,
-        'response_date': datetime_to_ISO8601(identityaccessrequest.request_date),
-        'response_user_name': identityaccessrequest.response_user.name \
-            if identityaccessrequest.response_user is not None else '',
-        'response': identityaccessrequest.response,
-        'response_motivation': identityaccessrequest.response_motivation,
+        'reply_date': datetime_to_ISO8601(identityaccessrequest.reply_date),
+        'reply_user_name': identityaccessrequest.reply_user.name \
+            if identityaccessrequest.reply_user is not None else '',
+        'reply': identityaccessrequest.reply,
+        'reply_motivation': identityaccessrequest.reply_motivation,
         'submission_date': datetime_to_ISO8601(identityaccessrequest.receivertip.internaltip.creation_date)
     }
 
@@ -44,12 +44,13 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
 @transact_ro
 def get_identityaccessrequests_list(store, language):
     return [serialize_identityaccessrequest(iar, language)
-        for iar in store.find(IdentityAccessRequest)]
+        for iar in store.find(IdentityAccessRequest, IdentityAccessRequest.reply == u'pending')]
 
 
 @transact_ro
 def get_identityaccessrequest(store, identityaccessrequest_id, language):
-    iar = store.find(IdentityAccessRequest, IdentityAccessRequest.id == identityaccessrequest_id).one()
+    iar = store.find(IdentityAccessRequest,
+                     IdentityAccessRequest.id == identityaccessrequest_id).one()
     return serialize_identityaccessrequest(iar, language)
 
 
@@ -57,13 +58,11 @@ def get_identityaccessrequest(store, identityaccessrequest_id, language):
 def update_identityaccessrequest(store, user_id, identityaccessrequest_id, request, language):
     iar = store.find(IdentityAccessRequest, IdentityAccessRequest.id == identityaccessrequest_id).one()
 
-    iar.response_date = datetime_now()
-    iar.response_user_id = user_id
-
-    if iar.response == 'pending':
-        iar.response = request['response']
-
-    iar.response_motivation = request['response_motivation']
+    if iar.reply == 'pending':
+        iar.reply_date = datetime_now()
+        iar.reply_user_id = user_id
+        iar.reply = request['reply']
+        iar.reply_motivation = request['reply_motivation']
 
     return serialize_identityaccessrequest(iar, language)
 

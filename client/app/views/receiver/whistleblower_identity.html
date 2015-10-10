@@ -1,33 +1,42 @@
 <div id="TipInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
   <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
     <div>
-      <span data-translate>Identity of the whistleblower</span>
-      <span>:&nbsp;</span>
-      <span data-translate>Not available</span>&nbsp;/&nbsp;
-      <span data-translate>Available</span>
+      <span>
+        <span data-translate>Identity of the whistleblower</span>
+        <span>:&nbsp;</span>
+        <span data-translate>Available</span>
+        <span class="pull-right">
+          <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+          <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
+        </span>
+      </span>
     </div>
-    <span class="pull-right">
-      <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
-      <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
-    </span>
   </div>
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
     <div>
-      <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
-        <span data-translate>Request access to the whistleblower's identity</span>
-      </a>
-    </div>
-    <div>
-      <div>
-        <label data-translate>Request status</label>
-        <span>:</span>
-        <span data-translate>Denied</span>&nbsp;/&nbsp;
-        <span data-translate>Waiting for authorization</span>&nbsp;/&nbsp;
-        <span data-translate>Authorized</span>
+      <div data-ng-if="tip.last_iar && tip.last_iar.reply != 'authorized'">
+        <div>
+          <label data-translate>Access to the whistleblower's identity has been requested to the custodian.</label>
+        </div>
+        <div>
+          <label>
+            <span data-translate>Date of the request</span>
+            <span>: </span>
+            <span>{{tip.last_iarl.request_date}}</span>
+          </label>
+        </div>
+        <div>
+          <label data-translate>Request status</label>
+          <span>:</span>
+          <span data-ng-switch="" on="tip.last_iar.reply">
+            <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
+            <span data-ng-switch-when="denied" data-translate>Denied</span>
+          </span>
+        </div>
+        <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span data-translate>lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></div>
       </div>
-      <label data-translate>Request motivation</label>:<span data-translate>lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span>
     </div>
-    <div>
+    <div data-ng-if="tip.last_iar && tip.last_iar.reply == 'authorized'">
       <div><label data-translate>Identity</label>:</div>
       <div style="padding-left: 20px">
         <div><label data-translate>Nome:</label> Mario</div>
@@ -37,6 +46,11 @@
         <div><label data-translate>Luogo di nascita:</label> Massa</div>
         <div><label data-translate>Redidenza:</label> Viale Roma 100, Massa, Italia</div>
       </div>
+    </div>
+    <div data-ng-if="!tip.last_iar || tip.last_iar.reply == 'denied'">
+      <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
+        <span data-translate>Request access to the whistleblower's identity</span>
+      </a>
     </div>
   </div>
  </div>

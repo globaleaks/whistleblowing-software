@@ -196,7 +196,12 @@ angular.module('GLServices', ['ngResource']).
               redirect_path = '/admin';
             }
 
-            // Only redirect if we are not alread on the login page
+            // If we are custodians on the /custodian(/*) pages, redirect to /custodian
+            else if (source_path.indexOf('/custodian') === 0) {
+              redirect_path = '/custodian';
+            }
+
+            // Only redirect if we are not already on the login page
             if ($location.path() !== redirect_path) {
               $location.path(redirect_path);
               $location.search('src=' + source_path);
@@ -434,13 +439,14 @@ angular.module('GLServices', ['ngResource']).
       fn(self);
     };
 }]).
-  factory('Tip', ['$http', '$resource', '$q',
-          function($http, $resource, $q) {
+  factory('Tip', ['$http', '$resource', '$q', '$filter',
+          function($http, $resource, $q, $filter) {
 
     var tipResource = $resource('rtip/:id', {id: '@id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('rtip/:id/receivers', {id: '@id'}, {});
     var commentsResource = $resource('rtip/:id/comments', {id: '@id'}, {});
     var messageResource = $resource('rtip/:id/messages', {id: '@id'}, {});
+    var identityAccessRequestResource = $resource('rtip/:tip_id/identityaccessrequests', {id: '@id'}, {});
 
     return function(tipID, fn) {
       var self = this;
@@ -449,8 +455,12 @@ angular.module('GLServices', ['ngResource']).
         tip.receivers = receiversResource.query(tipID);
         tip.comments = commentsResource.query(tipID);
         tip.messages = messageResource.query(tipID);
+        tip.iars = identityAccessRequestResource.query(tipID);
 
-        $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise]).then(function() {
+        $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
+          tip.iars = $filter('orderBy')(tip.iars, 'request_date');
+          tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
+
           tip.newComment = function(content) {
             var c = new commentsResource(tipID);
             c.content = content;
@@ -478,7 +488,7 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('WBTip', ['$resource', '$q', '$rootScope',
-          function($resource, $q, $rootScope) {
+      function($resource, $q, $rootScope) {
 
     var tipResource = $resource('wbtip', {}, {update: {method: 'PUT'}});
     var receiversResource = $resource('wbtip/receivers', {}, {});
@@ -489,6 +499,7 @@ angular.module('GLServices', ['ngResource']).
       var self = this;
 
       self.tip = tipResource.get(function (tip) {
+        tip.iars = IdentityAccessRequestResource.query();
         tip.receivers = receiversResource.query();
         tip.comments = commentsResource.query();
         tip.messages = [];
@@ -916,7 +927,6 @@ angular.module('GLServices', ['ngResource']).
       scope.pwdHasNumber = true;
 
       var validatePasswordChange = function () {
-
         if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
           scope.pwdValidLength = (scope.$eval(password)).length >= 8;
           scope.pwdHasLetter = (/[A-z]/.test(scope.$eval(password))) ? true : false;
