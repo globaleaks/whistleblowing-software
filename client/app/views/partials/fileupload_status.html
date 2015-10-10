@@ -1,15 +1,13 @@
 <div class="uploadingBox" data-ng-if="uploadedFiles(uploads) && (isUploading() || !hideUploadWhenFinished)">
   <div id="FileUploadsHeader">
-    <div data-translate>Uploading files...</div>
+    <div data-ng-show="isUploading(uploads)" data-translate>Uploading files...</div>
+    <div data-ng-show="!isUploading(uploads)" data-translate>Upload completed successfully!</div>
   </div>
   <div id="FileUpoloadsInfo">
     <div data-ng-show="isUploading(uploads)">
       <span data-translate>Estimated upload time:</span> <span>{{remainingUploadTime(uploads)}} </span><span data-translate>seconds</span>
     </div>
-    <div data-ng-show="!isUploading(uploads)">
-      <span data-translate>File uploads completed</span>
-    </div>
-    <div class="progress progress-striped" data-ng-class="{active: isUploading(uploads)}">
+    <div data-ng-show="isUploading(uploads)" class="progress progress-striped" data-ng-class="{active: isUploading(uploads)}">
       <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
     </div>
   </div>
