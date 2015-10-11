@@ -38,14 +38,7 @@
     </div>
     <div data-ng-if="tip.last_iar && tip.last_iar.reply == 'authorized'">
       <div><label data-translate>Identity</label>:</div>
-      <div style="padding-left: 20px">
-        <div><label data-translate>Nome:</label> Mario</div>
-        <div><label data-translate>Cognome</label> Rossi</div>
-        <div><label data-translate>Sesso:</label> M</div>
-        <div><label data-translate>Data di nascita:</label> 02/08/1985</div>
-        <div><label data-translate>Luogo di nascita:</label> Massa</div>
-        <div><label data-translate>Redidenza:</label> Viale Roma 100, Massa, Italia</div>
-      </div>
+      <div style="padding-left: 20px"></div>
     </div>
     <div data-ng-if="!tip.last_iar || tip.last_iar.reply == 'denied'">
       <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
