@@ -1,6 +1,6 @@
-language: node_js
-node_js:
-  - "0.12"
+language: python
+python:
+  - "2.7"
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
@@ -15,6 +15,9 @@ install:
   - pip install -r requirements.txt
   - pip install coverage coveralls
   - cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
+  - add-apt-repository -y ppa:chris-lea/node.js
+  - apt-get -y update
+  - apt-get -y install nodejs
   - npm install -g grunt grunt-cli bower
   - npm install
   - grunt setupDependencies
