@@ -9,31 +9,15 @@
     </div>
   </div>
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
-    <table class="table table-striped" id="receiverList">
-      <thead>
-        <tr>
-          <th><span data-translate>Name</span></th>
-          <th><span data-translate>Description</span></th>
-          <th><span data-translate>Access counter</span></th>
-        </tr>
-        </thead>
-        <tbody id="receiverListBody" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
-        <tr id="receiver-{{$index}}">
-          <td>
-            <span data-ng-switch="" on="receiver.pgp_key_status">
-              <span data-ng-switch-when="enabled">
-                <i class="glyphicon glyphicon-certificate" popover="{{'This receiver has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-              </span>
-              <span data-ng-switch-when="disabled">
-                <i class="glyphicon glyphicon-warning-sign" popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-              </span>
-            </span>
-            <span>{{::receiver.name}}</span>
-          </td>
-          <td>{{::receiver.description}}</td>
-          <td>{{::receiver.access_counter}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <span class="col-md-2" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+        <span id="receiver-{{$index}}" class="label" data-ng-class="{'label-primary': (receiver.access_counter > 0), 'label-danger': (receiver.access_counter == 0)}">
+          <span>{{::receiver.name}}</span><span>:</span>
+          <span data-ng-if="receiver.access_counter > 0" data-translate>Read</span>
+          <span data-ng-if="receiver.access_counter == 0" data-translate>Unread</span>
+          </span>
+        </span>
+      </span>
+    </span>
   </div>
 </div>
