@@ -29,43 +29,32 @@
   </div>
 
   <div class="TipPageSectionContent" data-ng-show="!collapsed">
-    <div class="row">
-      <span class="col-md-4">
-        <span data-translate>Context</span><span>:</span>
-      </span>
-      <span class="col-md-8">
-        <span>{{::tip.context_name}}</span>
-        <a data-ng-show="tip.context_description" popover="{{::tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
-          <span class="glyphicon glyphicon-info-sign"></span>
-        </a>
-      </span>
-    </div>
-    <div class="row">
-      <span class="col-md-4">
-        <span data-translate>Creation Date</span><span>:</span>
-      </span>
-      <span class="col-md-8">{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</span>
-    </div>
-    <div class="row">
-      <span class="col-md-4">
-        <span data-translate>Expiration Date</span><span>:</span>
-      </span>
-      <span class="col-md-8">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
-    </div>
-    <div class="row">
-      <span class="col-md-4">
-        <span data-translate>Connection</span><span>:</span>
-      </span>
-      <span class="col-md-8">
-        <span data-ng-if="tip.tor2web"
-              class="btn-warning ConnectionKind"
-              popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-              data-translate>HTTPS</span>
-        <span data-ng-if="!tip.tor2web"
-              class="btn-success ConnectionKind"
-              popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-              data-translate>Tor</span>
-      </span>
+    <table class="table table-condensed table-striped">
+      <thead>
+        <tr>
+          <th data-translate>Context</th>
+          <th data-translate>Creation Date</th>
+          <th data-translate>Expiration Date</th>
+          <th data-translate>Connection</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{::tip.context_name}}</td>
+          <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>
+            <span data-ng-if="tip.tor2web"
+                class="btn-warning ConnectionKind"
+                popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                data-translate>HTTPS</span>
+            <span data-ng-if="!tip.tor2web"
+                class="btn-success ConnectionKind"
+                popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                data-translate>Tor</span>
+          </td>
+        </tr>
+      </tbody>
     </div>
   </div>
 </div>
