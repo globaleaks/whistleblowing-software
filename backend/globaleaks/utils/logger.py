@@ -7,21 +7,12 @@
 #
 # adminLog, receiverLog, tipLog are @classmethod, callable by any stuff in the world
 
-import cgi
-import codecs
-import logging
-import os
-import sys
-import traceback
-
-from twisted.python import log as twlog
-from twisted.python import logfile as twlogfile
-from twisted.python import util
-from twisted.python.failure import Failure
+from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
+from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.settings import GLSettings, transact_ro, transact
 from globaleaks.utils.utility import log
 from globaleaks.models import Log
 
@@ -53,13 +44,15 @@ Security_messages  = {
     'SECURITY_0' : [ "system boot", 0],
     'SECURITY_1' : [ "wrong administrative password attempt password", 0],
     'SECURITY_2' : [ "wrong receiver (username %s) password attempt happened", 1],
+    'SECURITY_3' : [ "bruteforce attack detected, invalid login in sequence (%d tries)", 1],
     # Receiver
     'SECURITY_20' : [ "wrong receiver password attempt happened", 0],
 }
 
 Network_messages = {
     # Admin
-    'MAILFAIL_0' : [ "unable to deliver mail to %s: %s", 2]
+    'MAILFAIL_0' : [ "unable to deliver mail to %s: %s", 2],
+    'MAIL_QUEUE_0' : [ "the queue of logged event that had to be mailed is longer than expected %d", 1],
 }
 
 
@@ -180,24 +173,10 @@ def picklogs(store, subject_uuid, amount, filter_value):
     default behavior is to access cache.
     """
 
-    # VERY DEBUG-ISH JUST FOR NOW
-    x = store.find(Log)
-    list_t = []
-    for y in x:
-        if not y.subject in list_t:
-            print y.subject
-            list_t.append(y.subject)
-    # VERY DEBUG-ISH JUST FOR NOW
-    # VERY DEBUG-ISH JUST FOR NOW
-    assert filter_value in [ 1, 0, -1 ]
-    print "Filtervalue", filter_value, LogQueue._all_queues.keys()
-    # VERY DEBUG-ISH JUST FOR NOW
-    # VERY DEBUG-ISH JUST FOR NOW
-
+    retval = {}
     try:
         memory_avail = LogQueue._all_queues[ subject_uuid ]
 
-        retval = {}
         for id, elem in memory_avail.iteritems():
 
             if filter_value != -1 and filter_value != elem.level:
@@ -219,6 +198,7 @@ def picklogs(store, subject_uuid, amount, filter_value):
             db_query_rl = store.find(Log,
                                      Log.subject == unicode(subject_uuid))
 
+        # The query is not executed
         if len(retval) < amount:
             db_query_rl.order_by(Desc(Log.id))
             recorded_l = db_query_rl[:(amount - len(retval.keys()))]
@@ -229,34 +209,42 @@ def picklogs(store, subject_uuid, amount, filter_value):
                 retval.update({entry.id : entry})
 
     except KeyError:
+        log.debug("Lacking of logs for %s in memory, checking from DB" % subject_uuid)
+        pass
+
+    if not subject_uuid in LogQueue._all_queues:
         LogQueue._all_queues.update({subject_uuid : {}})
-        retval = {}
+    else:
+        log.debug("From the memory cache, available %d entries for id %s" %
+                  ( len(retval.values()), subject_uuid) )
 
-        if filter_value == 1:
-            db_query_rl = store.find(Log,
-                                     Log.log_level == 1,
-                                     Log.subject == unicode(subject_uuid))
-        elif filter_value == 0:
-            db_query_rl = store.find(Log,
-                                     Log.log_level == 0,
-                                     Log.subject == unicode(subject_uuid))
-        else:
-            db_query_rl = store.find(Log,
-                                     Log.subject == unicode(subject_uuid))
+    if filter_value == 1:
+        db_query_rl = store.find(Log,
+                                 Log.log_level == 1,
+                                 Log.subject == unicode(subject_uuid))
+    elif filter_value == 0:
+        db_query_rl = store.find(Log,
+                                 Log.log_level == 0,
+                                 Log.subject == unicode(subject_uuid))
+    else:
+        db_query_rl = store.find(Log,
+                                 Log.subject == unicode(subject_uuid))
 
+    db_query_rl.order_by(Desc(Log.id))
+    loglist = db_query_rl[:amount]
 
-        db_query_rl.order_by(Desc(Log.id))
-        loglist = db_query_rl[:amount]
+    for l in loglist:
+        entry = LoggedEvent()
+        # Reload, also, update the LogQueue
+        entry.reload(l)
+        retval.update({ entry.id : entry })
 
-        for l in loglist:
-            entry = LoggedEvent()
-            # Reload, also, update the LogQueue
-            entry.reload(l)
-            retval.update({ entry.id : entry })
-
-
-    # Only the values, not the ID, they are just important to ensure unique results
-    return retval.values()
+    # return only the values, not the IDs.
+    # The IDs are just important to ensure uniqueness.
+    log.debug("Returning %d entries from picklogs" % len(retval.values()))
+    ascending = retval.values()
+    ascending.reverse()
+    return ascending # now, descending
 
 
 @transact_ro
@@ -308,6 +296,9 @@ class LoggedEvent(object):
         except KeyError:
             return {
                 'log_code': self.log_code,
+                # This "keyerror" switch can be removed when LOG_MSG_CODE are stable,
+                # this error happen if in the DB there is something that do not exist
+                # anymore. so, **REMIND**, the code can't be changed
                 'msg': u'đđ ¿ LOST ¿ ðð',
                 'args': self.args,
                 'log_date': datetime_to_ISO8601(self.log_date),
@@ -333,7 +324,6 @@ class LoggedEvent(object):
         return True
 
     def __init__(self):
-
         self.id = 0
 
 
@@ -399,135 +389,112 @@ class LoggedEvent(object):
         return "Log %d lvl %d\t %s" % (self.id,self.level, self.log_message)
 
 
-########## copied from utility.py to put all the log related function here
-########## They has to be updated anyway
 
-
-def log_encode_html(s):
+@transact
+def mail_in_queue(store):
     """
-    This function encodes the following characters
-    using HTML encoding: < > & ' " \ /
+    Take the events that has to be mailed and are not yet mailed.
+    mark them as mailed NOW, this is inappropriate with our current design of
+    mail_sent, but this require the creation of a dedicated Class inherit
+    from EventLogger (notification_sched.py) and such kind of event require
+    a receiver, and Log maybe is not intended for a Receiver, but for an admin.
 
-    This function has been suggested for security reason by an old PT, and
-    make senses only if the Log can be influenced by external means. now with the
-    new logging structure, only the "arguments" has to be escaped, not all the line in
-    the logfile.
+    So, we need to refactor the EventLogger and generalize it for the Logs
     """
-    s = cgi.escape(s, True)
-    s = s.replace("'", "&#39;")
-    s = s.replace("/", "&#47;")
-    s = s.replace("\\", "&#92;")
-    return s
+    retval = []
+    tobemailed = store.find(Log, Log.mail_sent == False, Log.mail == True)
+    for tbm in tobemailed:
+        lobj = LoggedEvent()
+        lobj.reload(tbm)
+        tbm.mail_sent = True
+        # This function can be slow if I associate also receiver serialized info,
+        # and context info and such, because at the end we have to fill the mail template
+        # and the information required to send the email
+        log_infos = lobj.serialize_log()
+        retval.append(log_infos)
 
-def log_remove_escapes(s):
+    return retval
+
+
+
+Temporarly_template = \
+"""
+
+Esteemed %UserName%,
+
+The system of %NodeName% has an information to report you:
+
+%MessageFromLog%
+
+Best regards,
+your faithful Log reporting system
+"""
+
+
+class LoggerNotification(object):
     """
-    This function removes escape sequence from log strings, read the comment in the function above
+    This class has only @staticmethod, can be moved easily, but I was not finding any needs to do
+    a normal class/object or to do a list of method in this module.
     """
-    if isinstance(s, unicode):
-        return codecs.encode(s, 'unicode_escape')
-    else:
-        try:
-            s = str(s)
-            unicodelogmsg = s.decode('utf-8')
-        except UnicodeDecodeError:
-            return codecs.encode(s, 'string_escape')
-        except Exception as e:
-            return "Failure in log_remove_escapes %r" % e
-        else:
-            return codecs.encode(unicodelogmsg, 'unicode_escape')
 
-class GLLogObserver(twlog.FileLogObserver):
-    suppressed = 0
-    limit_suppressed = 1
-    last_exception_msg = ""
-
-    def emit(self, eventDict):
-        if 'failure' in eventDict:
-            vf = eventDict['failure']
-            e_t, e_v, e_tb = vf.type, vf.value, vf.getTracebackObject()
-            sys.excepthook(e_t, e_v, e_tb)
-
-        text = twlog.textFromEventDict(eventDict)
-        if text is None:
-            return
-
-        timeStr = self.formatTime(eventDict['time'])
-        fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
-        msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
-
-        if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
-            # This code path flush the status of the broken log, in the case a flood is happen
-            # for few moment or in the case something goes wrong when logging below.
-
-            ##### log.info("!! has been suppressed %d log lines due to error flood (last error %s)" %
-            #####          (GLLogObserver.limit_suppressed, GLLogObserver.last_exception_msg) )
-
-            GLLogObserver.suppressed = 0
-            GLLogObserver.limit_suppressed += 5
-            GLLogObserver.last_exception_msg = ""
-
-        try:
-            # in addition to escape sequence removal on logfiles we also quote html chars
-            util.untilConcludes(self.write, timeStr + " " + log_encode_html(msgStr))
-            util.untilConcludes(self.flush) # Hoorj!
-        except Exception as excep:
-            GLLogObserver.suppressed += 1
-            GLLogObserver.last_exception_msg = str(excep)
-
-
-class Logger(object):
-    """
-    Customized LogPublisher
-    """
-    def _str(self, msg):
-        if isinstance(msg, unicode):
-            msg = msg.encode('utf-8')
-
-        return log_remove_escapes(msg)
-
-    def exception(self, error):
+    @staticmethod
+    # @inlineCallbacks
+    def log_event_mail_generation(serialized_evnt):
         """
-        Error can either be an error message to print to stdout and to the logfile
-        or it can be a twisted.python.failure.Failure instance.
+        This function take an event and send a priority email
         """
-        if isinstance(error, Failure):
-            error.printTraceback()
-        else:
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            traceback.print_exception(exc_type, exc_value, exc_traceback)
 
-    def info(self, msg):
-        if GLSettings.loglevel and GLSettings.loglevel <= logging.INFO:
-            print "[-] %s" % self._str(msg)
+        admin_email = u'vecna@globaleaks.org'
+        admin_language = u'en' # yield _get_admin_user_language()
+        keyword = '%MessageFromLog%'
+        notification_settings = dict(
+            {
+                'mail_title_for_user_logs': 'Info: %s' % keyword
+            }) # yield get_notification(admin_language)
 
-    def err(self, msg):
-        if GLSettings.loglevel:
-            twlog.err("[!] %s" % self._str(msg))
+        message = Temporarly_template # yield _get_message_template()
+        message_title = notification_settings['mail_title_for_user_logs']
 
-    def debug(self, msg):
-        if GLSettings.loglevel and GLSettings.loglevel <= logging.DEBUG:
-            print "[D] %s" % self._str(msg)
+        where = message.find(keyword)
+        assert where != -1, "Invalid template body loaded ?"
 
-    def time_debug(self, msg):
-        # read the command in settings.py near 'verbosity_dict'
-        if GLSettings.loglevel and GLSettings.loglevel <= (logging.DEBUG - 1):
-            print "[T] %s" % self._str(msg)
+        true_message = "%s%s%s" % (
+            message[:where],
+            serialized_evnt['message'],
+            message[where + len(keyword):])
 
-    def msg(self, msg):
-        if GLSettings.loglevel:
-            twlog.msg("[ ] %s" % self._str(msg))
+        where = message_title.find(keyword)
+        assert where != -1, "Invalid template title loaded ?"
 
-    def start_logging(self):
-        """
-        If configured enables logserver
-        """
-        twlog.startLogging(sys.stdout)
-        if GLSettings.logfile:
-            name = os.path.basename(GLSettings.logfile)
-            directory = os.path.dirname(GLSettings.logfile)
+        true_title = "%s%s%s" % (
+            message_title[:where],
+            serialized_evnt['message'],
+            message_title[where + len(keyword):])
 
-            logfile = twlogfile.LogFile(name, directory,
-                                        rotateLength=GLSettings.log_file_size,
-                                        maxRotatedFiles=GLSettings.maximum_rotated_log_files)
-            twlog.addObserver(GLLogObserver(logfile).emit)
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
+                                  admin_email,
+                                  admin_email,
+                                  true_title,
+                                  true_message)
+
+        # returnValue({
+        return dict({
+            'admin_email': admin_email,
+            'message': message,
+        })
+
+    @staticmethod
+    @inlineCallbacks
+    def send_log_email(admin_email, message):
+        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                       authentication_password=GLSettings.memory_copy.notif_password,
+                       from_address=GLSettings.memory_copy.notif_username,
+                       to_address=admin_email,
+                       message_file=message,
+                       smtp_host=GLSettings.memory_copy.notif_server,
+                       smtp_port=GLSettings.memory_copy.notif_port,
+                       security=GLSettings.memory_copy.notif_security,
+                       event=None)
+
 

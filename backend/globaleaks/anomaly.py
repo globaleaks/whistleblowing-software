@@ -19,6 +19,7 @@ from globaleaks.settings import GLSettings, transact_ro
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str
+from globaleaks.utils.logger import adminLog
 
 
 def update_AnomalyQ(event_matrix, alarm_level):
@@ -65,6 +66,10 @@ def compute_activity_level():
                           (event_name,
                            current_event_matrix[event_name],
                            threshold, Alarm.number_of_anomalies))
+
+            # This check is to realize #782
+            if event_name == 'failed_logins' and current_event_matrix[event_name] > 4:
+                adminLog(['mail', 'warning'], 'SECURITY_3', [ current_event_matrix[event_name] ] )
 
     previous_activity_sl = Alarm.stress_levels['activity']
 

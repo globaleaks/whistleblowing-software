@@ -8,7 +8,6 @@
 
 import random
 from cyclone.util import ObjectDict as OD
-from storm.expr import Asc
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 
 from globaleaks.models import EventLogs, Notification
@@ -19,6 +18,7 @@ from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log, datetime_now
+from globaleaks.utils.logger import adminLog, LoggerNotification, mail_in_queue
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.tempobj import TempObj
 
@@ -389,6 +389,24 @@ class MailflushSchedule(GLJob):
 
     @inlineCallbacks
     def operation(self):
+        """
+        Notification has to manage two kind of data: some triggered by the whistleblower activities,
+        and some others triggered by "other". the wb-flow-actions are flushed/can be not flushed based
+        on some conditions, but the others kind of event now are always reported. that's why they are at
+        the beginning
+        """
+        UNEXPECTED_AMOUNT_OF_QUEUE_LOGS = 10
+        logger_events = yield mail_in_queue()
+
+        if len(logger_events) > UNEXPECTED_AMOUNT_OF_QUEUE_LOGS:
+            adminLog(['warning'], 'MAIL_QUEUE_0', [ len(logger_events) ])
+
+        if len(logger_events):
+            for le in logger_events:
+                mailinfo = LoggerNotification.log_event_mail_generation(le)
+                yield LoggerNotification.send_log_email(
+                    mailinfo['admin_email'],
+                    mailinfo['message'] )
 
         queue_events = yield load_complete_events()
 

@@ -302,11 +302,11 @@ class AuthenticationHandler(BaseHandler):
             if not user_id:
                 # we record only for 'admin' now because otherwise we have to
                 # pick the associated user, that can or not exists...
-                adminLog(['warning', 'mail'], 'SECURITY_2', [username])
+                adminLog(['warning'], 'SECURITY_2', [username])
         elif role == 'admin':
             user_id, status, pcn = yield login(username, password, role)
             if not user_id:
-                adminLog(['warning', 'mail'], 'SECURITY_1', [])
+                adminLog(['warning'], 'SECURITY_1', [])
         elif role == 'wb':
             user_id, status, pcn = yield login_wb(password)
         else:

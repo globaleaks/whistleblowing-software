@@ -3,11 +3,11 @@
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.utils.logger import receiverLog, LogQueue, picklogs
-from globaleaks.tests.jobs.test_log_sched import push_admin_logs
+from globaleaks.tests.jobs.test_log_sched import clear_and_push_admin_logs
 
 def push_receiver_logs(fake_uuidv4, number):
     for _ in xrange(number):
-        receiverLog(['normal'], 'LOGIN_3', [], fake_uuidv4)
+        receiverLog(['normal'], 'LOGIN_20', [], fake_uuidv4)
 
 class TestCollection(helpers.TestGL):
 
@@ -18,14 +18,14 @@ class TestCollection(helpers.TestGL):
     @inlineCallbacks
     def test_adminLog(self):
         logs_number = 10
-        push_admin_logs(logs_number)
+        clear_and_push_admin_logs(logs_number)
         x =  yield picklogs('admin', logs_number, -1)
         self.assertTrue(len(x) == logs_number)
 
     @inlineCallbacks
     def test_picklogs_more_than(self):
         logs_number = 10
-        push_admin_logs(logs_number)
+        clear_and_push_admin_logs(logs_number)
         x =  yield picklogs('admin', logs_number * 2, -1)
         self.assertTrue(len(x) == logs_number)
 
@@ -54,7 +54,7 @@ class TestCollection(helpers.TestGL):
     def test_picklogs(self):
 
         NUMBER = 10
-        push_admin_logs(NUMBER)
+        clear_and_push_admin_logs(NUMBER)
 
         adm = yield picklogs('admin', NUMBER, -1)
         self.assertEqual(len(adm), NUMBER )

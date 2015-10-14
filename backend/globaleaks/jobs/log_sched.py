@@ -5,13 +5,12 @@
 #
 import os
 from twisted.internet.defer import inlineCallbacks, returnValue
-from storm.expr import Desc, Asc
+from storm.expr import Desc
 
-from globaleaks.anomaly import Alarm, compute_activity_level
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import GLSettings, transact, transact_ro
-from globaleaks.models import Stats, Anomalies, Log
-from globaleaks.utils.utility import log, datetime_now, datetime_null
+from globaleaks.settings import transact, transact_ro
+from globaleaks.models import Log
+from globaleaks.utils.utility import log
 from globaleaks.utils.logger import LogQueue, LoggedEvent, initialize_LoggedEvent
 
 
@@ -56,13 +55,13 @@ class LogSchedule(GLJob):
             cnt = 0
             for id, what in log_sub_dict.iteritems():
                 cnt += 1
-                if cnt > 50:
-                    log.debug("TODO implement memory preserver here! %d, in %s" %
-                              (cnt, subject_uuid))
+                # if cnt > 50:
+                #     log.debug("TODO implement memory preserver here! %d, in %s" %
+                #               (cnt, subject_uuid))
                 if id <= LogSchedule.highest_logged_id:
                     continue
 
-                print "Dump new log:", what.log_code, what
+                # print "Dump new log:", what.log_code, what
 
                 nl = Log()
                 nl.id = id
@@ -90,6 +89,9 @@ class LogSchedule(GLJob):
 
         When an InternalTip get deleted, all the logs will remain in the
         DB, but not in memory. This is the function to clean it.
+
+        NOTE: has print inside because the itip section has still to be tested
+        client side
         """
         subject_uuid = 'itip_%s' % internaltip_id
         if subject_uuid in LogQueue._all_queues:
