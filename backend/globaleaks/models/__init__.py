@@ -220,7 +220,7 @@ class Context(Model):
     enable_messages = Bool(default=False)
     enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
-    enable_whistleblower_identity_feature = Bool(default=True)
+    enable_whistleblower_identity = Bool(default=True)
 
     tip_timetolive = Int()
 
@@ -262,6 +262,7 @@ class InternalTip(Model):
     never vice-versa
     """
     creation_date = DateTime(default_factory=datetime_now)
+    update_date = DateTime(default_factory=datetime_now)
 
     context_id = Unicode()
 
@@ -271,6 +272,8 @@ class InternalTip(Model):
     tor2web = Bool(default=False)
     total_score = Int(default=0)
     expiration_date = DateTime()
+
+    whistleblower_provided_identity = Bool(default=False)
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
@@ -696,6 +699,8 @@ class Field(Model):
     y = Int(default=0)
     width = Int(default = 0)
 
+    key = Unicode(default=u"")
+
     label = JSON(validator=longlocal_v)
     description = JSON(validator=longlocal_v)
     hint = JSON(validator=longlocal_v)
@@ -729,7 +734,7 @@ class Field(Model):
     instance = Unicode(default=u'instance')
     editable = Bool(default=True)
 
-    unicode_keys = ['type', 'instance']
+    unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'activated_by_score']
     localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
