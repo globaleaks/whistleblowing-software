@@ -65,7 +65,7 @@ CREATE TABLE context (
     enable_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
     enable_two_way_communication INTEGER NOT NULL,
-    enable_whistleblower_identity_feature INTEGER NOT NULL,
+    enable_whistleblower_identity INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
     steps_arrangement TEXT NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
@@ -109,6 +109,7 @@ CREATE TABLE receiverfile (
 CREATE TABLE internaltip (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
+    update_date TEXT NOT NULL,
     expiration_date TEXT NOT NULL,
     questionnaire_hash TEXT NOT NULL,
     preview BLOB NOT NULL,
@@ -121,6 +122,7 @@ CREATE TABLE internaltip (
     enable_two_way_communication INTEGER NOT NULL,
     context_id TEXT NOT NULL,
     new INTEGER NOT NULL,
+    whistleblower_provided_identity INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -354,6 +356,7 @@ CREATE TABLE stats (
 
 CREATE TABLE field (
     id TEXT NOT NULL,
+    key TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     hint TEXT NOT NULL DEFAULT '',
