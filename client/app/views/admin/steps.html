@@ -1,7 +1,11 @@
 <div id="StepAddBox" data-ng-controller="AdminStepAddCtrl">
   <div class="row">
     <div class="col-md-6">
-      <div class="editorTitle" data-translate>Add new step</div>
+      <div class="editorTitle row">
+        <span class="col-md-8">
+          <span data-translate>Add new step</span>
+        </span>
+      </div>
       <div data-ng-form="" name="newStep">
         <div class="row">
           <div class="col-md-12">
@@ -29,14 +33,21 @@
   </div>
 </div>
 <div id="StepsEditBox" data-ng-show="context.steps.length > 0">
-  <div class="editorTitle">
-    <div class="row">
-      <div class="col-md-12">
-        <span data-translate>Configured steps:</span>
-      </div>
-    </div>
+  <div class="editorTitle row">
+    <span class="col-md-8">
+      <span data-translate>Configured steps:</span>
+    </span>
+    <span class="col-md-4 text-align-right">
+      <button class="btn btn-xs btn-danger"
+              data-ng-show="context.steps.length > 0"
+              data-ng-click="delAllSteps()"
+              popover-placement="right"
+              popover-trigger="mouseenter">
+        <span data-translate>Delete all</span>
+      </button>
+    </span>
   </div>
-  <div>
+  <div class="row">
     <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'">
       <div class="col-md-12"
            data-ng-controller="AdminStepEditorCtrl">
@@ -68,7 +79,7 @@
                 </button>
                 <button
                   class="actionButton btn btn-xs btn-danger"
-                  data-ng-click="stepDeleteDialog(step); $event.stopPropagation();"
+                  data-ng-click="delStep(step); $event.stopPropagation();"
                   popover="{{Delete | translate}}"
                   popover-placement="right"
                   popover-trigger="mouseenter">
@@ -111,8 +122,19 @@
             </div>
             <div class="row adminConfigSection">
               <div class="col-md-6">
-                <div class="editorTitle">
-                  <span data-translate>Add new field</span>
+                <div class="editorTitle row">
+                  <span class="col-md-8">
+                    <span data-translate>Add new question</span>
+                  </span>
+                  <span class="col-md-4 text-align-right">
+                    <button class="btn btn-xs btn-danger"
+                            data-ng-show="step.children.length > 0"
+                            data-ng-click="deleteAllFields()"
+                            popover-placement="right"
+                            popover-trigger="mouseenter">
+                      <span data-translate>Delete all</span>
+                    </button>
+                  </span>
                 </div>
                 <div class="nested">
                   <div data-ng-include="'views/admin/add_field.html'"></div>
@@ -124,18 +146,12 @@
                 <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
               </div>
             </div>
-            <div id="FieldsEditBox" class="form-group" data-ng-if="step.children.length > 0">
+            <div id="FieldsEditBox" class="form-group" data-ng-show="step.children.length > 0">
               <div class="editorTitle row">
                 <span class="col-md-8">
                   <span data-translate>Configured questions:</span>
                 </span>
                 <span class="col-md-4 text-align-right">
-                  <label class="actionButton btn btn-xs btn-primary" for="import_fields_input">
-                    <span data-translate>Import</span>
-                  </label>
-                  <span class="hiddenButton">
-                    <input type="file" id="import_fields_input" fileread="importFields">
-                  </span>
                   <button class="actionButton btn btn-xs btn-primary"
                       data-ng-click="exportJSON(step.children, 'questions.json')">
                     <span data-translate>Export</span>

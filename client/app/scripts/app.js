@@ -76,7 +76,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Content Settings'
+        header_subtitle: 'General Settings'
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
@@ -88,7 +88,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/field_templates.html',
         controller: 'AdminCtrl',
         header_title: 'Administration Interface',
-        header_subtitle: 'Fields Configuration'
+        header_subtitle: 'Questionnaries Configuration'
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',

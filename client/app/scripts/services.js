@@ -633,8 +633,8 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_context = function() {
           var context = new AdminContextResource();
-          context.name = "";
-          context.description = "";
+          context.name = '';
+          context.description = '';
           context.presentation_order = 0;
           context.tip_timetolive = 15;
           context.show_context = true;
@@ -693,6 +693,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_field = function(step_id, fieldgroup_id) {
           var field = new AdminFieldResource();
+          field.id
           field.key = '';
           field.instance = 'instance';
           field.editable = true;

@@ -456,8 +456,8 @@ class Replacer2324(TableReplacer):
                     new_obj.enable_attachments = True
                     continue
 
-                if v.name == 'enable_whistleblower_identity_feature':
-                    new_obj.enable_whistleblower_identity_feature = False
+                if v.name == 'enable_whistleblower_identity':
+                    new_obj.enable_whistleblower_identity = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
@@ -476,6 +476,14 @@ class Replacer2324(TableReplacer):
             new_obj = self.get_right_model("InternalTip", 24)()
 
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'update_date':
+                    new_obj.update_date = old_obj.creation_date
+                    continue
+
+                if v.name == 'whistleblower_provided_identity':
+                    new_obj.whistleblower_provided_identity = False
+                    continue
+
                 if v.name == 'total_score':
                     new_obj.total_score = 0
                     continue
@@ -511,6 +519,10 @@ class Replacer2324(TableReplacer):
             new_obj = self.get_right_model("Field", 24)()
 
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'key':
+                    new_obj.key = ''
+                    continue
+
                 if v.name == 'instance':
                     if old_obj.is_template:
                         new_obj.instance = 'template'

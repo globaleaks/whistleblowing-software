@@ -64,9 +64,8 @@
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
-                data-ng-show="field.modifiable"
-                data-ng-click="fieldDeleteDialog(field); $event.stopPropagation();"
-                popover="{{Delete | translate}}"
+                data-ng-show="field.editable"
+                data-ng-click="delField(field); $event.stopPropagation();"
                 popover-placement="right"
                 popover-trigger="mouseenter">
                 <span data-translate>Delete</span>

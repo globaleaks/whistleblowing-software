@@ -8,18 +8,18 @@
             <span data-translate>Add new question template</span>
           </span>
           <span class="col-md-4 text-align-right">
-            <label class="actionButton btn btn-xs btn-primary" for="import_context_input">
+            <label class="actionButton btn btn-xs btn-primary" for="import_questions">
               <span data-translate>Import</span>
             </label>
             <span class="hiddenButton">
-              <input type="file" id="import_contexts_input" fileread="importContexts">
+              <input type="file" id="import_questions" fileread="importQuestions">
             </span>
           </span>
         </div>
         <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
       </form>
     </div>
-    <div class="adminConfigSection row" data-ng-show="fields.length != 0">
+    <div class="adminConfigSection row" data-ng-show="fields.length > 0">
       <div class="editorTitle row">
         <span class="col-md-8">
           <span data-translate>Configured question templates:</span>
@@ -28,6 +28,13 @@
           <button class="actionButton btn btn-xs btn-primary"
                   data-ng-click="exportJSON(admin.field_templates, 'questions.json')">
             <span data-translate>Export all</span>
+          </button>
+          <button class="btn btn-xs btn-danger"
+            data-ng-show="fields.length > 0"
+            data-ng-click="delAllFields()"
+            popover-placement="right"
+            popover-trigger="mouseenter">
+            <span data-translate>Delete all</span>
           </button>
         </span>
       </div>
