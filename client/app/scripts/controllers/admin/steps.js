@@ -34,53 +34,23 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.step.children.push(field);
     };
 
-    $scope.deleteStep = function(step) {
-      var idx = $scope.context.steps.indexOf(step);
-      $scope.context.steps.splice(idx, 1);
-    };
-
-    $scope.deleteField = function(field) {
-      var idx = $scope.step.children.indexOf(field);
-      $scope.step.children.splice(idx, 1);
-    };
-
-    $scope.perform_delete_field = function(field) {
+    $scope.delField = function(field) {
       $scope.admin.field['delete']({
-        field_id: field.id
-      }, function(){
-        $scope.deleteField(field);
+        id: field.id
+      }, function() {
+        $scope.step.splice($scope.step.indexOf(field), 1);
       });
     };
 
-    $scope.perform_delete_step = function(step) {
-      $scope.admin.step['delete']({
-        step_id: step.id
-      }, function(){
-        $scope.deleteStep(step);
+    $scope.delAllFields = function() {
+      angular.forEach($scope.step, function(field) {
+        $scope.delField(field);
       });
     };
 
     $scope.save_step = function(step) {
       var updated_step = new $scope.admin.step(step);
       return $scope.update(updated_step);
-    };
-
-    $scope.stepDeleteDialog = function(step){
-      var modalInstance = $modal.open({
-          templateUrl:  'views/partials/step_delete.html',
-          controller: 'ConfirmableDialogCtrl',
-          resolve: {
-            object: function () {
-              return step;
-            }
-          }
-
-      });
-
-      modalInstance.result.then(
-         function(result) { $scope.perform_delete_step(result); },
-         function(result) { }
-      );
     };
 
     $scope.new_field = {};

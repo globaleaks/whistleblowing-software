@@ -1,6 +1,6 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-  <div class="col-md-9">
+  <div class="col-md-9" data-ng-controller="AdminContextsCtrl">
     <div class="adminConfigSection" data-ng-controller="AdminContextAddCtrl">
       <div class="row">
         <form name="newContext" class="addContext col-md-6" novalidate>
@@ -9,11 +9,11 @@
               <span data-translate>Add new context</span>
             </span>
             <span class="col-md-4 text-align-right">
-              <label class="actionButton btn btn-xs btn-primary" for="import_context_input">
+              <label class="actionButton btn btn-xs btn-primary" for="import_contexts">
                 <span data-translate>Import</span>
               </label>
               <span class="hiddenButton">
-                <input type="file" id="import_contexts_input" fileread="importContexts">
+                <input type="file" id="import_contexts" fileread="importContexts">
               </span>
             </span>
           </div>
@@ -33,7 +33,7 @@
         </form>
       </div>
     </div>
-    <div class="adminConfigSection" data-ng-controller="AdminContextsCtrl" data-ng-show="admin.contexts.length > 0">
+    <div class="adminConfigSection" data-ng-show="admin.contexts.length > 0">
       <div class="editorTitle row">
         <span class="col-md-8">
           <span data-translate>Configured contexts:</span>
@@ -76,7 +76,6 @@
                   </button>
                   <button class="actionButton btn btn-xs btn-danger"
                     data-ng-click="contextDeleteDialog(context); $event.stopPropagation();"
-                    popover="{{'Delete' | translate}}"
                     popover-placement="right"
                     popover-trigger="mouseenter">
                     <span data-translate>Delete</span>

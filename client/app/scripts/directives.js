@@ -90,12 +90,16 @@ angular.module('GLDirectives', []).
        fileread: "="
      },
      link: function (scope, element, attributes) {
+       element.bind('click', function(){
+         element.val('');
+       });
+
        element.bind("change", function (changeEvent) {
          var reader = new FileReader();
          reader.onload = function (e) {
-           if (scope.fileread) {
+           scope.$apply(function () {
              scope.fileread(e.target.result);
-           }
+           });
          }
          reader.readAsText(changeEvent.target.files[0]);
        });

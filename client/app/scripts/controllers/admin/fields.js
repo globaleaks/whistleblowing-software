@@ -14,19 +14,54 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
       $scope.fields.push(new_field);
     };
 
-    $scope.deleteField = function(field) {
-      var idx = $scope.fields.indexOf(field);
-      $scope.fields.splice(idx, 1);
-    };
-
-    $scope.perform_delete_field = function(field) {
+    $scope.delField = function(field) {
       $scope.admin.fieldtemplate['delete']({
-        template_id: field.id
-      }, function(){
-        $scope.deleteField(field);
+        id: field.id
+      }, function() {
+        $scope.fields.splice($scope.fields.indexOf(field), 1);
       });
     };
 
+    $scope.delAllFields = function() {
+      angular.forEach($scope.fields, function(field) {
+        $scope.delField(field);
+      });
+    };
+
+    $scope.save_field = function(field) {
+      $scope.assignUniqueOrderIndex(field.options);
+
+      var updated_field;
+      if (field.instance == 'template') {
+        updated_field = new $scope.admin.fieldtemplate(field);
+      } else {
+        updated_field = new $scope.admin.field(field);
+      }
+
+      $scope.update(updated_field);
+    };
+
+    $scope.exportQuestions = function() {
+      AdminFieldTemplatesResource.query().$promise.then(function(fields) {
+        $scope.exportJSON(fields);
+      });
+    };
+
+    $scope.importQuestions = function(fields) {
+      var fields = JSON.parse(fields);
+      if(Object.prototype.toString.call(fields) !== '[object Array]') {
+        fields = [fields];
+      }
+
+      angular.forEach(fields, function(field) {
+        var field = new $scope.admin.fieldtemplate(field);
+        delete field.id;
+        field.$save(function(new_field){
+          $scope.fields.push(new_field);
+        });
+
+      });
+    };
   }
 ]);
 
@@ -37,24 +72,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
 
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
-    };
-
-    $scope.fieldDeleteDialog = function(field){
-      var modalInstance = $modal.open({
-          templateUrl:  'views/partials/field_delete.html',
-          controller: 'ConfirmableDialogCtrl',
-          resolve: {
-            object: function () {
-              return field;
-            }
-          }
-
-      });
-
-      modalInstance.result.then(
-         function(result) { $scope.perform_delete_field(result); },
-         function(result) { }
-      );
     };
 
     $scope.isMarkableRequired = function(field) {
@@ -102,7 +119,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
         'id': '',
         'label': '',
         'score_points': 0,
-        'activated_fields': []
+        'activated_fields': [],
+        'activated_steps': []
       };
 
       new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');
@@ -113,19 +131,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     $scope.delOption = function(field, option) {
       var index = field.options.indexOf(option);
       field.options.splice(index, 1);
-    };
-
-    $scope.save_field = function(field) {
-      $scope.assignUniqueOrderIndex(field.options);
-
-      var updated_field;
-      if (field.instance == 'template') {
-        updated_field = new $scope.admin.fieldtemplate(field);
-      } else {
-        updated_field = new $scope.admin.field(field);
-      }
-
-      $scope.update(updated_field);
     };
 
     $scope.moveUpAndSave = function(elem) {

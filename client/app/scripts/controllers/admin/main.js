@@ -143,7 +143,7 @@ GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, 
 
 }]);
 
-GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultAppdata',
+GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultAppdata',
   function($scope, $http, StaticFiles, DefaultAppdata){
   $scope.tabs = [
     {

@@ -2,16 +2,31 @@ GLClient.controller('AdminContextsCtrl',
   ['$scope', '$modal', 'AdminContextsResource',
   function($scope, $modal, AdminContextsResource) {
 
+  $scope.save_context = function (context, cb) {
+    var updated_context = new $scope.admin.context(context);
+
+    return $scope.update(updated_context, cb);
+  };
+
   $scope.exportContexts = function() {
     AdminContextsResource.query().$promise.then(function(contexts) {
       $scope.exportJSON(contexts);
     });
   };
 
-  $scope.save_context = function (context, cb) {
-    var updated_context = new $scope.admin.context(context);
+  $scope.importContexts = function(contexts) {
+    var contexts = JSON.parse(contexts);
+    if(Object.prototype.toString.call(contexts) !== '[object Array]') {
+      contexts = [contexts];
+    }
 
-    return $scope.update(updated_context, cb);
+    angular.forEach(contexts, function(context) {
+      var context = new $scope.admin.context(context);
+      delete context.id;
+      context.$save(function(new_context){
+        $scope.admin.contexts.push(new_context);
+      });
+    });
   };
 
   $scope.perform_delete = function(context) {
@@ -75,15 +90,22 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope',
     $scope.editContext.$pristine = false;
   };
 
-  $scope.importContext = function(context) {
-    var context = new $scope.admin.context(JSON.parse(context));
-    $scope.save_context($scope.context);
+  $scope.delStep = function(step) {
+    $scope.admin.step['delete']({
+      id: step.id
+    }, function() {
+      $scope.context.steps.splice($scope.context.steps.indexOf(step), 1);
+    });
   };
 
+  $scope.delAllSteps = function() {
+    angular.forEach($scope.context.steps, function(step) {
+      $scope.delStep(step);
+    });
+  };
 }]);
 
 GLClient.controller('AdminContextAddCtrl', ['$scope', function($scope) {
-
   $scope.new_context = {};
 
   $scope.add_context = function() {
