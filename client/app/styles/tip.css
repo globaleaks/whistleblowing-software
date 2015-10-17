@@ -3,16 +3,13 @@
   margin-bottom: 20px;
 }
 
-.TipPageSectionTitle {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
-  background-color: #fbfbfb;
-}
-
 .TipPageSectionContent {
   padding: 10px;
-  border-top: 1px solid #ccc;
+}
+
+.TipPageSectionContent .label {
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .newTip {

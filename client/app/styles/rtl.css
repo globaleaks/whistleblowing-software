@@ -60,3 +60,11 @@
   margin-right: 0px;
   border-radius: 1em;
 }
+
+.text-align-left {
+  text-align: right;
+}
+
+.text-align-right {
+  text-align: left;
+}

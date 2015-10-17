@@ -376,3 +376,16 @@ th {
   font-size: 24px;
   font-weight: bold;
 }
+
+.hiddenButton {
+  display: none;
+  visibility: hidden;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
