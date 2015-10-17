@@ -59,7 +59,6 @@ FileDesc = {
     'date': DateType
 }
 
-
 AuthDesc = {
     'username': unicode,
     'password': unicode,
@@ -69,13 +68,6 @@ ReceiptAuthDesc = {
     'receipt': unicode
 }
 
-WBStepDesc = {
-    'id' : uuid_regexp,
-    'hint': unicode,
-    'description':unicode,
-    'label': unicode,
-    'children': list
-}
 
 TokenReqDesc = {
     'type': token_type_regexp
@@ -90,7 +82,8 @@ TokenAnswerDesc = {
 SubmissionDesc = {
     'context_id': uuid_regexp,
     'receivers': [uuid_regexp],
-    'answers': dict
+    'whistleblower_provided_identity': bool,
+    'answers': dict,
 }
 
 UserUserDesc = {
@@ -152,15 +145,6 @@ CommentDesc = {
 TipOpsDesc = {
     'operation': tip_operation_regexp,
     'label': unicode,
-}
-
-StepDesc = {
-    'label': unicode,
-    'hint': unicode,
-    'description': unicode,
-    'children': list,
-    'context_id': uuid_regexp,
-    'presentation_order': int
 }
 
 AdminNodeDesc = {
@@ -267,6 +251,48 @@ AdminNotificationDesc = {
     'exception_email_pgp_key_remove': bool
 }
 
+AdminFieldOptionDesc = {
+    'id': uuid_regexp_or_empty,
+    'label': unicode,
+    'presentation_order': int,
+    'score_points': int,
+    'activated_fields': [uuid_regexp_or_empty],
+    'activated_steps': [uuid_regexp_or_empty]
+}
+
+AdminFieldDesc = {
+    'key': unicode,
+    'instance': field_instance_regexp,
+    'editable': bool,
+    'template_id': uuid_regexp_or_empty,
+    'step_id': uuid_regexp_or_empty,
+    'fieldgroup_id': uuid_regexp_or_empty,
+    'label': unicode,
+    'description': unicode,
+    'hint': unicode,
+    'multi_entry': bool,
+    'multi_entry_hint': unicode,
+    'x': int,
+    'y': int,
+    'width': int,
+    'required': bool,
+    'preview': bool,
+    'stats_enabled': bool,
+    'type': field_type_regexp,
+    'attrs': dict,
+    'options': [AdminFieldOptionDesc],
+    'children': list
+}
+
+AdminStepDesc = {
+    'label': unicode,
+    'hint': unicode,
+    'description': unicode,
+    'children': [AdminFieldDesc],
+    'context_id': uuid_regexp,
+    'presentation_order': int
+}
+
 AdminContextDesc = {
     'name': unicode,
     'description': unicode,
@@ -285,6 +311,7 @@ AdminContextDesc = {
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
     'steps_arrangement': unicode,
+    'steps': [AdminStepDesc],
     'reset_steps': bool
 }
 
@@ -477,45 +504,15 @@ StaticFileDesc = {
 }
 
 InternalTipDesc = {
+    'id': uuid_regexp,
+    'new': bool,
+    'context_id': uuid_regexp,
     'wb_steps': list,
     'receivers': [uuid_regexp],
-    'context_id': uuid_regexp,
-    'creation_date': DateType,
-    'new': bool,
-    'id': uuid_regexp,
     'files': [uuid_regexp],
-    'expiration_date': DateType
-}
-
-FieldOptionDesc = {
-    'id': uuid_regexp_or_empty,
-    'label': unicode,
-    'presentation_order': int,
-    'score_points': int,
-    'activated_fields': [uuid_regexp_or_empty]
-}
-
-FieldDesc = {
-    'instance': field_instance_regexp,
-    'editable': bool,
-    'template_id': uuid_regexp_or_empty,
-    'step_id': uuid_regexp_or_empty,
-    'fieldgroup_id': uuid_regexp_or_empty,
-    'label': unicode,
-    'description': unicode,
-    'hint': unicode,
-    'multi_entry': bool,
-    'multi_entry_hint': unicode,
-    'x': int,
-    'y': int,
-    'width': int,
-    'required': bool,
-    'preview': bool,
-    'stats_enabled': bool,
-    'type': field_type_regexp,
-    'attrs': dict,
-    'options': [FieldOptionDesc],
-    'children': list
+    'creation_date': DateType,
+    'expiration_date': DateType,
+    'whistleblower_provided_identity': bool
 }
 
 WizardAdminDesc = {

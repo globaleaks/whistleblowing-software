@@ -29,6 +29,7 @@ def wb_serialize_tip(store, internaltip, language):
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
+        'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'answers': db_serialize_questionnaire_answers(store, internaltip),
@@ -42,7 +43,7 @@ def wb_serialize_tip(store, internaltip, language):
     # context_name and context_description are localized fields
     mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
-    for attr in ['name', 'description']:
+    for attr in ['name']:
         key = "context_%s" % attr
         ret_dict[key] = mo.dump_localized_key(attr, language)
 
@@ -113,6 +114,7 @@ def get_comment_list_wb(store, wbtip_id):
 @transact
 def create_comment_wb(store, wbtip_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
+    wbtip.internaltip.update_update = datetime_now()
 
     comment = Comment()
     comment.content = request['content']

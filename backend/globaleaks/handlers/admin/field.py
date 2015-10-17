@@ -222,6 +222,11 @@ def db_create_field(store, field, language):
 
     associate_field(store, f, step, fieldgroup)
 
+    for c in field['children']:
+        c['field_id'] = f.id
+        field = db_create_field(store, c, language)
+        f.children.add(field)
+
     return f
 
 
@@ -417,8 +422,6 @@ class FieldTemplatesCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-
-class FieldTemplateCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
@@ -428,7 +431,7 @@ class FieldTemplateCreate(BaseHandler):
 
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.AdminFieldDesc)
 
         response = yield create_field(request, self.request.language)
 
@@ -466,7 +469,7 @@ class FieldTemplateInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.AdminFieldDesc)
 
         response = yield update_field(field_id, request, self.request.language)
         self.set_status(202) # Updated
@@ -486,11 +489,11 @@ class FieldTemplateInstance(BaseHandler):
         self.set_status(200)
 
 
-class FieldCreate(BaseHandler):
+class FieldCollection(BaseHandler):
     """
     Operation to create a field
 
-    /admin/field
+    /admin/fields
     """
     @transport_security_check('admin')
     @authenticated('admin')
@@ -518,7 +521,7 @@ class FieldInstance(BaseHandler):
     """
     Operation to iterate over a specific requested Field
 
-    /admin/field
+    /admin/fields
     """
     @transport_security_check('admin')
     @authenticated('admin')

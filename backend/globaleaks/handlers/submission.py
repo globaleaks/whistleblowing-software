@@ -147,6 +147,7 @@ def wb_serialize_internaltip(store, internaltip):
         'context_id': internaltip.context_id,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'whistleblower_provided_identity': internaltip.whistleblower_provided_identity,
         'answers': db_serialize_questionnaire_answers(store, internaltip),
         'files': [f.id for f in internaltip.internalfiles],
         'receivers': [r.id for r in internaltip.receivers]
@@ -266,6 +267,8 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission = models.InternalTip()
 
+    submission.whistleblower_provided_identity = request['whistleblower_provided_identity']
+
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id
     submission.creation_date = datetime_now()
@@ -353,6 +356,5 @@ class SubmissionInstance(BaseHandler):
         status = yield create_submission(token_id, request,
                                          get_tor2web_header(self.request.headers),
                                          self.request.language)
-
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.finish(status)

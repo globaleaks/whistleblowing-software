@@ -34,6 +34,7 @@ def receiver_serialize_tip(store, internaltip, language):
         'context_id': internaltip.context.id,
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
+        'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'answers': db_serialize_questionnaire_answers(store, internaltip),
@@ -48,7 +49,7 @@ def receiver_serialize_tip(store, internaltip, language):
     # context_name and context_description are localized fields
     mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
-    for attr in ['name', 'description']:
+    for attr in ['name']:
         key = "context_%s" % attr
         ret_dict[key] = mo.dump_localized_key(attr, language)
 
@@ -299,6 +300,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request, language):
 @transact
 def create_comment_receiver(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip.internaltip.update_update = datetime_now()
 
     comment = Comment()
     comment.content = request['content']
@@ -455,17 +457,13 @@ def db_get_itip_receivers_list(store, itip, language):
     receivers_list = []
 
     for rtip in itip.receivertips:
-        receiver_desc = {
+        receivers_list.append({
             "id": rtip.receiver.id,
             "name": rtip.receiver.user.name,
+            "last_access": datetime_to_ISO8601(rtip.last_access),
             "access_counter": rtip.access_counter,
             "pgp_key_status": rtip.receiver.user.pgp_key_status
-        }
-
-        mo = Rosetta(rtip.receiver.localized_strings)
-        mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_localized_key("description", language)
-        receivers_list.append(receiver_desc)
+        })
 
     return receivers_list
 
