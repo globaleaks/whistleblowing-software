@@ -2,14 +2,34 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9" data-ng-controller="AdminFieldTemplatesCtrl">
     <div class="adminConfigSection row">
-      <div class="editorTitle">
-        <span data-translate>Add new field template</span>
-      </div>
-      <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
+      <form name="newField" class="addField col-md-6" novalidate>
+        <div class="editorTitle row">
+          <span class="col-md-8">
+            <span data-translate>Add new question template</span>
+          </span>
+          <span class="col-md-4 text-align-right">
+            <label class="actionButton btn btn-xs btn-primary" for="import_context_input">
+              <span data-translate>Import</span>
+            </label>
+            <span class="hiddenButton">
+              <input type="file" id="import_contexts_input" fileread="importContexts">
+            </span>
+          </span>
+        </div>
+        <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
+      </form>
     </div>
     <div class="adminConfigSection row" data-ng-show="fields.length != 0">
-      <div class="editorTitle">
-        <span data-translate>Configured field templates:</span>
+      <div class="editorTitle row">
+        <span class="col-md-8">
+          <span data-translate>Configured question templates:</span>
+        </span>
+        <span class="col-md-4 text-align-right">
+          <button class="actionButton btn btn-xs btn-primary"
+                  data-ng-click="exportJSON(admin.field_templates, 'questions.json')">
+            <span data-translate>Export all</span>
+          </button>
+        </span>
       </div>
       <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
         <div data-ng-include="'views/admin/fields.html'"></div>

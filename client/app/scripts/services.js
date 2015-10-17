@@ -1,6 +1,22 @@
 "use strict";
 
 angular.module('GLServices', ['ngResource']).
+  factory('GLCache',['$cacheFactory', function ($cacheFactory) {
+    return $cacheFactory('GLCache');
+  }]).
+  factory('GLResource', ['$resource', 'GLCache', function($resource, GLCache) {
+    return function(url, params, actions) {
+      var defaults = {
+        get:    {method: 'get'},
+        query:  {method: 'get', isArray:true},
+        update: {method: 'put'}
+      };
+
+      actions = angular.extend(defaults, actions);
+
+      return $resource(url, params, actions);
+    };
+  }]).
   factory('Authentication', ['$http', '$location', '$routeParams',
                              '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
     function($http, $location, $routeParams, $rootScope, $timeout, UserPreferences, ReceiverPreferences) {
@@ -215,50 +231,25 @@ angular.module('GLServices', ['ngResource']).
       }
     };
 }]).
-  factory('GLCache',['$cacheFactory', function ($cacheFactory) {
-    return $cacheFactory('GLCache');
+  factory('Node', ['GLResource', function(GLResource) {
+    return GLResource('node');
 }]).
-  factory('Node', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('node', {}, {
-      get: {
-        method: 'GET',
-        cache: GLCache
-      }
-    });
+  factory('Contexts', ['GLResource', function(GLResource) {
+    return GLResource('contexts');
 }]).
-  factory('Contexts', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('contexts', {}, {
-      get: {
-        method: 'GET',
-        cache: GLCache
-      }
-    });
+  factory('Receivers', ['GLResource', function(GLResource) {
+    return GLResource('receivers');
 }]).
-  factory('Receivers', ['$resource', 'GLCache', function($resource, GLCache) {
-    return $resource('receivers', {}, {
-      get: {
-        method: 'GET',
-        cache: GLCache
-      }
-    });
+  factory('TokenResource', ['GLResource', function(GLResource) {
+    return GLResource('token/:id', {id: '@id'});
+}]).
+  factory('SubmissionResource', ['GLResource', function(GLResource) {
+    return GLResource('submission/:id', {id: '@token_id'});
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$q', '$resource', '$filter', '$location', '$rootScope', 'Authentication',
-  function($q, $resource, $filter, $location, $rootScope, Authentication) {
-    var tokenResource = $resource('token/:token_id/',
-        {token_id: '@id'},
-        {
-          update: {method: 'PUT'}
-        }
-    );
-
-    var submissionResource = $resource('submission/:token_id/',
-        {token_id: '@token_id'},
-        {
-          update: {method: 'PUT'}
-        }
-    );
+  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource',
+      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource) {
 
     return function(fn) {
       /**
@@ -386,16 +377,17 @@ angular.module('GLServices', ['ngResource']).
         self.answers = ret[0];
         self.empty_answers = ret[1];
 
-        self._submission = new submissionResource({
+        self._submission = new SubmissionResource({
           context_id: self.context.id,
           receivers: [],
+          whistleblower_provided_identity: false,
           answers: angular.copy(self.answers),
           human_captcha_answer: 0,
           proof_of_work_answer: 0,
           graph_captcha_answer: ""
         });
 
-        self._token = new tokenResource({'type': 'submission'}).$save(function(token) {
+        self._token = new TokenResource({'type': 'submission'}).$save(function(token) {
           self._token = token;
           self._submission.token_id = self._token.id;
 
@@ -439,30 +431,38 @@ angular.module('GLServices', ['ngResource']).
       fn(self);
     };
 }]).
-  factory('Tip', ['$http', '$resource', '$q', '$filter',
-          function($http, $resource, $q, $filter) {
-
-    var tipResource = $resource('rtip/:id', {id: '@id'}, {update: {method: 'PUT'}});
-    var receiversResource = $resource('rtip/:id/receivers', {id: '@id'}, {});
-    var commentsResource = $resource('rtip/:id/comments', {id: '@id'}, {});
-    var messageResource = $resource('rtip/:id/messages', {id: '@id'}, {});
-    var identityAccessRequestResource = $resource('rtip/:tip_id/identityaccessrequests', {id: '@id'}, {});
-
+  factory('RTipResource', ['GLResource', function(GLResource) {
+    return GLResource('rtip/:id', {id: '@id'});
+}]).
+  factory('RTipReceiversResource', ['GLResource', function(GLResource) {
+    return GLResource('rtip/:id/receivers', {id: '@id'});
+}]).
+  factory('RTipCommentsResource', ['GLResource', function(GLResource) {
+    return GLResource('rtip/:id/comments', {id: '@id'});
+}]).
+  factory('RTipMessagesResource', ['GLResource', function(GLResource) {
+    return GLResource('rtip/:id/messages', {id: '@id'});
+}]).
+  factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
+    return GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
+}]).
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiversResource', 'RTipMessagesResource', 'RTipCommentsResource', 'RTipIdentityAccessRequestResource',
+          function($http, $q, $filter, RTipResource, RTipReceiversResource, RTipMessagesResource, RTipCommentsResource, RTipIdentityAccessRequestResource) {
     return function(tipID, fn) {
       var self = this;
 
-      self.tip = tipResource.get(tipID, function (tip) {
-        tip.receivers = receiversResource.query(tipID);
-        tip.comments = commentsResource.query(tipID);
-        tip.messages = messageResource.query(tipID);
-        tip.iars = identityAccessRequestResource.query(tipID);
+      self.tip = RTipResource.get(tipID, function (tip) {
+        tip.receivers = RTipReceiversResource.query(tipID);
+        tip.comments = RTipCommentsResource.query(tipID);
+        tip.messages = RTipMessagesResource.query(tipID);
+        tip.iars = RTipIdentityAccessRequestResource.query(tipID);
 
         $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
           tip.newComment = function(content) {
-            var c = new commentsResource(tipID);
+            var c = new RTipCommentsResource(tipID);
             c.content = content;
             c.$save(function(newComment) {
               tip.comments.unshift(newComment);
@@ -470,7 +470,7 @@ angular.module('GLServices', ['ngResource']).
           };
 
           tip.newMessage = function(content) {
-            var m = new messageResource(tipID);
+            var m = new RTipMessagesResource(tipID);
             m.content = content;
             m.$save(function(newMessage) {
               tip.messages.unshift(newMessage);
@@ -479,7 +479,6 @@ angular.module('GLServices', ['ngResource']).
 
           tip.updateLabel = function(label) {
             return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : label}});
-
           };
 
           fn(tip);
@@ -487,21 +486,26 @@ angular.module('GLServices', ['ngResource']).
       });
     };
 }]).
-  factory('WBTip', ['$resource', '$q', '$rootScope',
-      function($resource, $q, $rootScope) {
-
-    var tipResource = $resource('wbtip', {}, {update: {method: 'PUT'}});
-    var receiversResource = $resource('wbtip/receivers', {}, {});
-    var commentsResource = $resource('wbtip/comments', {}, {});
-    var messageResource = $resource('wbtip/messages/:id', {id: '@id'}, {});
-
+  factory('WBTipResource', ['GLResource', function(GLResource) {
+    return GLResource('wbtip');
+}]).
+  factory('WBTipReceiversResource', ['GLResource', function(GLResource) {
+    return GLResource('wbtip/receivers');
+}]).
+  factory('WBTipCommentsResource', ['GLResource', function(GLResource) {
+    return GLResource('wbtip/comments');
+}]).
+  factory('WBTipMessagesResource', ['GLResource', function(GLResource) {
+    return GLResource('wbtip/messages/:id', {id: '@id'});
+}]).
+  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiversResource', 'WBTipCommentsResource', 'WBTipMessagesResource',
+      function($q, $rootScope, WBTipResource, WBTipReceiversResource, WBTipCommentsResource, WBTipMessagesResource) {
     return function(fn) {
       var self = this;
 
-      self.tip = tipResource.get(function (tip) {
-        tip.iars = IdentityAccessRequestResource.query();
-        tip.receivers = receiversResource.query();
-        tip.comments = commentsResource.query();
+      self.tip = WBTipResource.get(function (tip) {
+        tip.receivers = WBTipReceiversResource.query();
+        tip.comments = WBTipCommentsResource.query();
         tip.messages = [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
@@ -520,7 +524,7 @@ angular.module('GLServices', ['ngResource']).
           });
 
           tip.newComment = function(content) {
-            var c = new commentsResource();
+            var c = new WBTipCommentsResource();
             c.content = content;
             c.$save(function(newComment) {
               tip.comments.unshift(newComment);
@@ -528,7 +532,7 @@ angular.module('GLServices', ['ngResource']).
           };
 
           tip.newMessage = function(content) {
-            var m = new messageResource({id: tip.msg_receiver_selected});
+            var m = new WBTipMessagesResource({id: tip.msg_receiver_selected});
             m.content = content;
             m.$save(function(newMessage) {
               tip.messages.unshift(newMessage);
@@ -537,7 +541,7 @@ angular.module('GLServices', ['ngResource']).
 
           tip.updateMessages = function () {
             if (tip.msg_receiver_selected) {
-              messageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
+              WBTipMessagesResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 tip.messages = messageCollection;
               });
             }
@@ -548,110 +552,78 @@ angular.module('GLServices', ['ngResource']).
       });
     };
 }]).
-  factory('WhistleblowerTip', ['$rootScope',
-    function($rootScope){
+  factory('WhistleblowerTip', ['$rootScope', function($rootScope){
     return function(keycode, fn) {
       $rootScope.login('whistleblower', keycode).then(function() {
         fn();
       });
     };
 }]).
-  factory('ReceiverPreferences', ['$resource', function($resource) {
-    return $resource('receiver/preferences', {}, {'update': {method: 'PUT'}});
+  factory('ReceiverPreferences', ['GLResource', function(GLResource) {
+    return GLResource('receiver/preferences');
 }]).
-  factory('ReceiverTips', ['$resource', function($resource) {
-    return $resource('receiver/tips', {}, {'update': {method: 'PUT'}});
+  factory('ReceiverTips', ['GLResource', function(GLResource) {
+    return GLResource('receiver/tips');
 }]).
-  factory('IdentityAccessRequests', ['$resource', function($resource) {
-    return $resource('custodian/identityaccessrequests', {}, {'update': {method: 'PUT'}});
+  factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
+    return GLResource('custodian/identityaccessrequests');
 }]).
-  factory('ReceiverOverview', ['$resource', function($resource) {
-    return $resource('admin/overview/users');
+  factory('ReceiverOverview', ['GLResource', function(GLResource) {
+    return GLResource('admin/overview/users');
 }]).
-  factory('Admin', ['$resource', '$q', function($resource, $q) {
-    return function(fn) {
-      var self = this,
+  factory('AdminContextsResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/contexts');
+}]).
+  factory('AdminContextResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/contexts/:id', {id: '@id'});
+}]).
+  factory('AdminStepResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/steps/:id', {id: '@id'});
+}]).
+  factory('AdminFieldResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/fields/:id',{id: '@id'});
+}]).
+  factory('AdminFieldTemplatesResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/fieldtemplates');
+}]).
+  factory('AdminFieldTemplateResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/fieldtemplates/:id', {id: '@id'});
+}]).
+  factory('AdminUsersResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/users');
+}]).
+  factory('AdminUserResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/users/:id', {id: '@id'});
+}]).
+  factory('AdminReceiversResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/receivers');
+}]).
+  factory('AdminReceiverResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/receivers/:id', {id: '@id'});
+}]).
+  factory('AdminNodeResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/node');
+}]).
+  factory('AdminNotificationResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/notification');
+}]).
+  factory('Admin', ['GLResource', '$q', 'AdminContextsResource', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplatesResource', 'AdminFieldTemplateResource', 'AdminUsersResource', 'AdminUserResource', 'AdminReceiversResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource',
+    function(GLResource, $q, AdminContextsResource, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplatesResource, AdminFieldTemplateResource, AdminUsersResource, AdminUserResource, AdminReceiversResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource) {
+  return function(fn) {
+      var self = this;
 
-        adminContextsResource = $resource('admin/contexts'),
-        adminContextResource = $resource('admin/context/:context_id',
-          {context_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminStepResource = $resource('admin/step/:step_id',
-          {step_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminFieldResource = $resource('admin/field/:field_id', 
-          {field_id: '@id'},
-          {
-            update: {
-              method: 'PUT' 
-            }
-          }
-        ),
-        adminFieldTemplatesResource = $resource('admin/fieldtemplates'),
-        adminFieldTemplateResource = $resource('admin/fieldtemplate/:template_id',
-          {template_id: '@id'},
-          {
-            update: {
-              method: 'PUT' 
-            }
-          }
-        ),
-        adminUsersResource = $resource('admin/users'),
-        adminUserResource = $resource('admin/user/:user_id',
-          {user_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminReceiversResource = $resource('admin/receivers'),
-        adminReceiverResource = $resource('admin/receiver/:receiver_id',
-          {receiver_id: '@id'},
-          {
-            update: {
-              method: 'PUT'
-            }
-          }
-        ),
-        adminNodeResource = $resource('admin/node', {}, {update: {method: 'PUT'}}),
-        adminNotificationResource = $resource('admin/notification', {}, {update: {method: 'PUT'}});
-
-      adminNodeResource.prototype.toString = function() { return "node"; };
-      adminContextsResource.prototype.toString = function() { return "contexts"; };
-      adminContextResource.prototype.toString = function() { return "context"; };
-      adminStepResource.prototype.toString = function() { return "step"; };
-      adminFieldResource.prototype.toString = function() { return "field"; };
-      adminFieldTemplateResource.prototype.toString = function() { return "field emplate"; };
-      adminFieldTemplatesResource.prototype.toString = function() { return "field templates"; };
-      adminUsersResource.prototype.toString = function() { return "users"; };
-      adminUserResource.prototype.toString = function() { return "user"; };
-      adminReceiversResource.prototype.toString = function() { return "receivers"; };
-      adminReceiverResource.prototype.toString = function() { return "receiver"; };
-      adminNotificationResource.prototype.toString = function() { return "notification settings"; };
-
-      self.node = adminNodeResource.get();
-      self.context = adminContextResource;
-      self.contexts = adminContextsResource.query();
-      self.step = adminStepResource;
-      self.field_templates = adminFieldTemplatesResource.query();
-      self.fieldtemplate = adminFieldTemplateResource;
-      self.field = adminFieldResource;
-      self.user = adminUserResource;
-      self.users = adminUsersResource.query();
-      self.receiver = adminReceiverResource;
-      self.receivers = adminReceiversResource.query();
-      self.notification = adminNotificationResource.get();
+      self.node = AdminNodeResource.get()
+      self.context = AdminContextResource;
+      self.contexts = AdminContextsResource.query();
+      self.step = AdminStepResource;
+      self.field_templates = AdminFieldTemplatesResource.query();
+      self.fieldtemplate = AdminFieldTemplateResource;
+      self.field = AdminFieldResource;
+      self.user = AdminUserResource;
+      self.users = AdminUsersResource.query();
+      self.receiver = AdminReceiverResource;
+      self.receivers = AdminReceiversResource.query();
+      self.notification = AdminNotificationResource.get();
 
       $q.all([self.node.$promise,
               self.contexts.$promise,
@@ -660,7 +632,7 @@ angular.module('GLServices', ['ngResource']).
               self.notification.$promise]).then(function() {
 
         self.new_context = function() {
-          var context = new adminContextResource();
+          var context = new AdminContextResource();
           context.name = "";
           context.description = "";
           context.presentation_order = 0;
@@ -684,7 +656,7 @@ angular.module('GLServices', ['ngResource']).
         };
 
         self.new_step = function(context_id) {
-          var step = new adminStepResource();
+          var step = new AdminStepResource();
           step.label = '';
           step.description = '';
           step.hint = '';
@@ -720,9 +692,10 @@ angular.module('GLServices', ['ngResource']).
         };
 
         self.new_field = function(step_id, fieldgroup_id) {
-          var field = new adminFieldResource();
+          var field = new AdminFieldResource();
+          field.key = '';
           field.instance = 'instance';
-          field.modifiablee = 'true';
+          field.editable = true;
           field.descriptor_id = '';
           field.label = '';
           field.type = 'inputbox';
@@ -752,8 +725,10 @@ angular.module('GLServices', ['ngResource']).
         };
 
         self.new_field_template = function (fieldgroup_id) {
-          var field = new adminFieldTemplateResource();
+          var field = new AdminFieldTemplateResource();
+          field.key = '';
           field.instance = 'template';
+          field.editable = true;
           field.label = '';
           field.type = 'inputbox';
           field.description = '';
@@ -776,7 +751,7 @@ angular.module('GLServices', ['ngResource']).
         };
 
         self.new_user = function () {
-          var user = new adminUserResource();
+          var user = new AdminUserResource();
           user.username = '';
           user.role = 'receiver';
           user.state = 'enable';
@@ -800,7 +775,7 @@ angular.module('GLServices', ['ngResource']).
         };
 
         self.new_receiver = function () {
-          var receiver = new adminReceiverResource();
+          var receiver = new AdminReceiverResource();
           receiver.username = '';
           receiver.role = 'receiver';
           receiver.state = 'enable';
@@ -837,32 +812,32 @@ angular.module('GLServices', ['ngResource']).
       });
     };
 }]).
-  factory('UserPreferences', ['$resource', function($resource) {
-    return $resource('preferences', {}, {'update': {method: 'PUT'}});
+  factory('UserPreferences', ['GLResource', function(GLResource) {
+    return GLResource('preferences', {}, {'update': {method: 'PUT'}});
 }]).
-  factory('TipOverview', ['$resource', function($resource) {
-    return $resource('admin/overview/tips');
+  factory('TipOverview', ['GLResource', function(GLResource) {
+    return GLResource('admin/overview/tips');
 }]).
-  factory('FileOverview', ['$resource', function($resource) {
-    return $resource('admin/overview/files');
+  factory('FileOverview', ['GLResource', function(GLResource) {
+    return GLResource('admin/overview/files');
 }]).
-  factory('StatsCollection', ['$resource', function($resource) {
-    return $resource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
+  factory('StatsCollection', ['GLResource', function(GLResource) {
+    return GLResource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
-  factory('AnomaliesCollection', ['$resource', function($resource) {
-    return $resource('admin/anomalies');
+  factory('AnomaliesCollection', ['GLResource', function(GLResource) {
+    return GLResource('admin/anomalies');
 }]).
-  factory('AnomaliesHistCollection', ['$resource', function($resource) {
-    return $resource('admin/history');
+  factory('AnomaliesHistCollection', ['GLResource', function(GLResource) {
+    return GLResource('admin/history');
 }]).
-  factory('ActivitiesCollection', ['$resource', function($resource) {
-    return $resource('admin/activities/details');
+  factory('ActivitiesCollection', ['GLResource', function(GLResource) {
+    return GLResource('admin/activities/details');
 }]).
-  factory('StaticFiles', ['$resource', function($resource) {
-    return $resource('admin/staticfiles');
+  factory('StaticFiles', ['GLResource', function(GLResource) {
+    return GLResource('admin/staticfiles');
 }]).
-  factory('DefaultAppdata', ['$resource', function($resource) {
-    return $resource('data/appdata_l10n.json', {});
+  factory('DefaultAppdata', ['GLResource', function(GLResource) {
+    return GLResource('data/appdata_l10n.json', {});
 }]).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {

@@ -1,7 +1,7 @@
-<div id="TipPageFilesInfoBox" class="TipPageSection"
+<div id="TipPageFilesInfoBox" class="panel panel-default"
      flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()"
      data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <div>
       <span>{{node.widget_files_title}}</span>
       <span class="pull-right">
@@ -10,7 +10,7 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-show="tip.files.length || uploads">
       <div class="table-container">
         <table class="table table-striped" id="fileList">

@@ -22,15 +22,13 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
     $scope.selected_tips = [];
   };
 
-  $scope.tip_switch = function (e, id) {
+  $scope.tip_switch = function (id) {
     var index = $scope.selected_tips.indexOf(id);
     if (index > -1) {
       $scope.selected_tips.splice(index, 1);
     } else {
       $scope.selected_tips.push(id);
     }
-
-    e.stopPropagation();
   };
 
   $scope.isSelected = function (id) {
@@ -68,8 +66,8 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]);
 
-TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'Tip', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $modalInstance, Tip, selected_tips, operation) {
+TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'selected_tips', 'operation',
+                        function ($scope, $http, $route, $location, $modalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 

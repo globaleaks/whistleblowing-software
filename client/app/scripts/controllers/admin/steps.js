@@ -19,9 +19,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function (e) {
+    $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
-      e.stopPropagation();
     };
 
     $scope.deleteFromList = function(list, elem) {
@@ -66,7 +65,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       return $scope.update(updated_step);
     };
 
-    $scope.stepDeleteDialog = function(e, step){
+    $scope.stepDeleteDialog = function(step){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/step_delete.html',
           controller: 'ConfirmableDialogCtrl',
@@ -82,8 +81,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
          function(result) { $scope.perform_delete_step(result); },
          function(result) { }
       );
-
-      e.stopPropagation();
     };
 
     $scope.new_field = {};
@@ -110,23 +107,23 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       });
     };
 
-    $scope.moveUpAndSave = function(event, elem) {
-      $scope.moveUp(event, elem);
+    $scope.moveUpAndSave = function(elem) {
+      $scope.moveUp(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveDownAndSave = function(event, elem) {
-      $scope.moveDown(event, elem);
+    $scope.moveDownAndSave = function(elem) {
+      $scope.moveDown(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveLeftAndSave = function(event, elem) {
-      $scope.moveLeft(event, elem);
+    $scope.moveLeftAndSave = function(elem) {
+      $scope.moveLeft(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveRightAndSave = function(event, elem) {
-      $scope.moveRight(event, elem);
+    $scope.moveRightAndSave = function(elem) {
+      $scope.moveRight(elem);
       $scope.save_step(elem);
     };
   }

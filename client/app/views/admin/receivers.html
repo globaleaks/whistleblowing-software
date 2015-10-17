@@ -59,7 +59,7 @@
       <div class="receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
         <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
           <div class="configItem receiverItem">
-            <div class="editorHeader row" data-ng-click="toggleEditing($event)">
+            <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">
                 <span>{{receiver.name}}</span>
               </span>
@@ -67,7 +67,7 @@
                 <span class="pull-right">
                   <button class="actionButton btn btn-xs btn-default"
                     data-ng-show="!editing"
-                    data-ng-click="toggleEditing($event)">
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
                   <button class="actionButton btn btn-xs btn-success"
@@ -78,22 +78,22 @@
                   <button 
                     class="actionButton btn btn-xs btn-default"
                     data-ng-show="editing"
-                    data-ng-click="toggleEditing($event)">
+                    data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
                   <button class="actionButton btn btn-xs btn-danger"
                     data-ng-show="receiver.deletable"
-                    data-ng-click="receiverDeleteDialog($event, receiver)"
+                    data-ng-click="receiverDeleteDialog(receiver); $event.stopPropagation();"
                     popover="{{'Delete' | translate}}"
                     popover-placement="right"
                     popover-trigger="mouseenter">
                     <span data-translate>Delete</span>
                   </button>
                   <span data-ng-if="admin.receivers.length > 1">
-                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave($event, receiver)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(receiver); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                       <i class="glyphicon glyphicon-menu-up"></i>
                     </button>
-                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave($event, receiver)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                    <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(receiver); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                       <i class="glyphicon glyphicon-menu-down"></i>
                     </button>
                   </span>

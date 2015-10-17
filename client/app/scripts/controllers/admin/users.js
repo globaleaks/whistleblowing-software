@@ -26,7 +26,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', function($scope, $mod
 
   };
 
-  $scope.userDeleteDialog = function(e, user){
+  $scope.userDeleteDialog = function(user){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/user_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -41,8 +41,6 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', function($scope, $mod
        function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
-
-    e.stopPropagation();
   };
 }]);
 
@@ -51,14 +49,12 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTA
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function (e) {
+    $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
-      e.stopPropagation();
     };
 
-    $scope.save = function(e) {
+    $scope.save = function() {
       $scope.save_user($scope.user, false);
-      e.stopPropagation();
     };
 
     $scope.timezones = CONSTANTS.timezones;

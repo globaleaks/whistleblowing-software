@@ -46,12 +46,7 @@ GLClient.controller('StatusCtrl',
     if (Authentication.role === 'whistleblower') {
       $scope.fileupload_url = '/wbtip/upload';
 
-<<<<<<< HEAD:client/app/scripts/controllers/tip.js
       new WBTip(function(tip) {
-
-=======
-      $scope.tip = new WBTip(function(tip) {
->>>>>>> Implement UI for identiy access request/reply:client/app/scripts/controllers/status.js
         $scope.tip = tip;
 
         angular.forEach($scope.contexts, function(context, k){

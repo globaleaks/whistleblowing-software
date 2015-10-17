@@ -1,6 +1,12 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', '$modal',
-  function($scope, $modal) {
+  ['$scope', '$modal', 'AdminContextsResource',
+  function($scope, $modal, AdminContextsResource) {
+
+  $scope.exportContexts = function() {
+    AdminContextsResource.query().$promise.then(function(contexts) {
+      $scope.exportJSON(contexts);
+    });
+  };
 
   $scope.save_context = function (context, cb) {
     var updated_context = new $scope.admin.context(context);
@@ -10,14 +16,14 @@ GLClient.controller('AdminContextsCtrl',
 
   $scope.perform_delete = function(context) {
     $scope.admin.context['delete']({
-      context_id: context.id
+      id: context.id
     }, function(){
       var idx = $scope.admin.contexts.indexOf(context);
       $scope.admin.contexts.splice(idx, 1);
     });
   };
 
-  $scope.contextDeleteDialog = function(e, context){
+  $scope.contextDeleteDialog = function(context){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/context_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -32,28 +38,17 @@ GLClient.controller('AdminContextsCtrl',
        function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
-
-    e.stopPropagation();
   };
 
-  $scope.update_contexts_order = function () {
-    var i = 0;
-    angular.forEach($scope.admin.contexts, function (context, key) {
-      context.presentation_order = i + 1;
-      i += 1;
-    });
-  };
-
-  $scope.moveUpAndSave = function(event, elem) {
-    $scope.moveUp(event, elem);
+  $scope.moveUpAndSave = function(elem) {
+    $scope.moveUp(elem);
     $scope.save_context(elem);
   };
 
-  $scope.moveDownAndSave = function(event, elem) {
-    $scope.moveDown(event, elem);
+  $scope.moveDownAndSave = function(elem) {
+    $scope.moveDown(elem);
     $scope.save_context(elem);
   };
-
 }]);
 
 GLClient.controller('AdminContextEditorCtrl', ['$scope',
@@ -61,9 +56,8 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope',
 
   $scope.editing = false;
 
-  $scope.toggleEditing = function (e) {
+  $scope.toggleEditing = function () {
     $scope.editing = !$scope.editing;
-    e.stopPropagation();
   };
 
   $scope.isSelected = function (receiver) {
@@ -79,6 +73,11 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope',
     }
     $scope.editContext.$dirty = true;
     $scope.editContext.$pristine = false;
+  };
+
+  $scope.importContext = function(context) {
+    var context = new $scope.admin.context(JSON.parse(context));
+    $scope.save_context($scope.context);
   };
 
 }]);

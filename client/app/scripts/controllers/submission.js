@@ -290,7 +290,7 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     opened: false
   };
 
-  $scope.open = function($event) {
+  $scope.open = function() {
     $scope.status.opened = true;
   };
 

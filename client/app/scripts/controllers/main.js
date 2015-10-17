@@ -1,5 +1,5 @@
-GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
-  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
     $scope.started = false;
     $scope.rtl = false;
     $scope.logo = 'static/globaleaks_logo.png';
@@ -38,10 +38,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         function() { if (cb !== undefined) cb(); },
         function() { if (errcb !== undefined) errcb(); }
       );
-    };
-
-    $scope.eventDismiss = function(event) {
-      event.stopPropagation();
     };
 
     $scope.go = function (hash) {
@@ -176,32 +172,24 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return key;
     };
 
-    $scope.moveUp = function(event, elem) {
+    $scope.moveUp = function(elem) {
       var key = $scope.getYOrderProperty(elem);
       elem[key] -= 1;
-
-      event.stopPropagation();
     };
 
-    $scope.moveDown = function(event, elem) {
+    $scope.moveDown = function(elem) {
       var key = $scope.getYOrderProperty(elem);
       elem[key] += 1;
-
-      event.stopPropagation();
     };
 
-    $scope.moveLeft = function(event, elem) {
+    $scope.moveLeft = function(elem) {
       var key = $scope.getXOrderProperty(elem);
       elem[key] -= 1;
-
-      event.stopPropagation();
     };
 
-    $scope.moveRight = function(event, elem) {
+    $scope.moveRight = function(elem) {
       var key = $scope.getXOrderProperty(elem);
       elem[key] += 1;
-
-      event.stopPropagation();
     };
 
     $scope.assignUniqueOrderIndex = function(elements) {
@@ -335,6 +323,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       array.splice(index, 1);
     };
 
+    $scope.exportJSON = function(data, filename) {
+      var filename = filename == undefined ? 'data.json' : filename;
+      var json = angular.toJson(data, 2);
+      var blob = new Blob([json], {type: "application/json"});
+      saveAs(blob, filename);
+    };
+
     $rootScope.reload = function(new_path) {
       $scope.started = false;
       $rootScope.successes = [];
@@ -348,12 +343,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         }
       });
     };
-
-    //////////////////////////////////////////////////////////////////
-    // FIXME: this functions are in common between submission.js and
-    // status.js so for this reasuns are currently pu here.
-    //////////////////////////////////////////////////////////////////
-
 
     $scope.uploadedFiles = function(uploads) {
       var sum = 0;
@@ -409,7 +398,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
   //////////////////////////////////////////////////////////////////
 
-    $scope.$on( "$routeChangeStart", function(event, next, current) {
+    $scope.$on("$routeChangeStart", function(event, next, current) {
       $scope.route_check();
     });
 

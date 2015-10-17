@@ -35,12 +35,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     $scope.editable = $scope.field.instance != 'reference';
     $scope.editing = false;
 
-    $scope.toggleEditing = function (e) {
+    $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
-      e.stopPropagation();
     };
 
-    $scope.fieldDeleteDialog = function(e, field){
+    $scope.fieldDeleteDialog = function(field){
       var modalInstance = $modal.open({
           templateUrl:  'views/partials/field_delete.html',
           controller: 'ConfirmableDialogCtrl',
@@ -56,8 +55,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
          function(result) { $scope.perform_delete_field(result); },
          function(result) { }
       );
-
-      e.stopPropagation();
     };
 
     $scope.isMarkableRequired = function(field) {
@@ -131,23 +128,23 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       $scope.update(updated_field);
     };
 
-    $scope.moveUpAndSave = function(event, elem) {
-      $scope.moveUp(event, elem);
+    $scope.moveUpAndSave = function(elem) {
+      $scope.moveUp(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveDownAndSave = function(event, elem) {
-      $scope.moveDown(event, elem);
+    $scope.moveDownAndSave = function(elem) {
+      $scope.moveDown(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveLeftAndSave = function(event, elem) {
-      $scope.moveLeft(event, elem);
+    $scope.moveLeftAndSave = function(elem) {
+      $scope.moveLeft(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveRightAndSave = function(event, elem) {
-      $scope.moveRight(event, elem);
+    $scope.moveRightAndSave = function(elem) {
+      $scope.moveRight(elem);
       $scope.save_field(elem);
     };
 
