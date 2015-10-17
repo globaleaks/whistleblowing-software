@@ -21,10 +21,6 @@ class TestUsersCollection(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(self.responses[0]), 5)
 
-
-class TestUserCreate(helpers.TestHandlerWithPopulatedDB):
-    _handler = user.UserCreate
-
     @inlineCallbacks
     def test_post_new_admin(self):
         self.dummyAdminUser['username'] = 'beppe'

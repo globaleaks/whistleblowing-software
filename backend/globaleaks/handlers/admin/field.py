@@ -503,11 +503,11 @@ class FieldCollection(BaseHandler):
         Create a new field.
 
         :return: the serialized field
-        :rtype: FieldDesc
+        :rtype: AdminFieldDesc
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.AdminFieldDesc)
 
         response = yield create_field(request, self.request.language)
 
@@ -532,7 +532,7 @@ class FieldInstance(BaseHandler):
 
         :param field_id:
         :return: the serialized field
-        :rtype: FieldDesc
+        :rtype: AdminFieldDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
@@ -552,12 +552,12 @@ class FieldInstance(BaseHandler):
 
         :param field_id:
         :return: the serialized field
-        :rtype: FieldDesc
+        :rtype: AdminFieldDesc
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.FieldDesc)
+                                        requests.AdminFieldDesc)
 
         response = yield update_field(field_id, request, self.request.language)
 

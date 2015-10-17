@@ -74,7 +74,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
                 'pgp_key_status': u'enabled',
                 'pgp_key_fingerprint': u"CF4A22020873A76D1DCB68D32B25551568E49345",
                 'username': u'fake@username.net',
-                }
+            }
 
             # these are the same lines used in delivery_sched.py
             pgpobj = GLBPGP()
@@ -124,7 +124,8 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
-        new_subm['wb_steps'] = yield self.fill_random_answers(new_context_output['id'])
+        new_subm['whistleblower_provided_identity'] = False
+        new_subm['answers'] = yield self.fill_random_answers(new_context_output['id'])
 
         token = Token('submission')
         token.proof_of_work = False

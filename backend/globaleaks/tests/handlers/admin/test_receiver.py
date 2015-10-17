@@ -22,10 +22,6 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(self.responses[0]), 2)
 
-
-class TestReceiverCreate(helpers.TestHandlerWithPopulatedDB):
-    _handler = receiver.ReceiverCreate
-
     @inlineCallbacks
     def test_post(self):
         self.dummyReceiver_1['username'] = 'beppe'

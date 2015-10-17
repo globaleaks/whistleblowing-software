@@ -200,6 +200,7 @@ for (var i=0; i<submission_population_order; i++) {
         new_submission.id = submission_tokens[i].id;
         new_submission.context_id = contexts_ids[0];
         new_submission.receivers = receivers_ids;
+        new_submission.whistleblower_provided_identity = false;
         new_submission.answers = fill_answers(contexts[0].steps);
 
         app
