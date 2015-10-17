@@ -75,7 +75,7 @@
              readonly="readonly"
              show-button-bar="false" />
       <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+        <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
     </div>
   </div>
@@ -90,7 +90,7 @@
                value="{{field.value}}"
                placeholder="{{::field.placeholder || 'false'}}"
                type="checkbox" />
-        <span>{{::field.attrs.agreement_statement.value}}</span>
+        <span class="TOS">{{::field.attrs.agreement_statement.value}}</span>
       </label>
     </div>
   </div>

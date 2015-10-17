@@ -1,5 +1,5 @@
-<div id="TipInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+<div id="TipInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>
         <span data-translate>Identity of the whistleblower</span>
@@ -12,7 +12,7 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div>
       <div data-ng-if="tip.last_iar && tip.last_iar.reply != 'authorized'">
         <div>

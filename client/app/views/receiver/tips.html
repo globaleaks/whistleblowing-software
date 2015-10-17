@@ -164,10 +164,10 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
           <td data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-            <span class="btn btn-xs" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch($event, tip.id)">
+            <span class="btn btn-xs" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="glyphicon glyphicon-check"></i>
             </span>
-            <span class="btn btn-xs" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch($event, tip.id)">
+            <span class="btn btn-xs" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="glyphicon glyphicon-unchecked"></i>
             </span>
           </td>

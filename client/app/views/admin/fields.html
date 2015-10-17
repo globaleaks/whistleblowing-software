@@ -2,7 +2,7 @@
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
     <div class="configItem configField">
-      <div class="editorHeader" data-ng-click="toggleEditing($event)">
+      <div class="editorHeader" data-ng-click="toggleEditing(); $event.stopPropagation();">
         <div class="row">
           <span class="col-md-6">
             <span class="fieldIndex label label-default label-as-badge" data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
@@ -43,9 +43,13 @@
           </span>
           <span class="col-md-6">
             <span class="pull-right">
+              <button class="actionButton btn btn-xs btn-primary"
+                data-ng-click="exportJSON(field, 'question-' + field.id + '.json'); $event.stopPropagation();">
+                <span data-translate>Export</span>
+              </button>
               <button class="actionButton btn btn-xs btn-default"
                 data-ng-show="!editing"
-                data-ng-click="toggleEditing($event)">
+                data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Edit</span>
               </button>
               <button class="actionButton btn btn-xs btn-success"
@@ -56,28 +60,28 @@
               <button 
                 class="actionButton btn btn-xs btn-default"
                 data-ng-show="editing"
-                data-ng-click="toggleEditing($event)">
+                data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
                 data-ng-show="field.modifiable"
-                data-ng-click="fieldDeleteDialog($event, field)"
+                data-ng-click="fieldDeleteDialog(field); $event.stopPropagation();"
                 popover="{{Delete | translate}}"
                 popover-placement="right"
                 popover-trigger="mouseenter">
                 <span data-translate>Delete</span>
               </button>
               <span data-ng-if="($parent.field && $parent.field.children > 1) || ($parent.field && $parent.step.children.length > 1)">
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveLeftAndSave($event, field)" popover="{{'Move left' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" popover="{{'Move left' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-left"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveRightAndSave($event, field)" popover="{{'Move right' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" popover="{{'Move right' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-right"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave($event, field)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-up"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave($event, field)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-down"></i>
                 </button>
               </span>
@@ -195,10 +199,10 @@
                             <i class="glyphicon glyphicon-remove"></i>
                           </button>
                           <span data-ng-if="field.options.length > 1">
-                            <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUp($event, option)" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                            <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUp(option); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                               <i class="glyphicon glyphicon-menu-up"></i>
                             </button>
-                            <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDown($event, option)" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                            <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDown(option); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                               <i class="glyphicon glyphicon-menu-down"></i>
                             </button>
                           </span>
@@ -221,7 +225,7 @@
           <div class="col-md-6">
             <div class="nested">
               <div class="editorTitle">
-                <span data-translate>Add new field</span>
+                <span data-translate>Add new question</span>
               </div>
               <div data-ng-include="'views/admin/add_field.html'"></div>
               <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
@@ -231,7 +235,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group" data-ng-if="field.children.length > 0">
-              <div class="editorTitle" data-translate>Configured fields:</div>
+              <div class="editorTitle" data-translate>Configured questions:</div>
               <div class="configuredFields">
                 <div data-ng-repeat="field in field.children | orderBy:['y', 'x']">
                   <div data-ng-include="'views/admin/fields.html'"></div>

@@ -83,4 +83,22 @@ angular.module('GLDirectives', []).
         });
       }
     };
+}]).
+ directive("fileread", [function () {
+   return {
+     scope: {
+       fileread: "="
+     },
+     link: function (scope, element, attributes) {
+       element.bind("change", function (changeEvent) {
+         var reader = new FileReader();
+         reader.onload = function (e) {
+           if (scope.fileread) {
+             scope.fileread(e.target.result);
+           }
+         }
+         reader.readAsText(changeEvent.target.files[0]);
+       });
+     }
+   };
 }]);

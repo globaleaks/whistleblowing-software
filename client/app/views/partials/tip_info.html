@@ -1,9 +1,9 @@
-<div id="TipInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+<div id="TipInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span data-translate>Submission</span><span data-ng-if="::role == 'receiver'">:</span>
       <span data-ng-if="::role == 'receiver'">
-        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel($event)"
+        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
               popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
           <span>{{::tip.label}}</span>
           <i class="glyphicon glyphicon-tag"></i>
@@ -12,8 +12,8 @@
         <span data-ng-if="showEditLabelInput" class="form-inline">
           <div class="form-group">
             <span id="AssignLabelInput" class="input-group">
-              <input type="text" class="form-control" placeholder="{{'Label' | translate}}" data-ng-click="eventDismiss($event)" data-ng-model="tip.label" />
-              <span class="input-group-addon" data-ng-click="updateLabel($event, tip.label)""
+              <input type="text" class="form-control" placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
+              <span class="input-group-addon" data-ng-click="updateLabel(tip.label); $event.stopPropagation();"
                    popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-tag"></i>
               </span>
@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <table class="table table-condensed table-striped">
       <thead>
         <tr>

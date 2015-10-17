@@ -1,5 +1,5 @@
-<div id="TipQuestionnaireAnswersBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+<div id="TipQuestionnaireAnswersBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span data-translate>Questionnaire Answers</span>
       <span class="pull-right">
@@ -8,7 +8,7 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-repeat="step in tip.questionnaire">
       <dt id="step={{$index}}">
         <span data-translate>Step</span>

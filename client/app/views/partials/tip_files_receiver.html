@@ -1,5 +1,5 @@
-<div id="TipPageFilesInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+<div id="TipPageFilesInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>{{node.widget_files_title}}</span>
       <span class="pull-right">
@@ -8,7 +8,7 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-show="tip.files.length">
       <div data-ng-if="tip.collection">
         <form id="fileCollectionDownload" method="POST" action="{{::tip.collection}}" novalidate>

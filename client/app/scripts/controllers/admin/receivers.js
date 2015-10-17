@@ -17,7 +17,7 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
 
   $scope.perform_delete = function(receiver) {
     $scope.admin.receiver['delete']({
-      receiver_id: receiver.id
+      id: receiver.id
     }, function(){
       var idx = $scope.admin.receivers.indexOf(receiver);
       $scope.admin.receivers.splice(idx, 1);
@@ -25,7 +25,7 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
 
   };
 
-  $scope.receiverDeleteDialog = function(e, receiver){
+  $scope.receiverDeleteDialog = function(receiver){
     var modalInstance = $modal.open({
         templateUrl:  'views/partials/receiver_delete.html',
         controller: 'ConfirmableDialogCtrl',
@@ -40,20 +40,17 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
        function(result) { $scope.perform_delete(result); },
        function(result) { }
     );
-
-    e.stopPropagation();
   };
 
-  $scope.moveUpAndSave = function(event, elem) {
-    $scope.moveUp(event, elem);
+  $scope.moveUpAndSave = function(elem) {
+    $scope.moveUp(elem);
     $scope.save_receiver(elem);
   };
 
-  $scope.moveDownAndSave = function(event, elem) {
-    $scope.moveDown(event, elem);
+  $scope.moveDownAndSave = function(elem) {
+    $scope.moveDown(elem);
     $scope.save_receiver(elem);
   };
-
 }]);
 
 GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
@@ -61,14 +58,12 @@ GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CO
 
     $scope.editing = false;
 
-    $scope.toggleEditing = function (e) {
+    $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
-      e.stopPropagation();
     };
 
-    $scope.save = function(e) {
+    $scope.save = function() {
       $scope.save_receiver($scope.receiver, false);
-      e.stopPropagation();
     };
 
     $scope.timezones = CONSTANTS.timezones;

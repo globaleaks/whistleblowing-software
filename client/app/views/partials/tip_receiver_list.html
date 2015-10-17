@@ -1,5 +1,5 @@
-<div id="TipPageReceiversInfoBox" class="TipPageSection" data-ng-init="collapsed = false">
-  <div class="TipPageSectionTitle" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss($event)">
+<div id="TipPageReceiversInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <div>
       <span data-translate>Receiver List</span>
       <span class="pull-right">
@@ -8,16 +8,19 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent" data-ng-show="!collapsed">
-    <div class="row">
-      <span class="col-md-2" data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
-        <span id="receiver-{{$index}}" class="label" data-ng-class="{'label-primary': (receiver.access_counter > 0), 'label-danger': (receiver.access_counter == 0)}">
-          <span>{{::receiver.name}}</span><span>:</span>
-          <span data-ng-if="receiver.access_counter > 0" data-translate>Read</span>
-          <span data-ng-if="receiver.access_counter == 0" data-translate>Unread</span>
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+    <div>
+      <span data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
+        <span id="receiver-{{$index}}">
+          <span class="label label-primary" data-ng-show="receiver.last_access > tip.update_date" popover="{{'The receiver has already read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+            <i class="glyphicon glyphicon-ok"></i>
+            <span>{{::receiver.name}}</span>
+          </span>
+          <span class="label label-warning" data-ng-show="receiver.last_access <= tip.update_date" popover="{{'The receiver has still not read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+            <span>{{::receiver.name}}</span>
           </span>
         </span>
       </span>
-    </span>
+    </div>
   </div>
 </div>
