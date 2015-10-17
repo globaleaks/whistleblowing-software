@@ -190,7 +190,8 @@ var context = {
   reset_steps: false,
   maximum_selectable_receivers:0,
   receivers: [],
-  custodians: []
+  custodians: [],
+  steps: []
 }
 
 var validate_mandatory_headers = function(headers) {
@@ -277,15 +278,15 @@ describe('PUT /admin/node', function () {
 
 // we popolate population_order contexts
 for (var i=0; i<population_order; i++) {
-  describe('POST /admin/context', function () {
-    it('responds 201 on POST /admin/context ' + i + ' (authenticated, valid context)', function (done) {
+  describe('POST /admin/contexts', function () {
+    it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
       var newObject = JSON.parse(JSON.stringify(context));
       newObject.name = 'Context ' + i;
       newObject.presentation_order = i;
       newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
 
       app
-        .post('/admin/context')
+        .post('/admin/contexts')
         .send(newObject)
         .set('X-Session', authentication['session_id'])
         .expect(201)
@@ -309,8 +310,8 @@ for (var i=0; i<population_order; i++) {
 // we popolate population_order receivers
 for (var i=0; i<population_order; i++) {
   (function (i) {
-    describe('POST /admin/receiver', function () {
-      it('responds 201 on POST /admin/receiver ' + i + ' (authenticated, valid receiver)', function (done) {
+    describe('POST /admin/receivers', function () {
+      it('responds 201 on POST /admin/receivers ' + i + ' (authenticated, valid receiver)', function (done) {
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
         newObject.username = 'receiver ' + i;
@@ -318,7 +319,7 @@ for (var i=0; i<population_order; i++) {
         newObject.presentation_order = i;
 
         app
-          .post('/admin/receiver')
+          .post('/admin/receivers')
           .send(newObject)
           .set('X-Session', authentication['session_id'])
           .expect(201)
@@ -343,12 +344,12 @@ for (var i=0; i<population_order; i++) {
 // we popolate population_order contexts
 for (var i=0; i<population_order; i++) {
   (function (i) {
-    describe('PUT /admin/context', function () {
-      it('responds 202 on PUT /admin/context ' + i + ' (authenticated, valid context)', function (done) {
+    describe('PUT /admin/contexts', function () {
+      it('responds 202 on PUT /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
         contexts[i].receivers = receivers_ids;
 
         app
-          .put('/admin/context/' + contexts[i].id)
+          .put('/admin/contexts/' + contexts[i].id)
           .send(contexts[i])
           .set('X-Session', authentication['session_id'])
           .expect(202)

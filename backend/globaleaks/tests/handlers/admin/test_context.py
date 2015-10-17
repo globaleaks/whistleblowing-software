@@ -23,10 +23,6 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='admin')
         return handler.get()
 
-
-class TestContextsCreate(helpers.TestHandlerWithPopulatedDB):
-    _handler = context.ContextCreate
-
     @inlineCallbacks
     def test_post(self):
         for attrname in Context.localized_strings:

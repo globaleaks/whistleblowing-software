@@ -251,6 +251,7 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_field(self):
         return {
+            'key': '',
             'instance': 'instance',
             'editable': True,
             'template_id': '',
@@ -325,6 +326,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['human_captcha_answer'] = 0
         dummySubmissionDict['graph_captcha_answer'] = ''
         dummySubmissionDict['proof_of_work_answer'] = 0
+        dummySubmissionDict['whistleblower_provided_identity'] = False
         dummySubmissionDict['answers'] = yield self.fill_random_answers(context_id)
 
         defer.returnValue(dummySubmissionDict)
@@ -521,6 +523,7 @@ class TestGLWithPopulatedDB(TestGL):
     def perform_submission_actions(self):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
+        self.dummySubmission['whistleblower_provided_identity'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken.id,
@@ -740,6 +743,7 @@ class MockDict():
         self.dummyFieldTemplates = [
             {
                 'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'template_id': '',
@@ -754,14 +758,16 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': True,  # <- first field is special,
-                'children': {},    # it's marked as required!!!
+                'children': [],    # it's marked as required!!!
                 'attrs': {},
                 'options': [],
                 'y': 2,
-                'x': 0
+                'x': 0,
+                'width': 0
             },
             {
                 'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'template_id': '',
@@ -776,14 +782,16 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
-                'children': {},
+                'children': [],
                 'attrs': {},
                 'options': [],
                 'y': 3,
-                'x': 0
+                'x': 0,
+                'width': 0
             },
             {
                 'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'step_id': '',
@@ -798,14 +806,16 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
-                'children': {},
+                'children': [],
                 'attrs': {},
                 'options': [],
                 'y': 4,
-                'x': 0
+                'x': 0,
+                'width': 0
             },
             {
                 'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'template_id': '',
@@ -820,14 +830,16 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
-                'children': {},
+                'children': [],
                 'attrs': {},
                 'options': [],
                 'y': 0,
-                'x': 0
+                'x': 0,
+                'width': 0
             },
             {
                 'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'template_id': '',
@@ -842,14 +854,16 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
-                'children': {},
+                'children': [],
                 'attrs': {},
                 'options': [],
                 'y': 0,
-                'x': 0
+                'x': 0,
+                'width': 0
             },
             {
                 'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
+                'key': '',
                 'instance': 'template',
                 'editable': True,
                 'template_id': '',
@@ -864,7 +878,7 @@ class MockDict():
                 'multi_entry_hint': '',
                 'stats_enabled': False,
                 'required': False,
-                'children': {},
+                'children': [],
                 'attrs': {},
                 'options': [
                     {
@@ -887,7 +901,8 @@ class MockDict():
                     }
                 ],
                 'y': 0,
-                'x': 0
+                'x': 0,
+                'width': 0
             }]
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)

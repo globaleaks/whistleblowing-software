@@ -10,8 +10,8 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 
-class TestStepCreate(helpers.TestHandler):
-        _handler = admin.step.StepCreate
+class TestStepCollection(helpers.TestHandler):
+        _handler = admin.step.StepCollection
 
         @inlineCallbacks
         def test_post(self):

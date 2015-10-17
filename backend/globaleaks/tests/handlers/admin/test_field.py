@@ -20,7 +20,7 @@ def get_step_id(store, context_id):
 
 
 class TestFieldCreate(helpers.TestHandler):
-        _handler = admin.field.FieldCreate
+        _handler = admin.field.FieldCollection
 
         @inlineCallbacks
         def test_post(self):
@@ -134,25 +134,6 @@ class TestFieldInstance(helpers.TestHandler):
             self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
             self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
-
-
-class TestFieldTemplateCreate(helpers.TestHandler):
-        _handler = admin.field.FieldTemplateCreate
-
-        @inlineCallbacks
-        def test_post(self):
-            """
-            Attempt to create a new field via a post request.
-            """
-            values = self.get_dummy_field()
-            values['instance'] = 'template'
-            handler = self.request(values, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp, = self.responses
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
 
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
@@ -289,3 +270,18 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             for field in fields:
                 for child in field['children']:
                     self.assertNotIn(child, ids)
+
+        @inlineCallbacks
+        def test_post(self):
+            """
+            Attempt to create a new field via a post request.
+            """
+            values = self.get_dummy_field()
+            values['instance'] = 'template'
+            handler = self.request(values, role='admin')
+            yield handler.post()
+            self.assertEqual(len(self.responses), 1)
+
+            resp, = self.responses
+            self.assertIn('id', resp)
+            self.assertNotEqual(resp.get('options'), None)
