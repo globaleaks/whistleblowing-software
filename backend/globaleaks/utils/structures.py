@@ -69,7 +69,10 @@ def get_localized_values(dictionary, obj, keys, language):
     elif isinstance(obj, Model):
         mo.acquire_storm_object(obj)
 
-    dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
+    if language is not None:
+        dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
+    else:
+        dictionary.update({key: mo._localized_strings[key] for key in keys})
 
     return dictionary
 

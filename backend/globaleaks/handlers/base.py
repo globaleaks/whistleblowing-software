@@ -164,15 +164,17 @@ class BaseHandler(RequestHandler):
         if not GLSettings.memory_copy.allow_iframes_inclusion:
             self.set_header("X-Frame-Options", "sameorigin")
 
-        lang = self.request.headers.get('GL-Language', None)
+        if 'import' in self.request.arguments or 'export' in self.request.arguments:
+            self.request.language = None
+        else:
+            lang = self.request.headers.get('GL-Language', None)
 
-        if not lang:
-            # before was used the Client language. but shall be unsupported
-            # lang = self.request.headers.get('Accepted-Language', None)
-            lang = GLSettings.memory_copy.default_language
+            if not lang:
+                # before was used the Client language. but shall be unsupported
+                # lang = self.request.headers.get('Accepted-Language', None)
+                lang = GLSettings.memory_copy.default_language
 
-        self.request.language = lang
-
+            self.request.language = lang
 
     @staticmethod
     def validate_python_type(value, python_type):

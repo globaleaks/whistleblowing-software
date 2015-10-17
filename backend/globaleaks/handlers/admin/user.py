@@ -100,8 +100,7 @@ def db_create_receiver(store, request, language):
 
     store.add(receiver)
 
-    contexts = request.get('contexts', [])
-    for context_id in contexts:
+    for context_id in request['contexts']:
         context = models.Context.get(store, context_id)
         if not context:
             raise errors.ContextIdNotFound
@@ -158,6 +157,9 @@ def db_create_user(store, request, language):
         'password_change_needed': True,
         'mail_address': request['mail_address']
     })
+
+    if request['username'] == '':
+        user.username = user.id
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -239,10 +241,8 @@ def delete_user(store, user_id):
     user = db_get_user(store, user_id)
 
     if not user.deletable:
-        print "a"
         raise errors.UserNotDeletable
 
-    print "b"
     user_picture = os.path.join(GLSettings.static_path, "%s.png" % user_id)
     if os.path.exists(user_picture):
         os.remove(user_picture)
@@ -277,8 +277,6 @@ class UsersCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-
-class UserCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks

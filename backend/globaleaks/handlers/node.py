@@ -114,7 +114,7 @@ def anon_serialize_context(store, context, language):
         'enable_messages': context.enable_messages,
         'enable_two_way_communication': context.enable_two_way_communication,
         'enable_attachments': context.enable_attachments,
-        'enable_whistleblower_identity_feature': context.enable_whistleblower_identity_feature,
+        'field_whistleblower_identity': '',
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'steps_arrangement': context.steps_arrangement,
         'custodians': [c.id for c in context.custodians],
@@ -173,6 +173,7 @@ def anon_serialize_field(store, field, language):
 
     ret_dict = {
         'id': field.id,
+        'key': field.key,
         'instance': field.instance,
         'editable': field.editable,
         'type': f_to_serialize.type,

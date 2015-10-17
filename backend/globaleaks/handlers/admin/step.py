@@ -12,7 +12,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin.field import db_import_fields, db_update_field
+from globaleaks.handlers.admin.field import db_import_fields, db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import anon_serialize_step
 from globaleaks.rest import requests, errors
@@ -31,7 +31,13 @@ def db_create_step(store, step, language):
      """
      fill_localized_keys(step, models.Step.localized_strings, language)
 
-     return models.Step.new(store, step)
+     s = models.Step.new(store, step)
+
+     for c in step['children']:
+         c['step_id'] = s.id
+         s.children.add(db_create_field(store, c, language))
+
+     return s
 
 
 @transact
@@ -108,11 +114,11 @@ def delete_step(store, step_id):
     step.delete(store)
 
 
-class StepCreate(BaseHandler):
+class StepCollection(BaseHandler):
     """
     Operation to create a step
 
-    /admin/step
+    /admin/steps
     """
     @transport_security_check('admin')
     @authenticated('admin')
@@ -126,7 +132,7 @@ class StepCreate(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.StepDesc)
+                                        requests.AdminStepDesc)
 
         response = yield create_step(request, self.request.language)
 
@@ -175,7 +181,7 @@ class StepInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         request = self.validate_message(self.request.body,
-                                        requests.StepDesc)
+                                        requests.AdminStepDesc)
 
         response = yield update_step(step_id, request, self.request.language)
 

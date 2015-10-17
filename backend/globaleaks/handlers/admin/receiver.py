@@ -162,8 +162,6 @@ class ReceiversCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-
-class ReceiverCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks

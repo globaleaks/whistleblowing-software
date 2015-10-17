@@ -12,6 +12,7 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.field import db_import_fields
+from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.node import anon_serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
@@ -169,6 +170,19 @@ def db_update_context(store, context, request, language):
     return context
 
 
+def db_create_steps(store, context, steps, language):
+    """
+    Create the specified steps
+    :param store: the store on which perform queries.
+    :param context: the context on which register specified steps.
+    :param steps: a dictionary containing the new steps.
+    :param language: the language of the specified steps.
+    """
+    for step in steps:
+        step['context_id'] = context.id
+        context.steps.add(db_create_step(store, step, language))
+
+
 def db_create_context(store, request, language):
     request = fill_context_request(request, language)
 
@@ -176,7 +190,10 @@ def db_create_context(store, request, language):
 
     store.add(context)
 
-    db_setup_default_steps(store, context)
+    if len(request['steps']):
+      db_create_steps(store, context, request['steps'], language)
+    else:
+      db_setup_default_steps(store, context)
 
     db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
@@ -263,8 +280,6 @@ class ContextsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-
-class ContextCreate(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
