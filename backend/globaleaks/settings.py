@@ -553,7 +553,7 @@ class GLSettingssClass(object):
                     print "→ \033[1;31mUsing", GLSettings.debug_option_UUID_human, \
                         "to generate human readable UUIDv4\033[0m"
 
-                  if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
+                if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
                     self.debug_option_mlockall = True
                     print "→ \033[1;31mUsing mlockall(2) system call to prevent GlobaLeaks swap\033[0m"
                     self.avoid_globaleaks_swap()
