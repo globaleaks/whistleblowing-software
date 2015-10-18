@@ -41,13 +41,10 @@ def associate_field(store, field, step=None, fieldgroup=None):
         if field.instance != fieldgroup.instance:
             raise errors.InvalidInputFormat("Cannot associate field templates with fields")
 
-        ancestors = set(fieldtree_ancestors(store, field))
+        ancestors = set(fieldtree_ancestors(store, fieldgroup))
 
-        if field.id in [field.template_id, fieldgroup.id] or \
-           field.template_id == fieldgroup.id or \
-           field.template_id in ancestors or \
-           fieldgroup.id in ancestors:
-               raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+        if field.id == fieldgroup.id or field.id in ancestors:
+            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
 
         fieldgroup.children.add(field)
 
