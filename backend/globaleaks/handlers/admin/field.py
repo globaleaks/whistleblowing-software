@@ -1,11 +1,10 @@
 # -*- coding: UTF-8
 #
-#   /admin/field
+#   /admin/fields
 #   *****
-# Implementation of the code executed on handler /admin/field
+# Implementation of the code executed on handler /admin/fields
 #
 import copy
-import json
 
 from storm.expr import And, Not, In
 

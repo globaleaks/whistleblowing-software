@@ -1,25 +1,22 @@
 # -*- coding: UTF-8
 #
-#   /admin/step
+#   /admin/steps
 #   *****
-# Implementation of the code executed on handler /admin/step
+# Implementation of the code executed on handler /admin/steps
 #
-import copy
-
-from storm.expr import And, Not, In
+from storm.expr import Not, In
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.handlers.admin.field import db_import_fields, db_create_field, db_update_field
+from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import anon_serialize_step
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log
 
 
 def db_create_step(store, step, language):

@@ -1,22 +1,19 @@
 # -*- coding: UTF-8
-# receiver
+# custodian
 # ********
 #
-# Implement the classes handling the requests performed to /receiver/* URI PATH
-# Used by receivers to update personal preferences and access to personal data
+# Implement the classes handling the requests performed to /custodian/* URI PATH
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import And, In
+from storm.expr import In
 
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
-from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
-from globaleaks.security import change_password
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.rest import requests
+from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import Rosetta
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 
 
 def serialize_identityaccessrequest(identityaccessrequest, language):

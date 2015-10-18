@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# config
+# settings
 # ******
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
@@ -9,7 +9,6 @@
 import sys
 import glob
 import shutil
-import traceback
 import logging
 import pwd
 import grp

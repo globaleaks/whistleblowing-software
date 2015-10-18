@@ -1,8 +1,8 @@
 # -*- coding: UTF-8
 #
-#   /admin/context
+#   /admin/contexts
 #   *****
-# Implementation of the code executed on handler /admin/context
+# Implementation of the code executed on handler /admin/contexts
 #
 import copy
 

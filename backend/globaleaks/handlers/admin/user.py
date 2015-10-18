@@ -17,8 +17,8 @@ from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.third_party import rstr
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
+from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 def db_create_admin(store, request, language):

@@ -6,7 +6,6 @@
 # Flush the email that has to be sent, is based on EventLog
 # database table.
 
-import random
 from cyclone.util import ObjectDict as OD
 from storm.expr import Asc
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
@@ -18,7 +17,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
-from globaleaks.utils.utility import deferred_sleep, log, datetime_now
+from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
 reactor_override = None
@@ -304,7 +303,7 @@ class MailflushSchedule(GLJob):
         # This wrap calls plugin/notification.MailNotification
         notifcb = NotificationMail(plugin)
 
-        for qe_pos, qe in enumerate(filtered_events):
+        for qe in filtered_events:
             yield notifcb.do_every_notification(qe)
 
             if not self.skip_sleep:

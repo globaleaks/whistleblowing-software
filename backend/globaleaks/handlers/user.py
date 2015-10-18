@@ -1,20 +1,18 @@
 # -*- coding: UTF-8
-# receiver
+# user
 # ********
 #
-# Implement the classes handling the requests performed to /receiver/* URI PATH
-# Used by receivers to update personal preferences and access to personal data
+# Implement the classes handling the requests performed to /user/* URI PATH
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.authentication import authenticated, transport_security_check
+from globaleaks.handlers.authentication import authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import change_password, GLBPGP
 from globaleaks.settings import transact, transact_ro, GLSettings
-from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 

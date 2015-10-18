@@ -25,7 +25,6 @@ from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors
-from globaleaks.security import overwrite_and_remove
 
 
 def receiver_serialize_tip(store, internaltip, language):

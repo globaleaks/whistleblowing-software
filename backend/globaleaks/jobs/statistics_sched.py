@@ -17,7 +17,7 @@ from globaleaks.anomaly import Alarm, compute_activity_level
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings, transact
 from globaleaks.models import Stats, Anomalies
-from globaleaks.utils.utility import log, datetime_now, datetime_null
+from globaleaks.utils.utility import log, datetime_now
 
 
 def get_workingdir_space():

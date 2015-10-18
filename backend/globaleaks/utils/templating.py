@@ -12,11 +12,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     ISO8601_to_datetime, datetime_now
 
-def dump_submission_steps(wb_steps):
-    dumptext = u"FIELD_MAIL_DUMP_STILL_NEED_TO_BE_IMPLEMENTED"
-
-    return dumptext
-
 def dump_file_list(filelist, files_n):
     info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),

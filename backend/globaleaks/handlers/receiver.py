@@ -16,10 +16,9 @@ from globaleaks.handlers.submission import db_get_archived_preview_schema
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.security import change_password
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
@@ -32,7 +31,6 @@ def receiver_serialize_receiver(receiver, language):
         'password': u'',
         'old_password': u'',
         'password_change_needed': receiver.user.password_change_needed,
-        'username': receiver.user.username,
         'mail_address': receiver.user.mail_address,
         'language': receiver.user.language,
         'timezone': receiver.user.timezone,
@@ -49,7 +47,6 @@ def receiver_serialize_receiver(receiver, language):
         'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
         'pgp_key_status': receiver.user.pgp_key_status,
         'pgp_key_remove': False,
-        'contexts': [context.id for context in receiver.contexts]
     }
 
     # description and eventually other localized strings should be taken from user model
@@ -71,6 +68,8 @@ def get_receiver_settings(store, receiver_id, language):
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
     user = db_user_update_user(store, receiver_id, request, language)
+    if not user:
+        raise errors.UserIdNotFound
 
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     if not receiver:

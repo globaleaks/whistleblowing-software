@@ -26,7 +26,7 @@ def weekmap_to_heatmap(week_map):
     """
     retlist = []
     for weekday_n, weekday in enumerate(week_map):
-        for hour_n, hourinfo in enumerate(weekday):
+        for _, hourinfo in enumerate(weekday):
             retlist.append(hourinfo)
 
     return retlist

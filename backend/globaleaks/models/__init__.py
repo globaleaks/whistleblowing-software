@@ -4,8 +4,6 @@ GlobaLeaks ORM Models definitions.
 """
 from __future__ import absolute_import
 
-import copy
-
 from storm.expr import And
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 

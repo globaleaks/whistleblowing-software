@@ -3,7 +3,6 @@
 #   ***
 #
 #   This file defines the URI mapping for the GlobaLeaks API and its factory
-from twisted.application import internet
 from cyclone import web
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -13,7 +12,7 @@ from globaleaks.handlers import exception, \
                                 admin, receiver, custodian, \
                                 submission, \
                                 rtip, wbtip, \
-                                files, authentication, admin, token, \
+                                files, authentication, token, \
                                 collection, langfiles, css, wizard, \
                                 base, user
 
