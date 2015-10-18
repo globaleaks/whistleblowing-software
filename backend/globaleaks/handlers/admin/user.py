@@ -100,7 +100,8 @@ def db_create_receiver(store, request, language):
 
     store.add(receiver)
 
-    for context_id in request['contexts']:
+    contexts = request.get('contexts', [])
+    for context_id in contexts:
         context = models.Context.get(store, context_id)
         if not context:
             raise errors.ContextIdNotFound
