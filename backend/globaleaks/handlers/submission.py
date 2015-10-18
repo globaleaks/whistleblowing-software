@@ -271,8 +271,8 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission.context_id = context.id
     submission.creation_date = datetime_now()
 
-    # Tor2Web is spot in the handler and passed here, is done to keep track of the
-    # security level adopted by the whistleblower
+    # The use of Tor2Web is detected by the basehandler and the status forwared  here;
+    # The status is used to keep track of the security level adopted by the whistleblower
     submission.tor2web = t2w
 
     submission.enable_comments = context.enable_comments
