@@ -153,8 +153,6 @@ def wb_serialize_internaltip(store, internaltip):
         'receivers': [r.id for r in internaltip.receivers]
     }
 
-    return response
-
 
 def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
     if store.find(models.ArchivedSchema, 
