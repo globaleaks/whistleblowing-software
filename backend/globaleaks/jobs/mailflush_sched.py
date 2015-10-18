@@ -207,15 +207,15 @@ def filter_notification_event(notifque):
             # Append
             anomalyevent = OD()
             anomalyevent.type = u'receiver_notification_limit_reached'
-            anomalyevent.notification_settings = plausible_event.notification_settings
-            anomalyevent.node_info = plausible_event.node_info
+            anomalyevent.notification_settings = ne.notification_settings
+            anomalyevent.node_info = ne.node_info
             anomalyevent.context_info = None
-            anomalyevent.receiver_info = plausible_event.receiver_info
+            anomalyevent.receiver_info = ne.receiver_info
             anomalyevent.tip_info = None
             anomalyevent.subevent_info = None
             anomalyevent.orm_id = 0
 
-            return_filtered_list.append(anomalevent)
+            return_filtered_list.append(anomalyevent)
 
             orm_id_to_be_skipped.append(ne['orm_id'])
             continue
