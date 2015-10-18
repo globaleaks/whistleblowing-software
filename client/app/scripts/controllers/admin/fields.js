@@ -178,7 +178,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       var field = $scope.admin.new_field_from_template(template_id, '', $scope.field.id);
 
       if ($scope.$parent.field) {
-        field.instance = $scope.$parent.field.instance;
         field.y = $scope.newItemOrder($scope.$parent.field.children, 'y');
       } else {
         field.y = $scope.newItemOrder($scope.step.children, 'y');
