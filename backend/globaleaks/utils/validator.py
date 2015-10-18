@@ -7,7 +7,7 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
-from globaleaks.rest import requests, errors
+from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
 

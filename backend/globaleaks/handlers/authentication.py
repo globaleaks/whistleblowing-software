@@ -11,7 +11,7 @@ from storm.expr import And
 from globaleaks import security
 from globaleaks.models import User
 from globaleaks.settings import transact_ro, GLSettings
-from globaleaks.models import Receiver, WhistleblowerTip
+from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 from globaleaks.utils import utility, tempobj

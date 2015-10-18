@@ -7,7 +7,6 @@ our needs.
 import collections
 import httplib
 import json
-import logging
 import mimetypes
 import os
 import re
@@ -17,9 +16,7 @@ import types
 
 from StringIO import StringIO
 
-from cryptography.hazmat.primitives.constant_time import bytes_eq
-
-from twisted.internet import fdesc, task
+from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
@@ -33,7 +30,6 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
-from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
 
 
@@ -208,7 +204,7 @@ class BaseHandler(RequestHandler):
         """
         try:
             value = unicode(value)
-        except Exception as e:
+        except Exception:
             return False
 
         return bool(re.match(type, value))

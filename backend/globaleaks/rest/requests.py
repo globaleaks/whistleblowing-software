@@ -116,7 +116,6 @@ ReceiverReceiverDesc = {
     'role': user_roles_regexp,
     'password': unicode,
     'old_password': unicode,
-    'role': user_roles_regexp,
     'password_change_needed': bool,
     'mail_address': email_regexp,
     'ping_mail_address': email_regexp,

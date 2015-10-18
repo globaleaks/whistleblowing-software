@@ -1,8 +1,8 @@
 # -*- coding: UTF-8
 #
-#   /admin/receiver
+#   /admin/receivers
 #   *****
-# Implementation of the code executed on handler /admin/receiver
+# Implementation of the code executed on handler /admin/receivers
 #
 
 import os
@@ -11,13 +11,13 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.handlers.admin.user import db_create_user, db_admin_update_user, db_create_receiver
+from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.admin.user import db_admin_update_user, db_create_receiver
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 def admin_serialize_receiver(receiver, language):
@@ -35,7 +35,6 @@ def admin_serialize_receiver(receiver, language):
         'deletable': receiver.user.deletable,
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
-        'username': receiver.user.username,
         'mail_address': receiver.user.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
         'password': u'',

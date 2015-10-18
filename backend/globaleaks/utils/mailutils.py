@@ -1,11 +1,10 @@
 # -*- coding: UTF-8
 #
-#   mailutils
-#   *********
+# mailutils
+# *********
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 
-import binascii
 import logging
 import re
 import traceback

@@ -6,7 +6,6 @@
 
 import os
 
-from storm.expr import Desc
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models

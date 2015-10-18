@@ -229,7 +229,7 @@ class ZipStream(object):
                 try:
                     for data in self.zip_file(f['path'], f['name']):
                         yield data
-                except (OSError, IOError) as excpd:
+                except (OSError, IOError):
                     pass
 
             elif 'buf' in f:

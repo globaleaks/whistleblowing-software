@@ -24,7 +24,7 @@ from globaleaks.security import sha256
 reactor_override = None
 
 
-class TokenList:
+class TokenList(object):
     token_dict = dict()
 
     @staticmethod
@@ -105,7 +105,7 @@ class Token(TempObj):
         for f in self.uploaded_files:
             try:
                 os.remove(f['encrypted_path'])
-            except:
+            except Exception:
                 pass
 
     def associate_file(self, fileinfo):

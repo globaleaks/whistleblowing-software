@@ -22,7 +22,7 @@ from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, datetime_to_day_str, datetime_now
+from globaleaks.utils.utility import log, datetime_to_day_str
 from globaleaks.settings import GLSettings
 from globaleaks.third_party.rstr import xeger
 
@@ -65,49 +65,42 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
         # "never let attackers do assumptions"
         iterations_number += 1
 
+    log.debug("Starting secure deletion of file %s" % absolutefpath)
+
     try:
-        filesize = os.path.getsize(absolutefpath)
-        log.debug("Starting secure deletion of file %s" % absolutefpath)
-    except OSError as ose:
-        log.err("Unable to open for secure delete %s: %s, trying standard delete" %
-                (ose, absolutefpath))
+        # in the following loop, the file is open and closed on purpose, to trigger flush operations
+        all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
+        all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
+
+        for iteration in xrange(iterations_number):
+            OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
+
+            random_pattern = ""
+            for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
+                random_pattern += str(random.randrange(256))
+
+            log.debug("Excecuting rewrite iteration (%d out of %d)" %
+                      (iteration, iterations_number))
+
+            _overwrite(absolutefpath, all_zeros)
+            log.debug("Overwritten file %s with all zeros pattern" % absolutefpath)
+
+            _overwrite(absolutefpath, all_ones)
+            log.debug("Overwritten file %s with all ones pattern" % absolutefpath)
+
+            _overwrite(absolutefpath, random_pattern)
+            log.debug("Overwritten file %s with random pattern" % absolutefpath)
+
+    except Exception as ee:
+        log.err("Unable to perform secure overwrite for file %s: %s" %
+                (absolutefpath, e))
+
+    finally:
         try:
             os.remove(absolutefpath)
         except OSError as remove_ose:
-            log.err("Unable to perform standard delete on %s: %s" %
-                    (remove_ose, absolutefpath))
-
-        log.debug("Performed standard deletion of file: %s" % absolutefpath)
-        return
-
-    # in the following loop, the file is open and closed on purpose, to trigger flush operations
-    all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
-    all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
-
-    for iteration in xrange(iterations_number):
-        OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
-
-        random_pattern = ""
-        for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
-            random_pattern += str(random.randrange(256))
-
-        log.debug("Excecuting rewrite iteration (%d out of %d)" %
-                  (iteration, iterations_number))
-
-        _overwrite(absolutefpath, all_zeros)
-        log.debug("Overwritten file %s with all zeros pattern" % absolutefpath)
-
-        _overwrite(absolutefpath, all_ones)
-        log.debug("Overwritten file %s with all ones pattern" % absolutefpath)
-
-        _overwrite(absolutefpath, random_pattern)
-        log.debug("Overwritten file %s with random pattern" % absolutefpath)
-
-    try:
-        os.remove(absolutefpath)
-    except OSError as remove_ose:
-        log.err("Unable to perform unlink operation on file %s: %s" %
-                (absolutefpath, remove_ose))
+            log.err("Unable to perform unlink operation on file %s: %s" %
+                    (absolutefpath, remove_ose))
 
     log.debug("Performed deletion of file file: %s" % absolutefpath)
 

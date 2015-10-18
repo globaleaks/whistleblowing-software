@@ -106,8 +106,8 @@ class CleaningSchedule(GLJob):
         GLSettings.exceptions = {}
         GLSettings.exceptions_email_count = 0
 
-        itip_list_id = yield self.get_cleaning_map()
-        for i, itip_id in enumerate(itip_list_id):
+        itip_list_ids = yield self.get_cleaning_map()
+        for itip_id in itip_list_ids:
             yield self.perform_cleaning(itip_id)
 
         yield self.perform_stats_cleaning()

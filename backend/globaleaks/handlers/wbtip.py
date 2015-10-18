@@ -19,7 +19,7 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip, ArchivedSchema
+from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
 
