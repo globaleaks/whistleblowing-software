@@ -11,10 +11,12 @@ var GLClient = angular.module('GLClient', [
     'GLDirectives',
     'GLFilters'
   ]).
-  config(['$compileProvider', '$routeProvider', '$translateProvider', '$tooltipProvider',
-    function($compileProvider, $routeProvider, $translateProvider, $tooltipProvider) {
+  config(['$compileProvider', '$httpProvider', '$routeProvider', '$translateProvider', '$tooltipProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $translateProvider, $tooltipProvider) {
 
     $compileProvider.debugInfoEnabled(false);
+
+    $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
     $routeProvider.
       when('/wizard', {
@@ -220,18 +222,19 @@ var GLClient = angular.module('GLClient', [
       fromError: StackTrace.fromError
     });
 }).
+  factory('globaleaksRequestInterceptor', ['$rootScope', function($rootScope) {
+    return {
+     'request': function(config) {
+       angular.extend(config.headers, $rootScope.get_auth_headers());
+       return config;
+     }
+   }
+}]).
   config(exceptionConfig).
   run(['$http', '$rootScope', '$location', function ($http, $rootScope, $location) {
-     $rootScope.successes = [];
-     $rootScope.errors = [];
-     $rootScope.loginInProgress = false;
-
-     var globaleaksRequestInterceptor = function(data, headers) {
-        headers = angular.extend(headers(), $rootScope.get_auth_headers());
-        return data;
-    };
-
-    $http.defaults.transformRequest.push(globaleaksRequestInterceptor);
+    $rootScope.successes = [];
+    $rootScope.errors = [];
+    $rootScope.loginInProgress = false;
 
     // register listener to watch route changes
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
