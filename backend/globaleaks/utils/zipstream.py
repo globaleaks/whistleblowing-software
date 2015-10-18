@@ -209,10 +209,9 @@ class ZipStream(object):
             pass
         elif compression == ZIP_DEFLATED:
             if not zlib:
-                raise RuntimeError,\
-                      "Compression requires the (missing) zlib module"
+                raise RuntimeError("Compression requires the (missing) zlib module")
         else:
-            raise RuntimeError, "That compression method is not supported"
+            raise RuntimeError("That compression method is not supported")
 
         self.files = files
         self.compression = compression

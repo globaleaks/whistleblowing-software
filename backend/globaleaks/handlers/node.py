@@ -245,7 +245,7 @@ def get_public_context_list(store, language):
 
     for context in contexts:
         if context.receivers.count():
-           context_list.append(anon_serialize_context(store, context, language))
+            context_list.append(anon_serialize_context(store, context, language))
 
     return context_list
 

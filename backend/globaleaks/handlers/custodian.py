@@ -25,7 +25,7 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
         'request_motivation': identityaccessrequest.request_motivation,
         'reply_date': datetime_to_ISO8601(identityaccessrequest.reply_date),
         'reply_user_name': identityaccessrequest.reply_user.name \
-            if identityaccessrequest.reply_user is not None else '',
+                if identityaccessrequest.reply_user is not None else '',
         'reply': identityaccessrequest.reply,
         'reply_motivation': identityaccessrequest.reply_motivation,
         'submission_date': datetime_to_ISO8601(identityaccessrequest.receivertip.internaltip.creation_date)

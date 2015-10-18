@@ -20,21 +20,21 @@ from globaleaks.utils.structures import fill_localized_keys
 
 
 def db_create_step(store, step, language):
-     """
-     Create the specified step
- 
-     :param store: the store on which perform queries.
-     :param language: the language of the specified steps.
-     """
-     fill_localized_keys(step, models.Step.localized_strings, language)
+    """
+    Create the specified step
 
-     s = models.Step.new(store, step)
+    :param store: the store on which perform queries.
+    :param language: the language of the specified steps.
+    """
+    fill_localized_keys(step, models.Step.localized_strings, language)
 
-     for c in step['children']:
-         c['step_id'] = s.id
-         s.children.add(db_create_field(store, c, language))
+    s = models.Step.new(store, step)
 
-     return s
+    for c in step['children']:
+        c['step_id'] = s.id
+        s.children.add(db_create_field(store, c, language))
+
+    return s
 
 
 @transact
