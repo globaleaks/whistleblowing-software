@@ -16,7 +16,6 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', function($scope) {
 
 GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
   function($scope, $modal) {
-
     $scope.editing = false;
 
     $scope.toggleEditing = function () {
@@ -38,7 +37,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.admin.field['delete']({
         id: field.id
       }, function() {
-        $scope.step.splice($scope.step.indexOf(field), 1);
+        $scope.step.splice($scope.step.children.indexOf(field), 1);
       });
     };
 
