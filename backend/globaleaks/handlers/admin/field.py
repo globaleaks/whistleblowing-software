@@ -22,15 +22,22 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 
-def associate_field(store, field, step=None, fieldgroup=None):
+def associate_field(store, field, template=None, step=None, fieldgroup=None):
     """
     Associate a field to a specified step or fieldgroup
 
-    :param store: the store on which perform queries.
-    :param field: the field to be associated.
+    :param store: the store on which perform queries
+    :param field: the field to be associated
+    :param template: the template to which bind the field
     :param step: the step to which associate the field
     :param fieldgroup: the fieldgroup to which associate the field
     """
+    if template:
+        if field.instance != 'reference':
+             raise errors.InvalidInputFormat("Only fields of kind reference can be binded to a template")
+
+        field.template_id = template.id
+
     if step:
         if field.instance == 'template':
             raise errors.InvalidInputFormat("Cannot associate a field template to a step")
@@ -38,8 +45,8 @@ def associate_field(store, field, step=None, fieldgroup=None):
         step.children.add(field)
 
     if fieldgroup:
-        if field.instance != fieldgroup.instance:
-            raise errors.InvalidInputFormat("Cannot associate field templates with fields")
+        if field.instance == 'template':
+            raise errors.InvalidInputFormat("Cannot associate field template to a field")
 
         ancestors = set(fieldtree_ancestors(store, fieldgroup))
 
@@ -162,10 +169,12 @@ def field_integrity_check(store, field):
     Preliminar validations of field descriptor in relation to:
     - step_id
     - fieldgroup_id
-    - instannce
+      template_id
+    - instance type
 
     :param field: the field dict to be validated
     """
+    template = None
     step = None
     fieldgroup = None
 
@@ -174,6 +183,11 @@ def field_integrity_check(store, field):
 
     if field['instance'] != 'template' and (field['step_id'] != '' and field['fieldgroup_id'] != ''):
         raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
+
+    if field['template_id'] != '':
+        template = store.find(models.Field, models.Field.id == field['template_id']).one()
+        if not template:
+            raise errors.FieldIdNotFound
 
     if field['step_id'] != '':
         step = store.find(models.Step, models.Step.id == field['step_id']).one()
@@ -185,7 +199,7 @@ def field_integrity_check(store, field):
         if not fieldgroup:
             raise errors.FieldIdNotFound
 
-    return field['instance'], step, fieldgroup
+    return field['instance'], template, step, fieldgroup
 
 
 def db_create_field(store, field, language):
@@ -197,26 +211,17 @@ def db_create_field(store, field, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    _, step, fieldgroup = field_integrity_check(store, field)
+    _, template, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
 
-    if field['instance'] != 'reference':
-        field['template_id'] = None
-
-    if field['step_id'] == '':
-        field['step_id'] = None
-
-    if field['fieldgroup_id'] == '':
-        field['fieldgroup_id'] = None
-
     f = models.Field.new(store, field)
 
-    if field['template_id'] is None:
+    if field['template_id'] == '':
         db_update_fieldattrs(store, f.id, field['attrs'], language)
         db_update_fieldoptions(store, f.id, field['options'], language)
 
-    associate_field(store, f, step, fieldgroup)
+    associate_field(store, f, template, step, fieldgroup)
 
     for c in field['children']:
         c['field_id'] = f.id
@@ -244,18 +249,9 @@ def db_update_field(store, field_id, field, language):
     if not f.editable:
         raise errors.FieldNotEditable
 
-    _, step, fieldgroup = field_integrity_check(store, field)
+    _, template, step, fieldgroup = field_integrity_check(store, field)
 
     fill_localized_keys(field, models.Field.localized_strings, language)
-
-    if field['instance'] != 'reference':
-        field['template_id'] = None
-
-    if field['step_id'] == '':
-        field['step_id'] = None
-
-    if field['fieldgroup_id'] == '':
-        field['fieldgroup_id'] = None
 
     try:
         # make not possible to change field type
@@ -305,7 +301,7 @@ def db_update_field(store, field_id, field, language):
         # remove current step/field fieldgroup/field association
         disassociate_field(store, f)
 
-        associate_field(store, f, step, fieldgroup)
+        associate_field(store, f, template, step, fieldgroup)
     except Exception as dberror:
         log.err('Unable to update field: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)

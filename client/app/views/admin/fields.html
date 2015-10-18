@@ -97,20 +97,20 @@
         <hr />
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
+            <div class="form-group" data-ng-if="editable">
               <label data-translate>Name</label>
-              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" data-ng-disabled="!editable" value="{{field.label}}" type="text" required>
+              <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" value="{{field.label}}" type="text" required />
               <div class="text-red" data-ng-show="editField.label.$error.required">
                 <span data-translate>This field is mandatory</span>
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-if="editable">
               <label data-translate>Hint</label>
-              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" data-ng-disabled="!editable" value="{{field.hint}}" type="text">
+              <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" value="{{field.hint}}" type="text">
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-if="editable">
               <label data-translate>Description</label>
-              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description" data-ng-disabled="!editable">{{field.description}}</textarea>
+              <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description">{{field.description}}</textarea>
             </div>
             <div class="form-group" data-ng-if="::fieldIsMarkableRequired">
               <input data-ng-model="field.required" type="checkbox">
@@ -191,7 +191,7 @@
                     <div class="fieldOption" data-ng-repeat="option in field.options | orderBy:'presentation_order'">
                       <div class="row">
                         <div class="col-md-8">
-                          <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" required data-ng-disabled="!editable" />
+                          <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" value="{{option.label}}" type="text" data-ng-disabled="!editable" required />
                         </div>
                         <div class="col-md-4">
                           <button class="actionButton btn btn-xs btn-danger" data-ng-click="delOption(field, option)">
@@ -235,7 +235,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group" data-ng-if="field.children.length > 0">
+            <div class="form-group" data-ng-if="field.instance !== 'reference' && field.children.length > 0">
               <div class="editorTitle" data-translate>Configured questions:</div>
               <div class="configuredFields">
                 <div data-ng-repeat="field in field.children | orderBy:['y', 'x']">
