@@ -287,7 +287,7 @@ def mail_exception_handler(etype, value, tback):
 
 def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     if (GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit):
-       return
+        return
 
     if isinstance(mail_body, str) or isinstance(mail_body, unicode):
         mail_body = bytes(mail_body)

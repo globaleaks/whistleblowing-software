@@ -35,10 +35,10 @@ def _db_get_archived_fieldoption(fieldoption, language):
 def _db_get_archived_field_recursively(field, language):
     for key, value in field['attrs'].iteritems():
         if field['attrs'][key]['type'] == u'localized':
-             if language in field['attrs'][key]['value']:
-                 field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
-             else:
-                 field['attrs'][key]['value'] = ""
+            if language in field['attrs'][key]['value']:
+                field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
+            else:
+                field['attrs'][key]['value'] = ""
 
     for o in field['options']:
         _db_get_archived_fieldoption(o, language)

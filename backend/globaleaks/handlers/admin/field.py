@@ -47,7 +47,7 @@ def associate_field(store, field, step=None, fieldgroup=None):
            field.template_id == fieldgroup.id or \
            field.template_id in ancestors or \
            fieldgroup.id in ancestors:
-             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+               raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
 
         fieldgroup.children.add(field)
 
@@ -277,7 +277,7 @@ def db_update_field(store, field_id, field, language):
             f.children.clear()
             for child in children:
                 if child['id'] == f.id or child['id'] in ancestors:
-                     raise errors.FieldIdNotFound
+                    raise errors.FieldIdNotFound
 
                 c = db_update_field(store, child['id'], child, language)
 

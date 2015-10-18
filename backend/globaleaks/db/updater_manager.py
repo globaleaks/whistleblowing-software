@@ -163,17 +163,17 @@ def perform_version_update(starting_ver, ending_ver):
                 m_to = updater_code.get_right_model(model_name, starting_ver + 1)
 
                 if m_from is not None and m_to is not None:
-                   count = updater_code.store_new.find(m_to).count()
-                   if updater_code.entries_count[model_name] != count:
-                       if updater_code.fail_on_count_mismatch[model_name]:
-                           raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
+                     count = updater_code.store_new.find(m_to).count()
+                     if updater_code.entries_count[model_name] != count:
+                         if updater_code.fail_on_count_mismatch[model_name]:
+                             raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
                                                 (model_name, count, updater_code.entries_count[model_name]))
-                       else:
-                           print " * %s table migrated (entries count changed from %d to %d)" % \
-                               (model_name, updater_code.entries_count[model_name], count)
-                   else:
-                       print " * %s table migrated (%d entry(s))" % \
-                           (model_name, updater_code.entries_count[model_name])
+                         else:
+                             print " * %s table migrated (entries count changed from %d to %d)" % \
+                                     (model_name, updater_code.entries_count[model_name], count)
+                     else:
+                         print " * %s table migrated (%d entry(s))" % \
+                                 (model_name, updater_code.entries_count[model_name])
 
             # epilogue can be used to perform operation once, not related to the tables
             updater_code.epilogue()
