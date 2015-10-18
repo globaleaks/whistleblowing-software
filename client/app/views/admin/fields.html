@@ -227,7 +227,9 @@
                 <span data-translate>Add new question</span>
               </div>
               <div data-ng-include="'views/admin/add_field.html'"></div>
-              <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
+              <div data-ng-if="(field.step_id !== '' || field.fieldgroup_id !== '') && admin.field_templates.length > 0">
+                <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
+              </div>
             </div>
           </div>
         </div>

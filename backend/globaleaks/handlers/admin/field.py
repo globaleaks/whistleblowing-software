@@ -397,13 +397,9 @@ def get_fieldtemplates_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    ret = []
-
-    for f in store.find(models.Field, models.Field.instance == u'template'):
-        #if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
-        ret.append(anon_serialize_field(store, f, language))
-
-    return ret
+    return [anon_serialize_field(store, f, language)
+        for f in store.find(models.Field,
+                            And(models.Field.instance == u'template', models.Field.fieldgroup_id == None))]
 
 
 class FieldTemplatesCollection(BaseHandler):
