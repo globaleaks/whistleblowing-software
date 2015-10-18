@@ -37,7 +37,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       $scope.admin.field['delete']({
         id: field.id
       }, function() {
-        $scope.step.splice($scope.step.children.indexOf(field), 1);
+        $scope.step.children.splice($scope.step.children.indexOf(field), 1);
       });
     };
 
