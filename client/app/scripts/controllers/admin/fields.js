@@ -1,5 +1,6 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
-    $scope.admin.field_templates.$promise.then(function(fields) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, AdminTemplateResource, AdminFieldTemplateResource) {
+    $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
 
@@ -8,7 +9,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
     };
 
     $scope.delField = function(fields, field) {
-      $scope.admin.fieldtemplate['delete']({
+      AdminFieldTemplateResource['delete']({
         id: field.id
       }, function() {
         $scope.deleteFromList(fields, field);
@@ -26,17 +27,24 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
 
       var updated_field;
       if (field.instance == 'template') {
-        updated_field = new $scope.admin.fieldtemplate(field);
+        updated_field = new AdminFieldTemplateResource(field);
       } else {
-        updated_field = new $scope.admin.field(field);
+        updated_field = new AdminFieldResource(field);
       }
 
       $scope.update(updated_field);
     };
 
-    $scope.exportQuestions = function() {
-      AdminFieldTemplatesResource.query().$promise.then(function(fields) {
-        $scope.exportJSON(fields);
+    $scope.exportQuestionTemplates = function() {
+      console.log("aaa");
+      AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
+        $scope.exportJSON(fields, 'question-templates.json');
+      });
+    };
+
+    $scope.exportQuestion = function(id) {
+      AdminFieldTemplateResource.get({export: true, id: id}).$promise.then(function(field) {
+        $scope.exportJSON(field, 'question-' + id + '.json');
       });
     };
 
@@ -47,7 +55,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
       }
 
       angular.forEach(fields, function(field) {
-        var field = new $scope.admin.fieldtemplate(field);
+        var field = new AdminFieldTemplateResource(field);
         field.id = '';
         field.$save(function(new_field){
           $scope.fields.push(new_field);

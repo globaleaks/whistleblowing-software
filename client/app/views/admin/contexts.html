@@ -40,7 +40,7 @@
         </span>
         <span class="col-md-4 text-align-right">
           <button class="actionButton btn btn-xs btn-primary"
-            data-ng-click="exportJSON(admin.contexts, 'contexts.json')">
+            data-ng-click="exportContexts()">
             <span data-translate>Export all</span>
           </button>
         </span>
@@ -55,7 +55,7 @@
               <span class="col-md-5">
                 <span class="pull-right">
                   <button class="actionButton btn btn-xs btn-primary"
-                    data-ng-click="exportJSON(context, 'context-' + context.id + '.json'); $event.stopPropagation();">
+                    data-ng-click="exportContext(context.id); $event.stopPropagation();">
                     <span data-translate>Export</span>
                   </button>
                   <button class="actionButton btn btn-xs btn-default"

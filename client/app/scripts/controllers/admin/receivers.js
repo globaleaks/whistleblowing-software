@@ -1,4 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, $modal) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', 'AdminReceiverResource',
+  function($scope, $modal, AdminReceiverResource) {
   $scope.save_receiver = function(receiver, cb) {
     if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';
@@ -9,14 +10,14 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', function($scope, 
       receiver.pgp_key_remove = false;
     }
 
-    var updated_receiver = new $scope.admin.receiver(receiver);
+    var updated_receiver = new AdminReceiverResource(receiver);
 
     return $scope.update(updated_receiver, cb);
 
   };
 
   $scope.perform_delete = function(receiver) {
-    $scope.admin.receiver['delete']({
+    AdminReceiverResource['delete']({
       id: receiver.id
     }, function(){
       var idx = $scope.admin.receivers.indexOf(receiver);
