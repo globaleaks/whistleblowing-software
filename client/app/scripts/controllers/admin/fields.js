@@ -48,7 +48,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
 
       angular.forEach(fields, function(field) {
         var field = new $scope.admin.fieldtemplate(field);
-        delete field.id;
+        field.id = '';
         field.$save(function(new_field){
           $scope.fields.push(new_field);
         });

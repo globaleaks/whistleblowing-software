@@ -22,7 +22,7 @@ GLClient.controller('AdminContextsCtrl',
 
     angular.forEach(contexts, function(context) {
       var context = new $scope.admin.context(context);
-      delete context.id;
+      context.id = '';
       context.$save(function(new_context){
         $scope.admin.contexts.push(new_context);
       });
