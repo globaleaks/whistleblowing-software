@@ -1,0 +1,968 @@
+{
+  "multi_entry": false,
+  "attrs": {},
+  "id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+  "children": [
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "2a3c71eb-6898-407d-a1f9-af6eeb08d609",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Name"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 0,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "e562f090-41f5-472a-b36b-fe9b01acfff6",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Surname"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 0,
+      "x": 1,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {},
+      "id": "994961dd-7d4d-442d-a63b-a8027a4e8e49",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Sex"
+      },
+      "width": 3,
+      "preview": false,
+      "type": "selectbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 2,
+      "x": 0,
+      "options": [
+        {
+          "presentation_order": 0,
+          "activated_steps": [],
+          "activated_fields": [],
+          "score_points": 0,
+          "label": {
+            "en": "Male"
+          },
+          "id": "abf7c36a-1163-4ab0-85f6-db416944f333"
+        },
+        {
+          "presentation_order": 1,
+          "activated_steps": [],
+          "activated_fields": [],
+          "score_points": 0,
+          "label": {
+            "en": "Female"
+          },
+          "id": "6c7ae7dc-418a-4181-b561-a18d802833ca"
+        },
+        {
+          "presentation_order": 2,
+          "activated_steps": [],
+          "activated_fields": [],
+          "score_points": 0,
+          "label": {
+            "en": "Other"
+          },
+          "id": "71f39b83-2dd5-4c2d-b2f0-f38fb7530a92"
+        }
+      ]
+    },
+    {
+      "multi_entry": false,
+      "attrs": {},
+      "id": "dc928e30-7527-49a2-abcd-6384cf03e4ed",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Date of birth"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "date",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 3,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "2c9f0a3a-fd45-4f8f-b35f-3bc3c63e69e2",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Place of birth"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 3,
+      "x": 1,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "7556d440-3d8d-4c30-b4ba-8571d0a51da9",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Social security number"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 5,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {},
+      "id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+      "children": [
+        {
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "id": "537b5a04-46f3-4a33-b474-437e74cb08b1",
+          "children": [],
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "label": {
+            "en": "Address"
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "description": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "editable": true,
+          "activated_by_score": 0,
+          "key": "",
+          "step_id": "",
+          "required": true,
+          "activated_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 0,
+          "x": 0,
+          "options": []
+        },
+        {
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "id": "b147535b-4a38-43f2-b9aa-850ff5afc53d",
+          "children": [],
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "label": {
+            "en": "Zip code / Postal Code"
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "description": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "editable": true,
+          "activated_by_score": 0,
+          "key": "",
+          "step_id": "",
+          "required": true,
+          "activated_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 0,
+          "x": 1,
+          "options": []
+        },
+        {
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "id": "9c69cf0a-998e-4764-8ff2-e15e0b8b348a",
+          "children": [],
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "label": {
+            "en": "City"
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "description": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "editable": true,
+          "activated_by_score": 0,
+          "key": "",
+          "step_id": "",
+          "required": true,
+          "activated_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 0,
+          "options": []
+        },
+        {
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "id": "ca0b6818-52b6-46eb-b887-27b52fe0d776",
+          "children": [],
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "label": {
+            "en": "Province"
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "description": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "editable": true,
+          "activated_by_score": 0,
+          "key": "",
+          "step_id": "",
+          "required": true,
+          "activated_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 1,
+          "options": []
+        },
+        {
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            }
+          },
+          "id": "7d4c259c-b050-4642-b03b-2b070b296caa",
+          "children": [],
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "label": {
+            "en": "State"
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "description": {
+            "en": ""
+          },
+          "stats_enabled": false,
+          "editable": true,
+          "activated_by_score": 0,
+          "key": "",
+          "step_id": "",
+          "required": true,
+          "activated_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 2,
+          "options": []
+        }
+      ],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Residence"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "fieldgroup",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 6,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "fa6deba5-b8d1-474b-a051-77af646a0ed7",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Current job title"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 8,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "aaa15930-ab5b-49b9-9b6a-78d166cc0b83",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Current job responsibility (role)"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 8,
+      "x": 1,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "b8990c73-d221-4581-88bd-d9c9a953c4ac",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Current organization unit and job location"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 9,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "3c3c2ca9-210f-4cf2-89ff-1adf39dc6c7f",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Job title at the time of the reported fact"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 10,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "79d752e5-1e26-43d8-be89-e1ad839f26fe",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Job responsibility (role) at the time of the reported fact"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 10,
+      "x": 1,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "edb14e7a-23c7-4703-893e-9cde35046be8",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Organization unit and job location at the time of the reported fact"
+      },
+      "width": 0,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": false,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 11,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "47fc9c67-48f0-4153-be86-8eaa269e52b7",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Telephone number"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 7,
+      "x": 0,
+      "options": []
+    },
+    {
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        }
+      },
+      "id": "26139a25-1b9a-45c4-90bf-344490a1ab12",
+      "children": [],
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "label": {
+        "en": "Email address"
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "description": {
+        "en": ""
+      },
+      "stats_enabled": false,
+      "editable": true,
+      "activated_by_score": 0,
+      "key": "",
+      "step_id": "",
+      "required": true,
+      "activated_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 7,
+      "x": 0,
+      "options": []
+    }
+  ],
+  "instance": "template",
+  "hint": {
+    "en": ""
+  },
+  "label": {
+    "en": "Do you want to provide your identification information?"
+  },
+  "width": 0,
+  "preview": false,
+  "type": "fieldgroup",
+  "fieldgroup_id": "",
+  "description": {
+    "en": ""
+  },
+  "stats_enabled": false,
+  "editable": true,
+  "activated_by_score": 0,
+  "key": "",
+  "step_id": "",
+  "required": false,
+  "activated_by_options": [],
+  "multi_entry_hint": {
+    "en": ""
+  },
+  "template_id": "",
+  "y": 0,
+  "x": 0,
+  "options": []
+}
