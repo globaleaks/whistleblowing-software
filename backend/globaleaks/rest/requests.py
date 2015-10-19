@@ -260,6 +260,7 @@ AdminFieldOptionDesc = {
 }
 
 AdminFieldDesc = {
+    'id': uuid_regexp_or_empty,
     'key': unicode,
     'instance': field_instance_regexp,
     'editable': bool,
@@ -284,6 +285,7 @@ AdminFieldDesc = {
 }
 
 AdminStepDesc = {
+    'id': uuid_regexp_or_empty,
     'label': unicode,
     'hint': unicode,
     'description': unicode,
@@ -293,6 +295,7 @@ AdminStepDesc = {
 }
 
 AdminContextDesc = {
+    'id': uuid_regexp_or_empty,
     'name': unicode,
     'description': unicode,
     'maximum_selectable_receivers': int,
@@ -315,6 +318,7 @@ AdminContextDesc = {
 }
 
 AdminReceiverDesc = {
+    'id': uuid_regexp_or_empty,
     'username': unicode,
     'role': user_roles_regexp,
     'name': unicode,

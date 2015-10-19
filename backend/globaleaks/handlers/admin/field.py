@@ -224,7 +224,7 @@ def db_create_field(store, field, language):
     associate_field(store, f, template, step, fieldgroup)
 
     for c in field['children']:
-        c['field_id'] = f.id
+        c['fieldgroup_id'] = f.id
         field = db_create_field(store, c, language)
         f.children.add(field)
 

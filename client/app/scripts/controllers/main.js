@@ -192,6 +192,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       elem[key] += 1;
     };
 
+    $scope.deleteFromList = function(list, elem) {
+      var idx = list.indexOf(elem);
+      if (idx !== -1) {
+        list.splice(idx, 1);
+      }
+    };
+
     $scope.assignUniqueOrderIndex = function(elements) {
       if (elements.length <= 0) {
         return;

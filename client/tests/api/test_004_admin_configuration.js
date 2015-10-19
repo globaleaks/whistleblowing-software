@@ -28,6 +28,7 @@ var valid_admin_login = {
 }
 
 var receiver = {
+  id: '',
   role: 'receiver',
   username: '',
   name: '',
@@ -171,6 +172,7 @@ var fields = [
 ]
 
 var context = {
+  id: '',
   name: 'Context 1',
   description: 'XXXXX ħ ÐÐ',
   presentation_order: 0,
