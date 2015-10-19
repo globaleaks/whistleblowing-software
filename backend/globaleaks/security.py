@@ -91,7 +91,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
             _overwrite(absolutefpath, random_pattern)
             log.debug("Overwritten file %s with random pattern" % absolutefpath)
 
-    except Exception as ee:
+    except Exception as e:
         log.err("Unable to perform secure overwrite for file %s: %s" %
                 (absolutefpath, e))
 
