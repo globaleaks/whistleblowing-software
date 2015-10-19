@@ -17,27 +17,22 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', function($scope) {
 GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
   function($scope, $modal) {
     $scope.editing = false;
+    $scope.new_field = {};
+    $scope.fields = $scope.step.children;
 
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
-    };
-
-    $scope.deleteFromList = function(list, elem) {
-      var idx = list.indexOf(elem);
-      if (idx !== -1) {
-        list.splice(idx, 1);
-      }
     };
 
     $scope.addField = function(field) {
       $scope.step.children.push(field);
     };
 
-    $scope.delField = function(field) {
+    $scope.delField = function(fields, field) {
       $scope.admin.field['delete']({
         id: field.id
       }, function() {
-        $scope.step.children.splice($scope.step.children.indexOf(field), 1);
+        $scope.deleteFromList(fields, field);
       });
     };
 
@@ -51,8 +46,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       var updated_step = new $scope.admin.step(step);
       return $scope.update(updated_step);
     };
-
-    $scope.new_field = {};
 
     $scope.add_field = function() {
       var field = $scope.admin.new_field($scope.step.id, '');
@@ -71,7 +64,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
       var field = $scope.admin.new_field_from_template(template_id, $scope.step.id, '');
       field.y = $scope.newItemOrder($scope.step.children, 'y');
 
-      field.$save(function(new_field){
+      field.$save(function(new_field) {
         $scope.step.children.push(new_field);
       });
     };

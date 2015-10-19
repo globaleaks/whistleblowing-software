@@ -3,28 +3,21 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
       $scope.fields = fields;
     });
 
-    $scope.deleteFromList = function(list, elem) {
-      var idx = list.indexOf(elem);
-      if (idx !== -1) {
-        list.splice(idx, 1);
-      }
-    };
-
     $scope.addField = function(new_field) {
       $scope.fields.push(new_field);
     };
 
-    $scope.delField = function(field) {
+    $scope.delField = function(fields, field) {
       $scope.admin.fieldtemplate['delete']({
         id: field.id
       }, function() {
-        $scope.fields.splice($scope.fields.indexOf(field), 1);
+        $scope.deleteFromList(fields, field);
       });
     };
 
     $scope.delAllFields = function() {
       angular.forEach($scope.fields, function(field) {
-        $scope.delField(field);
+        $scope.delField($scope.fields, field);
       });
     };
 
@@ -69,6 +62,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
   function($scope, $modal) {
     $scope.editable = $scope.field.instance != 'reference';
     $scope.editing = false;
+    $scope.new_field = {};
+    $scope.fields = $scope.field.children;
 
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -152,8 +147,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
       $scope.moveRight(elem);
       $scope.save_field(elem);
     };
-
-    $scope.new_field = {};
 
     $scope.add_field = function() {
       var field = $scope.admin.new_field('', $scope.field.id);
