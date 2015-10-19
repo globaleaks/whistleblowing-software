@@ -45,7 +45,7 @@ def associate_field(store, field, template=None, step=None, fieldgroup=None):
         step.children.add(field)
 
     if fieldgroup:
-        if field.instance == 'template':
+        if field.instance == 'template' and fieldgroup.instance != 'template':
             raise errors.InvalidInputFormat("Cannot associate field template to a field")
 
         ancestors = set(fieldtree_ancestors(store, fieldgroup))
@@ -441,7 +441,9 @@ class FieldTemplateInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         response = yield get_field(field_id, self.request.language)
+
         self.set_status(200)
+
         self.finish(response)
 
     @transport_security_check('admin')
@@ -460,6 +462,9 @@ class FieldTemplateInstance(BaseHandler):
                                         requests.AdminFieldDesc)
 
         response = yield update_field(field_id, request, self.request.language)
+
+        GLApiCache.invalidate('contexts')
+
         self.set_status(202) # Updated
         self.finish(response)
 
@@ -474,6 +479,9 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         """
         yield delete_field(field_id)
+
+        GLApiCache.invalidate('contexts')
+
         self.set_status(200)
 
 
@@ -549,7 +557,6 @@ class FieldInstance(BaseHandler):
 
         response = yield update_field(field_id, request, self.request.language)
 
-        # get the updated list of contexts, and update the cache
         GLApiCache.invalidate('contexts')
 
         self.set_status(202) # Updated
@@ -568,7 +575,6 @@ class FieldInstance(BaseHandler):
         """
         yield delete_field(field_id)
 
-        # get the updated list of contexts, and update the cache
         GLApiCache.invalidate('contexts')
 
         self.set_status(200)
