@@ -633,6 +633,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_context = function() {
           var context = new AdminContextResource();
+          context.id = '';
           context.name = '';
           context.description = '';
           context.presentation_order = 0;
@@ -657,6 +658,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_step = function(context_id) {
           var step = new AdminStepResource();
+          step.id = '';
           step.label = '';
           step.description = '';
           step.hint = '';
@@ -693,7 +695,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_field = function(step_id, fieldgroup_id) {
           var field = new AdminFieldResource();
-          field.id
+          field.id = '';
           field.key = '';
           field.instance = 'instance';
           field.editable = true;
@@ -728,6 +730,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_field_template = function (fieldgroup_id) {
           var field = new AdminFieldTemplateResource();
+          field.id = '';
           field.key = '';
           field.instance = 'template';
           field.editable = true;
@@ -754,6 +757,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_user = function () {
           var user = new AdminUserResource();
+          user.id = '';
           user.username = '';
           user.role = 'receiver';
           user.state = 'enable';
@@ -778,6 +782,7 @@ angular.module('GLServices', ['ngResource']).
 
         self.new_receiver = function () {
           var receiver = new AdminReceiverResource();
+          receiver.id = '';
           receiver.username = '';
           receiver.role = 'receiver';
           receiver.state = 'enable';

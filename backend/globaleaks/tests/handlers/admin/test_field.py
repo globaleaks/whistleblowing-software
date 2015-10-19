@@ -262,7 +262,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             types = [field.get('type') for field in fields]
             self.assertGreater(len(fields), 0)
             self.assertNotIn(None, ids)
-            self.assertIn('27121164-0d0f-4180-9e9c-b1f72e815105', ids)
+            self.assertIn('37242164-1b1f-1110-1e1c-b1f12e815105', ids)
             self.assertGreater(types.count('fieldgroup'), 0)
 
             # check tha childrens are not present in the list

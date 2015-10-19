@@ -251,6 +251,7 @@ class TestGL(unittest.TestCase):
 
     def get_dummy_field(self):
         return {
+            'id': '',
             'key': '',
             'instance': 'instance',
             'editable': True,
@@ -698,6 +699,7 @@ class MockDict():
 
     def __init__(self):
         self.dummyUser = {
+            'id': '',
             'username': u'maker@iz.cool.yeah',
             'password': VALID_PASSWORD1,
             'old_password': '',
@@ -909,6 +911,7 @@ class MockDict():
 
         self.dummySteps = [
             {
+                'id': '',
                 'label': u'Step 1',
                 'description': u'Step Description',
                 'hint': u'Step Hint',
@@ -916,6 +919,7 @@ class MockDict():
                 'children': []
             },
             {
+                'id': '',
                 'label': u'Step 2',
                 'description': u'Step Description',
                 'hint': u'Step Hint',
@@ -925,7 +929,7 @@ class MockDict():
         ]
 
         self.dummyContext = {
-            # localized stuff
+            'id': '',
             'name': u'Already localized name',
             'description': u'Already localized desc',
             'presentation_order': 0,
@@ -933,7 +937,6 @@ class MockDict():
             'receivers': [],
             'steps': [],
             'select_all_receivers': True,
-            # tip_timetolive is expressed in days
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
