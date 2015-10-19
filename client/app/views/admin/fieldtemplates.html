@@ -26,7 +26,7 @@
         </span>
         <span class="col-md-4 text-align-right">
           <button class="actionButton btn btn-xs btn-primary"
-                  data-ng-click="exportJSON(admin.field_templates, 'questions.json')">
+                  data-ng-click="exportQuestionTemplates()">
             <span data-translate>Export all</span>
           </button>
           <button class="btn btn-xs btn-danger"
@@ -38,7 +38,7 @@
           </button>
         </span>
       </div>
-      <div data-ng-repeat="field in admin.field_templates | orderBy:'label'">
+      <div data-ng-repeat="field in admin.fieldtemplates | orderBy:'label'">
         <div data-ng-include="'views/admin/fields.html'"></div>
       </div>
     </div>

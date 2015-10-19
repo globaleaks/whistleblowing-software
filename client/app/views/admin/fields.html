@@ -44,7 +44,7 @@
           <span class="col-md-6">
             <span class="pull-right">
               <button class="actionButton btn btn-xs btn-primary"
-                data-ng-click="exportJSON(field, 'question-' + field.id + '.json'); $event.stopPropagation();">
+                data-ng-click="exportQuestion(field.id); $event.stopPropagation();">
                 <span data-translate>Export</span>
               </button>
               <button class="actionButton btn btn-xs btn-default"
@@ -227,7 +227,7 @@
                 <span data-translate>Add new question</span>
               </div>
               <div data-ng-include="'views/admin/add_field.html'"></div>
-              <div data-ng-if="(field.step_id !== '' || field.fieldgroup_id !== '') && admin.field_templates.length > 0">
+              <div data-ng-if="(field.step_id !== '' || field.fieldgroup_id !== '') && admin.fieldtemplates.length > 0">
                 <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
               </div>
             </div>

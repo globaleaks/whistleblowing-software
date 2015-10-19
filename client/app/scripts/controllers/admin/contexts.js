@@ -1,16 +1,22 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', '$modal', 'AdminContextsResource',
-  function($scope, $modal, AdminContextsResource) {
+  ['$scope', '$modal', 'AdminContextResource',
+  function($scope, $modal, AdminContextResource) {
 
   $scope.save_context = function (context, cb) {
-    var updated_context = new $scope.admin.context(context);
+    var updated_context = new AdminContextResource(context);
 
     return $scope.update(updated_context, cb);
   };
 
   $scope.exportContexts = function() {
-    AdminContextsResource.query().$promise.then(function(contexts) {
-      $scope.exportJSON(contexts);
+    AdminContextResource.query({export: true}).$promise.then(function(contexts) {
+      $scope.exportJSON(contexts, 'contexts.json');
+    });
+  };
+
+  $scope.exportContext = function(id) {
+    AdminContextResource.get({export: true, id: id}).$promise.then(function(context) {
+      $scope.exportJSON(context, 'context-' + id + '.json');
     });
   };
 
@@ -21,7 +27,7 @@ GLClient.controller('AdminContextsCtrl',
     }
 
     angular.forEach(contexts, function(context) {
-      var context = new $scope.admin.context(context);
+      var context = new AdminContextResource(context);
       context.id = '';
       context.$save(function(new_context){
         $scope.admin.contexts.push(new_context);
@@ -30,7 +36,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.perform_delete = function(context) {
-    $scope.admin.context['delete']({
+    AdminContextResource['delete']({
       id: context.id
     }, function(){
       var idx = $scope.admin.contexts.indexOf(context);

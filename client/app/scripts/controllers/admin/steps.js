@@ -1,4 +1,5 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope', function($scope) {
+GLClient.controller('AdminStepAddCtrl', ['$scope', 'AdminStepResource', 'AdminFieldResource',
+  function($scope, AdminStepResource, AdminFieldResource) {
     $scope.new_step = {};
 
     $scope.add_step = function() {
@@ -29,7 +30,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.delField = function(fields, field) {
-      $scope.admin.field['delete']({
+      AdminFieldResource['delete']({
         id: field.id
       }, function() {
         $scope.deleteFromList(fields, field);
@@ -43,7 +44,7 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
     };
 
     $scope.save_step = function(step) {
-      var updated_step = new $scope.admin.step(step);
+      var updated_step = new AdminStepResource(step);
       return $scope.update(updated_step);
     };
 

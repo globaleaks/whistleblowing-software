@@ -446,15 +446,15 @@ angular.module('GLServices', ['ngResource']).
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiversResource', 'RTipMessagesResource', 'RTipCommentsResource', 'RTipIdentityAccessRequestResource',
-          function($http, $q, $filter, RTipResource, RTipReceiversResource, RTipMessagesResource, RTipCommentsResource, RTipIdentityAccessRequestResource) {
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
+          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
     return function(tipID, fn) {
       var self = this;
 
       self.tip = RTipResource.get(tipID, function (tip) {
-        tip.receivers = RTipReceiversResource.query(tipID);
-        tip.comments = RTipCommentsResource.query(tipID);
-        tip.messages = RTipMessagesResource.query(tipID);
+        tip.receivers = RTipReceiverResource.query(tipID);
+        tip.comments = RTipCommentResource.query(tipID);
+        tip.messages = RTipMessageResource.query(tipID);
         tip.iars = RTipIdentityAccessRequestResource.query(tipID);
 
         $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
@@ -462,7 +462,7 @@ angular.module('GLServices', ['ngResource']).
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
           tip.newComment = function(content) {
-            var c = new RTipCommentsResource(tipID);
+            var c = new RTipCommentResource(tipID);
             c.content = content;
             c.$save(function(newComment) {
               tip.comments.unshift(newComment);
@@ -470,7 +470,7 @@ angular.module('GLServices', ['ngResource']).
           };
 
           tip.newMessage = function(content) {
-            var m = new RTipMessagesResource(tipID);
+            var m = new RTipMessageResource(tipID);
             m.content = content;
             m.$save(function(newMessage) {
               tip.messages.unshift(newMessage);
@@ -489,23 +489,23 @@ angular.module('GLServices', ['ngResource']).
   factory('WBTipResource', ['GLResource', function(GLResource) {
     return GLResource('wbtip');
 }]).
-  factory('WBTipReceiversResource', ['GLResource', function(GLResource) {
+  factory('WBTipReceiverResource', ['GLResource', function(GLResource) {
     return GLResource('wbtip/receivers');
 }]).
-  factory('WBTipCommentsResource', ['GLResource', function(GLResource) {
+  factory('WBTipCommentResource', ['GLResource', function(GLResource) {
     return GLResource('wbtip/comments');
 }]).
-  factory('WBTipMessagesResource', ['GLResource', function(GLResource) {
+  factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
-  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiversResource', 'WBTipCommentsResource', 'WBTipMessagesResource',
-      function($q, $rootScope, WBTipResource, WBTipReceiversResource, WBTipCommentsResource, WBTipMessagesResource) {
+  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource',
+      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
       var self = this;
 
       self.tip = WBTipResource.get(function (tip) {
-        tip.receivers = WBTipReceiversResource.query();
-        tip.comments = WBTipCommentsResource.query();
+        tip.receivers = WBTipReceiverResource.query();
+        tip.comments = WBTipCommentResource.query();
         tip.messages = [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
@@ -524,7 +524,7 @@ angular.module('GLServices', ['ngResource']).
           });
 
           tip.newComment = function(content) {
-            var c = new WBTipCommentsResource();
+            var c = new WBTipCommentResource();
             c.content = content;
             c.$save(function(newComment) {
               tip.comments.unshift(newComment);
@@ -532,7 +532,7 @@ angular.module('GLServices', ['ngResource']).
           };
 
           tip.newMessage = function(content) {
-            var m = new WBTipMessagesResource({id: tip.msg_receiver_selected});
+            var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
             m.content = content;
             m.$save(function(newMessage) {
               tip.messages.unshift(newMessage);
@@ -541,7 +541,7 @@ angular.module('GLServices', ['ngResource']).
 
           tip.updateMessages = function () {
             if (tip.msg_receiver_selected) {
-              WBTipMessagesResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
+              WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 tip.messages = messageCollection;
               });
             }
@@ -571,9 +571,6 @@ angular.module('GLServices', ['ngResource']).
   factory('ReceiverOverview', ['GLResource', function(GLResource) {
     return GLResource('admin/overview/users');
 }]).
-  factory('AdminContextsResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/contexts');
-}]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return GLResource('admin/contexts/:id', {id: '@id'});
 }]).
@@ -583,20 +580,11 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminFieldResource', ['GLResource', function(GLResource) {
     return GLResource('admin/fields/:id',{id: '@id'});
 }]).
-  factory('AdminFieldTemplatesResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/fieldtemplates');
-}]).
   factory('AdminFieldTemplateResource', ['GLResource', function(GLResource) {
     return GLResource('admin/fieldtemplates/:id', {id: '@id'});
 }]).
-  factory('AdminUsersResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/users');
-}]).
   factory('AdminUserResource', ['GLResource', function(GLResource) {
     return GLResource('admin/users/:id', {id: '@id'});
-}]).
-  factory('AdminReceiversResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/receivers');
 }]).
   factory('AdminReceiverResource', ['GLResource', function(GLResource) {
     return GLResource('admin/receivers/:id', {id: '@id'});
@@ -607,27 +595,21 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return GLResource('admin/notification');
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextsResource', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplatesResource', 'AdminFieldTemplateResource', 'AdminUsersResource', 'AdminUserResource', 'AdminReceiversResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource',
-    function(GLResource, $q, AdminContextsResource, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplatesResource, AdminFieldTemplateResource, AdminUsersResource, AdminUserResource, AdminReceiversResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource',
+    function(GLResource, $q, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource) {
   return function(fn) {
       var self = this;
 
       self.node = AdminNodeResource.get()
-      self.context = AdminContextResource;
-      self.contexts = AdminContextsResource.query();
-      self.step = AdminStepResource;
-      self.field_templates = AdminFieldTemplatesResource.query();
-      self.fieldtemplate = AdminFieldTemplateResource;
-      self.field = AdminFieldResource;
-      self.user = AdminUserResource;
-      self.users = AdminUsersResource.query();
-      self.receiver = AdminReceiverResource;
-      self.receivers = AdminReceiversResource.query();
+      self.contexts = AdminContextResource.query();
+      self.fieldtemplates = AdminFieldTemplateResource.query();
+      self.users = AdminUserResource.query();
+      self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
 
       $q.all([self.node.$promise,
               self.contexts.$promise,
-              self.field_templates.$promise,
+              self.fieldtemplates.$promise,
               self.receivers.$promise,
               self.notification.$promise]).then(function() {
 

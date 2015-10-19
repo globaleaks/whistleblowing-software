@@ -1,4 +1,5 @@
-GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', function($scope, $modal) {
+GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', 'AdminUserResource',
+  function($scope, $modal, AdminUserResource) {
 
   $scope.save_user = function(user, cb) {
     if (user.pgp_key_remove === true) {
@@ -10,15 +11,15 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', function($scope, $mod
       user.pgp_key_remove = false;
     }
 
-    var updated_user = new $scope.admin.user(user);
+    var updated_user = new AdminUserResource(user);
 
     return $scope.update(updated_user, cb);
 
   };
 
   $scope.perform_delete = function(user) {
-    $scope.admin.user['delete']({
-      user_id: user.id
+    AdminUserResource['delete']({
+      id: user.id
     }, function(){
       var idx = $scope.admin.users.indexOf(user);
       $scope.admin.users.splice(idx, 1);
