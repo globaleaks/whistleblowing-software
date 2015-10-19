@@ -16,24 +16,19 @@ from globaleaks.security import get_salt
 from globaleaks.third_party import rstr
 from globaleaks.utils.utility import datetime_null
 
+possible_glclient_paths = [
+    '/usr/share/globaleaks/glclient/',
+    '../../../client/build/',
+    '../../../client/app/'
+]
 
 def load_appdata():
-    """
-    Setup application data evaluating the presence of the following paths:
-        - production data path: /usr/share/globaleaks/glclient/data/
-        - development data paths: ../client/build/data/
-                                  ../client/app/data/
-    """
-    fields_l10n = ["/usr/share/globaleaks/glclient/data/appdata_l10n.json",
-                   "../../../client/build/data/appdata_l10n.json",
-                   "../../../client/app/data/appdata_l10n.json"]
-
     appdata_dict = None
 
     this_directory = os.path.dirname(__file__)
 
-    for fl10n in fields_l10n:
-        fl10n_file = os.path.join(this_directory, fl10n)
+    for path in possible_glclient_paths:
+        fl10n_file = os.path.join(this_directory, path, 'data/appdata_l10n.json')
 
         if os.path.exists(fl10n_file):
             with file(fl10n_file, 'r') as f:
