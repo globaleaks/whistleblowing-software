@@ -1,24 +1,4 @@
-<div data-ng-form="f" data-ng-init="state = {}" data-ng-switch="" on="::field.type" class="submissionFieldInput">
-  <div data-ng-switch-when="inputbox" data-ng-class="{'has-error': f['input-' + $index].$error.required || f['input-' + $index].$error.minlength}">
-    <input id="{{::fieldId + '-input-' + $index}}"
-           name="{{'input-' + $index}}"
-           class="form-control"
-           data-ng-model="entry['value']"
-           data-ng-minlength="field.attrs.min_len.value"
-           maxlength="{{field.attrs.max_len.value}}"
-           data-ng-required="field.required"
-           placeholder="{{::field.placeholder}}"
-           type="text" />
-    <div>
-      <div data-ng-if="field.attrs.max_len.value >= 0 && (field.attrs.max_len.value - entry['value'].length) != field.attrs.max_len.value"
-           data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
-           data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
-      <div class="text-red"
-           data-ng-if="field.attrs.min_len.value >= 0 && (f['input-' + $index].$error.minlength || (field.required && entry['value'].length == undefined))"
-           data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
-           data-translate>FIELD_INPUT_MIN_CHARS</div>
-    </div>
-  </div>
+<div data-ng-form="f" data-ng-switch="" on="::field.type" class="submissionFieldInput">
   <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + $index].$error.required || f['input-' + $index].$error.minlength}">
     <textarea id="{{::fieldId + '-input-' + $index}}"
               name="{{'input-' + $index}}"
@@ -45,14 +25,14 @@
   </div>
   <div data-ng-switch-when="checkbox">
     <div data-ng-repeat="option in ::field.options">
-      <div class="checkbox" data-ng-class="{'has-error': state.required_check}">
+      <div class="checkbox" data-ng-class="{'has-error': field.required_check}">
         <label data-ng-class="{'has-error': f['input-' + $parent.$index + '-option-' + $index].$error.required}">
           <input id="{{::fieldId + '-input-' + $index}}"
                  name="{{'input-' + $parent.$index + '-option-' + $index}}"
-                 data-ng-init="state.required_check = !validateRequiredCheckbox(field, entry)"
+                 data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
                  data-ng-model="entry[option.id]"
-                 data-ng-required="state.required_check"
-                 data-ng-change="state.required_check = !validateRequiredCheckbox(field, entry)"
+                 data-ng-required="field.required_check"
+                 data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
                  placeholder="{{::field.placeholder || 'false'}}"
                  type="checkbox" />
           <span>{{::option.label}}</span>
@@ -99,5 +79,25 @@
   </div>
   <div data-ng-switch-when="fieldgroup">
     <div data-ng-include="'views/submission/form.html'"></div>
+  </div>
+  <div data-ng-switch-default data-ng-class="{'has-error': f['input-' + $index].$error.required || f['input-' + $index].$error.minlength}">
+    <input id="{{::fieldId + '-input-' + $index}}"
+           name="{{'input-' + $index}}"
+           class="form-control"
+           data-ng-model="entry['value']"
+           data-ng-minlength="field.attrs.min_len.value"
+           maxlength="{{field.attrs.max_len.value}}"
+           data-ng-required="field.required"
+           placeholder="{{::field.placeholder}}"
+           type="text" />
+    <div>
+      <div data-ng-if="field.attrs.max_len.value >= 0 && (field.attrs.max_len.value - entry['value'].length) != field.attrs.max_len.value"
+           data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
+           data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+      <div class="text-red"
+           data-ng-if="field.attrs.min_len.value >= 0 && (f['input-' + $index].$error.minlength || (field.required && entry['value'].length == undefined))"
+           data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
+           data-translate>FIELD_INPUT_MIN_CHARS</div>
+    </div>
   </div>
 </div>
