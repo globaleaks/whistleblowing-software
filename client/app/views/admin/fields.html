@@ -65,7 +65,7 @@
               </button>
               <button class="btn btn-xs btn-danger"
                 data-ng-show="field.editable"
-                data-ng-click="delField(field); $event.stopPropagation();"
+                data-ng-click="delField($parent.fields, field); $event.stopPropagation();"
                 popover-placement="right"
                 popover-trigger="mouseenter">
                 <span data-translate>Delete</span>
@@ -235,10 +235,10 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group" data-ng-if="field.instance !== 'reference' && field.children.length > 0">
+            <div class="form-group" data-ng-if="field.instance !== 'reference' && fields.length > 0">
               <div class="editorTitle" data-translate>Configured questions:</div>
               <div class="configuredFields">
-                <div data-ng-repeat="field in field.children | orderBy:['y', 'x']">
+                <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
                   <div data-ng-include="'views/admin/fields.html'"></div>
                 </div>
               </div>
