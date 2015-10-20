@@ -29,7 +29,7 @@
       "en": "Submission successfully completed!"
     },
     "header_title_tippage": {
-      "en": "Tip Status Page"
+      "en": "Tip status page"
     },
     "widget_comments_title": {
       "en": "Additional Information"
@@ -127,7 +127,7 @@
       ]
     },
     {
-      "label": { "en": "Final Step" },
+      "label": { "en": "Final step" },
       "description": { "en": "" },
       "hint": { "en": "Hint" },
       "presentation_order": 1,

@@ -5,22 +5,22 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordW
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
         {
-          title: "General Preferences",
+          title: "General preferences",
           template: "views/receiver/preferences/tab1.html",
           ctrl: TabCtrl
         },
         {
-          title: "Password Configuration",
+          title: "Password configuration",
           template: "views/receiver/preferences/tab2.html",
           ctrl: TabCtrl
         },
         {
-          title: "Notification Settings",
+          title: "Notification settings",
           template: "views/receiver/preferences/tab3.html",
           ctrl: TabCtrl
         },
         {
-          title:"Encryption Settings",
+          title:"Encryption settings",
           template:"views/receiver/preferences/tab4.html",
           ctrl: TabCtrl
         }
@@ -28,17 +28,17 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordW
     } else {
       $scope.tabs = [
         {
-          title: "General Preferences",
+          title: "General preferences",
           template: "views/user/preferences/tab1.html",
           ctrl: TabCtrl
         },
         {
-          title: "Password Configuration",
+          title: "Password configuration",
           template: "views/user/preferences/tab2.html",
           ctrl: TabCtrl
         },
         {
-          title:"Encryption Settings",
+          title:"Encryption settings",
           template:"views/user/preferences/tab3.html",
           ctrl: TabCtrl
         }

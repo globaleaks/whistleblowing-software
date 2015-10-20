@@ -2,7 +2,7 @@ describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
     var deferred = protractor.promise.defer();
     browser.get('/#/login');
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('globaleaks').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
           expect(browser.getLocationAbsUrl()).toContain('/forcedpasswordchange');
@@ -31,7 +31,7 @@ describe('receiver first login', function() {
   it('should be able to login with the new password', function() {
     var deferred = protractor.promise.defer();
     browser.get('/#/login');
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Receiver 1']")).click().then(function() {
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
           expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');

@@ -147,17 +147,17 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   function($scope, $http, StaticFiles, DefaultAppdata){
   $scope.tabs = [
     {
-      title:"Main Configuration",
+      title:"Main configuration",
       template: "views/admin/content/tab1.html",
       ctrl: TabCtrl
     },
     {
-      title:"Theme Customization",
+      title:"Theme customization",
       template: "views/admin/content/tab2.html",
       ctrl: TabCtrl
     },
     {
-      title: "Translation Customization",
+      title: "Translation customization",
       template: "views/admin/content/tab3.html",
       ctrl: TabCtrl
     }
@@ -197,27 +197,27 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
 GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   $scope.tabs = [
     {
-      title:"Main Configuration",
+      title:"Main configuration",
       template:"views/admin/mail/tab1.html",
       ctrl: TabCtrl
     },
     {
-      title: "Notification Settings",
+      title: "Notification settings",
       template: "views/admin/mail/tab2.html",
       ctrl: TabCtrl
     },
     {
-      title:"Receiver Notification Templates",
+      title:"Recipient notification templates",
       template:"views/admin/mail/tab3.html",
       ctrl: TabCtrl
     },
     {
-      title:"Admin Notification Templates",
+      title:"Admin notification templates",
       template:"views/admin/mail/tab4.html",
       ctrl: TabCtrl
     },
     {
-      title:"Exception Notification",
+      title:"Exception notification",
       template:"views/admin/mail/tab5.html",
       ctrl: TabCtrl
     }
@@ -228,12 +228,12 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
                     function($scope, $http, $modal){
   $scope.tabs = [
     {
-      title:"Main Configuration",
+      title:"Main configuration",
       template:"views/admin/advanced/tab1.html",
       ctrl: TabCtrl
     },
     {
-      title:"Tor2web Settings",
+      title:"Tor2web settings",
       template:"views/admin/advanced/tab2.html",
       ctrl: TabCtrl
     }

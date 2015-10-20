@@ -23,7 +23,7 @@ var GLClient = angular.module('GLClient', [
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
-        header_title: 'Platform Wizard',
+        header_title: 'Platform wizard',
         header_subtitle: 'Step-by-step setup'
       }).
       when('/submission', {
@@ -60,104 +60,104 @@ var GLClient = angular.module('GLClient', [
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'PreferencesCtrl',
-        header_title: 'Receiver Interface',
+        header_title: 'Recipient interface',
         header_subtitle: 'Preferences'
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
-        header_title: 'Receiver Interface',
+        header_title: 'Recipient interface',
         header_subtitle: 'List of submissions'
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Landing Page'
+        header_title: 'Administration interface',
+        header_subtitle: 'Landing page'
       }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'General Settings'
+        header_title: 'Administration interface',
+        header_subtitle: 'General settings'
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Contexts Configuration'
+        header_title: 'Administration interface',
+        header_subtitle: 'Context configuration'
       }).
       when('/admin/fields', {
         templateUrl: 'views/admin/fieldtemplates.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Questionnaries Configuration'
+        header_title: 'Administration interface',
+        header_subtitle: 'Questionnarie configuration'
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Users Configuration'
+        header_title: 'Administration interface',
+        header_subtitle: 'User configuration'
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Receivers Configuration'
+        header_title: 'Administration interface',
+        header_subtitle: 'Recipient configuration'
       }).
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Email Configuration'
+        header_title: 'Administration interface',
+        header_subtitle: 'Email configuration'
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Advanced Settings'
+        header_title: 'Administration interface',
+        header_subtitle: 'Advanced settings'
       }).
       when('/user/preferences', {
         templateUrl: 'views/user/preferences.html',
         controller: 'PreferencesCtrl',
-        header_title: 'User Preferences',
+        header_title: 'User preferences',
         header_subtitle: ''
       }).
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Users Overview'
+        header_title: 'Administration interface',
+        header_subtitle: 'Users overview'
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Tips Overview'
+        header_title: 'Administration interface',
+        header_subtitle: 'Tips overview'
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Files Overview'
+        header_title: 'Administration interface',
+        header_subtitle: 'Files overview'
       }).
       when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
         controller: 'AnomaliesCtrl',
-        header_title: 'Administration Interface',
+        header_title: 'Administration interface',
         header_subtitle: 'Anomalies'
       }).
       when('/admin/stats', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'System Stats'
+        header_title: 'Administration interface',
+        header_subtitle: 'System stats'
       }).
       when('/admin/activities', {
         templateUrl: 'views/admin/activities.html',
         controller: 'ActivitiesCtrl',
-        header_title: 'Administration Interface',
-        header_subtitle: 'Recent Activities'
+        header_title: 'Administration interface',
+        header_subtitle: 'Recent activities'
       }).
       when('/admin', {
         templateUrl: 'views/login.html',

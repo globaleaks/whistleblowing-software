@@ -14,7 +14,7 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('admin_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
     element(by.model('admin_check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
 
-    element(by.model('receiver.name')).sendKeys('Receiver 1');
+    element(by.model('receiver.name')).sendKeys('Recipient 1');
     element(by.model('receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
       
     // Disable encryption for receiver

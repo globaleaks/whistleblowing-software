@@ -9,7 +9,7 @@ describe('globaLeaks process', function() {
   var receipts = [];
   var comment = 'comment';
   var comment_reply = 'comment reply';
-  var receiver_username = "Receiver 1";
+  var receiver_username = "Recipient 1";
   var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
 
   var login_whistleblower = function(receipt) {
@@ -154,7 +154,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to access the first submission', function() {
+  it('Recipient should be able to access the first submission', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {
@@ -167,7 +167,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to leave a comment to the whistleblower', function() {
+  it('Recipient should be able to leave a comment to the whistleblower', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {
@@ -222,7 +222,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to postpone first submission from tip page', function() {
+  it('Recipient should be able to postpone first submission from tip page', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {
@@ -239,7 +239,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to delete first submission from tip page', function() {
+  it('Recipient should be able to delete first submission from tip page', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {
@@ -257,7 +257,7 @@ describe('globaLeaks process', function() {
     return deferred;
   });
 
-  it('Receiver should be able to postpone all tips', function() {
+  it('Recipient should be able to postpone all tips', function() {
     var deferred = protractor.promise.defer();
 
     login_receiver(receiver_username, receiver_password).then(function () {

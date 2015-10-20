@@ -2,7 +2,7 @@
   <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
     <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
-        1 - <span data-translate>Receiver selection</span>
+        1 - <span data-translate>Recipient selection</span>
       </a>
     </li>
     <li data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
@@ -45,12 +45,14 @@
     <ul class="pager">
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-if="hasPreviousStep()">
         <a id="PreviousStepButton" data-ng-click="decrementStep()">
-          <span data-translate>Previous Step</span>
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          <span data-translate>previous step</span>
         </a>
       </li>
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-if="hasNextStep()">
         <a id="NextStepButton" data-ng-click="incrementStep()">
-          <span data-translate>Next Step</span>
+          <span data-translate>next step</span>
+          <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
     </ul>
