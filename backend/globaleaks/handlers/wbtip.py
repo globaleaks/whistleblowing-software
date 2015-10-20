@@ -26,6 +26,9 @@ from globaleaks.rest import errors
 def wb_serialize_wbtip(store, wbtip, language):
     internaltip = wbtip.internaltip
 
+    mo = Rosetta(internaltip.context.localized_strings)
+    mo.acquire_storm_object(internaltip.context)
+
     return {
         'id': internaltip.id,
         'context_id': internaltip.context_id,
