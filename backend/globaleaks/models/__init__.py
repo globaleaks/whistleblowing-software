@@ -707,7 +707,7 @@ class Field(Model):
     preview = Bool(default=False)
 
     multi_entry = Bool(default=False)
-    multi_entry_hint = JSON(validator=shortlocal_v, default=u"")
+    multi_entry_hint = JSON(validator=shortlocal_v)
 
     # This is set if the field should be duplicated for collecting statistics
     # when encryption is enabled.
