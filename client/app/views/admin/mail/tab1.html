@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-8">
     <div class="form-group">
-      <label data-translate>Source Name</label>
+      <label data-translate>SMTP name</label>
       <input class="form-control" data-ng-model="admin.notification.source_name" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
 
     <div class="form-group">
-      <label data-translate>Source Email Address</label>
+      <label data-translate>SMTP email address</label>
       <input class="form-control" name="source_email" data-ng-model="admin.notification.source_email" data-ng-pattern="email_regexp" maxlength="{{node.maximum_namesize}}" type="text" />
     </div>
     <div class="text-red" data-ng-show="notificationForm.source_email.$error.pattern">

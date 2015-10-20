@@ -12,7 +12,7 @@ describe('adming configure node', function() {
     element(by.model('admin.node.can_delete_submission')).click();
 
     // grant tor2web permissions
-    element(by.cssContainingText("a", "Tor2web Settings")).click();
+    element(by.cssContainingText("a", "Tor2web settings")).click();
     element(by.model('admin.node.tor2web_receiver')).click();
     element(by.model('admin.node.tor2web_whistleblower')).click();
 
@@ -20,7 +20,7 @@ describe('adming configure node', function() {
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       browser.setLocation('/admin/mail');
 
-      element(by.cssContainingText("a", "Exception Notification")).click();
+      element(by.cssContainingText("a", "Exception notification")).click();
 
       // configure email used for exceptions testin
       element(by.model('admin.notification.exception_email_address')).clear();

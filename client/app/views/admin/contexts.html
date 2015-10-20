@@ -110,7 +110,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <label data-translate>Receivers</label>
+                  <label data-translate>Recipients</label>
                   <div class="selectionList">
                     <div data-ng-repeat="receiver in admin.receivers" data-ng-class="{clearfix: ($index % 2 == 1) || $last}">
                       <div class="row" data-ng-click="toggle(receiver)">
@@ -162,25 +162,25 @@
                         </div>
                         <div class="form-group">
                           <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox" />
-                          <label data-translate>Show receiver selection step</label>
+                          <label data-translate>Show recipient selection step</label>
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
                           <label>
                             <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
-                            <span data-translate>Show receivers in alphabetical order</span>
+                            <span data-translate>Show recipients in alphabetical order</span>
                           </label>
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
                           <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox" />
-                          <label data-translate>Select all receivers by default</label>
+                          <label data-translate>Select all recipients by default</label>
                         </div>
                         <div class="form-group" data-ng-show="!context.select_all_receivers">
-                          <label data-translate>Maximum number of selectable receivers:</label> <label data-translate>(0 = unlimited)</label>
+                          <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
                           <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number" />
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
                           <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox" />
-                          <label data-translate>Show small receiver cards on submission interface</label>
+                          <label data-translate>Show small recipient cards on submission interface</label>
                         </div>
                         <div class="form-group">
                           <input data-ng-model="context.enable_comments" value="{{context.enable_comments}}" type="checkbox" />

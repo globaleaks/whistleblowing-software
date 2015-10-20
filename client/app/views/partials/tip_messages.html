@@ -11,7 +11,7 @@
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div class="form-inline">
       <span data-ng-if="role == 'wb'">
-        <label><span data-translate>Receiver</span>:<span>&nbsp;</span></label>
+        <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
         <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
       </span>
     </div>

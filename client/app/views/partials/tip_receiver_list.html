@@ -1,7 +1,7 @@
 <div id="TipPageReceiversInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
   <div class="panel-heading" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <div>
-      <span data-translate>Receiver List</span>
+      <span data-translate>Recipient List</span>
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
@@ -12,11 +12,11 @@
     <div>
       <span data-ng-repeat="receiver in tip.receivers | orderBy:'name'">
         <span id="receiver-{{$index}}">
-          <span class="label label-primary" data-ng-show="receiver.last_access > tip.update_date" popover="{{'The receiver has already read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+          <span class="label label-primary" data-ng-show="receiver.last_access > tip.update_date" popover="{{'The recipient has already read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
             <i class="glyphicon glyphicon-ok"></i>
             <span>{{::receiver.name}}</span>
           </span>
-          <span class="label label-warning" data-ng-show="receiver.last_access <= tip.update_date" popover="{{'The receiver has still not read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
+          <span class="label label-warning" data-ng-show="receiver.last_access <= tip.update_date" popover="{{'The recipient has still not read last update' | translate}}" popover-placement="top" popover-trigger="mouseenter">
             <span>{{::receiver.name}}</span>
           </span>
         </span>

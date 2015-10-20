@@ -1,12 +1,8 @@
 <div id="BodyDefault" data-ng-if="!isHomepage() || !node.custom_homepage">
   <div id="PendingRequestsBox" class="pending-requests" data-ng-hide="!showRequestBox">
     <div class="message">
-      <h1><span data-translate>Please wait</span>...</h1>
       <div id="spinnerBox" data-spinner=""></div>
-      <p class="lead">
-        <span data-translate>Loading</span><span>...</span>
-      </p>
-      <i class="glyphicon glyphicon-star" data-ng-repeat="n in [] | range:pendingRequests()"></i>
+      <p class="lead" data-translate>Loading ...</p>
     </div>
   </div>
 

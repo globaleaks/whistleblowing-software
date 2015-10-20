@@ -10,7 +10,8 @@
     </div>
     <div class="pager pull-right">
       <a id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="step=step+1">
-        <span data-translate>Next Step</span>
+        <span data-translate>next step</span>
+        <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </a>
     </div>
   </div>
@@ -48,7 +49,7 @@
        <div class="col-md-6">
          <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Email Address</span>
+            <span data-translate>Email address</span>
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.adminemail.$error.required}">
@@ -101,7 +102,7 @@
       </div>
     </div>
     <div class="row wizard-block">
-      <div class="title" data-translate>Receiver</div>
+      <div class="title" data-translate>Recipient</div>
       <div class="col-md-6">
         <div class="form-group col-md-12">
           <label class="col-md-4">
@@ -109,16 +110,16 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_name.$error.required}">
-            <input name="receiver_name" class="form-control" data-ng-model="receiver.name" maxlength="{{node.maximum_namesize}}" type="text" placeholder="{{'Enter the name of the receiver' | translate}}" required>
+            <input name="receiver_name" class="form-control" data-ng-model="receiver.name" maxlength="{{node.maximum_namesize}}" type="text" placeholder="{{'Enter the name of the recipient' | translate}}" required>
           </div>
         </div>
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>Email Address</span>
+            <span data-translate>Email address</span>
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required}">
-            <input name="receiver_email" class="form-control" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" placeholder="{{'Enter the email address used to notify the receiver' | translate}}" required>
+            <input name="receiver_email" class="form-control" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
             <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
@@ -138,7 +139,7 @@
         </div>
         <div class="form-group col-md-12">
           <label class="col-md-4">
-            <span data-translate>PGP Key</span>
+            <span data-translate>PGP key</span>
             <span class="text-red" data-ng-show="!admin.node.allow_unencrypted" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
@@ -155,12 +156,12 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>Receivers are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
+          <span data-translate>Recipients are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
         </p>
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>In order to deliver encrypted emails and files each receiver needs an associated PGP key. Cut and paste the key of the receiver or mark the checkbox:</span>
+          <span data-translate>In order to deliver encrypted emails and files each recipient needs an associated PGP key. Cut and paste the key of the recipient or mark the checkbox:</span>
           <span data-translate>Enable insecure configuration without PGP encryption.</span>
         </p>
       </div>
@@ -186,10 +187,12 @@
     </div>
     <div class="pager pull-right">
       <a id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="step=step-1">
-        <span data-translate>Previous Step</span>
+        <i class="glyphicon glyphicon-arrow-left"></i>
+        <span data-translate>previous step</span>
       </a>
       <a id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
-        <span data-translate>Next Step</span>
+        <span data-translate>next step</span>
+        <i class="glyphicon glyphicon-arrow-right"></i>
       </a>
     </div>
   </div>
