@@ -75,7 +75,7 @@ def db_get_wbtip(store, wbtip_id, language):
     # there is not a limit in the WB access counter, but is kept track
     wbtip.access_counter += 1
 
-    tip_desc = wb_serialize_wtip(store, wbtip, language)
+    tip_desc = wb_serialize_wbtip(store, wbtip, language)
 
     # two elements from WhistleblowerTip
     tip_desc['access_counter'] = wbtip.access_counter

@@ -28,10 +28,10 @@ from globaleaks.rest import errors
 
 
 def receiver_serialize_rtip(store, receivertip, language):
+    internaltip = receivertip.internaltip
+
     mo = Rosetta(internaltip.context.localized_strings)
     mo.acquire_storm_object(internaltip.context)
-
-    internaltip = receivertip.internaltip
 
     return {
         'id': internaltip.id,
