@@ -36,7 +36,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.exportQuestionTemplates = function() {
-      console.log("aaa");
       AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
         $scope.exportJSON(fields, 'question-templates.json');
       });
@@ -57,7 +56,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       angular.forEach(fields, function(field) {
         var field = new AdminFieldTemplateResource(field);
         field.id = '';
-        field.$save(function(new_field){
+        field.$save({import: true}, function(new_field) {
           $scope.fields.push(new_field);
         });
 

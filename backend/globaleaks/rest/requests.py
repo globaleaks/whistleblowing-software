@@ -7,6 +7,9 @@
 # These specifications may be used with rest.validateMessage() inside each of the API
 # handler in order to verify if the request is correct.
 
+from globaleaks import models
+from globaleaks.utils.structures import get_raw_request_format
+
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 user_roles_regexp                 = r'^(admin|custodian|receiver)$'
@@ -283,6 +286,9 @@ AdminFieldDesc = {
     'options': [AdminFieldOptionDesc],
     'children': list
 }
+
+AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_strings)
+AdminFieldDescRaw['options'] = [get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_strings)]
 
 AdminStepDesc = {
     'id': uuid_regexp_or_empty,
