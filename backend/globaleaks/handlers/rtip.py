@@ -27,10 +27,16 @@ from globaleaks.models import Notification, Comment, Message, \
 from globaleaks.rest import errors
 
 
-def receiver_serialize_tip(store, internaltip, language):
-    ret_dict = {
+def receiver_serialize_rtip(store, receivertip, language):
+    mo = Rosetta(internaltip.context.localized_strings)
+    mo.acquire_storm_object(internaltip.context)
+
+    internaltip = receivertip.internaltip
+
+    return {
         'id': internaltip.id,
-        'context_id': internaltip.context.id,
+        'context_id': internaltip.context_id,
+        'context_name': mo.dump_localized_key(name, language),
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
@@ -44,15 +50,6 @@ def receiver_serialize_tip(store, internaltip, language):
         'enable_two_way_communication': internaltip.enable_two_way_communication,
         'enable_attachments': internaltip.enable_attachments
     }
-
-    # context_name and context_description are localized fields
-    mo = Rosetta(internaltip.context.localized_strings)
-    mo.acquire_storm_object(internaltip.context)
-    for attr in ['name']:
-        key = "context_%s" % attr
-        ret_dict[key] = mo.dump_localized_key(attr, language)
-
-    return ret_dict
 
 
 def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
@@ -154,10 +151,8 @@ def db_get_rtip(store, user_id, rtip_id, language):
         # store.find(EventLogs, And(EventLogs.receivertip_id == rtip_id,
         #                          EventLogs.mail_sent == True)).remove()
 
-    tip_desc = receiver_serialize_tip(store, rtip.internaltip, language)
+    tip_desc = receiver_serialize_rtip(store, rtip, language)
 
-    # are added here because part of ReceiverTip, not InternalTip
-    tip_desc['access_counter'] = rtip.access_counter
     tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
     tip_desc['label'] = rtip.label
@@ -443,7 +438,6 @@ class RTipCommentCollection(BaseHandler):
         Response: CommentDesc
         Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
-
         request = self.validate_message(self.request.body, requests.CommentDesc)
 
         answer = yield create_comment_receiver(self.current_user.user_id, tip_id, request)

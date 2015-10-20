@@ -72,8 +72,8 @@ GLClient.controller('AdminContextsCtrl',
   };
 }]);
 
-GLClient.controller('AdminContextEditorCtrl', ['$scope',
-  function($scope) {
+GLClient.controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
+  function($scope, AdminStepResource) {
 
   $scope.editing = false;
 
@@ -97,7 +97,7 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope',
   };
 
   $scope.delStep = function(step) {
-    $scope.admin.step['delete']({
+    AdminStepResource['delete']({
       id: step.id
     }, function() {
       $scope.context.steps.splice($scope.context.steps.indexOf(step), 1);

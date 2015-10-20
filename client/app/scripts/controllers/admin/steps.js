@@ -15,8 +15,8 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', 'AdminStepResource', 'AdminFi
   }
 ]);
 
-GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal',
-  function($scope, $modal) {
+GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal', 'AdminFieldResource',
+  function($scope, $modal, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.step.children;

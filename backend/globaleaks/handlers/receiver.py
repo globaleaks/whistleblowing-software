@@ -94,11 +94,15 @@ def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
     for rtip in rtiplist:
-        single_tip_sum = dict({
+        mo = Rosetta(rtip.internaltip.context.localized_strings)
+        mo.acquire_storm_object(rtip.internaltip.context)
+
+        rtip_summary_list.append({
             'id': rtip.id,
             'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
             'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
+            'context_name': mo.dump_localized_key('name', language),
             'access_counter': rtip.access_counter,
             'file_counter': rtip.internaltip.internalfiles.count(),
             'comment_counter': rtip.internaltip.comments.count(),
@@ -107,14 +111,8 @@ def get_receivertip_list(store, receiver_id, language):
             'questionnaire_hash': rtip.internaltip.questionnaire_hash,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
             'preview': rtip.internaltip.preview,
-            'label': rtip.label,
+            'label': rtip.label
         })
-
-        mo = Rosetta(rtip.internaltip.context.localized_strings)
-        mo.acquire_storm_object(rtip.internaltip.context)
-        single_tip_sum["context_name"] = mo.dump_localized_key('name', language)
-
-        rtip_summary_list.append(single_tip_sum)
 
     return rtip_summary_list
 

@@ -161,7 +161,7 @@ def anon_serialize_field(store, field, language):
         f_to_serialize = field
 
     attrs = {}
-    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
+    for attr in f_to_serialize.attrs:
         attrs[attr.name] = {}
         attrs[attr.name]['type'] = attr.type
         attrs[attr.name]['value'] = attr.value
@@ -204,7 +204,7 @@ def anon_serialize_step(store, step, language):
     """
     ret_dict = {
         'id': step.id,
-        'context_id': step.context.id,
+        'context_id': step.context_id,
         'presentation_order': step.presentation_order,
         'children': [anon_serialize_field(store, f, language) for f in step.children]
     }
@@ -240,9 +240,8 @@ def anon_serialize_receiver(receiver, language):
 @transact_ro
 def get_public_context_list(store, language):
     context_list = []
-    contexts = store.find(models.Context)
 
-    for context in contexts:
+    for context in store.find(models.Context):
         if context.receivers.count():
             context_list.append(anon_serialize_context(store, context, language))
 
@@ -252,9 +251,8 @@ def get_public_context_list(store, language):
 @transact_ro
 def get_public_receivers_list(store, language):
     receivers_list = []
-    receivers = store.find(models.Receiver)
 
-    for receiver in receivers:
+    for receiver in store.find(models.Receiver):
         if receiver.user.state == u'disabled':
             continue
 
