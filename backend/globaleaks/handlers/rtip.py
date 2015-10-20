@@ -36,7 +36,7 @@ def receiver_serialize_rtip(store, receivertip, language):
     return {
         'id': internaltip.id,
         'context_id': internaltip.context_id,
-        'context_name': mo.dump_localized_key(name, language),
+        'context_name': mo.dump_localized_key('name', language),
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),

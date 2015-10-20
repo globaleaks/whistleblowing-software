@@ -418,7 +418,7 @@ class TestGL(unittest.TestCase):
         rtips_desc = []
         rtips = store.find(ReceiverTip)
         for r in rtips:
-            itip = rtip.receiver_serialize_rtip(store, r.internaltip, 'en')
+            itip = rtip.receiver_serialize_rtip(store, r, 'en')
             rtips_desc.append({'rtip_id': r.id, 'receiver_id': r.receiver_id, 'itip': itip})
 
         return rtips_desc
@@ -441,7 +441,7 @@ class TestGL(unittest.TestCase):
             for rcvr in wbtip.internaltip.receivers:
                 rcvrs_ids.append(rcvr.id)
 
-            itip = wb_serialize_wbtip(store, wbtip.internaltip, 'en')
+            itip = wb_serialize_wbtip(store, wbtip, 'en')
             wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
         return wbtips_desc
