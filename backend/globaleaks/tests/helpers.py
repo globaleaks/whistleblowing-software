@@ -41,7 +41,7 @@ from globaleaks.handlers.admin.context import create_context, get_context, updat
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
-from globaleaks.handlers.wbtip import wb_serialize_tip
+from globaleaks.handlers.wbtip import wb_serialize_wbtip
 from globaleaks.handlers.submission import create_submission
 from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
@@ -418,7 +418,7 @@ class TestGL(unittest.TestCase):
         rtips_desc = []
         rtips = store.find(ReceiverTip)
         for r in rtips:
-            itip = rtip.receiver_serialize_tip(store, r.internaltip, 'en')
+            itip = rtip.receiver_serialize_rtip(store, r.internaltip, 'en')
             rtips_desc.append({'rtip_id': r.id, 'receiver_id': r.receiver_id, 'itip': itip})
 
         return rtips_desc
@@ -441,7 +441,7 @@ class TestGL(unittest.TestCase):
             for rcvr in wbtip.internaltip.receivers:
                 rcvrs_ids.append(rcvr.id)
 
-            itip = wb_serialize_tip(store, wbtip.internaltip, 'en')
+            itip = wb_serialize_wbtip(store, wbtip.internaltip, 'en')
             wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
         return wbtips_desc

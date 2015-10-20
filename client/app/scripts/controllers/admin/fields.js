@@ -1,5 +1,5 @@
 GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, AdminTemplateResource, AdminFieldTemplateResource) {
+  function($scope, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });

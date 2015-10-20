@@ -23,10 +23,13 @@ from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
 
-def wb_serialize_tip(store, internaltip, language):
-    ret_dict = {
+def wb_serialize_wbtip(store, wbtip, language):
+    internaltip = wbtip.internaltip
+
+    return {
         'id': internaltip.id,
-        'context_id': internaltip.context.id,
+        'context_id': internaltip.context_id,
+        'context_name': mo.dump_localized_key('name', language),
         'show_receivers': internaltip.context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
@@ -39,15 +42,6 @@ def wb_serialize_tip(store, internaltip, language):
         'enable_two_way_communication': internaltip.enable_two_way_communication,
         'enable_attachments': internaltip.enable_attachments
     }
-
-    # context_name and context_description are localized fields
-    mo = Rosetta(internaltip.context.localized_strings)
-    mo.acquire_storm_object(internaltip.context)
-    for attr in ['name']:
-        key = "context_%s" % attr
-        ret_dict[key] = mo.dump_localized_key(attr, language)
-
-    return ret_dict
 
 
 def wb_serialize_file(internalfile):
@@ -81,7 +75,7 @@ def db_get_wbtip(store, wbtip_id, language):
     # there is not a limit in the WB access counter, but is kept track
     wbtip.access_counter += 1
 
-    tip_desc = wb_serialize_tip(store, wbtip.internaltip, language)
+    tip_desc = wb_serialize_wtip(store, wbtip, language)
 
     # two elements from WhistleblowerTip
     tip_desc['access_counter'] = wbtip.access_counter
@@ -118,7 +112,7 @@ def create_comment_wb(store, wbtip_id, request):
 
     comment = Comment()
     comment.content = request['content']
-    comment.internaltip_id = wbtip.internaltip.id
+    comment.internaltip_id = wbtip.internaltip_id
     comment.author = u'whistleblower'
     comment.type = u'whistleblower'
 
@@ -135,7 +129,7 @@ def get_messages_content(store, wbtip_id, receiver_id):
     """
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
@@ -156,7 +150,7 @@ def get_messages_content(store, wbtip_id, receiver_id):
 def create_message_wb(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip.id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:

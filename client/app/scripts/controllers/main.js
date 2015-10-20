@@ -31,7 +31,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
-      success.message = "Updated " + model;
+      success.message = $filter('translate')("Updated");
       model.$update(function(result) {
         $scope.successes.push(success);
       }).then(
