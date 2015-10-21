@@ -842,7 +842,7 @@ class Step(Model):
 
     unicode_keys = ['context_id']
     int_keys = ['presentation_order']
-    localized_strings = ['label', 'description', 'hint']
+    localized_strings = ['label', 'description']
 
     def delete(self, store):
         for child in self.children:
