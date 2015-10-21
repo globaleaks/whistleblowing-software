@@ -20,8 +20,8 @@
     </div>
 
     <!-- Configured Context Steps -->
-    <div data-ng-repeat="step in  submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl">
-      <div id="step-{{$index + 1}}" class="SubmissionStep" data-ng-show="selection == $index + 1">
+    <div data-ng-repeat="step in  submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" ng-init="stepId = 'step-' + ($index + 1)">
+      <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection == $index + 1">
         <div class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row">
           <div class="col-md-7">

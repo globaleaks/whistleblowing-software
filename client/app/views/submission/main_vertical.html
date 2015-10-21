@@ -8,25 +8,24 @@
     </div>
   </div>
   <div class="row">
-     <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps">
-      <label>{{::step.label}}</label>
-      <div id="step-1">
+    <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps" data-ng-init="{{stepId = 'step-' + $index}}">
+      <div id="{{stepId}}">
+        <label>{{::step.label}}</label>
         <div>
           <div class="col-md-12">
             <p class="stepDescription">{{::step.description}}</p>
           </div>
-         </div>
+        </div>
         <div>
           <div class="col-md-7">
             <div data-ng-include="'views/submission/form.html'"></div>
-           </div>
-           <div class="col-md-offset-1 col-md-4">
-             <div data-ng-include="'views/partials/fileupload_status.html'"></div>
-           </div>
-         </div>
-       </div>
+          </div>
+          <div class="col-md-offset-1 col-md-4">
+            <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+          </div>
+        </div>
+      </div>
     </div>
-   </div>
   <div class="row">
     <div class="col-md-12">
       <div id="SubmitBox">
