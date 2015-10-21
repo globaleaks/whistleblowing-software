@@ -169,6 +169,15 @@ class InternalTip_v_23(Model):
 InternalTip_v_23.context = Reference(InternalTip_v_23.context_id, Context_v_23.id)
 
 
+class Step_v_23(Model):
+    __storm_table__ = 'step'
+    context_id = Unicode()
+    label = JSON()
+    description = JSON()
+    hint = JSON()
+    presentation_order = Int()
+
+
 class Field_v_23(Model):
     __storm_table__ = 'field'
     x = Int()

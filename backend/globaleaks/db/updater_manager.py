@@ -21,7 +21,7 @@ from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, In
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
-    Context_v_23, InternalTip_v_23, Field_v_23, ArchivedSchema_v_23, FieldField_v_23, StepField_v_23
+    Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, FieldField_v_23, StepField_v_23
 
 
 table_history = {
@@ -50,7 +50,7 @@ table_history = {
     'FieldOption': [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, models.FieldOption, 0],
     'OptionActivateField': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateField],
     'OptionActivateStep': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateStep],
-    'Step': [-1, -1, -1, -1, Step_v_20, 0, 0, 0, 0, 0, models.Step, 0, 0, 0],
+    'Step': [-1, -1, -1, -1, Step_v_20, 0, 0, 0, 0, 0, Step_v_23, 0, 0, models.Step],
     'Anomalies': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0],
     'EventLogs': [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.EventLogs, 0, 0, 0, 0],
     'FieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0],

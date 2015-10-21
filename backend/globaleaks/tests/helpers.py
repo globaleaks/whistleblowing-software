@@ -914,7 +914,6 @@ class MockDict():
                 'id': '',
                 'label': u'Step 1',
                 'description': u'Step Description',
-                'hint': u'Step Hint',
                 'presentation_order': 0,
                 'children': []
             },
