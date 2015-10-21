@@ -15,7 +15,7 @@
        <span data-translate>Enable insecure configuration without PGP encryption</span>
       </label>
       <div data-ng-if="admin.node.allow_unencrypted">
-        <span class="label label-danger" data-translate>Danger</span>
+        <span class="label label-danger" data-translate>Danger!</span>
         <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
         <span data-translate>This happens whenever encryption is unavailable.</span>
       </div>
@@ -27,7 +27,7 @@
         <span data-translate>Allow other websites to include the platform inside iframes</span>
       </label>
       <div data-ng-if="admin.node.allow_iframes_inclusion">
-        <span class="label label-danger" data-translate>Danger</span>
+        <span class="label label-danger" data-translate>Danger!</span>
         <span data-translate>By enabling this option, you are allowing other websites to include the platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
       </div>
     </div>
