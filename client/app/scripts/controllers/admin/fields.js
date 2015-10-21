@@ -22,19 +22,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       });
     };
 
-    $scope.save_field = function(field) {
-      $scope.assignUniqueOrderIndex(field.options);
-
-      var updated_field;
-      if (field.instance == 'template') {
-        updated_field = new AdminFieldTemplateResource(field);
-      } else {
-        updated_field = new AdminFieldResource(field);
-      }
-
-      $scope.update(updated_field);
-    };
-
     $scope.exportQuestionTemplates = function() {
       AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
         $scope.exportJSON(fields, 'question-templates.json');
@@ -65,8 +52,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
   }
 ]);
 
-GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
-  function($scope, $modal) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldResource',
+  function($scope, $modal, AdminFieldResource) {
     $scope.editable = $scope.field.instance != 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -133,6 +120,19 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal',
     $scope.delOption = function(field, option) {
       var index = field.options.indexOf(option);
       field.options.splice(index, 1);
+    };
+
+    $scope.save_field = function(field) {
+      $scope.assignUniqueOrderIndex(field.options);
+
+      var updated_field;
+      if (field.instance == 'template') {
+        updated_field = new AdminFieldTemplateResource(field);
+      } else {
+        updated_field = new AdminFieldResource(field);
+      }
+
+      $scope.update(updated_field);
     };
 
     $scope.moveUpAndSave = function(elem) {
