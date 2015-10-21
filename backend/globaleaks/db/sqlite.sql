@@ -449,7 +449,6 @@ CREATE TABLE step (
     id TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
-    hint TEXT NOT NULL,
     context_id TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,

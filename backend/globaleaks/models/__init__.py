@@ -838,7 +838,6 @@ class Step(Model):
     context_id = Unicode()
     label = JSON()
     description = JSON()
-    hint = JSON()
     presentation_order = Int(default=0)
 
     unicode_keys = ['context_id']
