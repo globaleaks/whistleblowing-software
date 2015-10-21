@@ -256,11 +256,24 @@ controller('SubmissionStepCtrl', ['$scope', function($scope) {
     }
   };
 
+  $scope.getFieldId = function(parentFieldId, y, x) {
+    var fieldId = $scope.stepId;
+
+    if (parentFieldId == undefined) {
+      fieldId += '-field' + '-' + y + '-' + x;
+    } else {
+      fieldId = parentFieldId + '-' + y + '-' + x;
+    }
+
+    return fieldId;
+  }
+
   $scope.status = {
     opened: false
   };
 }]).
 controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
+
   $scope.getAnswersEntries = function(entry) {
     if (entry === undefined) {
       return $scope.submission._submission.answers[$scope.field.id];

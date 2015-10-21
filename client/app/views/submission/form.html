@@ -1,28 +1,24 @@
 <div data-ng-repeat="row in ::fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
   <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass(field, row.length)">
-    <div data-ng-init="fieldId = fieldId + '-' + $parent.$index + '-' + $index">
-      <div data-ng-controller="SubmissionFieldCtrl">
-        <div id="{{::fieldId}}">
-          <div class="form-group">
-            <div>
-              <label>
-                <span data-ng-if="::fieldsLevel == 0" class="fieldIndex">{{::$index + 1}}</span>
-                <span class="fieldLabel">{{::field.label}}</span>
-                <a href="" data-ng-show="::field.hint" data-content="::field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
-                  <i class="glyphicon glyphicon-question-sign"></i>
-                </a>
-              </label>
-              <span class="text-red"
-                    data-ng-if="::field.required"
-                    popover="{{'This field is mandatory' | translate}}"
-                    popover-placement="right"
-                    popover-trigger="mouseenter">*</span>
-            </div>
-            <div class="FieldDescription">{{::field.description}}</div>
-            <div class="submissionFieldInput">
-              <div data-ng-include="'views/submission/form_field_inputs.html'"></div>
-            </div>
-          </div>
+    <div data-ng-init="fieldId = getFieldId($parent.fieldId, $parent.$index, $index)">
+      <div id="{{::fieldId}}" class="form-group" data-ng-controller="SubmissionFieldCtrl">
+        <div>
+          <label>
+            <span data-ng-if="::fieldsLevel == 0" class="fieldIndex">{{::$index + 1}}</span>
+            <span class="fieldLabel">{{::field.label}}</span>
+            <a href="" data-ng-show="::field.hint" data-content="::field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <i class="glyphicon glyphicon-question-sign"></i>
+            </a>
+          </label>
+          <span class="text-red"
+                data-ng-if="::field.required"
+                popover="{{'This field is mandatory' | translate}}"
+                popover-placement="right"
+                popover-trigger="mouseenter">*</span>
+        </div>
+        <div class="FieldDescription">{{::field.description}}</div>
+        <div class="submissionFieldInput">
+          <div data-ng-include="'views/submission/form_field_inputs.html'"></div>
         </div>
       </div>
     </div>
