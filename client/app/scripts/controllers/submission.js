@@ -246,8 +246,19 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.uploads = {};
-  $scope.fieldsLevel = -1;
   $scope.fields = $scope.step.children;
+
+  $scope.getClass = function(field, row_length) {
+    if (field.width !== 0) {
+      return "col-md-" + field.width;
+    } else {
+      return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
+    }
+  };
+
+  $scope.status = {
+    opened: false
+  };
 }]).
 controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   $scope.getAnswersEntries = function(entry) {
@@ -266,25 +277,6 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   $scope.fields = $scope.field.children;
 
   $scope.entries = $scope.getAnswersEntries($scope.entry, $scope.field.id);
-  $scope.getClass = function(stepIndex, fieldIndex, toplevel, row_length, field) {
-    var ret = "";
-
-    if (toplevel) {
-      ret += "submission-step" + stepIndex + "-field" + fieldIndex + " ";
-    }
-
-    var n = 0;
-
-    if (field.width !== 0) {
-      n = field.width;
-    } else {
-      n = (row_length > 12) ? 1 : (12 / row_length);
-    }
-
-    ret += "col-md-" + n;
-
-    return ret;
-  };
 
   $scope.status = {
     opened: false
