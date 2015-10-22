@@ -33,7 +33,7 @@ else
   ## now loop through the above array
   for i in "${capabilities[@]}"
   do
-    echo "Testing Configuration: [" + $i + "]"
+    echo "Testing Configuration: $i"
     eval $i
     $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
     sleep 3
