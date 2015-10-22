@@ -147,21 +147,25 @@ angular.module('GLServices', ['ngResource']).
            When the response has failed write the rootScope
            errors array the error message.
         */
-
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
         }
 
-        var error = {};
-        var source_path = $location.path();
+        if (response.data === null) {
+            return $q.reject(response);
+        }
 
-        error.message = response.data.error_message;
-        error.code = response.data.error_code;
-        error.url = response.config.url;
-        error.arguments = response.data.arguments;
+        var error = {
+          'url': response.config.url,
+          'message': response.data.error_message,
+          'code': response.data.error_code,
+          'arguments': response.data.arguments
+        }
         
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
+          var source_path = $location.path();
+
           if (error.code === 24) {
             $rootScope.logout();
           } else {
