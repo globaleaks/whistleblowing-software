@@ -417,10 +417,10 @@ angular.module('GLServices', ['ngResource']).
   factory('Tip', ['$http', '$resource', '$q',
           function($http, $resource, $q) {
 
-    var tipResource = $resource('rtip/:tip_id', {tip_id: '@tip_id'}, {update: {method: 'PUT'}});
-    var receiversResource = $resource('rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
-    var commentsResource = $resource('rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
-    var messageResource = $resource('rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
+    var tipResource = $resource('rtip/:id', {id: '@id'}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('rtip/:id/receivers', {id: '@id'}, {});
+    var commentsResource = $resource('rtip/:id/comments', {id: '@id'}, {});
+    var messageResource = $resource('rtip/:id/messages', {id: '@id'}, {});
 
     return function(tipID, fn) {
       var self = this;
