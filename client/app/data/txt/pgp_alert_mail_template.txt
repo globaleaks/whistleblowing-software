@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 This is an email to inform you that your PGP key is expiring or has already expired.
 

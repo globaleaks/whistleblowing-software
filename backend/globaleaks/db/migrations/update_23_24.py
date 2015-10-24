@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 
+import string
+
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.base_updater import TableReplacer
@@ -331,7 +333,12 @@ class Replacer2324(TableReplacer):
                 old_notification.exception_email_pgp_key_expiration = datetime_null()
                 continue
 
-            setattr(new_notification, v.name, getattr(old_notification, v.name))
+            old_value = getattr(old_notification, v.name)
+            if v.name in new_notification.localized_strings:
+                for lang in old_value:
+                    old_value[lang] = string.replace(old_value[lang], "ReceiverName", "RecipientName")
+
+            setattr(new_notification, v.name, old_value)
 
         self.store_new.add(new_notification)
         self.store_new.commit()

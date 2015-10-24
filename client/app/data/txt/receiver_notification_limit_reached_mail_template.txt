@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 It appears that %NodeName% is receiving a large number of requests.
 

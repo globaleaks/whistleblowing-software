@@ -87,7 +87,7 @@ class _KeyWord(object):
         '%NodeName%',
         '%HiddenService%',
         '%PublicSite%',
-        '%ReceiverName%',
+        '%RecipientName%',
         '%ContextName%',
         '%NodeSignature%'
     ]
@@ -109,7 +109,7 @@ class _KeyWord(object):
     def PublicSite(self):
         return self.node['public_site']
 
-    def ReceiverName(self):
+    def RecipientName(self):
         return self.receiver['name']
 
     def ContextName(self):
@@ -288,7 +288,7 @@ class ZipFileKeyword(TipKeyword):
 
 class PingMailKeyword(_KeyWord):
     ping_mail_keywords = [
-        '%ReceiverName%',
+        '%RecipientName%',
         '%EventCount%'
     ]
 
@@ -304,7 +304,7 @@ class PingMailKeyword(_KeyWord):
         self.name = receiver_desc['name']
         self.counter = ping_desc['counter']
 
-    def ReceiverName(self):
+    def RecipientName(self):
         return str(self.name)
 
     def EventCount(self):

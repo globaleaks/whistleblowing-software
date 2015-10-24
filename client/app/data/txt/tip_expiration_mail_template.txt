@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 The submission [%TipNum%] related to context %ContextName% is going to expire in %ExpirationWatch% hours.
 

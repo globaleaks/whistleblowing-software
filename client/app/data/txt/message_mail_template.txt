@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 This is an email to notify you about a new message from the whisleblower.
 

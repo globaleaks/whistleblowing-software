@@ -12,7 +12,7 @@ generic_keyword_list = [
     '%NodeName%',
     '%HiddenService%',
     '%PublicSite%',
-    '%ReceiverName%',
+    '%RecipientName%',
     '%ContextName%',
 ]
 
@@ -44,7 +44,7 @@ alarm_keyword_list = [
 ]
 
 ping_keyword_list = [
-    "%ReceiverName%",
+    "%RecipientName%",
     "%EventCount%"
 ]
 
