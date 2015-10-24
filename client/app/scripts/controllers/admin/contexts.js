@@ -29,7 +29,7 @@ GLClient.controller('AdminContextsCtrl',
     angular.forEach(contexts, function(context) {
       var context = new AdminContextResource(context);
       context.id = '';
-      context.$save(function(new_context){
+      context.$save({import: true}, function(new_context){
         $scope.admin.contexts.push(new_context);
       });
     });
