@@ -54,7 +54,7 @@
     </div>
     <div class="adminConfigSection" ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length > 0">
       <div class="editorTitle">
-        <span data-translate>Configured receivers:</span>
+        <span data-translate>Configured recipients:</span>
       </div>
       <div class="receiverList" data-ng-repeat="receiver in admin.receivers | orderBy:'presentation_order'">
         <form id="receiver-{{$index}}" name="editReceiver" data-ng-controller="AdminReceiverEditorCtrl" novalidate>
@@ -179,7 +179,7 @@
                     <label data-translate>Configuration</label>
                     <select class="form-control" data-ng-model="receiver.configuration">
                       <option value="default" data-translate>Default</option>
-                      <option value="forcefully_selected" data-translate>Forcefully Selected</option>
+                      <option value="forcefully_selected" data-translate>Forcefully selected</option>
                       <option value="unselectable" data-translate>Unselectable</option>
                     </select>
                   </div>
@@ -193,10 +193,10 @@
                   </div>
                   <div class="form-group">
                     <input data-ng-model="receiver.ping_notification" type="checkbox" />
-                    <label data-translate>Enable Ping notification</label>
+                    <label data-translate>Enable ping notification</label>
                   </div>
                   <div class="form-group" data-ng-show="receiver.ping_notification">
-                    <label data-translate>Ping Email Address</label>
+                    <label data-translate>Ping email address</label>
                     <input class="form-control" name="ping_email" data-ng-model="receiver.ping_mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" />
                     <div>
                       <span data-translate>This email will be used for ping notifications.</span>

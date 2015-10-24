@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 This is an email to notify you that %CommentSource% has commented on a previous submission.
 

@@ -134,35 +134,35 @@
       "source_email": "sendaccount@lists.globaleaks.org",
       "port": 587,
       "file_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: File attached"
+        "en": "[Tip %TipNum%] for %RecipientName% in %ContextName%: File attached"
       },
       "tip_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+        "en": "Esteemed %RecipientName%,\n\nThis is an E-Mail message to notify you that someone has selected you as a valuable recipient\nof WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created\nby the GlobaLeaks Node %NodeName%, in \"%ContextName%\".\n\nThis tip-off has been sent to you by an anonymous whistleblower. She/He would like you\nto pay special attention to the information and material contained therein. Please consider\nthat whistleblowers often expose themselves to high personal risks in order to protect the\npublic good. Therefore the material that they provide with this tip-off should be considered\nof high importance.\n\nYou can download the material from the following URLs:\n\nvia Tor:\n%TipTorURL%\nor:\n%TipT2WURL%\n\nSubmission date: %EventTime%\n\nPlease do not forward or share this e-mail: each tip-off has a limited number of downloads and\naccess before being destroyed forever, nobody (even the node administrator) can recover and\nexpired or dead tip-off.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "id": "833b42a5-c476-48f2-9777-c20622d00bbd",
       "message_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New message"
+        "en": "[Tip %TipNum%] for %RecipientName% in %ContextName%: New message"
       },
       "username": "sendaccount@lists.globaleaks.org",
       "tip_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: new ClearText"
+        "en": "[Tip %TipNum%] for %RecipientName% in %ContextName%: new ClearText"
       },
       "comment_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+        "en": "Esteemed %RecipientName%,\n\nThis is an E-Mail message to notify you that %CommentSource%\nhas added a comment to a previously notified Tip (%TipTorURL%) in %EventTime%\n\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "comment_mail_title": {
-        "en": "[Tip %TipNum%] for %ReceiverName% in %ContextName%: New comment"
+        "en": "[Tip %TipNum%] for %RecipientName% in %ContextName%: New comment"
       },
       "password": "sendaccount99",
       "file_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+        "en": "Esteemed %RecipientName%,\n\nThis is an E-Mail message to notify you that a Whistleblower\nhas updated a submission with new material.\n\nThe Tip can be reached via Tor at: %TipTorURL%\nThis has happened in %ContextName% at %EventTime%.\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "server": "mail.headstrong.de",
       "message_template": {
-        "en": "Esteemed %ReceiverName%,\n\nThis is an E-Mail message to notify you about\na new Message from the Whisleblower in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
+        "en": "Esteemed %RecipientName%,\n\nThis is an E-Mail message to notify you about\na new Message from the Whisleblower in %EventTime%.\n\nThe message is related to the Tip: %TipTorURL%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n"
       },
       "ping_mail_template": {
-        "en": "Dear %ReceiverName%,\n\nThere are %EventCount% good reason to connect exactly where you know!\n"
+        "en": "Dear %RecipientName%,\n\nThere are %EventCount% good reason to connect exactly where you know!\n"
       },
       "ping_mail_title": {
         "en": "There are %EventCount% good reason to..."
@@ -174,7 +174,7 @@
         "en": "PGP Key Expiration Alert\n"
       },
       "pgp_alert_mail_template": {
-        "en": "Dear %ReceiverName%,\n\nThis is an e-mail to inform you that your PGP key is expiring or already expired.\n\n%PGPKeyInfo%\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
+        "en": "Dear %RecipientName%,\n\nThis is an e-mail to inform you that your PGP key is expiring or already expired.\n\n%PGPKeyInfo%\n\nWithout a valid PGP key, the system will not be able to send you encrypted notifications.\n\nYou should extend its validity and update the key present on the GlobaLeaks nodes you are subscribed to or upload a new key.\n\nKind regards,\n%NodeSignature%\n"
       },
       "pgp_alert_mail_title": {
         "en": "PGP Key Expiration Alert\n"

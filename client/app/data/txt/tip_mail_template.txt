@@ -1,4 +1,4 @@
-Dear %ReceiverName%,
+Dear %RecipientName%,
 
 This is an email to notify you that a whistleblower has selected you as a valuable recipient for his/her submission.
 
