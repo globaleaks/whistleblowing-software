@@ -30,7 +30,7 @@ GLClient.controller('AdminContextsCtrl',
       var context = new AdminContextResource(context);
       context.id = '';
       context.$save({import: true}, function(new_context){
-        $scope.admin.contexts.push(new_context);
+        $scope.reload();
       });
     });
   };

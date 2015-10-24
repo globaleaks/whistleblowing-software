@@ -26,7 +26,7 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
 from globaleaks.event import outcoming_event_monitored, EventTrack
-from globaleaks.rest import errors
+from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
@@ -175,13 +175,12 @@ class BaseHandler(RequestHandler):
     @staticmethod
     def validate_python_type(value, python_type):
         """
-        Return True if the python class instantiates the python_type given,
-            'int' fields are accepted also as 'unicode' but cast on base 10
-            before validate them
-            'bool' fields are accepted also as 'true' 'false' because this
-            happen on angular.js
+        Return True if the python class instantiates the specified python_type.
         """
         if value is None:
+            return True
+
+        if python_type == requests.SkipSpecificValidation:
             return True
 
         if python_type == int:

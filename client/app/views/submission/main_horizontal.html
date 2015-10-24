@@ -45,14 +45,14 @@
     <ul class="pager">
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton previous" data-ng-if="hasPreviousStep()">
         <a id="PreviousStepButton" data-ng-click="decrementStep()">
-          <i class="glyphicon glyphicon-arrow-left"></i>
+          <i class="glyphicon glyphicon-circle-arrow-left"></i>
           <span data-translate>previous step</span>
         </a>
       </li>
       <li data-ng-class="{disabled: uploading}" class="SubmissionNavButton next" data-ng-if="hasNextStep()">
         <a id="NextStepButton" data-ng-click="incrementStep()">
           <span data-translate>next step</span>
-          <i class="glyphicon glyphicon-arrow-right"></i>
+          <i class="glyphicon glyphicon-circle-arrow-right"></i>
         </a>
       </li>
     </ul>

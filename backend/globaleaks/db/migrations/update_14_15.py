@@ -273,7 +273,7 @@ class Replacer1415(TableReplacer):
 
         old_contexts = self.store_old.find(self.get_right_model("Context", 14))
 
-        steps = load_appdata()['fields']
+        steps = load_appdata()['default_questionnaire']
         i = 1
         for step in steps:
             step['number'] = i
@@ -374,13 +374,12 @@ class Replacer1415(TableReplacer):
         print "%s InternalTip migration assistant" % self.std_fancy
         steps = []
 
-        steps.append(load_appdata()['fields'][0])
+        steps.append(load_appdata()['default_questionnaire'][0])
 
         i = 1
         for step in steps:
             step['number'] = i
             step['label'] = step['label']['en']
-            step['hint'] = step['hint']['en']
             step['description'] = step['description']['en']
             step['children'] = []  # wipe out default fields
 

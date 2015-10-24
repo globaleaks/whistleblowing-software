@@ -124,7 +124,7 @@ def anon_serialize_context(store, context, language):
     return get_localized_values(ret_dict, context, context.localized_strings, language)
 
 
-def anon_serialize_option(option, language):
+def anon_serialize_field_option(option, language):
     """
     Serialize a field option, localizing its content depending on the language.
 
@@ -133,7 +133,6 @@ def anon_serialize_option(option, language):
     :return: a serialization of the object
     """
     ret_dict = {
-        'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'activated_fields': [field.id for field in option.activated_fields],
@@ -141,6 +140,26 @@ def anon_serialize_option(option, language):
     }
 
     return get_localized_values(ret_dict, option, option.localized_strings, language)
+
+
+def anon_serialize_field_attr(attr, language):
+    """
+    Serialize a field attribute, localizing its content depending on the language.
+
+    :param option: the field attribute object to be serialized
+    :param language: the language in which to localize data
+    :return: a serialization of the object
+    """
+    ret_dict = {
+        'name': attr.name,
+        'type': attr.type,
+        'value': attr.value
+    }
+
+    if attr.type == u'localized':
+        get_localized_values(ret_dict, ret_dict, ['value'], language)
+
+    return ret_dict
 
 
 def anon_serialize_field(store, field, language):
@@ -160,14 +179,6 @@ def anon_serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
-    attrs = {}
-    for attr in f_to_serialize.attrs:
-        attrs[attr.name] = {}
-        attrs[attr.name]['type'] = attr.type
-        attrs[attr.name]['value'] = attr.value
-        if attr.type == u'localized':
-            get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
-
     ret_dict = {
         'id': field.id,
         'key': field.key,
@@ -181,13 +192,13 @@ def anon_serialize_field(store, field, language):
         'required': field.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
-        'attrs': attrs,
+        'attrs': [anon_serialize_field_attr(a, language) for a in f_to_serialize.attrs],
         'x': field.x,
         'y': field.y,
         'width': field.width,
         'activated_by_score': field.activated_by_score,
         'activated_by_options': [activation.option_id for activation in field.activated_by_options],
-        'options': [anon_serialize_option(o, language) for o in f_to_serialize.options],
+        'options': [anon_serialize_field_option(o, language) for o in f_to_serialize.options],
         'children': [anon_serialize_field(store, f, language) for f in f_to_serialize.children]
     }
 

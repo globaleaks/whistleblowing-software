@@ -33,12 +33,12 @@ def _db_get_archived_fieldoption(fieldoption, language):
     return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_strings, language)
 
 def _db_get_archived_field_recursively(field, language):
-    for key, value in field['attrs'].iteritems():
-        if field['attrs'][key]['type'] == u'localized':
-            if language in field['attrs'][key]['value']:
-                field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
+    for attr in field['attrs']:
+        if attr['type'] == u'localized':
+            if language in attr['value']:
+                attr['value'] = attr['value'][language]
             else:
-                field['attrs'][key]['value'] = ""
+                attr['value'] = ""
 
     for o in field['options']:
         _db_get_archived_fieldoption(o, language)

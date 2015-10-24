@@ -24,10 +24,12 @@ https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^homepage$|^submissionpage$'
 tip_operation_regexp              = r'^postpone$|^label$'
 token_type_regexp                 = r'^submission$'
+
 field_instance_regexp             = (r'^('
                                      'instance|'
                                      'reference|'
                                      'template)$')
+
 field_type_regexp                 = (r'^('
                                      'inputbox|'
                                      'textarea|'
@@ -41,11 +43,19 @@ field_type_regexp                 = (r'^('
                                      'email|'
                                      'date|'
                                      'fieldgroup)$')
+
+field_attr_type_regexp            = (r'^('
+                                     'int|'
+                                     'bool|'
+                                     'unicode|'
+                                     'localized)$')
+
 identityaccessreply_regexp        = (r'^('
                                      'pending|'
                                      'authorized|'
                                      'denied)$')
 
+class SkipSpecificValidation: pass
 
 DateType = r'(.*)'
 
@@ -254,13 +264,22 @@ AdminNotificationDesc = {
 }
 
 AdminFieldOptionDesc = {
-    'id': uuid_regexp_or_empty,
     'label': unicode,
     'presentation_order': int,
     'score_points': int,
     'activated_fields': [uuid_regexp_or_empty],
     'activated_steps': [uuid_regexp_or_empty]
 }
+
+AdminFieldOptionDescRaw = get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_strings)
+
+AdminFieldAttrDesc = {
+    'name': unicode,
+    'type': field_attr_type_regexp,
+    'value': SkipSpecificValidation
+}
+
+AdminFieldAttrDescRaw = get_raw_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_strings)
 
 AdminFieldDesc = {
     'id': uuid_regexp_or_empty,
@@ -282,13 +301,14 @@ AdminFieldDesc = {
     'preview': bool,
     'stats_enabled': bool,
     'type': field_type_regexp,
-    'attrs': dict,
+    'attrs': list,
     'options': [AdminFieldOptionDesc],
     'children': list
 }
 
 AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_strings)
-AdminFieldDescRaw['options'] = [get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_strings)]
+AdminFieldDescRaw['options'] = [AdminFieldOptionDescRaw]
+AdminFieldDescRaw['attrs'] = [AdminFieldAttrDescRaw]
 
 AdminStepDesc = {
     'id': uuid_regexp_or_empty,
@@ -298,6 +318,9 @@ AdminStepDesc = {
     'context_id': uuid_regexp,
     'presentation_order': int
 }
+
+AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_strings)
+AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminContextDesc = {
     'id': uuid_regexp_or_empty,
@@ -319,8 +342,11 @@ AdminContextDesc = {
     'show_receivers_in_alphabetical_order': bool,
     'steps_arrangement': unicode,
     'steps': [AdminStepDesc],
-    'reset_steps': bool
+    'reset_questionnaire': bool
 }
+
+AdminContextDescRaw = get_raw_request_format(AdminContextDesc, models.Context.localized_strings)
+AdminContextDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,

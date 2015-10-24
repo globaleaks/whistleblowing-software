@@ -47,8 +47,8 @@ def init_appdata(store, result, appdata_dict):
     # Initialize the default data table evry time with
     # fresh data and fresh translations
     appdata = models.ApplicationData()
-    appdata.fields = appdata_dict['fields']
     appdata.version = appdata_dict['version']
+    appdata.default_questionnaire = appdata_dict['default_questionnaire']
     store.add(appdata)
 
 
