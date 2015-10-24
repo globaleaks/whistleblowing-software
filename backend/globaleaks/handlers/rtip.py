@@ -156,6 +156,7 @@ def db_get_rtip(store, user_id, rtip_id, language):
     tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
     tip_desc['label'] = rtip.label
+    tip_desc['access_counter'] = rtip.access_counter
 
     tip_desc['collection'] = '/rtip/' + rtip_id + '/collection'
     tip_desc['files'] = db_get_files_receiver(store, user_id, rtip_id)
