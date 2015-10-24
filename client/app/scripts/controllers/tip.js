@@ -1,5 +1,5 @@
-GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'Tip', 'WBTip', 'ReceiverPreferences',
+GLClient.controller('TipCtrl',
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
   function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, Tip, WBTip, ReceiverPreferences) {
 
     $scope.tip_id = $routeParams.tip_id;
@@ -74,7 +74,7 @@ GLClient.controller('StatusCtrl',
     } else if (Authentication.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
-      new Tip({tip_id: $scope.tip_id}, function(tip) {
+      new Tip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
@@ -105,15 +105,13 @@ GLClient.controller('StatusCtrl',
       }
     }
 
-    $scope.editLabel = function(event) {
+    $scope.editLabel = function() {
       $scope.showEditLabelInput = true;
-      event.stopPropagation();
     };
 
-    $scope.updateLabel = function(event, label) {
+    $scope.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
-      event.stopPropagation();
     };
 
     $scope.newComment = function() {
@@ -129,7 +127,7 @@ GLClient.controller('StatusCtrl',
     $scope.tip_delete = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/tip_operation_delete.html',
-        controller: TipOperationsCtrl,
+        controller: 'TipOperationsCtrl',
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -144,7 +142,7 @@ GLClient.controller('StatusCtrl',
     $scope.tip_postpone = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/tip_operation_postpone.html',
-        controller: TipOperationsCtrl,
+        controller: 'TipOperationsCtrl',
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -159,7 +157,7 @@ GLClient.controller('StatusCtrl',
     $scope.file_identity_access_request = function () {
       var modalInstance = $modal.open({
         templateUrl: 'views/partials/tip_operation_file_identity_access_request.html',
-        controller: IdentityAccessRequestCtrl,
+        controller: 'IdentityAccessRequestCtrl',
         resolve: {
           tip: function () {
             return $scope.tip;
@@ -170,7 +168,7 @@ GLClient.controller('StatusCtrl',
 }]);
 
 GLClient.controller('TipOperationsCtrl',
-  ['$scope', '$http', '$route', '$location', '$modalInstance', 'Tip', 'tip', 'operation',
+  ['$scope', '$http', '$route', '$location', '$modalInstance', 'RTip', 'tip', 'operation',
    function ($scope, $http, $route, $location, $modalInstance, Tip, tip, operation) {
   $scope.tip = tip;
   $scope.operation = operation;

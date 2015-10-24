@@ -44,7 +44,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
         var field = new AdminFieldTemplateResource(field);
         field.id = '';
         field.$save({import: true}, function(new_field) {
-          $scope.fields.push(new_field);
+          $scope.reload();
         });
 
       });
@@ -105,7 +105,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
 
     $scope.addOption = function (field) {
       var new_option = {
-        'id': '',
         'label': '',
         'score_points': 0,
         'activated_fields': [],

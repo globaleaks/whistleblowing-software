@@ -77,9 +77,8 @@ def db_import_fields(store, step, fieldgroup, fields):
 
         f = models.db_forge_obj(store, models.Field, field)
 
-        for key, value in f_attrs.iteritems():
-            value['name'] = key
-            a = models.db_forge_obj(store, models.FieldAttr, value)
+        for attr in f_attrs:
+            a = models.db_forge_obj(store, models.FieldAttr, attr)
             f.attrs.add(a)
 
         for f_option in f_options:
@@ -150,16 +149,13 @@ def db_update_fieldattr(store, field_id, fieldattr):
 
 
 def db_update_fieldattrs(store, field_id, field_attrs, language):
-    """
-    """
     attrs_ids = []
 
-    for name, value in field_attrs.iteritems():
-        value['name'] = name
-        if value['type'] == u'localized':
-            fill_localized_keys(value, ['value'], language)
+    for attr in field_attrs:
+        if attr['type'] == u'localized':
+            fill_localized_keys(attr, ['value'], language)
 
-        attrs_ids.append(db_update_fieldattr(store, field_id, value))
+        attrs_ids.append(db_update_fieldattr(store, field_id, attr))
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
@@ -407,6 +403,7 @@ class FieldTemplatesCollection(BaseHandler):
         :rtype: list
         """
         response = yield get_fieldtemplates_list(self.request.language)
+
         self.set_status(200)
         self.finish(response)
 
@@ -416,10 +413,10 @@ class FieldTemplatesCollection(BaseHandler):
     def post(self):
         """
         Create a new field template.
-
         """
-        request = self.validate_message(self.request.body,
-                                        requests.AdminFieldDesc)
+        validator = requests.AdminFieldDesc if self.request.language is not None else requests.AdminFieldDescRaw
+
+        request = self.validate_message(self.request.body, validator)
 
         response = yield create_field(request, self.request.language)
 
@@ -443,7 +440,6 @@ class FieldTemplateInstance(BaseHandler):
         response = yield get_field(field_id, self.request.language)
 
         self.set_status(200)
-
         self.finish(response)
 
     @transport_security_check('admin')

@@ -145,7 +145,7 @@ var context = {
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
   steps_arrangement: 'horizontal',
-  reset_steps: false,
+  reset_questionnaire: false,
   maximum_selectable_receivers:0,
   receivers: [],
   custodians: [],

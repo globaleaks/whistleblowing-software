@@ -867,12 +867,8 @@ class SecureFileDelete(Model):
 
 
 class ApplicationData(Model):
-    """
-    Exists only one instance of this class, because the ApplicationData
-    had only one big updated blob.
-    """
     version = Int()
-    fields = JSON()
+    default_questionnaire = JSON()
 
 
 # Follow classes used for Many to Many references

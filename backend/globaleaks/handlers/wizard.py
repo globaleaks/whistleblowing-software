@@ -74,4 +74,3 @@ class FirstSetup(BaseHandler):
 
         self.set_status(201)  # Created
         self.finish()
-

@@ -47,7 +47,7 @@ def admin_serialize_context(store, context, language):
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'steps_arrangement': context.steps_arrangement,
-        'reset_steps': False,
+        'reset_questionnaire': False,
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
 
@@ -128,13 +128,13 @@ def get_context_steps(*args):
     return db_get_context_steps(*args)
 
 
-def db_reset_steps(store, context):
+def db_reset_questionnaire(store, context):
     store.find(models.Step, models.Step.context_id == context.id).remove()
 
 
-def db_setup_default_steps(store, context):
+def db_setup_default_questionnaire(store, context):
     appdata = store.find(models.ApplicationData).one()
-    for step in copy.deepcopy(appdata.fields):
+    for step in copy.deepcopy(appdata.default_questionnaire):
         f_children = copy.deepcopy(step['children'])
         del step['children']
         s = models.db_forge_obj(store, models.Step, step)
@@ -160,9 +160,9 @@ def db_update_context(store, context, request, language):
 
     context.update(request)
 
-    if request['reset_steps']:
-        db_reset_steps(store, context)
-        db_setup_default_steps(store, context)
+    if request['reset_questionnaire']:
+        db_reset_questionnaire(store, context)
+        db_setup_default_questionnaire(store, context)
 
     db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
@@ -193,7 +193,7 @@ def db_create_context(store, request, language):
     if len(request['steps']):
       db_create_steps(store, context, request['steps'], language)
     else:
-      db_setup_default_steps(store, context)
+      db_setup_default_questionnaire(store, context)
 
     db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
@@ -291,10 +291,12 @@ class ContextsCollection(BaseHandler):
         Response: AdminContextDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        request = self.validate_message(self.request.body,
-                                        requests.AdminContextDesc)
+        validator = requests.AdminContextDesc if self.request.language is not None else requests.AdminContextDescRaw
+
+        request = self.validate_message(self.request.body, validator)
 
         response = yield create_context(request, self.request.language)
+
         GLApiCache.invalidate()
 
         self.set_status(201) # Created

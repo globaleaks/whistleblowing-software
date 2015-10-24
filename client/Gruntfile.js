@@ -713,7 +713,7 @@ module.exports = function(grunt) {
       var json = JSON.parse(fs.readFileSync("app/data/appdata.json")),
           output = {},
           version = json['version'],
-          fields = json['fields'],
+          default_questionnaire = json['default_questionnaire'],
           templates = json['templates'],
           templates_sources = {};
 
@@ -749,7 +749,7 @@ module.exports = function(grunt) {
       }
 
       output['version'] = version;
-      output['fields'] = fields;
+      output['default_questionnaire'] = default_questionnaire;
       output['templates'] = templates;
 
       output['node'] = {};
@@ -762,6 +762,14 @@ module.exports = function(grunt) {
         }
       }
 
+      var model_translate = function(object, keys) {
+        for (var k in keys) {
+          for (var lang_code in supported_languages) {
+            object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
+          }
+        }
+      }
+
       var fieldattr_translate = function(fieldattr) {
         if (fieldattr['type'] == 'localized') {
           for (var lang_code in supported_languages) {
@@ -771,24 +779,28 @@ module.exports = function(grunt) {
       }
 
       var field_translate = function(field) {
-        var keys = ['label', 'description', 'hint']
-        for (var k in keys){
-          for (var lang_code in supported_languages) {
-            field[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(field[keys[k]]['en'])));
-          }
+        model_translate(field, ['label', 'description', 'hint', 'multi_entry_hint']);
+
+        for (var i in field['attrs']) {
+          fieldattr_translate(field['attrs'][i]);
         }
 
-        for (var a in field['attrs']) {
-          fieldattr_translate(field['attrs'][a]);
-        }
-
-        for (var c in field['children']){
+        for (var c in field['children']) {
           field_translate(field['children'][c]);
         }
       }
 
-      for (var f in output['fields']){
-          field_translate(output['fields'][f]);
+      var step_translate = function(step) {
+        model_translate(step, ['label', 'description']);
+
+        for (var c in step['children']) {
+          field_translate(step['children'][c]);
+        }
+      }
+
+
+      for (var f in output['default_questionnaire']) {
+          step_translate(output['default_questionnaire'][f]);
       }
 
       output = JSON.stringify(output);
@@ -814,5 +826,4 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test-browserchecks', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-browserchecks-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
-
 };

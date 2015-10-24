@@ -267,7 +267,7 @@ class TestGL(unittest.TestCase):
             'multi_entry_hint': '',
             'stats_enabled': False,
             'required': False,
-            'attrs': {},
+            'attrs': [],
             'options': [],
             'children': [],
             'y': 1,
@@ -761,7 +761,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': True,  # <- first field is special,
                 'children': [],    # it's marked as required!!!
-                'attrs': {},
+                'attrs': [],
                 'options': [],
                 'y': 2,
                 'x': 0,
@@ -785,7 +785,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': False,
                 'children': [],
-                'attrs': {},
+                'attrs': [],
                 'options': [],
                 'y': 3,
                 'x': 0,
@@ -809,7 +809,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': False,
                 'children': [],
-                'attrs': {},
+                'attrs': [],
                 'options': [],
                 'y': 4,
                 'x': 0,
@@ -833,7 +833,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': False,
                 'children': [],
-                'attrs': {},
+                'attrs': [],
                 'options': [],
                 'y': 0,
                 'x': 0,
@@ -857,7 +857,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': False,
                 'children': [],
-                'attrs': {},
+                'attrs': [],
                 'options': [],
                 'y': 0,
                 'x': 0,
@@ -881,7 +881,7 @@ class MockDict():
                 'stats_enabled': False,
                 'required': False,
                 'children': [],
-                'attrs': {},
+                'attrs': [],
                 'options': [
                     {
                         'id': '2ebf6df8-289a-4f17-aa59-329fe11d232e',
@@ -947,7 +947,7 @@ class MockDict():
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
             'steps_arrangement': 'horizontal',
-            'reset_steps': False
+            'reset_questionnaire': False
         }
 
         self.dummySubmission = {

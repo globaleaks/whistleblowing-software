@@ -334,7 +334,7 @@ CREATE TABLE whistleblowertip (
 CREATE TABLE applicationdata (
     id TEXT NOT NULL,
     version INTEGER NOT NULL,
-    fields BLOB NOT NULL,
+    default_questionnaire BLOB NOT NULL,
     PRIMARY KEY (id)
 );
 

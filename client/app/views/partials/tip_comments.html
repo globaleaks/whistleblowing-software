@@ -1,5 +1,5 @@
 <div id="TipCommunicationComments" class="panel panel-default" data-ng-init="collapsed = false">
-  <div class="panel-heading" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>{{node.widget_comments_title}}</span>
       <span class="pull-right">

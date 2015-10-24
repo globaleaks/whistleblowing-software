@@ -434,13 +434,13 @@ angular.module('GLServices', ['ngResource']).
   factory('RTipResource', ['GLResource', function(GLResource) {
     return GLResource('rtip/:id', {id: '@id'});
 }]).
-  factory('RTipReceiversResource', ['GLResource', function(GLResource) {
+  factory('RTipReceiverResource', ['GLResource', function(GLResource) {
     return GLResource('rtip/:id/receivers', {id: '@id'});
 }]).
-  factory('RTipCommentsResource', ['GLResource', function(GLResource) {
+  factory('RTipCommentResource', ['GLResource', function(GLResource) {
     return GLResource('rtip/:id/comments', {id: '@id'});
 }]).
-  factory('RTipMessagesResource', ['GLResource', function(GLResource) {
+  factory('RTipMessageResource', ['GLResource', function(GLResource) {
     return GLResource('rtip/:id/messages', {id: '@id'});
 }]).
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
@@ -631,7 +631,7 @@ angular.module('GLServices', ['ngResource']).
           context.enable_attachments = true;
           context.show_receivers_in_alphabetical_order = true;
           context.steps_arrangement = 'horizontal';
-          context.reset_steps = false;
+          context.reset_questionnaire = false;
           context.custodians = [];
           context.receivers = [];
           context.steps = [];
@@ -643,7 +643,6 @@ angular.module('GLServices', ['ngResource']).
           step.id = '';
           step.label = '';
           step.description = '';
-          step.hint = '';
           step.presentation_order = 0;
           step.children = [];
           step.context_id = context_id;
