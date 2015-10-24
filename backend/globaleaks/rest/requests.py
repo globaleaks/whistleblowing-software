@@ -293,7 +293,6 @@ AdminFieldDescRaw['options'] = [get_raw_request_format(AdminFieldOptionDesc, mod
 AdminStepDesc = {
     'id': uuid_regexp_or_empty,
     'label': unicode,
-    'hint': unicode,
     'description': unicode,
     'children': [AdminFieldDesc],
     'context_id': uuid_regexp,
@@ -362,7 +361,6 @@ NodeDesc = {
     'security_awareness_text': unicode,
     'hidden_service': hidden_service_regexp_or_empty,
     'public_site': https_url_regexp_or_empty,
-    'email': email_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
