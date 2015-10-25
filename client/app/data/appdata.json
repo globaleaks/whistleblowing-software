@@ -41,7 +41,7 @@
       "en": "Files"
     }
   },
-  "fields" : [
+  "default_questionnaire" : [
     {
       "label": { "en": "Fill out your submission" },
       "description": {"en": ""},
