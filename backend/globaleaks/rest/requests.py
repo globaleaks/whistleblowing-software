@@ -264,6 +264,7 @@ AdminNotificationDesc = {
 }
 
 AdminFieldOptionDesc = {
+    'id': uuid_regexp_or_empty,
     'label': unicode,
     'presentation_order': int,
     'score_points': int,
@@ -274,6 +275,7 @@ AdminFieldOptionDesc = {
 AdminFieldOptionDescRaw = get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_strings)
 
 AdminFieldAttrDesc = {
+    'id': uuid_regexp_or_empty,
     'name': unicode,
     'type': field_attr_type_regexp,
     'value': SkipSpecificValidation

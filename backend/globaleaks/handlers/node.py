@@ -133,6 +133,7 @@ def anon_serialize_field_option(option, language):
     :return: a serialization of the object
     """
     ret_dict = {
+        'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'activated_fields': [field.id for field in option.activated_fields],
@@ -151,6 +152,7 @@ def anon_serialize_field_attr(attr, language):
     :return: a serialization of the object
     """
     ret_dict = {
+        'id': attr.id,
         'name': attr.name,
         'type': attr.type,
         'value': attr.value
