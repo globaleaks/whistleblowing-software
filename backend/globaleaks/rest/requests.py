@@ -303,14 +303,15 @@ AdminFieldDesc = {
     'preview': bool,
     'stats_enabled': bool,
     'type': field_type_regexp,
-    'attrs': list,
+    'attrs': dict,
     'options': [AdminFieldOptionDesc],
     'children': list
 }
 
 AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_strings)
 AdminFieldDescRaw['options'] = [AdminFieldOptionDescRaw]
-AdminFieldDescRaw['attrs'] = [AdminFieldAttrDescRaw]
+# AdminFieldDescRaw['attrs']; FIXME: we still miss a way for validating a hierarchy where
+#                                    we have a variable dictionary like the attrs dictionary.
 
 AdminStepDesc = {
     'id': uuid_regexp_or_empty,
