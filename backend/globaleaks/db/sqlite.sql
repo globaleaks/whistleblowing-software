@@ -170,6 +170,7 @@ CREATE TABLE node (
     submission_maximum_ttl INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
+    can_grant_permissions INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
@@ -258,6 +259,7 @@ CREATE TABLE receiver (
     configuration TEXT NOT NULL CHECK (configuration IN ('default', 'forcefully_selected', 'unselectable')),
     can_delete_submission INTEGER NOT NULL,
     can_postpone_expiration INTEGER NOT NULL,
+    can_grant_permissions INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
     ping_notification INTEGER NOT NULL,
     ping_mail_address TEXT NOT NULL,
@@ -309,13 +311,13 @@ CREATE TABLE receiver_internaltip (
 
 CREATE TABLE receivertip (
     id TEXT NOT NULL,
-    access_counter INTEGER NOT NULL,
     internaltip_id TEXT NOT NULL,
     last_access TEXT,
-    notification_date TEXT,
+    access_counter INTEGER NOT NULL,
     receiver_id TEXT NOT NULL,
     label TEXT NOT NULL,
     new INTEGER NOT NULL,
+    can_access_whistleblower_identity INTEGER NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -323,9 +325,9 @@ CREATE TABLE receivertip (
 
 CREATE TABLE whistleblowertip (
     id TEXT NOT NULL,
-    access_counter INTEGER NOT NULL,
     internaltip_id TEXT NOT NULL,
     last_access TEXT,
+    access_counter INTEGER NOT NULL,
     receipt_hash TEXT NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)

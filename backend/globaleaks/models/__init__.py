@@ -292,9 +292,10 @@ class ReceiverTip(Model):
 
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
-    notification_date = DateTime()
 
     label = Unicode(default=u"")
+
+    can_access_whistleblower_identity = Bool(default=False)
 
     new = Int(default=True)
 
@@ -310,6 +311,7 @@ class WhistleblowerTip(Model):
     """
     internaltip_id = Unicode()
     receipt_hash = Unicode()
+
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
 
@@ -446,9 +448,10 @@ class Node(Model):
     submission_minimum_delay = Int(default=10)
     submission_maximum_ttl = Int(default=10800)
 
-    # privileges configurable in node/context/receiver
+    # privileges of receivers
     can_postpone_expiration = Bool(default=False)
     can_delete_submission = Bool(default=False)
+    can_grant_permissions = Bool(default=False)
 
     ahmia = Bool(default=False)
     wizard_done = Bool(default=False)
@@ -494,8 +497,9 @@ class Node(Model):
                 'simplified_login']
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
-                 'tor2web_custodian', 'tor2web_unauth', 'can_postpone_expiration',
-                 'can_delete_submission', 'ahmia', 'allow_unencrypted',
+                 'tor2web_custodian', 'tor2web_unauth',
+                 'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
+                 'ahmia', 'allow_unencrypted',
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
@@ -659,6 +663,7 @@ class Receiver(Model):
     # Admin chosen options
     can_delete_submission = Bool(default=False)
     can_postpone_expiration = Bool(default=False)
+    can_grant_permissions = Bool(default=False)
 
     tip_notification = Bool(default=True)
     ping_notification = Bool(default=False)
@@ -674,6 +679,7 @@ class Receiver(Model):
     bool_keys = [
         'can_delete_submission',
         'can_postpone_expiration',
+        'can_grant_permissions',
         'tip_notification',
         'ping_notification'
     ]
