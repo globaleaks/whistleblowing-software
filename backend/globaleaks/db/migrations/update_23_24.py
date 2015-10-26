@@ -171,6 +171,17 @@ class InternalTip_v_23(Model):
 InternalTip_v_23.context = Reference(InternalTip_v_23.context_id, Context_v_23.id)
 
 
+class ReceiverTip_v_23(Model):
+    __storm_table__ = 'receivertip'
+    internaltip_id = Unicode()
+    receiver_id = Unicode()
+    last_access = DateTime()
+    access_counter = Int()
+    notification_date = DateTime()
+    label = Unicode()
+    new = Int()
+
+
 class Step_v_23(Model):
     __storm_table__ = 'step'
     context_id = Unicode()
@@ -291,6 +302,10 @@ class Replacer2324(TableReplacer):
                     new_node.widget_files_title = every_language("")
                 continue
 
+            if v.name == 'can_grant_permissions':
+                new_node.can_grant_permissions = False
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
@@ -388,6 +403,10 @@ class Replacer2324(TableReplacer):
                 setattr(new_user, v.name, getattr(old_receiver.user, v.name))
 
             for _, v in new_receiver._storm_columns.iteritems():
+                if v.name == 'can_grant_permissions':
+                    new_receiver.can_grant_permissions = False
+                    continue
+
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
             # migrating we use old_receiver.id in order to not loose receiver-context associations
@@ -518,6 +537,25 @@ class Replacer2324(TableReplacer):
 
                 if v.name == 'enable_attachments':
                     new_obj.enable_attachments = True
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_ReceiverTip(self):
+        print "%s ReceiverTip migration assistant" % self.std_fancy
+
+        old_objs = self.store_old.find(self.get_right_model("ReceiverTip", 23))
+
+        for old_obj in old_objs:
+            new_obj = self.get_right_model("ReceiverTip", 24)()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'can_access_whistleblower_identity':
+                    new_obj.can_access_whistleblower_identity = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
