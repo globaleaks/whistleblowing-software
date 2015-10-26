@@ -180,6 +180,14 @@ def anon_serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
+    attrs = {}
+    for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
+        attrs[attr.name] = {}
+        attrs[attr.name]['type'] = attr.type
+        attrs[attr.name]['value'] = attr.value
+        if attr.type == u'localized':
+            get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
+
     ret_dict = {
         'id': field.id,
         'key': field.key,
@@ -193,7 +201,7 @@ def anon_serialize_field(store, field, language):
         'required': field.required,
         'preview': field.preview,
         'stats_enabled': field.stats_enabled,
-        'attrs': [anon_serialize_field_attr(a, language) for a in f_to_serialize.attrs],
+        'attrs': attrs,
         'x': field.x,
         'y': field.y,
         'width': field.width,

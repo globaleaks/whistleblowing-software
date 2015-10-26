@@ -151,11 +151,12 @@ def db_update_fieldattr(store, field_id, fieldattr):
 def db_update_fieldattrs(store, field_id, field_attrs, language):
     attrs_ids = []
 
-    for attr in field_attrs:
-        if attr['type'] == u'localized':
-            fill_localized_keys(attr, ['value'], language)
+    for name, value in field_attrs.iteritems():
+        value['name'] = name
+        if value['type'] == u'localized':
+            fill_localized_keys(value, ['value'], language)
 
-        attrs_ids.append(db_update_fieldattr(store, field_id, attr))
+        attrs_ids.append(db_update_fieldattr(store, field_id, value))
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
