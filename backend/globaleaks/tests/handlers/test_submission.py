@@ -16,14 +16,6 @@ from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionI
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission
 
-@transact_ro
-def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
-    file_list = []
-    itip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
-
-    for internalfile in itip.internalfiles:
-        file_list.append(wbtip.wb_serialize_file(internalfile))
-    return file_list
 
 class TestSubmission(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ALL_PLAINTEXT'
@@ -74,19 +66,16 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         yield delivery_sched.DeliverySchedule().operation()
 
-        self.fil = yield delivery_sched.get_files_by_itip(self.submission_desc['id'])
+        self.fil = yield self.get_internalfiles_by_wbtip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
         self.assertEqual(len(self.fil), 3)
 
-        self.rfi = yield delivery_sched.get_receiverfile_by_itip(self.submission_desc['id'])
+        self.rfi = yield self.get_receiverfiles_by_wbtip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), 6)
 
         for i in range(0, 6):
             self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
-
-        self.wbfls = yield collect_ifile_as_wb_without_wbtip(self.submission_desc['id'])
-        self.assertEqual(len(self.wbfls), 3)
 
     @inlineCallbacks
     def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):

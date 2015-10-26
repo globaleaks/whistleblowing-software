@@ -12,7 +12,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
-from globaleaks.jobs.notification_sched import EventLogger, serialize_receivertip, db_save_events_on_db
+from globaleaks.jobs.notification_sched import EventLogger, serialize_usertip, db_save_events_on_db
 from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats, EventLogs
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, transact_ro, GLSettings
@@ -47,7 +47,7 @@ class ExpiringRTipEvent(EventLogger):
                                                      rtip.internaltip.context,
                                                      self.language)
 
-        expiring_tip_desc = serialize_receivertip(store, rtip, self.language)
+        expiring_tip_desc = serialize_usertip(store, rtip, self.language)
 
         self.events.append(Event(type=self.template_type,
                                  trigger=self.trigger,

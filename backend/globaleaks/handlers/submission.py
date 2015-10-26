@@ -23,7 +23,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256
 from globaleaks.settings import transact, GLSettings
 from globaleaks.third_party import rstr
-from globaleaks.utils.structures import get_localized_values
+from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 
 def _db_get_archived_fieldattr(fieldattr, language):
@@ -88,13 +88,22 @@ def db_serialize_questionnaire_answers_recursively(answers):
     return ret
 
 
-def db_serialize_questionnaire_answers(store, internaltip):
+def db_serialize_questionnaire_answers(store, usertip):
+    internaltip = usertip.internaltip
+
     questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
-    answers_ids = [f['id'] for s in questionnaire for f in s['children']]
+    answers_ids = []
+    filtered_answers_ids = []
+    for s in questionnaire:
+        for f in s['children']:
+            if (f['key'] != 'whistleblower_identity' or (isinstance(usertip, ReceiverTip) and usertip.can_access_whistleblower_identity)):
+                answers_ids.append(f['id'])
+            else:
+                filtered_answers_ids.append(f['id'])
 
     answers = store.find(models.FieldAnswer, And(models.FieldAnswer.internaltip_id == internaltip.id,
-                                          In(models.FieldAnswer.key, answers_ids)))
+                                                 In(models.FieldAnswer.key, answers_ids)))
 
     return db_serialize_questionnaire_answers_recursively(answers)
 
@@ -141,19 +150,6 @@ def extract_answers_preview(questionnaire, answers):
     return preview
 
 
-def wb_serialize_internaltip(store, internaltip):
-    return {
-        'id': internaltip.id,
-        'context_id': internaltip.context_id,
-        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
-        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'whistleblower_provided_identity': internaltip.whistleblower_provided_identity,
-        'answers': db_serialize_questionnaire_answers(store, internaltip),
-        'files': [f.id for f in internaltip.internalfiles],
-        'receivers': [r.id for r in internaltip.receivers]
-    }
-
-
 def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
     if store.find(models.ArchivedSchema, 
                   models.ArchivedSchema.hash == questionnaire_hash).count() <= 0:
@@ -169,6 +165,66 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
         aqsp.type = u'preview'
         aqsp.schema = [f for s in aqs.schema for f in s['children'] if f['preview']]
         store.add(aqsp)
+
+
+def serialize_itip(store, internaltip, language):
+    context = internaltip.context
+    mo = Rosetta(context.localized_strings)
+    mo.acquire_storm_object(context)
+
+    return {
+        'id': internaltip.id,
+        'context_id': internaltip.context_id,
+        'context_name': mo.dump_localized_key('name', language),
+        'show_receivers': context.show_receivers,
+        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
+        'update_date': datetime_to_ISO8601(internaltip.update_date),
+        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
+        'tor2web': internaltip.tor2web,
+        'timetolive': context.tip_timetolive,
+        'enable_comments': internaltip.enable_comments,
+        'enable_messages': internaltip.enable_messages,
+        'enable_two_way_communication': internaltip.enable_two_way_communication,
+        'enable_attachments': internaltip.enable_attachments
+    }
+
+def serialize_internalfile(ifile):
+    ifile_dict = {
+        'id': ifile.id,
+        'internaltip_id': ifile.internaltip_id,
+        'name': ifile.name,
+        'file_path': ifile.file_path,
+        'content_type': ifile.content_type,
+        'size': ifile.size,
+    }
+
+    return ifile_dict
+
+def serialize_receiverfile(rfile):
+    rfile_dict = {
+        'id' : rfile.id,
+        'internaltip_id': rfile.internaltip_id,
+        'internalfile_id': rfile.internalfile_id,
+        'receiver_id': rfile.receiver_id,
+        'receivertip_id': rfile.receivertip_id,
+        'file_path': rfile.file_path,
+        'size': rfile.size,
+        'downloads': rfile.downloads,
+        'last_access': rfile.last_access,
+        'status': rfile.status,
+    }
+
+    return rfile_dict
+
+def serialize_usertip(store, usertip, language):
+    internaltip = usertip.internaltip
+    ret = serialize_itip(store, internaltip, language)
+    ret['id'] = usertip.id
+    ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+    ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
+    ret['access_counter'] = usertip.access_counter
+    return ret
 
 
 def db_create_receivertip(store, receiver, internaltip):
@@ -207,12 +263,12 @@ def db_create_whistleblower_tip(store, internaltip):
     if len(created_rtips):
         log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
 
-    return receipt
+    return receipt, wbtip
 
 
 @transact
 def create_whistleblower_tip(*args):
-    return db_create_whistleblower_tip(*args)
+    return db_create_whistleblower_tip(*args)[0] # here is exported only the receipt
 
 
 def import_receivers(store, submission, receiver_id_list):
@@ -320,9 +376,9 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Unable to create a DB entry for file! %s" % excep)
         raise excep
 
-    receipt = db_create_whistleblower_tip(store, submission)
+    receipt, wbtip = db_create_whistleblower_tip(store, submission)
 
-    submission_dict = wb_serialize_internaltip(store, submission)
+    submission_dict = serialize_usertip(store, wbtip, language)
 
     submission_dict.update({'receipt': receipt})
 

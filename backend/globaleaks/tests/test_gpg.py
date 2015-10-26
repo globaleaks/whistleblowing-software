@@ -1,22 +1,23 @@
 # -*- encoding: utf-8 -*-
 
-from datetime import datetime
-
 import os
+from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.rest import errors
-from globaleaks.security import GLBPGP
+
 from globaleaks.handlers import submission
 from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin.context import create_context, get_context_list
-from globaleaks.settings import GLSettings
-from globaleaks.jobs.delivery_sched import DeliverySchedule, get_files_by_itip, get_receiverfile_by_itip
+from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.plugins.base import Event
+from globaleaks.rest import errors
+from globaleaks.security import GLBPGP
+from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.tests.helpers import MockDict, TestHandlerWithPopulatedDB, VALID_PGP_KEY1, VALID_PGP_KEY2, EXPIRED_PGP_KEY
 from globaleaks.utils.token import Token
 from globaleaks.utils.templating import Templating
-from globaleaks.tests.helpers import MockDict, TestHandlerWithPopulatedDB, VALID_PGP_KEY1, VALID_PGP_KEY2, EXPIRED_PGP_KEY
 
 PGPROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
+
 
 class TestPGP(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
@@ -136,12 +137,12 @@ class TestPGP(TestHandlerWithPopulatedDB):
         yield DeliverySchedule().operation()
 
         # now get a lots of receivertips/receiverfiles and check!
-        ifilist = yield get_files_by_itip(new_subm_output['id'])
+        ifilist = yield self.get_internalfiles_by_wbtip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(ifilist), 3)
 
-        rfilist = yield get_receiverfile_by_itip(new_subm_output['id'])
+        rfilist = yield self.get_receiverfiles_by_wbtip(new_subm_output['id'])
 
         self.assertTrue(isinstance(ifilist, list))
         self.assertEqual(len(rfilist), 6)

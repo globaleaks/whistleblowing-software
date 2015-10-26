@@ -4,7 +4,6 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
-
 import os
 
 from twisted.internet.defer import inlineCallbacks

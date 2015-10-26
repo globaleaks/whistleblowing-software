@@ -9,42 +9,16 @@
 from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receivers_list, \
     serialize_comment, serialize_message
-from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
-    db_serialize_questionnaire_answers
-from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.rest import requests
+from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
+from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro
-from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
-from globaleaks.rest import errors
-
-
-def wb_serialize_wbtip(store, wbtip, language):
-    internaltip = wbtip.internaltip
-
-    mo = Rosetta(internaltip.context.localized_strings)
-    mo.acquire_storm_object(internaltip.context)
-
-    return {
-        'id': internaltip.id,
-        'context_id': internaltip.context_id,
-        'context_name': mo.dump_localized_key('name', language),
-        'show_receivers': internaltip.context.show_receivers,
-        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
-        'update_date': datetime_to_ISO8601(internaltip.update_date),
-        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
-        'answers': db_serialize_questionnaire_answers(store, internaltip),
-        'tor2web': internaltip.tor2web,
-        'enable_comments': internaltip.enable_comments,
-        'enable_messages': internaltip.enable_messages,
-        'enable_two_way_communication': internaltip.enable_two_way_communication,
-        'enable_attachments': internaltip.enable_attachments
-    }
 
 
 def wb_serialize_file(internalfile):
@@ -53,7 +27,7 @@ def wb_serialize_file(internalfile):
         'name': internalfile.name,
         'content_type': internalfile.content_type,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'size': internalfile.size,
+        'size': internalfile.size
     }
 
 
@@ -75,15 +49,11 @@ def db_get_files_wb(store, wbtip_id):
 def db_get_wbtip(store, wbtip_id, language):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    # there is not a limit in the WB access counter, but is kept track
     wbtip.access_counter += 1
 
-    tip_desc = wb_serialize_wbtip(store, wbtip, language)
+    tip_desc = serialize_usertip(store, wbtip, language)
 
-    # two elements from WhistleblowerTip
-    tip_desc['access_counter'] = wbtip.access_counter
     tip_desc['id'] = wbtip.id
-
     tip_desc['files'] = db_get_files_wb(store, wbtip_id)
 
     return tip_desc
