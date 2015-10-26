@@ -97,7 +97,7 @@ def db_serialize_questionnaire_answers(store, usertip):
     filtered_answers_ids = []
     for s in questionnaire:
         for f in s['children']:
-            if (f['key'] != 'whistleblower_identity' or (isinstance(usertip, ReceiverTip) and usertip.can_access_whistleblower_identity)):
+            if (f['key'] != 'whistleblower_identity' or (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity)):
                 answers_ids.append(f['id'])
             else:
                 filtered_answers_ids.append(f['id'])

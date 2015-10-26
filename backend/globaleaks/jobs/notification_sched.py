@@ -14,7 +14,6 @@ from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.submission import serialize_usertip, serialize_internalfile
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, GLSettings
-from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 from globaleaks.anomaly import Alarm
 
