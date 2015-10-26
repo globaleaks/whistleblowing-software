@@ -41,7 +41,7 @@
       "en": "Files"
     }
   },
-  "default_questionnaire" : [
+  "fields" : [
     {
       "label": { "en": "Fill out your submission" },
       "description": {"en": ""},
@@ -57,11 +57,11 @@
           "multi_entry_hint": {"en": ""},
           "stats_enabled": false,
           "required": false,
-          "attrs": [
-            {"name": "min_len", "type": "int", "value": "-1"},
-            {"name": "max_len", "type": "int", "value": "-1"},
-            {"name": "regexp", "type": "unicode", "value": ""}
-          ],
+          "attrs": {
+            "min_len": {"type": "int", "value": "-1"},
+            "max_len": {"type": "int", "value": "-1"},
+            "regexp": {"type": "unicode", "value": ""}
+          },
           "options": [],
           "children": [],
           "y": 1,
@@ -77,11 +77,11 @@
           "multi_entry_hint": {"en": ""},
           "stats_enabled": false,
           "required": false,
-          "attrs": [
-            {"name": "min_len", "type": "int", "value": "-1"},
-            {"name": "max_len", "type": "int", "value": "-1"},
-            {"name": "regexp", "type": "unicode", "value": ""}
-          ],
+          "attrs": {
+            "min_len": {"type": "int", "value": "-1"},
+            "max_len": {"type": "int", "value": "-1"},
+            "regexp": {"type": "unicode", "value": ""}
+          },
           "options": [],
           "children": [],
           "y": 2,
@@ -97,11 +97,11 @@
           "multi_entry_hint": {"en": ""},
           "stats_enabled": false,
           "required": false,
-          "attrs": [
-            {"name": "min_len", "type": "int", "value": "-1"},
-            {"name": "max_len", "type": "int", "value": "-1"},
-            {"name": "regexp", "type": "unicode", "value": ""}
-          ],
+          "attrs": {
+            "min_len": {"type": "int", "value": "-1"},
+            "max_len": {"type": "int", "value": "-1"},
+            "regexp": {"type": "unicode", "value": ""}
+          },
           "options": [],
           "children": [],
           "y": 3,
@@ -140,18 +140,16 @@
           "multi_entry_hint": {"en": ""},
           "stats_enabled": false,
           "required": true,
-          "attrs": [
-            {
-              "name": "agreement_statement",
+          "attrs": {
+            "agreement_statement": {
               "type": "localized",
               "value": {"en": "To ensure your anonymity you must use the Tor Browser to visit this site.\nYou acknowledge that failure to do so will result in the inability to technically protect your anonymity.\nTo further enhance your security, please follow these instructions:\n1) In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)\n2) Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity."}
             },
-            {
-              "name": "clause",
+            "clause": {
               "type": "localized",
               "value": {"en": "By checking this box you agree to these terms and conditions."}
             }
-          ],
+          },
           "options": [],
           "children": [],
           "y": 1,
