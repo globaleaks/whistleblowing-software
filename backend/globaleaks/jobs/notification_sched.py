@@ -9,13 +9,14 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.jobs.base import GLJob
+from globaleaks.anomaly import Alarm
 from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.submission import serialize_usertip, serialize_internalfile
+from globaleaks.jobs.base import GLJob
+from globaleaks.models import EventLogs
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, GLSettings
-from globaleaks.models import EventLogs
-from globaleaks.anomaly import Alarm
+from globaleaks.utils.utility import log
 
 
 def db_save_events_on_db(store, event_list):
