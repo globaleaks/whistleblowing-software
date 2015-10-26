@@ -1,8 +1,8 @@
 <div data-ng-repeat="row in ::fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
   <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass(field, row.length)">
     <div data-ng-init="fieldId = getFieldId($parent.fieldId, $parent.$index, $index)">
-      <div id="{{::fieldId}}" class="form-group" data-ng-controller="SubmissionFieldCtrl">
-        <div>
+      <div id="{{::fieldId}}" data-ng-controller="SubmissionFieldCtrl" class="panel panel-default">
+        <div class="panel-heading">
           <label>
             <span data-ng-if="::fieldsLevel == 0" class="fieldIndex">{{::$index + 1}}</span>
             <span class="fieldLabel">{{::field.label}}</span>
@@ -16,9 +16,11 @@
                 popover-placement="right"
                 popover-trigger="mouseenter">*</span>
         </div>
-        <div class="FieldDescription">{{::field.description}}</div>
-        <div class="submissionFieldInput">
-          <div data-ng-include="'views/submission/form_field_inputs.html'"></div>
+        <div class="panel-body">
+          <div class="FieldDescription">{{::field.description}}</div>
+          <div class="submissionFieldInput form-group">
+            <div data-ng-include="'views/submission/form_field_inputs.html'"></div>
+          </div>
         </div>
       </div>
     </div>

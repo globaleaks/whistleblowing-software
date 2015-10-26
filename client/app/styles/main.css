@@ -159,6 +159,7 @@ th {
   margin: 0 auto;
   width: 200px;
   height: auto;
+  border-radius: 7px;
 }
 
 /** Submission details **/
