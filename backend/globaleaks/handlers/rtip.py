@@ -13,43 +13,14 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.submission import db_get_archived_questionnaire_schema, \
-    db_serialize_questionnaire_answers
-from globaleaks.rest import requests
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
-    datetime_to_ISO8601, datetime_to_pretty_str
-
-from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
-from globaleaks.rest import errors
-
-
-def receiver_serialize_rtip(store, receivertip, language):
-    internaltip = receivertip.internaltip
-
-    mo = Rosetta(internaltip.context.localized_strings)
-    mo.acquire_storm_object(internaltip.context)
-
-    return {
-        'id': internaltip.id,
-        'context_id': internaltip.context_id,
-        'context_name': mo.dump_localized_key('name', language),
-        'show_receivers': internaltip.context.show_receivers,
-        'creation_date': datetime_to_ISO8601(internaltip.creation_date),
-        'update_date': datetime_to_ISO8601(internaltip.update_date),
-        'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
-        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
-        'answers': db_serialize_questionnaire_answers(store, internaltip),
-        'tor2web': internaltip.tor2web,
-        'timetolive': internaltip.context.tip_timetolive,
-        'enable_comments': internaltip.enable_comments,
-        'enable_messages': internaltip.enable_messages,
-        'enable_two_way_communication': internaltip.enable_two_way_communication,
-        'enable_attachments': internaltip.enable_attachments
-    }
+from globaleaks.rest import errors, requests
+from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
+    datetime_to_ISO8601, datetime_to_pretty_str
 
 
 def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
@@ -151,13 +122,10 @@ def db_get_rtip(store, user_id, rtip_id, language):
         # store.find(EventLogs, And(EventLogs.receivertip_id == rtip_id,
         #                          EventLogs.mail_sent == True)).remove()
 
-    tip_desc = receiver_serialize_rtip(store, rtip, language)
+    tip_desc = serialize_usertip(store, rtip, language)
 
-    tip_desc['id'] = rtip.id
     tip_desc['receiver_id'] = user_id
     tip_desc['label'] = rtip.label
-    tip_desc['access_counter'] = rtip.access_counter
-
     tip_desc['collection'] = '/rtip/' + rtip_id + '/collection'
     tip_desc['files'] = db_get_files_receiver(store, user_id, rtip_id)
 
@@ -456,7 +424,6 @@ def db_get_itip_receivers_list(store, itip, language):
             "name": rtip.receiver.user.name,
             "last_access": datetime_to_ISO8601(rtip.last_access),
             "access_counter": rtip.access_counter,
-            "pgp_key_status": rtip.receiver.user.pgp_key_status
         })
 
     return receivers_list

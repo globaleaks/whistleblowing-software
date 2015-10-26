@@ -37,14 +37,14 @@ from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata, import_memory_variables
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
-from globaleaks.handlers.admin.context import create_context, get_context, update_context, db_get_context_steps
+from globaleaks.handlers.admin.context import create_context, \
+    get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
-from globaleaks.handlers.wbtip import wb_serialize_wbtip
-from globaleaks.handlers.submission import create_submission
+from globaleaks.handlers.submission import create_submission, serialize_usertip, \
+    serialize_internalfile, serialize_receiverfile
 from globaleaks.jobs import statistics_sched, mailflush_sched
-from globaleaks.models import db_forge_obj, ReceiverTip, ReceiverFile, WhistleblowerTip, InternalTip
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings, transact, transact_ro
 from globaleaks.security import GLSecureTemporaryFile
@@ -130,7 +130,7 @@ def import_fixture(store, fixture):
                     del mock['fields']['fieldgroup_id']
 
             mock_class = getattr(models, mock['class'])
-            db_forge_obj(store, mock_class, mock['fields'])
+            models.db_forge_obj(store, mock_class, mock['fields'])
             store.commit()
 
 
@@ -406,45 +406,54 @@ class TestGL(unittest.TestCase):
 
     @transact_ro
     def get_submissions_ids(self, store):
-        ids = []
-        submissions = store.find(InternalTip)
-        for s in submissions:
-            ids.append(s.id)
-
-        return ids
+        submissions = store.find(models.InternalTip)
+        return [s.id for s in submissions]
 
     @transact_ro
     def get_rtips(self, store):
         rtips_desc = []
-        rtips = store.find(ReceiverTip)
+        rtips = store.find(models.ReceiverTip)
         for r in rtips:
-            itip = rtip.receiver_serialize_rtip(store, r, 'en')
+            itip = serialize_usertip(store, r, 'en')
             rtips_desc.append({'rtip_id': r.id, 'receiver_id': r.receiver_id, 'itip': itip})
 
         return rtips_desc
 
     @transact_ro
     def get_rfiles(self, store, rtip_id):
-        rfiles_desc = []
-        rfiles = store.find(ReceiverFile, ReceiverFile.receivertip_id == rtip_id)
-        for rfile in rfiles:
-            rfiles_desc.append({'rfile_id': rfile.id})
-
-        return rfiles_desc
+        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)
+        return [{'rfile_id': rfile.id} for rfile in rfiles]
 
     @transact_ro
     def get_wbtips(self, store):
         wbtips_desc = []
-        wbtips = store.find(WhistleblowerTip)
+        wbtips = store.find(models.WhistleblowerTip)
         for wbtip in wbtips:
             rcvrs_ids = []
             for rcvr in wbtip.internaltip.receivers:
                 rcvrs_ids.append(rcvr.id)
 
-            itip = wb_serialize_wbtip(store, wbtip, 'en')
+            itip = serialize_usertip(store, wbtip, 'en')
             wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
         return wbtips_desc
+
+    @transact_ro
+    def get_internalfiles_by_wbtip(self, store, wbtip_id):
+        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
+
+        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
+
+        return [serialize_internalfile(ifil) for ifil in ifiles]
+
+
+    @transact_ro
+    def get_receiverfiles_by_wbtip(self, store, wbtip_id):
+        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
+
+        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.internaltip_id == unicode(wbtip.internaltip_id))
+
+        return [serialize_receiverfile(rfile) for rfile in rfiles]
 
 
 class TestGLWithPopulatedDB(TestGL):

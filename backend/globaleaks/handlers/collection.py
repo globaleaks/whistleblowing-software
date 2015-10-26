@@ -6,18 +6,18 @@
 # File Collections handlers and utils
 
 from twisted.internet.defer import inlineCallbacks
+from globaleaks.handlers.admin import node, context, receiver, notification
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files, serialize_receiver_file
-from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.handlers import admin
+from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.models import ReceiverTip, ReceiverFile
+from globaleaks.plugins.base import Event
 from globaleaks.rest import errors
 from globaleaks.settings import transact_ro
-from globaleaks.plugins.base import Event
-from globaleaks.jobs.notification_sched import serialize_receivertip
-from globaleaks.models import ReceiverTip, ReceiverFile
-from globaleaks.utils.zipstream import ZipStream
-from globaleaks.utils.utility import log
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import log
+from globaleaks.utils.zipstream import ZipStream
 
 
 @transact_ro
@@ -25,14 +25,11 @@ def get_rtip_info(store, rtip_id, language):
     """
     This function return a receiver tip
     """
-
     rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
-
     if not rtip:
-        log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    rtip_dict = serialize_receivertip(store, rtip, language)
+    rtip_dict = serialize_usertip(store, rtip, language)
 
     return rtip_dict
 
@@ -42,11 +39,8 @@ def get_collection_info(store, rtip_id):
     """
     This function return a receiver tip + file information
     """
-
     rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
-
     if not rtip:
-        log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
     collection_dict = {'files': [], 'file_counter': 0, 'total_size': 0}
@@ -68,7 +62,7 @@ def get_receiver_from_rtip(store, rtip_id, language):
         log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
-    return admin.receiver.admin_serialize_receiver(rtip.receiver, language)
+    return receiver.admin_serialize_receiver(rtip.receiver, language)
 
 
 class CollectionStreamer(object):
@@ -88,12 +82,12 @@ class CollectionDownload(BaseHandler):
     @inlineCallbacks
     def post(self, rtip_id):
         files_dict = yield download_all_files(self.current_user.user_id, rtip_id)
-        node_dict = yield admin.node.admin_serialize_node(self.request.language)
+        node_dict = yield node.admin_serialize_node(self.request.language)
         receiver_dict = yield get_receiver_from_rtip(rtip_id, self.request.language)
         rtip_dict = yield get_rtip_info(rtip_id, self.request.language)
         collection_tip_dict = yield get_collection_info(rtip_id)
-        context_dict = yield admin.context.get_context(rtip_dict['context_id'], 'en')
-        notif_dict = yield admin.notification.get_notification(self.request.language)
+        context_dict = yield context.get_context(rtip_dict['context_id'], 'en')
+        notif_dict = yield notification.get_notification(self.request.language)
 
         mock_event = Event(
             type=u'zip_collection',

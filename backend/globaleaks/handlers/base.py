@@ -30,7 +30,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
-from globaleaks.utils.utility import log, log_remove_escapes, log_encode_html, datetime_now, deferred_sleep
+from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -628,7 +628,7 @@ class TimingStatsHandler(BaseHandler):
         if uri == '/s/timings':
             return
 
-	TimingStatsHandler.TimingsTracker = \
+        TimingStatsHandler.TimingsTracker = \
             TimingStatsHandler.TimingsTracker[999:] if len(TimingStatsHandler.TimingsTracker) > 999 else TimingStatsHandler.TimingsTracker
 
         if method == 'POST' and uri == '/token':

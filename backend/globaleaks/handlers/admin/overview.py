@@ -42,7 +42,6 @@ def collect_tip_overview(store, language):
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
-                'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 'receiver_id': rtip.receiver.id,
                 'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.user.name,
@@ -111,7 +110,6 @@ def collect_users_overview(store):
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
                 'last_access': datetime_to_ISO8601(rtip.last_access),
-                'notification_date': datetime_to_ISO8601(rtip.notification_date),
                 'access_counter': rtip.access_counter
             })
 

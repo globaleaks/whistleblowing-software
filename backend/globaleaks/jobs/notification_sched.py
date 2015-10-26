@@ -11,44 +11,12 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.jobs.base import GLJob
 from globaleaks.handlers import admin, rtip
-from globaleaks.handlers.submission import db_serialize_questionnaire_answers, \
-    db_get_archived_questionnaire_schema
+from globaleaks.handlers.submission import serialize_usertip, serialize_internalfile
 from globaleaks.plugins.base import Event
 from globaleaks.settings import transact, GLSettings
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.models import EventLogs
 from globaleaks.anomaly import Alarm
-
-
-def serialize_receivertip(store, rtip, language):
-    rtip_dict = {
-        'id': rtip.id,
-        'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
-        'last_access': datetime_to_ISO8601(rtip.last_access),
-        'access_counter': rtip.access_counter,
-        'questionnaire': db_get_archived_questionnaire_schema(store, rtip.internaltip.questionnaire_hash, language),
-        'answers': db_serialize_questionnaire_answers(store, rtip.internaltip),
-        'context_id': rtip.internaltip.context.id,
-        'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date)
-    }
-
-    return rtip_dict
-
-
-def serialize_internalfile(ifile, rfile_id):
-    """
-    :param ifile: store InternalFile
-    :param rfile_id: ReceiverFile.id, to keep track
-    """
-    rfile_dict = {
-        'receiverfile_id': rfile_id,
-        'name': ifile.name,
-        'content_type': ifile.content_type,
-        'size': ifile.size,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
-    }
-
-    return rfile_dict
 
 
 def db_save_events_on_db(store, event_list):
@@ -159,7 +127,7 @@ class TipEventLogger(EventLogger):
     model = models.ReceiverTip
 
     def process_event(self, store, rtip):
-        tip_desc = serialize_receivertip(store, rtip, self.language)
+        tip_desc = serialize_usertip(store, rtip, self.language)
 
         context_desc = admin.context.admin_serialize_context(store,
                                                              rtip.internaltip.context,
@@ -188,7 +156,7 @@ class MessageEventLogger(EventLogger):
         if message.type == u"receiver":
             return
 
-        tip_desc = serialize_receivertip(store, message.receivertip, self.language)
+        tip_desc = serialize_usertip(store, message.receivertip, self.language)
 
         context_desc = admin.context.admin_serialize_context(store,
                                                              message.receivertip.internaltip.context,
@@ -230,7 +198,7 @@ class CommentEventLogger(EventLogger):
                                      (models.ReceiverTip.internaltip_id == comment.internaltip_id,
                                       models.ReceiverTip.receiver_id == receiver.id)).one()
 
-            tip_desc = serialize_receivertip(store, receivertip, self.language)
+            tip_desc = serialize_usertip(store, receivertip, self.language)
 
             do_mail, receiver_desc = self.import_receiver(receiver)
 
@@ -253,8 +221,8 @@ class FileEventLogger(EventLogger):
                                                              rfile.internalfile.internaltip.context,
                                                              self.language)
 
-        tip_desc = serialize_receivertip(store, rfile.receivertip, self.language)
-        file_desc = serialize_internalfile(rfile.internalfile, rfile.id)
+        tip_desc = serialize_usertip(store, rfile.receivertip, self.language)
+        file_desc = serialize_internalfile(rfile.internalfile)
         do_mail, receiver_desc = self.import_receiver(rfile.receiver)
 
         self.events.append(Event(type=self.template_type,

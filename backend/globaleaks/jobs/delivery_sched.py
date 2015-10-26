@@ -13,8 +13,7 @@
 import os
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, ReceiverTip, \
-                              ReceiverFile
+from globaleaks.models import InternalFile, ReceiverFile, ReceiverTip
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
@@ -26,57 +25,6 @@ __all__ = ['DeliverySchedule']
 
 
 INTERNALFILES_HANDLE_RETRY_MAX = 3
-
-
-def serialize_internalfile(ifile):
-    ifile_dict = {
-        'id': ifile.id,
-        'internaltip_id': ifile.internaltip_id,
-        'name': ifile.name,
-        'file_path': ifile.file_path,
-        'content_type': ifile.content_type,
-        'size': ifile.size,
-    }
-
-    return ifile_dict
-
-def serialize_receiverfile(rfile):
-    rfile_dict = {
-        'id' : rfile.id,
-        'internaltip_id': rfile.internaltip_id,
-        'internalfile_id': rfile.internalfile_id,
-        'receiver_id': rfile.receiver_id,
-        'receivertip_id': rfile.receivertip_id,
-        'file_path': rfile.file_path,
-        'size': rfile.size,
-        'downloads': rfile.downloads,
-        'last_access': rfile.last_access,
-        'status': rfile.status,
-    }
-
-    return rfile_dict
-
-@transact_ro
-def get_files_by_itip(store, itip_id):
-    ifiles = store.find(InternalFile, InternalFile.internaltip_id == unicode(itip_id))
-
-    ifile_list = []
-    for ifil in ifiles:
-        ifile_list.append(serialize_internalfile(ifil))
-
-    return ifile_list
-
-
-@transact_ro
-def get_receiverfile_by_itip(store, itip_id):
-    rfiles = store.find(ReceiverFile, ReceiverFile.internaltip_id == unicode(itip_id))
-
-    rfile_list = []
-    for rfile in rfiles:
-        rfile_list.append(serialize_receiverfile(rfile))
-
-    return rfile_list
-
 
 @transact
 def receiverfile_planning(store):
