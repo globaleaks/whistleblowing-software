@@ -18,7 +18,9 @@
 
   <span data-ng-switch-default class="preformatted">{{entry['value']}}</span>
 
-  <span data-ng-switch-when="fieldgroup" data-ng-init="fieldsRoot=field.children; fieldAnswers=entry">
-    <div data-ng-include="'views/partials/tip_fields.html'"></div>
+  <span data-ng-switch-when="fieldgroup">
+    <div data-ng-repeat="field in field.children">
+      <div data-ng-init="fieldAnswers=entry" data-ng-include="'views/partials/tip_field.html'"></div>
+    </div>
   </span>
 </div>

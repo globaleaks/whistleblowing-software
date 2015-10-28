@@ -17,8 +17,8 @@ angular.module('GLServices', ['ngResource']).
       return $resource(url, params, actions);
     };
   }]).
-  factory('Authentication', ['$http', '$location', '$routeParams',
-                             '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
+  factory('Authentication',
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
     function($http, $location, $routeParams, $rootScope, $timeout, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
@@ -196,17 +196,17 @@ angular.module('GLServices', ['ngResource']).
         
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
-          var source_path = $location.path();
-
           if (error.code === 24) {
             $rootScope.logout();
           } else {
+            var source_path = $location.path();
             var redirect_path = '/login';
 
             // If we are whistleblowers on the status page, redirect to homepage
             if (source_path === '/status') {
               redirect_path = '/';
             }
+
             // If we are admins on the /admin(/*) pages, redirect to /admin
             else if (source_path.indexOf('/admin') === 0) {
               redirect_path = '/admin';
@@ -223,6 +223,7 @@ angular.module('GLServices', ['ngResource']).
               $location.search('src=' + source_path);
             }
           }
+
         }
 
         $rootScope.errors.push(error);
@@ -380,7 +381,7 @@ angular.module('GLServices', ['ngResource']).
         self._submission = new SubmissionResource({
           context_id: self.context.id,
           receivers: [],
-          whistleblower_provided_identity: false,
+          identity_provided: false,
           answers: angular.copy(self.answers),
           human_captcha_answer: 0,
           proof_of_work_answer: 0,
@@ -481,7 +482,9 @@ angular.module('GLServices', ['ngResource']).
             return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : label}});
           };
 
-          fn(tip);
+          if (fn) {
+            fn(tip);
+          }
         });
       });
     };
@@ -547,7 +550,9 @@ angular.module('GLServices', ['ngResource']).
             }
           };
 
-          fn(tip);
+          if (fn) {
+            fn(tip);
+          }
         });
       });
     };

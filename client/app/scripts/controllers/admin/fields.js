@@ -36,7 +36,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
 
     $scope.importQuestions = function(fields) {
       var fields = JSON.parse(fields);
-      if(Object.prototype.toString.call(fields) !== '[object Array]') {
+
+      if (Object.prototype.toString.call(fields) !== '[object Array]') {
         fields = [fields];
       }
 
@@ -52,8 +53,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
   }
 ]);
 
-GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldResource',
-  function($scope, $modal, AdminFieldResource) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $modal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.instance != 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -91,12 +92,16 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
       return type;
     };
 
-    $scope.shouldShowOptions = function(field) {
+    $scope.showOptions = function(field) {
+      if (['whistleblower_identity'].indexOf(field.key) > -1) {
+        return true;
+      }
+
       if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'].indexOf(field.type) > -1) {
         return true;
-      } else {
-        return false;
       }
+
+      return false;
     };
 
     $scope.addField = function(field) {
