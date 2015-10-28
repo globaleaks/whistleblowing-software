@@ -48,7 +48,7 @@ def associate_field(store, field, template=None, step=None, fieldgroup=None):
         if field.instance == 'template' and fieldgroup.instance != 'template':
             raise errors.InvalidInputFormat("Cannot associate field template to a field")
 
-        ancestors = set(fieldtree_ancestors(store, fieldgroup))
+        ancestors = set(fieldtree_ancestors(store, fieldgroup.id))
 
         if field.id == fieldgroup.id or field.id in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
@@ -63,8 +63,13 @@ def disassociate_field(store, field):
     :param store: the store on which perform queries.
     :param field: the field to be deassociated.
     """
-    field.step_id = None
-    field.fieldgroud_id = None
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    if sf:
+        store.remove(sf)
+
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    if ff:
+        store.remove(ff)
 
 
 def db_import_fields(store, step, fieldgroup, fields):
@@ -134,14 +139,20 @@ def db_update_fieldoptions(store, field_id, options, language):
     store.find(models.FieldOption, And(models.FieldOption.field_id == field_id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
 
-def db_update_fieldattr(store, field_id, fieldattr):
-    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == fieldattr['name'])).one()
+def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
+    attr = store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, models.FieldAttr.name == attr_name)).one()
     if not attr:
         attr = models.FieldAttr()
 
-    fieldattr['field_id'] = field_id
+    attr_dict['name'] = attr_name
+    attr_dict['field_id'] = field_id
 
-    attr.update(fieldattr)
+    if attr_dict['type'] == 'bool':
+        attr_dict['value'] = 'True' if attr_dict['value'] == True else 'False'
+    elif attr_dict['type'] == u'localized':
+        fill_localized_keys(attr_dict, ['value'], language)
+
+    attr.update(attr_dict)
 
     store.add(attr)
 
@@ -149,14 +160,7 @@ def db_update_fieldattr(store, field_id, fieldattr):
 
 
 def db_update_fieldattrs(store, field_id, field_attrs, language):
-    attrs_ids = []
-
-    for name, value in field_attrs.iteritems():
-        value['name'] = name
-        if value['type'] == u'localized':
-            fill_localized_keys(value, ['value'], language)
-
-        attrs_ids.append(db_update_fieldattr(store, field_id, value))
+    attrs_ids = [db_update_fieldattr(store, field_id, attr_name, attr, language) for attr_name, attr in field_attrs.iteritems()]
 
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
@@ -214,7 +218,7 @@ def db_create_field(store, field, language):
 
     f = models.Field.new(store, field)
 
-    if field['template_id'] == '':
+    if not template:
         db_update_fieldattrs(store, f.id, field['attrs'], language)
         db_update_fieldoptions(store, f.id, field['options'], language)
 
@@ -223,7 +227,6 @@ def db_create_field(store, field, language):
     for c in field['children']:
         c['fieldgroup_id'] = f.id
         field = db_create_field(store, c, language)
-        f.children.add(field)
 
     return f
 
@@ -248,13 +251,13 @@ def db_update_field(store, field_id, field, language):
 
     _, template, step, fieldgroup = field_integrity_check(store, field)
 
-    fill_localized_keys(field, models.Field.localized_strings, language)
-
     try:
         # make not possible to change field type
         field['type'] = f.type
 
         if field['instance'] != 'reference':
+            fill_localized_keys(field, models.Field.localized_strings, language)
+
             # children handling:
             #  - old children are cleared
             #  - new provided childrens are evaluated and added
@@ -262,7 +265,7 @@ def db_update_field(store, field_id, field, language):
             if len(children) and f.type != 'fieldgroup':
                 raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
 
-            ancestors = set(fieldtree_ancestors(store, f))
+            ancestors = set(fieldtree_ancestors(store, f.id))
 
             f.children.clear()
             for child in children:
@@ -364,7 +367,7 @@ def delete_field(store, field_id):
     field.delete(store)
 
 
-def fieldtree_ancestors(store, field):
+def fieldtree_ancestors(store, field_id):
     """
     Given a field_id, recursively extract its parents.
 
@@ -372,9 +375,12 @@ def fieldtree_ancestors(store, field):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    if field.fieldgroup:
-        yield field.fieldgroup.id
-        yield fieldtree_ancestors(store, field.fieldgroup)
+    parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
+    for parent in parents:
+        if parent.parent_id != field_id:
+            yield parent.parent_id
+            for grandpa in fieldtree_ancestors(store, parent.parent_id):
+                yield grandpa
 
 
 @transact_ro
@@ -387,9 +393,13 @@ def get_fieldtemplates_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    return [anon_serialize_field(store, f, language)
-        for f in store.find(models.Field,
-                            And(models.Field.instance == u'template', models.Field.fieldgroup_id == None))]
+    ret = []
+
+    for f in store.find(models.Field, models.Field.instance == u'template'):
+        if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
+            ret.append(anon_serialize_field(store, f, language))
+
+    return ret
 
 
 class FieldTemplatesCollection(BaseHandler):

@@ -271,7 +271,7 @@ class InternalTip(Model):
     total_score = Int(default=0)
     expiration_date = DateTime()
 
-    whistleblower_provided_identity = Bool(default=False)
+    identity_provided = Bool(default=False)
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
@@ -725,14 +725,6 @@ class Field(Model):
     # that the field is referencing a template
     template_id = Unicode()
 
-    # This reference when != NULL means
-    # that the field is associated to a step
-    step_id = Unicode()
-
-    # This reference when != NULL means
-    # that the field is associated to a fieldgroup
-    fieldgroup_id = Unicode()
-
     type = Unicode(default=u'inputbox')
 
     instance = Unicode(default=u'instance')
@@ -855,6 +847,32 @@ class Step(Model):
             child.delete(store)
         store.remove(self)
 
+class FieldField(BaseModel):
+    """
+    Class used to implement references between Fields and Fields!
+    parent - child relation used to implement fieldgroups
+    """
+    __storm_table__ = 'field_field'
+    __storm_primary__ = 'parent_id', 'child_id'
+
+    parent_id = Unicode()
+    child_id = Unicode()
+
+    unicode_keys = ['parent_id', 'child_id']
+
+
+class StepField(BaseModel):
+    """
+    Class used to implement references between Steps and Fields!
+    """
+    __storm_table__ = 'step_field'
+    __storm_primary__ = 'step_id', 'field_id'
+
+    step_id = Unicode()
+    field_id = Unicode()
+
+    unicode_keys = ['step_id', 'field_id']
+
 
 class Stats(Model):
     start = DateTime()
@@ -884,6 +902,7 @@ class CustodianContext(BaseModel):
     """
     __storm_table__ = 'custodian_context'
     __storm_primary__ = 'context_id', 'custodian_id'
+
     context_id = Unicode()
     custodian_id = Unicode()
 
@@ -894,6 +913,7 @@ class ReceiverContext(BaseModel):
     """
     __storm_table__ = 'receiver_context'
     __storm_primary__ = 'context_id', 'receiver_id'
+
     context_id = Unicode()
     receiver_id = Unicode()
 
@@ -929,17 +949,9 @@ Field.options = ReferenceSet(
 
 Field.children = ReferenceSet(
     Field.id,
-    Field.fieldgroup_id
-)
-
-Field.fieldgroup = Reference(
-    Field.fieldgroup_id,
+    FieldField.parent_id,
+    FieldField.child_id,
     Field.id
-)
-
-Field.step = Reference(
-    Field.step_id,
-    Step.id
 )
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
@@ -992,7 +1004,9 @@ Receiver.internaltips = ReferenceSet(
 
 Step.children = ReferenceSet(
     Step.id,
-    Field.step_id
+    StepField.step_id,
+    StepField.field_id,
+    Field.id
 )
 
 Context.steps = ReferenceSet(Context.id, Step.context_id)

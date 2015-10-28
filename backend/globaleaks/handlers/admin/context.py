@@ -191,9 +191,9 @@ def db_create_context(store, request, language):
     store.add(context)
 
     if len(request['steps']):
-      db_create_steps(store, context, request['steps'], language)
+        db_create_steps(store, context, request['steps'], language)
     else:
-      db_setup_default_questionnaire(store, context)
+        db_setup_default_questionnaire(store, context)
 
     db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])

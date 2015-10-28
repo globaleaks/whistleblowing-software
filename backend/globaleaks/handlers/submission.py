@@ -97,10 +97,15 @@ def db_serialize_questionnaire_answers(store, usertip):
     filtered_answers_ids = []
     for s in questionnaire:
         for f in s['children']:
-            if (f['key'] != 'whistleblower_identity' or (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity)):
-                answers_ids.append(f['id'])
+            if f['key'] == 'whistleblower_identity':
+                if isinstance(usertip, models.WhistleblowerTip) or \
+                   f['attrs']['subject_to_custodian_workflow']['value'] == False or \
+                   (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
+                    answers_ids.append(f['id'])
+                else:
+                    filtered_answers_ids.append(f['id'])
             else:
-                filtered_answers_ids.append(f['id'])
+                answers_ids.append(f['id'])
 
     answers = store.find(models.FieldAnswer, And(models.FieldAnswer.internaltip_id == internaltip.id,
                                                  In(models.FieldAnswer.key, answers_ids)))
@@ -321,7 +326,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission = models.InternalTip()
 
-    submission.whistleblower_provided_identity = request['whistleblower_provided_identity']
+    submission.identity_provided = request['identity_provided']
 
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.context_id = context.id

@@ -321,13 +321,13 @@ class Replacer2223(TableReplacer):
             new_obj = self.get_right_model("Field", 23)()
 
             if old_obj.type == 'inputbox' or old_obj.type == 'textarea':
-                db_update_fieldattr(self.store_new, old_obj.id, {'name': u'min_len', 'type': u'int', 'value':'0'})
-                db_update_fieldattr(self.store_new, old_obj.id, {'name': u'max_len', 'type': u'int', 'value':'-1'})
-                db_update_fieldattr(self.store_new, old_obj.id, {'name': u'regexp', 'type': u'unicode', 'value':''})
+                db_update_fieldattr(self.store_new, old_obj.id, u'min_len', {'name': u'min_len', 'type': u'int', 'value':'0'}, 'en')
+                db_update_fieldattr(self.store_new, old_obj.id, u'max_len', {'name': u'max_len', 'type': u'int', 'value':'-1'}, 'en')
+                db_update_fieldattr(self.store_new, old_obj.id, u'regex', {'name': u'regexp', 'type': u'unicode', 'value':''}, 'en')
 
             if old_obj.type == 'tos':
-                db_update_fieldattr(self.store_new, old_obj.id, {'name': u'clause', 'type': u'localized', 'value': '{"en": ""}'})
-                db_update_fieldattr(self.store_new, old_obj.id, {'name': u'agreement_statement', 'type':u'localized', 'value':'{"en": ""}'})
+                db_update_fieldattr(self.store_new, old_obj.id, u'clause', {'name': u'clause', 'type': u'localized', 'value': '{"en": ""}'}, 'en')
+                db_update_fieldattr(self.store_new, old_obj.id, u'agreement_statement', {'name': u'agreement_statement', 'type':u'localized', 'value':'{"en": ""}'}, 'en')
 
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'template_id':
@@ -366,10 +366,10 @@ class Replacer2223(TableReplacer):
                         new_obj.label = old_obj.attrs['name']
                         continue
                     if 'clause' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['clause']})
+                        db_update_fieldattr(self.store_new, old_obj.field_id, 'clause', {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['clause']}, 'en')
                         skip_add = True
                     if 'agreement_statement' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, {'name': u'agreement_statement', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']})
+                        db_update_fieldattr(self.store_new, old_obj.field_id, 'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']}, 'en')
                         skip_add = True
                     continue
 

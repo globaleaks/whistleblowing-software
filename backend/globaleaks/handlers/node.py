@@ -157,7 +157,9 @@ def anon_serialize_field_attr(attr, language):
         'value': attr.value
     }
 
-    if attr.type == u'localized':
+    if attr.type == 'bool':
+        ret_dict['value'] = bool(ret_dict['value'])
+    elif attr.type == u'localized':
         get_localized_values(ret_dict, ret_dict, ['value'], language)
 
     return ret_dict
@@ -180,23 +182,25 @@ def anon_serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
+    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
+    step_id = sf.step_id if sf else ''
+
+    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
+    fieldgroup_id = ff.parent_id if ff else ''
+
     attrs = {}
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
-        attrs[attr.name] = {}
-        attrs[attr.name]['type'] = attr.type
-        attrs[attr.name]['value'] = attr.value
-        if attr.type == u'localized':
-            get_localized_values(attrs[attr.name], attrs[attr.name], ['value'], language)
+        attrs[attr.name] = anon_serialize_field_attr(attr, language)
 
     ret_dict = {
         'id': field.id,
-        'key': field.key,
+        'key': f_to_serialize.key,
         'instance': field.instance,
         'editable': field.editable,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
-        'step_id': field.step_id if field.step_id else '',
-        'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
+        'step_id': step_id,
+        'fieldgroup_id': fieldgroup_id,
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
