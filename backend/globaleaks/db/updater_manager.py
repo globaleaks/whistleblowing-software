@@ -21,8 +21,7 @@ from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, In
 from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
-    Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, FieldField_v_23, StepField_v_23, \
-    ReceiverTip_v_23
+    Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, ReceiverTip_v_23
 
 
 table_history = {
@@ -58,8 +57,8 @@ table_history = {
     'FieldAnswerGroup': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0],
     'FieldAnswerGroupFieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroupFieldAnswer, 0],
     'ArchivedSchema': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema],
-    'FieldField': [-1, -1, -1, -1, FieldField_v_23, 0, 0, 0, 0, 0, 0, 0, 0, -1],
-    'StepField': [-1, -1, -1, -1, StepField_v_23, 0, 0, 0, 0, 0, 0, 0, 0, -1]
+    'FieldField': [-1, -1, -1, -1, models.FieldField, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    'StepField': [-1, -1, -1, -1, models.StepField, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
 
 

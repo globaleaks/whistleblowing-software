@@ -95,7 +95,7 @@ TokenAnswerDesc = {
 SubmissionDesc = {
     'context_id': uuid_regexp,
     'receivers': [uuid_regexp],
-    'whistleblower_provided_identity': bool,
+    'identity_provided': bool,
     'answers': dict,
 }
 
@@ -548,7 +548,7 @@ InternalTipDesc = {
     'files': [uuid_regexp],
     'creation_date': DateType,
     'expiration_date': DateType,
-    'whistleblower_provided_identity': bool
+    'identity_provided': bool
 }
 
 WizardAdminDesc = {

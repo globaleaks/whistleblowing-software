@@ -59,6 +59,8 @@ def update_identityaccessrequest(store, user_id, identityaccessrequest_id, reque
         iar.reply_date = datetime_now()
         iar.reply_user_id = user_id
         iar.reply = request['reply']
+        if iar.reply == 'authorized':
+            iar.receivertip.can_access_whistleblower_identity = True
         iar.reply_motivation = request['reply_motivation']
 
     return serialize_identityaccessrequest(iar, language)

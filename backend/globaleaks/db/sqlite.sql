@@ -122,7 +122,7 @@ CREATE TABLE internaltip (
     enable_two_way_communication INTEGER NOT NULL,
     context_id TEXT NOT NULL,
     new INTEGER NOT NULL,
-    whistleblower_provided_identity INTEGER NOT NULL,
+    identity_provided INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -368,8 +368,6 @@ CREATE TABLE field (
     preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     template_id TEXT,
-    step_id TEXT,
-    fieldgroup_id TEXT,
     activated_by_score INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
@@ -391,14 +389,8 @@ CREATE TABLE field (
                                                'template')),
     editable INT NOT NULL,
     FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
-    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
-    FOREIGN KEY (fieldgroup_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
-
-CREATE INDEX field__template_id_index ON field(template_id);
-CREATE INDEX field__step_id_index ON field(step_id);
-CREATE INDEX field__fieldgroup_id_index ON field(fieldgroup_id);
 
 CREATE TABLE fieldattr (
     id TEXT NOT NULL,
@@ -413,8 +405,6 @@ CREATE TABLE fieldattr (
     PRIMARY KEY (id)
 );
 
-CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
-
 CREATE TABLE fieldoption (
     id TEXT NOT NULL,
     field_id TEXT NOT NULL,
@@ -425,8 +415,6 @@ CREATE TABLE fieldoption (
     PRIMARY KEY (id)
 );
 
-CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
-
 CREATE TABLE optionactivatefield (
     option_id TEXT NOT NULL,
     field_id TEXT NOT NULL,
@@ -434,8 +422,6 @@ CREATE TABLE optionactivatefield (
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (option_id, field_id)
 );
-
-CREATE INDEX optionactivatefield__field_id_index ON optionactivatefield(field_id);
 
 CREATE TABLE optionactivatestep (
     option_id TEXT NOT NULL,
@@ -445,19 +431,32 @@ CREATE TABLE optionactivatestep (
     PRIMARY KEY (option_id, step_id)
 );
 
-CREATE INDEX optionactivatestep__step_id_index ON optionactivatestep(step_id);
-
 CREATE TABLE step (
     id TEXT NOT NULL,
+    context_id TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
-    context_id TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
-CREATE INDEX step__field_id_index ON step(context_id);
+CREATE TABLE field_field (
+    parent_id TEXT NOT NULL,
+    child_id TEXT NOT NULL,
+    FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (parent_id, child_id)
+);
+
+CREATE TABLE step_field (
+    step_id TEXT NOT NULL,
+    field_id TEXT NOT NULL,
+    UNIQUE (field_id),
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
+    PRIMARY KEY (step_id, field_id)
+);
 
 CREATE TABLE fieldanswer (
     id TEXT NOT NULL,
@@ -467,8 +466,6 @@ CREATE TABLE fieldanswer (
     value TEXT NOT NULL,
     PRIMARY KEY (id)
 );
-
-CREATE INDEX internaltip_id_index ON fieldanswer(internaltip_id);
 
 CREATE TABLE fieldanswergroup (
     id TEXT NOT NULL,
@@ -502,3 +499,11 @@ CREATE TABLE securefiledelete (
     filepath TEXT NOT NULL,
     PRIMARY KEY (id)
 );
+
+CREATE INDEX field__template_id_index ON field(template_id);
+CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
+CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
+CREATE INDEX optionactivatefield__field_id_index ON optionactivatefield(field_id);
+CREATE INDEX optionactivatestep__step_id_index ON optionactivatestep(step_id);
+CREATE INDEX step__context_id_index ON step(context_id);
+CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);

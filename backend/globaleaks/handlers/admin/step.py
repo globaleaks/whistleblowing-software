@@ -32,7 +32,7 @@ def db_create_step(store, step, language):
 
     for c in step['children']:
         c['step_id'] = s.id
-        s.children.add(db_create_field(store, c, language))
+        db_create_field(store, c, language)
 
     return s
 
