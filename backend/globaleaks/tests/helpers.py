@@ -327,7 +327,7 @@ class TestGL(unittest.TestCase):
         dummySubmissionDict['human_captcha_answer'] = 0
         dummySubmissionDict['graph_captcha_answer'] = ''
         dummySubmissionDict['proof_of_work_answer'] = 0
-        dummySubmissionDict['whistleblower_provided_identity'] = False
+        dummySubmissionDict['identity_provided'] = False
         dummySubmissionDict['answers'] = yield self.fill_random_answers(context_id)
 
         defer.returnValue(dummySubmissionDict)
@@ -533,7 +533,7 @@ class TestGLWithPopulatedDB(TestGL):
     def perform_submission_actions(self):
         self.dummySubmission['context_id'] = self.dummyContext['id']
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
-        self.dummySubmission['whistleblower_provided_identity'] = False
+        self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
 
         self.dummySubmission = yield create_submission(self.dummyToken.id,

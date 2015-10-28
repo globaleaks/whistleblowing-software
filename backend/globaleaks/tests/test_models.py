@@ -292,6 +292,7 @@ class TestField(helpers.TestGL):
     @inlineCallbacks
     def test_delete_field_child(self):
         children = yield self.get_children(self.generalities_id)
+        self.assertEqual(len(children), 4)
         for c in children:
             yield self.field_delete(c)
 
@@ -301,7 +302,7 @@ class TestField(helpers.TestGL):
     @inlineCallbacks
     def test_delete_field_group(self):
         children = yield self.get_children(self.generalities_id)
-        self.assertGreater(len(children), 0)
+        self.assertEqual(len(children), 4)
 
         yield self.field_delete(self.generalities_id)
         yield self.assert_model_not_exists(models.Field, self.generalities_id)

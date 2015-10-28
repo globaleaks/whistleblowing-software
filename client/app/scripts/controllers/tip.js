@@ -13,7 +13,6 @@ GLClient.controller('TipCtrl',
     $scope.fieldsRoot = [];
 
     $scope.extractSpecialTipFields = function(tip) {
-      console.log(tip);
       angular.forEach(tip.questionnaire, function(step) {
         var i = step.children.length;
         while (i--) {
@@ -37,7 +36,6 @@ GLClient.controller('TipCtrl',
         ret = field.children;
       }
 
-      console.log(ret);
       return ret;
     };
 

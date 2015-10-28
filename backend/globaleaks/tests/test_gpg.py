@@ -125,7 +125,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_subm['context_id'] = new_context_output['id']
         new_subm['receivers'] = [ asdr_output['id'],
                                   yanr_output['id'] ]
-        new_subm['whistleblower_provided_identity'] = False
+        new_subm['identity_provided'] = False
         new_subm['answers'] = yield self.fill_random_answers(new_context_output['id'])
 
         token = Token('submission')
