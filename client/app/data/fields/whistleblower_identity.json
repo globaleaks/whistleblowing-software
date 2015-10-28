@@ -1,6 +1,28 @@
 {
+  "key": "whistleblower_identity",
   "multi_entry": false,
-  "attrs": {},
+  "attrs": {
+    "visibility_subject_to_authorization": {
+      "type": "bool",
+      "value": true
+    },
+    "prompt_confirmation_on_negative_answer": {
+      "type": "bool",
+      "value": true
+    },
+    "title_of_confirmation_question_on_negative_answer": {
+      "type": "localized",
+      "value": ""
+    },
+    "text_of_confirmation_question_on_negative_answer": {
+      "type": "localized",
+      "value": ""
+    },
+    "text_of_final_statement_on_negative_answer": {
+      "type": "localized",
+      "value": ""
+    }
+  },
   "id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
   "children": [
     {

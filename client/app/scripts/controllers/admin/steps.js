@@ -38,8 +38,8 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal', 'AdminFieldResou
     };
 
     $scope.delAllFields = function() {
-      angular.forEach($scope.step, function(field) {
-        $scope.delField(field);
+      angular.forEach($scope.step.children, function(field) {
+        $scope.delField($scope.step.children, field);
       });
     };
 

@@ -14,8 +14,10 @@
         <span data-translate>Step</span>
         <span>{{$index + 1}}: {{::step.label}}</span>
       </dt>
-      <dd data-ng-init="fieldsRoot=step.children; fieldAnswers=tip.answers">
-        <span data-ng-include="'views/partials/tip_fields.html'"></span>
+      <dd>
+        <div div data-ng-repeat="field in step.children | orderBy:['y', 'x']">
+          <span data-ng-init="fieldAnswers=tip.answers" data-ng-include="'views/partials/tip_field.html'"></span>
+        </div>
       <dd>
     </div>
   </div>

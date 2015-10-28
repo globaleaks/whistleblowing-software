@@ -29,7 +29,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     $scope.problemModal = $modal.open({
-        templateUrl:  'views/partials/captchas.html',
+        templateUrl: 'views/partials/captchas.html',
         controller: 'ConfirmableDialogCtrl',
         backdrop: 'static',
         keyboard: false,
@@ -246,6 +246,7 @@ GLClient.controller('SubmissionCtrl',
 }]).
 controller('SubmissionStepCtrl', ['$scope', function($scope) {
   $scope.uploads = {};
+
   $scope.fields = $scope.step.children;
 
   $scope.getClass = function(field, row_length) {

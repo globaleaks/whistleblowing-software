@@ -2,8 +2,7 @@
   <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
       <span>
-        <span data-translate>Identity of the whistleblower</span>
-        <span>:&nbsp;</span>
+        <span data-translate>Identity</span><span>:</span>
         <span data-translate>Available</span>
         <span class="pull-right">
           <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="mouseenter"></i>
@@ -37,8 +36,9 @@
       </div>
     </div>
     <div data-ng-if="tip.last_iar && tip.last_iar.reply == 'authorized'">
-      <div><label data-translate>Identity</label>:</div>
-      <div style="padding-left: 20px"></div>
+      <dd data-ng-repeat="field in whistleblower_identity_field.children">
+        <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
+      <dd>
     </div>
     <div data-ng-if="!tip.last_iar || tip.last_iar.reply == 'denied'">
       <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
@@ -46,4 +46,4 @@
       </a>
     </div>
   </div>
- </div>
+</div>

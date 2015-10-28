@@ -1,7 +1,6 @@
 GLClient.controller('TipCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, Tip, WBTip, ReceiverPreferences) {
-
+  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, RTip, WBTip, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.target_file = '#';
@@ -11,19 +10,34 @@ GLClient.controller('TipCtrl',
 
     $scope.showEditLabelInput = false;
 
-    $scope.getFields = function(field) {
-      var ret = [];
-      var fields;
-      if (field === undefined) {
-        fields = $scope.tip.fields;
-      } else {
-        fields = field.children;
-      }
+    $scope.fieldsRoot = [];
 
-      angular.forEach(fields, function(field, k) {
-        ret.push(field);
+    $scope.extractSpecialTipFields = function(tip) {
+      console.log(tip);
+      angular.forEach(tip.questionnaire, function(step) {
+        var i = step.children.length;
+        while (i--) {
+          if (step.children[i]['key'] == 'whistleblower_identity') {
+            alert(step.children[i]['key']);
+            $scope.whistleblower_identity_field = step.children[i];
+            step.children.splice(i, 1);
+          }
+        }
       });
 
+      //$scope.fieldsRoot = $scope.whistleblower_identity_field.children;
+    }
+
+    $scope.getFields = function(field) {
+      var ret;
+      var fields;
+      if (field === undefined) {
+        ret = $scope.tip.fields;
+      } else {
+        ret = field.children;
+      }
+
+      console.log(ret);
       return ret;
     };
 
@@ -47,6 +61,8 @@ GLClient.controller('TipCtrl',
       $scope.fileupload_url = '/wbtip/upload';
 
       new WBTip(function(tip) {
+        $scope.extractSpecialTipFields(tip);
+
         $scope.tip = tip;
 
         angular.forEach($scope.contexts, function(context, k){
@@ -74,7 +90,9 @@ GLClient.controller('TipCtrl',
     } else if (Authentication.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
-      new Tip({id: $scope.tip_id}, function(tip) {
+      new RTip({id: $scope.tip_id}, function(tip) {
+        $scope.extractSpecialTipFields(tip);
+
         $scope.tip = tip;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
