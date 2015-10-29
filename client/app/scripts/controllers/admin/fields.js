@@ -97,7 +97,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
         return true;
       }
 
-      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
+      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
         return true;
       }
 
