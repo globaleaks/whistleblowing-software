@@ -8,7 +8,7 @@
     },
     "prompt_confirmation_on_negative_answer": {
       "type": "bool",
-      "value": true
+      "value": false
     },
     "title_of_confirmation_question_on_negative_answer": {
       "type": "localized",
@@ -976,7 +976,6 @@
   "stats_enabled": false,
   "editable": true,
   "activated_by_score": 0,
-  "key": "",
   "step_id": "",
   "required": false,
   "activated_by_options": [],
