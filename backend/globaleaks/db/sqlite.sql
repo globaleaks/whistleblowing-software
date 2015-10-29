@@ -374,6 +374,7 @@ CREATE TABLE field (
     width INTEGER NOT NULL DEFAULT 0 CHECK (width >= 0 AND width <= 12),
     type TEXT NOT NULL CHECK (type IN ('inputbox',
                                        'textarea',
+                                       'multichoice',
                                        'selectbox',
                                        'checkbox',
                                        'modal',

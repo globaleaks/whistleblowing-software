@@ -23,26 +23,32 @@
                data-translate>FIELD_INPUT_MIN_CHARS</div>
         </div>
       </div>
+      <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
+        <div data-ng-class="{'radio': (field.attrs.options_disposition.value == 'horizontal')}">
+          <label data-ng-class="{'radio-inline': (field.attrs.options_disposition.value != 'vertical')}" data-ng-repeat="option in ::field.options" id="{{::fieldId + '-input-' + $index}}" name="{{'input-' +  $index}}">
+            <input type="radio" id="{{::fieldId}}-input-option-{{$index}}" data-ng-model="entry['value']" value="{{::option.label}}" data-ng-required="field.required" />
+            <span>{{::option.label}}</span>
+          </label>
+        </div>
+      </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + $index].$error.required}">
         <select id="{{::fieldId + '-input-' + $index}}" name="{{'input-' +  $index}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
           <option data-ng-repeat="option in ::field.options" id="{{::fieldId}}-input-option-{{$index}}" value="{{::option.label}}">{{::option.label}}</option>
         </select>
       </div>
-      <div data-ng-switch-when="checkbox">
-        <div data-ng-repeat="option in ::field.options">
-          <div class="checkbox" data-ng-class="{'has-error': field.required_check}">
-            <label data-ng-class="{'has-error': f['input-' + $parent.$index + '-option-' + $index].$error.required}">
-              <input id="{{::fieldId + '-input-' + $index}}"
-                     name="{{'input-' + $parent.$index + '-option-' + $index}}"
-                     data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
-                     data-ng-model="entry[option.id]"
-                     data-ng-required="field.required_check"
-                     data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
-                     placeholder="{{::field.placeholder || 'false'}}"
-                     type="checkbox" />
-              <span>{{::option.label}}</span>
-            </label>
-          </div>
+      <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
+        <div data-ng-class="{'checkbox': (field.attrs.options_disposition.value != 'horizonal')}">
+          <label data-ng-repeat="option in ::field.options" data-ng-class="{'checkbox-inline': (field.attrs.options_disposition.value == 'horizonal'), 'has-error': f['input-' + $parent.$index + '-option-' + $index].$error.required}">
+            <input id="{{::fieldId + '-input-' + $index}}"
+                   name="{{'input-' + $parent.$index + '-option-' + $index}}"
+                   data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
+                   data-ng-model="entry[option.id]"
+                   data-ng-required="field.required_check"
+                   data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
+                   placeholder="{{::field.placeholder || 'false'}}"
+                   type="checkbox" />
+            <span>{{::option.label}}</span>
+          </label>
         </div>
       </div>
       <div data-ng-switch-when="date" data-ng-class="{'has-error': f['input-' + $index].$error.required || f['input-' + $index].$invalid}">

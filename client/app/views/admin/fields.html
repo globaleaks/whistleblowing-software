@@ -15,6 +15,7 @@
               <span data-ng-switch="" on="field.type">
                 <span data-ng-switch-when="inputbox" data-translate>Single-line text input</span>
                 <span data-ng-switch-when="textarea" data-translate>Multi-line text input</span>
+                <span data-ng-switch-when="multichoice" data-translate>Multiple choice input</span>
                 <span data-ng-switch-when="selectbox" data-translate>Selection box</span>
                 <span data-ng-switch-when="checkbox" data-translate>Checkbox</span>
                 <span data-ng-switch-when="fileupload" data-translate>Attachment</span>
@@ -144,10 +145,10 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group" data-ng-if="showOptions(field)">
-              <label data-translate>Options</label>
-              <div data-ng-switch="" on="typeSwitch(field.type)" class="col-md-offset-1 col-md-11">
-                <div data-ng-switch-when="inputbox_or_textarea">
+            <div class="form-group" data-ng-if="showConfiguration(field)">
+              <label data-translate>Configuration</label>
+              <div class="col-md-offset-1 col-md-11">
+                <div data-ng-if="field.type == 'inputbox' || field.type == 'textarea'">
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Minimum number of input characters</label>
@@ -172,7 +173,7 @@
                     </div>
                   </div>
                 </div>
-                <div data-ng-switch-when="tos">
+                <div data-ng-if="field.type == 'tos'">
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Agreement Text</label>
@@ -186,7 +187,19 @@
                     </div>
                   </div>
                 </div>
-                <div data-ng-switch-when="checkbox_or_selectbox">
+                <div data-ng-if="field.type == 'checkbox' || field.type == 'multichoice'">
+                  <div class="row">
+                    <label data-translate>Options arrangement</label>
+                    <select name="type" class="form-control" data-ng-model="field.attrs.options_arrangement.value" required>
+                      <option value="vertical" data-translate>vertical</option>
+                      <option value="horizontal" data-translate>horizontal</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" data-ng-if="field.type == 'checkbox' || field.type == 'selectbox' || field.type == 'multichoice'">
+                <label data-translate>Options</label>
+                <div class="col-md-offset-1 col-md-11">
                   <div class="fieldOption" data-ng-repeat="option in field.options | orderBy:'presentation_order'">
                     <div class="row">
                       <div class="col-md-8">
@@ -207,12 +220,12 @@
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <a data-ng-click="addOption(field)">
-                      <i class="glyphicon glyphicon-plus-sign"></i>
-                      <span data-translate>Add option</span>
-                    </a>
-                  </div>
+                </div>
+                <div>
+                  <a data-ng-click="addOption(field)">
+                    <i class="glyphicon glyphicon-plus-sign"></i>
+                    <span data-translate>Add option</span>
+                  </a>
                 </div>
               </div>
               <div data-ng-switch="field.key" class="col-md-offset-1 col-md-11">
