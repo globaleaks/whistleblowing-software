@@ -665,6 +665,12 @@ angular.module('GLServices', ['ngResource']).
             "max_len": {"type": "int", "value": "-1"},
             "regexp": {"type": "unicode", "value": ""}
           },
+          "multichoice": {
+            "options_arrangement": {"type": "unicode", "value": "vertical"}
+          },
+          "checkbox": {
+            "options_arrangement": {"type": "unicode", "value": "vertical"}
+          },
           "tos": {
             "clause": {"type": "unicode", "value": ""},
             "agreement_statement": {"type": "unicode", "value": ""}

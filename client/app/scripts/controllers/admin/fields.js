@@ -85,19 +85,19 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
         return 'inputbox_or_textarea';
       }
 
-      if (['checkbox', 'selectbox'].indexOf(type) !== -1) {
-        return 'checkbox_or_selectbox';
+      if (['checkbox', 'selectbox', 'multichoice'].indexOf(type) !== -1) {
+        return 'checkbox_selectbox_multichoice';
       }
 
       return type;
     };
 
-    $scope.showOptions = function(field) {
+    $scope.showConfiguration = function(field) {
       if (['whistleblower_identity'].indexOf(field.key) > -1) {
         return true;
       }
 
-      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'tos'].indexOf(field.type) > -1) {
+      if (['inputbox', 'textarea', 'selectbox', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
         return true;
       }
 

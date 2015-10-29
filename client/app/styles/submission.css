@@ -188,3 +188,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.radio label, .checkbox label {
+  display: block;
+}
