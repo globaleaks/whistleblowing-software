@@ -636,7 +636,7 @@ angular.module('GLServices', ['ngResource']).
           context.enable_attachments = true;
           context.show_receivers_in_alphabetical_order = true;
           context.steps_arrangement = 'horizontal';
-          context.reset_questionnaire = false;
+          context.reset_questionnaire = true;
           context.custodians = [];
           context.receivers = [];
           context.steps = [];
