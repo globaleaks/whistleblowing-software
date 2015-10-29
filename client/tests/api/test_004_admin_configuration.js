@@ -135,7 +135,7 @@ var context = {
   tip_timetolive: 15,
   can_postpone_expiration: false,
   can_delete_submission: true,
-  show_context: false,
+  show_context: true,
   show_receivers: true,
   show_small_cards: false,
   enable_comments: true,
@@ -145,7 +145,7 @@ var context = {
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
   steps_arrangement: 'horizontal',
-  reset_questionnaire: false,
+  reset_questionnaire: true,
   maximum_selectable_receivers:0,
   receivers: [],
   custodians: [],
@@ -209,6 +209,7 @@ describe('GET /admin/node', function () {
         node['allow_unencrypted'] = true;
         node['languages_enabled'] = ['en', 'it'];
         node['enable_proof_of_work'] = false;
+        node['tor2web_whistleblower'] = true;
 
         done();
       });
@@ -272,7 +273,8 @@ for (var i=0; i<population_order; i++) {
       it('responds 201 on POST /admin/receivers ' + i + ' (authenticated, valid receiver)', function (done) {
         var newObject = JSON.parse(JSON.stringify(receiver));
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.username = 'receiver ' + i;
+        newObject.username = 'Receiver ' + i;
+        newObject.ame = 'receiver ' + i;
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
 
