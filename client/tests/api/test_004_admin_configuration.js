@@ -237,33 +237,34 @@ describe('PUT /admin/node', function () {
 
 // we popolate population_order contexts
 for (var i=0; i<population_order; i++) {
-  describe('POST /admin/contexts', function () {
-    it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
-      var newObject = JSON.parse(JSON.stringify(context));
-      newObject.name = 'Context ' + i;
-      newObject.presentation_order = i;
-      newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+  (function (i) {
+    describe('POST /admin/contexts', function () {
+      it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
+        var newObject = JSON.parse(JSON.stringify(context));
+        newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
+        ndwObject.presentation_order = i;
 
-      app
-        .post('/admin/contexts')
-        .send(newObject)
-        .set('X-Session', authentication['session_id'])
-        .expect(201)
-        .end(function (err, res) {
-          if (err) {
-            return done(err);
-          }
+        app
+          .post('/admin/contexts')
+          .send(newObject)
+          .set('X-Session', authentication['session_id'])
+          .expect(201)
+          .end(function (err, res) {
+            if (err) {
+              return done(err);
+            }
 
-          validate_mandatory_headers(res.headers);
+            validate_mandatory_headers(res.headers);
 
-          contexts.push(res.body);
+            contexts.push(res.body);
 
-          contexts_ids.push(res.body.id);
+            contexts_ids.push(res.body.id);
 
-          done();
-        });
+            done();
+          });
+      })
     })
-  })
+  })(i);
 }
 
 // we popolate population_order receivers
@@ -272,9 +273,9 @@ for (var i=0; i<population_order; i++) {
     describe('POST /admin/receivers', function () {
       it('responds 201 on POST /admin/receivers ' + i + ' (authenticated, valid receiver)', function (done) {
         var newObject = JSON.parse(JSON.stringify(receiver));
-        newObject.mail_address = 'receiver' + i + '@antani.gov';
         newObject.username = 'Receiver ' + i;
-        newObject.ame = 'receiver ' + i;
+        newObject.name = 'Receiver ' + i;
+        newObject.mail_address = 'receiver' + i + '@antani.gov';
         newObject.contexts = contexts_ids;
         newObject.presentation_order = i;
 
