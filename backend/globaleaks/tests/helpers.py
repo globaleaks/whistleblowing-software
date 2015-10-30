@@ -956,7 +956,7 @@ class MockDict():
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
             'steps_arrangement': 'horizontal',
-            'reset_questionnaire': False
+            'reset_questionnaire': True
         }
 
         self.dummySubmission = {
