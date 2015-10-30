@@ -189,8 +189,8 @@
                 </div>
                 <div data-ng-if="field.type == 'checkbox' || field.type == 'multichoice'">
                   <div class="row">
-                    <label data-translate>Options arrangement</label>
-                    <select name="type" class="form-control" data-ng-model="field.attrs.options_arrangement.value" required>
+                    <label data-translate>Layout orientation</label>
+                    <select name="type" class="form-control" data-ng-model="field.attrs.layout_orientation.value" required>
                       <option value="vertical" data-translate>vertical</option>
                       <option value="horizontal" data-translate>horizontal</option>
                     </select>
@@ -233,26 +233,26 @@
                   <div class="row">
                     <div class="form-group">
                       <input data-ng-model="field.attrs.visibility_subject_to_authorization.value" type="checkbox">
-                      <label data-translate>Subject answer visibility to authorization by custodians</label>
+                      <label data-translate>Subject visibility of answer to autorization by custodians</label>
                     </div>
                     <div class="form-group">
                       <input data-ng-model="field.attrs.prompt_confirmation_on_negative_answer.value" type="checkbox">
-                      <label data-translate>Prompt confirmation on negative answer</label>
+                      <label data-translate>Prompt confirmation upon negative answer</label>
                     </div>
                     <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_on_negative_answer.value">
-                      <label data-translate>Title of the confirmation question on negative answer</label>
+                      <label data-translate>Title of the confirmation question upon negative answer</label>
                       <div>
                         <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.title_of_confirmation_question_on_negative_answer.value">{{field.attrs.title_of_confirmation_question_on_negative_answer.value}}</textarea>
                       </div>
                     </div>
                     <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_on_negative_answer.value">
-                      <label data-translate>Body of the confirmation question on negative answer</label>
+                      <label data-translate>Body of the confirmation question upon negative answer</label>
                       <div>
                         <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_confirmation_question_on_negative_answer.value">{{field.attrs.text_of_confirmation_question_on_negative_answer.value}}</textarea>
                       </div>
                     </div>
                     <div class="form-group">
-                      <label>Text of the final statement on negative answer</label>
+                      <label>Text of the final statement upon negative answer</label>
                       <div>
                         <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_final_statement_on_negative_answer.value">{{field.attrs.text_of_final_statement_on_negative_answer.value}}</textarea>
                       </div>
