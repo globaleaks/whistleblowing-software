@@ -302,27 +302,31 @@ class Replacer2324(TableReplacer):
                 continue
 
             if v.name == 'exception_email_address':
-                old_notification.exception_email_address = old_node.exception_email
+                new_notification.exception_email_address = old_node.exception_email
                 continue
 
             if v.name == 'exception_email_pgp_key_status':
-                old_notification.exception_email_pgp_key_status = 'disabled'
+                new_notification.exception_email_pgp_key_status = 'disabled'
                 continue
 
             if v.name == 'exception_email_pgp_key_info':
-                old_notification.exception_email_pgp_key_info = ''
+                new_notification.exception_email_pgp_key_info = ''
                 continue
 
             if v.name == 'exception_email_pgp_key_fingerprint':
-                old_notification.exception_email_pgp_key_fingerprint = ''
+                new_notification.exception_email_pgp_key_fingerprint = ''
                 continue
 
             if v.name == 'exception_email_pgp_key_public':
-                old_notification.exception_email_pgp_key_public = ''
+                new_notification.exception_email_pgp_key_public = ''
                 continue
 
             if v.name == 'exception_email_pgp_key_expiration':
-                old_notification.exception_email_pgp_key_expiration = datetime_null()
+                new_notification.exception_email_pgp_key_expiration = datetime_null()
+                continue
+
+            if v.name == 'archive_description':
+                new_notification.archive_description = old_notification.zip_description
                 continue
 
             old_value = getattr(old_notification, v.name)
@@ -514,6 +518,10 @@ class Replacer2324(TableReplacer):
 
                 if v.name == 'enable_attachments':
                     new_obj.enable_attachments = True
+                    continue
+
+                if v.name == 'enable_whistleblower_identity':
+                    new_obj.enable_whistleblower_identity = True
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

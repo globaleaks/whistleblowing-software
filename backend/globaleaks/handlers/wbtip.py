@@ -13,7 +13,8 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receivers_list, \
     serialize_comment, serialize_message
-from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.handlers.submission import serialize_usertip, \
+    db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
@@ -256,3 +257,42 @@ class WBTipMessageCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.finish(message)
+
+
+class WBTipProvideIdentityHandler(BaseHandler):
+    """
+    This is the interface that securely allows the whistleblower to provide his identity
+    """
+    @transport_security_check('whistleblower')
+    @authenticated('whistleblower')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Some special operation over the Tip are handled here
+        """
+        request = self.validate_message(self.request.body, requests.WhisleblowerIdentityAnswers)
+
+        @transact
+        def update_identity_information(store, identity_field_id, identity_field_answers, language):
+            wbtip = db_access_wbtip(store, tip_id)
+            internaltip = wbtip.internaltip
+            identity_provided = internaltip.identity_provided
+
+            if not identity_provided:
+                questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+                for step in questionnaire:
+                    if identity_provided: break
+                    for field in step['children']:
+                        if identity_provided: break
+                        if field['id'] == identity_field_id and field['key'] == 'whistleblower_identity':
+                            answers = {}
+                            answers[identity_field_id] = [identity_field_answers]
+                            db_save_questionnaire_answers(store, internaltip.id, answers)
+                            identity_provided = True
+
+            internaltip.identity_provided = identity_provided
+
+        yield update_identity_information(request['identity_field_id'], request['identity_field_answers'], self.request.language)
+
+        self.set_status(202)  # Updated
+        self.finish()

@@ -1,10 +1,9 @@
-<div data-ng-repeat="row in ::fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
-  <div data-ng-repeat="field in ::row | orderBy:'x'" data-ng-class="getClass(field, row.length)">
-    <div data-ng-init="fieldId = getFieldId($parent.fieldId, $parent.$index, $index)">
-      <div id="{{::fieldId}}" data-ng-controller="SubmissionFieldCtrl" class="panel panel-default">
+<div data-ng-repeat="(rowIndex, row) in ::fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
+  <div data-ng-repeat="field in row | orderBy:'x'">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-init="fieldId = getFieldId($parent.fieldId, rowIndex - 1, $index)" data-ng-class="getClass(field, row.length)">
+      <div id="{{fieldId}}" class="panel panel-default">
         <div class="panel-heading">
           <label>
-            <span data-ng-if="::fieldsLevel == 0" class="fieldIndex">{{::$index + 1}}</span>
             <span class="fieldLabel">{{::field.label}}</span>
             <a href="" data-ng-show="::field.hint" data-content="::field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>

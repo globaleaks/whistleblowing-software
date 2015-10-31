@@ -69,10 +69,12 @@
       <span data-translate>No files have been uploaded!</span>
     </div>
     <br />
-    <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
-    <br />
-    <div class="row">
-      <div class="col-md-6" data-ng-include="'views/partials/fileupload_status.html'"></div>
+    <div data-ng-if="tip.enable_attachments">
+      <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
+      <br />
+      <div class="row">
+        <div class="col-md-6" data-ng-include="'views/partials/fileupload_status.html'"></div>
+      </div>
     </div>
   </div>
 </div>

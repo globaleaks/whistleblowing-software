@@ -76,16 +76,16 @@ spec = [
 
     ## Submission Handlers ##
     (r'/submission/' + token_string, submission.SubmissionInstance),
-    (r'/submission/' + token_string + '/file', files.FileInstance),
+    (r'/submission/' + token_string + r'/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
-    (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
-    (r'/rtip/' + uuid_regexp + '/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
+    (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
+    (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
-    (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
-    (r'/rtip/' + uuid_regexp + '/collection', collection.CollectionDownload),
+    (r'/rtip/' + uuid_regexp + r'/download/' + uuid_regexp, files.Download),
+    (r'/rtip/' + uuid_regexp + r'/collection', collection.CollectionDownload),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
@@ -93,6 +93,7 @@ spec = [
     (r'/wbtip/receivers', wbtip.WBTipReceiversCollection),
     (r'/wbtip/upload', files.FileAdd),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
+    (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipProvideIdentityHandler),
 
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),

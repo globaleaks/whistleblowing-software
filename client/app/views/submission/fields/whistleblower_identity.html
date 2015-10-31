@@ -1,27 +1,27 @@
 <div data-ng-init="submission.identity_provided = true; vars={}">
   <div data-ng-class="{'has-error': f['whistleblower_identity_radio_1'].$error.required}">
-    <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_1" data-ng-model="submission.identity_provided" data-ng-value="true" data-ng-change="vars.confirmation_on_negative_answer=unspecified" data-translate required>Yes</label>
-    <label class="radio-inline"><input type="radio" name="whistleblober_identity_radio_1" data-ng-model="submission.identity_provided" data-ng-value="false" data-ng-change="vars.confirmation_on_negative_answer=unspecified" data-translate required>No</label>
+    <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_1" data-ng-model="submission.identity_provided" data-ng-value="true" data-ng-change="vars.confirmation_upon_negative_answer=unspecified" data-translate required>Yes</label>
+    <label class="radio-inline"><input type="radio" name="whistleblober_identity_radio_1" data-ng-model="submission.identity_provided" data-ng-value="false" data-ng-change="vars.confirmation_upon_negative_answer=unspecified" data-translate required>No</label>
   </div>
   <br /><br />
-  <div data-ng-if="field.attrs.prompt_confirmation_on_negative_answer.value">
-    <div data-ng-if="submission.identity_provided == false && vars.confirmation_on_negative_answer == unspecified" class="alert alert-warning" data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
+  <div data-ng-if="field.attrs.prompt_confirmation_upon_negative_answer.value">
+    <div data-ng-if="submission.identity_provided == false && vars.confirmation_upon_negative_answer == unspecified" class="alert alert-warning" data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
       <div>
-        <span class="fieldLabel">{{field.attrs.title_of_confirmation_question_on_negative_answer.value}}</span>
+        <span class="fieldLabel">{{field.attrs.title_of_confirmation_question_upon_negative_answer.value}}</span>
         <span class="text-red"
               popover="{{'This field is mandatory' | translate}}"
               popover-placement="right"
               popover-trigger="mouseenter">*</span>
       </div>
-      <div>{{field.attrs.text_of_confirmation_question_on_negative_answer.value}}</div>
+      <div>{{field.attrs.text_of_confirmation_question_upon_negative_answer.value}}</div>
       <div data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
-        <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_2" data-ng-value="true" data-ng-model="vars.confirmation_on_negative_answer" data-ng-change="submission.identity_provided = false" data-translate required>Yes</label>
-        <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_2" data-ng-value="false" data-ng-model="vars.confirmation_on_negative_answer" data-ng-change="submission.identity_provided = true" data-translate required>No</label>
+        <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_2" data-ng-value="true" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission.identity_provided = false" data-translate required>Yes</label>
+        <label class="radio-inline"><input type="radio" name="whistleblower_identity_radio_2" data-ng-value="false" data-ng-model="vars.confirmation_upon_negative_answer" data-ng-change="submission.identity_provided = true" data-translate required>No</label>
       </div>
     </div>
   </div>
-  <div data-ng-if="vars.confirmation_on_negative_answer == true" class="alert alert-warning">
-    <label>{{field.attrs.text_of_final_statement_on_negative_answer.value}}</label>
+  <div data-ng-if="vars.confirmation_upon_negative_answer == true" class="alert alert-warning">
+    <label>{{field.attrs.text_of_final_statement_upon_negative_answer.value}}</label>
   </div>
   <div data-ng-if="submission.identity_provided == true">
     <div data-ng-include="'views/submission/form.html'"></div>

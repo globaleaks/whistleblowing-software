@@ -16,7 +16,7 @@
             <p class="stepDescription">{{::step.description}}</p>
           </div>
         </div>
-        <div>
+        <div data-ng-init="submission = submission._submission">
           <div class="col-md-7">
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>

@@ -214,11 +214,12 @@ class Context(Model):
     show_receivers = Bool(default=True)
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
+
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
     enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
-    enable_whistleblower_identity = Bool(default=True)
+    enable_whistleblower_identity = Bool(default=False)
 
     tip_timetolive = Int()
 
@@ -277,6 +278,7 @@ class InternalTip(Model):
     enable_messages = Bool(default=False)
     enable_attachments = Bool(default=True)
     enable_two_way_communication = Bool(default=True)
+    enable_whistleblower_identity = Bool(default=False)
 
     new = Int(default=True)
 
@@ -567,7 +569,8 @@ class Notification(Model):
     pgp_alert_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
-    zip_description = JSON(validator=longlocal_v)
+
+    archive_description = JSON(validator=longlocal_v)
 
     ping_mail_template = JSON(validator=longlocal_v)
     ping_mail_title = JSON(validator=longlocal_v)
@@ -620,11 +623,11 @@ class Notification(Model):
         'tip_expiration_mail_template',
         'tip_expiration_mail_title',
         'notification_digest_mail_title',
-        'zip_description',
         'ping_mail_template',
         'ping_mail_title',
         'receiver_notification_limit_reached_mail_template',
-        'receiver_notification_limit_reached_mail_title'
+        'receiver_notification_limit_reached_mail_title',
+        'archive_description'
     ]
 
     int_keys = [
@@ -847,6 +850,7 @@ class Step(Model):
             child.delete(store)
         store.remove(self)
 
+
 class FieldField(BaseModel):
     """
     Class used to implement references between Fields and Fields!
@@ -941,6 +945,20 @@ class FieldAnswerGroupFieldAnswer(BaseModel):
 
 
 Field.template = Reference(Field.template_id, Field.id)
+
+Field.steps = ReferenceSet(
+    Field.id,
+    StepField.field_id,
+    StepField.step_id,
+    Step.id
+)
+
+Field.fieldgroups = ReferenceSet(
+    Field.id,
+    FieldField.child_id,
+    FieldField.parent_id,
+    Field.id
+)
 
 Field.options = ReferenceSet(
     Field.id,
