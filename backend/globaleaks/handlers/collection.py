@@ -100,7 +100,7 @@ class CollectionDownload(BaseHandler):
             do_mail=False,
         )
 
-        formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
+        formatted_coll = Templating().format_template(notif_dict['archive_description'], mock_event).encode('utf-8')
 
         files_dict.append(
             {

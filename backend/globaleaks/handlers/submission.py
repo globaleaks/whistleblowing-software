@@ -99,7 +99,7 @@ def db_serialize_questionnaire_answers(store, usertip):
         for f in s['children']:
             if f['key'] == 'whistleblower_identity':
                 if isinstance(usertip, models.WhistleblowerTip) or \
-                   f['attrs']['subject_to_custodian_workflow']['value'] == False or \
+                   f['attrs']['visibility_subject_to_authorization']['value'] == False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
                     answers_ids.append(f['id'])
                 else:
@@ -113,7 +113,7 @@ def db_serialize_questionnaire_answers(store, usertip):
     return db_serialize_questionnaire_answers_recursively(answers)
 
 
-def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
+def db_save_questionnaire_answers(store, internaltip_id, entries):
     ret = []
 
     for key, value in entries.iteritems():
@@ -130,7 +130,7 @@ def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
                   'fieldanswer_id': field_answer.id,
                   'number': n
                 })
-                group_elems = db_save_questionnaire_answers_recursively(store, internaltip_id, entries)
+                group_elems = db_save_questionnaire_answers(store, internaltip_id, entries)
                 for group_elem in group_elems:
                     group.fieldanswers.add(group_elem)
                 n += 1
@@ -140,10 +140,6 @@ def db_save_questionnaire_answers_recursively(store, internaltip_id, entries):
         ret.append(field_answer)
 
     return ret
-
-
-def db_save_questionnaire_answers(store, internaltip, answers):
-    return db_save_questionnaire_answers_recursively(store, internaltip.id, answers)
 
 
 def extract_answers_preview(questionnaire, answers):
@@ -179,19 +175,21 @@ def serialize_itip(store, internaltip, language):
 
     return {
         'id': internaltip.id,
-        'context_id': internaltip.context_id,
-        'context_name': mo.dump_localized_key('name', language),
-        'show_receivers': context.show_receivers,
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'context_id': internaltip.context_id,
+        'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
         'enable_comments': internaltip.enable_comments,
         'enable_messages': internaltip.enable_messages,
         'enable_two_way_communication': internaltip.enable_two_way_communication,
-        'enable_attachments': internaltip.enable_attachments
+        'enable_attachments': internaltip.enable_attachments,
+        'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
+        'identity_provided': internaltip.identity_provided,
+        'show_receivers': context.show_receivers
     }
 
 def serialize_internalfile(ifile):
@@ -236,7 +234,7 @@ def db_create_receivertip(store, receiver, internaltip):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
-    log.debug('Creating models.ReceiverTip for receiver: %s' % receiver.id)
+    log.debug('Creating receivertip for receiver: %s' % receiver.id)
 
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
@@ -280,8 +278,7 @@ def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
     if not len(receiver_id_list):
-        log.err("models.Receivers required to be selected, not empty")
-        raise errors.SubmissionValidationFailure("needed almost one receiver selected")
+        raise errors.SubmissionValidationFailure("needed almost one receiver selected [1]")
 
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
@@ -291,21 +288,16 @@ def import_receivers(store, submission, receiver_id_list):
         if context not in receiver.contexts:
             raise errors.InvalidInputFormat("forged receiver selection, you fuzzer! <:")
 
-        try:
-            if not GLSettings.memory_copy.allow_unencrypted and \
-                            receiver.pgp_key_status != u'enabled':
-                log.err("Encrypted only submissions are supported. Cannot select [%s]" % receiver.id)
-                continue
-            submission.receivers.add(receiver)
-        except Exception as excep:
-            log.err("models.Receiver %s can't be assigned to the tip [%s]" % (receiver.id, excep))
+        if not GLSettings.memory_copy.allow_unencrypted and receiver.user.pgp_key_status != u'enabled':
+            raise errors.SubmissionValidationFailure("the platform does not allow selection of receivers with encryption disabled")
             continue
+
+        submission.receivers.add(receiver)
 
         log.debug("+receiver [%s] In tip (%s) #%d" % \
                   (receiver.user.name, submission.id, submission.receivers.count() ))
     if submission.receivers.count() == 0:
-        log.err("models.Receivers required to be selected, not empty")
-        raise errors.SubmissionValidationFailure("needed at least one receiver selected [2]")
+        raise errors.SubmissionValidationFailure("needed almost one receiver selected [2]")
 
 
 def db_create_submission(store, token_id, request, t2w, language):
@@ -318,28 +310,26 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
     if not context:
-        # this can happen only if the context is removed
-        # between submission POST and PUT.. :) that's why is better just
-        # ignore this check, take che cached and wait the reference below fault
-        log.err("models.Context requested: [%s] not found!" % request['context_id'])
         raise errors.models.ContextIdNotFound
 
     submission = models.InternalTip()
 
-    submission.identity_provided = request['identity_provided']
-
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
-    submission.context_id = context.id
-    submission.creation_date = datetime_now()
 
     # The use of Tor2Web is detected by the basehandler and the status forwared  here;
     # The status is used to keep track of the security level adopted by the whistleblower
     submission.tor2web = t2w
 
+    submission.context_id = context.id
+
     submission.enable_comments = context.enable_comments
     submission.enable_messages = context.enable_messages
     submission.enable_two_way_communication = context.enable_two_way_communication
     submission.enable_attachments = context.enable_attachments
+    submission.enable_whistleblower_identity = context.enable_whistleblower_identity
+
+    if context.enable_whistleblower_identity:
+        submission.identity_provided = request['identity_provided']
 
     try:
         questionnaire = db_get_context_steps(store, context.id, None)
@@ -352,7 +342,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
         db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash)
 
-        db_save_questionnaire_answers(store, submission, answers)
+        db_save_questionnaire_answers(store, submission.id, answers)
     except Exception as excep:
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
@@ -373,12 +363,10 @@ def db_create_submission(store, token_id, request, t2w, language):
             associated_f.internaltip_id = submission.id
             associated_f.file_path = filedesc['encrypted_path']
             store.add(associated_f)
-
             log.debug("=> file associated %s|%s (%d bytes)" % (
                 associated_f.name, associated_f.content_type, associated_f.size))
-
     except Exception as excep:
-        log.err("Unable to create a DB entry for file! %s" % excep)
+        log.err("Submission create: unable to create db entry for files: %s" % excep)
         raise excep
 
     receipt, wbtip = db_create_whistleblower_tip(store, submission)

@@ -85,7 +85,7 @@ def anon_serialize_node(store, language):
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
         'accept_submissions': GLSettings.memory_copy.accept_submissions,
         'enable_captcha': node.enable_captcha,
-        'enable_proof_of_work': node.enable_proof_of_work
+        'enable_proof_of_work': node.enable_proof_of_work,
     }
 
     return get_localized_values(ret_dict, node, node.localized_strings, language)
