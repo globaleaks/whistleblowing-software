@@ -99,12 +99,8 @@ def db_get_files_receiver(store, user_id, rtip_id):
                                 (ReceiverFile.internaltip_id == rtip.internaltip_id,
                                  ReceiverFile.receiver_id == rtip.receiver_id))
 
-    files_list = []
-    for receiverfile in receiver_files:
-        internalfile = receiverfile.internalfile
-        files_list.append(receiver_serialize_file(internalfile, receiverfile, rtip_id))
-
-    return files_list
+    return [receiver_serialize_file(receiverfile.internalfile, receiverfile, rtip_id)
+            for receiverfile in receiver_files]
 
 
 def db_get_rtip(store, user_id, rtip_id, language):
