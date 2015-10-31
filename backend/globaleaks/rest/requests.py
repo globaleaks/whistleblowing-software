@@ -160,6 +160,11 @@ TipOpsDesc = {
     'label': unicode,
 }
 
+WhisleblowerIdentityAnswers = {
+    'identity_field_id': uuid_regexp,
+    'identity_field_answers': dict
+}
+
 AdminNodeDesc = {
     'name': unicode,
     'description': unicode,
@@ -234,7 +239,6 @@ AdminNotificationDesc = {
     'admin_pgp_alert_mail_title': unicode,
     'pgp_alert_mail_template': unicode,
     'pgp_alert_mail_title': unicode,
-    'zip_description': unicode,
     'ping_mail_template': unicode,
     'ping_mail_title': unicode,
     'receiver_notification_limit_reached_mail_template': unicode,
@@ -242,6 +246,7 @@ AdminNotificationDesc = {
     'notification_digest_mail_title': unicode,
     'tip_expiration_mail_template': unicode,
     'tip_expiration_mail_title': unicode,
+    'archive_description': unicode,
     'admin_anomaly_mail_template': unicode,
     'admin_anomaly_mail_title': unicode,
     'admin_anomaly_activities': unicode,

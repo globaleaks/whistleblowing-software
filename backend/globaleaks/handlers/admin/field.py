@@ -63,13 +63,8 @@ def disassociate_field(store, field):
     :param store: the store on which perform queries.
     :param field: the field to be deassociated.
     """
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
-    if sf:
-        store.remove(sf)
-
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    if ff:
-        store.remove(ff)
+    field.steps.clear()
+    field.fieldgroups.clear()
 
 
 def db_import_fields(store, step, fieldgroup, fields):
@@ -83,12 +78,11 @@ def db_import_fields(store, step, fieldgroup, fields):
         f = models.db_forge_obj(store, models.Field, field)
 
         for attr in f_attrs:
-            a = models.db_forge_obj(store, models.FieldAttr, attr)
-            f.attrs.add(a)
+            f_attrs[attr]['name'] = attr
+            f.attrs.add(models.db_forge_obj(store, models.FieldAttr, f_attrs[attr]))
 
-        for f_option in f_options:
-            o = models.db_forge_obj(store, models.FieldOption, f_option)
-            f.options.add(o)
+        for option in f_options:
+            f.options.add(models.db_forge_obj(store, models.FieldOption, option))
 
         if (step):
             step.children.add(f)
@@ -203,7 +197,7 @@ def field_integrity_check(store, field):
     return field['instance'], template, step, fieldgroup
 
 
-def db_create_field(store, field, language):
+def db_create_field(store, field_dict, language):
     """
     Create and add a new field to the store, then return the new serialized object.
 
@@ -212,64 +206,76 @@ def db_create_field(store, field, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    _, template, step, fieldgroup = field_integrity_check(store, field)
+    _, template, step, fieldgroup = field_integrity_check(store, field_dict)
 
-    fill_localized_keys(field, models.Field.localized_strings, language)
+    fill_localized_keys(field_dict, models.Field.localized_strings, language)
 
-    f = models.Field.new(store, field)
+    field = models.Field.new(store, field_dict)
 
-    if not template:
-        db_update_fieldattrs(store, f.id, field['attrs'], language)
-        db_update_fieldoptions(store, f.id, field['options'], language)
+    associate_field(store, field, template, step, fieldgroup)
 
-    associate_field(store, f, template, step, fieldgroup)
+    if field.template:
+        # special handling of the whistleblower_identity field
+        if field.template.key == 'whistleblower_identity':
+            step = field.steps.one()
+            if step:
+                if not step.context.enable_whistleblower_identity:
+                    step.context.enable_whistleblower_identity = True
+                else:
+                    raise errors.InvalidInputFormat("Whistleblower identity field already present")
+            else:
+                raise errors.InvalidInputFormat("Cannot associate whistleblower identity field to a fieldgroup")
 
-    for c in field['children']:
-        c['fieldgroup_id'] = f.id
-        field = db_create_field(store, c, language)
+    else:
+        db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
+        db_update_fieldoptions(store, field.id, field_dict['options'], language)
 
-    return f
+    for c in field_dict['children']:
+        c['fieldgroup_id'] = field.id
+        db_create_field(store, c, language)
+
+    return field
 
 
 @transact
-def create_field(store, field, language):
+def create_field(store, field_dict, language):
     """
     Transaction that perform db_create_field
     """
-    f = db_create_field(store, field, language)
+    field = db_create_field(store, field_dict, language)
 
-    return anon_serialize_field(store, f, language)
+    return anon_serialize_field(store, field, language)
 
 
-def db_update_field(store, field_id, field, language):
-    f = models.Field.get(store, field_id)
-    if not f:
+def db_update_field(store, field_id, field_dict, language):
+    field = models.Field.get(store, field_id)
+    if not field:
         raise errors.FieldIdNotFound
 
-    if not f.editable:
+    if not field.editable:
         raise errors.FieldNotEditable
 
-    _, template, step, fieldgroup = field_integrity_check(store, field)
+    _, template, step, fieldgroup = field_integrity_check(store, field_dict)
 
     try:
         # make not possible to change field type
-        field['type'] = f.type
+        field_dict['type'] = field.type
 
-        if field['instance'] != 'reference':
-            fill_localized_keys(field, models.Field.localized_strings, language)
+        if field_dict['instance'] != 'reference':
+            fill_localized_keys(field_dict, models.Field.localized_strings, language)
 
             # children handling:
             #  - old children are cleared
             #  - new provided childrens are evaluated and added
-            children = field['children']
-            if len(children) and f.type != 'fieldgroup':
+            children = field_dict['children']
+            if len(children) and field.type != 'fieldgroup':
                 raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
 
-            ancestors = set(fieldtree_ancestors(store, f.id))
+            ancestors = set(fieldtree_ancestors(store, field.id))
 
-            f.children.clear()
+            field.children.clear()
             for child in children:
-                if child['id'] == f.id or child['id'] in ancestors:
+                if child['id'] == field.id or child['id'] in ancestors:
                     raise errors.FieldIdNotFound
 
                 c = db_update_field(store, child['id'], child, language)
@@ -277,36 +283,36 @@ def db_update_field(store, field_id, field, language):
                 # remove current step/field fieldgroup/field association
                 disassociate_field(store, c)
 
-                f.children.add(c)
+                field.children.add(c)
 
-            db_update_fieldattrs(store, f.id, field['attrs'], language)
-            db_update_fieldoptions(store, f.id, field['options'], language)
+            db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
+            db_update_fieldoptions(store, field.id, field_dict['options'], language)
 
             # full update
-            f.update(field)
+            field.update(field_dict)
 
         else:
             # partial update
             partial_update = {
-              'x': field['x'],
-              'y': field['y'],
-              'width': field['width'],
-              'stats_enabled': field['stats_enabled'],
-              'multi_entry': field['multi_entry'],
-              'required': field['required']
+              'x': field_dict['x'],
+              'y': field_dict['y'],
+              'width': field_dict['width'],
+              'stats_enabled': field_dict['stats_enabled'],
+              'multi_entry': field_dict['multi_entry'],
+              'required': field_dict['required']
             }
 
-            f.update(partial_update)
+            field.update(partial_update)
 
         # remove current step/field fieldgroup/field association
-        disassociate_field(store, f)
+        disassociate_field(store, field)
 
-        associate_field(store, f, template, step, fieldgroup)
+        associate_field(store, field, template, step, fieldgroup)
     except Exception as dberror:
         log.err('Unable to update field: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
 
-    return f
+    return field
 
 
 @transact
@@ -363,6 +369,18 @@ def delete_field(store, field_id):
 
     if not field.editable:
         raise errors.FieldNotEditable
+
+    if field.instance == 'template':
+        if store.find(models.Field, models.Field.template_id == field.id).count():
+            raise errors.InvalidInputFormat("Cannot remove the field template as it is used by one or more questionnaires")
+
+
+    if field.template:
+        # special handling of the whistleblower_identity field
+        if field.template.key == 'whistleblower_identity':
+            step = field.steps.one()
+            if step:
+                step.context.enable_whistleblower_identity = False
 
     field.delete(store)
 

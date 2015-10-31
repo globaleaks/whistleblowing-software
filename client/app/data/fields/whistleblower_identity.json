@@ -10,15 +10,15 @@
       "type": "bool",
       "value": false
     },
-    "title_of_confirmation_question_on_negative_answer": {
+    "title_of_confirmation_question_upon_negative_answer": {
       "type": "localized",
       "value": ""
     },
-    "text_of_confirmation_question_on_negative_answer": {
+    "text_of_confirmation_question_upon_negative_answer": {
       "type": "localized",
       "value": ""
     },
-    "text_of_final_statement_on_negative_answer": {
+    "text_of_final_statement_upon_negative_answer": {
       "type": "localized",
       "value": ""
     }

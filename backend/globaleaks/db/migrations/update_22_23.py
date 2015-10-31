@@ -230,7 +230,7 @@ class Replacer2223(TableReplacer):
                 aqsp.schema = preview
                 self.store_new.add(aqsp)
 
-        db_save_questionnaire_answers(self.store_new, new_obj, answers)
+        db_save_questionnaire_answers(self.store_new, new_obj.id, answers)
 
         new_obj.preview = extract_answers_preview(questionnaire, answers)
 

@@ -9,21 +9,23 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div class="form-inline">
-      <span data-ng-if="role == 'wb'">
-        <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
-        <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
-      </span>
+    <div data-ng-if="role != 'whistleblower' || tip.enable_two_way_communication">
+      <div class="form-inline">
+        <span data-ng-if="role == 'wb'">
+          <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
+          <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+        </span>
+      </div>
+      <br />
+      <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
+      <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newCommentContent.length}"
+           data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+      <br />
+      <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <span data-translate>Send</span>
+      </a>
     </div>
-    <br />
-    <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control msd-elastic"></textarea>
-    <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newCommentContent.length}"
-         data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
-    <br />
-    <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
-      <i class="glyphicon glyphicon-envelope"></i>
-      <span data-translate>Send</span>
-    </a>
     <br /><br />
     <div id="Messages" data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
       <div id="message-{{$index}}" data-ng-switch="" on="message.type">

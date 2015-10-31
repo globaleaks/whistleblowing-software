@@ -5,6 +5,7 @@ GLClient.controller('TipCtrl',
     $scope.session = Authentication.id;
     $scope.target_file = '#';
 
+    $scope.answers = {};
     $scope.uploads = {};
     $scope.hideUploadWhenFinished = true;
 
@@ -17,15 +18,12 @@ GLClient.controller('TipCtrl',
         var i = step.children.length;
         while (i--) {
           if (step.children[i]['key'] == 'whistleblower_identity') {
-            alert(step.children[i]['key']);
             $scope.whistleblower_identity_field = step.children[i];
             step.children.splice(i, 1);
           }
         }
       });
-
-      //$scope.fieldsRoot = $scope.whistleblower_identity_field.children;
-    }
+    };
 
     $scope.getFields = function(field) {
       var ret;
@@ -62,6 +60,14 @@ GLClient.controller('TipCtrl',
         $scope.extractSpecialTipFields(tip);
 
         $scope.tip = tip;
+
+        $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
+          return $http.post('/wbtip/' + $scope.tip.id + '/provideidentityinformation',
+                            {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
+              success(function(data, status, headers, config){
+                $route.reload();
+              });
+        }
 
         angular.forEach($scope.contexts, function(context, k){
           if (context.id === tip.context_id) {
