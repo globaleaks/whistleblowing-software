@@ -71,7 +71,6 @@
         "el": "\u03a4\u03c1\u03bf\u03c6\u03bf\u03b4\u03bf\u03c4\u03b5\u03af\u03c4\u03b1\u03b9 \u03bc\u03b5 \u03c0\u03b5\u03c1\u03b7\u03c6\u03ac\u03bd\u03b9\u03b1 \u03b1\u03c0\u03cc \u03c4\u03bf GlobaLeaks, \u03c4\u03b1 \u03c0\u03bd\u03b5\u03c5\u03bc\u03b1\u03c4\u03b9\u03ba\u03ac \u03b4\u03b9\u03ba\u03b1\u03b9\u03ce\u03bc\u03b1\u03c4\u03b1 \u03b1\u03bd\u03ae\u03ba\u03bf\u03c5\u03bd \u03c3\u03c4\u03bf Hermes Center for Transparency and Digital Human Rights",
         "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
         "vi": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
-        "ca": "orgullosament impulsat per GlobaLeaks, copyright Hermes Center for Transparency and Digital Human Rights",
         "it": "fieri di basarci su GlobaLeaks, copyright dell'Hermes Center for Transparency and Digital Human Rights",
         "sr_RS": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights",
         "ar": "\u0645\u062f\u0639\u0648\u0645\u0629 \u0628\u0641\u062e\u0631 \u0645\u0646 GlobaLeaks. \u0627\u0644\u062d\u0642\u0648\u0642 \u0627\u0644\u0641\u0643\u0631\u064a\u0629 \u0645\u062d\u0641\u0648\u0638\u0629 \u0644 \"\u0645\u0631\u0643\u0632 \u0647\u064a\u0631\u0645\u064a\u0633 \u0644\u0644\u0634\u0641\u0627\u0641\u064a\u0629 \u0648 \u062d\u0642\u0648\u0642 \u0627\u0644\u0625\u0646\u0633\u0627\u0646 \u0627\u0644\u0625\u0644\u064a\u0643\u062a\u0631\u0648\u0646\u064a\u0629\".",
@@ -126,9 +125,6 @@
       "notification_digest_mail_title": {
         "en": "Notification Digest"
       },
-      "zip_description": {
-        "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
-      },
       "source_email": "sendaccount@lists.globaleaks.org",
       "port": 587,
       "file_mail_title": {
@@ -176,6 +172,9 @@
       },
       "pgp_alert_mail_title": {
         "en": "PGP Key Expiration Alert\n"
+      },
+      "archive_description": {
+        "en": "The following files may contain sensitive information, for the Whistleblower\nand for the involved person and organization.\n\nPlease, do never disclose these files until an appropriate analysis and \nredaction.\n\nFiles number: %FilesNumber%\nTotal uncompressed size: %TotalSize%\n\nFile details and integrity checksum:\n\n%FileList%\n\nTake Care,\n%NodeName%, a GlobaLeaks node\n\n\n"
       },
       "security": "TLS",
       "disable_admin_notification_emails": false,

@@ -130,7 +130,7 @@ var fields = [
 var context = {
   id: '',
   name: 'Context 1',
-  description: 'XXXXX ħ ÐÐ',
+  description: '',
   presentation_order: 0,
   tip_timetolive: 15,
   can_postpone_expiration: false,
@@ -241,8 +241,9 @@ for (var i=0; i<population_order; i++) {
     describe('POST /admin/contexts', function () {
       it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
         var newObject = JSON.parse(JSON.stringify(context));
-        newObject.name = 'Context ' + i + ' (selectable receivers: TRUE)';
-        ndwObject.presentation_order = i;
+        newObject.name = 'Context' + i + ' (selectable receivers: TRUE)';
+        newObject.description = 'description of Context' + i;
+        newObject.presentation_order = i;
 
         app
           .post('/admin/contexts')

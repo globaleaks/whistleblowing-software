@@ -79,7 +79,7 @@ templates_desc = {
     "message_template":
         [generic_keyword_list, tip_keyword_list],
 
-    "zip_description.txt":
+    "archive_description.txt":
         [generic_keyword_list, tip_keyword_list],
 
     "ping_mail_template":
