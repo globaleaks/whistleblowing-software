@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <div class="modal-title" data-glstring>Deny access to the whistleblower's identity</div>
+</div>
+<div class="modal-body">
+  <label data-glstring>Please write a motivation for the reply</label>
+  <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+  <textarea class="form-control msd-elastic" data-ng-model="reply_motivation" placeholder="{{'Motivation for the reply' | translate}}"></textarea>
+</div>
+<div class="modal-footer">
+  <span id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-glstring>Cancel</span>
+  </span>
+  <span id="modal-action-ok" class="btn btn-danger" data-ng-disabled="reply_motivation == undefined || reply_motivation == ''" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-glstring>Send</span>
+  </span>
+</div>
