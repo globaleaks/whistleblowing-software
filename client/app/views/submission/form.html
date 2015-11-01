@@ -1,6 +1,6 @@
-<div data-ng-repeat="(rowIndex, row) in ::fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
-  <div data-ng-repeat="field in row | orderBy:'x'">
-    <div data-ng-controller="SubmissionFieldCtrl" data-ng-init="fieldId = getFieldId($parent.fieldId, rowIndex - 1, $index)" data-ng-class="getClass(field, row.length)">
+<div data-ng-init="fieldRow=$index" data-ng-repeat="row in fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
+  <div data-ng-init="fieldCol=$index" data-ng-repeat="field in row | orderBy:'x'">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-init="fieldId = getFieldId($parent.fieldId, fieldRow, fieldCol)" data-ng-class="getClass(field, row.length)">
       <div id="{{fieldId}}" class="panel panel-default">
         <div class="panel-heading">
           <label>
