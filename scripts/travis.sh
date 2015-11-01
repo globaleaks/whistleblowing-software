@@ -39,8 +39,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   set +e # avoid to fail in case of errors cause apparmor will always cause the failure
   sudo ./scripts/install.sh
   set -e # re-enable to fail in case of errors
-  find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/NETWORK_SANDBOXING=1/NETWORK_SANDBOXING=0/g'
-  find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g'
+  sudo sed -i 's/NETWORK_SANDBOXING=1/NETWORK_SANDBOXING=0/g' /etc/default/globaleaks
+  sudo sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g' /etc/default/globaleaks
   sleep 5
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
