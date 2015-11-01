@@ -19,5 +19,7 @@ env:
     - GLTEST='end2end-6'
 addons:
   sauce_connect: true
+install:
+    - true
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh
