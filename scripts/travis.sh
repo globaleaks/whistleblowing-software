@@ -17,7 +17,7 @@ elif [ "$GLTEST" = "browserchecks" ]; then
   echo "Running Mocha tests for browser compatibility"
   grunt test-browserchecks-saucelabs
 
-else
+elif [[ $GLTEST == "end2end-" ]]; then
 
   echo "Running Protractor End2End tests"
 
@@ -29,16 +29,19 @@ else
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"microsoftedge\", \"version\":\"20.10240\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"5.1\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\", \"platform\":\"OS X 10.10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iphone\", \"version\": \"8.2\", \"deviceName\": \"iPhone Simulator\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\" }'"
+
   )
 
+  index=$(echo $GLTEST | cut -f2 -d-)
+
+  echo ${capabilities[@]}[$index]
+
   ## now loop through the above array
-  for i in "${capabilities[@]}"
-  do
-    echo "Testing Configuration: $i"
-    eval $i
-    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
-    sleep 3
-    grunt protractor:saucelabs
-  done
+  capability=${capabilities[$index]}
+
+  echo "Testing Configuration: $capability"
+  eval $capability
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
+  sleep 3
 
 fi
