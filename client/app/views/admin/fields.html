@@ -251,7 +251,7 @@
                         <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_confirmation_question_upon_negative_answer.value">{{field.attrs.text_of_confirmation_question_upon_negative_answer.value}}</textarea>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" data-ng-show="field.attrs.prompt_confirmation_upon_negative_answer.value">
                       <label>Text of the final statement upon negative answer</label>
                       <div>
                         <textarea class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.attrs.text_of_final_statement_upon_negative_answer.value">{{field.attrs.text_of_final_statement_upon_negative_answer.value}}</textarea>

@@ -10,6 +10,7 @@ import os
 
 from globaleaks import models
 from globaleaks.handlers.admin.user import db_create_admin
+from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.rest import errors, requests
 from globaleaks.settings import transact, transact_ro, GLSettings
 from globaleaks.security import get_salt
@@ -37,6 +38,23 @@ def load_appdata():
                 return appdata_dict
 
     raise errors.InternalServerError("Unable to load application data")
+
+
+def load_default_fields(store):
+    appdata_dict = None
+
+    this_directory = os.path.dirname(__file__)
+
+    for path in possible_glclient_paths:
+        default_fields_path = os.path.join(this_directory, path, 'data/fields')
+
+        if os.path.exists(default_fields_path):
+            for fname in os.listdir(default_fields_path):
+                fpath = os.path.join(default_fields_path, fname)
+                with file(fpath, 'r') as f:
+                    json_string = f.read()
+                    field_dict = json.loads(json_string)
+                    db_create_field(store, field_dict, None)
 
 
 @transact
@@ -92,6 +110,8 @@ def init_db(store, result, node_dict, appdata_dict):
     notification = models.Notification()
     for k in appdata_dict['templates']:
         setattr(notification, k, appdata_dict['templates'][k])
+
+    load_default_fields(store)
 
     store.add(notification)
 
