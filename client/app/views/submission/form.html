@@ -1,7 +1,7 @@
-<div data-ng-init="fieldRow=$index" data-ng-repeat="row in fields | groupBy:'y' | orderBy:minY" class="fieldsRow row">
-  <div data-ng-init="fieldCol=$index" data-ng-repeat="field in row | orderBy:'x'">
-    <div data-ng-controller="SubmissionFieldCtrl" data-ng-init="fieldId = getFieldId($parent.fieldId, fieldRow, fieldCol)" data-ng-class="getClass(field, row.length)">
-      <div id="{{fieldId}}" class="panel panel-default">
+<div data-ng-repeat="row in fields | groupBy:'y' | orderBy:minY" data-ng-init="fieldRow=$index" class="fieldsRow row">
+  <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index">
+    <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
+      <div id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}" class="panel panel-default">
         <div class="panel-heading">
           <label>
             <span class="fieldLabel">{{::field.label}}</span>

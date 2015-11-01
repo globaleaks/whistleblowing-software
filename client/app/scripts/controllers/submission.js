@@ -264,22 +264,6 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     }
   };
 
-  $scope.getFieldId = function(parentFieldId, y, x) {
-    var fieldId = '';
-
-    if (parentFieldId == undefined) {
-      if ($scope.stepId) {
-        fieldId = $scope.stepId + '-';
-      }
-
-      fieldId += 'field' + '-' + y + '-' + x;
-    } else {
-      fieldId = parentFieldId + '-' + y + '-' + x;
-    }
-
-    return fieldId;
-  }
-
   $scope.prepare_field_answers_structure = function(field) {
     var answer = {};
     if (field.type === 'fieldgroup') {
