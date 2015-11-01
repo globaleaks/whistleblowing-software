@@ -36,7 +36,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
-  sudo ./scripts/install-globaleaks.sh
+  sudo ./scripts/install.sh
   sleep 5
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
