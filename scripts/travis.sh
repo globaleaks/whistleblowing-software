@@ -17,7 +17,7 @@ elif [ "$GLTEST" = "browserchecks" ]; then
   echo "Running Mocha tests for browser compatibility"
   grunt test-browserchecks-saucelabs
 
-elif [[ $GLTEST == "end2end-" ]]; then
+elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
   echo "Running Protractor End2End tests"
 
@@ -33,8 +33,6 @@ elif [[ $GLTEST == "end2end-" ]]; then
   )
 
   index=$(echo $GLTEST | cut -f2 -d-)
-
-  echo ${capabilities[@]}[$index]
 
   ## now loop through the above array
   capability=${capabilities[$index]}
