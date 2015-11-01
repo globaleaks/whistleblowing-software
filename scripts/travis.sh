@@ -41,6 +41,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   set -e # re-enable to fail in case of errors
   sudo sed -i 's/NETWORK_SANDBOXING=1/NETWORK_SANDBOXING=0/g' /etc/default/globaleaks
   sudo sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g' /etc/default/globaleaks
+  sudo /etc/init.d/globaleaks restart
   sleep 5
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
