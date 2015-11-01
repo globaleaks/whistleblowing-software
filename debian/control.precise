@@ -3,7 +3,8 @@ Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
 Section: web
 Priority: optional
 Build-Depends:
- debhelper
+ build-essential
+ , debhelper
  , dh-apparmor
  , dh-python
  , nodejs
