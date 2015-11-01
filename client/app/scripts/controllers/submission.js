@@ -177,8 +177,6 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
-      $scope.answers = $scope.submission._submission.answers;
-
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
       var worker = new Worker('/scripts/crypto/proof-of-work.worker.js');
@@ -217,6 +215,11 @@ GLClient.controller('SubmissionCtrl',
     });
   }
 
+  $scope.completeSubmission = function() {
+    $scope.submission._submission.answers = $scope.answers;
+    $scope.submission.submit();
+  }
+
   new Submission(function(submission) {
     $scope.submission = submission;
 
@@ -231,6 +234,7 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
+      $scope.answers = {};
       $scope.prepareSubmission(context, $scope.receivers_ids);
     }
 
