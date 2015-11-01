@@ -1,4 +1,4 @@
-Dear Administrator of server %NodeName%,
+Dear Administrator,
 
 GlobaLeaks technology includes a server status checking component which will alert you in case something requires your attention.
 
