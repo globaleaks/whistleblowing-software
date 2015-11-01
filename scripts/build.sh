@@ -47,7 +47,7 @@ echo "Packaging GlobaLeaks for:" $DISTRIBUTION
 
 mkdir GLRelease
 cd GLRelease
-git clone git@github.com:globaleaks/GlobaLeaks.git
+git clone https://github.com/globaleaks/GlobaLeaks.git
 cd GlobaLeaks
 git checkout $TAG
 rm debian/control
