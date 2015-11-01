@@ -2,9 +2,22 @@
 
 set -e
 
+setupDependencies ()
+{
+  cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
+  pip install -r requirements.txt
+  pip install coverage coveralls
+  cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
+  npm install -g grunt grunt-cli bower
+  npm install
+  grunt setupDependencies
+  grunt build
+}
+
 if [ "$GLTEST" = "unit" ]; then
 
   echo "Running Mocha testes for API"
+  setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
   coveralls || true
@@ -14,7 +27,9 @@ if [ "$GLTEST" = "unit" ]; then
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 
-  apt-get update -y debhelper dh-apparmor dh-python npm python python-pip python-setuptools python-sphinx
+  echo "Running Build & Install test"
+  apt-get update -y
+  apt-get install -y debhelper dh-apparmor dh-python npm python python-pip python-setuptools python-sphinx
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   mkdir -p /data/globaleaks/deb/
@@ -28,6 +43,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
 elif [ "$GLTEST" = "browserchecks" ]; then
 
   echo "Running Mocha tests for browser compatibility"
+  setupDependencies
   grunt test-browserchecks-saucelabs
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
@@ -50,6 +66,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   capability=${capabilities[$index]}
 
   echo "Testing Configuration: $capability"
+  setupDependencies
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000
   sleep 3
