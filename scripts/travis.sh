@@ -31,7 +31,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo apt-get update -y
   sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
   curl -sL https://deb.nodesource.com/setup | sudo bash -
-  sudo apt-get install -i nodejs
+  sudo apt-get install -y nodejs
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
