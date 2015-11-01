@@ -35,7 +35,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
-  cp GLRelease/globaleaks*deb /data/globaleaks/deb/
+  sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
   wget https://deb.globaleaks.org/install-globaleaks.sh
   chmod +x install-globaleaks.sh
   sudo ./install-globaleaks.sh
