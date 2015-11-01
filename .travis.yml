@@ -9,6 +9,7 @@ env:
     - secure: clvOWlojaHQMHGhrN+sG+jOVLAsGJQFpzlUBv+8tKNy+Xbv/XPOQvnzqFTCdRlHSd39wnwIQTwOCWaCYhEECEyqgpaxYlYpSPsUOmk12aSxfjH5YGdwFqZvqhw1rkBpaEyoLh4PT0d1oLeCcJvb0jNuU4YbYOtq7DIRJDih/hPg=
   matrix:
     - GLTEST='unit'
+    - GLTEST='build_and_install'
     - GLTEST='end2end-0'
     - GLTEST='end2end-1'
     - GLTEST='end2end-2'

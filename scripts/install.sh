@@ -182,14 +182,19 @@ if [ $DISTRO == 'Ubuntu' ];then
   add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
 fi
 
-if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
-  # we avoid using apt-add-repository as we prefer using /etc/apt/sources.list.d/globaleaks.list
-  echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+if [ -d /data/globaleaks/deb ]; then
+  cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
+  echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
+  DO "apt-get update -y" "0"
+  DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
+else
+  if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
+    # we avoid using apt-add-repository as we prefer using /etc/apt/sources.list.d/globaleaks.list
+    echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+  fi
+  DO "apt-get update -y" "0"
+  DO "apt-get install globaleaks -y" "0"
 fi
-
-DO "apt-get update -y" "0"
-
-DO "apt-get install globaleaks -y" "0"
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
   TORHS=`cat /var/globaleaks/torhs/hostname`

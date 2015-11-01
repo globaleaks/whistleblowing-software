@@ -12,6 +12,19 @@ if [ "$GLTEST" = "unit" ]; then
   sleep 3
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
 
+elif [ "$GLTEST" = "build_and_install" ]; then
+
+  apt-get update -y debhelper dh-apparmor dh-python npm python python-pip python-setuptools python-sphinx
+  cd $TRAVIS_BUILD_DIR
+  ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
+  mkdir -p /data/globaleaks/deb/
+  cp GLRelease/globaleaks*deb /data/globaleaks/deb/
+  wget https://deb.globaleaks.org/install-globaleaks.sh
+  chmod +x install-globaleaks.sh
+  ./install-globaleaks.sh
+  sleep 3
+  curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
+
 elif [ "$GLTEST" = "browserchecks" ]; then
 
   echo "Running Mocha tests for browser compatibility"
