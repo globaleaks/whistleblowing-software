@@ -22,7 +22,7 @@ if [ "$GLTEST" = "unit" ]; then
   coverage run setup.py test
   coveralls || true
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
-  sleep 3
+  sleep 5
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
 
 elif [ "$GLTEST" = "build_and_install" ]; then
@@ -36,10 +36,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
-  wget https://deb.globaleaks.org/install-globaleaks.sh
-  chmod +x install-globaleaks.sh
-  sudo ./install-globaleaks.sh
-  sleep 3
+  sudo ./scripts/install-globaleaks.sh
+  sleep 5
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
 elif [ "$GLTEST" = "browserchecks" ]; then
@@ -70,7 +68,7 @@ elif [ "$GLTEST" = "end2end" ]; then
     echo "Testing Configuration: $i"
     eval $i
     $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
-    sleep 3
+    sleep 5
     grunt protractor:saucelabs
   done
 
