@@ -37,6 +37,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
   sudo ./scripts/install.sh
+  find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/NETWORK_SANDBOXING=1/NETWORK_SANDBOXING=0/g'
+  find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g'
   sleep 5
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
