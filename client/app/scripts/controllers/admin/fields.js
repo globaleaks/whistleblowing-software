@@ -93,11 +93,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
     };
 
     $scope.showConfiguration = function(field) {
-      if (['whistleblower_identity'].indexOf(field.key) > -1) {
+      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
         return true;
       }
 
-      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
+      if (['whistleblower_identity'].indexOf(field.key) > -1) {
         return true;
       }
 

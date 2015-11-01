@@ -297,9 +297,7 @@ def db_update_field(store, field_id, field_dict, language):
               'x': field_dict['x'],
               'y': field_dict['y'],
               'width': field_dict['width'],
-              'stats_enabled': field_dict['stats_enabled'],
-              'multi_entry': field_dict['multi_entry'],
-              'required': field_dict['required']
+              'multi_entry': field_dict['multi_entry']
             }
 
             field.update(partial_update)
