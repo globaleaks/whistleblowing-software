@@ -15,7 +15,7 @@ DISTRIBUTION="precise"
 TAG="master"
 NOSIGN=0
 
-while getopts "d:n:th" opt; do
+while getopts "d:nt:h" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
