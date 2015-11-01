@@ -43,7 +43,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g' /etc/default/globaleaks
   sudo /etc/init.d/globaleaks restart
   sleep 5
-  curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
+  curl 127.0.0.1:8082 | grep "GlobaLeaks"
 
 elif [ "$GLTEST" = "browserchecks" ]; then
 
