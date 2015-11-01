@@ -6,6 +6,7 @@ Build-Depends:
  debhelper
  , dh-apparmor
  , dh-python
+ , nodejs
  , npm
  , python (>= 2.7)
  , python-pip (>= 1.3)
