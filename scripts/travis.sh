@@ -36,7 +36,9 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
+  set +e # avoid to fail in case of errors cause apparmor will always cause the failure
   sudo ./scripts/install.sh
+  set -e # re-enable to fail in case of errors
   find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/NETWORK_SANDBOXING=1/NETWORK_SANDBOXING=0/g'
   find /etc/default/globaleaks -type f -print0 | xargs -0 sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g'
   sleep 5
