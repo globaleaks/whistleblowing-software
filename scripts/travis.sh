@@ -46,9 +46,11 @@ elif [ "$GLTEST" = "browserchecks" ]; then
   setupDependencies
   grunt test-browserchecks-saucelabs
 
-elif [[ $GLTEST =~ ^end2end-.* ]]; then
+elif [ "$GLTEST" = "end2end" ]; then
 
   echo "Running Protractor End2End tests"
+
+  setupDependencies
 
   declare -a capabilities=(
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"firefox\", \"version\":\"37.0\", \"platform\":\"Windows 10\"}'"
@@ -60,16 +62,14 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iphone\", \"version\": \"8.2\", \"deviceName\": \"iPhone Simulator\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\" }'"
   )
 
-  index=$(echo $GLTEST | cut -f2 -d-)
-
   ## now loop through the above array
-  capability=${capabilities[$index]}
-
-  echo "Testing Configuration: $capability"
-  setupDependencies
-  eval $capability
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000
-  sleep 3
-  grunt protractor:saucelabs
+  for i in "${capabilities[@]}"
+  do
+    echo "Testing Configuration: $i"
+    eval $i
+    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
+    sleep 3
+    grunt protractor:saucelabs
+  done
 
 fi

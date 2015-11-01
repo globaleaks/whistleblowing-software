@@ -12,13 +12,7 @@ env:
   matrix:
     - GLTEST='unit'
     - GLTEST='build_and_install'
-    - GLTEST='end2end-0'
-    - GLTEST='end2end-1'
-    - GLTEST='end2end-2'
-    - GLTEST='end2end-3'
-    - GLTEST='end2end-4'
-    - GLTEST='end2end-5'
-    - GLTEST='end2end-6'
+    - GLTEST='end2end'
 addons:
   sauce_connect: true
 install:
