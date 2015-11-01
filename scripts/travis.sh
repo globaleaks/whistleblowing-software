@@ -28,15 +28,15 @@ if [ "$GLTEST" = "unit" ]; then
 elif [ "$GLTEST" = "build_and_install" ]; then
 
   echo "Running Build & Install test"
-  apt-get update -y
-  apt-get install -y debhelper dh-apparmor dh-python npm python python-pip python-setuptools python-sphinx
+  sudo apt-get update -y
+  sudo apt-get install -y debhelper dh-apparmor dh-python npm python python-pip python-setuptools python-sphinx
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
-  mkdir -p /data/globaleaks/deb/
+  sudo mkdir -p /data/globaleaks/deb/
   cp GLRelease/globaleaks*deb /data/globaleaks/deb/
   wget https://deb.globaleaks.org/install-globaleaks.sh
   chmod +x install-globaleaks.sh
-  ./install-globaleaks.sh
+  sudo ./install-globaleaks.sh
   sleep 3
   curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 

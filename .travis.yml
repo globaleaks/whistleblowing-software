@@ -19,14 +19,5 @@ env:
     - GLTEST='end2end-6'
 addons:
   sauce_connect: true
-install:
-  - cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
-  - pip install -r requirements.txt
-  - pip install coverage coveralls
-  - cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
-  - npm install -g grunt grunt-cli bower
-  - npm install
-  - grunt setupDependencies
-  - grunt build
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh
