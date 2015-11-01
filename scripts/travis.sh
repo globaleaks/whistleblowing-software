@@ -29,7 +29,8 @@ elif [ "$GLTEST" = "build_and_install" ]; then
 
   echo "Running Build & Install test"
   sudo apt-get update -y
-  sudo apt-get install -y debhelper devscripts dh-apparmor dh-python nodejs npm python python-pip python-setuptools python-sphinx
+  sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
+  curl -sL https://deb.nodesource.com/setup | sudo bash -
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
