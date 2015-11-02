@@ -192,3 +192,11 @@
 .radio label, .checkbox label {
   display: block;
 }
+
+.cc-text-1 {
+  font-size: 35px;
+}
+
+.cc-text-2 {
+  font-size: 20px;
+}
