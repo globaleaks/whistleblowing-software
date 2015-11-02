@@ -6,7 +6,6 @@ var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
     'flow',
-    'monospaced.elastic',
     'pascalprecht.translate',
     'GLServices',
     'GLDirectives',

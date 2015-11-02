@@ -7,7 +7,7 @@
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
         <textarea id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                   name="input-{{entryIndex}}"
-                  class="form-control msd-elastic"
+                  class="form-control"
                   data-ng-model="entry['value']"
                   data-ng-minlength="field.attrs.min_len.value"
                   maxlength="{{field.attrs.max_len.value}}"

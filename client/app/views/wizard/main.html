@@ -34,7 +34,7 @@
             <span class="text-red" popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8"  data-ng-class="{'has-error': wizardForm.node_description.$error.required}">
-            <textarea name="node_description" class="form-control msd-elastic" data-ng-model="admin.node.description" placeholder="{{'Give a concise description of your project' | translate}}" maxlength="{{node.maximum_textsize}}" required></textarea>
+            <textarea name="node_description" class="form-control" data-ng-model="admin.node.description" placeholder="{{'Give a concise description of your project' | translate}}" maxlength="{{node.maximum_textsize}}" required></textarea>
           </div>
         </div>
       </div>
