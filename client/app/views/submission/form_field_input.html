@@ -18,7 +18,7 @@
                data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
                data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
           <div class="text-red"
-               data-ng-if="field.attrs.min_len.value >= 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
+               data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
                data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
                data-translate>FIELD_INPUT_MIN_CHARS</div>
         </div>
@@ -106,7 +106,7 @@
                data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
                data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
           <div class="text-red"
-               data-ng-if="field.attrs.min_len.value >= 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
+               data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
                data-translate-values="{min_characters_limit: field.attrs.min_len.value}"
                data-translate>FIELD_INPUT_MIN_CHARS</div>
         </div>
