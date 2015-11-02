@@ -6,16 +6,18 @@
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
         <textarea id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+                  data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
                   name="input-{{entryIndex}}"
                   class="form-control"
                   data-ng-model="entry['value']"
                   data-ng-minlength="field.attrs.min_len.value"
-                  maxlength="{{field.attrs.max_len.value}}"
+                  maxlength="{{maxlength}}"
+                  rows="3"
                   data-ng-required="field.required"
                   placeholder="{{field.placeholder}}"></textarea>
         <div>
-          <div data-ng-if="field.attrs.max_len.value >= 0 && (field.attrs.max_len.value - entry['value'].length) != field.attrs.max_len.value"
-               data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
+          <div data-ng-if="maxlength >= 0 && (maxlength - entry['value'].length) <= 50"
+               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
                data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
           <div class="text-red"
                data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
@@ -93,17 +95,18 @@
       </div>
       <div data-ng-switch-default data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
         <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+               data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"
                name="input-{{entryIndex}}"
                class="form-control"
                data-ng-model="entry['value']"
                data-ng-minlength="field.attrs.min_len.value"
-               maxlength="{{field.attrs.max_len.value}}"
+               maxlength="{{maxlength}}"
                data-ng-required="field.required"
                placeholder="{{field.placeholder}}"
                type="text" />
         <div>
-          <div data-ng-if="field.attrs.max_len.value >= 0 && (field.attrs.max_len.value - entry['value'].length) != field.attrs.max_len.value"
-               data-translate-values="{available_characters_count: field.attrs.max_len.value - entry['value'].length}"
+          <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
+               data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
                data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
           <div class="text-red"
                data-ng-if="field.attrs.min_len.value > 0 && (f['input-' + entryIndex].$error.minlength || (field.required && entry['value'].length == undefined))"
