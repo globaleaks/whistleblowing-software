@@ -4,6 +4,8 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.invalidForm = true;
 
+  $scope.uploads = {};
+
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
   $scope.contexts_selectable = $location.search().contexts_selectable;
@@ -248,11 +250,8 @@ GLClient.controller('SubmissionCtrl',
     });
 
   });
-
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
-  $scope.uploads = {};
-
   $scope.minY = function(arr) {
     return $filter('min')($filter('map')(arr, 'y'));
   };

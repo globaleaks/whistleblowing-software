@@ -1,18 +1,21 @@
-<div class="uploadingBox" data-ng-if="uploadedFiles(uploads) && (isUploading() || !hideUploadWhenFinished)">
+<div class="uploadingBox" data-ng-if="uploadedFiles(uploads)" flow-init>
   <div id="FileUploadsHeader">
-    <div data-ng-show="isUploading(uploads)" data-translate>Uploading files...</div>
-    <div data-ng-show="!isUploading(uploads)" data-translate>Upload completed successfully!</div>
+    <div data-ng-switch="getUploadStatus(uploads)">
+      <div data-ng-switch-when="uploading" data-translate>Uploading files...</div>
+      <div data-ng-switch-when="finished" data-translate>Upload completed successfully!</div>
+      <div data-ng-switch-when="error" data-translate>Error while uploading files; check below for details.</div>
+    </div>
   </div>
   <div id="FileUpoloadsInfo">
     <div data-ng-show="isUploading(uploads)">
       <span data-translate>Estimated upload time:</span> <span>{{remainingUploadTime(uploads)}} </span><span data-translate>seconds</span>
-    </div>
-    <div data-ng-show="isUploading(uploads)" class="progress progress-striped" data-ng-class="{active: isUploading(uploads)}">
-      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
+      <div class="progress progress-striped" data-ng-class="active">
+        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
+      </div>
     </div>
   </div>
   <div data-ng-repeat="flow in uploads" flow-name="flow">
-    <div data-ng-repeat="file in flow.files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete()">
+    <div data-ng-repeat="file in flow.files" data-ng-hide="hideUploadWhenFinished === true && file.isComplete() && !file.error">
       <div class="fileUploadBox">
         <div class="row">
           <div class="col-md-4">
@@ -43,7 +46,7 @@
             </div>
             <div>
               <label class="fileSize">
-                <span data-translate>Size</span>:<span>{{file.size | prettyBytes }}</span>
+                <span data-translate>Size</span>:<span>{{file.size | prettyBytes}}</span>
               </label>
             </div>
             <br />

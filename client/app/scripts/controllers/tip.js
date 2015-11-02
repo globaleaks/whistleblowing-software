@@ -7,7 +7,6 @@ GLClient.controller('TipCtrl',
 
     $scope.answers = {};
     $scope.uploads = {};
-    $scope.hideUploadWhenFinished = true;
 
     $scope.showEditLabelInput = false;
 
@@ -88,7 +87,6 @@ GLClient.controller('TipCtrl',
             }
           }
         }, false);
-
       });
 
     } else if (Authentication.role === 'receiver') {

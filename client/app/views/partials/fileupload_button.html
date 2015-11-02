@@ -1,4 +1,4 @@
-<div data-ng-controller="WBFileUploadCtrl" data-ng-init="fileinput = field ? field.id : 'tip_page'; uploads[fileinput] = {}">
+<div data-ng-controller="WBFileUploadCtrl" data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
   <div flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-file-added="onFileAdded($event, $file, $flow)" flow-files-submitted="$flow.upload()" flow-name="uploads[fileinput]">
     <span data-ng-if="field==undefined || field.multi_entry">
       <span id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>

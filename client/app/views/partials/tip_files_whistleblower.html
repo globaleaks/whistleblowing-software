@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-show="tip.files.length || uploads">
+    <div data-ng-show="tip.files.length">
       <div class="table-container">
         <table class="table table-striped" id="fileList">
           <thead>
@@ -45,27 +45,11 @@
                 <span>{{::file.size | prettyBytes }}</span>
               </td>
             </tr>
-            <tr data-ng-repeat="file in uploads['tip_page']['files']">
-              <span data-ng-if="!file.isUploading()">
-                <td>
-                  <span>{{::file.name}}</span>
-                </td>
-                <td>
-                  <span>{{today() | date:'dd-MM-yyyy'}}</span>
-                </td>
-                <td>
-                  <span>{{::file.file.type}}</span>
-                </td>
-                <td>
-                  <span>{{::file.size | prettyBytes }}</span>
-                </td>
-              </span>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div data-ng-hide="tip.files.length || uploads['tip_page']['files'].length">
+    <div data-ng-hide="tip.files.length || uploads['status_page']['files'].length">
       <span data-translate>No files have been uploaded!</span>
     </div>
     <br />
