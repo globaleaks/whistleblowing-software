@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-md-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="col-md-2" data-translate>Low risk</th>
+          <th class="col-md-2" data-translate>Medium risk</th>
+          <th class="col-md-2" data-translate>High risk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <label>
+              <span data-translate>Available disk space<span>
+              <span>(</span><span data-translate>in megabytes</span><span>)</span>
+            </label>
+          </td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_megabytes_low" type="number" /></td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_megabytes_medium" type="number" /></td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_megabytes_high" type="number" /></td>
+        </tr>
+        <tr>
+          <td>
+            <label>
+              <span data-translate>Available disk space<span>
+              <span>(</span><span data-translate>in percentage</span><span>)</span>
+            </label>
+          </td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_percentage_low" type="number"  min="0" max="100" /></td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_percentage_medium" type="number"  min="0" max="100" /></td>
+          <td><input class="form-control" data-ng-model="admin.node.threshold_free_disk_percentage_high" type="number"  min="0" max="100" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
