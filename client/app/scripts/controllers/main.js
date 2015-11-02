@@ -215,10 +215,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     };
 
-    $scope.minY = function(arr) {
-      return $filter('min')($filter('map')(arr, 'y'));
-    };
-
     $scope.closeAlert = function(list, index) {
       list.splice(index, 1);
     };

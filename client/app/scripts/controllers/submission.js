@@ -250,10 +250,22 @@ GLClient.controller('SubmissionCtrl',
   });
 
 }]).
-controller('SubmissionStepCtrl', ['$scope', function($scope) {
+controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.uploads = {};
 
+  $scope.minY = function(arr) {
+    return $filter('min')($filter('map')(arr, 'y'));
+  };
+
+  $scope.splitRows = function(fields) {
+    var rows = $filter('groupBy')(fields, 'y');
+    rows = $filter('toArray')(rows);
+    rows = $filter('orderBy')(rows, $scope.minY);
+    return rows;
+  }
+
   $scope.fields = $scope.step.children;
+  $scope.rows = $scope.splitRows($scope.fields);
 
   $scope.status = {
     opened: false
@@ -294,8 +306,8 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     entries.push($scope.prepare_field_answers_structure($scope.field));
   }
 
-  $scope.fieldsLevel= $scope.fieldsLevel + 1;
   $scope.fields = $scope.field.children;
+  $scope.rows = $scope.splitRows($scope.fields);
 
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
