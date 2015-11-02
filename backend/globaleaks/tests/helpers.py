@@ -1026,7 +1026,13 @@ class MockDict():
             'submission_maximum_ttl': 1111,
             'widget_comments_title': '',
             'widget_messages_title': '',
-            'widget_files_title': ''
+            'widget_files_title': '',
+            'threshold_free_disk_megabytes_high': 200,
+            'threshold_free_disk_megabytes_medium': 500,
+            'threshold_free_disk_megabytes_low': 1000,
+            'threshold_free_disk_percentage_high': 3,
+            'threshold_free_disk_percentage_medium': 5,
+            'threshold_free_disk_percentage_low': 10
         }
 
 

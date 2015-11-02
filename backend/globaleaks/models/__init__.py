@@ -488,15 +488,33 @@ class Node(Model):
 
     show_contexts_in_alphabetical_order = Bool(default=False)
 
+    threshold_free_disk_megabytes_high = Int(default=200)
+    threshold_free_disk_megabytes_medium = Int(default=500)
+    threshold_free_disk_megabytes_low = Int(default=1000)
+
+    threshold_free_disk_percentage_high = Int(default=3)
+    threshold_free_disk_percentage_medium = Int(default=5)
+    threshold_free_disk_percentage_low = Int(default=10)
+
     unicode_keys = ['name', 'public_site', 'hidden_service',
                     'default_language', 'landing_page']
 
-    int_keys = ['maximum_namesize', 'maximum_textsize',
-                'maximum_filesize', 'default_timezone',
-                'show_contexts_in_alphabetical_order',
-                'submission_minimum_delay',
-                'submission_maximum_ttl',
-                'simplified_login']
+    int_keys = [
+        'maximum_namesize',
+        'maximum_textsize',
+        'maximum_filesize',
+        'default_timezone',
+        'show_contexts_in_alphabetical_order',
+        'submission_minimum_delay',
+        'submission_maximum_ttl',
+        'simplified_login',
+        'threshold_free_disk_megabytes_high',
+        'threshold_free_disk_megabytes_medium',
+        'threshold_free_disk_megabytes_low',
+        'threshold_free_disk_percentage_high',
+        'threshold_free_disk_percentage_medium',
+        'threshold_free_disk_percentage_low'
+    ]
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
                  'tor2web_custodian', 'tor2web_unauth',

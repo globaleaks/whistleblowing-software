@@ -20,7 +20,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 
-def start_asynchronous():
+def start_asynchronous_jobs():
     """
     Initialize the asynchronous operation, scheduled in the system
     """
@@ -86,9 +86,10 @@ def globaleaks_start():
     @d.addCallback
     @defer.inlineCallbacks
     def cb(res):
-        start_asynchronous()
         yield import_memory_variables()
         tor_configured_hosts = yield apply_cli_options()
+
+        start_asynchronous_jobs()
 
         log.msg("GLBackend is now running")
         for ip in GLSettings.bind_addresses:

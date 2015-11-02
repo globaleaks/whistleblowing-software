@@ -37,7 +37,7 @@ def admin_serialize_context(store, context, language):
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
-        'show_context': context.show_context,
+        'hidden': context.hidden,
         'show_receivers': context.show_receivers,
         'show_small_cards': context.show_small_cards,
         'enable_comments': context.enable_comments,

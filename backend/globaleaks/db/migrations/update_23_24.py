@@ -231,6 +231,30 @@ class Replacer2324(TableReplacer):
                 new_node.simplified_login = True
                 continue
 
+            if v.name == 'threshold_free_disk_megabytes_high':
+                new_node.threshold_free_disk_megabytes_high = 200
+                continue
+
+            if v.name == 'threshold_free_disk_megabytes_medium':
+                new_node.threshold_free_disk_megabytes_medium = 500
+                continue
+
+            if v.name == 'threshold_free_disk_megabytes_low':
+                new_node.threshold_free_disk_megabytes_low = 1000
+                continue
+
+            if v.name == 'threshold_free_disk_percentage_high':
+                new_node.threshold_free_disk_percentage_high = 3
+                continue
+
+            if v.name == 'threshold_free_disk_percentage_medium':
+                new_node.threshold_free_disk_percentage_medium = 5
+                continue
+
+            if v.name == 'threshold_free_disk_percentage_low':
+                new_node.threshold_free_disk_percentage_low = 10
+                continue
+
             if v.name == 'tor2web_whistleblower':
                 new_node.tor2web_whistleblower = old_node.tor2web_submission
                 continue
