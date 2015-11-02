@@ -217,8 +217,9 @@ class Context(Model):
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
+    enable_two_way_comments = Bool(default=True)
+    enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
-    enable_two_way_communication = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
     tip_timetolive = Int()
@@ -242,12 +243,17 @@ class Context(Model):
                 'show_receivers_in_alphabetical_order',
                 'presentation_order' ]
 
-    bool_keys = ['select_all_receivers',
-                 'show_small_cards',
-                 'hidden', 'show_receivers',
-                 'enable_comments', 'enable_messages',
-                 'enable_two_way_communication',
-                 'enable_attachments']
+    bool_keys = [
+      'select_all_receivers',
+      'show_small_cards',
+      'hidden',
+      'show_receivers',
+      'enable_comments',
+      'enable_messages',
+      'enable_two_way_comments',
+      'enable_two_way_messages',
+      'enable_attachments'
+    ]
 
 
 class InternalTip(Model):
@@ -276,8 +282,9 @@ class InternalTip(Model):
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
+    enable_two_way_comments = Bool(default=True)
+    enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
-    enable_two_way_communication = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
     new = Int(default=True)

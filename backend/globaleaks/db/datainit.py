@@ -136,6 +136,7 @@ def db_update_memory_variables(store):
 
         GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
         GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
+        GLSettings.memory_copy.can_grant_permissions = node.can_grant_permissions
 
         GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
         GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl

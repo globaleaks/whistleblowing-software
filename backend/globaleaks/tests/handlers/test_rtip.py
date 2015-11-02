@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.handlers import rtip
+from globaleaks.settings import GLSettings
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
@@ -29,37 +30,108 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             self.responses = []
 
+            operation = {
+              'operation': 'postpone',
+              'args': {}
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 202)
+
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.get(rtip_desc['rtip_id'])
             self.assertEqual(handler.get_status(), 200)
 
-            self.responses[0]['operation'] = 'postpone'
 
-            handler = self.request(self.responses[0], role='receiver', user_id = rtip_desc['receiver_id'])
+
+    @inlineCallbacks
+    def switch_enabler(self, key):
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            self.responses = []
+
+            operation = {
+                'operation': 'set',
+                'args': {
+                  'key': key,
+                  'value': True
+                }
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['rtip_id'])
             self.assertEqual(handler.get_status(), 202)
+
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(self.responses[0][key], True)
+
+            operation = {
+                'operation': 'set',
+                'args': {
+                  'key': key,
+                  'value': False
+                }
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 202)
+
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(self.responses[1][key], False)
+
+            operation = {
+                'operation': 'set',
+                'args': {
+                  'key': key,
+                  'value': True
+                }
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['rtip_id'])
+            self.assertEqual(handler.get_status(), 202)
+
+            yield handler.get(rtip_desc['rtip_id'])
+            self.assertEqual(self.responses[2][key], True)
+
+    @inlineCallbacks
+    def test_put_enable_two_way_comments(self):
+        GLSettings.memory_copy.can_grant_permissions = True
+        yield self.switch_enabler('enable_two_way_comments')
+
+    @inlineCallbacks
+    def test_put_enable_two_way_messages(self):
+        GLSettings.memory_copy.can_grant_permissions = True
+        yield self.switch_enabler('enable_two_way_messages')
+
+    @inlineCallbacks
+    def test_put_enable_attachments(self):
+        GLSettings.memory_copy.can_grant_permissions = True
+        yield self.switch_enabler('enable_attachments')
 
 
     @inlineCallbacks
     def test_put_label(self):
         rtips_desc = yield self.get_rtips()
-        for i, rtip_desc in enumerate(rtips_desc):
+        for rtip_desc in rtips_desc:
             self.responses = []
 
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.get(rtip_desc['rtip_id'])
-            self.assertEqual(handler.get_status(), 200)
+            operation = {
+              'operation': 'set',
+              'args': {
+                'key': 'label',
+                'value': 'PASSANTEDIPROFESSIONE'
+              }
+            }
 
-            self.responses[0]['operation'] = 'label'
-            assigned_label = 'ArandomLABEL %d' % i
-            self.responses[0]['label'] = assigned_label
-
-            handler = self.request(self.responses[0], role='receiver', user_id = rtip_desc['receiver_id'])
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['rtip_id'])
-
             self.assertEqual(handler.get_status(), 202)
+
             yield handler.get(rtip_desc['rtip_id'])
-            self.assertEqual(self.responses[1]['label'], assigned_label)
+            self.assertEqual(self.responses[0]['label'], operation['args']['value'])
 
 
     @inlineCallbacks

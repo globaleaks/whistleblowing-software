@@ -447,8 +447,15 @@ angular.module('GLServices', ['ngResource']).
             });
           };
 
+          tip.setVar = function(var_name, var_value) {
+            var req = {'operation': 'set'};
+            var req[var_name] = var_value;
+
+            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req});
+          };
+
           tip.updateLabel = function(label) {
-            return $http({method: 'PUT', url: '/rtip/' + tip.id, data:{'operation': 'label', 'label' : label}});
+            return tip.setVar('label', label)l
           };
 
           if (fn) {
@@ -601,7 +608,7 @@ angular.module('GLServices', ['ngResource']).
           context.show_small_cards = false;
           context.enable_comments = true;
           context.enable_messages = false;
-          context.enable_two_way_communication = true;
+          context.enable_two_way_messages = true;
           context.enable_attachments = true;
           context.show_receivers_in_alphabetical_order = true;
           context.steps_arrangement = 'horizontal';

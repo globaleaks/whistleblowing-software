@@ -140,7 +140,7 @@ var context = {
   show_small_cards: false,
   enable_comments: true,
   enable_messages: true,
-  enable_two_way_communication: true,
+  enable_two_way_messages: true,
   enable_attachments: true,
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,

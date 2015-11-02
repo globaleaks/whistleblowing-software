@@ -185,7 +185,8 @@ def serialize_itip(store, internaltip, language):
         'timetolive': context.tip_timetolive,
         'enable_comments': internaltip.enable_comments,
         'enable_messages': internaltip.enable_messages,
-        'enable_two_way_communication': internaltip.enable_two_way_communication,
+        'enable_two_way_comments': internaltip.enable_two_way_comments,
+        'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'identity_provided': internaltip.identity_provided,
@@ -324,7 +325,8 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.enable_comments = context.enable_comments
     submission.enable_messages = context.enable_messages
-    submission.enable_two_way_communication = context.enable_two_way_communication
+    submission.enable_two_way_comments = context.enable_two_way_comments
+    submission.enable_two_way_messages = context.enable_two_way_messages
     submission.enable_attachments = context.enable_attachments
     submission.enable_whistleblower_identity = context.enable_whistleblower_identity
 
