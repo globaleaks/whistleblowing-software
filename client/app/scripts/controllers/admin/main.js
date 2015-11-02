@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
     ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
-function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CONSTANTS) {
+    function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CONSTANTS) {
 
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
