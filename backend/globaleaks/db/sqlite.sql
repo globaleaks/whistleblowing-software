@@ -59,7 +59,7 @@ CREATE TABLE context (
     select_all_receivers INTEGER NOT NULL,
     maximum_selectable_receivers INTEGER,
     show_small_cards INTEGER NOT NULL,
-    show_context INTEGER NOT NULL,
+    hidden INTEGER NOT NULL,
     show_receivers INTEGER NOT NULL,
     enable_comments INTEGER NOT NULL,
     enable_messages INTEGER NOT NULL,

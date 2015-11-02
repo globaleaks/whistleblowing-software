@@ -78,7 +78,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
-  $scope.contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
+  $scope.contexts = $filter('filter')($rootScope.contexts, {'hidden': true});
   $scope.contexts = $filter('orderBy')($scope.contexts, $scope.contextsOrderPredicate);
 
   var isAGoodPOW = function(binaryhash) {

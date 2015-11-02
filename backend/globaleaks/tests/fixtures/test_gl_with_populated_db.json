@@ -244,7 +244,7 @@
       "last_update": null,
       "tip_timetolive": 1728000,
       "show_small_cards": false,
-      "show_context": true,
+      "hidden": true,
       "show_receivers": false,
       "select_all_receivers": true,
       "maximum_selectable_receivers": 0,
