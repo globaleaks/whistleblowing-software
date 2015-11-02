@@ -358,15 +358,35 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return sum;
     };
 
-    $scope.isUploading = function(uploads) {
-      angular.forEach(uploads, function(flow, key) {
-        if(flow.isUploading()) {
-          return true;
-        }
-      });
+    $scope.getUploadStatus = function(uploads) {
+      var error = false;
 
-      return false;
+      for (var key in uploads) {
+        if(uploads[key].isUploading()) {
+          console.log("uploading");
+          return 'uploading';
+        }
+
+        for (var i=0; i<uploads[key].files.length; i++) {
+          if (uploads[key].files[i].error) {
+            error = true;
+            break;
+          }
+        }
+      }
+
+      console.log(error);
+
+      if (error) {
+        return 'error';
+      } else {
+        return 'finished';
+      }
     };
+
+    $scope.isUploading = function(uploads) {
+      return $scope.getUploadStatus(uploads) == 'uploading';
+    }
 
     $scope.remainingUploadTime = function(uploads) {
       var sum = 0;
