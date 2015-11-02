@@ -948,7 +948,7 @@ class MockDict():
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
-            'show_context': True,
+            'hidden': True,
             'show_receivers': False,
             'enable_comments': True,
             'enable_messages': True,

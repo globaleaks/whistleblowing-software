@@ -594,7 +594,7 @@ angular.module('GLServices', ['ngResource']).
           context.description = '';
           context.presentation_order = 0;
           context.tip_timetolive = 15;
-          context.show_context = true;
+          context.hidden = true;
           context.show_receivers = true;
           context.select_all_receivers = false;
           context.maximum_selectable_receivers = 0;
