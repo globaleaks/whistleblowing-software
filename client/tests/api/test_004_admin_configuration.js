@@ -135,7 +135,7 @@ var context = {
   tip_timetolive: 15,
   can_postpone_expiration: false,
   can_delete_submission: true,
-  show_context: true,
+  hidden: false,
   show_receivers: true,
   show_small_cards: false,
   enable_comments: true,
