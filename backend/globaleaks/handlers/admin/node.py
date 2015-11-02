@@ -66,7 +66,14 @@ def db_admin_serialize_node(store, language):
         'enable_proof_of_work': node.enable_proof_of_work,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order
+        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
+        'show_contexts_in_alphabetical_order': False,
+        'threshold_free_disk_megabytes_high': node.threshold_free_disk_megabytes_high,
+        'threshold_free_disk_megabytes_medium': node.threshold_free_disk_megabytes_medium,
+        'threshold_free_disk_megabytes_low': node.threshold_free_disk_megabytes_low,
+        'threshold_free_disk_percentage_high': node.threshold_free_disk_percentage_high,
+        'threshold_free_disk_percentage_medium': node.threshold_free_disk_percentage_medium,
+        'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low
     }
 
     return get_localized_values(ret_dict, node, models.Node.localized_strings, language)

@@ -154,6 +154,14 @@ def db_update_memory_variables(store):
 
         GLSettings.memory_copy.simplified_login = node.simplified_login
 
+        GLSettings.memory_copy.threshold_free_disk_megabytes_high = node.threshold_free_disk_megabytes_high
+        GLSettings.memory_copy.threshold_free_disk_megabytes_medium = node.threshold_free_disk_megabytes_medium
+        GLSettings.memory_copy.threshold_free_disk_megabytes_low = node.threshold_free_disk_megabytes_low
+
+        GLSettings.memory_copy.threshold_free_disk_percentage_high = node.threshold_free_disk_percentage_high
+        GLSettings.memory_copy.threshold_free_disk_percentage_medium = node.threshold_free_disk_percentage_medium
+        GLSettings.memory_copy.threshold_free_disk_percentage_low = node.threshold_free_disk_percentage_low
+
         # Email settings are copyed because they are used when an exception raises
         # and we can't go to check in the DB, because that's shall be exception source
         notif = store.find(models.Notification).one()

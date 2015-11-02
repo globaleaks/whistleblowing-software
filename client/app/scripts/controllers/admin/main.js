@@ -236,6 +236,11 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
       title:"Tor2web settings",
       template:"views/admin/advanced/tab2.html",
       ctrl: TabCtrl
+    },
+    {
+      title:"Anomaly detection thresholds",
+      template:"views/admin/advanced/tab3.html",
+      ctrl: TabCtrl
     }
   ];
   $scope.open_modal_allow_unencrypted = function() {

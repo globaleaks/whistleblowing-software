@@ -195,6 +195,12 @@ CREATE TABLE node (
     widget_files_title BLOB NOT NULL,
     landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
+    threshold_free_disk_megabytes_high INTEGER NOT NULL,
+    threshold_free_disk_megabytes_medium INTEGER NOT NULL,
+    threshold_free_disk_megabytes_low INTEGER NOT NULL,
+    threshold_free_disk_percentage_high INTEGER NOT NULL,
+    threshold_free_disk_percentage_medium INTEGER NOT NULL,
+    threshold_free_disk_percentage_low INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -115,7 +115,13 @@
       "widget_files_title": {"en": ""},
       "landing_page": "homepage",
       "submission_minimum_delay": 0,
-      "submission_maximum_ttl": 0
+      "submission_maximum_ttl": 0,
+      "threshold_free_disk_megabytes_high": 200,
+      "threshold_free_disk_megabytes_medium": 500,
+      "threshold_free_disk_megabytes_low": 1000,
+      "threshold_free_disk_percentage_high": 3,
+      "threshold_free_disk_percentage_medium": 5,
+      "threshold_free_disk_percentage_low": 10
     },
     "class": "Node"
   },

@@ -110,47 +110,58 @@ def compute_activity_level():
 
 
 def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
+    threshold_free_ramdisk_megabytes = 1
     free_disk_megabytes = free_workdir_bytes / (1024 * 1024)
     free_disk_percentage = free_workdir_bytes / (total_workdir_bytes / 100)
+    free_ramdisk_megabytes = free_ramdisk_bytes / (1024 * 1024)
     free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
     free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
     total_workdir_string = bytes_to_pretty_str(total_workdir_bytes)
     total_ramdisk_string = bytes_to_pretty_str(total_ramdisk_bytes)
 
-    def info_msg_0(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "free_disk_megabytes <= 200 or free_disk_percentage <= 3"
+    def info_msg_0():
+        return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
+            (GLSettings.memory_copy.threshold_free_disk_megabytes_high,
+             GLSettings.memory_copy.threshold_free_disk_percentage_high)
 
-    def info_msg_1(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "free_ramdisk_bytes <= 2048"
+    def info_msg_1():
+        return "free_ramdisk_megabytes <= %d" % threshold_free_ramdisk_megabytes
 
-    def info_msg_2(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "free_disk_megabytes <= 500 or free_disk_percentage <= 5"
+    def info_msg_2():
+        return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
+            (GLSettings.memory_copy.threshold_free_disk_megabytes_medium,
+             GLSettings.memory_copy.threshold_free_disk_percentage_medium)
 
-    def info_msg_3(free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):
-        return "free_disk_megabytes <= 1000 or free_disk_percentage <= 10"
+    def info_msg_3():
+        return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \
+            (GLSettings.memory_copy.threshold_free_disk_megabytes_low,
+             GLSettings.memory_copy.threshold_free_disk_percentage_low)
 
     # list of bad conditions ordered starting from the worst case scenario
     conditions = [
         {
-            'condition': free_disk_megabytes <= 200 or free_disk_percentage <= 3,
+            'condition': free_disk_megabytes <= GLSettings.memory_copy.threshold_free_disk_megabytes_high or \
+                         free_disk_percentage <= GLSettings.memory_copy.threshold_free_disk_percentage_high,
             'info_msg': info_msg_0,
             'stress_level': 3,
             'accept_submissions': False
         },
         {
-            'condition': free_ramdisk_bytes <= 2048,
+            'condition': free_ramdisk_megabytes <= threshold_free_ramdisk_megabytes,
             'info_msg': info_msg_1,
             'stress_level': 3,
             'accept_submissions': False
         },
         {
-            'condition': free_disk_megabytes <= 500 or free_disk_percentage <= 5,
+            'condition': free_disk_megabytes <= GLSettings.memory_copy.threshold_free_disk_megabytes_medium or \
+                         free_disk_percentage <= GLSettings.memory_copy.threshold_free_disk_percentage_medium,
             'info_msg': info_msg_2,
             'stress_level': 2,
             'accept_submissions': True
         },
         {
-            'condition': free_disk_megabytes <= 1000 or free_disk_percentage <= 10,
+            'condition': free_disk_megabytes <= GLSettings.memory_copy.threshold_free_disk_megabytes_low or \
+                         free_disk_percentage <= GLSettings.memory_copy.threshold_free_disk_percentage_low,
             'info_msg': info_msg_3,
             'stress_level': 1,
             'accept_submissions': True
@@ -484,10 +495,7 @@ class Alarm(object):
             if c['condition']:
                 disk_space = c['stress_level']
 
-                info_msg = c['info_msg'](free_workdir_bytes,
-                                         total_workdir_bytes,
-                                         free_ramdisk_bytes,
-                                         total_ramdisk_bytes)
+                info_msg = c['info_msg']()
 
                 if disk_space <= GLSettings.disk_alarm_threshold:
                     # log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
