@@ -448,14 +448,22 @@ angular.module('GLServices', ['ngResource']).
           };
 
           tip.setVar = function(var_name, var_value) {
-            var req = {'operation': 'set'};
-            var req[var_name] = var_value;
+            var req = {
+              'operation': 'set',
+              'args': {
+                'key': var_name,
+                'value': var_value
+              }
+            };
 
-            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req});
+            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function (response) {
+              tip[var_name] = var_value;
+            });
+
           };
 
           tip.updateLabel = function(label) {
-            return tip.setVar('label', label)l
+            return tip.setVar('label', label);
           };
 
           if (fn) {
