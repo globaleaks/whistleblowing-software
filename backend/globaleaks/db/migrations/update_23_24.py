@@ -480,16 +480,20 @@ class Replacer2324(TableReplacer):
                     new_obj.hidden = True
                     continue
 
-                if v.name == 'enable_messages':
-                    new_obj.enable_messages = old_obj.enable_private_messages
-                    continue
-
                 if v.name == 'enable_comments':
                     new_obj.enable_comments = old_obj.enable_comments
                     continue
 
-                if v.name == 'enable_two_way_communication':
-                    new_obj.enable_two_way_communication = old_obj.enable_private_messages or old_obj.enable_comments
+                if v.name == 'enable_messages':
+                    new_obj.enable_messages = old_obj.enable_private_messages
+                    continue
+
+                if v.name == 'enable_two_way_comments':
+                    new_obj.enable_two_way_comments = True
+                    continue
+
+                if v.name == 'enable_two_way_messages':
+                    new_obj.enable_two_way_messages = True
                     continue
 
                 if v.name == 'enable_attachments':
@@ -528,16 +532,20 @@ class Replacer2324(TableReplacer):
                     new_obj.total_score = 0
                     continue
 
-                if v.name == 'enable_messages':
-                    new_obj.enable_messages = old_obj.context.enable_private_messages
-                    continue
-
                 if v.name == 'enable_comments':
                     new_obj.enable_comments = old_obj.context.enable_comments
                     continue
 
-                if v.name == 'enable_two_way_communication':
-                    new_obj.enable_two_way_communication = old_obj.context.enable_private_messages or old_obj.context.enable_comments
+                if v.name == 'enable_messages':
+                    new_obj.enable_messages = old_obj.context.enable_private_messages
+                    continue
+
+                if v.name == 'enable_two_way_comments':
+                    new_obj.enable_two_way_comments = True
+                    continue
+
+                if v.name == 'enable_two_way_messages':
+                    new_obj.enable_two_way_messages = True
                     continue
 
                 if v.name == 'enable_attachments':

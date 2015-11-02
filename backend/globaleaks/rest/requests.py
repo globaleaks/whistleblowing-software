@@ -21,8 +21,9 @@ hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
-landing_page_regexp               = r'^homepage$|^submissionpage$'
-tip_operation_regexp              = r'^postpone$|^label$'
+landing_page_regexp               = r'^(homepage|submissionpage)$'
+tip_operation_regexp              = r'^(postpone|set)$'
+
 token_type_regexp                 = r'^submission$'
 
 field_instance_regexp             = (r'^('
@@ -157,7 +158,7 @@ CommentDesc = {
 
 TipOpsDesc = {
     'operation': tip_operation_regexp,
-    'label': unicode,
+    'args': dict
 }
 
 WhisleblowerIdentityAnswers = {
@@ -351,7 +352,7 @@ AdminContextDesc = {
     'show_small_cards': bool,
     'enable_comments': bool,
     'enable_messages': bool,
-    'enable_two_way_communication': bool,
+    'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
@@ -527,7 +528,7 @@ ContextDesc = {
     'maximum_selectable_receivers': int,
     'enable_comments': bool,
     'enable_messages': bool,
-    'enable_two_way_communication': bool,
+    'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'show_receivers_in_alphabetical_order': bool
 }

@@ -97,7 +97,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label data-translate>Name</label>
-                    <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="context.name" value="{{context.name}}" type="text" required>
+                    <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="context.name" type="text" required>
                     <div class="text-red" data-ng-show="editContext.name.$error.required">
                       <span data-translate>This field is mandatory</span>
                     </div>
@@ -151,17 +151,17 @@
                           </select>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.hidden" value="{{context.hidden}}" type="checkbox" />
+                          <input data-ng-model="context.hidden" type="checkbox" />
                           <label data-translate>Allow selection of this context through the context selector.</label>
                           <div data-translate>If disabled, submissions for this context will only be accessible through a direct link to it.</div>
                         </div>
                         <div class="form-group">
                           <label data-translate>Expiration time of the submissions, in days</label>
-                          <input class="form-control" data-ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number" />
+                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" />
                           <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.show_receivers" value="{{context.show_receivers}}" type="checkbox" />
+                          <input data-ng-model="context.show_receivers" type="checkbox" />
                           <label data-translate>Show recipient selection step</label>
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
@@ -171,24 +171,32 @@
                           </label>
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
-                          <input data-ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox" />
+                          <input data-ng-model="context.select_all_receivers" type="checkbox" />
                           <label data-translate>Select all recipients by default</label>
                         </div>
                         <div class="form-group" data-ng-show="!context.select_all_receivers">
                           <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
-                          <input class="form-control" data-ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number" />
+                          <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" />
                         </div>
                         <div class="form-group" data-ng-show="context.show_receivers">
-                          <input data-ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox" />
+                          <input data-ng-model="context.show_small_cards" type="checkbox" />
                           <label data-translate>Show small recipient cards on submission interface</label>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.enable_comments" value="{{context.enable_comments}}" type="checkbox" />
+                          <input data-ng-model="context.enable_comments" type="checkbox" />
                           <label data-translate>Enable comments</label>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.enable_messages" value="{{context.enable_messages}}" type="checkbox" />
+                          <input data-ng-model="context.enable_messages" type="checkbox" />
                           <label data-translate>Enable private messages</label>
+                        </div>
+                        <div class="form-group" data-ng-if="context.enable_comments || context.enable_messages">
+                          <input data-ng-model="context.enable_two_way_messages" type="checkbox" />
+                          <label data-translate>Allow whistleblowers to write comments and send messages</label>
+                        </div>
+                        <div class="form-group">
+                          <input data-ng-model="context.enable_attachments" type="checkbox" />
+                          <label data-translate>Allow whistleblowers to add attachments on existing submissions</label>
                         </div>
                       </div>
                     </div>

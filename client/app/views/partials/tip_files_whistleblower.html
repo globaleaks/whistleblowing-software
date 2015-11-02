@@ -60,5 +60,8 @@
         <div class="col-md-6" data-ng-include="'views/partials/fileupload_status.html'"></div>
       </div>
     </div>
+    <div data-ng-if="!tip.attachments">
+      <span data-translate>You are still not allowed to attach new files.</span>
+    </div>
   </div>
 </div>

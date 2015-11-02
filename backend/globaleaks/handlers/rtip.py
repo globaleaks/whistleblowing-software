@@ -220,13 +220,20 @@ def postpone_expiration_date(store, user_id, rtip_id):
 
 
 @transact
-def assign_rtip_label(store, user_id, rtip_id, label_content):
+def set_internaltip_variable(store, user_id, rtip_id, key, value):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    if rtip.label:
-        log.debug("Updating ReceiverTip label from '%s' to '%s'" % (rtip.label, label_content))
-    else:
-        log.debug("Assigning ReceiverTip label '%s'" % label_content)
-    rtip.label = unicode(label_content)
+
+    if not (GLSettings.memory_copy.can_grant_permissions or
+            rtip.receiver.can_grant_permissions):
+        raise errors.ForbiddenOperation
+
+    setattr(rtip.internaltip, key, value)
+
+
+@transact
+def set_receivertip_variable(store, user_id, rtip_id, key, value):
+    rtip = db_access_rtip(store, user_id, rtip_id)
+    setattr(rtip, key, value)
 
 
 @transact
@@ -316,7 +323,6 @@ class RTipInstance(BaseHandler):
     """
     This interface expose the Receiver Tip
     """
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
@@ -350,8 +356,19 @@ class RTipInstance(BaseHandler):
 
         if request['operation'] == 'postpone':
             yield postpone_expiration_date(self.current_user.user_id, tip_id)
-        if request['operation'] == 'label':
-            yield assign_rtip_label(self.current_user.user_id, tip_id, request['label'])
+        elif request['operation'] == 'set' and \
+                (request['args']['key'] == 'label' and isinstance(request['args']['value'], unicode)):
+            set_receivertip_variable(self.current_user.user_id,
+                                     tip_id,
+                                     request['args']['key'],
+                                     request['args']['value'])
+        elif (request['args']['key'] in ['enable_two_way_comments',
+                                         'enable_two_way_messages',
+                                         'enable_attachments'] and isinstance(request['args']['value'], bool)):
+            set_internaltip_variable(self.current_user.user_id,
+                                     tip_id,
+                                     request['args']['key'],
+                                     request['args']['value'])
 
         self.set_status(202)  # Updated
         self.finish()
@@ -379,7 +396,6 @@ class RTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
