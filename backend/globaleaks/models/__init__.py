@@ -210,7 +210,7 @@ class Context(Model):
     This model keeps track of contexts settings.
     """
     show_small_cards = Bool(default=False)
-    hidden = Bool(default=False)
+    show_context = Bool(default=True)
     show_receivers = Bool(default=True)
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
@@ -246,7 +246,7 @@ class Context(Model):
     bool_keys = [
       'select_all_receivers',
       'show_small_cards',
-      'hidden',
+      'show_context',
       'show_receivers',
       'enable_comments',
       'enable_messages',
@@ -254,7 +254,6 @@ class Context(Model):
       'enable_two_way_messages',
       'enable_attachments'
     ]
-
 
 class InternalTip(Model):
     """
