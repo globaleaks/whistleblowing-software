@@ -150,7 +150,7 @@ class Context_v_23(Model):
     tip_timetolive = Int()
     name = JSON()
     description = JSON()
-    steps_arrangement = Unicode()
+    questionnaire_layout = Unicode()
     show_receivers_in_alphabetical_order = Bool()
     presentation_order = Int()
 

@@ -228,13 +228,13 @@ class Context(Model):
     name = JSON(validator=shortlocal_v)
     description = JSON(validator=longlocal_v)
 
-    steps_arrangement = Unicode(default=u'horizontal')
+    questionnaire_layout = Unicode(default=u'horizontal')
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 
     presentation_order = Int(default=0)
 
-    unicode_keys = ['steps_arrangement']
+    unicode_keys = ['questionnaire_layout']
 
     localized_strings = ['name', 'description']
 

@@ -37,7 +37,7 @@ def admin_serialize_context(store, context, language):
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
-        'hidden': context.hidden,
+        'show_context': context.show_context,
         'show_receivers': context.show_receivers,
         'show_small_cards': context.show_small_cards,
         'enable_comments': context.enable_comments,
@@ -47,7 +47,7 @@ def admin_serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'steps_arrangement': context.steps_arrangement,
+        'questionnaire_layout': context.questionnaire_layout,
         'reset_questionnaire': False,
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }

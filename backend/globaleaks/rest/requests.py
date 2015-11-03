@@ -353,11 +353,12 @@ AdminContextDesc = {
     'show_small_cards': bool,
     'enable_comments': bool,
     'enable_messages': bool,
+    'enable_two_way_comments': bool,
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
-    'steps_arrangement': unicode,
+    'questionnaire_layout': unicode,
     'steps': [AdminStepDesc],
     'reset_questionnaire': bool
 }

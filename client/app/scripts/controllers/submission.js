@@ -82,6 +82,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
   $scope.contexts = $filter('orderBy')($scope.contexts, $scope.contextsOrderPredicate);
+  console.log($scope.contexts);
 
   var isAGoodPOW = function(binaryhash) {
     if (binaryhash.charCodeAt(31) == 0) {
@@ -228,7 +229,7 @@ GLClient.controller('SubmissionCtrl',
     var context = null;
 
     if ($scope.context_id) {
-      context = $filter('filter')($rootScope.contexts,
+      context = $filter('filter')($scope.contexts,
                                   {"id": $scope.context_id})[0];
     } else if ($scope.contexts.length == 1) {
       context = $scope.contexts[0];
@@ -236,16 +237,13 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
-      $scope.answers = {};
-      $scope.prepareSubmission(context, $scope.receivers_ids);
     }
 
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal) {
-        if ($scope.submission && $scope.selected_context) {
-          $scope.prepareSubmission($scope.selected_context, []);
-        }
+      if ($scope.submission && $scope.selected_context) {
+        $scope.answers = {};
+        $scope.prepareSubmission($scope.selected_context, []);
       }
     });
 
