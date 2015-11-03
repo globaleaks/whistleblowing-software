@@ -65,23 +65,26 @@
               </span>
               <span class="col-md-5">
                 <span class="pull-right">
-                  <button class="actionButton btn btn-xs btn-default"
+                  <button
+                    class="receiver-edit actionButton btn btn-xs btn-default"
                     data-ng-show="!editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
-                  <button class="actionButton btn btn-xs btn-success"
+                  <button
+                    class="receiver-save actionButton btn btn-xs btn-success"
                     data-ng-show="editing"
                     data-ng-click="save_receiver(receiver)">
                     <span data-translate>Save</span>
                   </button>
-                  <button 
-                    class="actionButton btn btn-xs btn-default"
+                  <button
+                    class="receiver-cancel actionButton btn btn-xs btn-default"
                     data-ng-show="editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <button class="actionButton btn btn-xs btn-danger"
+                  <button
+                    class="receiver-delete actionButton btn btn-xs btn-danger"
                     data-ng-show="receiver.deletable"
                     data-ng-click="receiverDeleteDialog(receiver); $event.stopPropagation();"
                     popover-placement="right"

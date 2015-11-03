@@ -54,27 +54,31 @@
               </span>
               <span class="col-md-5">
                 <span class="pull-right">
-                  <button class="actionButton btn btn-xs btn-primary"
+                  <button
+                    class="context-export actionButton btn btn-xs btn-primary"
                     data-ng-click="exportContext(context.id); $event.stopPropagation();">
                     <span data-translate>Export</span>
                   </button>
-                  <button class="actionButton btn btn-xs btn-default"
+                  <button
+                    class="context-edit actionButton btn btn-xs btn-default"
                     data-ng-show="!editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
-                  <button class="actionButton btn btn-xs btn-success"
+                  <button
+                    class="context-save actionButton btn btn-xs btn-success"
                     data-ng-show="editing"
                     data-ng-click="save_context(context)">
                     <span data-translate>Save</span>
                   </button>
-                  <button 
-                    class="actionButton btn btn-xs btn-default"
+                  <button
+                    class="context-cancel actionButton btn btn-xs btn-default"
                     data-ng-show="editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <button class="actionButton btn btn-xs btn-danger"
+                  <button
+                    class="context--delete actionButton btn btn-xs btn-danger"
                     data-ng-click="contextDeleteDialog(context); $event.stopPropagation();"
                     popover-placement="right"
                     popover-trigger="mouseenter">

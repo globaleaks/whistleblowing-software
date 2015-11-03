@@ -9,9 +9,17 @@ describe('admin add contexts', function() {
       return element(by.css('[data-ng-click="add_context()"]')).click();
     };
 
-    add_context("Context 2").then(function() {
-      add_context("Context 3");
-      deferred.fulfill();
+    element(by.id('context-0')).click().then(function() {
+      element(by.id('context-0')).element(by.cssContainingText('a', 'Advanced settings')).click().then(function() {
+        element(by.id('context-0')).element(by.model('context.show_receivers')).click().then(function() {
+          element(by.id('context-0')).element(by.css('.context-save')).click().then(function() {
+            add_context('Context 2').then(function() {
+              add_context('Context 3');
+              deferred.fulfill();
+            });
+          });
+        });
+      });
     });
 
     return deferred;
