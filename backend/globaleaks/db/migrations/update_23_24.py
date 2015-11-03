@@ -4,7 +4,7 @@ import string
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import BaseModel, Model
 from globaleaks.utils.utility import datetime_null, every_language
@@ -217,14 +217,14 @@ class ArchivedSchema_v_23(Model):
     schema = JSON()
 
 
-class Replacer2324(TableReplacer):
+class Replacer2324(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_tippage" % self.std_fancy
 
         appdata_dict = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 23)).one()
-        new_node = self.get_right_model("Node", 24)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
             if v.name == 'simplified_login':
@@ -310,15 +310,14 @@ class Replacer2324(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
     def migrate_Notification(self):
         print "%s Notification migration assistant" % self.std_fancy
 
-        old_node = self.store_old.find(self.get_right_model("Node", 23)).one()
+        old_node = self.store_old.find(self.model_from['Node']).one()
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 23)).one()
-        new_notification = self.get_right_model("Notification", 24)()
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
             if v.name == 'tip_expiration_threshold':
@@ -361,16 +360,14 @@ class Replacer2324(TableReplacer):
             setattr(new_notification, v.name, old_value)
 
         self.store_new.add(new_notification)
-        self.store_new.commit()
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 
-        old_receivers = self.store_old.find(self.get_right_model("Receiver", 23))
-
+        old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
-            new_user = self.get_right_model("User", 24)()
-            new_receiver = self.get_right_model("Receiver", 24)()
+            new_user = self.model_to['User']()
+            new_receiver = self.model_to['Receiver']()
 
             for _, v in new_user._storm_columns.iteritems():
                 if v.name == 'name':
@@ -419,16 +416,14 @@ class Replacer2324(TableReplacer):
 
             self.store_new.add(new_user)
             self.store_new.add(new_receiver)
-        self.store_new.commit()
-
 
     def migrate_User(self):
         # Receivers and Users are migrated all together this time!
         # The only user to be migrated separately is the admin
-        old_user_model = self.get_right_model("User", 23)
+        old_user_model = self.model_from['User']
         old_admin = self.store_old.find(old_user_model, old_user_model.username == u'admin').one()
 
-        new_admin = self.get_right_model("User", 24)()
+        new_admin = self.model_to['User']()
         for _, v in new_admin._storm_columns.iteritems():
             if v.name == 'name':
                 new_admin.name = u'Admin'
@@ -465,16 +460,13 @@ class Replacer2324(TableReplacer):
             setattr(new_admin, v.name, getattr(old_admin, v.name))
 
         self.store_new.add(new_admin)
-        self.store_new.commit()
-
 
     def migrate_Context(self):
         print "%s Context migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Context", 23))
-
+        old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Context", 24)()
+            new_obj = self.model_to['Context']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'show_context':
                     new_obj.show_context = True
@@ -512,17 +504,12 @@ class Replacer2324(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
-
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalTip", 23))
-
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("InternalTip", 24)()
-
+            new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'update_date':
                     new_obj.update_date = old_obj.creation_date
@@ -564,16 +551,12 @@ class Replacer2324(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_ReceiverTip(self):
         print "%s ReceiverTip migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("ReceiverTip", 23))
-
+        old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("ReceiverTip", 24)()
-
+            new_obj = self.model_to['ReceiverTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'can_access_whistleblower_identity':
                     new_obj.can_access_whistleblower_identity = False
@@ -583,16 +566,12 @@ class Replacer2324(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_Field(self):
         print "%s Field migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Field", 23))
-
+        old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Field", 24)()
-
+            new_obj = self.model_to['Field']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'key':
                     new_obj.key = ''
@@ -623,22 +602,21 @@ class Replacer2324(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_ArchivedSchema(self):
         print "%s ArchivedSchema migration assistant" % self.std_fancy
 
         # Marking to avoid count check for ArchivedSchema
         self.fail_on_count_mismatch["ArchivedSchema"] = False
 
-        old_objs = self.store_old.find(self.get_right_model("ArchivedSchema", 23))
+        old_objs = self.store_old.find(self.model_from['ArchivedSchema'])
+        new_obj_model = self.model_to['ArchivedSchema']
 
         for old_obj in old_objs:
-            new_obj = self.store_new.find(self.get_right_model("ArchivedSchema", 24),
-                                          self.get_right_model("ArchivedSchema", 24).hash == old_obj.hash).one()
+            new_obj = self.store_new.find(new_obj_model,
+                                          new_obj_model.hash == old_obj.hash).one()
 
             if not new_obj:
-                new_obj = self.get_right_model("ArchivedSchema", 24)()
+                new_obj = new_obj_model()
 
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'value':
@@ -650,5 +628,3 @@ class Replacer2324(TableReplacer):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()

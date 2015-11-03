@@ -4,7 +4,7 @@ import json
 
 import os
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import db_save_questionnaire_answers, \
     extract_answers_preview
@@ -137,11 +137,10 @@ class Notification_v_22(Model):
     notification_suspension_time=Int()
 
 
-class Replacer2223(TableReplacer):
+class Replacer2223(MigrationBase):
     def fix_field_answer_id(self, f):
         if f['id'] == '':
-            xxx = self.store_old.find(self.get_right_model("Field", 22))
-            for x in xxx:
+            for x in self.model_from['Field']:
                 try:
                     if isinstance(x.label, dict):
                         for k, v in x.label.iteritems():
@@ -197,20 +196,21 @@ class Replacer2223(TableReplacer):
         return wb_steps, answers
 
     def handle_internaltip_fixes(self, new_obj, old_obj):
-        old_node = self.store_old.find(self.get_right_model("Node", 22)).one()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_archivedschema_model = self.model_to['ArchivedSchema']
 
         questionnaire, answers = self.extract_answers_from_wb_steps(old_obj.wb_steps)
 
         new_obj.questionnaire_hash = sha256(json.dumps(questionnaire))
 
-        aqs = self.store_new.find(self.get_right_model("ArchivedSchema", 23),
-                                  self.get_right_model("ArchivedSchema", 23).hash == unicode(new_obj.questionnaire_hash),
-                                  self.get_right_model("ArchivedSchema", 23).type == u'questionnaire',
-                                  self.get_right_model("ArchivedSchema", 23).language == unicode(old_node.default_language)).one()
+        aqs = self.store_new.find(new_archivedschema_model,
+                                  new_archivedschema_model.hash == unicode(new_obj.questionnaire_hash),
+                                  new_archivedschema_model.type == u'questionnaire',
+                                  new_archivedschema_model.language == unicode(old_node.default_language)).one()
 
         if not aqs:
             for lang in old_node.languages_enabled:
-                aqs = self.get_right_model("ArchivedSchema", 23)()
+                aqs = new_archivedschema_model()
                 aqs.hash = new_obj.questionnaire_hash
                 aqs.type = u'questionnaire'
                 aqs.language = lang
@@ -223,7 +223,7 @@ class Replacer2223(TableReplacer):
                         if f['preview']:
                             preview.append(f)
 
-                aqsp = self.get_right_model("ArchivedSchema", 23)()
+                aqsp = new_archivedschema_model()
                 aqsp.hash = new_obj.questionnaire_hash
                 aqsp.type = u'preview'
                 aqsp.language = lang
@@ -237,11 +237,9 @@ class Replacer2223(TableReplacer):
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalTip", 22))
-
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("InternalTip", 23)()
-
+            new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'questionnaire_hash' or v.name == 'preview':
                     continue
@@ -252,15 +250,12 @@ class Replacer2223(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_InternalFile(self):
         print "%s InternalFile migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalFile", 22))
-
+        old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("InternalFile", 23)()
+            new_obj = self.model_to['InternalFile']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'processing_attempts':
                     new_obj.processing_attempts = 0
@@ -274,33 +269,27 @@ class Replacer2223(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_Comment(self):
         print "%s Comment migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Comment", 22))
-
+        old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
             if old_obj.type == u'system':
                 self.entries_count['Comment'] -= 1
                 continue
 
-            new_obj = self.get_right_model("Comment", 23)()
+            new_obj = self.model_to['Comment']()
             for _, v in new_obj._storm_columns.iteritems():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_Context(self):
         print "%s Context migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Context", 22))
-
+        old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Context", 23)()
+            new_obj = self.model_to['Context']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'steps_arrangement':
                     new_obj.steps_arrangement = 'horizontal'
@@ -310,15 +299,12 @@ class Replacer2223(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_Field(self):
         print "%s Field migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Field", 22))
-
+        old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Field", 23)()
+            new_obj = self.model_to['Field']()
 
             if old_obj.type == 'inputbox' or old_obj.type == 'textarea':
                 db_update_fieldattr(self.store_new, old_obj.id, u'min_len', {'name': u'min_len', 'type': u'int', 'value':'0'}, 'en')
@@ -346,16 +332,13 @@ class Replacer2223(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_FieldOption(self):
         print "%s FieldOption migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("FieldOption", 22))
-
+        old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             skip_add = False
-            new_obj = self.get_right_model("FieldOption", 23)()
+            new_obj = self.model_to['FieldOption']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'score_points':
                     new_obj.score_points = 0
@@ -380,5 +363,3 @@ class Replacer2223(TableReplacer):
                 continue
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()

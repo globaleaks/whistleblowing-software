@@ -11,7 +11,7 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.utils.utility import every_language
@@ -210,17 +210,16 @@ class Context_v_19(Model):
     presentation_order = Int()
 
 
-class Replacer1920(TableReplacer):
+class Replacer1920(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
 
         appdata_dict = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 19)).one()
-        new_node = self.get_right_model("Node", 20)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'can_postpone_expiration':
                 old_attr = 'postpone_superpower'
                 setattr(new_node, v.name, getattr(old_node, old_attr))
@@ -252,11 +251,10 @@ class Replacer1920(TableReplacer):
 
         appdata_dict = load_appdata()
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 19)).one()
-        new_notification = self.get_right_model("Notification", 20)()
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-
             if v.name == 'send_email_for_every_event':
                 new_notification.send_email_for_every_event = True
                 continue
@@ -313,14 +311,10 @@ class Replacer1920(TableReplacer):
     def migrate_Message(self):
         print "%s Message migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Message", 19))
-
+        old_objs = self.store_old.find(self.model_from['Message'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("Message", 20)()
-
+            new_obj = self.model_to['Message']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'new':
                     new_obj.new = False
                     continue
@@ -334,14 +328,10 @@ class Replacer1920(TableReplacer):
     def migrate_Comment(self):
         print "%s Comment migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Comment", 19))
-
+        old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("Comment", 20)()
-
+            new_obj = self.model_to['Comment']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'new':
                     new_obj.new = False
                     continue
@@ -355,12 +345,9 @@ class Replacer1920(TableReplacer):
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalTip", 19))
-
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("InternalTip", 20)()
-
+            new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
 
                 if v.name == 'new':
@@ -376,14 +363,10 @@ class Replacer1920(TableReplacer):
     def migrate_ReceiverTip(self):
         print "%s ReceiverTip migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("ReceiverTip", 19))
-
+        old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("ReceiverTip", 20)()
-
+            new_obj = self.model_to['ReceiverTip']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'label':
                     new_obj.label = u''
                     continue
@@ -401,14 +384,10 @@ class Replacer1920(TableReplacer):
     def migrate_InternalFile(self):
         print "%s InternalFile migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalFile", 19))
-
+        old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("InternalFile", 20)()
-
+            new_obj = self.model_to['InternalFile']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'new':
                     new_obj.new = False
                     continue
@@ -422,14 +401,10 @@ class Replacer1920(TableReplacer):
     def migrate_ReceiverFile(self):
         print "%s ReceiverFile migration assistant: mark -> new" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("ReceiverFile", 19))
-
+        old_objs = self.store_old.find(self.model_from['ReceiverFile'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("ReceiverFile", 20)()
-
+            new_obj = self.model_to['ReceiverFile']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'new':
                     new_obj.new = False
                     continue
@@ -448,14 +423,10 @@ class Replacer1920(TableReplacer):
     def migrate_Context(self):
         print "%s Context migration assistant: removed receiver_introduction" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Context", 19))
-
+        old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("Context", 20)()
-
+            new_obj = self.model_to['Context']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'can_postpone_expiration':
                     old_attr = 'postpone_superpower'
                     setattr(new_obj, v.name, getattr(old_obj, old_attr))
@@ -474,14 +445,10 @@ class Replacer1920(TableReplacer):
     def migrate_Receiver(self):
         print "%s Receiver migration assistant: gpg_ -> pgp_" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Receiver", 19))
-
+        old_objs = self.store_old.find(self.model_from['Receiver'])
         for old_obj in old_objs:
-
-            new_obj = self.get_right_model("Receiver", 20)()
-
+            new_obj = self.model_to['Receiver']()
             for _, v in new_obj._storm_columns.iteritems():
-
                 if v.name == 'can_postpone_expiration':
                     old_attr = 'postpone_superpower'
                     setattr(new_obj, v.name, getattr(old_obj, old_attr))

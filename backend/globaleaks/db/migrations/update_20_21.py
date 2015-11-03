@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import BaseModel, Model, ReceiverContext
 from globaleaks.utils.utility import every_language
@@ -258,15 +258,14 @@ Context_v_20.steps = ReferenceSet(Context_v_20.id, Step_v_20.context_id)
 Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
 
-class Replacer2021(TableReplacer):
+class Replacer2021(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant" % self.std_fancy
 
-        old_node = self.store_old.find(self.get_right_model("Node", 20)).one()
-        new_node = self.get_right_model("Node", 21)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'submission_minimum_delay':
                 setattr(new_node, v.name, 10)
                 continue
@@ -278,15 +277,14 @@ class Replacer2021(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
     def migrate_Notification(self):
         print "%s Notification migration assistant" % self.std_fancy
 
         appdata_dict = load_appdata()
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 20)).one()
-        new_notification = self.get_right_model("Notification", 21)()
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
             # In this release we enforce reloading all the updated templates due to the
@@ -316,16 +314,16 @@ class Replacer2021(TableReplacer):
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
-        self.store_new.commit()
 
     def migrate_User(self):
         # Receivers and Users are migrated all together this time!
         # The only user to be migrated is the admin
-        user_model = self.get_right_model("User", 20)
-        old_admin = self.store_old.find(user_model, user_model.username == u'admin').one()
-        old_node = self.store_old.find(self.get_right_model("Node", 20)).one()
+        old_user_model = self.model_from['User']
+        old_admin = self.store_old.find(old_user_model, old_user_model.username == u'admin').one()
 
-        new_admin = self.get_right_model("User", 21)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+
+        new_admin = self.model_to['User']()
         for _, v in new_admin._storm_columns.iteritems():
             if v.name == 'mail_address':
                 new_admin.mail_address = old_node.email
@@ -334,17 +332,15 @@ class Replacer2021(TableReplacer):
             setattr(new_admin, v.name, getattr(old_admin, v.name))
 
         self.store_new.add(new_admin)
-        self.store_new.commit()
 
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 
-        old_receivers = self.store_old.find(self.get_right_model("Receiver", 20))
-
+        old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
-            new_user = self.get_right_model("User", 21)()
-            new_receiver = self.get_right_model("Receiver", 21)()
+            new_user = self.model_to['User']()
+            new_receiver = self.model_to['Receiver']()
 
             for _, v in new_user._storm_columns.iteritems():
                 if v.name == 'mail_address':
@@ -365,16 +361,13 @@ class Replacer2021(TableReplacer):
 
             self.store_new.add(new_user)
             self.store_new.add(new_receiver)
-        self.store_new.commit()
 
     def migrate_Context(self):
         print "%s Context migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Context", 20))
-
+        old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Context", 21)()
-
+            new_obj = self.model_to['Context']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'enable_comments':
                     if old_obj.enable_private_messages and old_obj.receivers.count() == 1:
@@ -387,16 +380,12 @@ class Replacer2021(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_Step(self):
         print "%s Step migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Step", 20))
-
+        old_objs = self.store_old.find(self.model_from['Step'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Step", 21)()
-
+            new_obj = self.model_to['Step']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'presentation_order':
                     if old_obj.number:
@@ -408,17 +397,13 @@ class Replacer2021(TableReplacer):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()
 
     def migrate_Field(self):
         print "%s Field migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("Field", 20))
-
+        old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("Field", 21)()
-
+            new_obj = self.model_to['Field']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'presentation_order':
                     if old_obj.number:
@@ -430,17 +415,13 @@ class Replacer2021(TableReplacer):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()
 
     def migrate_FieldOption(self):
         print "%s FieldOption migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("FieldOption", 20))
-
+        old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("FieldOption", 21)()
-
+            new_obj = self.model_to['FieldOption']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'presentation_order':
                     if old_obj.number:
@@ -453,16 +434,12 @@ class Replacer2021(TableReplacer):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
-
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalTip", 20))
-
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("InternalTip", 21)()
-
+            new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'preview':
                     preview_data = []
@@ -477,5 +454,3 @@ class Replacer2021(TableReplacer):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()

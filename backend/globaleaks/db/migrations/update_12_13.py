@@ -13,7 +13,7 @@
 
 from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 
 
@@ -77,15 +77,14 @@ class Context_v_12(Model):
     presentation_order = Int()
 
 
-class Replacer1213(TableReplacer):
+class Replacer1213(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: (terms_and_conditions)" % self.std_fancy
 
-        old_node = self.store_old.find(self.get_right_model("Node", 12)).one()
-        new_node = self.get_right_model("Node", 13)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'terms_and_conditions':
                 new_node.terms_and_conditions = ''
                 continue
@@ -98,14 +97,11 @@ class Replacer1213(TableReplacer):
     def migrate_Context(self):
         print "%s Context migration assistant: (show_receivers)" % self.std_fancy
 
-        old_contexts = self.store_old.find(self.get_right_model("Context", 12))
+        old_contexts = self.store_old.find(self.model_from['Context'])
 
         for old_context in old_contexts:
-
-            new_context = self.get_right_model("Context", 13)()
-
+            new_context = self.model_to['Context']()
             for _, v in new_context._storm_columns.iteritems():
-
                 if v.name == 'show_receivers':
                     new_context.show_receivers = True
                     continue
