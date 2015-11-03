@@ -150,7 +150,7 @@ class Context_v_23(Model):
     tip_timetolive = Int()
     name = JSON()
     description = JSON()
-    questionnaire_layout = Unicode()
+    steps_arrangement = Unicode()
     show_receivers_in_alphabetical_order = Bool()
     presentation_order = Int()
 
@@ -478,6 +478,10 @@ class Replacer2324(TableReplacer):
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'show_context':
                     new_obj.show_context = True
+                    continue
+
+                if v.name == 'questionnaire_layout':
+                    new_obj.questionnaire_layout = old_obj.steps_arrangement
                     continue
 
                 if v.name == 'enable_comments':
