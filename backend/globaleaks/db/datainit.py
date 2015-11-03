@@ -27,10 +27,13 @@ def load_appdata():
     appdata_dict = None
 
     this_directory = os.path.dirname(__file__)
+    print this_directory
 
     for path in possible_glclient_paths:
         fl10n_file = os.path.join(this_directory, path, 'data/appdata_l10n.json')
 
+        print fl10n_file
+        print os.path.exists(fl10n_file)
         if os.path.exists(fl10n_file):
             with file(fl10n_file, 'r') as f:
                 json_string = f.read()
@@ -44,10 +47,13 @@ def load_default_fields(store):
     appdata_dict = None
 
     this_directory = os.path.dirname(__file__)
+    print this_directory
 
     for path in possible_glclient_paths:
         default_fields_path = os.path.join(this_directory, path, 'data/fields')
 
+        print default_fields_path
+        print os.path.exists(default_fields_path)
         if os.path.exists(default_fields_path):
             for fname in os.listdir(default_fields_path):
                 fpath = os.path.join(default_fields_path, fname)
