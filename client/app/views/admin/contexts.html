@@ -55,30 +55,30 @@
               <span class="col-md-5">
                 <span class="pull-right">
                   <button
-                    class="context-export actionButton btn btn-xs btn-primary"
+                    class="actionButton actionButtonContextExport btn btn-xs btn-primary"
                     data-ng-click="exportContext(context.id); $event.stopPropagation();">
                     <span data-translate>Export</span>
                   </button>
                   <button
-                    class="context-edit actionButton btn btn-xs btn-default"
+                    class="actionButton actionButtonContextEdit btn btn-xs btn-default"
                     data-ng-show="!editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Edit</span>
                   </button>
                   <button
-                    class="context-save actionButton btn btn-xs btn-success"
+                    class="actionButton actionButtonContextSave btn btn-xs btn-success"
                     data-ng-show="editing"
                     data-ng-click="save_context(context)">
                     <span data-translate>Save</span>
                   </button>
                   <button
-                    class="context-cancel actionButton btn btn-xs btn-default"
+                    class="actionButton actionButtonContextCancel btn btn-xs btn-default"
                     data-ng-show="editing"
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
                   <button
-                    class="context--delete actionButton btn btn-xs btn-danger"
+                    class="actionButton actionButtonContextDelete btn btn-xs btn-danger"
                     data-ng-click="contextDeleteDialog(context); $event.stopPropagation();"
                     popover-placement="right"
                     popover-trigger="mouseenter">
@@ -133,7 +133,7 @@
                   <div>UUID: {{context.id}}</div>
                 </div>
                 <div class="col-md-12">
-                  <a class="btn btn-info" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
+                  <a class="actionButton actionButtonAdvancedSettings btn btn-info" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
                     <i data-ng-if="!show_advanced_settings" class="glyphicon glyphicon-plus"></i>
                     <i data-ng-if="show_advanced_settings" class="glyphicon glyphicon-minus"></i>
                     <span data-translate>Advanced settings</span>
