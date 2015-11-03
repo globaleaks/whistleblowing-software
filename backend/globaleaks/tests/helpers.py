@@ -956,7 +956,7 @@ class MockDict():
             'enable_two_way_messages': True,
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
-            'steps_arrangement': 'horizontal',
+            'questionnaire_layout': 'horizontal',
             'reset_questionnaire': True
         }
 

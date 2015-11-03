@@ -116,7 +116,7 @@ def anon_serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'field_whistleblower_identity': '',
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'steps_arrangement': context.steps_arrangement,
+        'questionnaire_layout': context.questionnaire_layout,
         'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]

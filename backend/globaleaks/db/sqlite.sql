@@ -69,7 +69,7 @@ CREATE TABLE context (
     enable_whistleblower_identity INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
-    steps_arrangement TEXT NOT NULL CHECK (steps_arrangement IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
+    questionnaire_layout TEXT NOT NULL CHECK (questionnaire_layout IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
     PRIMARY KEY (id)
 );
 

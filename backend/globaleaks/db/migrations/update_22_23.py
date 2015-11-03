@@ -302,8 +302,8 @@ class Replacer2223(TableReplacer):
         for old_obj in old_objs:
             new_obj = self.get_right_model("Context", 23)()
             for _, v in new_obj._storm_columns.iteritems():
-                if v.name == 'steps_arrangement':
-                    new_obj.steps_arrangement = 'horizontal'
+                if v.name == 'questionnaire_layout':
+                    new_obj.questionnaire_layout = 'horizontal'
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
