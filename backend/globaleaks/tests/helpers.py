@@ -995,6 +995,7 @@ class MockDict():
             'tor2web_unauth': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
+            'can_grant_permissions': False,
             'ahmia': False,
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,

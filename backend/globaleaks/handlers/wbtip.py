@@ -259,7 +259,7 @@ class WBTipMessageCollection(BaseHandler):
         self.finish(message)
 
 
-class WBTipProvideIdentityHandler(BaseHandler):
+class WBTipIdentityHandler(BaseHandler):
     """
     This is the interface that securely allows the whistleblower to provide his identity
     """
