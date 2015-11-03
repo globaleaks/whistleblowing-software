@@ -137,6 +137,7 @@ def perform_version_update(starting_ver, ending_ver):
 
             try:
                 migration_script.epilogue()
+                migration_script.commit()
                 migration_script.close()
             except Exception as excep:
                 print "Failure while executing migration epilogue: %s " % excep.message

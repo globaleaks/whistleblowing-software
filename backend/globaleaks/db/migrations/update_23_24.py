@@ -5,7 +5,7 @@ import string
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migration_base import MigrationBase
-from globaleaks.db.datainit import load_appdata
+from globaleaks.db.datainit import load_appdata, load_default_fields
 from globaleaks.models import BaseModel, Model
 from globaleaks.utils.utility import datetime_null, every_language
 
@@ -218,6 +218,16 @@ class ArchivedSchema_v_23(Model):
 
 
 class Replacer2324(MigrationBase):
+    def epilogue(self):
+        # Finalize loading the new whitleblower identity field
+        load_default_fields(self.store_new)
+
+        # Apply fixes to the counters
+        self.entries_count['Field'] += 21
+        self.entries_count['FieldAttr'] += 56
+        self.entries_count['FieldOption'] += 3
+        self.entries_count['FieldField'] += 20
+
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_tippage" % self.std_fancy
 
