@@ -93,7 +93,7 @@ spec = [
     (r'/wbtip/receivers', wbtip.WBTipReceiversCollection),
     (r'/wbtip/upload', files.FileAdd),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
-    (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipProvideIdentityHandler),
+    (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
 
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
