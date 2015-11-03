@@ -10,7 +10,7 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.utils.utility import datetime_null, every_language
@@ -126,17 +126,16 @@ class Stats_v_16(Model):
     freemb = Int()
 
 
-class Replacer1617(TableReplacer):
+class Replacer1617(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
 
         appdata_dict = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 16)).one()
-        new_node = self.get_right_model("Node", 17)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'header_title_homepage':
                 new_node.header_title_homepage = {old_node.default_language: old_node.name}
                 continue
@@ -156,7 +155,6 @@ class Replacer1617(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
 
     def migrate_Notification(self):
@@ -164,11 +162,10 @@ class Replacer1617(TableReplacer):
 
         appdata_dict = load_appdata()
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 16)).one()
-        new_notification = self.get_right_model("Notification", 17)()
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-
             if v.name == 'admin_pgp_alert_mail_template':
                 # check needed to preserve funtionality if templates will be altered in the future
                 if v.name in appdata_dict['templates']:
@@ -204,18 +201,15 @@ class Replacer1617(TableReplacer):
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
-        self.store_new.commit()
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 
         gpgobj = GLBPGP()
 
-        old_receivers = self.store_old.find(self.get_right_model("Receiver", 16))
-
+        old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
-
-            new_receiver = self.get_right_model("Receiver", 17)()
+            new_receiver = self.model_to['Receiver']()
 
             gpg_key_expiration = datetime_null()
             if old_receiver.gpg_key_armor:
@@ -225,7 +219,6 @@ class Replacer1617(TableReplacer):
                     pass
 
             for _, v in new_receiver._storm_columns.iteritems():
-
                 if v.name == 'gpg_key_status':
                     if old_receiver.gpg_key_status == u'Enabled':
                         new_receiver.gpg_key_status = u'enabled'
@@ -240,7 +233,5 @@ class Replacer1617(TableReplacer):
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
             self.store_new.add(new_receiver)
-
-        self.store_new.commit()
 
         gpgobj.destroy_environment()

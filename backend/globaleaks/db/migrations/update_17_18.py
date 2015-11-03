@@ -7,7 +7,7 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 
 class Node_v_17(Model):
@@ -55,15 +55,14 @@ class Node_v_17(Model):
     exception_email = Unicode()
 
 
-class Replacer1718(TableReplacer):
+class Replacer1718(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: allow_iframes_inclusion" % self.std_fancy
 
-        old_node = self.store_old.find(self.get_right_model("Node", 17)).one()
-        new_node = self.get_right_model("Node", 18)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'allow_iframes_inclusion':
                 new_node.allow_iframes_inclusion = False
                 continue
@@ -71,4 +70,3 @@ class Replacer1718(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()

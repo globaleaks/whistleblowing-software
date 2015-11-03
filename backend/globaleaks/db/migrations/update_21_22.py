@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 
 class Context_v_21(Model):
@@ -34,14 +34,13 @@ class InternalTip_v_21(Model):
     new = Int()
 
 
-class Replacer2122(TableReplacer):
+class Replacer2122(MigrationBase):
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 
-        old_objs = self.store_old.find(self.get_right_model("InternalTip", 21))
-
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
-            new_obj = self.get_right_model("InternalTip", 22)()
+            new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'tor2web':
                     new_obj.tor2web = False
@@ -54,5 +53,3 @@ class Replacer2122(TableReplacer):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-        self.store_new.commit()

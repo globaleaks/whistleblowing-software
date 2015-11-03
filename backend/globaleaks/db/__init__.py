@@ -172,6 +172,7 @@ def check_db_files():
     """
     This function checks the DB version and executes eventually the DB update scripts
     """
+    from globaleaks.db import migration
     for (path, _, files) in os.walk(GLSettings.gldb_path):
 
         try:
@@ -183,8 +184,7 @@ def check_db_files():
                 print "Performing update of Database from version %d to version %d" % \
                       (starting_ver, GLSettings.db_version)
                 try:
-                    from globaleaks.db import updater_manager
-                    updater_manager.perform_version_update(starting_ver, GLSettings.db_version)
+                    migration.perform_version_update(starting_ver, GLSettings.db_version)
                     print "GlobaLeaks database version %d: update complete!" % GLSettings.db_version
                 except Exception:
                     print "GlobaLeaks database version %d: update failure :(" % GLSettings.db_version

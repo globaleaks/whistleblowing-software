@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
 
+from storm.locals import create_database, Store
+
 from globaleaks.settings import GLSettings
 from globaleaks import models, FIRST_DATABASE_VERSION_SUPPORTED
 
@@ -112,95 +114,78 @@ def perform_version_update(starting_ver, ending_ver):
             if update_key not in releases_supported:
                 raise NotImplementedError("mistake detected! %s" % update_key)
 
-            try:
-                # Here is instanced the migration class
-                updater_code = releases_supported[update_key](table_history, old_db_file, new_db_file, starting_ver)
-            except Exception as excep:
-                print "__init__ updater_code: %s " % excep.message
-                raise excep
+            # Here is instanced the migration class
+            migration_script = releases_supported[update_key](table_history, old_db_file, new_db_file, starting_ver)
 
             try:
-                updater_code.initialize()
+                migration_script.prologue()
             except Exception as excep:
-                print "initialize of updater class: %s " % excep.message
+                print "Failure while executing migration prologue: %s " % excep.message
                 raise excep
 
-            updater_code.entries_count = {}
-            updater_code.fail_on_count_mismatch = {}
-            updater_code.fail_on_count_mismatch['ApplicationData'] = False
-
             for model_name, _ in table_history.iteritems():
-                updater_code.fail_on_count_mismatch[model_name] = True
-
-                m_from = updater_code.get_right_model(model_name, starting_ver)
-                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
-
-                if m_from is not None and m_to is not None:
-                    updater_code.entries_count[model_name] = updater_code.store_old.find(m_from).count()
-                else:
-                    updater_code.entries_count[model_name] = 0
-
-            for model_name, _ in table_history.iteritems():
-                m_from = updater_code.get_right_model(model_name, starting_ver)
-                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
-
-                if m_from is not None and m_to is not None:
-                    migrate_function = 'migrate_%s' % model_name
-                    function_pointer = getattr(updater_code, migrate_function)
-
+                if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                     try:
-                        function_pointer()
+                        getattr(migration_script, 'migrate_%s' % model_name)()
+
+                        # Commit at every table migration in order to be able to detect
+                        # the precise migration that may fail.
+                        migration_script.commit()
                     except Exception as excep:
-                        print "Failure in %s: %s " % (migrate_function, excep)
+                        print "Failure while migrating table %s: %s " % (model_name, excep)
                         raise excep
 
+            try:
+                migration_script.epilogue()
+                migration_script.close()
+            except Exception as excep:
+                print "Failure while executing migration epilogue: %s " % excep.message
+                raise excep
+
             print "Migration stats:"
+
+            # we open a new db in order to verify integrity of the generated file
+            store_verify = Store(create_database('sqlite:' + new_db_file))
+
             for model_name, _ in table_history.iteritems():
                 if model_name == 'ApplicationData':
                     continue
 
-                m_from = updater_code.get_right_model(model_name, starting_ver)
-                m_to = updater_code.get_right_model(model_name, starting_ver + 1)
-
-                if m_from is not None and m_to is not None:
-                     count = updater_code.store_new.find(m_to).count()
-                     if updater_code.entries_count[model_name] != count:
-                         if updater_code.fail_on_count_mismatch[model_name]:
+                if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
+                     count = store_verify.find(migration_script.model_to[model_name]).count()
+                     if migration_script.entries_count[model_name] != count:
+                         if migration_script.fail_on_count_mismatch[model_name]:
                              raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
-                                                (model_name, count, updater_code.entries_count[model_name]))
+                                                (model_name, count, migration_script.entries_count[model_name]))
                          else:
                              print " * %s table migrated (entries count changed from %d to %d)" % \
-                                     (model_name, updater_code.entries_count[model_name], count)
+                                     (model_name, migration_script.entries_count[model_name], count)
                      else:
                          print " * %s table migrated (%d entry(s))" % \
-                                 (model_name, updater_code.entries_count[model_name])
+                                 (model_name, migration_script.entries_count[model_name])
 
-            # epilogue can be used to perform operation once, not related to the tables
-            updater_code.epilogue()
-            updater_code.close()
-            
             starting_ver += 1
 
     except Exception as except_info:
         print "Internal error triggered: %s" % except_info
-        # Remediate action on fail:
+        # Remediation action on fail:
         #    created files during update must be deleted
         for f in to_delete_on_fail:
             try:
                 os.remove(f)
             except Exception as excep:
-                print "Error removing new db file on conversion fail: %s" % excep
+                print "Error while removing new db file on conversion fail: %s" % excep
                 # we can't stop if one files removal fails
                 # and we continue trying deleting others files
         # propagate the exception
         raise except_info
 
-    # Finalize action on success:
+    # Finalization action on success:
     #    converted files must be renamed
     for f in to_delete_on_success:
         try:
             os.remove(f)
         except Exception as excep:
-            print "Error removing old db file on conversion success: %s" % excep.message
+            print "Error while removing old db file on conversion success: %s" % excep.message
             # we can't stop if one files removal fails
             # and we continue trying deleting others files

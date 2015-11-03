@@ -13,7 +13,7 @@
 
 from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 from globaleaks.db.datainit import load_appdata
 
@@ -80,7 +80,7 @@ class Context_v_13(Model):
     presentation_order = Int()
 
 
-class Replacer1314(TableReplacer):
+class Replacer1314(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from," \
               "disable_privacy_badge, disable_security_awareness_badge," \
@@ -89,11 +89,10 @@ class Replacer1314(TableReplacer):
 
         appdata = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 13)).one()
-        new_node = self.get_right_model("Node", 14)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'x_frame_options_mode':
                 new_node.x_frame_options_mode = 'deny'
                 continue
@@ -125,17 +124,14 @@ class Replacer1314(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
     def migrate_Context(self):
         print "%s Context migration assistant: (enable_private_messages)" % self.std_fancy
 
-        old_contexts = self.store_old.find(self.get_right_model("Context", 13))
-
+        old_contexts = self.store_old.find(self.model_from['Context'])
         for old_context in old_contexts:
-            new_context = self.get_right_model("Context", 14)()
-
-            for k, v in new_context._storm_columns.iteritems():
+            new_context = self.model_to['Context']()
+            for _, v in new_context._storm_columns.iteritems():
                 if v.name == 'enable_private_messages':
                     new_context.enable_private_messages = True
                     continue
@@ -143,5 +139,3 @@ class Replacer1314(TableReplacer):
                 setattr(new_context, v.name, getattr(old_context, v.name))
 
             self.store_new.add(new_context)
-
-        self.store_new.commit()

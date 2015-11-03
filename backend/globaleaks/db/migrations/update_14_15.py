@@ -21,7 +21,7 @@ import copy
 
 from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language
@@ -189,18 +189,17 @@ class Comment_v_14(Model):
     mark = Unicode()
 
 
-class Replacer1415(TableReplacer):
+class Replacer1415(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: added default_language and default_timezone" \
               "whistleblowing_question, whistleblowing_button" % self.std_fancy
 
         appdata = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 14)).one()
-        new_node = self.get_right_model("Node", 15)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'default_timezone':
                 new_node.default_timezone = 0
                 continue
@@ -232,20 +231,15 @@ class Replacer1415(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
     def migrate_User(self):
         print "%s User migration assistant: (language, timezone," \
               "password_change_needed, password_change_date)" % self.std_fancy
 
-        old_users = self.store_old.find(self.get_right_model("User", 14))
-
+        old_users = self.store_old.find(self.model_from['User'])
         for old_user in old_users:
-
-            new_user = self.get_right_model("User", 15)()
-
+            new_user = self.model_to['User']()
             for _, v in new_user._storm_columns.iteritems():
-
                 if v.name == 'language':
                     new_user.language = u'en'
                     continue
@@ -266,12 +260,13 @@ class Replacer1415(TableReplacer):
 
             self.store_new.add(new_user)
 
-        self.store_new.commit()
-
     def migrate_Context(self):
         print "%s Context migration assistant" % self.std_fancy
 
-        old_contexts = self.store_old.find(self.get_right_model("Context", 14))
+        old_contexts = self.store_old.find(self.model_from['Context'])
+        new_step_model = self.model_to['Step']
+        new_field_model = self.model_to['Field']
+        new_fieldoption_model = self.model_to['FieldOption']
 
         steps = load_appdata()['default_questionnaire']
         i = 1
@@ -281,11 +276,11 @@ class Replacer1415(TableReplacer):
             i += 1
 
         for old_context in old_contexts:
-            new_context = self.get_right_model("Context", 15)()
+            new_context = self.model_to['Context']()
 
-            step1 = db_forge_obj(self.store_new, self.get_right_model("Step", 15), steps[0])
+            step1 = db_forge_obj(self.store_new, new_step_model, steps[0])
             step1.context_id = new_context.id
-            step2 = db_forge_obj(self.store_new, self.get_right_model("Step", 15), steps[1])
+            step2 = db_forge_obj(self.store_new, new_step_model, steps[1])
             step2.context_id = new_context.id
 
             for _, v in new_context._storm_columns.iteritems():
@@ -325,7 +320,7 @@ class Replacer1415(TableReplacer):
                             field_dict['label'][l] = old_context.localized_fields[l][f]['name']
                             field_dict['hint'][l] = old_context.localized_fields[l][f]['hint']
 
-                    field = db_forge_obj(self.store_new, self.get_right_model("Field", 15), field_dict)
+                    field = db_forge_obj(self.store_new, new_field_model, field_dict)
 
                     if field_dict['type'] in ['selectbox', 'checkbox'] and 'options' in old_context.unique_fields[f]:
                         j = 1
@@ -337,7 +332,7 @@ class Replacer1415(TableReplacer):
                             opt_dict['attrs']['name'] = {}
                             for lang in LANGUAGES_SUPPORTED_CODES:
                                 opt_dict['attrs']['name'][lang] = o['name']
-                            option = db_forge_obj(self.store_new, self.get_right_model("FieldOption", 15), opt_dict)
+                            option = db_forge_obj(self.store_new, new_fieldoption_model, opt_dict)
                             field.options.add(option)
                             j += 1
 
@@ -349,18 +344,14 @@ class Replacer1415(TableReplacer):
 
             self.store_new.add(new_context)
 
-        self.store_new.commit()
-
     def migrate_Receiver(self):
         print "%s Receiver migration assistant: (configuration)" % self.std_fancy
 
-        old_receivers = self.store_old.find(self.get_right_model("Receiver", 14))
+        old_receivers = self.store_old.find(self.model_from['Receiver'])
 
         for old_receiver in old_receivers:
-            new_receiver = self.get_right_model("Receiver", 15)()
-
+            new_receiver = self.model_to['Receiver']()
             for _, v in new_receiver._storm_columns.iteritems():
-
                 if v.name == 'configuration':
                     new_receiver.configuration = 'default'
                     continue
@@ -368,7 +359,6 @@ class Replacer1415(TableReplacer):
                 setattr(new_receiver, v.name, getattr(old_receiver, v.name))
 
             self.store_new.add(new_receiver)
-        self.store_new.commit()
 
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
@@ -383,10 +373,11 @@ class Replacer1415(TableReplacer):
             step['description'] = step['description']['en']
             step['children'] = []  # wipe out default fields
 
-        old_itips = self.store_old.find(self.get_right_model("InternalTip", 14))
-        context_model = self.get_right_model("Context", 14)
+        old_itips = self.store_old.find(self.model_from['InternalTip'])
+        context_model = self.model_to['Context']
         for old_itip in old_itips:
-            new_itip = self.get_right_model("InternalTip", 15)()
+            new_itip = self.model_to['InternalTip']()
+
             try:
                 wb_steps = copy.deepcopy(steps)
                 wb_fields_copy = copy.deepcopy(old_itip.wb_fields)
@@ -474,16 +465,12 @@ class Replacer1415(TableReplacer):
 
             self.store_new.add(new_itip)
 
-        self.store_new.commit()
-
     def migrate_Notification(self):
         print "%s Notification migration assistant: (admin_anomaly_template)" % self.std_fancy
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 14)).one()
-        new_notification = self.get_right_model("Notification", 15)()
-
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
         for _, v in new_notification._storm_columns.iteritems():
-
             if v.name == 'admin_anomaly_template':
                 new_notification.admin_anomaly_template = every_language("")
                 continue
@@ -499,8 +486,6 @@ class Replacer1415(TableReplacer):
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
-        self.store_new.commit()
 
     def migrate_Stats(self):
         print "%s Stats migration assistant: trash all old stats" % self.std_fancy
-        self.store_new.commit()

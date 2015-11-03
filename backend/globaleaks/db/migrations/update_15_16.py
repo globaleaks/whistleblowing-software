@@ -18,7 +18,7 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 from globaleaks.utils.utility import every_language
 
@@ -76,17 +76,14 @@ class Notification_v_15(Model):
     zip_description = JSON()
 
 
-class Replacer1516(TableReplacer):
+class Replacer1516(MigrationBase):
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 
-        old_receivers = self.store_old.find(self.get_right_model("Receiver", 15))
-
+        old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
-
-            new_receiver = self.get_right_model("Receiver", 16)()
-
+            new_receiver = self.model_to['Receiver']()
             for _, v in new_receiver._storm_columns.iteritems():
 
                 if v.name == 'configuration':
@@ -113,17 +110,12 @@ class Replacer1516(TableReplacer):
 
             self.store_new.add(new_receiver)
 
-        self.store_new.commit()
-
     def migrate_Field(self):
         print "%s Field migration assistant" % self.std_fancy
 
-        old_fields = self.store_old.find(self.get_right_model("Field", 15))
-
+        old_fields = self.store_old.find(self.model_from['Field'])
         for old_field in old_fields:
-
-            new_field = self.get_right_model("Field", 16)()
-
+            new_field = self.model_to['Field']()
             for _, v in new_field._storm_columns.iteritems():
                 if v.name == 'is_template':
                     if old_field.is_template is None:
@@ -136,16 +128,13 @@ class Replacer1516(TableReplacer):
 
             self.store_new.add(new_field)
 
-        self.store_new.commit()
-
     def migrate_Notification(self):
         print "%s Notification migration assistant: (disable_notification flags, ping_templates)" % self.std_fancy
 
-        old_notification = self.store_old.find(self.get_right_model("Notification", 15)).one()
-        new_notification = self.get_right_model("Notification", 16)()
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-
             if v.name == 'disable_admin_notification_emails':
                 new_notification.disable_admin_notification_emails = False
                 continue
@@ -165,4 +154,3 @@ class Replacer1516(TableReplacer):
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
 
         self.store_new.add(new_notification)
-        self.store_new.commit()

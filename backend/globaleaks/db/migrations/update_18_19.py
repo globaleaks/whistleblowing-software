@@ -7,7 +7,7 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
 from globaleaks.utils.utility import every_language
@@ -57,17 +57,16 @@ class Node_v_18(Model):
     exception_email = Unicode()
 
 
-class Replacer1819(TableReplacer):
+class Replacer1819(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_receiptpage" % self.std_fancy
 
         appdata_dict = load_appdata()
 
-        old_node = self.store_old.find(self.get_right_model("Node", 18)).one()
-        new_node = self.get_right_model("Node", 19)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'header_title_receiptpage':
                 # check needed to preserve funtionality if appdata will be altered in the future
                 if v.name in appdata_dict['node']:
@@ -79,4 +78,3 @@ class Replacer1819(TableReplacer):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()

@@ -2,7 +2,7 @@
 
 from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
-from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
 
 
@@ -67,15 +67,14 @@ class Context_v_11(Model):
     presentation_order = Int()
 
 
-class Replacer1112(TableReplacer):
+class Replacer1112(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: (receipt, encryption only)" % self.std_fancy
 
-        old_node = self.store_old.find(self.get_right_model("Node", 11)).one()
-        new_node = self.get_right_model("Node", 12)()
+        old_node = self.store_old.find(self.model_from['Node']).one()
+        new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'receipt_regexp':
                 new_node.receipt_regexp = u'[0-9]{16}'
                 continue
@@ -92,4 +91,3 @@ class Replacer1112(TableReplacer):
         self.store_new.commit()
 
         # Context migration: is removed the receipt by the default bahavior
-

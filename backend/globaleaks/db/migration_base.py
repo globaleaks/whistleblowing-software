@@ -87,11 +87,11 @@ def generateCreateQuery(model):
     """
     prehistory = model.__storm_table__.find("_v_")
     if prehistory != -1:
-        table_name = model.__storm_table__[:prehistory]
+        model_name = model.__storm_table__[:prehistory]
     else:
-        table_name = model.__storm_table__
+        model_name = model.__storm_table__
 
-    query = "CREATE TABLE " + table_name + " "
+    query = "CREATE TABLE " + model_name + " "
 
     variables = []
     primary_keys = []
@@ -110,42 +110,49 @@ def generateCreateQuery(model):
 
     return query
 
-class TableReplacer(object):
+class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
-
     def __init__(self, table_history, old_db_file, new_db_file, start_ver):
         self.table_history = table_history
-        self.old_db_file = old_db_file
-        self.new_db_file = new_db_file
         self.start_ver = start_ver
+
+        self.store_old = Store(create_database('sqlite:' + old_db_file))
+        self.store_new = Store(create_database('sqlite:' + new_db_file))
+
+        self.model_from = {}
+        self.model_to = {}
+        self.entries_count = {}
+        self.fail_on_count_mismatch = {}
 
         self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
-        for k, v in table_history.iteritems():
-            length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
-            if len(v) != length:
-                msg = 'Expecting a table with {} statuses ({})'.format(length, k)
-                raise TypeError(msg)
-
-        log.msg('{} Opening old DB: {}'.format(self.debug_info, old_db_file))
-        old_database = create_database('sqlite:' + self.old_db_file)
-        self.store_old = Store(old_database)
-
         GLSettings.db_file = new_db_file
 
-        new_database = create_database('sqlite:' + new_db_file)
-        self.store_new = Store(new_database)
+        for model_name, model_history in table_history.iteritems():
+            length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
+            if len(model_history) != length:
+                raise TypeError('Expecting a table with {} statuses ({})'.format(length, model_name))
+
+            self.fail_on_count_mismatch[model_name] = True
+
+            self.model_from[model_name] = self.get_right_model(model_name, start_ver)
+            self.model_to[model_name] = self.get_right_model(model_name, start_ver + 1)
+
+            if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
+                self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
+            else:
+                self.entries_count[model_name] = 0
 
         if self.start_ver + 1 == DATABASE_VERSION:
+            # we are there!
             log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db_schema_file))
 
             if not os.access(GLSettings.db_schema_file, os.R_OK):
                 log.msg('Unable to access', GLSettings.db_schema_file)
                 raise IOError('Unable to access db schema file')
-
             with open(GLSettings.db_schema_file) as f:
                 create_queries = ''.join(f).split(';')
                 for create_query in create_queries:
@@ -153,52 +160,53 @@ class TableReplacer(object):
                         self.store_new.execute(create_query + ';')
                     except OperationalError:
                         log.msg('OperationalError in "{}"'.format(create_query))
-            self.store_new.commit()
-            return
-            # return here and manage the migrant versions here:
 
-        for k, v in self.table_history.iteritems():
-            create_query = self.get_right_sql_version(k, self.start_ver + 1)
-            if not create_query:
-                # table not present in the version
-                continue
+        else: # manage the migrantion here
+            for k, _ in self.table_history.iteritems():
+                create_query = self.get_right_sql_version(k, self.start_ver + 1)
+                if not create_query:
+                    # the table has been removed
+                    continue
 
-            try:
-                self.store_new.execute(create_query + ';')
-            except OperationalError as excep:
-                log.msg('{} OperationalError in [{}]'.format(self.debug_info, create_query))
-                raise excep
+                try:
+                    self.store_new.execute(create_query + ';')
+                except OperationalError as excep:
+                    log.msg('{} OperationalError in [{}]'.format(self.debug_info, create_query))
+                    raise excep
 
+        self.store_new.commit()
+
+    def commit(self):
         self.store_new.commit()
 
     def close(self):
         self.store_old.close()
         self.store_new.close()
 
-    def initialize(self):
+    def prologue(self):
         pass
 
     def epilogue(self):
         pass
 
-    def get_right_model(self, table_name, version):
+    def get_right_model(self, model_name, version):
         table_index = (version - FIRST_DATABASE_VERSION_SUPPORTED)
 
-        if table_name not in self.table_history:
+        if model_name not in self.table_history:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
-                __file__, table_name, self.start_ver)
+                __file__, model_name, self.start_ver)
             raise NotImplementedError(msg)
 
         if version > DATABASE_VERSION:
             raise ValueError('Version supplied must be less or equal to {}'.format(
                 DATABASE_VERSION))
 
-        if self.table_history[table_name][table_index] == -1:
+        if self.table_history[model_name][table_index] == -1:
             return None
 
         while table_index >= 0:
-            if self.table_history[table_name][table_index] != 0:
-                return self.table_history[table_name][table_index]
+            if self.table_history[model_name][table_index] != 0:
+                return self.table_history[model_name][table_index]
             table_index -= 1
 
         return None
@@ -210,25 +218,22 @@ class TableReplacer(object):
         @return:
             The SQL right for the stuff we've
         """
-
-        modelobj = self.get_right_model(model_name, version)
-        if modelobj is None:
+        model_obj = self.get_right_model(model_name, version)
+        if model_obj is None:
             return None
 
-        right_query = generateCreateQuery(modelobj)
-        return right_query
+        return generateCreateQuery(model_obj)
 
-    def _perform_copy_list(self, table_name):
-        objs_count = self.store_old.find(
-            self.get_right_model(table_name, self.start_ver)
-        ).count()
+    def _perform_copy_list(self, model_name):
+        objs_count = self.store_old.find(self.model_from[model_name]).count()
+
         log.msg('{} default {} migration assistant: #{}'.format(
-            self.debug_info, table_name, objs_count))
+            self.debug_info, model_name, objs_count))
 
-        old_objects = self.store_old.find(self.get_right_model(table_name, self.start_ver))
+        old_objects = self.store_old.find(self.model_from[model_name])
 
         for old_obj in old_objects:
-            new_obj = self.get_right_model(table_name, self.start_ver + 1)()
+            new_obj = self.model_to[model_name]()
 
             # Storm internals simply reversed
             for _, v in new_obj._storm_columns.iteritems():
@@ -238,13 +243,11 @@ class TableReplacer(object):
 
             self.store_new.add(new_obj)
 
-        self.store_new.commit()
+    def _perform_copy_single(self, model_name):
+        log.msg('{} default {} migration assistant'.format(self.debug_info, model_name))
 
-    def _perform_copy_single(self, table_name):
-        log.msg('{} default {} migration assistant'.format(self.debug_info, table_name))
-
-        old_obj = self.store_old.find(self.get_right_model(table_name, self.start_ver)).one()
-        new_obj = self.get_right_model(table_name, self.start_ver + 1)()
+        old_obj = self.store_old.find(self.model_from[model_name]).one()
+        new_obj = self.model_to[model_name]()
 
         # Storm internals simply reversed
         for _, v in new_obj._storm_columns.iteritems():
@@ -253,7 +256,9 @@ class TableReplacer(object):
                 setattr(new_obj, v.name, old_value)
 
         self.store_new.add(new_obj)
-        self.store_new.commit()
+
+    def migrate_ApplicationData(self):
+        return
 
     def migrate_Context(self):
         self._perform_copy_list("Context")
@@ -299,9 +304,6 @@ class TableReplacer(object):
 
     def migrate_Stats(self):
         self._perform_copy_list("Stats")
-
-    def migrate_ApplicationData(self):
-        return
 
     def migrate_Field(self):
         self._perform_copy_list("Field")
