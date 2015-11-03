@@ -92,38 +92,66 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
-        self.logout_performed = function () {
-          var role = self.role;
-
+        self.clean = function() {
           self.id = null;
           self.user_id = null;
           self.username = null;
           self.role = null;
           self.session = null;
           self.homepage = null;
-          self.auth_langing_page = null;
+          self.auth_landing_page = null;
+        };
 
+        self.getLoginUri = function (role, path) {
+          var loginUri = "/login";
           if (role === 'whistleblower') {
-            $location.path('/');
+            loginUri = ('/');
           } else if (role === 'admin') {
-            $location.path('/admin');
-          } else {
-            $location.path('/login');
+            loginUri = '/admin';
+          } else if (role === 'custodian') {
+            loginUri = '/custodian';
+          } else if (!role) {
+            if (path === '/status') {
+              // If we are whistleblowers on the status page, redirect to homepage
+              loginUri = '/';
+            } else if (path.indexOf('/admin') === 0) {
+              // If we are admins on the /admin(/*) pages, redirect to /admin
+              loginUri = '/admin';
+            } else if (path.indexOf('/custodian') === 0) {
+              // If we are custodians on the /custodian(/*) pages, redirect to /custodian
+              loginUri = '/custodian';
+            }
           }
+
+          return loginUri;
         };
 
         self.keycode = '';
 
-        $rootScope.logout = function() {
-          // we use $http['delete'] in place of $http.delete due to
-          // the magical IE7/IE8 that do not allow delete as identifier
-          // https://github.com/globaleaks/GlobaLeaks/issues/943
-          if (self.role === 'whistleblower') {
-            $http['delete']('receiptauth').then(self.logout_performed,
-                                                   self.logout_performed);
-          } else {
-            $http['delete']('authentication').then(self.logout_performed,
-                                                   self.logout_performed);
+        $rootScope.logout = function(sessionExpired) {
+          var role = self.role;
+
+          if (!sessionExpired) {
+            // we use $http['delete'] in place of $http.delete due to
+            // the magical IE7/IE8 that do not allow delete as identifier
+            // https://github.com/globaleaks/GlobaLeaks/issues/943
+            if (self.role === 'whistleblower') {
+              $http['delete']('receiptauth');
+            } else {
+              $http['delete']('authentication');
+            }
+          }
+
+          self.clean();
+
+          var source_path = $location.path();
+          var redirect_path = self.getLoginUri(role, $location.path());
+          // Only redirect if we are not already on the login page
+          if (source_path !== redirect_path) {
+            $location.path(redirect_path);
+            if (sessionExpired) {
+              $location.search('src=' + source_path);
+            }
           }
         };
 
@@ -152,7 +180,7 @@ angular.module('GLServices', ['ngResource']).
     var $http = null;
 
     $rootScope.showRequestBox = false;
-    
+
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return {
@@ -175,10 +203,12 @@ angular.module('GLServices', ['ngResource']).
         return response;
       },
       responseError: function(response) {
-        /* 
+        /*
            When the response has failed write the rootScope
            errors array the error message.
         */
+        $http = $http || $injector.get('$http');
+
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
         }
@@ -193,37 +223,10 @@ angular.module('GLServices', ['ngResource']).
           'code': response.data.error_code,
           'arguments': response.data.arguments
         }
-        
+
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
-          if (error.code === 24) {
-            $rootScope.logout();
-          } else {
-            var source_path = $location.path();
-            var redirect_path = '/login';
-
-            // If we are whistleblowers on the status page, redirect to homepage
-            if (source_path === '/status') {
-              redirect_path = '/';
-            }
-
-            // If we are admins on the /admin(/*) pages, redirect to /admin
-            else if (source_path.indexOf('/admin') === 0) {
-              redirect_path = '/admin';
-            }
-
-            // If we are custodians on the /custodian(/*) pages, redirect to /custodian
-            else if (source_path.indexOf('/custodian') === 0) {
-              redirect_path = '/custodian';
-            }
-
-            // Only redirect if we are not already on the login page
-            if ($location.path() !== redirect_path) {
-              $location.path(redirect_path);
-              $location.search('src=' + source_path);
-            }
-          }
-
+          $rootScope.logout(error.code === 30);
         }
 
         $rootScope.errors.push(error);
@@ -938,7 +941,7 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   constant('CONSTANTS', {
-     /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */ 
+     /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */
      "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
