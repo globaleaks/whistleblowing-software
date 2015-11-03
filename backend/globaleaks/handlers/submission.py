@@ -183,8 +183,8 @@ def serialize_itip(store, internaltip, language):
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
-        'enable_comments': internaltip.enable_comments,
-        'enable_messages': internaltip.enable_messages,
+        'enable_comments': context.enable_comments,
+        'enable_messages': context.enable_messages,
         'enable_two_way_comments': internaltip.enable_two_way_comments,
         'enable_two_way_messages': internaltip.enable_two_way_messages,
         'enable_attachments': internaltip.enable_attachments,
@@ -323,8 +323,6 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.context_id = context.id
 
-    submission.enable_comments = context.enable_comments
-    submission.enable_messages = context.enable_messages
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
     submission.enable_attachments = context.enable_attachments

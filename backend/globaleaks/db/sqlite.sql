@@ -118,8 +118,6 @@ CREATE TABLE internaltip (
     context_id TEXT NOT NULL,
     tor2web INTEGER NOT NULL,
     total_score INTEGER NOT NULL,
-    enable_comments INTEGER NOT NULL,
-    enable_messages INTEGER NOT NULL,
     enable_two_way_comments INTEGER NOT NULL,
     enable_two_way_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,

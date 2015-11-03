@@ -45,8 +45,6 @@
   font-weight: bold;
 }
 
-.ConnectionKind {
-  padding: 0.3em;
-  font-weight: bold;
-  border-radius: 4px;
+#SubmissionComments, #SubmissionMessages {
+  margin-top: 20px;
 }
