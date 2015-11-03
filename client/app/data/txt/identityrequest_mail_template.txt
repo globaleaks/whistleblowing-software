@@ -1,0 +1,10 @@
+Dear %RecipientName%,
+
+This is an email to notify you that a recipient has requested access to a whistleblower's identity.
+
+The request can be accessed:
+via Tor at: %IdentyRequestsTorURL%
+via Tor2web at: %IdentityRequestsT2WURL%
+
+Kind regards,
+%NodeName%
