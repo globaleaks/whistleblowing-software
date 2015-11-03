@@ -45,11 +45,11 @@
           <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>
             <span data-ng-if="tip.tor2web"
-                class="btn-warning ConnectionKind"
+                class="label label-warning"
                 popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                 data-translate>HTTPS</span>
             <span data-ng-if="!tip.tor2web"
-                class="btn-success ConnectionKind"
+                class="label label-success"
                 popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                 data-translate>Tor</span>
           </td>

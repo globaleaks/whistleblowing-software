@@ -69,6 +69,7 @@ def anon_serialize_node(store, language):
         'ahmia': node.ahmia,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
+        'can_grant_permissions': node.can_grant_permissions,
         'wizard_done': node.wizard_done,
         'allow_unencrypted': node.allow_unencrypted,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,

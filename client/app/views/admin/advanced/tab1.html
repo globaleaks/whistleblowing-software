@@ -38,10 +38,6 @@
         <input data-ng-model="admin.node.can_postpone_expiration" type="checkbox" />
         <span data-translate>Allow recipients to postpone expiration date of the submission</span>
       </label>
-      <div data-ng-if="admin.node.can_postpone_expiration">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Recipients will be able to postpone submission expiration.</span>
-      </div>
     </div>
 
     <div class="form-group">
@@ -49,10 +45,13 @@
         <input data-ng-model="admin.node.can_delete_submission" type="checkbox" />
         <span data-translate>Allow recipients to delete submissions</span>
       </label>
-      <div data-ng-if="admin.node.can_delete_submission">
-        <span class="label label-info" data-translate>Enabled</span>
-	<span data-translate>Recipients will be able to delete submissions and their content.</span>
-      </div>
+    </div>
+
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.can_grant_permissions" type="checkbox" />
+        <span data-translate>Allow recipients to grant permissions to whistleblowers on specific submissions</span>
+      </label>
     </div>
 
     <!--

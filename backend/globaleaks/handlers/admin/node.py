@@ -49,6 +49,7 @@ def db_admin_serialize_node(store, language):
         'submission_maximum_ttl': node.submission_maximum_ttl,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
+        'can_grant_permissions': node.can_grant_permissions,
         'ahmia': node.ahmia,
         'allow_unencrypted': node.allow_unencrypted,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,

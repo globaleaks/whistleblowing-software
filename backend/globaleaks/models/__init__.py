@@ -280,8 +280,6 @@ class InternalTip(Model):
 
     identity_provided = Bool(default=False)
 
-    enable_comments = Bool(default=True)
-    enable_messages = Bool(default=False)
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)

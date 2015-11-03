@@ -9,28 +9,45 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-if="role != 'whistleblower' || tip.enable_two_way_messages">
-      <div class="form-inline">
-        <span data-ng-if="role == 'wb'">
-          <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
-          <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+    <div data-ng-if="role != 'whistleblower' || tip.enable_two_way_messages" class="row">
+      <div class="col-md-12">
+        <div class="form-inline">
+          <span data-ng-if="role == 'wb'">
+            <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
+            <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+          </span>
+        </div>
+        <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control"></textarea>
+        <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newCommentContent.length}"
+             data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+      </div>
+      <div class="col-md-12">
+        <span class="pull-left">
+          <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <span data-translate>Send</span>
+          </a>
+        </span>
+        <span data-ng-if="role == 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_two_way_messages" class="pull-right">
+          <span data-ng-switch-when="false">
+            <a id="button-enable-whistleblower-messages" class="btn btn-primary" data-ng-click="allowWhistleblowerToMessage()">
+              <i class="glyphicon glyphicon-ok-circle"></i>
+              <span data-translate>Allow the whistleblower to write messages</span>
+            </a>
+          </span>
+          <span data-ng-switch-when="true">
+            <a id="button-enable-whistleblower-messages" class="btn btn-danger" data-ng-click="denyWhistleblowerToMessage()">
+              <i class="glyphicon glyphicon-ban-circle"></i>
+              <span data-translate>Deny the whistleblower to write messages</span>
+            </a>
+          </span>
         </span>
       </div>
-      <br />
-      <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control"></textarea>
-      <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newCommentContent.length}"
-           data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
-      <br />
-      <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (role == 'wb' && !tip.msg_receiver_selected)">
-        <i class="glyphicon glyphicon-envelope"></i>
-        <span data-translate>Send</span>
-      </a>
-      <br /><br />
     </div>
     <div data-ng-if="role == 'whistleblower' && !tip.enable_two_way_messages">
       <span data-translate>You are still not allowed to write messages.</span>
     </div>
-    <div id="Messages" data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
+    <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
       <div id="message-{{$index}}" data-ng-switch="" on="message.type">
          <div data-ng-switch-when="whistleblower" class="alert alert-info">
           <div class="row">

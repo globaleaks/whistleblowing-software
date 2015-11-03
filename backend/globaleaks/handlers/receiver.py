@@ -36,6 +36,7 @@ def receiver_serialize_receiver(receiver, language):
         'timezone': receiver.user.timezone,
         'can_postpone_expiration': GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
+        'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
         'tip_notification': receiver.tip_notification,
         'ping_notification': receiver.ping_notification,
         'ping_mail_address': receiver.ping_mail_address,
