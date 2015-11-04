@@ -4,8 +4,8 @@ import os
 
 from storm.locals import create_database, Store
 
+from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSettings
-from globaleaks import models, FIRST_DATABASE_VERSION_SUPPORTED
 
 from globaleaks.db.migrations.update_12 import Node_v_11, Context_v_11
 from globaleaks.db.migrations.update_13 import Node_v_12, Context_v_12
@@ -65,42 +65,46 @@ table_history = {
 }
 
 
-def perform_version_update(starting_ver, ending_ver):
+def perform_version_update(version):
     """
-    @param starting_ver:
-    @param ending_ver:
+    @param version:
     @return:
     """
     to_delete_on_fail = []
     to_delete_on_success = []
 
-    if starting_ver < FIRST_DATABASE_VERSION_SUPPORTED:
+    if version < FIRST_DATABASE_VERSION_SUPPORTED:
         print "Migrations from DB version lower than %d are no more supported!" % FIRST_DATABASE_VERSION_SUPPORTED
         print "If you can't create your Node from scratch, contact us asking for support."
         quit()
 
     try:
-        while starting_ver < ending_ver:
-            if not starting_ver:
+        while version < DATABASE_VERSION:
+            if not version:
                 old_db_file = os.path.abspath(os.path.join(
                     GLSettings.gldb_path, 'glbackend.db'))
             else:
                 old_db_file = os.path.abspath(os.path.join(
-                    GLSettings.gldb_path, 'glbackend-%d.db' % starting_ver))
+                    GLSettings.gldb_path, 'glbackend-%d.db' % version))
 
-            new_db_file = os.path.abspath(os.path.join(GLSettings.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
-            
+            new_db_file = os.path.abspath(os.path.join(GLSettings.gldb_path, 'glbackend-%d.db' % (version + 1)))
+
+            GLSettings.db_file = new_db_file
+            GLSettings.enable_input_length_checks = False
+
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
             
-            print "Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
+            print "Updating DB from version %d to version %d" % (version, version + 1)
+
+            store_old = Store(create_database('sqlite:' + old_db_file))
+            store_new = Store(create_database('sqlite:' + new_db_file))
 
             # Here is instanced the migration script
-            MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (starting_ver + 1))
-            migration_script = MigrationModule.MigrationScript(table_history, old_db_file, new_db_file, starting_ver)
+            MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
+            migration_script = MigrationModule.MigrationScript(table_history, version, store_old, store_new)
 
             try:
-
                 try:
                     migration_script.prologue()
                 except Exception as excep:
@@ -153,7 +157,7 @@ def perform_version_update(starting_ver, ending_ver):
                          print " * %s table migrated (%d entry(s))" % \
                                  (model_name, migration_script.entries_count[model_name])
 
-            starting_ver += 1
+            version += 1
 
     except Exception as except_info:
         print "Internal error triggered: %s" % except_info

@@ -30,8 +30,10 @@ from cyclone.util import ObjectDict as OD
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.rest.errors import DatabaseIntegrityError
 
+
 # XXX. MONKEYPATCH TO SUPPORT STORM 0.19
 import storm.databases.sqlite
+
 
 class SQLite(storm.databases.sqlite.Database):
     connection_factory = storm.databases.sqlite.SQLiteConnection
@@ -315,6 +317,8 @@ class GLSettingssClass(object):
         self.disable_mail_notification = False
         self.disable_backend_exception_notification = False
         self.disable_client_exception_notification = False
+
+        self.enable_input_length_checks = True
 
         self.mail_counters = {}
 

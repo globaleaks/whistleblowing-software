@@ -20,7 +20,7 @@ def shorttext_v(_self, attr, value):
     if not isinstance(value, unicode):
         raise errors.InvalidModelInput("shorttext_v: expected unicode (%s:%s)" % (attr, value))
 
-    if len(value) > GLSettings.memory_copy.maximum_namesize:
+    if GLSettings.enable_input_length_checks and len(value) > GLSettings.memory_copy.maximum_namesize:
         raise errors.InvalidModelInput("shorttext_v: length need to be < of %d"
                                         % GLSettings.memory_copy.maximum_namesize)
 
@@ -40,7 +40,7 @@ def longtext_v(_self, attr, value):
         raise errors.InvalidModelInput("longtext_v: expected unicode (%s:%s)" %
                                        (attr, value))
 
-    if len(value) > GLSettings.memory_copy.maximum_textsize:
+    if GLSettings.enable_input_length_checks and len(value) > GLSettings.memory_copy.maximum_textsize:
         raise errors.InvalidModelInput("longtext_v: unicode text in %s " \
                                         "overcomes length " \
                                         "limit %d" % (attr, GLSettings.memory_copy.maximum_textsize))
@@ -62,7 +62,7 @@ def dict_v(_self, attr, value):
             subvalue = unicode(subvalue)
 
         if isinstance(subvalue, unicode):
-            if len(subvalue) > GLSettings.memory_copy.maximum_textsize:
+            if GLSettings.enable_input_length_checks and len(subvalue) > GLSettings.memory_copy.maximum_textsize:
                 raise errors.InvalidModelInput("dict_v: text for key %s in %s " \
                                                 "overcomes length limit of %d" % (key, attr,
                                                                                   GLSettings.memory_copy.maximum_textsize))

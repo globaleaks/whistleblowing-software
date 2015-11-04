@@ -110,16 +110,17 @@ def generateCreateQuery(model):
 
     return query
 
+
 class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
-    def __init__(self, table_history, old_db_file, new_db_file, start_ver):
+    def __init__(self, table_history, start_version, store_old, store_new):
         self.table_history = table_history
-        self.start_ver = start_ver
+        self.start_version = start_version
 
-        self.store_old = Store(create_database('sqlite:' + old_db_file))
-        self.store_new = Store(create_database('sqlite:' + new_db_file))
+        self.store_old = store_old
+        self.store_new = store_new
 
         self.model_from = {}
         self.model_to = {}
@@ -127,9 +128,7 @@ class MigrationBase(object):
         self.fail_on_count_mismatch = {}
 
         self.std_fancy = " ł "
-        self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
-
-        GLSettings.db_file = new_db_file
+        self.debug_info = "   [%d => %d] " % (start_version, start_version + 1)
 
         for model_name, model_history in table_history.iteritems():
             length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
@@ -138,15 +137,15 @@ class MigrationBase(object):
 
             self.fail_on_count_mismatch[model_name] = True
 
-            self.model_from[model_name] = self.get_right_model(model_name, start_ver)
-            self.model_to[model_name] = self.get_right_model(model_name, start_ver + 1)
+            self.model_from[model_name] = self.get_right_model(model_name, start_version)
+            self.model_to[model_name] = self.get_right_model(model_name, start_version + 1)
 
             if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
                 self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
             else:
                 self.entries_count[model_name] = 0
 
-        if self.start_ver + 1 == DATABASE_VERSION:
+        if self.start_version + 1 == DATABASE_VERSION:
             # we are there!
             log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db_schema_file))
 
@@ -164,7 +163,7 @@ class MigrationBase(object):
 
         else: # manage the migrantion here
             for k, _ in self.table_history.iteritems():
-                create_query = self.get_right_sql_version(k, self.start_ver + 1)
+                create_query = self.get_right_sql_version(k, self.start_version + 1)
                 if not create_query:
                     # the table has been removed
                     continue
@@ -195,7 +194,7 @@ class MigrationBase(object):
 
         if model_name not in self.table_history:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
-                __file__, model_name, self.start_ver)
+                __file__, model_name, self.start_version)
             raise NotImplementedError(msg)
 
         if version > DATABASE_VERSION:

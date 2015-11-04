@@ -9,8 +9,8 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
 
-from globaleaks.db import create_tables, clean_untracked_files
-from globaleaks.db.datainit import import_memory_variables, apply_cli_options
+from globaleaks.db import create_tables, clean_untracked_files, \
+   refresh_memory_variables, apply_cmdline_options
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
@@ -86,8 +86,8 @@ def globaleaks_start():
     @d.addCallback
     @defer.inlineCallbacks
     def cb(res):
-        yield import_memory_variables()
-        tor_configured_hosts = yield apply_cli_options()
+        yield refresh_memory_variables()
+        tor_configured_hosts = yield apply_cmdline_options()
 
         start_asynchronous_jobs()
 
