@@ -4,7 +4,7 @@ import string
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
-from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.datainit import load_appdata, load_default_fields
 from globaleaks.models import BaseModel, Model
 from globaleaks.utils.utility import datetime_null, every_language
