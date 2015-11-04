@@ -27,7 +27,7 @@
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
         <div data-ng-class="{'radio': (field.attrs.options_arrangement.value == 'vertical')}">
-          <label data-ng-class="{'radio-inline': (field.attrs.options_arrangement.value == 'horizontal')}" data-ng-repeat="option in field.options" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+          <label data-ng-class="{'radio-inline': (field.attrs.options_arrangement.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
             <input type="radio" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
             <span>{{option.label}}</span>
           </label>
@@ -35,12 +35,12 @@
       </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
         <select id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
-          <option data-ng-repeat="option in field.options" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
+          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
         </select>
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
         <div data-ng-class="{'checkbox': (field.attrs.options_arrangement.value == 'vertical')}">
-          <label data-ng-repeat="option in field.options" data-ng-class="{'checkbox-inline': (field.attrs.options_arrangement.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
+          <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.options_arrangement.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
             <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
