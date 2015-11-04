@@ -654,10 +654,10 @@ angular.module('GLServices', ['ngResource']).
             "regexp": {"type": "unicode", "value": ""}
           },
           "multichoice": {
-            "options_arrangement": {"type": "unicode", "value": "vertical"}
+            "layout_orientation": {"type": "unicode", "value": "vertical"}
           },
           "checkbox": {
-            "options_arrangement": {"type": "unicode", "value": "vertical"}
+            "layout_orientation": {"type": "unicode", "value": "vertical"}
           },
           "tos": {
             "clause": {"type": "unicode", "value": ""},
