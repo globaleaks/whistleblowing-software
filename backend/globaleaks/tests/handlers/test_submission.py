@@ -2,16 +2,17 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 # override GLSettings
-from globaleaks.settings import GLSettings, transact_ro
-from globaleaks.tests import helpers
+from globaleaks.orm import transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.admin.context import get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
-from globaleaks.rest import errors
-from globaleaks.models import InternalTip
-from globaleaks.utils.token import Token
 from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionInstance
+from globaleaks.models import InternalTip
+from globaleaks.rest import errors
+from globaleaks.tests import helpers
+from globaleaks.utils.token import Token
 
 # and here, our protagonist character:
 from globaleaks.handlers.submission import create_submission

@@ -9,10 +9,11 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.orm import transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.settings import transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
 
 @transact_ro

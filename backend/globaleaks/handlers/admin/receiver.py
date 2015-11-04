@@ -10,12 +10,13 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.user import db_admin_update_user, db_create_receiver
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 

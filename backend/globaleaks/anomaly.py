@@ -13,10 +13,11 @@
 from twisted.internet import defer
 
 from globaleaks import models, event
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str

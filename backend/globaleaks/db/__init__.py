@@ -1,18 +1,24 @@
 # -*- coding: UTF-8
 # Database routines
 # ******************
+import os
 import re
 import sys
 import traceback
+import transaction
 
-import os
-from storm.exceptions import OperationalError
+from storm import exceptions
+
+from twisted.python.threadpool import ThreadPool
+from twisted.internet import reactor
 from twisted.internet.defer import succeed, inlineCallbacks
+from twisted.internet.threads import deferToThreadPool
 
 from globaleaks import models
 from globaleaks.db.datainit import init_appdata, init_db, load_appdata
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
 
@@ -37,7 +43,7 @@ def create_tables_transaction(store):
         for create_query in create_queries:
             try:
                 store.execute(create_query + ';')
-            except OperationalError as exc:
+            except exceptions.OperationalError as exc:
                 log.err("OperationalError in [%s]" % create_query)
                 log.err(exc)
 

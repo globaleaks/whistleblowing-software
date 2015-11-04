@@ -9,7 +9,7 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 
 from .properties import MetaModel, DateTime
 
-from globaleaks.settings import transact
+from globaleaks.orm import transact
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v

@@ -15,12 +15,13 @@ from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.orm import transact
 from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import GLSettings, transact
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating

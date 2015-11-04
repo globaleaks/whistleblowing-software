@@ -4,10 +4,11 @@ import re
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSettings, transact_ro
-from globaleaks.tests import helpers
-from globaleaks.rest import errors, requests
+from globaleaks.orm import transact_ro
 from globaleaks.handlers import admin, submission, authentication, receiver, rtip, wbtip
+from globaleaks.rest import errors, requests
+from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
 

@@ -6,6 +6,8 @@
 # File Collections handlers and utils
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.orm import transact_ro
 from globaleaks.handlers.admin import node, context, receiver, notification
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
@@ -14,7 +16,6 @@ from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.plugins.base import Event
 from globaleaks.rest import errors
-from globaleaks.settings import transact_ro
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 from globaleaks.utils.zipstream import ZipStream

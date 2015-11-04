@@ -35,6 +35,7 @@ mailutils.sendmail = sendmail_mock
 
 from globaleaks import db, models, security, anomaly, event
 from globaleaks.db.datainit import load_appdata
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, \
@@ -46,7 +47,7 @@ from globaleaks.handlers.submission import create_submission, serialize_usertip,
     serialize_internalfile, serialize_receiverfile
 from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSettings, transact, transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
 from globaleaks.utils import token

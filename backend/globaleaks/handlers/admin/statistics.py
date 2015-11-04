@@ -7,17 +7,18 @@
 # exposed API.
 
 import operator
-
-from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc, And
-from globaleaks.settings import transact_ro, transact, GLSettings
+from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.orm import transact, transact_ro
+from globaleaks.event import EventTrackQueue, outcoming_event_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
 from globaleaks.models import Stats, Anomalies
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
     utc_past_date, iso_to_gregorian, log
-from globaleaks.event import EventTrackQueue, outcoming_event_monitored
 
 
 def weekmap_to_heatmap(week_map):

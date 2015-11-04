@@ -4,7 +4,7 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import transact, transact_ro
+from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
 
 

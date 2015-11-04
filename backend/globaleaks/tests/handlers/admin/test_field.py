@@ -4,12 +4,12 @@ import copy
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import admin
 from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.rest import errors
-from globaleaks.settings import transact, transact_ro
 from globaleaks.tests import helpers
 
 

@@ -15,7 +15,8 @@ from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.orm import transact, transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log

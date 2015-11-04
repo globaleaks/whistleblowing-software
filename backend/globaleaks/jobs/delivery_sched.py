@@ -12,9 +12,11 @@
 
 import os
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.orm import transact
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, ReceiverFile, ReceiverTip
-from globaleaks.settings import transact, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
 from globaleaks.security import GLBPGP, GLSecureFile

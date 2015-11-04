@@ -2,12 +2,12 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.datainit import load_appdata
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Notification
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
-from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 

@@ -3,10 +3,10 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.internet import task
 
 from globaleaks import anomaly
+from globaleaks.orm import transact_ro
 from globaleaks.handlers.admin import statistics
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
-from globaleaks.settings import transact_ro
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
     pollute_events_for_testing_and_perform_synthesis

@@ -3,7 +3,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 # override GLSettings
 from globaleaks import anomaly, event
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.orm import transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip, token

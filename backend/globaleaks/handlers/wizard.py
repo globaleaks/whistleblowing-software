@@ -2,8 +2,8 @@
 #
 # wizard
 
-from globaleaks import models
-from globaleaks import security
+from globaleaks import models, security
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin.context import db_create_context
@@ -12,7 +12,6 @@ from globaleaks.handlers.admin.node import db_update_node
 from globaleaks.handlers.node import anon_serialize_node
 from globaleaks.rest import requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import transact
 from globaleaks.utils.utility import log
 
 from twisted.internet.defer import inlineCallbacks

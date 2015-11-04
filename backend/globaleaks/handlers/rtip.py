@@ -10,6 +10,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
@@ -18,7 +19,7 @@ from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 

@@ -9,6 +9,7 @@
 from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receivers_list, \
@@ -18,7 +19,6 @@ from globaleaks.handlers.submission import serialize_usertip, \
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-from globaleaks.settings import transact, transact_ro
 
 
 def wb_serialize_file(internalfile):
