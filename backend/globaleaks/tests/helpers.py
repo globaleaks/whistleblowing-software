@@ -34,7 +34,7 @@ mailutils.sendmail = sendmail_mock
 
 
 from globaleaks import db, models, security, anomaly, event
-from globaleaks.db.datainit import load_appdata, import_memory_variables
+from globaleaks.db.datainit import load_appdata
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, \
@@ -175,7 +175,7 @@ class TestGL(unittest.TestCase):
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
 
-        yield import_memory_variables()
+        yield db.refresh_memory_variables()
 
         # override of imported memory variables
         GLSettings.memory_copy.allow_unencrypted = True
