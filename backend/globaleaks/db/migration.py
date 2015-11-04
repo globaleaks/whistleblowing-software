@@ -100,30 +100,36 @@ def perform_version_update(starting_ver, ending_ver):
             migration_script = MigrationModule.MigrationScript(table_history, old_db_file, new_db_file, starting_ver)
 
             try:
-                migration_script.prologue()
-            except Exception as excep:
-                print "Failure while executing migration prologue: %s " % excep.message
-                raise excep
 
-            for model_name, _ in table_history.iteritems():
-                if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
-                    try:
-                        getattr(migration_script, 'migrate_%s' % model_name)()
+                try:
+                    migration_script.prologue()
+                except Exception as excep:
+                    print "Failure while executing migration prologue: %s " % excep.message
+                    raise excep
 
-                        # Commit at every table migration in order to be able to detect
-                        # the precise migration that may fail.
-                        migration_script.commit()
-                    except Exception as excep:
-                        print "Failure while migrating table %s: %s " % (model_name, excep)
-                        raise excep
+                for model_name, _ in table_history.iteritems():
+                    if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
+                        try:
+                            getattr(migration_script, 'migrate_%s' % model_name)()
 
-            try:
-                migration_script.epilogue()
-                migration_script.commit()
+                            # Commit at every table migration in order to be able to detect
+                            # the precise migration that may fail.
+                            migration_script.commit()
+                        except Exception as excep:
+                            print "Failure while migrating table %s: %s " % (model_name, excep)
+                            raise excep
+
+                try:
+                    migration_script.epilogue()
+                    migration_script.commit()
+                except Exception as excep:
+                    print "Failure while executing migration epilogue: %s " % excep.message
+                    raise excep
+
+            finally:
+                # the database should bee always closed before leaving the application
+                # in order to not keep leaking journal files.
                 migration_script.close()
-            except Exception as excep:
-                print "Failure while executing migration epilogue: %s " % excep.message
-                raise excep
 
             print "Migration stats:"
 
