@@ -160,6 +160,7 @@ class MigrationBase(object):
                         self.store_new.execute(create_query + ';')
                     except OperationalError:
                         log.msg('OperationalError in "{}"'.format(create_query))
+                        raise excep
 
         else: # manage the migrantion here
             for k, _ in self.table_history.iteritems():

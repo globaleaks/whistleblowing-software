@@ -127,77 +127,46 @@ def create_tables(create_node=True):
     return deferred
 
 
-def find_current_db_version(dirpath, filearray):
-    glbackend_file_present = 0
-    for single_file in filearray:
-
-        # -journal file may remain if GLB crashes badly
-        if single_file.endswith('-journal'):
-            print "Found a DB journal file! %s: removing" % single_file
-            try:
-                os.unlink(os.path.join(dirpath, single_file))
-                continue
-            except Exception as excep:
-                print "Unable to remove %s: %s" % \
-                      (os.unlink(os.path.join(dirpath, single_file)), excep)
-                # this would lead quitting for "too much DBs" below
-
-        if single_file[:len('glbackend')] == 'glbackend':
-            glbackend_file_present += 1
-
-    if glbackend_file_present == 0:
-        print "glbackend database file not found in %s" % dirpath
-        raise StandardError
-    elif glbackend_file_present > 1:
-        print "glbackend database file found more than 1! keep only the latest in %s" % dirpath
-        raise AssertionError
-
-    for single_file in filearray:
-        abspath = os.path.join(dirpath, single_file)
-
-        if abspath[-3:] == '.db':
-            nameindex = abspath.rfind('glbackend')
-            extensindex = abspath.rfind('.db')
-
-            if nameindex + len('glbackend') == extensindex:
-                detected_version = 0
-            else:
-                detected_version = int(
-                    abspath[nameindex + len('glbackend-'):extensindex])
-
-            return detected_version, abspath
-
-
 def check_db_files():
     """
-    This function checks the DB version and executes eventually the DB update scripts
+    This function checks the database version and executes eventually
+    executes migration scripts
     """
-    from globaleaks.db import migration
-    for (path, _, files) in os.walk(GLSettings.gldb_path):
-
-        try:
-            starting_ver, _ = find_current_db_version(path, files)
-
-            print "Database version detected: %d" % starting_ver
-
-            if starting_ver < GLSettings.db_version:
-                print "Performing update of Database from version %d to version %d" % \
-                      (starting_ver, GLSettings.db_version)
+    db_version = -1
+    for filename in os.listdir(GLSettings.gldb_path):
+        if filename.startswith('glbackend'):
+            if filename.endswith('.db'):
+                nameindex = filename.rfind('glbackend')
+                extensindex = filename.rfind('.db')
+                fileversion = int(filename[nameindex + len('glbackend-'):extensindex])
+                db_version = fileversion if fileversion > db_version else db_version
+            elif filename.endswith('-journal'):
+                # As left journals files can leak data undefinitely we
+                # should manage to remove them.
+                print "Found an undeleted DB journal file %s: deleting it." % single_file
                 try:
-                    migration.perform_version_update(starting_ver, GLSettings.db_version)
-                    print "GlobaLeaks database version %d: update complete!" % GLSettings.db_version
-                except Exception:
-                    print "GlobaLeaks database version %d: update failure :(" % GLSettings.db_version
-                    print "Verbose exception traceback:"
-                    _, _, exc_traceback = sys.exc_info()
-                    traceback.print_tb(exc_traceback)
-                    quit(-1)
+                    os.unlink(os.path.join(dirpath, single_file))
+                except Exception as excep:
+                    print "Unable to remove %s: %s" % \
+                        (os.unlink(os.path.join(dirpath, single_file)), excep)
 
-        except AssertionError:
-            print "Error: More than one database file has been found in %s" % path
-            quit(-1)
-        except StandardError:
-            continue
+    if db_version > -1:
+        from globaleaks.db import migration
+
+        print "Database version detected: %d" % db_version
+
+        if db_version < GLSettings.db_version:
+            print "Performing update of Database from version %d to version %d" % \
+                  (db_version, GLSettings.db_version)
+            try:
+                migration.perform_version_update(db_version, GLSettings.db_version)
+                print "GlobaLeaks database version %d: update complete!" % GLSettings.db_version
+            except Exception:
+                print "GlobaLeaks database version %d: update failure :(" % GLSettings.db_version
+                print "Verbose exception traceback:"
+                _, _, exc_traceback = sys.exc_info()
+                traceback.print_tb(exc_traceback)
+                quit(-1)
 
 
 @transact_ro
@@ -205,14 +174,10 @@ def get_tracked_files(store):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
     """
-    ifiles = list(store.find(models.InternalFile).values(models.InternalFile.file_path))
-    rfiles = list(store.find(models.ReceiverFile).values(models.ReceiverFile.file_path))
+    ifiles = [store.find(models.InternalFile).values(models.InternalFile.file_path)]
+    rfiles = [store.find(models.ReceiverFile).values(models.ReceiverFile.file_path)]
 
-    tracked_files = list()
-    for files in list(set(ifiles + rfiles)):
-        tracked_files.append(os.path.basename(files))
-
-    return tracked_files
+    return [os.path.basename(files) for files in list(set(ifiles + rfiles))]
 
 
 @inlineCallbacks
