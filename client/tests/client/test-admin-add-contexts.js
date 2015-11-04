@@ -9,7 +9,7 @@ describe('admin add contexts', function() {
       return element(by.css('[data-ng-click="add_context()"]')).click();
     };
 
-    element(by.id('context-0')).click().then(function() {
+    element(by.css('.actionButtonContextEdit')).click().then(function() {
       element(by.id('context-0')).element(by.css('.actionButtonAdvancedSettings')).click().then(function() {
         element(by.id('context-0')).element(by.model('context.show_receivers')).click().then(function() {
           element(by.id('context-0')).element(by.css('.actionButtonContextSave')).click().then(function() {
