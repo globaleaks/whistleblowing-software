@@ -56,7 +56,9 @@ def load_default_fields(store):
         print os.path.exists(default_fields_path)
         if os.path.exists(default_fields_path):
             for fname in os.listdir(default_fields_path):
+                print fname
                 fpath = os.path.join(default_fields_path, fname)
+                print fpath
                 with file(fpath, 'r') as f:
                     json_string = f.read()
                     field_dict = json.loads(json_string)
