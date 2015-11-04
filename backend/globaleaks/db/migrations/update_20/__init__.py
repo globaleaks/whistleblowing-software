@@ -210,7 +210,7 @@ class Context_v_19(Model):
     presentation_order = Int()
 
 
-class Replacer1920(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
 

@@ -34,7 +34,7 @@ class InternalTip_v_21(Model):
     new = Int()
 
 
-class Replacer2122(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
         print "%s InternalTip migration assistant" % self.std_fancy
 

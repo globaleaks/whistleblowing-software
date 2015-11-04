@@ -67,7 +67,7 @@ class Context_v_11(Model):
     presentation_order = Int()
 
 
-class Replacer1112(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: (receipt, encryption only)" % self.std_fancy
 

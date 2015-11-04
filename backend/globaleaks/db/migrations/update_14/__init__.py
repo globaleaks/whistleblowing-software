@@ -4,20 +4,21 @@
   Changes
 
     Node table:
-      - introduced localized field terms_and_conditions;
-        the migration script takes care of initializing the new field using the localized appdata.
+      - introduced x_frame_options_mode and x_frame_options_allow_from.
 
     Context table:
-      - added "show_receivers" boolean
+      - introduced enable_private_messages
+
 """
 
 from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.migration_base import MigrationBase
 from globaleaks.models import Model
+from globaleaks.db.datainit import load_appdata
 
 
-class Node_v_12(Model):
+class Node_v_13(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -32,6 +33,7 @@ class Node_v_12(Model):
     presentation = Pickle()
     footer = Pickle()
     subtitle = Pickle()
+    terms_and_conditions = Pickle()
     stats_update_time = Int()
     maximum_namesize = Int()
     maximum_textsize = Int()
@@ -49,7 +51,7 @@ class Node_v_12(Model):
     exception_email = Unicode()
 
 
-class Context_v_12(Model):
+class Context_v_13(Model):
     __storm_table__ = 'context'
     unique_fields = Pickle()
     localized_fields = Pickle()
@@ -74,40 +76,66 @@ class Context_v_12(Model):
     delete_consensus_percentage = Int()
     require_pgp = Bool()
     show_small_cards = Bool()
+    show_receivers = Bool()
     presentation_order = Int()
 
 
-class Replacer1213(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: (terms_and_conditions)" % self.std_fancy
+        print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from," \
+              "disable_privacy_badge, disable_security_awareness_badge," \
+              "disable_security_awareness_questions, security_awareness_title," \
+              "security_awareness_text" % self.std_fancy
+
+        appdata = load_appdata()
 
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'terms_and_conditions':
-                new_node.terms_and_conditions = ''
+            if v.name == 'x_frame_options_mode':
+                new_node.x_frame_options_mode = 'deny'
+                continue
+
+            if v.name == 'x_frame_options_allow_from':
+                new_node.x_frame_options_allow_from = ''
+                continue
+
+            if v.name == 'disable_privacy_badge':
+                new_node.disable_privacy_badge = False
+                continue
+
+            if v.name == 'disable_security_awareness_badge':
+                new_node.disable_security_awareness_badge = False
+                continue
+
+            if v.name == 'disable_security_awareness_questions':
+                new_node.disable_security_awareness_questions = False
+                continue
+
+            if v.name == 'security_awareness_title':
+                new_node.security_awareness_title = appdata['node']['security_awareness_title']
+                continue
+
+            if v.name == 'security_awareness_text':
+                new_node.security_awareness_text = appdata['node']['security_awareness_text']
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
-        self.store_new.commit()
 
     def migrate_Context(self):
-        print "%s Context migration assistant: (show_receivers)" % self.std_fancy
+        print "%s Context migration assistant: (enable_private_messages)" % self.std_fancy
 
         old_contexts = self.store_old.find(self.model_from['Context'])
-
         for old_context in old_contexts:
             new_context = self.model_to['Context']()
             for _, v in new_context._storm_columns.iteritems():
-                if v.name == 'show_receivers':
-                    new_context.show_receivers = True
+                if v.name == 'enable_private_messages':
+                    new_context.enable_private_messages = True
                     continue
 
                 setattr(new_context, v.name, getattr(old_context, v.name))
 
             self.store_new.add(new_context)
-
-        self.store_new.commit()

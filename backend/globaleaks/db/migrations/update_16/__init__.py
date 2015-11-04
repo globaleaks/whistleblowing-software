@@ -76,8 +76,7 @@ class Notification_v_15(Model):
     zip_description = JSON()
 
 
-class Replacer1516(MigrationBase):
-
+class MigrationScript(MigrationBase):
     def migrate_Receiver(self):
         print "%s Receiver migration assistant" % self.std_fancy
 

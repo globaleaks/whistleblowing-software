@@ -189,7 +189,7 @@ class Comment_v_14(Model):
     mark = Unicode()
 
 
-class Replacer1415(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: added default_language and default_timezone" \
               "whistleblowing_question, whistleblowing_button" % self.std_fancy

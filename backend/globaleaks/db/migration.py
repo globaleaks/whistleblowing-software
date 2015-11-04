@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import importlib
 import os
 
 from storm.locals import create_database, Store
@@ -6,23 +7,23 @@ from storm.locals import create_database, Store
 from globaleaks.settings import GLSettings
 from globaleaks import models, FIRST_DATABASE_VERSION_SUPPORTED
 
-from globaleaks.db.migrations.update_11_12 import Replacer1112, Node_v_11, Context_v_11
-from globaleaks.db.migrations.update_12_13 import Replacer1213, Node_v_12, Context_v_12
-from globaleaks.db.migrations.update_13_14 import Replacer1314, Node_v_13, Context_v_13
-from globaleaks.db.migrations.update_14_15 import Replacer1415, Node_v_14, User_v_14, Context_v_14, Receiver_v_14, \
+from globaleaks.db.migrations.update_12 import Node_v_11, Context_v_11
+from globaleaks.db.migrations.update_13 import Node_v_12, Context_v_12
+from globaleaks.db.migrations.update_14 import Node_v_13, Context_v_13
+from globaleaks.db.migrations.update_15 import Node_v_14, User_v_14, Context_v_14, Receiver_v_14, \
     InternalTip_v_14, Notification_v_14, Stats_v_14, Comment_v_14
-from globaleaks.db.migrations.update_15_16 import Replacer1516, Receiver_v_15, Notification_v_15
-from globaleaks.db.migrations.update_16_17 import Replacer1617, Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
-from globaleaks.db.migrations.update_17_18 import Replacer1718, Node_v_17
-from globaleaks.db.migrations.update_18_19 import Replacer1819, Node_v_18
-from globaleaks.db.migrations.update_19_20 import Replacer1920, Node_v_19, Notification_v_19, Comment_v_19, Message_v_19, \
+from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
+from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
+from globaleaks.db.migrations.update_18 import Node_v_17
+from globaleaks.db.migrations.update_19 import Node_v_18
+from globaleaks.db.migrations.update_20 import Node_v_19, Notification_v_19, Comment_v_19, Message_v_19, \
     InternalTip_v_19, ReceiverTip_v_19, InternalFile_v_19, ReceiverFile_v_19, Receiver_v_19, Context_v_19
-from globaleaks.db.migrations.update_20_21 import Replacer2021, Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
+from globaleaks.db.migrations.update_21 import Node_v_20, Notification_v_20, Receiver_v_20, User_v_20, \
     Context_v_20, Step_v_20, Field_v_20, FieldOption_v_20, InternalTip_v_20
-from globaleaks.db.migrations.update_21_22 import Replacer2122, Context_v_21, InternalTip_v_21
-from globaleaks.db.migrations.update_22_23 import Replacer2223, InternalFile_v_22, Comment_v_22, Context_v_22, \
+from globaleaks.db.migrations.update_22 import Context_v_21, InternalTip_v_21
+from globaleaks.db.migrations.update_23 import InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
-from globaleaks.db.migrations.update_23_24 import Replacer2324, User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
+from globaleaks.db.migrations.update_24 import User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
     Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, ReceiverTip_v_23
 
 
@@ -70,22 +71,6 @@ def perform_version_update(starting_ver, ending_ver):
     @param ending_ver:
     @return:
     """
-    releases_supported = {
-        "1112": Replacer1112,
-        "1213": Replacer1213,
-        "1314": Replacer1314,
-        "1415": Replacer1415,
-        "1516": Replacer1516,
-        "1617": Replacer1617,
-        "1718": Replacer1718,
-        "1819": Replacer1819,
-        "1920": Replacer1920,
-        "2021": Replacer2021,
-        "2122": Replacer2122,
-        "2223": Replacer2223,
-        "2324": Replacer2324
-    }
-    
     to_delete_on_fail = []
     to_delete_on_success = []
 
@@ -110,12 +95,9 @@ def perform_version_update(starting_ver, ending_ver):
             
             print "Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
 
-            update_key = "%d%d" % (starting_ver, starting_ver + 1)
-            if update_key not in releases_supported:
-                raise NotImplementedError("mistake detected! %s" % update_key)
-
-            # Here is instanced the migration class
-            migration_script = releases_supported[update_key](table_history, old_db_file, new_db_file, starting_ver)
+            # Here is instanced the migration script
+            MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (starting_ver + 1))
+            migration_script = MigrationModule.MigrationScript(table_history, old_db_file, new_db_file, starting_ver)
 
             try:
                 migration_script.prologue()

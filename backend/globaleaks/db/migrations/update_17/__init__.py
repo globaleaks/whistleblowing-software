@@ -126,7 +126,7 @@ class Stats_v_16(Model):
     freemb = Int()
 
 
-class Replacer1617(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
 
