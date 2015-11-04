@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import transact
 from globaleaks.tests import helpers
 
 

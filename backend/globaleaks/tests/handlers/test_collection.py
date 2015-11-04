@@ -3,10 +3,11 @@ import shutil
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact_ro
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.handlers import collection
 from globaleaks.models import ReceiverTip
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
 class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
@@ -20,12 +21,8 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
 
     @transact_ro
     def get_rtips(self, store):
-        rtips_desc = []
         rtips = store.find(ReceiverTip)
-        for rtip in rtips:
-            rtips_desc.append({'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id})
-
-        return rtips_desc
+        return [{'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id} for rtip in rtips]
 
     @inlineCallbacks
     def test_download(self):

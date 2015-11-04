@@ -8,10 +8,11 @@
 import time
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.orm import transact
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import SecureFileDelete
 from globaleaks.security import overwrite_and_remove
-from globaleaks.settings import transact
 from globaleaks.utils.utility import log
 
 
@@ -40,6 +41,6 @@ class SecureFileDeleteSchedule(GLJob):
             self.start_time = time.time()
             log.debug("Starting secure delete of file %s" % file_to_delete)
             overwrite_and_remove(file_to_delete)
-            self.commit_file_deletion(file_to_delete)
+            yield self.commit_file_deletion(file_to_delete)
             current_run_time = time.time() - self.start_time
             log.debug("Ending secure delete of file %s (execution time: %.2f)" % (file_to_delete, current_run_time))

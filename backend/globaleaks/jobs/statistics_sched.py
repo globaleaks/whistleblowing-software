@@ -14,8 +14,9 @@ import os
 from twisted.internet import defer
 
 from globaleaks.anomaly import Alarm, compute_activity_level
+from globaleaks.orm import transact
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import GLSettings, transact
+from globaleaks.settings import GLSettings
 from globaleaks.models import Stats, Anomalies
 from globaleaks.utils.utility import log, datetime_now
 

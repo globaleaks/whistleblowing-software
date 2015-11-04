@@ -12,14 +12,16 @@ import shutil
 import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.settings import transact, transact_ro, GLSettings
+
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.handlers.rtip import db_access_rtip
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
-from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.rest import errors
+from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
 def serialize_file(internalfile):

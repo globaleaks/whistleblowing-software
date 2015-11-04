@@ -8,6 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
@@ -16,7 +17,7 @@ from globaleaks.handlers.submission import db_get_archived_preview_schema
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 

@@ -10,11 +10,12 @@ from cyclone.util import ObjectDict as OD
 from storm.expr import Asc
 from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
 
+from globaleaks.orm import transact, transact_ro
 from globaleaks.models import EventLogs, Notification
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.plugins import notification
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log

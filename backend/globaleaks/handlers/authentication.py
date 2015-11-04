@@ -9,8 +9,9 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import And
 
 from globaleaks import security
+from globaleaks.orm import transact_ro
 from globaleaks.models import User
-from globaleaks.settings import transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests

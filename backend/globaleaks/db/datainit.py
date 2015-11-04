@@ -9,10 +9,11 @@ import re
 import os
 
 from globaleaks import models
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.rest import errors, requests
-from globaleaks.settings import transact, transact_ro, GLSettings
+from globaleaks.settings import GLSettings
 from globaleaks.security import get_salt
 from globaleaks.third_party import rstr
 from globaleaks.utils.utility import datetime_null

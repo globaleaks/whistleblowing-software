@@ -7,11 +7,11 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import In
 
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
 from globaleaks.rest import requests
-from globaleaks.settings import transact, transact_ro
 from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now
 

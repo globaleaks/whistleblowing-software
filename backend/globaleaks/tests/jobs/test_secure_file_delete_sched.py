@@ -4,8 +4,9 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact
 from globaleaks.models import SecureFileDelete
-from globaleaks.settings import GLSettings, transact
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
 from globaleaks.jobs import secure_file_delete_sched

@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.orm import transact_ro
 from globaleaks.handlers import submission
 from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin.context import create_context, get_context_list
@@ -11,7 +12,7 @@ from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.plugins.base import Event
 from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
-from globaleaks.settings import GLSettings, transact_ro
+from globaleaks.settings import GLSettings
 from globaleaks.tests.helpers import MockDict, TestHandlerWithPopulatedDB, VALID_PGP_KEY1, VALID_PGP_KEY2, EXPIRED_PGP_KEY
 from globaleaks.utils.token import Token
 from globaleaks.utils.templating import Templating
