@@ -174,8 +174,8 @@ def get_tracked_files(store):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
     """
-    ifiles = [store.find(models.InternalFile).values(models.InternalFile.file_path)]
-    rfiles = [store.find(models.ReceiverFile).values(models.ReceiverFile.file_path)]
+    ifiles = list(store.find(models.InternalFile).values(models.InternalFile.file_path))
+    rfiles = list(store.find(models.ReceiverFile).values(models.ReceiverFile.file_path))
 
     return [os.path.basename(files) for files in list(set(ifiles + rfiles))]
 
