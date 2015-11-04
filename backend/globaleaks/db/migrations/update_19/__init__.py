@@ -2,15 +2,18 @@
 
 """
   Changes
-    - node: allow_iframes_inclusion
+    - node: header_title_receiptpage
 
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
+from globaleaks.utils.utility import every_language
 
-class Node_v_17(Model):
+
+class Node_v_18(Model):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -36,6 +39,7 @@ class Node_v_17(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     allow_unencrypted = Bool()
+    allow_iframes_inclusion = Bool()
     postpone_superpower = Bool()
     can_delete_submission = Bool()
     ahmia = Bool()
@@ -46,7 +50,6 @@ class Node_v_17(Model):
     whistleblowing_question = JSON()
     whistleblowing_button = JSON()
     enable_custom_privacy_badge = Bool()
-    custom_privacy_badge_tbb = JSON()
     custom_privacy_badge_tor = JSON()
     custom_privacy_badge_none = JSON()
     header_title_homepage = JSON()
@@ -55,16 +58,22 @@ class Node_v_17(Model):
     exception_email = Unicode()
 
 
-class Replacer1718(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: allow_iframes_inclusion" % self.std_fancy
+        print "%s Node migration assistant: header_title_receiptpage" % self.std_fancy
+
+        appdata_dict = load_appdata()
 
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'allow_iframes_inclusion':
-                new_node.allow_iframes_inclusion = False
+            if v.name == 'header_title_receiptpage':
+                # check needed to preserve funtionality if appdata will be altered in the future
+                if v.name in appdata_dict['node']:
+                    new_node.header_title_receiptpage = appdata_dict['node']['header_title_receiptpage']
+                else:
+                    new_node.header_title_receiptpage = every_language("")
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

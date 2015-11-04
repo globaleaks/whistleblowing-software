@@ -258,7 +258,7 @@ Context_v_20.steps = ReferenceSet(Context_v_20.id, Step_v_20.context_id)
 Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
 
-class Replacer2021(MigrationBase):
+class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant" % self.std_fancy
 

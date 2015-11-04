@@ -137,7 +137,7 @@ class Notification_v_22(Model):
     notification_suspension_time=Int()
 
 
-class Replacer2223(MigrationBase):
+class MigrationScript(MigrationBase):
     def fix_field_answer_id(self, f):
         if f['id'] == '':
             for x in self.model_from['Field']:

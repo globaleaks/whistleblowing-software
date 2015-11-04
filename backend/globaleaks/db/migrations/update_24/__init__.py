@@ -217,7 +217,7 @@ class ArchivedSchema_v_23(Model):
     schema = JSON()
 
 
-class Replacer2324(MigrationBase):
+class MigrationScript(MigrationBase):
     def epilogue(self):
         # Finalize loading the new whitleblower identity field
         load_default_fields(self.store_new)
