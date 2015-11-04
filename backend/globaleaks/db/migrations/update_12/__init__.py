@@ -2,7 +2,7 @@
 
 from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 
-from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 
 

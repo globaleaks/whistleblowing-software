@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
-from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import BaseModel, Model, ReceiverContext
 from globaleaks.utils.utility import every_language

@@ -21,7 +21,7 @@ import copy
 
 from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, db_forge_obj
 from globaleaks.utils.utility import datetime_null, uuid4, every_language

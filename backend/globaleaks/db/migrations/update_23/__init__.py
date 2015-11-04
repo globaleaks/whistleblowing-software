@@ -4,7 +4,7 @@ import json
 
 import os
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
-from globaleaks.db.migration_base import MigrationBase
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import db_save_questionnaire_answers, \
     extract_answers_preview
