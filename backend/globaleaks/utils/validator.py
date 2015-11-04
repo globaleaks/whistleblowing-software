@@ -63,9 +63,9 @@ def dict_v(_self, attr, value):
 
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSettings.memory_copy.maximum_textsize:
-                raise errors.InvalidModelInput("dict_v: text for key %s in %s" \
-                                                "overcome length limit of %d" % (key, attr,
-                                                                                 GLSettings.memory_copy.maximum_textsize))
+                raise errors.InvalidModelInput("dict_v: text for key %s in %s " \
+                                                "overcomes length limit of %d" % (key, attr,
+                                                                                  GLSettings.memory_copy.maximum_textsize))
 
         if isinstance(subvalue, dict):
             dict_v(_self, attr, subvalue)
