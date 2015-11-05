@@ -15,7 +15,6 @@ from storm.locals import Int, Bool, Pickle, Unicode, DateTime
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
-from globaleaks.db.datainit import load_appdata
 
 
 class Node_v_13(Model):
@@ -87,8 +86,6 @@ class MigrationScript(MigrationBase):
               "disable_security_awareness_questions, security_awareness_title," \
               "security_awareness_text" % self.std_fancy
 
-        appdata = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -114,11 +111,11 @@ class MigrationScript(MigrationBase):
                 continue
 
             if v.name == 'security_awareness_title':
-                new_node.security_awareness_title = appdata['node']['security_awareness_title']
+                new_node.security_awareness_title = self.appdata['node']['security_awareness_title']
                 continue
 
             if v.name == 'security_awareness_text':
-                new_node.security_awareness_text = appdata['node']['security_awareness_text']
+                new_node.security_awareness_text = self.appdata['node']['security_awareness_text']
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

@@ -5,9 +5,9 @@ import string
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata, load_default_fields
+from globaleaks.db.datainit import load_default_fields
 from globaleaks.models import BaseModel, Model
-from globaleaks.utils.utility import datetime_null, every_language
+from globaleaks.utils.utility import datetime_null
 
 
 class Node_v_23(Model):
@@ -231,12 +231,20 @@ class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_tippage" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
+        new_templates = [
+            'header_title_tippage',
+            'widget_comments_title',
+            'widget_messages_title',
+            'widget_files_title'
+        ]
+
         for _, v in new_node._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
+                continue
+
             if v.name == 'simplified_login':
                 new_node.simplified_login = True
                 continue
@@ -281,38 +289,6 @@ class MigrationScript(MigrationBase):
                 new_node.enable_proof_of_work = True
                 continue
 
-            if v.name == 'header_title_tippage':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.header_title_tippage = appdata_dict['node']['header_title_tippage']
-                else:
-                    new_node.header_title_tippage = every_language("")
-                continue
-
-            if v.name == 'widget_comments_title':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.widget_comments_title = appdata_dict['node']['widget_comments_title']
-                else:
-                    new_node.widget_comments_title = every_language("")
-                continue
-
-            if v.name == 'widget_messages_title':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.widget_messages_title = appdata_dict['node']['widget_messages_title']
-                else:
-                    new_node.widget_messages_title = every_language("")
-                continue
-
-            if v.name == 'widget_files_title':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.widget_files_title = appdata_dict['node']['widget_files_title']
-                else:
-                    new_node.widget_files_title = every_language("")
-                continue
-
             if v.name == 'can_grant_permissions':
                 new_node.can_grant_permissions = False
                 continue
@@ -329,7 +305,21 @@ class MigrationScript(MigrationBase):
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
+        new_templates = [
+            'identity_access_authorized_mail_template',
+            'identity_access_authorized_mail_title',
+            'identity_access_denied_mail_template',
+            'identity_access_denied_mail_title',
+            'identity_access_request_mail_template',
+            'identity_access_request_mail_title',
+            'identity_provided_mail_template',
+            'identity_provided_mail_title'
+        ]
+
         for _, v in new_notification._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
+                continue
+
             if v.name == 'tip_expiration_threshold':
                 new_notification.tip_expiration_threshold = 72 # that is the current default
                 continue

@@ -8,9 +8,7 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
-from globaleaks.utils.utility import every_language
 
 
 class Node_v_18(Model):
@@ -62,18 +60,13 @@ class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_title_receiptpage" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
+        new_templates = ['header_title_receiptpage']
+
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'header_title_receiptpage':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.header_title_receiptpage = appdata_dict['node']['header_title_receiptpage']
-                else:
-                    new_node.header_title_receiptpage = every_language("")
+            if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

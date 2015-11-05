@@ -22,9 +22,8 @@ import copy
 from storm.locals import Pickle, Int, Bool, Unicode, DateTime
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model, db_forge_obj
-from globaleaks.utils.utility import datetime_null, uuid4, every_language
+from globaleaks.utils.utility import datetime_null, uuid4
 
 
 class Node_v_14(Model):
@@ -194,8 +193,6 @@ class MigrationScript(MigrationBase):
         print "%s Node migration assistant: added default_language and default_timezone" \
               "whistleblowing_question, whistleblowing_button" % self.std_fancy
 
-        appdata = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -205,11 +202,11 @@ class MigrationScript(MigrationBase):
                 continue
 
             if v.name == 'whistleblowing_question':
-                new_node.whistleblowing_question = appdata['node']['whistleblowing_question']
+                new_node.whistleblowing_question = self.appdata['node']['whistleblowing_question']
                 continue
 
             if v.name == 'whistleblowing_button':
-                new_node.whistleblowing_button = appdata['node']['whistleblowing_button']
+                new_node.whistleblowing_button = self.appdata['node']['whistleblowing_button']
                 continue
 
             if v.name == 'enable_custom_privacy_badge':
@@ -268,7 +265,7 @@ class MigrationScript(MigrationBase):
         new_field_model = self.model_to['Field']
         new_fieldoption_model = self.model_to['FieldOption']
 
-        steps = load_appdata()['default_questionnaire']
+        steps = self.appdata['default_questionnaire']
         i = 1
         for step in steps:
             step['number'] = i
@@ -364,7 +361,7 @@ class MigrationScript(MigrationBase):
         print "%s InternalTip migration assistant" % self.std_fancy
         steps = []
 
-        steps.append(load_appdata()['default_questionnaire'][0])
+        steps.append(self.appdata['default_questionnaire'][0])
 
         i = 1
         for step in steps:
@@ -470,17 +467,15 @@ class MigrationScript(MigrationBase):
 
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
+
+        new_templates = [
+            'admin_anomaly_template',
+            'pgp_expiration_alert',
+            'pgp_expiration_notice'
+        ]
+
         for _, v in new_notification._storm_columns.iteritems():
-            if v.name == 'admin_anomaly_template':
-                new_notification.admin_anomaly_template = every_language("")
-                continue
-
-            if v.name == 'pgp_expiration_alert':
-                new_notification.pgp_expiration_alert = every_language("")
-                continue
-
-            if v.name == 'pgp_expiration_notice':
-                new_notification.pgp_alert_notice = every_language("")
+            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name))
