@@ -1,7 +1,6 @@
 # -*- coding: UTF-8
 # settings: Define GLSettings, main class handling GlobaLeeaks runtime settings
 # ******
-import sys
 import glob
 import shutil
 import logging
@@ -19,7 +18,7 @@ from twisted.internet import reactor
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
-from globaleaks.rest.errors import DatabaseIntegrityError
+
 
 verbosity_dict = {
     # do not exist anything above DEBUG, so is used a -1)

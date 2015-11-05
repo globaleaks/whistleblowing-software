@@ -8,11 +8,10 @@ from cyclone.web import HTTPError
 
 from storm import exceptions, tracer
 from storm.databases.sqlite import sqlite
-from storm.exceptions import OperationalError
 from storm.zope.zstorm import ZStorm
 
 from twisted.internet import reactor
-from twisted.internet.defer import succeed, inlineCallbacks
+from twisted.internet.defer import succeed
 from twisted.internet.threads import deferToThreadPool
 
 from globaleaks.rest.errors import DatabaseIntegrityError
