@@ -1,0 +1,11 @@
+Dear %RecipientName%,
+
+This is an email to notify you that the custodian has authorized the access to the wistleblowing identity for the submission %TipNum%
+
+The updated information can be accessed at:
+via Tor at: %TorURL%
+via Tor2web at: %T2WURL%
+
+Kind regards,
+%NodeName%
+

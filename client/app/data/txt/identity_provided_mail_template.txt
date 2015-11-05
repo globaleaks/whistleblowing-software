@@ -3,8 +3,8 @@ Dear %RecipientName%,
 This is an email to notify you that a whistleblower has provided their identity
 
 The submission can be accessed:
-via Tor at: %IdentyRequestsTorURL%
-via Tor2web at: %IdentityRequestsT2WURL%
+via Tor at: %TorURL%
+via Tor2web at: %T2WURL%
 
 Kind regards,
 %NodeName%

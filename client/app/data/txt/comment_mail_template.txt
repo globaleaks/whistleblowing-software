@@ -3,8 +3,8 @@ Dear %RecipientName%,
 This is an email to notify you that %CommentSource% has commented on a previous submission.
 
 The submission can be accessed:
-via Tor at: %TipTorURL%
-via Tor2web at: %TipT2WURL%
+via Tor at: %TorURL%
+via Tor2web at: %T2WURL%
 
 Kind regards,
 %NodeName%
