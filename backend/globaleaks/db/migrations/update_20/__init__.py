@@ -12,9 +12,7 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
-from globaleaks.utils.utility import every_language
 
 
 class Node_v_19(Model):
@@ -214,23 +212,18 @@ class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
+        new_templates = ['context_selector_label']
+
         for _, v in new_node._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
+                continue
+
             if v.name == 'can_postpone_expiration':
                 old_attr = 'postpone_superpower'
                 setattr(new_node, v.name, getattr(old_node, old_attr))
-                continue
-
-            if v.name == 'context_selector_label':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.context_selector_label = appdata_dict['node']['context_selector_label']
-                else:
-                    new_node.context_selector_label = every_language("")
                 continue
 
             if v.name == 'disable_key_code_hint':
@@ -249,58 +242,27 @@ class MigrationScript(MigrationBase):
     def migrate_Notification(self):
         print "%s Notification migration assistant: various templates addeed" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
+        new_templates = [
+            'admin_anomaly_mail_title',
+            'admin_anomaly_mail_template',
+            'notification_digest_mail_title',
+            'tip_expiration_mail_title',
+            'tip_expiration_template'
+        ]
+
         for _, v in new_notification._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
+                continue
+
             if v.name == 'send_email_for_every_event':
                 new_notification.send_email_for_every_event = True
                 continue
 
             if v.name == 'torify':
                 new_notification.torify = True
-                continue
-
-            if v.name == 'admin_anomaly_mail_title':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.admin_anomaly_mail_title = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.admin_anomaly_mail_title = every_language("")
-                continue
-
-            if v.name == 'admin_anomaly_mail_template':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.admin_anomaly_mail_template = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.admin_anomaly_mail_template = every_language("")
-                continue
-
-            if v.name == 'notification_digest_mail_title':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.notification_digest_mail_title = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.notification_digest_mail_title = every_language("")
-                continue
-
-            if v.name == 'tip_expiration_mail_title':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.tip_expiration_mail_title = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.tip_expiration_mail_title = every_language("")
-                continue
-
-            if v.name == 'tip_expiration_template':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.tip_expiration_template = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.tip_expiration_template = every_language("")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name))

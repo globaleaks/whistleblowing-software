@@ -11,9 +11,8 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import Model
-from globaleaks.utils.utility import datetime_null, every_language
+from globaleaks.utils.utility import datetime_null
 from globaleaks.security import GLBPGP
 
 
@@ -130,22 +129,17 @@ class MigrationScript(MigrationBase):
     def migrate_Node(self):
         print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
+        new_templates = ['header_title_submissionpage']
+
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'header_title_homepage':
-                new_node.header_title_homepage = {old_node.default_language: old_node.name}
+            if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
                 continue
 
-            if v.name == 'header_title_submissionpage':
-                # check needed to preserve funtionality if appdata will be altered in the future
-                if v.name in appdata_dict['node']:
-                    new_node.header_title_submissionpage = appdata_dict['node']['header_title_submissionpage']
-                else:
-                    new_node.header_title_submissionpage = every_language("")
+            if v.name == 'header_title_homepage':
+                new_node.header_title_homepage = {old_node.default_language: old_node.name}
                 continue
 
             if v.name == 'landing_page':
@@ -160,42 +154,18 @@ class MigrationScript(MigrationBase):
     def migrate_Notification(self):
         print "%s Notification migration assistant: (pgp_expiration_alert templates)" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
+        new_templates = [
+            'admin_pgp_alert_mail_template',
+            'admin_pgp_alert_mail_title',
+            'pgp_alert_mail_template',
+            'pgp_alert_mail_title',
+        ]
+
         for _, v in new_notification._storm_columns.iteritems():
-            if v.name == 'admin_pgp_alert_mail_template':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.admin_pgp_alert_mail_template = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.admin_pgp_alert_mail_template = every_language("")
-                continue
-
-            if v.name == 'admin_pgp_alert_mail_title':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.admin_pgp_alert_mail_title = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.admin_pgp_alert_mail_title = every_language("")
-                continue
-
-            if v.name == 'pgp_alert_mail_template':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.pgp_alert_mail_template = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.pgp_alert_mail_template = every_language("")
-                continue
-
-            if v.name == 'pgp_alert_mail_title':
-                # check needed to preserve funtionality if templates will be altered in the future
-                if v.name in appdata_dict['templates']:
-                    new_notification.pgp_alert_mail_title = appdata_dict['templates'][v.name]
-                else:
-                    new_notification.pgp_alert_mail_title = every_language("")
+            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name))

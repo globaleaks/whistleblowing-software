@@ -10,7 +10,10 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks.db.datainit import load_appdata
 from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import every_language
+
 
 def variableToSQL(var, db_type):
     """
@@ -116,6 +119,8 @@ class MigrationBase(object):
     This is the base class used by every Updater
     """
     def __init__(self, table_history, start_version, store_old, store_new):
+        self.appdata = load_appdata()
+
         self.table_history = table_history
         self.start_version = start_version
 
@@ -256,6 +261,19 @@ class MigrationBase(object):
                 setattr(new_obj, v.name, old_value)
 
         self.store_new.add(new_obj)
+
+    def update_model_with_new_templates(self, model_obj, var_name, templates_list, templates_dict):
+        if var_name in templates_list:
+            # check needed to preserve funtionality if templates will be altered in the future
+            if var_name in templates_dict:
+                template_text = templates_dict[var_name]
+            else:
+                template_text = every_language("")
+
+            setattr(model_obj, var_name, template_text)
+            return True
+
+        return False
 
     def migrate_ApplicationData(self):
         return

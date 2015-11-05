@@ -2,9 +2,7 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_appdata
 from globaleaks.models import BaseModel, Model, ReceiverContext
-from globaleaks.utils.utility import every_language
 
 templates_list = [
     'admin_anomaly_activities',
@@ -281,22 +279,11 @@ class MigrationScript(MigrationBase):
     def migrate_Notification(self):
         print "%s Notification migration assistant" % self.std_fancy
 
-        appdata_dict = load_appdata()
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-            # In this release we enforce reloading all the updated templates due to the
-            # semplification applied and the fact that we are not aware of any adopter
-            # that has customized them.
-            if v.name in templates_list:
-                if v.name in appdata_dict['templates']:
-                    value = appdata_dict['templates'][v.name]
-                else:
-                    value = every_language("")
-
-                setattr(new_notification, v.name, value)
+            if self.update_model_with_new_templates(new_notification, v.name, templates_list, self.appdata['node']):
                 continue
 
             if v.name == 'notification_threshold_per_hour':

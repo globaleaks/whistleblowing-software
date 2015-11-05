@@ -20,7 +20,6 @@
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
-from globaleaks.utils.utility import every_language
 
 
 class Receiver_v_15(Model):
@@ -133,21 +132,18 @@ class MigrationScript(MigrationBase):
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
+        new_templates = ['ping_mail_template', 'ping_mail_title']
+
         for _, v in new_notification._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
+                continue
+
             if v.name == 'disable_admin_notification_emails':
                 new_notification.disable_admin_notification_emails = False
                 continue
 
             if v.name == 'disable_receivers_notification_emails':
                 new_notification.disable_receivers_notification_emails = False
-                continue
-
-            if v.name == 'ping_mail_template':
-                new_notification.ping_mail_template = every_language("")
-                continue
-
-            if v.name == 'ping_mail_title':
-                new_notification.ping_mail_title = every_language("")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
