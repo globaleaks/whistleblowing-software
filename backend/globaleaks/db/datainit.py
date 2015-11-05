@@ -9,7 +9,7 @@ import re
 import os
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.rest import errors, requests

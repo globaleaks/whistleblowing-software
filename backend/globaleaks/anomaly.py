@@ -13,7 +13,7 @@
 from twisted.internet import defer
 
 from globaleaks import models, event
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact_ro
 from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache

@@ -5,12 +5,9 @@ import os
 import re
 import sys
 import traceback
-import transaction
 
 from storm import exceptions
 
-from twisted.python.threadpool import ThreadPool
-from twisted.internet import reactor
 from twisted.internet.defer import succeed, inlineCallbacks
 from twisted.internet.threads import deferToThreadPool
 
