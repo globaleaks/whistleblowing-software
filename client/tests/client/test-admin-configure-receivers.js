@@ -1,7 +1,5 @@
 describe('admin add receivers', function() {
   it('should add new receivers', function() {
-    var deferred = protractor.promise.defer();
-
     browser.setLocation('admin/receivers');
 
     var add_receiver = function(username, name, address) {
@@ -13,9 +11,6 @@ describe('admin add receivers', function() {
 
     add_receiver("receiver2", "Recipient 2", "globaleaks-receiver2@mailinator.com").then(function() {
       add_receiver("receiver3", "Recipient 3", "globaleaks-receiver3@mailinator.com");
-      deferred.fulfill();
     });
-
-    return deferred;
   });
 });

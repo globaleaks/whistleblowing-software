@@ -1,7 +1,5 @@
 describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
-    var deferred = protractor.promise.defer();
-
     browser.setLocation('wizard');
 
     // Go to step 2
@@ -31,9 +29,6 @@ describe('globaLeaks setup wizard', function() {
     // Go to admin interface
     element(by.id('ButtonNext3')).click().then(function() {
       expect(browser.getLocationAbsUrl()).toContain('/admin/landing');
-      deferred.fulfill();
     });
-
-    return deferred;
   });
 });

@@ -1,7 +1,5 @@
 describe('adming configure node', function() {
   it('should configure node', function() {
-    var deferred = protractor.promise.defer();
-
     browser.setLocation('admin/advanced_settings');
 
     /// simplify the configuration in order to simplfy initial tests
@@ -27,12 +25,9 @@ describe('adming configure node', function() {
       element(by.model('admin.notification.exception_email_address')).sendKeys('globaleaks-exceptions@mailinator.com');
 
       element(by.css('[data-ng-click="update(admin.notification)"]')).click().then(function() {
-        deferred.fulfill();
+
       });
 
     });
-
-    return deferred;
-
   });
 });
