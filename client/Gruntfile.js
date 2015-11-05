@@ -55,6 +55,18 @@ module.exports = function(grunt) {
             dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
           }]
       },
+      end2end_coverage: {
+          files: [{
+            dest: 'build/',
+            cwd: 'app/',
+            src: [
+              '**',
+              '!scripts/**/*.js', // Don't copy scripts that will be instrumented.
+              'scripts/crypto/**/*.js' // Copy scripts that should not be instrumented.
+            ],
+            expand: true
+          }]
+      },
       unittests: {
         files: [
           {
@@ -278,6 +290,35 @@ module.exports = function(grunt) {
       }
     },
 
+    instrument: {
+      files: 'scripts/**/*.js',
+      options: {
+        lazy: true,
+        cwd: 'app/',
+        basePath: 'build'
+      }
+    },
+    protractor_coverage: {
+      options: {
+        keepAlive: true,
+        noColor: false,
+        coverageDir: 'coverage'
+      },
+      local: {
+        options: {
+          configFile: 'tests/end2end/protractor-coverage.config.js'
+        }
+      }
+    },
+    makeReport: {
+      src: 'coverage/coverage*.json',
+      options: {
+        type: 'lcov',
+        dir: 'coverage',
+        print: 'detail'
+      }
+    }
+
   });
 
   // Prefer explicit to loadNpmTasks to:
@@ -304,6 +345,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-saucelabs');
+  grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-protractor-coverage');
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
@@ -384,7 +427,7 @@ module.exports = function(grunt) {
 
   function str_escape (val) {
       if (typeof(val)!="string") return val;
-      return val      
+      return val
         .replace(/[\n]/g, '\\n')
         .replace(/[\t]/g, '\\r');
   }
@@ -832,4 +875,53 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test-browserchecks', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-browserchecks-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
+
+  grunt.registerTask('generateCoverallsJson', function() {
+    var done = this.async();
+    var coveralls = require('coveralls');
+
+    coveralls.getBaseOptions(function(err, options) {
+      if (err) {
+        grunt.log.error("Failed to get options, with error: " + err);
+        return done(err);
+      }
+
+      var fileName = 'coverage/lcov.info';
+      fs.readFile(fileName, 'utf8', function(err, fileContent) {
+        if (err) {
+          grunt.log.error("Failed to read file '" + fileName + "', with error: " + err);
+          return done(err);
+        }
+
+        coveralls.convertLcovToCoveralls(fileContent, options, function(err, coverallsJson) {
+          if (err) {
+            grunt.log.error("Failed to convert '" + fileName + "' to coveralls: " + err);
+            return done(err);
+          }
+
+          // fix file paths so submitting this info with the python coverage works correctly on coveralls.
+          if (coverallsJson.source_files) {
+            coverallsJson.source_files.forEach(function(srcfile) {
+              srcfile.name = "../client/" + srcfile.name;
+            });
+          }
+
+          var dstpath = 'coverage/coveralls.json';
+          fs.writeFileSync(dstpath, JSON.stringify(coverallsJson));
+
+          grunt.verbose.ok("Successfully converted " + fileName + " to coveralls json.");
+          done();
+        });
+      });
+    });
+  });
+
+  grunt.registerTask('end2end-coverage', [
+    'clean:build',
+    'copy:end2end_coverage',
+    'instrument',
+    'protractor_coverage:local',
+    'makeReport',
+    'generateCoverallsJson'
+  ]);
 };
