@@ -4,3 +4,4 @@ app/components/
 pot/
 build/
 dest
+coverage
