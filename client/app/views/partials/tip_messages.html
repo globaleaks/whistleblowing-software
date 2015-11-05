@@ -32,20 +32,20 @@
           <span data-ng-switch-when="false">
             <a id="button-enable-whistleblower-messages" class="btn btn-primary" data-ng-click="allowWhistleblowerToMessage()">
               <i class="glyphicon glyphicon-ok-circle"></i>
-              <span data-translate>Allow the whistleblower to write messages</span>
+              <span data-translate>Allow the whistleblower to send messages</span>
             </a>
           </span>
           <span data-ng-switch-when="true">
             <a id="button-enable-whistleblower-messages" class="btn btn-danger" data-ng-click="denyWhistleblowerToMessage()">
               <i class="glyphicon glyphicon-ban-circle"></i>
-              <span data-translate>Deny the whistleblower to write messages</span>
+              <span data-translate>Deny the whistleblower to send messages</span>
             </a>
           </span>
         </span>
       </div>
     </div>
     <div data-ng-if="role == 'whistleblower' && !tip.enable_two_way_messages">
-      <span data-translate>You are still not allowed to write messages.</span>
+      <span data-translate>You are not allowed to write messages.</span>
     </div>
     <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
       <div id="message-{{$index}}" data-ng-switch="" on="message.type">

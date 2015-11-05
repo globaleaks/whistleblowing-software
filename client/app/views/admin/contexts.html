@@ -190,13 +190,17 @@
                           <input data-ng-model="context.enable_comments" type="checkbox" />
                           <label data-translate>Enable comments</label>
                         </div>
+                        <div class="form-group" data-ng-if="context.enable_comments">
+                          <input data-ng-model="context.enable_two_way_comments" type="checkbox" />
+                          <label data-translate>Allow whistleblowers to write comments</label>
+                        </div>
                         <div class="form-group">
                           <input data-ng-model="context.enable_messages" type="checkbox" />
                           <label data-translate>Enable private messages</label>
                         </div>
-                        <div class="form-group" data-ng-if="context.enable_comments || context.enable_messages">
+                        <div class="form-group" data-ng-if="context.enable_messages">
                           <input data-ng-model="context.enable_two_way_messages" type="checkbox" />
-                          <label data-translate>Allow whistleblowers to write comments and send messages</label>
+                          <label data-translate>Allow whistleblowers to write send messages</label>
                         </div>
                         <div class="form-group">
                           <input data-ng-model="context.enable_attachments" type="checkbox" />

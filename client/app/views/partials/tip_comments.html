@@ -39,7 +39,7 @@
       </div>
     </div>
     <div data-ng-if="role == 'whistleblower' && !tip.enable_two_way_comments">
-      <span data-translate>You are still not allowed to write comments.</span>
+      <span data-translate>You are not allowed to write comments.</span>
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="comment in tip.comments | orderBy:'creation_date':true">
       <div id="comment-{{$index}}" data-ng-switch="" on="comment.type">
