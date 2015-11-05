@@ -1,7 +1,5 @@
 describe('admin add contexts', function() {
   it('should add new contexts', function() {
-    var deferred = protractor.promise.defer();
-
     browser.setLocation('admin/contexts');
 
     var add_context = function(context) {
@@ -15,13 +13,10 @@ describe('admin add contexts', function() {
           element(by.id('context-0')).element(by.css('.actionButtonContextSave')).click().then(function() {
             add_context('Context 2').then(function() {
               add_context('Context 3');
-              deferred.fulfill();
             });
           });
         });
       });
     });
-
-    return deferred;
   });
 });

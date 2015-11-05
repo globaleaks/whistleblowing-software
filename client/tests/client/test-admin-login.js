@@ -1,7 +1,5 @@
 describe('admin login', function() {
   it('should login as admin', function() {
-    var deferred = protractor.promise.defer();
-
     browser.get('/#/admin');
 
     element(by.model('loginUsername')).sendKeys('admin');
@@ -9,9 +7,6 @@ describe('admin login', function() {
 
     element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
       expect(browser.getLocationAbsUrl()).toContain('/admin/landing');
-      deferred.fulfill();
     });
-
-    return deferred;
   });
 });
