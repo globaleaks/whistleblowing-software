@@ -89,11 +89,6 @@ class GLSettingssClass(object):
 
         self.set_ramdisk_path()
 
-        # list of plugins available in the software
-        self.notification_plugins = [
-            'MailNotification',
-        ]
-
         self.default_password = 'globaleaks'
 
         # some singleton classes: sessions and some event queues

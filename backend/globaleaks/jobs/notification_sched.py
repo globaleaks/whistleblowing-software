@@ -63,7 +63,7 @@ class EventLogger(object):
         elif self.trigger == 'File':
             self.template_type = u'file'
         elif self.trigger == 'ExpiringTip':
-            self.template_type = u'upcoming_tip_expiration'
+            self.template_type = u'tip_expiration'
         else:
             raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
 
@@ -86,7 +86,7 @@ class EventLogger(object):
         _elemscount = store.find(self.model, self.model.new == True).count()
 
         if _elemscount > (GLSettings.jobs_operation_limit * 10):
-            # If this situation happen, we are facing a shitload of problem.
+            # If this situation happen, we are facing an important load.
             # The reasonable option is that the entire Notification get skipped for this specific Trigger
             # all the events are marked as "new = False" and "chi si è visto si è visto"!
             # plus, the Admin get notified about it with an email.

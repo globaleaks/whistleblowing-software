@@ -42,7 +42,7 @@ class Templating(object):
                                   # Upcoming expire use the same templates of Tip
                                   # and currently only one template is defined
                                   # considering exportable only not non sensitive info
-                                  u'upcoming_tip_expiration': TipKeyword,
+                                  u'tip_expiration': TipKeyword,
                                   u'receiver_notification_limit_reached': ReceiverKeyword,
                                 }
 
@@ -125,6 +125,8 @@ class TipKeyword(_KeyWord):
     tip_keywords = [
         '%TipTorURL%',
         '%TipT2WURL%',
+        '%TorURL%',
+        '%TorURL%',
         '%TipNum%',
         '%EventTime%',
         '%ExpirationDate%',
@@ -161,6 +163,12 @@ class TipKeyword(_KeyWord):
             retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)!'
 
         return retstr
+
+    def TORURL(self):
+        return self.TipTorURL()
+
+    def T2WURL(self):
+        return self.T2WURL()
 
     def TipNum(self):
         """
