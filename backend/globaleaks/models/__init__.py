@@ -729,7 +729,7 @@ class Receiver(Model):
 
 class EventLogs(Model):
     """
-    Class used to keep track of the notification to be display to the receiver
+    Class used to keep track of the notification to be displayed to the receiver
     """
     creation_date = DateTime(default_factory=datetime_now)
     description = JSON()

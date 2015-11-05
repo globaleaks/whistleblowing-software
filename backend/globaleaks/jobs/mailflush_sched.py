@@ -8,7 +8,7 @@
 
 from cyclone.util import ObjectDict as OD
 from storm.expr import Asc
-from twisted.internet.defer import inlineCallbacks, Deferred, returnValue
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.models import EventLogs, Notification
@@ -16,64 +16,12 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
-from globaleaks.plugins import notification
+from globaleaks.notification import MailNotification, mark_event_as_notified
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
 reactor_override = None
-
-
-class NotificationMail(object):
-    def __init__(self, plugin_used):
-        self.plugin_used = plugin_used
-
-    @inlineCallbacks
-    def do_every_notification(self, eventOD):
-        notify = self.plugin_used.do_notify(eventOD)
-
-        if isinstance(notify, Deferred):
-            notify.addCallback(self.every_notification_succeeded, eventOD.orm_id)
-            notify.addErrback(self.every_notification_failed, eventOD.orm_id)
-            yield notify
-        else:
-            yield self.every_notification_failed(None, eventOD.orm_id)
-
-    @transact
-    def every_notification_succeeded(self, store, result, event_id):
-        if event_id:
-            log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
-            evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-            evnt.mail_sent = True
-        else:
-            log.debug("Mail (Digest|Anomaly) correctly sent")
-
-    @transact
-    def every_notification_failed(self, store, failure, event_id):
-        if event_id:
-            log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
-            evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-            if not evnt:
-                log.info("Race condition spotted: Event has been deleted during the notification process")
-            else:
-                evnt.mail_sent = True
-        else:
-            log.err("Mail (Digest|Anomaly) error")
-
-
-@transact
-def mark_event_as_sent(store, event_id):
-    """
-    Maybe for digest, maybe for filtering, this function mark an event as sent,
-    but is not used in the "official notification success"
-    """
-    evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-
-    if not evnt:
-        log.info("Race condition spotted: Event has been deleted during the notification process")
-    else:
-        evnt.mail_sent = True
-        log.debug("Marked event [%s] as sent" % evnt.title)
 
 
 @transact_ro
@@ -235,13 +183,9 @@ class MailflushSchedule(GLJob):
     # sorry for the double negation, we are sleeping two seconds below.
     skip_sleep = False
 
+    mail_notification = MailNotification()
+
     def ping_mail_flush(self, notification_settings, receivers_synthesis):
-        """
-        TODO This function should be implemented as a clean and testable plugin in the
-        way defined in plugin/base.py and plugin/notification.py, and/or is the opportunity
-        to review these classes, at the moment is a simplified version that just create a
-        ping email and send it via sendmail.
-        """
         for _, data in receivers_synthesis.iteritems():
 
             receiver_dict, winks = data
@@ -298,14 +242,10 @@ class MailflushSchedule(GLJob):
 
         if len(to_be_suppressed):
             for eid in to_be_suppressed:
-                yield mark_event_as_sent(eid)
-
-        plugin = getattr(notification, GLSettings.notification_plugins[0])()
-        # This wrap calls plugin/notification.MailNotification
-        notifcb = NotificationMail(plugin)
+                yield mark_event_as_notified(eid)
 
         for qe in filtered_events:
-            yield notifcb.do_every_notification(qe)
+            yield self.mail_notification.do_every_notification(qe)
 
             if not self.skip_sleep:
                 yield deferred_sleep(2)
