@@ -224,7 +224,7 @@ class MigrationScript(MigrationBase):
 
         # Apply fixes to the counters
         self.entries_count['Field'] += 21
-        self.entries_count['FieldAttr'] += 57
+        self.entries_count['FieldAttr'] += 56
         self.entries_count['FieldOption'] += 3
         self.entries_count['FieldField'] += 20
 
