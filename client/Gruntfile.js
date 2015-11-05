@@ -306,7 +306,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-saucelabs');
 
   var readDynamicStrings = function() {
-    var filecontent = grunt.file.read('app/data/dynamic_strings.json'),
+    var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
 
     ret = {};
     ret['mapping'] = JSON.parse(filecontent);
@@ -595,7 +595,7 @@ module.exports = function(grunt) {
       translationStringCount += 1;
     };
 
-    function extractPotFromHTMLFile(filepath) {
+    function extractPOFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
@@ -609,7 +609,7 @@ module.exports = function(grunt) {
 
     };
 
-    function extractPotFromJSONFile(filepath) {
+    function extractPOFromJSONFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
@@ -618,7 +618,7 @@ module.exports = function(grunt) {
       }
     };
 
-    function extractPotFromTXTFile(filepath) {
+    function extractPOFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
           lines = filecontent.split("\n"),
           result;
@@ -631,22 +631,22 @@ module.exports = function(grunt) {
       }
     };
 
-    extractPotFromHTMLFile('app/globaleaks.html');
+    extractPOFromHTMLFile('app/globaleaks.html');
 
     /* Extract strings view file used to anticipate strings on transifex */
-    extractPotFromHTMLFile('app/translations.html');
+    extractPOFromHTMLFile('app/translations.html');
 
     grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
       var filepath = path.join('app/views/', subdir || '', filename || '');
-      extractPotFromHTMLFile(filepath);
+      extractPOFromHTMLFile(filepath);
     });
 
-    grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/data/txt', subdir || '', filename || '');
-      extractPotFromTXTFile(filepath);
+    grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
+      var filepath = path.join('app/data_src/txt', subdir || '', filename || '');
+      extractPOFromTXTFile(filepath);
     });
 
-    extractPotFromJSONFile('app/data/appdata.json')
+    extractPOFromJSONFile('app/data_src/appdata.json');
 
     grunt.file.mkdir("pot");
 
@@ -677,9 +677,7 @@ module.exports = function(grunt) {
       strings = gt.listKeys("en", "");
 
       for (var lang_code in supported_languages) {
-
-        var translations = {},
-          output;
+        var translations = {}, output;
 
         strings.forEach(function(string){
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
@@ -704,26 +702,67 @@ module.exports = function(grunt) {
       fileContents = fs.readFileSync("pot/en.po");
 
     fetchTxTranslations(function(supported_languages){
-      gt.addTextdomain("en", fileContents);
-
-      for (var lang_code in supported_languages) {
-        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-      }
-
-      var json = JSON.parse(fs.readFileSync("app/data/appdata.json")),
+      var json = JSON.parse(fs.readFileSync("app/data_src/appdata.json")),
           output = {},
           version = json['version'],
           default_questionnaire = json['default_questionnaire'],
           templates = json['templates'],
           templates_sources = {};
 
-      grunt.file.recurse('app/data/txt', function(absdir, rootdir, subdir, filename) {
+      var translate_model = function(object, keys) {
+        for (var k in keys) {
+          for (var lang_code in supported_languages) {
+            object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
+          }
+        }
+      }
+
+      var translate_fieldattr = function(fieldattr) {
+        if (fieldattr['type'] == 'localized') {
+          for (var lang_code in supported_languages) {
+            fieldattr['value'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fieldattr['value']['en'])));
+          }
+        }
+      }
+
+      var translate_field = function(field) {
+        translate_model(field, ['label', 'description', 'hint', 'multi_entry_hint']);
+
+        for (var i in field['attrs']) {
+          translate_fieldattr(field['attrs'][i]);
+        }
+
+        for (var c in field['children']) {
+          translate_field(field['children'][c]);
+        }
+      }
+
+      var translate_step = function(step) {
+        translate_model(step, ['label', 'description']);
+
+        for (var c in step['children']) {
+          translate_field(step['children'][c]);
+        }
+      }
+
+      var translate_questionnaire = function(questionnaire) {
+        for (var s in questionnaire) {
+          translate_step(questionnaire[s]);
+        };
+      }
+
+      gt.addTextdomain("en", fileContents);
+
+      for (var lang_code in supported_languages) {
+        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+      }
+
+      grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
         var template_name = filename.split('.txt')[0],
-            filepath = path.join('app/data/txt', subdir || '', filename || ''),
+            filepath = path.join('app/data_src/txt', subdir || '', filename || ''),
             result;
 
         templates_sources[template_name] = grunt.file.read(filepath);
-
       });
 
       for (var lang_code in supported_languages) {
@@ -746,71 +785,38 @@ module.exports = function(grunt) {
 
           templates[template_name][lang_code] = tmp;
         }
-      }
+      };
 
       output['version'] = version;
       output['default_questionnaire'] = default_questionnaire;
       output['templates'] = templates;
-
       output['node'] = {};
 
-      for (var k in json['node']){
+      for (var k in json['node']) {
         output['node'][k] = {};
         for (var lang_code in supported_languages) {
           output['node'][k][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json['node'][k]['en'])));
+        };
+      };
 
-        }
-      }
-
-      var model_translate = function(object, keys) {
-        for (var k in keys) {
-          for (var lang_code in supported_languages) {
-            object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
-          }
-        }
-      }
-
-      var fieldattr_translate = function(fieldattr) {
-        if (fieldattr['type'] == 'localized') {
-          for (var lang_code in supported_languages) {
-            fieldattr['value'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fieldattr['value']['en'])));
-          }
-        }
-      }
-
-      var field_translate = function(field) {
-        model_translate(field, ['label', 'description', 'hint', 'multi_entry_hint']);
-
-        for (var i in field['attrs']) {
-          fieldattr_translate(field['attrs'][i]);
-        }
-
-        for (var c in field['children']) {
-          field_translate(field['children'][c]);
-        }
-      }
-
-      var step_translate = function(step) {
-        model_translate(step, ['label', 'description']);
-
-        for (var c in step['children']) {
-          field_translate(step['children'][c]);
-        }
-      }
-
-
-      for (var f in output['default_questionnaire']) {
-          step_translate(output['default_questionnaire'][f]);
-      }
+      translate_questionnaire(output['default_questionnaire']);
 
       output = JSON.stringify(output);
 
-      fs.writeFileSync("app/data/appdata_l10n.json", output);
+      fs.writeFileSync("app/data/appdata.json", output);
+
+      grunt.file.recurse('app/data_src/fields', function(absdir, rootdir, subdir, filename) {
+        var srcpath = path.join('app/data_src/fields', subdir || '', filename || '');
+        var dstpath = path.join('app/data/fields', subdir || '', filename || '');
+        var field = JSON.parse(fs.readFileSync(srcpath));
+        translate_field(field);
+        field = JSON.stringify(field);
+        fs.writeFileSync(dstpath, field);
+      });
 
       console.log("Fields file was written!");
 
       done();
-
     });
 
   });
