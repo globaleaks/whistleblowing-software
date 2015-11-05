@@ -126,7 +126,7 @@ class TipKeyword(_KeyWord):
         '%TipTorURL%',
         '%TipT2WURL%',
         '%TorURL%',
-        '%TorURL%',
+        '%T2WURL%',
         '%TipNum%',
         '%EventTime%',
         '%ExpirationDate%',
@@ -164,11 +164,11 @@ class TipKeyword(_KeyWord):
 
         return retstr
 
-    def TORURL(self):
+    def TorURL(self):
         return self.TipTorURL()
 
     def T2WURL(self):
-        return self.T2WURL()
+        return self.TipT2WURL()
 
     def TipNum(self):
         """
