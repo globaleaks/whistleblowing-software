@@ -20,10 +20,22 @@ if [ "$GLTEST" = "unit" ]; then
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
-  coveralls || true
+
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
   sleep 5
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
+
+  echo "Running Protractor End2End locally for coverage"
+  cd $TRAVIS_BUILD_DIR/client
+  rm -fr $TRAVIS_BUILD_DIR/client/coverage
+  ./node_modules/protractor/bin/webdriver-manager update
+
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9
+  sleep 5
+  grunt end2end-coverage
+
+  cd $TRAVIS_BUILD_DIR/backend
+  coveralls --merge=../client/coverage/coveralls.json || true
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 
