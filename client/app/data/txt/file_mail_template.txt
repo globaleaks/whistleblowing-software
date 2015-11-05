@@ -3,7 +3,7 @@ Dear %RecipientName%,
 This is an email to notify you that a whistleblower has updated a submission with new material.
 
 The updated information can be accessed:
-via Tor at: %TorURL%
+via Tor at: %TORURL%
 via Tor2web at: %T2WURL%
 
 Kind regards,
