@@ -15,7 +15,7 @@ from globaleaks.handlers import admin, rtip
 from globaleaks.handlers.submission import serialize_usertip, serialize_internalfile
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import EventLogs
-from globaleaks.plugins.base import Event
+from globaleaks.notification import Event
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 

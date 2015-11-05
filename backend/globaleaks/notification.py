@@ -31,10 +31,6 @@ def mark_event_as_notified(store, event_id):
 
 
 class MailNotification(object):
-    plugin_name = u'Mail'
-    plugin_type = u'notification'
-    plugin_description = u"Mail notification, with encryption supports"
-
     def get_mail_subject_and_body(self, event):
         def replace_variables(template, event):
             return Templating().format_template(template, event)

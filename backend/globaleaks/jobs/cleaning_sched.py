@@ -15,7 +15,7 @@ from globaleaks.handlers.rtip import db_delete_itip
 from globaleaks.jobs.base import GLJob
 from globaleaks.jobs.notification_sched import EventLogger, serialize_usertip, db_save_events_on_db
 from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats, EventLogs
-from globaleaks.plugins.base import Event
+from globaleaks.notification import Event
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 

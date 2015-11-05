@@ -9,7 +9,7 @@ from globaleaks.handlers import submission
 from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin.context import create_context, get_context_list
 from globaleaks.jobs.delivery_sched import DeliverySchedule
-from globaleaks.plugins.base import Event
+from globaleaks.notification import Event
 from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
