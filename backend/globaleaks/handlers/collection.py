@@ -14,7 +14,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files, serialize_receiver_file
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import ReceiverTip, ReceiverFile
-from globaleaks.plugins.base import Event
+from globaleaks.notification import Event
 from globaleaks.rest import errors
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
