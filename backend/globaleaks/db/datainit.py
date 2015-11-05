@@ -32,7 +32,7 @@ def load_appdata():
     this_directory = os.path.dirname(__file__)
 
     for path in possible_glclient_paths:
-        fl10n_file = os.path.join(this_directory, path, 'data/appdata_l10n.json')
+        fl10n_file = os.path.join(this_directory, path, 'data/appdata.json')
 
         if os.path.exists(fl10n_file):
             with file(fl10n_file, 'r') as f:
