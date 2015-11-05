@@ -5,7 +5,11 @@
 
 <div id="ContextDescription">{{submission.context.description}}</div>
 
-<form name="submissionForm" novalidate ng-if="submission.context">
-  <div data-ng-if="submission.context.questionnaire_layout == 'vertical'" data-ng-include="'views/submission/main_vertical.html'"></div>
-  <div data-ng-if="submission.context.questionnaire_layout == 'horizontal'" data-ng-include="'views/submission/main_horizontal.html'"></div>
+<form name="submissionForm" ng-if="submission.context" data-ng-switch="submission.context.questionnaire_layout" novalidate>
+  <div data-ng-switch-when="vertical">
+    <div data-ng-include="'views/submission/main_vertical.html'"></div>
+  </div>
+  <div data-ng-switch-when="horizontal">
+    <div data-ng-include="'views/submission/main_horizontal.html'"></div>
+  </div>
 </form>
