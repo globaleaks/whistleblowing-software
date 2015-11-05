@@ -108,6 +108,16 @@
             </span>
           </th>
           <th>
+            <span ng-click="sortKey = 'update_date'; sortReverse = !sortReverse">
+              <i class="glyphicon glyphicon-time"></i>
+              <span data-translate>Update date</span>
+              <span class="btn btn-xs" ng-show="sortKey == 'update_date'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
+            </span>
+          </th>
+          <th>
             <span ng-click="sortKey = 'expiration_date'; sortReverse = !sortReverse">
               <i class="glyphicon glyphicon-hourglass"></i>
               <span data-translate>Expiration date</span>
@@ -173,6 +183,7 @@
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.file_counter}}</td>
           <td>{{::tip.comment_counter}}</td>
