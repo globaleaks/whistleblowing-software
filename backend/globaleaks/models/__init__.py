@@ -566,7 +566,7 @@ class Notification(Model):
 
     torify = Int(default=True)
 
-    # Admin Template
+    # Admin
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
     admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
     admin_anomaly_mail_template = JSON(validator=longlocal_v)
@@ -576,7 +576,7 @@ class Notification(Model):
     admin_anomaly_disk_high = JSON(validator=longlocal_v)
     admin_anomaly_activities = JSON(validator=longlocal_v)
 
-    # Receiver Template
+    # Receiver
     tip_mail_template = JSON(validator=longlocal_v)
     tip_mail_title = JSON(validator=longlocal_v)
     file_mail_template = JSON(validator=longlocal_v)
@@ -591,12 +591,21 @@ class Notification(Model):
     pgp_alert_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
-
-    archive_description = JSON(validator=longlocal_v)
-
     ping_mail_template = JSON(validator=longlocal_v)
     ping_mail_title = JSON(validator=longlocal_v)
     notification_digest_mail_title = JSON(validator=longlocal_v)
+
+    # Whistleblower Identity
+    identity_access_authorized_mail_template = JSON(validator=longlocal_v)
+    identity_access_authorized_mail_title = JSON(validator=longlocal_v)
+    identity_access_denied_mail_template = JSON(validator=longlocal_v)
+    identity_access_denied_mail_title = JSON(validator=longlocal_v)
+    identity_access_request_mail_template = JSON(validator=longlocal_v)
+    identity_access_request_mail_title = JSON(validator=longlocal_v)
+    identity_provided_mail_template = JSON(validator=longlocal_v)
+    identity_provided_mail_title = JSON(validator=longlocal_v)
+
+    archive_description = JSON(validator=longlocal_v)
 
     disable_admin_notification_emails = Bool(default=False)
     disable_receivers_notification_emails = Bool(default=False)
@@ -649,6 +658,14 @@ class Notification(Model):
         'ping_mail_title',
         'receiver_notification_limit_reached_mail_template',
         'receiver_notification_limit_reached_mail_title',
+        'identity_access_authorized_mail_template',
+        'identity_access_authorized_mail_title',
+        'identity_access_denied_mail_template',
+        'identity_access_denied_mail_title',
+        'identity_access_request_mail_template',
+        'identity_access_request_mail_title',
+        'identity_provided_mail_template',
+        'identity_provided_mail_title',
         'archive_description'
     ]
 
