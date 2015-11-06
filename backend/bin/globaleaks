@@ -76,7 +76,7 @@ def pip_version_check(path):
         print "\n"
         print "The problem can be solved by:"
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
-        print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
+        print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/backend/requirements.txt"
         quit(-1)
 
 import sys
@@ -93,7 +93,7 @@ path = os.path.join(root, 'requirements.txt')
 if os.path.exists(path):
     pip_version_check(path)
 else:
-    pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
+    pip_version_check('/usr/share/globaleaks/backend/requirements.txt')
 
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
@@ -105,8 +105,8 @@ from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
 
 GLSettings.parser.add_option("-n", "--nodaemon", action='store_true',
-    help="don't daemonize [default: %default]",
-    dest="nodaemon", default=GLSettings.nodaemon)
+    help="don't daemonize",
+    dest="nodaemon", default=False)
 
 GLSettings.parser.add_option("-l", "--loglevel", type="choice",
     choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG', 'TIMEDEBUG'],
@@ -179,12 +179,12 @@ GLSettings.parser.add_option("-g", "--group", type="string",
     dest="group")
 
 GLSettings.parser.add_option("-w", "--working-path", type="string",
-    help="set the glbackend working directory [default: %default]",
-    dest="working_path", default=GLSettings.working_path)
+    help="set the backend working directory",
+    dest="working_path", default=None)
 
 GLSettings.parser.add_option("-c", "--start-clean", action='store_true',
     help="start a clean globaleks install [default: %default]",
-    dest="start_clean", default=GLSettings.start_clean)
+    dest="start_clean", default=False)
 
 GLSettings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
@@ -194,9 +194,9 @@ GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard", default=False)
 
-GLSettings.parser.add_option("-C", "--glc-path", type='string',
-    help="specify GLClient path [default: %default]",
-    dest="glc_path", default=GLSettings.glc_path)
+GLSettings.parser.add_option("-C", "--client-path", type='string',
+    help="specify GLClient path",
+    dest="client_path", default=None)
 
 GLSettings.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used as ramdisk storage",
@@ -212,7 +212,7 @@ GLSettings.parser.add_option("--XXX", type='string',
 
 GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="orm_debug", default=GLSettings.orm_debug)
+    dest="orm_debug", default=False)
 
 GLSettings.parser.add_option("-j", "--request-log", action="store_true",
     help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",

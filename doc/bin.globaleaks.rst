@@ -50,7 +50,7 @@ Start the globaleaks server.
     **ERROR**. [default: `CRITICAL`].
 
 **-w WORKING_PATH, --working-path=WORKING_PATH**
-   set the glbackend working directory [default: `/var/globaleaks`]
+   set the backend working directory [default: `/var/globaleaks`]
 
 **--working-dir=DIR**
     Directory hosting GlobaLeaks data.
