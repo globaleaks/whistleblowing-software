@@ -224,7 +224,7 @@ class MigrationScript(MigrationBase):
 
         # Apply fixes to the counters
         self.entries_count['Field'] += 21
-        self.entries_count['FieldAttr'] += 56
+        self.entries_count['FieldAttr'] += 57
         self.entries_count['FieldOption'] += 3
         self.entries_count['FieldField'] += 20
 
@@ -243,6 +243,10 @@ class MigrationScript(MigrationBase):
 
         for _, v in new_node._storm_columns.iteritems():
             if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
+                continue
+
+            if v.name == 'disable_donation_panel':
+                new_node.disable_donation_panel = False
                 continue
 
             if v.name == 'simplified_login':
