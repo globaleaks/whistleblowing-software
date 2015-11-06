@@ -83,6 +83,18 @@ def serialize_message(msg):
     }
 
 
+def serialize_rtip(store, rtip, language):
+    user_id = rtip.receiver.user.id
+
+    ret = serialize_usertip(store, rtip, language)
+    ret['receiver_id'] = user_id
+    ret['label'] = rtip.label
+    ret['collection'] = '/rtip/' + rtip.id + '/collection'
+    ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
+
+    return ret
+
+
 def db_access_rtip(store, user_id, rtip_id):
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(rtip_id),
                       ReceiverTip.receiver_id == user_id).one()
@@ -119,14 +131,7 @@ def db_get_rtip(store, user_id, rtip_id, language):
         # store.find(EventLogs, And(EventLogs.receivertip_id == rtip_id,
         #                          EventLogs.mail_sent == True)).remove()
 
-    tip_desc = serialize_usertip(store, rtip, language)
-
-    tip_desc['receiver_id'] = user_id
-    tip_desc['label'] = rtip.label
-    tip_desc['collection'] = '/rtip/' + rtip_id + '/collection'
-    tip_desc['files'] = db_get_files_receiver(store, user_id, rtip_id)
-
-    return tip_desc
+    return serialize_rtip(store, rtip, language)
 
 
 def db_increment_receiver_access_count(store, user_id, rtip_id):

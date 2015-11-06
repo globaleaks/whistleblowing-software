@@ -983,6 +983,15 @@ class FieldAnswerGroupFieldAnswer(BaseModel):
     fieldanswer_id = Unicode()
 
 
+class Counter(Model):
+    key = Unicode(validator=shorttext_v)
+    counter = Int(default=0)
+    update_date = DateTime(default_factory=datetime_now)
+
+    unicode_keys = ['key']
+    int_keys = ['number']
+
+
 Field.template = Reference(Field.template_id, Field.id)
 
 Field.steps = ReferenceSet(
