@@ -376,7 +376,6 @@ def apply_cmdline_options(store):
             setattr(node, k, v)
 
     # return configured URL for the log/console output
-    node = store.find(models.Node).one()
     if node.hidden_service or node.public_site:
         return [node.hidden_service, node.public_site]
     else:
