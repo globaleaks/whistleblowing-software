@@ -132,9 +132,6 @@ class MigrationBase(object):
         self.entries_count = {}
         self.fail_on_count_mismatch = {}
 
-        self.std_fancy = " ł "
-        self.debug_info = "   [%d => %d] " % (start_version, start_version + 1)
-
         for model_name, model_history in table_history.iteritems():
             length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
             if len(model_history) != length:
@@ -152,34 +149,31 @@ class MigrationBase(object):
 
         if self.start_version + 1 == DATABASE_VERSION:
             # we are there!
-            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db__schema))
-
             if not os.access(GLSettings.db__schema, os.R_OK):
-                log.msg('Unable to access', GLSettings.db__schema)
+                print 'Unable to access %s ' % GLSettings.db__schema
                 raise IOError('Unable to access db schema file')
             with open(GLSettings.db__schema) as f:
-                create_queries = ''.join(f).split(';')
-                for create_query in create_queries:
-                    try:
-                        self.store_new.execute(create_query + ';')
-                    except OperationalError:
-                        log.msg('OperationalError in "{}"'.format(create_query))
-                        raise excep
+                queries = ''.join(f).split(';')
+                for query in queries:
+                    self.execute_query(query)
 
         else: # manage the migrantion here
             for k, _ in self.table_history.iteritems():
-                create_query = self.get_right_sql_version(k, self.start_version + 1)
-                if not create_query:
+                query = self.get_right_sql_version(k, self.start_version + 1)
+                if not query:
                     # the table has been removed
                     continue
 
-                try:
-                    self.store_new.execute(create_query + ';')
-                except OperationalError as excep:
-                    log.msg('{} OperationalError in [{}]'.format(self.debug_info, create_query))
-                    raise excep
+                self.execute_query(query)
 
         self.store_new.commit()
+
+    def execute_query(self, query):
+       try:
+           self.store_new.execute(query + ';')
+       except OperationalError as excep:
+           print 'OperationalError %s while executing query: %s' % (excep, query)
+           raise excep
 
     def commit(self):
         self.store_new.commit()
@@ -217,50 +211,11 @@ class MigrationBase(object):
         return None
 
     def get_right_sql_version(self, model_name, version):
-        """
-        @param model_name:
-        @param version:
-        @return:
-            The SQL right for the stuff we've
-        """
         model_obj = self.get_right_model(model_name, version)
         if model_obj is None:
             return None
 
         return generateCreateQuery(model_obj)
-
-    def _perform_copy_list(self, model_name):
-        objs_count = self.store_old.find(self.model_from[model_name]).count()
-
-        log.msg('{} default {} migration assistant: #{}'.format(
-            self.debug_info, model_name, objs_count))
-
-        old_objects = self.store_old.find(self.model_from[model_name])
-
-        for old_obj in old_objects:
-            new_obj = self.model_to[model_name]()
-
-            # Storm internals simply reversed
-            for _, v in new_obj._storm_columns.iteritems():
-                old_value = getattr(old_obj, v.name)
-                if old_value is not None:
-                    setattr(new_obj, v.name, old_value)
-
-            self.store_new.add(new_obj)
-
-    def _perform_copy_single(self, model_name):
-        log.msg('{} default {} migration assistant'.format(self.debug_info, model_name))
-
-        old_obj = self.store_old.find(self.model_from[model_name]).one()
-        new_obj = self.model_to[model_name]()
-
-        # Storm internals simply reversed
-        for _, v in new_obj._storm_columns.iteritems():
-            old_value = getattr(old_obj, v.name)
-            if old_value is not None:
-                setattr(new_obj, v.name, old_value)
-
-        self.store_new.add(new_obj)
 
     def update_model_with_new_templates(self, model_obj, var_name, templates_list, templates_dict):
         if var_name in templates_list:
@@ -275,92 +230,27 @@ class MigrationBase(object):
 
         return False
 
-    def migrate_ApplicationData(self):
-        return
+    def generic_migration_function(self, model_name):
+        old_objects = self.store_old.find(self.model_from[model_name])
 
-    def migrate_Context(self):
-        self._perform_copy_list("Context")
+        for old_obj in old_objects:
+            new_obj = self.model_to[model_name]()
 
-    def migrate_Node(self):
-        self._perform_copy_single("Node")
+            # Storm internals simply reversed
+            for _, v in new_obj._storm_columns.iteritems():
+                old_value = getattr(old_obj, v.name)
+                if old_value is not None:
+                    setattr(new_obj, v.name, old_value)
 
-    def migrate_User(self):
-        self._perform_copy_list("User")
+            self.store_new.add(new_obj)
 
-    def migrate_ReceiverTip(self):
-        self._perform_copy_list("ReceiverTip")
+    def migrate_model(self, model_name):
+        objs_count = self.store_old.find(self.model_from[model_name]).count()
 
-    def migrate_WhistleblowerTip(self):
-        self._perform_copy_list("WhistleblowerTip")
-
-    def migrate_Comment(self):
-        self._perform_copy_list("Comment")
-
-    def migrate_InternalTip(self):
-        self._perform_copy_list("InternalTip")
-
-    def migrate_Receiver(self):
-        self._perform_copy_list("Receiver")
-
-    def migrate_InternalFile(self):
-        self._perform_copy_list("InternalFile")
-
-    def migrate_ReceiverFile(self):
-        self._perform_copy_list("ReceiverFile")
-
-    def migrate_Notification(self):
-        self._perform_copy_single("Notification")
-
-    def migrate_ReceiverContext(self):
-        self._perform_copy_list("ReceiverContext")
-
-    def migrate_ReceiverInternalTip(self):
-        self._perform_copy_list("ReceiverInternalTip")
-
-    def migrate_Message(self):
-        self._perform_copy_list("Message")
-
-    def migrate_Stats(self):
-        self._perform_copy_list("Stats")
-
-    def migrate_Field(self):
-        self._perform_copy_list("Field")
-
-    def migrate_FieldAttr(self):
-        self._perform_copy_list("FieldAttr")
-
-    def migrate_FieldOption(self):
-        self._perform_copy_list("FieldOption")
-
-    def migrate_OptionActivateField(self):
-        self._perform_copy_list("OptionActivateField")
-
-    def migrate_OptionActivateStep(self):
-        self._perform_copy_list("OptionActivateStep")
-
-    def migrate_FieldField(self):
-        self._perform_copy_list("FieldField")
-
-    def migrate_Step(self):
-        self._perform_copy_list("Step")
-
-    def migrate_StepField(self):
-        self._perform_copy_list("StepField")
-
-    def migrate_Anomalies(self):
-        self._perform_copy_list("Anomalies")
-
-    def migrate_EventLogs(self):
-        self._perform_copy_list("EventLogs")
-
-    def migrate_FieldAnswer(self):
-        self._perform_copy_list("FieldAnswer")
-
-    def migrate_FieldAnswerGroup(self):
-        self._perform_copy_list("FieldAnswerGroup")
-
-    def migrate_FieldAnswerGroupFieldAnswer(self):
-        self._perform_copy_list("FieldAnswerGroupFieldAnswer")
-
-    def migrate_ArchivedSchema(self):
-        self._perform_copy_list("ArchivedSchema")
+        specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
+        if specific_migration_function is not None:
+            print ' ł %s [#%d]' % (model_name, objs_count)
+            specific_migration_function()
+        else:
+            print ' * %s [#%d]' % (model_name, objs_count)
+            self.generic_migration_function(model_name)

@@ -7,6 +7,7 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSettings
 
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_12 import Node_v_11, Context_v_11
 from globaleaks.db.migrations.update_13 import Node_v_12, Context_v_12
 from globaleaks.db.migrations.update_14 import Node_v_13, Context_v_13
@@ -98,6 +99,8 @@ def perform_version_update(version):
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
             migration_script = MigrationModule.MigrationScript(table_history, version, store_old, store_new)
 
+            print "Migrating table:"
+
             try:
                 try:
                     migration_script.prologue()
@@ -108,7 +111,7 @@ def perform_version_update(version):
                 for model_name, _ in table_history.iteritems():
                     if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                         try:
-                            getattr(migration_script, 'migrate_%s' % model_name)()
+                            migration_script.migrate_model(model_name)
 
                             # Commit at every table migration in order to be able to detect
                             # the precise migration that may fail.
@@ -116,7 +119,6 @@ def perform_version_update(version):
                         except Exception as excep:
                             print "Failure while migrating table %s: %s " % (model_name, excep)
                             raise excep
-
                 try:
                     migration_script.epilogue()
                     migration_script.commit()

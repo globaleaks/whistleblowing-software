@@ -36,8 +36,6 @@ class InternalTip_v_21(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()

@@ -79,8 +79,6 @@ class Context_v_12(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: (terms_and_conditions)" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -95,8 +93,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Context(self):
-        print "%s Context migration assistant: (show_receivers)" % self.std_fancy
-
         old_contexts = self.store_old.find(self.model_from['Context'])
 
         for old_context in old_contexts:

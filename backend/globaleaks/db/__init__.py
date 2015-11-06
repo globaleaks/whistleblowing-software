@@ -178,12 +178,12 @@ def check_db_files():
             elif filename.endswith('-journal'):
                 # As left journals files can leak data undefinitely we
                 # should manage to remove them.
-                print "Found an undeleted DB journal file %s: deleting it." % single_file
+                print "Found an undeleted DB journal file %s: deleting it." % filename
+                filepath = os.path.join(GLSetting.db_path, filename)
                 try:
-                    os.unlink(os.path.join(dirpath, single_file))
+                    os.unlink(filepath)
                 except Exception as excep:
-                    print "Unable to remove %s: %s" % \
-                        (os.unlink(os.path.join(dirpath, single_file)), excep)
+                    print "Unable to remove %s: %s" %(os.unlink(filepath), excep)
 
     if db_version > 0:
         from globaleaks.db import migration

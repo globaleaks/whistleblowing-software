@@ -69,8 +69,6 @@ class Context_v_11(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: (receipt, encryption only)" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -89,5 +87,3 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
         self.store_new.commit()
-
-        # Context migration: is removed the receipt by the default bahavior
