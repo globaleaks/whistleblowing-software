@@ -11,10 +11,10 @@ class LTRCSSFileHandler(BaseHandler):
     def get(self):
         self.set_header("Content-Type", 'text/css')
 
-        original_css = os.path.join(GLSettings.glclient_path, self.original_css_filename)
+        original_css = os.path.join(GLSettings.client_path, self.original_css_filename)
         custom_css = os.path.join(GLSettings.static_path, 'custom_stylesheet.css')
 
-        directory_traversal_check(GLSettings.glclient_path, original_css)
+        directory_traversal_check(GLSettings.client_path, original_css)
         directory_traversal_check(GLSettings.static_path, custom_css)
 
         self.write_file(original_css)

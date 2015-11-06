@@ -31,11 +31,11 @@ def init_models():
 def db_create_tables(store):
     """
     """
-    if not os.access(GLSettings.db_schema_file, os.R_OK):
-        log.err("Unable to access %s" % GLSettings.db_schema_file)
+    if not os.access(GLSettings.db__schema, os.R_OK):
+        log.err("Unable to access %s" % GLSettings.db__schema)
         raise Exception("Unable to access db schema file")
 
-    with open(GLSettings.db_schema_file) as f:
+    with open(GLSettings.db__schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
             try:
@@ -168,7 +168,7 @@ def check_db_files():
     executes migration scripts
     """
     db_version = 0
-    for filename in os.listdir(GLSettings.gldb_path):
+    for filename in os.listdir(GLSettings.db_path):
         if filename.startswith('glbackend'):
             if filename.endswith('.db'):
                 nameindex = filename.rfind('glbackend')
@@ -188,16 +188,16 @@ def check_db_files():
     if db_version > 0:
         from globaleaks.db import migration
 
-        print "Database version detected: %d" % db_version
+        print "Found an already initialized database version: %d" % db_version
 
         if db_version < GLSettings.db_version:
-            print "Performing update of Database from version %d to version %d" % \
+            print "Performing update of database from version %d to version %d" % \
                   (db_version, GLSettings.db_version)
             try:
                 migration.perform_version_update(db_version)
-                print "GlobaLeaks database version %d: update complete!" % GLSettings.db_version
+                print "Migration completed with success!"
             except Exception:
-                print "GlobaLeaks database version %d: update failure :(" % GLSettings.db_version
+                print "Migration failure :("
                 print "Verbose exception traceback:"
                 _, _, exc_traceback = sys.exc_info()
                 traceback.print_tb(exc_traceback)

@@ -17,15 +17,15 @@ from globaleaks.tests.helpers import init_glsettings_for_unit_tests
 
 
 def test_dbs_migration(directory):
-    GLSettings.gldb_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
+    GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), directory)
     for (path, dirs, files) in os.walk(path):
         for f in files:
-            os.mkdir(GLSettings.gldb_path)
+            os.mkdir(GLSettings.db_path)
             dbpath = os.path.join(path, f)
-            shutil.copyfile(dbpath, ('%s/%s' % (GLSettings.gldb_path, f)))
+            shutil.copyfile(dbpath, ('%s/%s' % (GLSettings.db_path, f)))
             check_db_files()
-            shutil.rmtree(GLSettings.gldb_path)
+            shutil.rmtree(GLSettings.db_path)
 
 
 class TestMigrationRoutines(unittest.TestCase):

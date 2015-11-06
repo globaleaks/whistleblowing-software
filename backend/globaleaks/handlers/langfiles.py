@@ -21,7 +21,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
     handler_exec_time_threshold = 3600
 
     def langfile_path(self, lang):
-        return os.path.abspath(os.path.join(GLSettings.glclient_path, 'l10n', '%s.json' % lang))
+        return os.path.abspath(os.path.join(GLSettings.client_path, 'l10n', '%s.json' % lang))
 
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSettings.static_path_l10n, '%s.json' % lang))
@@ -37,7 +37,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
 
         if not os.path.exists(path):
             path = self.langfile_path(lang)
-            directory_traversal_check(GLSettings.glclient_path, path)
-            self.root = os.path.abspath(os.path.join(GLSettings.glclient_path, 'l10n'))
+            directory_traversal_check(GLSettings.client_path, path)
+            self.root = os.path.abspath(os.path.join(GLSettings.client_path, 'l10n'))
 
         BaseStaticFileHandler.get(self, path)

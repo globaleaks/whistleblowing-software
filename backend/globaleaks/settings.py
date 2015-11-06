@@ -19,6 +19,14 @@ from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
+this_directory = os.path.dirname(__file__)
+
+possible_client_paths = [
+    '/var/globaleaks/client',
+    '/usr/share/globaleaks/client/',
+    os.path.abspath(os.path.join(this_directory, '../../client/build/')),
+    os.path.abspath(os.path.join(this_directory, '../../client/app/'))
+]
 
 verbosity_dict = {
     # do not exist anything above DEBUG, so is used a -1)
@@ -84,8 +92,13 @@ class GLSettingssClass(object):
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
-        self.static_source = '/usr/share/globaleaks/glbackend'
-        self.glclient_path = '/usr/share/globaleaks/glclient'
+
+        self.static_source = '/usr/share/globaleaks/backend'
+
+        self.client_path = '/usr/share/globaleaks/client'
+        for path in possible_client_paths:
+           if os.path.exists(path):
+               self.client_path = path
 
         self.set_ramdisk_path()
 
@@ -283,10 +296,10 @@ class GLSettingssClass(object):
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
-
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
-        self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
+
+        self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp'))
@@ -294,21 +307,25 @@ class GLSettingssClass(object):
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_schema_file = os.path.join(self.static_db_source, 'sqlite.sql')
-        self.db_file = 'glbackend-%d.db' % DATABASE_VERSION
-        self.db_path = os.path.join(os.path.abspath(os.path.join(self.gldb_path, self.db_file)))
+
+        self.db__schema = os.path.join(self.static_db_source, 'sqlite.sql')
+        self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
+        self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
+        self.db_uri = 'sqlite:' + self.db_file_path + '?foreign_keys=ON'
+
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
 
         # gnupg path is used by PGP as temporary directory with keyring and files encryption.
         self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
-        self.db_uri = 'sqlite:' + self.db_path + '?foreign_keys=ON'
-
         # If we see that there is a custom build of GLClient, use that one.
-        custom_glclient_path = '/var/globaleaks/custom-glclient'
-        if os.path.exists(custom_glclient_path):
-            self.glclient_path = custom_glclient_path
+        custom_client_path = '/var/globaleaks/client'
+        if os.path.exists(custom_client_path):
+            self.client_path = custom_client_path
+
+        self.appdata_file = os.path.join(self.client_path, 'data/appdata.json')
+        self.fields_path = os.path.join(self.client_path, 'data/fields')
 
 
     def set_ramdisk_path(self):
@@ -333,13 +350,8 @@ class GLSettingssClass(object):
 
         self.set_ramdisk_path()
 
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "client", "build"))
-        if not os.path.exists(self.glclient_path):
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "client", "app"))
-
-
     def set_glc_path(self, glcp):
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
+        self.client_path = os.path.abspath(os.path.join(self.root_path, glcp))
 
     def enable_debug_mode(self):
         import signal
@@ -467,12 +479,12 @@ class GLSettingssClass(object):
 
         self.eval_paths()
 
-        # special evaluation of glclient directory:
-        indexfile = os.path.join(self.glclient_path, 'index.html')
+        # special evaluation of client directory:
+        indexfile = os.path.join(self.client_path, 'index.html')
         if os.path.isfile(indexfile):
-            print "Serving GLClient from %s" % self.glclient_path
+            print "Serving the client from directory: %s" % self.client_path
         else:
-            print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
+            print "Unable to find a directory where to load the client" % self.client_path
             quit(-1)
 
         if self.devel_mode:
@@ -558,7 +570,7 @@ class GLSettingssClass(object):
         if create_directory(self.working_path):
             new_environment = True
 
-        create_directory(self.gldb_path)
+        create_directory(self.db_path)
         create_directory(self.glfiles_path)
         create_directory(self.static_path)
         create_directory(self.static_path_l10n)
@@ -591,7 +603,7 @@ class GLSettingssClass(object):
 
 
     def check_directories(self):
-        for path in (self.working_path, self.root_path, self.glclient_path,
+        for path in (self.working_path, self.root_path, self.client_path,
                      self.glfiles_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
                 raise Exception("%s does not exist!" % path)
@@ -603,7 +615,7 @@ class GLSettingssClass(object):
                 raise Exception("write capability missing in: %s" % rdwr)
 
         # Directory in Read access
-        for rdonly in (self.root_path, self.glclient_path):
+        for rdonly in (self.root_path, self.client_path):
             if not os.access(rdonly, os.R_OK | os.X_OK):
                 raise Exception("read capability missing in: %s" % rdonly)
 

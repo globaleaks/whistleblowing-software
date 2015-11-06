@@ -18,26 +18,12 @@ from globaleaks.third_party import rstr
 from globaleaks.utils.utility import datetime_null
 
 
-possible_glclient_paths = [
-    '/usr/share/globaleaks/glclient/',
-    '../../../client/build/',
-    '../../../client/app/'
-]
-
-
 def load_appdata():
-    appdata_dict = None
-
-    this_directory = os.path.dirname(__file__)
-
-    for path in possible_glclient_paths:
-        fl10n_file = os.path.join(this_directory, path, 'data/appdata.json')
-
-        if os.path.exists(fl10n_file):
-            with file(fl10n_file, 'r') as f:
-                json_string = f.read()
-                appdata_dict = json.loads(json_string)
-                return appdata_dict
+    if os.path.exists(GLSettings.appdata_file):
+        with file(GLSettings.appdata_file, 'r') as f:
+            json_string = f.read()
+            appdata_dict = json.loads(json_string)
+            return appdata_dict
 
     raise errors.InternalServerError("Unable to load application data")
 
@@ -45,18 +31,16 @@ def load_appdata():
 def load_default_fields(store):
     this_directory = os.path.dirname(__file__)
 
-    for path in possible_glclient_paths:
-        default_fields_path = os.path.join(this_directory, path, 'data/fields')
+    if os.path.exists(GLSettings.fields_path):
+        for fname in os.listdir(GLSettings.fields_path):
+            fpath = os.path.join(GLSettings.fields_path, fname)
+            with file(fpath, 'r') as f:
+                json_string = f.read()
+                field_dict = json.loads(json_string)
+                db_create_field(store, field_dict, None)
+                return
 
-        if os.path.exists(default_fields_path):
-            for fname in os.listdir(default_fields_path):
-                fpath = os.path.join(default_fields_path, fname)
-                with file(fpath, 'r') as f:
-                    json_string = f.read()
-                    field_dict = json.loads(json_string)
-                    db_create_field(store, field_dict, None)
-
-            return
+    raise errors.InternalServerError("Unable to load default fields")
 
 
 def db_init_appdata(store):

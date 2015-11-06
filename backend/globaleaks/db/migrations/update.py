@@ -152,12 +152,12 @@ class MigrationBase(object):
 
         if self.start_version + 1 == DATABASE_VERSION:
             # we are there!
-            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db_schema_file))
+            log.msg('{} Acquire SQL schema {}'.format(self.debug_info, GLSettings.db__schema))
 
-            if not os.access(GLSettings.db_schema_file, os.R_OK):
-                log.msg('Unable to access', GLSettings.db_schema_file)
+            if not os.access(GLSettings.db__schema, os.R_OK):
+                log.msg('Unable to access', GLSettings.db__schema)
                 raise IOError('Unable to access db schema file')
-            with open(GLSettings.db_schema_file) as f:
+            with open(GLSettings.db__schema) as f:
                 create_queries = ''.join(f).split(';')
                 for create_query in create_queries:
                     try:
