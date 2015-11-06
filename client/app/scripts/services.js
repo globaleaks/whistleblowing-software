@@ -942,7 +942,7 @@ angular.module('GLServices', ['ngResource']).
 }]).
   constant('CONSTANTS', {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
-     "email_regexp": /^(([\w-]\.){0,100}[\w-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$/,
+     "email_regexp": /^(([\w-]\.){0,100}[\w+-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$/,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "timezones": [
