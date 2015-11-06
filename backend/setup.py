@@ -51,17 +51,17 @@ class TestCommand(_TestCommand):
         sys.exit(not test_result.wasSuccessful())
 
 data_files = [
-    ('/usr/share/globaleaks/glclient',
+    ('/usr/share/globaleaks/client',
      list_files(os.path.join(GLCLIENT_PATH))),
-    ('/usr/share/globaleaks/glclient/data',
+    ('/usr/share/globaleaks/client/data',
      list_files(os.path.join(GLCLIENT_PATH, 'data'))),
-    ('/usr/share/globaleaks/glclient/fonts',
+    ('/usr/share/globaleaks/client/fonts',
      list_files(os.path.join(GLCLIENT_PATH, 'fonts'))),
-    ('/usr/share/globaleaks/glclient/img',
+    ('/usr/share/globaleaks/client/img',
      list_files(os.path.join(GLCLIENT_PATH, 'img'))),
-    ('/usr/share/globaleaks/glclient/l10n',
+    ('/usr/share/globaleaks/client/l10n',
      list_files(os.path.join(GLCLIENT_PATH, 'l10n'))),
-    ('/usr/share/globaleaks/glbackend',
+    ('/usr/share/globaleaks/backend',
      ['requirements.txt'] + list_files('staticdata'))
 ]
 

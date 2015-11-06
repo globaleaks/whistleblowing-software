@@ -7,7 +7,7 @@
 
    more infos at: https://github.com/globaleaks/GlobaLeaks/wiki/Setting-up-development-environment
 
-### Build compressed and uglified GLClient:
+### Build compressed and uglified client:
 
    grunt build
 
@@ -15,23 +15,13 @@
 
    npm install -d && grunt setupDependencies && grunt build
 
-### Fetch updated translation
+### Push and pull updated translation
 
    $ grunt updateTranslations
 
-   in case of:
-      Warning: ENOENT, no such file or directory 'pot/en.po' Use --force to continue.
-      Aborted due to warnings.
-
-   the fix is:
-      wget https://www.transifex.com/projects/p/globaleaks/resource/glclient-02-enpo/download/pot/
-      mv globaleaks_glclient-02-enpo.pot pot/en.po
-
-
 ### gl-admin
 
-In GLBackend reset to the default password:
-
-    bin/gl-admin resetpass workingdir/db/glbackend-*.db globaleaks
+To reset the password of a user:
+    bin/gl-admin resetpass username workingdir/db/glbackend-*.db globaleaks
 
 

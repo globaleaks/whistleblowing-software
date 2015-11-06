@@ -1,4 +1,4 @@
 include requirements.txt
 include debian/*
 graft staticdata
-graft glclient
+graft client

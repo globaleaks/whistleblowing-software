@@ -223,7 +223,6 @@ class GLSettingssClass(object):
         self.developer_name = ''
         self.skip_wizard = False
         self.log_timing_stats = False
-        self.glc_path = None
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
@@ -350,7 +349,7 @@ class GLSettingssClass(object):
 
         self.set_ramdisk_path()
 
-    def set_glc_path(self, glcp):
+    def set_client_path(self, glcp):
         self.client_path = os.path.abspath(os.path.join(self.root_path, glcp))
 
     def enable_debug_mode(self):
@@ -474,8 +473,8 @@ class GLSettingssClass(object):
 
         self.skip_wizard = self.cmdline_options.skip_wizard
 
-        if self.cmdline_options.glc_path:
-            self.set_glc_path(self.cmdline_options.glc_path)
+        if self.cmdline_options.client_path:
+            self.set_client_path(self.cmdline_options.client_path)
 
         self.eval_paths()
 
