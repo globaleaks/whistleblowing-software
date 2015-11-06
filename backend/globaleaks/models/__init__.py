@@ -466,6 +466,7 @@ class Node(Model):
     disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
     disable_key_code_hint = Bool(default=False)
+    disable_donation_panel = Bool(default=False)
 
     enable_captcha = Bool(default=True)
     enable_proof_of_work = Bool(default=True)

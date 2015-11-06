@@ -64,6 +64,7 @@
       "disable_security_awareness_badge": false,
       "disable_security_awareness_questions": false,
       "disable_key_code_hint": false,
+      "disable_donation_panel": false,
       "allow_unencrypted": true,
       "allow_iframes_inclusion": false,
       "name": "",
