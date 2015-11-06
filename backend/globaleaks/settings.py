@@ -97,8 +97,8 @@ class GLSettingssClass(object):
 
         self.client_path = '/usr/share/globaleaks/client'
         for path in possible_client_paths:
-           if os.path.exists(path):
-               self.client_path = path
+            if os.path.exists(path):
+                self.client_path = path
 
         self.set_ramdisk_path()
 

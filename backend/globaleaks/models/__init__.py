@@ -108,6 +108,7 @@ class BaseModel(Storm):
 
         for k in getattr(self, "json_keys"):
             if k in values and values[k] is not None:
+                value = values[k]
                 setattr(self, k, value)
 
 
