@@ -3,19 +3,14 @@
 #   ******************
 import json
 
-import re
 import os
 
 from globaleaks import models
 from globaleaks.orm import transact
-from globaleaks.handlers.admin.user import db_create_admin
 #from globaleaks.handlers.submission import db_assign_submission_sequence
 from globaleaks.handlers.admin.field import db_create_field
-from globaleaks.rest import errors, requests
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
-from globaleaks.security import get_salt
-from globaleaks.third_party import rstr
-from globaleaks.utils.utility import datetime_null
 
 
 def load_appdata():
