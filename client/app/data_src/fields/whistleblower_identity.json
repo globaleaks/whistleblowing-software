@@ -6,7 +6,7 @@
       "type": "bool",
       "value": true
     },
-    "prompt_confirmation_on_negative_answer": {
+    "prompt_confirmation_upon_negative_answer": {
       "type": "bool",
       "value": false
     },
@@ -121,7 +121,13 @@
     },
     {
       "multi_entry": false,
-      "attrs": {},
+      "attrs": {
+        "layout_orientation": {
+          "type": "unicode",
+          "value": "vertical"
+        }
+      },
+
       "id": "994961dd-7d4d-442d-a63b-a8027a4e8e49",
       "children": [],
       "instance": "template",
@@ -178,7 +184,7 @@
           "activated_fields": [],
           "score_points": 0,
           "label": {
-            "en": "Other"
+            "en": "GENDER_OTHER"
           },
           "id": "71f39b83-2dd5-4c2d-b2f0-f38fb7530a92"
         }
