@@ -23,7 +23,7 @@ def anon_serialize_ahmia(store, language):
     """
     node = store.find(models.Node).one()
 
-    mo = Rosetta(node.localized_strings)
+    mo = Rosetta(node.localized_keys)
     mo.acquire_storm_object(node)
 
     ret_dict = {
@@ -91,7 +91,7 @@ def anon_serialize_node(store, language):
         'enable_proof_of_work': node.enable_proof_of_work,
     }
 
-    return get_localized_values(ret_dict, node, node.localized_strings, language)
+    return get_localized_values(ret_dict, node, node.localized_keys, language)
 
 
 def anon_serialize_context(store, context, language):
@@ -124,7 +124,7 @@ def anon_serialize_context(store, context, language):
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
 
-    return get_localized_values(ret_dict, context, context.localized_strings, language)
+    return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
 def anon_serialize_field_option(option, language):
@@ -143,7 +143,7 @@ def anon_serialize_field_option(option, language):
         'activated_steps': [step.id for step in option.activated_steps]
     }
 
-    return get_localized_values(ret_dict, option, option.localized_strings, language)
+    return get_localized_values(ret_dict, option, option.localized_keys, language)
 
 
 def anon_serialize_field_attr(attr, language):
@@ -219,7 +219,7 @@ def anon_serialize_field(store, field, language):
         'children': [anon_serialize_field(store, f, language) for f in f_to_serialize.children]
     }
 
-    return get_localized_values(ret_dict, f_to_serialize, field.localized_strings, language)
+    return get_localized_values(ret_dict, f_to_serialize, field.localized_keys, language)
 
 
 def anon_serialize_step(store, step, language):
@@ -237,7 +237,7 @@ def anon_serialize_step(store, step, language):
         'children': [anon_serialize_field(store, f, language) for f in step.children]
     }
 
-    return get_localized_values(ret_dict, step, step.localized_strings, language)
+    return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
 def anon_serialize_receiver(receiver, language):
@@ -262,7 +262,7 @@ def anon_serialize_receiver(receiver, language):
     # description and eventually other localized strings should be taken from user model
     get_localized_values(ret_dict, receiver.user, ['description'], language)
 
-    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
 @transact_ro

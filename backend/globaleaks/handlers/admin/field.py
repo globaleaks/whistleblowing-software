@@ -94,7 +94,7 @@ def db_import_fields(store, step, fieldgroup, fields):
 
 
 def db_update_fieldoption(store, fieldoption_id, option, language):
-    fill_localized_keys(option, models.FieldOption.localized_strings, language)
+    fill_localized_keys(option, models.FieldOption.localized_keys, language)
 
     if fieldoption_id is not None:
         o = store.find(models.FieldOption, models.FieldOption.id == fieldoption_id).one()
@@ -208,7 +208,7 @@ def db_create_field(store, field_dict, language):
     """
     _, template, step, fieldgroup = field_integrity_check(store, field_dict)
 
-    fill_localized_keys(field_dict, models.Field.localized_strings, language)
+    fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
     field = models.Field.new(store, field_dict)
 
@@ -262,7 +262,7 @@ def db_update_field(store, field_id, field_dict, language):
         field_dict['type'] = field.type
 
         if field_dict['instance'] != 'reference':
-            fill_localized_keys(field_dict, models.Field.localized_strings, language)
+            fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
             # children handling:
             #  - old children are cleared

@@ -1,7 +1,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.datainit import load_appdata
+from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
@@ -82,7 +82,7 @@ def admin_serialize_notification(notif, language):
         'exception_email_pgp_key_remove': False
     }
 
-    return get_localized_values(ret_dict, notif, notif.localized_strings, language)
+    return get_localized_values(ret_dict, notif, notif.localized_keys, language)
 
 
 @transact_ro
@@ -95,7 +95,7 @@ def get_notification(store, language):
 def update_notification(store, request, language):
     notif = store.find(Notification).one()
 
-    fill_localized_keys(request, Notification.localized_strings, language)
+    fill_localized_keys(request, Notification.localized_keys, language)
 
     if request['reset_templates']:
         appdata_dict = load_appdata()

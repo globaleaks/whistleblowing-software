@@ -60,7 +60,7 @@ def admin_serialize_receiver(receiver, language):
     # description and eventually other localized strings should be taken from user model
     get_localized_values(ret_dict, receiver.user, ['description'], language)
 
-    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
 @transact_ro
@@ -113,7 +113,7 @@ def update_receiver(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    fill_localized_keys(request, models.Receiver.localized_strings, language)
+    fill_localized_keys(request, models.Receiver.localized_keys, language)
 
     contexts = request.get('contexts', [])
 

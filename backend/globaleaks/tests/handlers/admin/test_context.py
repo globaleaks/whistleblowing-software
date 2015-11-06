@@ -25,7 +25,7 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        for attrname in Context.localized_strings:
+        for attrname in Context.localized_keys:
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
@@ -46,7 +46,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put(self):
-        for attrname in Context.localized_strings:
+        for attrname in Context.localized_keys:
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
@@ -57,7 +57,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     def test_update_context_timetolive(self):
         self.dummyContext['tip_timetolive'] = 100  # days
 
-        for attrname in Context.localized_strings:
+        for attrname in Context.localized_keys:
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
@@ -69,7 +69,7 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     def test_update_context_invalid_timetolive(self):
         self.dummyContext['tip_timetolive'] = -3  # days
 
-        for attrname in Context.localized_strings:
+        for attrname in Context.localized_keys:
             self.dummyContext[attrname] = stuff
 
         # 1000 hours are more than three days, and a Tip can't live less than a submission

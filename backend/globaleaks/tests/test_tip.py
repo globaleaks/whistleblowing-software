@@ -201,7 +201,7 @@ class TestTip(helpers.TestGL):
         node_desc['can_postpone_expiration'] = True
 
         stuff = u"³²¼½¬¼³²"
-        for attrname in models.Node.localized_strings:
+        for attrname in models.Node.localized_keys:
             node_desc[attrname] = stuff
 
         node_desc = yield admin.node.update_node(node_desc, True, 'en')
