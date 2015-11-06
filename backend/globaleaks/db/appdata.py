@@ -24,8 +24,6 @@ def load_appdata():
 
 
 def load_default_fields(store):
-    this_directory = os.path.dirname(__file__)
-
     if os.path.exists(GLSettings.fields_path):
         for fname in os.listdir(GLSettings.fields_path):
             fpath = os.path.join(GLSettings.fields_path, fname)
@@ -45,11 +43,7 @@ def db_init_appdata(store):
     # Drop old appdata
     store.find(models.ApplicationData).remove()
 
-    # Setup new appdata
-    appdata = models.ApplicationData(appdata_dict)
-    appdata.version = appdata_dict['version']
-    appdata.default_questionnaire = appdata_dict['default_questionnaire']
-
+    # Load and setup new appdata
     store.add(models.ApplicationData(appdata_dict))
 
     return appdata_dict
