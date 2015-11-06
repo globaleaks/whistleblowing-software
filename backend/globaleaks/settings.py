@@ -42,7 +42,6 @@ class GLSettingssClass(object):
     initialized = False
 
     def __init__(self):
-
         if GLSettingssClass.initialized:
             error_msg = "Singleton GLSettingsClass instanced twice!"
             raise Exception(error_msg)
@@ -71,6 +70,7 @@ class GLSettingssClass(object):
         self.store_name = 'main_store'
 
         self.db_type = 'sqlite'
+
         # Database version tracking
         self.db_version = DATABASE_VERSION
 
@@ -191,7 +191,7 @@ class GLSettingssClass(object):
 
         # unchecked_tor_input contains information that cannot be validated now
         # due to complex inclusions or requirements. Data is used in
-        # globaleaks.db.datainit.apply_cli_options()
+        # globaleaks.db.appdata.apply_cli_options()
         self.unchecked_tor_input = {}
 
         # SOCKS default
@@ -294,17 +294,16 @@ class GLSettingssClass(object):
         self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_schema_file = os.path.join(self.static_db_source, self.db_type + '.sql')
+        self.db_schema_file = os.path.join(self.static_db_source, 'sqlite.sql')
+        self.db_file = 'glbackend-%d.db' % DATABASE_VERSION
+        self.db_path = os.path.join(os.path.abspath(os.path.join(self.gldb_path, self.db_file)))
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
 
         # gnupg path is used by PGP as temporary directory with keyring and files encryption.
         self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
-        if self.db_type == 'sqlite':
-            self.db_uri = 'sqlite:' + \
-                          os.path.abspath(os.path.join(self.gldb_path,
-                                                       'glbackend-%d.db?foreign_keys=ON' % DATABASE_VERSION))
+        self.db_uri = 'sqlite:' + self.db_path + '?foreign_keys=ON'
 
         # If we see that there is a custom build of GLClient, use that one.
         custom_glclient_path = '/var/globaleaks/custom-glclient'
@@ -429,7 +428,7 @@ class GLSettingssClass(object):
 
         if self.cmdline_options.public_website:
             GLSettings.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
-        # These three option would be used in globaleaks.db.datainit.apply_cli_options()
+        # These three option would be used in globaleaks.db.appdata.apply_cli_options()
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
@@ -585,6 +584,7 @@ class GLSettingssClass(object):
                         os.path.join(self.static_source, single_file),
                         os.path.join(self.static_path, single_file)
                     )
+
             if not almost_one_file:
                 print "[Non fatal error] Found empty: %s" % self.static_source
                 print "Your instance has not torrc and the default logo"

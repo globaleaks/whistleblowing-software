@@ -40,10 +40,11 @@ class BaseModel(Storm):
 
     # initialize empty list for the base classes
     unicode_keys = []
-    localized_strings = []
+    localized_keys = []
     int_keys = []
     bool_keys = []
     datetime_keys = []
+    json_keys = []
 
     def __init__(self, values=None):
         self.update(values)
@@ -69,34 +70,22 @@ class BaseModel(Storm):
         if values is None:
             return
 
-        # Dev note: these fields describe which key are expected in the
-        # constructor. if not available, an error is raise.
-        # other elements different from bool, unicode and int, can't be
-        # processed by the generic "update" method and need to be assigned
-        # to the object, [ but before commit(), if they are NOT NULL in the
-        # SQL file ]
-        cls_unicode_keys = getattr(self, "unicode_keys")
-        cls_int_keys = getattr(self, "int_keys")
-        cls_bool_keys = getattr(self, "bool_keys")
-        cls_datetime_keys = getattr(self, "datetime_keys")
-        cls_localized_keys = getattr(self, "localized_strings")
-
-        for k in cls_unicode_keys:
+        for k in getattr(self, "unicode_keys"):
             if k in values and values[k] is not None:
                 value = unicode(values[k])
                 setattr(self, k, value)
 
-        for k in cls_int_keys:
+        for k in getattr(self, "int_keys"):
             if k in values and values[k] is not None:
                 value = int(values[k])
                 setattr(self, k, value)
 
-        for k in cls_datetime_keys:
+        for k in getattr(self, "datetime_keys"):
             if k in values and values[k] is not None:
                 value = values[k]
                 setattr(self, k, value)
 
-        for k in cls_bool_keys:
+        for k in getattr(self, "bool_keys"):
             if k in values and values[k] is not None:
                 if values[k] == u'true':
                     value = True
@@ -106,7 +95,7 @@ class BaseModel(Storm):
                     value = bool(values[k])
                 setattr(self, k, value)
 
-        for k in cls_localized_keys:
+        for k in getattr(self, "localized_keys"):
             if k in values and values[k] is not None:
                 value = values[k]
                 previous = getattr(self, k)
@@ -116,6 +105,11 @@ class BaseModel(Storm):
                     setattr(self, k, previous)
                 else:
                     setattr(self, k, value)
+
+        for k in getattr(self, "json_keys"):
+            if k in values and values[k] is not None:
+                setattr(self, k, value)
+
 
     def __repr___(self):
         values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
@@ -198,7 +192,7 @@ class User(Model):
                     'state', 'language', 'mail_address',
                     'name']
 
-    localized_strings = ['description']
+    localized_keys = ['description']
 
     int_keys = ['timezone', 'password_change_needed']
 
@@ -236,7 +230,7 @@ class Context(Model):
 
     unicode_keys = ['questionnaire_layout']
 
-    localized_strings = ['name', 'description']
+    localized_keys = ['name', 'description']
 
     int_keys = ['tip_timetolive',
                 'maximum_selectable_receivers',
@@ -534,7 +528,7 @@ class Node(Model):
 
     # wizard_done is not checked because it's set by the backend
 
-    localized_strings = ['description', 'presentation', 'footer',
+    localized_keys = ['description', 'presentation', 'footer',
                          'security_awareness_title', 'security_awareness_text',
                          'whistleblowing_question',
                          'whistleblowing_button',
@@ -633,7 +627,7 @@ class Notification(Model):
         'exception_email_address'
     ]
 
-    localized_strings = [
+    localized_keys = [
         'admin_anomaly_mail_title',
         'admin_anomaly_mail_template',
         'admin_anomaly_disk_low',
@@ -775,7 +769,7 @@ class Field(Model):
 
     unicode_keys = ['type', 'instance', 'key']
     int_keys = ['x', 'y', 'width', 'activated_by_score']
-    localized_strings = ['label', 'description', 'hint', 'multi_entry_hint']
+    localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
 
     def delete(self, store):
@@ -828,7 +822,7 @@ class FieldOption(Model):
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
-    localized_strings = ['label']
+    localized_keys = ['label']
 
 
 class OptionActivateField(BaseModel):
@@ -883,7 +877,7 @@ class Step(Model):
 
     unicode_keys = ['context_id']
     int_keys = ['presentation_order']
-    localized_strings = ['label', 'description']
+    localized_keys = ['label', 'description']
 
     def delete(self, store):
         for child in self.children:
@@ -937,6 +931,9 @@ class SecureFileDelete(Model):
 class ApplicationData(Model):
     version = Int()
     default_questionnaire = JSON()
+
+    int_keys = ['version']
+    json_keys = ['default_questionnaire']
 
 
 # Follow classes used for Many to Many references
