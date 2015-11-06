@@ -123,6 +123,7 @@ CREATE TABLE internaltip (
     enable_attachments INTEGER NOT NULL,
     enable_whistleblower_identity INTEGER NOT NULL,
     identity_provided INTEGER NOT NULL,
+    identity_provided_date TEXT NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)

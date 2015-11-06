@@ -208,6 +208,7 @@ def serialize_itip(store, internaltip, language):
         'enable_attachments': internaltip.enable_attachments,
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'identity_provided': internaltip.identity_provided,
+        'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'show_receivers': context.show_receivers
     }
 
@@ -351,8 +352,9 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission.enable_attachments = context.enable_attachments
     submission.enable_whistleblower_identity = context.enable_whistleblower_identity
 
-    if context.enable_whistleblower_identity:
-        submission.identity_provided = request['identity_provided']
+    if context.enable_whistleblower_identity and request['identity_provided']:
+        submission.identity_provided = True
+        submission.identity_provided_date = datetime_now()
 
     try:
         questionnaire = db_get_context_steps(store, context.id, None)
