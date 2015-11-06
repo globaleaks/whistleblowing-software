@@ -4,12 +4,11 @@
 Utilities and basic TestCases.
 """
 
-from __future__ import with_statement
-
 import copy
 import json
-
 import os
+import shutil
+
 from cyclone import httpserver
 from cyclone.web import Application
 from storm.twisted.testing import FakeThreadPool
@@ -97,6 +96,28 @@ log.err = UTlog.err
 log.debug = UTlog.debug
 
 
+def init_glsettings_for_unit_tests():
+    GLSettings.set_devel_mode()
+    GLSettings.logging = None
+    GLSettings.scheduler_threadpool = FakeThreadPool()
+    GLSettings.sessions = {}
+    GLSettings.failed_login_attempts = 0
+
+    # Simulate two languages enabled that is somehow the most common configuration
+    GLSettings.defaults.languages_enabled = ['en', 'it']
+
+    if os.path.isdir('/dev/shm'):
+        GLSettings.working_path = '/dev/shm/globaleaks'
+    else:
+        GLSettings.working_path = './working_path'
+
+    GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
+
+    GLSettings.eval_paths()
+    GLSettings.remove_directories()
+    GLSettings.create_directories()
+
+
 def export_fixture(*models):
     """
     Return a valid json object holding all informations handled by the fields.
@@ -138,40 +159,26 @@ def import_fixture(store, fixture):
 def get_file_upload(self):
     return self.request.body
 
-
 BaseHandler.get_file_upload = get_file_upload
 
 
 class TestGL(unittest.TestCase):
+    initialize_test_database_using_archived_db = True
     encryption_scenario = 'MIXED'  # receivers with pgp and receivers without pgp
-
-    create_node = True
 
     @inlineCallbacks
     def setUp(self):
-        GLSettings.set_devel_mode()
-        GLSettings.logging = None
-        GLSettings.scheduler_threadpool = FakeThreadPool()
-        GLSettings.sessions = {}
-        GLSettings.failed_login_attempts = 0
-
-        # Simulate two languages enabled that is somehow the most common configuration
-        GLSettings.defaults.languages_enabled = ['en', 'it']
-
-        if os.path.isdir('/dev/shm'):
-            GLSettings.working_path = '/dev/shm/globaleaks'
-            GLSettings.ramdisk_path = '/dev/shm/globaleaks/ramdisk'
-        else:
-            GLSettings.working_path = './working_path'
-            GLSettings.ramdisk_path = './working_path/ramdisk'
-
-        GLSettings.eval_paths()
-        GLSettings.remove_directories()
-        GLSettings.create_directories()
+        init_glsettings_for_unit_tests()
 
         self.setUp_dummy()
 
-        yield db.create_tables(self.create_node)
+        if self.initialize_test_database_using_archived_db:
+            shutil.copy(
+                os.path.join(TEST_DIR, 'db', 'empty', GLSettings.db_file),
+                os.path.join(GLSettings.working_path, 'db', GLSettings.db_file)
+            )
+        else:
+            yield db.create_tables()
 
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)

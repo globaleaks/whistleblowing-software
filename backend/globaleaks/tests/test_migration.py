@@ -6,14 +6,14 @@ for each version one an empty and a populated db must be stored in directories:
  - db/populated
 
 """
-from __future__ import with_statement
-
+import os
 import shutil
 
-import os
-from globaleaks.tests import helpers
+from twisted.trial import unittest
+
 from globaleaks.db import check_db_files
 from globaleaks.settings import GLSettings
+from globaleaks.tests.helpers import init_glsettings_for_unit_tests
 
 
 def test_dbs_migration(directory):
@@ -28,9 +28,11 @@ def test_dbs_migration(directory):
             shutil.rmtree(GLSettings.gldb_path)
 
 
-class TestMigrationRoutines(helpers.TestGL):
+class TestMigrationRoutines(unittest.TestCase):
     def test_migration_of_default_dbs(self):
+        init_glsettings_for_unit_tests()
         test_dbs_migration('db/empty')
 
     def test_migration_of_populated_dbs(self):
+        init_glsettings_for_unit_tests()
         test_dbs_migration('db/populated')
