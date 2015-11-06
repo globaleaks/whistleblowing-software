@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers import admin
-from globaleaks.handlers.rtip import serialize_rtip
+from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.submission import serialize_internalfile
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import EventLogs
@@ -152,7 +152,7 @@ class MessageEventLogger(EventLogger):
     model = models.Message
 
     def process_event(self, store, message):
-        message_desc = rtip.serialize_message(message)
+        message_desc = serialize_message(message)
 
         # message.type can be 'receiver' or 'wb' at the moment, we care of the latter
         if message.type == u"receiver":
@@ -181,7 +181,7 @@ class CommentEventLogger(EventLogger):
     model = models.Comment
 
     def process_event(self, store, comment):
-        comment_desc = rtip.serialize_comment(comment)
+        comment_desc = serialize_comment(comment)
 
         context_desc = admin.context.admin_serialize_context(store,
                                                              comment.internaltip.context,
