@@ -27,11 +27,27 @@ from globaleaks.third_party import rstr
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 
+
+def db_assign_submission_progressive(store):
+    counter = store.find(models.Counter, models.Counter.key == u'submission_sequence').one()
+    now = datetime_now()
+    if ((now - counter.update_date).days > 0):
+        counter.counter = 1
+    else:
+        counter.counter += 1
+
+    counter.update_date = now
+
+    return counter.counter
+
+
 def _db_get_archived_fieldattr(fieldattr, language):
     return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_strings, language)
 
+
 def _db_get_archived_fieldoption(fieldoption, language):
     return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_strings, language)
+
 
 def _db_get_archived_field_recursively(field, language):
     for key, value in field['attrs'].iteritems():
@@ -179,6 +195,7 @@ def serialize_itip(store, internaltip, language):
         'creation_date': datetime_to_ISO8601(internaltip.creation_date),
         'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+        'progressive': internaltip.progressive,
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
@@ -222,13 +239,16 @@ def serialize_receiverfile(rfile):
 
     return rfile_dict
 
+
 def serialize_usertip(store, usertip, language):
     internaltip = usertip.internaltip
+
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
     ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
     ret['access_counter'] = usertip.access_counter
+
     return ret
 
 
@@ -315,6 +335,8 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise errors.models.ContextIdNotFound
 
     submission = models.InternalTip()
+
+    submission.progressive = db_assign_submission_progressive(store)
 
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
 

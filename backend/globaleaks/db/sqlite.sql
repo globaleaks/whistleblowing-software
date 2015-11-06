@@ -516,6 +516,15 @@ CREATE TABLE securefiledelete (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE counter (
+    id TEXT NOT NULL,
+    key TEXT NOT NULL,
+    counter INTEGER NOT NULL,
+    update_date TEXT NOT NULL,
+    UNIQUE (key),
+    PRIMARY KEY (id)
+);
+
 CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);

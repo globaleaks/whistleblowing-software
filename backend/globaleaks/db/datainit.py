@@ -11,6 +11,7 @@ import os
 from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.handlers.admin.user import db_create_admin
+#from globaleaks.handlers.submission import db_assign_submission_sequence
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -111,6 +112,13 @@ def init_db(store, result, node_dict, appdata_dict):
 
     admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
     admin.password_change_needed = False
+
+    submission_counter_dict = {
+      'key': u'submission_sequence',
+      'count': 0
+    }
+
+    store.add(models.Counter(submission_counter_dict))
 
     notification = models.Notification()
     for k in appdata_dict['templates']:

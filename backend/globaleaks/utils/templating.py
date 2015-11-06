@@ -43,7 +43,7 @@ class Templating(object):
                                   # and currently only one template is defined
                                   # considering exportable only not non sensitive info
                                   u'tip_expiration': TipKeyword,
-                                  u'receiver_notification_limit_reached': ReceiverKeyword,
+                                  u'receiver_notification_limit_reached': ReceiverKeyword
                                 }
 
         if event_dicts.type not in supported_event_types.keys():
@@ -128,6 +128,7 @@ class TipKeyword(_KeyWord):
         '%TorURL%',
         '%T2WURL%',
         '%TipNum%',
+        '%TipLabel%',
         '%EventTime%',
         '%ExpirationDate%',
         '%ExpirationWatch%'
@@ -171,22 +172,10 @@ class TipKeyword(_KeyWord):
         return self.TipT2WURL()
 
     def TipNum(self):
-        """
-        This is just an hack to create a random number from a TipId,
-        from 1 to 1000, that shall be the same among time, and
-        (without caring on collisions) different from others Tips
-        """
-        uuid_derived_string = self.tip['id'].replace('-', '')
-        retval = 1
-        for x in xrange(len(uuid_derived_string)):
-            try:
-                retval += int(uuid_derived_string[x])
-            except Exception:
-                # this happen when an ascii letter is converted
-                retval *= 2
+        return "[%s-%d] " % ((ISO8601_to_datetime(self.tip['creation_date'])).strftime("%Y%m%d"), self.tip['progressive'])
 
-        retval = (retval % 1000) + 1
-        return unicode(retval)
+    def TipLabel(self):
+        return "[" + self.tip['label'] + "] " if self.tip['label'] != '' else ""
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.tip['creation_date'], float(self.receiver['timezone']))

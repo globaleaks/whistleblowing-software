@@ -22,8 +22,6 @@ Event = namedtuple('Event',
 
 @transact
 def mark_event_as_notified(store, event_id):
-    """
-    """
     evnt = store.find(EventLogs, EventLogs.id == event_id).one()
     if evnt:
         evnt.mail_sent = True
@@ -36,13 +34,16 @@ class MailNotification(object):
             return Templating().format_template(template, event)
 
         if event.type in [u'tip', u'file', u'comment', u'message', u'tip_expiration', 'receiver_notification_limit_reached']:
-            subject = replace_variables(event.notification_settings[event.type + '_mail_title'], event)
-            body = replace_variables(event.notification_settings[event.type + '_mail_template'], event)
+            subject_template = event.notification_settings[event.type + '_mail_title']
+            body_template = event.notification_settings[event.type + '_mail_template']
         else:
             raise NotImplementedError("This event_type (%s) is not supported" % event.type)
 
         if event.type in [u'tip', u'file', u'comment', u'message', u'tip_expiration']:
-            subject = subject
+            subject_template = "%TipNum%%TipLabel%" + subject_template
+
+        subject = replace_variables(subject_template, event)
+        body = replace_variables(body_template, event)
 
         return subject, body
 
@@ -52,7 +53,7 @@ class MailNotification(object):
             body = event.tip_info['body']
             title = event.tip_info['title']
         else:
-            body, title = self.get_mail_subject_and_body(event)
+            title, body = self.get_mail_subject_and_body(event)
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['pgp_key_status'] == u'enabled':
