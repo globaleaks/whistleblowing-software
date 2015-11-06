@@ -235,8 +235,6 @@ class MigrationScript(MigrationBase):
         new_obj.preview = extract_answers_preview(questionnaire, answers)
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
@@ -251,8 +249,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_InternalFile(self):
-        print "%s InternalFile migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalFile']()
@@ -270,8 +266,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Comment(self):
-        print "%s Comment migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
             if old_obj.type == u'system':
@@ -285,8 +279,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
@@ -300,8 +292,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Field(self):
-        print "%s Field migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
@@ -333,8 +323,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        print "%s FieldOption migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             skip_add = False

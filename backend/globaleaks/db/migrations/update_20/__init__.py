@@ -210,8 +210,6 @@ class Context_v_19(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: disable_key_code_hint" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -240,8 +238,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant: various templates addeed" % self.std_fancy
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
@@ -271,8 +267,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Message(self):
-        print "%s Message migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Message'])
         for old_obj in old_objs:
             new_obj = self.model_to['Message']()
@@ -288,8 +282,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Comment(self):
-        print "%s Comment migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
             new_obj = self.model_to['Comment']()
@@ -305,8 +297,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
@@ -323,8 +313,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_ReceiverTip(self):
-        print "%s ReceiverTip migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverTip']()
@@ -344,8 +332,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_InternalFile(self):
-        print "%s InternalFile migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalFile']()
@@ -361,8 +347,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
-        print "%s ReceiverFile migration assistant: mark -> new" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['ReceiverFile'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverFile']()
@@ -383,8 +367,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Context(self):
-        print "%s Context migration assistant: removed receiver_introduction" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
@@ -405,8 +387,6 @@ class MigrationScript(MigrationBase):
         self.store_new.commit()
 
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant: gpg_ -> pgp_" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Receiver'])
         for old_obj in old_objs:
             new_obj = self.model_to['Receiver']()

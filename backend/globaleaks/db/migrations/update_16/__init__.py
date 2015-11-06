@@ -77,8 +77,6 @@ class Notification_v_15(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant" % self.std_fancy
-
         old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
             new_receiver = self.model_to['Receiver']()
@@ -109,8 +107,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_receiver)
 
     def migrate_Field(self):
-        print "%s Field migration assistant" % self.std_fancy
-
         old_fields = self.store_old.find(self.model_from['Field'])
         for old_field in old_fields:
             new_field = self.model_to['Field']()
@@ -127,8 +123,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_field)
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant: (disable_notification flags, ping_templates)" % self.std_fancy
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 

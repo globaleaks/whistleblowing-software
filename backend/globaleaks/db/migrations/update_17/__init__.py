@@ -127,8 +127,6 @@ class Stats_v_16(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: header_titles and landing_page configuration" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -152,8 +150,6 @@ class MigrationScript(MigrationBase):
 
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant: (pgp_expiration_alert templates)" % self.std_fancy
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
@@ -173,8 +169,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_notification)
 
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant" % self.std_fancy
-
         gpgobj = GLBPGP()
 
         old_receivers = self.store_old.find(self.model_from['Receiver'])

@@ -258,8 +258,6 @@ Step_v_20.context = Reference(Step_v_20.context_id, Context_v_20.id)
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -277,8 +275,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_node)
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant" % self.std_fancy
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
@@ -322,8 +318,6 @@ class MigrationScript(MigrationBase):
 
 
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant" % self.std_fancy
-
         old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
             new_user = self.model_to['User']()
@@ -350,8 +344,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_receiver)
 
     def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
@@ -368,8 +360,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Step(self):
-        print "%s Step migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Step'])
         for old_obj in old_objs:
             new_obj = self.model_to['Step']()
@@ -386,8 +376,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Field(self):
-        print "%s Field migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
@@ -404,8 +392,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_FieldOption(self):
-        print "%s FieldOption migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
@@ -422,8 +408,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()

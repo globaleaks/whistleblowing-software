@@ -229,8 +229,6 @@ class MigrationScript(MigrationBase):
         self.entries_count['FieldField'] += 20
 
     def migrate_Node(self):
-        print "%s Node migration assistant: header_title_tippage" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -302,8 +300,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_node)
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
 
         old_notification = self.store_old.find(self.model_from['Notification']).one()
@@ -366,8 +362,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_notification)
 
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant" % self.std_fancy
-
         old_receivers = self.store_old.find(self.model_from['Receiver'])
         for old_receiver in old_receivers:
             new_user = self.model_to['User']()
@@ -466,8 +460,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_admin)
 
     def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
             new_obj = self.model_to['Context']()
@@ -509,8 +501,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
@@ -521,6 +511,10 @@ class MigrationScript(MigrationBase):
 
                 if v.name == 'identity_provided':
                     new_obj.identity_provided = False
+                    continue
+
+                if v.name == 'identity_provided_date':
+                    new_obj.identity_provided_date = datetime_null()
                     continue
 
                 if v.name == 'total_score':
@@ -556,8 +550,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_ReceiverTip(self):
-        print "%s ReceiverTip migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['ReceiverTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['ReceiverTip']()
@@ -571,8 +563,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_Field(self):
-        print "%s Field migration assistant" % self.std_fancy
-
         old_objs = self.store_old.find(self.model_from['Field'])
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
@@ -607,8 +597,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_ArchivedSchema(self):
-        print "%s ArchivedSchema migration assistant" % self.std_fancy
-
         # Marking to avoid count check for ArchivedSchema
         self.fail_on_count_mismatch["ArchivedSchema"] = False
 

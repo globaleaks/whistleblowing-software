@@ -190,9 +190,6 @@ class Comment_v_14(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: added default_language and default_timezone" \
-              "whistleblowing_question, whistleblowing_button" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -230,9 +227,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_node)
 
     def migrate_User(self):
-        print "%s User migration assistant: (language, timezone," \
-              "password_change_needed, password_change_date)" % self.std_fancy
-
         old_users = self.store_old.find(self.model_from['User'])
         for old_user in old_users:
             new_user = self.model_to['User']()
@@ -258,8 +252,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_user)
 
     def migrate_Context(self):
-        print "%s Context migration assistant" % self.std_fancy
-
         old_contexts = self.store_old.find(self.model_from['Context'])
         new_step_model = self.model_to['Step']
         new_field_model = self.model_to['Field']
@@ -342,8 +334,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_context)
 
     def migrate_Receiver(self):
-        print "%s Receiver migration assistant: (configuration)" % self.std_fancy
-
         old_receivers = self.store_old.find(self.model_from['Receiver'])
 
         for old_receiver in old_receivers:
@@ -358,10 +348,7 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_receiver)
 
     def migrate_InternalTip(self):
-        print "%s InternalTip migration assistant" % self.std_fancy
-        steps = []
-
-        steps.append(self.appdata['default_questionnaire'][0])
+        steps = [self.appdata['default_questionnaire'][0]]
 
         i = 1
         for step in steps:
@@ -463,8 +450,6 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_itip)
 
     def migrate_Notification(self):
-        print "%s Notification migration assistant: (admin_anomaly_template)" % self.std_fancy
-
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
@@ -481,6 +466,3 @@ class MigrationScript(MigrationBase):
             setattr(new_notification, v.name, getattr(old_notification, v.name))
 
         self.store_new.add(new_notification)
-
-    def migrate_Stats(self):
-        print "%s Stats migration assistant: trash all old stats" % self.std_fancy

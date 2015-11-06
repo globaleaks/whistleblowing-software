@@ -81,11 +81,6 @@ class Context_v_13(Model):
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
-        print "%s Node migration assistant: (x_frame_options_mode, x_frame_options_allow_from," \
-              "disable_privacy_badge, disable_security_awareness_badge," \
-              "disable_security_awareness_questions, security_awareness_title," \
-              "security_awareness_text" % self.std_fancy
-
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
@@ -123,8 +118,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(new_node)
 
     def migrate_Context(self):
-        print "%s Context migration assistant: (enable_private_messages)" % self.std_fancy
-
         old_contexts = self.store_old.find(self.model_from['Context'])
         for old_context in old_contexts:
             new_context = self.model_to['Context']()
