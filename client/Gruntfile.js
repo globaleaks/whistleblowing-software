@@ -230,10 +230,10 @@ module.exports = function(grunt) {
         singleRun: true
       },
       test: {
-        configFile: "tests/client/protractor.config.js"
+        configFile: "tests/end2end/protractor.config.js"
       },
       saucelabs: {
-        configFile: "tests/client/protractor-sauce.config.js",
+        configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
           build: process.env.TRAVIS_JOB_ID
         }
