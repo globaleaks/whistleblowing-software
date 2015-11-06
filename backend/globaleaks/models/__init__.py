@@ -273,6 +273,7 @@ class InternalTip(Model):
     expiration_date = DateTime()
 
     identity_provided = Bool(default=False)
+    identity_provided_date = DateTime(default_factory=datetime_null)
 
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)

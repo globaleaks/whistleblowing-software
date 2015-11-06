@@ -285,12 +285,12 @@ class WBTipIdentityHandler(BaseHandler):
                     for field in step['children']:
                         if identity_provided: break
                         if field['id'] == identity_field_id and field['key'] == 'whistleblower_identity':
-                            answers = {}
-                            answers[identity_field_id] = [identity_field_answers]
-                            db_save_questionnaire_answers(store, internaltip.id, answers)
-                            identity_provided = True
-
-            internaltip.identity_provided = identity_provided
+                            db_save_questionnaire_answers(store, internaltip.id,
+                                                          {identity_field_id: [identity_field_answers]})
+                            now = datetime_now()
+                            internaltip.update_date = now
+                            internaltip.identity_provided = True
+                            internaltip.identity_provided_date = now
 
         yield update_identity_information(request['identity_field_id'], request['identity_field_answers'], self.request.language)
 
