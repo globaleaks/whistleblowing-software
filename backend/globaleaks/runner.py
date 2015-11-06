@@ -79,7 +79,7 @@ def globaleaks_start():
         GLSettings.drop_privileges()
         GLSettings.check_directories()
 
-        if os.path.exists(GLSettings.db_path):
+        if os.path.exists(GLSettings.db_file_path):
             yield init_appdata()
         else:
             yield init_db()
@@ -108,7 +108,8 @@ def globaleaks_start():
         log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
         log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
 
-    except:
+    except Exception as e:
+        print e
         log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")
         reactor.stop()
 

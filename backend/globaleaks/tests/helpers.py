@@ -174,11 +174,11 @@ class TestGL(unittest.TestCase):
 
         if self.initialize_test_database_using_archived_db:
             shutil.copy(
-                os.path.join(TEST_DIR, 'db', 'empty', GLSettings.db_file),
-                os.path.join(GLSettings.working_path, 'db', GLSettings.db_file)
+                os.path.join(TEST_DIR, 'db', 'empty', GLSettings.db_file_name),
+                os.path.join(GLSettings.working_path, 'db', GLSettings.db_file_name)
             )
         else:
-            yield db.create_tables()
+            yield db.init_db()
 
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)

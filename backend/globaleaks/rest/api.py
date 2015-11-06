@@ -138,12 +138,12 @@ spec = [
     (r'/styles.css', css.LTRCSSFileHandler),
     (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            langfiles.LanguageFileHandler, {'path': GLSettings.glclient_path}),
+            langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 
     (r'/s/timingstats', base.TimingStatsHandler),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.glclient_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
 ]
 
 def get_api_factory():

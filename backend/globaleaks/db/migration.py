@@ -80,14 +80,8 @@ def perform_version_update(version):
 
     try:
         while version < DATABASE_VERSION:
-            if not version:
-                old_db_file = os.path.abspath(os.path.join(
-                    GLSettings.gldb_path, 'glbackend.db'))
-            else:
-                old_db_file = os.path.abspath(os.path.join(
-                    GLSettings.gldb_path, 'glbackend-%d.db' % version))
-
-            new_db_file = os.path.abspath(os.path.join(GLSettings.gldb_path, 'glbackend-%d.db' % (version + 1)))
+            old_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
+            new_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % (version + 1)))
 
             GLSettings.db_file = new_db_file
             GLSettings.enable_input_length_checks = False
