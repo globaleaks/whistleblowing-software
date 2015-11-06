@@ -941,8 +941,8 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   constant('CONSTANTS', {
-     /* email regexp is an edited version of angular.js input.js in order to avoid domains with not tld */
-     "email_regexp": /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i,
+     /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
+     "email_regexp": /^(([\w-]\.){0,100}[\w-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$/,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "timezones": [
