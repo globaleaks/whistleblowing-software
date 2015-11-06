@@ -276,10 +276,6 @@ sys.argv[1:] = args
 
 
 def run_backend():
-    # Check DB version and eventually convert them,
-    # this step is made before the twisted start
-    check_db_files()
-
     log.start_logging()
 
     sys.excepthook = mail_exception_handler
@@ -292,6 +288,11 @@ def run_backend():
     else:
         print "Starting GlobaLeaks"
         try:
+            # Check database file and eventually perform its migration
+            check = check_db_files()
+            if check == -1:
+                 quit(-1)
+
             runner.GLBaseRunner(config).run()
 
             # this is a blocking operation, until app exit

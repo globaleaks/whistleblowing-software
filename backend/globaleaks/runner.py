@@ -9,8 +9,10 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
 
-from globaleaks.db import create_tables, clean_untracked_files, \
-   refresh_memory_variables, apply_cmdline_options
+from globaleaks.db import init_db, clean_untracked_files, \
+    refresh_memory_variables, apply_cmdline_options
+
+from globaleaks.db.appdata import init_appdata
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
@@ -70,23 +72,22 @@ def start_asynchronous_jobs():
     reactor.callLater(delay, stats.start, 60 * 60)
 
 
+@defer.inlineCallbacks
 def globaleaks_start():
-    GLSettings.fix_file_permissions()
-    GLSettings.drop_privileges()
-    GLSettings.check_directories()
+    try:
+        GLSettings.fix_file_permissions()
+        GLSettings.drop_privileges()
+        GLSettings.check_directories()
 
-    if not GLSettings.accepted_hosts:
-        log.err("Missing a list of hosts usable to contact GLBackend, abort")
-        return False
+        if os.path.exists(GLSettings.db_path):
+            yield init_appdata()
+        else:
+            yield init_db()
 
-    d = create_tables()
+        yield clean_untracked_files()
 
-    d.addCallback(clean_untracked_files)
-
-    @d.addCallback
-    @defer.inlineCallbacks
-    def cb(res):
         yield refresh_memory_variables()
+
         tor_configured_hosts = yield apply_cmdline_options()
 
         start_asynchronous_jobs()
@@ -107,7 +108,10 @@ def globaleaks_start():
         log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
         log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
 
-    return True
+    except:
+        log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")
+        reactor.stop()
+
 
 class GLBaseRunner(UnixApplicationRunner):
     """
@@ -117,7 +121,6 @@ class GLBaseRunner(UnixApplicationRunner):
         """
         Run the application.
         """
-
         try:
             self.startApplication(self.application)
         except Exception as ex:
@@ -135,10 +138,8 @@ class GLBaseRunner(UnixApplicationRunner):
                 untilConcludes(os.write, statusPipe, "0")
                 untilConcludes(os.close, statusPipe)
 
-        if globaleaks_start():
-            self.startReactor(None, self.oldstdout, self.oldstderr)
-        else:
-            log.err("Cannot start GlobaLeaks; please manual check the error.")
-            quit(-1)
+        reactor.callLater(0, globaleaks_start)
+
+        self.startReactor(None, self.oldstdout, self.oldstderr)
 
         self.removePID(self.config['pidfile'])

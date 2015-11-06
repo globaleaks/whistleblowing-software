@@ -25,7 +25,7 @@ class MetaModel(PropertyPublisherMeta):
         # it is not private
                             if not key.startswith('_')
         # this is going to be dealt at metaclass level shortly. aha.
-                            if key not in ('int_keys', 'bool_keys', 'unicode_keys', 'localized_strings')
+                            if key not in ('int_keys', 'bool_keys', 'unicode_keys', 'localized_keys')
         # it is not a public method, but a column
                             if isinstance(val, Property)
         ])

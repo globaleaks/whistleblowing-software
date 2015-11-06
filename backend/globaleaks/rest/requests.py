@@ -295,7 +295,7 @@ AdminFieldOptionDesc = {
     'activated_steps': [uuid_regexp_or_empty]
 }
 
-AdminFieldOptionDescRaw = get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_strings)
+AdminFieldOptionDescRaw = get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_keys)
 
 AdminFieldAttrDesc = {
     'id': uuid_regexp_or_empty,
@@ -304,7 +304,7 @@ AdminFieldAttrDesc = {
     'value': SkipSpecificValidation
 }
 
-AdminFieldAttrDescRaw = get_raw_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_strings)
+AdminFieldAttrDescRaw = get_raw_request_format(AdminFieldAttrDesc, models.FieldAttr.localized_keys)
 
 AdminFieldDesc = {
     'id': uuid_regexp_or_empty,
@@ -331,7 +331,7 @@ AdminFieldDesc = {
     'children': list
 }
 
-AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_strings)
+AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_keys)
 AdminFieldDescRaw['options'] = [AdminFieldOptionDescRaw]
 # AdminFieldDescRaw['attrs']; FIXME: we still miss a way for validating a hierarchy where
 #                                    we have a variable dictionary like the attrs dictionary.
@@ -345,7 +345,7 @@ AdminStepDesc = {
     'presentation_order': int
 }
 
-AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_strings)
+AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_keys)
 AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminContextDesc = {
@@ -372,7 +372,7 @@ AdminContextDesc = {
     'reset_questionnaire': bool
 }
 
-AdminContextDescRaw = get_raw_request_format(AdminContextDesc, models.Context.localized_strings)
+AdminContextDescRaw = get_raw_request_format(AdminContextDesc, models.Context.localized_keys)
 AdminContextDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminReceiverDesc = {

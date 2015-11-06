@@ -12,11 +12,14 @@ from twisted.internet.defer import succeed, inlineCallbacks
 from twisted.internet.threads import deferToThreadPool
 
 from globaleaks import models
-from globaleaks.db.datainit import init_appdata, init_db, load_appdata
+from globaleaks.db.appdata import db_init_appdata, load_default_fields
+from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
-from globaleaks.rest import errors
+from globaleaks.rest import errors, requests
+from globaleaks.security import get_salt
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log
+from globaleaks.third_party import rstr
+from globaleaks.utils.utility import log, datetime_null
 
 
 def init_models():
@@ -25,11 +28,8 @@ def init_models():
     return succeed(None)
 
 
-@transact
-def create_tables_transaction(store):
+def db_create_tables(store):
     """
-    @return: None, create the right table at the first start, and initialized
-    the node.
     """
     if not os.access(GLSettings.db_schema_file, os.R_OK):
         log.err("Unable to access %s" % GLSettings.db_schema_file)
@@ -49,86 +49,117 @@ def create_tables_transaction(store):
     # the called has to .commit and .close, operations commonly performed by decorator
 
 
-def create_tables(create_node=True):
-    appdata_dict = load_appdata()
+@transact
+def init_db(store):
+    """
+    """
+    db_create_tables(store)
+    appdata_dict = db_init_appdata(store)
 
-    db_exists = False
-    if GLSettings.db_type == 'sqlite':
-        db_path = GLSettings.db_uri.replace('sqlite:', '').split('?', 1)[0]
-        if os.path.exists(db_path):
-            db_exists = True
+    log.debug("Performing database initialization...")
 
-    if db_exists:
-        ret = succeed(None)
-        ret.addCallback(init_appdata, appdata_dict)
-        return ret
+    node_dict = {
+        'name': u'',
+        'description': dict({GLSettings.defaults.language: u''}),
+        'presentation': dict({GLSettings.defaults.language: u''}),
+        'footer': dict({GLSettings.defaults.language: u''}),
+        'context_selector_label': dict({GLSettings.defaults.language: u''}),
+        'security_awareness_title': dict({GLSettings.defaults.language: u''}),
+        'security_awareness_text': dict({GLSettings.defaults.language: u''}),
+        'whistleblowing_question': dict({GLSettings.defaults.language: u''}),
+        'whistleblowing_button': dict({GLSettings.defaults.language: u''}),
+        'hidden_service': u'',
+        'public_site': u'',
+        'maximum_filesize': GLSettings.defaults.maximum_filesize,
+        'maximum_namesize': GLSettings.defaults.maximum_namesize,
+        'maximum_textsize': GLSettings.defaults.maximum_textsize,
+        'tor2web_admin': GLSettings.defaults.tor2web_access['admin'],
+        'tor2web_custodian': GLSettings.defaults.tor2web_access['custodian'],
+        'tor2web_whistleblower': GLSettings.defaults.tor2web_access['whistleblower'],
+        'tor2web_receiver': GLSettings.defaults.tor2web_access['receiver'],
+        'tor2web_unauth': GLSettings.defaults.tor2web_access['unauth'],
+        'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,
+        'submission_maximum_ttl' : GLSettings.defaults.submission_maximum_ttl,
+        'can_postpone_expiration': False,  # disabled by default
+        'can_delete_submission': False,  # disabled too
+        'ahmia': False,  # disabled too
+        'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
+        'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
+        'languages_enabled': GLSettings.defaults.languages_enabled,
+        'default_language': GLSettings.defaults.language,
+        'default_timezone': GLSettings.defaults.timezone,
+        'disable_privacy_badge': False,
+        'disable_security_awareness_badge': False,
+        'disable_security_awareness_questions': False,
+        'simplified_login': True,
+        'enable_custom_privacy_badge': False,
+        'disable_key_code_hint': False,
+        'custom_privacy_badge_tor': dict({GLSettings.defaults.language: u''}),
+        'custom_privacy_badge_none': dict({GLSettings.defaults.language: u''}),
+        'header_title_homepage': dict({GLSettings.defaults.language: u''}),
+        'header_title_submissionpage': dict({GLSettings.defaults.language: u''}),
+        'header_title_receiptpage': dict({GLSettings.defaults.language: u''}),
+        'header_title_tippage': dict({GLSettings.defaults.language: u''}),
+        'widget_comments_title': dict({GLSettings.defaults.language: u''}),
+        'widget_messages_title': dict({GLSettings.defaults.language: u''}),
+        'widget_files_title': dict({GLSettings.defaults.language: u''}),
+        'landing_page': GLSettings.defaults.landing_page,
+        'show_contexts_in_alphabetical_order': False,
+        'threshold_free_disk_megabytes_high': 200,
+        'threshold_free_disk_megabytes_medium': 500,
+        'threshold_free_disk_megabytes_low': 1000,
+        'threshold_free_disk_percentage_high': 3,
+        'threshold_free_disk_percentage_medium': 5,
+        'threshold_free_disk_percentage_low': 10
+    }
 
-    deferred = create_tables_transaction()
-    deferred.addCallback(init_appdata, appdata_dict)
+    node = models.Node(node_dict)
+    node.languages_enabled = GLSettings.defaults.languages_enabled
+    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    node.wizard_done = GLSettings.skip_wizard
 
-    if create_node:
-        log.debug("Node initialization with defaults values")
+    for k in appdata_dict['node']:
+        setattr(node, k, appdata_dict['node'][k])
 
-        node_dict = {
-            'name': u'',
-            'description': dict({GLSettings.defaults.language: u''}),
-            'presentation': dict({GLSettings.defaults.language: u''}),
-            'footer': dict({GLSettings.defaults.language: u''}),
-            'context_selector_label': dict({GLSettings.defaults.language: u''}),
-            'security_awareness_title': dict({GLSettings.defaults.language: u''}),
-            'security_awareness_text': dict({GLSettings.defaults.language: u''}),
-            'whistleblowing_question': dict({GLSettings.defaults.language: u''}),
-            'whistleblowing_button': dict({GLSettings.defaults.language: u''}),
-            'hidden_service': u'',
-            'public_site': u'',
-            # advanced settings
-            'maximum_filesize': GLSettings.defaults.maximum_filesize,
-            'maximum_namesize': GLSettings.defaults.maximum_namesize,
-            'maximum_textsize': GLSettings.defaults.maximum_textsize,
-            'tor2web_admin': GLSettings.defaults.tor2web_access['admin'],
-            'tor2web_custodian': GLSettings.defaults.tor2web_access['custodian'],
-            'tor2web_whistleblower': GLSettings.defaults.tor2web_access['whistleblower'],
-            'tor2web_receiver': GLSettings.defaults.tor2web_access['receiver'],
-            'tor2web_unauth': GLSettings.defaults.tor2web_access['unauth'],
-            'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,
-            'submission_maximum_ttl' : GLSettings.defaults.submission_maximum_ttl,
-            'can_postpone_expiration': False,  # disabled by default
-            'can_delete_submission': False,  # disabled too
-            'ahmia': False,  # disabled too
-            'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
-            'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
-            'languages_enabled': GLSettings.defaults.languages_enabled,
-            'default_language': GLSettings.defaults.language,
-            'default_timezone': GLSettings.defaults.timezone,
-            'disable_privacy_badge': False,
-            'disable_security_awareness_badge': False,
-            'disable_security_awareness_questions': False,
-            'simplified_login': True,
-            'enable_custom_privacy_badge': False,
-            'disable_key_code_hint': False,
-            'custom_privacy_badge_tor': dict({GLSettings.defaults.language: u''}),
-            'custom_privacy_badge_none': dict({GLSettings.defaults.language: u''}),
-            'header_title_homepage': dict({GLSettings.defaults.language: u''}),
-            'header_title_submissionpage': dict({GLSettings.defaults.language: u''}),
-            'header_title_receiptpage': dict({GLSettings.defaults.language: u''}),
-            'header_title_tippage': dict({GLSettings.defaults.language: u''}),
-            'widget_comments_title': dict({GLSettings.defaults.language: u''}),
-            'widget_messages_title': dict({GLSettings.defaults.language: u''}),
-            'widget_files_title': dict({GLSettings.defaults.language: u''}),
-            'landing_page': GLSettings.defaults.landing_page,
-            'show_contexts_in_alphabetical_order': False,
-            'threshold_free_disk_megabytes_high': 200,
-            'threshold_free_disk_megabytes_medium': 500,
-            'threshold_free_disk_megabytes_low': 1000,
-            'threshold_free_disk_percentage_high': 3,
-            'threshold_free_disk_percentage_medium': 5,
-            'threshold_free_disk_percentage_low': 10
-        }
+    store.add(node)
 
-        # Initialize the node and notification tables
-        deferred.addCallback(init_db, node_dict, appdata_dict)
+    admin_dict = {
+        'username': u'admin',
+        'password': u'globaleaks',
+        'deeletable': False,
+        'role': u'admin',
+        'state': u'enabled',
+        'deletable': False,
+        'name': u'Admin',
+        'description': u'',
+        'mail_address': u'',
+        'language': GLSettings.defaults.language,
+        'timezone': GLSettings.defaults.timezone,
+        'password_change_needed': False,
+        'pgp_key_status': 'disabled',
+        'pgp_key_info': '',
+        'pgp_key_fingerprint': '',
+        'pgp_key_public': '',
+        'pgp_key_expiration': datetime_null()
+    }
 
-    return deferred
+    admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
+    admin.password_change_needed = False
+
+    submission_counter_dict = {
+      'key': u'submission_sequence',
+      'count': 0
+    }
+
+    store.add(models.Counter(submission_counter_dict))
+
+    notification = models.Notification()
+    for k in appdata_dict['templates']:
+        setattr(notification, k, appdata_dict['templates'][k])
+
+    load_default_fields(store)
+
+    store.add(notification)
 
 
 def check_db_files():
@@ -136,7 +167,7 @@ def check_db_files():
     This function checks the database version and executes eventually
     executes migration scripts
     """
-    db_version = -1
+    db_version = 0
     for filename in os.listdir(GLSettings.gldb_path):
         if filename.startswith('glbackend'):
             if filename.endswith('.db'):
@@ -154,7 +185,7 @@ def check_db_files():
                     print "Unable to remove %s: %s" % \
                         (os.unlink(os.path.join(dirpath, single_file)), excep)
 
-    if db_version > -1:
+    if db_version > 0:
         from globaleaks.db import migration
 
         print "Database version detected: %d" % db_version
@@ -170,7 +201,7 @@ def check_db_files():
                 print "Verbose exception traceback:"
                 _, _, exc_traceback = sys.exc_info()
                 traceback.print_tb(exc_traceback)
-                quit(-1)
+                return -1
 
     return db_version
 
@@ -187,7 +218,7 @@ def get_tracked_files(store):
 
 
 @inlineCallbacks
-def clean_untracked_files(res):
+def clean_untracked_files():
     """
     removes files in GLSettings.submission_path that are not
     tracked by InternalFile/ReceiverFile.
