@@ -63,6 +63,7 @@ def db_admin_serialize_node(store, language):
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,
         'disable_key_code_hint': node.disable_key_code_hint,
+        'disable_donation_panel': node.disable_donation_panel,
         'simplified_login': node.simplified_login,
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,

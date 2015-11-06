@@ -200,6 +200,7 @@ AdminNodeDesc = {
     'disable_security_awareness_badge': bool,
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
+    'disable_donation_panel': bool,
     'configured': bool,
     'simplified_login': bool,
     'enable_captcha': bool,

@@ -180,6 +180,7 @@ CREATE TABLE node (
     disable_security_awareness_badge INTEGER NOT NULL,
     disable_security_awareness_questions INTEGER NOT NULL,
     disable_key_code_hint INTEGER NOT NULL,
+    disable_donation_panel INTEGER NOT NULL,
     enable_captcha INTEGER NOT NULL,
     enable_proof_of_work INTEGER NOT NULL,
     simplified_login INTEGER NOT NULL,
