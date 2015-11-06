@@ -52,7 +52,7 @@ def admin_serialize_context(store, context, language):
         'steps': [anon_serialize_step(store, s, language) for s in context.steps]
     }
 
-    return get_localized_values(ret_dict, context, context.localized_strings, language)
+    return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
 @transact_ro
@@ -144,7 +144,7 @@ def db_setup_default_questionnaire(store, context):
 
 
 def fill_context_request(request, language):
-    fill_localized_keys(request, models.Context.localized_strings, language)
+    fill_localized_keys(request, models.Context.localized_keys, language)
 
     request['tip_timetolive'] = acquire_context_timetolive(int(request['tip_timetolive']))
 

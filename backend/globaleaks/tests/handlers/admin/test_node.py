@@ -31,7 +31,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
 
-        for attrname in Node.localized_strings:
+        for attrname in Node.localized_keys:
             self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')

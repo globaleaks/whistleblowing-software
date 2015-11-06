@@ -10,7 +10,7 @@ from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVar
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db.datainit import load_appdata
+from globaleaks.db.appdata import load_appdata
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import every_language
 

@@ -26,7 +26,7 @@ def db_create_step(store, step, language):
     :param store: the store on which perform queries.
     :param language: the language of the specified steps.
     """
-    fill_localized_keys(step, models.Step.localized_strings, language)
+    fill_localized_keys(step, models.Step.localized_keys, language)
 
     s = models.Step.new(store, step)
 
@@ -61,7 +61,7 @@ def db_update_step(store, step_id, request, language):
     if not step:
         raise errors.StepIdNotFound
 
-    fill_localized_keys(request, models.Step.localized_strings, language)
+    fill_localized_keys(request, models.Step.localized_keys, language)
 
     step.update(request)
 

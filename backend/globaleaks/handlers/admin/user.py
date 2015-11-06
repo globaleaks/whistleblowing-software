@@ -56,7 +56,7 @@ def db_create_custodian(store, request, language):
     """
     user = db_create_user(store, request, language)
 
-    fill_localized_keys(request, models.Custodian.localized_strings, language)
+    fill_localized_keys(request, models.Custodian.localized_keys, language)
 
     custodian = models.Custodian(request)
 
@@ -92,7 +92,7 @@ def db_create_receiver(store, request, language):
     """
     user = db_create_user(store, request, language)
 
-    fill_localized_keys(request, models.Receiver.localized_strings, language)
+    fill_localized_keys(request, models.Receiver.localized_keys, language)
 
     receiver = models.Receiver(request)
 
@@ -134,7 +134,7 @@ def create_user_picture(user_id):
 
 
 def db_create_user(store, request, language):
-    fill_localized_keys(request, models.User.localized_strings, language)
+    fill_localized_keys(request, models.User.localized_keys, language)
 
     password = request['password']
     if len(password) and password != GLSettings.default_password:
@@ -182,7 +182,7 @@ def db_admin_update_user(store, user_id, request, language):
     if not user:
         raise errors.UserIdNotFound
 
-    fill_localized_keys(request, models.User.localized_strings, language)
+    fill_localized_keys(request, models.User.localized_keys, language)
 
     user.name = request['name']
     user.description = request['description']

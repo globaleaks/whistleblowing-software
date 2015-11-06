@@ -36,7 +36,7 @@ def collect_tip_overview(store, language):
             'wb_last_access': u'Never'
         }
 
-        mo = Rosetta(itip.context.localized_strings)
+        mo = Rosetta(itip.context.localized_keys)
         mo.acquire_storm_object(itip.context)
         tip_description['context_name'] = mo.dump_localized_key('name', language)
 

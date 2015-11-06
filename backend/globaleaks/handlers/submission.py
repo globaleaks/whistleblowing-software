@@ -42,11 +42,11 @@ def db_assign_submission_progressive(store):
 
 
 def _db_get_archived_fieldattr(fieldattr, language):
-    return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_strings, language)
+    return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_keys, language)
 
 
 def _db_get_archived_fieldoption(fieldoption, language):
-    return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_strings, language)
+    return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_keys, language)
 
 
 def _db_get_archived_field_recursively(field, language):
@@ -63,7 +63,7 @@ def _db_get_archived_field_recursively(field, language):
     for c in field['children']:
         _db_get_archived_field_recursively(c, language)
 
-    return get_localized_values(field, field, models.Field.localized_strings, language)
+    return get_localized_values(field, field, models.Field.localized_keys, language)
 
 
 def _db_get_archived_questionnaire_schema(store, hash, type, language):
@@ -80,7 +80,7 @@ def _db_get_archived_questionnaire_schema(store, hash, type, language):
     for step in questionnaire:
         for field in step['children']:
             _db_get_archived_field_recursively(field, language)
-        get_localized_values(step, step, models.Step.localized_strings, language)
+        get_localized_values(step, step, models.Step.localized_keys, language)
 
     return questionnaire
 
@@ -187,7 +187,7 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
 
 def serialize_itip(store, internaltip, language):
     context = internaltip.context
-    mo = Rosetta(context.localized_strings)
+    mo = Rosetta(context.localized_keys)
     mo.acquire_storm_object(context)
 
     return {

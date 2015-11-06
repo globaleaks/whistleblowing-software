@@ -54,7 +54,7 @@ def receiver_serialize_receiver(receiver, language):
     # description and eventually other localized strings should be taken from user model
     get_localized_values(ret_dict, receiver.user, ['description'], language)
 
-    return get_localized_values(ret_dict, receiver, receiver.localized_strings, language)
+    return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
 @transact_ro
@@ -96,7 +96,7 @@ def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
     for rtip in rtiplist:
-        mo = Rosetta(rtip.internaltip.context.localized_strings)
+        mo = Rosetta(rtip.internaltip.context.localized_keys)
         mo.acquire_storm_object(rtip.internaltip.context)
 
         rtip_summary_list.append({

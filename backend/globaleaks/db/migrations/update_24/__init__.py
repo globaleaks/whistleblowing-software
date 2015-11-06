@@ -5,7 +5,7 @@ import string
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.datainit import load_default_fields
+from globaleaks.db.appdata import load_default_fields
 from globaleaks.models import BaseModel, Model
 from globaleaks.utils.utility import datetime_null
 
@@ -357,7 +357,7 @@ class MigrationScript(MigrationBase):
                 continue
 
             old_value = getattr(old_notification, v.name)
-            if v.name in new_notification.localized_strings:
+            if v.name in new_notification.localized_keys:
                 for lang in old_value:
                     old_value[lang] = string.replace(old_value[lang], "ReceiverName", "RecipientName")
 

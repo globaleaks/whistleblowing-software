@@ -79,7 +79,7 @@ def db_admin_serialize_node(store, language):
         'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low
     }
 
-    return get_localized_values(ret_dict, node, models.Node.localized_strings, language)
+    return get_localized_values(ret_dict, node, models.Node.localized_keys, language)
 
 
 @transact_ro
@@ -97,7 +97,7 @@ def db_update_node(store, request, wizard_done, language):
     """
     node = store.find(models.Node).one()
 
-    fill_localized_keys(request, models.Node.localized_strings, language)
+    fill_localized_keys(request, models.Node.localized_keys, language)
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []

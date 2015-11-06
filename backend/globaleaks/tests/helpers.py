@@ -34,7 +34,7 @@ mailutils.sendmail = sendmail_mock
 
 
 from globaleaks import db, models, security, anomaly, event
-from globaleaks.db.datainit import load_appdata
+from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
@@ -225,7 +225,7 @@ class TestGL(unittest.TestCase):
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
 
-        for attr in getattr(dict_c, 'localized_strings'):
+        for attr in getattr(dict_c, 'localized_keys'):
             ret[attr] = {}
             ret[attr][language] = unicode(dict_l[attr])
 
@@ -280,7 +280,7 @@ class TestGL(unittest.TestCase):
     def create_dummy_field(self, store, **custom_attrs):
         field = self.get_dummy_field()
 
-        fill_localized_keys(field, models.Field.localized_strings, 'en')
+        fill_localized_keys(field, models.Field.localized_keys, 'en')
 
         field.update(custom_attrs)
 
@@ -430,10 +430,7 @@ class TestGL(unittest.TestCase):
         wbtips_desc = []
         wbtips = store.find(models.WhistleblowerTip)
         for wbtip in wbtips:
-            rcvrs_ids = []
-            for rcvr in wbtip.internaltip.receivers:
-                rcvrs_ids.append(rcvr.id)
-
+            rcvrs_ids = [rcvr.id for rcvr in wbtip.internaltip.receivers]
             itip = serialize_usertip(store, wbtip, 'en')
             wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
 
