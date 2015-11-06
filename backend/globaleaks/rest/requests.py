@@ -15,7 +15,7 @@ uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f
 user_roles_regexp                 = r'^(admin|custodian|receiver)$'
 user_states_regexp                = r'^(enabled|disabled)$'
 receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
-email_regexp                      = r'^(([\w-]\.){0,100}[\w-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$|^$'
+email_regexp                      = r'^(([\w-]\.){0,100}[\w-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$'
 email_regexp_or_empty             = r'^(([\w-]\.){0,100}[\w-]{1,100}@([\w-]+\.){0,100}[\w-]{1,100})$|^$'
 hidden_service_regexp             = r'^http://[0-9a-z]{16}\.onion$'
 hidden_service_regexp_or_empty    = r'^http://[0-9a-z]{16}\.onion$$|^$'
@@ -133,7 +133,7 @@ ReceiverReceiverDesc = {
     'old_password': unicode,
     'password_change_needed': bool,
     'mail_address': email_regexp,
-    'ping_mail_address': email_regexp,
+    'ping_mail_address': email_regexp_or_empty,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': unicode,
     'pgp_key_expiration': unicode,
@@ -384,7 +384,7 @@ AdminReceiverDesc = {
     'password': unicode,
     'deletable': bool,
     'mail_address': email_regexp,
-    'ping_mail_address': email_regexp,
+    'ping_mail_address': email_regexp_or_empty,
     'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
