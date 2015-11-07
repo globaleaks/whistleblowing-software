@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+ -*- coding: UTF-8
 # settings: Define GLSettings, main class handling GlobaLeeaks runtime settings
 # ******
 import glob
@@ -99,6 +99,7 @@ class GLSettingssClass(object):
         for path in possible_client_paths:
             if os.path.exists(path):
                 self.client_path = path
+                break
 
         self.set_ramdisk_path()
 
@@ -307,7 +308,7 @@ class GLSettingssClass(object):
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
 
-        self.db__schema = os.path.join(self.static_db_source, 'sqlite.sql')
+        self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
         self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
         self.db_uri = 'sqlite:' + self.db_file_path + '?foreign_keys=ON'
@@ -439,7 +440,6 @@ class GLSettingssClass(object):
 
         if self.cmdline_options.public_website:
             GLSettings.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
-        # These three option would be used in globaleaks.db.appdata.apply_cli_options()
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user

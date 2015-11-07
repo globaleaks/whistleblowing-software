@@ -31,11 +31,11 @@ def init_models():
 def db_create_tables(store):
     """
     """
-    if not os.access(GLSettings.db__schema, os.R_OK):
-        log.err("Unable to access %s" % GLSettings.db__schema)
+    if not os.access(GLSettings.db_schema, os.R_OK):
+        log.err("Unable to access %s" % GLSettings.db_schema)
         raise Exception("Unable to access db schema file")
 
-    with open(GLSettings.db__schema) as f:
+    with open(GLSettings.db_schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
             try:
@@ -179,7 +179,7 @@ def check_db_files():
                 # As left journals files can leak data undefinitely we
                 # should manage to remove them.
                 print "Found an undeleted DB journal file %s: deleting it." % filename
-                filepath = os.path.join(GLSetting.db_path, filename)
+                filepath = os.path.join(GLSettings.db_path, filename)
                 try:
                     os.unlink(filepath)
                 except Exception as excep:

@@ -149,10 +149,10 @@ class MigrationBase(object):
 
         if self.start_version + 1 == DATABASE_VERSION:
             # we are there!
-            if not os.access(GLSettings.db__schema, os.R_OK):
-                print 'Unable to access %s ' % GLSettings.db__schema
+            if not os.access(GLSettings.db_schema, os.R_OK):
+                print 'Unable to access %s ' % GLSettings.db_schema
                 raise IOError('Unable to access db schema file')
-            with open(GLSettings.db__schema) as f:
+            with open(GLSettings.db_schema) as f:
                 queries = ''.join(f).split(';')
                 for query in queries:
                     self.execute_query(query)
