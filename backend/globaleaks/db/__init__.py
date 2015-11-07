@@ -58,65 +58,9 @@ def init_db(store):
 
     log.debug("Performing database initialization...")
 
-    node_dict = {
-        'name': u'',
-        'description': dict({GLSettings.defaults.language: u''}),
-        'presentation': dict({GLSettings.defaults.language: u''}),
-        'footer': dict({GLSettings.defaults.language: u''}),
-        'context_selector_label': dict({GLSettings.defaults.language: u''}),
-        'security_awareness_title': dict({GLSettings.defaults.language: u''}),
-        'security_awareness_text': dict({GLSettings.defaults.language: u''}),
-        'whistleblowing_question': dict({GLSettings.defaults.language: u''}),
-        'whistleblowing_button': dict({GLSettings.defaults.language: u''}),
-        'hidden_service': u'',
-        'public_site': u'',
-        'maximum_filesize': GLSettings.defaults.maximum_filesize,
-        'maximum_namesize': GLSettings.defaults.maximum_namesize,
-        'maximum_textsize': GLSettings.defaults.maximum_textsize,
-        'tor2web_admin': GLSettings.defaults.tor2web_access['admin'],
-        'tor2web_custodian': GLSettings.defaults.tor2web_access['custodian'],
-        'tor2web_whistleblower': GLSettings.defaults.tor2web_access['whistleblower'],
-        'tor2web_receiver': GLSettings.defaults.tor2web_access['receiver'],
-        'tor2web_unauth': GLSettings.defaults.tor2web_access['unauth'],
-        'submission_minimum_delay' : GLSettings.defaults.submission_minimum_delay,
-        'submission_maximum_ttl' : GLSettings.defaults.submission_maximum_ttl,
-        'can_postpone_expiration': False,  # disabled by default
-        'can_delete_submission': False,  # disabled too
-        'ahmia': False,  # disabled too
-        'allow_unencrypted': GLSettings.defaults.allow_unencrypted,
-        'allow_iframes_inclusion': GLSettings.defaults.allow_iframes_inclusion,
-        'languages_enabled': GLSettings.defaults.languages_enabled,
-        'default_language': GLSettings.defaults.language,
-        'default_timezone': GLSettings.defaults.timezone,
-        'disable_privacy_badge': False,
-        'disable_security_awareness_badge': False,
-        'disable_security_awareness_questions': False,
-        'simplified_login': True,
-        'enable_custom_privacy_badge': False,
-        'disable_key_code_hint': False,
-        'custom_privacy_badge_tor': dict({GLSettings.defaults.language: u''}),
-        'custom_privacy_badge_none': dict({GLSettings.defaults.language: u''}),
-        'header_title_homepage': dict({GLSettings.defaults.language: u''}),
-        'header_title_submissionpage': dict({GLSettings.defaults.language: u''}),
-        'header_title_receiptpage': dict({GLSettings.defaults.language: u''}),
-        'header_title_tippage': dict({GLSettings.defaults.language: u''}),
-        'widget_comments_title': dict({GLSettings.defaults.language: u''}),
-        'widget_messages_title': dict({GLSettings.defaults.language: u''}),
-        'widget_files_title': dict({GLSettings.defaults.language: u''}),
-        'landing_page': GLSettings.defaults.landing_page,
-        'show_contexts_in_alphabetical_order': False,
-        'threshold_free_disk_megabytes_high': 200,
-        'threshold_free_disk_megabytes_medium': 500,
-        'threshold_free_disk_megabytes_low': 1000,
-        'threshold_free_disk_percentage_high': 3,
-        'threshold_free_disk_percentage_medium': 5,
-        'threshold_free_disk_percentage_low': 10
-    }
-
-    node = models.Node(node_dict)
-    node.languages_enabled = GLSettings.defaults.languages_enabled
-    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    node = models.Node()
     node.wizard_done = GLSettings.skip_wizard
+    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
 
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
@@ -299,7 +243,6 @@ def db_refresh_memory_variables(store):
 
         GLSettings.memory_copy.notif_source_name = notif.source_name
         GLSettings.memory_copy.notif_source_email = notif.source_email
-        GLSettings.memory_copy.notif_uses_tor = notif.torify
 
         GLSettings.memory_copy.exception_email_address = notif.exception_email_address
         GLSettings.memory_copy.exception_email_pgp_key_info = notif.exception_email_pgp_key_info

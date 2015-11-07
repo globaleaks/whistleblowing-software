@@ -10,10 +10,12 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 from .properties import MetaModel, DateTime
 
 from globaleaks.orm import transact
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
 
+empty_localization = dict({GLSettings.defaults.language: u''})
 
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
@@ -419,36 +421,37 @@ class Node(Model):
 
     This table represent the System-wide settings
     """
-    name = Unicode(validator=shorttext_v)
-    public_site = Unicode(validator=shorttext_v)
-    hidden_service = Unicode(validator=shorttext_v)
+    name = Unicode(validator=shorttext_v, default=u'')
+
+    public_site = Unicode(validator=shorttext_v, default=u'')
+    hidden_service = Unicode(validator=shorttext_v, default=u'')
+
     receipt_salt = Unicode(validator=shorttext_v)
 
-    languages_enabled = JSON()
-    default_language = Unicode(validator=shorttext_v)
-    default_timezone = Int(default=0)
+    languages_enabled = JSON(default=GLSettings.defaults.languages_enabled)
+    default_language = Unicode(validator=shorttext_v, default=GLSettings.defaults.language)
+    default_timezone = Int(default=GLSettings.defaults.timezone)
 
-    # localized strings
-    description = JSON(validator=longlocal_v)
-    presentation = JSON(validator=longlocal_v)
-    footer = JSON(validator=longlocal_v)
-    security_awareness_title = JSON(validator=longlocal_v)
-    security_awareness_text = JSON(validator=longlocal_v)
-    context_selector_label = JSON(validator=longlocal_v)
+    description = JSON(validator=longlocal_v, default=empty_localization)
+    presentation = JSON(validator=longlocal_v, default=empty_localization)
+    footer = JSON(validator=longlocal_v, default=empty_localization)
+    security_awareness_title = JSON(validator=longlocal_v, default=empty_localization)
+    security_awareness_text = JSON(validator=longlocal_v, default=empty_localization)
+    context_selector_label = JSON(validator=longlocal_v, default=empty_localization)
 
     # Advanced settings
-    maximum_namesize = Int()
-    maximum_textsize = Int()
-    maximum_filesize = Int()
-    tor2web_admin = Bool()
-    tor2web_custodian = Bool()
-    tor2web_whistleblower = Bool()
-    tor2web_receiver = Bool()
-    tor2web_unauth = Bool()
-    allow_unencrypted = Bool()
-    allow_iframes_inclusion = Bool()
-    submission_minimum_delay = Int(default=10)
-    submission_maximum_ttl = Int(default=10800)
+    maximum_namesize = Int(default=GLSettings.defaults.maximum_namesize)
+    maximum_textsize = Int(default=GLSettings.defaults.maximum_textsize)
+    maximum_filesize = Int(default=GLSettings.defaults.maximum_filesize)
+    tor2web_admin = Bool(default=GLSettings.defaults.tor2web_access['admin'])
+    tor2web_custodian = Bool(default=GLSettings.defaults.tor2web_access['admin'])
+    tor2web_whistleblower = Bool(default=GLSettings.defaults.tor2web_access['whistleblower'])
+    tor2web_receiver = Bool(default=GLSettings.defaults.tor2web_access['receiver'])
+    tor2web_unauth = Bool(default=GLSettings.defaults.tor2web_access['unauth'])
+    allow_unencrypted = Bool(default= GLSettings.defaults.allow_unencrypted)
+    allow_iframes_inclusion = Bool(default=GLSettings.defaults.allow_iframes_inclusion)
+    submission_minimum_delay = Int(default=GLSettings.defaults.submission_minimum_delay)
+    submission_maximum_ttl = Int(default=GLSettings.defaults.submission_maximum_ttl)
 
     # privileges of receivers
     can_postpone_expiration = Bool(default=False)
@@ -467,25 +470,25 @@ class Node(Model):
     enable_captcha = Bool(default=True)
     enable_proof_of_work = Bool(default=True)
 
-    whistleblowing_question = JSON(validator=longlocal_v)
-    whistleblowing_button = JSON(validator=longlocal_v)
+    whistleblowing_question = JSON(validator=longlocal_v, default=empty_localization)
+    whistleblowing_button = JSON(validator=longlocal_v, default=empty_localization)
 
     simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
-    custom_privacy_badge_tor = JSON(validator=longlocal_v)
-    custom_privacy_badge_none = JSON(validator=longlocal_v)
+    custom_privacy_badge_tor = JSON(validator=longlocal_v, default=empty_localization)
+    custom_privacy_badge_none = JSON(validator=longlocal_v, default=empty_localization)
 
-    header_title_homepage = JSON(validator=longlocal_v)
-    header_title_submissionpage = JSON(validator=longlocal_v)
-    header_title_receiptpage = JSON(validator=longlocal_v)
-    header_title_tippage = JSON(validator=longlocal_v)
+    header_title_homepage = JSON(validator=longlocal_v, default=empty_localization)
+    header_title_submissionpage = JSON(validator=longlocal_v, default=empty_localization)
+    header_title_receiptpage = JSON(validator=longlocal_v, default=empty_localization)
+    header_title_tippage = JSON(validator=longlocal_v, default=empty_localization)
 
-    widget_comments_title = JSON(validator=shortlocal_v)
-    widget_messages_title = JSON(validator=shortlocal_v)
-    widget_files_title = JSON(validator=shortlocal_v)
+    widget_comments_title = JSON(validator=shortlocal_v, default=empty_localization)
+    widget_messages_title = JSON(validator=shortlocal_v, default=empty_localization)
+    widget_files_title = JSON(validator=shortlocal_v, default=empty_localization)
 
-    landing_page = Unicode()
+    landing_page = Unicode(default=GLSettings.defaults.landing_page)
 
     show_contexts_in_alphabetical_order = Bool(default=False)
 
@@ -549,19 +552,17 @@ class Notification(Model):
     information for the node templates are imported in the handler, but
     settings are expected all at once.
     """
-    server = Unicode(validator=shorttext_v, default=u"mail.headstrong.de")
-    port = Int(default=587)
+    server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
+    port = Int(default=9267)
 
-    username = Unicode(validator=shorttext_v, default=u"sendaccount@lists.globaleaks.org")
-    password = Unicode(validator=shorttext_v, default=u"sendaccount99")
+    username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
+    password = Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me')
 
-    source_name = Unicode(validator=shorttext_v, default=u"Default GlobaLeaks sender")
-    source_email = Unicode(validator=shorttext_v, default=u"sendaccount@lists.globaleaks.org")
+    source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks DEMO SMTP')
+    source_email = Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org')
 
     security = Unicode(validator=shorttext_v, default=u"TLS")
     # security_types: 'TLS', 'SSL'
-
-    torify = Int(default=True)
 
     # Admin
     admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
