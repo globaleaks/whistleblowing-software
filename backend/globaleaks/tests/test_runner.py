@@ -2,7 +2,7 @@
 
 from globaleaks.tests import helpers
 
-from globaleaks import runner
+from globaleaks.runner import GlobaLeaksRunner
 from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.scripts._twistd_unix import ServerOptions
@@ -17,7 +17,7 @@ class TestRunner(helpers.TestGL):
         #runner.GLBaseRunner(config).run()
         #return
 
-        globaleaks_runner = runner.GLBaseRunner(config)
+        globaleaks_runner = GlobaLeaksRunner(config)
         #a = yield globaleaks_runner.start_globaleaks()
         #print a
 

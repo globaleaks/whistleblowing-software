@@ -107,10 +107,9 @@ class GlobaLeaksRunner(UnixApplicationRunner):
                 if host not in GLSettings.bind_addresses:
                     log.msg("Visit http://%s:%d to interact with me" % (host, GLSettings.bind_port))
 
-            if GLSettings.configured_hosts:
-                for other in configured_hosts:
-                    if other:
-                        log.msg("Visit %s to interact with me" % other)
+            for other in GLSettings.configured_hosts:
+                if other:
+                    log.msg("Visit %s to interact with me" % other)
 
             log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
             log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")

@@ -98,8 +98,9 @@ else:
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
-from globaleaks import runner, DATABASE_VERSION
+from globaleaks import DATABASE_VERSION
 from globaleaks.db import check_db_files
+from globaleaks.runner import GlobaLeaksRunner
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
@@ -293,7 +294,7 @@ def run_backend():
             if check == -1:
                  quit(-1)
 
-            runner.GlobaleaksRunner(config).run()
+            GlobaLeaksRunner(config).run()
 
             # this is a blocking operation, until app exit
             print "Exiting GlobaLeaks"
