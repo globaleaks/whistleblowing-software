@@ -558,7 +558,7 @@ class Notification(Model):
     username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
     password = Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me')
 
-    source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks DEMO SMTP')
+    source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION')
     source_email = Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org')
 
     security = Unicode(validator=shorttext_v, default=u"TLS")

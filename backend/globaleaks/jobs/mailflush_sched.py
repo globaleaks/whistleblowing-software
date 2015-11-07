@@ -34,6 +34,7 @@ def load_complete_events(store, events_limit=GLSettings.notification_limit):
     node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
 
     event_list = []
+
     totaleventinqueue = store.find(EventLogs, EventLogs.mail_sent == False).count()
     storedevnts = store.find(EventLogs, EventLogs.mail_sent == False)[:events_limit * 3]
 
@@ -103,7 +104,7 @@ def filter_notification_event(notifque):
     for ne in notifque:
         if ne['trigger'] !=  u'Tip':
             continue
-        files_event_by_tip.update({ ne['tip_info']['id'] : [] })
+        files_event_by_tip.update({ne['tip_info']['id'] : []})
 
     log.debug("Filtering function: iterating over %d Tip" % len(files_event_by_tip.keys()))
     # not files_event_by_tip contains N keys with an empty list,
