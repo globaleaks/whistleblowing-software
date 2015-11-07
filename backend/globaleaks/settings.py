@@ -483,7 +483,7 @@ class GLSettingssClass(object):
         if os.path.isfile(indexfile):
             print "Serving the client from directory: %s" % self.client_path
         else:
-            print "Unable to find a directory where to load the client" % self.client_path
+            print "Unable to find a directory where to load the client"
             quit(-1)
 
         if self.devel_mode:
