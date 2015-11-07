@@ -391,14 +391,14 @@ class GLSettingssClass(object):
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
-        self.bind_addresses = ['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")
+        self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
 
         if not self.validate_port(self.cmdline_options.port):
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
         self.accepted_hosts = list(set(self.bind_addresses + \
-                                       self.cmdline_options.host_list.replace(" ", "").split(",")))
+                                   self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
