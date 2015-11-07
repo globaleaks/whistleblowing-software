@@ -126,7 +126,8 @@ class GLSettingssClass(object):
         self.reserved_names.html = "custom_homepage"
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = "127.0.0.1,localhost"
+        self.accepted_hosts = "127.0.0.1, localhost"
+        self.configured_hosts = []
 
         self.receipt_regexp = u'[0-9]{16}'
 

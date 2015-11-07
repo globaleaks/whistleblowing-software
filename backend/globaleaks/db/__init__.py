@@ -276,7 +276,6 @@ def apply_cmdline_options(store):
     node = store.find(models.Node).one()
 
     verb = "Hardwriting"
-    accepted = {}
     if 'hostname_tor_content' in GLSettings.unchecked_tor_input:
         composed_hs_url = 'http://%s' % GLSettings.unchecked_tor_input['hostname_tor_content']
         hs = GLSettings.unchecked_tor_input['hostname_tor_content'].split('.onion')[0]
@@ -287,14 +286,14 @@ def apply_cmdline_options(store):
             print "[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
                   GLSettings.unchecked_tor_input['hostname_tor_content']
         else:
-            accepted.update({'hidden_service': unicode(composed_hs_url)})
+            node.hidden_service = unicode(composed_hs_url)
             print "[+] %s hidden service in the DB: %s" % (verb, composed_hs_url)
 
             if node.public_site:
                 print "[!!] Public Website (%s) is not automatically overwritten by (%s)" % \
                       (node.public_site, composed_t2w_url)
             else:
-                accepted.update({'public_site': unicode(composed_t2w_url)})
+                node.public_site = unicode(composed_t2w_url)
                 print "[+] %s public site in the DB: %s" % (verb, composed_t2w_url)
 
             verb = "Overwriting"
@@ -304,22 +303,15 @@ def apply_cmdline_options(store):
             print "[!!] Invalid public site: %s: Ignored" % GLSettings.cmdline_options.public_website
         else:
             print "[+] %s public site in the DB: %s" % (verb, GLSettings.cmdline_options.public_website)
-            accepted.update({'public_site': unicode(GLSettings.cmdline_options.public_website)})
+            node.public_site = unicode(GLSettings.cmdline_options.public_website)
 
     if GLSettings.cmdline_options.hidden_service:
         if not re.match(requests.hidden_service_regexp, GLSettings.cmdline_options.hidden_service):
             print "[!!] Invalid hidden service: %s: Ignored" % GLSettings.cmdline_options.hidden_service
         else:
             print "[+] %s hidden service in the DB: %s" % (verb, GLSettings.cmdline_options.hidden_service)
-            accepted.update({'hidden_service': unicode(GLSettings.cmdline_options.hidden_service)})
-
-    if accepted:
-        node = store.find(models.Node).one()
-        for k, v, in accepted.iteritems():
-            setattr(node, k, v)
+            node.hidden_service = unicode(GLSettings.cmdline_options.hidden_service)
 
     # return configured URL for the log/console output
     if node.hidden_service or node.public_site:
-        return [node.hidden_service, node.public_site]
-    else:
-        return None
+        GLSettings.configured_hosts[node.hidden_service, node.public_site]
