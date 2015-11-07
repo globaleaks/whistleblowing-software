@@ -293,7 +293,7 @@ def run_backend():
             if check == -1:
                  quit(-1)
 
-            runner.GLBaseRunner(config).run()
+            runner.GlobaleaksRunner(config).run()
 
             # this is a blocking operation, until app exit
             print "Exiting GlobaLeaks"

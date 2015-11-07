@@ -32,7 +32,7 @@ def sendmail_mock(**args):
 mailutils.sendmail = sendmail_mock
 
 
-from globaleaks import db, models, security, anomaly, event
+from globaleaks import db, models, security, anomaly, event, runner
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip, authentication
@@ -76,10 +76,12 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
     EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
-authentication.reactor_override = task.Clock()
-event.reactor_override = task.Clock()
-token.reactor_override = task.Clock()
-mailflush_sched.reactor_override = task.Clock()
+reactor_override = task.Clock()
+authentication.reactor_override = reactor_override
+event.reactor_override = reactor_override
+token.reactor_override = reactor_override
+mailflush_sched.reactor_override = reactor_override
+runner.reactor_override = reactor_override
 
 
 class UTlog:
