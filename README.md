@@ -1,22 +1,21 @@
 # GlobaLeaks
 
-Join the chat on IRC [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
-
-GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
-
 [EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
-
 [IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
 
-To learn how to setup your own GlobaLeaks platform, look at [Globaleaks wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
+GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
+To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-Join our [Development Mailing List](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
+## Community and support
+If you need help with the software write your inquiry to the GlobaLeaks Mailing List [globaleaks-talk@lists.globaleaks.org](https://lists.ghserv.net/mailman/listinfo/globaleaks-talk)
 
-If you need help with the software write your inquiry to the GlobaLeaks Mailing List [globaleaks-talk@lists.globaleaks.org](https://lists.ghserv.net/mailman/listinfo/globaleaks-talk), IRC chat on [irc.oftc.net channel #globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) .
+If instead you need to contact us privately to get feedback on a specific whistleblowing project and involve us as Hermes Center, please [contact us directly](http://logioshermes.org/home/about-mission/contacts/), we'd love to help you out!
 
-Follow us on [Twitter](https://twitter.com/globaleaks) [![Twitter](http://i.imgur.com/wWzX9uB.png)](https://twitter.com/globaleaks) and [Facebook](https://www.facebook.com/globaleaks) [![Facebook](http://i.imgur.com/fep1WsG.png)](https://www.facebook.com/globaleaks)
-
-If you need to contact us privately to propose Whistleblowing specific projects, to involve us as Hermes Center, please do [Contact Us Directly](http://logioshermes.org/home/about-mission/contacts/), we'd love to help you out!
+Other resources:
+* [Development Mailing List](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
+* [i#globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) chat channel on IRC on the irc.oftc.net server.
+* Follow us on [Twitter](https://twitter.com/globaleaks)
+* Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
 ## Build Status
 | Branch | Build Status | Code Coverage | Code Quality
