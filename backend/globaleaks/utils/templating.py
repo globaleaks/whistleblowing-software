@@ -146,7 +146,7 @@ class TipKeyword(_KeyWord):
         if len(self.node['hidden_service']):
             retstr = '%s/#/status/%s' % (self.node['hidden_service'], self.tip['id'])
         else:
-            retstr = 'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
+            retstr = '[NOT CONFIGURED]'
         return retstr
 
     def TipT2WURL(self):
