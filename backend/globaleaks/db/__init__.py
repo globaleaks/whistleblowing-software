@@ -314,4 +314,4 @@ def apply_cmdline_options(store):
 
     # return configured URL for the log/console output
     if node.hidden_service or node.public_site:
-        GLSettings.configured_hosts[node.hidden_service, node.public_site]
+        GLSettings.configured_hosts = [node.hidden_service, node.public_site]
