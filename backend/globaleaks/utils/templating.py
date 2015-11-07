@@ -24,59 +24,7 @@ def dump_file_list(filelist, files_n):
 
     return info
 
-class Templating(object):
-    def format_template(self, raw_template, event_dicts):
-        """
-        TODO research on integration of http://docs.python.org/2/library/email
-        """
-
-        supported_event_types = {
-                                  u'tip': TipKeyword,
-                                  u'file': FileKeyword,
-                                  u'comment': CommentKeyword,
-                                  u'message': MessageKeyword,
-                                  u'zip_collection': ZipFileKeyword,
-                                  u'ping_mail': PingMailKeyword,
-                                  u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
-                                  u'pgp_expiration_alert': PGPAlertKeyword,
-                                  # Upcoming expire use the same templates of Tip
-                                  # and currently only one template is defined
-                                  # considering exportable only not non sensitive info
-                                  u'tip_expiration': TipKeyword,
-                                  u'receiver_notification_limit_reached': ReceiverKeyword
-                                }
-
-        if event_dicts.type not in supported_event_types.keys():
-            raise AssertionError("%s at the moment supported: [%s] is NOT " %
-                                 (supported_event_types.keys(), event_dicts.type))
-
-        # For each Event type, we've to dispatch the right _KeyWord class
-        TemplateClass = supported_event_types[event_dicts.type]
-        keyword_converter = TemplateClass(event_dicts.node_info, event_dicts.context_info,
-                                          event_dicts.receiver_info, event_dicts.tip_info,
-                                          event_dicts.subevent_info)
-
-        # we've now:
-        # 1) template => directly from Notification.*_template
-        # 2) keyword_converter => object aligned with Event type and data
-
-        for kw in keyword_converter.keyword_list:
-            if raw_template.count(kw):
-                # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
-                variable_content = getattr(keyword_converter, kw[1:-1])()
-                raw_template = raw_template.replace(kw, variable_content)
-
-        # Is no more Raw, because all the keywords that shall be converted in
-        # the Event.type, has been converted. So if you have request %TipFields% in
-        # a Comment notification template, you would get just a message with a not
-        # converted keyword.
-        return raw_template
-
-
-
-# Below you can see an inheritance dance!¹!!eleven!
-
-class _KeyWord(object):
+class Keyword(object):
     """
     This class define the base keyword list supported by all the events,
     in example, %NodeName% is a keyword always available. Other keywords can
@@ -94,7 +42,7 @@ class _KeyWord(object):
 
     def __init__(self, node_desc, context_desc, receiver_desc):
 
-        self.keyword_list = _KeyWord.shared_keywords
+        self.keyword_list = Keyword.shared_keywords
 
         self.node = node_desc
         self.context = context_desc
@@ -121,7 +69,7 @@ class _KeyWord(object):
         # variable to permit better customizations.
         return self.node['name']
 
-class TipKeyword(_KeyWord):
+class TipKeyword(Keyword):
     tip_keywords = [
         '%TipTorURL%',
         '%TipT2WURL%',
@@ -283,7 +231,7 @@ class ZipFileKeyword(TipKeyword):
         return str(self.zip['total_size'])
 
 
-class PingMailKeyword(_KeyWord):
+class PingMailKeyword(Keyword):
     ping_mail_keywords = [
         '%RecipientName%',
         '%EventCount%'
@@ -308,7 +256,7 @@ class PingMailKeyword(_KeyWord):
         return str(self.counter)
 
 
-class AdminPGPAlertKeyword(_KeyWord):
+class AdminPGPAlertKeyword(Keyword):
     admin_pgp_alert_keywords = [
         "%PGPKeyInfoList%"
     ]
@@ -334,7 +282,7 @@ class AdminPGPAlertKeyword(_KeyWord):
         return ret
 
 
-class PGPAlertKeyword(_KeyWord):
+class PGPAlertKeyword(Keyword):
     pgp_alert_keywords = [
         "%PGPKeyInfo%"
     ]
@@ -352,7 +300,7 @@ class PGPAlertKeyword(_KeyWord):
 
         return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['pgp_key_expiration']))
 
-class ReceiverKeyword(_KeyWord):
+class ReceiverKeyword(Keyword):
     """
     At the moment is pretty the same of _Keyword, but require a
     dedicated __init__ because the params are screw up otherwise,
@@ -362,3 +310,44 @@ class ReceiverKeyword(_KeyWord):
     def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, *x):
         super(ReceiverKeyword, self).__init__(node_desc, context_desc, receiver_desc)
 
+
+class Templating(object):
+    supported_event_types = {
+        u'tip': TipKeyword,
+        u'file': FileKeyword,
+        u'comment': CommentKeyword,
+        u'message': MessageKeyword,
+        u'zip_collection': ZipFileKeyword,
+        u'ping_mail': PingMailKeyword,
+        u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
+        u'pgp_expiration_alert': PGPAlertKeyword,
+        u'tip_expiration': TipKeyword,
+        u'receiver_notification_limit_reached': ReceiverKeyword
+    }
+
+    def format_template(self, raw_template, event_dicts):
+        if event_dicts.type not in self.supported_event_types.keys():
+            raise AssertionError("%s at the moment supported: [%s] is NOT " %
+                                 (self.supported_event_types.keys(), event_dicts.type))
+
+        # For each Event type, we've to dispatch the right Keyword class
+        TemplateClass = self.supported_event_types[event_dicts.type]
+        keyword_converter = TemplateClass(event_dicts.node_info, event_dicts.context_info,
+                                          event_dicts.receiver_info, event_dicts.tip_info,
+                                          event_dicts.subevent_info)
+
+        # we've now:
+        # 1) template => directly from Notification.*_template
+        # 2) keyword_converter => object aligned with Event type and data
+
+        for kw in keyword_converter.keyword_list:
+            if raw_template.count(kw):
+                # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
+                variable_content = getattr(keyword_converter, kw[1:-1])()
+                raw_template = raw_template.replace(kw, variable_content)
+
+        # Is no more Raw, because all the keywords that shall be converted in
+        # the Event.type, has been converted. So if you have request %TipFields% in
+        # a Comment notification template, you would get just a message with a not
+        # converted keyword.
+        return raw_template
