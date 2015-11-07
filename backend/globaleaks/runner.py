@@ -108,8 +108,9 @@ def globaleaks_start():
         log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
         log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
 
-    except:
+    except Exception as excep:
         log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")
+        log.err("EXCEPTION: %s" % excep)
         reactor.stop()
 
 
