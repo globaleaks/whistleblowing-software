@@ -176,14 +176,12 @@ class GLSettingssClass(object):
         self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
 
         self.defaults.timezone = 0
-        self.defaults.landing_page = 'homepage'
+        self.defaults.landing_page = u'homepage'
 
-        self.defaults.disable_mail_notification = True
         self.defaults.notif_server = None
         self.defaults.notif_port = None
         self.defaults.notif_username = None
         self.defaults.notif_security = None
-        self.defaults.notif_uses_tor = None
 
         # this became false when, few MBs cause node to disable submissions
         self.defaults.accept_submissions = True

@@ -65,6 +65,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param smtp_port: the smtp port
     @param security: may need to be STRING, here is converted at start
     @param event: the event description, needed to keep track of failure/success
+        self.defaults.notif_uses_tor = None
     """
     notif_retries = 2
     notif_timeout = 10
@@ -195,7 +196,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         return fail()
 
     try:
-        if not GLSettings.disable_mail_torification and GLSettings.memory_copy.notif_uses_tor:
+        if not GLSettings.disable_mail_torification:
             socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=notif_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
             d = endpoint.connect(factory)
