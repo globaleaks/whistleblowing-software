@@ -12,8 +12,7 @@ from setuptools.command.test import test as _TestCommand
 
 import globaleaks
 
-GLCLIENT_PATH = os.path.join(os.path.dirname(__file__),
-                             '..', 'client', 'build')
+GLCLIENT_PATH = os.path.join(os.path.dirname(__file__), '..', 'client', 'build')
 
 if not sys.version_info[:2] == (2, 7):
     print('Error, GlobaLeaks is tested only with python 2.7')
