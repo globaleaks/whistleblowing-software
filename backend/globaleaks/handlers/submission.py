@@ -333,7 +333,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
     if not context:
-        raise errors.models.ContextIdNotFound
+        raise errors.ContextIdNotFound
 
     submission = models.InternalTip()
 
