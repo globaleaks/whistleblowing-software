@@ -359,6 +359,13 @@ class MigrationScript(MigrationBase):
 
             setattr(new_notification, v.name, old_value)
 
+        if new_notification.server == u'mail.headstrong.de':
+            # If the node is still using the default config update thee config to the new one
+            new_notification.server = 'demo.globaleaks.org'
+            new_notification.port = 587
+            new_notification.username = u'hey_you_should_change_me'
+            new_notification.password = u'yes_you_really_should_change_me'
+
         self.store_new.add(new_notification)
 
     def migrate_Receiver(self):
