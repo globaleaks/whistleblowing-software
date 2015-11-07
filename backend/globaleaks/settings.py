@@ -1,4 +1,4 @@
- -*- coding: UTF-8
+# -*- coding: UTF-8
 # settings: Define GLSettings, main class handling GlobaLeeaks runtime settings
 # ******
 import glob
