@@ -185,6 +185,8 @@ def db_refresh_memory_variables(store):
     try:
         node = store.find(models.Node).one()
 
+        GLSettings.memory_copy.nodename = node.name
+
         GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
         GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
         GLSettings.memory_copy.maximum_textsize = node.maximum_textsize

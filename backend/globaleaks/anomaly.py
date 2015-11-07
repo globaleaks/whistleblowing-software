@@ -253,196 +253,119 @@ class Alarm(object):
         ret = []
 
         do_not_stress_admin_with_more_than_an_email_every_minutes = 120
-        # if emergency is set to True, the previous time check is ignored.
-        emergency_notification = False
 
-        # THE THREE FUNCTIONS BELOW ARE POORLY SUBOPTIMAL,
-        # AND THIS IS BAD: REFACTOR TO BE DONE ON THIS SUBJECT
-        @transact_ro
-        def _get_message_template(store):
-            admin_user = store.find(models.User, models.User.username == u'admin').one()
-            notif = store.find(models.Notification).one()
-            template = notif.admin_anomaly_mail_template
-            if admin_user.language in template:
-                localized_template = template[admin_user.language]
-            elif GLSettings.memory_copy.default_language in template:
-                localized_template = template[GLSettings.memory_copy.default_language]
-            else:
-                raise Exception("Cannot find any language for admin notification")
-            return localized_template
+        def replace_keywords(text):
+            iterations = 3
+            stop = False
+            while (stop == False and iterations > 0):
+                iterations -= 1
+                count = 0
+                for keyword, function in KeywordTemplate.iteritems():
+                    where = text.find(keyword)
+                    if where == -1:
+                        continue
 
-        @transact_ro
-        def _disk_anomaly_detail(store):
-            # This happen all the time anomalies are present but disk is ok
+                    count += 1
+
+                    text = "%s%s%s" % (
+                        text[:where],
+                        function(notification_dict),
+                        text[where + len(keyword):])
+
+                    if count == 0:
+                        # finally!
+                        stop = True
+                        break
+
+        def _disk_anomaly_detail(notification_dict):
+            # This happens all the time anomalies are present but disk is ok
             if Alarm.stress_levels['disk_space'] == 0:
                 return u''
-            admin_user = store.find(models.User, models.User.username == u'admin').one()
-            notif = store.find(models.Notification).one()
-            if Alarm.stress_levels['disk_space'] == 1:
-                template = notif.admin_anomaly_disk_low
-            elif Alarm.stress_levels['disk_space'] == 2:
-                template = notif.admin_anomaly_disk_medium
-            elif Alarm.stress_levels['disk_space'] == 3:
-                template = notif.admin_anomaly_disk_high
-            else:
-                raise Exception("Invalid disk stess level %d" %
-                                Alarm.stress_levels['disk_space'])
-            if admin_user.language in template:
-                localized_template = template[admin_user.language]
-            elif GLSettings.memory_copy.default_language in template:
-                localized_template = template[GLSettings.memory_copy.default_language]
-            else:
-                raise Exception("Cannot find any language for Admin disk alarm (level %d)" %
-                                Alarm.stress_levels['disk_space'])
-            return localized_template
 
-        @transact_ro
-        def _activities_anomaly_detail(store):
-            # This happen all the time there is not anomalous traffic
+            if Alarm.stress_levels['disk_space'] == 1:
+                return notification_dict['admin_anomaly_disk_low']
+            elif Alarm.stress_levels['disk_space'] == 2:
+                return notifiation_dict['notif.admin_anomaly_disk_medium']
+            else:
+                return notification_dict['admin_anomaly_disk_high']
+
+        def _activities_anomaly_detail(notification_dict):
+            # This happens all the time there is not anomalous traffic
             if Alarm.stress_levels['activity'] == 0:
                 return u''
-            admin_user = store.find(models.User, models.User.username == u'admin').one()
-            notif = store.find(models.Notification).one()
-            template = notif.admin_anomaly_activities
-            if admin_user.language in template:
-                localized_template = template[admin_user.language]
-            elif GLSettings.memory_copy.default_language in template:
-                localized_template = template[GLSettings.memory_copy.default_language]
-            else:
-                raise Exception("Cannot find any language for admin notification")
-            return localized_template
 
-        # END OF THE SUB-OPTIMAL SECTION OF CODE THAT HAS TO BE RESTRUCTURED
+            return notification_dict['admin_anomaly_activities']
 
-        def _activity_alarm_level():
+        def _activity_alarm_level(notification_dict):
             return "%s" % Alarm.stress_levels['activity']
 
-        def _activity_dump():
+        def _activity_dump(notification_dict):
             retstr = ""
+
             for event, amount in event_matrix.iteritems():
                 if not amount:
                     continue
                 retstr = "%s%s%d\n%s" % \
-                         (event, (25 - len(event)) * " ",
-                          amount, retstr)
+                         (event, (25 - len(event)) * " ", amount, retstr)
+
             return retstr
 
-        @transact_ro
-        def _node_name(store):
-            node = store.find(models.Node).one()
-            return unicode(node.name)
+        def _node_name(notification_dict):
+            return unicode(GLSettings.memory_copy.nodename)
 
-        def _free_disk_space():
+        def _free_disk_space(notification_dict):
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_freespace)
 
-        def _total_disk_space():
+        def _total_disk_space(notification_dict):
             return "%s" % bytes_to_pretty_str(Alarm.latest_measured_totalspace)
 
-        def _notification_suppressed():
+        def _notifications_suppressed(notification_dict):
             if Alarm.stress_levels['notification'] == []:
                 return u''
-            emergency_notification = True
             return "** %s **" % Alarm.stress_levels['notification']
 
-
-        KeyWordTemplate = {
+        KeywordTemplate = {
             "%AnomalyDetailDisk%": _disk_anomaly_detail,
             "%AnomalyDetailActivities%": _activities_anomaly_detail,
             "%ActivityAlarmLevel%": _activity_alarm_level,
             "%ActivityDump%": _activity_dump,
-            "%NotificationSuppressed%": _notification_suppressed,
+            "%NotificationsSuppressed%": _notifications_suppressed,
             "%NodeName%": _node_name,
             "%FreeMemory%": _free_disk_space,
             "%TotalMemory%": _total_disk_space,
         }
         # ------------------------------------------------------------------
 
-        # Independently from the event_matrix, the status of the stress level can
-        # be in non-0 value.
-        # Here start the Anomaly Notification code, before checking if we have to send email
         if not (Alarm.stress_levels['activity'] or
                     Alarm.stress_levels['disk_space'] or
                     Alarm.stress_levels['notification']):
-            # lucky, no stress activities recorded: no mail needed
+            # we are lucky! no stress activities detected, no mail needed
             defer.returnValue([])
 
         if GLSettings.memory_copy.disable_admin_notification_emails:
-            # event_matrix is {} if we are here only for disk
-            log.debug("Anomaly to be reported %s, but Admin has Notification disabled" %
-                      "[%s]" % event_matrix if event_matrix else "")
             defer.returnValue([])
 
-        if Alarm.last_alarm_email and not emergency_notification:
+        if Alarm.last_alarm_email:
             if not is_expired(Alarm.last_alarm_email,
                               minutes=do_not_stress_admin_with_more_than_an_email_every_minutes):
                 defer.returnValue([])
-                # This is skipped then:
-                log.debug("Alert [%s] want be sent, but the threshold of %d minutes still unexpired %s" % (
-                    Alarm.stress_levels,
-                    do_not_stress_admin_with_more_than_an_email_every_minutes,
-                    datetime_to_ISO8601(Alarm.last_alarm_email)))
 
         admin_users = yield get_admin_users()
         for u in admin_users:
-            notification_settings = yield get_notification(u['language'])
+            notification_dict = yield get_notification(u['language'])
 
-            # and now, processing the template
-            message = yield _get_message_template()
-            message_title = notification_settings['admin_anomaly_mail_title']
-            recursion_time = 2
+            message_subject = notification_dict['admin_anomaly_mail_title']
+            message_body = notification_dict['admin_anomaly_mail_template']
 
-            # since the ActivityDetails, we've to manage recursion
-            while recursion_time:
-                recursion_time -= 1
-
-                for keyword, templ_funct in KeyWordTemplate.iteritems():
-
-                    where = message.find(keyword)
-                    if where == -1:
-                        continue
-
-                    # based on the type of templ_funct, we've to use 'yield' or not
-                    # cause some returns a deferred.
-                    if isinstance(templ_funct, type(sendmail)):
-                        content = templ_funct()
-                    else:
-                        content = yield templ_funct()
-
-                    message = "%s%s%s" % (
-                        message[:where],
-                        content,
-                        message[where + len(keyword):])
-
-            # message title, we can't put the loop together at the moment
-            for keyword, templ_funct in KeyWordTemplate.iteritems():
-
-                where = message_title.find(keyword)
-                if where == -1:
-                    continue
-
-                if isinstance(templ_funct, type(sendmail)):
-                    content = templ_funct()
-                else:
-                    content = yield templ_funct()
-
-                message_title = "%s%s%s" % (
-                    message_title[:where],
-                    content,
-                    message_title[where + len(keyword):])
+            replace_keywords(message_subject)
+            replace_keywords(message_body)
 
             message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
                                       GLSettings.memory_copy.notif_source_email,
                                       u['mail_address'],
                                       u['mail_address'],
-                                      message_title,
-                                      message)
-
-            log.debug('Alarm Email generated for Admin (%s): connecting to [%s:%d], '
-                      'the next mail should be in %d minutes' %
-                      (event_matrix,
-                       GLSettings.memory_copy.notif_server,
-                       GLSettings.memory_copy.notif_port,
-                       do_not_stress_admin_with_more_than_an_email_every_minutes))
+                                      message_subject,
+                                      message_body)
 
             ret.append({
                 'mail_address': u['mail_address'],
@@ -499,8 +422,6 @@ class Alarm(object):
                 info_msg = c['info_msg']()
 
                 if disk_space <= GLSettings.disk_alarm_threshold:
-                    # log.debug("Disk Alarm level %d suppressed (disk alarm threshold set to %d)" % (
-                    #     disk_space, GLSettings.disk_alarm_threshold))
                     # No alarm to be concerned, then
                     disk_space = 0
                 else:

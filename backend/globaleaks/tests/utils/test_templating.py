@@ -101,19 +101,6 @@ templates_desc = {
         [generic_keyword_list, pgp_alert_keywords],
 }
 
-# Templating 'supported_event_type' is a method variable with a different pattern
-# the whole test can be re-engineered
-supported_event_types = {
-  u'tip': 'Tip',
-  u'file': 'File',
-  u'comment': 'Comment',
-  u'message': 'Message',
-  u'zip_collection': 'Collection',
-  u'ping_mail': 'Tip',
-  u'admin_pgp_expiration_alert': '',
-  u'pgp_expiration_alert': ''
-}
-
 class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     def _fill_event_dict(self, event_type, event_trigger):
         """
@@ -166,7 +153,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
             # look for appropriate event_type, event_trigger
             event_type = u''
             event_trigger = ''
-            for e_t, e_tri in supported_event_types.iteritems():
+            for e_t, e_tri in Templating.supported_event_types.iteritems():
                 if template_name.startswith(e_t):
                     event_type = e_t
                     event_trigger = e_tri
