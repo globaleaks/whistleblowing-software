@@ -173,8 +173,8 @@ def sendmail(authentication_username, authentication_password, from_address,
 
     try:
         factory = ESMTPSenderFactory(
-            authentication_username,
-            authentication_password,
+            authentication_username.encode('utf-8'),
+            authentication_password.encode('utf-8'),
             from_address,
             to_address,
             message_file,
