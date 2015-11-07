@@ -1,24 +1,26 @@
 # GlobaLeaks
 
 [EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
+
 [IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
 
-GlobaLeaks is a project aimed at creating a free software whistleblowing framework.
+GlobaLeaks is a project aimed at creating an opensource and free software whistleblowing framework.
+
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 ## Community and support
-If you need help with the software write your inquiry to the GlobaLeaks Mailing List [globaleaks-talk@lists.globaleaks.org](https://lists.ghserv.net/mailman/listinfo/globaleaks-talk)
+If you need help with the software write your inquiry to the GlobaLeaks [Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk): globaleaks-talk@lists.globaleaks.org
 
 If instead you need to contact us privately to get feedback on a specific whistleblowing project and involve us as Hermes Center, please [contact us directly](http://logioshermes.org/home/about-mission/contacts/), we'd love to help you out!
 
 Other resources:
-* [Development Mailing List](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
-* [i#globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user) chat channel on IRC on the irc.oftc.net server.
+* [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
+* Join [#globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user), our IRC chat channel the irc.oftc.net server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
 ## Build Status
-| Branch | Build Status | Code Coverage | Code Quality
+| Branch | Build status | Code coverage | Code quality
 | ------------- |:-------------:|:-------------:|:-------------:|
 | [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/master/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/master)
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/devel/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/devel)
