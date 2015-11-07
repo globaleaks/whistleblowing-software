@@ -54,6 +54,8 @@ data_files = [
      list_files(os.path.join(GLCLIENT_PATH))),
     ('/usr/share/globaleaks/client/data',
      list_files(os.path.join(GLCLIENT_PATH, 'data'))),
+    ('/usr/share/globaleaks/client/data/fields',
+     list_files(os.path.join(GLCLIENT_PATH, 'data', 'fields'))),
     ('/usr/share/globaleaks/client/fonts',
      list_files(os.path.join(GLCLIENT_PATH, 'fonts'))),
     ('/usr/share/globaleaks/client/img',
