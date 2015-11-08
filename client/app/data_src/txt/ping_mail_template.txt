@@ -1,3 +1,3 @@
 Dear %RecipientName%,
 
-You now have %EventCount% good reasons to reconnect where is matters
+You now have %EventCount% good reasons to reconnect to the platform.
