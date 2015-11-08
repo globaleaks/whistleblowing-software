@@ -389,7 +389,7 @@ class Comment(Model):
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
-    # types: 'receiver', 'whistleblower', 'system'
+    # types: 'receiver', 'whistleblower'
 
     new = Int(default=True)
 
