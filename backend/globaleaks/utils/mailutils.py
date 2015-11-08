@@ -82,7 +82,7 @@ def sendmail(to_address, subject, body):
         def errback(reason, *args, **kwargs):
             # TODO: here  it should be written a complete debugging of the possible
             #       errors by writing clear log lines in relation to all the stack:
-            #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA 
+            #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA
             if isinstance(reason, Failure):
                 log.err("SMTP connection failed (Exception: %s)" % reason.value)
                 log.debug(reason)
