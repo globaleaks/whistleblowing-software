@@ -4,7 +4,7 @@
   "attrs": {
     "visibility_subject_to_authorization": {
       "type": "bool",
-      "value": true
+      "value": false
     },
     "prompt_confirmation_upon_negative_answer": {
       "type": "bool",

@@ -83,7 +83,7 @@ def sendmail(to_address, subject, body):
         result_deferred = defer.Deferred()
 
         def errback(reason, *args, **kwargs):
-            # TODO: here  it should be written a complete debugging of the possible
+            # TODO: here it should be written a complete debugging of the possible
             #       errors by writing clear log lines in relation to all the stack:
             #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA
             if isinstance(reason, Failure):
