@@ -285,7 +285,7 @@ class Alarm(object):
             if Alarm.stress_levels['disk_space'] == 1:
                 return notification_dict['admin_anomaly_disk_low']
             elif Alarm.stress_levels['disk_space'] == 2:
-                return notifiation_dict['notif.admin_anomaly_disk_medium']
+                return notification_dict['notif.admin_anomaly_disk_medium']
             else:
                 return notification_dict['admin_anomaly_disk_high']
 

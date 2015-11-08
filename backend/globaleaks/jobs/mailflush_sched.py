@@ -243,7 +243,7 @@ class MailflushSchedule(GLJob):
 
         if len(to_be_suppressed):
             for eid in to_be_suppressed:
-                yield mark_event_as_notified(eid)
+                yield update_event_notification_status(eid, True)
 
         for qe in filtered_events:
             yield self.mail_notification.do_every_notification(qe)
