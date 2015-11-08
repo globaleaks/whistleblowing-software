@@ -103,6 +103,7 @@ def get_receivertip_list(store, receiver_id, language):
             'id': rtip.id,
             'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
+            'update_date': datetime_to_ISO8601(rtip.internaltip.update_date),
             'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'context_name': mo.dump_localized_key('name', language),
             'access_counter': rtip.access_counter,

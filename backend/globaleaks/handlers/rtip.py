@@ -272,7 +272,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request, language):
 @transact
 def create_comment_receiver(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    rtip.internaltip.update_update = datetime_now()
+    rtip.internaltip.update_date = datetime_now()
 
     comment = Comment()
     comment.content = request['content']
@@ -303,6 +303,7 @@ def get_messages_list(store, user_id, rtip_id):
 @transact
 def create_message_receiver(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip.internaltip.update_date = datetime_now()
 
     msg = Message()
     msg.content = request['content']

@@ -81,7 +81,7 @@ def get_comment_list_wb(store, wbtip_id):
 @transact
 def create_comment_wb(store, wbtip_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
-    wbtip.internaltip.update_update = datetime_now()
+    wbtip.internaltip.update_date = datetime_now()
 
     comment = Comment()
     comment.content = request['content']
@@ -122,6 +122,7 @@ def get_messages_content(store, wbtip_id, receiver_id):
 @transact
 def create_message_wb(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
+    wbtip.internaltip.update_date = datetime_now()
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
                       ReceiverTip.receiver_id == receiver_id).one()
@@ -134,14 +135,9 @@ def create_message_wb(store, wbtip_id, receiver_id, request):
     msg.receivertip_id = rtip.id
     msg.author = u'whistleblower'
     msg.visualized = False
-
     msg.type = u'whistleblower'
 
-    try:
-        store.add(msg)
-    except DatabaseError as dberror:
-        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.user.name, dberror))
-        raise dberror
+    store.add(msg)
 
     return serialize_message(msg)
 

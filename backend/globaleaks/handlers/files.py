@@ -84,6 +84,8 @@ def register_file_db(store, uploaded_file, internaltip_id):
         log.err("File associated to a non existent Internaltip!")
         raise errors.TipIdNotFound
 
+    internaltip.update_date = datetime_now()
+
     new_file = InternalFile()
     new_file.name = uploaded_file['filename']
     new_file.content_type = uploaded_file['content_type']
