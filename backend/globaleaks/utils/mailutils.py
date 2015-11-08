@@ -77,6 +77,9 @@ def sendmail(to_address, subject, body):
     @param event: the event description, needed to keep track of failure/success
     """
     try:
+        if GLSettings.disable_mail_notification:
+            return defer.succeed(None)
+
         result_deferred = defer.Deferred()
 
         def errback(reason, *args, **kwargs):
@@ -127,7 +130,8 @@ def sendmail(to_address, subject, body):
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-        if GLSettings.disable_mail_notification:
+        if GLSettings.testing:
+            #  Hooking the test down to here is a trick to be able to test all the above code :)
             return defer.succeed(None)
 
         if not GLSettings.disable_mail_torification:

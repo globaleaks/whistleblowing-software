@@ -63,6 +63,10 @@ class GLSettingssClass(object):
         # version
         self.version_string = __version__
 
+        # testing
+        # This variable is to be able to hook/bypass code when unit-tests are runned
+        self.testing = False
+
         # daemon
         self.nodaemon = False
 
