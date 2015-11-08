@@ -83,8 +83,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param event: the event description, needed to keep track of failure/success
         self.defaults.notif_uses_tor = None
     """
-    notif_retries = 0
-    notif_timeout = 10
+    notif_timeout = 15
     result_deferred = Deferred()
 
     try:
@@ -121,7 +120,7 @@ def sendmail(authentication_username, authentication_password, from_address,
             contextFactory=context_factory,
             requireAuthentication=(authentication_username and authentication_password),
             requireTransportSecurity=requireTransportSecurity,
-            retries=notif_retries,
+            retries=0,
             timeout=notif_timeout)
 
         if security == "SSL":

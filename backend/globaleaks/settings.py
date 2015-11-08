@@ -278,6 +278,7 @@ class GLSettingssClass(object):
         self.enable_input_length_checks = True
 
         self.mail_counters = {}
+        self.mail_attempts_limit = 10
 
         reactor.addSystemEventTrigger('after', 'shutdown', self.orm_tp.stop)
         self.orm_tp.start()

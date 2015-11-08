@@ -20,10 +20,10 @@ Event = namedtuple('Event',
                     'receiver_info', 'context_info',
                     'subevent_info', 'do_mail'])
 
-attempts_limit = 10
 
 @transact
 def update_event_notification_status(store, event_id, mail_sent):
+    attempts_limit = GLSettings.mail_attepmts_limit
     event = store.find(EventLogs, EventLogs.id == event_id).one()
     if event:
         event.mail_attempts += 1
