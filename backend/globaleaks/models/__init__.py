@@ -606,7 +606,8 @@ class Notification(Model):
     archive_description = JSON(validator=longlocal_v)
 
     disable_admin_notification_emails = Bool(default=False)
-    disable_receivers_notification_emails = Bool(default=False)
+    disable_custodian_notification_emails = Bool(default=False)
+    disable_receiver_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
     tip_expiration_threshold = Int(default=72)
@@ -676,7 +677,7 @@ class Notification(Model):
 
     bool_keys = [
         'disable_admin_notification_emails',
-        'disable_receivers_notification_emails',
+        'disable_receiver_notification_emails',
         'send_email_for_every_event'
     ]
 

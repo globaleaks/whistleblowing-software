@@ -18,7 +18,7 @@ from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import MIME_mail_build, sendmail
+from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.utility import log, datetime_now, is_expired, \
     datetime_to_ISO8601, bytes_to_pretty_str
 
@@ -101,11 +101,8 @@ def compute_activity_level():
 
     mailinfos = yield Alarm.admin_alarm_generate_mail(current_event_matrix)
     for mailinfo in mailinfos:
-        if isinstance(mailinfo, dict):
-            yield Alarm.send_anomaly_email(
-                mailinfo['mail_address'],
-                mailinfo['message']
-            )
+        Alarm.last_alarm_email = datetime_now()
+        yield sendmail(mailinfo['mail_address'], mailinfo['subject'], mailinfo['body'])
 
     defer.returnValue(Alarm.stress_levels['activity'] - previous_activity_sl)
 
@@ -354,40 +351,19 @@ class Alarm(object):
         for u in admin_users:
             notification_dict = yield get_notification(u['language'])
 
-            message_subject = notification_dict['admin_anomaly_mail_title']
-            message_body = notification_dict['admin_anomaly_mail_template']
+            subject = notification_dict['admin_anomaly_mail_title']
+            body = notification_dict['admin_anomaly_mail_template']
 
-            replace_keywords(message_subject)
-            replace_keywords(message_body)
-
-            message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                      GLSettings.memory_copy.notif_source_email,
-                                      u['mail_address'],
-                                      u['mail_address'],
-                                      message_subject,
-                                      message_body)
+            replace_keywords(subject)
+            replace_keywords(body)
 
             ret.append({
                 'mail_address': u['mail_address'],
-                'message': message
+                'subject': subject,
+                'body': body
             })
 
         defer.returnValue(ret)
-
-
-    @staticmethod
-    @defer.inlineCallbacks
-    def send_anomaly_email(admin_email, message):
-        Alarm.last_alarm_email = datetime_now()
-        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                       authentication_password=GLSettings.memory_copy.notif_password,
-                       from_address=GLSettings.memory_copy.notif_username,
-                       to_address=admin_email,
-                       message_file=message,
-                       smtp_host=GLSettings.memory_copy.notif_server,
-                       smtp_port=GLSettings.memory_copy.notif_port,
-                       security=GLSettings.memory_copy.notif_security,
-                       event=None)
 
 
     def check_disk_anomalies(self, free_workdir_bytes, total_workdir_bytes, free_ramdisk_bytes, total_ramdisk_bytes):

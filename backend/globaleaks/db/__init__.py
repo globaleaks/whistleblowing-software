@@ -232,8 +232,8 @@ def db_refresh_memory_variables(store):
         GLSettings.memory_copy.notif_port = notif.port
         GLSettings.memory_copy.notif_password = notif.password
         GLSettings.memory_copy.notif_username = notif.username
+        GLSettings.memory_copy.notif_source_email = notif.source_email
         GLSettings.memory_copy.notif_security = notif.security
-
         GLSettings.memory_copy.tip_expiration_threshold = notif.tip_expiration_threshold
         GLSettings.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
         GLSettings.memory_copy.notification_suspension_time = notif.notification_suspension_time
@@ -254,11 +254,13 @@ def db_refresh_memory_variables(store):
         GLSettings.memory_copy.exception_email_pgp_key_status = notif.exception_email_pgp_key_status
 
         if GLSettings.disable_mail_notification:
-            GLSettings.memory_copy.disable_receiver_notification_emails = True
             GLSettings.memory_copy.disable_admin_notification_emails = True
+            GLSettings.memory_copy.disable_custodian_notification_emails = True
+            GLSettings.memory_copy.disable_receiver_notification_emails = True
         else:
-            GLSettings.memory_copy.disable_receiver_notification_emails = notif.disable_receivers_notification_emails
             GLSettings.memory_copy.disable_admin_notification_emails = notif.disable_admin_notification_emails
+            GLSettings.memory_copy.disable_admin_custodian_emails = notif.disable_custodian_notification_emails
+            GLSettings.memory_copy.disable_receiver_notification_emails = notif.disable_receiver_notification_emails
 
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
