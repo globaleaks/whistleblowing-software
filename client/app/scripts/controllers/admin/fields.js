@@ -97,7 +97,15 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
         return true;
       }
 
-      if (['whistleblower_identity'].indexOf(field.key) > -1) {
+      if (field.instance == 'template' && (['whistleblower_identity'].indexOf(field.key) > -1)) {
+        return true;
+      }
+
+      return false;
+    };
+
+    $scope.showOptions = function(field) {
+      if (['checkbox', 'selectbox', 'multichoice'].indexOf(field.type) > -1) {
         return true;
       }
 

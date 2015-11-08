@@ -162,7 +162,7 @@ def anon_serialize_field_attr(attr, language):
     }
 
     if attr.type == 'bool':
-        ret_dict['value'] = bool(ret_dict['value'])
+        ret_dict['value'] = True if ret_dict['value'] == 'True' else False
     elif attr.type == u'localized':
         get_localized_values(ret_dict, ret_dict, ['value'], language)
 
