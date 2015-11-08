@@ -90,12 +90,12 @@ log.debug = UTlog.debug
 
 
 def init_glsettings_for_unit_tests():
+    GLSettings.testing = True
     GLSettings.set_devel_mode()
     GLSettings.logging = None
     GLSettings.scheduler_threadpool = FakeThreadPool()
     GLSettings.sessions = {}
     GLSettings.failed_login_attempts = 0
-    GLSettings.disable_mail_notification = True
 
     # Simulate two languages enabled that is somehow the most common configuration
     GLSettings.defaults.languages_enabled = ['en', 'it']
