@@ -218,7 +218,7 @@ class ArchivedSchema_v_23(Model):
 
 
 class EventLogs_v_23(Model):
-    __storm_table = 'eventlogs'
+    __storm_table__ = 'eventlogs'
     creation_date = DateTime()
     description = JSON()
     title = Unicode()
@@ -329,6 +329,14 @@ class MigrationScript(MigrationBase):
 
         for _, v in new_notification._storm_columns.iteritems():
             if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
+                continue
+
+            if v.name == 'disable_custodian_notification_emails':
+                new_notification.disable_custodian_notification_emails = False
+                continue
+
+            if v.name == 'disable_receiver_notification_emails':
+                new_notification.disable_receiver_notification_emails = old_notification.disable_receivers_notification_emails
                 continue
 
             if v.name == 'tip_expiration_threshold':
