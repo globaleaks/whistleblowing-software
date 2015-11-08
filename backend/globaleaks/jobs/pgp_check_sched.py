@@ -22,7 +22,7 @@ from globaleaks.handlers.admin.notification import get_notification
 from globaleaks.handlers.admin.user import get_admin_users
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import MIME_mail_build, sendmail
+from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating
 
@@ -37,9 +37,7 @@ class PGPCheckSchedule(GLJob):
     def pgp_validation_check(self, store):
         expired_or_expiring = []
 
-        rcvrs = store.find(models.Receiver)
-
-        for rcvr in rcvrs:
+        for rcvr in store.find(models.Receiver):
             if rcvr.user.pgp_key_public and rcvr.user.pgp_key_expiration != datetime_null():
                 if rcvr.user.pgp_key_expiration < datetime_now():
                     expired_or_expiring.append(admin_serialize_receiver(rcvr, GLSettings.memory_copy.default_language))
@@ -68,29 +66,12 @@ class PGPCheckSchedule(GLJob):
         fakeevent.tip_info = None
         fakeevent.subevent_info = {'expired_or_expiring': expired_or_expiring}
 
-        body = Templating().format_template(
-            notification_settings['admin_pgp_alert_mail_template'], fakeevent)
-        title = Templating().format_template(
-            notification_settings['admin_pgp_alert_mail_title'], fakeevent)
+        subject = Templating().format_template(notification_settings['admin_pgp_alert_mail_title'], fakeevent)
+        body = Templating().format_template(notification_settings['admin_pgp_alert_mail_template'], fakeevent)
 
         admin_users = yield get_admin_users()
         for u in admin_users:
-            message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                      GLSettings.memory_copy.notif_source_email,
-                                      u['mail_address'],
-                                      u['mail_address'],
-                                      title,
-                                      body)
-
-            yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                           authentication_password=GLSettings.memory_copy.notif_password,
-                           from_address=GLSettings.memory_copy.notif_source_email,
-                           to_address=u['mail_address'],
-                           message_file=message,
-                           smtp_host=GLSettings.memory_copy.notif_server,
-                           smtp_port=GLSettings.memory_copy.notif_port,
-                           security=GLSettings.memory_copy.notif_security,
-                           event=None)
+            yield sendmail(u['mail_address'], subject, body)
 
     @inlineCallbacks
     def send_pgp_alerts(self, receiver_desc):
@@ -106,28 +87,11 @@ class PGPCheckSchedule(GLJob):
         fakeevent.tip_info = None
         fakeevent.subevent_info = None
 
-        body = Templating().format_template(
-            notification_settings['pgp_alert_mail_template'], fakeevent)
-        title = Templating().format_template(
-            notification_settings['pgp_alert_mail_title'], fakeevent)
-
+        subject = Templating().format_template(notification_settings['pgp_alert_mail_title'], fakeevent)
+        body = Templating().format_template(notification_settings['pgp_alert_mail_template'], fakeevent)
         to_address = receiver_desc['mail_address']
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
-                                  to_address,
-                                  to_address,
-                                  title,
-                                  body)
 
-        yield sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                       authentication_password=GLSettings.memory_copy.notif_password,
-                       from_address=GLSettings.memory_copy.notif_source_email,
-                       to_address=to_address,
-                       message_file=message,
-                       smtp_host=GLSettings.memory_copy.notif_server,
-                       smtp_port=GLSettings.memory_copy.notif_port,
-                       security=GLSettings.memory_copy.notif_security,
-                       event=None)
+        yield sendmail(receiver_desc['mail_address'], subject, body)
 
     @inlineCallbacks
     def operation(self):

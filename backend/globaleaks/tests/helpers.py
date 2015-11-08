@@ -21,17 +21,6 @@ import sys
 reload(sys)
 sys.getdefaultencoding()
 
-
-# Monkeypatching for unit testing  in order to
-# prevent mail activities
-from globaleaks.utils import mailutils
-
-def sendmail_mock(**args):
-    return defer.succeed(None)
-
-mailutils.sendmail = sendmail_mock
-
-
 from globaleaks import db, models, security, anomaly, event, runner
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
@@ -49,9 +38,9 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.third_party import rstr
-from globaleaks.utils import token
+from globaleaks.utils import token, mailutils
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import sum_dicts, datetime_null, log
+from globaleaks.utils.utility import sum_dicts, datetime_null, datetime_now, log
 
 from . import TEST_DIR
 
@@ -82,6 +71,8 @@ event.reactor_override = reactor_override
 token.reactor_override = reactor_override
 mailflush_sched.reactor_override = reactor_override
 runner.reactor_override = reactor_override
+anomaly.reactor = task.Clock()
+statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
 
 
 class UTlog:
@@ -104,6 +95,7 @@ def init_glsettings_for_unit_tests():
     GLSettings.scheduler_threadpool = FakeThreadPool()
     GLSettings.sessions = {}
     GLSettings.failed_login_attempts = 0
+    GLSettings.disable_mail_notification = True
 
     # Simulate two languages enabled that is somehow the most common configuration
     GLSettings.defaults.languages_enabled = ['en', 'it']

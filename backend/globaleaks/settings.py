@@ -278,7 +278,8 @@ class GLSettingssClass(object):
         self.enable_input_length_checks = True
 
         self.mail_counters = {}
-        self.mail_attempts_limit = 3
+        self.mail_timeout = 15 # seconds
+        self.mail_attempts_limit = 3 # per mail limit
 
         reactor.addSystemEventTrigger('after', 'shutdown', self.orm_tp.stop)
         self.orm_tp.start()

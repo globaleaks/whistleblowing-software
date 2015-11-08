@@ -18,8 +18,7 @@ from email.header import Header
 from email import Charset
 
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.internet import reactor, protocol, error
-from twisted.internet.defer import Deferred, AlreadyCalledError, fail
+from twisted.internet import reactor, protocol, error,  defer
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient, SMTPClientError, SMTPError
 from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
@@ -44,6 +43,7 @@ def rfc822_date():
     nowtimestamp = timegm(nowtuple)
     return mailutils.formatdate(nowtimestamp)
 
+
 class GLClientContextFactory(ClientContextFactory):
     # evilaliv3:
     #   this is the same solution I applied to tor2web:
@@ -67,47 +67,48 @@ class GLClientContextFactory(ClientContextFactory):
         return ctx
 
 
-def sendmail(authentication_username, authentication_password, from_address,
-             to_address, message_file, smtp_host, smtp_port, security, event=None):
+def sendmail(to_address, subject, body):
     """
     Sends an email using SMTPS/SMTP+TLS and torify the connection
 
-    @param authentication_username: account username
-    @param authentication_password: account password
-    @param from_address: the from address field of the email
     @param to_address: the to address field of the email
-    @param message_file: the message content its a StringIO
-    @param smtp_host: the smtp host
-    @param smtp_port: the smtp port
-    @param security: may need to be STRING, here is converted at start
+    @param subject: the mail subject
+    @param body: the mail body
     @param event: the event description, needed to keep track of failure/success
-        self.defaults.notif_uses_tor = None
     """
-    notif_timeout = 15
-    result_deferred = Deferred()
-
     try:
-        def errback(reason, *args, **kwargs):
-            if event:
-                log.err("** failed notification for an event of type: %s" % event.type)
+        result_deferred = defer.Deferred()
 
+        def errback(reason, *args, **kwargs):
+            # TODO: here  it should be written a complete debugging of the possible
+            #       errors by writing clear log lines in relation to all the stack:
+            #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA 
             if isinstance(reason, Failure):
-                log.err("Failed to connect to %s:%d (Exception: %s)" %
-                        (smtp_host, smtp_port, reason.value))
+                log.err("SMTP connection failed (Exception: %s)" % reason.value)
                 log.debug(reason)
 
             return result_deferred.errback(reason)
 
-        if security != "SSL":
-            requireTransportSecurity = True
-        else:
-            requireTransportSecurity = False
+        authentication_username=GLSettings.memory_copy.notif_username
+        authentication_password=GLSettings.memory_copy.notif_password
+        from_address=GLSettings.memory_copy.notif_source_email
+        smtp_host=GLSettings.memory_copy.notif_server
+        smtp_port=GLSettings.memory_copy.notif_port
+        security=GLSettings.memory_copy.notif_security
 
-        security = str(security)
+        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
+                                  GLSettings.memory_copy.notif_source_email,
+                                  to_address,
+                                  to_address,
+                                  subject,
+                                  body)
+
+        log.debug('Sending email to %s using SMTP server [%s:%d] [%s]' %
+                  (to_address, smtp_host, smtp_port, security))
 
         context_factory = GLClientContextFactory()
 
-        esmtp_deferred = Deferred()
+        esmtp_deferred = defer.Deferred()
         esmtp_deferred.addCallbacks(result_deferred.callback, errback)
 
         factory = ESMTPSenderFactory(
@@ -115,35 +116,37 @@ def sendmail(authentication_username, authentication_password, from_address,
             authentication_password.encode('utf-8'),
             from_address,
             to_address,
-            message_file,
+            message,
             esmtp_deferred,
             contextFactory=context_factory,
-            requireAuthentication=(authentication_username and authentication_password),
-            requireTransportSecurity=requireTransportSecurity,
+            requireAuthentication=True,
+            requireTransportSecurity=(security != 'SSL'),
             retries=0,
-            timeout=notif_timeout)
+            timeout=GLSettings.mail_timeout)
 
         if security == "SSL":
             factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
+        if GLSettings.disable_mail_notification:
+            return defer.succeed(None)
+
         if not GLSettings.disable_mail_torification:
-            socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=notif_timeout)
+            socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=GLSettings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
-            d = endpoint.connect(factory)
-            d.addErrback(errback, event)
         else:
             endpoint = TCP4ClientEndpoint(reactor, smtp_host.encode('utf-8'), smtp_port, timeout=notif_timeout)
-            d = endpoint.connect(factory)
-            d.addErrback(errback, event)
+
+        d = endpoint.connect(factory)
+        d.addErrback(errback)
+
+        setDeferredTimeout(result_deferred, 90)
+
+        return result_deferred
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
         log.err("Unexpected exception in sendmail: %s" % str(excep))
-        return fail()
-
-    setDeferredTimeout(result_deferred, 90)
-
-    return result_deferred
+        return defer.fail()
 
 
 def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
@@ -151,7 +154,6 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
     # base64, and instead use quoted-printable (for both subject and body).  I
     # can't figure out a way to specify QP (quoted-printable) instead of base64 in
     # a way that doesn't modify global state. :-(
-
     Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
 
     # This example is of an email with text and html alternatives.
@@ -192,7 +194,7 @@ def mail_exception_handler(etype, value, tback):
         return
 
     if isinstance(value, GeneratorExit) or \
-       isinstance(value, AlreadyCalledError) or \
+       isinstance(value, defer.AlreadyCalledError) or \
        isinstance(value, SMTPError) or \
         etype == AssertionError and value.message == "Request closed":
         # we need to bypass email notification for some exception that:
@@ -269,21 +271,8 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
                 # except contains a return or a raise
                 gpob.destroy_environment()
 
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
-                                  GLSettings.memory_copy.exception_email_address,
-                                  GLSettings.memory_copy.exception_email_address,
-                                  mail_subject,
-                                  mail_body)
-
-        sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                 authentication_password=GLSettings.memory_copy.notif_password,
-                 from_address=GLSettings.memory_copy.notif_username,
-                 to_address=GLSettings.memory_copy.exception_email_address,
-                 message_file=message,
-                 smtp_host=GLSettings.memory_copy.notif_server,
-                 smtp_port=GLSettings.memory_copy.notif_port,
-                 security=GLSettings.memory_copy.notif_security)
+        # avoid to wait for the notification to happen  but rely on  background completion
+        sendmail(GLSettings.memory_copy.exception_email_address, mail_subject,  mail_body)
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors

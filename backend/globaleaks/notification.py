@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks, fail
 from globaleaks.orm import transact
 from globaleaks.models import EventLogs
 from globaleaks.utils.utility import log
-from globaleaks.utils.mailutils import sendmail, MIME_mail_build
+from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.templating import Templating
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -58,32 +58,14 @@ class MailNotification(object):
 
         return subject, body
 
-    @staticmethod
-    def mail_flush(from_address, to_address, message_file, event):
-        """
-        This function just wrap the sendmail call, using the system memory variables.
-        """
-        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-                  (GLSettings.memory_copy.notif_server,
-                   GLSettings.memory_copy.notif_port,
-                   to_address[0], GLSettings.memory_copy.notif_security))
-
-        return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                        authentication_password=GLSettings.memory_copy.notif_password,
-                        from_address=from_address,
-                        to_address=to_address,
-                        message_file=message_file,
-                        smtp_host=GLSettings.memory_copy.notif_server,
-                        smtp_port=GLSettings.memory_copy.notif_port,
-                        security=GLSettings.memory_copy.notif_security,
-                        event=event)
-
     def do_notify(self, event):
         if event.type == 'digest':
-            body = event.tip_info['body']
-            title = event.tip_info['title']
+            subject = event.tip_info['body']
+            body = event.tip_info['title']
         else:
-            title, body = self.get_mail_subject_and_body(event)
+            subject, body = self.get_mail_subject_and_body(event)
+
+        receiver_mail = event.receiver_info['mail_address']
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['pgp_key_status'] == u'enabled':
@@ -105,17 +87,7 @@ class MailNotification(object):
                 # except contains a return or a raise
                 gpob.destroy_environment()
 
-        receiver_mail = event.receiver_info['mail_address']
-
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
-                                  event.receiver_info['name'],
-                                  receiver_mail,
-                                  title,
-                                  body)
-
-        return self.mail_flush(event.notification_settings['source_email'],
-                               [receiver_mail], message, event)
+        return sendmail(receiver_mail, subject, body)
 
     @inlineCallbacks
     def do_every_notification(self, eventOD):
@@ -126,8 +98,8 @@ class MailNotification(object):
 
     @inlineCallbacks
     def every_notification_succeeded(self, result, event_id):
-        update_event_notification_status(event_id, True)
+        yield update_event_notification_status(event_id, True)
 
     @inlineCallbacks
     def every_notification_failed(self, failure, event_id):
-        update_event_notification_status(event_id, False)
+        yield update_event_notification_status(event_id, False)

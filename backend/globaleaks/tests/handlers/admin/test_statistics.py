@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
-from twisted.internet import task
 
 from globaleaks import anomaly
 from globaleaks.orm import transact_ro
@@ -10,10 +9,6 @@ from globaleaks.models import Stats
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
     pollute_events_for_testing_and_perform_synthesis
-from globaleaks.utils.utility import datetime_now
-
-anomaly.reactor = task.Clock()
-StatisticsSchedule.collection_start_time = datetime_now()
 
 
 class TestAnomaliesCollection(helpers.TestHandler):

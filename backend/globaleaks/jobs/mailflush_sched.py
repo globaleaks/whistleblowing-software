@@ -17,7 +17,7 @@ from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
 from globaleaks.notification import MailNotification, update_event_notification_status
-from globaleaks.utils.mailutils import MIME_mail_build, sendmail
+from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
 
@@ -188,7 +188,6 @@ class MailflushSchedule(GLJob):
 
     def ping_mail_flush(self, notification_settings, receivers_synthesis):
         for _, data in receivers_synthesis.iteritems():
-
             receiver_dict, winks = data
 
             receiver_name = receiver_dict['name']
@@ -202,33 +201,10 @@ class MailflushSchedule(GLJob):
             fakeevent.tip_info = None
             fakeevent.subevent_info = {'counter': winks}
 
-            body = Templating().format_template(
-                notification_settings['ping_mail_template'], fakeevent)
-            title = Templating().format_template(
-                notification_settings['ping_mail_title'], fakeevent)
+            subject = Templating().format_template(notification_settings['ping_mail_template'], fakeevent)
+            body = Templating().format_template(notification_settings['ping_mail_title'], fakeevent)
 
-            # so comfortable for a developer!! :)
-            source_mail_name = GLSettings.developer_name if GLSettings.devel_mode \
-                else GLSettings.memory_copy.notif_source_name
-            message = MIME_mail_build(source_mail_name,
-                                      GLSettings.memory_copy.notif_source_email,
-                                      receiver_name,
-                                      receiver_email,
-                                      title,
-                                      body)
-
-            fakeevent2 = OD()
-            fakeevent2.type = "Ping mail for %s (%d info)" % (receiver_email, winks)
-
-            return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                            authentication_password=GLSettings.memory_copy.notif_password,
-                            from_address= GLSettings.memory_copy.notif_source_email,
-                            to_address= [receiver_email],
-                            message_file=message,
-                            smtp_host=GLSettings.memory_copy.notif_server,
-                            smtp_port=GLSettings.memory_copy.notif_port,
-                            security=GLSettings.memory_copy.notif_security,
-                            event=fakeevent2)
+            return sendmail(receiver_email, subject, body)
 
     @inlineCallbacks
     def operation(self):
