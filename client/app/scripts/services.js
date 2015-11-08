@@ -128,24 +128,26 @@ angular.module('GLServices', ['ngResource']).
 
         self.keycode = '';
 
-        $rootScope.logout = function(sessionExpired) {
-          var role = self.role;
-
-          if (!sessionExpired) {
-            // we use $http['delete'] in place of $http.delete due to
-            // the magical IE7/IE8 that do not allow delete as identifier
-            // https://github.com/globaleaks/GlobaLeaks/issues/943
-            if (self.role === 'whistleblower') {
-              $http['delete']('receiptauth');
-            } else {
-              $http['delete']('authentication');
-            }
+        $rootScope.logout = function() {
+          // we use $http['delete'] in place of $http.delete due to
+          // the magical IE7/IE8 that do not allow delete as identifier
+          // https://github.com/globaleaks/GlobaLeaks/issues/943
+          if (self.role === 'whistleblower') {
+            $http['delete']('receiptauth').then(self.logout_performed,
+                                                   self.logout_performed);
+          } else {
+            $http['delete']('authentication').then(self.logout_performed,
+                                                   self.logout_performed);
           }
+        };
+
+        $rootScope.logout_performed = function(sessionExpired) {
+          var role = self.role;
 
           self.clean();
 
           var source_path = $location.path();
-          var redirect_path = self.getLoginUri(role, $location.path());
+          var redirect_path = self.getLoginUri(role, source_path);
           // Only redirect if we are not already on the login page
           if (source_path !== redirect_path) {
             $location.path(redirect_path);
@@ -226,7 +228,7 @@ angular.module('GLServices', ['ngResource']).
 
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
-          $rootScope.logout(error.code === 30);
+          $rootScope.logout_performed(error.code === 30);
         }
 
         $rootScope.errors.push(error);
