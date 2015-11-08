@@ -29,13 +29,13 @@ def update_event_notification_status(store, event_id, mail_sent):
         event.mail_attempts += 1
         if mail_sent:
             event.mail_sent = True
-            log.debug("SUCCESS:: Marked as notified event %s of type [%s]" % (event.id, event.title))
+            log.debug("SUCCESS:: Event %s of type [%s] notified successfully" % (event.id, event.title))
         elif event.mail_attempts >= attempts_limit:
             event.mail_sent = True
             log.debug("FAILURE: Notification for event %s of type %s reached limit of #%d attempts without success" % \
                        (event.id, event.title, attempts_limit))
         else:
-            log.debug("FAILURE: Notification for event %s of type %s (attempt #%d)" % \
+            log.debug("FAILURE: Error during notification of event %s of type %s (attempt #%d)" % \
                        (event.id, event.title, event.mail_attempts))
 
 
@@ -126,16 +126,8 @@ class MailNotification(object):
 
     @inlineCallbacks
     def every_notification_succeeded(self, result, event_id):
-        if event_id:
-            log.debug("Mail delivered correctly for event %s" % (event_id))
-            yield update_event_notification_status(event_id, True)
-        else:
-            log.debug("Mail (Digest|Anomaly) correctly sent")
+        update_event_notification_status(event_id, True)
 
     @inlineCallbacks
     def every_notification_failed(self, failure, event_id):
-        if event_id:
-            log.err("Mail delivery failure for event %s" % (event_id))
-            yield update_event_notification_status(event_id, False)
-        else:
-            log.err("Mail (Digest|Anomaly) error")
+        update_event_notification_status(event_id, False)
