@@ -20,12 +20,23 @@ Event = namedtuple('Event',
                     'receiver_info', 'context_info',
                     'subevent_info', 'do_mail'])
 
+attempts_limit = 10
+
 @transact
-def mark_event_as_notified(store, event_id):
-    evnt = store.find(EventLogs, EventLogs.id == event_id).one()
-    if evnt:
-        evnt.mail_sent = True
-        log.debug("Marked event [%s] as sent" % evnt.title)
+def update_event_notification_status(store, event_id, mail_sent):
+    event = store.find(EventLogs, EventLogs.id == event_id).one()
+    if event:
+        event.mail_attempts += 1
+        if mail_sent:
+            event.mail_sent = True
+            log.debug("SUCCESS:: Marked as notified event %s of type [%s]" % (event.id, event.title))
+        elif event.mail_attempts >= attempts_limit:
+            event.mail_sent = True
+            log.debug("FAILURE: Notification for event %s of type %s reached limit of #%d attempts without success" % \
+                       (event.id, event.title, attempts_limit))
+        else:
+            log.debug("FAILURE: Notification for event %s of type %s (attempt #%d)" % \
+                       (event.id, event.title, event.mail_attempts))
 
 
 class MailNotification(object):
@@ -47,6 +58,25 @@ class MailNotification(object):
 
         return subject, body
 
+    @staticmethod
+    def mail_flush(from_address, to_address, message_file, event):
+        """
+        This function just wrap the sendmail call, using the system memory variables.
+        """
+        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
+                  (GLSettings.memory_copy.notif_server,
+                   GLSettings.memory_copy.notif_port,
+                   to_address[0], GLSettings.memory_copy.notif_security))
+
+        return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
+                        authentication_password=GLSettings.memory_copy.notif_password,
+                        from_address=from_address,
+                        to_address=to_address,
+                        message_file=message_file,
+                        smtp_host=GLSettings.memory_copy.notif_server,
+                        smtp_port=GLSettings.memory_copy.notif_port,
+                        security=GLSettings.memory_copy.notif_security,
+                        event=event)
 
     def do_notify(self, event):
         if event.type == 'digest':
@@ -69,7 +99,7 @@ class MailNotification(object):
                 # thing to do is to return None;
                 # It will be duty of the PGP check schedule will disable the key
                 # and advise the user and the admin about that action.
-                return None
+                return defer.fail(None)
             finally:
                 # the finally statement is always called also if
                 # except contains a return or a raise
@@ -87,51 +117,25 @@ class MailNotification(object):
         return self.mail_flush(event.notification_settings['source_email'],
                                [receiver_mail], message, event)
 
-
-    @staticmethod
-    def mail_flush(from_address, to_address, message_file, event):
-        """
-        This function just wrap the sendmail call, using the system memory variables.
-        """
-        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-                  (GLSettings.memory_copy.notif_server,
-                   GLSettings.memory_copy.notif_port,
-                   to_address[0], GLSettings.memory_copy.notif_security))
-
-        return sendmail(authentication_username=GLSettings.memory_copy.notif_username,
-                        authentication_password=GLSettings.memory_copy.notif_password,
-                        from_address=from_address,
-                        to_address=to_address,
-                        message_file=message_file,
-                        smtp_host=GLSettings.memory_copy.notif_server,
-                        smtp_port=GLSettings.memory_copy.notif_port,
-                        security=GLSettings.memory_copy.notif_security,
-                        event=event)
-
     @inlineCallbacks
     def do_every_notification(self, eventOD):
         notify = self.do_notify(eventOD)
+        notify.addCallbacks(self.every_notification_succeeded, self.every_notification_failed,
+                            callbackArgs=(eventOD.orm_id,), errbackArgs=(eventOD.orm_id,))
+        yield notify
 
-        if isinstance(notify, Deferred):
-            notify.addCallback(self.every_notification_succeeded, eventOD.orm_id)
-            notify.addErrback(self.every_notification_failed, eventOD.orm_id)
-            yield notify
-        else:
-            yield self.every_notification_failed(None, eventOD.orm_id)
-
-    @transact
-    def every_notification_succeeded(self, store, result, event_id):
+    @inlineCallbacks
+    def every_notification_succeeded(self, result, event_id):
         if event_id:
-            log.debug("Mail delivered correctly for event %s, [%s]" % (event_id, result))
-            yield mark_event_as_notified(event_id)
+            log.debug("Mail delivered correctly for event %s" % (event_id))
+            yield update_event_notification_status(event_id, True)
         else:
             log.debug("Mail (Digest|Anomaly) correctly sent")
 
-    @transact
-    def every_notification_failed(self, store, failure, event_id):
+    @inlineCallbacks
+    def every_notification_failed(self, failure, event_id):
         if event_id:
-            log.err("Mail delivery failure for event %s (%s)" % (event_id, failure))
-            yield mark_event_as_notified(event_id)
+            log.err("Mail delivery failure for event %s" % (event_id))
+            yield update_event_notification_status(event_id, False)
         else:
             log.err("Mail (Digest|Anomaly) error")
-

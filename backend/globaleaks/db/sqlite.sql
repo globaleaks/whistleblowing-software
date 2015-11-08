@@ -124,7 +124,6 @@ CREATE TABLE internaltip (
     enable_whistleblower_identity INTEGER NOT NULL,
     identity_provided INTEGER NOT NULL,
     identity_provided_date TEXT NOT NULL,
-    new INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -293,8 +292,9 @@ CREATE TABLE eventlogs (
     description TEXT NOT NULL,
     title TEXT NOT NULL,
     receiver_id TEXT NOT NULL,
-    receivertip_id TEXT,
-    mail_sent INTEGER,
+    receivertip_id TEXT NOT NULL,
+    mail_sent INTEGER NOT NULL,
+    mail_attempts INTEGER NOT NULL,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -333,7 +333,6 @@ CREATE TABLE receivertip (
     access_counter INTEGER NOT NULL,
     receiver_id TEXT NOT NULL,
     label TEXT NOT NULL,
-    new INTEGER NOT NULL,
     can_access_whistleblower_identity INTEGER NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,

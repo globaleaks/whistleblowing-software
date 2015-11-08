@@ -736,6 +736,7 @@ class EventLogs(Model):
     receivertip_id = Unicode()
     event_reference = JSON()
     mail_sent = Bool(default=False)
+    mail_attempts = Int(default=0)
 
 
 class Field(Model):

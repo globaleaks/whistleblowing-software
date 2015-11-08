@@ -16,7 +16,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import admin_serialize_notification
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
-from globaleaks.notification import MailNotification, mark_event_as_notified
+from globaleaks.notification import MailNotification, update_event_notification_status
 from globaleaks.utils.mailutils import MIME_mail_build, sendmail
 from globaleaks.utils.utility import deferred_sleep, log
 from globaleaks.utils.templating import Templating
