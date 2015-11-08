@@ -363,7 +363,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
       for (var key in uploads) {
         if(uploads[key].isUploading()) {
-          console.log("uploading");
           return 'uploading';
         }
 
@@ -374,8 +373,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         }
       }
-
-      console.log(error);
 
       if (error) {
         return 'error';
