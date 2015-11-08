@@ -48,16 +48,16 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         self._reactor.callLater(0, resources_check.start, GLSettings.anomaly_delta)
 
         delivery = delivery_sched.DeliverySchedule()
-        self._reactor.callLater(10, delivery.start, GLSettings.delivery_delta)
+        self._reactor.callLater(5, delivery.start, GLSettings.delivery_delta)
 
         notification = notification_sched.NotificationSchedule()
-        self._reactor.callLater(20, notification.start, GLSettings.notification_delta)
+        self._reactor.callLater(10, notification.start, GLSettings.notification_delta)
 
         mailflush = mailflush_sched.MailflushSchedule()
-        self._reactor.callLater(30, mailflush.start, GLSettings.mailflush_delta)
+        self._reactor.callLater(15, mailflush.start, GLSettings.mailflush_delta)
 
         secure_file_delete = secure_file_delete_sched.SecureFileDeleteSchedule()
-        self._reactor.callLater(40, secure_file_delete.start, GLSettings.secure_file_delete_delta)
+        self._reactor.callLater(20, secure_file_delete.start, GLSettings.secure_file_delete_delta)
 
         # The Tip cleaning scheduler need to be executed every day at midnight
         current_time = datetime_now()

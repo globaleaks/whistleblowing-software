@@ -217,6 +217,17 @@ class ArchivedSchema_v_23(Model):
     schema = JSON()
 
 
+class EventLogs_v_23(Model):
+    __storm_table = 'eventlogs'
+    creation_date = DateTime()
+    description = JSON()
+    title = Unicode()
+    receiver_id = Unicode()
+    receivertip_id = Unicode()
+    event_reference = JSON()
+    mail_sent = Bool()
+
+
 class MigrationScript(MigrationBase):
     def epilogue(self):
         # Finalize loading the new whitleblower identity field
@@ -622,6 +633,19 @@ class MigrationScript(MigrationBase):
                     if not isinstance(new_obj.value, dict):
                         new_obj.value = {}
                     new_obj.value[old_obj.language] = old_obj.value
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_EventLogs(self):
+        old_objs = self.store_old.find(self.model_from['EventLogs'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['EventLogs']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'mail_attempts':
+                    new_obj.mail_attempts = 0
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
