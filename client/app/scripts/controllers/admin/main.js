@@ -202,8 +202,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       ctrl: TabCtrl
     },
     {
-      title: "Notification settings",
-      template: "views/admin/mail/tab2.html",
+      title:"Admin notification templates",
+      template:"views/admin/mail/tab2.html",
       ctrl: TabCtrl
     },
     {
@@ -212,13 +212,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       ctrl: TabCtrl
     },
     {
-      title:"Admin notification templates",
-      template:"views/admin/mail/tab4.html",
-      ctrl: TabCtrl
-    },
-    {
       title:"Exception notification",
-      template:"views/admin/mail/tab5.html",
+      template:"views/admin/mail/tab4.html",
       ctrl: TabCtrl
     }
   ];

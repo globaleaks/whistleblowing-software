@@ -1,50 +1,49 @@
 <div class="row">
   <div class="col-md-8">
+    <div>
+      <span data-translate>This interface allows to configure the email templates used for admin notifications.</span>
+    </div>
+
+    <br /><br />
+
     <div class="form-group">
-      <input data-ng-model="admin.notification.disable_admin_notification_emails" type="checkbox">
-      <label data-translate>Disable admin notification emails</label>
-      <div data-ng-show="admin.notification.disable_admin_notification_emails">
-        <span class="label label-warning" data-translate>Disabled</span>
-        <span data-translate>When the option is re-enabled the spooled emails will be sent out.</span>
+      <label data-translate>Template</label>
+      <select name="type" class="form-control" data-ng-model="template">
+        <option value="anomaly_notification" data-translate>Notification of anomaly</option>
+        <option value="pgp_expiration" data-translate>Notification of PGP key expiration</option>
+      </select>
+    </div>
+
+    <br /><br />
+
+    <div class="row">
+      <div class="col-md-offset-1 col-md-11" data-ng-switch="template">
+        <div data-ng-switch-when="anomaly_notification">
+          <div class="form-group">
+            <label data-translate>Email subject</label>
+            <input data-ng-model="admin.notification.admin_anomaly_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+          </div>
+          <div class="form-group">
+            <label data-translate>Email body</label>
+            <div>
+              <textarea data-ng-model="admin.notification.admin_anomaly_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div data-ng-switch-when="pgp_expiration">
+          <div class="form-group">
+            <label data-translate>Email subject</label>
+            <input data-ng-model="admin.notification.admin_pgp_alert_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+          </div>
+          <div class="form-group">
+            <label data-translate>Email body</label>
+            <div>
+              <textarea data-ng-model="admin.notification.admin_pgp_alert_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="form-group">
-      <input data-ng-model="admin.notification.disable_receivers_notification_emails" type="checkbox">
-      <label data-translate>Disable recipients notifications emails</label>
-      <div data-ng-show="admin.notification.disable_receivers_notification_emails">
-        <span class="label label-warning" data-translate>Disabled</span>
-        <span data-translate>When the option is re-enabled the spooled emails will be sent out.</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <input data-ng-model="admin.notification.send_email_for_every_event" type="checkbox">
-      <label data-translate>Send an email notification for every event</label>
-      <div data-ng-show="admin.notification.send_email_for_every_event">
-        <span class="label label-success" data-translate>Enabled</span>
-        <span data-translate>An email notification will also always be sent in case the user viewed the related info through the platform.</span>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <input data-ng-model="admin.notification.reset_templates" type="checkbox">
-      <label data-translate>Reset notification templates to default</label>
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Number of hours before sending a submission expiration alert</label>
-      <input class="form-control" data-ng-model="admin.notification.tip_expiration_threshold" maxlength="{{node.maximum_namesize}}" type="number" />
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Maximum emails per hour before triggering email suspension</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
-      <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
-    </div>
-
-    <div class="form-group">
-      <label data-translate>Email suspension duration after exceeding hourly limit, in seconds</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
-      <input class="form-control" data-ng-model="admin.notification.notification_suspension_time" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
   </div>
 </div>

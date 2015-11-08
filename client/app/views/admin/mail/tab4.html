@@ -1,52 +1,44 @@
 <div class="row">
   <div class="col-md-8">
-    <div>
-      <span data-translate>This interface allows to configure the email templates used for admin notifications.</span>
+    <div class="form-group">
+      <label data-translate>Exception reporting email address</label>
+      <input class="form-control" data-ng-model="admin.notification.exception_email_address" name="email" type="text" data-ng-pattern="email_regexp" />
+      <p class="text-red" data-ng-if="notificationForm.email.$error.pattern">
+        <span data-translate>Invalid email address</span>
+      </p>
     </div>
 
-    <br /><br />
+    <div data-ng-show="admin.notification.exception_email_pgp_key_info">
+      <div class="alert alert-success">
+        <span data-translate>Encryption is enabled!</span>
+      </div>
+
+      <p>
+        <span data-translate>PGP key details</span>
+        <br />
+        <span data-translate>The fingerprint is:</span>
+        <b>{{admin.notification.exception_email_pgp_key_fingerprint}}</b>
+      </p>
+
+      <div>
+        <pre>{{admin.notification.exception_email_pgp_key_info}}</pre>
+      </div>
+
+      <div class="form-group" data-ng-show="admin.notification.exception_email_pgp_key_fingerprint">
+        <input data-ng-model="admin.notification.exception_email_pgp_key_remove" type="checkbox">
+        <label data-translate>Remove the PGP key</label>
+      </div>
+    </div>
 
     <div class="form-group">
-      <label data-translate>Template</label>
-      <select name="type" class="form-control" data-ng-model="template">
-        <option value="anomaly_notification" data-translate>Notification of anomaly</option>
-        <option value="pgp_expiration" data-translate>Notification of PGP key expiration</option>
-      </select>
+      <div class="alert alert-danger" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
+        <div data-translate>Encryption has not been enabled!</div>
+        <div data-translate>Email notifications won't be encrypted.</div>
     </div>
 
-    <br /><br />
-
-    <div class="row">
-      <div class="col-md-offset-1 col-md-11" data-ng-switch="template">
-        <div data-ng-switch-when="anomaly_notification">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.admin_anomaly_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.admin_anomaly_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="pgp_expiration">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.admin_pgp_alert_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.admin_pgp_alert_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="form-group" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
+      <label data-translate>Set a PGP key for email notifications encryption</label>
+      <textarea class="form-control" placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="admin.notification.exception_email_pgp_key_public"></textarea>
     </div>
   </div>
 </div>
-
-
-

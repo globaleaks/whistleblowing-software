@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8">
     <div>
-      <span data-translate>This interface allows to configure the email templates used for recipient notifications.</span>
+      <span data-translate>This interface allows to configure the email templates used for admin notifications.</span>
     </div>
 
     <br /><br />
@@ -9,14 +9,8 @@
     <div class="form-group">
       <label data-translate>Template</label>
       <select name="type" class="form-control" data-ng-model="template">
-        <option value="new_submission" data-translate>Notification of new submission</option>
-        <option value="new_comment" data-translate>Notification of new comment</option>
-        <option value="new_message" data-translate>Notification of new message</option>
-        <option value="new_attachment" data-translate>Notification of new file attachment</option>
+        <option value="anomaly_notification" data-translate>Notification of anomaly</option>
         <option value="pgp_expiration" data-translate>Notification of PGP key expiration</option>
-        <option value="ping_email" data-translate>Generic ping notification of new material</option>
-        <option value="mail_suspension" data-translate>Notification of mailing system suspension after hourly limit excess</option>
-        <option value="archive_description" data-translate>Template for summary of contents in submission archive</option>
       </select>
     </div>
 
@@ -24,84 +18,15 @@
 
     <div class="row">
       <div class="col-md-offset-1 col-md-11" data-ng-switch="template">
-        <div data-ng-switch-when="new_submission">
+        <div data-ng-switch-when="anomaly_notification">
           <div class="form-group">
             <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.tip_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
+            <input data-ng-model="admin.notification.admin_anomaly_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
           </div>
           <div class="form-group">
             <label data-translate>Email body</label>
             <div>
-              <textarea data-ng-model="admin.notification.tip_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_attachment">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.file_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.file_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_comment">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.comment_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.comment_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="new_message">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <input data-ng-model="admin.notification.message_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.message_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="mail_suspension">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <div>
-              <input data-ng-model="admin.notification.receiver_notification_limit_reached_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.receiver_notification_limit_reached_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="ping_email">
-          <div class="form-group">
-            <label data-translate>Email subject</label>
-            <div>
-              <input data-ng-model="admin.notification.ping_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label data-translate>Email body</label>
-            <div>
-              <textarea data-ng-model="admin.notification.ping_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
+              <textarea data-ng-model="admin.notification.admin_anomaly_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
             </div>
           </div>
         </div>
@@ -109,28 +34,16 @@
         <div data-ng-switch-when="pgp_expiration">
           <div class="form-group">
             <label data-translate>Email subject</label>
-            <div>
-              <input data-ng-model="admin.notification.pgp_alert_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
-            </div>
+            <input data-ng-model="admin.notification.admin_pgp_alert_mail_title" maxlength="{{node.maximum_namesize}}" class="form-control" type="text" />
           </div>
           <div class="form-group">
             <label data-translate>Email body</label>
             <div>
-              <textarea data-ng-model="admin.notification.pgp_alert_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
-            </div>
-          </div>
-        </div>
-
-        <div data-ng-switch-when="archive_description">
-          <div class="form-group">
-            <label data-translate>Template for summary of contents in submission archive</label>
-            <div>
-              <textarea data-ng-model="admin.notification.archive_description" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
+              <textarea data-ng-model="admin.notification.admin_pgp_alert_mail_template" maxlength="{{node.maximum_textsize}}" class="form-control" rows="10"></textarea>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </div>

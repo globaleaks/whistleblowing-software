@@ -40,5 +40,61 @@
         <option value="TLS">SMTP/TLS</option>
       </select>
     </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.notification.disable_admin_notification_emails" type="checkbox">
+      <label data-translate>Disable notifications for the administrators</label>
+      <div data-ng-show="admin.notification.disable_admin_notification_emails">
+        <span class="label label-warning" data-translate>Disabled</span>
+        <span data-translate>When the option is re-enabled the spooled emails will be sent out.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.notification.disable_custodians_notification_emails" type="checkbox">
+      <label data-translate>Disable notifications for the custodians</label>
+      <div data-ng-show="admin.notification.disable_receiver_notification_emails">
+        <span class="label label-warning" data-translate>Disabled</span>
+        <span data-translate>When the option is re-enabled the spooled emails will be sent out.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.notification.disable_receiver_notification_emails" type="checkbox">
+      <label data-translate>Disable notifications for the receivers</label>
+      <div data-ng-show="admin.notification.disable_receiver_notification_emails">
+        <span class="label label-warning" data-translate>Disabled</span>
+        <span data-translate>When the option is re-enabled the spooled emails will be sent out.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.notification.send_email_for_every_event" type="checkbox">
+      <label data-translate>Send an email notification for every event</label>
+      <div data-ng-show="admin.notification.send_email_for_every_event">
+        <span class="label label-success" data-translate>Enabled</span>
+        <span data-translate>An email notification will also always be sent in case the user viewed the related info through the platform.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input data-ng-model="admin.notification.reset_templates" type="checkbox">
+      <label data-translate>Reset notification templates to default</label>
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Number of hours before sending a submission expiration alert</label>
+      <input class="form-control" data-ng-model="admin.notification.tip_expiration_threshold" maxlength="{{node.maximum_namesize}}" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Maximum emails per hour before triggering email suspension</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
+      <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
+    </div>
+
+    <div class="form-group">
+      <label data-translate>Email suspension duration after exceeding hourly limit, in seconds</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
+      <input class="form-control" data-ng-model="admin.notification.notification_suspension_time" maxlength="{{node.maximum_namesize}}" type="number" />
+    </div>
   </div>
 </div>
