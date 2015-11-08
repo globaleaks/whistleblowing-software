@@ -214,9 +214,8 @@ def mail_exception_handler(etype, value, tback):
 
     mail_body = error_message + "\n\n" + traceinfo
 
-    if GLSettings.loglevel >= logging.DEBUG:
-        log.err("Exception raised and handled by globaleaks_exception_handler")
-        log.err(mail_body)
+    log.err("Unhandled exception raised:")
+    log.err(mail_body)
 
     send_exception_email(mail_body)
 
@@ -243,7 +242,6 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
             log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
-
         GLSettings.exceptions[sha256_hash] = 1
 
     GLSettings.exceptions_email_count += 1
