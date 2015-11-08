@@ -4,7 +4,7 @@
 
 from collections import namedtuple
 
-from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet.defer import inlineCallbacks, fail
 
 from globaleaks.orm import transact
 from globaleaks.models import EventLogs
@@ -23,7 +23,7 @@ Event = namedtuple('Event',
 
 @transact
 def update_event_notification_status(store, event_id, mail_sent):
-    attempts_limit = GLSettings.mail_attepmts_limit
+    attempts_limit = GLSettings.mail_attempts_limit
     event = store.find(EventLogs, EventLogs.id == event_id).one()
     if event:
         event.mail_attempts += 1
@@ -99,7 +99,7 @@ class MailNotification(object):
                 # thing to do is to return None;
                 # It will be duty of the PGP check schedule will disable the key
                 # and advise the user and the admin about that action.
-                return defer.fail(None)
+                return fail(None)
             finally:
                 # the finally statement is always called also if
                 # except contains a return or a raise
