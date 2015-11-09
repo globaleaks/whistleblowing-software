@@ -32,15 +32,34 @@
     <table class="table table-condensed table-striped">
       <thead>
         <tr>
-          <th data-translate>Context</th>
-          <th data-translate>Creation date</th>
-          <th data-translate>Update date</th>
-          <th data-translate>Expiration date</th>
-          <th data-translate>Connection</th>
+          <th data-ng-if="::role == 'receiver'">
+            <i class="glyphicon glyphicon-barcode"></i>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-inbox"></i>
+            <span data-translate>Context</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Creation date</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-time"></i>
+            <span data-translate>Update date</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-hourglass"></i>
+            <span data-translate>Expiration date</span>
+          </th>
+          <th>
+            <i class="glyphicon glyphicon-send"></i>
+            <span data-translate>Connection</span>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
           <td>{{::tip.context_name}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>

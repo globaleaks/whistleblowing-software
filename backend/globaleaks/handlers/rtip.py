@@ -87,6 +87,8 @@ def serialize_rtip(store, rtip, language):
     user_id = rtip.receiver.user.id
 
     ret = serialize_usertip(store, rtip, language)
+
+    ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
     ret['collection'] = '/rtip/' + rtip.id + '/collection'
