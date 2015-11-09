@@ -385,6 +385,7 @@ class MigrationScript(MigrationBase):
             new_notification.port = 587
             new_notification.username = u'hey_you_should_change_me'
             new_notification.password = u'yes_you_really_should_change_me'
+            new_notification.source_email = u'notification@demo.globaleaks.org'
 
         self.store_new.add(new_notification)
 

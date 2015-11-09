@@ -1,4 +1,4 @@
-<div data-ng-form="f" class="submissionFieldInput">
+<div data-ng-form="f" class="submissionFieldInput"  data-ng-init="field.required = false">
   <div data-ng-switch="field.key">
     <div data-ng-switch-when="whistleblower_identity">
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
