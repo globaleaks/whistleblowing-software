@@ -51,10 +51,7 @@ def db_get_wbtip(store, wbtip_id, language):
 
     wbtip.access_counter += 1
 
-    tip_desc = serialize_usertip(store, wbtip, language)
-
-    tip_desc['id'] = wbtip.id
-    tip_desc['files'] = db_get_files_wb(store, wbtip_id)
+    tip_desc = serialize_wbtip(store, wbtip, language)
 
     return tip_desc
 
@@ -77,6 +74,19 @@ def get_comment_list_wb(store, wbtip_id):
 
     return [serialize_comment(comment) for comment in wbtip.internaltip.comments]
 
+
+def serialize_wbtip(store, wbtip, language):
+    ret = serialize_usertip(store, wbtip, language)
+
+    # filter submission progressive
+    # to prevent a fake whistleblower to assess every day how many
+    # submissions are received by the platform.
+    del ret['progressive']
+
+    ret['id'] = wbtip.id
+    ret['files'] = db_get_files_wb(store, wbtip.id)
+
+    return ret
 
 @transact
 def create_comment_wb(store, wbtip_id, request):

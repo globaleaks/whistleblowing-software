@@ -31,7 +31,10 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetim
 def db_assign_submission_progressive(store):
     counter = store.find(models.Counter, models.Counter.key == u'submission_sequence').one()
     now = datetime_now()
-    if ((now - counter.update_date).days > 0):
+    update = counter.update_date
+    if ((now > counter.update_date) and (not((now.year == update.year) and \
+                                             (now.month == update.month) and \
+                                             (now.day == update.day)))):
         counter.counter = 1
     else:
         counter.counter += 1
