@@ -30,19 +30,22 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetim
 
 def db_assign_submission_progressive(store):
     counter = store.find(models.Counter, models.Counter.key == u'submission_sequence').one()
-    now = datetime_now()
-    update = counter.update_date
-    if ((now > counter.update_date) and (not((now.year == update.year) and \
-                                             (now.month == update.month) and \
-                                             (now.day == update.day)))):
-        counter.counter = 1
+    if not counter:
+        counter = models.Counter({'key': u'submission_sequence', 'counter': 1})
+        store.add(counter)
     else:
-        counter.counter += 1
+        now = datetime_now()
+        update = counter.update_date
+        if ((now > counter.update_date) and (not((now.year == update.year) and \
+                                                 (now.month == update.month) and \
+                                                 (now.day == update.day)))):
+            counter.counter = 1
+        else:
+            counter.counter += 1
 
-    counter.update_date = now
+        counter.update_date = now
 
     return counter.counter
-
 
 def _db_get_archived_fieldattr(fieldattr, language):
     return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_keys, language)
