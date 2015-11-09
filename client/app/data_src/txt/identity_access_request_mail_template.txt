@@ -1,6 +1,6 @@
 Dear %RecipientName%,
 
-This is an email to notify you that a recipient has requested access to a whistleblower's identity.
+This is an email to notify you that a recipient has requested access to the whistleblower's identity for the the submission %TipNum%
 
 The request can be accessed:
 via Tor at: %TorURL%
