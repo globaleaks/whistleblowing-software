@@ -140,7 +140,7 @@ class Notification_v_22(Model):
 class MigrationScript(MigrationBase):
     def fix_field_answer_id(self, f):
         if f['id'] == '':
-            for x in self.model_from['Field']:
+            for x in self.store_old.find(self.model_from['Field']):
                 try:
                     if isinstance(x.label, dict):
                         for k, v in x.label.iteritems():
