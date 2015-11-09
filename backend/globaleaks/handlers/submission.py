@@ -47,26 +47,22 @@ def db_assign_submission_progressive(store):
 
     return counter.counter
 
-def _db_get_archived_fieldattr(fieldattr, language):
-    return get_localized_values(fieldattr, fieldattr, models.FieldAttr.localized_keys, language)
-
-
-def _db_get_archived_fieldoption(fieldoption, language):
-    return get_localized_values(fieldoption, fieldoption, models.FieldOption.localized_keys, language)
-
 
 def _db_get_archived_field_recursively(field, language):
-    for key, value in field['attrs'].iteritems():
+    for key, value in field.get('attrs', {}).iteritems():
+        if key not in field['attrs']: continue
+        if 'type' not in field['attrs'][key]: continue
+
         if field['attrs'][key]['type'] == u'localized':
-            if language in field['attrs'][key]['value']:
+            if language in field['attrs'][key].get('value', []):
                 field['attrs'][key]['value'] = field['attrs'][key]['value'][language]
             else:
                 field['attrs'][key]['value'] = ""
 
-    for o in field['options']:
-        _db_get_archived_fieldoption(o, language)
+    for o in field.get('options', []):
+        get_localized_values(o, o, models.FieldOption.localized_keys, language)
 
-    for c in field['children']:
+    for c in field.get('children', []):
         _db_get_archived_field_recursively(c, language)
 
     return get_localized_values(field, field, models.Field.localized_keys, language)
@@ -120,7 +116,7 @@ def db_serialize_questionnaire_answers(store, usertip):
     filtered_answers_ids = []
     for s in questionnaire:
         for f in s['children']:
-            if f['key'] == 'whistleblower_identity':
+            if 'key' in f and f['key'] == 'whistleblower_identity':
                 if isinstance(usertip, models.WhistleblowerTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] == False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):

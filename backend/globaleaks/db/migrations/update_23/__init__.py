@@ -301,10 +301,6 @@ class MigrationScript(MigrationBase):
                 db_update_fieldattr(self.store_new, old_obj.id, u'max_len', {'name': u'max_len', 'type': u'int', 'value':'-1'}, 'en')
                 db_update_fieldattr(self.store_new, old_obj.id, u'regex', {'name': u'regexp', 'type': u'unicode', 'value':''}, 'en')
 
-            if old_obj.type == 'tos':
-                db_update_fieldattr(self.store_new, old_obj.id, u'clause', {'name': u'clause', 'type': u'localized', 'value': '{"en": ""}'}, 'en')
-                db_update_fieldattr(self.store_new, old_obj.id, u'agreement_statement', {'name': u'agreement_statement', 'type':u'localized', 'value':'{"en": ""}'}, 'en')
-
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'template_id':
                     # simply skip so to inizialize to NULL
@@ -323,6 +319,8 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_FieldOption(self):
+        old_node = self.store_old.find(self.model_from['Node']).one()
+
         old_objs = self.store_old.find(self.model_from['FieldOption'])
         for old_obj in old_objs:
             skip_add = False
@@ -332,17 +330,22 @@ class MigrationScript(MigrationBase):
                     new_obj.score_points = 0
                     continue
 
-                if v.name == 'label':
-                    if 'name' in old_obj.attrs:
-                        new_obj.label = old_obj.attrs['name']
+                try:
+                    if v.name == 'label':
+                        if 'name' in old_obj.attrs:
+                            new_obj.label = old_obj.attrs['name']
+                            continue
+                        if 'clause' in old_obj.attrs:
+                            value = old_obj.attrs['clause'].get(old_node.default_language, '')
+                            db_update_fieldattr(self.store_new, old_obj.field_id, u'clause', {'name': u'clause', 'type': u'localized', 'value': value}, old_node.default_language)
+                            skip_add = True
+                        if 'agreement_statement' in old_obj.attrs:
+                            value = old_obj.attrs['agreement_statement'].get(old_node.default_language, '')
+                            db_update_fieldattr(self.store_new, old_obj.field_id, u'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': value}, old_node.default_language)
+                            skip_add = True
                         continue
-                    if 'clause' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, u'clause', {'name': u'clause', 'type': u'localized', 'value': old_obj.attrs['clause']}, 'en')
-                        skip_add = True
-                    if 'agreement_statement' in old_obj.attrs:
-                        db_update_fieldattr(self.store_new, old_obj.field_id, u'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': old_obj.attrs['agreement_statement']}, 'en')
-                        skip_add = True
-                    continue
+                except:
+                    pass
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 

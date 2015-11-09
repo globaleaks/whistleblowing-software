@@ -7,7 +7,9 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.appdata import load_default_fields
+from globaleaks import models
 from globaleaks.models import BaseModel, Model
+from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null
 
 
@@ -628,8 +630,37 @@ class MigrationScript(MigrationBase):
         # Marking to avoid count check for ArchivedSchema
         self.fail_on_count_mismatch["ArchivedSchema"] = False
 
-        old_objs = self.store_old.find(self.model_from['ArchivedSchema'])
+        old_node = self.store_old.find(self.model_from['Node']).one()
+
+        old_objs = self.store_old.find(self.model_from['ArchivedSchema'], self.model_from['ArchivedSchema'].language == old_node.default_language)
         new_obj_model = self.model_to['ArchivedSchema']
+
+        def fill_field_localized_keys_recursively(f, language):
+            for k in ['label', 'description', 'hint', 'multi_entry_hint']:
+                try:
+                    f[k] = {language: f.get(k, '')}
+                except:
+                    f[k] = {language: ''}
+
+            f['attrs'] = {}
+
+            for o in f.get('options', []):
+                try:
+                    if 'label' in o:
+                        o['label'] = {language: o.get('label', '')}
+                    elif 'attrs' in o:
+                        if 'name' in o['attrs']:
+                            o['label'] = {language: o['attrs'].get('name', '')}
+                            del o['attrs']
+                        #elif 'clause' in o['attrs']:
+                        #    f['attrs']['clause'] = {language: o['attrs'].get('clause', '')}
+                        #elif 'agreement_statement' in o['attrs']:
+                        #    f['attrs']['agreement_statement'] = {language: o['attrs'].get('agreement_statement', '')}
+                except:
+                    pass
+
+            for c in f.get('children', []):
+                fill_field_localized_keys_recursively(c, language)
 
         for old_obj in old_objs:
             new_obj = self.store_new.find(new_obj_model,
@@ -640,10 +671,16 @@ class MigrationScript(MigrationBase):
                 new_obj = new_obj_model()
 
             for _, v in new_obj._storm_columns.iteritems():
-                if v.name == 'value':
-                    if not isinstance(new_obj.value, dict):
+                if v.name == 'schema':
+                    if not isinstance(new_obj.schema, dict):
                         new_obj.value = {}
-                    new_obj.value[old_obj.language] = old_obj.value
+
+                    for step in old_obj.schema:
+                        fill_localized_keys(step, models.Step.localized_keys, old_node.default_language)
+                        for c in step.get('children', []):
+                            fill_field_localized_keys_recursively(c, old_node.default_language)
+
+                    new_obj.schema = old_obj.schema
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
