@@ -41,8 +41,7 @@ def load_complete_events(store, events_limit=GLSettings.notification_limit):
     debug_event_counter = {}
     for i, stev in enumerate(storedevnts):
         if len(event_list) == events_limit:
-            log.debug("Maximum number of notification event reach (Mailflush) %d, after %d" %
-                      (events_limit, i))
+            log.debug("Reached maximum number of event notifications doable on a single loop %d" % events_limit)
             break
 
         debug_event_counter.setdefault(stev.event_reference['kind'], 0)
@@ -76,7 +75,7 @@ def load_complete_events(store, events_limit=GLSettings.notification_limit):
     if debug_event_counter:
         if totaleventinqueue > (events_limit * 3):
             log.debug("load_complete_events: %s from %d Events" %
-                      (debug_event_counter, totaleventinqueue ))
+                      (debug_event_counter, totaleventinqueue))
         else:
             log.debug("load_complete_events: %s from %d Events, with a protection limit of %d" %
                       (debug_event_counter, totaleventinqueue, events_limit * 3 ))
@@ -127,10 +126,10 @@ def filter_notification_event(notifque):
 
     if len(orm_id_to_be_skipped):
         if GLSettings.memory_copy.disable_receiver_notification_emails:
-            log.debug("All the %d mails will be marked as Sent because Admin has disable notification" %
+            log.debug("All the %d mails will be marked as sent because the admin has disabled receivers notifications" %
                       len(orm_id_to_be_skipped))
         else:
-            log.debug("Filtering function: Marked %d Files notification to be suppressed as part of the submission" %
+            log.debug("Filtering function: Marked %d Files notification to be suppressed cause part of a submission" %
                       len(orm_id_to_be_skipped))
 
     for ne in _tmp_list:

@@ -29,7 +29,7 @@ def update_event_notification_status(store, event_id, mail_sent):
         event.mail_attempts += 1
         if mail_sent:
             event.mail_sent = True
-            log.debug("SUCCESS:: Event %s of type [%s] notified successfully" % (event.id, event.title))
+            log.debug("SUCCESS: Event %s of type [%s] notified successfully" % (event.id, event.title))
         elif event.mail_attempts >= attempts_limit:
             event.mail_sent = True
             log.debug("FAILURE: Notification for event %s of type %s reached limit of #%d attempts without success" % \
