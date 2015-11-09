@@ -26,10 +26,18 @@ class Rosetta(object):
         self._localized_strings = {key: getattr(obj, key) for key in self._localized_keys}
 
     def acquire_multilang_dict(self, obj):
-        self._localized_strings = {key: obj[key] for key in self._localized_keys}
+        self._localized_strings = {}
+        for key in self._localized_keys:
+            value = obj[key] if key in obj else ''
+            self._localized_strings[key] = value
 
     def singlelang_to_multilang_dict(self, obj, language):
-        return {key: {language: obj[key]} for key in self._localized_keys}
+        ret = {}
+        for key in self._localized_keys:
+            value = {language: obj[key]} if key in obj else {language: ''}
+            ret[key] = value
+        return ret
+
 
     def dump_localized_key(self, key, language):
         default_language = GLSettings.memory_copy.default_language
@@ -52,6 +60,7 @@ class Rosetta(object):
         else:
             return ""
 
+
 def fill_localized_keys(dictionary, keys, language):
     if language is not None:
         mo = Rosetta(keys)
@@ -59,6 +68,7 @@ def fill_localized_keys(dictionary, keys, language):
         dictionary.update({key: multilang_dict[key] for key in keys})
 
     return dictionary
+
 
 def get_localized_values(dictionary, obj, keys, language):
     mo = Rosetta(keys)
@@ -71,9 +81,12 @@ def get_localized_values(dictionary, obj, keys, language):
     if language is not None:
         dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
     else:
-        dictionary.update({key: mo._localized_strings[key] for key in keys})
+       for key in keys:
+           value = mo._localized_strings[key] if key in mo._localized_strings else ''
+           dictionary.update({key: value})
 
     return dictionary
+
 
 def get_raw_request_format(request, localized_strings):
     ret = copy.deepcopy(request)

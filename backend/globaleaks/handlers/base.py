@@ -408,7 +408,6 @@ class BaseHandler(RequestHandler):
         """
         This is a monkey patch to RequestHandler to allow us to serialize also
         json list objects.
-
         """
         if isinstance(chunk, types.ListType):
             chunk = escape.json_encode(chunk)
