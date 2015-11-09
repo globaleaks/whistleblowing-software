@@ -2,6 +2,7 @@
 
 import string
 
+from storm.expr import And, In
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
@@ -568,7 +569,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if v.name == 'enable_whistleblower_identity':
-                    new_obj.enable_whistleblower_identity = True
+                    new_obj.enable_whistleblower_identity = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
@@ -631,7 +632,8 @@ class MigrationScript(MigrationBase):
 
         for old_obj in old_objs:
             new_obj = self.store_new.find(new_obj_model,
-                                          new_obj_model.hash == old_obj.hash).one()
+                                          And(new_obj_model.hash == old_obj.hash,
+                                              new_obj_model.type == old_obj.type)).one()
 
             if not new_obj:
                 new_obj = new_obj_model()
