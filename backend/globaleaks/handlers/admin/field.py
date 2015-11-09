@@ -141,12 +141,8 @@ def db_update_fieldattr(store, field_id, attr_name, attr_dict, language):
     attr_dict['name'] = attr_name
     attr_dict['field_id'] = field_id
 
-    print attr_dict
-
     if attr_dict['type'] == 'bool':
-        print attr_dict['value']
         attr_dict['value'] = 'True' if attr_dict['value'] == True else 'False'
-        print attr_dict['value']
     elif attr_dict['type'] == u'localized':
         fill_localized_keys(attr_dict, ['value'], language)
 
