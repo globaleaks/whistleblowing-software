@@ -129,9 +129,6 @@ def db_get_rtip(store, user_id, rtip_id, language):
         # If Receiver is accessing this Tip, Events related can be removed before
         # Notification is sent. This is a Twitter/Facebook -like behavior.
         store.find(EventLogs, EventLogs.receivertip_id == rtip_id).remove()
-        # Note - before the check was:
-        # store.find(EventLogs, And(EventLogs.receivertip_id == rtip_id,
-        #                          EventLogs.mail_sent == True)).remove()
 
     return serialize_rtip(store, rtip, language)
 

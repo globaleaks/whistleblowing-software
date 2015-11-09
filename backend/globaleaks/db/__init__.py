@@ -90,13 +90,6 @@ def init_db(store):
     admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
     admin.password_change_needed = False
 
-    submission_counter_dict = {
-      'key': u'submission_sequence',
-      'count': 0
-    }
-
-    store.add(models.Counter(submission_counter_dict))
-
     notification = models.Notification()
     for k in appdata_dict['templates']:
         setattr(notification, k, appdata_dict['templates'][k])
