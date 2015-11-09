@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, Authentication, RTip, WBTip, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', '$filter', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, $filter, Authentication, RTip, WBTip, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.target_file = '#';
@@ -10,7 +10,16 @@ GLClient.controller('TipCtrl',
 
     $scope.showEditLabelInput = false;
 
-    $scope.fieldsRoot = [];
+     $scope.minY = function(arr) {
+       return $filter('min')($filter('map')(arr, 'y'));
+    };
+
+    $scope.splitRows = function(fields) {
+      var rows = $filter('groupBy')(fields, 'y');
+      rows = $filter('toArray')(rows);
+      rows = $filter('orderBy')(rows, $scope.minY);
+      return rows;
+    }
 
     $scope.extractSpecialTipFields = function(tip) {
       angular.forEach(tip.questionnaire, function(step) {
@@ -19,6 +28,8 @@ GLClient.controller('TipCtrl',
           if (step.children[i]['key'] == 'whistleblower_identity') {
             $scope.whistleblower_identity_field = step.children[i];
             step.children.splice(i, 1);
+            $scope.fields = $scope.whistleblower_identity_field.children;
+            $scope.rows = $scope.splitRows($scope.fields);
           }
         }
       });
@@ -59,6 +70,9 @@ GLClient.controller('TipCtrl',
         $scope.extractSpecialTipFields(tip);
 
         $scope.tip = tip;
+
+        // FIXME: remove this variable that is now needed only to map wb_identity_field
+        $scope.submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
           return $http.post('/wbtip/' + $scope.tip.id + '/provideidentityinformation',

@@ -177,16 +177,6 @@
             "en": "Female"
           },
           "id": "6c7ae7dc-418a-4181-b561-a18d802833ca"
-        },
-        {
-          "presentation_order": 2,
-          "activated_steps": [],
-          "activated_fields": [],
-          "score_points": 0,
-          "label": {
-            "en": "GENDER_OTHER"
-          },
-          "id": "71f39b83-2dd5-4c2d-b2f0-f38fb7530a92"
         }
       ]
     },
