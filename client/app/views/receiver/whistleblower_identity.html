@@ -32,7 +32,7 @@
             <span data-ng-switch-when="denied" data-translate>Denied</span>
           </span>
         </div>
-        <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span data-translate>lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></div>
+        <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iarl.reply_motivation}}</span></div>
       </div>
     </div>
     <div data-ng-if="tip.last_iar && tip.last_iar.reply == 'authorized'">
