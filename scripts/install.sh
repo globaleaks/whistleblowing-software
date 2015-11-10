@@ -186,6 +186,7 @@ if [ -d /data/globaleaks/deb ]; then
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
   echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
   DO "apt-get update -y" "0"
+  DO "apt-get install dpkg-dev -y"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
