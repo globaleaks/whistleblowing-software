@@ -604,14 +604,15 @@ class MigrationScript(MigrationBase):
                 if v.name == 'instance':
                     if old_obj.is_template:
                         new_obj.instance = 'template'
-                    elif old_obj.template_id != '':
+                    elif old_obj.template_id is not None and old_obj.template_id != '':
+                        print old_obj.template_id
                         new_obj.instance = 'reference'
                     else:
                         new_obj.instance = 'instance'
                     continue
 
                 if v.name == 'editable':
-                    new_obj.editable = False
+                    new_obj.editable = True
                     continue
 
                 if v.name == 'activated_by_score':
