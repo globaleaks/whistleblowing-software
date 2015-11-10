@@ -2,32 +2,6 @@
   <div class="row">
     <div class="col-md-12">
       <span class="pull-left">
-        <span id="tip-action-postpone"
-              data-ng-if="preferences.can_postpone_expiration"
-              data-ng-click="tip_postpone()"
-              popover="{{'Postpone tip expiration date' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-          <i class="glyphicon glyphicon-time"></i>
-        </span>
-
-        <span id="tip-action-delete"
-              data-ng-if="preferences.can_delete_submission"
-              data-ng-click="tip_delete()"
-              popover="{{'Delete tip' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-          <span class="glyphicon glyphicon-trash"></span>
-        </span>
-      </span>
-      <span class="pull-left">
-        <div class="form-group">
-          <input id="search-filter" type="text" class="form-control" placeholder="{{'Search' | translate}}" ng-model="search">
-        </div>
-      </span>
-      <span class="pull-left">
         <span id="link-reload"
               data-ng-click="reload()"
               popover="{{'Refresh page' | translate}}"
@@ -55,11 +29,11 @@
       <table class="table table-condensed table-striped">
         <thead>
           <tr>
-            <th>Request Date</th>
-            <th>Submission date</th>
-            <th >User</th>
-            <th>Request Motivation</th>
-            <th>Authorization</th>
+            <th data-translate>Request date</th>
+            <th data-translate>Submission date</th>
+            <th data-translate>User</th>
+            <th data-translate>Request motivation</th>
+            <th data-translate>Authorization</th>
           </tr>
         </thead>
         <tbody>
@@ -69,8 +43,8 @@
             <td>{{iar.request_user_name | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>{{iar.request_motivation | date:'dd-MM-yyyy HH:mm'}}</td>
             <td>
-              <button class="btn btn-xs btn-primary" data-ng-click="authorize_identity_access_request(iar.id)">Authorize</button>&nbsp;
-              <button class="btn btn-xs btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)">Deny</button>
+              <button class="btn btn-xs btn-primary" data-ng-click="authorize_identity_access_request(iar.id)" data-translate>Authorize</button>&nbsp;
+              <button class="btn btn-xs btn-danger" data-ng-click="file_denied_identity_access_reply(iar.id)" data-translate>Deny</button>
             </td>
           </tr>
         </tbody>

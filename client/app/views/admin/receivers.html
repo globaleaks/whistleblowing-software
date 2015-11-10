@@ -1,57 +1,6 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <div class="adminConfigSection" data-ng-controller="AdminReceiverAddCtrl">
-      <div class="row">
-        <form name="newReceiver" novalidate>
-          <div class="addReceiver col-md-6">
-            <div class="editorTitle">
-              <span data-translate>Add new recipient</span>
-            </div>
-            <div class="form-group">
-              <label data-translate>Username</label>
-              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.username" type="text" required />
-              <div class="text-red" data-ng-show="newReceiver.username.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Name</label>
-              <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_receiver.name" type="text" required />
-              <div class="text-red" data-ng-show="newReceiver.name.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Email address</label>
-              <input class="form-control" name="email" data-ng-model="new_receiver.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
-              <div class="text-red" data-ng-show="newReceiver.email.$error.pattern">
-                <span data-translate>Invalid email address</span>
-              </div>
-              <div class="text-red" data-ng-show="newReceiver.email.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-          <div class="form-group">
-              <label data-translate>Password</label>
-              <div>
-                <div>
-                  <span data-translate>Default user password is:</span>
-                  <span class="label label-primary">globaleaks</span>
-                </div>
-                <div data-translate>The system forces users to change the password at first login.</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <button class="pull-left btn btn-primary" data-ng-disabled="newReceiver.$invalid" data-ng-click="add_receiver()" type="submit">
-                <i class="glyphicon glyphicon-plus-sign"></i>
-                <span data-translate>Add</span>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
     <div class="adminConfigSection" ng-controller="AdminReceiversCtrl" data-ng-show="admin.receivers.length > 0">
       <div class="editorTitle">
         <span data-translate>Configured recipients:</span>
@@ -253,7 +202,7 @@
                   </div>
                   <div class="form-group">
                     <input data-ng-model="receiver.can_grant_permissions" type="checkbox" data-ng-disabled="can_grant_permissions" />
-                    <label data-translate>Allow the recipient to delete submissions</label>
+                    <label data-translate>Allow recipients to grant permissions to whistleblowers on specific submissions</label>
                     <div data-ng-show="node.can_grant_permissions">
                       <span class="label label-info" data-translate>Enabled</span>
                       <span data-translate>The setting is enabled at a global level.</span>
