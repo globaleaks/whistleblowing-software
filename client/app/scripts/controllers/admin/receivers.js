@@ -92,22 +92,3 @@ GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CO
 
     $scope.updateReceiverImgUrl();
 }]);
-
-GLClient.controller('AdminReceiverAddCtrl', ['$scope',
-  function($scope) {
-
-    $scope.new_receiver = {};
-
-    $scope.add_receiver = function() {
-      var receiver = new $scope.admin.new_receiver();
-
-      receiver.name = $scope.new_receiver.name;
-      receiver.mail_address = $scope.new_receiver.email;
-      receiver.presentation_order = $scope.newItemOrder($scope.admin.receivers, 'presentation_order');
-
-      receiver.$save(function(new_receiver){
-        $scope.admin.receivers.push(new_receiver);
-        $scope.new_receiver = {};
-      });
-    };
-}]);
