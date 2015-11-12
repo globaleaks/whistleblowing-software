@@ -526,6 +526,10 @@ class MigrationScript(MigrationBase):
                     new_obj.enable_whistleblower_identity = False
                     continue
 
+                if v.name == 'recipients_clarification':
+                    new_obj.recipients_clarification = ''
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
