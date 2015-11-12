@@ -939,6 +939,7 @@ class MockDict():
             'id': '',
             'name': u'Already localized name',
             'description': u'Already localized desc',
+            'recipients_clarification': u'',
             'presentation_order': 0,
             'custodians': [],
             'receivers': [],

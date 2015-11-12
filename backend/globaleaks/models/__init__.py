@@ -224,6 +224,7 @@ class Context(Model):
     # localized strings
     name = JSON(validator=shortlocal_v)
     description = JSON(validator=longlocal_v)
+    recipients_clarification = JSON(validator=longlocal_v)
 
     questionnaire_layout = Unicode(default=u'horizontal')
 
@@ -233,7 +234,7 @@ class Context(Model):
 
     unicode_keys = ['questionnaire_layout']
 
-    localized_keys = ['name', 'description']
+    localized_keys = ['name', 'description', 'recipients_clarification']
 
     int_keys = ['tip_timetolive',
                 'maximum_selectable_receivers',

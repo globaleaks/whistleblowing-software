@@ -53,8 +53,9 @@ CREATE TABLE comment (
 
 CREATE TABLE context (
     id TEXT NOT NULL,
-    description BLOB NOT NULL,
     name BLOB NOT NULL,
+    description BLOB NOT NULL,
+    recipients_clarification BLOB NOT NULL,
     tip_timetolive INTEGER NOT NULL,
     select_all_receivers INTEGER NOT NULL,
     maximum_selectable_receivers INTEGER,
