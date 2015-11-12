@@ -169,9 +169,9 @@
                       <label data-translate>Regular expression validator</label>
                       <div class="input-group">
                         <div class="input-group-btn">
-                          <button type="button" class="btn btn-default dropdown-toggle"
-                  data-toggle="dropdown" aria-haspopup="true"
-aria-expanded="false">Select Type <span class="caret"></span></button>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Type <span class="caret"></span>
+                          </button>
                           <ul class="dropdown-menu">
                              <li ng-repeat="opt in premade_regex_options">
                                 <a ng-if="isSeparator(opt)" class="separator"><small>{{ opt }}</small></a> 
@@ -181,8 +181,7 @@ aria-expanded="false">Select Type <span class="caret"></span></button>
                              </li>
                           </ul>
                         </div><!-- /input-group-btn -->
-                        <input ng-model="field.attrs.regexp.value" type="text"
-class="form-control" data-ng-disabled="!editable" aria-label="..."/>
+                        <input ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!editable" aria-label="..."/>
                       </div><!-- /input-group -->
                     </div>
                   </div>
