@@ -60,6 +60,24 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$modal', 'AdminFieldRes
     $scope.new_field = {};
     $scope.fields = $scope.field.children;
 
+    $scope.premade_regex_options = [
+      ["Phone Number", /^[0-9- ]+$/],
+      "IT",
+      ["Fiscal Code", /^[a-zA-Z]{6}[a-zA-Z0-9]+$/,
+      ["CAP", /^\d{3,8}$/],
+      "US",
+      ["SSN", /^\d{3}-\d{2}-\d{4}$/],
+      ["Zip Code", /^\d{5}$/]
+    ];
+
+    $scope.setRegexField = function(field, regex) {
+      field.attrs.regexp.value = regex;
+    }
+
+    $scope.isSeparator = function(opt) {
+      return typeof(opt) === 'string';
+    }
+
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
     };
