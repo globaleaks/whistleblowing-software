@@ -732,7 +732,6 @@ class MockDict():
         self.dummyReceiver = copy.deepcopy(self.dummyUser)
 
         self.dummyReceiver = sum_dicts(self.dummyReceiver, {
-            'mail_address': self.dummyUser['username'],
             'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'can_postpone_expiration': True,
@@ -741,13 +740,7 @@ class MockDict():
             'ping_notification': True,
             'tip_expiration_threshold': 72,
             'presentation_order': 0,
-            'configuration': 'default',
-            'pgp_key_info': u'',
-            'pgp_key_fingerprint': u'',
-            'pgp_key_status': u'disabled',
-            'pgp_key_public': u'',
-            'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
-            'pgp_key_remove': False
+            'configuration': 'default'
         })
 
         self.dummyFieldTemplates = [
