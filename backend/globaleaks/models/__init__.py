@@ -1033,13 +1033,6 @@ Field.activated_by_options = ReferenceSet(
     FieldOption.id
 )
 
-Step.activated_by_options = ReferenceSet(
-    Step.id,
-    OptionActivateStep.step_id,
-    OptionActivateStep.option_id,
-    FieldOption.id
-)
-
 FieldOption.field = Reference(FieldOption.field_id, Field.id)
 
 FieldOption.activated_fields = ReferenceSet(
@@ -1047,13 +1040,6 @@ FieldOption.activated_fields = ReferenceSet(
     OptionActivateField.option_id,
     OptionActivateField.field_id,
     Field.id
-)
-
-FieldOption.activated_steps = ReferenceSet(
-    FieldOption.id,
-    OptionActivateStep.option_id,
-    OptionActivateStep.step_id,
-    Step.id
 )
 
 FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)

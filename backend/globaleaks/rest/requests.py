@@ -292,8 +292,7 @@ AdminFieldOptionDesc = {
     'label': unicode,
     'presentation_order': int,
     'score_points': int,
-    'activated_fields': [uuid_regexp_or_empty],
-    'activated_steps': [uuid_regexp_or_empty]
+    'activated_fields': [uuid_regexp_or_empty]
 }
 
 AdminFieldOptionDescRaw = get_raw_request_format(AdminFieldOptionDesc, models.FieldOption.localized_keys)
