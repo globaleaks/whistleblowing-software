@@ -292,11 +292,13 @@ def run_backend():
             # Check database file and eventually perform its migration
             check = check_db_files()
             if check == -1:
+                 print "Exiting GlobaLeaks"
                  quit(-1)
 
             GlobaLeaksRunner(config).run()
 
             # this is a blocking operation, until app exit
+
             print "Exiting GlobaLeaks"
         except OSError as ose:
             print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)

@@ -104,25 +104,23 @@ def check_db_files():
     This function checks the database version and executes eventually
     executes migration scripts
     """
-    db_version = 0
+    db_files = []
+    max_version = 0
+    min_version = 0
     for filename in os.listdir(GLSettings.db_path):
         if filename.startswith('glbackend'):
+            filepath = os.path.join(GLSettings.db_path, filename)
             if filename.endswith('.db'):
+                db_files.append(filepath)
                 nameindex = filename.rfind('glbackend')
                 extensindex = filename.rfind('.db')
                 fileversion = int(filename[nameindex + len('glbackend-'):extensindex])
-                db_version = fileversion if fileversion > db_version else db_version
-            elif filename.endswith('-journal'):
-                # As left journals files can leak data undefinitely we
-                # should manage to remove them.
-                print "Found an undeleted DB journal file %s: deleting it." % filename
-                filepath = os.path.join(GLSettings.db_path, filename)
-                try:
-                    os.unlink(filepath)
-                except Exception as excep:
-                    print "Unable to remove %s: %s" %(os.unlink(filepath), excep)
+                max_version = fileversion if fileversion > max_version else max_version
+                min_version = fileversion if fileversion < min_version else min_version
 
-    if db_version > 0:
+    db_version = max_version
+
+    if len(db_files) == 1 and db_version > 0:
         from globaleaks.db import migration
 
         print "Found an already initialized database version: %d" % db_version
@@ -139,6 +137,16 @@ def check_db_files():
                 _, _, exc_traceback = sys.exc_info()
                 traceback.print_tb(exc_traceback)
                 return -1
+
+    elif len(db_files) > 1:
+        print "Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path
+        print "Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path
+        print "Files found:"
+
+        for f in db_files:
+            print "\t%s" % f
+
+        return -1
 
     return db_version
 
