@@ -42,7 +42,7 @@ def check_file(isafile):
 
 if len(sys.argv) == 1:
     print "\nGlobaLeaks backend administator interface: Missing command\n"
-    funny_print(" resetpass <USERNAME> <DBFILE> [PASSWORD]","(reset user password)")
+    funny_print(" resetpass <DBFILE> <USERNAME> [PASSWORD]","(reset user password)")
     funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
     funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
     quit()
