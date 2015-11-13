@@ -6,13 +6,16 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import receiver, admin
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.tests.handlers.test_user import TestUserInstance
 
 
-class TestReceiverInstance(TestUserInstance):
+class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
-    # This test has for inharitance all the tests of TestUserInstance
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+
+        self.rcvr_id = (yield admin.receiver.get_receiver_list('en'))[0]['id']
 
     @inlineCallbacks
     def test_ping_mail_change(self):

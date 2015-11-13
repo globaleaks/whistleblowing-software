@@ -32,14 +32,6 @@
                     data-ng-click="toggleEditing(); $event.stopPropagation();">
                     <span data-translate>Cancel</span>
                   </button>
-                  <button
-                    class="actionButton actionButtonReceiverDelete btn btn-xs btn-danger"
-                    data-ng-show="receiver.deletable"
-                    data-ng-click="receiverDeleteDialog(receiver); $event.stopPropagation();"
-                    popover-placement="right"
-                    popover-trigger="mouseenter">
-                    <span data-translate>Delete</span>
-                  </button>
                   <span data-ng-if="admin.receivers.length > 1">
                     <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(receiver); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                       <i class="glyphicon glyphicon-menu-up"></i>
@@ -55,78 +47,6 @@
               <hr />
               <div class="row">
                 <div class="col-md-6">
-                  <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
-                    <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-                      <div flow-init="{target: 'admin/staticfiles/' + receiver.id, headers: get_auth_headers()}"
-                          flow-files-submitted="$flow.upload()"
-                          flow-file-success="updateReceiverImgUrl()"
-                          flow-name="flowObj"
-                          class="uploadfile">
-                        <div flow-btn>
-                          <span class="col-md-12 changePicture">
-                            <span data-translate>Change picture</span>
-                          </span>
-                          <img data-ng-src="{{receiverImgUrl}}" class="img-thumbnail baseimage">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Name</label>
-                    <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="receiver.name" type="text" required />
-                    <div class="text-red" data-ng-show="editReceiver.name.$error.required">
-                      <span data-translate>This field is mandatory</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Email address</label>
-                    <input class="form-control" name="email" data-ng-model="receiver.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
-                    <div class="text-red" data-ng-show="editReceiver.email.$error.required">
-                      <span data-translate>This field is mandatory</span>
-                    </div>
-                    <div class="text-red" data-ng-show="editReceiver.email.$error.pattern">
-                      <span data-translate>Invalid email address</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Password</label>
-                    <input name="password" class="form-control" data-ng-model="receiver.password" maxlength="{{node.maximum_namesize}}" type="password" />
-                    <p class="text-red" data-ng-show="unsafe_password">
-                      <span data-translate>The choosen password is unsafe, it should have</span>:
-                    </p>
-                    <ul>
-                      <li class="text-red" data-ng-hide="pwdHasLetter">
-                        <span data-translate>At least one letter</span>
-                      </li>
-                      <li class="text-red" data-ng-hide="pwdHasNumber">
-                        <span data-translate>At least one number</span>
-                      </li>
-                      <li class="text-red" data-ng-hide="pwdValidLength">
-                        <span data-translate>At least 8 characters</span>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="form-group">
-                    <input data-ng-model="receiver.password_change_needed" type="checkbox" />
-                    <label data-translate>Force password change</label>
-                    <div data-ng-show="receiver.password_change_needed">
-                      <span class="label label-info" data-translate>Enabled</span>
-                      <span data-translate>The user will be forced to set a new password on next login.</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Description</label>
-                    <div>
-                      <textarea name="description" class="form-control" data-ng-model="receiver.description" maxlength="{{node.maximum_textsize}}">{{receiver.description}}</textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Status</label>
-                    <select class="form-control" data-ng-model="receiver.state">
-                      <option value="disabled" data-translate>Disabled</option>
-                      <option value="enabled" data-translate>Enabled</option>
-                    </select>
-                  </div>
                   <div class="form-group">
                     <label data-translate>Configuration</label>
                     <select class="form-control" data-ng-model="receiver.configuration">
@@ -134,14 +54,6 @@
                       <option value="forcefully_selected" data-translate>Forcefully selected</option>
                       <option value="unselectable" data-translate>Unselectable</option>
                     </select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Language</label>
-                    <select class="form-control" data-ng-model="receiver.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Timezone</label>
-                    <select class="form-control" data-ng-model="receiver.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                   </div>
                   <div class="form-group">
                     <input data-ng-model="receiver.ping_notification" type="checkbox" />
@@ -206,36 +118,6 @@
                     <div data-ng-show="node.can_grant_permissions">
                       <span class="label label-info" data-translate>Enabled</span>
                       <span data-translate>The setting is enabled at a global level.</span>
-                    </div>
-                  </div>
-                  <div class="form-group" data-ng-show="receiver.pgp_key_info">
-                    <div class="alert alert-success">
-                      <div data-translate>Encryption is enabled!</div>
-                      <div data-translate>Email notifications will be encrypted.</div>
-                    </div>
-                    <div>
-                      <label data-translate>Details of the PGP key:</label>
-                      <div>
-                        <span data-translate>The fingerprint is:</span>
-                        <b>{{receiver.pgp_key_fingerprint}}</b>
-                      </div>
-                    </div>
-                    <div>
-                      <pre>{{receiver.pgp_key_info}}</pre>
-                    </div>
-                    <div class="form-group">
-                      <input data-ng-model="receiver.pgp_key_remove" type="checkbox" />
-                      <label data-translate>Remove the PGP key</label>
-                    </div>
-                  </div>
-                  <div class="form-group" data-ng-hide="receiver.pgp_key_fingerprint">
-                    <div class="alert alert-danger">
-                      <div data-translate>Encryption has not been enabled!</div>
-                      <div data-translate>Email notifications won't be encrypted.</div>
-                    </div>
-                    <div>
-                      <label data-translate>Set a PGP key for email notifications encryption</label>
-                      <textarea class="form-control" placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="receiver.pgp_key_public"></textarea>
                     </div>
                   </div>
                 </div>

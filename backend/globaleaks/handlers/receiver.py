@@ -14,6 +14,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
+from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -23,18 +24,9 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
-    ret_dict = {
-        'id': receiver.id,
-        'username': receiver.user.username,
-        'role': receiver.user.role,
-        'name': receiver.user.name,
-        'description': receiver.user.description,
-        'password': u'',
-        'old_password': u'',
-        'password_change_needed': receiver.user.password_change_needed,
-        'mail_address': receiver.user.mail_address,
-        'language': receiver.user.language,
-        'timezone': receiver.user.timezone,
+    ret_dict = user_serialize_user(receiver.user, language)
+
+    ret_dict.update({
         'can_postpone_expiration': GLSettings.memory_copy.can_postpone_expiration or receiver.can_postpone_expiration,
         'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
         'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
@@ -42,17 +34,8 @@ def receiver_serialize_receiver(receiver, language):
         'ping_notification': receiver.ping_notification,
         'ping_mail_address': receiver.ping_mail_address,
         'tip_expiration_threshold': receiver.tip_expiration_threshold,
-        'contexts': [c.id for c in receiver.contexts],
-        'pgp_key_info': receiver.user.pgp_key_info,
-        'pgp_key_fingerprint': receiver.user.pgp_key_fingerprint,
-        'pgp_key_public': receiver.user.pgp_key_public,
-        'pgp_key_expiration': datetime_to_ISO8601(receiver.user.pgp_key_expiration),
-        'pgp_key_status': receiver.user.pgp_key_status,
-        'pgp_key_remove': False,
-    }
-
-    # description and eventually other localized strings should be taken from user model
-    get_localized_values(ret_dict, receiver.user, ['description'], language)
+        'contexts': [c.id for c in receiver.contexts]
+    })
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
@@ -69,10 +52,6 @@ def get_receiver_settings(store, receiver_id, language):
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
-    user = db_user_update_user(store, receiver_id, request, language)
-    if not user:
-        raise errors.UserIdNotFound
-
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     if not receiver:
         raise errors.ReceiverIdNotFound

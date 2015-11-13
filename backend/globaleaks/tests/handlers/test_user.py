@@ -16,9 +16,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
         self.rcvr_id = (yield admin.receiver.get_receiver_list('en'))[0]['id']
-        # respondes should be resetted in order to have index 0
-        # be the current receiver in the loop
-        self.responses = []
 
     @inlineCallbacks
     def test_get(self):

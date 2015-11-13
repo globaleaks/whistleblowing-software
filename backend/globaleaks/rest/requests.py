@@ -377,31 +377,14 @@ AdminContextDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
-    'username': unicode,
-    'role': user_roles_regexp,
-    'name': unicode,
-    'description': unicode,
-    'password': unicode,
-    'deletable': bool,
-    'mail_address': email_regexp,
     'ping_mail_address': email_regexp_or_empty,
     'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'tip_notification': bool,
     'ping_notification': bool,
-    'pgp_key_remove': bool,
-    'pgp_key_fingerprint': unicode,
-    'pgp_key_expiration': unicode,
-    'pgp_key_info': unicode,
-    'pgp_key_public': unicode,
-    'pgp_key_status': unicode,
     'presentation_order': int,
-    'language': unicode,
-    'timezone': int,
-    'state': user_states_regexp,
     'configuration': unicode,
-    'password_change_needed': bool,
     'tip_expiration_threshold': int
 }
 
@@ -603,7 +586,7 @@ WizardAppdataDesc = {
 WizardFirstSetupDesc = {
     'node': AdminNodeDesc,
     'admin': WizardAdminDesc,
-    'receiver': AdminReceiverDesc,
+    'receiver': AdminUserDesc,
     'context': AdminContextDesc
 }
 

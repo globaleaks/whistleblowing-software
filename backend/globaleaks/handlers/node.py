@@ -248,8 +248,8 @@ def anon_serialize_receiver(receiver, language):
     :return: a serializtion of the object
     """
     ret_dict = {
+        'id': receiver.user.id,
         'name': receiver.user.name,
-        'id': receiver.id,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
         'state': receiver.user.state,
         'configuration': receiver.configuration,
