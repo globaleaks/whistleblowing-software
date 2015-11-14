@@ -85,10 +85,4 @@ GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'passwordWatcher', 'CO
       $scope.editReceiver.$dirty = true;
       $scope.editReceiver.$pristine = false;
     };
-
-    $scope.updateReceiverImgUrl = function() {
-      $scope.receiverImgUrl = "static/" + $scope.receiver.id + ".png?" + $scope.randomFluff();
-    };
-
-    $scope.updateReceiverImgUrl();
 }]);

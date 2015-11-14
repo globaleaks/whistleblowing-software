@@ -125,7 +125,23 @@ GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
 }]);
 
 GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
+    $scope.uploadfile = false;
 
+    $scope.fileSelected = false;
+    $scope.markFileSelected = function () {
+      $scope.fileSelected = true;
+    };
+
+    $scope.openUploader = function () {
+      $scope.uploadfile = true;
+    };
+
+    $scope.closeUploader = function () {
+      $scope.uploadfile = $scope.fileSelected = false;
+    };
+}]);
+
+GLClient.controller('AdminImgUploadCtrl', ['$scope', '$http', function($scope, $http){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -141,7 +157,22 @@ GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, 
       $scope.uploadfile = $scope.fileSelected = false;
     };
 
+    $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
+      $scope.file_upload_error = undefined;
+      if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
+        $scope.file_upload_error = "This file exceeds the maximum upload size for this server.";
+      } else if(flowFile.file.type !== "image/png") {
+        $scope.file_upload_error = "It is currently possible to upload only PNG files.";
+      }
+
+      if ($scope.file_upload_error !== undefined)  {
+        flowFile.error = true;
+        flowFile.error_msg = $scope.file_upload_error;
+        event.preventDefault();
+      }
+    });
 }]);
+
 
 GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'DefaultAppdata',
   function($scope, $http, StaticFiles, DefaultAppdata){

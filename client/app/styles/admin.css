@@ -137,7 +137,7 @@
 .imageUpload .profile .uploadfile {
 }
 
-.imageUpload .profile .changePicture {
+.imageUpload .changePicture {
   position: absolute;
   top: 0;
   left: 0;
@@ -145,10 +145,7 @@
   text-align: center;
   background-color: #0088cc;
   z-index: 2;
-}
-
-.imageUpload .profile .uploadfile span {
-  color: white;
+  color: #FFF;
 }
 
 .imageUpload .profile .close {

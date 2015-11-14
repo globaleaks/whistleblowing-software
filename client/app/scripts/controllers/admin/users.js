@@ -82,7 +82,6 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTA
     };
 
     $scope.updateUserImgUrl();
-
 }]);
 
 GLClient.controller('AdminUserAddCtrl', ['$scope',
