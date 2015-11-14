@@ -120,6 +120,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.creation_date = time.time()
 
         self.create_key()
+        self.encryptor_finalized = False
 
         # XXX remind enhance file name with incremental number
         self.filepath = os.path.join(filedir, "%s.aes" % self.key_id)
@@ -191,19 +192,29 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
     def close(self):
         if not self.close_called:
-            if any(x in self.file.mode for x in 'wa'):
-                self.file.write(self.encryptor.finalize())
+            try:
+                if any(x in self.file.mode for x in 'wa') and not self.encryptor_finalized:
+                    self.encryptor_finalized = True
+                    self.file.write(self.encryptor.finalize())
 
-            if self.delete:
-                os.remove(self.keypath)
+            except:
+                pass
+
+            finally:
+                if self.delete:
+                    os.remove(self.keypath)
 
         return _TemporaryFileWrapper.close(self)
 
     def read(self, c=None):
         """
-        The first time 'read' is called after a write, is automatically seek(0)
+        The first time 'read' is called after a write, seek(0) is performed
         """
         if self.last_action == 'write':
+            if any(x in self.file.mode for x in 'wa') and not self.encryptor_finalized:
+                self.encryptor_finalized = True
+                self.file.write(self.encryptor.finalize())
+
             self.seek(0, 0)  # this is a trick just to misc write and read
             self.initialize_cipher()
             log.debug("First seek on %s" % self.filepath)
@@ -420,13 +431,11 @@ class GLBPGP(object):
             log.err("Key apparently imported but unable to reload it")
             raise errors.PGPKeyInvalid
 
-        ret = {
+        return {
             'fingerprint': fingerprint,
             'expiration': expiration,
             'info': info
         }
-
-        return ret
 
     def encrypt_file(self, key_fingerprint, plainpath, filestream, output_path):
         """
