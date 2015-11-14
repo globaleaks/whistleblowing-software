@@ -103,13 +103,12 @@ def dump_static_file(uploaded_file, filelocation):
 
 
 @transact_ro
-def receiver_picture_path(store, receiver_id):
-    receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+def user_picture_path(store, user_id):
+    user = store.find(models.User, models.User.id == user_id).one()
+    if not user:
+        raise errors.UserIdNotFound
 
-    if not receiver:
-        raise errors.ReceiverIdNotFound
-
-    return os.path.join(GLSettings.static_path, "%s.png" % receiver_id)
+    return os.path.join(GLSettings.static_path, "%s.png" % user_id)
 
 
 class StaticFileInstance(BaseHandler):
@@ -177,7 +176,7 @@ class StaticFileInstance(BaseHandler):
                       (uploaded_file['filename'], path))
         else:
             try:
-                path = yield receiver_picture_path(filename)
+                path = yield user_picture_path(filename)
                 log.debug("Received request to update Receiver portrait with %s" % filename)
             except errors.ReceiverIdNotFound as excpd:
                 log.err("Invalid Receiver ID specified: %s" % filename)

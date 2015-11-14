@@ -2,12 +2,13 @@
   <div class="col-md-12">
     <div class="form-group">
       <label data-translate>Current project logo</label>
-      <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
-        <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-          <div flow-init="{target: 'admin/staticfiles/globaleaks_logo', headers: get_auth_headers()}"
-              flow-files-submitted="$flow.upload()"
-              flow-file-success="reload()"
-              class="uploadfile">
+      <div class="imageUpload"
+           flow-init="{target: 'admin/staticfiles/globaleaks_logo', headers: get_auth_headers()}"
+           flow-file-added="onFileAdded($event, $file, $flow)"
+           flow-files-submitted="$flow.upload()"
+           flow-file-success="reload()">
+        <div data-ng-controller="AdminImgUploadCtrl">
+          <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
             <div flow-btn>
               <span class="col-md-12 changePicture">
                 <span data-translate>Change picture</span>
@@ -15,6 +16,7 @@
               <img data-ng-src="{{logo}}" class="img-thumbnail baseimage">
             </div>
           </div>
+          <div data-ng-if="file_upload_error" class="text-red"><span data-translate>Error:</span> <span>{{file_upload_error}}</span></div>
         </div>
       </div>
     </div>

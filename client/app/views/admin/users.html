@@ -120,22 +120,22 @@
             <div class="editor" data-ng-if="editing">
               <hr />
               <div class="row">
-                <div class="col-md-12">
-                  <div class="imageUpload" data-ng-controller="AdminFileUploadCtrl">
+                <div class="col-md-12"
+                     flow-init="{target: 'admin/staticfiles/' + user.id, headers: get_auth_headers()}"
+                     flow-files-submitted="$flow.upload()"
+                     flow-file-success="updateUserImgUrl()"
+                     flow-name="flowObj"
+                     class="uploadfile">
+                  <div class="imageUpload" data-ng-controller="AdminImgUploadCtrl">
                     <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-                      <div flow-init="{target: 'admin/staticfiles/' + user.id, headers: get_auth_headers()}"
-                          flow-files-submitted="$flow.upload()"
-                          flow-file-success="updateuserImgUrl()"
-                          flow-name="flowObj"
-                          class="uploadfile">
-                        <div flow-btn>
-                          <span class="col-md-12 changePicture">
-                            <span data-translate>Change picture</span>
-                          </span>
-                          <img data-ng-src="{{userImgUrl}}" class="img-thumbnail baseimage">
-                        </div>
+                      <div flow-btn>
+                        <span class="col-md-12 changePicture">
+                          <span data-translate>Change picture</span>
+                        </span>
+                        <img data-ng-src="{{userImgUrl}}" class="img-thumbnail baseimage">
                       </div>
                     </div>
+                    <div data-ng-if="file_upload_error" class="text-red"><span data-translate>Error:</span> <span>{{file_upload_error}}</span></div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Username</label>
