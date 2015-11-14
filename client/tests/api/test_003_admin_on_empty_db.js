@@ -72,7 +72,7 @@ var admin_resources = [
   {
     'url': '/admin/receivers',
     'status_GET': 200,
-    'status_POST': 406,
+    'status_POST': 405,
     'status_PUT': 405,
     'status_DELETE': 405,
   },
