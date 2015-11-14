@@ -28,7 +28,7 @@
     "bowser": "1.0.0",
     "bootstrap": "3.3.5",
     "bootstrap-rtl": "~3.3.4",
-    "d3": "3.5.6",
+    "d3": "3.5.8",
     "FileSaver.js": "0.0.2",
     "jquery": "2.1.4",
     "ng-flow": "2.6.1",
