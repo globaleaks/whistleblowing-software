@@ -80,6 +80,9 @@ def sendmail(to_address, subject, body):
         if GLSettings.disable_mail_notification:
             return defer.succeed(None)
 
+        if to_address == "":
+            return
+
         result_deferred = defer.Deferred()
 
         def errback(reason, *args, **kwargs):
@@ -178,10 +181,6 @@ def MIME_mail_build(src_name, src_mail, dest_name, dest_mail, title, mail_body):
 
     multipart['X-Mailer'] = "fnord"
 
-    # Attach the parts with the given encodings.
-    # html = '<html>...</html>'
-    # htmlpart = MIMEText(html.encode('utf-8'), 'html', 'UTF-8')
-    # multipart.attach(htmlpart)
     textpart = MIMEText(mail_body.encode('utf-8'), 'plain', 'UTF-8')
     multipart.attach(textpart)
 
