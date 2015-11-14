@@ -16,33 +16,6 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', 'AdminReceiverRes
 
   };
 
-  $scope.perform_delete = function(receiver) {
-    AdminReceiverResource['delete']({
-      id: receiver.id
-    }, function(){
-      var idx = $scope.admin.receivers.indexOf(receiver);
-      $scope.admin.receivers.splice(idx, 1);
-    });
-
-  };
-
-  $scope.receiverDeleteDialog = function(receiver){
-    var modalInstance = $modal.open({
-        templateUrl:  'views/partials/receiver_delete.html',
-        controller: 'ConfirmableDialogCtrl',
-        resolve: {
-          object: function () {
-            return receiver;
-          }
-        }
-    });
-
-    modalInstance.result.then(
-       function(result) { $scope.perform_delete(result); },
-       function(result) { }
-    );
-  };
-
   $scope.moveUpAndSave = function(elem) {
     $scope.moveUp(elem);
     $scope.save_receiver(elem);
