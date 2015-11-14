@@ -21,7 +21,7 @@ if [ "$GLTEST" = "unit" ]; then
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --disable-mail-notification
   sleep 5
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
 
@@ -30,7 +30,7 @@ if [ "$GLTEST" = "unit" ]; then
   rm -fr $TRAVIS_BUILD_DIR/client/coverage
   ./node_modules/protractor/bin/webdriver-manager update
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
   sleep 5
   grunt end2end-coverage
 
