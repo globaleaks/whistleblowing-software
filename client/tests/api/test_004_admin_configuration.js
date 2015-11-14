@@ -27,13 +27,11 @@ var valid_admin_login = {
   'password': 'globaleaks'
 }
 
-var receiver = {
+var user = {
   id: '',
   role: 'receiver',
   username: '',
   name: '',
-  can_delete_submission: false,
-  contexts: [],
   timezone: 0,
   language: 'en',
   description: '',
@@ -44,16 +42,9 @@ var receiver = {
   pgp_key_remove: false,
   pgp_key_status: 'ignored',
   mail_address: 'receiver1@antani.gov', // used 'Recipient N' for population
-  ping_mail_address: '',
   password: 'ringobongos3cur1ty',
   old_password: '',
   password_change_needed: false,
-  can_postpone_expiration: true,
-  presentation_order: 0,
-  tip_notification: false,
-  ping_notification: false,
-  tip_expiration_threshold: 72,
-  configuration: 'default',
   state: 'enabled',
   deletable: 'true'
 }
@@ -236,53 +227,18 @@ describe('PUT /admin/node', function () {
   })
 })
 
-// we popolate population_order contexts
-for (var i=0; i<population_order; i++) {
-  (function (i) {
-    describe('POST /admin/contexts', function () {
-      it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
-        var newObject = JSON.parse(JSON.stringify(context));
-        newObject.name = 'Context' + i + ' (selectable receivers: TRUE)';
-        newObject.description = 'description of Context' + i;
-        newObject.presentation_order = i;
-
-        app
-          .post('/admin/contexts')
-          .send(newObject)
-          .set('X-Session', authentication['session_id'])
-          .expect(201)
-          .end(function (err, res) {
-            if (err) {
-              return done(err);
-            }
-
-            validate_mandatory_headers(res.headers);
-
-            contexts.push(res.body);
-
-            contexts_ids.push(res.body.id);
-
-            done();
-          });
-      })
-    })
-  })(i);
-}
-
 // we popolate population_order receivers
 for (var i=0; i<population_order; i++) {
   (function (i) {
-    describe('POST /admin/receivers', function () {
-      it('responds 201 on POST /admin/receivers ' + i + ' (authenticated, valid receiver)', function (done) {
-        var newObject = JSON.parse(JSON.stringify(receiver));
+    describe('POST /admin/users', function () {
+      it('responds 201 on POST /admin/users ' + i + ' (authenticated, valid new  receiver)', function (done) {
+        var newObject = JSON.parse(JSON.stringify(user));
         newObject.username = 'Receiver ' + i;
         newObject.name = 'Receiver ' + i;
         newObject.mail_address = 'receiver' + i + '@antani.gov';
-        newObject.contexts = contexts_ids;
-        newObject.presentation_order = i;
 
         app
-          .post('/admin/receivers')
+          .post('/admin/users')
           .send(newObject)
           .set('X-Session', authentication['session_id'])
           .expect(201)
@@ -307,15 +263,19 @@ for (var i=0; i<population_order; i++) {
 // we popolate population_order contexts
 for (var i=0; i<population_order; i++) {
   (function (i) {
-    describe('PUT /admin/contexts', function () {
-      it('responds 202 on PUT /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
-        contexts[i].receivers = receivers_ids;
+    describe('POST /admin/contexts', function () {
+      it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
+        var newObject = JSON.parse(JSON.stringify(context));
+        newObject.name = 'Context' + i + ' (selectable receivers: TRUE)';
+        newObject.description = 'description of Context' + i;
+        newObject.presentation_order = i;
+        newObject.receivers = receivers_ids;
 
         app
-          .put('/admin/contexts/' + contexts[i].id)
-          .send(contexts[i])
+          .post('/admin/contexts')
+          .send(newObject)
           .set('X-Session', authentication['session_id'])
-          .expect(202)
+          .expect(201)
           .end(function (err, res) {
             if (err) {
               return done(err);
@@ -323,10 +283,12 @@ for (var i=0; i<population_order; i++) {
 
             validate_mandatory_headers(res.headers);
 
-            contexts[i] = res.body;
+            contexts.push(res.body);
+
+            contexts_ids.push(res.body.id);
 
             done();
-        });
+          });
       })
     })
   })(i);
