@@ -63,7 +63,7 @@ class TestStaticFileInstance(helpers.TestHandler):
         request_body = self.get_dummy_file(filename='valid_customization', content_type='text/plain')
 
         handler = self.request({}, role='admin', body=request_body)
-        self.assertFailure(handler.post(filename=u'invalid.blabla'), errors.ReceiverIdNotFound)
+        self.assertFailure(handler.post(filename=u'invalid.blabla'), errors.UserIdNotFound)
 
     @inlineCallbacks
     def test_delete_on_existent_file(self):

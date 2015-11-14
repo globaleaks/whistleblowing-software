@@ -179,12 +179,12 @@ class StaticFileInstance(BaseHandler):
         else:
             try:
                 path = yield user_picture_path(filename)
-                log.debug("Received request to update Receiver portrait with %s" % filename)
-            except errors.ReceiverIdNotFound as excpd:
-                log.err("Invalid Receiver ID specified: %s" % filename)
+                log.debug("Received request to update user portrait with %s" % filename)
+            except errors.UserIdNotFound as excpd:
+                log.err("Invalid User id specified: %s" % filename)
                 raise excpd
             except Exception as excpd:
-                log.err("Exception raised while saving Receive portrait with %s: %s" %
+                log.err("Exception raised while saving user portrait %s: %s" %
                         (filename, excpd))
                 raise errors.InternalServerError(excpd.__repr__())
 
