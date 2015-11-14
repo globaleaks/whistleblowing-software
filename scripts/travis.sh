@@ -86,7 +86,7 @@ elif [ "$GLTEST" = "end2end" ]; then
   do
     echo "Testing Configuration: $i"
     eval $i
-    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000
+    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --port 9000 --disable-mail-torification
     sleep 5
     grunt protractor:saucelabs
   done
