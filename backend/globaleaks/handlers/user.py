@@ -110,8 +110,8 @@ def get_user_settings(store, user_id, language):
 def db_user_update_user(store, user_id, request, language):
     """
     Updates the specified user.
-    This version of the function is specific forusers that with comparison admins
-    admin can change only few things:
+    This version of the function is specific for users that with comparison with
+    admins can change only few things:
       - preferred language
       - preferred timezone
       - the password (with old password check)
@@ -190,5 +190,6 @@ class UserInstance(BaseHandler):
 
         user_status = yield update_user_settings(self.current_user.user_id,
                                                  request, self.request.language)
+
         self.set_status(200)
         self.finish(user_status)

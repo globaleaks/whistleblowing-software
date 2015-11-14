@@ -52,6 +52,10 @@ def get_receiver_settings(store, receiver_id, language):
 
 @transact
 def update_receiver_settings(store, receiver_id, request, language):
+    user = db_user_update_user(store, receiver_id, request, language)
+    if not user:
+        raise errors.UserIdNotFound
+
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     if not receiver:
         raise errors.ReceiverIdNotFound
