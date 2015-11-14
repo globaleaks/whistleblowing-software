@@ -99,6 +99,8 @@ def dump_static_file(uploaded_file, filelocation):
             os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4000)  # 4kb
 
+        uploaded_file['body'].close()
+
     return get_file_info(uploaded_file, filelocation)
 
 
