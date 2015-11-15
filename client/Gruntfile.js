@@ -44,7 +44,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 9000,
-          base: 'tests/browserchecks'
+          base: 'tests/loader'
         }
       }
     },
@@ -74,14 +74,14 @@ module.exports = function(grunt) {
             flatten: true,
             cwd: 'node_modules/',
             src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js'],
-            dest: 'tests/browserchecks/lib/'
+            dest: 'tests/loader/lib/'
           },
           {
             expand: true,
             flatten: true,
             cwd: './',
-            src: 'build/browserchecks.js',
-            dest: 'tests/browserchecks'
+            src: 'build/loader.js',
+            dest: 'tests/loader'
           }
         ]
       }
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
     },
 
     mocha_phantomjs: {
-      all: ['tests/browserchecks/unittests.html'],
+      all: ['tests/loader/unittests.html'],
       options: {
         timeout: 1200
       }
@@ -152,7 +152,7 @@ module.exports = function(grunt) {
           testname: 'GlobaLeaks-Loader',
           /*
              What follows is the list of browsers not supported by globaleaks
-             for which we tests at least that the browserchecks lib.
+             for which we tests at least that the loader lib.
           */
           browsers: [
             { browserName: "firefox", version: "3.0", platform: "Windows 8.1" },
@@ -396,7 +396,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['globaleaks.html', 'index.html', 'browserchecks.js', 'styles.css', 'styles-rtl.css', 'scripts.js']
+    var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css', 'scripts.js']
     for (var x in files) {
         grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
     }
@@ -873,8 +873,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build',
     ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
 
-  grunt.registerTask('test-browserchecks', ['copy:unittests', 'mocha_phantomjs']);
-  grunt.registerTask('test-browserchecks-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
+  grunt.registerTask('test-loader', ['copy:unittests', 'mocha_phantomjs']);
+  grunt.registerTask('test-loader-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
