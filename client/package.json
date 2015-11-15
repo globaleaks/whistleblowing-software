@@ -34,7 +34,7 @@
     "mocha-phantomjs": "4.0.1",
     "node-gettext": "0.2.14",
     "phantomjs": "1.9.18",
-    "protractor": "^2.5.1",
+    "protractor": "2.5.1",
     "should": "7.1.1",
     "superagent": "1.4.0",
     "supertest": "1.1.0"
