@@ -92,7 +92,10 @@
     <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
     <div data-ng-if="started" class="ng-cloak" data-ng-include="'globaleaks.html'"></div>
 
-    <!-- build:js browserchecks.js -->
+    <!-- build:js loader.js -->
+    <script src="components/js-polyfills/typedarray.js"></script>
+    <script src="components/js-polyfills/es6.js"></script>
+    <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
     <script src="components/bowser/bowser.js"></script>
     <script src="scripts/browserchecks.js"></script>
     <!-- endbuild -->
@@ -102,8 +105,6 @@
     <script src="scripts/crypto/openpgp.min.js"></script>
 
     <!-- build:js scripts.js -->
-    <script src="components/js-polyfills/es6.js"></script>
-    <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
     <script src="components/jquery/dist/jquery.min.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-aria/angular-aria.min.js"></script>
