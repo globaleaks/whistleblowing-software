@@ -12,20 +12,35 @@ env:
   matrix:
     - GLTEST='unit'
     - GLTEST='build_and_install'
-    - GLTEST='end2end-0'
-    - GLTEST='end2end-1'
-    - GLTEST='end2end-2'
-    - GLTEST='end2end-3'
-    - GLTEST='end2end-4'
-    - GLTEST='end2end-5'
-    - GLTEST='end2end-6'
-    - GLTEST='end2end-7'
-    - GLTEST='end2end-8'
-    - GLTEST='end2end-9'
-    - GLTEST='end2end-10'
-    - GLTEST='end2end-11'
-    - GLTEST='end2end-12'
-    - GLTEST='end2end-13'
+    - GLTEST='end2end-0'  BROWSER='firefox 34'
+    - GLTEST='end2end-1'  BROWSER='firefox 42'
+    - GLTEST='end2end-2'  BROWSER='chrome 37'
+    - GLTEST='end2end-3'  BROWSER='chrome 46'
+    - GLTEST='end2end-4'  BROWSER='safari 8'
+    - GLTEST='end2end-5'  BROWSER='safari 9'
+    - GLTEST='end2end-6'  BROWSER='ie 9'
+    - GLTEST='end2end-7'  BROWSER='ie 10'
+    - GLTEST='end2end-8'  BROWSER='ie 11'
+    - GLTEST='end2end-9'  BROWSER='edge 20.10240'
+    - GLTEST='end2end-10' BROWSER='android 4.4'
+    - GLTEST='end2end-11' BROWSER='android 5.1'
+    - GLTEST='end2end-12' BROWSER='iphone 7.1'
+    - GLTEST='end2end-13' BROWSER='iphone 9.1'
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"firefox\", \"version\":\"34\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"firefox\", \"version\":\"42\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"chrome\", \"version\":\"37\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"chrome\", \"version\":\"46\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"safari\", \"version\":\"8\", \"platform\":\"OS X 10.10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"safari\", \"version\":\"9\", \"platform\":\"OS X 10.11\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"9\", \"platform\":\"Windows 7\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"10\", \"platform\":\"Windows 8\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"11\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"microsoftedge\", \"version\":\"20.10240\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"4.4\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'."
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"5.1\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"deviceName\": \"iPhone Retina (4-inch 64-bit)\", \"device-orientation\": \"portrait\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"9.1\", \"deviceName\": \"iPhone 6 Plus\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
+
 addons:
   sauce_connect: true
 install:

@@ -25,5 +25,6 @@ exports.config = {
 
   jasmineNodeOpts: {
     showColors: true,
+    defaultTimeoutInterval : 10000
   }
 };
