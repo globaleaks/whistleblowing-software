@@ -991,8 +991,6 @@ class MockDict():
             'allow_unencrypted': True,
             'allow_iframes_inclusion': False,
             'send_email_for_every_event': False,
-            'configured': False,
-            'wizard_done': False,
             'custom_homepage': False,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,

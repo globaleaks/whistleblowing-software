@@ -501,8 +501,13 @@ class Node(Model):
     threshold_free_disk_percentage_medium = Int(default=5)
     threshold_free_disk_percentage_low = Int(default=10)
 
-    unicode_keys = ['name', 'public_site', 'hidden_service',
-                    'default_language', 'landing_page']
+    unicode_keys = [
+        'name',
+        'public_site',
+        'hidden_service',
+        'default_language',
+        'landing_page'
+    ]
 
     int_keys = [
         'maximum_namesize',
@@ -534,17 +539,25 @@ class Node(Model):
 
     # wizard_done is not checked because it's set by the backend
 
-    localized_keys = ['description', 'presentation', 'footer',
-                         'security_awareness_title', 'security_awareness_text',
-                         'whistleblowing_question',
-                         'whistleblowing_button',
-                         'custom_privacy_badge_tor', 'custom_privacy_badge_none',
-                         'header_title_homepage', 'header_title_submissionpage',
-                         'header_title_receiptpage', 'header_title_tippage',
-                         'context_selector_label',
-                         'widget_comments_title',
-                         'widget_messages_title',
-                         'widget_files_title']
+    localized_keys = [
+        'description',
+        'presentation',
+        'footer',
+        'security_awareness_title',
+        'security_awareness_text',
+        'whistleblowing_question',
+        'whistleblowing_button',
+        'custom_privacy_badge_tor',
+        'custom_privacy_badge_none',
+        'header_title_homepage',
+        'header_title_submissionpage',
+        'header_title_receiptpage',
+        'header_title_tippage',
+        'context_selector_label',
+        'widget_comments_title',
+        'widget_messages_title',
+        'widget_files_title'
+    ]
 
 
 class Notification(Model):
@@ -593,6 +606,7 @@ class Notification(Model):
     ping_mail_template = JSON(validator=longlocal_v)
     ping_mail_title = JSON(validator=longlocal_v)
     notification_digest_mail_title = JSON(validator=longlocal_v)
+    archive_description = JSON(validator=longlocal_v)
 
     # Whistleblower Identity
     identity_access_authorized_mail_template = JSON(validator=longlocal_v)
@@ -603,8 +617,6 @@ class Notification(Model):
     identity_access_request_mail_title = JSON(validator=longlocal_v)
     identity_provided_mail_template = JSON(validator=longlocal_v)
     identity_provided_mail_title = JSON(validator=longlocal_v)
-
-    archive_description = JSON(validator=longlocal_v)
 
     disable_admin_notification_emails = Bool(default=False)
     disable_custodian_notification_emails = Bool(default=False)
@@ -656,6 +668,7 @@ class Notification(Model):
         'notification_digest_mail_title',
         'ping_mail_template',
         'ping_mail_title',
+        'archive_description',
         'receiver_notification_limit_reached_mail_template',
         'receiver_notification_limit_reached_mail_title',
         'identity_access_authorized_mail_template',
@@ -665,8 +678,7 @@ class Notification(Model):
         'identity_access_request_mail_template',
         'identity_access_request_mail_title',
         'identity_provided_mail_template',
-        'identity_provided_mail_title',
-        'archive_description'
+        'identity_provided_mail_title'
     ]
 
     int_keys = [

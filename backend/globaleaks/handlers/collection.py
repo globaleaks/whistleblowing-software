@@ -60,7 +60,6 @@ def get_receiver_from_rtip(store, rtip_id, language):
     rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
 
     if not rtip:
-        log.err("Download of a Zip file without ReceiverTip associated!")
         raise errors.TipIdNotFound
 
     return receiver.admin_serialize_receiver(rtip.receiver, language)
@@ -91,7 +90,7 @@ class CollectionDownload(BaseHandler):
         notif_dict = yield notification.get_notification(self.request.language)
 
         mock_event = Event(
-            type=u'zip_collection',
+            type=u'archive_description',
             trigger='Download',
             node_info=node_dict,
             receiver_info=receiver_dict,
