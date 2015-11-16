@@ -167,7 +167,7 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.fileupload_url = function() {
+  $scope.get_fileupload_url = function() {
     if (!$scope.submission) {
       return;
     }
@@ -175,27 +175,35 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._token.id + '/file';
   };
 
+  $scope.fileupload_url = '';
+
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
+      $scope.fileupload_url = $scope.get_fileupload_url();
+
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
-      var worker = new Worker('/scripts/crypto/proof-of-work.worker.js');
+      if ($scope.node.enable_proof_of_work) {
+        var worker = new Worker('/scripts/crypto/proof-of-work.worker.js');
 
-      worker.onmessage = function(e) {
-        $scope.submission._token.proof_of_work_answer = e.data;
-        $scope.submission._token.$update(function(token) {
-          $scope.submission._token = token;
-          $scope.submission.pow = true;
+        worker.onmessage = function(e) {
+          $scope.submission._token.proof_of_work_answer = e.data;
+          $scope.submission._token.$update(function(token) {
+            $scope.submission._token = token;
+            $scope.submission.pow = true;
+          });
+
+          worker.terminate();
+        };
+
+        worker.postMessage({
+          pow: $scope.submission._token.proof_of_work,
         });
-
-        worker.terminate();
-      };
-
-      worker.postMessage({
-        pow: $scope.submission._token.proof_of_work,
-      });
+      } else {
+        $scope.submission.pow = true;
+      }
 
       if ($scope.problemToBeSolved) {
         $scope.openProblemDialog($scope.submission);
