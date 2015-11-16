@@ -67,8 +67,6 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
   echo "Running Protractor End2End tests"
 
-  setupDependencies
-
   declare -a capabilities=(
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"10\", \"platform\":\"Windows 8\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"11\", \"platform\":\"Windows 10\"}'"
