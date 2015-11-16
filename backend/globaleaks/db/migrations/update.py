@@ -118,10 +118,10 @@ class MigrationBase(object):
     """
     This is the base class used by every Updater
     """
-    def __init__(self, table_history, start_version, store_old, store_new):
+    def __init__(self, migration_mapping, start_version, store_old, store_new):
         self.appdata = load_appdata()
 
-        self.table_history = table_history
+        self.migration_mapping = migration_mapping
         self.start_version = start_version
 
         self.store_old = store_old
@@ -132,7 +132,7 @@ class MigrationBase(object):
         self.entries_count = {}
         self.fail_on_count_mismatch = {}
 
-        for model_name, model_history in table_history.iteritems():
+        for model_name, model_history in migration_mapping.iteritems():
             length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
             if len(model_history) != length:
                 raise TypeError('Expecting a table with {} statuses ({})'.format(length, model_name))
@@ -158,7 +158,7 @@ class MigrationBase(object):
                     self.execute_query(query)
 
         else: # manage the migrantion here
-            for k, _ in self.table_history.iteritems():
+            for k, _ in self.migration_mapping.iteritems():
                 query = self.get_right_sql_version(k, self.start_version + 1)
                 if not query:
                     # the table has been removed
@@ -191,7 +191,7 @@ class MigrationBase(object):
     def get_right_model(self, model_name, version):
         table_index = (version - FIRST_DATABASE_VERSION_SUPPORTED)
 
-        if model_name not in self.table_history:
+        if model_name not in self.migration_mapping:
             msg = 'Not implemented usage of get_right_model {} ({} {})'.format(
                 __file__, model_name, self.start_version)
             raise NotImplementedError(msg)
@@ -200,12 +200,12 @@ class MigrationBase(object):
             raise ValueError('Version supplied must be less or equal to {}'.format(
                 DATABASE_VERSION))
 
-        if self.table_history[model_name][table_index] == -1:
+        if self.migration_mapping[model_name][table_index] == -1:
             return None
 
         while table_index >= 0:
-            if self.table_history[model_name][table_index] != 0:
-                return self.table_history[model_name][table_index]
+            if self.migration_mapping[model_name][table_index] != 0:
+                return self.migration_mapping[model_name][table_index]
             table_index -= 1
 
         return None
