@@ -12,7 +12,6 @@ env:
   matrix:
     - GLTEST='unit'
     - GLTEST='build_and_install'
-    - GLTEST='end2end-00' BROWSER='ie 9'
     - GLTEST='end2end-01' BROWSER='ie 10'
     - GLTEST='end2end-02' BROWSER='ie 11'
     - GLTEST='end2end-03' BROWSER='edge 20.10240'
