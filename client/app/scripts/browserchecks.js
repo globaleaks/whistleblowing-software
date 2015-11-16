@@ -19,12 +19,12 @@ var isBrowserCompatible = function() {
     return false;
   }
 
-  // Check related to WebCrypto compatibility
-  if (!(window.crypto && window.crypto.getRandomValues) &&
-      !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
-    console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
-    return false;
-  }
+  // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
+  //if (!(window.crypto && window.crypto.getRandomValues) &&
+  //    !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
+  //  console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+  //  return false;
+  //}
 
   return true;
 };
