@@ -1,5 +1,5 @@
 exports.config = {
-  framework: 'jasmine',
+  framework: 'jasmine2',
 
   baseUrl: 'http://127.0.0.1:8082/',
 
