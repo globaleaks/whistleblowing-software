@@ -2,10 +2,10 @@
 <html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
   <head>
     <title ng-bind="node.name">GlobaLeaks</title>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta name="referrer" content="never">
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="referrer" content="never" />
 
     <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 9 -->
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11,10,9" />
@@ -13,12 +13,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <!-- build:css styles.css -->
-    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/admin.css">
-    <link rel="stylesheet" href="styles/home.css">
-    <link rel="stylesheet" href="styles/submission.css">
-    <link rel="stylesheet" href="styles/tip.css">
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/admin.css" />
+    <link rel="stylesheet" href="styles/home.css" />
+    <link rel="stylesheet" href="styles/submission.css" />
+    <link rel="stylesheet" href="styles/tip.css" />
     <!-- endbuild -->
 
     <style type="text/css">
@@ -46,7 +46,6 @@
       .LoaderBox img {
         margin-bottom: 30px;
       }
-
     </style>
 
   </head>
@@ -75,7 +74,7 @@
     <div id="error_unsupported_browser" class="preload_error" style="display: none">
       <div>
         <h1>[EN] Warning! :(</h1><br /><br />
-        <p>
+        <div>
           You are running an unsupported (and potentially vulnerable) browser.<br /><br />
           You are strongly advised to download and install the
           <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
@@ -90,12 +89,12 @@
           </ul>
 
           Please note that the above browers, even if supported, does not benefit of the same high anonimity guarantees of the Tor Browser.
-        </p>
+        </div>
       </div>
       <br /><br />
       <div>
         <h1>[IT] Attenzione! :(</h1><br /><br />
-        <p>
+        <div>
           Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
           Si invita caldamente a scaricare ed installare il
           <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
@@ -110,7 +109,7 @@
           </ul>
 
           Si prega di notare che i browser sopra citati, anche se supportati, non beneficiano delle stesse garanzie di anonimato e sicurezza offerte dal Tor Browser.
-        </p>
+        </div>
       </div>
     </div>
 
@@ -134,7 +133,7 @@
     <script src="components/scrypt-async/scrypt-async.min.js"></script>
     <script src="components/openpgp/dist/openpgp.min.js"></script>
     <script src="components/jquery/dist/jquery.min.js"></script>
-    <script src="components/angular/angular.min.js"></script>
+    <script src="components/angular/angular-min.js"></script>
     <script src="components/angular-aria/angular-aria.min.js"></script>
     <script src="components/angular-filter/dist/angular-filter.min.js"></script>
     <script src="components/angular-resource/angular-resource.min.js"></script>

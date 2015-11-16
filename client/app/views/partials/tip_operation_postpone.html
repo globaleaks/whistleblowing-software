@@ -6,12 +6,11 @@
 </div>
 <div class="modal-body">
   <div class="alert alert-danger">
-    <div>
-      <span data-translate>Are you sure that you want to postpone the submission expiration date?</span>
-      <br />
-      <span data-translate>By confirming, you will postpone the expiration date to:</span>
-      <span>{{tip | newExpirationDate | date:'dd-MM-yyyy HH:mm'}}</span>
-    </div>
+    <span data-translate>Are you sure that you want to postpone the submission expiration date?</span>
+    <br />
+    <span data-translate>By confirming, you will postpone the expiration date to:</span>
+    <span>{{tip | newExpirationDate | date:'dd-MM-yyyy HH:mm'}}</span>
+  </div>
 </div>
 <div class="modal-footer">
   <span id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">

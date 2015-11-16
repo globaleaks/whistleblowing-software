@@ -30,10 +30,11 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="alert alert-danger" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
+    <div class="form-group" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
+      <div class="alert alert-danger">
         <div data-translate>Encryption has not been enabled!</div>
         <div data-translate>Email notifications won't be encrypted.</div>
+      </div>
     </div>
 
     <div class="form-group" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
