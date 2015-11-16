@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from collections import OrderedDict
 import importlib
 import os
 
@@ -29,43 +30,42 @@ from globaleaks.db.migrations.update_24 import User_v_23, Receiver_v_23, Node_v_
     EventLogs_v_23
 
 
-table_history = {
-    'Node': [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, models.Node],
-    'IdentityAccessRequest': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest],
-    'SecureFileDelete': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete],
-    'User': [User_v_14, 0, 0, 0, User_v_20, 0, 0, 0, 0, 0, User_v_23, 0, 0, models.User],
-    'Custodian': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian],
-    'Receiver': [Receiver_v_14, 0, 0, 0, Receiver_v_15, Receiver_v_16, Receiver_v_19, 0, 0, Receiver_v_20, Receiver_v_23, 0, 0, models.Receiver],
-    'Context': [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context],
-    'ReceiverFile': [ReceiverFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverFile, 0, 0, 0, 0],
-    'Notification': [Notification_v_14, 0, 0, 0, Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, models.Notification],
-    'Comment': [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0],
-    'InternalTip': [InternalTip_v_14, 0, 0, 0, InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip],
-    'InternalFile': [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, models.InternalFile, 0],
-    'WhistleblowerTip': [models.WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'ReceiverTip': [ReceiverTip_v_19, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_23, 0, 0, 0, models.ReceiverTip],
-    'ReceiverInternalTip': [models.ReceiverInternalTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'CustodianContext': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext],
-    'ReceiverContext': [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'Message': [Message_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0],
-    'Stats': [-1, -1, -1, -1, Stats_v_16, 0, models.Stats, 0, 0, 0, 0, 0, 0, 0],
-    'ApplicationData': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData],
-    'Field': [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field],
-    'FieldAttr': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAttr, 0],
-    'FieldOption': [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, models.FieldOption, 0],
-    'OptionActivateField': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateField],
-    'OptionActivateStep': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateStep],
-    'Step': [-1, -1, -1, -1, Step_v_20, 0, 0, 0, 0, 0, Step_v_23, 0, 0, models.Step],
-    'Anomalies': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0],
-    'EventLogs': [-1, -1, -1, -1, -1, -1, -1, -1, -1, EventLogs_v_23, 0, 0, 0, models.EventLogs],
-    'FieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0],
-    'FieldAnswerGroup': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0],
-    'FieldAnswerGroupFieldAnswer': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroupFieldAnswer, 0],
-    'ArchivedSchema': [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema],
-    'FieldField': [-1, -1, -1, -1, models.FieldField, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    'StepField': [-1, -1, -1, -1, models.StepField, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-}
-
+migration_mapping = OrderedDict([
+    ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0]),
+    ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema]),
+    ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData]),
+    ('Comment', [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0]),
+    ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context]),
+    ('Custodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian]),
+    ('CustodianContext', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext]),
+    ('EventLogs', [-1, -1, -1, -1, -1, -1, -1, -1, -1, EventLogs_v_23, 0, 0, 0, models.EventLogs]),
+    ('Field', [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field]),
+    ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0]),
+    ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0]),
+    ('FieldAnswerGroupFieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroupFieldAnswer, 0]),
+    ('FieldAttr', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAttr, 0]),
+    ('FieldField', [-1, -1, -1, -1, models.FieldField, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldOption', [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, models.FieldOption, 0]),
+    ('IdentityAccessRequest', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest]),
+    ('Message', [Message_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0]),
+    ('Node', [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, models.Node]),
+    ('Notification', [Notification_v_14, 0, 0, 0, Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, models.Notification]),
+    ('InternalFile', [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, models.InternalFile, 0]),
+    ('InternalTip', [InternalTip_v_14, 0, 0, 0, InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip]),
+    ('OptionActivateField', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateField]),
+    ('OptionActivateStep', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateStep]),
+    ('Receiver', [Receiver_v_14, 0, 0, 0, Receiver_v_15, Receiver_v_16, Receiver_v_19, 0, 0, Receiver_v_20, Receiver_v_23, 0, 0, models.Receiver]),
+    ('ReceiverContext', [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ReceiverFile', [ReceiverFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.ReceiverFile, 0, 0, 0, 0]),
+    ('ReceiverInternalTip', [models.ReceiverInternalTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ReceiverTip', [ReceiverTip_v_19, 0, 0, 0, 0, 0, 0, 0, 0, ReceiverTip_v_23, 0, 0, 0, models.ReceiverTip]),
+    ('Step', [-1, -1, -1, -1, Step_v_20, 0, 0, 0, 0, 0, Step_v_23, 0, 0, models.Step]),
+    ('StepField', [-1, -1, -1, -1, models.StepField, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('SecureFileDelete', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete]),
+    ('Stats', [-1, -1, -1, -1, Stats_v_16, 0, models.Stats, 0, 0, 0, 0, 0, 0, 0]),
+    ('User', [User_v_14, 0, 0, 0, User_v_20, 0, 0, 0, 0, 0, User_v_23, 0, 0, models.User]),
+    ('WhistleblowerTip', [models.WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+])
 
 def perform_version_update(version):
     """
@@ -98,7 +98,7 @@ def perform_version_update(version):
 
             # Here is instanced the migration script
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
-            migration_script = MigrationModule.MigrationScript(table_history, version, store_old, store_new)
+            migration_script = MigrationModule.MigrationScript(migration_mapping, version, store_old, store_new)
 
             print "Migrating table:"
 
@@ -109,7 +109,7 @@ def perform_version_update(version):
                     print "Failure while executing migration prologue: %s " % excep.message
                     raise excep
 
-                for model_name, _ in table_history.iteritems():
+                for model_name, _ in migration_mapping.iteritems():
                     if migration_script.model_from[model_name] is not None and migration_script.model_to[model_name] is not None:
                         try:
                             migration_script.migrate_model(model_name)
@@ -137,7 +137,7 @@ def perform_version_update(version):
             # we open a new db in order to verify integrity of the generated file
             store_verify = Store(create_database('sqlite:' + new_db_file))
 
-            for model_name, _ in table_history.iteritems():
+            for model_name, _ in migration_mapping.iteritems():
                 if model_name == 'ApplicationData':
                     continue
 
