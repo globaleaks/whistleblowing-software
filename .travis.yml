@@ -15,7 +15,7 @@ env:
     - GLTEST='end2end-00' BROWSER='ie 9'
     - GLTEST='end2end-01' BROWSER='ie 10'
     - GLTEST='end2end-02' BROWSER='ie 11'
-    - GLTEST='end2end-03'  BROWSER='edge 20.10240'
+    - GLTEST='end2end-03' BROWSER='edge 20.10240'
     - GLTEST='end2end-04' BROWSER='firefox 34'
     - GLTEST='end2end-05' BROWSER='firefox 42'
     - GLTEST='end2end-06' BROWSER='chrome 37'
