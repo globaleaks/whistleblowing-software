@@ -70,7 +70,6 @@ def db_admin_serialize_node(store, language):
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'show_contexts_in_alphabetical_order': False,
         'threshold_free_disk_megabytes_high': node.threshold_free_disk_megabytes_high,
         'threshold_free_disk_megabytes_medium': node.threshold_free_disk_megabytes_medium,
         'threshold_free_disk_megabytes_low': node.threshold_free_disk_megabytes_low,

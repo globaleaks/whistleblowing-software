@@ -65,7 +65,14 @@ def init_db(store):
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
 
+    notification = models.Notification()
+    for k in appdata_dict['templates']:
+        setattr(notification, k, appdata_dict['templates'][k])
+
     store.add(node)
+    store.add(notification)
+
+    load_default_fields(store)
 
     admin_dict = {
         'username': u'admin',
@@ -89,14 +96,6 @@ def init_db(store):
 
     admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
     admin.password_change_needed = False
-
-    notification = models.Notification()
-    for k in appdata_dict['templates']:
-        setattr(notification, k, appdata_dict['templates'][k])
-
-    load_default_fields(store)
-
-    store.add(notification)
 
 
 def check_db_files():

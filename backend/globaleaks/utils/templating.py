@@ -206,29 +206,29 @@ class FileKeyword(TipKeyword):
         return self.file['content_type']
 
 
-class ZipFileKeyword(TipKeyword):
-    zip_file_keywords = [
+class ArchiveDescription(TipKeyword):
+    archive_description_keywords = [
         '%FileList%',
         '%FilesNumber%',
         '%TotalSize%'
     ]
 
-    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, zip_desc):
-        super(ZipFileKeyword, self).__init__(node_desc, context_desc,
+    def __init__(self, node_desc, context_desc, receiver_desc, tip_desc, archive_desc):
+        super(ArchiveDescription, self).__init__(node_desc, context_desc,
                                              receiver_desc,
                                              tip_desc)
 
-        self.keyword_list += ZipFileKeyword.zip_file_keywords
-        self.zip = zip_desc
+        self.keyword_list += ArchiveDescription.archive_description_keywords
+        self.archive = archive_desc
 
     def FileList(self):
-        return dump_file_list(self.zip['files'], self.zip['file_counter'])
+        return dump_file_list(self.archive['files'], self.archive['file_counter'])
 
     def FilesNumber(self):
-        return str(self.zip['file_counter'])
+        return str(self.archive['file_counter'])
 
     def TotalSize(self):
-        return str(self.zip['total_size'])
+        return str(self.archive['total_size'])
 
 
 class PingMailKeyword(Keyword):
@@ -317,7 +317,7 @@ class Templating(object):
         u'file': FileKeyword,
         u'comment': CommentKeyword,
         u'message': MessageKeyword,
-        u'zip_collection': ZipFileKeyword,
+        u'archive_description': ArchiveDescription,
         u'ping_mail': PingMailKeyword,
         u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
         u'pgp_expiration_alert': PGPAlertKeyword,
