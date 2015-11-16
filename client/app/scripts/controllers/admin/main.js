@@ -162,7 +162,7 @@ GLClient.controller('AdminImgUploadCtrl', ['$scope', '$http', function($scope, $
       if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
         $scope.file_upload_error = "This file exceeds the maximum upload size for this server.";
       } else if(flowFile.file.type !== "image/png") {
-        $scope.file_upload_error = "It is currently possible to upload only PNG files.";
+        $scope.file_upload_error = "Only PNG files are currently supported.";
       }
 
       if ($scope.file_upload_error !== undefined)  {
