@@ -88,9 +88,9 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   testkey=$(echo $GLTEST | cut -f2 -d-)
 
   ## now loop through the above array
-  capability=${capabilities[$testkey]}
+  capability=${capabilities[${testkey}]}
 
-  echo "Testing Configuration: $testkey"
+  echo "Testing Configuration: ${testkey}"
   setupDependencies
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
