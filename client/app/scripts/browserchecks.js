@@ -22,7 +22,7 @@ var isBrowserCompatible = function() {
   // Check related to WebCrypto compatibility
   if (!(window.crypto && window.crypto.getRandomValues) &&
       !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
-    console.log("GlobaLeaks startup failure: missing End2End encryption requirements");
+    console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
     return false;
   }
 
