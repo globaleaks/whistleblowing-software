@@ -2,6 +2,7 @@
 from collections import OrderedDict
 import importlib
 import os
+import shutil
 
 from storm.locals import create_database, Store
 
@@ -81,9 +82,17 @@ def perform_version_update(version):
         quit()
 
     try:
+        tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
+        orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
+        final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
+
+        shutil.rmtree(tmpdir, True)
+        os.mkdir(tmpdir)
+        shutil.copy2(orig_db_file, tmpdir)
+
         while version < DATABASE_VERSION:
-            old_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
-            new_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % (version + 1)))
+            old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
+            new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
 
             GLSettings.db_file = new_db_file
             GLSettings.enable_input_length_checks = False
@@ -117,15 +126,15 @@ def perform_version_update(version):
                             # Commit at every table migration in order to be able to detect
                             # the precise migration that may fail.
                             migration_script.commit()
-                        except Exception as excep:
-                            print "Failure while migrating table %s: %s " % (model_name, excep)
-                            raise excep
+                        except Exception as exception:
+                            print "Failure while migrating table %s: %s " % (model_name, exception)
+                            raise exception
                 try:
                     migration_script.epilogue()
                     migration_script.commit()
-                except Exception as excep:
-                    print "Failure while executing migration epilogue: %s " % excep.message
-                    raise excep
+                except Exception as exception:
+                    print "Failure while executing migration epilogue: %s " % exception
+                    raise exception
 
             finally:
                 # the database should bee always closed before leaving the application
@@ -156,26 +165,15 @@ def perform_version_update(version):
 
             version += 1
 
-    except Exception as except_info:
-        print "Internal error triggered: %s" % except_info
-        # Remediation action on fail:
-        #    created files during update must be deleted
-        for f in to_delete_on_fail:
-            try:
-                os.remove(f)
-            except Exception as excep:
-                print "Error while removing new db file on conversion fail: %s" % excep
-                # we can't stop if one files removal fails
-                # and we continue trying deleting others files
-        # propagate the exception
-        raise except_info
+    except Exception as exception:
+        # simply propagage the exception
+        raise exception
 
-    # Finalization action on success:
-    #    converted files must be renamed
-    for f in to_delete_on_success:
-        try:
-            os.remove(f)
-        except Exception as excep:
-            print "Error while removing old db file on conversion success: %s" % excep.message
-            # we can't stop if one files removal fails
-            # and we continue trying deleting others files
+    else:
+        # in case of success first copy the new migrated db, then as last action delete the original db file
+        shutil.copy(os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % DATABASE_VERSION)), final_db_file)
+        os.remove(orig_db_file)
+
+    finally:
+        # always cleanup the temporary directory used for the migration
+        shutil.rmtree(tmpdir, True)
