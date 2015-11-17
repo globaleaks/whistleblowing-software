@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-repeat="step in tip.questionnaire">
+    <div data-ng-repeat="step in tip.questionnaire | orderBy:'presentation_order'">
       <dt id="step={{$index}}">
         <span data-translate>Step</span>
         <span>{{$index + 1}}: {{::step.label}}</span>
