@@ -65,7 +65,7 @@
       <div class="editorTitle">
         <span data-translate>Configured users:</span>
       </div>
-      <div class="userList" data-ng-repeat="user in admin.users | orderBy:'presentation_order'">
+      <div class="userList" data-ng-repeat="user in admin.users | orderBy:'name'">
         <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
           <div class="configItem userItem">
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
