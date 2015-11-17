@@ -1,5 +1,5 @@
-GLClient.controller('AdminStepAddCtrl', ['$scope', 'AdminStepResource', 'AdminFieldResource',
-  function($scope, AdminStepResource, AdminFieldResource) {
+GLClient.controller('AdminStepAddCtrl', ['$scope',
+  function($scope) {
     $scope.new_step = {};
 
     $scope.add_step = function() {
@@ -15,14 +15,19 @@ GLClient.controller('AdminStepAddCtrl', ['$scope', 'AdminStepResource', 'AdminFi
   }
 ]);
 
-GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal', 'AdminFieldResource',
-  function($scope, $modal, AdminFieldResource) {
+GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal', 'AdminStepResource', 'AdminFieldResource',
+  function($scope, $modal, AdminStepResource, AdminFieldResource) {
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.step.children;
 
     $scope.toggleEditing = function () {
       $scope.editing = $scope.editing ^ 1;
+    };
+
+    $scope.save_step = function(step) {
+      var updated_step = new AdminStepResource(step);
+      return $scope.update(updated_step);
     };
 
     $scope.addField = function(field) {
@@ -41,11 +46,6 @@ GLClient.controller('AdminStepEditorCtrl', ['$scope', '$modal', 'AdminFieldResou
       angular.forEach($scope.step.children, function(field) {
         $scope.delField($scope.step.children, field);
       });
-    };
-
-    $scope.save_step = function(step) {
-      var updated_step = new AdminStepResource(step);
-      return $scope.update(updated_step);
     };
 
     $scope.add_field = function() {
