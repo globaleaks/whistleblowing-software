@@ -29,8 +29,6 @@ def init_models():
 
 
 def db_create_tables(store):
-    """
-    """
     if not os.access(GLSettings.db_schema, os.R_OK):
         log.err("Unable to access %s" % GLSettings.db_schema)
         raise Exception("Unable to access db schema file")
@@ -51,8 +49,6 @@ def db_create_tables(store):
 
 @transact
 def init_db(store):
-    """
-    """
     db_create_tables(store)
     appdata_dict = db_init_appdata(store)
 

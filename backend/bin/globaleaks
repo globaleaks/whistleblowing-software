@@ -99,7 +99,6 @@ from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.db import check_db_files
 from globaleaks.runner import GlobaLeaksRunner
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
@@ -289,12 +288,6 @@ def run_backend():
     else:
         print "Starting GlobaLeaks"
         try:
-            # Check database file and eventually perform its migration
-            check = check_db_files()
-            if check == -1:
-                 print "Exiting GlobaLeaks"
-                 quit(-1)
-
             GlobaLeaksRunner(config).run()
 
             # this is a blocking operation, until app exit
