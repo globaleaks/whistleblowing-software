@@ -84,8 +84,8 @@ def init_db(store):
         'name': u'Admin',
         'description': u'',
         'mail_address': u'',
-        'language': GLSettings.defaults.language,
-        'timezone': GLSettings.defaults.timezone,
+        'language': node.default_language,
+        'timezone': node.default_timezone,
         'password_change_needed': False,
         'pgp_key_status': 'disabled',
         'pgp_key_info': '',
@@ -94,7 +94,7 @@ def init_db(store):
         'pgp_key_expiration': datetime_null()
     }
 
-    admin = db_create_admin(store, admin_dict, GLSettings.defaults.language)
+    admin = db_create_admin(store, admin_dict, node.default_language)
     admin.password_change_needed = False
 
 

@@ -32,7 +32,7 @@ class TokenCreate(BaseHandler):
         request = self.validate_message(self.request.body, requests.TokenReqDesc)
 
         if request['type'] == 'submission':
-            if not GLSettings.memory_copy.accept_submissions:
+            if not GLSettings.accept_submissions:
                 raise errors.SubmissionDisabled
 
             # TODO implement further validations for different token options based on type

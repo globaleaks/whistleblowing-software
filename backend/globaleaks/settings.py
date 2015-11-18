@@ -114,6 +114,8 @@ class GLSettingssClass(object):
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
 
+        self.accept_submissions = True
+
         # statistical, referred to latest period
         # and resetted by session_management sched
         self.failed_login_attempts = 0
@@ -124,10 +126,12 @@ class GLSettingssClass(object):
         # static file rules
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
-        self.reserved_names = OD()
-        self.reserved_names.logo = "globaleaks_logo"
-        self.reserved_names.css = "custom_stylesheet"
-        self.reserved_names.html = "custom_homepage"
+
+        self.reserved_names = OD({
+          'logo': 'globaleaks_logo',
+          'css': 'custom_stylesheet',
+          'html': 'custom_homepage'
+        })
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1, localhost"
@@ -137,7 +141,7 @@ class GLSettingssClass(object):
 
         # default timings for scheduled jobs
         self.session_management_delta = 60
-        self.notification_delta = 120
+        self.notification_delta = 60
         self.delivery_delta = 20
         self.anomaly_delta = 10
         self.mailflush_delta = 300
@@ -157,42 +161,21 @@ class GLSettingssClass(object):
         #
         # - if the admin performs the wizard via tor2web the permission is kept True
         # - if the admin performs the wizard via Tor the permission is set to False
-        self.defaults.tor2web_access['admin'] = True
-
-        self.defaults.tor2web_access['whistleblower'] = False
-        self.defaults.tor2web_access['custodian'] = False
-        self.defaults.tor2web_access['receiver'] = False
-        self.defaults.tor2web_access['unauth'] = True
-
-        self.defaults.allow_unencrypted = False
-        self.defaults.allow_iframes_inclusion = False
-        self.defaults.maximum_namesize = 128
-        self.defaults.maximum_textsize = 4096
-        self.defaults.maximum_filesize = 30  # expressed in megabytes
-        self.defaults.maximum_requestsize = 4  # expressed in megabytes
-
-        self.defaults.submission_minimum_delay = 10
-        self.defaults.submission_maximum_ttl = 10800
-
-        # This value get copy in Context(s):
-        self.defaults.tip_seconds_of_life = (3600 * 24) * 15
-
-        self.defaults.language = u'en'
-        self.defaults.languages_enabled = LANGUAGES_SUPPORTED_CODES
+        self.defaults.tor2web_access = {
+          'admin': True,
+          'whistleblower': False,
+          'custodian': False,
+          'receiver': False,
+          'unauth': True
+        }
 
         self.defaults.timezone = 0
-        self.defaults.landing_page = u'homepage'
-
-        self.defaults.notif_server = None
-        self.defaults.notif_port = None
-        self.defaults.notif_username = None
-        self.defaults.notif_security = None
-
-        # this became false when, few MBs cause node to disable submissions
-        self.defaults.accept_submissions = True
-        self.defaults.minimum_megabytes_required = 1024  # 1 GB, or the node is disabled
 
         self.defaults.authentication_lifetime = 60 * 60
+
+        self.defaults.maximum_namesize = 128
+        self.defaults.maximum_textsize = 4096
+        self.defaults.maximum_filesize = 30
 
         # A lot of operations performed massively by globaleaks
         # should avoid to fetch continuously variables from the DB so that

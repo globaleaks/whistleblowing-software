@@ -9,13 +9,15 @@ from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSO
 
 from .properties import MetaModel, DateTime
 
+from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v
 
-empty_localization = dict({GLSettings.defaults.language: u''})
+empty_localization = {}
 
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
@@ -429,9 +431,9 @@ class Node(Model):
 
     receipt_salt = Unicode(validator=shorttext_v)
 
-    languages_enabled = JSON(default=GLSettings.defaults.languages_enabled)
-    default_language = Unicode(validator=shorttext_v, default=GLSettings.defaults.language)
-    default_timezone = Int(default=GLSettings.defaults.timezone)
+    languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
+    default_language = Unicode(validator=shorttext_v, default=u'en')
+    default_timezone = Int(default=0)
 
     description = JSON(validator=longlocal_v, default=empty_localization)
     presentation = JSON(validator=longlocal_v, default=empty_localization)
@@ -441,18 +443,18 @@ class Node(Model):
     context_selector_label = JSON(validator=longlocal_v, default=empty_localization)
 
     # Advanced settings
-    maximum_namesize = Int(default=GLSettings.defaults.maximum_namesize)
-    maximum_textsize = Int(default=GLSettings.defaults.maximum_textsize)
-    maximum_filesize = Int(default=GLSettings.defaults.maximum_filesize)
+    maximum_namesize = Int(default=128)
+    maximum_textsize = Int(default=4096)
+    maximum_filesize = Int(default=30)
     tor2web_admin = Bool(default=GLSettings.defaults.tor2web_access['admin'])
     tor2web_custodian = Bool(default=GLSettings.defaults.tor2web_access['admin'])
     tor2web_whistleblower = Bool(default=GLSettings.defaults.tor2web_access['whistleblower'])
     tor2web_receiver = Bool(default=GLSettings.defaults.tor2web_access['receiver'])
     tor2web_unauth = Bool(default=GLSettings.defaults.tor2web_access['unauth'])
-    allow_unencrypted = Bool(default= GLSettings.defaults.allow_unencrypted)
-    allow_iframes_inclusion = Bool(default=GLSettings.defaults.allow_iframes_inclusion)
-    submission_minimum_delay = Int(default=GLSettings.defaults.submission_minimum_delay)
-    submission_maximum_ttl = Int(default=GLSettings.defaults.submission_maximum_ttl)
+    allow_unencrypted = Bool(default=False)
+    allow_iframes_inclusion = Bool(default=False)
+    submission_minimum_delay = Int(default=10)
+    submission_maximum_ttl = Int(default=10800)
 
     # privileges of receivers
     can_postpone_expiration = Bool(default=False)
@@ -489,7 +491,7 @@ class Node(Model):
     widget_messages_title = JSON(validator=shortlocal_v, default=empty_localization)
     widget_files_title = JSON(validator=shortlocal_v, default=empty_localization)
 
-    landing_page = Unicode(default=GLSettings.defaults.landing_page)
+    landing_page = Unicode(default=u'homepage')
 
     show_contexts_in_alphabetical_order = Bool(default=False)
 

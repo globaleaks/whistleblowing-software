@@ -31,7 +31,7 @@ def load_complete_events(store, events_limit=GLSettings.notification_limit):
     events_limit represent the amount of event that can be returned by the function,
     events to be notified are taken in account later.
     """
-    node_desc = db_admin_serialize_node(store, GLSettings.defaults.language)
+    node_desc = db_admin_serialize_node(store, GLSettings.memory_copy.default_language)
 
     event_list = []
 
