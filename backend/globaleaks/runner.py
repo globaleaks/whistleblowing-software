@@ -10,7 +10,7 @@ from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
 
 from globaleaks.db import check_db_files, init_db, clean_untracked_files, \
-    refresh_memory_variables, apply_cmdline_options
+    refresh_memory_variables, apply_cmdline_options, update_version
 
 from globaleaks.db.appdata import init_appdata
 
@@ -89,6 +89,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             elif check == 0:
                 yield init_db()
             else:
+                yield update_version()
                 yield init_appdata()
 
             yield clean_untracked_files()
