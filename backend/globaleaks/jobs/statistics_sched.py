@@ -101,6 +101,11 @@ class AnomaliesSchedule(GLJob):
         """
         yield compute_activity_level()
 
+        free_disk_bytes, total_disk_bytes = get_workingdir_space()
+        free_ramdisk_bytes, total_ramdisk_bytes = get_ramdisk_space()
+
+        Alarm().check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)
+
 
 class StatisticsSchedule(GLJob):
     """
@@ -149,21 +154,3 @@ class StatisticsSchedule(GLJob):
 
         log.debug("Saved stats and time updated, keys saved %d" %
                   len(statistic_summary.keys()))
-
-
-class ResourcesCheckSchedule(GLJob):
-    """
-    Resources Check Scheduleis a job that verify the available
-    resources in the GlobaLeaks box.
-    At the moment is implemented only a monitor for the disk space,
-    because the files that might be uploaded depend directly from
-    this resource.
-    """
-    name = "Resources Check"
-
-    def operation(self):
-        free_disk_bytes, total_disk_bytes = get_workingdir_space()
-        free_ramdisk_bytes, total_ramdisk_bytes = get_ramdisk_space()
-
-        alarm = Alarm()
-        alarm.check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)

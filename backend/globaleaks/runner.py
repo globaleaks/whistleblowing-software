@@ -44,9 +44,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         anomaly = statistics_sched.AnomaliesSchedule()
         self._reactor.callLater(0, anomaly.start, GLSettings.anomaly_delta)
 
-        resources_check = statistics_sched.ResourcesCheckSchedule()
-        self._reactor.callLater(0, resources_check.start, GLSettings.anomaly_delta)
-
         delivery = delivery_sched.DeliverySchedule()
         self._reactor.callLater(1, delivery.start, GLSettings.delivery_delta)
 
