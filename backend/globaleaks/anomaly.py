@@ -386,7 +386,7 @@ class Alarm(object):
         disk_space = 0
         disk_message = ""
         accept_submissions = True
-        old_accept_submissions = GLSettings.memory_copy.accept_submissions
+        old_accept_submissions = GLSettings.accept_submissions
 
         for c in get_disk_anomaly_conditions(free_workdir_bytes,
                                              total_workdir_bytes,
@@ -424,9 +424,9 @@ class Alarm(object):
         Alarm.stress_levels['disk_space'] = disk_space
         Alarm.stress_levels['disk_message'] = disk_message
 
-        GLSettings.memory_copy.accept_submissions = accept_submissions
+        GLSettings.accept_submissions = accept_submissions
 
-        if old_accept_submissions != GLSettings.memory_copy.accept_submissions:
+        if old_accept_submissions != GLSettings.accept_submissions:
             log.info("Switching disk space availability from: %s to %s" % (
                 "True" if old_accept_submissions else "False",
                 "False" if old_accept_submissions else "True"))

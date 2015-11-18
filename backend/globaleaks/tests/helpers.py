@@ -97,9 +97,6 @@ def init_glsettings_for_unit_tests():
     GLSettings.sessions = {}
     GLSettings.failed_login_attempts = 0
 
-    # Simulate two languages enabled that is somehow the most common configuration
-    GLSettings.defaults.languages_enabled = ['en', 'it']
-
     if os.path.isdir('/dev/shm'):
         GLSettings.working_path = '/dev/shm/globaleaks'
     else:
@@ -174,10 +171,10 @@ class TestGL(unittest.TestCase):
         else:
             yield db.init_db()
 
+        yield db.refresh_memory_variables()
+
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
-
-        yield db.refresh_memory_variables()
 
         # override of imported memory variables
         GLSettings.memory_copy.allow_unencrypted = True
@@ -976,9 +973,9 @@ class MockDict():
             'old_password': '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
             'salt_receipt': '<<the Lannisters send their regards>>',
-            'maximum_filesize': GLSettings.defaults.maximum_filesize,
-            'maximum_namesize': GLSettings.defaults.maximum_namesize,
-            'maximum_textsize': GLSettings.defaults.maximum_textsize,
+            'maximum_filesize': 30,
+            'maximum_namesize': 120,
+            'maximum_textsize': 4096,
             'tor2web_admin': True,
             'tor2web_custodian': True,
             'tor2web_whistleblower': True,

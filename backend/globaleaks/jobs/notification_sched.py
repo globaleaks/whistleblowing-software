@@ -50,7 +50,7 @@ class EventLogger(object):
 
     def __init__(self):
         self.events = []
-        self.language = GLSettings.defaults.language
+        self.language = GLSettings.memory_copy.default_language
 
     def import_receiver(self, receiver):
         self.language = receiver.user.language
