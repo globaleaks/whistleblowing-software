@@ -146,6 +146,8 @@ CREATE TABLE identityaccessrequest (
 
 CREATE TABLE node (
     id TEXT NOT NULL,
+    version TEXT NOT NULL,
+    version_db TEXT NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
     footer BLOB NOT NULL,

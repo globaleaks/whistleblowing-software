@@ -7,7 +7,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.appdata import load_default_fields
-from globaleaks import models
+from globaleaks import models, __version__, DATABASE_VERSION
 from globaleaks.models import BaseModel, Model
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null
@@ -255,6 +255,14 @@ class MigrationScript(MigrationBase):
 
         for _, v in new_node._storm_columns.iteritems():
             if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
+                continue
+
+            if v.name == 'version':
+                new_node.version = unicode(__version__)
+                continue
+
+            if v.name == 'version_db':
+                new_node.version_db = unicode(DATABASE_VERSION)
                 continue
 
             if v.name == 'disable_donation_panel':

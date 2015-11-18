@@ -11,7 +11,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 from twisted.internet.threads import deferToThreadPool
 
-from globaleaks import models
+from globaleaks import models,  __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_init_appdata, load_default_fields
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
@@ -120,9 +120,9 @@ def check_db_files():
 
         print "Found an already initialized database version: %d" % db_version
 
-        if db_version < GLSettings.db_version:
+        if db_version < DATABASE_VERSION:
             print "Performing update of database from version %d to version %d" % \
-                  (db_version, GLSettings.db_version)
+                  (db_version, DATABASE_VERSION)
             try:
                 migration.perform_version_update(db_version)
                 print "Migration completed with success!"
@@ -178,88 +178,84 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    try:
-        node = store.find(models.Node).one()
+    node = store.find(models.Node).one()
 
-        GLSettings.memory_copy.nodename = node.name
+    GLSettings.memory_copy.nodename = node.name
 
-        GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
-        GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
-        GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
+    GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
+    GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
+    GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
-        GLSettings.memory_copy.tor2web_access['admin'] = node.tor2web_admin
-        GLSettings.memory_copy.tor2web_access['custodian'] = node.tor2web_custodian
-        GLSettings.memory_copy.tor2web_access['whistleblower'] = node.tor2web_whistleblower
-        GLSettings.memory_copy.tor2web_access['receiver'] = node.tor2web_receiver
-        GLSettings.memory_copy.tor2web_access['unauth'] = node.tor2web_unauth
+    GLSettings.memory_copy.tor2web_access['admin'] = node.tor2web_admin
+    GLSettings.memory_copy.tor2web_access['custodian'] = node.tor2web_custodian
+    GLSettings.memory_copy.tor2web_access['whistleblower'] = node.tor2web_whistleblower
+    GLSettings.memory_copy.tor2web_access['receiver'] = node.tor2web_receiver
+    GLSettings.memory_copy.tor2web_access['unauth'] = node.tor2web_unauth
 
-        GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
-        GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
-        GLSettings.memory_copy.can_grant_permissions = node.can_grant_permissions
+    GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
+    GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
+    GLSettings.memory_copy.can_grant_permissions = node.can_grant_permissions
 
-        GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
-        GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
+    GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
+    GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
 
-        GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
-        GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
+    GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
+    GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
-        GLSettings.memory_copy.enable_captcha = node.enable_captcha
-        GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
+    GLSettings.memory_copy.enable_captcha = node.enable_captcha
+    GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
 
-        GLSettings.memory_copy.default_language = node.default_language
-        GLSettings.memory_copy.default_timezone = node.default_timezone
-        GLSettings.memory_copy.languages_enabled  = node.languages_enabled
+    GLSettings.memory_copy.default_language = node.default_language
+    GLSettings.memory_copy.default_timezone = node.default_timezone
+    GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
-        GLSettings.memory_copy.receipt_salt  = node.receipt_salt
+    GLSettings.memory_copy.receipt_salt  = node.receipt_salt
 
-        GLSettings.memory_copy.simplified_login = node.simplified_login
+    GLSettings.memory_copy.simplified_login = node.simplified_login
 
-        GLSettings.memory_copy.threshold_free_disk_megabytes_high = node.threshold_free_disk_megabytes_high
-        GLSettings.memory_copy.threshold_free_disk_megabytes_medium = node.threshold_free_disk_megabytes_medium
-        GLSettings.memory_copy.threshold_free_disk_megabytes_low = node.threshold_free_disk_megabytes_low
+    GLSettings.memory_copy.threshold_free_disk_megabytes_high = node.threshold_free_disk_megabytes_high
+    GLSettings.memory_copy.threshold_free_disk_megabytes_medium = node.threshold_free_disk_megabytes_medium
+    GLSettings.memory_copy.threshold_free_disk_megabytes_low = node.threshold_free_disk_megabytes_low
 
-        GLSettings.memory_copy.threshold_free_disk_percentage_high = node.threshold_free_disk_percentage_high
-        GLSettings.memory_copy.threshold_free_disk_percentage_medium = node.threshold_free_disk_percentage_medium
-        GLSettings.memory_copy.threshold_free_disk_percentage_low = node.threshold_free_disk_percentage_low
+    GLSettings.memory_copy.threshold_free_disk_percentage_high = node.threshold_free_disk_percentage_high
+    GLSettings.memory_copy.threshold_free_disk_percentage_medium = node.threshold_free_disk_percentage_medium
+    GLSettings.memory_copy.threshold_free_disk_percentage_low = node.threshold_free_disk_percentage_low
 
-        notif = store.find(models.Notification).one()
+    notif = store.find(models.Notification).one()
 
-        GLSettings.memory_copy.notif_server = notif.server
-        GLSettings.memory_copy.notif_port = notif.port
-        GLSettings.memory_copy.notif_password = notif.password
-        GLSettings.memory_copy.notif_username = notif.username
-        GLSettings.memory_copy.notif_source_email = notif.source_email
-        GLSettings.memory_copy.notif_security = notif.security
-        GLSettings.memory_copy.tip_expiration_threshold = notif.tip_expiration_threshold
-        GLSettings.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
-        GLSettings.memory_copy.notification_suspension_time = notif.notification_suspension_time
+    GLSettings.memory_copy.notif_server = notif.server
+    GLSettings.memory_copy.notif_port = notif.port
+    GLSettings.memory_copy.notif_password = notif.password
+    GLSettings.memory_copy.notif_username = notif.username
+    GLSettings.memory_copy.notif_source_email = notif.source_email
+    GLSettings.memory_copy.notif_security = notif.security
+    GLSettings.memory_copy.tip_expiration_threshold = notif.tip_expiration_threshold
+    GLSettings.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
+    GLSettings.memory_copy.notification_suspension_time = notif.notification_suspension_time
 
-        if GLSettings.developer_name:
-            GLSettings.memory_copy.notif_source_name = GLSettings.developer_name
-        else:
-            GLSettings.memory_copy.notif_source_name = notif.source_name
-
+    if GLSettings.developer_name:
+        GLSettings.memory_copy.notif_source_name = GLSettings.developer_name
+    else:
         GLSettings.memory_copy.notif_source_name = notif.source_name
-        GLSettings.memory_copy.notif_source_email = notif.source_email
 
-        GLSettings.memory_copy.exception_email_address = notif.exception_email_address
-        GLSettings.memory_copy.exception_email_pgp_key_info = notif.exception_email_pgp_key_info
-        GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
-        GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
-        GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration
-        GLSettings.memory_copy.exception_email_pgp_key_status = notif.exception_email_pgp_key_status
+    GLSettings.memory_copy.notif_source_name = notif.source_name
+    GLSettings.memory_copy.notif_source_email = notif.source_email
 
-        if GLSettings.disable_mail_notification:
-            GLSettings.memory_copy.disable_admin_notification_emails = True
-            GLSettings.memory_copy.disable_custodian_notification_emails = True
-            GLSettings.memory_copy.disable_receiver_notification_emails = True
-        else:
-            GLSettings.memory_copy.disable_admin_notification_emails = notif.disable_admin_notification_emails
-            GLSettings.memory_copy.disable_admin_custodian_emails = notif.disable_custodian_notification_emails
-            GLSettings.memory_copy.disable_receiver_notification_emails = notif.disable_receiver_notification_emails
+    GLSettings.memory_copy.exception_email_address = notif.exception_email_address
+    GLSettings.memory_copy.exception_email_pgp_key_info = notif.exception_email_pgp_key_info
+    GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
+    GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
+    GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration
+    GLSettings.memory_copy.exception_email_pgp_key_status = notif.exception_email_pgp_key_status
 
-    except Exception as e:
-        raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
+    if GLSettings.disable_mail_notification:
+        GLSettings.memory_copy.disable_admin_notification_emails = True
+        GLSettings.memory_copy.disable_custodian_notification_emails = True
+        GLSettings.memory_copy.disable_receiver_notification_emails = True
+    else:
+        GLSettings.memory_copy.disable_admin_notification_emails = notif.disable_admin_notification_emails
+        GLSettings.memory_copy.disable_admin_custodian_emails = notif.disable_custodian_notification_emails
+        GLSettings.memory_copy.disable_receiver_notification_emails = notif.disable_receiver_notification_emails
 
 
 @transact_ro
@@ -315,3 +311,10 @@ def apply_cmdline_options(store):
     # return configured URL for the log/console output
     if node.hidden_service or node.public_site:
         GLSettings.configured_hosts = [node.hidden_service, node.public_site]
+
+
+@transact
+def update_version(store):
+    node = store.find(models.Node).one()
+    node.version = unicode(__version__)
+    node.version_db = unicode(DATABASE_VERSION)

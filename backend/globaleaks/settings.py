@@ -83,9 +83,6 @@ class GLSettingssClass(object):
 
         self.db_type = 'sqlite'
 
-        # Database version tracking
-        self.db_version = DATABASE_VERSION
-
         # debug defaults
         self.orm_debug = False
         self.log_requests_responses = -1

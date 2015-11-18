@@ -424,6 +424,9 @@ class Node(Model):
 
     This table represent the System-wide settings
     """
+    version = Unicode(default=unicode(__version__))
+    version_db = Unicode(default=unicode(DATABASE_VERSION))
+
     name = Unicode(validator=shorttext_v, default=u'')
 
     public_site = Unicode(validator=shorttext_v, default=u'')
