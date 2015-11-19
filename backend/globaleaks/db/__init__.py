@@ -126,8 +126,8 @@ def check_db_files():
             try:
                 migration.perform_version_update(db_version)
                 print "Migration completed with success!"
-            except Exception:
-                print "Migration failure :("
+            except Exception as exception:
+                print "Migration failure: %s" % exception
                 print "Verbose exception traceback:"
                 _, _, exc_traceback = sys.exc_info()
                 traceback.print_tb(exc_traceback)
