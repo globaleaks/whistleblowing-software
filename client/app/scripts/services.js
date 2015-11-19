@@ -141,7 +141,7 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
-        $rootScope.logout_performed = function() {
+        $rootScope.logout_performed = function(sessionExpired) {
           var role = self.role;
 
           self.clean();
