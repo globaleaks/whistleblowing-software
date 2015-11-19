@@ -23,7 +23,7 @@
     "grunt-istanbul": "0.6.1",
     "grunt-line-remover": "0.0.2",
     "grunt-manifest": "0.4.4",
-    "grunt-mocha-phantomjs": "2.0.0",
+    "grunt-mocha-phantomjs": "2.0.1",
     "grunt-mocha-test": "0.12.7",
     "grunt-protractor-coverage": "^0.2.15",
     "grunt-protractor-runner": "2.1.0",
@@ -34,7 +34,7 @@
     "mocha-phantomjs": "4.0.1",
     "node-gettext": "0.2.14",
     "phantomjs": "1.9.18",
-    "protractor": "2.5.1",
+    "protractor": "3.0.0",
     "should": "7.1.1",
     "superagent": "1.4.0",
     "supertest": "1.1.0"
