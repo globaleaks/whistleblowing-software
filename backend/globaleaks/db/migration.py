@@ -9,12 +9,11 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSettings
 
-from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.migrations.update_12 import Node_v_11, Context_v_11
 from globaleaks.db.migrations.update_13 import Node_v_12, Context_v_12
 from globaleaks.db.migrations.update_14 import Node_v_13, Context_v_13
 from globaleaks.db.migrations.update_15 import Node_v_14, User_v_14, Context_v_14, Receiver_v_14, \
-    InternalTip_v_14, Notification_v_14, Stats_v_14, Comment_v_14
+    InternalTip_v_14, Notification_v_14, Comment_v_14
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
 from globaleaks.db.migrations.update_18 import Node_v_17

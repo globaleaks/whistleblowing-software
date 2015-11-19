@@ -14,8 +14,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import anon_serialize_field, anon_serialize_step, \
-    get_public_context_list
+from globaleaks.handlers.node import anon_serialize_field, get_public_context_list
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
@@ -56,7 +55,7 @@ def associate_field(store, field, template=None, step=None, fieldgroup=None):
         fieldgroup.children.add(field)
 
 
-def disassociate_field(store, field):
+def disassociate_field(field):
     """
     Disassociate a field from the eventually associated step or fieldgroup
 
@@ -278,7 +277,7 @@ def db_update_field(store, field_id, field_dict, language):
                 c = db_update_field(store, child['id'], child, language)
 
                 # remove current step/field fieldgroup/field association
-                disassociate_field(store, c)
+                disassociate_field(c)
 
                 field.children.add(c)
 
@@ -300,7 +299,7 @@ def db_update_field(store, field_id, field_dict, language):
             field.update(partial_update)
 
         # remove current step/field fieldgroup/field association
-        disassociate_field(store, field)
+        disassociate_field(field)
 
         associate_field(store, field, template, step, fieldgroup)
     except Exception as dberror:

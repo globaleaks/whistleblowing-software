@@ -179,7 +179,7 @@ class MigrationScript(MigrationBase):
             if old_receiver.gpg_key_armor:
                 try:
                     gpg_key_expiration = gpgobj.load_key(old_receiver.gpg_key_armor)['expiration']
-                except:
+                except Exception:
                     pass
 
             for _, v in new_receiver._storm_columns.iteritems():

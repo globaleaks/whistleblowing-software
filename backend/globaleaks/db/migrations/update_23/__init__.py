@@ -8,7 +8,7 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import db_save_questionnaire_answers, \
     extract_answers_preview
-from globaleaks.models import Model, ArchivedSchema
+from globaleaks.models import Model
 from globaleaks.security import sha256, rstr
 from globaleaks.settings import GLSettings
 
@@ -142,14 +142,14 @@ class MigrationScript(MigrationBase):
             for x in self.store_old.find(self.model_from['Field']):
                 try:
                     if isinstance(x.label, dict):
-                        for k, v in x.label.iteritems():
+                        for _, v in x.label.iteritems():
                             if unicode(v).find(unicode(f['label'])) != -1:
                                 f['id'] = x.id
                                 break
                     elif unicode(x.label).find(unicode(f['label'])) != -1:
                         f['id'] = x.id
                         break
-                except:
+                except Exception:
                     pass
 
         return f['id']
@@ -170,7 +170,7 @@ class MigrationScript(MigrationBase):
                             answers[oid] = ovalue['value']
                         else:
                             answers[oid] = 'False'
-                except:
+                except Exception:
                     pass
         else:
             if 'value' in f:
@@ -343,7 +343,7 @@ class MigrationScript(MigrationBase):
                             db_update_fieldattr(self.store_new, old_obj.field_id, u'agreement_statement', {'name': u'agreement_statement', 'type': u'localized', 'value': value}, old_node.default_language)
                             skip_add = True
                         continue
-                except:
+                except Exception:
                     pass
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
