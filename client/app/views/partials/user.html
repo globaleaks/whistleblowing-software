@@ -12,15 +12,17 @@
           (<a data-ng-href="{{homepage}}">{{role}}</a>)
         </label>
       </span>
-     <span data-ng-if="role != 'whistleblower'">
+     <span id="PreferencesLinkBox" data-ng-if="role != 'whistleblower'">
        <span class="text-separator">|</span>
-       <span id="LoginPreferencesText">
-         <a data-ng-href="{{preferencespage}}" data-translate>Preferences</a>
+       <span>
+         <a id="PreferencesLink" data-ng-href="{{preferencespage}}" data-translate>Preferences</a>
        </span>
       </span>
-      <span class="text-separator">|</span>
-      <span id="LoginLogoutText">
-        <a href="" data-ng-click="logout()" data-translate>Logout</a>
+      <span id="LogoutLinkBox">
+        <span class="text-separator">|</span>
+        <span>
+          <a id="LogoutLink" href="" data-ng-click="logout()" data-translate>Logout</a>
+        </span>
       </span>
     </div>
     <div data-ng-show="showLoginForm() && !session_id" class="pull-right">
