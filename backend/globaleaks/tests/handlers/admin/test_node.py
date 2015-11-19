@@ -43,7 +43,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         for response_key in self.responses[0].keys():
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
-                                'version', 'receipt_example',
+                                'version', 'version_db',
                                 'configured', 'wizard_done']:
                 continue
 

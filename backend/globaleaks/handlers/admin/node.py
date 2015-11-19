@@ -34,7 +34,7 @@ def db_admin_serialize_node(store, language):
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
         'version': node.version,
-        'Version_db': node.version_db,
+        'version_db': node.version_db,
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': node.languages_enabled,
         'default_language': node.default_language,
