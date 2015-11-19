@@ -16,9 +16,8 @@ from globaleaks.db.appdata import db_init_appdata, load_default_fields
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors, requests
-from globaleaks.security import get_salt
+from globaleaks.security import get_salt, rstr
 from globaleaks.settings import GLSettings
-from globaleaks.third_party import rstr
 from globaleaks.utils.utility import log, datetime_null
 
 

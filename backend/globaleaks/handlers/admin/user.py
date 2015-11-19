@@ -17,7 +17,7 @@ from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.third_party import rstr
+from globaleaks.security import rstr
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 

@@ -15,9 +15,9 @@ from globaleaks.settings import GLSettings
 from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
+from globaleaks.security import rstr
 from globaleaks.utils import utility, tempobj
 from globaleaks.utils.utility import log
-from globaleaks.third_party import rstr
 
 # needed in order to allow UT override
 reactor_override = None

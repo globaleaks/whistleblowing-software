@@ -24,7 +24,11 @@ from tempfile import _TemporaryFileWrapper
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, datetime_to_day_str
 from globaleaks.settings import GLSettings
-from globaleaks.third_party.rstr import xeger
+
+
+from rstr import Rstr
+from random import SystemRandom
+rstr = Rstr(SystemRandom())
 
 
 SALT_LENGTH = (128 / 8)  # 128 bits of unique salt
@@ -143,12 +147,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         self.key = os.urandom(GLSettings.AES_key_size)
 
-        self.key_id = xeger(GLSettings.AES_key_id_regexp)
+        self.key_id = rstr.xeger(GLSettings.AES_key_id_regexp)
         self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
                                     (GLSettings.AES_keyfile_prefix, self.key_id))
 
         while os.path.isfile(self.keypath):
-            self.key_id = xeger(GLSettings.AES_key_id_regexp)
+            self.key_id = rstr.xeger(GLSettings.AES_key_id_regexp)
             self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
                                         (GLSettings.AES_keyfile_prefix, self.key_id))
 
@@ -370,7 +374,7 @@ class GLBPGP(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % xeger(r'[A-Za-z0-9]{8}'))
+            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % rstr.xeger(r'[A-Za-z0-9]{8}'))
             os.makedirs(temp_pgproot, mode=0700)
             self.pgph = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.pgph.encoding = "UTF-8"
@@ -453,7 +457,7 @@ class GLBPGP(object):
                    plainpath, len(str(encrypt_obj))))
 
         encrypted_path = os.path.join(os.path.abspath(output_path),
-                                      "pgp_encrypted-%s" % xeger(r'[A-Za-z0-9]{16}'))
+                                      "pgp_encrypted-%s" % rstr.xeger(r'[A-Za-z0-9]{16}'))
 
         try:
             with open(encrypted_path, "w+") as f:
