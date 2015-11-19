@@ -2,13 +2,13 @@
 
 import string
 
-from storm.expr import And, In
+from storm.expr import And
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.db.appdata import load_default_fields
 from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.models import BaseModel, Model
+from globaleaks.models import Model
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null
 
@@ -652,7 +652,7 @@ class MigrationScript(MigrationBase):
             for k in ['label', 'description', 'hint', 'multi_entry_hint']:
                 try:
                     f[k] = {language: f.get(k, '')}
-                except:
+                except Exception:
                     f[k] = {language: ''}
 
             f['attrs'] = {}
@@ -665,11 +665,7 @@ class MigrationScript(MigrationBase):
                         if 'name' in o['attrs']:
                             o['label'] = {language: o['attrs'].get('name', '')}
                             del o['attrs']
-                        #elif 'clause' in o['attrs']:
-                        #    f['attrs']['clause'] = {language: o['attrs'].get('clause', '')}
-                        #elif 'agreement_statement' in o['attrs']:
-                        #    f['attrs']['agreement_statement'] = {language: o['attrs'].get('agreement_statement', '')}
-                except:
+                except Exception:
                     pass
 
             for c in f.get('children', []):

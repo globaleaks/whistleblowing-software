@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
 import os
 
-from twisted.python import log
 from storm.exceptions import OperationalError
-from storm.locals import create_database, Store
+from storm.locals import Store
 from storm.properties import PropertyColumn
 from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVariable

@@ -9,13 +9,12 @@ import traceback
 from storm import exceptions
 
 from twisted.internet.defer import succeed, inlineCallbacks
-from twisted.internet.threads import deferToThreadPool
 
 from globaleaks import models,  __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_init_appdata, load_default_fields
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.security import get_salt, rstr
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
