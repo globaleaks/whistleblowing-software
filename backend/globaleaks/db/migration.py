@@ -115,7 +115,7 @@ def perform_version_update(version):
                 try:
                     migration_script.prologue()
                 except Exception as exception:
-                    print "Failure while executing migration prologue: %s " % excep.message
+                    print "Failure while executing migration prologue: %s " % exception
                     raise exception
 
                 for model_name, _ in migration_mapping.iteritems():
