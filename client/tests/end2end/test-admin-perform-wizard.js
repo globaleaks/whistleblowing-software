@@ -29,6 +29,9 @@ describe('globaLeaks setup wizard', function() {
     // Go to admin interface
     element(by.id('ButtonNext3')).click().then(function() {
       expect(browser.getLocationAbsUrl()).toContain('/admin/landing');
+      element(by.id('LogoutLink')).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toContain('/admin');
+      });
     });
   });
 });

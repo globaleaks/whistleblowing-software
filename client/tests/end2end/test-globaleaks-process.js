@@ -118,6 +118,9 @@ describe('globaLeaks process', function() {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         expect(browser.getLocationAbsUrl()).toContain('/status');
+        element(by.id('LogoutLink')).click().then(function() {
+          expect(browser.getLocationAbsUrl()).toContain('/');
+        });
       });
     });
   });
@@ -126,6 +129,9 @@ describe('globaLeaks process', function() {
   it('Whistleblower should be able to access the first submission', function() {
     login_whistleblower(receipts[0]).then(function() {
       expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+      element(by.id('LogoutLink')).click().then(function() {
+        expect(browser.getLocationAbsUrl()).toContain('/');
+      });
     });
   });
 
@@ -144,6 +150,9 @@ describe('globaLeaks process', function() {
         element(by.id('comment-action-send')).click().then(function() {
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
             expect(c).toContain(comment);
+            element(by.id('LogoutLink')).click().then(function() {
+              expect(browser.getLocationAbsUrl()).toContain('/login');
+            });
           });
         });
       });
@@ -170,6 +179,9 @@ describe('globaLeaks process', function() {
         browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
         element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
           // TODO: test file addition
+          element(by.id('LogoutLink')).click().then(function() {
+            expect(browser.getLocationAbsUrl()).toContain('/');
+          });
         });
       }
     });
@@ -181,6 +193,9 @@ describe('globaLeaks process', function() {
         element(by.id('tip-action-postpone')).click().then(function () {
           element(by.id('modal-action-ok')).click().then(function() {
             //TODO: check postpone
+            element(by.id('LogoutLink')).click().then(function() {
+              expect(browser.getLocationAbsUrl()).toContain('/login');
+            });
           });
         });
       });
@@ -207,6 +222,9 @@ describe('globaLeaks process', function() {
           element(by.id('modal-action-ok')).click().then(function() {
             expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
             //TODO: check postpone
+            element(by.id('LogoutLink')).click().then(function() {
+              expect(browser.getLocationAbsUrl()).toContain('/login');
+            });
           });
         });
       });

@@ -27,7 +27,6 @@ describe('adming configure node', function() {
       element(by.css('[data-ng-click="update(admin.notification)"]')).click().then(function() {
 
       });
-
     });
   });
 });

@@ -133,21 +133,22 @@ angular.module('GLServices', ['ngResource']).
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
           if (self.role === 'whistleblower') {
-            $http['delete']('receiptauth').then(self.logout_performed,
-                                                   self.logout_performed);
+            $http['delete']('receiptauth').then($rootScope.logout_performed,
+                                                $rootScope.logout_performed);
           } else {
-            $http['delete']('authentication').then(self.logout_performed,
-                                                   self.logout_performed);
+            $http['delete']('authentication').then($rootScope.logout_performed,
+                                                   $rootScope.logout_performed);
           }
         };
 
-        $rootScope.logout_performed = function(sessionExpired) {
+        $rootScope.logout_performed = function() {
           var role = self.role;
 
           self.clean();
 
           var source_path = $location.path();
           var redirect_path = self.getLoginUri(role, source_path);
+
           // Only redirect if we are not already on the login page
           if (source_path !== redirect_path) {
             $location.path(redirect_path);
