@@ -11,7 +11,7 @@ exports.config = {
     'tests/end2end/test-admin-perform-wizard.js',
     'tests/end2end/test-admin-login.js',
     'tests/end2end/test-admin-configure-node.js',
-    'tests/end2end/test-admin-configure-receivers.js',
+    'tests/end2end/test-admin-configure-users.js',
     'tests/end2end/test-admin-configure-contexts.js',
     'tests/end2end/test-receiver-first-login.js',
     'tests/end2end/test-globaleaks-process.js'
