@@ -21,9 +21,8 @@ from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
 from globaleaks.utils.token import TokenList
 from globaleaks.rest import errors, requests
-from globaleaks.security import hash_password, sha256
+from globaleaks.security import hash_password, sha256, rstr
 from globaleaks.settings import GLSettings
-from globaleaks.third_party import rstr
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
 

@@ -13,11 +13,10 @@ import os
 from globaleaks.anomaly import Alarm
 
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSettings
-from globaleaks.security import sha256
+from globaleaks.security import sha256, rstr
 
 
 # needed in order to allow UT override

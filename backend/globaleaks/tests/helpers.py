@@ -36,8 +36,7 @@ from globaleaks.handlers.submission import create_submission, serialize_usertip,
 from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile
-from globaleaks.third_party import rstr
+from globaleaks.security import GLSecureTemporaryFile, rstr
 from globaleaks.utils import token, mailutils
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import sum_dicts, datetime_null, datetime_now, log
