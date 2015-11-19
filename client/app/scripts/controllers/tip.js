@@ -239,8 +239,12 @@ GLClient.controller('TipOperationsCtrl',
     $modalInstance.close();
 
     if ($scope.operation === 'postpone') {
-      $scope.tip.operation = $scope.operation
-      $scope.tip.$update(function() {
+      var req = {
+        'operation': 'postpone',
+        'args': {}
+      };
+
+      return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function (response) {
         $route.reload();
       });
     } else if ($scope.operation === 'delete') {
