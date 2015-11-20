@@ -16,11 +16,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.4.7",
-    "angular-aria": "1.4.7",
-    "angular-filter": "0.5.7",
-    "angular-resource": "1.4.7",
-    "angular-route": "1.4.7",
+    "angular": "1.4.8",
+    "angular-aria": "1.4.8",
+    "angular-filter": "0.5.8",
+    "angular-resource": "1.4.8",
+    "angular-route": "1.4.8",
     "angular-translate": "2.8.1",
     "angular-translate-loader-url": "2.8.1",
     "angular-translate-loader-static-files": "2.8.1",
