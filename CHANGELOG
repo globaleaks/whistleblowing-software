@@ -1,3 +1,59 @@
+Changes in version 2.60.114 - 2015-10-20
+    o Implement Proof of Work based on the HashCash to improve protection from spam attacks
+    o Implement secure wiping of files upon deletion
+    o Integrate OpenPGP.js library
+    o Integrate the scrypt-async library
+    o Add possibility for admins to configure their PGP key for mail notifications
+    o Add possibility for configuring the title of the main application pages
+    o Split admin/user/custodian authentication from whistleblower authentication handler
+    o Add possibility for enabling the whistleblower to comment/message/file upload on a later stage of the submission
+    o Implement custodian of the whistleblower identities user
+    o Modularize currently implemente admin API handlers
+    o Implement hidden contexts and hidden submission urls
+    o Improve fields validators and their UI
+    o Improve detection of jobs malfunctions by monitoring their timing
+    o Improve detection of client malfunction by implementing secure exception notification to the backend with encrypted notifications for administrators
+    o Bugfix support for IE10
+    o Improve resiliency of migration script
+
+    The foollowing is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/799
+    - https://github.com/globaleaks/GlobaLeaks/issues/688
+    - https://github.com/globaleaks/GlobaLeaks/issues/1387
+    - https://github.com/globaleaks/GlobaLeaks/issues/908
+    - https://github.com/globaleaks/GlobaLeaks/issues/1399
+    - https://github.com/globaleaks/GlobaLeaks/issues/1432
+    - https://github.com/globaleaks/GlobaLeaks/issues/185
+    - https://github.com/globaleaks/GlobaLeaks/issues/1450
+    - https://github.com/globaleaks/GlobaLeaks/issues/1449
+    - https://github.com/globaleaks/GlobaLeaks/issues/1457
+    - https://github.com/globaleaks/GlobaLeaks/issues/1410
+    - https://github.com/globaleaks/GlobaLeaks/issues/1458
+    - https://github.com/globaleaks/GlobaLeaks/issues/1459
+    - https://github.com/globaleaks/GlobaLeaks/issues/1438
+    - https://github.com/globaleaks/GlobaLeaks/issues/678
+    - https://github.com/globaleaks/GlobaLeaks/issues/1462
+    - https://github.com/globaleaks/GlobaLeaks/issues/1463
+    - https://github.com/globaleaks/GlobaLeaks/issues/1464
+    - https://github.com/globaleaks/GlobaLeaks/issues/1191
+    - https://github.com/globaleaks/GlobaLeaks/issues/1402
+    - https://github.com/globaleaks/GlobaLeaks/issues/1456
+    - https://github.com/globaleaks/GlobaLeaks/issues/1438
+    - https://github.com/globaleaks/GlobaLeaks/issues/1466
+    - https://github.com/globaleaks/GlobaLeaks/issues/1340
+    - https://github.com/globaleaks/GlobaLeaks/issues/1044
+    - https://github.com/globaleaks/GlobaLeaks/issues/1156
+    - https://github.com/globaleaks/GlobaLeaks/issues/1158
+    - https://github.com/globaleaks/GlobaLeaks/issues/1215
+    - https://github.com/globaleaks/GlobaLeaks/issues/1463
+    - https://github.com/globaleaks/GlobaLeaks/issues/1341
+    - https://github.com/globaleaks/GlobaLeaks/issues/1461
+    - https://github.com/globaleaks/GlobaLeaks/issues/1483
+    - https://github.com/globaleaks/GlobaLeaks/issues/1478
+    - https://github.com/globaleaks/GlobaLeaks/issues/1480
+    - https://github.com/globaleaks/GlobaLeaks/issues/1487
+    - https://github.com/globaleaks/GlobaLeaks/issues/1488
+
 Changes in version 2.60.113 - 2015-10-22
     o Minor UI fixes
     o Packaging fixes
