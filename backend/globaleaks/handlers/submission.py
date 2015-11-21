@@ -30,7 +30,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetim
 def db_assign_submission_progressive(store):
     counter = store.find(models.Counter, models.Counter.key == u'submission_sequence').one()
     if not counter:
-        counter = models.Counter({'key': u'submission_sequence', 'counter': 1})
+        counter = models.Counter({'key': u'submission_sequence'})
         store.add(counter)
     else:
         now = datetime_now()
