@@ -1006,7 +1006,7 @@ class FieldAnswerGroupFieldAnswer(BaseModel):
 
 class Counter(Model):
     key = Unicode(validator=shorttext_v)
-    counter = Int(default=0)
+    counter = Int(default=1)
     update_date = DateTime(default_factory=datetime_now)
 
     unicode_keys = ['key']
