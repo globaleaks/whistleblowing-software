@@ -175,13 +175,9 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._token.id + '/file';
   };
 
-  $scope.fileupload_url = '';
-
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
-
-      $scope.fileupload_url = $scope.get_fileupload_url();
 
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
