@@ -1,4 +1,7 @@
-Changes in version 2.60.114 - 2015-10-20
+Changes in version 2.60.115 - 2015-10-22
+    o Packaging fixes
+
+Changes in version 2.60.114 - 2015-10-2hanges in version 2.60.114 - 2015-10-21
     o Implement Proof of Work based on the HashCash to improve protection from spam attacks
     o Implement secure wiping of files upon deletion
     o Integrate OpenPGP.js library
