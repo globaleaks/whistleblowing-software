@@ -96,6 +96,13 @@
   margin-top: 20px;
 }
 
+.dropdown-menu > li > a.separator,
+.dropdown-menu > li > a.separator:hover,
+.dropdown-menu > li > a.separator:focus
+{
+  background-color: #e5e5e5;
+}
+
 .stepEditorHeader, .fieldEditorHeader {
   padding: 20px;
 }
