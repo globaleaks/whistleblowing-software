@@ -11,7 +11,7 @@ usage() {
   echo -e " -n (do not sign)"
 }
 
-DISTRIBUTION="precise"
+DISTRIBUTION="trusty"
 TAG="master"
 NOSIGN=0
 
@@ -33,7 +33,8 @@ while getopts "d:nt:h" opt; do
   esac
 done
 
-if [ "$DISTRIBUTION" != "precise" ] &&
+if [ "$DISTRIBUTION" != "all" ] &&
+   [ "$DISTRIBUTION" != "precise" ] &&
    [ "$DISTRIBUTION" != "trusty" ] &&
    [ "$DISTRIBUTION" != "wheezy" ] &&
    [ "$DISTRIBUTION" != "jessie" ]; then
@@ -41,21 +42,33 @@ if [ "$DISTRIBUTION" != "precise" ] &&
  exit 1
 fi
 
-echo "Packaging GlobaLeaks for:" $DISTRIBUTION
-
-[ -d GLRelease ] && rm -rf GLRelease
-
-mkdir GLRelease
-cd GLRelease
-git clone https://github.com/globaleaks/GlobaLeaks.git
-cd GlobaLeaks
-git checkout $TAG
-rm debian/control
-ln -s control.$DISTRIBUTION debian/control
-sed -i "s/stable; urgency=/$DISTRIBUTION; urgency=/g" debian/changelog
-
-if [ $NOSIGN -eq 1 ]; then
-  debuild -i -us -uc -b
+if [ "$DISTRIBUTION" == "all" ]; then
+  TARGETS="precise trusty wheezy jessie"
 else
-  debuild
+  TARGETS=$DISTRIBUTION
 fi
+
+for TARGET in $TARGETS; do
+  echo "Packaging GlobaLeaks for:" $TARGET
+
+  BUILDDIR="GLRelease-$TARGET"
+
+  [ -d $BUILDDIR ] && rm -rf $BUILDDIR
+
+  mkdir $BUILDDIR
+  cd $BUILDDIR
+  git clone https://github.com/globaleaks/GlobaLeaks.git
+  cd GlobaLeaks
+  git checkout $TAG
+  rm debian/control
+  ln -s control.$TARGET debian/control
+  sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
+
+  if [ $NOSIGN -eq 1 ]; then
+    debuild -i -us -uc -b
+  else
+    debuild
+  fi
+
+  cd ../../
+done
