@@ -13,7 +13,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                collection, langfiles, css, wizard, \
+                                collection, langfiles, wizard, \
                                 base, user
 
 from globaleaks.handlers.admin.node import *
@@ -134,8 +134,6 @@ spec = [
     ## Special Files Handlers##
     (r'/(robots.txt)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler),
-    (r'/styles.css', css.LTRCSSFileHandler),
-    (r'/styles-rtl.css', css.RTLCSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 
