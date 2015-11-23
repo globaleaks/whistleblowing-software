@@ -256,8 +256,6 @@ class Token(TempObj):
             raise errors.TokenFailure("Token is no more valid.")
 
     def update(self, request):
-        self.validity_checks()
-
         error = False
 
         if self.human_captcha is not False:
