@@ -12,7 +12,6 @@ from twisted.python.failure import Failure
 from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
-from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log
 
 
@@ -60,7 +59,7 @@ class GLJob(task.LoopingCall):
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
-        self.monitor = ResourceMonitor(self)
+        self.monitor = JobMonitor(self)
 
     def stats_collection_start(self):
         self.start_time = time.time()
