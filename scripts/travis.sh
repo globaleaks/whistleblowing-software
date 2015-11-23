@@ -59,7 +59,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   cd $TRAVIS_BUILD_DIR
   ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
-  sudo cp GLRelease/globaleaks*deb /data/globaleaks/deb/
+  sudo cp GLRelease-trusty/globaleaks*deb /data/globaleaks/deb/
   set +e # avoid to fail in case of errors cause apparmor will always cause the failure
   sudo ./scripts/install.sh
   set -e # re-enable to fail in case of errors
