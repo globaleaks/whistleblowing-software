@@ -333,6 +333,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-inline-alt');
+  grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-mocha-phantomjs');
