@@ -28,7 +28,7 @@ from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
-from globaleaks.utils.utility import log, setDeferredTimeout
+from globaleaks.utils.utility import log
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLBPGP, sha256
 
@@ -145,8 +145,6 @@ def sendmail(to_address, subject, body):
 
         d = endpoint.connect(factory)
         d.addErrback(errback)
-
-        setDeferredTimeout(result_deferred, 90)
 
         return result_deferred
 

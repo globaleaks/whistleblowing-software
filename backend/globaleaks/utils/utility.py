@@ -505,17 +505,3 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
-
-
-def setDeferredTimeout(d, t):
-    """
-    This function enable to set a timeout on the deferred;
-    The timeout is automatically cancelled if the deferred fires
-    """
-    def tentative_cancel(d):
-        try:
-            d.cancel()
-        except:
-            pass
-
-    reactor.callLater(t, tentative_cancel, d)
