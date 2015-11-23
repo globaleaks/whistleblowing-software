@@ -62,6 +62,8 @@ data_files = [
      list_files(os.path.join(GLCLIENT_PATH, 'img'))),
     ('/usr/share/globaleaks/client/l10n',
      list_files(os.path.join(GLCLIENT_PATH, 'l10n'))),
+    ('/usr/share/globaleaks/client/scripts/crypto',
+     list_files(os.path.join(GLCLIENT_PATH, 'scripts/crypto'))),
     ('/usr/share/globaleaks/backend',
      ['requirements.txt'] + list_files('staticdata'))
 ]
