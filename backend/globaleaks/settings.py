@@ -448,7 +448,8 @@ class GLSettingssClass(object):
 
         self.start_clean = self.cmdline_options.start_clean
 
-        self.working_path = self.cmdline_options.working_path
+        if self.cmdline_options.working_path:
+            self.working_path = self.cmdline_options.working_path
 
         if self.cmdline_options.developer_name:
             print "Enabling Development Mode for %s" % \
