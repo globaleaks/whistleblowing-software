@@ -2,16 +2,26 @@
 
 set -e
 
-setupDependencies ()
+setupClientDependencies()
 {
-  cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
-  pip install -r requirements.txt
-  pip install coverage coveralls
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install -g grunt grunt-cli bower
   npm install
   grunt setupDependencies
   grunt build
+}
+
+setupBackendDependencies()
+{
+  cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
+  pip install -r requirements.txt
+  pip install coverage coveralls
+}
+
+setupDependencies()
+{
+  setupClientDependencies
+  setupBackendDependencies
 }
 
 if [ "$GLTEST" = "unit" ]; then
@@ -32,6 +42,8 @@ if [ "$GLTEST" = "unit" ]; then
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
   sleep 5
+
+  cd $TRAVIS_BUILD_DIR/client
   grunt end2end-coverage
 
   cd $TRAVIS_BUILD_DIR/backend
@@ -55,7 +67,10 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo sed -i 's/APPARMOR_SANDBOXING=1/APPARMOR_SANDBOXING=0/g' /etc/default/globaleaks
   sudo /etc/init.d/globaleaks restart
   sleep 5
-  curl 127.0.0.1:8082 | grep "GlobaLeaks"
+  setupClientDependencies
+  cd $TRAVIS_BUILD_DIR/client
+  ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+  grunt protractor:test
 
 elif [ "$GLTEST" = "browserchecks" ]; then
 
@@ -93,6 +108,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
   sleep 3
+  cd $TRAVIS_BUILD_DIR/client
   grunt protractor:saucelabs
 
 fi
