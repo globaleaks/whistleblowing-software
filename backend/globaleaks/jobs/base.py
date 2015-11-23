@@ -26,7 +26,9 @@ class JobMonitor(task.LoopingCall):
         self.monitor_time = monitor_time
 
         task.LoopingCall.__init__(self, self.tooMuch)
-        self.start(self.monitor_time, False)
+
+        if not GLSettings.testing:
+            self.start(self.monitor_time, False)
 
     def tooMuch(self):
         self.run += 1
