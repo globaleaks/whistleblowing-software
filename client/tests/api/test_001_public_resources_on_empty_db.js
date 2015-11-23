@@ -22,7 +22,17 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/scripts.js',
+    'url': '/index.js',
+    'type': 'application/javascript',
+    'status': 200
+  },
+  {
+    'url': '/app.html',
+    'type': 'text/html',
+    'status': 200
+  },
+  {
+    'url': '/app.js',
     'type': 'application/javascript',
     'status': 200
   },
