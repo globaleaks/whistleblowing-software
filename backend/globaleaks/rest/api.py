@@ -132,7 +132,6 @@ spec = [
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##
-    (r'/(favicon.ico)', base.BaseStaticFileHandler),
     (r'/(robots.txt)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler),
     (r'/styles.css', css.LTRCSSFileHandler),

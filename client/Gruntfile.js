@@ -36,6 +36,23 @@ module.exports = function(grunt) {
       }
     },
 
+    inline: {
+      index_html: {
+        options:{
+          tag: 'inline'
+        },
+        src: 'tmp/index.html',
+        dest: 'tmp/index.html'
+      },
+      app_html: {
+        options:{
+          tag: 'inline'
+        },
+        src: 'tmp/app.html',
+        dest: 'tmp/app.html'
+      }
+    },
+
     clean: {
       build: ['tmp', 'build']
     },
@@ -80,7 +97,7 @@ module.exports = function(grunt) {
             expand: true,
             flatten: true,
             cwd: './',
-            src: 'build/loader.js',
+            src: 'build/app.js',
             dest: 'tests/loader'
           }
         ]
@@ -90,7 +107,7 @@ module.exports = function(grunt) {
     useminPrepare: {
       html: [
         'tmp/index.html',
-        'tmp/globaleaks.html',
+        'tmp/app.html',
       ],
       options: {
         dest: 'tmp',
@@ -106,28 +123,12 @@ module.exports = function(grunt) {
 
     usemin: {
       html: [
-        'tmp/views/**/*.html',
         'tmp/index.html',
+        'tmp/app.html',
+        'tmp/views/**/*.html'
       ],
       options: {
         dirs: ['tmp']
-      }
-    },
-
-    cssmin: {
-      combine: {
-        files: {
-          'tmp/styles-rtl.css': [
-            'tmp/components/bootstrap/dist/css/bootstrap.css',
-            'tmp/components/bootstrap-rtl/dist/css/bootstrap-rtl.css',
-            'tmp/components/ng-sortable/dist/ng-sortable.css',
-            'tmp/styles/main.css',
-            'tmp/styles/admin.css',
-            'tmp/styles/home.css',
-            'tmp/styles/submission.css',
-            'tmp/styles/rtl.css'
-          ]
-        }
       }
     },
 
@@ -255,21 +256,17 @@ module.exports = function(grunt) {
     'string-replace': {
       inline: {
         files: {
-          'tmp/index.html': 'tmp/index.html',
+          'tmp/app.html': 'tmp/app.html',
         },
         options: {
           replacements: [
             {
-              pattern: '<link rel="stylesheet" href="styles.css">',
-              replacement: '<link rel="stylesheet" data-ng-href="{{ build_stylesheet }}" href="styles.css">'
+              pattern: '<link rel="stylesheet" href="app.css" />',
+              replacement: '<link rel="stylesheet" href="app.css?inline" />'
             },
             {
-              pattern: '<script src="scripts.js"></script>',
-              replacement: ''
-            },
-            {
-              pattern: '<!-- start_globaleaks(); -->',
-              replacement: 'start_globaleaks();'
+              pattern: '<script src="app.js"></script>',
+              replacement: '<script src="app.js?inline"></script>'
             }
           ]
         }
@@ -335,6 +332,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-inline-alt');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-mocha-phantomjs');
@@ -396,9 +394,9 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['globaleaks.html', 'index.html', 'loader.js', 'styles.css', 'styles-rtl.css', 'scripts.js']
+    var files = ['index.html', 'index.js', 'app.html', 'app.css', 'app.js']
     for (var x in files) {
-        grunt.file.copy('tmp/' + files[x], 'build/' + files[x])
+      grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
 
     var dirs = ['data', 'l10n', 'scripts']
@@ -674,7 +672,7 @@ module.exports = function(grunt) {
       }
     };
 
-    extractPOFromHTMLFile('app/globaleaks.html');
+    extractPOFromHTMLFile('app/app.html');
 
     /* Extract strings view file used to anticipate strings on transifex */
     extractPOFromHTMLFile('app/translations.html');
@@ -871,7 +869,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline:index_html', 'inline:app_html', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('test-loader', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-loader-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);

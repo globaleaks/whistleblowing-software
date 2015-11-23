@@ -22,6 +22,7 @@
     "grunt-css": "0.5.4",
     "grunt-istanbul": "0.6.1",
     "grunt-line-remover": "0.0.2",
+    "grunt-inline-alt": "0.3.10",
     "grunt-manifest": "0.4.4",
     "grunt-mocha-phantomjs": "2.0.1",
     "grunt-mocha-test": "0.12.7",

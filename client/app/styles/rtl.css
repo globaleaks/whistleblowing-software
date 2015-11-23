@@ -1,70 +1,59 @@
-/* Overrides to main.css */
-#PrivacyBadgeTextBox {
+[dir="rtl"] #PrivacyBadgeTextBox {
   text-align: right;
 }
 
-#HeaderBoxContentLeft {
+[dir="rtl"] #HeaderBoxContentLeft {
   float: right;
 }
 
-#HeaderBoxContentRight {
+[dir="rtl"] #HeaderBoxContentRight {
   float: left;
 }
 
-#LogoBox {
+[dir="rtl"] #LogoBox {
   float: right;
 }
 
-#TitleBox {
+[dir="rtl"] #TitleBox {
   float: right;
 }
 
-.LoginErrorBox {
+[dir="rtl"] .LoginErrorBox {
   text-align: right;
 }
 
-/* Overrides to submission.css */
-#KeyCodeHintBox {
+[dir="rtl"] #KeyCodeHintBox {
   margin-left: 0;
   margin-right: 30px;
   box-shadow: -2px 1px 5px #888888;
 }
 
-#KeyCodeHintBox:after {
+[dir="rtl"] #KeyCodeHintBox:after {
   border-width: 15px 0 15px 15px;
   left: none;
   right: -15px;
 }
 
-#StepNavBar, .SubmissionNavButton {
+[dir="rtl"] #StepNavBar, [dir="rtl"] .SubmissionNavButton {
   margin-left: 10px;
   margin-right: 0px;
 }
 
-/* Fix to bootstrap-rtl /*/
-.pull-left {
-  float: right !important;
-}
-
-.pull-right {
-  float: left !important;
-}
-
-.nested {
+[dir="rtl"] .nested {
   padding-right: 15px;
   padding-left: 0;
 }
 
-.label-as-badge {
+[dir="rtl"] .label-as-badge {
   margin-left: 3px;
   margin-right: 0px;
   border-radius: 1em;
 }
 
-.text-align-left {
+[dir="rtl"] .text-align-left {
   text-align: right;
 }
 
-.text-align-right {
+[dir="rtl"] .text-align-right {
   text-align: left;
 }
