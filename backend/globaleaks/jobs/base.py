@@ -59,9 +59,10 @@ class GLJob(task.LoopingCall):
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
-        self.monitor = JobMonitor(self)
 
     def stats_collection_start(self):
+        self.monitor = JobMonitor(self)
+
         self.start_time = time.time()
 
         if self.mean_time != -1:
