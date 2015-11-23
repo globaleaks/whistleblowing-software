@@ -11,12 +11,41 @@ from twisted.python.failure import Failure
 
 from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import mail_exception_handler
+from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.monitor import ResourceMonitor
 from globaleaks.utils.utility import log
 
 
-JOB_MONITOR_TIME = 5 * 60 # seconds
+DEFAULT_JOB_MONITOR_TIME = 5 * 60 # seconds
+
+
+class JobMonitor(task.LoopingCall):
+    run = 0
+
+    def __init__(self, job, monitor_time=DEFAULT_JOB_MONITOR_TIME):
+        self.job = job
+        self.monitor_time = monitor_time
+
+        task.LoopingCall.__init__(self, self.tooMuch)
+        self.start(self.monitor_time, False)
+
+    def tooMuch(self):
+        self.run += 1
+
+        self.elapsed_time = self.monitor_time * self.run
+
+        if (self.elapsed_time > 3600):
+            hours = int(self.elapsed_time / 3600)
+            error = "Warning: [%s] is taking more than %d hours to execute; killing it." % (self.job.name, hours)
+            self.job.stop()
+        if (self.elapsed_time > 60):
+            minutes = int(self.elapsed_time / 60)
+            error = "Warning: [%s] is taking more than %d minutes to execute" % (self.job.name, minutes)
+        else:
+            error = "Warning: [%s] is taking more than %d seconds to execute" % (self.job.name, self.elapsed_time)
+
+        log.err(error)
+        send_exception_email(error, mail_reason="Job Time Exceeded")
 
 
 class GLJob(task.LoopingCall):
@@ -31,10 +60,9 @@ class GLJob(task.LoopingCall):
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
+        self.monitor = ResourceMonitor(self)
 
     def stats_collection_start(self):
-        self.monitor = ResourceMonitor(("[Job %s]" % self.name), JOB_MONITOR_TIME)
-
         self.start_time = time.time()
 
         if self.mean_time != -1:
