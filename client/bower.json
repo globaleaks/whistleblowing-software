@@ -24,10 +24,10 @@
     "angular-translate": "2.8.1",
     "angular-translate-loader-url": "2.8.1",
     "angular-translate-loader-static-files": "2.8.1",
-    "angular-ui-bootstrap-bower": "~0.13.3",
+    "angular-ui-bootstrap-bower": "~0.14.3",
     "bowser": "1.0.0",
-    "bootstrap": "3.3.5",
-    "bootstrap-rtl": "~3.3.4",
+    "bootstrap": "3.3.4",
+    "bootstrap-rtl-ondemand": "3.3.4-ondemand",
     "d3": "3.5.9",
     "FileSaver.js": "0.0.2",
     "jquery": "2.1.4",
@@ -39,6 +39,7 @@
     "stacktrace-js": "1.0.1"
   },
   "resolutions": {
-    "bootstrap": "3.3.5"
+    "bootstrap": "3.3.5",
+    "angular-ui-bootstrap-bower": "~0.14.3"
   }
 }

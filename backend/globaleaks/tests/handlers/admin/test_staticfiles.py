@@ -113,7 +113,6 @@ class TestStaticFileList(helpers.TestHandler):
     # default files not filtered from get(/) handler
     default_files = [
         'globaleaks_logo.png',
-        'favicon.ico',
         'robots.txt',
         'default-profile-picture.png',
         'custom_stylesheet.css'

@@ -281,10 +281,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           if (["ar", "he", "ur"].indexOf(language) !== -1) {
             $scope.rtl = true;
-            $scope.build_stylesheet = "styles-rtl.css";
+            alert($scope.rtl);
+            document.getElementsByTagName("html")[0].setAttribute('dir', 'rtl');
           } else {
             $scope.rtl = false;
-            $scope.build_stylesheet = "styles.css";
+            document.getElementsByTagName("html")[0].setAttribute('dir', 'ltr');
           }
 
           $translate.use($rootScope.language);

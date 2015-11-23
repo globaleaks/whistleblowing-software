@@ -28,3 +28,24 @@ var isBrowserCompatible = function() {
 
   return true;
 };
+
+function httpGetAsync(theUrl, callback) {
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.onreadystatechange = function() {
+  if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+    callback(xmlHttp.responseText);
+  }
+  xmlHttp.open("GET", theUrl, true); // true for asynchronous
+  xmlHttp.send(null);
+}
+
+if (isBrowserCompatible()) {
+  httpGetAsync("/app.html", function(data) {
+    document.open();
+    document.write(data);
+    document.close();
+  });
+} else {
+  document.getElementById("LoaderBox").style.display = "none";
+  document.getElementById("error_unsupported_browser").style.display = "block";
+}
