@@ -43,13 +43,6 @@ module.exports = function(grunt) {
         },
         src: 'tmp/index.html',
         dest: 'tmp/index.html'
-      },
-      app_html: {
-        options:{
-          tag: 'inline'
-        },
-        src: 'tmp/app.html',
-        dest: 'tmp/app.html'
       }
     },
 
@@ -256,17 +249,21 @@ module.exports = function(grunt) {
     'string-replace': {
       inline: {
         files: {
-          'tmp/app.html': 'tmp/app.html',
+          'tmp/index.html': 'tmp/index.html',
         },
         options: {
           replacements: [
             {
-              pattern: '<link rel="stylesheet" href="app.css" />',
+              pattern: '<link rel="stylesheet" href="app.css">',
               replacement: '<link rel="stylesheet" href="app.css?inline" />'
             },
             {
               pattern: '<script src="app.js"></script>',
-              replacement: '<script src="app.js?inline"></script>'
+              replacement: ''
+            },
+            {
+              pattern: '<!-- start_globaleaks(); -->',
+              replacement: 'start_globaleaks();'
             }
           ]
         }
@@ -870,7 +867,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline:index_html', 'inline:app_html', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline:index_html', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('test-loader', ['copy:unittests', 'mocha_phantomjs']);
   grunt.registerTask('test-loader-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
