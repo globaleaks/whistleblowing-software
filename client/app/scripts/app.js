@@ -13,7 +13,6 @@ var GLClient = angular.module('GLClient', [
   ]).
   config(['$compileProvider', '$httpProvider', '$routeProvider', '$translateProvider', '$uibTooltipProvider',
     function($compileProvider, $httpProvider, $routeProvider, $translateProvider, $uibTooltipProvider) {
-
     $compileProvider.debugInfoEnabled(false);
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
@@ -229,41 +228,7 @@ var GLClient = angular.module('GLClient', [
      }
    }
 }]).
-  config(exceptionConfig).
-  run(['$http', '$rootScope', '$location', function ($http, $rootScope, $location) {
-    $rootScope.successes = [];
-    $rootScope.errors = [];
-    $rootScope.loginInProgress = false;
-
-    // register listener to watch route changes
-    $rootScope.$on("$routeChangeStart", function(event, next, current) {
-      var path = $location.path();
-      var embedded = '/embedded/';
-
-      if (path.substr(0, embedded.length) === embedded) {
-        $rootScope.embedded = true;
-        var search = $location.search();
-        if (Object.keys(search).length === 0) {
-          $location.path(path.replace("/embedded/", "/"));
-          $location.search("embedded=true");
-        } else {
-          $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
-        }
-      }
-    });
-
-    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-        if (current.$$route) {
-          $rootScope.successes = [];
-          $rootScope.errors = [];
-          $rootScope.header_title = current.$$route.header_title;
-          $rootScope.header_subtitle = current.$$route.header_subtitle;
-        }
-    });
-
-    $rootScope.anonymous = false;
-    $rootScope.embedded = false;
-}]);
+  config(exceptionConfig);
 
 exceptionConfig.$inject = ['$provide'];
 
