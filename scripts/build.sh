@@ -48,6 +48,19 @@ else
   TARGETS=$DISTRIBUTION
 fi
 
+BUILDSRC="GLRelease"
+[ -d $BUILDSRC ] && rm -rf $BUILDSRC
+mkdir $BUILDSRC && cd $BUILDSRC
+git clone https://github.com/globaleaks/GlobaLeaks.git
+cd GlobaLeaks
+git checkout $TAG
+cd client
+npm install grunt-cli
+npm install
+grunt setupDependencies
+grunt build
+cd ../../../
+
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET
 
@@ -55,11 +68,8 @@ for TARGET in $TARGETS; do
 
   [ -d $BUILDDIR ] && rm -rf $BUILDDIR
 
-  mkdir $BUILDDIR
-  cd $BUILDDIR
-  git clone https://github.com/globaleaks/GlobaLeaks.git
-  cd GlobaLeaks
-  git checkout $TAG
+  cp -r $BUILDSRC $BUILDDIR
+  cd $BUILDDIR/GlobaLeaks
   rm debian/control
   ln -s control.$TARGET debian/control
   sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
