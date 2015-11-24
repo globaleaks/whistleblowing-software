@@ -12,15 +12,15 @@
     },
     "title_of_confirmation_question_upon_negative_answer": {
       "type": "localized",
-      "value": ""
+      "value": {}
     },
     "text_of_confirmation_question_upon_negative_answer": {
       "type": "localized",
-      "value": ""
+      "value": {}
     },
     "text_of_final_statement_upon_negative_answer": {
       "type": "localized",
-      "value": ""
+      "value": {}
     }
   },
   "id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
