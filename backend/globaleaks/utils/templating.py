@@ -49,25 +49,25 @@ class Keyword(object):
         self.receiver = receiver_desc
 
     def NodeName(self):
-        return self.node['name']
+        return self.node.get('name', '')
 
     def HiddenService(self):
-        return self.node['hidden_service']
+        return self.node.get('hidden_service', '')
 
     def PublicSite(self):
-        return self.node['public_site']
+        return self.node.get('public_site', '')
 
     def RecipientName(self):
-        return self.receiver['name']
+        return self.receiver.get('name', '')
 
     def ContextName(self):
-        return self.context['name']
+        return self.context.get('name', '')
 
     def NodeSignature(self):
         # FIXME currently the NodeSignature is mapped on node name;
         # in future we could evaluate to introduce a different
         # variable to permit better customizations.
-        return self.node['name']
+        return self.node.get('name', '')
 
 class TipKeyword(Keyword):
     tip_keywords = [
@@ -91,8 +91,8 @@ class TipKeyword(Keyword):
         self.tip = tip_desc
 
     def TipTorURL(self):
-        if len(self.node['hidden_service']):
-            retstr = '%s/#/status/%s' % (self.node['hidden_service'], self.tip['id'])
+        if len(self.node.get('hidden_service', '')):
+            retstr = '%s/#/status/%s' % (self.node.get('hidden_service', ''), self.tip.get('id'))
         else:
             retstr = '[NOT CONFIGURED]'
         return retstr
@@ -106,8 +106,8 @@ class TipKeyword(Keyword):
         """
         if not GLSettings.memory_copy.tor2web_access['receiver']:
             retstr = "DISABLED"
-        elif len(self.node['public_site']):
-            retstr =  '%s/#/status/%s' % ( self.node['public_site'], self.tip['id'] )
+        elif len(self.node.get(['public_site'], '')):
+            retstr =  '%s/#/status/%s' % ( self.node.get('public_site', ''), self.tip.get('id', ''))
         else:
             retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)!'
 
@@ -120,20 +120,20 @@ class TipKeyword(Keyword):
         return self.TipT2WURL()
 
     def TipNum(self):
-        return "[%s-%d] " % ((ISO8601_to_datetime(self.tip['creation_date'])).strftime("%Y%m%d"), self.tip['progressive'])
+        return "[%s-%d] " % ((ISO8601_to_datetime(self.tip.get('creation_date', ''))).strftime("%Y%m%d"), self.tip.get('progressive', ''))
 
     def TipLabel(self):
-        return "[" + self.tip['label'] + "] " if self.tip['label'] != '' else ""
+        return "[" + self.tip.get('label', '') + "] " if self.tip('label', '') != '' else ""
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.tip['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.tip.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
-        return ISO8601_to_day_str(self.tip['expiration_date'], float(self.receiver['timezone']))
+        return ISO8601_to_day_str(self.tip.get('expiration_date', ''), float(self.receiver.get('timezone', '')))
 
     def ExpirationWatch(self):
-        missing_time = ISO8601_to_datetime(self.tip['expiration_date']) - datetime_now()
+        missing_time = ISO8601_to_datetime(self.tip.get('expiration_date')) - datetime_now()
         missing_hours = int(divmod(missing_time.total_seconds(), 3600)[0])
         return unicode(missing_hours)
 
@@ -153,7 +153,7 @@ class CommentKeyword(TipKeyword):
         return self.comment['type']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.comment['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.comment.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
 
 
 class MessageKeyword(TipKeyword):
@@ -171,10 +171,10 @@ class MessageKeyword(TipKeyword):
         self.message = message_desc
 
     def MessageSource(self):
-        return self.message['author']
+        return self.message.get(['author'], '')
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.message['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.message.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
 
 
 class FileKeyword(TipKeyword):
@@ -194,16 +194,16 @@ class FileKeyword(TipKeyword):
         self.file = file_desc
 
     def FileName(self):
-        return self.file['name']
+        return self.file.get('name', '')
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.file['creation_date'], float(self.receiver['timezone']))
+        return ISO8601_to_pretty_str(self.file.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
 
     def FileSize(self):
-        return self.file['size']
+        return self.file.get('size', 0)
 
     def FileType(self):
-        return self.file['content_type']
+        return self.file.get('content_type', '')
 
 
 class ArchiveDescription(TipKeyword):
@@ -222,13 +222,13 @@ class ArchiveDescription(TipKeyword):
         self.archive = archive_desc
 
     def FileList(self):
-        return dump_file_list(self.archive['files'], self.archive['file_counter'])
+        return dump_file_list(self.archive.get('files', []), self.archive.get('file_counter', 0))
 
     def FilesNumber(self):
-        return str(self.archive['file_counter'])
+        return str(self.archive.get('file_counter', 0))
 
     def TotalSize(self):
-        return str(self.archive['total_size'])
+        return str(self.archive.get('total_size', 0))
 
 
 class PingMailKeyword(Keyword):
@@ -246,8 +246,8 @@ class PingMailKeyword(Keyword):
 
         self.keyword_list += PingMailKeyword.ping_mail_keywords
 
-        self.name = receiver_desc['name']
-        self.counter = ping_desc['counter']
+        self.name = receiver_desc.get('name', '')
+        self.counter = ping_desc.get('counter', 0)
 
     def RecipientName(self):
         return str(self.name)
@@ -270,15 +270,16 @@ class AdminPGPAlertKeyword(Keyword):
 
     def PGPKeyInfoList(self):
         ret = ""
-        for r in self.alert['expired_or_expiring']:
-            if r['pgp_key_fingerprint']:
-                key = r['pgp_key_fingerprint'][:7]
+        for r in self.alert.get('expired_or_expiring', []):
+            fingerprint = r.get('pgp_key_fingerprint', None)
+            if fingerprint is not None:
+                key = fingerprint[:7]
             else:
                 key = ""
 
-            ret += "\t%s, %s (%s)\n" % (r['name'],
-                                    key,
-                                    ISO8601_to_day_str(r['pgp_key_expiration']))
+            ret += "\t%s, %s (%s)\n" % (r.get('name', ''),
+                                        key,
+                                        ISO8601_to_day_str(r.get('pgp_key_expiration', '')))
         return ret
 
 
@@ -293,12 +294,15 @@ class PGPAlertKeyword(Keyword):
         self.keyword_list += PGPAlertKeyword.pgp_alert_keywords
 
     def PGPKeyInfo(self):
-        if self.receiver['pgp_key_fingerprint']:
-            key = self.receiver['pgp_key_fingerprint'][:7]
+        fingerprint = self.receiver.get('pgp_key_fingerprint', None)
+        if fingerprint is not None:
+            key = fingerprint[:7]
         else:
             key = ""
 
-        return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.receiver['pgp_key_expiration']))
+        return "\t0x%s (%s)" % (key,
+                                ISO8601_to_day_str(self.receiver.get('pgp_key_expiration', '')))
+
 
 class ReceiverKeyword(Keyword):
     """
