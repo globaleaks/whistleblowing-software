@@ -106,7 +106,7 @@ class TipKeyword(Keyword):
         """
         if not GLSettings.memory_copy.tor2web_access['receiver']:
             retstr = "DISABLED"
-        elif len(self.node.get(['public_site'], '')):
+        elif len(self.node.get('public_site', '')):
             retstr =  '%s/#/status/%s' % ( self.node.get('public_site', ''), self.tip.get('id', ''))
         else:
             retstr = 'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)!'
@@ -171,7 +171,7 @@ class MessageKeyword(TipKeyword):
         self.message = message_desc
 
     def MessageSource(self):
-        return self.message.get(['author'], '')
+        return self.message.get('author', '')
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.message.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
