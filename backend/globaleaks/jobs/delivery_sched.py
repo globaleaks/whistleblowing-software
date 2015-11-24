@@ -214,7 +214,6 @@ def process_files(receiverfiles_maps):
 
 @transact
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
-
     for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
         try:
             ifile = store.find(InternalFile,

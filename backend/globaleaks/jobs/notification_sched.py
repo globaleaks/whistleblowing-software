@@ -257,6 +257,3 @@ class NotificationSchedule(GLJob):
         file_mngs = yield FileEventLogger().process_events()
         if file_mngs == -1:
             Alarm.stress_levels['notification'].append('File')
-
-
-
