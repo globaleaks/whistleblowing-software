@@ -123,7 +123,7 @@ class TipKeyword(Keyword):
         return "[%s-%d] " % ((ISO8601_to_datetime(self.tip.get('creation_date', ''))).strftime("%Y%m%d"), self.tip.get('progressive', ''))
 
     def TipLabel(self):
-        return "[" + self.tip.get('label', '') + "] " if self.tip('label', '') != '' else ""
+        return "[" + self.tip.get('label', '') + "] " if self.tip.get('label', '') != '' else ""
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.tip.get('creation_date', ''), float(self.receiver.get('timezone', 0)))
