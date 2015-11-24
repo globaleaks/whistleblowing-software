@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl',
-  ['$scope', '$modal', 'AdminContextResource',
-  function($scope, $modal, AdminContextResource) {
+  ['$scope', '$uibModal', 'AdminContextResource',
+  function($scope, $uibModal, AdminContextResource) {
 
   $scope.save_context = function (context, cb) {
     var updated_context = new AdminContextResource(context);
@@ -45,7 +45,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.contextDeleteDialog = function(context){
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
         templateUrl:  'views/partials/context_delete.html',
         controller: 'ConfirmableDialogCtrl',
         resolve: {

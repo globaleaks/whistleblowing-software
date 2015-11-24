@@ -5,8 +5,8 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
 }]);
 
 
-GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$modal', 'ReceiverTips',
-  function($scope, $http, $route, $location, $modal, ReceiverTips) {
+GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'ReceiverTips',
+  function($scope, $http, $route, $location, $uibModal, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
 
   $scope.selected_tips = [];
@@ -36,7 +36,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   }
 
   $scope.tip_delete_all = function () {
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_delete_selected.html',
       controller: TipBulkOperationsCtrl,
       resolve: {
@@ -51,7 +51,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 
   $scope.tip_postpone_all = function () {
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_postpone_selected.html',
       controller: TipBulkOperationsCtrl,
       resolve: {
@@ -66,17 +66,17 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]);
 
-TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $modalInstance, selected_tips, operation) {
+TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
+                        function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 
   $scope.cancel = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
   };
 
   $scope.ok = function () {
-     $modalInstance.close();
+     $uibModalInstance.close();
 
     if (['postpone', 'delete'].indexOf(operation) === -1) {
       return;

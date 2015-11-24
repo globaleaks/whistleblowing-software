@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$modal', '$http', '$filter', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $modal, $http, $filter, Authentication, RTip, WBTip, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', '$filter', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, $filter, Authentication, RTip, WBTip, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.target_file = '#';
@@ -183,7 +183,7 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.tip_delete = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/tip_operation_delete.html',
         controller: 'TipOperationsCtrl',
         resolve: {
@@ -198,7 +198,7 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.tip_postpone = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/tip_operation_postpone.html',
         controller: 'TipOperationsCtrl',
         resolve: {
@@ -213,7 +213,7 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.file_identity_access_request = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/tip_operation_file_identity_access_request.html',
         controller: 'IdentityAccessRequestCtrl',
         resolve: {
@@ -226,17 +226,17 @@ GLClient.controller('TipCtrl',
 }]);
 
 GLClient.controller('TipOperationsCtrl',
-  ['$scope', '$http', '$route', '$location', '$modalInstance', 'RTip', 'tip', 'operation',
-   function ($scope, $http, $route, $location, $modalInstance, Tip, tip, operation) {
+  ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'RTip', 'tip', 'operation',
+   function ($scope, $http, $route, $location, $uibModalInstance, Tip, tip, operation) {
   $scope.tip = tip;
   $scope.operation = operation;
 
   $scope.cancel = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
   };
 
   $scope.ok = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
 
     if ($scope.operation === 'postpone') {
       var req = {
@@ -258,16 +258,16 @@ GLClient.controller('TipOperationsCtrl',
 }]);
 
 GLClient.controller('IdentityAccessRequestCtrl', 
-  ['$scope', '$http', '$route', '$modalInstance', 'tip',
-   function ($scope, $http, $route, $modalInstance, tip) {
+  ['$scope', '$http', '$route', '$uibModalInstance', 'tip',
+   function ($scope, $http, $route, $uibModalInstance, tip) {
   $scope.tip = tip;
 
   $scope.cancel = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
   };
 
   $scope.ok = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
 
     return $http.post('/rtip/' + tip.id + '/identityaccessrequests', {'request_motivation': $scope.request_motivation}).
         success(function(data, status, headers, config){

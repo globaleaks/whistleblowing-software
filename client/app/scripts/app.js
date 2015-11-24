@@ -11,8 +11,8 @@ var GLClient = angular.module('GLClient', [
     'GLDirectives',
     'GLFilters'
   ]).
-  config(['$compileProvider', '$httpProvider', '$routeProvider', '$translateProvider', '$tooltipProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $translateProvider, $tooltipProvider) {
+  config(['$compileProvider', '$httpProvider', '$routeProvider', '$translateProvider', '$uibTooltipProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $translateProvider, $uibTooltipProvider) {
 
     $compileProvider.debugInfoEnabled(false);
 
@@ -203,7 +203,7 @@ var GLClient = angular.module('GLClient', [
 
       $translateProvider.useSanitizeValueStrategy('escape');
 
-      $tooltipProvider.options({appendToBody: true});
+      $uibTooltipProvider.options({appendToBody: true});
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {

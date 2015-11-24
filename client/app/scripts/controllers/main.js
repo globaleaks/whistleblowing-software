@@ -1,5 +1,5 @@
-GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$modal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
-  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $modal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
     $scope.started = false;
     $scope.rtl = false;
     $scope.logo = 'static/globaleaks_logo.png';
@@ -95,7 +95,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.intro_opened = true;
       }
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/intro.html',
         controller: 'IntroCtrl',
         size: 'lg',
@@ -465,7 +465,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 ]);
 
 GLClient.controller('ModalCtrl', ['$scope', 
-  function($scope, $modalInstance, error) {
+  function($scope, $uibModalInstance, error) {
     $scope.error = error;
     $scope.seconds = error.arguments[0];
 }]);
@@ -474,21 +474,21 @@ TabCtrl = ['$scope', function($scope) {
   /* Empty controller function used to implement TAB pages */
 }];
 
-GLClient.controller('DisableEncryptionCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance){
+GLClient.controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     $scope.close = function() {
-      $modalInstance.close(false);
+      $uibModalInstance.close(false);
     };
 
     $scope.no = function() {
-      $modalInstance.close(false);
+      $uibModalInstance.close(false);
     };
     $scope.ok = function() {
-      $modalInstance.close(true);
+      $uibModalInstance.close(true);
     };
 
 }]);
 
-GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', function ($scope, $rootScope, $modalInstance) {
+GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
   var steps = 3;
 
   var first_step = 0;
@@ -512,7 +512,7 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
   };
 
   $scope.cancel = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
   };
 
   $scope.data = {
@@ -527,14 +527,14 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$modalInstance', func
 
 }]);
 
-GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$modalInstance', 'object', function($scope, $modalInstance, object) {
+GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'object', function($scope, $uibModalInstance, object) {
   $scope.object = object;
 
   $scope.ok = function () {
-    $modalInstance.close($scope.object);
+    $uibModalInstance.close($scope.object);
   };
 
   $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
+    $uibModalInstance.dismiss('cancel');
   };
 }]);
