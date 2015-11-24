@@ -1,5 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', '$modal', 'AdminReceiverResource',
-  function($scope, $modal, AdminReceiverResource) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiverResource',
+  function($scope, $uibModal, AdminReceiverResource) {
   $scope.save_receiver = function(receiver, cb) {
     if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';

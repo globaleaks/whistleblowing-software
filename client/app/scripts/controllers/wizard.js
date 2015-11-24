@@ -1,6 +1,6 @@
-GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$modal', 'Admin',
+GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'Admin',
                     'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
-                    function($scope, $rootScope, $location, $route, $http, $modal,
+                    function($scope, $rootScope, $location, $route, $http, $uibModal,
                                                       Admin, DefaultAppdata,
                                                       passwordWatcher,
                                                       changePasswordWatcher,
@@ -17,7 +17,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         return;
       }
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/disable_encryption.html',
         controller: 'DisableEncryptionCtrl'
       });

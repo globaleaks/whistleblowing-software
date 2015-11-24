@@ -1,7 +1,7 @@
-GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
+GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
                     'Authentication',
                     'WhistleblowerTip',
-  function ($scope, $location, $modal, Authentication, WhistleblowerTip) {
+  function ($scope, $location, $uibModal, Authentication, WhistleblowerTip) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;
@@ -11,7 +11,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
     $scope.showQuestions = false;
 
     var open_quiz = function () {
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/security_awareness_quiz.html',
         controller: 'QuizCtrl',
         size: 'lg',
@@ -35,19 +35,19 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$modal',
 }]);
 
 
-GLClient.controller('QuizCtrl', ['$scope', '$modalInstance', '$location',
-                    function($scope, $modalInstance, $location) {
+GLClient.controller('QuizCtrl', ['$scope', '$uibModalInstance', '$location',
+                    function($scope, $uibModalInstance, $location) {
   $scope.goToSubmission = function() {
     // After showing the security awareness panel
     if ($scope.node.disable_security_awareness_questions ||
         $scope.answer.value === 'b') {
-      $modalInstance.close();
+      $uibModalInstance.close();
       $location.path("/submission");
     }
   };
 
   $scope.cancel = function () {
-    $modalInstance.close();
+    $uibModalInstance.close();
   };
 
 }]);

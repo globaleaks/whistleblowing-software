@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$modal', 'Authentication', 'Submission',
-      function ($scope, $rootScope, $filter, $location, $timeout, $modal, Authentication, Submission) {
+    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', 'Authentication', 'Submission',
+      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, Authentication, Submission) {
 
   $scope.invalidForm = true;
 
@@ -30,7 +30,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.problemModal.dismiss();
     }
 
-    $scope.problemModal = $modal.open({
+    $scope.problemModal = $uibModal.open({
         templateUrl: 'views/partials/captchas.html',
         controller: 'ConfirmableDialogCtrl',
         backdrop: 'static',

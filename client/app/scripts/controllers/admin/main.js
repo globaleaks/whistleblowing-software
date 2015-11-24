@@ -250,8 +250,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   ];
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal', 
-                    function($scope, $http, $modal){
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal',
+                    function($scope, $http, $uibModal){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -274,7 +274,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$modal',
       return;
     }
 
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/disable_encryption.html',
       controller: 'DisableEncryptionCtrl'
     });

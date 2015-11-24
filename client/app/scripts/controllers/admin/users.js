@@ -1,5 +1,5 @@
-GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', 'AdminUserResource',
-  function($scope, $modal, AdminUserResource) {
+GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource',
+  function($scope, $uibModal, AdminUserResource) {
 
   $scope.save_user = function(user, cb) {
     if (user.pgp_key_remove === true) {
@@ -28,7 +28,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$modal', 'AdminUserResource',
   };
 
   $scope.userDeleteDialog = function(user){
-    var modalInstance = $modal.open({
+    var modalInstance = $uibModal.open({
         templateUrl:  'views/partials/user_delete.html',
         controller: 'ConfirmableDialogCtrl',
         resolve: {
