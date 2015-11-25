@@ -32,7 +32,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.update = function (model, cb, errcb) {
       var success = {};
       model.$update(function(result) {
-        $scope.successes.push(success);
+        $rootScope.successes.push(success);
       }).then(
         function() { if (cb !== undefined) cb(); },
         function() { if (errcb !== undefined) errcb(); }
