@@ -43,20 +43,18 @@ module.exports = function(grunt) {
         },
         src: 'tmp/index.html',
         dest: 'tmp/index.html'
+      },
+      app_html: {
+        options:{
+          tag: 'inline'
+        },
+        src: 'tmp/app.html',
+        dest: 'tmp/app.html'
       }
     },
 
     clean: {
       build: ['tmp', 'build']
-    },
-
-    connect: {
-      server: {
-        options: {
-          port: 9000,
-          base: 'tests/loader'
-        }
-      }
     },
 
     copy: {
@@ -76,24 +74,6 @@ module.exports = function(grunt) {
             ],
             expand: true
           }]
-      },
-      unittests: {
-        files: [
-          {
-            expand: true,
-            flatten: true,
-            cwd: 'node_modules/',
-            src: ['mocha/mocha.css', 'mocha/mocha.js', 'chai/chai.js'],
-            dest: 'tests/loader/lib/'
-          },
-          {
-            expand: true,
-            flatten: true,
-            cwd: './',
-            src: 'build/app.js',
-            dest: 'tests/loader'
-          }
-        ]
       }
     },
 
@@ -129,106 +109,6 @@ module.exports = function(grunt) {
       files: ['**/*.html']
     },
 
-    mocha_phantomjs: {
-      all: ['tests/loader/unittests.html'],
-      options: {
-        timeout: 1200
-      }
-    },
-
-    'saucelabs-mocha': {
-      all: {
-        options: {
-          username: process.env.SAUCE_USERNAME,
-          key: process.env.SAUCE_ACCESS_KEY,
-          urls: ['http://127.0.0.1:9000/unittests.html'],
-          build: process.env.TRAVIS_JOB_ID,
-          testname: 'GlobaLeaks-Loader',
-          /*
-             What follows is the list of browsers not supported by globaleaks
-             for which we tests at least that the loader lib.
-          */
-          browsers: [
-            { browserName: "firefox", version: "3.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "3.5", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "3.6", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "4.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "5.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "6.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "7.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "8.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "14.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "15.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "16.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "17.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "18.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "19.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "20.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "21.0b1", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "27.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "28.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "29.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "30.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "31.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "32.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "33.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "34.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "35.0", platform: "Windows 8.1" },
-            { browserName: "firefox", version: "36.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "26.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "27.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "28.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "29.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "30.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "31.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "32.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "33.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "34.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "35.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "36.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "37.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "38.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "39.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "40.0", platform: "Windows 8.1" },
-            { browserName: "chrome", version: "41.0", platform: "Windows 8.1" },
-            { browserName: "opera", version: "11.64", platform: "Windows 7" },
-            { browserName: "opera", version: "12.12", platform: "Windows 7" },
-            { browserName: "safari", platform: "OS X 10.6" },
-            { browserName: "safari", platform: "OS X 10.7" },
-            { browserName: "safari", platform: "OS X 10.8" },
-            { browserName: "safari", platform: "OS X 10.9" },
-            { browserName: "iphone", deviceName: "iPhone Simulator", "device-orientation": "portrait" },
-            { browserName: "iphone", deviceName: "iPad Simulator", "device-orientation": "portrait" },
-            { browserName: "android", version: "4.0", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "android", version: "4.1", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "android", version: "4.2", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "android", version: "4.3", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "android", version: "4.4", deviceName: "Android Emulator", platform: "Linux" },
-            { browserName: "internet explorer", version: "7", platform: "Windows XP" },
-            { browserName: "internet explorer", version: "8", platform: "Windows 7" },
-            { browserName: "internet explorer", version: "9", platform: "Windows 7" },
-            { browserName: "internet explorer", version: "10", platform: "Windows 8" }
-          ],
-          public: "public",
-          maxRetries: 3,
-          pollInterval: 10000,
-          statusCheckAttempts: 5000,
-          throttled: 3,
-          sauceConfig: {'recordVideo': true}
-        }
-      },
-    },
-
-    // Put all angular.js templates into a single file
-    ngtemplates:  {
-      GLClient: {
-        cwd: 'app',
-        options: {base: 'app/'},
-        src: ['views/**/*.html'],
-        dest: 'tmp/scripts/templates.js'
-      }
-    },
-
     protractor: {
       options: {
         keepAlive: true,
@@ -250,6 +130,7 @@ module.exports = function(grunt) {
       inline: {
         files: {
           'tmp/index.html': 'tmp/index.html',
+          'tmp/app.html': 'tmp/app.html',
         },
         options: {
           replacements: [
@@ -333,8 +214,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-manifest');
-  grunt.loadNpmTasks('grunt-mocha-phantomjs');
-  grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-saucelabs');
@@ -868,9 +747,6 @@ module.exports = function(grunt) {
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
     ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline:index_html', 'manifest', 'cleanupWorkingDirectory']);
-
-  grunt.registerTask('test-loader', ['copy:unittests', 'mocha_phantomjs']);
-  grunt.registerTask('test-loader-saucelabs', ['copy:unittests', 'connect', 'saucelabs-mocha']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();

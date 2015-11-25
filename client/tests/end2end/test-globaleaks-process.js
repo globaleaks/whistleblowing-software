@@ -1,6 +1,6 @@
 browser.getCapabilities().then(function(s) {
   browser.testFileUpload = function() {
-    return (s.caps_.platform === 'LINUX') || (['firefox', 'safari'].indexOf(s.caps_.browserName) !== -1);
+    return (s.caps_.platform === 'LINUX');
   };
 });
 
