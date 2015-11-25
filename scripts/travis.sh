@@ -94,7 +94,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"safari\", \"version\":\"9\", \"platform\":\"OS X 10.11\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"4.4\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'."
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"5.1\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"deviceName\": \"iPhone Retina (4-inch 64-bit)\", \"device-orientation\": \"portrait\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"7.1\", \"deviceName\": \"iPhone Retina (4-inch 64-bit)\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.9\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"9.1\", \"deviceName\": \"iPhone 6 Plus\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
   )
 
