@@ -109,6 +109,16 @@ module.exports = function(grunt) {
       files: ['**/*.html']
     },
 
+    // Put all angular.js templates into a single file
+    ngtemplates:  {
+      GLClient: {
+        cwd: 'app',
+        options: {base: 'app/'},
+        src: ['views/**/*.html'],
+        dest: 'tmp/scripts/templates.js'
+      }
+    },
+
     protractor: {
       options: {
         keepAlive: true,
@@ -216,12 +226,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
-  grunt.loadNpmTasks('grunt-saucelabs');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-saucelabs');
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
