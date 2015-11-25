@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
                                 collection, langfiles, wizard, \
-                                base, user
+                                base, user, css
 
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import user as admin_user
@@ -133,8 +133,10 @@ spec = [
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##
+    (r'/(favicon.ico)', base.BaseStaticFileHandler),
     (r'/(robots.txt)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler),
+    (r'/styles.css', css.CSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 

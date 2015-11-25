@@ -10,9 +10,9 @@
     <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 9 -->
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11,10,9" />
 
-    <link rel="shortcut icon" href="favicon.ico?inline" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <!-- build:css app.css -->
+    <!-- build:css styles.css -->
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="components/bootstrap-rtl-ondemand/dist/css/bootstrap-rtl-ondemand.min.css" />
     <link rel="stylesheet" href="styles/main.css" />
@@ -116,7 +116,7 @@
     <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
     <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
 
-    <!-- build:js app.js -->
+    <!-- build:js scripts.js -->
     <script src="components/js-polyfills/typedarray.js"></script>
     <script src="components/js-polyfills/es6.js"></script>
     <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
@@ -164,9 +164,38 @@
     <script src="scripts/templates.js"></script>
     <!-- endbuild -->
 
-    <script src="scripts/browserchecks.js?inline"></script>
-
     <script type="text/javascript">
+      var isBrowserCompatible = function() {
+        if (typeof window === 'undefined') {
+          return false;
+        }
+
+       // Checks related to FileAPI compatibility
+       if(typeof File === 'undefined' ||
+          typeof Blob === 'undefined' ||
+          typeof FileList === 'undefined' ||
+          (!Blob.prototype.slice && !Blob.prototype.webkitSlice && !Blob.prototype.mozSlice)){
+
+          console.log("GlobaLeaks startup failure: missing requirements for Flow.js");
+          return false;
+        }
+
+        // Checks related to Webworker compatibility
+        if (typeof window.Worker === 'undefined') {
+          console.log("GlobaLeaks startup failure: missing Webworker support");
+          return false;
+        }
+
+        // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
+        //if (!(window.crypto && window.crypto.getRandomValues) &&
+        //    !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
+        //  console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+        //  return false;
+        //}
+
+        return true;
+      };
+
       function loadjsfile(filepath) {
        var fileref = document.createElement('script');
        fileref.setAttribute("type", "text/javascript");
@@ -178,7 +207,7 @@
  
       function start_globaleaks() {
         if (isBrowserCompatible()) {
-          loadjsfile("app.js");
+          loadjsfile("scripts.js");
         } else {
           var error = document.getElementById("error_unsupported_browser");
           error.setAttribute("style", "block");
