@@ -14,7 +14,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import anon_serialize_field, get_public_context_list
+from globaleaks.handlers.node import anon_serialize_field
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys

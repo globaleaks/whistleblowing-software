@@ -17,7 +17,6 @@ from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.notification import Event
 from globaleaks.rest import errors
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log
 from globaleaks.utils.zipstream import ZipStream
 
 

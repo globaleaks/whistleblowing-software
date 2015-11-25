@@ -16,16 +16,17 @@ from globaleaks.handlers import exception, \
                                 collection, langfiles, wizard, \
                                 base, user
 
-from globaleaks.handlers.admin.node import *
-from globaleaks.handlers.admin.receiver import *
-from globaleaks.handlers.admin.context import *
-from globaleaks.handlers.admin.step import *
-from globaleaks.handlers.admin.field import *
-from globaleaks.handlers.admin.langfiles import *
-from globaleaks.handlers.admin.staticfiles import *
-from globaleaks.handlers.admin.overview import *
-from globaleaks.handlers.admin.statistics import *
-from globaleaks.handlers.admin.notification import *
+from globaleaks.handlers.admin import node as admin_node
+from globaleaks.handlers.admin import user as admin_user
+from globaleaks.handlers.admin import receiver as admin_receiver
+from globaleaks.handlers.admin import context as admin_context
+from globaleaks.handlers.admin import step as admin_step
+from globaleaks.handlers.admin import field as admin_field
+from globaleaks.handlers.admin import langfiles as admin_langfiles
+from globaleaks.handlers.admin import staticfiles as admin_staticfiles
+from globaleaks.handlers.admin import overview as admin_overview
+from globaleaks.handlers.admin import statistics as admin_statistics
+from globaleaks.handlers.admin import notification as admin_notification
 
 from globaleaks.utils.utility import randbits
 
@@ -104,31 +105,31 @@ spec = [
     (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     ## Admin Handlers ##
-    (r'/admin/node', admin.node.NodeInstance),
-    (r'/admin/users', admin.user.UsersCollection),
-    (r'/admin/users/' + uuid_regexp, admin.user.UserInstance),
-    (r'/admin/contexts', admin.context.ContextsCollection),
-    (r'/admin/contexts/' + uuid_regexp, admin.context.ContextInstance),
-    (r'/admin/receivers', admin.receiver.ReceiversCollection),
-    (r'/admin/receivers/' + uuid_regexp, admin.receiver.ReceiverInstance),
-    (r'/admin/notification', admin.notification.NotificationInstance),
-    (r'/admin/fields', admin.field.FieldCollection),
-    (r'/admin/fields/' + uuid_regexp, admin.field.FieldInstance),
-    (r'/admin/steps', admin.step.StepCollection),
-    (r'/admin/steps/' + uuid_regexp, admin.step.StepInstance),
-    (r'/admin/fieldtemplates', admin.field.FieldTemplatesCollection),
-    (r'/admin/fieldtemplates/' + field_regexp, admin.field.FieldTemplateInstance),
-    (r'/admin/anomalies', admin.statistics.AnomaliesCollection),
-    (r'/admin/stats/(\d+)', admin.statistics.StatsCollection),
-    (r'/admin/activities/(summary|details)', admin.statistics.RecentEventsCollection),
-    (r'/admin/history', admin.statistics.AnomalyHistoryCollection),
-    (r'/admin/staticfiles', admin.staticfiles.StaticFileList),
+    (r'/admin/node', admin_node.NodeInstance),
+    (r'/admin/users', admin_user.UsersCollection),
+    (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
+    (r'/admin/contexts', admin_context.ContextsCollection),
+    (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
+    (r'/admin/receivers', admin_receiver.ReceiversCollection),
+    (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
+    (r'/admin/notification', admin_notification.NotificationInstance),
+    (r'/admin/fields', admin_field.FieldCollection),
+    (r'/admin/fields/' + uuid_regexp, admin_field.FieldInstance),
+    (r'/admin/steps', admin_step.StepCollection),
+    (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),
+    (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
+    (r'/admin/fieldtemplates/' + field_regexp, admin_field.FieldTemplateInstance),
+    (r'/admin/anomalies', admin_statistics.AnomaliesCollection),
+    (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
+    (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
+    (r'/admin/history', admin_statistics.AnomalyHistoryCollection),
+    (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            admin.langfiles.AdminLanguageFileHandler),
-    (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin.staticfiles.StaticFileInstance),
-    (r'/admin/overview/tips', admin.overview.Tips),
-    (r'/admin/overview/users', admin.overview.Users),
-    (r'/admin/overview/files', admin.overview.Files),
+            admin_langfiles.AdminLanguageFileHandler),
+    (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin_staticfiles.StaticFileInstance),
+    (r'/admin/overview/tips', admin_overview.Tips),
+    (r'/admin/overview/users', admin_overview.Users),
+    (r'/admin/overview/files', admin_overview.Files),
     (r'/admin/wizard', wizard.FirstSetup),
 
     ## Special Files Handlers##
