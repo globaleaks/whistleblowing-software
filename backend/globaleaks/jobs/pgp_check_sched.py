@@ -89,7 +89,6 @@ class PGPCheckSchedule(GLJob):
 
         subject = Templating().format_template(notification_settings['pgp_alert_mail_title'], fakeevent)
         body = Templating().format_template(notification_settings['pgp_alert_mail_template'], fakeevent)
-        to_address = receiver_desc['mail_address']
 
         yield sendmail(receiver_desc['mail_address'], subject, body)
 
