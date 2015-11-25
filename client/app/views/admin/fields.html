@@ -236,7 +236,7 @@
                 <div class="fieldOption" data-ng-repeat="option in field.options | orderBy:'presentation_order'">
                   <div class="row">
                     <div class="col-md-8">
-                      <input class="form-control" data-ng-model="option.label" placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!editable" required />
+                      <input class="form-control" data-ng-model="option.label" data-ng-attr-placeholder="{{'Name' | translate }}" type="text" data-ng-disabled="!editable" required />
                     </div>
                     <div class="col-md-4">
                       <button class="actionButton btn btn-xs btn-danger" data-ng-click="delOption(field, option)">
