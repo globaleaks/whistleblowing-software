@@ -43,13 +43,6 @@ module.exports = function(grunt) {
         },
         src: 'tmp/index.html',
         dest: 'tmp/index.html'
-      },
-      app_html: {
-        options:{
-          tag: 'inline'
-        },
-        src: 'tmp/app.html',
-        dest: 'tmp/app.html'
       }
     },
 
