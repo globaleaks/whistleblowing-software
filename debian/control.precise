@@ -23,7 +23,7 @@ Depends:
  , apparmor
  , apparmor-utils
  , iptables
- , python2.7
+ , python (>=2.7)
  , python-pip
  , tor
 # The following substitution variable shall be uncommented once we get
