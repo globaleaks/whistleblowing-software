@@ -12,7 +12,7 @@
         <span data-ng-if="showEditLabelInput" class="form-inline">
           <div class="form-group">
             <span id="AssignLabelInput" class="input-group">
-              <input type="text" class="form-control" placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
+              <input type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
               <span class="input-group-addon" data-ng-click="updateLabel(tip.label); $event.stopPropagation();"
                    popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-tag"></i>

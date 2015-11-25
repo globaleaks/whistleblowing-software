@@ -52,7 +52,7 @@
             <br />
             <div data-ng-hide="file.error">
               <div data-ng-repeat="option in file.value">
-                <textarea class="form-control" data-ng-model="option.value" placeholder="{{option['attrs']['name']}}"></textarea>
+                <textarea class="form-control" data-ng-model="option.value" data-ng-attr-placeholder="{{option['attrs']['name']}}"></textarea>
               </div>
             </div>
             <div data-ng-show="file.error && file.error_msg" class="text-red">

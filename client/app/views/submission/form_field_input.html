@@ -14,7 +14,7 @@
                   maxlength="{{maxlength}}"
                   rows="3"
                   data-ng-required="field.required"
-                  placeholder="{{field.placeholder}}"></textarea>
+                  data-ng-attr-placeholder="{{field.placeholder}}"></textarea>
         <div>
           <div data-ng-if="maxlength >= 0 && (maxlength - entry['value'].length) <= 50"
                data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
@@ -47,7 +47,7 @@
                    data-ng-model="entry[option.id]"
                    data-ng-required="field.required_check"
                    data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
-                   placeholder="{{field.placeholder || 'false'}}"
+                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
             <span>{{option.label}}</span>
           </label>
@@ -61,7 +61,7 @@
                  data-ng-model="entry['value']"
                  maxlength="{{node.maximum_namesize}}"
                  data-ng-required="field.required"
-                 placeholder="{{field.placeholder}}"
+                 data-ng-attr-placeholder="{{field.placeholder}}"
                  type="text"
                  datepicker-popup=""
                  is-open="status.opened"
@@ -81,7 +81,7 @@
                    data-ng-model="entry['value']"
                    data-ng-required="field.required"
                    value="{{field.value}}"
-                   placeholder="{{field.placeholder || 'false'}}"
+                   data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
             <span class="TOS">{{field.attrs.agreement_statement.value}}</span>
           </label>
@@ -102,7 +102,7 @@
                data-ng-minlength="field.attrs.min_len.value"
                maxlength="{{maxlength}}"
                data-ng-required="field.required"
-               placeholder="{{field.placeholder}}"
+               data-ng-attr-placeholder="{{field.placeholder}}"
                type="text" />
         <div>
           <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
