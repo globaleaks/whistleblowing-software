@@ -36,16 +36,6 @@ module.exports = function(grunt) {
       }
     },
 
-    inline: {
-      index_html: {
-        options:{
-          tag: 'inline'
-        },
-        src: 'tmp/index.html',
-        dest: 'tmp/index.html'
-      }
-    },
-
     clean: {
       build: ['tmp', 'build']
     },
@@ -132,17 +122,12 @@ module.exports = function(grunt) {
     'string-replace': {
       inline: {
         files: {
-          'tmp/index.html': 'tmp/index.html',
-          'tmp/app.html': 'tmp/app.html',
+          'tmp/index.html': 'tmp/index.html'
         },
         options: {
           replacements: [
             {
-              pattern: '<link rel="stylesheet" href="app.css">',
-              replacement: '<link rel="stylesheet" href="app.css?inline" />'
-            },
-            {
-              pattern: '<script src="app.js"></script>',
+              pattern: '<script src="scripts.js"></script>',
               replacement: ''
             },
             {
@@ -272,7 +257,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'index.js', 'app.html', 'app.css', 'app.js']
+    var files = ['index.html', 'index.js', 'app.html', 'styles.css', 'scripts.js']
     for (var x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
@@ -747,7 +732,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline:index_html', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
