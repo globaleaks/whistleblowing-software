@@ -127,6 +127,10 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
+              pattern: '<link rel="stylesheet" href="styles.css">',
+              replacement: '<link rel="stylesheet" data-ng-href="{{app_stylesheet}}">'
+            },
+            {
               pattern: '<script src="scripts.js"></script>',
               replacement: ''
             },

@@ -6,8 +6,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $rootScope.errors = [];
 
     $scope.rtl = false;
-    $scope.logo = 'static/globaleaks_logo.png';
-    $scope.build_stylesheet = 'styles.css';
+    $scope.app_logo = 'static/globaleaks_logo.png';
+    $scope.app_stylesheet = 'styles.css';
 
     $rootScope.language = $location.search().lang;
 
@@ -225,8 +225,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.init = function () {
       var deferred = $q.defer();
 
-      $scope.logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
-      $scope.build_stylesheet = "styles.css?" + $scope.randomFluff();
+      $scope.app_logo = 'static/globaleaks_logo.png?' + $scope.randomFluff();
+      $scope.app_stylesheet = "styles.css?" + $scope.randomFluff();
 
       Node.get(function(node, getResponseHeaders) {
         $rootScope.node = node;
