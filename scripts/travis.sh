@@ -85,7 +85,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   declare -a capabilities=(
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"10\", \"platform\":\"Windows 8\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"11\", \"platform\":\"Windows 10\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"microsoftedge\", \"version\":\"20.10240\", \"platform\":\"Windows 10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"microsoftEdge\", \"version\":\"20.10240\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"firefox\", \"version\":\"34\", \"platform\":\"Linux\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"firefox\", \"version\":\"42\", \"platform\":\"Linux\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"chrome\", \"version\":\"37\", \"platform\":\"Linux\"}'"
@@ -94,8 +94,8 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"safari\", \"version\":\"9\", \"platform\":\"OS X 10.11\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"4.4\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'."
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"android\", \"version\": \"5.1\", \"deviceName\": \"Android Emulator\", \"platform\": \"Linux\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"7.1\", \"deviceName\": \"iPhone Retina (4-inch 64-bit)\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.9\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"9.1\", \"deviceName\": \"iPhone 6 Plus\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"7.1\", \"deviceName\": \"iPad Simulator\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"9.1\", \"deviceName\": \"iPad Simulator\", \"device-orientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
   )
 
   testkey=$(echo $GLTEST | cut -f2 -d-)
