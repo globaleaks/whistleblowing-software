@@ -4,11 +4,11 @@
     <div class="row">
       <form name="contentForm" data-ng-controller="AdminGeneralSettingsCtrl" novalidate>
 
-        <tabset class="tab-content">
-          <tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
+        <uib-tabset class="tab-content">
+          <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
           <div data-ng-include="tab.template" data-ng-controller="tab.ctrl"></div>
-          </tab>
-        </tabset>
+          </uib-tab>
+        </uib-tabset>
 
         <div class="row">
           <div class="col-md-6">
