@@ -1,6 +1,10 @@
 GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
   function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
     $scope.started = false;
+
+    $rootScope.successes = [];
+    $rootScope.errors = [];
+
     $scope.rtl = false;
     $scope.logo = 'static/globaleaks_logo.png';
     $scope.build_stylesheet = 'styles.css';

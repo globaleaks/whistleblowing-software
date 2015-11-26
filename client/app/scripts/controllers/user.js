@@ -28,12 +28,7 @@ GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$locat
       $scope.preferences.pgp_key_public = '';
 
       $scope.preferences.$update(function () {
-        if (!$rootScope.successes) {
-          $rootScope.successes = [];
-        }
-
         $rootScope.successes.push({message: 'Updated your password!'});
-
         $location.path(Authentication.auth_landing_page);
       });
     };

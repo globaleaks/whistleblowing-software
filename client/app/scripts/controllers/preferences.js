@@ -62,10 +62,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordW
       }
 
       $scope.preferences.$update(function () {
-
-        if (!$rootScope.successes) {
-          $rootScope.successes = [];
-        }
         $rootScope.successes.push({message: 'Updated your password!'});
       });
     };
@@ -84,9 +80,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordW
       }
 
       $scope.preferences.$update(function() {
-        if (!$rootScope.successes) {
-          $rootScope.successes = [];
-        }
         $rootScope.successes.push({message: 'Updated your preferences!'});
       });
     };
