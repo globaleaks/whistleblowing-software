@@ -1,5 +1,5 @@
 <div data-ng-repeat="error in errors" data-ng-show="error.code != 29 && error.code != 60">
-  <alert fadeout="" type="danger" close="closeAlert(errors, $index)">
+  <uib-alert fadeout="" type="danger" close="closeAlert(errors, $index)">
     <!--
       Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
         The first has a special handling, the latter need to not be shown as it happens
@@ -102,14 +102,14 @@
           </div>
       </div>
     </div>
-  </alert>
+  </uib-alert>
 </div>
 <div data-ng-repeat="success in successes">
-  <alert fadeout="" type="success" close="closeAlert(successes, $index)">
+  <uib-alert fadeout="" type="success" close="closeAlert(successes, $index)">
     <div>
       <div>
         <div data-translate>Success!</div>
       </div>
     </div>
-  </alert>
+  </uib-alert>
 </div>
