@@ -26,7 +26,7 @@ setupDependencies()
 
 if [ "$GLTEST" = "unit" ]; then
 
-  echo "Running Mocha testes for API"
+  echo "Running API testes"
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
@@ -35,7 +35,7 @@ if [ "$GLTEST" = "unit" ]; then
   sleep 5
   $TRAVIS_BUILD_DIR/client/node_modules/mocha/bin/mocha -R list $TRAVIS_BUILD_DIR/client/tests/api/test_00* --timeout 30000
 
-  echo "Running Protractor End2End locally for coverage"
+  echo "Running BrowserTesting locally collecting code coverage"
   cd $TRAVIS_BUILD_DIR/client
   rm -fr $TRAVIS_BUILD_DIR/client/coverage
   ./node_modules/protractor/bin/webdriver-manager update
@@ -51,7 +51,7 @@ if [ "$GLTEST" = "unit" ]; then
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 
-  echo "Running Build & Install test"
+  echo "Running Build & Install and BrowserTesting tests"
   sudo apt-get update -y
   sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
   curl -sL https://deb.nodesource.com/setup | sudo bash -
@@ -80,7 +80,7 @@ elif [ "$GLTEST" = "browserchecks" ]; then
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
-  echo "Running Protractor End2End tests"
+  echo "Running Browsertesting on Saucelabs"
 
   declare -a capabilities=(
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"internet explorer\", \"version\":\"10\", \"platform\":\"Windows 8\"}'"
