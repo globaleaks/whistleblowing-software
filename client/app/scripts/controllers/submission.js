@@ -80,8 +80,8 @@ GLClient.controller('SubmissionCtrl',
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
-  $scope.contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
-  $scope.contexts = $filter('orderBy')($scope.contexts, $scope.contextsOrderPredicate);
+  $scope.public_contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
+  $scope.public_contexts = $filter('orderBy')($scope.public_contexts, $scope.contextsOrderPredicate);
 
   var isAGoodPOW = function(binaryhash) {
     if (binaryhash.charCodeAt(31) == 0) {
@@ -234,8 +234,8 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.context_id) {
       context = $filter('filter')($scope.contexts,
                                   {"id": $scope.context_id})[0];
-    } else if ($scope.contexts.length == 1) {
-      context = $scope.contexts[0];
+    } else if ($scope.public_contexts.length == 1) {
+      context = $scope.public_contexts[0];
     }
 
     if (context) {
