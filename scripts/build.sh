@@ -48,6 +48,25 @@ else
   TARGETS=$DISTRIBUTION
 fi
 
+# Preliminary Requirements Check
+ERR=0
+echo "Checking preliminary GlobaLeaks Build requirements"
+for REQ in git npm debuild
+do
+  if which $REQ >/dev/null; then
+    echo " + $REQ requirement meet"
+  else
+    ERR=$(($ERR+1))
+    echo " - $REQ requirement not meet"
+  fi
+done
+
+if [ $ERR -ne 0 ]; then
+  echo "Error: Found ${ERR} unmet requirements"
+  echo "Information on how to setup globaleaks development environment at: https://github.com/globaleaks/GlobaLeaks/wiki/setting-up-globaleaks-development-environment"
+  exit 1
+fi
+
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
@@ -57,7 +76,7 @@ git checkout $TAG
 cd client
 npm install grunt-cli
 npm install
-grunt setupDependencies
+./node_modules/grunt-cli/bin/grunt setupDependencies
 grunt build
 cd ../../../
 
