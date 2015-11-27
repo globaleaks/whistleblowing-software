@@ -79,7 +79,7 @@
           <ul>
             <li>Mozilla Firefox &gt;= 34</li>
             <li>Google Chrome &gt;= 37</li>
-            <li>Internet Explorer &gt;= 10</li>
+            <li>Internet Explorer &gt;= 9</li>
             <li>Safari: &gt;= 8</li>
           </ul>
 
@@ -99,7 +99,7 @@
           <ul>
             <li>Mozilla Firefox &gt;= 34</li>
             <li>Google Chrome &gt;= 37</li>
-            <li>Internet Explorer &gt;= 10</li>
+            <li>Internet Explorer &gt;= 9</li>
             <li>Safari: &gt;= 8</li>
           </ul>
 
@@ -172,21 +172,11 @@
           return false;
         }
 
-       // Checks related to FileAPI compatibility
-       if(typeof File === 'undefined' ||
-          typeof Blob === 'undefined' ||
-          typeof FileList === 'undefined' ||
-          (!Blob.prototype.slice && !Blob.prototype.webkitSlice && !Blob.prototype.mozSlice)){
-
-          console.log("GlobaLeaks startup failure: missing requirements for Flow.js");
-          return false;
-        }
-
         // Checks related to Webworker compatibility
-        if (typeof window.Worker === 'undefined') {
-          console.log("GlobaLeaks startup failure: missing Webworker support");
-          return false;
-        }
+        //if (typeof window.Worker === 'undefined') {
+        //  console.log("GlobaLeaks startup failure: missing Webworker support");
+        //  return false;
+        //}
 
         // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
         //if (!(window.crypto && window.crypto.getRandomValues) &&
@@ -211,8 +201,8 @@
         if (isBrowserCompatible()) {
           loadjsfile("scripts.js");
         } else {
-          var error = document.getElementById("error_unsupported_browser");
-          error.setAttribute("style", "block");
+          document.getElementById("LoaderBox").style.display = "none";
+          document.getElementById("error_unsupported_browser").style.display = "block";
         }
       }
       <!-- start_globaleaks(); -->
