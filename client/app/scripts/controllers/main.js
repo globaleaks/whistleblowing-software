@@ -1,7 +1,6 @@
 GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
   function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
-    $scope.started = false;
-
+    $rootScope.started = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
 
@@ -337,8 +336,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       saveAs(blob, filename);
     };
 
-    $rootScope.reload = function(new_path) {
-      $scope.started = false;
+    $scope.reload = function(new_path) {
+      $rootScope.started = false;
       $rootScope.successes = [];
       $rootScope.errors = [];
       GLCache.removeAll();
@@ -426,8 +425,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.route_check();
     });
 
-    $scope.$on('$routeChangeSuccess', function() {
-      $scope.set_title();
+    $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+      if (current.$$route) {
+        $rootScope.successes = [];
+        $rootScope.errors = [];
+        $scope.header_title = current.$$route.header_title;
+        $scope.header_subtitle = current.$$route.header_subtitle;
+        $scope.set_title();
+      }
     });
 
     $scope.$on("REFRESH", function() {
