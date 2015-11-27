@@ -47,7 +47,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         };
 
         $http.post('admin/wizard', $scope.wizard).success(function(response) {
-          $rootScope.reload("/admin/landing");
+          $scope.reload("/admin/landing");
         });
       }
     };
