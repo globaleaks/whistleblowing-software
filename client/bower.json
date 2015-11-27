@@ -30,6 +30,8 @@
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
     "d3": "3.5.9",
     "FileSaver.js": "0.0.2",
+    "flow.js": "2.9.0",
+    "fusty-flow.js": "1.1.0",
     "jquery": "2.1.4",
     "js-polyfills": "0.1.12",
     "ng-flow": "2.6.1",
