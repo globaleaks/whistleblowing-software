@@ -167,7 +167,7 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.get_fileupload_url = function() {
+  $scope.fileupload_url = function() {
     if (!$scope.submission) {
       return;
     }
