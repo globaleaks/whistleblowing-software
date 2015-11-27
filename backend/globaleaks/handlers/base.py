@@ -450,25 +450,36 @@ class BaseHandler(RequestHandler):
 
     def get_file_upload(self):
         try:
-            if (int(self.request.arguments['flowTotalSize'][0]) / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize:
+            if len(self.request.files) != 1:
+                raise errors.InvalidInputFormat("cannot accept more than a file upload at once")
+
+            ###############################################################
+            # checks needed in order to offer compatibility with flow.js/fusty-flow.js
+            chunk_size = len(self.request.files['file'][0]['body'])
+            total_file_size = int(self.request.arguments['flowTotalSize'][0]) if 'flowTotalSize' in self.request.arguments else chunk_size
+            flow_identifier = self.request.arguments['flowIdentifier'][0] if 'flowIdentifier' in self.request.arguments else os.random()
+            if 'flowChunkNumber' in self.request.arguments and 'flowTotalChunks' in self.request.arguments:
+                if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
+                    return None
+            ###############################################################
+
+            if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
+                (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
                 log.err("File upload request rejected: file too big")
                 raise errors.FileTooBig(GLSettings.memory_copy.maximum_filesize)
 
-            if self.request.arguments['flowIdentifier'][0] not in GLUploads:
+            if flow_identifier not in GLUploads:
                 f = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
-                GLUploads[self.request.arguments['flowIdentifier'][0]] = f
+                GLUploads[flow_identifier] = f
             else:
-                f = GLUploads[self.request.arguments['flowIdentifier'][0]]
+                f = GLUploads[flow_identifier]
 
             f.write(self.request.files['file'][0]['body'])
-
-            if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
-                return None
 
             uploaded_file = {}
             uploaded_file['filename'] = self.request.files['file'][0]['filename']
             uploaded_file['content_type'] = self.request.files['file'][0]['content_type']
-            uploaded_file['body_len'] = int(self.request.arguments['flowTotalSize'][0])
+            uploaded_file['body_len'] = total_file_size
             uploaded_file['body_filepath'] = f.filepath
             uploaded_file['body'] = f
 
