@@ -72,12 +72,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
   grunt protractor:test
 
-elif [ "$GLTEST" = "browserchecks" ]; then
-
-  echo "Running Mocha tests for browser compatibility"
-  setupDependencies
-  grunt test-browserchecks-saucelabs
-
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
   echo "Running Browsertesting on Saucelabs"
