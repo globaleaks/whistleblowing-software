@@ -166,24 +166,31 @@
     <script src="scripts/templates.js"></script>
     <!-- endbuild -->
 
+    <script src="components/bowser/bowser.min.js?inline"></script>
+
     <script type="text/javascript">
       var isBrowserCompatible = function() {
         if (typeof window === 'undefined') {
           return false;
         }
 
+        // Make IE pass if >= 9
+        if (owser.msie && bowser.version >= 9);{
+          return true;
+        }
+
         // Checks related to Webworker compatibility
-        //if (typeof window.Worker === 'undefined') {
-        //  console.log("GlobaLeaks startup failure: missing Webworker support");
-        //  return false;
-        //}
+        if (typeof window.Worker === 'undefined') {
+          console.log("GlobaLeaks startup failure: missing Webworker support");
+          return false;
+        }
 
         // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
-        //if (!(window.crypto && window.crypto.getRandomValues) &&
-        //    !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
-        //  console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
-        //  return false;
-        //}
+        if (!(window.crypto && window.crypto.getRandomValues) &&
+            !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
+          console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+          return false;
+        }
 
         return true;
       };
