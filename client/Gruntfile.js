@@ -92,6 +92,16 @@ module.exports = function(grunt) {
       files: ['**/*.html']
     },
 
+    inline: {
+        build: {
+            options:{
+                tag: 'inline'
+            },
+            src: 'tmp/index.html',
+            dest: 'tmp/index.html'
+        }
+    },
+
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
@@ -736,7 +746,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
