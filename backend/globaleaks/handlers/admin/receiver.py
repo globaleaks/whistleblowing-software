@@ -31,6 +31,7 @@ def admin_serialize_receiver(receiver, language):
     ret_dict.update({
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
+        'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': receiver.user.mail_address,
         'ping_mail_address': receiver.ping_mail_address,
         'configuration': receiver.configuration,

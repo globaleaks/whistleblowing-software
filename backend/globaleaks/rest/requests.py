@@ -379,6 +379,7 @@ AdminReceiverDesc = {
     'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
+    'can_grant_permissions': bool,
     'tip_notification': bool,
     'ping_notification': bool,
     'presentation_order': int,
