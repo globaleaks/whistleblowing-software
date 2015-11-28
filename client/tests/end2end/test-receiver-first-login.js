@@ -1,10 +1,12 @@
+var utils = require('./utils.js');
+
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
     browser.get('/#/login');
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys('globaleaks').then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-          expect(browser.getLocationAbsUrl()).toContain('/forcedpasswordchange');
+          utils.waitForUrl('/forcedpasswordchange');
         });
       });
     });
@@ -14,7 +16,7 @@ describe('receiver first login', function() {
       element(by.model('preferences.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.model('preferences.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
           element(by.css('[data-ng-click="pass_save()"]')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
+            utils.waitForUrl('/receiver/tips');
           });
         });
       });
@@ -27,7 +29,7 @@ describe('receiver first login', function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
           expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
           element(by.id('LogoutLink')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/login');
+            utils.waitForUrl('/login');
           });
         });
       });

@@ -1,3 +1,5 @@
+var utils = require('./utils.js');
+
 describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
     browser.setLocation('wizard');
@@ -28,9 +30,9 @@ describe('globaLeaks setup wizard', function() {
 
     // Go to admin interface
     element(by.id('ButtonNext3')).click().then(function() {
-      expect(browser.getLocationAbsUrl()).toContain('/admin/landing');
+      utils.waitForUrl('/admin/landing');
       element(by.id('LogoutLink')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/admin');
+        utils.waitForUrl('/admin');
       });
     });
   });

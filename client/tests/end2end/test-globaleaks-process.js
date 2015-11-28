@@ -14,7 +14,7 @@ describe('globaLeaks process', function() {
     browser.get('/#/');
     element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
       element(by.css('[data-ng-click="view_tip(formatted_keycode)"]')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/status');
+        utils.waitForUrl('/status');
         deferred.fulfill();
       });
     });
@@ -29,7 +29,7 @@ describe('globaLeaks process', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
       element(by.model('loginPassword')).sendKeys(password).then(function() {
         element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-          expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
+          utils.waitForUrl('/receiver/tips');
           deferred.fulfill();
         });
       });
@@ -57,7 +57,7 @@ describe('globaLeaks process', function() {
                   var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
                   browser.wait(isClickable);
                   submit_button.click().then(function() {
-                    expect(browser.getLocationAbsUrl()).toContain('/receipt');
+                    utils.waitForUrl('/receipt');
                     element(by.id('KeyCode')).getText().then(function (txt) {
                       receipts.unshift(txt);
                       deferred.fulfill();
@@ -73,7 +73,7 @@ describe('globaLeaks process', function() {
                 var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
                 browser.wait(isClickable);
                 submit_button.click().then(function() {
-                  expect(browser.getLocationAbsUrl()).toContain('/receipt');
+                  utils.waitForUrl('/receipt');
                   element(by.id('KeyCode')).getText().then(function (txt) {
                     receipts.unshift(txt);
                     deferred.fulfill();
@@ -93,14 +93,14 @@ describe('globaLeaks process', function() {
   it('should redirect to /submission by clicking on the blow the whistle button', function() {
     browser.get('/#/');
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
-      expect(browser.getLocationAbsUrl()).toContain('/submission');
+      utils.waitForUrl('/submission');
     });
   });
 
   it('should be able to submit a tip (1)', function() {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/status');
+        utils.waitForUrl('/status');
       });
     });
   });
@@ -108,7 +108,7 @@ describe('globaLeaks process', function() {
   it('should be able to submit a tip (2)', function() {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/status');
+        utils.waitForUrl('/status');
       });
     });
   });
@@ -116,9 +116,9 @@ describe('globaLeaks process', function() {
   it('should be able to submit a tip (3)', function() {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/status');
+        utils.waitForUrl('/status');
         element(by.id('LogoutLink')).click().then(function() {
-          expect(browser.getLocationAbsUrl()).toContain('/');
+          utils.waitForUrl('/');
         });
       });
     });
@@ -129,7 +129,7 @@ describe('globaLeaks process', function() {
     login_whistleblower(receipts[0]).then(function() {
       expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
       element(by.id('LogoutLink')).click().then(function() {
-        expect(browser.getLocationAbsUrl()).toContain('/');
+        utils.waitForUrl('/');
       });
     });
   });
@@ -150,7 +150,7 @@ describe('globaLeaks process', function() {
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
             expect(c).toContain(comment);
             element(by.id('LogoutLink')).click().then(function() {
-              expect(browser.getLocationAbsUrl()).toContain('/login');
+              utils.waitForUrl('/login');
             });
           });
         });
@@ -179,7 +179,7 @@ describe('globaLeaks process', function() {
         element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
           // TODO: test file addition
           element(by.id('LogoutLink')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/');
+            utils.waitForUrl('/');
           });
         });
       }
@@ -193,7 +193,7 @@ describe('globaLeaks process', function() {
           element(by.id('modal-action-ok')).click().then(function() {
             //TODO: check postpone
             element(by.id('LogoutLink')).click().then(function() {
-              expect(browser.getLocationAbsUrl()).toContain('/login');
+              utils.waitForUrl('/login');
             });
           });
         });
@@ -206,8 +206,11 @@ describe('globaLeaks process', function() {
       element(by.id('tip-0')).click().then(function() {
         element(by.id('tip-action-delete')).click().then(function () {
           element(by.id('modal-action-ok')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
+            utils.waitForUrl('/receiver/tips');
             //TODO: check delete
+            element(by.id('LogoutLink')).click().then(function() {
+              utils.waitForUrl('/login');
+            });
           });
         });
       });
@@ -219,10 +222,10 @@ describe('globaLeaks process', function() {
       element(by.id('tip-action-select-all')).click().then(function() {
         element(by.id('tip-action-postpone-selected')).click().then(function () {
           element(by.id('modal-action-ok')).click().then(function() {
-            expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
+            utils.waitForUrl('/receiver/tips');
             //TODO: check postpone
             element(by.id('LogoutLink')).click().then(function() {
-              expect(browser.getLocationAbsUrl()).toContain('/login');
+              utils.waitForUrl('/login');
             });
           });
         });

@@ -19,3 +19,12 @@ browser.getCapabilities().then(function(s) {
     return (browserName == 'internet explorer' && browserVersion < 11);
   };
 });
+
+
+exports.waitForUrl = function (url) {
+  browser.wait(function() {
+    return browser.getLocationAbsUrl().then(function(current_url) {
+      return (current_url.indexOf(url) !== -1);
+    });
+  });
+}

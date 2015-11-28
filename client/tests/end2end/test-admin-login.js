@@ -1,3 +1,5 @@
+var utils = require('./utils.js');
+
 describe('admin login', function() {
   it('should login as admin', function() {
     browser.get('/#/admin');
@@ -6,7 +8,7 @@ describe('admin login', function() {
     element(by.model('loginPassword')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
 
     element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-      expect(browser.getLocationAbsUrl()).toContain('/admin/landing');
+      utils.waitForUrl('/admin/landing');
     });
   });
 });
