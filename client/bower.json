@@ -29,6 +29,7 @@
     "bootstrap": "3.3.5",
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
     "d3": "3.5.9",
+    "es6-promise": "3.0.2",
     "FileSaver.js": "0.0.2",
     "flow.js": "2.9.0",
     "fusty-flow.js": "1.2.0",
