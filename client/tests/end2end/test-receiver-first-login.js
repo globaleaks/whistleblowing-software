@@ -10,7 +10,6 @@ describe('receiver first login', function() {
     });
   });
   it('should be able to change password from the default one', function() {
-    browser.setLocation('/forcedpasswordchange');
     element(by.model('preferences.old_password')).sendKeys('globaleaks').then(function() {
       element(by.model('preferences.password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
         element(by.model('preferences.check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#').then(function() {
