@@ -1,8 +1,4 @@
-browser.getCapabilities().then(function(s) {
-  browser.testFileUpload = function() {
-    return (s.caps_.platform === 'LINUX');
-  };
-});
+var utils = require('./utils.js');
 
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
@@ -52,7 +48,7 @@ describe('globaLeaks process', function() {
         element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
 
           // Currently the saucelabs file test seems to work only on linux
-          if (browser.testFileUpload()) {
+          if (utils.testFileUpload()) {
             browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
             element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
               element(by.id('NextStepButton')).click().then(function () {
@@ -178,7 +174,7 @@ describe('globaLeaks process', function() {
 
   it('Whistleblower should be able to attach a new file to the first submission', function() {
     login_whistleblower(receipts[0]).then(function () {
-      if (browser.testFileUpload()) {
+      if (utils.testFileUpload()) {
         browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
         element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
           // TODO: test file addition

@@ -1,3 +1,5 @@
+var utils = require('./utils.js');
+
 describe('adming configure node', function() {
   it('should configure node', function() {
     browser.setLocation('admin/advanced_settings');
@@ -8,6 +10,12 @@ describe('adming configure node', function() {
     //enable all receivers to postpone and delete tips
     element(by.model('admin.node.can_postpone_expiration')).click();
     element(by.model('admin.node.can_delete_submission')).click();
+
+    // temporary fix in order to disable the proof of work for testing IE9
+    // and generically test all the browsers that does not support workers
+    if (utils.isOldIE()) {
+      element(by.model('admin.node.enable_proof_of_work')).click();
+    }
 
     // grant tor2web permissions
     element(by.cssContainingText("a", "Tor2web settings")).click();
