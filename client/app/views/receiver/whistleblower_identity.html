@@ -18,15 +18,11 @@
           <label data-translate>Access to the whistleblower's identity has been requested to the custodian.</label>
         </div>
         <div>
-          <label>
-            <span data-translate>Date of the request</span>
-            <span>: </span>
-            <span>{{tip.last_iarl.request_date}}</span>
-          </label>
+          <label data-translate>Date of the request</label><span>:</span>
+          <span>{{tip.last_iar.request_date | date:'dd-MM-yyyy HH:mm'}}</span>
         </div>
         <div>
-          <label data-translate>Request status</label>
-          <span>:</span>
+          <label data-translate>Request status</label><span>:</span>
           <span data-ng-switch="" on="tip.last_iar.reply">
             <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
             <span data-ng-switch-when="denied" data-translate>Denied</span>
