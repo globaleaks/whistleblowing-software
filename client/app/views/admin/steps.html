@@ -80,16 +80,16 @@
                 <button
                   class="actionButton btn btn-xs btn-danger"
                   data-ng-click="delStep(step); $event.stopPropagation();"
-                  popover="{{Delete | translate}}"
+                  uib-popover="{{Delete | translate}}"
                   popover-placement="right"
                   popover-trigger="mouseenter">
                   <span data-translate>Delete</span>
                 </button>
                 <span data-ng-if="context.steps.length > 1">
-                  <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(step); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                  <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(step); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                     <i class="glyphicon glyphicon-menu-up"></i>
                   </button>
-                  <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(step); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                  <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(step); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                     <i class="glyphicon glyphicon-menu-down"></i>
                   </button>
                 </span>
