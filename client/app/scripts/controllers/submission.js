@@ -281,19 +281,21 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   };
 
   $scope.prepare_field_answers_structure = function(field) {
-    var answer = {};
-    if (field.type === 'fieldgroup') {
-      angular.forEach(field.children, function(field) {
-        answer[field.id] = [$scope.prepare_field_answers_structure(field)];
-      });
+    if (field.answer === undefined) {
+      field.answer = {};
+      if (field.type === 'fieldgroup') {
+        angular.forEach(field.children, function(child) {
+          field.answer[child.id] = [$scope.prepare_field_answers_structure(child)];
+        });
+      }
     }
 
-    return answer;
+    return field.answer;
   };
 
   $scope.getAnswersEntries = function(entry) {
     if (entry === undefined) {
-      if ($scope.answers[$scope.field.id] == undefined) {
+      if ($scope.answers[$scope.field.id] === undefined) {
         $scope.answers[$scope.field.id] = [$scope.prepare_field_answers_structure($scope.field)];
       }
       return $scope.answers[$scope.field.id];

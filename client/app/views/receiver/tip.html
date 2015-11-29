@@ -1,54 +1,41 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
-    <span class="pull-left">
-      <a id="link-tiplist"
-         href="#/receiver/tips"
-         popover="{{'List of the submissions' | translate}}"
-         popover-placement="top"
-         popover-trigger="mouseenter"
-         class="btn btn-default">
-        <span class="glyphicon glyphicon-th-list"></span>
-      </a>
+    <a id="link-tiplist"
+       href="#/receiver/tips"
+       uib-popover="{{'List of the submissions' | translate}}"
+       popover-placement="top"
+       popover-trigger="mouseenter"
+       class="btn btn-default">
+      <span class="glyphicon glyphicon-th-list"></span>
+    </a>
 
-      <span id="tip-action-postpone"
-            data-ng-if="preferences.can_postpone_expiration"
-            data-ng-click="tip_postpone()"
-            popover="{{'Postpone submission expiration date' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
-        <i class="glyphicon glyphicon-time"></i>
-      </span>
-
-      <span id="tip-action-delete"
-            data-ng-if="preferences.can_delete_submission"
-            data-ng-click="tip_delete()"
-            popover="{{'Delete tip' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
-        <span class="glyphicon glyphicon-trash"></span>
-      </span>
-
-      <span id="link-reload"
-            data-ng-click="reload()"
-            popover="{{'Refresh page' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
-        <span class="glyphicon glyphicon-refresh"></span>
-      </span>
+    <span id="tip-action-postpone"
+          data-ng-if="preferences.can_postpone_expiration"
+          data-ng-click="tip_postpone()"
+          uib-popover="{{'Postpone submission expiration date' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <i class="glyphicon glyphicon-time"></i>
     </span>
 
-    <span class="pull-right">
-      <a id="link-preferences"
-         href="#/receiver/preferences"
-         popover="{{'Preferences' | translate}}"
-         popover-placement="top"
-         popover-trigger="mouseenter"
-         class="btn btn-default">
-        <span class="glyphicon glyphicon-cog"></span>
-      </a>
+    <span id="tip-action-delete"
+          data-ng-if="preferences.can_delete_submission"
+          data-ng-click="tip_delete()"
+          uib-popover="{{'Delete tip' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <span class="glyphicon glyphicon-trash"></span>
+    </span>
+
+    <span id="link-reload"
+          data-ng-click="reload()"
+          uib-popover="{{'Refresh page' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <span class="glyphicon glyphicon-refresh"></span>
     </span>
   </div>
 </div>

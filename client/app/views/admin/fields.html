@@ -27,19 +27,19 @@
               </span>
             </span>
             <span data-ng-if="field.preview" class="badge alert-info">
-              <span popover="{{'Preview' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-list-alt"></i></span>
+              <span uib-popover="{{'Preview' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-list-alt"></i></span>
             </span>
             <span data-ng-if="field.multi_entry" class="badge alert-warning">
               <span data-ng-switch="" on="field.type">
-                <span data-ng-switch-when="fileupload" popover="{{'Accept multiple file uploads' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
-                <span data-ng-switch-default popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
+                <span data-ng-switch-when="fileupload" uib-popover="{{'Accept multiple file uploads' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
+                <span data-ng-switch-default uib-popover="{{'Accept multiple answers for the field' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-option-horizontal"></i></span>
               </span>
             </span>
             <span data-ng-if="field.stats_enabled" class="badge alert-success">
-              <span popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-stats"></i></span>
+              <span uib-popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-stats"></i></span>
             </span>
             <span data-ng-if="field.required" class="badge alert-danger">
-              <span popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-asterisk"></i></span>
+              <span uib-popover="{{'Required' | translate}}" popover-placement="top" popover-trigger="mouseenter"><i class="glyphicon glyphicon-asterisk"></i></span>
             </span>
           </span>
           <span class="col-md-6">
@@ -72,16 +72,16 @@
                 <span data-translate>Delete</span>
               </button>
               <span data-ng-if="field.step_id !== '' || field.fieldgroup_id !== ''">
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" popover="{{'Move left' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveLeftAndSave(field); $event.stopPropagation();" uib-popover="{{'Move left' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-left"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" popover="{{'Move right' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveRightAndSave(field); $event.stopPropagation();" uib-popover="{{'Move right' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-right"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(field); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-up"></i>
                 </button>
-                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDownAndSave(field); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-menu-down"></i>
                 </button>
               </span>
@@ -243,10 +243,10 @@
                         <i class="glyphicon glyphicon-remove"></i>
                       </button>
                       <span data-ng-if="field.options.length > 1">
-                        <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUp(option); $event.stopPropagation();" popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                        <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUp(option); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                           <i class="glyphicon glyphicon-menu-up"></i>
                         </button>
-                        <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDown(option); $event.stopPropagation();" popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
+                        <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveDown(option); $event.stopPropagation();" uib-popover="{{'Move down' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                           <i class="glyphicon glyphicon-menu-down"></i>
                         </button>
                       </span>

@@ -5,7 +5,7 @@
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
-        <textarea id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+        <textarea id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
                   name="input-{{entryIndex}}"
                   class="form-control"
@@ -27,21 +27,21 @@
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
         <div data-ng-class="{'radio': (field.attrs.layout_orientation.value == 'vertical')}">
-          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
-            <input type="radio" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
-            <span>{{option.label}}</span>
+          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
+            <input type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+            <span>{{::option.label}}</span>
           </label>
         </div>
       </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
-        <select id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
-          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{option.label}}</option>
+        <select id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
+          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
         <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value == 'vertical')}">
           <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
-            <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
                    data-ng-model="entry[option.id]"
@@ -49,13 +49,13 @@
                    data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
-            <span>{{option.label}}</span>
+            <span>{{::option.label}}</span>
           </label>
         </div>
       </div>
       <div data-ng-switch-when="date" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$invalid}">
         <div class="input-group">
-          <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+          <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                  name="input-{{entryIndex}}"
                  class="form-control"
                  data-ng-model="entry['value']"
@@ -63,7 +63,7 @@
                  data-ng-required="field.required"
                  data-ng-attr-placeholder="{{field.placeholder}}"
                  type="text"
-                 datepicker-popup=""
+                 uib-datepicker-popup=""
                  is-open="status.opened"
                  readonly="readonly"
                  show-button-bar="false" />
@@ -76,7 +76,7 @@
         <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.clause.value}}</div>
         <div class="checkbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
           <label>
-            <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="input-{{entryIndex}}"
                    data-ng-model="entry['value']"
                    data-ng-required="field.required"
@@ -88,13 +88,13 @@
         </div>
       </div>
       <div data-ng-switch-when="fileupload">
-        <div id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'"></div>
+        <div id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" data-ng-init="fileupload_mode = field.multi_entry ? 'multiple' : 'single'" data-ng-include="'views/partials/fileupload_button.html'"></div>
       </div>
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
-        <input id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+        <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"
                name="input-{{entryIndex}}"
                class="form-control"

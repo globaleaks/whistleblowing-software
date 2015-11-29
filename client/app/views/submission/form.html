@@ -5,13 +5,13 @@
         <div class="panel-heading">
           <label>
             <span class="fieldLabel">{{::field.label}}</span>
-            <a href="" data-ng-show="::field.hint" data-content="::field.hint" popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <a href="" data-ng-show="::field.hint" data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </label>
           <span class="text-red"
                 data-ng-if="::field.required"
-                popover="{{'This field is mandatory' | translate}}"
+                uib-popover="{{'This field is mandatory' | translate}}"
                 popover-placement="right"
                 popover-trigger="mouseenter">*</span>
         </div>
