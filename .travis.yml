@@ -12,7 +12,7 @@ matrix:
       python: "2.7"
       node_js: "0.12"
 
-    - env: GLTEST='build_and_install GLDIST='precise'
+    - env: GLTEST='build_and_install' GLDIST='precise'
       sudo: true
       dist: precise
       python: "2.7"
