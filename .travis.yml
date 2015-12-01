@@ -1,4 +1,5 @@
 language: python
+dist: trusty
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
@@ -8,25 +9,21 @@ matrix:
   include:
     - env: GLTEST='unit'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
 
-    - env: GLTEST='build_and_install' GLDIST='precise'
+    - env: GLTEST='build_and_install'
       sudo: true
-      dist: precise
       python: "2.7"
       node_js: "0.12"
 
-    - env: GLTEST='build_and_install' GLDIST='trusty'
+    - env: GLTEST='build_and_install'
       sudo: true
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
 
     - env: GLTEST='end2end-0' BROWSER='ie 9'
       sudo: true
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -34,7 +31,6 @@ matrix:
 
     - env: GLTEST='end2end-1' BROWSER='ie 10'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -42,7 +38,6 @@ matrix:
 
     - env: GLTEST='end2end-2' BROWSER='ie 11'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -50,7 +45,6 @@ matrix:
 
     - env: GLTEST='end2end-3' BROWSER='edge 20.10240'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -58,7 +52,6 @@ matrix:
 
     - env: GLTEST='end2end-4' BROWSER='firefox 34'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -66,7 +59,6 @@ matrix:
 
     - env: GLTEST='end2end-5' BROWSER='firefox 42'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -74,7 +66,6 @@ matrix:
 
     - env: GLTEST='end2end-6' BROWSER='chrome 37'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -82,7 +73,6 @@ matrix:
 
     - env: GLTEST='end2end-7' BROWSER='chrome 46'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -90,7 +80,6 @@ matrix:
 
     - env: GLTEST='end2end-8' BROWSER='safari 8'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -98,7 +87,6 @@ matrix:
 
     - env: GLTEST='end2end-9' BROWSER='safari 9'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -106,7 +94,6 @@ matrix:
 
     - env: GLTEST='end2end-10' BROWSER='android 4.4'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -114,7 +101,6 @@ matrix:
 
     - env: GLTEST='end2end-11' BROWSER='android 5.1'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -122,7 +108,6 @@ matrix:
 
     - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
@@ -130,7 +115,6 @@ matrix:
 
     - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
       sudo: false
-      dist: trusty
       python: "2.7"
       node_js: "0.12"
       addons:
