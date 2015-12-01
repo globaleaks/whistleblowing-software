@@ -6,106 +6,135 @@ env:
 matrix:
   fast_finish: true
   include:
-    - sudo: false
+    - env: GLTEST='unit'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='unit'
 
-    - sudo: true
+    - env: GLTEST='build_and_install GLDIST='precise'
+      sudo: true
       dist: precise
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='build_and_install GLDIST='precise'
 
-    - sudo: truee
+    - env: GLTEST='build_and_install' GLDIST='trusty'
+      sudo: true
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='build_and_install' GLDIST='trusty'
 
-    - sudo: true
+    - env: GLTEST='end2end-0' BROWSER='ie 9'
+      sudo: true
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-0' BROWSER='ie 9'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-1' BROWSER='ie 10'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-1' BROWSER='ie 10'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-2' BROWSER='ie 11'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-2' BROWSER='ie 11'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-3' BROWSER='edge 20.10240'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-3' BROWSER='edge 20.10240'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-4' BROWSER='firefox 34'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-4' BROWSER='firefox 34'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-5' BROWSER='firefox 42'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-5' BROWSER='firefox 42'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-6' BROWSER='chrome 37'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-6' BROWSER='chrome 37'
+      addons:
+        sauce_connect: true
 
-      python: "2.7"
-      dist: trusty
-      node_js: "0.12"
-      env: GLTEST='end2end-7' BROWSER='chrome 46'
-
-    - sudo: false
+    - env: GLTEST='end2end-7' BROWSER='chrome 46'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-8' BROWSER='safari 8'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-8' BROWSER='safari 8'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-9' BROWSER='safari 9'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-9' BROWSER='safari 9'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-10' BROWSER='android 4.4'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-10' BROWSER='android 4.4'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-11' BROWSER='android 5.1'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-11' BROWSER='android 5.1'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-12' BROWSER='iphone 7.1'
+      addons:
+        sauce_connect: true
 
-    - sudo: false
+    - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
+      sudo: false
       dist: trusty
       python: "2.7"
       node_js: "0.12"
-      env: GLTEST='end2end-13' BROWSER='iphone 9.1'
+      addons:
+        sauce_connect: true
+
+    - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
+      sudo: false
+      dist: trusty
+      python: "2.7"
+      node_js: "0.12"
+      addons:
+        sauce_connect: true
 
   allow_failures:
     - env: GLTEST='end2end-0' BROWSER='ie 9'
@@ -122,8 +151,6 @@ matrix:
     - env: GLTEST='end2end-11' BROWSER='android 5.1'
     - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
     - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
-addons:
-  sauce_connect: true
 install:
     - true
 before_script:
