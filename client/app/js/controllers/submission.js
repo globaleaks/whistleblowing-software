@@ -182,7 +182,7 @@ GLClient.controller('SubmissionCtrl',
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
       if ($scope.node.enable_proof_of_work) {
-        var worker = new Worker('/scripts/crypto/proof-of-work.worker.js');
+        var worker = new Worker('/js/crypto/proof-of-work.worker.js');
 
         worker.onmessage = function(e) {
           $scope.submission._token.proof_of_work_answer = e.data;

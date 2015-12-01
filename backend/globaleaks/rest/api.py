@@ -136,7 +136,7 @@ spec = [
     (r'/(favicon.ico)', base.BaseStaticFileHandler),
     (r'/(robots.txt)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler),
-    (r'/styles.css', css.CSSFileHandler),
+    (r'/css/styles.css', css.CSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 
