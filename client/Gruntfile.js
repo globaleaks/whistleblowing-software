@@ -13,11 +13,11 @@ module.exports = function(grunt) {
     },
 
     lint: {
-      files: ['Gruntfile.js', 'app/scripts/**/*.js'],
+      files: ['Gruntfile.js', 'app/js/**/*.js'],
     },
 
     jshint: {
-      all: ['Gruntfile.js', 'app/scripts/**/*.js'],
+      all: ['Gruntfile.js', 'app/js/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -52,8 +52,8 @@ module.exports = function(grunt) {
             cwd: 'app/',
             src: [
               '**',
-              '!scripts/**/*.js', // Don't copy scripts that will be instrumented.
-              'scripts/crypto/**/*.js' // Copy scripts that should not be instrumented.
+              '!js/**/*.js', // Don't copy scripts that will be instrumented.
+              'js/crypto/**/*.js' // Copy scripts that should not be instrumented.
             ],
             expand: true
           }]
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
         cwd: 'app',
         options: {base: 'app/'},
         src: ['views/**/*.html'],
-        dest: 'tmp/scripts/templates.js'
+        dest: 'tmp/js/templates.js'
       }
     },
 
@@ -137,11 +137,11 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: '<link rel="stylesheet" href="styles.css">',
+              pattern: '<link rel="stylesheet" href="css/styles.css">',
               replacement: '<link rel="stylesheet" data-ng-href="{{app_stylesheet}}">'
             },
             {
-              pattern: '<script src="scripts.js"></script>',
+              pattern: '<script src="js/scripts.js"></script>',
               replacement: ''
             },
             {
@@ -168,7 +168,7 @@ module.exports = function(grunt) {
     },
 
     instrument: {
-      files: 'scripts/**/*.js',
+      files: 'js/**/*.js',
       options: {
         lazy: true,
         cwd: 'app/',
@@ -244,12 +244,14 @@ module.exports = function(grunt) {
 
   grunt.registerTask('copyBowerSources', function() {
     var files = [
-      ['app/components/scrypt-async/scrypt-async.min.js', 'app/scripts/crypto/scrypt-async.min.js'],
-      ['app/components/openpgp/dist/openpgp.min.js', 'app/scripts/crypto/openpgp.min.js'],
-      ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/scripts/crypto/openpgp.worker.min.js']
+      ['app/components/bootstrap/dist/css/bootstrap.min.css', 'app/css/bootstrap.min.css'],
+      ['app/components/bootstrap-rtl-ondemand/dist/css/bootstrap-rtl-ondemand.min.css', 'app/css/bootstrap-rtl-ondemand.min.css'],
+      ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
+      ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
+      ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
     ]
 
-    grunt.file.mkdir('app/scripts/crypto');
+    grunt.file.mkdir('app/js/crypto');
 
     for (var x in files) {
         grunt.file.copy(files[x][0], files[x][1])
@@ -271,21 +273,21 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'index.js', 'app.html', 'styles.css', 'scripts.js']
+    var files = ['index.html', 'index.js', 'app.html']
     for (var x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
 
-    var dirs = ['data', 'l10n', 'scripts']
+    var dirs = ['data', 'css', 'l10n', 'js']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
       });
     }
 
-    grunt.file.mkdir('build/scripts');
+    grunt.file.mkdir('build/js');
 
-    var dirs = ['scripts/crypto']
+    var dirs = ['js/crypto']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));

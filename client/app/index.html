@@ -12,15 +12,15 @@
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <!-- build:css styles.css -->
-    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="components/bootstrap-rtl-ondemand/dist/css/bootstrap-rtl-ondemand.min.css" />
-    <link rel="stylesheet" href="styles/main.css" />
-    <link rel="stylesheet" href="styles/admin.css" />
-    <link rel="stylesheet" href="styles/home.css" />
-    <link rel="stylesheet" href="styles/submission.css" />
-    <link rel="stylesheet" href="styles/tip.css" />
-    <link rel="stylesheet" href="styles/rtl.css" />
+    <!-- build:css css/styles.css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-rtl-ondemand.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/submission.css" />
+    <link rel="stylesheet" href="css/tip.css" />
+    <link rel="stylesheet" href="css/rtl.css" />
     <!-- endbuild -->
   </head>
 
@@ -116,7 +116,7 @@
     <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
     <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
 
-    <!-- build:js scripts.js -->
+    <!-- build:js js/scripts.js -->
     <script src="components/js-polyfills/typedarray.js"></script>
     <script src="components/es6-promise/promise.js "></script>
     <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
@@ -139,31 +139,31 @@
     <script src="components/fusty-flow.js/src/fusty-flow-factory.js"></script>
     <script src="components/ng-flow/dist/ng-flow.min.js"></script>
     <script src="components/spin.js/spin.min.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/services.js"></script>
-    <script src="scripts/directives.js"></script>
-    <script src="scripts/filters.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/preferences.js"></script>
-    <script src="scripts/controllers/fileupload.js"></script>
-    <script src="scripts/controllers/wizard.js"></script>
-    <script src="scripts/controllers/home.js"></script>
-    <script src="scripts/controllers/receiver.js"></script>
-    <script src="scripts/controllers/tip.js"></script>
-    <script src="scripts/controllers/custodian.js"></script>
-    <script src="scripts/controllers/admin/main.js"></script>
-    <script src="scripts/controllers/admin/users.js"></script>
-    <script src="scripts/controllers/admin/receivers.js"></script>
-    <script src="scripts/controllers/admin/contexts.js"></script>
-    <script src="scripts/controllers/admin/steps.js"></script>
-    <script src="scripts/controllers/admin/fields.js"></script>
-    <script src="scripts/controllers/admin/overview.js"></script>
-    <script src="scripts/controllers/admin/stats.js"></script>
-    <script src="scripts/controllers/submission.js"></script>
-    <script src="scripts/controllers/receipt.js"></script>
-    <script src="scripts/controllers/login.js"></script>
-    <script src="scripts/controllers/user.js"></script>
-    <script src="scripts/templates.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/preferences.js"></script>
+    <script src="js/controllers/fileupload.js"></script>
+    <script src="js/controllers/wizard.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/receiver.js"></script>
+    <script src="js/controllers/tip.js"></script>
+    <script src="js/controllers/custodian.js"></script>
+    <script src="js/controllers/admin/main.js"></script>
+    <script src="js/controllers/admin/users.js"></script>
+    <script src="js/controllers/admin/receivers.js"></script>
+    <script src="js/controllers/admin/contexts.js"></script>
+    <script src="js/controllers/admin/steps.js"></script>
+    <script src="js/controllers/admin/fields.js"></script>
+    <script src="js/controllers/admin/overview.js"></script>
+    <script src="js/controllers/admin/stats.js"></script>
+    <script src="js/controllers/submission.js"></script>
+    <script src="js/controllers/receipt.js"></script>
+    <script src="js/controllers/login.js"></script>
+    <script src="js/controllers/user.js"></script>
+    <script src="js/templates.js"></script>
     <!-- endbuild -->
 
     <script src="components/bowser/bowser.min.js?inline"></script>
@@ -206,7 +206,7 @@
  
       function start_globaleaks() {
         if (isBrowserCompatible()) {
-          loadjsfile("scripts.js");
+          loadjsfile("js/scripts.js");
         } else {
           document.getElementById("LoaderBox").style.display = "none";
           document.getElementById("error_unsupported_browser").style.display = "block";

@@ -6,7 +6,7 @@ from globaleaks.security import directory_traversal_check
 
 
 class CSSFileHandler(BaseHandler):
-    original_css_filename = 'styles.css'
+    original_css_filename = 'css/styles.css'
 
     def get(self):
         self.set_header("Content-Type", 'text/css')
