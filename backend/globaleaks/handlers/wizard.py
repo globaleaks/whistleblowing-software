@@ -26,6 +26,9 @@ def wizard(store, request, language):
         # Header title of the homepage is initially set with the node title
         request['node']['header_title_homepage'] = request['node']['name']
 
+        # Node presentation is initialized also to the node description
+        request['node']['presentation'] = request['node']['description']
+
         db_update_node(store, request['node'], True, language)
         context = db_create_context(store, request['context'], language)
 

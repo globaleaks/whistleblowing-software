@@ -1,9 +1,6 @@
 {
   "version": 1,
   "node": {
-    "presentation": {
-      "en": "This is the default welcome message"
-    },
     "footer": {
       "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights"
     },

@@ -257,7 +257,7 @@ GLClient.controller('TipOperationsCtrl',
   };
 }]);
 
-GLClient.controller('IdentityAccessRequestCtrl', 
+GLClient.controller('IdentityAccessRequestCtrl',
   ['$scope', '$http', '$route', '$uibModalInstance', 'tip',
    function ($scope, $http, $route, $uibModalInstance, tip) {
   $scope.tip = tip;
