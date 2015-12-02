@@ -87,7 +87,7 @@ def save_statistics(store, start, end, activity_collection):
 
 
 class AnomaliesSchedule(GLJob):
-    """/
+    """
     This class check for Anomalies, using the Alarm() object
     implemented in anomaly.py
     """
