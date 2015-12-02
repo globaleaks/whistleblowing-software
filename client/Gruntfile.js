@@ -124,7 +124,7 @@ module.exports = function(grunt) {
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
-          build: process.env.TRAVIS_JOB_ID
+          build: process.env.TRAVIS_BUILD_NUMBER
         }
       }
     },
