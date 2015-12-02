@@ -392,7 +392,7 @@ class MigrationScript(MigrationBase):
         if new_notification.server == u'mail.headstrong.de':
             # If the node is still using the default config update thee config to the new one
             new_notification.server = 'demo.globaleaks.org'
-            new_notification.port = 587
+            new_notification.port = 9287
             new_notification.username = u'hey_you_should_change_me'
             new_notification.password = u'yes_you_really_should_change_me'
             new_notification.source_email = u'notification@demo.globaleaks.org'
