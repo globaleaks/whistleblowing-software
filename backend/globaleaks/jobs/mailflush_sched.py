@@ -123,7 +123,6 @@ def filter_notification_event(notifque):
         else:
             _tmp_list.append(ne)
 
-
     if len(orm_id_to_be_skipped):
         if GLSettings.memory_copy.disable_receiver_notification_emails:
             log.debug("All the %d mails will be marked as sent because the admin has disabled receivers notifications" %
@@ -161,7 +160,7 @@ def filter_notification_event(notifque):
             anomalyevent.receiver_info = ne.receiver_info
             anomalyevent.tip_info = None
             anomalyevent.subevent_info = None
-            anomalyevent.orm_id = 0
+            anomalyevent.orm_id = '0'
 
             return_filtered_list.append(anomalyevent)
 
