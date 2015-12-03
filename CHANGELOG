@@ -1,22 +1,26 @@
-Changes in version 2.60.119 - 2015-10-30
+Changes in version 2.60.120 - 2015-12-03
+    o UI Fixes
+    o Migration fixes
+
+Changes in version 2.60.119 - 2015-11-30
     o UI Fixes
 
-Changes in version 2.60.118 - 2015-10-27
+Changes in version 2.60.118 - 2015-11-27
     o UI Fixes
     o Update translations
 
-Changes in version 2.60.117 - 2015-10-25
+Changes in version 2.60.117 - 2015-11-25
     o UI Fixes
     o Update translations
 
-Changes in version 2.60.116 - 2015-10-24
+Changes in version 2.60.116 - 2015-11-24
     o Packaging fixes
     o Update translations
 
-Changes in version 2.60.115 - 2015-10-22
+Changes in version 2.60.115 - 2015-11-22
     o Packaging fixes
 
-Changes in version 2.60.114 - 2015-10-2hanges in version 2.60.114 - 2015-10-21
+Changes in version 2.60.114 - 2015-10-2hanges in version 2.60.114 - 2015-11-21
     o Implement Proof of Work based on the HashCash to improve protection from spam attacks
     o Implement secure wiping of files upon deletion
     o Integrate OpenPGP.js library
