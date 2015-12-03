@@ -36,6 +36,59 @@ angular.module('GLDirectives', []).
 
       element.fadeOut(fadeout_delay);
     };
+
+
+}).
+  directive('italianFiscalCode', function(){
+	var controller= [ '$scope' ,function ($scope)
+	{
+		function setup()
+		{
+			$scope.validate()
+		}
+
+
+		$scope.$watch('model' ,function()
+		{
+	        console.log( "watch: model" )
+			$scope.validate()
+    	});
+
+
+		$scope.validate = function ()
+		{
+	        if( IsValidFiscalCode16( $scope.model ) )
+	        	$scope.color= "green"
+	        else
+	        	$scope.color= "red"
+
+			$scope.counter= checkOmocodiaCf16( $scope.model )
+			if( $scope.counter>0 )
+				$scope.omocodiacolor='orange'
+			else 
+				$scope.omocodiacolor='green'
+		}
+		setup()
+	}]
+
+	return {
+	restrict: 'ACME',
+	replace: 'true', 
+
+		templateUrl: 'views/cf/cf.html',
+
+		scope:
+		{
+			model: '@',      	
+			color: '@'
+			,counter:'@'
+		}
+
+		,controller: controller
+	};
+
+
+
 }).
   directive('keycodevalidator', [function() {
     return {
