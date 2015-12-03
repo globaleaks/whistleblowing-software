@@ -17,11 +17,6 @@ matrix:
       python: "2.7"
       node_js: "0.12"
 
-    - env: GLTEST='build_and_install'
-      sudo: true
-      python: "2.7"
-      node_js: "0.12"
-
     - env: GLTEST='end2end-0' BROWSER='ie 9'
       sudo: true
       python: "2.7"
