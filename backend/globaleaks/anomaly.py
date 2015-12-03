@@ -422,7 +422,8 @@ class Alarm(object):
         Alarm.stress_levels['disk_space'] = disk_space
         Alarm.stress_levels['disk_message'] = disk_message
 
-        GLSettings.accept_submissions = accept_submissions
+        # if not on testing change accept_submission to the new value
+        GLSettings.accept_submissions = accept_submissions if not GLSettings.testing else True
 
         if old_accept_submissions != GLSettings.accept_submissions:
             log.info("Switching disk space availability from: %s to %s" % (
