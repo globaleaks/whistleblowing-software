@@ -6,14 +6,14 @@ import sys
 import sqlite3
 
 from globaleaks import models
-from globaleaks.security import hash_password, get_salt, rstr
+from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
 from globaleaks import DATABASE_VERSION
 
 def reset_password(dbfile, username=None, password=None):
-    salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    salt = getRandomSalt()
 
-    if not password:
-        password = rstr.xeger('[A-Za-z0-9]{16}')
+    if password is None:
+        password = generateRandomPassword()
 
     hashed_password = hash_password(password, salt)
 

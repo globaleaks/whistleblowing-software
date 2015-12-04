@@ -15,7 +15,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.security import rstr
+from globaleaks.security import generateRandomKey
 from globaleaks.utils import utility, tempobj
 from globaleaks.utils.utility import log
 
@@ -30,7 +30,7 @@ class GLSession(tempobj.TempObj):
         self.user_status = user_status
         tempobj.TempObj.__init__(self,
                                  GLSettings.sessions,
-                                 rstr.xeger(r'[A-Za-z0-9]{42}'),
+                                 generateRandomKey(42),
                                  GLSettings.defaults.authentication_lifetime,
                                  reactor_override)
 
@@ -210,7 +210,7 @@ def login(store, username, password, using_tor2web):
     user = store.find(User, And(User.username == username,
                                 User.state != u'disabled')).one()
 
-    if not user or not security.check_password(password,  user.password, user.salt):
+    if not user or not security.check_password(password,  user.salt, user.password):
         log.debug("Login: Invalid credentials")
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication

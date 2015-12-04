@@ -15,7 +15,7 @@ from globaleaks.db.appdata import db_init_appdata, load_default_fields
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
-from globaleaks.security import get_salt, rstr
+from globaleaks.security import generateRandomSalt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
@@ -54,7 +54,7 @@ def init_db(store):
 
     node = models.Node()
     node.wizard_done = GLSettings.skip_wizard
-    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    node.receipt_salt = generateRandomSalt()
 
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])

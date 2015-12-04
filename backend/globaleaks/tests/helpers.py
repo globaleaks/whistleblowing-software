@@ -21,6 +21,7 @@ import sys
 reload(sys)
 sys.getdefaultencoding()
 
+
 from globaleaks import db, models, security, anomaly, event, runner
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
@@ -36,7 +37,7 @@ from globaleaks.handlers.submission import create_submission, serialize_usertip,
 from globaleaks.jobs import statistics_sched, mailflush_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, rstr
+from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
 from globaleaks.utils import token, mailutils
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import sum_dicts, datetime_null, datetime_now, log
@@ -46,8 +47,8 @@ from . import TEST_DIR
 ## constants
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
-VALID_SALT1 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
-VALID_SALT2 = security.get_salt(rstr.xeger(r'[A-Za-z0-9]{56}'))
+VALID_SALT1 = security.generateRandomSalt()
+VALID_SALT2 = security.generateRandomSalt()
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
@@ -591,7 +592,7 @@ class TestHandler(TestGLWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         """
-        override default handlers' get_store with a mock store used for testing/
+        override default handlers get_store with a mock store used for testing
         """
         # we bypass TestGLWith Populated DB to test against clean DB.
         yield TestGL.setUp(self)

@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import db_save_questionnaire_answers, \
     extract_answers_preview
 from globaleaks.models import Model
-from globaleaks.security import sha256, rstr
+from globaleaks.security import sha256, generateRandomKey
 from globaleaks.settings import GLSettings
 
 
@@ -257,7 +257,7 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if v.name == 'file_path':
-                    new_obj.file_path = os.path.join(GLSettings.submission_path, "%s.aes" % rstr.xeger(r'[A-Za-z0-9]{16}'))
+                    new_obj.file_path = os.path.join(GLSettings.submission_path, "%s.aes" % generateRandomKey(16))
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

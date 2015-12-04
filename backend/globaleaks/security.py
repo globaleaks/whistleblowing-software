@@ -12,6 +12,7 @@ import pickle
 import random
 import shutil
 import scrypt
+import string
 import time
 
 from cryptography.hazmat.primitives import hashes
@@ -26,16 +27,7 @@ from globaleaks.utils.utility import log, datetime_to_day_str
 from globaleaks.settings import GLSettings
 
 
-from rstr import Rstr
-from random import SystemRandom
-rstr = Rstr(SystemRandom())
-
-
-SALT_LENGTH = (128 / 8)  # 128 bits of unique salt
-
-
 crypto_backend = default_backend()
-
 
 def sha256(data):
     h = hashes.Hash(hashes.SHA256(), backend=crypto_backend)
@@ -47,6 +39,27 @@ def sha512(data):
     h = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
     h.update(data)
     return binascii.b2a_hex(h.finalize())
+
+
+def generateRandomReceipt():
+    """
+    Return a random receipt of 16 digits
+    """
+    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16)).encode('utf-8')
+
+
+def generateRandomKey(N):
+    """
+    Return a random key of N characters in a-zA-Z0-9
+    """
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N)).encode('utf-8')
+
+
+def generateRandomSalt():
+    """
+    Return a string a-z0-9 long 32 chars (128 bit of entropy)
+    """
+    return ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(32)).encode('utf-8')
 
 
 def _overwrite(absolutefpath, pattern):
@@ -147,12 +160,12 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         """
         self.key = os.urandom(GLSettings.AES_key_size)
 
-        self.key_id = rstr.xeger(GLSettings.AES_key_id_regexp)
+        self.key_id = generateRandomKey(16)
         self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
                                     (GLSettings.AES_keyfile_prefix, self.key_id))
 
         while os.path.isfile(self.keypath):
-            self.key_id = rstr.xeger(GLSettings.AES_key_id_regexp)
+            self.key_id = generateRandomKey(16)
             self.keypath = os.path.join(GLSettings.ramdisk_path, "%s%s" %
                                         (GLSettings.AES_keyfile_prefix, self.key_id))
 
@@ -288,36 +301,18 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
         raise errors.DirectoryTraversalError
 
 
-def get_salt(salt_input):
+def hash_password(password, salt):
     """
-    @param salt_input:
-        A string
-
-    is performed a SHA512 hash of the salt_input string, and are returned 128bits
-    """
-    digest = sha512(salt_input.encode('utf-8'))
-
-    # hex require two byte each to describe 1 byte of entropy
-    return digest[:SALT_LENGTH * 2]
-
-
-def hash_password(proposed_password, salt_input):
-    """
-    @param proposed_password: a password, not security enforced.
-        is not accepted an empty string.
+    @param password: a password
+    @param salt: a password salt
 
     @return:
-        the scrypt hash in base64 of the password
+        the salted scrypt hash of the provided password
     """
-    proposed_password = proposed_password.encode('utf-8')
-    salt = get_salt(salt_input)
+    password = password.encode('utf-8')
+    salt = salt.encode('utf-8')
 
-    if not len(proposed_password):
-        log.err("password string has been not really provided (0 len)")
-        raise errors.InvalidInputFormat("Missing password")
-
-    hashed_passwd = scrypt.hash(proposed_password, salt)
-    return binascii.b2a_hex(hashed_passwd)
+    return scrypt.hash(password, salt).encode('hex')
 
 
 def check_password_format(password):
@@ -335,13 +330,8 @@ def check_password_format(password):
         raise errors.InvalidInputFormat("password requirements unmet")
 
 
-def check_password(guessed_password, base64_stored, salt_input):
-    guessed_password = guessed_password.encode('utf-8')
-    salt = get_salt(salt_input)
-
-    hashed_guessed = scrypt.hash(guessed_password, salt)
-
-    return binascii.b2a_hex(hashed_guessed) == base64_stored
+def check_password(guessed_password, salt, password_hash):
+    return hash_password(guessed_password, salt) == password_hash
 
 
 def change_password(old_password_hash, old_password, new_password, salt):
@@ -354,7 +344,7 @@ def change_password(old_password_hash, old_password, new_password, salt):
     @return:
         the scrypt hash in base64 of the new password
     """
-    if not check_password(old_password, old_password_hash, salt):
+    if not check_password(old_password, salt, old_password_hash):
         log.err("change_password(): Error - provided invalid old_password")
         raise errors.InvalidOldPassword
 
@@ -374,7 +364,7 @@ class GLBPGP(object):
         every time is needed, a new keyring is created here.
         """
         try:
-            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % rstr.xeger(r'[A-Za-z0-9]{8}'))
+            temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % generateRandomKey(8))
             os.makedirs(temp_pgproot, mode=0700)
             self.pgph = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.pgph.encoding = "UTF-8"
@@ -456,8 +446,7 @@ class GLBPGP(object):
                   (key_fingerprint,
                    plainpath, len(str(encrypt_obj))))
 
-        encrypted_path = os.path.join(os.path.abspath(output_path),
-                                      "pgp_encrypted-%s" % rstr.xeger(r'[A-Za-z0-9]{16}'))
+        encrypted_path = os.path.join(os.path.abspath(output_path), "pgp_encrypted-%s" % generateRandomKey(16))
 
         try:
             with open(encrypted_path, "w+") as f:
