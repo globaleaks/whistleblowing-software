@@ -886,7 +886,8 @@ class MockDict():
                         'value': '',
                         'presentation_order': 0,
                         'score_points': 0,
-                        'activated_fields': []
+                        'activated_fields': [],
+                        'activated_steps': []
                     },
                     {
                         'id': '9c7f343b-ed46-4c9e-9121-a54b6e310123',
@@ -894,7 +895,8 @@ class MockDict():
                         'value': '',
                         'presentation_order': 0,
                         'score_points': 0,
-                        'activated_fields': []
+                        'activated_fields': [],
+                        'activated_steps': []
                     }
                 ],
                 'y': 0,
