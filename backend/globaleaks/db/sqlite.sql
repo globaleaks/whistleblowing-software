@@ -446,6 +446,14 @@ CREATE TABLE optionactivatefield (
     PRIMARY KEY (option_id, field_id)
 );
 
+CREATE TABLE optionactivatestep (
+    option_id TEXT NOT NULL,
+    step_id TEXT NOT NULL,
+    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
+    PRIMARY KEY (option_id, step_id)
+);
+
 CREATE TABLE step (
     id TEXT NOT NULL,
     context_id TEXT NOT NULL,
@@ -528,5 +536,6 @@ CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
 CREATE INDEX optionactivatefield__field_id_index ON optionactivatefield(field_id);
+CREATE INDEX optionactivatestep__step_id_index ON optionactivatestep(step_id);
 CREATE INDEX step__context_id_index ON step(context_id);
 CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);

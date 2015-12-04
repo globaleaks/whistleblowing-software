@@ -139,7 +139,8 @@ def anon_serialize_field_option(option, language):
         'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
-        'activated_fields': [field.id for field in option.activated_fields]
+        'activated_fields': [field.id for field in option.activated_fields],
+        'activated_steps': [step.id for step in option.activated_steps]
     }
 
     return get_localized_values(ret_dict, option, option.localized_keys, language)
