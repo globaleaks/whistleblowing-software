@@ -17,7 +17,7 @@ from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import rstr
+from globaleaks.security import generateRandomSalt
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
@@ -142,7 +142,7 @@ def db_create_user(store, request, language):
     else:
         password = GLSettings.default_password
 
-    password_salt = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    password_salt = security.generateRandomSalt()
     password_hash = security.hash_password(password, password_salt)
 
     user = models.User({

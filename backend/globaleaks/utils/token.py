@@ -16,7 +16,7 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.rest import errors
 from globaleaks.utils.tempobj import TempObj
 from globaleaks.settings import GLSettings
-from globaleaks.security import sha256, rstr
+from globaleaks.security import sha256, generateRandomKey
 
 
 # needed in order to allow UT override
@@ -82,7 +82,7 @@ class Token(TempObj):
         # to keep track of the file uploaded associated
         self.uploaded_files = []
 
-        self.id = rstr.xeger(r'[A-Za-z0-9]{42}')
+        self.id = generateRandomKey(42)
 
         # initialization of token configuration
         self.human_captcha = False
@@ -176,7 +176,7 @@ class Token(TempObj):
 
         if challenges_dict['proof_of_work']:
             self.proof_of_work = {
-                'question': rstr.xeger(r'[A-Za-z0-9]{20}')
+                'question': generateRandomKey(20)
             }
 
     def timedelta_check(self):

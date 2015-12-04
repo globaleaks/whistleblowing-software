@@ -5,8 +5,7 @@ import scrypt
 from cryptography.hazmat.primitives import hashes
 from twisted.trial import unittest
 from globaleaks.tests import helpers
-from globaleaks.security import get_salt, hash_password, check_password, change_password, check_password_format, \
-    SALT_LENGTH, \
+from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, check_password_format, \
     directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
 from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
@@ -15,54 +14,35 @@ from globaleaks.rest import errors
 class TestPasswordManagement(unittest.TestCase):
     def test_pass_hash(self):
         dummy_password = "focaccina"
-        dummy_salt_input = "vecna@focaccina.net"
 
-        sure_bin = scrypt.hash(dummy_password, get_salt(dummy_salt_input))
+        dummy_salt = generateRandomSalt()
+
+        sure_bin = scrypt.hash(dummy_password, dummy_salt)
         sure = binascii.b2a_hex(sure_bin)
-        not_sure = hash_password(dummy_password, dummy_salt_input)
+        not_sure = hash_password(dummy_password, dummy_salt)
         self.assertEqual(sure, not_sure)
-
-    def test_salt(self):
-        dummy_string = "xxxxxx32312xxxxxx"
-
-        sha = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
-        sha.update(dummy_string)
-
-        complete_hex = digest = binascii.b2a_hex(sha.finalize())
-        self.assertEqual(complete_hex[:SALT_LENGTH],
-                         get_salt(dummy_string)[:SALT_LENGTH])
-
-        new_dummy_string = "xxxxkkkk"
-
-        sha_second = hashes.Hash(hashes.SHA512(), backend=crypto_backend)
-        sha_second.update(new_dummy_string)
-
-        complete_hex = binascii.b2a_hex(sha_second.finalize())
-        self.assertEqual(complete_hex[:SALT_LENGTH],
-                         get_salt(new_dummy_string)[:SALT_LENGTH])
 
     def test_valid_password(self):
         dummy_password = dummy_salt_input = \
             "http://blog.transparency.org/wp-content/uploads/2010/05/A2_Whistelblower_poster.jpg"
-        dummy_salt = get_salt(dummy_salt_input)
+        dummy_salt = generateRandomSalt()
 
         hashed_once = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
         hashed_twice = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
         self.assertTrue(hashed_once, hashed_twice)
 
-        self.assertTrue(check_password(dummy_password, hashed_once, dummy_salt_input))
+        self.assertTrue(check_password(dummy_password, dummy_salt, hashed_once))
 
     def test_change_password(self):
-        dummy_salt_input = "xxxxxxxx"
         first_pass = helpers.VALID_PASSWORD1
         second_pass = helpers.VALID_PASSWORD2
-        dummy_salt = get_salt(dummy_salt_input)
+        dummy_salt = generateRandomSalt()
 
         # as first we hash a "first_password" like has to be:
         hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
 
         # now emulate the change unsing the globaleaks.security module
-        hashed2 = change_password(hashed1, first_pass, second_pass, dummy_salt_input)
+        hashed2 = change_password(hashed1, first_pass, second_pass, dummy_salt)
 
         # verify that second stored pass is the same
         self.assertEqual(
@@ -74,7 +54,7 @@ class TestPasswordManagement(unittest.TestCase):
         dummy_salt_input = "xxxxxxxx"
         first_pass = helpers.VALID_PASSWORD1
         second_pass = helpers.VALID_PASSWORD2
-        dummy_salt = get_salt(dummy_salt_input)
+        dummy_salt = generateRandomSalt()
 
         # as first we hash a "first_password" like has to be:
         hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
