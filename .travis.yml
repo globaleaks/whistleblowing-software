@@ -8,15 +8,26 @@ env:
 matrix:
   fast_finish: true
   include:
-    - env: GLTEST='unit'
+    - env: GLTEST='unit' GLREQUIREMENTS='precise'
       python: "2.7"
-      addons:
-        sauce_connect: false
+
+    - env: GLTEST='unit' GLREQUIREMENTS='trusty'
+      python: "2.7"
+
+    - env: GLTEST='unit' GLREQUIREMENTS='xenial'
+      python: "2.7"
+
+    - env: GLTEST='unit' GLREQUIREMENTS='wheezy'
+      python: "2.7"
+
+    - env: GLTEST='unit' GLREQUIREMENTS='jessie'
+      python: "2.7"
+
+    - env: GLTEST='unit' GLREQUIREMENTS='stretch'
+      python: "2.7"
 
     - env: GLTEST='build_and_install'
       python: "2.7"
-      addons:
-        sauce_connect: false
 
     - env: GLTEST='end2end-0' BROWSER='ie 9'
       python: "2.7"

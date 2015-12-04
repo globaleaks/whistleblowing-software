@@ -15,6 +15,11 @@ usage() {
   echo -e " -n (do not sign)"
 }
 
+TARGETS="precise trusty xenial wheezy jessie stretch"
+DISTRIBUTION="trusty"
+TAG="master"
+NOSIGN=0
+
 while getopts "d:nt:h" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
@@ -33,18 +38,12 @@ while getopts "d:nt:h" opt; do
   esac
 done
 
-if [ "$DISTRIBUTION" != "all" ] &&
-   [ "$DISTRIBUTION" != "precise" ] &&
-   [ "$DISTRIBUTION" != "trusty" ] &&
-   [ "$DISTRIBUTION" != "wheezy" ] &&
-   [ "$DISTRIBUTION" != "jessie" ]; then
+if ! [[ $TARGETS =~ $DISTRIBUTION ]] && [[ $DISTRIBUTION != 'all' ]]; then
  usage
  exit 1
 fi
 
-if [ "$DISTRIBUTION" == "all" ]; then
-  TARGETS="precise trusty wheezy jessie"
-else
+if [ "$DISTRIBUTION" != 'all' ]; then
   TARGETS=$DISTRIBUTION
 fi
 
@@ -90,7 +89,7 @@ for TARGET in $TARGETS; do
   cp -r $BUILDSRC $BUILDDIR
   cd $BUILDDIR/GlobaLeaks
   rm debian/control
-  ln -s control.$TARGET debian/control
+  ln -s controlX/control.$TARGET debian/control
   sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
 
   if [ $NOSIGN -eq 1 ]; then
