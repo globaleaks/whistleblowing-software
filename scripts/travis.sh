@@ -2,6 +2,10 @@
 
 set -e
 
+if ! [ -z "$GLREQUIREMENTS" ]; then
+  GLREQUIREMENTS="trusty"
+fi
+
 setupClientDependencies()
 {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
@@ -15,6 +19,8 @@ setupClientDependencies()
 setupBackendDependencies()
 {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
+  rm -rf requirements.txt
+  ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
   pip install -r requirements.txt
   pip install coverage coveralls
 }
