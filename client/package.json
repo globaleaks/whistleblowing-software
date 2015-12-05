@@ -24,15 +24,15 @@
     "grunt-line-remover": "0.0.2",
     "grunt-inline-alt": "0.3.10",
     "grunt-manifest": "0.4.4",
-    "grunt-protractor-coverage": "^0.2.15",
-    "grunt-protractor-runner": "2.1.0",
+    "grunt-protractor-coverage": "0.2.15",
+    "grunt-protractor-runner": "3.0.0",
     "grunt-string-replace": "1.2.0",
     "grunt-usemin": "3.1.1",
     "mocha": "2.3.4",
     "node-gettext": "0.2.14",
     "protractor": "3.0.0",
     "should": "7.1.1",
-    "superagent": "1.4.0",
+    "superagent": "1.5.0",
     "supertest": "1.1.0"
   }
 }
