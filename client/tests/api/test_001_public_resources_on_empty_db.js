@@ -32,12 +32,12 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/scripts.js',
+    'url': '/js/scripts.js',
     'type': 'application/javascript',
     'status': 200
   },
   {
-    'url': '/styles.css',
+    'url': '/css/styles.css',
     'type': 'text/css',
     'status': 200
   },
