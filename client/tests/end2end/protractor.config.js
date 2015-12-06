@@ -1,5 +1,5 @@
 exports.config = {
-  framework: 'jasmine2',
+  framework: 'jasmine',
 
   baseUrl: 'http://127.0.0.1:8082/',
 
@@ -23,5 +23,6 @@ exports.config = {
 
   jasmineNodeOpts: {
    isVerbose: true,
+   includeStackTrace: true
   }
 };
