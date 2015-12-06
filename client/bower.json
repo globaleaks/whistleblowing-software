@@ -1,10 +1,21 @@
 {
-  "name": "GLClient",
+  "name": "GlobaLeaks",
+  "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
   "version": "2.60.120",
-  "homepage": "https://github.com/globaleaks/GlobaLeaks",
+  "license" : "AGPL-3.0",
   "authors": [
-    "Random GlobaLeaks Developers <info@globaleaks.org>"
+    "Claudio Agosti <vecna@globaleaks.org>",
+    "Yvette Agostini <mnemosyne@logioshermes.org>",
+    "Arturo Filastò <hellais@globaleaks.org>",
+    "Michele Orrù <maker@globaleaks.org>",
+    "Giovanni Pellerano <evilaliv3@globaleaks.org>",
+    "Fabio Pietrosanti <naif@globaleaks.org>",
   ],
+  "homepage": "https://github.com/globaleaks/GlobaLeaks",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:globaleaks/GlobaLeaks.git"
+  },
   "main": "app",
   "private": true,
   "directory": "app/components/",

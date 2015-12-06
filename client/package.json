@@ -1,7 +1,13 @@
 {
-  "author": "Random GlobaLeaks Developers",
-  "name": "GLClient",
+  "name": "GlobaLeaks",
+  "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
   "version": "2.60.120",
+  "license" : "AGPL-3.0",
+  "author": "Random GlobaLeaks Developers",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:globaleaks/GlobaLeaks.git"
+  },
   "dependencies": {
     "bower": "*"
   },
