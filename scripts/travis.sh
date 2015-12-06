@@ -6,8 +6,9 @@ setupClientDependencies()
 {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install -g grunt grunt-cli bower
-  npm install
+  npm install -d
   grunt setupDependencies
+  ./node_modules/protractor/bin/webdriver-manager update
   grunt build
 }
 
@@ -38,7 +39,6 @@ if [ "$GLTEST" = "unit" ]; then
   echo "Running BrowserTesting locally collecting code coverage"
   cd $TRAVIS_BUILD_DIR/client
   rm -fr $TRAVIS_BUILD_DIR/client/coverage
-  ./node_modules/protractor/bin/webdriver-manager update
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
   sleep 5
@@ -69,7 +69,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sleep 5
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
-  ./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
   grunt protractor:test
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
