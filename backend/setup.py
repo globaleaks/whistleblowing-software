@@ -77,6 +77,7 @@ setup(
     version=globaleaks.__version__,
     author=globaleaks.__author__,
     author_email=globaleaks.__email__,
+    license=globaleaks.__license__,
     url='https://globaleaks.org/',
     cmdclass={'test': TestCommand},
     package_dir={'globaleaks': 'globaleaks'},
