@@ -1,5 +1,8 @@
 language: python
 dist: trusty
+cache:
+  - apt
+  - pip
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
@@ -130,8 +133,7 @@ matrix:
     - env: GLTEST='end2end-11' BROWSER='android 5.1'
     - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
     - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
-install:
-    - true
+install: true
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
