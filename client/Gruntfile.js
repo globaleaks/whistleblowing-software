@@ -566,6 +566,11 @@ module.exports = function(grunt) {
       extractPOFromTXTFile(filepath);
     });
 
+    grunt.file.recurse('app/data_src/fields', function(absdir, rootdir, subdir, filename) {
+      var filepath = path.join('app/data_src/fields', subdir || '', filename || '');
+      extractPOFromJSONFile(filepath);
+    });
+
     extractPOFromJSONFile('app/data_src/appdata.json');
 
     grunt.file.mkdir("pot");
