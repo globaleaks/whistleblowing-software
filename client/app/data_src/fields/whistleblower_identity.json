@@ -48,7 +48,7 @@
         "en": ""
       },
       "label": {
-        "en": "Name"
+        "en": "First name"
       },
       "width": 6,
       "preview": false,
@@ -95,7 +95,7 @@
         "en": ""
       },
       "label": {
-        "en": "Surname"
+        "en": "Last name"
       },
       "width": 6,
       "preview": false,
@@ -135,7 +135,7 @@
         "en": ""
       },
       "label": {
-        "en": "Sex"
+        "en": "Gender"
       },
       "width": 3,
       "preview": false,
@@ -383,7 +383,7 @@
             "en": ""
           },
           "label": {
-            "en": "Zip code / Postal Code"
+            "en": "Zip code / Postal code"
           },
           "width": 0,
           "preview": false,
@@ -883,7 +883,7 @@
         "en": ""
       },
       "label": {
-        "en": "Telephone number"
+        "en": "Phone number"
       },
       "width": 6,
       "preview": false,
