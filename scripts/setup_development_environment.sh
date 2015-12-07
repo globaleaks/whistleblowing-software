@@ -97,6 +97,3 @@ virtualenv -p python2.7 glenv
 source glenv/bin/activate
 python setup.py develop --always-unzip 
 cd ../../
-
-echo "Step 9/9: finally start  globaleaks"
-./GlobaLeaks/backend/bin/globaleaks -z -d -n
