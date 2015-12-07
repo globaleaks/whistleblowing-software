@@ -88,7 +88,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/fieldtemplates.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Questionnarie configuration'
+        header_subtitle: 'Questionnaire configuration'
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',
@@ -124,19 +124,19 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Users overview'
+        header_subtitle: 'User overview'
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Tips overview'
+        header_subtitle: 'Submission overview'
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Files overview'
+        header_subtitle: 'File overview'
       }).
       when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
