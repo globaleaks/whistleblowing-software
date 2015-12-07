@@ -2,6 +2,10 @@
 
 set -e
 
+DISTRIBUTION="trusty"
+TAG="master"
+NOSIGN=0
+
 usage() {
   echo "GlobaLeaks Build Script"
   echo "Valid options:"
@@ -10,10 +14,6 @@ usage() {
   echo -e " -d distribution (available: precise, trusty, wheezy, jessie)"
   echo -e " -n (do not sign)"
 }
-
-DISTRIBUTION="trusty"
-TAG="master"
-NOSIGN=0
 
 while getopts "d:nt:h" opt; do
   case $opt in

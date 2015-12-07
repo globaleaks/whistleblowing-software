@@ -167,13 +167,11 @@ DO "rm -f $TMPFILE" "0"
 DO "apt-get update -y" "0"
 
 # on Ubuntu python-pip requires universe repository
-if [ $DISTRO == 'Ubuntu' ];then
+if [ $DISTRO == 'Ubuntu' ]; then
   if [ "$DISTRO_CODENAME" = "precise" ]; then
     echo "Installing python-software-properties"
     DO "apt-get install python-software-properties -y" "0"
-  fi
-
-  if [ "$DISTRO_CODENAME" = "trusty" ]; then
+  else
     echo "Installing software-properties-common"
     DO "apt-get install software-properties-common -y" "0"
   fi
