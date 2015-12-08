@@ -1,16 +1,16 @@
 {
     "variables": {
-        "machine_name": "debian-8",
+        "machine_name": "ubuntu-16.04",
         "deb": ""
     },
 
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_url": "http://cdimage.debian.org/cdimage/release/8.2.0/amd64/iso-cd/debian-8.2.0-amd64-netinst.iso",
-            "iso_checksum": "d393d17ac6b3113c81186e545c416a00f28ed6e05774284bb5e8f0df39fcbcb9",
-            "iso_checksum_type": "sha256",
-            "guest_os_type": "Debian_64",
+            "iso_url": "http://cdimage.ubuntu.com/daily-live/current/xenial-desktop-amd64.iso",
+            "iso_checksum": "weekly",
+            "iso_checksum_type": "none",
+            "guest_os_type": "Ubuntu_64",
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "http_directory": "http",
             "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
@@ -22,21 +22,13 @@
             "vm_name": "globaleaks-{{user `machine_name`}}",
             "boot_wait": "5s",
             "boot_command": [
-                "<esc><wait>",
-                "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-                "debian-installer=en_US <wait>",
-                "auto <wait>",
-                "locale=en_US <wait>",
-                "kbd-chooser/method=us <wait>",
-                "fb=false <wait>",
-                "netcfg/get_hostname={{ .Name }} <wait>",
-                "netcfg/get_domain=local <wait>",
-                "debconf/frontend=noninteractive <wait>",
-                "console-setup/ask_detect=false <wait>",
-                "console-keymaps-at/keymap=us <wait>",
-                "keyboard-configuration/xkb-keymap=us <wait>",
-                "<enter><wait>"
+                "<esc><esc><enter><wait>",
+                "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+                "hostname={{ .Name }} ",
+                "fb=false debconf/frontend=noninteractive ",
+                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+                "initrd=/install/initrd.gz -- <enter>"
             ]
         }
     ],

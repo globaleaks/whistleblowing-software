@@ -7,9 +7,19 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-amd64.iso",
-            "iso_checksum": "946a6077af6f5f95a51f82fdc44051c7aa19f9cfc5f737954845a6050543d7c2",
+            "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
+            "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
             "iso_checksum_type": "sha256",
+            "guest_os_type": "Ubuntu_64",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "http_directory": "http",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "virtualbox_version_file": ".vbox_version",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "20m",
+            "output_directory": "output-{{user `machine_name`}}",
+            "vm_name": "globaleaks-{{user `machine_name`}}",
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><esc><enter><wait>",
@@ -19,26 +29,11 @@
                 "fb=false debconf/frontend=noninteractive ",
                 "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
                 "initrd=/install/initrd.gz -- <enter>"
-            ],
-            "guest_os_type": "Ubuntu_64",
-            "http_directory": "http",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "ssh_wait_timeout": "20m",
-            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "virtualbox_version_file": ".vbox_version",
-            "ssh_username": "vagrant",
-            "ssh_password": "vagrant",
-            "output_directory": "output-{{user `machine_name`}}",
-            "vm_name": "globaleaks-{{user `machine_name`}}"
+            ]
         }
     ],
 
     "provisioners": [
-        {
-            "type": "file",
-            "source": "{{user `deb`}}",
-            "destination": "globaleaks_2.60.29_all.deb"
-        },
         {
             "type": "shell",
             "scripts": [

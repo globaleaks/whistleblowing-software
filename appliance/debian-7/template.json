@@ -3,8 +3,24 @@
         "machine_name": "debian-7",
         "deb": ""
     },
+
     "builders": [
         {
+            "type": "virtualbox-iso",
+            "iso_url": "http://cdimage.debian.org/cdimage/archive/7.9.0/amd64/iso-cd/debian-7.9.0-amd64-netinst.iso",
+            "iso_checksum": "b6a19b4cf1d046e5eba1ae235a94824bca5a7c8f092a28216396c9d585ef709d",
+            "iso_checksum_type": "sha256",
+            "guest_os_type": "Debian_64",
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "http_directory": "http",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "virtualbox_version_file": ".vbox_version",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "20m",
+            "output_directory": "output-{{user `machine_name`}}",
+            "vm_name": "globaleaks-{{user `machine_name`}}",
+            "boot_wait": "5s",
             "boot_command": [
                 "<esc><wait>",
                 "install <wait>",
@@ -21,29 +37,11 @@
                 "console-keymaps-at/keymap=us <wait>",
                 "keyboard-configuration/xkb-keymap=us <wait>",
                 "<enter><wait>"
-            ],
-            "guest_os_type": "Debian_64",
-            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "virtualbox_version_file": ".vbox_version",
-            "http_directory": "http",
-            "iso_url":  "http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-7.7.0-amd64-netinst.iso",
-            "iso_checksum": "d440e85b4121f94608748139f25dbce1ad36771348b002fe07d4d44b9d9e623f",
-            "iso_checksum_type": "sha256",
-            "shutdown_command": "echo 'halt -p' > shutdown.sh; echo 'vagrant' | sudo -S shutdown -h -P now",
-            "ssh_password": "vagrant",
-            "ssh_wait_timeout": "20m",
-            "ssh_username": "vagrant",
-            "type": "virtualbox-iso",
-            "vm_name": "globaleaks-{{user `machine_name`}}"
+            ]
         }
     ],
 
     "provisioners": [
-        {
-            "type": "file",
-            "source": "{{user `deb`}}",
-            "destination": "globaleaks_2.60.29_all.deb"
-        },
         {
             "type": "shell",
             "scripts": [
@@ -56,7 +54,6 @@
             "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
         }
     ],
-
 
     "post-processors": [
         {
