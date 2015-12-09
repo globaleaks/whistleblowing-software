@@ -1,4 +1,23 @@
+*.*~
+*.db
+*.bak
+*.py[co]
+.*.swp
+.idea/
 .pybuild/
+
+appliance/data/*
+appliance/dist/*
+appliance/packer
+
+*.*.db
+*.py[co]
+backend/*_trial_temp*
+backend/build
+backend/glenv
+backend/globaleaks.egg-info
+backend/testing_dir
+backend/workingdir
 
 debian/files
 debian/*.debhelper
@@ -8,4 +27,9 @@ debian/globaleaks/
 
 doc/_build
 
-appliance/*/Vagrantfile
+client/app/components/
+client/build/
+client/dest
+client/coverage
+client/node_modules/
+client/pot/

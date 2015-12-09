@@ -66,6 +66,7 @@ module.exports = function(grunt) {
         'tmp/app.html',
       ],
       options: {
+        staging: 'tmp',
         dest: 'tmp',
         flow: {
           steps: {
