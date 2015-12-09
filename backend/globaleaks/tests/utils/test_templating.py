@@ -17,6 +17,7 @@ generic_keyword_list = [
 ]
 
 tip_keyword_list = [
+    '%TipID%',
     '%TipTorURL%',
     '%TipT2WURL%',
     '%TipNum%',
