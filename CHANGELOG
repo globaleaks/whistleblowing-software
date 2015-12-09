@@ -1,3 +1,13 @@
+Changes in version 2.60.121 - 2015-12-09
+    o Packaging fixes
+    o UI Fixes
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1506
+    - https://github.com/globaleaks/GlobaLeaks/issues/1521
+    - https://github.com/globaleaks/GlobaLeaks/issues/1523
+    - https://github.com/globaleaks/GlobaLeaks/issues/1514
+
 Changes in version 2.60.120 - 2015-12-03
     o UI Fixes
     o Migration fixes
@@ -38,7 +48,7 @@ Changes in version 2.60.114 - 2015-11-21
     o Bugfix support for IE10
     o Improve resiliency of migration script
 
-    The foollowing is the comprehensive list of closed tickets:
+    The following is the comprehensive list of closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/799
     - https://github.com/globaleaks/GlobaLeaks/issues/688
     - https://github.com/globaleaks/GlobaLeaks/issues/1387

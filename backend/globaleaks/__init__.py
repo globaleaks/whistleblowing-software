@@ -8,7 +8,7 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __copyright__ = u'2011-2015 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
 __email__ = u'info@globaleaks.org'
-__version__ = u'2.60.120'
+__version__ = u'2.60.121'
 __license__ = u'AGPL-3.0'
 
 DATABASE_VERSION = 25
@@ -40,7 +40,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "tr", "name": "Turkish" },
  { "code": "uk", "name": "Ukrainian" },
  { "code": "ur", "name": "Urdu" },
- { "code": "zh_CN", "name": "Chinese (China)" },
+ { "code": "zh_CN", "name": "Chinese (China)" }
 ]
 
 # Sorting the list of dict using the key 'code'
