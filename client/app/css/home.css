@@ -22,10 +22,12 @@
 
 #HomePageBoxNodePresentation {
   font-size: 40px;
+  white-space: pre-wrap;
 }
 
 #HomePageBoxNodeDescription {
   font-size: 32px;
+  white-space: pre-wrap;
 }
 
 #WhistleblowerSubmitBoxHeader {
