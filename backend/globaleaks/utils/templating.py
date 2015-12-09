@@ -71,6 +71,7 @@ class Keyword(object):
 
 class TipKeyword(Keyword):
     tip_keywords = [
+        '%TipID%',
         '%TipTorURL%',
         '%TipT2WURL%',
         '%TorURL%',
@@ -90,9 +91,12 @@ class TipKeyword(Keyword):
         self.keyword_list += TipKeyword.tip_keywords
         self.tip = tip_desc
 
+    def TipID(self):
+        return self.tip.get('id', '')
+
     def TipTorURL(self):
         if len(self.node.get('hidden_service', '')):
-            retstr = '%s/#/status/%s' % (self.node.get('hidden_service', ''), self.tip.get('id'))
+            retstr = '%s/#/status/%s' % (self.node.get('hidden_service', ''), self.tip.get('id', ''))
         else:
             retstr = '[NOT CONFIGURED]'
         return retstr
