@@ -1,6 +1,7 @@
 <div id="HomePageBox">
   <div id="HomePageBoxHeader">
-    <div id="HomePageBoxNodePresentation">{{::node.presentation}}</div>
+    <div id="HomePageBoxNodePresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
+    <div id="HomePageBoxNodeDescription" data-ng-if="node.description">{{::node.description}}</div>
   </div>
 
   <div id="WhistleblowerBox" class="row">
