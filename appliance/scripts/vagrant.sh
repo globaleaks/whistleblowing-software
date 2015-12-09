@@ -15,3 +15,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7
 EOF
 chmod 600 ~vagrant/.ssh/authorized_keys
 chown -R vagrant ~vagrant/.ssh
+
+mkdir -p /data/globaleaks
+chown -R vagrant /data/globaleaks
+chmod 0755 /data/globaleaks

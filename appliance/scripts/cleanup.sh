@@ -13,3 +13,11 @@ rm /lib/udev/rules.d/75-persistent-net-generator.rules
 
 echo "Adding a 2 sec delay to the interface up, to make the dhclient happy"
 echo "pre-up sleep 2" >> /etc/network/interfaces
+
+# Clean up
+apt-get -y remove dkms
+apt-get -y autoremove
+apt-get -y clean
+
+echo "cleaning up guest additions"
+rm -rf VBoxGuestAdditions_*.iso VBoxGuestAdditions_*.iso.?

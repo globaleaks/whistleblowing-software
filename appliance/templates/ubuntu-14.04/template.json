@@ -1,15 +1,14 @@
 {
     "variables": {
-        "machine_name": "ubuntu-16.04",
-        "deb": ""
+        "machine_name": "globaleaks-ubuntu-14.04"
     },
 
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_url": "http://cdimage.ubuntu.com/daily-live/current/xenial-desktop-amd64.iso",
-            "iso_checksum": "weekly",
-            "iso_checksum_type": "none",
+            "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
+            "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
+            "iso_checksum_type": "sha256",
             "guest_os_type": "Ubuntu_64",
             "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
             "http_directory": "http",
@@ -18,8 +17,13 @@
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
             "ssh_wait_timeout": "20m",
-            "output_directory": "output-{{user `machine_name`}}",
-            "vm_name": "globaleaks-{{user `machine_name`}}",
+            "output_directory": "../../../dist/{{user `machine_name`}}",
+            "disk_size": "10240",
+            "vm_name": "{{user `machine_name`}}",
+            "vboxmanage": [
+              [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+              [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+            ],
             "boot_wait": "5s",
             "boot_command": [
                 "<esc><esc><enter><wait>",
@@ -36,12 +40,23 @@
     "provisioners": [
         {
             "type": "shell",
+            "scripts": [ 
+                "../../scripts/vagrant.sh",
+                "../../scripts/virtualbox.sh"
+            ],
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
+        },
+        {
+            "type": "file",
+            "source": "../../dist",
+            "destination": "/data/globaleaks"
+        },
+        {
+            "type": "shell",
             "scripts": [
-                "../scripts/vagrant.sh",
-                "../scripts/virtualbox.sh",
-                "../scripts/globaleaks.sh",
-                "../scripts/cleanup.sh",
-                "../scripts/zerodisk.sh"
+                "../../scripts/globaleaks.sh",
+                "../../scripts/cleanup.sh",
+                "../../scripts/zerodisk.sh"
             ],
             "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
         }
@@ -50,7 +65,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "packer_{{.Provider}}_{{user `machine_name`}}.box"
+            "output": "../../dist/packer_{{.Provider}}_{{user `machine_name`}}.box"
         }
     ]
 }
