@@ -167,11 +167,11 @@ class MigrationBase(object):
         self.store_new.commit()
 
     def execute_query(self, query):
-       try:
-           self.store_new.execute(query + ';')
-       except OperationalError as excep:
-           print 'OperationalError %s while executing query: %s' % (excep, query)
-           raise excep
+        try:
+            self.store_new.execute(query + ';')
+        except OperationalError as excep:
+            print 'OperationalError %s while executing query: %s' % (excep, query)
+            raise excep
 
     def commit(self):
         self.store_new.commit()
