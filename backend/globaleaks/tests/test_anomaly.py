@@ -64,7 +64,7 @@ class TestAnomalyNotification(helpers.TestGL):
         activity_level = yield anomaly.compute_activity_level()
 
         x = yield a.admin_alarm_generate_mail(
-            event_matrix= {
+            event_matrix = {
                 'wb_comments': 100,
                 'noise': 12345
             }
