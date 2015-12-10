@@ -1,3 +1,9 @@
+globaleaks (2.60.122) stable; urgency=medium
+
+  * New stable release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 10 Dec 2015 11:48:12 +0100
+
 globaleaks (2.60.121) stable; urgency=medium
 
   * New stable release
