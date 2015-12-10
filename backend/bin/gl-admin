@@ -10,7 +10,7 @@ from globaleaks.security import hash_password, generateRandomPassword, generateR
 from globaleaks import DATABASE_VERSION
 
 def reset_password(dbfile, username=None, password=None):
-    salt = getRandomSalt()
+    salt = generateRandomSalt()
 
     if password is None:
         password = generateRandomPassword()

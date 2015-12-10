@@ -62,6 +62,13 @@ def generateRandomSalt():
     return ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(32)).encode('utf-8')
 
 
+def generateRandomPassword():
+    """
+    Return a random password of 10 characters in a-zA-Z0-9
+    """
+    return generateRandomKey(10)
+
+
 def _overwrite(absolutefpath, pattern):
     filesize = os.path.getsize(absolutefpath)
     bytecnt = 0
