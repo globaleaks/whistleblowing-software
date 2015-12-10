@@ -539,6 +539,7 @@ class Node(Model):
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
                  'disable_key_code_hint',
+                 'disable_donation_panel',
                  'enable_captcha',
                  'enable_proof_of_work']
 
