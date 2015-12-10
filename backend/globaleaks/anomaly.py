@@ -262,15 +262,16 @@ class Alarm(object):
 
                     count += 1
 
-                    text = "%s%s%s" % (
-                        text[:where],
-                        function(notification_dict),
-                        text[where + len(keyword):])
+                    text = "%s%s%s" % (text[:where],
+                                       function(notification_dict),
+                                       text[where + len(keyword):])
 
                     if count == 0:
                         # finally!
                         stop = True
                         break
+
+            return text
 
         def _disk_anomaly_detail(notification_dict):
             # This happens all the time anomalies are present but disk is ok
@@ -352,8 +353,8 @@ class Alarm(object):
             subject = notification_dict['admin_anomaly_mail_title']
             body = notification_dict['admin_anomaly_mail_template']
 
-            replace_keywords(subject)
-            replace_keywords(body)
+            subject = replace_keywords(subject)
+            body = replace_keywords(body)
 
             ret.append({
                 'mail_address': u['mail_address'],
