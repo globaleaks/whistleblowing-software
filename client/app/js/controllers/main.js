@@ -423,6 +423,20 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.$on("$routeChangeStart", function(event, next, current) {
       $scope.route_check();
+
+      var path = $location.path();
+      var embedded = '/embedded/';
+
+      if ($location.path().substr(0, embedded.length) === embedded) {
+        $rootScope.embedded = true;
+        var search = $location.search();
+        if (Object.keys(search).length === 0) {
+          $location.path(path.replace("/embedded/", "/"));
+          $location.search("embedded=true");
+        } else {
+          $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
+        }
+      }
     });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
