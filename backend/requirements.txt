@@ -6,6 +6,5 @@ txsocksx==1.15.0.2
 cryptography==1.1
 scrypt==0.7.1
 python_gnupg==0.3.8
-rstr==2.2.3
 zope.component==4.2.2
 zope.interface==4.1.3
