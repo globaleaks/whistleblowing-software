@@ -79,13 +79,13 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_delete_first_admin_user_should_fail(self):
-        handler = self.request(self.dummyAdminUser, role='admin')
+        handler = self.request(role='admin')
         yield self.assertFailure(handler.delete(self.dummyAdminUser['id']),
                                  errors.UserNotDeletable)
 
     @inlineCallbacks
     def test_delete_receiver_should_succeed(self):
-        handler = self.request(self.dummyReceiverUser_1, role='admin')
+        handler = self.request(role='admin')
         yield handler.delete(self.dummyReceiverUser_1['id'])
         yield self.assertFailure(handler.get(self.dummyReceiverUser_1['id']),
                                  errors.UserIdNotFound)

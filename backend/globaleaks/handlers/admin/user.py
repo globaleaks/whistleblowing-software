@@ -284,7 +284,7 @@ class UsersCollection(BaseHandler):
     @inlineCallbacks
     def post(self):
         """
-        Get the specified user.
+        Create a new user
 
         Request: AdminUserDesc
         Response: AdminUserDesc
