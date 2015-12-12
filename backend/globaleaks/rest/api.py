@@ -6,6 +6,7 @@
 from cyclone import web
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
                                 node, \
@@ -14,7 +15,7 @@ from globaleaks.handlers import exception, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
                                 collection, langfiles, wizard, \
-                                base, user, css
+                                base, user, css, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import user as admin_user
@@ -25,14 +26,11 @@ from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import langfiles as admin_langfiles
 from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import overview as admin_overview
+from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import notification as admin_notification
 
 from globaleaks.utils.utility import randbits
-
-uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
-field_regexp = uuid_regexp
-token_string = r'([a-zA-Z0-9]{42})'
 
 # Here is created the mapping between urls and the associated handler.
 #
@@ -46,6 +44,8 @@ token_string = r'([a-zA-Z0-9]{42})'
 #
 # * Collection: GET
 #    manages the get of a collection of resources
+
+uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
 spec = [
     (r'/exception', exception.ExceptionHandler),
@@ -73,11 +73,14 @@ spec = [
 
     ## Token Handlers ##
     (r'/token', token.TokenCreate),
-    (r'/token/' + token_string, token.TokenInstance),
+    (r'/token/' + requests.token_regexp, token.TokenInstance),
+
+    # Shorturl Handler
+    (requests.shorturl_regexp, shorturl.ShortUrlInstance),
 
     ## Submission Handlers ##
-    (r'/submission/' + token_string, submission.SubmissionInstance),
-    (r'/submission/' + token_string + r'/file', files.FileInstance),
+    (r'/submission/' + requests.token_regexp, submission.SubmissionInstance),
+    (r'/submission/' + requests.token_regexp + r'/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##
     (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
@@ -118,7 +121,9 @@ spec = [
     (r'/admin/steps', admin_step.StepCollection),
     (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),
     (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
-    (r'/admin/fieldtemplates/' + field_regexp, admin_field.FieldTemplateInstance),
+    (r'/admin/fieldtemplates/' + uuid_regexp, admin_field.FieldTemplateInstance),
+    (r'/admin/shorturls', admin_shorturl.ShortURLCollection),
+    (r'/admin/shorturls/' + uuid_regexp, admin_shorturl.ShortURLInstance),
     (r'/admin/anomalies', admin_statistics.AnomaliesCollection),
     (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
     (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),

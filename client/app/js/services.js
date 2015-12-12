@@ -578,6 +578,9 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminFieldTemplateResource', ['GLResource', function(GLResource) {
     return GLResource('admin/fieldtemplates/:id', {id: '@id'});
 }]).
+  factory('AdminShorturlResource', ['GLResource', function(GLResource) {
+    return GLResource('admin/shorturls/:id', {id: '@id'});
+}]).
   factory('AdminUserResource', ['GLResource', function(GLResource) {
     return GLResource('admin/users/:id', {id: '@id'});
 }]).
@@ -590,8 +593,8 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return GLResource('admin/notification');
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource',
-    function(GLResource, $q, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
+    function(GLResource, $q, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return function(fn) {
       var self = this;
 
@@ -601,12 +604,14 @@ angular.module('GLServices', ['ngResource']).
       self.users = AdminUserResource.query();
       self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
+      self.shorturls = AdminShorturlResource.query();
 
       $q.all([self.node.$promise,
               self.contexts.$promise,
               self.fieldtemplates.$promise,
               self.receivers.$promise,
-              self.notification.$promise]).then(function() {
+              self.notification.$promise,
+              self.shorturls.$promise]).then(function() {
 
         self.new_context = function() {
           var context = new AdminContextResource();
@@ -797,6 +802,10 @@ angular.module('GLServices', ['ngResource']).
           return receiver;
         };
 
+        self.new_shorturl = function () {
+          return new AdminShorturlResource();
+        };
+
         fn(this);
 
       });
@@ -948,6 +957,8 @@ angular.module('GLServices', ['ngResource']).
      "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
+     "shortener_short_url_regexp": /^\/s\/[a-z0-9]{1,100}$/,
+     "shortener_long_url_regexp": /^\/[a-zA-Z0-9_\-%?]{1,100}$/,
      "timezones": [
         {"timezone": -12.0, "label": "(GMT -12:00) Eniwetok, Kwajalein"},
         {"timezone": -11.0, "label": "(GMT -11:00) Midway Island, Samoa"},

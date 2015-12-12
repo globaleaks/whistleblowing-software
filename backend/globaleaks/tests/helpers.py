@@ -356,6 +356,14 @@ class TestGL(unittest.TestCase):
 
         return dummy_file
 
+
+    def get_dummy_shorturl(self, x = ''):
+        return {
+          'shorturl': '/s/shorturl' + str(x),
+          'longurl': '/longurl' + str(x)
+        }
+
+
     @inlineCallbacks
     def emulate_file_upload(self, token, n):
         """
