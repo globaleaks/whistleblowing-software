@@ -257,6 +257,10 @@ module.exports = function(grunt) {
     for (var x in files) {
         grunt.file.copy(files[x][0], files[x][1])
     }
+
+    grunt.file.recurse('app/components/bootstrap/fonts', function(absdir, rootdir, subdir, filename) {
+      grunt.file.copy(absdir, path.join('app/fonts', subdir || '', filename || ''));
+    });
   });
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
@@ -280,12 +284,6 @@ module.exports = function(grunt) {
     }
 
     grunt.file.copy('tmp/css/styles.css', 'build/css/styles.css');
-
-    grunt.file.mkdir('build/fonts');
-    grunt.file.recurse('tmp/components/bootstrap/fonts', function(absdir, rootdir, subdir, filename) {
-      grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
-    });
-
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
 
     var dirs = ['js/crypto']
@@ -295,7 +293,7 @@ module.exports = function(grunt) {
       });
     }
 
-    var dirs = ['l10n', 'data']
+    var dirs = ['fonts', 'l10n', 'data']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
