@@ -24,7 +24,6 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
       var idx = $scope.admin.users.indexOf(user);
       $scope.admin.users.splice(idx, 1);
     });
-
   };
 
   $scope.userDeleteDialog = function(user){
@@ -86,7 +85,6 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTA
 
 GLClient.controller('AdminUserAddCtrl', ['$scope',
   function($scope) {
-
     $scope.new_user = {};
 
     $scope.add_user = function() {

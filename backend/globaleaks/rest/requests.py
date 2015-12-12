@@ -23,7 +23,10 @@ https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
 tip_operation_regexp              = r'^(postpone|set)$'
+shorturl_regexp                   = r'^(\/s\/[a-z0-9]{1,30})$'
+longurl_regexp                    = r'^(\/[a-zA-Z0-9 _\-%?]{0,255})$'
 
+token_regexp                      = r'([a-zA-Z0-9]{42})'
 token_type_regexp                 = r'^submission$'
 
 field_instance_regexp             = (r'^('
@@ -386,6 +389,11 @@ AdminReceiverDesc = {
     'presentation_order': int,
     'configuration': unicode,
     'tip_expiration_threshold': int
+}
+
+AdminShortURLDesc = {
+    'shorturl': unicode,
+    'longurl': unicode
 }
 
 NodeDesc = {

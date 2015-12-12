@@ -4,6 +4,7 @@
 # *********
 #
 # Utilities to validate data recorded in the ORM
+import re
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSettings
@@ -121,5 +122,19 @@ def longlocal_v(_self, attr, value):
 
     for lang, text in value.iteritems():
         longtext_v(None, attr, text)
+
+    return value
+
+
+def shorturl_v(_self, attr, value):
+    if not re.match(r'^\/s\/[a-zA-Z0-9_\-%?]{1,30}$', value):
+        raise errors.InvalidModelInput("invalid shorturl")
+
+    return value
+
+
+def longurl_v(_self, attr, value):
+    if not re.match(r'^\/[a-zA-Z0-9 _\-%?]{0,255}$', value):
+        raise errors.InvalidModelInput("invalid longurl")
 
     return value

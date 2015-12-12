@@ -532,6 +532,14 @@ CREATE TABLE counter (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE shorturl (
+    id TEXT NOT NULL,
+    shorturl TEXT NOT NULL,
+    longurl TEXT NOT NULL,
+    UNIQUE (shorturl),
+    PRIMARY KEY (id)
+);
+
 CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);

@@ -116,12 +116,12 @@ class DatabaseIntegrityError(GLException):
     """
     A query on the database resulted in an integrity error
     """
-    reasone = "A query on the database resulted in an integrity error"
+    reason = "A query on the database resulted in an integrity error"
     error_code = 17
-    status_code = 404 # Not Found
+    status_code = 406 # Not Acceptable
 
     def __init__(self, dberror):
-        self.reason = "%s" % dberror
+        self.reason = "%s: %s" % (self.reason, dberror)
         self.arguments = [dberror]
 
 
@@ -211,8 +211,15 @@ class FileIdNotFound(GLException):
     status_code = 404 # Not Found
 
 
-# UNUSED ERROR CODE 28 HERE!
+class ShortURLIdNotFound(GLException):
+    """
+    The requested shorturl id do not exist in the database
+    """
+    reason = "Not found a shorturl with the specified id"
+    error_code = 27
+    status_code = 404 # Not Found
 
+# UNUSED ERROR CODE 28 HERE!
 
 class InvalidAuthentication(GLException):
     """

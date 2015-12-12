@@ -15,7 +15,7 @@ from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v
+    shortlocal_v, longlocal_v, shorturl_v, longurl_v
 
 empty_localization = {}
 
@@ -1006,12 +1006,25 @@ class FieldAnswerGroupFieldAnswer(BaseModel):
 
 
 class Counter(Model):
+    """
+    Class used to implement unique counters
+    """
     key = Unicode(validator=shorttext_v)
     counter = Int(default=1)
     update_date = DateTime(default_factory=datetime_now)
 
     unicode_keys = ['key']
     int_keys = ['number']
+
+
+class ShortURL(Model):
+    """
+    Class used to implement url shorteners
+    """
+    shorturl = Unicode(validator=shorturl_v)
+    longurl = Unicode(validator=longurl_v)
+
+    unicode_keys = ['shorturl', 'longurl']
 
 
 Field.template = Reference(Field.template_id, Field.id)

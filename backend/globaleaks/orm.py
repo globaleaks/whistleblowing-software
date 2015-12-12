@@ -116,23 +116,21 @@ class transact(object):
             # we print the exception here because we do not propagate it
             GLSettings.log_debug(e)
             result = None
-        except exceptions.IntegrityError as e:
-            transaction.abort()
-            raise DatabaseIntegrityError(str(e))
-        except HTTPError as excep:
-            transaction.abort()
-            raise excep
-        except:
+        except Exception as e:
             transaction.abort()
             self.store.close()
             # propagate the exception
             raise
         else:
-            if not self.readonly:
-                self.store.commit()
-            else:
-                self.store.flush()
-                self.store.invalidate()
+            try:
+                if not self.readonly:
+                    self.store.commit()
+                else:
+                    self.store.flush()
+                    self.store.invalidate()
+            except exceptions.IntegrityError as e:
+                transaction.abort()
+                raise DatabaseIntegrityError(str(e))
         finally:
             self.store.close()
 
