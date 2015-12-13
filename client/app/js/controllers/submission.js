@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', 'Authentication', 'Submission',
-      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, Authentication, Submission) {
+    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Authentication', 'Submission',
+      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, $anchorScroll, Authentication, Submission) {
 
   $scope.invalidForm = true;
 
@@ -158,12 +158,14 @@ GLClient.controller('SubmissionCtrl',
   $scope.incrementStep = function() {
     if ($scope.hasNextStep()) {
       $scope.selection++;
+      $anchorScroll('top');
     }
   };
 
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       $scope.selection--;
+      $anchorScroll('top');
     }
   };
 
