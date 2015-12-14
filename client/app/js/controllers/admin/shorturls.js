@@ -1,4 +1,7 @@
-GLClient.controller('AdminShorturlAddCtrl', ['$scope', function($scope) {
+GLClient.controller('AdminShorturlAddCtrl', ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
+    $scope.shortener_shorturl_regexp = CONSTANTS.shortener_shorturl_regexp;
+    $scope.shortener_longurl_regexp = CONSTANTS.shortener_longurl_regexp;
+
     $scope.dummy_new_shorturl = {
       'shorturl': '/s/',
       'longurl': '/'

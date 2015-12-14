@@ -45,7 +45,9 @@ from globaleaks.utils.utility import randbits
 # * Collection: GET
 #    manages the get of a collection of resources
 
-uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+uuid_regexp      = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+shorturl_regexp  = r'(\/s\/[a-z0-9]{1,30})'
+longurl_regexp   = r'(\/[a-z0-9=_\-%?\[\]\'\"]{0,255})'
 
 spec = [
     (r'/exception', exception.ExceptionHandler),

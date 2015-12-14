@@ -392,8 +392,8 @@ AdminReceiverDesc = {
 }
 
 AdminShortURLDesc = {
-    'shorturl': unicode,
-    'longurl': unicode
+    'shorturl': shorturl_regexp,
+    'longurl': longurl_regexp
 }
 
 NodeDesc = {

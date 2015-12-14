@@ -250,12 +250,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   ];
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal', 'CONSTANTS',
-                    function($scope, $http, $uibModal, CONSTANTS){
-
-  $scope.shortener_short_url_regexp = CONSTANTS.shortener_short_url_regexp;
-  $scope.shortener_long_url_regexp = CONSTANTS.shortener_long_url_regexp;
-
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal',
+                    function($scope, $http, $uibModal){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -268,13 +264,8 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal', 'CONST
       ctrl: TabCtrl
     },
     {
-      title:"URL Shortener",
-      template:"views/admin/advanced/tab3.html",
-      ctrl: TabCtrl
-    },
-    {
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab4.html",
+      template:"views/admin/advanced/tab3.html",
       ctrl: TabCtrl
     }
   ];
