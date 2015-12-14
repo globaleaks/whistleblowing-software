@@ -27,7 +27,7 @@ setupDependencies()
 
 if [ "$GLTEST" = "unit" ]; then
 
-  echo "Running API testes"
+  echo "Running API tests"
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test

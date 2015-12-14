@@ -1,11 +1,6 @@
 language: python
 dist: trusty
-cache:
-  apt: true
-  pip: true
-  directories:
-    - client/node_modules
-    - client/app/components
+sudo: required
 env:
   global:
     - secure: Fd+dALSXhRgP44UaiED0xbJMHLxzON1Vcu6ufxDGgyl9NYepT0cfMGczLocfawc35ig++SyfytfpaPRhy3yG7WhNiBmpq+M1rec5MDKh/tFSKV/JOmLxbUIAxByIgTH39e+bY2El0h+vqiB12JiArahBzraYMYY+Xkty3Ysr+9o=
@@ -14,110 +9,82 @@ matrix:
   fast_finish: true
   include:
     - env: GLTEST='unit'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
+      addons:
+        sauce_connect: false
 
     - env: GLTEST='build_and_install'
-      sudo: true
       python: "2.7"
-      node_js: "0.12"
+      addons:
+        sauce_connect: false
 
     - env: GLTEST='end2end-0' BROWSER='ie 9'
-      sudo: true
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-1' BROWSER='ie 10'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-2' BROWSER='ie 11'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-3' BROWSER='edge 20.10240'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-4' BROWSER='firefox 34'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-5' BROWSER='firefox 42'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-6' BROWSER='chrome 37'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-7' BROWSER='chrome 46'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-8' BROWSER='safari 8'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-9' BROWSER='safari 9'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-10' BROWSER='android 4.4'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-11' BROWSER='android 5.1'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
     - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
-      sudo: false
       python: "2.7"
-      node_js: "0.12"
       addons:
         sauce_connect: true
 
@@ -136,10 +103,13 @@ matrix:
     - env: GLTEST='end2end-11' BROWSER='android 5.1'
     - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
     - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
+before_install:
+  - nvm install 4.2
+  - nvm use 4.2
 install: true
 before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh

@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
-  "version": "2.60.124",
+  "version": "2.60.121",
   "license" : "AGPL-3.0",
   "author": "Random GlobaLeaks Developers",
   "repository": {
@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "chai": "3.4.1",
-    "coveralls": "2.11.4",
+    "coveralls": "2.11.6",
     "grunt": "0.4.5",
     "grunt-angular-templates": "0.5.9",
     "grunt-bower-task": "0.4.0",
@@ -31,13 +31,13 @@
     "grunt-inline-alt": "0.3.10",
     "grunt-manifest": "0.4.4",
     "grunt-protractor-coverage": "0.2.15",
-    "grunt-protractor-runner": "2.1.2",
-    "grunt-string-replace": "1.2.0",
+    "grunt-protractor-runner": "3.0.0",
+    "grunt-string-replace": "1.2.1",
     "grunt-usemin": "3.1.1",
     "mocha": "2.3.4",
     "node-gettext": "0.2.14",
-    "protractor": "2.5.1",
-    "should": "7.1.1",
+    "protractor": "3.0.0",
+    "should": "8.0.1",
     "superagent": "1.5.0",
     "supertest": "1.1.0"
   }
