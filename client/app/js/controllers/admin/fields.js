@@ -55,7 +55,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
 
 GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
   function($scope, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
-    $scope.editable = $scope.field.instance !== 'reference';
+    $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
     $scope.fields = $scope.field.children;

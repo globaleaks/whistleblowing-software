@@ -99,7 +99,7 @@
       <div class="fieldEditor" data-ng-if="editing">
         <hr />
         <div class="row">
-          <div class="col-md-6">
+          <fieldset class="col-md-6" data-ng-if="field.editable">
             <div class="form-group" data-ng-if="editable">
               <label data-translate>Name</label>
               <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" type="text" required />
@@ -145,7 +145,7 @@
                </label>
               <input class="form-control" data-ng-model="field.width" type="number" min="0" max="12">
             </div>
-          </div>
+          </fieldset>
           <div class="col-md-6">
             <div class="form-group" data-ng-if="showConfiguration(field)">
               <label data-translate>Configuration</label>
@@ -265,7 +265,7 @@
             </div>
           </div>
         </div>
-        <div class="row adminConfigSection" data-ng-if="field.type === 'fieldgroup' && editable">
+        <div class="row adminConfigSection" data-ng-if="editable && field.type === 'fieldgroup'">
           <div class="col-md-6">
             <div class="nested">
               <div class="editorTitle">
@@ -280,7 +280,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group" data-ng-if="field.instance !== 'reference' && fields.length > 0">
+            <div class="form-group" data-ng-if="editable && (field.instance !== 'reference' && fields.length > 0)">
               <div class="editorTitle" data-translate>Configured questions:</div>
               <div class="configuredFields">
                 <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
