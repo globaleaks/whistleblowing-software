@@ -12,7 +12,7 @@ import os
 import sys
 import time
 import traceback
-from uuid import UUID
+import uuid
 from datetime import datetime, timedelta
 
 from twisted.internet import reactor
@@ -28,27 +28,38 @@ from globaleaks.settings import GLSettings
 
 def uuid4():
     """
-    This function returns a secure random uuid4 as
-    defined by http://www.ietf.org/rfc/rfc4122.txt
+    This function returns a uuid4.
 
-    r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})
-    this is the regexp that has to be matched, and if a special
-    debug option is enabled here, the UUIDv4 is not randomic
+    The function is not intended to be used for security reasons.
     """
     if len(GLSettings.debug_option_UUID_human) > 1:
-        GLSettings.debug_UUID_human_counter += 1
-        str_padding = 8 - len(GLSettings.debug_option_UUID_human)
-        int_padding = 12 - len("%d" % GLSettings.debug_UUID_human_counter)
-
-        Huuidv4 = "%s%s-0000-0000-0000-%s%d" % (
-            GLSettings.debug_option_UUID_human,
-            str_padding * "0",
-            int_padding * "0",
-            GLSettings.debug_UUID_human_counter
-        )
-        return unicode(Huuidv4)
+        return huuid4()
     else:
-        return unicode(UUID(bytes=os.urandom(16), version=4))
+        return unicode(uuid.uuid4())
+
+
+def huuid4():
+    """
+    This function returns an incremental id following uuid4 format.
+
+    http://www.ietf.org/rfc/rfc4122.txt
+
+    The function is intended to be used only for debugging purposes.
+    """
+    GLSettings.debug_UUID_human_counter += 1
+
+    str_padding = 8 - len(GLSettings.debug_option_UUID_human)
+    int_padding = 12 - len("%d" % GLSettings.debug_UUID_human_counter)
+
+    Huuidv4 = "%s%s-0000-0000-0000-%s%d" % (
+        GLSettings.debug_option_UUID_human,
+        str_padding * "0",
+        int_padding * "0",
+        GLSettings.debug_UUID_human_counter
+    )
+
+    return unicode(Huuidv4)
+
 
 def sum_dicts(*dicts):
     ret = {}
