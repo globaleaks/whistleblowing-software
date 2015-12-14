@@ -63,18 +63,22 @@ def huuid4():
 
 def sum_dicts(*dicts):
     ret = {}
+
     for d in dicts:
         for k, v in d.items():
             ret[k] = v
+
     return dict(ret)
 
+
 def every_language(default_text):
-    return_dict = {}
+    ret = {}
 
     for code in LANGUAGES_SUPPORTED_CODES:
-        return_dict.update({code : default_text})
+        ret.update({code : default_text})
 
-    return return_dict
+    return ret
+
 
 def randint(start, end=None):
     if not end:
@@ -83,12 +87,14 @@ def randint(start, end=None):
     w = end - start + 1
     return start + int(''.join("%x" % ord(x) for x in os.urandom(w)), 16) % w
 
+
 def randbits(bits):
     return os.urandom(int(bits/8))
 
+
 def choice(population):
-    size = len(population)
-    return population[randint(size-1)]
+    return population[randint(len(population)-1)]
+
 
 def shuffle(x):
     for i in reversed(xrange(1, len(x))):
@@ -96,17 +102,21 @@ def shuffle(x):
         x[i], x[j] = x[j], x[i]
     return x
 
+
 def deferred_sleep(timeout):
     """
     @param timeout: this sleep is called to slow down bruteforce attacks
     @return:
     """
+    d = Deferred()
+
     def callbackDeferred():
         d.callback(True)
 
-    d = Deferred()
     reactor.callLater(timeout, callbackDeferred)
+
     return d
+
 
 def log_encode_html(s):
     """
@@ -117,7 +127,9 @@ def log_encode_html(s):
     s = s.replace("'", "&#39;")
     s = s.replace("/", "&#47;")
     s = s.replace("\\", "&#92;")
+
     return s
+
 
 def log_remove_escapes(s):
     """
@@ -135,6 +147,7 @@ def log_remove_escapes(s):
             return "Failure in log_remove_escapes %r" % e
         else:
             return codecs.encode(unicodelogmsg, 'unicode_escape')
+
 
 class GLLogObserver(twlog.FileLogObserver):
     suppressed = 0
@@ -230,7 +243,9 @@ class Logger(object):
                                         maxRotatedFiles=GLSettings.maximum_rotated_log_files)
             twlog.addObserver(GLLogObserver(logfile).emit)
 
+
 log = Logger()
+
 
 def query_yes_no(question, default="no"):
     """
@@ -264,7 +279,9 @@ def query_yes_no(question, default="no"):
         else:
             sys.stdout.write("Please respond with 'y' or 'n'\n\n")
 
+
 ## time facilities ##
+
 
 def datetime_null():
     """
