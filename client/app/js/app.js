@@ -112,7 +112,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/url_shortener.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'URL Shortener'
+        header_subtitle: 'URL shortener'
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
