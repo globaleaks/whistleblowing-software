@@ -3,257 +3,215 @@
 #   notification_sched
 #   ******************
 #
-# Notification implementation, documented along the others asynchronous
-# operations, in Architecture and in jobs/README.md
+import copy
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact
-from globaleaks.anomaly import Alarm
-from globaleaks.handlers import admin
+from globaleaks.handlers.admin.context import admin_serialize_context
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import admin_serialize_notification
+from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.submission import serialize_internalfile
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import EventLogs
-from globaleaks.notification import Event
+from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
+from globaleaks.utils.mailutils import sendmail
+from globaleaks.utils.templating import Templating, TemplateData
 from globaleaks.utils.utility import log
 
 
-def db_save_events_on_db(store, event_list):
-    for evnt in event_list:
-        e = EventLogs()
-
-        e.description = {
-            'receiver_info': evnt.receiver_info,
-            'context_info': evnt.context_info,
-            'tip_info': evnt.tip_info,
-            'subevent_info': evnt.subevent_info,
-            'type': evnt.type,
-        }
-
-        e.event_reference = {
-            'kind': evnt.trigger
-        }
-
-        e.title = evnt.trigger
-        e.receiver_id = evnt.receiver_info['id']
-        e.receivertip_id = evnt.tip_info['id']
-        e.mail_sent = False
-
-        store.add(e)
+trigger_template_map = {
+    'ReceiverTip': u'tip',
+    'Message': u'message',
+    'Comment': u'comment',
+    'ReceiverFile': u'file'
+}
 
 
-class EventLogger(object):
-    trigger = '[undefined]'
-
-    def __init__(self):
-        self.events = []
-        self.language = GLSettings.memory_copy.default_language
-
-    def import_receiver(self, receiver):
-        self.language = receiver.user.language
-
-        if self.trigger == 'Message':
-            self.template_type = u'message'
-        elif self.trigger == 'Tip':
-            self.template_type = u'tip'
-        elif self.trigger == 'Comment':
-            self.template_type = u'comment'
-        elif self.trigger == 'File':
-            self.template_type = u'file'
-        elif self.trigger == 'ExpiringTip':
-            self.template_type = u'tip_expiration'
-        else:
-            raise Exception("self.trigger of unexpected kind ? %s" % self.trigger)
-
-        receiver_desc = admin.receiver.admin_serialize_receiver(receiver, self.language)
-
-        return (receiver.tip_notification, receiver_desc)
-
-    def process_event(self, store, elem):
-        pass
-
-    @transact
-    def process_events(self, store):
-        """
-        :return:
-            0  = No event has been processed
-           -1  = Threshold reach, emergency mode.
-           >0  = Some elements to be notified has been processed
-        """
-
-        _elemscount = store.find(self.model, self.model.new == True).count()
-
-        if _elemscount > (GLSettings.jobs_operation_limit * 10):
-            # If this situation happen, we are facing an important load.
-            # The reasonable option is that the entire Notification get skipped for this specific Trigger
-            # all the events are marked as "new = False" and "chi si è visto si è visto"!
-            # plus, the Admin get notified about it with an email.
-            log.err("Waves of new %s received, notification suspended completely for all the %d %s (Threshold %d)" %
-                     ( self.trigger, _elemscount,
-                       self.trigger, (GLSettings.jobs_operation_limit * 10) ))
-            store.find(self.model, self.model.new == True).set(new=False)
-            return -1
-
-        _elems = store.find(self.model, self.model.new == True)[:GLSettings.jobs_operation_limit]
-
-        if _elemscount > GLSettings.jobs_operation_limit:
-            log.info("Notification: Processing %d new event from a Queue of %d: %s(s) to be handled" %
-                      (_elems.count(), _elemscount, self.trigger))
-        elif _elemscount:
-            log.debug("Notification: Processing %d new event: %s(s) to be handled" %
-                      (_elems.count(), self.trigger))
-        else:
-            # No element to be processed
-            return 0
-
-        for e in _elems:
-            # Mark event as handled as first step;
-            # For resiliency reasons it's better to be sure that the
-            # state machine move forward, than having starving events
-            # due to possible exceptions in handling
-            e.new = False
-            self.process_event(store, e)
-
-        db_save_events_on_db(store, self.events)
-        log.debug("Notification: generated %d notification events of type %s" %
-                  (len(self.events), self.trigger))
-
-        return _elems.count()
+trigger_model_map = {
+    'ReceiverTip': models.ReceiverTip,
+    'Message': models.Message,
+    'Comment': models.Comment,
+    'ReceiverFile': models.ReceiverFile
+}
 
 
-class TipEventLogger(EventLogger):
-    trigger = 'Tip'
-    model = models.ReceiverTip
+class MailGenerator(object):
+    def process_ReceiverTip(self, store, rtip, data):
+        language = rtip.receiver.user.language
 
-    def process_event(self, store, rtip):
-        tip_desc = serialize_rtip(store, rtip, self.language)
+        data['tip'] = serialize_rtip(store, rtip, language)
+        data['context'] = admin_serialize_context(store, rtip.internaltip.context, language)
+        data['receiver'] = admin_serialize_receiver(rtip.receiver, language)
 
-        context_desc = admin.context.admin_serialize_context(store,
-                                                             rtip.internaltip.context,
-                                                             self.language)
-
-        do_mail, receiver_desc = self.import_receiver(rtip.receiver)
-
-        self.events.append(Event(type=self.template_type,
-                                 trigger=self.trigger,
-                                 node_info={},
-                                 receiver_info=receiver_desc,
-                                 context_info=context_desc,
-                                 tip_info=tip_desc,
-                                 subevent_info={},
-                                 do_mail=do_mail))
+        self.process_mail_creation(store, data)
 
 
-class MessageEventLogger(EventLogger):
-    trigger = 'Message'
-    model = models.Message
-
-    def process_event(self, store, message):
-        message_desc = serialize_message(message)
-
-        # message.type can be 'receiver' or 'wb' at the moment, we care of the latter
+    def process_Message(self, store, message, data):
+        # if the message is destinated to the whistleblower no mail should be sent
         if message.type == u"receiver":
             return
 
-        tip_desc = serialize_rtip(store, message.receivertip, self.language)
+        language = message.receivertip.receiver.user.language
 
-        context_desc = admin.context.admin_serialize_context(store,
-                                                             message.receivertip.internaltip.context,
-                                                             self.language)
+        data['message'] = serialize_message(message)
+        data['tip'] = serialize_rtip(store, message.receivertip, language)
+        data['context'] = admin_serialize_context(store, message.receivertip.internaltip.context, language)
+        data['receiver'] = admin_serialize_receiver(message.receivertip.receiver, language)
 
-        do_mail, receiver_desc = self.import_receiver(message.receivertip.receiver)
-
-        self.events.append(Event(type=self.template_type,
-                                 trigger=self.trigger,
-                                 node_info={},
-                                 receiver_info=receiver_desc,
-                                 context_info=context_desc,
-                                 tip_info=tip_desc,
-                                 subevent_info=message_desc,
-                                 do_mail=do_mail))
+        self.process_mail_creation(store, data)
 
 
-class CommentEventLogger(EventLogger):
-    trigger = 'Comment'
-    model = models.Comment
+    def process_Comment(self, store, comment, data):
+        for rtip in comment.internaltip.receivertips:
+            if comment.type == u'receiver' and comment.author == rtip.receiver.user.name:
+                continue
 
-    def process_event(self, store, comment):
-        comment_desc = serialize_comment(comment)
+            language = rtip.receiver.user.language
 
-        context_desc = admin.context.admin_serialize_context(store,
-                                                             comment.internaltip.context,
-                                                             self.language)
+            dataX = copy.deepcopy(data)
+            dataX['comment'] = serialize_comment(comment)
+            dataX['tip'] = serialize_rtip(store, rtip, language)
+            dataX['context'] = admin_serialize_context(store, comment.internaltip.context, language)
+            dataX['receiver'] = admin_serialize_receiver(rtip.receiver, language)
 
-        # for every comment, iterate on the associated receiver(s)
-        log.debug("Comments from %s - Receiver(s) %d" % \
-                  (comment.author, comment.internaltip.receivers.count()))
+            self.process_mail_creation(store, dataX)
 
-        for receiver in comment.internaltip.receivers:
-            if comment.type == u'receiver' and comment.author == receiver.user.name:
-                log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
+
+    def process_ReceiverFile(self, store, rfile, data):
+        language = rfile.receiver.user.language
+
+        data['file'] = serialize_internalfile(rfile.internalfile)
+        data['tip'] = serialize_rtip(store, rfile.receivertip, language)
+        data['context'] = admin_serialize_context(store, rfile.internalfile.internaltip.context, language)
+        data['receiver'] = admin_serialize_receiver(rfile.receiver, language)
+
+        self.process_mail_creation(store, data)
+
+
+    def process_mail_creation(self, store, data):
+        # https://github.com/globaleaks/GlobaLeaks/issues/798
+        # TODO: the current solution is global and configurable only by the admin
+        receiver_id = data['receiver']['id']
+        sent_emails = GLSettings.get_mail_counter(receiver_id)
+        if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
+            log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour" %
+                      receiver_id)
+            return
+
+        GLSettings.increment_mail_counter(receiver_id)
+        if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
+            log.info("Reached threshold of %d emails with limit of %d for receiver %s" % (
+                     sent_emails,
+                     GLSettings.memory_copy.notification_threshold_per_hour,
+                     receiver_id)
+            )
+
+            # simply changing the type of the notification causes
+            # to send the notification_limit_reached
+            data['type'] = u'receiver_notification_limit_reached'
+
+        data['notification'] = admin_serialize_notification(
+            store.find(models.Notification).one(), data['receiver']['language']
+        )
+
+        data['node'] = db_admin_serialize_node(store, data['receiver']['language'])
+
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        # If the receiver has encryption enabled encrypt the mail body
+        if data['receiver']['pgp_key_status'] == u'enabled':
+            gpob = GLBPGP()
+
+            try:
+                gpob.load_key(data['receiver']['pgp_key_public'])
+                body = gpob.encrypt_message(data['receiver']['pgp_key_fingerprint'], body)
+            except Exception as excep:
+                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)" %
+                        (data['receiver']['username'], str(excep)))
+
                 return
-
-            receivertip = store.find(models.ReceiverTip,
-                                     (models.ReceiverTip.internaltip_id == comment.internaltip_id,
-                                      models.ReceiverTip.receiver_id == receiver.id)).one()
-
-            tip_desc = serialize_rtip(store, receivertip, self.language)
-
-            do_mail, receiver_desc = self.import_receiver(receiver)
-
-            self.events.append(Event(type=self.template_type,
-                                     trigger=self.trigger,
-                                     node_info={},
-                                     receiver_info=receiver_desc,
-                                     context_info=context_desc,
-                                     tip_info=tip_desc,
-                                     subevent_info=comment_desc,
-                                     do_mail=do_mail))
+            finally:
+                # the finally statement is always called also if
+                # except contains a return or a raise
+                gpob.destroy_environment()
 
 
-class FileEventLogger(EventLogger):
-    trigger = 'File'
-    model = models.ReceiverFile
+        mail = models.Mail({
+            'address': data['receiver']['mail_address'],
+            'subject': subject,
+            'body': body
+        })
 
-    def process_event(self, store, rfile):
-        context_desc = admin.context.admin_serialize_context(store,
-                                                             rfile.internalfile.internaltip.context,
-                                                             self.language)
+        store.add(mail)
 
-        tip_desc = serialize_rtip(store, rfile.receivertip, self.language)
-        file_desc = serialize_internalfile(rfile.internalfile)
-        do_mail, receiver_desc = self.import_receiver(rfile.receiver)
 
-        self.events.append(Event(type=self.template_type,
-                                 trigger=self.trigger,
-                                 node_info={},
-                                 receiver_info=receiver_desc,
-                                 context_info=context_desc,
-                                 tip_info=tip_desc,
-                                 subevent_info=file_desc,
-                                 do_mail=do_mail))
+    @transact
+    def process_data(self, store, trigger):
+        model = trigger_model_map[trigger]
+
+        elements = store.find(model, model.new == True)
+        for element in elements:
+            # Mark data as handled as first step;
+            # For resiliency reasons it's better to be sure that the
+            # state machine move forward, than having starving datas
+            # due to possible exceptions in handling
+            element.new = False
+
+            if GLSettings.memory_copy.disable_receiver_notification_emails:
+                continue 
+
+            data = TemplateData()
+            data['type'] = trigger_template_map[trigger]
+
+            getattr(self, 'process_%s' % trigger)(store, element, data)
+
+        log.debug("Notification: generated %d notificatins of type %s" %
+                  (elements.count(), trigger))
 
 
 class NotificationSchedule(GLJob):
-    name = "Notification"
+    @transact
+    def get_mails_from_the_pool(self, store):
+        ret = []
+
+        for mail in store.find(models.Mail):
+            if mail.processing_attempts > 9:
+                store.remove(mail)
+            else:
+                mail.processing_attempts += 1
+                ret.append({
+                    'id': mail.id,
+                    'address': mail.address,
+                    'subject': mail.subject,
+                    'body': mail.body
+                })
+
+        return ret
 
     @inlineCallbacks
     def operation(self):
-        tip_mngd = yield TipEventLogger().process_events()
-        if tip_mngd == -1:
-            Alarm.stress_levels['notification'].append('Tip')
+        @transact
+        def delete_sent_mail(store, mail_id):
+            store.find(models.Mail, models.Mail.id == mail_id).remove()
 
-        comment_mngd = yield CommentEventLogger().process_events()
-        if comment_mngd == -1:
-            Alarm.stress_levels['notification'].append('Comment')
+        @inlineCallbacks
+        def _success_callback(result, mail_id):
+            yield delete_sent_mail(mail_id)
 
-        messages_mngd = yield MessageEventLogger().process_events()
-        if messages_mngd == -1:
-            Alarm.stress_levels['notification'].append('Message')
+        def _failure_callback(failure, mail_id):
+            pass
 
-        file_mngs = yield FileEventLogger().process_events()
-        if file_mngs == -1:
-            Alarm.stress_levels['notification'].append('File')
+        mail_generator = MailGenerator()
+        for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
+            yield mail_generator.process_data(trigger)
+
+        mails = yield self.get_mails_from_the_pool()
+        for mail in mails:
+            sendmail_deferred = sendmail(mail['address'], mail['subject'], mail['body'])
+            sendmail_deferred.addCallbacks(_success_callback, _failure_callback,
+                                           callbackArgs=(mail['id'],), errbackArgs=(mail['id'],))
+            yield sendmail_deferred

@@ -31,8 +31,6 @@ def receiver_serialize_receiver(receiver, language):
         'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
         'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
         'tip_notification': receiver.tip_notification,
-        'ping_notification': receiver.ping_notification,
-        'ping_mail_address': receiver.ping_mail_address,
         'tip_expiration_threshold': receiver.tip_expiration_threshold,
         'contexts': [c.id for c in receiver.contexts]
     })
@@ -60,25 +58,16 @@ def update_receiver_settings(store, receiver_id, request, language):
     if not receiver:
         raise errors.ReceiverIdNotFound
 
-    ping_mail_address = request['ping_mail_address']
-    if ping_mail_address != receiver.ping_mail_address:
-        log.info("Ping email going to be updated, %s => %s" % (
-            receiver.ping_mail_address, ping_mail_address))
-        receiver.ping_mail_address = ping_mail_address
-
     receiver.tip_notification = request['tip_notification']
-    receiver.ping_notification = request['ping_notification']
 
     return receiver_serialize_receiver(receiver, language)
 
 
 @transact_ro
 def get_receivertip_list(store, receiver_id, language):
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
-
     rtip_summary_list = []
 
-    for rtip in rtiplist:
+    for rtip in store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id):
         mo = Rosetta(rtip.internaltip.context.localized_keys)
         mo.acquire_storm_object(rtip.internaltip.context)
 

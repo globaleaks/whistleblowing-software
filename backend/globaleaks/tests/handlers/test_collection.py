@@ -19,11 +19,6 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
         yield DeliverySchedule().operation()
 
-    @transact_ro
-    def get_rtips(self, store):
-        rtips = store.find(ReceiverTip)
-        return [{'rtip_id': rtip.id, 'receiver_id': rtip.receiver_id} for rtip in rtips]
-
     @inlineCallbacks
     def test_download(self):
         rtips_desc = yield self.get_rtips()
@@ -31,4 +26,4 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request({}, role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
-            yield handler.post(rtip_desc['rtip_id'])
+            yield handler.post(rtip_desc['id'])

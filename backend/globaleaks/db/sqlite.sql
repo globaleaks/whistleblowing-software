@@ -82,6 +82,7 @@ CREATE TABLE internalfile (
     name TEXT NOT NULL,
     size INTEGER NOT NULL,
     new INTEGER NOT NULL,
+    submission INTEGER NOT NULL,
     processing_attempts INTEGER NOT NULL,
     internaltip_id TEXT NOT NULL,
     UNIQUE(file_path),
@@ -250,8 +251,6 @@ CREATE TABLE notification (
     identity_provided_mail_title BLOB,
     receiver_notification_limit_reached_mail_template BLOB,
     receiver_notification_limit_reached_mail_title BLOB,
-    ping_mail_template BLOB,
-    ping_mail_title BLOB,
     archive_description BLOB,
     tip_expiration_threshold INTEGER NOT NULL,
     notification_threshold_per_hour INTEGER NOT NULL,
@@ -269,6 +268,16 @@ CREATE TABLE notification (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE mail (
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    address TEXT NOT NULL,
+    subject TEXT NOT NULL,
+    body TEXT NOT NULL,
+    processing_attempts INTEGER NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE custodian (
     id TEXT NOT NULL,
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
@@ -282,29 +291,11 @@ CREATE TABLE receiver (
     can_postpone_expiration INTEGER NOT NULL,
     can_grant_permissions INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
-    ping_notification INTEGER NOT NULL,
-    ping_mail_address TEXT NOT NULL,
     tip_expiration_threshold INTEGER NOT NULL,
     presentation_order INTEGER,
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
-
-CREATE TABLE eventlogs (
-    id TEXT NOT NULL,
-    creation_date TEXT NOT NULL,
-    event_reference TEXT NOT NULL,
-    description TEXT NOT NULL,
-    title TEXT NOT NULL,
-    receiver_id TEXT NOT NULL,
-    receivertip_id TEXT NOT NULL,
-    mail_sent INTEGER NOT NULL,
-    mail_attempts INTEGER NOT NULL,
-    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
-);
-
 
 CREATE TABLE custodian_context (
     context_id TEXT NOT NULL,

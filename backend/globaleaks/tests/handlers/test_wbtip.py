@@ -18,7 +18,7 @@ class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'])
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
 
             yield handler.get()
 
@@ -34,7 +34,7 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'])
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
 
             yield handler.get()
 
@@ -46,7 +46,7 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'], body=json.dumps(body))
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'], body=json.dumps(body))
 
             yield handler.post()
 
@@ -62,9 +62,9 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'])
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
 
-            for rcvr_id in wbtip_desc['wbtip_receivers']:
+            for rcvr_id in wbtip_desc['receivers_ids']:
                 yield handler.get(rcvr_id)
 
     @inlineCallbacks
@@ -75,9 +75,9 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'], body=json.dumps(body))
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'], body=json.dumps(body))
 
-            for rcvr_id in wbtip_desc['wbtip_receivers']:
+            for rcvr_id in wbtip_desc['receivers_ids']:
                 yield handler.post(rcvr_id)
 
 class TestWBTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
@@ -92,7 +92,7 @@ class TestWBTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'])
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
 
             yield handler.get()
 
@@ -122,6 +122,6 @@ class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'], body=json.dumps(body))
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'], body=json.dumps(body))
 
-            yield handler.post(wbtip_desc['wbtip_id'])
+            yield handler.post(wbtip_desc['id'])

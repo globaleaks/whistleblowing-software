@@ -16,7 +16,7 @@ from globaleaks.db.appdata import init_appdata
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
-    pgp_check_sched, mailflush_sched, secure_file_delete_sched
+    pgp_check_sched, secure_file_delete_sched
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
@@ -49,9 +49,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
         notification = notification_sched.NotificationSchedule()
         self._reactor.callLater(1, notification.start, GLSettings.notification_delta)
-
-        mailflush = mailflush_sched.MailflushSchedule()
-        self._reactor.callLater(1, mailflush.start, GLSettings.mailflush_delta)
 
         secure_file_delete = secure_file_delete_sched.SecureFileDeleteSchedule()
         self._reactor.callLater(1, secure_file_delete.start, GLSettings.secure_file_delete_delta)

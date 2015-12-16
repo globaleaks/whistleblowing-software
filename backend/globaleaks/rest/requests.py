@@ -136,7 +136,6 @@ ReceiverReceiverDesc = {
     'old_password': unicode,
     'password_change_needed': bool,
     'mail_address': email_regexp,
-    'ping_mail_address': email_regexp_or_empty,
     'pgp_key_remove': bool,
     'pgp_key_fingerprint': unicode,
     'pgp_key_expiration': unicode,
@@ -144,7 +143,6 @@ ReceiverReceiverDesc = {
     'pgp_key_public': unicode,
     'pgp_key_status': unicode,
     'tip_notification': bool,
-    'ping_notification': bool,
     'language': unicode,
     'timezone': int,
     'tip_expiration_threshold': int
@@ -249,11 +247,8 @@ AdminNotificationDesc = {
     'admin_pgp_alert_mail_title': unicode,
     'pgp_alert_mail_template': unicode,
     'pgp_alert_mail_title': unicode,
-    'ping_mail_template': unicode,
-    'ping_mail_title': unicode,
     'receiver_notification_limit_reached_mail_template': unicode,
     'receiver_notification_limit_reached_mail_title': unicode,
-    'notification_digest_mail_title': unicode,
     'tip_expiration_mail_template': unicode,
     'tip_expiration_mail_title': unicode,
     'identity_access_authorized_mail_template': unicode,
@@ -379,13 +374,11 @@ AdminContextDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
-    'ping_mail_address': email_regexp_or_empty,
     'contexts': [uuid_regexp],
     'can_delete_submission': bool,
     'can_postpone_expiration': bool,
     'can_grant_permissions': bool,
     'tip_notification': bool,
-    'ping_notification': bool,
     'presentation_order': int,
     'configuration': unicode,
     'tip_expiration_threshold': int

@@ -9,7 +9,6 @@ from globaleaks.handlers import submission
 from globaleaks.handlers.admin import receiver
 from globaleaks.handlers.admin.context import create_context, get_context_list
 from globaleaks.jobs.delivery_sched import DeliverySchedule
-from globaleaks.notification import Event
 from globaleaks.rest import errors
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -24,26 +23,8 @@ class TestPGP(TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     def test_encrypt_message(self):
-        dummy_template = "In %EventTime% you've got a crush for Taryn Southern, yay!! \
-                         more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY \
-                         and know that you're not alone!"
+        mail_content = "https://www.youtube.com/watch?v=FYdX0W96-os"
 
-        mock_event = Event(type=u'tip',
-                           trigger='Tip',
-                           tip_info = {
-                               'creation_date': '2013-05-13T17:49:26.105485', #epoch!
-                               'id': 'useless',
-                               'wb_steps' : self.fill_random_answers(self.dummyContext['id']),
-                           },
-                           node_info = MockDict().dummyNode,
-                           receiver_info = MockDict().dummyReceiver,
-                           context_info = MockDict().dummyContext,
-                           subevent_info = {},
-                           do_mail=False)
-
-        mail_content = Templating().format_template(dummy_template, mock_event)
-
-        # setup the PGP key before
         GLSettings.pgproot = PGPROOT
 
         fake_receiver_desc = {
@@ -58,6 +39,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
 
         encrypted_body = pgpobj.encrypt_message(fake_receiver_desc['pgp_key_fingerprint'], mail_content)
         self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_body)
+        self.assertSubstring('-----END PGP MESSAGE-----', encrypted_body)
 
         pgpobj.destroy_environment()
 
@@ -92,6 +74,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
 
             with file(encrypted_file_path, "r") as f2:
                 whole = f2.read()
+
             self.assertEqual(encrypted_file_size, len(whole))
 
 
@@ -100,7 +83,7 @@ class TestPGP(TestHandlerWithPopulatedDB):
         new_fields = MockDict().dummyFields
         new_context = MockDict().dummyContext
 
-        new_context['name'] = "this uniqueness is no more checked due to the lang"
+        new_context['name'] = "Context Name"
         new_context_output = yield create_context(new_context, 'en')
         self.context_assertions(new_context, new_context_output)
 

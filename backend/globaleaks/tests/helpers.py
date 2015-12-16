@@ -25,16 +25,18 @@ sys.getdefaultencoding()
 from globaleaks import db, models, security, anomaly, event, runner
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers import files, rtip, wbtip, authentication
+from globaleaks.handlers import files, rtip, authentication
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
+from globaleaks.handlers.rtip import serialize_rtip
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
-from globaleaks.jobs import statistics_sched, mailflush_sched
+from globaleaks.handlers.wbtip import create_comment_wb, create_message_wb, serialize_wbtip
+from globaleaks.jobs import statistics_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
@@ -69,7 +71,6 @@ reactor_override = task.Clock()
 authentication.reactor_override = reactor_override
 event.reactor_override = reactor_override
 token.reactor_override = reactor_override
-mailflush_sched.reactor_override = reactor_override
 runner.reactor_override = reactor_override
 anomaly.reactor = task.Clock()
 statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
@@ -244,7 +245,6 @@ class TestGL(unittest.TestCase):
     def get_dummy_receiver(self, descpattern):
         new_u = self.get_dummy_user('receiver', descpattern)
         new_r = dict(MockDict().dummyReceiver)
-        new_r['ping_mail_address'] = unicode('%s@%s.xxx' % (descpattern, descpattern))
 
         return sum_dicts(new_r, new_u)
 
@@ -413,34 +413,31 @@ class TestGL(unittest.TestCase):
 
     @transact_ro
     def get_submissions_ids(self, store):
-        submissions = store.find(models.InternalTip)
-        return [s.id for s in submissions]
+        return [s.id for s in store.find(models.InternalTip)]
 
     @transact_ro
     def get_rtips(self, store):
-        rtips_desc = []
-        rtips = store.find(models.ReceiverTip)
-        for r in rtips:
-            itip = serialize_usertip(store, r, 'en')
-            rtips_desc.append({'rtip_id': r.id, 'receiver_id': r.receiver_id, 'itip': itip})
+        ret = []
+        for rtip in store.find(models.ReceiverTip):
+            x = serialize_rtip(store, rtip, 'en')
+            x['receiver_id'] = rtip.receiver.id
+            ret.append(x)
 
-        return rtips_desc
+        return ret
 
     @transact_ro
     def get_rfiles(self, store, rtip_id):
-        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)
-        return [{'rfile_id': rfile.id} for rfile in rfiles]
+        return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)]
 
     @transact_ro
     def get_wbtips(self, store):
-        wbtips_desc = []
-        wbtips = store.find(models.WhistleblowerTip)
-        for wbtip in wbtips:
-            rcvrs_ids = [rcvr.id for rcvr in wbtip.internaltip.receivers]
-            itip = serialize_usertip(store, wbtip, 'en')
-            wbtips_desc.append({'wbtip_id': wbtip.id, 'wbtip_receivers': rcvrs_ids, 'itip': itip})
+        ret = []
+        for wbtip in store.find(models.WhistleblowerTip):
+            x = serialize_wbtip(store, wbtip, 'en')
+            x['receivers_ids'] = [rcvr.id for rcvr in wbtip.internaltip.receivers]
+            ret.append(x)
 
-        return wbtips_desc
+        return ret
 
     @transact_ro
     def get_internalfiles_by_wbtip(self, store, wbtip_id):
@@ -562,26 +559,26 @@ class TestGLWithPopulatedDB(TestGL):
 
         for rtip_desc in self.dummyRTips:
             yield rtip.create_comment_receiver(rtip_desc['receiver_id'],
-                                               rtip_desc['rtip_id'],
+                                               rtip_desc['id'],
                                                commentCreation)
 
             yield rtip.create_message_receiver(rtip_desc['receiver_id'],
-                                               rtip_desc['rtip_id'],
+                                               rtip_desc['id'],
                                                messageCreation)
 
             yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
-                                                    rtip_desc['rtip_id'],
+                                                    rtip_desc['id'],
                                                     identityaccessrequestCreation,
                                                     'en')
 
         self.dummyWBTips = yield self.get_wbtips()
 
         for wbtip_desc in self.dummyWBTips:
-            yield wbtip.create_comment_wb(wbtip_desc['wbtip_id'],
+            yield create_comment_wb(wbtip_desc['id'],
                                           commentCreation)
 
-            for receiver_id in wbtip_desc['wbtip_receivers']:
-                yield wbtip.create_message_wb(wbtip_desc['wbtip_id'], receiver_id, messageCreation)
+            for receiver_id in wbtip_desc['receivers_ids']:
+                yield create_message_wb(wbtip_desc['id'], receiver_id, messageCreation)
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
@@ -737,12 +734,10 @@ class MockDict():
         self.dummyReceiver = copy.deepcopy(self.dummyUser)
 
         self.dummyReceiver = sum_dicts(self.dummyReceiver, {
-            'ping_mail_address': 'giovanni.pellerano@evilaliv3.org',
             'can_delete_submission': True,
             'can_postpone_expiration': True,
             'contexts': [],
             'tip_notification': True,
-            'ping_notification': True,
             'tip_expiration_threshold': 72,
             'presentation_order': 0,
             'configuration': 'default'

@@ -16,7 +16,7 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import Notification, Comment, Message, \
-    ReceiverFile, ReceiverTip, EventLogs,  InternalTip, ArchivedSchema, \
+    ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -128,7 +128,7 @@ def db_get_rtip(store, user_id, rtip_id, language):
     if not notif.send_email_for_every_event:
         # If Receiver is accessing this Tip, Events related can be removed before
         # Notification is sent. This is a Twitter/Facebook -like behavior.
-        store.find(EventLogs, EventLogs.receivertip_id == rtip_id).remove()
+        pass
 
     return serialize_rtip(store, rtip, language)
 
@@ -250,11 +250,7 @@ def get_rtip(store, user_id, rtip_id, language):
 def get_comment_list_receiver(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    comment_list = []
-    for comment in rtip.internaltip.comments:
-        comment_list.append(serialize_comment(comment))
-
-    return comment_list
+    return [serialize_comment(comment) for comment in rtip.internaltip.comments]
 
 @transact
 def create_identityaccessrequest(store, user_id, rtip_id, request, language):
@@ -434,17 +430,12 @@ class RTipCommentCollection(BaseHandler):
 
 
 def db_get_itip_receivers_list(store, itip, language):
-    receivers_list = []
-
-    for rtip in itip.receivertips:
-        receivers_list.append({
-            "id": rtip.receiver.id,
-            "name": rtip.receiver.user.name,
-            "last_access": datetime_to_ISO8601(rtip.last_access),
-            "access_counter": rtip.access_counter,
-        })
-
-    return receivers_list
+    return [{
+        "id": rtip.receiver.id,
+        "name": rtip.receiver.user.name,
+        "last_access": datetime_to_ISO8601(rtip.last_access),
+        "access_counter": rtip.access_counter,
+    } for rtip in itip.receivertips]
 
 
 @transact_ro

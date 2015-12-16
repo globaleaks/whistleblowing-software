@@ -22,7 +22,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_put_postpone(self):
@@ -36,11 +36,11 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             }
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['rtip_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 202)
 
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 200)
 
 
@@ -60,10 +60,10 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             }
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['rtip_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 202)
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0][key], True)
 
             operation = {
@@ -75,10 +75,10 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             }
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['rtip_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 202)
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[1][key], False)
 
             operation = {
@@ -90,10 +90,10 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             }
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['rtip_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 202)
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[2][key], True)
 
     @inlineCallbacks
@@ -127,10 +127,10 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             }
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
-            yield handler.put(rtip_desc['rtip_id'])
+            yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.get_status(), 202)
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0]['label'], operation['args']['value'])
 
 
@@ -141,7 +141,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         # we deleete the first and then we verify that the second does not exist anymore
         handler = self.request(role='receiver', user_id = rtips_desc[0]['receiver_id'])
-        yield handler.delete(rtips_desc[0]['rtip_id'])
+        yield handler.delete(rtips_desc[0]['id'])
 
         rtips_desc = yield self.get_rtips()
 
@@ -180,7 +180,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_post(self):
@@ -192,7 +192,7 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
 
-            yield handler.post(rtip_desc['rtip_id'])
+            yield handler.post(rtip_desc['id'])
 
 
 class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
@@ -209,7 +209,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_post(self):
@@ -221,7 +221,7 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
 
-            yield handler.post(rtip_desc['rtip_id'])
+            yield handler.post(rtip_desc['id'])
 
 
 class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
@@ -238,7 +238,7 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
 
 
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
@@ -255,7 +255,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
 
-            yield handler.get(rtip_desc['rtip_id'])
+            yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_post(self):
@@ -267,4 +267,4 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
 
-            yield handler.post(rtip_desc['rtip_id'])
+            yield handler.post(rtip_desc['id'])

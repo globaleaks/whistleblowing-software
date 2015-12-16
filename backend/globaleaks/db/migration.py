@@ -26,9 +26,9 @@ from globaleaks.db.migrations.update_22 import Context_v_21, InternalTip_v_21
 from globaleaks.db.migrations.update_23 import InternalFile_v_22, Comment_v_22, Context_v_22, \
     Field_v_22, FieldOption_v_22, Notification_v_22, InternalTip_v_22
 from globaleaks.db.migrations.update_24 import User_v_23, Receiver_v_23, Node_v_23, Notification_v_23, \
-    Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, ReceiverTip_v_23, \
-    EventLogs_v_23
+    Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, ReceiverTip_v_23
 from globaleaks.db.migrations.update_25 import User_v_24
+from globaleaks.db.migrations.update_26 import InternalFile_v_25
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0]),
@@ -38,7 +38,6 @@ migration_mapping = OrderedDict([
     ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context, 0, 0]),
     ('Custodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian, 0, 0]),
     ('CustodianContext', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext, 0, 0]),
-    ('EventLogs', [-1, -1, -1, -1, -1, -1, -1, -1, -1, EventLogs_v_23, 0, 0, 0, models.EventLogs, 0, 0]),
     ('Field', [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field, 0, 0]),
     ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0, 0, 0]),
     ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0, 0, 0]),
@@ -47,10 +46,11 @@ migration_mapping = OrderedDict([
     ('FieldField', [-1, -1, -1, -1, models.FieldField, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldOption', [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, models.FieldOption, 0, 0, 0]),
     ('IdentityAccessRequest', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest, 0, 0]),
+    ('Message', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail]),
     ('Message', [Message_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0, 0, 0]),
     ('Node', [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, models.Node, 0, 0]),
     ('Notification', [Notification_v_14, 0, 0, 0, Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, models.Notification, 0, 0]),
-    ('InternalFile', [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, models.InternalFile, 0, 0, 0]),
+    ('InternalFile', [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, InternalFile_v_25, 0, 0, models.InternalFile]),
     ('InternalTip', [InternalTip_v_14, 0, 0, 0, InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip, 0, 0]),
     ('OptionActivateField', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateField, 0, 0]),
     ('OptionActivateStep', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.OptionActivateStep, 0]),

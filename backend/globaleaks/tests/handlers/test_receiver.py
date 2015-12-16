@@ -18,12 +18,12 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.rcvr_id = (yield admin.receiver.get_receiver_list('en'))[0]['id']
 
     @inlineCallbacks
-    def test_ping_mail_change(self):
+    def test_disable_tip_notification(self):
         handler = self.request(user_id = self.rcvr_id, role='receiver')
 
         yield handler.get()
 
-        self.responses[0]['ping_mail_address'] = 'ortomio@x.com'
+        self.responses[0]['tip_notification'] = False
 
         handler = self.request(self.responses[0], user_id = self.rcvr_id, role='receiver')
         yield handler.put()
