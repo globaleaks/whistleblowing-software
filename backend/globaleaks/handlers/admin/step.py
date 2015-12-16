@@ -13,7 +13,7 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import anon_serialize_step
+from globaleaks.handlers.node import serialize_step
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
@@ -42,7 +42,7 @@ def create_step(store, step, language):
     """
     Transaction that perform db_create_step
     """
-    return anon_serialize_step(store, db_create_step(store, step, language), language)
+    return serialize_step(store, db_create_step(store, step, language), language)
 
 
 def db_update_step(store, step_id, request, language):
@@ -73,7 +73,7 @@ def db_update_step(store, step_id, request, language):
 
 @transact
 def update_step(store, step_id, request, language):
-    return anon_serialize_step(store, db_update_step(store, step_id, request, language), language)
+    return serialize_step(store, db_update_step(store, step_id, request, language), language)
 
 @transact_ro
 def get_step(store, step_id, language):
@@ -90,7 +90,7 @@ def get_step(store, step_id, language):
     if not step:
         raise errors.StepIdNotFound
 
-    return anon_serialize_step(store, step, language)
+    return serialize_step(store, step, language)
 
 
 @transact

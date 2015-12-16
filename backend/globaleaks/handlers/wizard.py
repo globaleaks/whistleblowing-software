@@ -9,7 +9,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.node import db_update_node
-from globaleaks.handlers.node import anon_serialize_node
+from globaleaks.handlers.node import serialize_node
 from globaleaks.rest import requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import log
@@ -70,7 +70,7 @@ class FirstSetup(BaseHandler):
         yield wizard(request, self.request.language)
 
         # cache must be updated in particular to set wizard_done = True
-        public_node_desc = yield anon_serialize_node(self.request.language)
+        public_node_desc = yield serialize_node(self.request.language)
         GLApiCache.invalidate()
 
         self.set_status(201)  # Created

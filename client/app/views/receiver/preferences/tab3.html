@@ -13,27 +13,6 @@
   </div>
 
   <div class="form-group">
-    <input data-ng-model="preferences.ping_notification" type="checkbox">
-    <label>
-      <span data-translate>Enable ping notification</span>
-    </label>
-    <div data-ng-show="preferences.ping_notification">
-      <span class="btn-info">
-        <span data-translate>Enabled</span>
-      </span>
-      <span data-translate>For each activity, the system will send you an apparently meaningless email. This should be used when you are on the move, even with an unsafe email or when you don't have your PGP key with you.</span>
-    </div>
-  </div>
-
-  <div class="form-group" data-ng-show="preferences.ping_notification">
-    <label data-translate>Ping email address</label>
-    <input class="form-control" name="ping_email" data-ng-model="preferences.ping_mail_address" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text">
-    <p class="text-red" data-ng-show="preferencesForm.ping_email.$error.pattern">
-      <span data-translate>Invalid email address</span>
-    </p>
-  </div>
-
-  <div class="form-group">
     <label data-translate>Number of hours before sending a submission expiration alert</label>
     <input class="form-control" data-ng-model="preferences.tip_expiration_threshold" maxlength="{{node.maximum_namesize}}" type="number" />
   </div>

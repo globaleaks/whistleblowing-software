@@ -353,6 +353,9 @@ class InternalFile(Model):
     size = Int()
 
     new = Int(default=True)
+    
+    submission = Int(default = False)
+
     processing_attempts = Int(default=0)
 
 
@@ -609,9 +612,6 @@ class Notification(Model):
     pgp_alert_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
-    ping_mail_template = JSON(validator=longlocal_v)
-    ping_mail_title = JSON(validator=longlocal_v)
-    notification_digest_mail_title = JSON(validator=longlocal_v)
     archive_description = JSON(validator=longlocal_v)
 
     # Whistleblower Identity
@@ -671,9 +671,6 @@ class Notification(Model):
         'message_mail_title',
         'tip_expiration_mail_template',
         'tip_expiration_mail_title',
-        'notification_digest_mail_title',
-        'ping_mail_template',
-        'ping_mail_title',
         'archive_description',
         'receiver_notification_limit_reached_mail_template',
         'receiver_notification_limit_reached_mail_title',
@@ -701,6 +698,21 @@ class Notification(Model):
     ]
 
 
+class Mail(Model):
+    """
+    This model keeps track of emails to be spooled by the system
+    """
+    creation_date = DateTime(default_factory=datetime_now)
+
+    address = Unicode()
+    subject = Unicode()
+    body = Unicode()
+
+    processing_attempts = Int(default=0)
+
+    unicode_keys = ['address', 'subject', 'body']
+
+
 class Custodian(Model):
     """
     This model keeps track of custodians settings.
@@ -717,22 +729,18 @@ class Receiver(Model):
     configuration = Unicode(default=u"default")
     # configurations: 'default', 'forcefully_selected', 'unselectable'
 
-    # Can be changed by the user itself
-    ping_mail_address = Unicode(default=u"")
-
     # Admin chosen options
     can_delete_submission = Bool(default=False)
     can_postpone_expiration = Bool(default=False)
     can_grant_permissions = Bool(default=False)
 
     tip_notification = Bool(default=True)
-    ping_notification = Bool(default=False)
 
     tip_expiration_threshold = Int(default=72)
 
     presentation_order = Int(default=0)
 
-    unicode_keys = ['configuration', 'ping_mail_address']
+    unicode_keys = ['configuration']
 
     int_keys = ['presentation_order', 'tip_expiration_threshold']
 
@@ -741,22 +749,7 @@ class Receiver(Model):
         'can_postpone_expiration',
         'can_grant_permissions',
         'tip_notification',
-        'ping_notification'
     ]
-
-
-class EventLogs(Model):
-    """
-    Class used to keep track of the notification to be displayed to the receiver
-    """
-    creation_date = DateTime(default_factory=datetime_now)
-    description = JSON()
-    title = Unicode()
-    receiver_id = Unicode()
-    receivertip_id = Unicode()
-    event_reference = JSON()
-    mail_sent = Bool(default=False)
-    mail_attempts = Int(default=0)
 
 
 class Field(Model):
@@ -1216,9 +1209,6 @@ IdentityAccessRequest.reply_user = Reference(
     User.id
 )
 
-EventLogs.receiver = Reference(EventLogs.receiver_id, Receiver.id)
-EventLogs.rtip = Reference(EventLogs.receivertip_id, ReceiverTip.id)
-
 Context.receivers = ReferenceSet(
     Context.id,
     ReceiverContext.context_id,
@@ -1249,8 +1239,9 @@ models_list = [Node,
                Step,
                InternalTip, ReceiverTip, WhistleblowerTip,
                Comment, Message,
-               InternalFile, ReceiverFile, Notification,
-               Stats, Anomalies, EventLogs,
+               InternalFile, ReceiverFile,
+               Notification, Mail,
+               Stats, Anomalies,
                SecureFileDelete,
                IdentityAccessRequest,
                ArchivedSchema, ApplicationData]

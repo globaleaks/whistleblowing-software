@@ -13,16 +13,14 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import admin
 from globaleaks.handlers.rtip import db_delete_itip, serialize_rtip
 from globaleaks.jobs.base import GLJob
-from globaleaks.jobs.notification_sched import EventLogger, db_save_events_on_db
-from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats, EventLogs
-from globaleaks.notification import Event
+from globaleaks.models import InternalTip, Receiver, ReceiverTip, Stats
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 
 __all__ = ['CleaningSchedule']
 
-
+"""TODOTODOTODO
 class ExpiringRTipEvent(EventLogger):
     def __init__(self):
         EventLogger.__init__(self)
@@ -34,6 +32,7 @@ class ExpiringRTipEvent(EventLogger):
             user_threshold = datetime_now() - timedelta(seconds=receiver.tip_expiration_threshold)
             for rtip in store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id):
                 if rtip.internaltip.expiration_date < user_threshold:
+                    pass
                     self.process_event(store, rtip)
 
         db_save_events_on_db(store, self.events)
@@ -49,16 +48,7 @@ class ExpiringRTipEvent(EventLogger):
                                                      self.language)
 
         expiring_tip_desc = serialize_rtip(store, rtip, self.language)
-
-        self.events.append(Event(type=self.template_type,
-                                 trigger=self.trigger,
-                                 node_info={},
-                                 receiver_info=receiver_desc,
-                                 context_info=context_desc,
-                                 tip_info=expiring_tip_desc,
-                                 subevent_info=None,
-                                 do_mail=do_mail))
-
+"""
 
 class CleaningSchedule(GLJob):
     name = "Cleaning"
@@ -91,10 +81,7 @@ class CleaningSchedule(GLJob):
 
     @transact
     def clean_notified_events(self, store):
-        eventcnt = store.find(EventLogs, EventLogs.mail_sent == True).count()
-        if eventcnt:
-            log.debug("Cleaning %d EventLogs of mail already sent" % eventcnt)
-            store.find(EventLogs, EventLogs.mail_sent == True).remove()
+        pass
 
     @inlineCallbacks
     def operation(self):
@@ -112,6 +99,6 @@ class CleaningSchedule(GLJob):
             yield self.perform_cleaning(itip_id)
 
         yield self.perform_stats_cleaning()
-        yield ExpiringRTipEvent().process_events()
+        #yield ExpiringRTipEvent().process_events()
 
         yield self.clean_notified_events()

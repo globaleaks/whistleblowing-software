@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import admin
-from globaleaks.handlers.node import anon_serialize_field
+from globaleaks.handlers.node import serialize_field
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.rest import errors
@@ -143,7 +143,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         @transact_ro
         def _get_field(self, store, field_id):
             field = models.Field.get(store, field_id)
-            return anon_serialize_field(store, field, 'en')
+            return serialize_field(store, field, 'en')
 
         @transact_ro
         def _get_children(self, store, field_id):

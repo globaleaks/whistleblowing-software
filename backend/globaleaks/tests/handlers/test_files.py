@@ -58,7 +58,7 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['wbtip_id'], body=self.get_dummy_file())
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'], body=self.get_dummy_file())
             yield handler.post()
 
 
@@ -72,7 +72,7 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
 
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            rfiles_desc = yield self.get_rfiles(rtip_desc['rtip_id'])
+            rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
             for rfile_desc in rfiles_desc:
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-                yield handler.post(rtip_desc['rtip_id'], rfile_desc['rfile_id'])
+                yield handler.post(rtip_desc['id'], rfile_desc['id'])

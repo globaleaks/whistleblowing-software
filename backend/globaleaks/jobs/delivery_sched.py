@@ -38,18 +38,7 @@ def receiverfile_planning(store):
     """
     receiverfiles_maps = {}
 
-    ifilescnt = store.find(InternalFile, InternalFile.new == True).count()
-    ifiles = store.find(InternalFile, InternalFile.new == True)[:GLSettings.jobs_operation_limit]
-
-    if ifilescnt > GLSettings.jobs_operation_limit:
-        log.debug("Delivery iterating over %d InternalFile from a queue of %d" % (
-            GLSettings.jobs_operation_limit, ifilescnt))
-    elif ifilescnt:
-        log.debug("Delivery iterating over %d InternalFile" % ifilescnt)
-    else:
-        pass # 0 files to be processed
-
-    for ifile in ifiles:
+    for ifile in store.find(InternalFile, InternalFile.new == True):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
             error = "Failed to handle receiverfiles creation for ifile %s (%d retries)" % \
@@ -81,6 +70,11 @@ def receiverfile_planning(store):
             receiverfile.file_path = ifile.file_path
             receiverfile.size = ifile.size
             receiverfile.status = u'processing'
+
+            # https://github.com/globaleaks/GlobaLeaks/issues/444
+            # avoid to mark the receiverfile as new if it is part of a submission
+            # this way we avoid to send unuseful messages
+            receiverfile.new = False if ifile.submission else True
 
             store.add(receiverfile)
 
@@ -215,36 +209,23 @@ def process_files(receiverfiles_maps):
 @transact
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
-        try:
-            ifile = store.find(InternalFile,
-                               InternalFile.id == ifile_id).one()
-        except Exception as excep:
-            log.err("Error in find %s: %s" % (ifile_id, excep.message))
-            continue
-
+        ifile = store.find(InternalFile, InternalFile.id == ifile_id).one()
         if ifile is None:
             continue
 
         ifile.new = False
 
+        # update filepath possibly changed in case of plaintext file needed
+        ifile.file_path = receiverfiles_map['ifile_path']
+
         for rf in receiverfiles_map['rfiles']:
-            try:
-                rfile = store.find(ReceiverFile,
-                                   ReceiverFile.id == rf['id']).one()
-
-            except Exception as excep:
-                log.err("Inconsistency!? ReceiverFile %s :%s" % (rf, excep.message))
-                continue
-
+            rfile = store.find(ReceiverFile, ReceiverFile.id == rf['id']).one()
             if rfile is None:
                 continue
 
             rfile.status = rf['status']
             rfile.file_path = rf['path']
             rfile.size = rf['size']
-
-        # update filepath possibly changed in case of plaintext file needed
-        ifile.file_path = receiverfiles_map['ifile_path']
 
 
 class DeliverySchedule(GLJob):

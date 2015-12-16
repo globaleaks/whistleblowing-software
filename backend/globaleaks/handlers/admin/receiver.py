@@ -33,11 +33,9 @@ def admin_serialize_receiver(receiver, language):
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': receiver.user.mail_address,
-        'ping_mail_address': receiver.ping_mail_address,
         'configuration': receiver.configuration,
         'contexts': [c.id for c in receiver.contexts],
         'tip_notification': receiver.tip_notification,
-        'ping_notification': receiver.ping_notification,
         'presentation_order': receiver.presentation_order,
         'tip_expiration_threshold': receiver.tip_expiration_threshold,
     })

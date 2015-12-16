@@ -17,7 +17,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
 
 @transact_ro
-def anon_serialize_ahmia(store, language):
+def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
@@ -40,7 +40,7 @@ def anon_serialize_ahmia(store, language):
 
 
 @transact_ro
-def anon_serialize_node(store, language):
+def serialize_node(store, language):
     """
     Serialize node infos.
     """
@@ -94,7 +94,7 @@ def anon_serialize_node(store, language):
     return get_localized_values(ret_dict, node, node.localized_keys, language)
 
 
-def anon_serialize_context(store, context, language):
+def serialize_context(store, context, language):
     """
     Serialize context description
 
@@ -121,13 +121,13 @@ def anon_serialize_context(store, context, language):
         'questionnaire_layout': context.questionnaire_layout,
         'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
-        'steps': [anon_serialize_step(store, s, language) for s in context.steps]
+        'steps': [serialize_step(store, s, language) for s in context.steps]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
-def anon_serialize_field_option(option, language):
+def serialize_field_option(option, language):
     """
     Serialize a field option, localizing its content depending on the language.
 
@@ -146,7 +146,7 @@ def anon_serialize_field_option(option, language):
     return get_localized_values(ret_dict, option, option.localized_keys, language)
 
 
-def anon_serialize_field_attr(attr, language):
+def serialize_field_attr(attr, language):
     """
     Serialize a field attribute, localizing its content depending on the language.
 
@@ -169,7 +169,7 @@ def anon_serialize_field_attr(attr, language):
     return ret_dict
 
 
-def anon_serialize_field(store, field, language):
+def serialize_field(store, field, language):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -194,7 +194,7 @@ def anon_serialize_field(store, field, language):
 
     attrs = {}
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
-        attrs[attr.name] = anon_serialize_field_attr(attr, language)
+        attrs[attr.name] = serialize_field_attr(attr, language)
 
     ret_dict = {
         'id': field.id,
@@ -215,14 +215,14 @@ def anon_serialize_field(store, field, language):
         'width': field.width,
         'activated_by_score': field.activated_by_score,
         'activated_by_options': [activation.option_id for activation in field.activated_by_options],
-        'options': [anon_serialize_field_option(o, language) for o in f_to_serialize.options],
-        'children': [anon_serialize_field(store, f, language) for f in f_to_serialize.children]
+        'options': [serialize_field_option(o, language) for o in f_to_serialize.options],
+        'children': [serialize_field(store, f, language) for f in f_to_serialize.children]
     }
 
     return get_localized_values(ret_dict, f_to_serialize, field.localized_keys, language)
 
 
-def anon_serialize_step(store, step, language):
+def serialize_step(store, step, language):
     """
     Serialize a step, localizing its content depending on the language.
 
@@ -234,13 +234,13 @@ def anon_serialize_step(store, step, language):
         'id': step.id,
         'context_id': step.context_id,
         'presentation_order': step.presentation_order,
-        'children': [anon_serialize_field(store, f, language) for f in step.children]
+        'children': [serialize_field(store, f, language) for f in step.children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
-def anon_serialize_receiver(receiver, language):
+def serialize_receiver(receiver, language):
     """
     Serialize a receiver description
 
@@ -271,7 +271,7 @@ def get_public_context_list(store, language):
 
     for context in store.find(models.Context):
         if context.receivers.count():
-            context_list.append(anon_serialize_context(store, context, language))
+            context_list.append(serialize_context(store, context, language))
 
     return context_list
 
@@ -284,7 +284,7 @@ def get_public_receivers_list(store, language):
         if receiver.user.state == u'disabled':
             continue
 
-        receiver_desc = anon_serialize_receiver(receiver, language)
+        receiver_desc = serialize_receiver(receiver, language)
         # receiver not yet ready for submission return None
         if receiver_desc:
             receivers_list.append(receiver_desc)
@@ -301,7 +301,7 @@ class NodeInstance(BaseHandler):
         Get the node infos.
         """
         ret = yield GLApiCache.get('node', self.request.language,
-                                   anon_serialize_node, self.request.language)
+                                   serialize_node, self.request.language)
 
         ret['custom_homepage'] = os.path.isfile(os.path.join(GLSettings.static_path,
                                                              "custom_homepage.html"))
@@ -318,11 +318,11 @@ class AhmiaDescriptionHandler(BaseHandler):
         Get the Ahmia.fi descriptor
         """
         node_info = yield GLApiCache.get('node', self.request.language,
-                                         anon_serialize_node, self.request.language)
+                                         serialize_node, self.request.language)
 
         if node_info['ahmia']:
             ret = yield GLApiCache.get('ahmia', self.request.language,
-                                       anon_serialize_ahmia, self.request.language)
+                                       serialize_ahmia, self.request.language)
 
             self.finish(ret)
         else:  # in case of disabled option we return 404

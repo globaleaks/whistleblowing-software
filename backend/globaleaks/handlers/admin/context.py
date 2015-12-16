@@ -14,7 +14,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.step import db_create_step
-from globaleaks.handlers.node import anon_serialize_step
+from globaleaks.handlers.node import serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
@@ -48,7 +48,7 @@ def admin_serialize_context(store, context, language):
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_layout': context.questionnaire_layout,
         'reset_questionnaire': False,
-        'steps': [anon_serialize_step(store, s, language) for s in context.steps]
+        'steps': [serialize_step(store, s, language) for s in context.steps]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -120,7 +120,7 @@ def db_get_context_steps(store, context_id, language):
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    return [anon_serialize_step(store, s, language) for s in context.steps]
+    return [serialize_step(store, s, language) for s in context.steps]
 
 
 @transact_ro

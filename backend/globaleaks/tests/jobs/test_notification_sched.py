@@ -4,7 +4,6 @@ from globaleaks.tests import helpers
 
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 
-from globaleaks.jobs.mailflush_sched import MailflushSchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
 
 
@@ -17,11 +16,10 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_notification_schedule(self):
         yield DeliverySchedule().operation()
-        yield NotificationSchedule().operation()
 
-        mail_schedule = MailflushSchedule()
-        mail_schedule.skip_sleep = True
-        yield mail_schedule.operation()
+        notification_schedule = NotificationSchedule()
+        notification_schedule.skip_sleep = True
+        yield notification_schedule.operation()
 
         # TODO to be completed with real tests.
         #      now we simply perform operations to raise code coverage

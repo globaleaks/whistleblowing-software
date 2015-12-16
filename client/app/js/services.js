@@ -784,11 +784,9 @@ angular.module('GLServices', ['ngResource']).
           receiver.name = '';
           receiver.description = '';
           receiver.mail_address = '';
-          receiver.ping_mail_address = '';
           receiver.can_delete_submission = false;
           receiver.can_postpone_expiration = false;
           receiver.tip_notification = true;
-          receiver.ping_notification = false;
           receiver.pgp_key_info = '';
           receiver.pgp_key_fingerprint = '';
           receiver.pgp_key_remove = false;

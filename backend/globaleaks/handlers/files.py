@@ -91,6 +91,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
     new_file.content_type = uploaded_file['content_type']
     new_file.size = uploaded_file['body_len']
     new_file.internaltip_id = internaltip_id
+    new_file.submission = uploaded_file['submission']
     new_file.file_path = uploaded_file['encrypted_path']
 
     store.add(new_file)
@@ -161,6 +162,10 @@ class FileAdd(BaseHandler):
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
+
+        uploaded_file['creation_date'] = datetime_now()
+        uploaded_file['submission'] = False
+
         try:
             # Second: register the file in the database
             yield register_file_db(uploaded_file, itip_id)
@@ -213,6 +218,7 @@ class FileInstance(BaseHandler):
             # dump_file_fs return the new filepath inside the dictionary
             uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
             uploaded_file['creation_date'] = datetime_now()
+            uploaded_file['submission'] = True
 
             token.associate_file(uploaded_file)
 

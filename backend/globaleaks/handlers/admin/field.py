@@ -14,7 +14,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import anon_serialize_field
+from globaleaks.handlers.node import serialize_field
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
@@ -243,7 +243,7 @@ def create_field(store, field_dict, language):
     """
     field = db_create_field(store, field_dict, language)
 
-    return anon_serialize_field(store, field, language)
+    return serialize_field(store, field, language)
 
 
 def db_update_field(store, field_id, field_dict, language):
@@ -327,7 +327,7 @@ def update_field(store, field_id, field, language):
     """
     field = db_update_field(store, field_id, field, language)
 
-    return anon_serialize_field(store, field, language)
+    return serialize_field(store, field, language)
 
 
 @transact_ro
@@ -345,7 +345,7 @@ def get_field(store, field_id, language):
     if not field:
         raise errors.FieldIdNotFound
 
-    return anon_serialize_field(store, field, language)
+    return serialize_field(store, field, language)
 
 
 @transact
@@ -412,7 +412,7 @@ def get_fieldtemplates_list(store, language):
 
     for f in store.find(models.Field, models.Field.instance == u'template'):
         if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
-            ret.append(anon_serialize_field(store, f, language))
+            ret.append(serialize_field(store, f, language))
 
     return ret
 

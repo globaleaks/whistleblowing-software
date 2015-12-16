@@ -14,7 +14,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files, serialize_receiver_file
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import ReceiverTip, ReceiverFile
-from globaleaks.notification import Event
 from globaleaks.rest import errors
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.zipstream import ZipStream
@@ -88,6 +87,7 @@ class CollectionDownload(BaseHandler):
         context_dict = yield context.get_context(rtip_dict['context_id'], 'en')
         notif_dict = yield notification.get_notification(self.request.language)
 
+        """
         mock_event = Event(
             type=u'archive_description',
             trigger='Download',
@@ -107,6 +107,7 @@ class CollectionDownload(BaseHandler):
                'name': "COLLECTION_INFO.txt"
             }
         )
+        """
 
         self.set_status(200)
 
