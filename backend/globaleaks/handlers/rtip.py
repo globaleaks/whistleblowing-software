@@ -145,37 +145,48 @@ def db_increment_receiver_access_count(store, user_id, rtip_id):
     return rtip.access_counter
 
 
-def db_delete_itip(store, itip):
+def db_mark_file_for_secure_deletion(store, relpath):
+    abspath = os.path.join(GLSettings.submission_path, relpath)
+    if os.path.isfile(abspath):
+        secure_file_delete = SecureFileDelete()
+        secure_file_delete.filepath = abspath
+        store.add(secure_file_delete)
+
+
+def db_delete_itip_files(store, itip):
+    log.debug("Removing files associated to InternalTip %s" % itip.id)
     for ifile in itip.internalfiles:
-        abspath = os.path.join(GLSettings.submission_path, ifile.file_path)
+        log.debug("Marking internalfile %s for secure deletion" % ifile.file_path)
 
-        if os.path.isfile(abspath):
-            log.debug("Marking internalfile %s for secure deletion" % abspath)
-            secure_file_delete = SecureFileDelete()
-            secure_file_delete.filepath = abspath
-            store.add(secure_file_delete)
+        db_mark_file_for_secure_deletion(store, ifile.file_path)
 
-        rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
-        for rfile in rfiles:
+        for rfile in store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id):
             # The following code must be bypassed if rfile.file_path == ifile.filepath,
             # this mean that is referenced the plaintext file instead having E2E.
             if rfile.file_path == ifile.file_path:
                 continue
 
-            abspath = os.path.join(GLSettings.submission_path, rfile.file_path)
+            log.debug("Marking receiverfile %s for secure deletion" % ifile.file_path)
 
-            if os.path.isfile(abspath):
-                log.debug("Marking receiverfile %s for secure deletion" % abspath)
-                secure_file_delete = SecureFileDelete()
-                secure_file_delete.filepath = abspath
-                store.add(secure_file_delete)
+            db_mark_file_for_secure_deletion(store, rfile.file_path)
 
-        log.debug("Removing InternalTip %s" % itip.id)
+
+def db_delete_itip(store, itip):
+    log.debug("Removing InternalTip %s" % itip.id)
+
+    db_delete_itip_files(store, itip)
 
     store.remove(itip)
 
     if store.find(InternalTip, InternalTip.questionnaire_hash == itip.questionnaire_hash).count() == 0:
         store.find(ArchivedSchema, ArchivedSchema.hash == itip.questionnaire_hash).remove()
+
+
+def db_delete_itips(store, itips):
+    for itip in itips:
+        db_delete_itip_files(store, itip)
+
+    itips.remove()
 
 
 def db_delete_rtip(store, rtip):

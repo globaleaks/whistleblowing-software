@@ -31,7 +31,6 @@ def receiver_serialize_receiver(receiver, language):
         'can_delete_submission': GLSettings.memory_copy.can_delete_submission or receiver.can_delete_submission,
         'can_grant_permissions': GLSettings.memory_copy.can_grant_permissions or receiver.can_grant_permissions,
         'tip_notification': receiver.tip_notification,
-        'tip_expiration_threshold': receiver.tip_expiration_threshold,
         'contexts': [c.id for c in receiver.contexts]
     })
 

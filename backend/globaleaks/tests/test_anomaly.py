@@ -4,9 +4,9 @@ from twisted.internet import task, defer
 
 from globaleaks.tests import helpers
 
-from globaleaks import anomaly, event
+from globaleaks import event
+from globaleaks.anomaly import Alarm
 
-anomaly.reactor = task.Clock()
 
 def pollute_events_for_testing(number_of_times=10):
     for _ in xrange(number_of_times):
@@ -14,18 +14,20 @@ def pollute_events_for_testing(number_of_times=10):
             for x in xrange(2):
                 event.EventTrack(event_obj, 1.0 * x)
 
+
 def pollute_events_for_testing_and_perform_synthesis(number_of_times=10):
     for _ in xrange(number_of_times):
         for event_obj in event.outcoming_event_monitored:
             for x in xrange(2):
                 event.EventTrack(event_obj, 1.0 * x).synthesis()
 
+
 class TestAlarm(helpers.TestGL):
     """
     This test mostly the function in anomaly.py Alarm object
     """
     def test_event_accouting(self):
-        anomaly.compute_activity_level()
+        Alarm.compute_activity_level()
 
         # create one event per type.
         for event_obj in event.outcoming_event_monitored:
@@ -47,23 +49,22 @@ class TestAlarm(helpers.TestGL):
             event.EventTrackQueue.take_current_snapshot()
         ), previous_len * 2)
 
-        activity_level = yield anomaly.compute_activity_level()
+        activity_level = yield Alarm.compute_activity_level()
         self.assertEqual(activity_level, 2)
 
         # Has not slow comeback to 0
-        activity_level = yield anomaly.compute_activity_level()
+        activity_level = yield Alarm.compute_activity_level()
         self.assertEqual(activity_level, 0)
+
 
 class TestAnomalyNotification(helpers.TestGL):
     @defer.inlineCallbacks
-    def test_admin_alarm_generate_mail(self):
-        a = anomaly.Alarm()
-
+    def test_generate_admin_alert_mail(self):
         # Remind, these two has to be done to get an event matrix meaningful
         pollute_events_for_testing()
-        activity_level = yield anomaly.compute_activity_level()
+        activity_level = yield Alarm.compute_activity_level()
 
-        x = yield a.admin_alarm_generate_mail(
+        x = yield Alarm.generate_admin_alert_mail(
             event_matrix = {
                 'wb_comments': 100,
                 'noise': 12345

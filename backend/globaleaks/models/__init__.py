@@ -736,13 +736,11 @@ class Receiver(Model):
 
     tip_notification = Bool(default=True)
 
-    tip_expiration_threshold = Int(default=72)
-
     presentation_order = Int(default=0)
 
     unicode_keys = ['configuration']
 
-    int_keys = ['presentation_order', 'tip_expiration_threshold']
+    int_keys = ['presentation_order']
 
     bool_keys = [
         'can_delete_submission',

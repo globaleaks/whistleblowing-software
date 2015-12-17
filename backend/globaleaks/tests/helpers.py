@@ -22,7 +22,8 @@ reload(sys)
 sys.getdefaultencoding()
 
 
-from globaleaks import db, models, security, anomaly, event, runner
+from globaleaks import db, models, security, event, runner
+from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, authentication
@@ -72,7 +73,6 @@ authentication.reactor_override = reactor_override
 event.reactor_override = reactor_override
 token.reactor_override = reactor_override
 runner.reactor_override = reactor_override
-anomaly.reactor = task.Clock()
 statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
 
 
@@ -180,7 +180,7 @@ class TestGL(unittest.TestCase):
         # override of imported memory variables
         GLSettings.memory_copy.allow_unencrypted = True
 
-        anomaly.Alarm.reset()
+        Alarm.reset()
         event.EventTrackQueue.reset()
         statistics_sched.StatisticsSchedule.reset()
 
@@ -738,7 +738,6 @@ class MockDict():
             'can_postpone_expiration': True,
             'contexts': [],
             'tip_notification': True,
-            'tip_expiration_threshold': 72,
             'presentation_order': 0,
             'configuration': 'default'
         })

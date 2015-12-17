@@ -2,7 +2,8 @@
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 # override GLSettings
-from globaleaks import anomaly, event
+from globaleaks import event
+from globaleaks.anomaly import Alarm
 from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
@@ -30,7 +31,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
     def test_post(self):
         event.EventTrackQueue.reset()
 
-        yield anomaly.compute_activity_level()
+        yield Alarm.compute_activity_level()
 
         handler = self.request({'type': 'submission'})
 
@@ -49,7 +50,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         event.EventTrackQueue.reset()
 
         pollute_events_for_testing()
-        yield anomaly.compute_activity_level()
+        yield Alarm.compute_activity_level()
 
         token = Token('submission')
 
@@ -70,7 +71,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
         event.EventTrackQueue.reset()
 
         pollute_events_for_testing()
-        yield anomaly.compute_activity_level()
+        yield Alarm.compute_activity_level()
 
         token = Token('submission')
 

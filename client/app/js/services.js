@@ -796,7 +796,6 @@ angular.module('GLServices', ['ngResource']).
           receiver.presentation_order = 0;
           receiver.language = 'en';
           receiver.timezone = 0;
-          receiver.tip_expiration_threshold = 72;
           return receiver;
         };
 

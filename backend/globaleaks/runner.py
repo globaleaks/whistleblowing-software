@@ -16,7 +16,7 @@ from globaleaks.db.appdata import init_appdata
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
-    pgp_check_sched, secure_file_delete_sched
+    pgp_check_sched
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
@@ -38,34 +38,35 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         if reactor_override:
             self._reactor = reactor_override
 
+        # Scheduling the Session Management schedule to be executed every minute
         session_management = session_management_sched.SessionManagementSchedule()
-        self._reactor.callLater(0, session_management.start, GLSettings.session_management_delta)
+        self._reactor.callLater(0, session_management.start, 60)
 
+        # Scheduling the Anomalies Check schedule to be executed every 10 seconds
         anomaly = statistics_sched.AnomaliesSchedule()
-        self._reactor.callLater(0, anomaly.start, GLSettings.anomaly_delta)
+        self._reactor.callLater(0, anomaly.start, 10)
 
+        # Scheduling the Delivery schedule to be executed every 20 seconds
         delivery = delivery_sched.DeliverySchedule()
-        self._reactor.callLater(1, delivery.start, GLSettings.delivery_delta)
+        self._reactor.callLater(1, delivery.start, 20)
 
+        # Scheduling the Notification schedule to be executed every 60 seconds
         notification = notification_sched.NotificationSchedule()
-        self._reactor.callLater(1, notification.start, GLSettings.notification_delta)
+        self._reactor.callLater(1, notification.start, 60)
 
-        secure_file_delete = secure_file_delete_sched.SecureFileDeleteSchedule()
-        self._reactor.callLater(1, secure_file_delete.start, GLSettings.secure_file_delete_delta)
-
-        # The Tip cleaning scheduler need to be executed every day at midnight
+        # Scheduling the Tip Cleaning scheduler to be executed every day at 00:00
         current_time = datetime_now()
         delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
         clean = cleaning_sched.CleaningSchedule()
         self._reactor.callLater(delay, clean.start, 3600 * 24)
 
-        # The PGP check scheduler need to be executed every day at midnight
+        # Scheduling the PGP Check scheduler to be executed every day at 01:00
         current_time = datetime_now()
-        delay = (3600 * 24) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
+        delay = (3600 * 25) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
         pgp_check = pgp_check_sched.PGPCheckSchedule()
         self._reactor.callLater(delay, pgp_check.start, 3600 * 24)
 
-        # The Stats scheduler need to be executed every hour on the hour
+        # Scheduling the Statistics schedule to be executed every hour on the hour
         current_time = datetime_now()
         delay = (60 * 60) - (current_time.minute * 60) - current_time.second
         stats = statistics_sched.StatisticsSchedule()

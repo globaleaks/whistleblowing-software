@@ -11,18 +11,16 @@
 #
 from datetime import timedelta
 
-from cyclone.util import ObjectDict as OD
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact
-from globaleaks.handlers.admin.node import admin_serialize_node
-from globaleaks.handlers.admin.notification import get_notification
-from globaleaks.handlers.admin.user import get_admin_users
+from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
+from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating
 
@@ -33,8 +31,36 @@ __all__ = ['PGPCheckSchedule']
 class PGPCheckSchedule(GLJob):
     name = "PGP Check"
 
+    def prepare_admin_pgp_alerts(self, store, expired_or_expiring):
+        for user_desc in db_get_admin_users(store):
+            user_language = user_desc['language']
+
+            data = {
+                'address': user_desc['mail_address'],
+                'type': u'admin_pgp_alert',
+                'node': db_admin_serialize_node(store, user_language),
+                'notification': db_get_notification(store, user_language),
+                'users': expired_or_expiring
+            }
+
+            Templating().db_prepare_mail(store, data)
+
+
+    def prepare_user_pgp_alerts(self, store, user_desc):
+        user_language = user_desc['language']
+
+        data = {
+            'address': user_desc['mail_address'],
+            'type': u'pgp_alert',
+            'node': db_admin_serialize_node(store, user_language),
+            'notification': db_get_notification(store, user_language),
+            'user': user_desc
+        }
+
+        Templating().db_prepare_mail(store, data)
+
     @transact
-    def pgp_validation_check(self, store):
+    def perform_pgp_validation_checks(self, store):
         expired_or_expiring = []
 
         for user in store.find(models.User):
@@ -50,53 +76,13 @@ class PGPCheckSchedule(GLJob):
                 elif user.pgp_key_expiration < datetime_now() - timedelta(days=15):
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
 
-        return expired_or_expiring
+        if expired_or_expiring:
+            if not GLSettings.memory_copy.disable_admin_notification_emails:
+                self.prepare_admin_pgp_alerts(store, expired_or_expiring)
 
-    @inlineCallbacks
-    def send_admin_pgp_alerts(self, admin_desc, expired_or_expiring):
-        user_language = admin_desc['language']
-        node_desc = yield admin_serialize_node(user_language)
-        notification_settings = yield get_notification(user_language)
-
-        data = {
-            'type': u'admin_pgp_expiration_alert',
-            'node': node_desc,
-            'users': expired_or_expiring
-        }
-
-        subject = Templating().format_template(notification_settings['admin_pgp_alert_mail_title'], data)
-        body = Templating().format_template(notification_settings['admin_pgp_alert_mail_template'], data)
-
-        admin_users = yield get_admin_users()
-        for u in admin_users:
-            yield sendmail(u['mail_address'], subject, body)
-
-    @inlineCallbacks
-    def send_pgp_alerts(self, user_desc):
-        user_language = user_desc['language']
-        node_desc = yield admin_serialize_node(user_language)
-        notification_settings = yield get_notification(user_language)
-
-        data = {
-            'type': u'pgp_expiration_alert',
-            'node': node_desc,
-            'user': user_desc
-        }
-
-        subject = Templating().format_template(notification_settings['pgp_alert_mail_title'], data)
-        body = Templating().format_template(notification_settings['pgp_alert_mail_template'], data)
-
-        yield sendmail(user_desc['mail_address'], subject, body)
+            for user_desc in expired_or_expiring:
+                self.prepare_user_pgp_alerts(store, user_desc)
 
     @inlineCallbacks
     def operation(self):
-        expired_or_expiring = yield self.pgp_validation_check()
-
-        if expired_or_expiring:
-            if not GLSettings.memory_copy.disable_admin_notification_emails:
-                admins_descs = yield get_admin_users()
-                for admin_desc in admins_descs:
-                    yield self.send_admin_pgp_alerts(admin_desc, expired_or_expiring)
-
-            for user_desc in expired_or_expiring:
-                yield self.send_pgp_alerts(user_desc)
+        yield self.perform_pgp_validation_checks()

@@ -57,6 +57,7 @@ def parse_pgp_options(notification, request):
             # except contains a return or a raise
             gnob.destroy_environment()
 
+
 def admin_serialize_notification(notif, language):
     ret_dict = {
         'server': notif.server if notif.server else u"",
@@ -86,10 +87,14 @@ def admin_serialize_notification(notif, language):
     return get_localized_values(ret_dict, notif, notif.localized_keys, language)
 
 
-@transact_ro
-def get_notification(store, language):
+def db_get_notification(store, language):
     notif = store.find(Notification).one()
     return admin_serialize_notification(notif, language)
+
+
+@transact_ro
+def get_notification(store, language):
+    return db_get_notification(store, language)
 
 
 @transact

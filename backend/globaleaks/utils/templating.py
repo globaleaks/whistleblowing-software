@@ -8,9 +8,11 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
+from globaleaks import models
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
-    ISO8601_to_datetime, datetime_now
+    ISO8601_to_datetime, datetime_now, bytes_to_pretty_str
 
 
 node_keywords = [
@@ -57,6 +59,15 @@ user_pgp_alert_keywords = [
     '%PGPKeyInfo%'
 ]
 
+admin_anomaly_keywords = [
+    "%AnomalyDetailDisk%",
+    "%AnomalyDetailActivities%",
+    "%ActivityAlarmLevel%",
+    "%ActivityDump%",
+    "%NodeName%",
+    "%FreeMemory%",
+    "%TotalMemory%"
+]
 
 
 def dump_file_list(filelist, files_n):
@@ -71,22 +82,21 @@ def dump_file_list(filelist, files_n):
 
     return info
 
-class TemplateData(dict):
-    pass
 
 class Keyword(object):
     """
     This class define the base keyword list supported by all the events
     """
     keyword_list = node_keywords
-    data_keys = ['node', 'context', 'receiver']
+    data_keys = ['node', 'notification']
 
     def __init__(self, data):
-       for k in self.data_keys:
-           if k not in data:
-               raise "ANTANI"
+        # node and notification are always injected as they contain general information
+        for k in self.data_keys:
+            if k not in data:
+                raise errors.InternalServerError("Missing key '%s' while resolving template '%s'" % (k, type(self).__name__))
 
-       self.data = data
+        self.data = data
 
     def NodeName(self):
         return self.data['node']['name']
@@ -100,7 +110,7 @@ class Keyword(object):
 
 class TipKeyword(Keyword):
     keyword_list = Keyword.keyword_list + tip_keywords
-    data_keys =  ['node', 'context', 'receiver', 'tip']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip']
 
     def TipID(self):
         return self.data['tip']['id']
@@ -159,14 +169,14 @@ class TipKeyword(Keyword):
 
 
 class CommentKeyword(TipKeyword):
-    data_keys =  ['node', 'context', 'receiver', 'tip', 'comment']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comment']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['comment']['creation_date'], float(self.data['receiver']['timezone']))
 
 
 class MessageKeyword(TipKeyword):
-    data_keys =  ['node', 'context', 'receiver', 'tip', 'message']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['message']['creation_date'], float(self.data['receiver']['timezone']))
@@ -174,7 +184,7 @@ class MessageKeyword(TipKeyword):
 
 class FileKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + file_keywords
-    data_keys =  ['node', 'context', 'receiver', 'tip', 'file']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'file']
 
     def FileName(self):
         return self.data['file']['name']
@@ -191,7 +201,7 @@ class FileKeyword(TipKeyword):
 
 class ArchiveDescription(TipKeyword):
     keyword_list = TipKeyword.keyword_list + archive_description_keywords
-    data_keys =  ['node', 'context', 'receiver', 'tip', 'archive_description']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'archive']
 
     def FileList(self):
         return dump_file_list(self.data['archive']['files'], self.data['archive']['file_counter'])
@@ -204,17 +214,14 @@ class ArchiveDescription(TipKeyword):
 
 
 class AdminPGPAlertKeyword(Keyword):
-    keyword_list = node_keywords + admin_pgp_alert_keywords
-    data_keys =  ['node', 'users']
+    keyword_list = Keyword.keyword_list + admin_pgp_alert_keywords
+    data_keys =  ['node', 'notification', 'users']
 
     def PGPKeyInfoList(self):
         ret = ""
         for r in self.data['users']:
             fingerprint = r['pgp_key_fingerprint']
-            if fingerprint is not None:
-                key = fingerprint[:7]
-            else:
-                key = ""
+            key = fingerprint[:7] if fingerprint is not None else ""
 
             ret += "\t%s, %s (%s)\n" % (r['name'],
                                         key,
@@ -223,17 +230,57 @@ class AdminPGPAlertKeyword(Keyword):
 
 
 class PGPAlertKeyword(Keyword):
-    keyword_list = node_keywords + user_pgp_alert_keywords
-    data_keys =  ['node', 'user']
+    keyword_list = Keyword.keyword_list + user_pgp_alert_keywords
+    data_keys =  ['node', 'notification', 'user']
 
     def PGPKeyInfo(self):
         fingerprint = self.data['user']['pgp_key_fingerprint']
-        if fingerprint is not None:
-            key = fingerprint[:7]
-        else:
-            key = ""
+        key = fingerprint[:7] if fingerprint is not None else ""
 
         return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
+
+
+class AnomalyKeyword(Keyword):
+    keyword_list = Keyword.keyword_list + admin_anomaly_keywords
+    data_keys =  ['node', 'notification', 'alert']
+
+    def AnomalyDetailDisk(self):
+        # This happens all the time anomalies are present but disk is ok
+        if self.data['alert']['stress_levels']['disk_space'] == 0:
+            return u''
+
+        if self.data['alert']['stress_levels']['disk_space'] == 1:
+            return self.data['notification']['admin_anomaly_disk_low']
+        elif self.data['alert']['stress_levels']['disk_space'] == 2:
+            return self.data['notification']['admin_anomaly_disk_medium']
+        else:
+            return self.data['notification']['admin_anomaly_disk_high']
+
+    def AnomalyDetailActivities(self):
+        # This happens all the time there is not anomalous traffic
+        if self.data['alert']['stress_levels']['activity'] == 0:
+            return u''
+
+        return self.data['notification']['admin_anomaly_activities']
+
+    def ActivityAlarmLevel(self):
+        return "%s" % self.data['alert']['stress_levels']['activity']
+
+    def ActivityDump(self):
+        retstr = ""
+
+        for event, amount in self.data['alert']['event_matrix'].iteritems():
+            if not amount:
+                continue
+            retstr = "%s%s%d\n%s" % (event, (25 - len(event)) * " ", amount, retstr)
+
+        return retstr
+
+    def FreeMemory(self):
+        return "%s" % bytes_to_pretty_str(self.data['alert']['latest_measured_freespace'])
+
+    def TotalMemory(self):
+        return "%s" % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
 
 
 supported_template_types = {
@@ -242,35 +289,43 @@ supported_template_types = {
     u'message': MessageKeyword,
     u'file': FileKeyword,
     u'tip_expiration': TipKeyword,
-    u'pgp_expiration_alert': PGPAlertKeyword,
-    u'admin_pgp_expiration_alert': AdminPGPAlertKeyword,
+    u'pgp_alert': PGPAlertKeyword,
+    u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
-    u'archive_description': ArchiveDescription
+    u'archive_description': ArchiveDescription,
+    u'admin_anomaly': AnomalyKeyword
 }
 
 
 class Templating(object):
     def format_template(self, raw_template, data):
-        # For each Event type, we've to dispatch the right Keyword class
         keyword_converter = supported_template_types[data['type']](data)
+        iterations = 3
+        stop = False
+        while (stop is False and iterations > 0):
+            iterations -= 1
+            count = 0
 
-        # we've now:
-        # 1) template => directly from Notification.*_template
-        # 2) keyword_converter => object aligned with Event type and data
+            for kw in keyword_converter.keyword_list:
+                if raw_template.count(kw):
+                    # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
+                    variable_content = getattr(keyword_converter, kw[1:-1])()
+                    raw_template = raw_template.replace(kw, variable_content)
 
-        for kw in keyword_converter.keyword_list:
-            if raw_template.count(kw):
-                # if %SomeKeyword% matches, call keyword_converter.SomeKeyword function
-                variable_content = getattr(keyword_converter, kw[1:-1])()
-                raw_template = raw_template.replace(kw, variable_content)
+                    count += 1
+
+                if count == 0:
+                    # finally!
+                    stop = True
+                    break
 
         return raw_template
 
     def get_mail_subject_and_body(self, data):
-        def replace_variables(template, data):
-            return Templating().format_template(template, data)
-
-        if data['type'] in [u'tip', u'comment', u'message', u'file', u'tip_expiration', 'receiver_notification_limit_reached']:
+        if data['type'] == 'archive_description':
+            # this is currently the only template not used for mail notifications
+            pass
+        elif data['type'] in supported_template_types:
             subject_template = data['notification'][data['type'] + '_mail_title']
             body_template = data['notification'][data['type'] + '_mail_template']
         else:
@@ -283,3 +338,14 @@ class Templating(object):
         body = self.format_template(body_template, data)
 
         return subject, body
+
+    def db_prepare_mail(self, store, data):
+        subject, body = self.get_mail_subject_and_body(data)
+
+        mail = models.Mail({
+            'address': data['address'],
+            'subject': subject,
+            'body': body
+        })
+
+        store.add(mail)

@@ -13,7 +13,7 @@
 import os
 from twisted.internet import defer
 
-from globaleaks.anomaly import Alarm, compute_activity_level
+from globaleaks.anomaly import Alarm
 from globaleaks.orm import transact
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
@@ -88,7 +88,7 @@ def save_statistics(store, start, end, activity_collection):
 
 class AnomaliesSchedule(GLJob):
     """
-    This class check for Anomalies, using the Alarm() object
+    This class check for Anomalies, using the Alarm object
     implemented in anomaly.py
     """
     name = "Anomalies"
@@ -99,12 +99,12 @@ class AnomaliesSchedule(GLJob):
         The routine periodically checks is checked if the system is having some anomalies
         If the alarm has been raises, it is logged in the db.
         """
-        yield compute_activity_level()
+        yield Alarm.compute_activity_level()
 
         free_disk_bytes, total_disk_bytes = get_workingdir_space()
         free_ramdisk_bytes, total_ramdisk_bytes = get_ramdisk_space()
 
-        Alarm().check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)
+        Alarm.check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)
 
 
 class StatisticsSchedule(GLJob):
@@ -126,9 +126,6 @@ class StatisticsSchedule(GLJob):
 
     @defer.inlineCallbacks
     def operation(self):
-        """
-        executed every 60 minutes
-        """
         # ------- BEGIN Anomalies section -------
         anomalies_to_save = get_anomalies()
         yield save_anomalies(anomalies_to_save)
@@ -142,6 +139,9 @@ class StatisticsSchedule(GLJob):
         # ------- END Stats section -------------
 
         # ------- BEGIN Mail thresholds management -----------
+        GLSettings.exceptions = {}
+        GLSettings.exceptions_email_count = 0
+
         for k, v in GLSettings.mail_counters.iteritems():
             if v > GLSettings.memory_copy.notification_threshold_per_hour:
                 GLSettings.mail_counters[k] -= GLSettings.memory_copy.notification_threshold_per_hour
@@ -152,5 +152,4 @@ class StatisticsSchedule(GLJob):
         self.reset()
         self.collection_start_time = current_time
 
-        log.debug("Saved stats and time updated, keys saved %d" %
-                  len(statistic_summary.keys()))
+        log.debug("Saved stats and time updated, keys saved %d" % len(statistic_summary.keys()))

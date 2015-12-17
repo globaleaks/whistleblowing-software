@@ -18,6 +18,7 @@ from twisted.internet import reactor
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from globaleaks.utils.singleton import Singleton
 
 this_directory = os.path.dirname(__file__)
 
@@ -46,16 +47,10 @@ external_counted_events = {
 }
 
 
-class GLSettingssClass(object):
-    initialized = False
+class GLSettingsClass(object):
+    __metaclass__ = Singleton
 
     def __init__(self):
-        if GLSettingssClass.initialized:
-            error_msg = "Singleton GLSettingsClass instanced twice!"
-            raise Exception(error_msg)
-        else:
-            GLSettingssClass.initialized = True
-
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
@@ -135,14 +130,6 @@ class GLSettingssClass(object):
         self.configured_hosts = []
 
         self.receipt_regexp = u'[0-9]{16}'
-
-        # default timings for scheduled jobs
-        self.session_management_delta = 60
-        self.notification_delta = 60
-        self.delivery_delta = 20
-        self.anomaly_delta = 10
-        self.mailflush_delta = 300
-        self.secure_file_delete_delta = 3600
 
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
@@ -702,4 +689,4 @@ class GLSettingssClass(object):
 
 
 # GLSettings is a singleton class exported once
-GLSettings = GLSettingssClass()
+GLSettings = GLSettingsClass()

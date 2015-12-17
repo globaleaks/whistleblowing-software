@@ -33,10 +33,7 @@ class TestAnomaliesSchedule(helpers.TestGL):
             conditions = original_get_disk_anomaly_conditions(*args, **kwargs)
             # activate one condition at once
             for i in range(len(conditions)):
-                if i == self.n:
-                    conditions[i]['condition'] = True
-                else:
-                    conditions[i]['condition'] = False
+                conditions[i]['condition'] = (i == self.n)
 
             return conditions
 
