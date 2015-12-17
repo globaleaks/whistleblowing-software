@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.handlers.rtip import db_access_rtip
+from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -62,21 +62,6 @@ def serialize_memory_file(uploaded_file):
 
 @transact
 def register_file_db(store, uploaded_file, internaltip_id):
-    """
-    Remind: this is used only with fileApp - Tip append a new file,
-    for the submission section, we relay on Token to keep track of the
-    associated file, and in handlers/submission.py InternalFile(s) are
-    created.
-
-    :param uploaded_file: contain this struct of data:
-        {
-          'body': <closed file u'/home/qq/Dev/GlobaLeaks/backend/workingdir/files/encrypted_upload/lryZO8IlldGg3BS3.aes', mode 'w+b' at 0xb5b68498>,
-          'body_len': 667237,
-          'content_type': 'image/png',
-          'encrypted_path': u'/home/XYZ/Dev/GlobaLeaks/backend/workingdir/files/submission/lryZO8IlldGg3BS3.aes',
-          'filename': 'SteganographyIsImportant.png'
-        }
-    """
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
@@ -262,21 +247,6 @@ def download_file(store, user_id, rtip_id, file_id):
     rfile.downloads += 1
 
     return serialize_receiver_file(rfile)
-
-
-@transact
-def download_all_files(store, user_id, rtip_id):
-    db_access_rtip(store, user_id, rtip_id)
-
-    rfiles = store.find(ReceiverFile,
-                        ReceiverFile.receivertip_id == unicode(rtip_id))
-
-    files_list = []
-    for sf in rfiles:
-        sf.downloads += 1
-        files_list.append(serialize_receiver_file(sf))
-
-    return files_list
 
 
 class Download(BaseHandler):

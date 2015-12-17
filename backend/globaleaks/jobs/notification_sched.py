@@ -11,7 +11,7 @@ from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
-from globaleaks.handlers.admin.notification import admin_serialize_notification
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
 from globaleaks.handlers.submission import serialize_internalfile
@@ -19,7 +19,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import sendmail
-from globaleaks.utils.templating import Templating, TemplateData
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
@@ -114,10 +114,7 @@ class MailGenerator(object):
             # to send the notification_limit_reached
             data['type'] = u'receiver_notification_limit_reached'
 
-        data['notification'] = admin_serialize_notification(
-            store.find(models.Notification).one(), data['receiver']['language']
-        )
-
+        data['notification'] = db_get_notification(store, data['receiver']['language'])
         data['node'] = db_admin_serialize_node(store, data['receiver']['language'])
 
         subject, body = Templating().get_mail_subject_and_body(data)
@@ -164,8 +161,9 @@ class MailGenerator(object):
             if GLSettings.memory_copy.disable_receiver_notification_emails:
                 continue 
 
-            data = TemplateData()
-            data['type'] = trigger_template_map[trigger]
+            data = {
+                'type': trigger_template_map[trigger]
+            }
 
             getattr(self, 'process_%s' % trigger)(store, element, data)
 

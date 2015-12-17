@@ -4,7 +4,8 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import anomaly, event
+from globaleaks import event
+from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
@@ -18,7 +19,6 @@ class TestToken(helpers.TestGL):
     """
     pollute_events_for_testing()
 
-    shared_alarm_obj = anomaly.Alarm()
     stress_indicator = [ 'graph_captcha', 'human_captcha', 'proof_of_work' ]
 
     @inlineCallbacks
@@ -29,7 +29,7 @@ class TestToken(helpers.TestGL):
         event.EventTrackQueue.reset()
 
         pollute_events_for_testing()
-        yield anomaly.compute_activity_level()
+        yield Alarm.compute_activity_level()
 
         # Token submission
         st = Token('submission')

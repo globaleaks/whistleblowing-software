@@ -35,7 +35,6 @@ def rcvr_message_check(uri):
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
 
-
 def failure_status_check(http_code):
     # if code is missing is a failure because an Exception is raise before set
     # the status.
@@ -51,15 +50,6 @@ def ok_status_check(HTTP_code):
 def update_status_check(http_code):
     return http_code == 202
 
-
-incoming_event_monitored = [
-    # {
-    # 'name' : 'submission',
-    # 'handler_check': submission_check,
-    # 'anomaly_management': None,
-    # 'method': 'POST'
-    # }
-]
 
 outcoming_event_monitored = [
     {
@@ -174,8 +164,7 @@ class EventTrack(TempObj):
         TempObj.__init__(self,
                          EventTrackQueue.queue,
                          self.event_id,
-                         # seconds of validity:
-                         GLSettings.anomaly_delta,
+                         10, # seconds of validity
                          reactor_override)
 
         self.expireCallbacks.append(self.synthesis)

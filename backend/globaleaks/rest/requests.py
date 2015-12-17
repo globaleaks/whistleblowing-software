@@ -144,8 +144,7 @@ ReceiverReceiverDesc = {
     'pgp_key_status': unicode,
     'tip_notification': bool,
     'language': unicode,
-    'timezone': int,
-    'tip_expiration_threshold': int
+    'timezone': int
 }
 
 ReceiverOperationDesc = {
@@ -380,8 +379,7 @@ AdminReceiverDesc = {
     'can_grant_permissions': bool,
     'tip_notification': bool,
     'presentation_order': int,
-    'configuration': unicode,
-    'tip_expiration_threshold': int
+    'configuration': unicode
 }
 
 AdminShortURLDesc = {

@@ -291,7 +291,6 @@ CREATE TABLE receiver (
     can_postpone_expiration INTEGER NOT NULL,
     can_grant_permissions INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
-    tip_expiration_threshold INTEGER NOT NULL,
     presentation_order INTEGER,
     FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)

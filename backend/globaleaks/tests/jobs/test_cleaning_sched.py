@@ -8,7 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.handlers import admin, rtip, receiver
-from globaleaks.jobs import cleaning_sched, secure_file_delete_sched
+from globaleaks.jobs import cleaning_sched
 from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import GLSettings
 
@@ -31,14 +31,12 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
 
     @transact
     def check_tip_not_expired(self, store):
-        tips = store.find(models.InternalTip)
-        for tip in tips:
+        for tip in store.find(models.InternalTip):
             self.assertFalse(is_expired(tip.expiration_date))
 
     @transact
     def force_tip_expire(self, store):
-        tips = store.find(models.InternalTip)
-        for tip in tips:
+        for tip in store.find(models.InternalTip):
             tip.expiration_date = datetime_null()
 
     # -------------------------------------------
@@ -99,8 +97,6 @@ class TipCleaning(TestCleaning):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        yield secure_file_delete_sched.SecureFileDeleteSchedule().operation()
-
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
 
@@ -115,8 +111,6 @@ class TipCleaning(TestCleaning):
         yield self.force_tip_expire()
 
         yield cleaning_sched.CleaningSchedule().operation()
-
-        yield secure_file_delete_sched.SecureFileDeleteSchedule().operation()
 
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
