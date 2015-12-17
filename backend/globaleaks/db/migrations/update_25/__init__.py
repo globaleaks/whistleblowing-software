@@ -1,17 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-import string
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
-from storm.expr import And
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
-
-from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.appdata import load_default_fields
 from globaleaks.models import Model
 from globaleaks.security import sha512
-from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import datetime_null
 
 
 class User_v_24(Model):
