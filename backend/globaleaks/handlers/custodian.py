@@ -5,7 +5,6 @@
 # Implement the classes handling the requests performed to /custodian/* URI PATH
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import In
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import authenticated, transport_security_check

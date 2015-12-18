@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 
 

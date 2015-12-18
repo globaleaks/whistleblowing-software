@@ -18,7 +18,7 @@ from globaleaks.handlers.node import serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_null, datetime_to_ISO8601
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 def admin_serialize_context(store, context, language):
