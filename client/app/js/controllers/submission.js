@@ -184,6 +184,11 @@ GLClient.controller('SubmissionCtrl',
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
       if ($scope.node.enable_proof_of_work) {
+        if (typeof window.Worker === 'undefined') {
+          $scope.browserNotCompatible();
+          return;
+        }
+
         var worker = new Worker('/js/crypto/proof-of-work.worker.js');
 
         worker.onmessage = function(e) {
