@@ -25,8 +25,8 @@ Unfortunately, no technology is perfect and GlobaLeaks believes that working wit
 While we do our best to provide a secure software by default, security vulnerabilities and new attack techniques must be taken into account. If you believe you've found a security issue in the Globaleaks framework codebase, we encourage you to participate in the [GlobaLeaks bug bounty program](https://hackerone.com/globaleaks) hosted by [Hackerone](https://hackerone.com/globaleaks).
 
 
-• Donations
-To support GlobaLeaks Project you can help us with donations that will goes entirely for the software development and localization!
+## Donations
+To support GlobaLeaks you can help us with donations that will goes entirely for the software development and localization!
 
 [![Bitcoin](https://bitpay.com/img/donate-button-sm.png)](https://www.globaleaks.org/bitcoin.html) 
 [![PayPal](https://www.paypalobjects.com/en_US/i/btn/x-click-butcc-donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id= 22CAHH6GRRCTC)
