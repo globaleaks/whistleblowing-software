@@ -20,6 +20,11 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     };
 
+    $scope.browserNotCompatible = function() {
+      document.getElementById("BrowserSupported").style.display = "none";
+      document.getElementById("BrowserNotSupported").style.display = "block";
+    }
+
     $scope.reset_session = function() {
       $scope.session_id = undefined;
       $scope.role = undefined;
