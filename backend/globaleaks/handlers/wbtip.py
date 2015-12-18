@@ -5,8 +5,6 @@
 #
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
-
-from storm.exceptions import DatabaseError
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
