@@ -2,7 +2,7 @@
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
   "version": "2.60.124",
-  "license" : "AGPL-3.0",
+  "license": "AGPL-3.0",
   "authors": [
     "Claudio Agosti <vecna@globaleaks.org>",
     "Yvette Agostini <mnemosyne@logioshermes.org>",
@@ -39,7 +39,7 @@
     "bowser": "1.0.0",
     "bootstrap": "3.3.5",
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
-    "d3": "3.5.10",
+    "d3": "~3.5.12",
     "es6-promise": "3.0.2",
     "FileSaver.js": "0.0.2",
     "flow.js": "2.9.0",
@@ -47,12 +47,14 @@
     "jquery": "2.1.4",
     "js-polyfills": "0.1.12",
     "ng-flow": "2.6.1",
-    "openpgp": "1.3.0",
+    "openpgp": "~1.4.0",
     "scrypt-async": "1.2.0",
     "spin.js": "2.3.2",
     "stacktrace-js": "1.0.1"
   },
   "resolutions": {
-    "bootstrap": "3.3.5"
+    "bootstrap": "3.3.5",
+    "d3": "~3.5.12",
+    "openpgp": "~1.4.0"
   }
 }
