@@ -17,7 +17,7 @@ The work on translation is performed in collaboration with the [Localization Lab
 
 To read more on how translation is performed and you you could help on this side visit the [Localization Lab guidelines](http://www.localizationlab.org/translator-getting-started-guide).
 
-## Spotting security flaws and parecipating to our Bug Bounting Program!
+## Spotting security flaws and partecipating to our Bug Bounting Program!
 Anonymous whistleblowing can be easy and secure.
 
 Unfortunately, no technology is perfect and GlobaLeaks believes that working with skilled security researchers across the globe is crucial in identifying software weaknesses.
