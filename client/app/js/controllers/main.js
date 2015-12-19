@@ -12,12 +12,30 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.embedded = $location.search().embedded == 'true' ? true : false;
 
-    var iframeCheck = function() {
+    $rootScope.get_auth_headers = Authentication.get_auth_headers;
+
+    $scope.iframeCheck = function() {
       try {
         return window.self !== window.top;
       } catch (e) {
         return true;
       }
+    };
+
+    $scope.requireLegacyUploadSupport = function() {
+      // Implement the same check implemented but not exported by flowjs
+      // https://github.com/flowjs/flow.js/blob/master/src/flow.js#L42
+      var support = (
+          typeof File !== 'undefined' &&
+          typeof Blob !== 'undefined' &&
+          typeof FileList !== 'undefined' &&
+          (
+            !!Blob.prototype.slice || !!Blob.prototype.webkitSlice || !!Blob.prototype.mozSlice ||
+            false
+          ) // slicing files support
+      );
+
+      return !support;
     };
 
     $scope.browserNotCompatible = function() {
@@ -226,6 +244,20 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       list.splice(index, 1);
     };
 
+    $rootScope.getUploadUrl = function(url) {
+      if ($scope.requireLegacyUploadSupport()) {
+        url += '?session=' + Authentication.session;
+      }
+
+      return url;
+    };
+
+    $rootScope.getUploadUrl_lang = function(lang) {
+      return function() {
+        return $scope.getUploadUrl('admin/l10n/' + lang + '.json');
+      };
+    };
+
     $scope.init = function () {
       var deferred = $q.defer();
 
@@ -244,7 +276,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
              var headers = getResponseHeaders();
              if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
                $rootScope.anonymous = true;
-               if ($rootScope.node.hidden_service && !iframeCheck()) {
+               if ($rootScope.node.hidden_service && !$scope.iframeCheck()) {
                  // the check on the iframe is in order to avoid redirects
                  // when the application is included inside iframes in order to not
                  // mix HTTPS resources with HTTP resources.

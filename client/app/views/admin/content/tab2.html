@@ -3,7 +3,7 @@
     <div class="form-group">
       <label data-translate>Current project logo</label>
       <div class="imageUpload"
-           flow-init="{target: 'admin/staticfiles/globaleaks_logo', headers: get_auth_headers()}"
+           flow-init="{target: getUploadUrl('admin/staticfiles/globaleaks_logo'), headers: get_auth_headers()}"
            flow-file-added="onFileAdded($event, $file, $flow)"
            flow-files-submitted="$flow.upload()"
            flow-file-success="reload()">
@@ -26,9 +26,9 @@
         (<span data-translate>CSS</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: 'admin/staticfiles/custom_stylesheet', headers: get_auth_headers()}"
-            flow-files-submitted="$flow.upload()"
-            flow-file-success="reload()">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/custom_stylesheet'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
               <span class="glyphicon glyphicon-plus"></span>
@@ -52,8 +52,9 @@
         (<span data-translate>Home Page</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: 'admin/staticfiles/custom_homepage', headers: get_auth_headers()}"
-            flow-files-submitted="$flow.upload()">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/custom_homepage'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
               <span class="glyphicon glyphicon-plus"></span>
@@ -76,8 +77,9 @@
       <br />
       <span data-translate>The file will be available at the URL: /static/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: 'admin/staticfiles/customization', headers: get_auth_headers()}"
-            flow-files-submitted="$flow.upload()">
+        <span flow-init="{target: getUploadUrl('admin/staticfiles/customization'), headers: get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
               <span class="glyphicon glyphicon-plus"></span>
@@ -86,18 +88,10 @@
           </div>
         </span>
       </div>
+      <label data-translate>Files</label>
+      <br />
       <div class="table-container">
         <table data-ng-show="staticfiles" class="table table-striped" id="fileList">
-          <thead>
-            <tr>
-              <th>
-                <span data-translate>Filename</span>
-              </th>
-              <th>
-                <span data-translate>File Operations</span>
-              </th>
-            </tr>
-          </thead>
           <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
             <tr>
               <td>{{file.filename}}</td>
