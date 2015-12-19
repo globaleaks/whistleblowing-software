@@ -27,8 +27,6 @@ class TestLanguageFileHandler(helpers.TestHandler):
         yield handler.post(lang='en')
 
         self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.StaticFileDesc)
 
     def test_delete_not_existent_custom_lang(self):
         handler = self.request({}, role='admin')
