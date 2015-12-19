@@ -68,7 +68,7 @@ class AdminLanguageFileHandler(BaseHandler):
         log.debug("Admin uploaded new lang file: %s" % dumped_file['filename'])
 
         self.set_status(201)  # Created
-        self.finish(dumped_file)
+        self.finish()
 
     @transport_security_check('admin')
     @authenticated('admin')

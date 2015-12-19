@@ -1,6 +1,4 @@
-<div id="TipPageFilesInfoBox" class="panel panel-default"
-     flow-init="{target: fileupload_url, headers: get_auth_headers()}" flow-files-submitted="$flow.upload()"
-     data-ng-init="collapsed = false">
+<div id="TipPageFilesInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
   <div class="panel-heading" data-ng-click="collapsed = !collapsed" data-ng-keypress="eventDismiss(); $event.stopPropagation();">
     <div>
       <span>{{node.widget_files_title}}</span>
@@ -55,7 +53,7 @@
     <br />
     <div data-ng-switch="tip.enable_attachments">
       <div data-ng-switch-when="true">
-        <div data-ng-init="fileupload_mode = 'multiple'" data-ng-include="'views/partials/fileupload_button.html'"></div>
+        <div data-ng-include="'views/partials/fileupload_button.html'"></div>
         <br />
         <div class="row">
           <div class="col-md-6" data-ng-include="'views/partials/fileupload_status.html'"></div>

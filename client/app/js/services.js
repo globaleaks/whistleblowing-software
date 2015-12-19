@@ -172,8 +172,6 @@ angular.module('GLServices', ['ngResource']).
           return h;
         };
 
-        $rootScope.get_auth_headers = self.get_auth_headers;
-
       }
 
       return new Session();

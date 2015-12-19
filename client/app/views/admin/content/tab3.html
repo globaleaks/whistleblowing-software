@@ -13,7 +13,7 @@
         </div>
         <div data-ng-show="!isCollapsed">
           <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-            <span flow-init="{target: 'admin/l10n/' + language.code + '.json', headers: get_auth_headers()}"
+            <span flow-init="{target: getUploadUrl_lang(language.code), headers: get_auth_headers()}"
                 flow-files-submitted="$flow.upload()"
                 flow-file-success="updateReceiverImgReloadUrl()"
                 flow-name="flowObj">

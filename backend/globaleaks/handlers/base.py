@@ -437,7 +437,7 @@ class BaseHandler(RequestHandler):
 
         # Check for GET/POST based authentication.
         if session_id is None:
-            session_id = self.get_argument('x-session', default=None)
+            session_id = self.get_argument('session', default=None)
 
         if session_id is None:
             return None

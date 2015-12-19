@@ -8,6 +8,8 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       $event.preventDefault();
     } else {
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
+        // if the field allows to load only one file disable the button
+        // as soon as a file is loaded.
         $scope.disabled = true;
       }
     }
