@@ -75,26 +75,6 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      var dayLabels = svg.selectAll(".dayLabel")
-          .data(days)
-          .enter().append("text")
-          .text(function (d) { return d; })
-          .attr("x", 0)
-          .attr("y", function (d, i) { return i * gridSize; })
-          .style("text-anchor", "end")
-          .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-          .attr("class", "dayLabel mono axis");
-
-      var timeLabels = svg.selectAll(".timeLabel")
-          .data(times)
-          .enter().append("text")
-          .text(function(d) { return d; })
-          .attr("x", function(d, i) { return i * gridSize; })
-          .attr("y", 0)
-          .style("text-anchor", "middle")
-          .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-          .attr("class", "timeLabel mono axis" );
-
       var heatMap = svg.selectAll(".hour")
           .data(data)
           .enter().append("rect")

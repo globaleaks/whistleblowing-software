@@ -10,7 +10,7 @@ GLClient.controller('UserCtrl',
 
   $scope.view_tip = function(keycode) {
     keycode = keycode.replace(/\D/g,'');
-    var wtip = new WhistleblowerTip(keycode, function() {
+    new WhistleblowerTip(keycode, function() {
       $location.path('/status');
     });
   };

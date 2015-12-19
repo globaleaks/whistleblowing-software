@@ -36,7 +36,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         var admin = {
           'mail_address': $scope.admin_mail_address,
           'old_password': 'globaleaks',
-          'password': $scope.admin_password,
+          'password': $scope.admin_password
         };
 
         $scope.wizard = {

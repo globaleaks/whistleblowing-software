@@ -41,7 +41,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.browserNotCompatible = function() {
       document.getElementById("BrowserSupported").style.display = "none";
       document.getElementById("BrowserNotSupported").style.display = "block";
-    }
+    };
 
     $scope.reset_session = function() {
       $scope.session_id = undefined;
@@ -133,7 +133,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.set_title = function () {
       if ($rootScope.node) {
         var path = $location.path();
-        var statuspage = '/status'
+        var statuspage = '/status';
         if (path === '/') {
           $scope.ht = $rootScope.node.header_title_homepage;
         } else if (path === '/submission') {
@@ -424,7 +424,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.isUploading = function(uploads) {
       return $scope.getUploadStatus(uploads) == 'uploading';
-    }
+    };
 
     $scope.remainingUploadTime = function(uploads) {
       var sum = 0;
