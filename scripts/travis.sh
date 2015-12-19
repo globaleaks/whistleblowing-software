@@ -101,7 +101,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   setupDependencies
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
-  sleep 3
+  sleep 5
   cd $TRAVIS_BUILD_DIR/client
   grunt protractor:saucelabs
 

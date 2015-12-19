@@ -461,7 +461,6 @@ class RTipReceiversCollection(BaseHandler):
     This interface return the list of the Receiver active in a Tip.
     GET /tip/<auth_tip_id>/receivers
     """
-
     @transport_security_check('receiver')
     @authenticated('receiver')
     @inlineCallbacks
