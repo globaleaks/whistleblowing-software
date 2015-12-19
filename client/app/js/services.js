@@ -75,7 +75,7 @@ angular.module('GLServices', ['ngResource']).
             }
 
             $location.search('');
-          }
+          };
 
           if (username === 'whistleblower') {
             return $http.post('receiptauth', {'receipt': password}).
@@ -223,7 +223,7 @@ angular.module('GLServices', ['ngResource']).
           'message': response.data.error_message,
           'code': response.data.error_code,
           'arguments': response.data.arguments
-        }
+        };
 
         /* 30: Not Authenticated / 24: Wrong Authentication */
         if (error.code === 30 || error.code === 24) {
@@ -596,7 +596,7 @@ angular.module('GLServices', ['ngResource']).
   return function(fn) {
       var self = this;
 
-      self.node = AdminNodeResource.get()
+      self.node = AdminNodeResource.get();
       self.contexts = AdminContextResource.query();
       self.fieldtemplates = AdminFieldTemplateResource.query();
       self.users = AdminUserResource.query();

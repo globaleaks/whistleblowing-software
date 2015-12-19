@@ -128,7 +128,7 @@ angular.module('GLDirectives', []).
            scope.$apply(function () {
              scope.fileread(e.target.result);
            });
-         }
+         };
          reader.readAsText(changeEvent.target.files[0]);
        });
      }

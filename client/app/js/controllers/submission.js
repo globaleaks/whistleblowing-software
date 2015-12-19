@@ -83,18 +83,6 @@ GLClient.controller('SubmissionCtrl',
   $scope.public_contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
   $scope.public_contexts = $filter('orderBy')($scope.public_contexts, $scope.contextsOrderPredicate);
 
-  var isAGoodPOW = function(binaryhash) {
-    if (binaryhash.charCodeAt(31) == 0) {
-      // Note: one ZERO check here, means TWO in the backend
-      verification = "";
-      for (k = 0; k < 32; k++) {
-        verification = (verification + binaryhash.charCodeAt(k).toString(16));
-      }
-      return true;
-    }
-    return false;
-  };
-
   var startCountdown = function() {
     $scope.submission.wait = true;
     $scope.submission.pow = false;
@@ -202,7 +190,7 @@ GLClient.controller('SubmissionCtrl',
         };
 
         worker.postMessage({
-          pow: $scope.submission._token.proof_of_work,
+          pow: $scope.submission._token.proof_of_work
         });
       } else {
         $scope.submission.pow = true;
@@ -226,12 +214,12 @@ GLClient.controller('SubmissionCtrl',
         $scope.selection = 0;
       }
     });
-  }
+  };
 
   $scope.completeSubmission = function() {
     $scope.submission._submission.answers = $scope.answers;
     $scope.submission.submit();
-  }
+  };
 
   new Submission(function(submission) {
     $scope.submission = submission;
@@ -269,7 +257,7 @@ controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter)
     rows = $filter('toArray')(rows);
     rows = $filter('orderBy')(rows, $scope.minY);
     return rows;
-  }
+  };
 
   $scope.fields = $scope.step.children;
   $scope.rows = $scope.splitRows($scope.fields);
@@ -309,11 +297,11 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
     } else {
       return entry[$scope.field.id];
     }
-  }
+  };
 
   $scope.addAnswerEntry = function(entries) {
     entries.push($scope.prepare_field_answers_structure($scope.field));
-  }
+  };
 
   $scope.fields = $scope.field.children;
   $scope.rows = $scope.splitRows($scope.fields);
@@ -339,7 +327,7 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
         ret = true;
         break;
       }
-    };
+    }
 
     return ret;
   };

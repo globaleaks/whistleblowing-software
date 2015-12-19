@@ -33,7 +33,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
 
   $scope.isSelected = function (id) {
     return $scope.selected_tips.indexOf(id) !== -1;
-  }
+  };
 
   $scope.tip_delete_all = function () {
     var modalInstance = $uibModal.open({

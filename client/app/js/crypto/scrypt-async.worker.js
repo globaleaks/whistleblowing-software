@@ -6,7 +6,7 @@ onmessage = function(e) {
   return new Promise(function(resolve, reject) {
     var callback = function(result) {
       postMessage(result);
-    }
+    };
 
     scrypt(options.password,
            options.salt,
@@ -16,4 +16,4 @@ onmessage = function(e) {
            callback,
            options.encoding);
   });
-}
+};

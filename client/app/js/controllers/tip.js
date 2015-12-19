@@ -19,7 +19,7 @@ GLClient.controller('TipCtrl',
       rows = $filter('toArray')(rows);
       rows = $filter('orderBy')(rows, $scope.minY);
       return rows;
-    }
+    };
 
     $scope.extractSpecialTipFields = function(tip) {
       angular.forEach(tip.questionnaire, function(step) {
@@ -36,15 +36,11 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.getFields = function(field) {
-      var ret;
-      var fields;
       if (field === undefined) {
-        ret = $scope.tip.fields;
+        return $scope.tip.fields;
       } else {
-        ret = field.children;
+        return field.children;
       }
-
-      return ret;
     };
 
     $scope.hasMultipleEntries = function(field_answer) {
@@ -80,7 +76,7 @@ GLClient.controller('TipCtrl',
               success(function(data, status, headers, config){
                 $route.reload();
               });
-        }
+        };
 
         angular.forEach($scope.contexts, function(context, k){
           if (context.id === tip.context_id) {
