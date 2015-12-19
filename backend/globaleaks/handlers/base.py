@@ -410,11 +410,10 @@ class BaseHandler(RequestHandler):
         json list objects.
         """
         if isinstance(chunk, types.ListType):
-            chunk = escape.json_encode(chunk)
-            RequestHandler.write(self, chunk)
             self.set_header("Content-Type", "application/json")
-        else:
-            RequestHandler.write(self, chunk)
+            chunk = escape.json_encode(chunk)
+
+        RequestHandler.write(self, chunk)
 
     @inlineCallbacks
     def uniform_answers_delay(self):
@@ -433,20 +432,17 @@ class BaseHandler(RequestHandler):
 
     @property
     def current_user(self):
+        # Check for header based authentication
         session_id = self.request.headers.get('X-Session')
 
+        # Check for GET/POST based authentication.
         if session_id is None:
-            # Check for POST based authentication.
             session_id = self.get_argument('x-session', default=None)
 
         if session_id is None:
             return None
 
-        try:
-            session = GLSettings.sessions[session_id]
-        except KeyError:
-            return None
-        return session
+        return GLSettings.sessions.get(session_id, None)
 
     def get_file_upload(self):
         try:

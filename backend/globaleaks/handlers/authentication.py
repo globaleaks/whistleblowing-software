@@ -78,7 +78,7 @@ def update_session(session):
     """
     session_obj = GLSettings.sessions.get(session.id, None)
 
-    if not session_obj:
+    if session_obj is None:
         return False
 
     session_obj.touch()
