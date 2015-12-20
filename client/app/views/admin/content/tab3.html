@@ -39,9 +39,7 @@
 
     <div class="form-group">
       <label data-translate>Default language</label>
-      <select class="form-control" data-ng-model="admin.node.default_language">
-        <option data-ng-repeat="item in languages_enabled_selector | orderBy:'name'" data-ng-value="item.code" ng-selected="item.code == admin.node.default_language">{{item.name}}</option>
-      </select>
+      <select class="form-control" data-ng-model="admin.node.default_language" data-ng-options="item.code as item.code for item in languages_enabled_selector | orderBy:'name'">
     </div>
   </div>
 </div>
