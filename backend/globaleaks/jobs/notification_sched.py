@@ -172,6 +172,9 @@ class MailGenerator(object):
 
 
 class NotificationSchedule(GLJob):
+    name = "Notification"
+    monitor_time = 1800
+
     @transact
     def get_mails_from_the_pool(self, store):
         ret = []
