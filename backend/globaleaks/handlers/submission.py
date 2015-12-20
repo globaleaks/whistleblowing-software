@@ -81,6 +81,7 @@ def _db_get_archived_questionnaire_schema(store, hash, type, language):
     for step in questionnaire:
         for field in step['children']:
             _db_get_archived_field_recursively(field, language)
+
         get_localized_values(step, step, models.Step.localized_keys, language)
 
     return questionnaire
@@ -164,7 +165,7 @@ def extract_answers_preview(questionnaire, answers):
     preview = {}
 
     preview.update({f['id']: copy.deepcopy(answers[f['id']])
-        for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
+    for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
 
     return preview
 

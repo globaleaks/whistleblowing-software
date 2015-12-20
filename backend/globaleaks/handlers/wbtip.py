@@ -171,7 +171,7 @@ class WBTipInstance(BaseHandler):
         contain the internaltip)
         """
 
-        answer = yield get_wbtip(self.current_user.user_id, 'en')
+        answer = yield get_wbtip(self.current_user.user_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
