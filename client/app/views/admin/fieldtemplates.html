@@ -31,13 +31,6 @@
                   data-ng-click="exportQuestionTemplates()">
             <span data-translate>Export all</span>
           </button>
-          <button class="btn btn-xs btn-danger"
-            data-ng-show="fields.length > 0"
-            data-ng-click="delAllFields()"
-            popover-placement="right"
-            popover-trigger="mouseenter">
-            <span data-translate>Delete all</span>
-          </button>
         </span>
       </div>
       <div data-ng-repeat="field in admin.fieldtemplates | orderBy:'label'">

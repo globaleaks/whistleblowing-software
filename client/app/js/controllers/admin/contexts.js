@@ -8,33 +8,6 @@ GLClient.controller('AdminContextsCtrl',
     return $scope.update(updated_context, cb);
   };
 
-  $scope.exportContexts = function() {
-    AdminContextResource.query({export: true}).$promise.then(function(contexts) {
-      $scope.exportJSON(contexts, 'contexts.json');
-    });
-  };
-
-  $scope.exportContext = function(id) {
-    AdminContextResource.get({export: true, id: id}).$promise.then(function(context) {
-      $scope.exportJSON(context, 'context-' + id + '.json');
-    });
-  };
-
-  $scope.importContexts = function(contexts) {
-    var contexts = JSON.parse(contexts);
-    if(Object.prototype.toString.call(contexts) !== '[object Array]') {
-      contexts = [contexts];
-    }
-
-    angular.forEach(contexts, function(context) {
-      var context = new AdminContextResource(context);
-      context.id = '';
-      context.$save({import: true}, function(new_context){
-        $scope.reload();
-      });
-    });
-  };
-
   $scope.perform_delete = function(context) {
     AdminContextResource['delete']({
       id: context.id
