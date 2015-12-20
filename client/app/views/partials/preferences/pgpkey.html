@@ -1,4 +1,4 @@
-<div data-ng-show="preferences.pgp_key_info">
+<div data-ng-show="preferences.pgp_key_fingerprint">
   <div class="alert alert-success">
     <span data-translate>Encryption is enabled!</span>
     <span data-translate>Email notifications will be encrypted.</span>
@@ -12,11 +12,9 @@
     </div>
   </div>
 
-  <div>
-    <pre>{{preferences.pgp_key_info}}</pre>
-  </div>
+  <div class="preformatted">{{preferences.pgp_key_info}}</div>
 
-  <div class="form-group" data-ng-show="preferences.pgp_key_fingerprint">
+  <div class="form-group">
     <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
     <label data-translate>Remove the PGP key</label>
   </div>
@@ -27,11 +25,10 @@
     <div data-translate>Encryption has not been enabled!</div>
     <div data-translate>Email notifications won't be encrypted.</div>
   </div>
-</div>
-
-<div class="form-group" data-ng-hide="preferences.pgp_key_fingerprint">
-  <label data-translate>Set a PGP key for email notifications encryption</label>
-  <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+  <div>
+    <label data-translate>Set a PGP key for email notifications encryption</label>
+    <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
+  </div>
 </div>
 
 <div class="form-group">
