@@ -58,12 +58,13 @@ class GLJob(task.LoopingCall):
     name = "unnamed"
 
     monitor = None
+    monitor_time = DEFAULT_JOB_MONITOR_TIME
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
 
     def stats_collection_start(self):
-        self.monitor = JobMonitor(self)
+        self.monitor = JobMonitor(self, self.monitor_time)
 
         self.start_time = time.time()
 
