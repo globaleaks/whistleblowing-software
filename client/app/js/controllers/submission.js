@@ -165,7 +165,28 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._token.id + '/file';
   };
 
+  $scope.prepare_field_answers_structure = function(field) {
+    if (field.answers_structure === undefined) {
+      field.answer_structure = {};
+      if (field.type === 'fieldgroup') {
+        angular.forEach(field.children, function(child) {
+          field.answer_structure[child.id] = [$scope.prepare_field_answers_structure(child)];
+        });
+      }
+    }
+
+    return field.answer_structure;
+  };
+
   $scope.prepareSubmission = function(context, receivers_ids) {
+    $scope.answers = {};
+
+    angular.forEach(context.steps, function(field) {
+      angular.forEach(field.children, function(child) {
+        $scope.answers[child.id] = [angular.copy($scope.prepare_field_answers_structure(child))];
+      });
+    });
+
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
 
@@ -240,7 +261,6 @@ GLClient.controller('SubmissionCtrl',
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function (newVal, oldVal) {
       if ($scope.submission && $scope.selected_context) {
-        $scope.answers = {};
         $scope.prepareSubmission($scope.selected_context, []);
       }
     });
@@ -260,6 +280,7 @@ controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter)
   };
 
   $scope.fields = $scope.step.children;
+
   $scope.rows = $scope.splitRows($scope.fields);
 
   $scope.status = {
@@ -270,42 +291,25 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
       return "col-md-" + field.width;
-    } else {
-      return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
-    }
-  };
-
-  $scope.prepare_field_answers_structure = function(field) {
-    if (field.answer === undefined) {
-      field.answer = {};
-      if (field.type === 'fieldgroup') {
-        angular.forEach(field.children, function(child) {
-          field.answer[child.id] = [$scope.prepare_field_answers_structure(child)];
-        });
-      }
     }
 
-    return field.answer;
+    return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
   };
 
   $scope.getAnswersEntries = function(entry) {
     if (entry === undefined) {
-      if ($scope.answers[$scope.field.id] === undefined) {
-        $scope.answers[$scope.field.id] = [$scope.prepare_field_answers_structure($scope.field)];
-      }
       return $scope.answers[$scope.field.id];
-    } else {
-      return entry[$scope.field.id];
     }
+
+    return entry[$scope.field.id];
   };
 
   $scope.addAnswerEntry = function(entries) {
-    entries.push($scope.prepare_field_answers_structure($scope.field));
+    entries.push(angular.copy($scope.field.answer_structure));
   };
 
   $scope.fields = $scope.field.children;
   $scope.rows = $scope.splitRows($scope.fields);
-
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
   $scope.status = {
@@ -321,14 +325,12 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
       return true;
     }
 
-    var ret = false;
     for (var i=0; i<field.options.length; i++) {
       if (entry[field.options[i].id] && entry[field.options[i].id] === true) {
-        ret = true;
-        break;
+        return true;
       }
     }
 
-    return ret;
+    return false;
   };
 }]);
