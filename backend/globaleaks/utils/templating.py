@@ -144,7 +144,7 @@ class TipKeyword(Keyword):
         return self.TipT2WURL()
 
     def TipNum(self):
-        return "[%s-%d] " % ((ISO8601_to_datetime(self.data['tip']['creation_date'])).strftime("%Y%m%d"), self.data['tip']['progressive'])
+        return "[%s-%d]" % ((ISO8601_to_datetime(self.data['tip']['creation_date'])).strftime("%Y%m%d"), self.data['tip']['progressive'])
 
     def TipLabel(self):
         return "[" + self.data['tip']['label'] + "] " if self.data['tip']['label'] != '' else ""
@@ -314,10 +314,10 @@ class Templating(object):
 
                     count += 1
 
-                if count == 0:
-                    # finally!
-                    stop = True
-                    break
+            if count == 0:
+                # finally!
+                stop = True
+                break
 
         return raw_template
 
@@ -332,7 +332,7 @@ class Templating(object):
             raise NotImplementedError("This data_type (%s) is not supported" % ['data.type'])
 
         if data['type'] in [u'tip', u'comment', u'file', u'message', u'tip_expiration']:
-            subject_template = "%TipNum%%TipLabel%" + subject_template
+            subject_template = "%TipNum% %TipLabel% " + subject_template
 
         subject = self.format_template(subject_template, data)
         body = self.format_template(body_template, data)
