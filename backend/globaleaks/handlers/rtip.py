@@ -353,7 +353,7 @@ class RTipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        answer = yield get_rtip(self.current_user.user_id, tip_id, 'en')
+        answer = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
