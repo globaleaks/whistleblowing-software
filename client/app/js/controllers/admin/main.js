@@ -55,7 +55,7 @@ GLClient.controller('AdminCtrl',
               languages_enabled_selector.push({'name': lang, 'code': code});
 
               if (change_default === true) {
-                language_selected = lang;
+                language_selected = code;
                 change_default = false;
               }
             }
