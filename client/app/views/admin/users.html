@@ -212,7 +212,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="form-group" data-ng-show="user.pgp_key_info">
+                  <div class="form-group" data-ng-show="user.pgp_key_fingerprint">
                     <div class="alert alert-success">
                       <div data-translate>Encryption is enabled!</div>
                       <div data-translate>Email notifications will be encrypted.</div>
@@ -224,9 +224,7 @@
                         <b>{{user.pgp_key_fingerprint}}</b>
                       </div>
                     </div>
-                    <div>
-                      <pre>{{user.pgp_key_info}}</pre>
-                    </div>
+                    <div class="preformatted">{{user.pgp_key_info}}</div>
                     <div class="form-group">
                       <input data-ng-model="user.pgp_key_remove" type="checkbox" />
                       <label data-translate>Remove the PGP key</label>
@@ -239,7 +237,7 @@
                     </div>
                     <div>
                       <label data-translate>Set a PGP key for email notifications encryption</label>
-                      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="receiver.pgp_key_public"></textarea>
+                      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public"></textarea>
                     </div>
                   </div>
                 </div>
