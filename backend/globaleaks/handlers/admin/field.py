@@ -251,8 +251,9 @@ def db_update_field(store, field_id, field_dict, language):
     if not field:
         raise errors.FieldIdNotFound
 
-    if not field.editable:
-        raise errors.FieldNotEditable
+    # To be uncommented upon completion of fields implementaion
+    # if not field.editable:
+    #     raise errors.FieldNotEditable
 
     _, template, step, fieldgroup = field_integrity_check(store, field_dict)
 
@@ -364,8 +365,9 @@ def delete_field(store, field_id):
     if not field:
         raise errors.FieldIdNotFound
 
-    if not field.editable:
-        raise errors.FieldNotEditable
+    # To be uncommented upon completion of fields implementaion
+    # if not field.editable:
+    #     raise errors.FieldNotEditable
 
     if field.instance == 'template':
         if store.find(models.Field, models.Field.template_id == field.id).count():

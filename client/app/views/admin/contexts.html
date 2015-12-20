@@ -8,16 +8,6 @@
             <span class="col-md-8">
               <span data-translate>Add new context</span>
             </span>
-            <!--
-            <span class="col-md-4 text-align-right">
-              <label class="actionButton btn btn-xs btn-primary" for="import_contexts">
-                <span data-translate>Import</span>
-              </label>
-              <span class="hiddenButton">
-                <input type="file" id="import_contexts" fileread="importContexts">
-              </span>
-            </span>
-            -->
           </div>
           <div class="form-group">
             <label data-translate>Name</label>
@@ -40,14 +30,6 @@
         <span class="col-md-8">
           <span data-translate>Configured contexts:</span>
         </span>
-        <!--
-        <span class="col-md-4 text-align-right">
-          <button class="actionButton btn btn-xs btn-primary"
-            data-ng-click="exportContexts()">
-            <span data-translate>Export all</span>
-          </button>
-        </span>
-        -->
       </div>
       <div data-ng-repeat="context in admin.contexts | orderBy:'presentation_order'">
         <form id="context-{{$index}}" name="editContext" data-ng-controller="AdminContextEditorCtrl" novalidate>
