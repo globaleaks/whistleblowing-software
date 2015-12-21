@@ -1,3 +1,6 @@
+Changes in version 2.60.127 - 2015-12-21
+    o Fix file upload regression
+
 Changes in version 2.60.126 - 2015-12-21
     o Minor backend fixes
 
