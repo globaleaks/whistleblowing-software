@@ -34,7 +34,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
         ret_dict = {
             'id': receiverfile.id,
-            'ifile_id': internalfile.id,
+            'internalfile_id': internalfile.id,
             'status': receiverfile.status,
             'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
@@ -49,7 +49,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
         ret_dict = {
             'id': receiverfile.id,
-            'ifile_id': internalfile.id,
+            'internalfile_id': internalfile.id,
             'status': 'unavailable',
             'href': "",
             'name': internalfile.name,  # original filename
@@ -116,6 +116,11 @@ def db_get_files_receiver(store, user_id, rtip_id):
 
     return [receiver_serialize_file(receiverfile.internalfile, receiverfile, rtip_id)
             for receiverfile in receiver_files]
+
+
+@transact_ro
+def get_files_receiver(store, user_id, rtip_id):
+    return db_get_files_receiver(store, user_id, rtip_id)
 
 
 def db_get_rtip(store, user_id, rtip_id, language):

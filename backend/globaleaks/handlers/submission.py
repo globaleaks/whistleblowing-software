@@ -217,6 +217,7 @@ def serialize_itip(store, internaltip, language):
 def serialize_internalfile(ifile):
     ifile_dict = {
         'id': ifile.id,
+        'creation_date': datetime_to_ISO8601(ifile.internaltip.creation_date),
         'internaltip_id': ifile.internaltip_id,
         'name': ifile.name,
         'file_path': ifile.file_path,
@@ -229,6 +230,7 @@ def serialize_internalfile(ifile):
 def serialize_receiverfile(rfile):
     rfile_dict = {
         'id' : rfile.id,
+        'creation_date': datetime_to_ISO8601(rfile.internaltip.creation_date),
         'internaltip_id': rfile.internaltip_id,
         'internalfile_id': rfile.internalfile_id,
         'receiver_id': rfile.receiver_id,
