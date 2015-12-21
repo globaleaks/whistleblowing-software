@@ -11,7 +11,7 @@ __email__ = u'info@globaleaks.org'
 __version__ = u'2.60.133'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 26
+DATABASE_VERSION = 27
 FIRST_DATABASE_VERSION_SUPPORTED = 11
 
 # Add here by hand the languages supported!
