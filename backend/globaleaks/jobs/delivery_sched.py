@@ -179,7 +179,7 @@ def process_files(receiverfiles_maps):
                         if len(chunk) == 0:
                             if written_size != receiverfiles_map['ifile_size']:
                                 log.err("Integrity error on rfile write for ifile %s; ifile_size(%d), rfile_size(%d)" %
-                                        (ifile_id, receiverfiles_map['ifile_path'], receiverfiles_map['ifile_size']))
+                                        (ifile_id, receiverfiles_map['ifile_size'], written_size))
                             break
                         written_size += len(chunk)
                         plaintext_f.write(chunk)

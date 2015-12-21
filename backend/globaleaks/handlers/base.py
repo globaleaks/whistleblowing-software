@@ -28,7 +28,7 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, R
 from globaleaks.event import outcoming_event_monitored, EventTrack
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
 
@@ -449,15 +449,9 @@ class BaseHandler(RequestHandler):
             if len(self.request.files) != 1:
                 raise errors.InvalidInputFormat("cannot accept more than a file upload at once")
 
-            ###############################################################
-            # checks needed in order to offer compatibility with flow.js/fusty-flow.js
             chunk_size = len(self.request.files['file'][0]['body'])
             total_file_size = int(self.request.arguments['flowTotalSize'][0]) if 'flowTotalSize' in self.request.arguments else chunk_size
-            flow_identifier = self.request.arguments['flowIdentifier'][0] if 'flowIdentifier' in self.request.arguments else os.random()
-            if 'flowChunkNumber' in self.request.arguments and 'flowTotalChunks' in self.request.arguments:
-                if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
-                    return None
-            ###############################################################
+            flow_identifier = self.request.arguments['flowIdentifier'][0] if 'flowIdentifier' in self.request.arguments else generateRandomKey(10)
 
             if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
                 (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
@@ -471,6 +465,10 @@ class BaseHandler(RequestHandler):
                 f = GLUploads[flow_identifier]
 
             f.write(self.request.files['file'][0]['body'])
+
+            if 'flowChunkNumber' in self.request.arguments and 'flowTotalChunks' in self.request.arguments:
+                if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
+                    return None
 
             uploaded_file = {}
             uploaded_file['filename'] = self.request.files['file'][0]['filename']

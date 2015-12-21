@@ -8,7 +8,8 @@
 import binascii
 import os
 import re
-import pickle
+import base64
+import json
 import random
 import shutil
 import scrypt
@@ -179,15 +180,15 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         self.key_counter_nonce = os.urandom(GLSettings.AES_counter_nonce)
         self.initialize_cipher()
 
-        saved_struct = {
-            'key': self.key,
-            'key_counter_nonce': self.key_counter_nonce
+        key_json = {
+            'key': base64.b64encode(self.key),
+            'key_counter_nonce': base64.b64encode(self.key_counter_nonce)
         }
 
         log.debug("Key initialization at %s" % self.keypath)
 
         with open(self.keypath, 'w') as kf:
-            pickle.dump(saved_struct, kf)
+            json.dump(key_json, kf)
 
         if not os.path.isfile(self.keypath):
             log.err("Unable to write keyfile %s" % self.keypath)
@@ -279,10 +280,10 @@ class GLSecureFile(GLSecureTemporaryFile):
 
         try:
             with open(self.keypath, 'r') as kf:
-                saved_struct = pickle.load(kf)
+                key_json = json.load(kf)
 
-            self.key = saved_struct['key']
-            self.key_counter_nonce = saved_struct['key_counter_nonce']
+            self.key = base64.b64decode(key_json['key'])
+            self.key_counter_nonce = base64.b64decode(key_json['key_counter_nonce'])
             self.initialize_cipher()
 
         except Exception as axa:
