@@ -26,17 +26,15 @@ from globaleaks import db, models, security, event, runner
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers import files, rtip, authentication
+from globaleaks.handlers import authentication, files, rtip, wbtip
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
-from globaleaks.handlers.rtip import serialize_rtip
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
-from globaleaks.handlers.wbtip import create_comment_wb, create_message_wb, serialize_wbtip
 from globaleaks.jobs import statistics_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -352,6 +350,7 @@ class TestGL(unittest.TestCase):
             'body_filepath': temporary_file.filepath,
             'filename': filename,
             'content_type': content_type,
+            'submission': False
         }
 
         return dummy_file
@@ -382,13 +381,20 @@ class TestGL(unittest.TestCase):
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
     @inlineCallbacks
-    def emulate_file_append(self, tip_id, n):
+    def emulate_file_append(self, rtip_id, n):
+        @transact_ro
+        def get_itip_id_from_rtip_id(store, rtip_id):
+            return store.find(models.ReceiverTip, models.ReceiverTip.id == rtip_id).one().internaltip_id
+
+        itip_id = yield get_itip_id_from_rtip_id(rtip_id)
+
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
+            dummyFile['submission'] = True
 
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             registered_file = yield files.register_file_db(
-                dummyFile, tip_id,
+                dummyFile, itip_id,
             )
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(registered_file.keys()))
@@ -418,9 +424,9 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_rtips(self, store):
         ret = []
-        for rtip in store.find(models.ReceiverTip):
-            x = serialize_rtip(store, rtip, 'en')
-            x['receiver_id'] = rtip.receiver.id
+        for tip in store.find(models.ReceiverTip):
+            x = rtip.serialize_rtip(store, tip, 'en')
+            x['receiver_id'] = tip.receiver.id
             ret.append(x)
 
         return ret
@@ -432,9 +438,9 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_wbtips(self, store):
         ret = []
-        for wbtip in store.find(models.WhistleblowerTip):
-            x = serialize_wbtip(store, wbtip, 'en')
-            x['receivers_ids'] = [rcvr.id for rcvr in wbtip.internaltip.receivers]
+        for tip in store.find(models.WhistleblowerTip):
+            x = wbtip.serialize_wbtip(store, tip, 'en')
+            x['receivers_ids'] = [rcvr.id for rcvr in tip.internaltip.receivers]
             ret.append(x)
 
         return ret
@@ -566,6 +572,8 @@ class TestGLWithPopulatedDB(TestGL):
                                                rtip_desc['id'],
                                                messageCreation)
 
+            yield self.emulate_file_append(rtip_desc['id'], 3)
+
             yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
                                                     rtip_desc['id'],
                                                     identityaccessrequestCreation,
@@ -574,11 +582,11 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyWBTips = yield self.get_wbtips()
 
         for wbtip_desc in self.dummyWBTips:
-            yield create_comment_wb(wbtip_desc['id'],
+            yield wbtip.create_comment_wb(wbtip_desc['id'],
                                           commentCreation)
 
             for receiver_id in wbtip_desc['receivers_ids']:
-                yield create_message_wb(wbtip_desc['id'], receiver_id, messageCreation)
+                yield wbtip.create_message_wb(wbtip_desc['id'], receiver_id, messageCreation)
 
     @inlineCallbacks
     def perform_full_submission_actions(self):

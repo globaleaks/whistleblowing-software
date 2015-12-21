@@ -193,7 +193,7 @@ class FileKeyword(TipKeyword):
         return ISO8601_to_pretty_str(self.data['file']['creation_date'], float(self.data['receiver']['timezone']))
 
     def FileSize(self):
-        return self.data['file']['size']
+        return str(self.data['file']['size'])
 
     def FileType(self):
         return self.data['file']['content_type']
@@ -348,4 +348,3 @@ class Templating(object):
             'body': body
         })
 
-        store.add(mail)
