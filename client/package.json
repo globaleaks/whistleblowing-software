@@ -37,8 +37,8 @@
     "mocha": "2.3.4",
     "node-gettext": "0.2.14",
     "protractor": "3.0.0",
-    "should": "8.0.1",
-    "superagent": "1.5.0",
+    "should": "8.0.2",
+    "superagent": "1.6.1",
     "supertest": "1.1.0"
   }
 }
