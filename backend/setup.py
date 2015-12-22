@@ -50,6 +50,8 @@ class TestCommand(_TestCommand):
         sys.exit(not test_result.wasSuccessful())
 
 data_files = [
+    ('/usr/share/globaleaks',
+     ['default']),
     ('/usr/share/globaleaks/client',
      list_files(os.path.join(GLCLIENT_PATH))),
     ('/usr/share/globaleaks/client/data',
