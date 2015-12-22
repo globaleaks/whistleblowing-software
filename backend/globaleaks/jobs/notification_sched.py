@@ -167,8 +167,10 @@ class MailGenerator(object):
 
             getattr(self, 'process_%s' % trigger)(store, element, data)
 
-        log.debug("Notification: generated %d notificatins of type %s" %
-                  (elements.count(), trigger))
+        count = elements.count()
+        if count > 0:
+            log.debug("Notification: generated %d notificatins of type %s" %
+                      (count, trigger))
 
 
 class NotificationSchedule(GLJob):
