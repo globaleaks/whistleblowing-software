@@ -1,8 +1,5 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-
-from __future__ import with_statement
-
 import os
 import random
 import re
@@ -47,23 +44,18 @@ def pip_version_check(path):
                     if condition == "<":
                         if check >= 0:
                             unmet_requirements.append([requirement, installed_version])
-                            continue
                     elif condition == "<=":
                         if check > 0:
                             unmet_requirements.append([requirement, installed_version])
-                            continue
                     elif condition == "==":
                         if check != 0:
                             unmet_requirements.append([requirement, installed_version])
-                            continue
                     elif condition == ">=":
                         if check < 0:
                             unmet_requirements.append([requirement, installed_version])
-                            continue
                     elif condition == ">":
                         if check <= 0:
                             unmet_requirements.append([requirement, installed_version])
-                            continue
 
     if unmet_requirements:
         print "Some GlobaLeaks requirements are unmet\n"
@@ -89,11 +81,11 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-path = os.path.join(root, 'requirements.txt')
-if os.path.exists(path):
-    pip_version_check(path)
-else:
-    pip_version_check('/usr/share/globaleaks/backend/requirements.txt')
+requirements_path = os.path.join(root, 'requirements.txt')
+if not os.path.exists(requirements_path):
+    requirements_path = '/usr/share/globaleaks/backend/requirements.txt'
+
+pip_version_check(requirements_path)
 
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
@@ -258,22 +250,16 @@ GLSettings.cleaning_dead_files()
 
 backend_script = os.path.join(GLSettings.root_path, 'globaleaks', 'backend.py')
 
-args = []
-args +=['-y', backend_script]
+args =['-y', backend_script]
 if GLSettings.nodaemon:
     args += ['-n']
 
-# we does not need this due to GLSettings.drop_privileges()
-# in fact we need to drop privileges before directory creation
-#args +=['--uid', GLSettings.user]
-#args +=['--gid', GLSettings.group]args +=['--rundir', GLSettings.working_path]
 args +=['--pidfile', GLSettings.pidfile_path]
 
 # we disable twistd logging as we manage only a globaleaks controlled logging
 args +=['--logfile', os.devnull]
 
 sys.argv[1:] = args
-
 
 def run_backend():
     log.start_logging()
@@ -293,9 +279,6 @@ def run_backend():
             # this is a blocking operation, until app exit
 
             print "Exiting GlobaLeaks"
-        except OSError as ose:
-            print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
-            quit(ose.errno)
         except Exception as excep:
             print "Unable to start globaleaks: %s" % excep
             quit(-1)
