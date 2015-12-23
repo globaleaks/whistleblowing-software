@@ -49,7 +49,6 @@
     "ng-flow": "2.6.1",
     "openpgp": "~1.4.0",
     "scrypt-async": "1.2.0",
-    "spin.js": "2.3.2",
     "stacktrace-js": "1.0.1"
   },
   "resolutions": {

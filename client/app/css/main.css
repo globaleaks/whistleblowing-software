@@ -191,25 +191,6 @@ th {
   padding-bottom: 20px;
 }
 
-.pending-requests {
-  position: absolute;
-  width: 512px;
-  left:50%;
-  margin-left: -256px;
-  margin-top: 200px;
-  border-radius: 10px;
-  border: #CCC 1px solid;
-  background-color: #FFF;
-  z-index: 666;
-}
-
-.pending-requests .message {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid #ddd;
-}
-
 /* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */
 
 .img-thumbnail {
