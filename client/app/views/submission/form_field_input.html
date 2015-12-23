@@ -35,6 +35,7 @@
       </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
         <select id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control" data-ng-model="entry['value']" data-ng-required="field.required">
+          <option style="display:none" value=""></option>
           <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
