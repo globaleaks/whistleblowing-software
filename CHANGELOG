@@ -1,3 +1,36 @@
+Changes in version 2.60.128 - 2015-12-24
+    o UI Fixes
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1469
+    - https://github.com/globaleaks/GlobaLeaks/issues/1539
+    - https://github.com/globaleaks/GlobaLeaks/issues/1540
+    - https://github.com/globaleaks/GlobaLeaks/issues/1543
+
+commit 8b33bfa813d5b0f15e90701b88432f8eed8fecf4
+Author: evilaliv3 <giovanni.pellerano@evilaliv3.org>
+Date:   Wed Dec 23 22:25:51 2015 +0100
+
+    Address issue #1540
+
+commit 3d8524bc5170d5c75e021a11e6b4a139a46474e1
+Author: evilaliv3 <giovanni.pellerano@evilaliv3.org>
+Date:   Wed Dec 23 22:05:41 2015 +0100
+
+    Reimplement pending request animation addressing issue #1539
+
+commit ad5fb2aa74a41d49ab11d433319d723287fdad0b
+Author: evilaliv3 <giovanni.pellerano@evilaliv3.org>
+Date:   Tue Dec 22 15:24:26 2015 +0100
+
+    Simplify requirements checking and remove --upgrade from pip install command
+
+commit 6c8576fe3ca73efe2398e8d58b1ca1b17340339b
+Author: evilaliv3 <giovanni.pellerano@evilaliv3.org>
+Date:   Tue Dec 22 01:58:14 2015 +0100
+
+    Implement issue #1469
+
 Changes in version 2.60.127 - 2015-12-21
     o Fix file upload regression
 
