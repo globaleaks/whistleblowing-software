@@ -27,28 +27,23 @@
   <body>
     <style type="text/css">
       #LoadingOverlay {
-        z-index: 2147483647;
-        position: absolute;
+        position: fixed;
+        width: 100%;
+        height:100%;
+        display: flex;
+        align-items: center;
         top: 0;
-        left: 0;
+        z-index: 2147483647;
+        color: #DDD;
         opacity: 0.8;
         background: #000;
-        width: 100%;
-        height: 100%;
         text-align: center;
       }
 
       #LoaderBox {
-        position: absolute;
-        top: 40%;
         margin: 0 auto;
-        width: 100%;
-        vertical-align: middle;
-        z-index: 666;
         font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
         font-size: 48px;
-        color: #DDD;
-        text-align: center;
       }
 
       .gly-spin {
