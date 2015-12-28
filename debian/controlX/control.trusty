@@ -25,6 +25,21 @@ Depends:
  , iptables
  , python (>=2.7)
  , python-pip (>= 1.3)
+ , python-cffi
+ , python-cyclone
+ , python-enum34
+ , python-parsley
+ , python-pyasn1
+ , python-gnupg
+ , python-scrypt
+ , python-six
+ , python-storm
+ , python-transaction
+ , python-twisted-core
+ , python-txsocksx
+ , python-zope.component
+ , python-zope.event
+ , python-zope.interface
  , tor
 # The following substitution variable shall be uncommented once we get
 # all globaleaks dependencies into debian.
