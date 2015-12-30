@@ -1,7 +1,7 @@
 Parsley==1.2
 Twisted==14.0.2
 cffi==0.8.6
-cryptography==0.8.2
+cryptography==0.6.1
 cyclone==1.1
 enum34==1.0.3
 pyOpenSSL==0.14
