@@ -58,12 +58,13 @@ if [ "$GLTEST" = "unit" ]; then
 elif [ "$GLTEST" = "build_and_install" ]; then
 
   echo "Running Build & Install and BrowserTesting tests"
+  # we build all packages to test build for each distributions and then we test against trusty
   sudo apt-get update -y
   sudo apt-get install -y debhelper devscripts dh-apparmor dh-python python python-pip python-setuptools python-sphinx
   curl -sL https://deb.nodesource.com/setup | sudo bash -
   sudo apt-get install -y nodejs
   cd $TRAVIS_BUILD_DIR
-  ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
+  ./scripts/build.sh -d all -t $TRAVIS_COMMIT -n
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp GLRelease-trusty/globaleaks*deb /data/globaleaks/deb/
   set +e # avoid to fail in case of errors cause apparmor will always cause the failure
