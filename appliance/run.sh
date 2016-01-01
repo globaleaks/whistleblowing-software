@@ -47,7 +47,7 @@ fi
 
 echo "Starting GlobaLeaks packers scripts for the following distributions:" $TARGETS
 
-if ! which avirtualbox >/dev/null; then
+if ! which virtualbox >/dev/null; then
     echo "Virtualbox requirement is not met."
     echo "Download and install Virtualbox for Linux from: https://www.virtualbox.org/wiki/Linux_Downloads"
     exit 1
