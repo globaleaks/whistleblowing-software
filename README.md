@@ -35,7 +35,7 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 [Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
 
 ## License
-Copyright (C) 2011-2015 Hermes No Profit Association - GlobaLeaks Project
+Copyright (C) 2011-2016 Hermes No Profit Association - GlobaLeaks Project
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU Affero General Public License as published by the Free
