@@ -8,7 +8,7 @@ We'd love for you to contribute to GlobaLeaks and help us making it even better 
 You can contribute to GlobaLeaks in different and all welcomed ways:
 
 ## Supporting us with your development skills!
-To learn how to be part in the GlobaLeaks developmpment read our [software development guidelines](https://github.com/globaleaks/GlobaLeaks/wiki#software-development).
+To learn how to be part in the GlobaLeaks development read our [software development guidelines](https://github.com/globaleaks/GlobaLeaks/wiki#software-development).
 
 ## Translating the software in your language!
 GlobaLeaks is currently localized and internationalized in [more than 20 languages](https://www.transifex.com/projects/p/globaleaks/).
