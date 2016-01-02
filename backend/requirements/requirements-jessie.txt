@@ -15,4 +15,4 @@ transaction==1.4.3
 txsocksx==1.13.0.3
 zope.component==4.2.1
 zope.event==4.0.3
-zope.interface==4.0.1
+zope.interface==4.1.1
