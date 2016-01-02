@@ -2,7 +2,7 @@
 
 set -e
 
-if ! [ -z "$GLREQUIREMENTS" ]; then
+if [ -z "$GLREQUIREMENTS" ]; then
   GLREQUIREMENTS="trusty"
 fi
 
