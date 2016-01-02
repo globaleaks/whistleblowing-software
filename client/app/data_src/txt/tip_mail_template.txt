@@ -6,7 +6,7 @@ They would like you to pay special attention to the information and material con
 
 The submission can be accessed:
 via Tor at: %TorURL%
-via Tor2web at: %T2WURL%
+via HTTPS at: %T2WURL%
 
 Kind regards,
 %NodeName%

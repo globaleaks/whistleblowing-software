@@ -6,7 +6,7 @@ Log in and check it out before it's too late!
 
 The submission can be accessed:
 via Tor at: %TorURL%
-via Tor2web at: %T2WURL%
+via HTTPS at: %T2WURL%
 
 Submission date: %EventTime%
 Expiration date: %ExpirationDate%

@@ -4,7 +4,7 @@ This is an email to notify you that the whistleblower of submission %TipNum% has
 
 The updated information can be accessed:
 via Tor at: %TorURL%
-via Tor2web at: %T2WURL%
+via HTTPS at: %T2WURL%
 
 Kind regards,
 %NodeName%
