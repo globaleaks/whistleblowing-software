@@ -1,51 +1,32 @@
 <div class="row">
   <div class="col-md-12">
-
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_admin" type="checkbox">
-      <label data-translate>Allow admins to access via Tor2web</label>
-      <div data-ng-show="admin.node.tor2web_admin">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Admins can access via Tor2web.</span>
-      </div>
+      <label data-translate>Allow admins to access via HTTPS</label>
+      <div data-ng-show="admin.node.tor2web_admin" class="label label-info" data-translate>Enabled</div>
     </div>
-
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_custodian" type="checkbox">
-      <label data-translate>Allow custodians to access via Tor2web</label>
-      <div data-ng-show="admin.node.tor2web_admin">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Custodians can access via Tor2web.</span>
-      </div>
+      <label data-translate>Allow custodians to access via HTTPS</label>
+      <div data-ng-show="admin.node.tor2web_admin" class="label label-info" data-translate>Enabled</div>
     </div>
-
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_receiver" type="checkbox">
-      <label data-translate>Allow recipients to access via Tor2web</label>
-      <div data-ng-show="admin.node.tor2web_receiver">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Recipients can access via Tor2web.</span>
-      </div>
+      <label data-translate>Allow recipients to access via HTTPS</label>
+      <div data-ng-show="admin.node.tor2web_receiver" class="label label-info" data-translate>Enabled</div>
     </div>
-
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_whistleblower" type="checkbox">
-      <label data-translate>Allow whistleblowers to perform submissions via Tor2web</label>
+      <label data-translate>Allow whistleblowers to perform submissions via HTTPS</label>
       <div data-ng-show="admin.node.tor2web_whistleblower">
         <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Whistleblowers can perform submissions via Tor2web.</span>
         <span data-translate>This won't preserve Whistleblower's anonymity while preserving submission confidentiality.</span>
       </div>
     </div>
-
     <div class="form-group">
       <input data-ng-init="admin.node.tor2web_unauth" data-ng-model="admin.node.tor2web_unauth" type="checkbox">
-      <label data-translate>Allow access of public resources via Tor2web</label>
-      <div data-ng-show="admin.node.tor2web_unauth">
-        <span class="label label-info" data-translate>Enabled</span>
-        <span data-translate>Public resources can be accessed via Tor2web.</span>
-      </div>
+      <label data-translate>Allow access of public resources via HTTPS</label>
+      <div data-ng-show="admin.node.tor2web_unauth" class="label label-info" data-translate>Enabled</div>
     </div>
-
   </div>
 </div>
