@@ -131,44 +131,12 @@ class GLSettingsClass(object):
 
         self.receipt_regexp = u'[0-9]{16}'
 
-        # Default values, used to initialize DB at the first start,
-        # or whenever the value is not supply by client.
-        # These value are then stored in the single instance
-        # (Node, Receiver or Context) and then can be updated by
-        # the admin using the Admin interface (advanced settings)
-        self.defaults = OD()
-
-        self.defaults.tor2web_access = {}
-
-        # default tor2web_admin setting is set to True;
-        # the setting is then switched based on automatic user detection during wizard:
-        #
-        # - if the admin performs the wizard via tor2web the permission is kept True
-        # - if the admin performs the wizard via Tor the permission is set to False
-        self.defaults.tor2web_access = {
-          'admin': True,
-          'whistleblower': False,
-          'custodian': False,
-          'receiver': False,
-          'unauth': True
-        }
-
-        self.defaults.timezone = 0
-
-        self.defaults.authentication_lifetime = 60 * 60
-
-        self.defaults.maximum_namesize = 128
-        self.defaults.maximum_textsize = 4096
-        self.defaults.maximum_filesize = 30
+        self.authentication_lifetime = 3600
 
         # A lot of operations performed massively by globaleaks
         # should avoid to fetch continuously variables from the DB so that
         # it is important to keep this variables in memory
-        #
-        # To this aim a variable memory_copy is instantiated as a copy of
-        # self.defaults and then initialized and updated after
-        # create_tables() and for every node+notif update
-        self.memory_copy = OD(self.defaults)
+        self.memory_copy = OD()
 
         # Default request time uniform value
         self.side_channels_guard = 0.150
