@@ -30,9 +30,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
     $scope.finish = function() {
       if (!finished) {
-        /* configure tor2web admin right based on detected user access */
-        $scope.admin.node.tor2web_admin = !$scope.anonymous;
-
         var admin = {
           'mail_address': $scope.admin_mail_address,
           'old_password': 'globaleaks',

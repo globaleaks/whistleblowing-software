@@ -31,7 +31,7 @@ class GLSession(tempobj.TempObj):
         tempobj.TempObj.__init__(self,
                                  GLSettings.sessions,
                                  generateRandomKey(42),
-                                 GLSettings.defaults.authentication_lifetime,
+                                 GLSettings.authentication_lifetime,
                                  reactor_override)
 
     def __repr__(self):

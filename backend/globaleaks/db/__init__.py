@@ -184,11 +184,13 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
     GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
-    GLSettings.memory_copy.tor2web_access['admin'] = node.tor2web_admin
-    GLSettings.memory_copy.tor2web_access['custodian'] = node.tor2web_custodian
-    GLSettings.memory_copy.tor2web_access['whistleblower'] = node.tor2web_whistleblower
-    GLSettings.memory_copy.tor2web_access['receiver'] = node.tor2web_receiver
-    GLSettings.memory_copy.tor2web_access['unauth'] = node.tor2web_unauth
+    GLSettings.memory_copy.tor2web = {
+        'admin': node.tor2web_admin,
+        'custodian': node.tor2web_custodian,
+        'whistleblower': node.tor2web_whistleblower,
+        'receiver': node.tor2web_receiver,
+        'unauth': node.tor2web_unauth
+    }
 
     GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
     GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
