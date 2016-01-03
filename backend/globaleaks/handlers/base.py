@@ -163,14 +163,7 @@ class BaseHandler(RequestHandler):
         if 'import' in self.request.arguments or 'export' in self.request.arguments:
             self.request.language = None
         else:
-            lang = self.request.headers.get('GL-Language', None)
-
-            if not lang:
-                # before was used the Client language. but shall be unsupported
-                # lang = self.request.headers.get('Accepted-Language', None)
-                lang = GLSettings.memory_copy.default_language
-
-            self.request.language = lang
+            self.request.language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -391,9 +384,11 @@ class BaseHandler(RequestHandler):
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
         if exception and hasattr(exception, 'error_code'):
+            error_dict = {
+                'error_message': exception.reason,
+                'error_code': exception.error_code
+            })
 
-            error_dict = {}
-            error_dict.update({'error_message': exception.reason, 'error_code': exception.error_code})
             if hasattr(exception, 'arguments'):
                 error_dict.update({'arguments': exception.arguments})
             else:
