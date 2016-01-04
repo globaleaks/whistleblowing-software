@@ -34,16 +34,30 @@
         align-items: center;
         top: 0;
         z-index: 2147483647;
-        color: #DDD;
-        opacity: 0.8;
-        background: #000;
         text-align: center;
       }
 
       #LoaderBox {
+        position: relative;
+        margin: 0 auto;
+        width: 30%;
+        height: 30%;
+        display: flex;
+        align-items: center;
+        font-size: 48px;
+        background-color: #FFF;
+        border: 1px solid #DDD;
+        border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+      }
+
+      #LoaderBoxContent {
         margin: 0 auto;
         font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
         font-size: 48px;
+        color: #555;
+        background-color: #FFF;
       }
 
       .gly-spin {
@@ -148,8 +162,10 @@
     <div id="BrowserSupported">
       <div id="LoadingOverlay"  data-ng-hide="started && !showRequestBox">
         <div id="LoaderBox" class="ng-cloak">
-          <div class="glyphicon glyphicon-cog gly-spin"></div>
-          <div data-translate>Loading…</div>
+          <div id="LoaderBoxContent">
+            <div class="glyphicon glyphicon-cog gly-spin"></div>
+            <div data-translate>Loading…</div>
+          </div>
         </div>
       </div>
 
