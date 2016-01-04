@@ -136,7 +136,15 @@ class GLSettingsClass(object):
         # A lot of operations performed massively by globaleaks
         # should avoid to fetch continuously variables from the DB so that
         # it is important to keep this variables in memory
-        self.memory_copy = OD()
+        #
+        # The following initialization is needed only for variables that need
+        # to be used in the startup queries, after that memory_copy is
+        # initialized with the content Node table.
+        self.memory_copy = OD({
+            'maximum_namesize': 128,
+            'maximum_textsize': 4096,
+            'maximum_filesize': 30
+        })
 
         # Default request time uniform value
         self.side_channels_guard = 0.150
