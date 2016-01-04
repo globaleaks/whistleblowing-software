@@ -60,7 +60,7 @@ GLClient.controller('TipCtrl',
     };
 
     if (Authentication.role === 'whistleblower') {
-      $scope.fileupload_url = $scope.getUploadUrl('/wbtip/upload');
+      $scope.fileupload_url = $scope.getUploadUrl('wbtip/upload');
 
       new WBTip(function(tip) {
         $scope.extractSpecialTipFields(tip);
@@ -71,7 +71,7 @@ GLClient.controller('TipCtrl',
         $scope.submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-          return $http.post('/wbtip/' + $scope.tip.id + '/provideidentityinformation',
+          return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
                             {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
               success(function(data, status, headers, config){
                 $route.reload();
