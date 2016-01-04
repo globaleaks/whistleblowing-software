@@ -90,9 +90,9 @@ class GLHTTPConnection(HTTPConnection):
 
             if content_length:
                 megabytes = int(content_length) / (1024 * 1024)
-                if megabytes > GLSettings.defaults.maximum_filesize:
+                if megabytes > GLSettings.memory_copy.maximum_filesize:
                     raise _BadRequestException("Request exceeded size limit %d" %
-                                               GLSettings.defaults.maximum_filesize)
+                                               GLSettings.memory_copy.maximum_filesize)
 
                 if headers.get("Expect") == "100-continue":
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
@@ -387,7 +387,7 @@ class BaseHandler(RequestHandler):
             error_dict = {
                 'error_message': exception.reason,
                 'error_code': exception.error_code
-            })
+            }
 
             if hasattr(exception, 'arguments'):
                 error_dict.update({'arguments': exception.arguments})
