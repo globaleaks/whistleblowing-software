@@ -198,7 +198,7 @@ GLClient.controller('SubmissionCtrl',
           return;
         }
 
-        var worker = new Worker('/js/crypto/proof-of-work.worker.js');
+        var worker = new Worker('js/crypto/proof-of-work.worker.js');
 
         worker.onmessage = function(e) {
           $scope.submission._token.proof_of_work_answer = e.data;
