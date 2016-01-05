@@ -285,6 +285,7 @@ module.exports = function(grunt) {
 
     grunt.file.copy('tmp/css/styles.css', 'build/css/styles.css');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
+    grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
     var dirs = ['js/crypto']
     for (var x in dirs) {
