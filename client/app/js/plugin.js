@@ -1,3 +1,5 @@
+"use strict";
+
 function closeGlobaLeaks() {
   function deleteElementById(id) {
     var element = document.getElementById(id);
