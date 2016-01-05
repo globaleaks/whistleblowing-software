@@ -258,7 +258,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal',
       ctrl: TabCtrl
     },
     {
-      title:"Tor2web settings",
+      title:"HTTPS settings",
       template:"views/admin/advanced/tab2.html",
       ctrl: TabCtrl
     },
