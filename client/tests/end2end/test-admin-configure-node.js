@@ -18,8 +18,7 @@ describe('adming configure node', function() {
     }
 
     // grant tor2web permissions
-    element(by.cssContainingText("a", "Tor2web settings")).click();
-    element(by.model('admin.node.tor2web_receiver')).click();
+    element(by.cssContainingText("a", "HTTPS settings")).click();
     element(by.model('admin.node.tor2web_whistleblower')).click();
 
     // save settings
