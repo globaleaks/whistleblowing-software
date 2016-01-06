@@ -1,4 +1,10 @@
 Changes in version 2.60.129 - 2015-12-26
+    o Minor bugfixing
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1549
+
+Changes in version 2.60.129 - 2015-12-26
     o UI Fixes
 
     The following is the comprehensive list of closed tickets:
