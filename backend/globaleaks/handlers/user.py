@@ -25,11 +25,8 @@ def parse_pgp_options(user, request):
     @param request: the dictionary containing the pgp infos to be parsed
     @return: None
     """
-    new_pgp_key = request.get('pgp_key_public', None)
-    remove_key = request.get('pgp_key_remove', False)
-
-    # the default
-    user.pgp_key_status = u'disabled'
+    pgp_key_public = request['pgp_key_public']
+    remove_key = request['pgp_key_remove']
 
     if remove_key:
         # In all the cases below, the key is marked disabled as request
@@ -39,17 +36,17 @@ def parse_pgp_options(user, request):
         user.pgp_key_fingerprint = None
         user.pgp_key_expiration = None
 
-    elif new_pgp_key:
+    elif pgp_key_public != '':
         gnob = GLBPGP()
 
         try:
-            result = gnob.load_key(new_pgp_key)
+            result = gnob.load_key(pgp_key_public)
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
             user.pgp_key_status = u'enabled'
             user.pgp_key_info = result['info']
-            user.pgp_key_public = new_pgp_key
+            user.pgp_key_public = pgp_key_public
             user.pgp_key_fingerprint = result['fingerprint']
             user.pgp_key_expiration = result['expiration']
         except:

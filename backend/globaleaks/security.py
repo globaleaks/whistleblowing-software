@@ -410,7 +410,6 @@ class GLBPGP(object):
         expiration = datetime.utcfromtimestamp(0)
         for key in all_keys:
             if key['fingerprint'] == fingerprint:
-
                 if key['expires']:
                     expiration = datetime.utcfromtimestamp(int(key['expires']))
                     exp_date = datetime_to_day_str(expiration)
@@ -459,12 +458,13 @@ class GLBPGP(object):
         try:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
-
-            return encrypted_path, len(str(encrypt_obj))
         except Exception as excep:
             log.err("Error in writing PGP file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
             raise errors.InternalServerError("Error in writing [%s]" % excep.message)
+
+        else:
+            return encrypted_path, len(str(encrypt_obj))
 
     def encrypt_message(self, key_fingerprint, plaintext):
         """
