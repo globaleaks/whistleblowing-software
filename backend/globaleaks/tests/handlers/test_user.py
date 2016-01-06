@@ -51,9 +51,9 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         # check key is initialized at start
         self.assertEqual(self.responses[0]['pgp_key_status'], u'disabled')
-        self.assertIsNone(self.responses[0]['pgp_key_fingerprint'])
-        self.assertIsNone(self.responses[0]['pgp_key_public'])
-        self.assertIsNone(self.responses[0]['pgp_key_info'])
+        self.assertEqual(self.responses[0]['pgp_key_fingerprint'], u'')
+        self.assertEqual(self.responses[0]['pgp_key_public'], u'')
+        self.assertEqual(self.responses[0]['pgp_key_info'], u'')
         self.assertEqual(self.responses[0]['pgp_key_expiration'], '1970-01-01T00:00:00Z')
 
         self.responses[0]['pgp_key_public'] = unicode(helpers.VALID_PGP_KEY1)

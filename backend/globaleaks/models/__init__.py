@@ -186,11 +186,11 @@ class User(Model):
     # states: 'disabled', 'enabled'
 
     # BEGIN of PGP key fields
-    pgp_key_info = Unicode()
-    pgp_key_fingerprint = Unicode()
-    pgp_key_public = Unicode()
-    pgp_key_expiration = DateTime()
-    pgp_key_status = Unicode() # 'disabled', 'enabled'
+    pgp_key_info = Unicode(default=u'')
+    pgp_key_fingerprint = Unicode(default=u'')
+    pgp_key_public = Unicode(default=u'')
+    pgp_key_expiration = DateTime(default_factory=datetime_null)
+    pgp_key_status = Unicode(default=u'disabled') # 'disabled', 'enabled'
     # END of PGP key fields
 
     unicode_keys = ['username', 'password', 'salt', 'role',
@@ -634,11 +634,11 @@ class Notification(Model):
     notification_suspension_time=Int(default=(2 * 3600))
 
     exception_email_address = Unicode(validator=shorttext_v, default=u"globaleaks-stackexception@lists.globaleaks.org")
-    exception_email_pgp_key_info = Unicode()
-    exception_email_pgp_key_fingerprint = Unicode()
-    exception_email_pgp_key_public = Unicode()
-    exception_email_pgp_key_expiration = DateTime()
-    exception_email_pgp_key_status = Unicode()
+    exception_email_pgp_key_info = Unicode(default=u'')
+    exception_email_pgp_key_fingerprint = Unicode(default=u'')
+    exception_email_pgp_key_public = Unicode(default=u'')
+    exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
+    exception_email_pgp_key_status = Unicode(default=u'disabled')
 
     unicode_keys = [
         'server',
