@@ -2,21 +2,21 @@
   <div class="col-md-12">
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_admin" type="checkbox">
-      <label data-translate>Allow admins to access via HTTPS</label>
+      <label data-translate>Allow admin access via HTTPS</label>
     </div>
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_custodian" type="checkbox">
-      <label data-translate>Allow custodians to access via HTTPS</label>
+      <label data-translate>Allow custodian access via HTTPS</label>
     </div>
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_receiver" type="checkbox">
-      <label data-translate>Allow recipients to access via HTTPS</label>
+      <label data-translate>Allow recipient access via HTTPS</label>
     </div>
     <div class="form-group">
       <input data-ng-model="admin.node.tor2web_whistleblower" type="checkbox">
       <label data-translate>Allow whistleblowers to perform submissions via HTTPS</label>
       <div data-ng-show="admin.node.tor2web_whistleblower">
-        <span data-translate>This won't preserve Whistleblower's anonymity while preserving submission confidentiality.</span>
+        <span data-translate>This won't preserve whistleblower's anonymity while preserving submission confidentiality.</span>
       </div>
     </div>
     <div class="form-group">
