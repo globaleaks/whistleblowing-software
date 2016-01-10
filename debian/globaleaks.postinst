@@ -29,7 +29,7 @@ if [ $PIP_NEEDED -eq 1 ]; then
     curl https://bootstrap.pypa.io/get-pip.py | python
   fi
 
-  pip install --upgrade -r /usr/share/globaleaks/backend/requirements.txt
+  pip install -r /usr/share/globaleaks/backend/requirements.txt
 fi
 
 if ! id -u globaleaks >/dev/null 2>&1; then
