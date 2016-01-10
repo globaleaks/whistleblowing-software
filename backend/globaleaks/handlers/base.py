@@ -368,9 +368,6 @@ class BaseHandler(RequestHandler):
             log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
     def write_file(self, filepath):
-        if not (os.path.exists(filepath) or os.path.isfile(filepath)):
-            return
-
         try:
             with open(filepath, "rb") as f:
                 while True:
