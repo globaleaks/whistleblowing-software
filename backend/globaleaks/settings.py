@@ -89,7 +89,7 @@ class GLSettingsClass(object):
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
 
-        self.static_source = '/usr/share/globaleaks/backend'
+        self.static_source = '/usr/share/globaleaks/data'
 
         self.client_path = '/usr/share/globaleaks/client'
         for path in possible_client_paths:
@@ -302,7 +302,7 @@ class GLSettingsClass(object):
 
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
-        self.static_source = os.path.join(self.root_path, 'staticdata')
+        self.static_source = os.path.join(self.root_path, '../data')
 
         self.set_ramdisk_path()
 
@@ -497,6 +497,25 @@ class GLSettingsClass(object):
             print "Unable to libc.mlockall"
             quit(-1)
 
+    def create_directory(self, path):
+        """
+        Create the specified directory;
+        Returns True on success, False if the directory was already existing
+        """
+        if not os.path.exists(path):
+            try:
+                os.mkdir(path)
+                self.log_debug("Created directory %s" % path)
+                return True
+            except OSError as excep:
+                self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
+                raise excep
+        else:
+            if not os.path.isdir(path):
+                self.log_debug("Error creating directory: %s (path exists and is not a dir)" % path)
+                raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
+            return False
+
     def create_directories(self):
         """
         Execute some consistency checks on command provided Globaleaks paths
@@ -505,57 +524,20 @@ class GLSettingsClass(object):
         here the static files (default logs, and in the future pot files for localization)
         because here stay all the files needed by the application except the python scripts
         """
-        new_environment = False
+        new_environment = self.create_directory(self.working_path)
 
-        def create_directory(path):
-            # returns false if the directory is already present
-            if not os.path.exists(path):
-                try:
-                    os.mkdir(path)
-                    self.log_debug("Created directory %s" % path)
-                    return True
-                except OSError as excep:
-                    self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
-                    raise excep
-            else:
-                if not os.path.isdir(path):
-                    self.log_debug("Error creating directory: %s (path exists and is not a dir)" % path)
-                    raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
-                return False
-
-        if create_directory(self.working_path):
-            new_environment = True
-
-        create_directory(self.db_path)
-        create_directory(self.glfiles_path)
-        create_directory(self.static_path)
-        create_directory(self.static_path_l10n)
-        create_directory(self.submission_path)
-        create_directory(self.tmp_upload_path)
-        create_directory(self.log_path)
-        create_directory(self.torhs_path)
-        create_directory(self.ramdisk_path)
-
-        logo_path = os.path.join(self.static_path, "%s.png" % GLSettings.reserved_names.logo)
-        # Missing default logo: is supposed we're initializing a new globaleaks directory
-        # happen in unitTest and when a new working directory is specify
-        if not os.path.isfile(logo_path):
-            new_environment = True
+        for dirpath in [self.db_path,
+                        self.glfiles_path,
+                        self.submission_path,
+                        self.tmp_upload_path,
+                        self.torhs_path,
+                        self.log_path,
+                        self.ramdisk_path]:
+           self.create_directory(dirpath)
 
         if new_environment:
-            almost_one_file = 0
-            for _, _, files in os.walk(self.static_source):
-                almost_one_file += 1
-                # REMIND: at the moment are not supported subpaths
-                for single_file in files:
-                    shutil.copyfile(
-                        os.path.join(self.static_source, single_file),
-                        os.path.join(self.static_path, single_file)
-                    )
-
-            if not almost_one_file:
-                print "[Non fatal error] Found empty: %s" % self.static_source
-                print "Your instance has not torrc and the default logo"
+            shutil.copytree(self.static_source, self.static_path)
+            self.create_directory(self.static_path_l10n)
 
 
     def check_directories(self):
