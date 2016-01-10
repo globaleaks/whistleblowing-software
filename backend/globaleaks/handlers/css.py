@@ -18,4 +18,6 @@ class CSSFileHandler(BaseHandler):
         directory_traversal_check(GLSettings.static_path, custom_css)
 
         self.write_file(original_css)
-        self.write_file(custom_css)
+
+        if (os.path.exists(custom_css) and os.path.isfile(custom_css)):
+            self.write_file(custom_css)
