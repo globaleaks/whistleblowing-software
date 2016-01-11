@@ -2,13 +2,14 @@
 # settings: Define GLSettings, main class handling GlobaLeeaks runtime settings
 # ******
 import glob
-import shutil
 import logging
 import pwd
 import grp
 import getpass
 from optparse import OptionParser
 from ctypes import CDLL
+
+from distutils import dir_util
 
 import re
 import os
@@ -528,6 +529,8 @@ class GLSettingsClass(object):
 
         for dirpath in [self.db_path,
                         self.glfiles_path,
+                        self.static_path,
+                        self.static_path_l10n,
                         self.submission_path,
                         self.tmp_upload_path,
                         self.torhs_path,
@@ -536,7 +539,7 @@ class GLSettingsClass(object):
            self.create_directory(dirpath)
 
         if new_environment:
-            shutil.copytree(self.static_source, self.static_path)
+            dir_util.copy_tree(self.static_source, self.static_path)
             self.create_directory(self.static_path_l10n)
 
 
