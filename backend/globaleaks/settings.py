@@ -542,7 +542,6 @@ class GLSettingsClass(object):
             dir_util.copy_tree(self.static_source, self.static_path)
             self.create_directory(self.static_path_l10n)
 
-
     def check_directories(self):
         for path in (self.working_path, self.root_path, self.client_path,
                      self.glfiles_path, self.static_path, self.submission_path, self.log_path):
@@ -592,11 +591,7 @@ class GLSettingsClass(object):
                     quit(-1)
 
     def remove_directories(self):
-        for root, dirs, files in os.walk(self.working_path, topdown=False):
-            for name in files:
-                os.remove(os.path.join(root, name))
-            for name in dirs:
-                os.rmdir(os.path.join(root, name))
+        dir_util.remove_tree(self.working_path)
 
     def drop_privileges(self):
         if os.getgid() != self.gid:
