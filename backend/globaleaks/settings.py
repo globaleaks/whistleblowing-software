@@ -591,7 +591,8 @@ class GLSettingsClass(object):
                     quit(-1)
 
     def remove_directories(self):
-        dir_util.remove_tree(self.working_path)
+        if os.path.exists(self.working_path):
+            dir_util.remove_tree(self.working_path)
 
     def drop_privileges(self):
         if os.getgid() != self.gid:
