@@ -22,18 +22,18 @@ class TestStaticFileInstance(helpers.TestHandler):
     fakeFile['filename'] = 'imag0005.jpg'
 
     @inlineCallbacks
-    def test_get_globaleaks_logo(self):
+    def test_get_logo(self):
         handler = self.request({}, role='admin')
 
-        yield handler.get(filename='globaleaks_logo')
+        yield handler.get(filename='logo')
 
     @inlineCallbacks
-    def test_post_globaleaks_logo(self):
-        request_body = self.get_dummy_file(filename='globaleaks_logo.png', content_type='image/png')
+    def test_post_logo(self):
+        request_body = self.get_dummy_file(filename='logo.png', content_type='image/png')
 
         handler = self.request({}, role='admin', body=request_body)
 
-        yield handler.post(filename='globaleaks_logo')
+        yield handler.post(filename='logo')
 
     @inlineCallbacks
     def test_post_custom_stylesheet(self):
@@ -68,7 +68,7 @@ class TestStaticFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_delete_on_existent_file(self):
         handler = self.request({}, role='admin')
-        yield handler.delete("globaleaks_logo.png")
+        yield handler.delete("logo.png")
 
     def test_delete_on_non_existent_file(self):
         handler = self.request({}, role='admin')
@@ -112,10 +112,9 @@ class TestStaticFileList(helpers.TestHandler):
 
     # default files not filtered from get(/) handler
     default_files = [
-        'globaleaks_logo.png',
+        'logo.png',
         'robots.txt',
-        'default-profile-picture.png',
-        'custom_stylesheet.css'
+        'default-profile-picture.png'
     ]
 
     fakeFile = dict()

@@ -3,7 +3,7 @@
     <div class="form-group">
       <label data-translate>Current project logo</label>
       <div class="imageUpload"
-           flow-init="{target: getUploadUrl('admin/staticfiles/globaleaks_logo'), headers: get_auth_headers()}"
+           flow-init="{target: getUploadUrl('admin/staticfiles/logo'), headers: get_auth_headers()}"
            flow-file-added="onFileAdded($event, $file, $flow)"
            flow-files-submitted="$flow.upload()"
            flow-file-success="reload()">
