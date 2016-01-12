@@ -42,11 +42,6 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/static/custom_stylesheet.css',
-    'type': 'text/css',
-    'status': 200
-  },
-  {
     'url': '/static/logo.png',
     'type': 'image/png',
     'status': 200
