@@ -47,7 +47,7 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/static/globaleaks_logo.png',
+    'url': '/static/logo.png',
     'type': 'image/png',
     'status': 200
   },

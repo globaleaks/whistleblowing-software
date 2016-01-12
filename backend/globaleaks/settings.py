@@ -121,7 +121,7 @@ class GLSettingsClass(object):
         self.staticfile_overwrite = False
 
         self.reserved_names = OD({
-          'logo': 'globaleaks_logo',
+          'logo': 'logo',
           'css': 'custom_stylesheet',
           'html': 'custom_homepage'
         })
