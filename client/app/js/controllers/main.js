@@ -321,7 +321,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           if (["ar", "he", "ur"].indexOf(language) !== -1) {
             $scope.rtl = true;
-            alert($scope.rtl);
             document.getElementsByTagName("html")[0].setAttribute('dir', 'rtl');
           } else {
             $scope.rtl = false;
