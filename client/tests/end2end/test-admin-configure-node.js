@@ -18,14 +18,14 @@ describe('adming configure node', function() {
     }
 
     // grant tor2web permissions
-    element(by.cssContainingText("a", "HTTPS settings")).click();
+    element(by.cssContainingText("li div", "HTTPS settings")).click();
     element(by.model('admin.node.tor2web_whistleblower')).click();
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       browser.setLocation('/admin/mail');
 
-      element(by.cssContainingText("a", "Exception notification")).click();
+      element(by.cssContainingText("li div", "Exception notification")).click();
 
       // configure email used for exceptions testin
       element(by.model('admin.notification.exception_email_address')).clear();
