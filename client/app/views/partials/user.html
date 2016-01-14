@@ -4,18 +4,18 @@
       <select class="form-control" data-ng-model="language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
     </div>
   </div>
-  <div id="LoginStatusBox" class="row" data-ng-if="showLoginForm() || session_id">
-    <div data-ng-show="session_id" class="pull-right">
+  <div id="LoginStatusBox" class="row" data-ng-if="showLoginForm() || session">
+    <div data-ng-show="session" class="pull-right">
       <span id="LoginRoleText">
         <label>
           <span data-translate>Currently logged in</span>
-          (<a data-ng-href="{{homepage}}">{{role}}</a>)
+          (<a data-ng-href="{{session.homepage}}">{{session.role}}</a>)
         </label>
       </span>
-     <span id="PreferencesLinkBox" data-ng-if="role != 'whistleblower'">
+     <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">
        <span class="text-separator">|</span>
        <span>
-         <a id="PreferencesLink" data-ng-href="{{preferencespage}}" data-translate>Preferences</a>
+         <a id="PreferencesLink" data-ng-href="{{session.preferencespage}}" data-translate>Preferences</a>
        </span>
       </span>
       <span id="LogoutLinkBox">
@@ -25,7 +25,7 @@
         </span>
       </span>
     </div>
-    <div data-ng-show="showLoginForm() && !session_id" class="pull-right">
+    <div data-ng-if="showLoginForm() && !session" class="pull-right">
       <div data-translate>Have you already filed a submission? Enter your key code.</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">

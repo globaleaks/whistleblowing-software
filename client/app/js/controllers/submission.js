@@ -1,7 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Authentication', 'Submission',
-      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, $anchorScroll, Authentication, Submission) {
-
+    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission',
+      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission) {
   $scope.invalidForm = true;
 
   $scope.uploads = {};

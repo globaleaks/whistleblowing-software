@@ -12,7 +12,7 @@
     <div data-ng-show="tip.files.length">
       <div data-ng-if="tip.collection">
         <form id="fileCollectionDownload" method="POST" action="{{::tip.collection}}" novalidate>
-          <input type="hidden" name="session" value="{{session}}">
+          <input type="hidden" name="session" value="{{session.id}}">
           <button class="btn btn-xs btn-default">
             <i class="glyphicon glyphicon-download"></i>
             <span data-translate>download all files</span>
@@ -48,7 +48,7 @@
               </td>
               <td data-ng-show="file.status != 'unavailable'">
                 <form id="fileDownload" method="POST" action="{{::file.href}}" novalidate>
-                  <input type="hidden" name="session" value="{{session}}">
+                  <input type="hidden" name="session" value="{{session.id}}">
                   <button class="btn btn-xs btn-default">
                     <i class="glyphicon glyphicon-download"></i>
                     <span data-translate>download</span>
