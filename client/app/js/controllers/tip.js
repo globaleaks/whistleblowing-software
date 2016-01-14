@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', '$filter', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, $filter, Authentication, RTip, WBTip, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldsUtilities',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldsUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.session = Authentication.id;
     $scope.target_file = '#';
@@ -10,29 +10,32 @@ GLClient.controller('TipCtrl',
 
     $scope.showEditLabelInput = false;
 
-     $scope.minY = function(arr) {
-       return $filter('min')($filter('map')(arr, 'y'));
-    };
+    $scope.getAnswersEntries = function(entry) {
+      if (entry === undefined) {
+        return $scope.answers[$scope.field.id];
+      }
 
-    $scope.splitRows = function(fields) {
-      var rows = $filter('groupBy')(fields, 'y');
-      rows = $filter('toArray')(rows);
-      rows = $filter('orderBy')(rows, $scope.minY);
-      return rows;
+      return entry[$scope.field.id];
     };
 
     $scope.extractSpecialTipFields = function(tip) {
-      angular.forEach(tip.questionnaire, function(step) {
-        var i = step.children.length;
-        while (i--) {
-          if (step.children[i]['key'] == 'whistleblower_identity') {
+      for (var i=0; i < tip.questionnaire.length; i++) {
+        var step = tip.questionnaire[i];
+        var j = step.children.length;
+        while (j--) {
+          if (step.children[j]['key'] === 'whistleblower_identity') {
             $scope.whistleblower_identity_field = step.children[i];
-            step.children.splice(i, 1);
+            step.children.splice(j, 1);
             $scope.fields = $scope.whistleblower_identity_field.children;
-            $scope.rows = $scope.splitRows($scope.fields);
+            $scope.rows = fieldsUtilities.splitRows($scope.fields);
+            $scope.field = $scope.whistleblower_identity_field;
+            angular.forEach($scope.field.children, function(child) {
+              $scope.answers[child.id] = [angular.copy(fieldsUtilities.prepare_field_answers_structure(child))];
+            });
+            return;
           }
-        }
-      });
+        };
+      };
     };
 
     $scope.getFields = function(field) {

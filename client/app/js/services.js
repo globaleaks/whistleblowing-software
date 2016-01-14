@@ -947,6 +947,36 @@ angular.module('GLServices', ['ngResource']).
 
     };
 }]).
+  factory('fieldsUtilities', ['$filter', function($filter) {
+      var minY = function(arr) {
+        return $filter('min')($filter('map')(arr, 'y'));
+      };
+
+      var splitRows = function(fields) {
+        var rows = $filter('groupBy')(fields, 'y');
+        rows = $filter('toArray')(rows);
+        rows = $filter('orderBy')(rows, minY);
+        return rows;
+      };
+
+      var prepare_field_answers_structure = function(field) {
+        if (field.answers_structure === undefined) {
+          field.answer_structure = {};
+          if (field.type === 'fieldgroup') {
+            angular.forEach(field.children, function(child) {
+              field.answer_structure[child.id] = [prepare_field_answers_structure(child)];
+            });
+          }
+        }
+        return field.answer_structure;
+      }
+
+      return {
+        minY: minY,
+        splitRows: splitRows,
+        prepare_field_answers_structure: prepare_field_answers_structure
+      };
+}]).
   constant('CONSTANTS', {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
      "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,

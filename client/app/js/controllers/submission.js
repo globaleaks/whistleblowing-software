@@ -267,27 +267,17 @@ GLClient.controller('SubmissionCtrl',
 
   });
 }]).
-controller('SubmissionStepCtrl', ['$scope', '$filter', function($scope, $filter) {
-  $scope.minY = function(arr) {
-    return $filter('min')($filter('map')(arr, 'y'));
-  };
-
-  $scope.splitRows = function(fields) {
-    var rows = $filter('groupBy')(fields, 'y');
-    rows = $filter('toArray')(rows);
-    rows = $filter('orderBy')(rows, $scope.minY);
-    return rows;
-  };
-
+controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldsUtilities',
+  function($scope, $filter, fieldsUtilities) {
   $scope.fields = $scope.step.children;
 
-  $scope.rows = $scope.splitRows($scope.fields);
+  $scope.rows = fieldsUtilities.splitRows($scope.fields);
 
   $scope.status = {
     opened: false
   };
 }]).
-controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
+controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope, fieldsUtilities) {
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
       return "col-md-" + field.width;
@@ -309,7 +299,7 @@ controller('SubmissionFieldCtrl', ['$scope', function ($scope) {
   };
 
   $scope.fields = $scope.field.children;
-  $scope.rows = $scope.splitRows($scope.fields);
+  $scope.rows = fieldsUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
   $scope.status = {
