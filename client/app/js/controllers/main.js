@@ -43,14 +43,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       document.getElementById("BrowserNotSupported").style.display = "block";
     };
 
-    $scope.reset_session = function() {
-      $scope.session_id = undefined;
-      $scope.role = undefined;
-      $scope.preferencespage = undefined;
-      $scope.auth_landing_page = undefined;
-      $scope.homepage = undefined;
-    };
-
     $scope.today = function() {
       return new Date();
     };
@@ -154,7 +146,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.route_check = function () {
       if ($rootScope.node) {
-
         if ($rootScope.node.wizard_done === false) {
           $location.path('/wizard');
         }
@@ -246,7 +237,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.getUploadUrl = function(url) {
       if ($scope.requireLegacyUploadSupport()) {
-        url += '?session=' + Authentication.session;
+        url += '?session=' + $scope.session;
       }
 
       return url;
@@ -490,18 +481,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     });
 
     $scope.$watch(function (scope) {
-      return Authentication.id;
+      return Authentication.session;
     }, function (newVal, oldVal) {
-      if (newVal !== undefined) {
-        $scope.session_id = Authentication.id;
-        $scope.username = Authentication.username;
-        $scope.role = Authentication.role;
-        $scope.preferencespage = Authentication.preferencespage;
-        $scope.auth_landing_page = Authentication.auth_landing_page;
-        $scope.homepage = Authentication.homepage;
-      } else {
-        $scope.reset_session();
-      }
+      $scope.session = Authentication.session;
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {

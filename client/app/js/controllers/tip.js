@@ -2,7 +2,6 @@ GLClient.controller('TipCtrl',
   ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldsUtilities',
   function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldsUtilities) {
     $scope.tip_id = $routeParams.tip_id;
-    $scope.session = Authentication.id;
     $scope.target_file = '#';
 
     $scope.answers = {};
@@ -62,7 +61,7 @@ GLClient.controller('TipCtrl',
       return receiver.configuration !== 'hidden';
     };
 
-    if (Authentication.role === 'whistleblower') {
+    if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = $scope.getUploadUrl('wbtip/upload');
 
       new WBTip(function(tip) {
@@ -102,7 +101,7 @@ GLClient.controller('TipCtrl',
         }, false);
       });
 
-    } else if (Authentication.role === 'receiver') {
+    } else if ($scope.session.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
       new RTip({id: $scope.tip_id}, function(tip) {

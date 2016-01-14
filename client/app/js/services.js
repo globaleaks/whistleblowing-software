@@ -27,35 +27,36 @@ angular.module('GLServices', ['ngResource']).
           $rootScope.loginInProgress = true;
 
           var success_fn = function(response) {
-            self.id = response.session_id;
-            self.user_id = response.user_id;
-            self.username = username;
-            self.role = response.role;
-            self.session = response.session;
-            self.state = response.state;
-            self.password_change_needed = response.password_change_needed;
-
-            self.homepage = '';
-            self.auth_landing_page = '';
-
-            if (self.role === 'admin') {
-              self.homepage = '#/admin/landing';
-              self.preferencespage = '#/user/preferences';
-              self.auth_landing_page = '/admin/landing';
-              $rootScope.preferences = UserPreferences.get();
-            } else if (self.role === 'custodian') {
-              self.homepage = '#/custodian/identityaccessrequests';
-              self.preferencespage = '#/user/preferences';
-              self.auth_landing_page = '/custodian/identityaccessrequests';
-              $rootScope.preferences = UserPreferences.get();
-            } else if (self.role === 'receiver') {
-              self.homepage = '#/receiver/tips';
-              self.preferencespage = '#/receiver/preferences';
-              self.auth_landing_page = '/receiver/tips';
-              $rootScope.preferences = ReceiverPreferences.get();
-            } else if (self.role === 'whistleblower') {
-              self.auth_landing_page = '/status';
+            self.session = {
+              'id': response.session_id,
+              'user_id': response.user_id,
+              'username': username,
+              'role': response.role,
+              'state': response.state,
+              'password_change_needed': response.password_change_needed,
+              'homepage': '',
+              'auth_landing_page': ''
             }
+
+            if (self.session.role === 'admin') {
+              self.session.homepage = '#/admin/landing';
+              self.session.auth_landing_page = '/admin/landing';
+              self.session.preferencespage = '#/user/preferences';
+              $rootScope.preferences = UserPreferences.get();
+            } else if (self.session.role === 'custodian') {
+              self.session.homepage = '#/custodian/identityaccessrequests';
+              self.session.auth_landing_page = '/custodian/identityaccessrequests';
+              self.session.preferencespage = '#/user/preferences';
+              $rootScope.preferences = UserPreferences.get();
+            } else if (self.session.role === 'receiver') {
+              self.session.homepage = '#/receiver/tips';
+              self.session.auth_landing_page = '/receiver/tips';
+              self.session.preferencespage = '#/receiver/preferences';
+              $rootScope.preferences = ReceiverPreferences.get();
+            } else if (self.session.role === 'whistleblower') {
+              self.session.auth_landing_page = '/status';
+            }
+
             // reset login state before returning
             $rootScope.loginInProgress = false;
 
@@ -67,10 +68,10 @@ angular.module('GLServices', ['ngResource']).
               $location.path($routeParams.src);
             } else {
               // Override the auth_landing_page if a password change is needed
-              if (self.password_change_needed) {
+              if (self.session.password_change_needed) {
                 $location.path('/forcedpasswordchange');
               } else {
-                $location.path(self.auth_landing_page);
+                $location.path(self.session.auth_landing_page);
               }
             }
 
@@ -92,25 +93,9 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
-        self.clean = function() {
-          self.id = null;
-          self.user_id = null;
-          self.username = null;
-          self.role = null;
-          self.session = null;
-          self.homepage = null;
-          self.auth_landing_page = null;
-        };
-
         self.getLoginUri = function (role, path) {
           var loginUri = "/login";
-          if (role === 'whistleblower') {
-            loginUri = ('/');
-          } else if (role === 'admin') {
-            loginUri = '/admin';
-          } else if (role === 'custodian') {
-            loginUri = '/custodian';
-          } else if (!role) {
+          if (role === undefined ) {
             if (path === '/status') {
               // If we are whistleblowers on the status page, redirect to homepage
               loginUri = '/';
@@ -121,6 +106,12 @@ angular.module('GLServices', ['ngResource']).
               // If we are custodians on the /custodian(/*) pages, redirect to /custodian
               loginUri = '/custodian';
             }
+          } else if (role === 'whistleblower') {
+            loginUri = ('/');
+          } else if (role === 'admin') {
+            loginUri = '/admin';
+          } else if (role === 'custodian') {
+            loginUri = '/custodian';
           }
 
           return loginUri;
@@ -132,7 +123,7 @@ angular.module('GLServices', ['ngResource']).
           // we use $http['delete'] in place of $http.delete due to
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
-          if (self.role === 'whistleblower') {
+          if (self.session.role === 'whistleblower') {
             $http['delete']('receiptauth').then($rootScope.logout_performed,
                                                 $rootScope.logout_performed);
           } else {
@@ -142,11 +133,12 @@ angular.module('GLServices', ['ngResource']).
         };
 
         $rootScope.logout_performed = function(sessionExpired) {
-          var role = self.role;
+          var role = self.session === undefined ? undefined : self.session.role;
 
-          self.clean();
+          self.session = undefined;
 
           var source_path = $location.path();
+
           var redirect_path = self.getLoginUri(role, source_path);
 
           // Only redirect if we are not already on the login page
@@ -161,8 +153,8 @@ angular.module('GLServices', ['ngResource']).
         self.get_auth_headers = function() {
           var h = {};
 
-          if (self.id) {
-            h['X-Session'] = self.id;
+          if (self.session) {
+            h['X-Session'] = self.session.id;
           }
 
           if ($rootScope.language) {

@@ -16,8 +16,8 @@ GLClient.controller('UserCtrl',
   };
 }]);
 
-GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', 'changePasswordWatcher', 'Authentication',
-  function($scope, $rootScope, $location, changePasswordWatcher, Authentication) {
+GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', 'changePasswordWatcher',
+  function($scope, $rootScope, $location, changePasswordWatcher) {
 
     changePasswordWatcher($scope, "preferences.old_password",
         "preferences.password", "preferences.check_password");
@@ -28,8 +28,7 @@ GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$locat
       $scope.preferences.pgp_key_public = '';
 
       $scope.preferences.$update(function () {
-        $rootScope.successes.push({message: 'Updated your password!'});
-        $location.path(Authentication.auth_landing_page);
+        $location.path($scope.session.auth_landing_page);
       });
     };
 }]);

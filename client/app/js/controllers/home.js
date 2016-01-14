@@ -1,7 +1,6 @@
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
-                    'Authentication',
                     'WhistleblowerTip',
-  function ($scope, $location, $uibModal, Authentication, WhistleblowerTip) {
+  function ($scope, $location, $uibModal, WhistleblowerTip) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;

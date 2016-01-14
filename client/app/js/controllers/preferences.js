@@ -1,7 +1,6 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordWatcher', 'CONSTANTS', 'Authentication',
-  function($scope, $rootScope, changePasswordWatcher, CONSTANTS, Authentication) {
-
-    if (Authentication.role === 'receiver') {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'changePasswordWatcher', 'CONSTANTS',
+  function($scope, $rootScope, $location, changePasswordWatcher, CONSTANTS) {
+    if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
         {
@@ -67,6 +66,9 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'changePasswordW
     };
 
     $scope.pref_save = function() {
+      alert(321);
+      alert($location.path());
+
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
