@@ -479,6 +479,8 @@ class Node(Model):
     enable_captcha = Bool(default=True)
     enable_proof_of_work = Bool(default=True)
 
+    enable_experimental_features = Bool(default=False)
+
     whistleblowing_question = JSON(validator=longlocal_v, default=empty_localization)
     whistleblowing_button = JSON(validator=longlocal_v, default=empty_localization)
 
@@ -544,7 +546,8 @@ class Node(Model):
                  'disable_key_code_hint',
                  'disable_donation_panel',
                  'enable_captcha',
-                 'enable_proof_of_work']
+                 'enable_proof_of_work',
+                 'enable_experimental_features']
 
     # wizard_done is not checked because it's set by the backend
 

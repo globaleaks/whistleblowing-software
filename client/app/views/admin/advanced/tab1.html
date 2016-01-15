@@ -182,24 +182,23 @@ protected.</div>
       </label>
     </div>
 
-     <div class="form-group">
-       <label data-translate>Limit for single-line inputs, in characters</label>
-       <input class="form-control" data-ng-model="admin.node.maximum_namesize" type="number" />
-     </div>
+    <div class="form-group">
+      <label data-translate>Limit for single-line inputs, in characters</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_namesize" type="number" />
+    </div>
 
-     <div class="form-group">
-       <label data-translate>Limit for multi-line inputs, in characters</label>
-       <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="number" />
-     </div>
+    <div class="form-group">
+      <label data-translate>Limit for multi-line inputs, in characters</label>
+      <input class="form-control" data-ng-model="admin.node.maximum_textsize" type="number" />
+    </div>
 
-     <div class="form-group">
-       <label>
-         <span data-translate>Size limit for file attachments</span>
-         <span data-translate>in megabytes</span>
-       </label>
-       <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" />
-     </div>
-
+    <div class="form-group">
+      <label>
+        <span data-translate>Size limit for file attachments</span>
+        <span data-translate>in megabytes</span>
+      </label>
+      <input class="form-control" data-ng-model="admin.node.maximum_filesize" type="number" />
+    </div>
 
     <div class="form-group">
       <label data-translate>Minimum time before accepting a submission, in seconds</label>
@@ -211,5 +210,15 @@ protected.</div>
       <input class="form-control" data-ng-model="admin.node.submission_maximum_ttl" type="number" />
     </div>
 
+    <div class="form-group">
+      <label>
+        <input data-ng-model="admin.node.enable_experimental_features" type="checkbox" />
+        <span data-translate>Enable experimental features</span>
+      </label>
+      <div data-ng-if="admin.node.enable_experimental_features">
+        <span class="label label-danger" data-translate>Warning!</span>
+        <span data-translate>Beware that the experimental features may be less stable or might even not work at all; enable this option at your risk considering that their support may vary or be removed during time.</span>
+      </div>
+    </div>
   </div>
 </div>

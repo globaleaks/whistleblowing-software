@@ -68,6 +68,7 @@ def db_admin_serialize_node(store, language):
         'simplified_login': node.simplified_login,
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,
+        'enable_experimental_features': node.enable_experimental_features,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,

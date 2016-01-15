@@ -89,6 +89,7 @@ def serialize_node(store, language):
         'accept_submissions': GLSettings.accept_submissions,
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,
+        'enable_experimental_features': node.enable_experimental_features
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)
