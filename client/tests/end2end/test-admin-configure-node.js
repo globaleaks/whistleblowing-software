@@ -80,3 +80,18 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "File overview")).click();
   });
 });
+
+describe('configure short urls', function() {
+  it('should should be able to configure short urls', function() {
+    for (var i = 0; i < 3; i++) {
+      element(by.cssContainingText("a", "URL shortener")).click().then(function() {
+        element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
+        element(by.model('new_shorturl.longurl')).sendKeys('longurl');
+        element(by.cssContainingText("button", "Add")).click().then(function() {
+          browser.sleep(5);
+          element(by.cssContainingText("button", "Delete")).click();
+        });
+      });
+    }
+  });
+});
