@@ -3,6 +3,7 @@
 #   *********
 #
 # Base class for implement the scheduled tasks
+import exceptions
 import sys
 import time
 
@@ -19,9 +20,8 @@ DEFAULT_JOB_MONITOR_TIME = 5 * 60 # seconds
 
 
 class JobMonitor(task.LoopingCall):
-    run = 0
-
     def __init__(self, job, monitor_time=DEFAULT_JOB_MONITOR_TIME):
+        self.run = 0
         self.job = job
         self.monitor_time = monitor_time
 
@@ -76,8 +76,12 @@ class GLJob(task.LoopingCall):
 
     def stats_collection_end(self):
         if self.monitor is not None:
-            self.monitor.stop()
-            self.monitor = None
+            try:
+                self.monitor.stop()
+            except exceptions.AssertionError:
+                pass
+            finally:
+                self.monitor = None
 
         current_run_time = time.time() - self.start_time
 
