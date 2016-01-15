@@ -141,7 +141,7 @@
                 </div>
               </div>
             </div>
-            <div class="row adminConfigSection">
+            <div class="row adminConfigSection" data-ng-if="admin.node.enable_experimental_features">
               <div class="col-md-6">
                 <div data-ng-include="'views/admin/add_field_from_template.html'"></div>
               </div>
@@ -151,7 +151,7 @@
                 <span class="col-md-8">
                   <span data-translate>Configured questions:</span>
                 </span>
-                <span class="col-md-4 text-align-right">
+                <span class="col-md-4 text-align-right" data-ng-if="admin.node.enable_experimental_features">
                   <button class="actionButton btn btn-xs btn-primary"
                       data-ng-click="exportQuestions(step.children)">
                     <span data-translate>Export</span>

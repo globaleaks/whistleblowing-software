@@ -188,6 +188,7 @@ CREATE TABLE node (
     disable_donation_panel INTEGER NOT NULL,
     enable_captcha INTEGER NOT NULL,
     enable_proof_of_work INTEGER NOT NULL,
+    enable_experimental_features INTEGER NOT NULL,
     simplified_login INTEGER NOT NULL,
     enable_custom_privacy_badge INTEGER NOT NULL,
     custom_privacy_badge_tor BLOB NOT NULL,
