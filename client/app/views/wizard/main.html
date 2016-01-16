@@ -144,7 +144,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
             <textarea name="pgpkey" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="receiver.pgp_key_public" data-ng-required="!admin.node.allow_unencrypted"></textarea>
-            <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox">
+            <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" ng-change="receiver.pgp_key_public = admin.node.allow_unencrypted ? '' : receiver.pgp_key_public">
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
             <div data-ng-show="admin.node.allow_unencrypted">
               <span class="label label-danger" data-translate>Danger</span>
