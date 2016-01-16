@@ -35,9 +35,7 @@ class GLSession(tempobj.TempObj):
                                  reactor_override)
 
     def __repr__(self):
-        session_string = "%s %s expire in %s" % \
-                         (self.user_role, self.user_id, self._expireCall)
-        return session_string
+        return "%s %s expire in %s" % (self.user_role, self.user_id, self._expireCall)
 
 
 def random_login_delay():
@@ -231,32 +229,19 @@ class AuthenticationHandler(BaseHandler):
     """
     Login handler for admins and receivers
     """
-    session_id = None
-
-    def generate_session(self, user_id, role, status):
-        """
-        Args:
-            role: can be either 'admin', 'whistleblower', 'receiver' or 'custodian'
-        """
-        session = GLSession(user_id, role, status)
-        self.session_id = session.id
-        return session
-
     @authenticated('*')
     def get(self):
         if self.current_user and self.current_user.id not in GLSettings.sessions:
             raise errors.NotAuthenticated
 
-        auth_answer = {
+        self.write({
             'session_id': self.current_user.id,
             'role': self.current_user.user_role,
             'user_id': self.current_user.user_id,
             'session_expiration': int(self.current_user.getTime()),
             'status': self.current_user.user_status,
             'password_change_needed': False
-        }
-
-        self.write(auth_answer)
+        })
 
     @unauthenticated
     @inlineCallbacks
@@ -279,18 +264,16 @@ class AuthenticationHandler(BaseHandler):
 
         yield self.uniform_answers_delay()
 
-        session = self.generate_session(user_id, role, status)
+        session = GLSession(user_id, role, status)
 
-        auth_answer = {
-            'role': role,
+        self.write({
             'session_id': session.id,
+            'role': session.user_role,
             'user_id': session.user_id,
-            'session_expiration': int(GLSettings.sessions[session.id].getTime()),
+            'session_expiration': int(session.getTime()),
             'status': session.user_status,
             'password_change_needed': pcn
-        }
-
-        self.write(auth_answer)
+        })
 
     @authenticated('*')
     def delete(self):
@@ -328,13 +311,11 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         yield self.uniform_answers_delay()
 
-        session = self.generate_session(user_id, 'whistleblower', 'Enabled')
+        session = GLSession(user_id, 'whistleblower', 'Enabled')
 
-        auth_answer = {
-            'role': 'whistleblower',
+        self.write({
             'session_id': session.id,
+            'role': session.user_role,
             'user_id': session.user_id,
-            'session_expiration': int(GLSettings.sessions[session.id].getTime())
-        }
-
-        self.write(auth_answer)
+            'session_expiration': int(session.getTime())
+        })
