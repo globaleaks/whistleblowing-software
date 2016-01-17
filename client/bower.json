@@ -47,11 +47,12 @@
     "jquery": "2.2.0",
     "js-polyfills": "0.1.12",
     "ng-flow": "2.6.1",
-    "openpgp": "1.4.0",
+    "openpgp": "~1.4.1",
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.0.1"
   },
   "resolutions": {
-    "bootstrap": "3.3.6"
+    "bootstrap": "3.3.6",
+    "openpgp": "~1.4.1"
   }
 }
