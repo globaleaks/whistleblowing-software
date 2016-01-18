@@ -177,18 +177,19 @@ angular.module('GLServices', ['ngResource']).
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return {
-
+      request: function(config) {
+        // A new request should display the loader overlay
+        $rootScope.showRequestBox = true;
+        return config;
+      },
       response: function(response) {
-
         $http = $http || $injector.get('$http');
 
         $rootScope.pendingRequests = function () {
           return $http.pendingRequests.length;
-        };
+        }
 
-        $rootScope.showRequestBox = true;
-
-
+        // the last response should hide the loader overlay
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
         }
