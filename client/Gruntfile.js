@@ -107,7 +107,10 @@ module.exports = function(grunt) {
     ngtemplates:  {
       GLClient: {
         cwd: 'app',
-        options: {base: 'app/'},
+        options: {
+          base: 'app/',
+          quotes: 'single'
+        },
         src: ['views/**/*.html'],
         dest: 'tmp/js/templates.js'
       }
