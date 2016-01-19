@@ -19,7 +19,7 @@ describe('globaLeaks process', function() {
       });
     });
 
-    return deferred;
+    return deferred.promise;
   }
 
   var login_receiver = function(username, password) {
@@ -35,7 +35,7 @@ describe('globaLeaks process', function() {
       });
     });
 
-    return deferred;
+    return deferred.promise;
   }
 
   var perform_submission = function() {
@@ -87,7 +87,7 @@ describe('globaLeaks process', function() {
       });
     });
 
-    return deferred;
+    return deferred.promise;
   }
 
   it('should redirect to /submission by clicking on the blow the whistle button', function() {
