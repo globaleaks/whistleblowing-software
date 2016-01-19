@@ -52,7 +52,6 @@
     "stacktrace-js": "1.0.1"
   },
   "resolutions": {
-    "bootstrap": "3.3.6",
-    "openpgp": "~1.4.1"
+    "bootstrap": "3.3.6"
   }
 }
