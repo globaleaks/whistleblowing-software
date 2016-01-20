@@ -95,12 +95,7 @@ def init_glsettings_for_unit_tests():
     GLSettings.scheduler_threadpool = FakeThreadPool()
     GLSettings.sessions = {}
     GLSettings.failed_login_attempts = 0
-
-    if os.path.isdir('/dev/shm'):
-        GLSettings.working_path = '/dev/shm/globaleaks'
-    else:
-        GLSettings.working_path = './working_path'
-
+    GLSettings.working_path = './working_path'
     GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
 
     GLSettings.eval_paths()
