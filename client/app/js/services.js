@@ -172,8 +172,6 @@ angular.module('GLServices', ['ngResource']).
   function($q, $injector, $rootScope, $location) {
     var $http = null;
 
-    $rootScope.showRequestBox = false;
-
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return {
@@ -182,6 +180,7 @@ angular.module('GLServices', ['ngResource']).
         $rootScope.showRequestBox = true;
         return config;
       },
+
       response: function(response) {
         $http = $http || $injector.get('$http');
 
@@ -196,6 +195,7 @@ angular.module('GLServices', ['ngResource']).
 
         return response;
       },
+
       responseError: function(response) {
         /*
            When the response has failed write the rootScope
@@ -203,27 +203,25 @@ angular.module('GLServices', ['ngResource']).
         */
         $http = $http || $injector.get('$http');
 
+        if (response.data !== null) {
+          var error = {
+            'url': response.config.url,
+            'message': response.data.error_message,
+            'code': response.data.error_code,
+            'arguments': response.data.arguments
+          };
+
+          /* 30: Not Authenticated / 24: Wrong Authentication */
+          if (error.code === 30 || error.code === 24) {
+            $rootScope.logout_performed(error.code === 30);
+          }
+
+          $rootScope.errors.push(error);
+        }
+
         if ($http.pendingRequests.length < 1) {
           $rootScope.showRequestBox = false;
         }
-
-        if (response.data === null) {
-            return $q.reject(response);
-        }
-
-        var error = {
-          'url': response.config.url,
-          'message': response.data.error_message,
-          'code': response.data.error_code,
-          'arguments': response.data.arguments
-        };
-
-        /* 30: Not Authenticated / 24: Wrong Authentication */
-        if (error.code === 30 || error.code === 24) {
-          $rootScope.logout_performed(error.code === 30);
-        }
-
-        $rootScope.errors.push(error);
 
         return $q.reject(response);
       }

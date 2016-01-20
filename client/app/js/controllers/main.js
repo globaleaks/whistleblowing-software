@@ -1,6 +1,7 @@
 GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
   function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
     $rootScope.started = false;
+    $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
 
