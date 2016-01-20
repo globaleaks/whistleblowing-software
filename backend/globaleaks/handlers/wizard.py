@@ -53,8 +53,6 @@ def wizard(store, request, language):
         raise excep
 
 
-
-
 class FirstSetup(BaseHandler):
     """
     """

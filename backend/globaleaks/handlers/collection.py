@@ -51,6 +51,7 @@ def get_file_collection(store, user_id, rtip_id):
         'archive': archive_dict
     }
 
+
     archive_description = Templating().format_template(data['notification']['archive_description'], data).encode('utf-8')
 
     file_list.append(
