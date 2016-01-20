@@ -31,6 +31,7 @@ tip_keywords = [
     '%TipNum%',
     '%TipLabel%',
     '%EventTime%',
+    '%SubmissionDate%',
     '%ExpirationDate%',
     '%ExpirationWatch%',
     '%RecipientName%',
@@ -70,15 +71,72 @@ admin_anomaly_keywords = [
 ]
 
 
+def indent(n):
+    return "  " * n
+
+
+def dump_field_entry(output, field, entry, indent_n):
+    field_type = field["type"]
+    if field_type == "checkbox":
+        for v, k in entry.iteritems():
+            for option in field["options"]:
+                if k == option.id and v == "True":
+                    output += indent(indent_n) + option["label"] + "\n"
+    elif field_type in ["selectbox", "multichoice"]:
+        for option in field["options"]:
+            if entry["value"] == option.id:
+                output += indent(indent_n) + option["label"] + "\n"
+    elif field_type == "date":
+        output += indent(indent_n) + entry["value"] # FIXME: format date
+    elif field_type == "tos":
+        if entry["value"] == "True":
+            output += indent(indent_n) + "\u2713" + "\n"
+    elif field_type == "fieldgroup":
+        output = dump_fields(output, field["children"], entry, indent_n)
+    else:
+        output += indent(indent_n) + entry["value"] + "\n"
+
+    output += "\n"
+
+    return output
+
+
+def dump_fields(output, fields, answers, indent_n):
+    for field in fields:
+        if field["type"] != "fileupload" and field["id"] in answers:
+            output += indent(indent_n) + field["label"] + "\n"
+            entries = answers[field["id"]]
+            if len(entries) == 1:
+                output = dump_field_entry(output, field, entries[0], indent_n + 1)
+            else:
+                i = 1
+                for entry in entries:
+                    output += indent(intent_n) + "#" + str(i) + "\n"
+                    output = dump_field_entry(output, field, entry, indent_n + 2)
+                    i += 1
+
+    return output
+
+
+def dump_questionnaire_answers(questionnaire, answers):
+    output = ""
+    for step in questionnaire:
+        output += step["label"] + "\n"
+        output = dump_fields(output, step["children"], answers, 1)
+        output += "\n"
+
+    return output
+
+
 def dump_file_list(filelist, files_n):
     info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
                              "Size (Bytes)")
 
     for i in xrange(files_n):
-        info += "%s%s%i\n" % (filelist[i]['name'],
-                                " "*(40 - len(filelist[i]['name'])),
-                                filelist[i]['size'])
+        info += "%s%s%i\n" % (filelist[i]["name"],
+                                " "*(40 - len(filelist[i]["name"])),
+                                filelist[i]["size"])
 
     return info
 
@@ -151,6 +209,9 @@ class TipKeyword(Keyword):
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['tip']['creation_date'], float(self.data['receiver']['timezone']))
+
+    def SubmissionDate(self):
+        return self.EventTime()
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
