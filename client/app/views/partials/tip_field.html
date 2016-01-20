@@ -1,4 +1,4 @@
-<div data-ng-if="field.type != 'fileupload'" data-ng-class="{'nested': !preview}" class="fieldAnswer">
+<div data-ng-class="{'nested': !preview}" class="fieldAnswer">
   <div class="fieldTitle">
     <span data-ng-if="!$parent.field && !preview">{{$index + 1}}) {{field.label}}:</span>
     <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
