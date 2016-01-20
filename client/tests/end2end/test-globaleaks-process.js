@@ -51,7 +51,6 @@ describe('globaLeaks process', function() {
       element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
         element(by.id('NextStepButton')).click().then(function () {
           element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
-
             // Currently the saucelabs file test seems to work only on linux
             if (utils.testFileUpload()) {
               browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
@@ -104,39 +103,35 @@ describe('globaLeaks process', function() {
   });
 
   it('should be able to submit a tip (1)', function() {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-      });
+    perform_submission();
+    element(by.id('ReceiptButton')).click().then(function() {
+      utils.waitForUrl('/status');
     });
   });
 
   it('should be able to submit a tip (2)', function() {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-      });
+    perform_submission();
+    element(by.id('ReceiptButton')).click().then(function() {
+      utils.waitForUrl('/status');
     });
   });
 
   it('should be able to submit a tip (3)', function() {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-        element(by.id('LogoutLink')).click().then(function() {
-          utils.waitForUrl('/');
-        });
+    perform_submission();
+    element(by.id('ReceiptButton')).click().then(function() {
+      utils.waitForUrl('/status');
+      element(by.id('LogoutLink')).click().then(function() {
+        utils.waitForUrl('/');
       });
     });
   });
 
 
   it('Whistleblower should be able to access the first submission', function() {
-    login_whistleblower(receipts[0]).then(function() {
-      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-      element(by.id('LogoutLink')).click().then(function() {
-        utils.waitForUrl('/');
-      });
+    login_whistleblower(receipts[0]);
+    expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+    element(by.id('LogoutLink')).click().then(function() {
+      utils.waitForUrl('/');
     });
   });
 
