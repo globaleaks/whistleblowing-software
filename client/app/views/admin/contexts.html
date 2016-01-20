@@ -152,16 +152,16 @@
                           <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.show_receivers" type="checkbox" />
+                          <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
                           <label data-translate>Allow whistleblowers to select their recipients</label>
                         </div>
-                        <div class="form-group" data-ng-show="context.show_receivers">
+                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
                           <label>
                             <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
                             <span data-translate>Show recipients in alphabetical order</span>
                           </label>
                         </div>
-                        <div class="form-group" data-ng-show="context.show_receivers">
+                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
                           <input data-ng-model="context.select_all_receivers" type="checkbox" />
                           <label data-translate>Select all recipients by default</label>
                         </div>
@@ -192,6 +192,10 @@
                         <div class="form-group">
                           <input data-ng-model="context.enable_attachments" type="checkbox" />
                           <label data-translate>Allow whistleblowers to add attachments on existing submissions</label>
+                        </div>
+                        <div class="form-group">
+                          <input data-ng-model="context.show_recipients_details" type="checkbox" />
+                          <label data-translate>Show recipient details on the status page of the submission</label>
                         </div>
                       </div>
                     </div>

@@ -320,7 +320,7 @@ angular.module('GLServices', ['ngResource']).
         // one receiver to automtically selected nor the user is coming from a link with
         // explicit receivers selection.
         // in all this conditions we select all receivers for which submission is allowed.
-        if (!self.context.show_receivers) {
+        if (!self.context.allow_recipients_selection) {
           if (self.count_selected_receivers() === 0 && !self.context.select_all_receivers) {
             angular.forEach($rootScope.receivers, function(receiver) {
               if (self.context.receivers.indexOf(receiver.id) !== -1) {
@@ -612,7 +612,8 @@ angular.module('GLServices', ['ngResource']).
           context.presentation_order = 0;
           context.tip_timetolive = 15;
           context.show_context = true;
-          context.show_receivers = false;
+          context.show_recipients_details = true;
+          context.allow_recipients_selection = false;
           context.show_receivers_in_alphabetical_order = true;
           context.select_all_receivers = false;
           context.maximum_selectable_receivers = 0;

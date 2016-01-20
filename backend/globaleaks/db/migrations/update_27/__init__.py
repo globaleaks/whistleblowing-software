@@ -73,6 +73,28 @@ class Node_v_26(Model):
     threshold_free_disk_percentage_low = Int()
 
 
+class Context_v_26(Model):
+    __storm_table__ = 'context'
+    show_small_cards = Bool()
+    show_context = Bool()
+    show_receivers = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
+    enable_comments = Bool()
+    enable_messages = Bool()
+    enable_two_way_comments = Bool()
+    enable_two_way_messages = Bool()
+    enable_attachments = Bool()
+    enable_whistleblower_identity = Bool()
+    tip_timetolive = Int()
+    name = JSON()
+    description = JSON()
+    recipients_clarification = JSON()
+    questionnaire_layout = Unicode()
+    show_receivers_in_alphabetical_order = Bool()
+    presentation_order = Int()
+
+
 class MigrationScript(MigrationBase):
     def prologue(self):
         old_logo_path = os.path.abspath(os.path.join(GLSettings.static_path, 'globaleaks_logo.png'))
@@ -80,8 +102,6 @@ class MigrationScript(MigrationBase):
             new_logo_path = os.path.abspath(os.path.join(GLSettings.static_path, 'logo.png'))
             shutil.move(old_logo_path, new_logo_path)
 
-
-class MigrationScript(MigrationBase):
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
@@ -94,3 +114,21 @@ class MigrationScript(MigrationBase):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
+
+
+    def migrate_Context(self):
+        old_objs = self.store_old.find(self.model_from['Context'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Context']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'show_recipients_details':
+                    new_obj.show_recipients_details = old_obj.show_receivers
+                    continue
+
+                if v.name == 'allow_recipients_selection':
+                    new_obj.allow_recipients_selection = old_obj.show_receivers
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)

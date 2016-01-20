@@ -210,7 +210,8 @@ class Context(Model):
     """
     show_small_cards = Bool(default=False)
     show_context = Bool(default=True)
-    show_receivers = Bool(default=True)
+    show_recipients_details = Bool(default=True)
+    allow_recipients_selection = Bool(default=False)
     maximum_selectable_receivers = Int(default=0)
     select_all_receivers = Bool(default=False)
 
@@ -247,7 +248,8 @@ class Context(Model):
       'select_all_receivers',
       'show_small_cards',
       'show_context',
-      'show_receivers',
+      'show_recipients_details',
+      'allow_recipients_selection',
       'enable_comments',
       'enable_messages',
       'enable_two_way_comments',
