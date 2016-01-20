@@ -18,25 +18,10 @@ from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
-from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.rest import errors
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.zipstream import ZipStream
-
-
-@transact_ro
-def get_rtip_info(store, rtip_id, language):
-    """
-    This function return a receiver tip
-    """
-    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    rtip_dict = serialize_usertip(store, rtip, language)
-
-    return rtip_dict
 
 
 @transact
