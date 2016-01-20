@@ -139,7 +139,7 @@ GLClient.controller('SubmissionCtrl',
       return false;
     }
 
-    return ($scope.selection > 0 && $scope.selected_context.show_receivers) || $scope.selection > 1 ;
+    return ($scope.selection > 0 && $scope.selected_context.allow_recipients_selection) || $scope.selection > 1 ;
   };
 
   $scope.incrementStep = function() {
@@ -226,7 +226,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.receiversOrderPredicate = 'presentation_order';
       }
 
-      if ((!$scope.receivers_selectable || !$scope.submission.context.show_receivers)) {
+      if ((!$scope.receivers_selectable || !$scope.submission.context.allow_recipients_selection)) {
         $scope.skip_first_step = true;
         $scope.selection = 1;
       } else {

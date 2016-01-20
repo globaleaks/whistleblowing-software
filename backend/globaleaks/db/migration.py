@@ -29,14 +29,14 @@ from globaleaks.db.migrations.update_24 import User_v_23, Receiver_v_23, Node_v_
     Context_v_23, InternalTip_v_23, Step_v_23, Field_v_23, ArchivedSchema_v_23, ReceiverTip_v_23
 from globaleaks.db.migrations.update_25 import User_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
-from globaleaks.db.migrations.update_27 import Node_v_26
+from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0]),
     ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0]),
     ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData, 0, 0, 0]),
     ('Comment', [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0, 0, 0, 0]),
-    ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, models.Context, 0, 0, 0]),
+    ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, models.Context]),
     ('Custodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian, 0, 0, 0]),
     ('CustodianContext', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext, 0, 0, 0]),
     ('Field', [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field, 0, 0, 0]),

@@ -211,7 +211,7 @@ def serialize_itip(store, internaltip, language):
         'enable_whistleblower_identity': internaltip.enable_whistleblower_identity,
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
-        'show_receivers': context.show_receivers
+        'show_recipients_details': context.show_recipients_details
     }
 
 def serialize_internalfile(ifile):

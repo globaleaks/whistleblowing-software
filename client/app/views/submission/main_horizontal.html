@@ -17,7 +17,7 @@
   </ul>
 
   <div id="SubmissionTabsContentBox" class="tab-content">
-    <div data-ng-if="receivers_selectable && submission.context.show_receivers">
+    <div data-ng-if="receivers_selectable && submission.context.allow_recipients_selection">
       <div id="step-0" data-ng-show="selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
     </div>
 
