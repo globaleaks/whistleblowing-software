@@ -617,7 +617,11 @@ class Notification(Model):
     pgp_alert_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
-    archive_description = JSON(validator=longlocal_v)
+
+    export_readme = JSON(validator=longlocal_v)
+    export_template = JSON(validator=longlocal_v)
+    export_message_recipient = JSON(validator=longlocal_v)
+    export_message_whistleblower = JSON(validator=longlocal_v)
 
     # Whistleblower Identity
     identity_access_authorized_mail_template = JSON(validator=longlocal_v)
@@ -676,7 +680,6 @@ class Notification(Model):
         'message_mail_title',
         'tip_expiration_mail_template',
         'tip_expiration_mail_title',
-        'archive_description',
         'receiver_notification_limit_reached_mail_template',
         'receiver_notification_limit_reached_mail_title',
         'identity_access_authorized_mail_template',
@@ -686,7 +689,11 @@ class Notification(Model):
         'identity_access_request_mail_template',
         'identity_access_request_mail_title',
         'identity_provided_mail_template',
-        'identity_provided_mail_title'
+        'identity_provided_mail_title',
+        'export_readme',
+        'export_template',
+        'export_message_whistleblower',
+        'export_message_recipient'
     ]
 
     int_keys = [

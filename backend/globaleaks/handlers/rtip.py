@@ -91,7 +91,6 @@ def serialize_rtip(store, rtip, language):
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['collection'] = '/rtip/' + rtip.id + '/collection'
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
 
     return ret
