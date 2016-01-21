@@ -5,13 +5,13 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact_ro
 from globaleaks.jobs.delivery_sched import DeliverySchedule
-from globaleaks.handlers import collection
+from globaleaks.handlers import export
 from globaleaks.models import ReceiverTip
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
-class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
-    _handler = collection.CollectionDownload
+class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
+    _handler = export.ExportHandler
 
     @inlineCallbacks
     def setUp(self):
@@ -20,7 +20,7 @@ class TestCollectionDownload(helpers.TestHandlerWithPopulatedDB):
         yield DeliverySchedule().operation()
 
     @inlineCallbacks
-    def test_download(self):
+    def test_export(self):
         rtips_desc = yield self.get_rtips()
 
         for rtip_desc in rtips_desc:

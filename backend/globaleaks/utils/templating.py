@@ -45,10 +45,8 @@ file_keywords = [
 ]
 
 
-archive_description_keywords = [
+export_template_keywords = [
     '%FileList%',
-    '%FilesNumber%',
-    '%TotalSize%'
 ]
 
 
@@ -260,19 +258,12 @@ class FileKeyword(TipKeyword):
         return self.data['file']['content_type']
 
 
-class ArchiveDescription(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + archive_description_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'archive']
+class ExportKeyword(TipKeyword):
+    keyword_list = TipKeyword.keyword_list + export_template_keywords
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'export']
 
     def FileList(self):
-        return dump_file_list(self.data['archive']['files'], self.data['archive']['file_counter'])
-
-    def FilesNumber(self):
-        return str(self.data['archive']['file_counter'])
-
-    def TotalSize(self):
-        return str(self.data['archive']['total_size'])
-
+        return dump_file_list(self.data['export']['files'], self.data['export']['file_counter'])
 
 class AdminPGPAlertKeyword(Keyword):
     keyword_list = Keyword.keyword_list + admin_pgp_alert_keywords
@@ -353,7 +344,7 @@ supported_template_types = {
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
-    u'archive_description': ArchiveDescription,
+    u'export_template': ExportKeyword,
     u'admin_anomaly': AnomalyKeyword
 }
 
@@ -383,7 +374,7 @@ class Templating(object):
         return raw_template
 
     def get_mail_subject_and_body(self, data):
-        if data['type'] == 'archive_description':
+        if data['type'] == 'export_template':
             # this is currently the only template not used for mail notifications
             pass
         elif data['type'] in supported_template_types:

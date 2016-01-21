@@ -2,3 +2,7 @@ ID: %TipID%
 Date: %SubmissionDate%
 Label: %TipLabel%
 Context: %ContextName%
+
+%QuestionnaireAnswers%
+%Comments%
+%Messages%

@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                collection, langfiles, wizard, \
+                                export, langfiles, wizard, \
                                 base, user, css, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
@@ -31,19 +31,6 @@ from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import notification as admin_notification
 
 from globaleaks.utils.utility import randbits
-
-# Here is created the mapping between urls and the associated handler.
-#
-# Most of th handlers conform to the following rules:
-#
-# * Create class: POST
-#     manages the creation of a single resource
-#
-# * Instance: GET, PUT, DELETE, GET
-#     manages the get, the update and the deletion of a single resource
-#
-# * Collection: GET
-#    manages the get of a collection of resources
 
 uuid_regexp      = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 shorturl_regexp  = r'(\/s\/[a-z0-9]{1,30})'
@@ -91,7 +78,7 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + r'/download/' + uuid_regexp, files.Download),
-    (r'/rtip/' + uuid_regexp + r'/collection', collection.CollectionDownload),
+    (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
