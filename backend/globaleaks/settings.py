@@ -199,17 +199,7 @@ class GLSettingsClass(object):
         # size used while streaming files
         self.file_chunk_size = 8192
 
-        # Disk file encryption in realtime
-        # if the key is fine or is not.
-        # this key permit Globaleaks to resist on application restart
-        # not to a reboot! (is written in GLSettings.
-        # key is initialized and stored in key path.
-        # key_id contains an identifier of the key (when system reboots,
-        # key changes.
-        ### you can read more about this security measure in the document:
-        ### https://github.com/globaleaks/GlobaLeaks/wiki/Encryption
         self.AES_key_size = 32
-        # This key_id is just to identify the keys, and is generated with
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
         self.AES_counter_nonce = 128 / 8
         self.AES_file_regexp = r'(.*)\.aes'
@@ -220,7 +210,7 @@ class GLSettingsClass(object):
         self.exceptions_email_count = 0
         self.exceptions_email_hourly_limit = 20
 
-        # Extreme debug option triggered by --XXX, that's are the defaults
+        # Extreme debug options triggered by --XXX, that's are the defaults
         self.debug_option_in_the_future = 0
         self.debug_option_UUID_human = ""
         self.debug_UUID_human_counter = 0
@@ -240,16 +230,11 @@ class GLSettingsClass(object):
         reactor.addSystemEventTrigger('after', 'shutdown', self.orm_tp.stop)
         self.orm_tp.start()
 
-    def increment_mail_counter(self, receiver_id):
-        if receiver_id in self.mail_counters:
-            self.mail_counters[receiver_id] += 1
-        else:
-            self.mail_counters[receiver_id] = 1
-
     def get_mail_counter(self, receiver_id):
-        if receiver_id not in self.mail_counters:
-            return 0
-        return self.mail_counters[receiver_id]
+        return self.mail_counters.get(receiver_id, 0)
+
+    def increment_mail_counter(self, receiver_id):
+        self.mail_counters[receiver_id] = self.mail_counters.get(receiver_id, 0) + 1
 
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'

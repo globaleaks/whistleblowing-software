@@ -81,7 +81,7 @@ def every_language(default_text):
 
 
 def randint(start, end=None):
-    if not end:
+    if end is None:
         end = start
         start = 0
     w = end - start + 1
@@ -139,8 +139,7 @@ def log_remove_escapes(s):
         return codecs.encode(s, 'unicode_escape')
     else:
         try:
-            s = str(s)
-            unicodelogmsg = s.decode('utf-8')
+            unicodelogmsg = str(s).decode('utf-8')
         except UnicodeDecodeError:
             return codecs.encode(s, 'string_escape')
         except Exception as e:
@@ -282,6 +281,17 @@ def query_yes_no(question, default="no"):
 
 ## time facilities ##
 
+def time_now():
+    """
+    @return: current timestamp
+    """
+    now = time.time()
+
+    if GLSettings.debug_option_in_the_future:
+        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
+
+    return now
+
 
 def datetime_null():
     """
@@ -292,8 +302,7 @@ def datetime_null():
 
 def datetime_now():
     """
-    @return: a utc datetime object of now and eventually incremented
-             of a certain amount of seconds if the Node is running with --XXX option
+    @return: a utc datetime object for the current time
     """
     now = datetime.utcnow()
 
@@ -314,49 +323,24 @@ def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
 
 def utc_past_date(seconds=0, minutes=0, hours=0):
     """
-    get the past date in order to overflow the new year
-    when the stats are requested.
+    @return a date in the past with the specified delta
     """
-    now = datetime.utcnow()
-
-    if GLSettings.debug_option_in_the_future:
-        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
-
-    return utc_dynamic_date(now) - \
-           timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+    return utc_dynamic_date(datetime_now()) - timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
 
 
 def utc_future_date(seconds=0, minutes=0, hours=0):
     """
-    @param seconds: get a datetime obj with now+hours
-    @param minutes: get a datetime obj with now+minutes
-    @param hours: get a datetime obj with now+seconds
-    @return: a datetime object
-        Eventually is incremented of a certain amount of seconds
-        if the Node is running with --XXX option
+    @return a date in the future with the specified delta
     """
-    now = datetime.utcnow()
-
-    if GLSettings.debug_option_in_the_future:
-        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
-
-    return utc_dynamic_date(now, seconds, minutes, hours)
+    return utc_dynamic_date(datetime_now(), seconds, minutes, hours)
 
 
 def get_future_epoch(seconds=0):
     """
-    @param seconds: optional, the second in
-        the future
+    @param seconds: optional, the second in the future
     @return: seconds since the Epoch
-        This future data is eventually incremented of the
-        amount of seconds specified in --XXX option
     """
-    basic_future = int(time.time()) - time.timezone + seconds
-
-    if GLSettings.debug_option_in_the_future:
-        basic_future += GLSettings.debug_option_in_the_future
-
-    return basic_future
+    return int(time_now()) - time.timezone + seconds
 
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
@@ -367,21 +351,14 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
     @return:
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
-
-        Eventually is incremented of a certain amount of seconds
-        if the Node is running with --XXX option
     """
     if not check_date:
         return False
 
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
-    now = datetime_now()
 
-    if GLSettings.debug_option_in_the_future:
-        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
-
-    return now > check
+    return datetime_now() > check
 
 
 def datetime_to_ISO8601(date):
