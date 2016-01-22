@@ -24,7 +24,11 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601, ISO8601_to_datetime
+
+
+def get_submission_sequence_number(itip):
+    return "%s-%d" % (itip.creation_date.strftime("%Y%m%d"), itip.progressive)
 
 
 def db_assign_submission_progressive(store):
@@ -198,6 +202,7 @@ def serialize_itip(store, internaltip, language):
         'update_date': datetime_to_ISO8601(internaltip.update_date),
         'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
         'progressive': internaltip.progressive,
+        'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),

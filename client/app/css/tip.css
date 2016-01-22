@@ -48,3 +48,7 @@
 #SubmissionComments, #SubmissionMessages {
   margin-top: 20px;
 }
+
+#TipExportForm {
+  display: inline;
+}
