@@ -78,7 +78,7 @@
     <div data-ng-hide="tip.files.length">
       <span data-translate>No files have been uploaded!</span>
     </div>
-      <div data-ng-if="role == 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_attachments" class="pull-right">
+      <div data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_attachments" class="pull-right">
         <span data-ng-switch-when="false">
           <a id="button-enable-whistleblower-files" class="btn btn-primary" data-ng-click="allowWhistleblowerToAttachFiles()">
             <i class="glyphicon glyphicon-ok-circle"></i>

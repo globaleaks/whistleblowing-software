@@ -1,8 +1,8 @@
 <div id="TipInfoBox" class="panel panel-default" data-ng-init="collapsed = false">
   <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
-      <span data-translate>Submission</span><span data-ng-if="::role == 'receiver'">:</span>
-      <span data-ng-if="::role == 'receiver'">
+      <span data-translate>Submission</span><span data-ng-if="::session.role == 'receiver'">:</span>
+      <span data-ng-if="::session.role == 'receiver'">
         <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
               uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
           <span>{{::tip.label}}</span>
@@ -32,7 +32,7 @@
     <table class="table table-condensed table-striped">
       <thead>
         <tr>
-          <th data-ng-if="::role == 'receiver'">
+          <th data-ng-if="::session.role == 'receiver'">
             <i class="glyphicon glyphicon-barcode"></i>
           </th>
           <th>
@@ -59,7 +59,7 @@
       </thead>
       <tbody>
         <tr>
-          <td data-ng-if="::role == 'receiver'">{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
+          <td data-ng-if="::session.role == 'receiver'">{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
           <td>{{::tip.context_name}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
