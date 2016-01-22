@@ -14,7 +14,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     ISO8601_to_datetime, datetime_now, bytes_to_pretty_str
 
-
 node_keywords = [
     '%NodeName%',
     '%HiddenService%',
@@ -200,7 +199,7 @@ class TipKeyword(Keyword):
         return self.TipT2WURL()
 
     def TipNum(self):
-        return "[%s-%d]" % ((ISO8601_to_datetime(self.data['tip']['creation_date'])).strftime("%Y%m%d"), self.data['tip']['progressive'])
+        return self.data['tip']['sequence_number']
 
     def TipLabel(self):
         return "[" + self.data['tip']['label'] + "] " if self.data['tip']['label'] != '' else ""
@@ -365,6 +364,12 @@ class Templating(object):
                     raw_template = raw_template.replace(kw, variable_content)
 
                     count += 1
+
+            # remobe lines with only %Blank%
+            raw_template = raw_template.replace('\n%Blank%\n', '\n')
+
+            # remove remaining $Blank% tokens
+            raw_template = raw_template.replace('\n%Blank%\n', '')
 
             if count == 0:
                 # finally!

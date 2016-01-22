@@ -10,16 +10,6 @@
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
     <div data-ng-show="tip.files.length">
-      <div data-ng-if="tip.collection">
-        <form id="fileCollectionDownload" method="POST" action="{{::tip.collection}}" novalidate>
-          <input type="hidden" name="session" value="{{session.id}}">
-          <button class="btn btn-xs btn-default">
-            <i class="glyphicon glyphicon-download"></i>
-            <span data-translate>download all files</span>
-          </button>
-        </form>
-      </div>
-      <br /><br />
       <div class="table-container">
         <table class="table table-striped" id="fileList">
           <thead>

@@ -1,1 +1,1 @@
-This archive contains the export of the submission %TipID%
+This archive contains the export of the submission %TipNum%
