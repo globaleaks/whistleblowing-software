@@ -38,7 +38,7 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
 
 
 @transact_ro
-def get_identityaccessrequests_list(store, language):
+def get_identityaccessrequest_list(store, language):
     return [serialize_identityaccessrequest(iar, language)
         for iar in store.find(IdentityAccessRequest, IdentityAccessRequest.reply == u'pending')]
 
@@ -120,7 +120,7 @@ class IdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequests_list(self.request.language)
+        answer = yield get_identityaccessrequest_list(self.request.language)
 
         self.set_status(200)
         self.finish(answer)

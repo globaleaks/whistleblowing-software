@@ -22,9 +22,9 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['notification'] = yield admin.notification.get_notification('en')
         data['node'] = yield admin.node.admin_serialize_node('en')
         data['tip'] = self.dummyRTips[0]
-        comments = yield rtip.get_comment_list_receiver(self.dummyReceiver_1['id'], data['tip']['id'])
+        comments = yield rtip.get_comment_list(self.dummyReceiver_1['id'], data['tip']['id'])
         data['comment'] = comments[0]
-        messages = yield rtip.get_messages_list(self.dummyReceiver_1['id'], data['tip']['id'])
+        messages = yield rtip.get_message_list(self.dummyReceiver_1['id'], data['tip']['id'])
         data['message'] = messages[0]
         files = yield rtip.get_files_receiver(self.dummyReceiver_1['id'], data['tip']['id'])
         data['file'] = files[0]

@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_get_itip_receivers_list, \
+from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
     serialize_comment, serialize_message
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
@@ -38,7 +38,7 @@ def db_access_wbtip(store, wbtip_id):
     return wbtip
 
 
-def db_get_files_wb(store, wbtip_id):
+def db_get_file_list(store, wbtip_id):
     wbtip = db_access_wbtip(store, wbtip_id)
 
     return [wb_serialize_file(internalfile) for internalfile in wbtip.internaltip.internalfiles]
@@ -60,14 +60,14 @@ def get_wbtip(store, wbtip_id, language):
 
 
 @transact_ro
-def get_wbtip_receivers_list(store, wbtip_id, language):
+def get_receiver_list(store, wbtip_id, language):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    return db_get_itip_receivers_list(store, wbtip.internaltip, language)
+    return db_get_itip_receiver_list(store, wbtip.internaltip, language)
 
 
 @transact_ro
-def get_comment_list_wb(store, wbtip_id):
+def get_comment_list(store, wbtip_id):
     wbtip = db_access_wbtip(store, wbtip_id)
 
     return [serialize_comment(comment) for comment in wbtip.internaltip.comments]
@@ -82,12 +82,12 @@ def serialize_wbtip(store, wbtip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['files'] = db_get_files_wb(store, wbtip.id)
+    ret['files'] = db_get_file_list(store, wbtip.id)
 
     return ret
 
 @transact
-def create_comment_wb(store, wbtip_id, request):
+def create_comment(store, wbtip_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
     wbtip.internaltip.update_date = datetime_now()
 
@@ -103,7 +103,7 @@ def create_comment_wb(store, wbtip_id, request):
 
 
 @transact
-def get_messages_content(store, wbtip_id, receiver_id):
+def get_message_list(store, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread
     messages as "read"
@@ -116,19 +116,19 @@ def get_messages_content(store, wbtip_id, receiver_id):
     if not rtip:
         raise errors.TipIdNotFound
 
-    messages_list = []
+    message_list = []
     for msg in rtip.messages:
-        messages_list.append(serialize_message(msg))
+        message_list.append(serialize_message(msg))
 
         if not msg.visualized and msg.type == u'receiver':
             log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
             msg.visualized = True
 
-    return messages_list
+    return message_list
 
 
 @transact
-def create_message_wb(store, wbtip_id, receiver_id, request):
+def create_message(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
     wbtip.internaltip.update_date = datetime_now()
 
@@ -192,7 +192,7 @@ class WBTipCommentCollection(BaseHandler):
         Parameters: None
         Response: actorsCommentList
         """
-        wb_comment_list = yield get_comment_list_wb(self.current_user.user_id)
+        wb_comment_list = yield get_comment_list(self.current_user.user_id)
 
         self.set_status(200)
         self.finish(wb_comment_list)
@@ -208,7 +208,7 @@ class WBTipCommentCollection(BaseHandler):
         """
 
         request = self.validate_message(self.request.body, requests.CommentDesc)
-        answer = yield create_comment_wb(self.current_user.user_id, request)
+        answer = yield create_comment(self.current_user.user_id, request)
 
         self.set_status(201)  # Created
         self.finish(answer)
@@ -228,7 +228,7 @@ class WBTipReceiversCollection(BaseHandler):
         Parameters: None
         Response: actorsReceiverList
         """
-        answer = yield get_wbtip_receivers_list(self.current_user.user_id, self.request.language)
+        answer = yield get_receiver_list(self.current_user.user_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
@@ -246,7 +246,7 @@ class WBTipMessageCollection(BaseHandler):
     @authenticated('whistleblower')
     @inlineCallbacks
     def get(self, receiver_id):
-        messages = yield get_messages_content(self.current_user.user_id, receiver_id)
+        messages = yield get_message_list(self.current_user.user_id, receiver_id)
 
         self.set_status(200)
         self.finish(messages)
@@ -257,7 +257,7 @@ class WBTipMessageCollection(BaseHandler):
     def post(self, receiver_id):
         request = self.validate_message(self.request.body, requests.CommentDesc)
 
-        message = yield create_message_wb(self.current_user.user_id, receiver_id, request)
+        message = yield create_message(self.current_user.user_id, receiver_id, request)
 
         self.set_status(201)  # Created
         self.finish(message)

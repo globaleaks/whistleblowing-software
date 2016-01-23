@@ -559,13 +559,13 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyRTips = yield self.get_rtips()
 
         for rtip_desc in self.dummyRTips:
-            yield rtip.create_comment_receiver(rtip_desc['receiver_id'],
-                                               rtip_desc['id'],
-                                               commentCreation)
+            yield rtip.create_comment(rtip_desc['receiver_id'],
+                                      rtip_desc['id'],
+                                      commentCreation)
 
-            yield rtip.create_message_receiver(rtip_desc['receiver_id'],
-                                               rtip_desc['id'],
-                                               messageCreation)
+            yield rtip.create_message(rtip_desc['receiver_id'],
+                                      rtip_desc['id'],
+                                      messageCreation)
 
             yield self.emulate_file_append(rtip_desc['id'], 3)
 
@@ -577,11 +577,11 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyWBTips = yield self.get_wbtips()
 
         for wbtip_desc in self.dummyWBTips:
-            yield wbtip.create_comment_wb(wbtip_desc['id'],
-                                          commentCreation)
+            yield wbtip.create_comment(wbtip_desc['id'],
+                                       commentCreation)
 
             for receiver_id in wbtip_desc['receivers_ids']:
-                yield wbtip.create_message_wb(wbtip_desc['id'], receiver_id, messageCreation)
+                yield wbtip.create_message(wbtip_desc['id'], receiver_id, messageCreation)
 
     @inlineCallbacks
     def perform_full_submission_actions(self):

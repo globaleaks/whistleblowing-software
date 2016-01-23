@@ -263,7 +263,7 @@ def get_rtip(store, user_id, rtip_id, language):
 
 
 @transact_ro
-def get_comment_list_receiver(store, user_id, rtip_id):
+def get_comment_list(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     return [serialize_comment(comment) for comment in rtip.internaltip.comments]
@@ -281,7 +281,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request, language):
 
 
 @transact
-def create_comment_receiver(store, user_id, rtip_id, request):
+def create_comment(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
     rtip.internaltip.update_date = datetime_now()
 
@@ -297,7 +297,7 @@ def create_comment_receiver(store, user_id, rtip_id, request):
 
 
 @transact
-def get_messages_list(store, user_id, rtip_id):
+def get_message_list(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     content_list = []
@@ -312,7 +312,7 @@ def get_messages_list(store, user_id, rtip_id):
 
 
 @transact
-def create_message_receiver(store, user_id, rtip_id, request):
+def create_message(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
     rtip.internaltip.update_date = datetime_now()
 
@@ -329,7 +329,7 @@ def create_message_receiver(store, user_id, rtip_id, request):
 
 
 @transact
-def get_identityaccessrequests_list(store, user_id, rtip_id, language):
+def get_identityaccessrequest_list(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
@@ -423,7 +423,7 @@ class RTipCommentCollection(BaseHandler):
         Response: actorsCommentList
         Errors: InvalidAuthentication
         """
-        comment_list = yield get_comment_list_receiver(self.current_user.user_id, tip_id)
+        comment_list = yield get_comment_list(self.current_user.user_id, tip_id)
 
         self.set_status(200)
         self.finish(comment_list)
@@ -439,13 +439,13 @@ class RTipCommentCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.CommentDesc)
 
-        answer = yield create_comment_receiver(self.current_user.user_id, tip_id, request)
+        answer = yield create_comment(self.current_user.user_id, tip_id, request)
 
         self.set_status(201)  # Created
         self.finish(answer)
 
 
-def db_get_itip_receivers_list(store, itip, language):
+def db_get_itip_receiver_list(store, itip, language):
     return [{
         "id": rtip.receiver.id,
         "name": rtip.receiver.user.name,
@@ -455,10 +455,10 @@ def db_get_itip_receivers_list(store, itip, language):
 
 
 @transact_ro
-def get_rtip_receivers_list(store, user_id, rtip_id, language):
+def get_receiver_list(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    return db_get_itip_receivers_list(store, rtip.internaltip, language)
+    return db_get_itip_receiver_list(store, rtip.internaltip, language)
 
 
 class RTipReceiversCollection(BaseHandler):
@@ -475,7 +475,7 @@ class RTipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidAuthentication
         """
-        answer = yield get_rtip_receivers_list(self.current_user.user_id, rtip_id, self.request.language)
+        answer = yieldget_receiver_list(self.current_user.user_id, rtip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
@@ -489,7 +489,7 @@ class ReceiverMsgCollection(BaseHandler):
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
-        answer = yield get_messages_list(self.current_user.user_id, tip_id)
+        answer = yield get_message_list(self.current_user.user_id, tip_id)
 
         self.set_status(200)
         self.finish(answer)
@@ -505,7 +505,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.CommentDesc)
 
-        message = yield create_message_receiver(self.current_user.user_id, tip_id, request)
+        message = yield create_message(self.current_user.user_id, tip_id, request)
 
         self.set_status(201)  # Created
         self.finish(message)
@@ -525,9 +525,9 @@ class IdentityAccessRequestsCollection(BaseHandler):
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequests_list(self.current_user.user_id,
-                                                       tip_id,
-                                                       self.request.language)
+        answer = yield get_identityaccessrequest_list(self.current_user.user_id,
+                                                      tip_id,
+                                                      self.request.language)
 
         self.set_status(200)
         self.finish(answer)
