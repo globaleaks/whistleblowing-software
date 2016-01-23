@@ -116,15 +116,7 @@ def get_message_list(store, wbtip_id, receiver_id):
     if not rtip:
         raise errors.TipIdNotFound
 
-    message_list = []
-    for msg in rtip.messages:
-        message_list.append(serialize_message(msg))
-
-        if not msg.visualized and msg.type == u'receiver':
-            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
-            msg.visualized = True
-
-    return message_list
+    return [serialize_message(message) for message in rtip.messages]
 
 
 @transact
@@ -142,7 +134,6 @@ def create_message(store, wbtip_id, receiver_id, request):
     msg.content = request['content']
     msg.receivertip_id = rtip.id
     msg.author = u'whistleblower'
-    msg.visualized = False
     msg.type = u'whistleblower'
 
     store.add(msg)

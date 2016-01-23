@@ -28,7 +28,6 @@ CREATE TABLE user (
 
 CREATE TABLE message (
     id TEXT NOT NULL,
-    visualized INTEGER NOT NULL,
     creation_date TEXT NOT NULL,
     author TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,

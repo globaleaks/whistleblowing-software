@@ -412,7 +412,6 @@ class Message(Model):
     receivertip_id = Unicode()
     author = Unicode()
     content = Unicode(validator=longtext_v)
-    visualized = Bool(default=False)
 
     type = Unicode()
     # types: 'receiver', whistleblower'
