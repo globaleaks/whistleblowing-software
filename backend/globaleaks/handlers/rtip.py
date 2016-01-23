@@ -78,8 +78,7 @@ def serialize_message(msg):
         'author': msg.author,
         'type': msg.type,
         'creation_date': datetime_to_ISO8601(msg.creation_date),
-        'content': msg.content,
-        'visualized': msg.visualized
+        'content': msg.content
     }
 
 
@@ -300,15 +299,7 @@ def create_comment(store, user_id, rtip_id, request):
 def get_message_list(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    content_list = []
-    for msg in rtip.messages:
-        content_list.append(serialize_message(msg))
-
-        if not msg.visualized and msg.type == u'whistleblower':
-            log.debug("Marking as read message [%s] from %s" % (msg.content, msg.author))
-            msg.visualized = True
-
-    return content_list
+    return [serialize_message(message) for message in rtip.messages]
 
 
 @transact
