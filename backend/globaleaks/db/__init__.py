@@ -21,7 +21,7 @@ from globaleaks.utils.utility import log, datetime_null
 
 
 def init_models():
-    for model in models.models_list:
+    for model in models.model_list:
         model()
     return succeed(None)
 

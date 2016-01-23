@@ -16,7 +16,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get_new_identityaccessrequest(self):
-        iars = yield custodian.get_identityaccessrequests_list('en')
+        iars = yield custodian.get_identityaccessrequest_list('en')
 
         handler = self.request(user_id = self.dummyCustodian['id'], role='custodian')
 
@@ -24,7 +24,7 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_identityaccessrequest_response(self):
-        iars = yield custodian.get_identityaccessrequests_list('en')
+        iars = yield custodian.get_identityaccessrequest_list('en')
 
         handler = self.request(user_id = self.dummyCustodian['id'], role='custodian')
 

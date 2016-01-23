@@ -35,9 +35,9 @@ def get_ramdisk_space():
 
 
 @transact
-def save_anomalies(store, anomalies_list):
+def save_anomalies(store, anomalie_list):
     anomalies_counter = 0
-    for anomaly in anomalies_list:
+    for anomaly in anomalie_list:
         anomalies_counter += 1
         anomaly_date, anomaly_desc, alarm_raised = anomaly
 

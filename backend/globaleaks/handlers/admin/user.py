@@ -251,7 +251,7 @@ def delete_user(store, user_id):
 
 
 @transact_ro
-def get_users_list(store, language):
+def get_user_list(store, language):
     """
     Returns:
         (list) the list of users
@@ -272,7 +272,7 @@ class UsersCollection(BaseHandler):
         Response: adminUsersList
         Errors: None
         """
-        response = yield get_users_list(self.request.language)
+        response = yield get_user_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)

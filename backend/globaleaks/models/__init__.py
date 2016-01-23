@@ -1240,7 +1240,7 @@ Receiver.contexts = ReferenceSet(
     Context.id
 )
 
-models_list = [Node,
+model_list = [Node,
                User, Custodian, Receiver,
                Context, CustodianContext, ReceiverContext,
                Field, FieldOption, FieldAttr,

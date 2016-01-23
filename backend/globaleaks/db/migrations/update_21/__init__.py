@@ -4,7 +4,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, Referenc
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import BaseModel, Model, ReceiverContext
 
-templates_list = [
+template_list = [
     'admin_anomaly_activities',
     'admin_anomaly_disk_high',
     'admin_anomaly_disk_low',
@@ -279,7 +279,7 @@ class MigrationScript(MigrationBase):
         new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification, v.name, templates_list, self.appdata['node']):
+            if self.update_model_with_new_templates(new_notification, v.name, template_list, self.appdata['node']):
                 continue
 
             if v.name == 'notification_threshold_per_hour':

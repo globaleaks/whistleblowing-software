@@ -215,8 +215,8 @@ class MigrationBase(object):
 
         return generateCreateQuery(model_obj)
 
-    def update_model_with_new_templates(self, model_obj, var_name, templates_list, templates_dict):
-        if var_name in templates_list:
+    def update_model_with_new_templates(self, model_obj, var_name, template_list, templates_dict):
+        if var_name in template_list:
             # check needed to preserve funtionality if templates will be altered in the future
             if var_name in templates_dict:
                 template_text = templates_dict[var_name]

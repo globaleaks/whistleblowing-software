@@ -401,7 +401,7 @@ def fieldtree_ancestors(store, field_id):
 
 
 @transact_ro
-def get_fieldtemplates_list(store, language):
+def get_fieldtemplate_list(store, language):
     """
     Serialize all the field templates localizing their content depending on the language.
 
@@ -430,7 +430,7 @@ class FieldTemplatesCollection(BaseHandler):
         :return: the list of field templates registered on the node.
         :rtype: list
         """
-        response = yield get_fieldtemplates_list(self.request.language)
+        response = yield get_fieldtemplate_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
