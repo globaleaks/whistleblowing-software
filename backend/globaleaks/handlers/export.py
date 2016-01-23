@@ -18,7 +18,8 @@ from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
-from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
+from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
+    db_get_comment_list, db_get_message_list
 from globaleaks.handlers.submission import get_submission_sequence_number
 from globaleaks.models import ReceiverTip, ReceiverFile
 from globaleaks.rest import errors
@@ -26,38 +27,34 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.zipstream import ZipStream
 
 
-@transact
+@transact_ro
 def get_tip_export(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    export_dict = {
-      'sequence_number': get_submission_sequence_number(rtip.internaltip),
-      'files': []
-    }
-
+    files = []
     for rf in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
         rf.downloads += 1
         file_dict = serialize_receiver_file(rf)
         file_dict['name'] = 'files/' + file_dict['name']
-        export_dict['files'].append(copy.deepcopy(file_dict))
+        files.append(copy.deepcopy(file_dict))
 
     receiver = rtip.receiver
     user_language = receiver.user.language
 
-    data = {
+    export_dict = {
         'type': u'export_template',
         'node': db_admin_serialize_node(store, user_language),
         'notification': db_get_notification(store, user_language),
         'tip': serialize_rtip(store, rtip, user_language),
         'context': admin_serialize_context(store, rtip.internaltip.context, user_language),
         'receiver': admin_serialize_receiver(receiver, user_language),
-        'export': export_dict
+        'comments': db_get_comment_list(rtip),
+        'messages': db_get_message_list(rtip),
+        'files': []
     }
 
-    export_readme = Templating().format_template(data['notification']['export_readme'], data).encode('utf-8')
-    export_template = Templating().format_template(data['notification']['export_template'], data).encode('utf-8')
+    export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
 
-    export_dict['files'].append({'buf': export_readme, 'name': "readme.txt"})
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
     return export_dict
@@ -95,7 +92,7 @@ class ExportHandler(BaseHandler):
 
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['sequence_number'])
+        self.set_header('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
 
         for data in ZipStream(tip_export['files']):
             self.write(data)

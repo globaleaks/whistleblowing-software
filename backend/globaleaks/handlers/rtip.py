@@ -261,11 +261,16 @@ def get_rtip(store, user_id, rtip_id, language):
     return db_get_rtip(store, user_id, rtip_id, language)
 
 
+def db_get_comment_list(rtip):
+    return [serialize_comment(comment) for comment in rtip.internaltip.comments]
+
+
 @transact_ro
 def get_comment_list(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    return [serialize_comment(comment) for comment in rtip.internaltip.comments]
+    return db_get_comment_list(rtip)
+
 
 @transact
 def create_identityaccessrequest(store, user_id, rtip_id, request, language):
@@ -295,11 +300,15 @@ def create_comment(store, user_id, rtip_id, request):
     return serialize_comment(comment)
 
 
-@transact
+def db_get_message_list(rtip):
+    return [serialize_message(message) for message in rtip.messages]
+
+
+@transact_ro
 def get_message_list(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    return [serialize_message(message) for message in rtip.messages]
+    return db_get_message_list(rtip)
 
 
 @transact
