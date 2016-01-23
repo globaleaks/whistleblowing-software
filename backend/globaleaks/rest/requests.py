@@ -259,7 +259,6 @@ AdminNotificationDesc = {
     'identity_access_request_mail_title': unicode,
     'identity_provided_mail_template': unicode,
     'identity_provided_mail_title': unicode,
-    'export_readme': unicode,
     'export_template': unicode,
     'export_message_whistleblower': unicode,
     'export_message_recipient': unicode,

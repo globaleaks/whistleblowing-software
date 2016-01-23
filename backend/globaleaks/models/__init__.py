@@ -617,7 +617,6 @@ class Notification(Model):
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
 
-    export_readme = JSON(validator=longlocal_v)
     export_template = JSON(validator=longlocal_v)
     export_message_recipient = JSON(validator=longlocal_v)
     export_message_whistleblower = JSON(validator=longlocal_v)
@@ -689,7 +688,6 @@ class Notification(Model):
         'identity_access_request_mail_title',
         'identity_provided_mail_template',
         'identity_provided_mail_title',
-        'export_readme',
         'export_template',
         'export_message_whistleblower',
         'export_message_recipient'

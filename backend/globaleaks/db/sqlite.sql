@@ -250,7 +250,6 @@ CREATE TABLE notification (
     identity_access_request_mail_title BLOB,
     identity_provided_mail_template BLOB,
     identity_provided_mail_title BLOB,
-    export_readme BLOB,
     export_template BLOB,
     export_message_whistleblower BLOB,
     export_message_recipient BLOB,

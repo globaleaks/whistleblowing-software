@@ -8,6 +8,8 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
+import copy
+
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -43,11 +45,15 @@ file_keywords = [
     '%FileType%'
 ]
 
-
 export_template_keywords = [
+    '%Comments%',
+    '%Messages%',
     '%FileList%',
 ]
 
+export_message_keywords = [
+    '%Content%'
+]
 
 admin_pgp_alert_keywords = [
     '%PGPKeyInfoList%'
@@ -68,8 +74,12 @@ admin_anomaly_keywords = [
 ]
 
 
-def indent(n):
+def indent(n=1):
     return "  " * n
+
+
+def indent_text(text, n=1):
+    return '\n'.join(['  ' * n + l for l in text.splitlines()])
 
 
 def dump_field_entry(output, field, entry, indent_n):
@@ -125,15 +135,15 @@ def dump_questionnaire_answers(questionnaire, answers):
     return output
 
 
-def dump_file_list(filelist, files_n):
+def dump_file_list(file_list):
     info = "%s%s%s\n" % ("Filename",
                              " "*(40-len("Filename")),
                              "Size (Bytes)")
 
-    for i in xrange(files_n):
-        info += "%s%s%i\n" % (filelist[i]["name"],
-                                " "*(40 - len(filelist[i]["name"])),
-                                filelist[i]["size"])
+    for i in xrange(len(file_list)):
+        info += "%s%s%i\n" % (file_list[i]["name"],
+                              " "*(40 - len(file_list[i]["name"])),
+                              file_list[i]["size"])
 
     return info
 
@@ -259,10 +269,41 @@ class FileKeyword(TipKeyword):
 
 class ExportKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + export_template_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'export']
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comments', 'messages', 'files']
+
+    def dump_messages(self, messages):
+        ret = ''
+        for message in messages:
+            data = copy.deepcopy(self.data)
+            data['type'] = 'export_message'
+            data['message'] = copy.deepcopy(message)
+            template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
+            ret += indent_text('-' * 40) + '\n'
+            ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
+
+        return ret
+
+    def Comments(self):
+        ret = self.data['node']['widget_comments_title'] + ':\n'
+        ret += self.dump_messages(self.data['comments'])
+        return ret
+
+    def Messages(self):
+        ret = self.data['node']['widget_messages_title'] + ':\n'
+        ret += self.dump_messages(self.data['messages'])
+        return ret
 
     def FileList(self):
-        return dump_file_list(self.data['export']['files'], self.data['export']['file_counter'])
+        return dump_file_list(self.data['files'])
+
+
+class ExportMessageKeyword(TipKeyword):
+    keyword_list = TipKeyword.keyword_list + export_template_keywords + export_message_keywords
+    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
+
+    def Content(self):
+        return self.data['message']['content']
+
 
 class AdminPGPAlertKeyword(Keyword):
     keyword_list = Keyword.keyword_list + admin_pgp_alert_keywords
@@ -344,6 +385,7 @@ supported_template_types = {
     u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
     u'export_template': ExportKeyword,
+    u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword
 }
 

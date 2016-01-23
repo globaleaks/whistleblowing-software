@@ -193,7 +193,6 @@ class MigrationScript(MigrationBase):
         new_notification = self.model_to['Notification']()
 
         new_templates = [
-            'export_readme',
             'export_template',
             'export_message_whistleblower',
             'export_message_recipient'
