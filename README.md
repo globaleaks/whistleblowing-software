@@ -1,12 +1,13 @@
 # GlobaLeaks
 
-[EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
-
-[IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
-
 GlobaLeaks is a project aimed at creating an opensource and free software whistleblowing framework.
 
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
+
+## GlobaLeaks is hiring!
+[EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
+
+[IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
 
 ## Community and support
 If you need help with the software write your inquiry to the GlobaLeaks [Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk): globaleaks-talk@lists.globaleaks.org
@@ -20,12 +21,18 @@ Other resources:
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
 ## Build Status
-| Branch | Build status | Code coverage | Code quality
+| Branch | Build status | Code coverage
 | ------------- |:-------------:|:-------------:|:-------------:|
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/master/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Code Health](https://landscape.io/github/globaleaks/GlobaLeaks/devel/landscape.svg)](https://landscape.io/github/globaleaks/GlobaLeaks/devel)
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](http://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
+
+Browser compatibility:
 
 [![Saucelabs Test Status](https://saucelabs.com/browser-matrix/globaleaks.svg)](https://saucelabs.com/u/globaleaks)
+
+Code quality:
+
+[![Code Climate](https://codeclimate.com/github/globaleaks/GlobaLeaks/badges/gpa.svg)](https://codeclimate.com/github/globaleaks/GlobaLeaks)
 
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development!
