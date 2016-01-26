@@ -11,7 +11,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.language = $location.search().lang;
 
-    $rootScope.embedded = $location.search().embedded == 'true' ? true : false;
+    $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
 
     $rootScope.get_auth_headers = Authentication.get_auth_headers;
 
@@ -53,8 +53,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       model.$update(function(result) {
         $rootScope.successes.push(success);
       }).then(
-        function() { if (cb !== undefined) cb(); },
-        function() { if (errcb !== undefined) errcb(); }
+        function() { if (cb !== undefined){ cb(); } },
+        function() { if (errcb !== undefined){ errcb(); } }
       );
     };
 
@@ -224,7 +224,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       var key = $scope.getYOrderProperty(elements[0]);
       if (elements.length) {
         var i = 0;
-        var elements = $filter('orderBy')(elements, key);
+        elements = $filter('orderBy')(elements, key);
         angular.forEach(elements, function (element) {
           element[key] = i;
           i += 1;
@@ -344,7 +344,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.view_tip = function(keycode) {
       keycode = keycode.replace(/\D/g,'');
-      WhistleblowerTip(keycode, function() {
+      new WhistleblowerTip(keycode, function() {
         $location.path('/status');
       });
     };
@@ -358,9 +358,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.exportJSON = function(data, filename) {
-      var filename = filename == undefined ? 'data.json' : filename;
       var json = angular.toJson(data, 2);
       var blob = new Blob([json], {type: "application/json"});
+      filename = filename === undefined ? 'data.json' : filename;
       saveAs(blob, filename);
     };
 
@@ -394,14 +394,16 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       var error = false;
 
       for (var key in uploads) {
-        if(uploads[key].isUploading()) {
-          return 'uploading';
-        }
+        if (uploads.hasOwnProperty(key)) {
+          if(uploads[key].isUploading()) {
+            return 'uploading';
+          }
 
-        for (var i=0; i<uploads[key].files.length; i++) {
-          if (uploads[key].files[i].error) {
-            error = true;
-            break;
+          for (var i=0; i<uploads[key].files.length; i++) {
+            if (uploads[key].files[i].error) {
+              error = true;
+              break;
+            }
           }
         }
       }
@@ -414,7 +416,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.isUploading = function(uploads) {
-      return $scope.getUploadStatus(uploads) == 'uploading';
+      return $scope.getUploadStatus(uploads) === 'uploading';
     };
 
     $scope.remainingUploadTime = function(uploads) {
@@ -488,7 +490,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     });
 
     $rootScope.$watch('language', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal && oldVal != undefined) {
+      if (newVal && newVal !== oldVal && oldVal !== undefined) {
         $rootScope.$broadcast("REFRESH");
       }
     });

@@ -228,19 +228,19 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('Node', ['GLResource', function(GLResource) {
-    return GLResource('node');
+    return new GLResource('node');
 }]).
   factory('Contexts', ['GLResource', function(GLResource) {
-    return GLResource('contexts');
+    return new GLResource('contexts');
 }]).
   factory('Receivers', ['GLResource', function(GLResource) {
-    return GLResource('receivers');
+    return new GLResource('receivers');
 }]).
   factory('TokenResource', ['GLResource', function(GLResource) {
-    return GLResource('token/:id', {id: '@id'});
+    return new GLResource('token/:id', {id: '@id'});
 }]).
   factory('SubmissionResource', ['GLResource', function(GLResource) {
-    return GLResource('submission/:id', {id: '@token_id'});
+    return new GLResource('submission/:id', {id: '@token_id'});
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
@@ -397,19 +397,19 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('RTipResource', ['GLResource', function(GLResource) {
-    return GLResource('rtip/:id', {id: '@id'});
+    return new GLResource('rtip/:id', {id: '@id'});
 }]).
   factory('RTipReceiverResource', ['GLResource', function(GLResource) {
-    return GLResource('rtip/:id/receivers', {id: '@id'});
+    return new GLResource('rtip/:id/receivers', {id: '@id'});
 }]).
   factory('RTipCommentResource', ['GLResource', function(GLResource) {
-    return GLResource('rtip/:id/comments', {id: '@id'});
+    return new GLResource('rtip/:id/comments', {id: '@id'});
 }]).
   factory('RTipMessageResource', ['GLResource', function(GLResource) {
-    return GLResource('rtip/:id/messages', {id: '@id'});
+    return new GLResource('rtip/:id/messages', {id: '@id'});
 }]).
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
-    return GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
+    return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
   factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
           function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
@@ -469,16 +469,16 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('WBTipResource', ['GLResource', function(GLResource) {
-    return GLResource('wbtip');
+    return new GLResource('wbtip');
 }]).
   factory('WBTipReceiverResource', ['GLResource', function(GLResource) {
-    return GLResource('wbtip/receivers');
+    return new GLResource('wbtip/receivers');
 }]).
   factory('WBTipCommentResource', ['GLResource', function(GLResource) {
-    return GLResource('wbtip/comments');
+    return new GLResource('wbtip/comments');
 }]).
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
-    return GLResource('wbtip/messages/:id', {id: '@id'});
+    return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
   factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource',
       function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource) {
@@ -544,43 +544,43 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('ReceiverPreferences', ['GLResource', function(GLResource) {
-    return GLResource('receiver/preferences');
+    return new GLResource('receiver/preferences');
 }]).
   factory('ReceiverTips', ['GLResource', function(GLResource) {
-    return GLResource('receiver/tips');
+    return new GLResource('receiver/tips');
 }]).
   factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
-    return GLResource('custodian/identityaccessrequests');
+    return new GLResource('custodian/identityaccessrequests');
 }]).
   factory('ReceiverOverview', ['GLResource', function(GLResource) {
-    return GLResource('admin/overview/users');
+    return new GLResource('admin/overview/users');
 }]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/contexts/:id', {id: '@id'});
+    return new GLResource('admin/contexts/:id', {id: '@id'});
 }]).
   factory('AdminStepResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/steps/:id', {id: '@id'});
+    return new GLResource('admin/steps/:id', {id: '@id'});
 }]).
   factory('AdminFieldResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/fields/:id',{id: '@id'});
+    return new GLResource('admin/fields/:id',{id: '@id'});
 }]).
   factory('AdminFieldTemplateResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/fieldtemplates/:id', {id: '@id'});
+    return new GLResource('admin/fieldtemplates/:id', {id: '@id'});
 }]).
   factory('AdminShorturlResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/shorturls/:id', {id: '@id'});
+    return new GLResource('admin/shorturls/:id', {id: '@id'});
 }]).
   factory('AdminUserResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/users/:id', {id: '@id'});
+    return new GLResource('admin/users/:id', {id: '@id'});
 }]).
   factory('AdminReceiverResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/receivers/:id', {id: '@id'});
+    return new GLResource('admin/receivers/:id', {id: '@id'});
 }]).
   factory('AdminNodeResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/node');
+    return new GLResource('admin/node');
 }]).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
-    return GLResource('admin/notification');
+    return new GLResource('admin/notification');
 }]).
   factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(GLResource, $q, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
@@ -799,31 +799,31 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('UserPreferences', ['GLResource', function(GLResource) {
-    return GLResource('preferences', {}, {'update': {method: 'PUT'}});
+    return new GLResource('preferences', {}, {'update': {method: 'PUT'}});
 }]).
   factory('TipOverview', ['GLResource', function(GLResource) {
-    return GLResource('admin/overview/tips');
+    return new GLResource('admin/overview/tips');
 }]).
   factory('FileOverview', ['GLResource', function(GLResource) {
-    return GLResource('admin/overview/files');
+    return new GLResource('admin/overview/files');
 }]).
   factory('StatsCollection', ['GLResource', function(GLResource) {
-    return GLResource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
+    return new GLResource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});
 }]).
   factory('AnomaliesCollection', ['GLResource', function(GLResource) {
-    return GLResource('admin/anomalies');
+    return new GLResource('admin/anomalies');
 }]).
   factory('AnomaliesHistCollection', ['GLResource', function(GLResource) {
-    return GLResource('admin/history');
+    return new GLResource('admin/history');
 }]).
   factory('ActivitiesCollection', ['GLResource', function(GLResource) {
-    return GLResource('admin/activities/details');
+    return new GLResource('admin/activities/details');
 }]).
   factory('StaticFiles', ['GLResource', function(GLResource) {
-    return GLResource('admin/staticfiles');
+    return new GLResource('admin/staticfiles');
 }]).
   factory('DefaultAppdata', ['GLResource', function(GLResource) {
-    return GLResource('data/appdata_l10n.json', {});
+    return new GLResource('data/appdata_l10n.json', {});
 }]).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {
@@ -864,7 +864,7 @@ angular.module('GLServices', ['ngResource']).
           validatePasswordChange();
       }, true);
 
-    }
+    };
 }]).
   factory('changePasswordWatcher', ['$parse', function($parse) {
     return function(scope, old_password, password, check_password) {
@@ -961,7 +961,7 @@ angular.module('GLServices', ['ngResource']).
           }
         }
         return field.answer_structure;
-      }
+      };
 
       return {
         minY: minY,
