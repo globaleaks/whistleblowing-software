@@ -475,7 +475,7 @@ class RTipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidAuthentication
         """
-        answer = yieldget_receiver_list(self.current_user.user_id, rtip_id, self.request.language)
+        answer = yield get_receiver_list(self.current_user.user_id, rtip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
