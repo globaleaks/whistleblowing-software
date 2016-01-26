@@ -8,6 +8,7 @@ exports.waitUntilReady = function (elm, timeout) {
    }, timeout);
 };
 
+
 browser.getCapabilities().then(function(s) {
   exports.testFileUpload = function() {
     return (s.caps_.platform === 'LINUX');
