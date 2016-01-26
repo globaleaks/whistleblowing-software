@@ -13,6 +13,7 @@ describe('globaLeaks process', function() {
       var deferred = protractor.promise.defer();
 
       browser.get('/#/');
+
       element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
         element(by.css('[data-ng-click="view_tip(formatted_keycode)"]')).click().then(function() {
           utils.waitForUrl('/status');
@@ -29,6 +30,7 @@ describe('globaLeaks process', function() {
       var deferred = protractor.promise.defer();
 
       browser.get('/#/login');
+
       element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
         element(by.model('loginPassword')).sendKeys(password).then(function() {
           element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
@@ -47,6 +49,7 @@ describe('globaLeaks process', function() {
       var deferred = protractor.promise.defer();
 
       browser.get('/#/submission');
+
       element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
         element(by.id('NextStepButton')).click().then(function () {
           element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
@@ -96,6 +99,7 @@ describe('globaLeaks process', function() {
 
   it('should redirect to /submission by clicking on the blow the whistle button', function() {
     browser.get('/#/');
+
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
       utils.waitForUrl('/submission');
     });
