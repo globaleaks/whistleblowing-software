@@ -112,9 +112,9 @@ def export_fixture(*models):
     :return: a valid JSON string exporting the field.
     """
     return json.dumps([{
-                           'fields': model.dict(),
-                           'class': model.__class__.__name__,
-                       } for model in models], default=str, indent=2)
+        'fields': model.dict(),
+        'class': model.__class__.__name__,
+    } for model in models], default=str, indent=2)
 
 
 @transact
@@ -133,6 +133,7 @@ def import_fixture(store, fixture):
 
                 if mock['fields']['step_id'] == '':
                     del mock['fields']['step_id']
+
                 if mock['fields']['fieldgroup_id'] == '':
                     del mock['fields']['fieldgroup_id']
 
@@ -312,17 +313,16 @@ class TestGL(unittest.TestCase):
 
         need to be enhanced generating appropriate data based on the fields.type
         """
-        dummySubmissionDict = {}
-        dummySubmissionDict['context_id'] = context_id
-        dummySubmissionDict['receivers'] = (yield get_context(context_id, 'en'))['receivers']
-        dummySubmissionDict['files'] = []
-        dummySubmissionDict['human_captcha_answer'] = 0
-        dummySubmissionDict['graph_captcha_answer'] = ''
-        dummySubmissionDict['proof_of_work_answer'] = 0
-        dummySubmissionDict['identity_provided'] = False
-        dummySubmissionDict['answers'] = yield self.fill_random_answers(context_id)
-
-        defer.returnValue(dummySubmissionDict)
+        defer.returnValue({
+            'context_id': context_id,
+            'receivers': (yield get_context(context_id, 'en'))['receivers'],
+            'files': [],
+            'human_captcha_answer': 0,
+            'graph_captcha_answer': '',
+            'proof_of_work_answer': 0,
+            'identity_provided': False,
+            'answers': (yield self.fill_random_answers(context_id))
+        })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
         if filename is None:
@@ -332,14 +332,14 @@ class TestGL(unittest.TestCase):
             content_type = 'application/octet'
 
         if content is None:
-            content = 'LA VEDI LA SUPERCAZZOLA ? PREMATURA ? unicode €'
+            content = ''.join(unichr(x) for x in range(0x400, 0x40A))
 
         temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
         temporary_file.write(content)
         temporary_file.avoid_delete()
 
-        dummy_file = {
+        return {
             'body': temporary_file,
             'body_len': len(content),
             'body_filepath': temporary_file.filepath,
@@ -348,15 +348,11 @@ class TestGL(unittest.TestCase):
             'submission': False
         }
 
-        return dummy_file
-
-
     def get_dummy_shorturl(self, x = ''):
         return {
           'shorturl': '/s/shorturl' + str(x),
           'longurl': '/longurl' + str(x)
         }
-
 
     @inlineCallbacks
     def emulate_file_upload(self, token, n):
@@ -473,8 +469,6 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def fill_data(self):
-        yield do_appdata_init()
-
         # fill_data/create_admin
         self.dummyAdmin = yield create_admin(copy.deepcopy(self.dummyAdminUser), 'en')
         self.dummyAdminUser['id'] = self.dummyAdmin['id']
@@ -545,11 +539,11 @@ class TestGLWithPopulatedDB(TestGL):
     @inlineCallbacks
     def perform_post_submission_actions(self):
         commentCreation = {
-            'content': 'comment!',
+            'content': 'comment!'
         }
 
         messageCreation = {
-            'content': 'message!',
+            'content': 'message!'
         }
 
         identityaccessrequestCreation = {
@@ -1032,19 +1026,3 @@ class MockDict():
             'threshold_free_disk_percentage_medium': 5,
             'threshold_free_disk_percentage_low': 10
         }
-
-
-@transact
-def do_appdata_init(store):
-    try:
-        appdata = store.find(models.ApplicationData).one()
-
-        if not appdata:
-            raise Exception
-
-    except Exception:
-        appdata = models.ApplicationData()
-        source = load_appdata()
-        appdata.version = source['version']
-        appdata.fields = source['fields']
-        store.add(appdata)
