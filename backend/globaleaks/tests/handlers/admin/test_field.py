@@ -15,8 +15,7 @@ from globaleaks.tests import helpers
 
 @transact
 def get_step_id(store, context_id):
-    steps = store.find(models.Step, models.Step.context_id == context_id)
-    return steps[0].id
+    return store.find(models.Step, models.Step.context_id == context_id)[0].id
 
 
 class TestFieldCreate(helpers.TestHandler):
@@ -138,7 +137,6 @@ class TestFieldInstance(helpers.TestHandler):
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplateInstance
-        fixtures = ['fields.json']
 
         @transact_ro
         def _get_field(self, store, field_id):
@@ -165,7 +163,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(field['id'], self.responses[0]['id'])
 
         @inlineCallbacks
-        def test_put_1(self):
+        def test_put(self):
             """
             Attempt to update a field, changing its type via a put request.
             """
@@ -188,47 +186,6 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
 
         @inlineCallbacks
-        def test_put_2(self):
-            """
-            Update the field tree with nasty stuff, like cyclic graphs, inexisting ids.
-            """
-            generalities_fieldgroup_id = u'37242164-1b1f-1110-1e1c-b1f12e815105'
-            sex_field_id = u'98891164-1a0b-5b80-8b8b-93b73b815156'
-            surname_field_id = u'25521164-1d0f-5f80-8e8c-93f73e815156'
-            name_field_id = u'25521164-0d0f-4f80-9e9c-93f72e815105'
-            invalid_id = u'00000000-1d0f-5f80-8e8c-93f700000000'
-
-            handler = self.request(role='admin')
-            yield handler.get(generalities_fieldgroup_id)
-
-            # simple edits shall work
-            sex_field = yield self._get_field(sex_field_id)
-            surname_field = yield self._get_field(surname_field_id)
-
-            self.responses[0]['children'] = [sex_field,
-                                             surname_field]
-
-            handler = self.request(self.responses[0], role='admin')
-            yield handler.put(generalities_fieldgroup_id)
-            yield self.assert_model_exists(models.Field, generalities_fieldgroup_id)
-
-            # parent MUST not refer to itself in child
-            generalities_fieldgroup = yield self._get_field(generalities_fieldgroup_id)
-            self.responses[0]['children'] = [generalities_fieldgroup]
-            handler = self.request(self.responses[0], role='admin')
-            self.assertFailure(handler.put(generalities_fieldgroup_id), errors.InvalidInputFormat)
-
-            # a field not of type 'fieldgroup' MUST never have children.
-            yield handler.get(name_field_id)
-            sex_field = yield self._get_field(sex_field_id)
-            self.responses[2]['children'] = [sex_field]
-            handler = self.request(self.responses[2], role='admin')
-            self.assertFailure(handler.put(name_field_id), errors.InvalidInputFormat)
-
-            children = yield self._get_children(sex_field_id)
-            self.assertNotIn(name_field_id, children)
-
-        @inlineCallbacks
         def test_delete(self):
             """
             Create a new field template, then attempt to delete it.
@@ -246,7 +203,6 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
 
 class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplatesCollection
-        fixtures = ['fields.json']
 
         @inlineCallbacks
         def test_get(self):
@@ -254,16 +210,27 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             Retrieve a list of all fields, and verify that they do exist in the
             database.
             """
+            n = 3
+            ids = []
+            for i in range(3):
+                values = self.get_dummy_field()
+                values['instance'] = 'template'
+                handler = self.request(values, role='admin')
+                yield handler.post()
+                ids.append(self.responses[i]['id'])
+
+            self.responses = []
             handler = self.request(role='admin')
             yield handler.get()
             fields, = self.responses
 
-            ids = [field.get('id') for field in fields]
+            check_ids = [field.get('id') for field in fields]
             types = [field.get('type') for field in fields]
-            self.assertGreater(len(fields), 0)
+            self.assertGreater(len(fields), 3)
             self.assertNotIn(None, ids)
-            self.assertIn('37242164-1b1f-1110-1e1c-b1f12e815105', ids)
-            self.assertGreater(types.count('fieldgroup'), 0)
+
+            for x in ids:
+                self.assertIn(x, check_ids)
 
             # check tha childrens are not present in the list
             # as the list should contain only parents fields
