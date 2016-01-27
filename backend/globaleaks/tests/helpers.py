@@ -505,13 +505,13 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data: create field templates
         for idx, field in enumerate(self.dummyFieldTemplates):
-            f = yield create_field(copy.deepcopy(field), None)
+            f = yield create_field(copy.deepcopy(field), 'en', 'import')
             self.dummyFieldTemplates[idx]['id'] = f['id']
 
         for idx, field in enumerate(self.dummyFields):
             change_field_type(field, 'instance')
             field['step_id'] = self.dummyContext['steps'][0]['id']
-            f = yield create_field(copy.deepcopy(field), None)
+            f = yield create_field(copy.deepcopy(field), 'en', 'import')
             self.dummyFields[idx]['id'] = f['id']
 
             self.dummyContext['steps'][0]['children'].append(f)

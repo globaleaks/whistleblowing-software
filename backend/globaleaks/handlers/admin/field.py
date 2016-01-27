@@ -237,13 +237,13 @@ def db_create_field(store, field_dict, language):
 
 
 @transact
-def create_field(store, field_dict, language):
+def create_field(store, field_dict, language, import_export=None):
     """
     Transaction that perform db_create_field
     """
-    field = db_create_field(store, field_dict, language)
+    field = db_create_field(store, field_dict, language if import_export != 'import' else None)
 
-    return serialize_field(store, field, language)
+    return serialize_field(store, field, language if import_export != 'export' else None)
 
 
 def db_update_field(store, field_id, field_dict, language):
