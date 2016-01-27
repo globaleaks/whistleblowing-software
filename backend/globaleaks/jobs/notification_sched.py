@@ -182,16 +182,16 @@ class NotificationSchedule(GLJob):
         ret = []
 
         for mail in store.find(models.Mail):
+            ret.append({
+                'id': mail.id,
+                'address': mail.address,
+                'subject': mail.subject,
+                'body': mail.body
+            })
+
+            mail.processing_attempts += 1
             if mail.processing_attempts > 9:
                 store.remove(mail)
-            else:
-                mail.processing_attempts += 1
-                ret.append({
-                    'id': mail.id,
-                    'address': mail.address,
-                    'subject': mail.subject,
-                    'body': mail.body
-                })
 
         return ret
 
