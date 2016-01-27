@@ -73,6 +73,14 @@ token.reactor_override = reactor_override
 runner.reactor_override = reactor_override
 statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
 
+# client/app/data/fields/whistleblower_identity.json
+WHISTLEBLOWER_IDENTITY_FIELD_PATH = \
+    os.path.join(GLSettings.client_path,
+                 '../../client/app/data/fields/whistleblower_identity.json')
+
+def load_json_file(file_path):
+    with open(file_path) as f:
+      return json.loads(f.read())
 
 class UTlog:
     @staticmethod
@@ -124,22 +132,27 @@ def import_fixture(store, fixture):
 
     :return: The traditional deferred used for transaction in GlobaLeaks.
     """
-    with open(os.path.join(FIXTURES_PATH, fixture)) as f:
-        data = json.loads(f.read())
-        for mock in data:
-            if mock['class'] == 'Field':
-                if mock['fields']['instance'] != 'reference':
-                    del mock['fields']['template_id']
+    data = load_json_file(os.path.join(FIXTURES_PATH, fixture))
+    for mock in data:
+        if mock['class'] == 'Field':
+            if mock['fields']['instance'] != 'reference':
+                del mock['fields']['template_id']
 
-                if mock['fields']['step_id'] == '':
-                    del mock['fields']['step_id']
+            if mock['fields']['step_id'] == '':
+                del mock['fields']['step_id']
 
-                if mock['fields']['fieldgroup_id'] == '':
-                    del mock['fields']['fieldgroup_id']
+            if mock['fields']['fieldgroup_id'] == '':
+                del mock['fields']['fieldgroup_id']
 
-            mock_class = getattr(models, mock['class'])
-            models.db_forge_obj(store, mock_class, mock['fields'])
-            store.commit()
+        mock_class = getattr(models, mock['class'])
+        models.db_forge_obj(store, mock_class, mock['fields'])
+        store.commit()
+
+
+def change_field_type(field, field_type):
+    field['instance'] = field_type
+    for f in field['children']:
+        change_field_type(f, field_type)
 
 
 def get_file_upload(self):
@@ -492,28 +505,16 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data: create field templates
         for idx, field in enumerate(self.dummyFieldTemplates):
-            f = yield create_field(copy.deepcopy(field), 'en')
+            f = yield create_field(copy.deepcopy(field), None)
             self.dummyFieldTemplates[idx]['id'] = f['id']
 
-        # fill_data: create fields and associate them to the context steps
         for idx, field in enumerate(self.dummyFields):
-            field['instance'] = 'instance'
-            if idx <= 2:
-                # "Field 1", "Field 2" and "Generalities" are associated to the first step
-                field['step_id'] = self.dummyContext['steps'][0]['id']
-            else:
-                # Name, Surname, Gender" are associated to field "Generalities"
-                # "Field 1" and "Field 2" are associated to the first step
-                field['fieldgroup_id'] = self.dummyFields[2]['id']
-
-            f = yield create_field(copy.deepcopy(field), 'en')
+            change_field_type(field, 'instance')
+            field['step_id'] = self.dummyContext['steps'][0]['id']
+            f = yield create_field(copy.deepcopy(field), None)
             self.dummyFields[idx]['id'] = f['id']
 
-        self.dummyContext['steps'][0]['children'] = [
-            self.dummyFields[0],  # Field 1
-            self.dummyFields[1],  # Field 2
-            self.dummyFields[2]   # Generalities
-        ]
+            self.dummyContext['steps'][0]['children'].append(f)
 
         yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
 
@@ -739,170 +740,9 @@ class MockDict():
             'configuration': 'default'
         })
 
-        self.dummyFieldTemplates = [
-            {
-                'id': u'd4f06ad1-eb7a-4b0d-984f-09373520cce7',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'template_id': '',
-                'step_id': '',
-                'fieldgroup_id': '',
-                'label': u'Field 222',
-                'type': u'inputbox',
-                'preview': False,
-                'description': u'field description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': True,  # <- first field is special,
-                'children': [],    # it's marked as required!!!
-                'attrs': {},
-                'options': [],
-                'y': 2,
-                'x': 0,
-                'width': 0
-            },
-            {
-                'id': u'c4572574-6e6b-4d86-9a2a-ba2e9221467d',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'template_id': '',
-                'step_id': '',
-                'fieldgroup_id': '',
-                'label': u'Field 2',
-                'type': u'inputbox',
-                'preview': False,
-                'description': 'description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': False,
-                'children': [],
-                'attrs': {},
-                'options': [],
-                'y': 3,
-                'x': 0,
-                'width': 0
-            },
-            {
-                'id': u'6a6e9282-15e8-47cd-9cc6-35fd40a4a58f',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'step_id': '',
-                'template_id': '',
-                'fieldgroup_id': '',
-                'label': u'Generalities',
-                'type': u'fieldgroup',
-                'preview': False,
-                'description': u'field description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': False,
-                'children': [],
-                'attrs': {},
-                'options': [],
-                'y': 4,
-                'x': 0,
-                'width': 0
-            },
-            {
-                'id': u'7459abe3-52c9-4a7a-8d48-cabe3ffd2abd',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'template_id': '',
-                'step_id': '',
-                'fieldgroup_id': '',
-                'label': u'Name',
-                'type': u'inputbox',
-                'preview': False,
-                'description': u'field description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': False,
-                'children': [],
-                'attrs': {},
-                'options': [],
-                'y': 0,
-                'x': 0,
-                'width': 0
-            },
-            {
-                'id': u'de1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'template_id': '',
-                'step_id': '',
-                'fieldgroup_id': '',
-                'label': u'Surname',
-                'type': u'inputbox',
-                'preview': False,
-                'description': u'field description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': False,
-                'children': [],
-                'attrs': {},
-                'options': [],
-                'y': 0,
-                'x': 0,
-                'width': 0
-            },
-            {
-                'id': u'7e1f0cf8-63a7-4ed8-bc5d-7cf0e5a2aec2',
-                'key': '',
-                'instance': 'template',
-                'editable': True,
-                'template_id': '',
-                'step_id': '',
-                'fieldgroup_id': '',
-                'label': u'Gender',
-                'type': u'selectbox',
-                'preview': False,
-                'description': u'field description',
-                'hint': u'field hint',
-                'multi_entry': False,
-                'multi_entry_hint': '',
-                'stats_enabled': False,
-                'required': False,
-                'children': [],
-                'attrs': {},
-                'options': [
-                    {
-                        'id': '2ebf6df8-289a-4f17-aa59-329fe11d232e',
-                        'label': 'Male',
-                        'value': '',
-                        'presentation_order': 0,
-                        'score_points': 0,
-                        'activated_fields': [],
-                        'activated_steps': []
-                    },
-                    {
-                        'id': '9c7f343b-ed46-4c9e-9121-a54b6e310123',
-                        'label': 'Female',
-                        'value': '',
-                        'presentation_order': 0,
-                        'score_points': 0,
-                        'activated_fields': [],
-                        'activated_steps': []
-                    }
-                ],
-                'y': 0,
-                'x': 0,
-                'width': 0
-            }]
+        self.dummyFieldTemplates = load_json_file(WHISTLEBLOWER_IDENTITY_FIELD_PATH)['children']
+        for f in self.dummyFieldTemplates:
+            f['fieldgroup_id'] = ''
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
