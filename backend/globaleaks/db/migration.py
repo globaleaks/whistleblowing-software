@@ -38,7 +38,6 @@ migration_mapping = OrderedDict([
     ('Comment', [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0, 0, 0, 0]),
     ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, models.Context]),
     ('Custodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian, 0, 0, 0]),
-    ('CustodianContext', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustodianContext, 0, 0, 0]),
     ('Field', [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, models.Field, 0, 0, 0]),
     ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0, 0, 0, 0]),
     ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0, 0, 0, 0]),

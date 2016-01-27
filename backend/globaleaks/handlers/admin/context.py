@@ -31,7 +31,6 @@ def admin_serialize_context(store, context, language):
     """
     ret_dict = {
         'id': context.id,
-        'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
@@ -83,16 +82,6 @@ def db_associate_context_receivers(store, context, receivers_ids):
         if not receiver:
             raise errors.ReceiverIdNotFound
         context.receivers.add(receiver)
-
-
-def db_associate_context_custodians(store, context, custodians_ids):
-    context.custodians.clear()
-
-    for custodian_id in custodians_ids:
-        custodian = models.Custodian.get(store, custodian_id)
-        if not custodian:
-            raise errors.CustodianIdNotFound
-        context.custodians.add(custodian)
 
 
 @transact_ro
@@ -165,7 +154,6 @@ def db_update_context(store, context, request, language):
         db_reset_questionnaire(store, context)
         db_setup_default_questionnaire(store, context)
 
-    db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
 
     return context
@@ -196,7 +184,6 @@ def db_create_context(store, request, language):
     else:
         db_create_steps(store, context, request['steps'], language)
 
-    db_associate_context_custodians(store, context, request['custodians'])
     db_associate_context_receivers(store, context, request['receivers'])
 
     return context
