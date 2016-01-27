@@ -14,12 +14,7 @@ class TestRunner(helpers.TestGL):
         #       spot errors like typos etcetera by raising the code coverage
 
         config = ServerOptions()
-        #runner.GLBaseRunner(config).run()
-        #return
 
         globaleaks_runner = GlobaLeaksRunner(config)
-        #a = yield globaleaks_runner.start_globaleaks()
-        #print a
 
-        #globaleaks_runner.start_asynchronous_jobs()
         yield globaleaks_runner.start_globaleaks()
