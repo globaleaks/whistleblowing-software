@@ -121,7 +121,6 @@ def serialize_context(store, context, language):
         'field_whistleblower_identity': '',
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_layout': context.questionnaire_layout,
-        'custodians': [c.id for c in context.custodians],
         'receivers': [r.id for r in context.receivers],
         'steps': [serialize_step(store, s, language) for s in context.steps]
     }

@@ -299,15 +299,6 @@ CREATE TABLE receiver (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE custodian_context (
-    context_id TEXT NOT NULL,
-    custodian_id TEXT NOT NULL,
-    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
-    FOREIGN KEY (custodian_id) REFERENCES custodian(id) ON DELETE CASCADE,
-    PRIMARY KEY (context_id, custodian_id)
-);
-
-
 CREATE TABLE receiver_context (
     context_id TEXT NOT NULL,
     receiver_id TEXT NOT NULL,

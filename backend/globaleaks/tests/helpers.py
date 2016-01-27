@@ -483,7 +483,6 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_custodian
         self.dummyCustodian = yield create_custodian(copy.deepcopy(self.dummyCustodianUser), 'en')
         self.dummyCustodianUser['id'] = self.dummyCustodian['id']
-        custodians_ids = [self.dummyCustodian['id']]
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
@@ -493,7 +492,6 @@ class TestGLWithPopulatedDB(TestGL):
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         # fill_data/create_context
-        self.dummyContext['custodians'] = custodians_ids
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
@@ -764,7 +762,6 @@ class MockDict():
             'description': u'Already localized desc',
             'recipients_clarification': u'',
             'presentation_order': 0,
-            'custodians': [],
             'receivers': [],
             'steps': [],
             'select_all_receivers': True,

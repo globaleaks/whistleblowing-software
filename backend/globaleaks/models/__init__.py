@@ -961,17 +961,6 @@ class ApplicationData(Model):
 
 
 # Follow classes used for Many to Many references
-class CustodianContext(BaseModel):
-    """
-    Class used to implement references between Receivers and Contexts
-    """
-    __storm_table__ = 'custodian_context'
-    __storm_primary__ = 'context_id', 'custodian_id'
-
-    context_id = Unicode()
-    custodian_id = Unicode()
-
-
 class ReceiverContext(BaseModel):
     """
     Class used to implement references between Receivers and Contexts
@@ -1223,13 +1212,6 @@ Context.receivers = ReferenceSet(
     Receiver.id
 )
 
-Context.custodians = ReferenceSet(
-    Context.id,
-    CustodianContext.context_id,
-    CustodianContext.custodian_id,
-    Custodian.id
-)
-
 Receiver.contexts = ReferenceSet(
     Receiver.id,
     ReceiverContext.receiver_id,
@@ -1239,7 +1221,7 @@ Receiver.contexts = ReferenceSet(
 
 model_list = [Node,
                User, Custodian, Receiver,
-               Context, CustodianContext, ReceiverContext,
+               Context, ReceiverContext,
                Field, FieldOption, FieldAttr,
                FieldAnswer, FieldAnswerGroup,
                OptionActivateField, OptionActivateStep,
