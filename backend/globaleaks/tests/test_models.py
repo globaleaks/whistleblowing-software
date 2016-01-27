@@ -231,17 +231,9 @@ class TestModels(helpers.TestGL):
 
 
 class TestField(helpers.TestGL):
-    fixtures = ['fields.json']
-
     @inlineCallbacks
     def setUp(self):
         yield super(TestField, self).setUp()
-
-        self.birthdate_id = u'27121164-0d0f-4180-9e9c-b1f72e815105'
-        self.name_id = u'25521164-0d0f-4f80-9e9c-93f72e815105'
-        self.surname_id = u'25521164-1d0f-5f80-8e8c-93f73e815156'
-        self.sex_id = u'98891164-1a0b-5b80-8b8b-93b73b815156'
-        self.generalities_id = u'37242164-1b1f-1110-1e1c-b1f12e815105'
 
     @transact
     def field_delete(self, store, field_id):
@@ -256,19 +248,22 @@ class TestField(helpers.TestGL):
 
     @transact_ro
     def get_children(self, store, field_id):
-        field = models.Field.get(store, field_id)
-        return [c.id for c in field.children]
+        return [c.id for c in models.Field.get(store, field_id).children]
 
     @inlineCallbacks
-    def test_add_field(self):
-        field_id = yield self.create_dummy_field()
-        yield self.assert_model_exists(models.Field, field_id)
+    def test_field(self):
+        field1_id = yield self.create_dummy_field()
+        yield self.assert_model_exists(models.Field, field1_id)
 
-        field_id = yield self.create_dummy_field(type='checkbox')
-        yield self.assert_model_exists(models.Field, field_id)
+        field2_id = yield self.create_dummy_field(type='checkbox')
+        yield self.assert_model_exists(models.Field, field2_id)
+
+        yield self.field_delete(field1_id)
+        yield self.assert_model_not_exists(models.Field, field1_id)
+        yield self.assert_model_exists(models.Field, field2_id)
 
     @inlineCallbacks
-    def test_add_field_group(self):
+    def test_field_group(self):
         field1_id = yield self.create_dummy_field(
             label={"en": "the first testable field"},
             type='checkbox'
@@ -282,27 +277,16 @@ class TestField(helpers.TestGL):
             type='fieldgroup',
             x=1, y=2,
         )
+
         yield self.assert_model_exists(models.Field, fieldgroup_id)
         yield self.assert_model_exists(models.Field, field2_id)
         yield self.add_children(fieldgroup_id, field1_id, field2_id)
+
         fieldgroup_children = yield self.get_children(fieldgroup_id)
         self.assertIn(field1_id, fieldgroup_children)
         self.assertIn(field2_id, fieldgroup_children)
 
-    @inlineCallbacks
-    def test_delete_field_child(self):
-        children = yield self.get_children(self.generalities_id)
-        self.assertEqual(len(children), 4)
-        for c in children:
-            yield self.field_delete(c)
-
-        children = yield self.get_children(self.generalities_id)
-        self.assertEqual(len(children), 0)
-
-    @inlineCallbacks
-    def test_delete_field_group(self):
-        children = yield self.get_children(self.generalities_id)
-        self.assertEqual(len(children), 4)
-
-        yield self.field_delete(self.generalities_id)
-        yield self.assert_model_not_exists(models.Field, self.generalities_id)
+        yield self.field_delete(fieldgroup_id)
+        yield self.assert_model_not_exists(models.Field, fieldgroup_id)
+        yield self.assert_model_not_exists(models.Field, field1_id)
+        yield self.assert_model_not_exists(models.Field, field2_id)

@@ -20,7 +20,6 @@ class TestFixtures(helpers.TestGL):
         for root, dirs, files in os.walk(helpers.FIXTURES_PATH):
             for fixture in files:
                 yield helpers.import_fixture(fixture)
-                # XXX. what exately we do test here?
 
     def test_export_fixture(self):
         """

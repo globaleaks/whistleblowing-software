@@ -134,19 +134,13 @@ def import_fixture(store, fixture):
     """
     data = load_json_file(os.path.join(FIXTURES_PATH, fixture))
     for mock in data:
-        if mock['class'] == 'Field':
-            if mock['fields']['instance'] != 'reference':
-                del mock['fields']['template_id']
+       for k in mock['fields']:
+           if k.endswidh('_id') and mock['fields'][k] == '':
+               del mock['fields'][k]
 
-            if mock['fields']['step_id'] == '':
-                del mock['fields']['step_id']
-
-            if mock['fields']['fieldgroup_id'] == '':
-                del mock['fields']['fieldgroup_id']
-
-        mock_class = getattr(models, mock['class'])
-        models.db_forge_obj(store, mock_class, mock['fields'])
-        store.commit()
+       mock_class = getattr(models, mock['class'])
+       models.db_forge_obj(store, mock_class, mock['fields'])
+       store.commit()
 
 
 def change_field_type(field, field_type):
