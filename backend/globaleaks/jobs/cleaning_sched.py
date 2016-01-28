@@ -11,7 +11,7 @@ from datetime import timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -71,11 +71,14 @@ class CleaningSchedule(GLJob):
                 store.add(mail)
 
     @transact
-    def clean_stats(self, store):
+    def clean_db(self, store):
         # delete stats older than 3 months
         store.find(models.Stats, models.Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
 
-    @transact
+        # delete anomalies older than 1 months
+        store.find(models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365/12)).remove()
+
+    @transact_ro
     def get_files_to_secure_delete(self, store):
         return [file_to_delete.filepath for file_to_delete in store.find(models.SecureFileDelete)]
 
@@ -95,13 +98,12 @@ class CleaningSchedule(GLJob):
             current_run_time = time.time() - self.start_time
             log.debug("Ending secure delete of file %s (execution time: %.2f)" % (file_to_delete, current_run_time))
 
-
     @inlineCallbacks
     def operation(self):
         yield self.clean_expired_submissions()
 
         yield self.check_for_expiring_submissions()
 
-        yield self.clean_stats()
+        yield self.clean_db()
 
         yield self.perform_secure_deletion_of_files()
