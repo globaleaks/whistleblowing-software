@@ -39,13 +39,40 @@ trigger_model_map = {
 }
 
 
+def serialize_content(store, cache, key, obj, language):
+    obj_id = obj.id
+
+    cache_key = key + obj_id + language
+
+    if cache_key not in cache:
+        if key == 'tip':
+             cache_obj = serialize_rtip(store, obj, language)
+        elif key == 'context':
+             cache_obj = admin_serialize_context(store, obj, language)
+        elif key == 'receiver':
+             cache_obj = admin_serialize_receiver(obj, language)
+        elif key == 'message':
+             cache_obj = serialize_message(obj)
+        elif key == 'comment':
+             cache_obj = serialize_comment(obj)
+        elif key == 'file':
+             cache_obj = serialize_internalfile(obj)
+
+        cache[cache_key] = cache_obj
+
+    return copy.deepcopy(cache[cache_key])
+
+
 class MailGenerator(object):
+    def __init__(self):
+        self.cache = {}
+
     def process_ReceiverTip(self, store, rtip, data):
         language = rtip.receiver.user.language
 
-        data['tip'] = serialize_rtip(store, rtip, language)
-        data['context'] = admin_serialize_context(store, rtip.internaltip.context, language)
-        data['receiver'] = admin_serialize_receiver(rtip.receiver, language)
+        data['tip'] = serialize_content(store, self.cache, 'tip', rtip, language)
+        data['context'] = serialize_content(store, self.cache, 'context', rtip.internaltip.context, language)
+        data['receiver'] = serialize_content(store, self.cache, 'receiver', rtip.receiver, language)
 
         self.process_mail_creation(store, data)
 
@@ -57,10 +84,10 @@ class MailGenerator(object):
 
         language = message.receivertip.receiver.user.language
 
-        data['message'] = serialize_message(message)
-        data['tip'] = serialize_rtip(store, message.receivertip, language)
-        data['context'] = admin_serialize_context(store, message.receivertip.internaltip.context, language)
-        data['receiver'] = admin_serialize_receiver(message.receivertip.receiver, language)
+        data['tip'] = serialize_content(store, self.cache, 'tip', message.receivertip, language)
+        data['context'] = serialize_content(store, self.cache, 'context', message.receivertip.internaltip.context, language)
+        data['receiver'] = serialize_content(store, self.cache, 'receiver', message.receivertip.receiver, language)
+        data['message'] = serialize_content(store, self.cache, 'message', message, language)
 
         self.process_mail_creation(store, data)
 
@@ -73,10 +100,10 @@ class MailGenerator(object):
             language = rtip.receiver.user.language
 
             dataX = copy.deepcopy(data)
-            dataX['comment'] = serialize_comment(comment)
-            dataX['tip'] = serialize_rtip(store, rtip, language)
-            dataX['context'] = admin_serialize_context(store, comment.internaltip.context, language)
-            dataX['receiver'] = admin_serialize_receiver(rtip.receiver, language)
+            dataX['tip'] = serialize_content(store, self.cache, 'tip', rtip, language)
+            dataX['context'] = serialize_content(store, self.cache, 'context', comment.internaltip.context, language)
+            dataX['receiver'] = serialize_content(store, self.cache, 'receiver', rtip.receiver, language)
+            dataX['comment'] = serialize_content(store, self.cache, 'comment', comment, language)
 
             self.process_mail_creation(store, dataX)
 
@@ -84,10 +111,10 @@ class MailGenerator(object):
     def process_ReceiverFile(self, store, rfile, data):
         language = rfile.receiver.user.language
 
-        data['file'] = serialize_internalfile(rfile.internalfile)
-        data['tip'] = serialize_rtip(store, rfile.receivertip, language)
-        data['context'] = admin_serialize_context(store, rfile.internalfile.internaltip.context, language)
-        data['receiver'] = admin_serialize_receiver(rfile.receiver, language)
+        data['tip'] = serialize_content(store, self.cache, 'tip', rfile.receivertip, language)
+        data['context'] = serialize_content(store, self.cache, 'context', rfile.internalfile.internaltip.context, language)
+        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receiver, language)
+        data['file'] = serialize_content(store, self.cache, 'file', rfile.internalfile, language)
 
         self.process_mail_creation(store, data)
 
