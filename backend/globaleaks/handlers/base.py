@@ -439,7 +439,7 @@ class BaseHandler(RequestHandler):
         if session_id is None:
             return None
 
-        return GLSettings.sessions.get(session_id, None)
+        return GLSettings.sessions.get(session_id)
 
     def get_file_upload(self):
         try:

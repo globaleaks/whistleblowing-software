@@ -1,5 +1,5 @@
 from globaleaks.settings import GLSettings
-from globaleaks.utils.tempobj import TempObj
+from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 # needed in order to allow UT override
@@ -133,7 +133,7 @@ outcoming_event_monitored = [
 ]
 
 
-class EventTrack(TempObj):
+class EventTrack(object):
     """
     Every event that is kept in memory, is a temporary object.
     Once a while, they disappear. The statistics just take
@@ -161,13 +161,9 @@ class EventTrack(TempObj):
         if self.debug:
             log.debug("Creation of Event %s" % self.serialize_event())
 
-        TempObj.__init__(self,
-                         EventTrackQueue.queue,
-                         self.event_id,
-                         10, # seconds of validity
-                         reactor_override)
+        EventTrackQueue.set(self.event_id, self)
 
-        self.expireCallbacks.append(self.synthesis)
+        # self.expireCallbacks.append(self.synthesis)
 
     def synthesis(self):
         """
@@ -187,32 +183,22 @@ class EventTrack(TempObj):
         return "%s" % self.serialize_event()
 
 
-class EventTrackQueue(object):
+class EventTrackQueueClass(TempDict):
     """
     This class has only a class variable, used to stock the queue of the
     event happened on the latest minutes.
     """
-    queue = dict()
     event_absolute_counter = 0
 
-    @staticmethod
-    def event_number():
-        EventTrackQueue.event_absolute_counter += 1
-        return EventTrackQueue.event_absolute_counter
+    def event_number(self):
+        self.event_absolute_counter += 1
+        return self.event_absolute_counter
 
-    @staticmethod
-    def take_current_snapshot():
-        """
-        Called only by the handler /admin/activities
-        """
-        serialized_ret = []
+    def take_current_snapshot(self):
+        return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.iteritems()]
 
-        for _, event_obj in EventTrackQueue.queue.iteritems():
-            serialized_ret.append(event_obj.serialize_event())
+    def reset(self):
+        self.clear()
+        self.event_absolute_counter = 0
 
-        return serialized_ret
-
-    @staticmethod
-    def reset():
-        EventTrackQueue.queue = dict()
-        EventTrackQueue.event_absolute_counter = 0
+EventTrackQueue = EventTrackQueueClass()

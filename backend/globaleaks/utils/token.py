@@ -14,39 +14,38 @@ from globaleaks.anomaly import Alarm
 
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.rest import errors
-from globaleaks.utils.tempobj import TempObj
+from globaleaks.utils.tempdict import TempDict
 from globaleaks.settings import GLSettings
 from globaleaks.security import sha256, generateRandomKey
 
 
-# needed in order to allow UT override
-reactor_override = None
+class TokenListClass(TempDict):
+    def __init__(self, *args, **kwds):
+        TempDict.__init__(self, *args, **kwds)
 
+    def get_timeout(self):
+        return GLSettings.memory_copy.submission_minimum_delay + \
+               GLSettings.memory_copy.submission_maximum_ttl
 
-class TokenList(object):
-    token_dict = dict()
+    def expireCallback(self, item):
+        for f in item.uploaded_files:
+            try:
+                os.remove(f['encrypted_path'])
+            except Exception:
+                pass
 
-    @staticmethod
-    def delete(t_id):
-        """
-        Token can be used only once, so need to be remove after the first usage.
-        :param t_id:
-        :return:
-        """
-        if t_id not in TokenList.token_dict:
+    def get(self, key):
+        ret = TempDict.get(self, key)
+        if ret == None:
             raise errors.TokenFailure("Not found")
 
-        del TokenList.token_dict[t_id]
-
-    @staticmethod
-    def get(t_id):
-        if t_id not in TokenList.token_dict:
-            raise errors.TokenFailure("Not found")
-
-        return TokenList.token_dict[t_id]
+        return ret
 
 
-class Token(TempObj):
+TokenList = TokenListClass()
+
+
+class Token(object):
     MAX_USES = 30
 
     def __init__(self, token_kind, uses = MAX_USES):
@@ -56,11 +55,7 @@ class Token(TempObj):
         we plan to add other kinds like 'file'.
 
         """
-
-        if reactor_override:
-            reactor = reactor_override
-        else:
-            reactor = None
+        self.id = generateRandomKey(42)
 
         self.kind = token_kind
 
@@ -82,8 +77,6 @@ class Token(TempObj):
         # to keep track of the file uploaded associated
         self.uploaded_files = []
 
-        self.id = generateRandomKey(42)
-
         # initialization of token configuration
         self.human_captcha = False
         self.graph_captcha = False
@@ -91,16 +84,9 @@ class Token(TempObj):
 
         self.generate_token_challenge()
 
-        TempObj.__init__(self,
-                         TokenList.token_dict,
-                         # token ID:
-                         self.id,
-                         # seconds of validity:
-                         self.start_validity_secs + self.end_validity_secs,
-                         reactor)
+        TokenList.set(self.id, self)
 
     def expire(self):
-        TempObj.expire(self)
         for f in self.uploaded_files:
             try:
                 os.remove(f['encrypted_path'])
@@ -289,4 +275,4 @@ class Token(TempObj):
 
         self.remaining_uses -= 1
         if self.remaining_uses <= 0:
-            TokenList.delete(self.id)
+            del TokenList[self.id]
