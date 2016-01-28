@@ -20,6 +20,7 @@ from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.singleton import Singleton
+from globaleaks.utils.tempdict import TempDict
 
 this_directory = os.path.dirname(__file__)
 
@@ -103,7 +104,8 @@ class GLSettingsClass(object):
         self.default_password = 'globaleaks'
 
         # some singleton classes: sessions and some event queues
-        self.sessions = {}
+        self.authentication_lifetime = 3600
+        self.sessions = TempDict(timeout=self.authentication_lifetime)
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
 
@@ -131,8 +133,6 @@ class GLSettingsClass(object):
         self.configured_hosts = []
 
         self.receipt_regexp = u'[0-9]{16}'
-
-        self.authentication_lifetime = 3600
 
         # A lot of operations performed massively by globaleaks
         # should avoid to fetch continuously variables from the DB so that

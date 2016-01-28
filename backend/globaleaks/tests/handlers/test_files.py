@@ -33,7 +33,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         for f in self.dummyToken.uploaded_files:
             self.assertTrue(os.path.exists(f['encrypted_path']))
 
-        token.reactor_override.advance(360000)  # advance clock of 100 hours
+        token.TokenList.reactor.advance(360000)  # advance clock of 100 hours
 
         for f in self.dummyToken.uploaded_files:
             self.assertFalse(os.path.exists(f['encrypted_path']))

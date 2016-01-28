@@ -229,7 +229,10 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
                 if self.delete:
                     os.remove(self.keypath)
 
-        return _TemporaryFileWrapper.close(self)
+        try:
+            _TemporaryFileWrapper.close(self)
+        except:
+            pass
 
     def read(self, c=None):
         """

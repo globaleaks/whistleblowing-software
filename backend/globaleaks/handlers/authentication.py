@@ -16,23 +16,24 @@ from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 from globaleaks.security import generateRandomKey
-from globaleaks.utils import utility, tempobj
+from globaleaks.utils import utility, tempdict
 from globaleaks.utils.utility import log
 
 # needed in order to allow UT override
 reactor_override = None
 
 
-class GLSession(tempobj.TempObj):
+class GLSession(object):
     def __init__(self, user_id, user_role, user_status):
+        self.id = generateRandomKey(42)
         self.user_id = user_id
         self.user_role = user_role
         self.user_status = user_status
-        tempobj.TempObj.__init__(self,
-                                 GLSettings.sessions,
-                                 generateRandomKey(42),
-                                 GLSettings.authentication_lifetime,
-                                 reactor_override)
+
+        GLSettings.sessions.set(self.id, self)
+
+    def getTime(self):
+        return self._expireCall.getTime()
 
     def __repr__(self):
         return "%s %s expire in %s" % (self.user_role, self.user_id, self._expireCall)
@@ -67,22 +68,6 @@ def random_login_delay():
     return 0
 
 
-def update_session(session):
-    """
-    Returns
-            False if no session is found
-            True if the session is active and update the session
-                via utils/tempobj.TempObj.touch()
-    """
-    session_obj = GLSettings.sessions.get(session.id, None)
-
-    if session_obj is None:
-        return False
-
-    session_obj.touch()
-    return True
-
-
 def authenticated(role):
     """
     Decorator for authenticated sessions.
@@ -97,8 +82,6 @@ def authenticated(role):
             """
             if not cls.current_user:
                 raise errors.NotAuthenticated
-
-            update_session(cls.current_user)
 
             if role == '*' or role == cls.current_user.user_role:
                 log.debug("Authentication OK (%s)" % cls.current_user.user_role)
@@ -117,9 +100,6 @@ def unauthenticated(method_handler):
     If the user is logged in an authenticated sessions it does refresh the session.
     """
     def call_handler(cls, *args, **kwargs):
-        if cls.current_user:
-            update_session(cls.current_user)
-
         return method_handler(cls, *args, **kwargs)
 
     return call_handler

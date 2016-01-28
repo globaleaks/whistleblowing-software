@@ -173,7 +173,7 @@ class AlarmClass(object):
 
         requests_timing = []
 
-        for _, event_obj in event.EventTrackQueue.queue.iteritems():
+        for _, event_obj in event.EventTrackQueue.iteritems():
             current_event_matrix.setdefault(event_obj.event_type, 0)
             current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)

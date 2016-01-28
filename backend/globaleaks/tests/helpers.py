@@ -39,7 +39,7 @@ from globaleaks.jobs import statistics_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
-from globaleaks.utils import token, mailutils
+from globaleaks.utils import tempdict, token, mailutils
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import sum_dicts, datetime_null, datetime_now, log
 
@@ -69,8 +69,10 @@ transact.tp = FakeThreadPool()
 reactor_override = task.Clock()
 authentication.reactor_override = reactor_override
 event.reactor_override = reactor_override
-token.reactor_override = reactor_override
+token.TokenList.reactor = reactor_override
 runner.reactor_override = reactor_override
+tempdict.reactor_override = reactor_override
+GLSettings.sessions.reactor = reactor_override
 statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
 
 # client/app/data/fields/whistleblower_identity.json
@@ -101,7 +103,7 @@ def init_glsettings_for_unit_tests():
     GLSettings.set_devel_mode()
     GLSettings.logging = None
     GLSettings.scheduler_threadpool = FakeThreadPool()
-    GLSettings.sessions = {}
+    GLSettings.sessions.clear()
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
     GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
@@ -612,7 +614,7 @@ class TestHandler(TestGLWithPopulatedDB):
         self._handler.finish = mock_write
 
         # we need to reset settings.session to keep each test independent
-        GLSettings.sessions = dict()
+        GLSettings.sessions.clear()
 
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()

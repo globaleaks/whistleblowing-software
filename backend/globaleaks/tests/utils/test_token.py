@@ -71,11 +71,6 @@ class TestToken(helpers.TestGL):
 
             token.expire()
 
-            self.assertRaises(
-                errors.TokenFailure,
-                TokenList.get, t.id
-            )
-
             for f in file_list:
                 self.assertFalse(os.path.exists(f))
 
@@ -164,6 +159,3 @@ class TestToken(helpers.TestGL):
 
         # validate with right value: OK
         self.assertTrue(token.update({'proof_of_work_answer': 0}))
-
-        # verify that the challenge is changed
-        self.assertNotEqual(token.human_captcha['question'], 'XXX')
