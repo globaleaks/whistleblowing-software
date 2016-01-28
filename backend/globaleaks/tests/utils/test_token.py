@@ -69,10 +69,15 @@ class TestToken(helpers.TestGL):
                 self.assertTrue(os.path.exists(f['encrypted_path']))
                 file_list.append(f['encrypted_path'])
 
-            token.expire()
+        TokenList.reactor.advance(999999999)
+
+        for t in token_collection:
+            self.assertRaises(errors.TokenFailure, TokenList.get, t.id)
 
             for f in file_list:
                 self.assertFalse(os.path.exists(f))
+
+
 
     def test_token_update_right_answer(self):
         token = Token('submission')
