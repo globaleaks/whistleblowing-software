@@ -119,6 +119,7 @@ before_install:
   - nvm use 4.2
 install: true
 before_script:
+  - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
