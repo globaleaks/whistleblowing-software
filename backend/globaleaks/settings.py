@@ -115,9 +115,6 @@ class GLSettingsClass(object):
         # and resetted by session_management sched
         self.failed_login_attempts = 0
 
-        # download tocken trackin
-        self.download_tokens = dict()
-
         # static file rules
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
