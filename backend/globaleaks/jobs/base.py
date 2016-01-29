@@ -7,13 +7,16 @@ import exceptions
 import sys
 import time
 
-from twisted.internet import task, defer
+from twisted.internet import task, defer, reactor
 from twisted.python.failure import Failure
 
 from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.utility import log
+
+
+test_reactor = None
 
 
 DEFAULT_JOB_MONITOR_TIME = 5 * 60 # seconds
@@ -27,8 +30,9 @@ class JobMonitor(task.LoopingCall):
 
         task.LoopingCall.__init__(self, self.tooMuch)
 
-        if not GLSettings.testing:
-            self.start(self.monitor_time, False)
+        self.clock = reactor if test_reactor is None else test_reactor
+
+        self.start(self.monitor_time, False)
 
     def tooMuch(self):
         self.run += 1
@@ -62,6 +66,7 @@ class GLJob(task.LoopingCall):
 
     def __init__(self):
         task.LoopingCall.__init__(self, self._operation)
+        self.clock = reactor if test_reactor is None else test_reactor
 
     def stats_collection_start(self):
         self.monitor = JobMonitor(self, self.monitor_time)

@@ -19,9 +19,6 @@ from globaleaks.security import generateRandomKey
 from globaleaks.utils import utility, tempdict
 from globaleaks.utils.utility import log
 
-# needed in order to allow UT override
-reactor_override = None
-
 
 class GLSession(object):
     def __init__(self, user_id, user_role, user_status):

@@ -22,7 +22,7 @@ reload(sys)
 sys.getdefaultencoding()
 
 
-from globaleaks import db, models, security, event, runner
+from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
@@ -35,7 +35,6 @@ from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.admin.user import create_admin, create_custodian
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
-from globaleaks.jobs import statistics_sched
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
@@ -66,14 +65,12 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
     EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
-reactor_override = task.Clock()
-authentication.reactor_override = reactor_override
-event.reactor_override = reactor_override
-token.TokenList.reactor = reactor_override
-runner.reactor_override = reactor_override
-tempdict.reactor_override = reactor_override
-GLSettings.sessions.reactor = reactor_override
-statistics_sched.StatisticsSchedule.collection_start_time = datetime_now()
+test_reactor = task.Clock()
+jobs.base.test_reactor = test_reactor
+token.TokenList.reactor = test_reactor
+runner.test_reactor = test_reactor
+tempdict.test_reactor = test_reactor
+GLSettings.sessions.reactor = test_reactor
 
 # client/app/data/fields/whistleblower_identity.json
 WHISTLEBLOWER_IDENTITY_FIELD_PATH = \
@@ -158,6 +155,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 class TestGL(unittest.TestCase):
+    test_reactor = test_reactor
     initialize_test_database_using_archived_db = True
     encryption_scenario = 'MIXED'  # receivers with pgp and receivers without pgp
 
@@ -185,7 +183,7 @@ class TestGL(unittest.TestCase):
 
         Alarm.reset()
         event.EventTrackQueue.reset()
-        statistics_sched.StatisticsSchedule.reset()
+        jobs.statistics_sched.StatisticsSchedule.reset()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 

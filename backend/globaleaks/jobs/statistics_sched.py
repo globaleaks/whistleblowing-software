@@ -113,7 +113,6 @@ class StatisticsSchedule(GLJob):
     in the database.
     """
     name = "Statistics Sched"
-    collection_start_time = datetime_now()
 
     def __init__(self):
         self.collection_start_time = datetime_now()
@@ -123,6 +122,7 @@ class StatisticsSchedule(GLJob):
     def reset(cls):
         GLSettings.RecentEventQ = []
         GLSettings.RecentAnomaliesQ = {}
+        cls.collection_start_time = datetime_now()
 
     @defer.inlineCallbacks
     def operation(self):
@@ -150,6 +150,5 @@ class StatisticsSchedule(GLJob):
         # ------- END Mail thresholds management -----------
 
         self.reset()
-        self.collection_start_time = current_time
 
         log.debug("Saved stats and time updated, keys saved %d" % len(statistic_summary.keys()))

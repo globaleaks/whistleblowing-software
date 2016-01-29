@@ -22,7 +22,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 
-reactor_override = None
+test_reactor = None
 
 
 class GlobaLeaksRunner(UnixApplicationRunner):
@@ -35,8 +35,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         """
         Initialize the asynchronous operation, scheduled in the system
         """
-        if reactor_override:
-            self._reactor = reactor_override
+        if test_reactor:
+            self._reactor = test_reactor
 
         # Scheduling the Delivery schedule to be executed every 2 seconds
         delivery = delivery_sched.DeliverySchedule()
