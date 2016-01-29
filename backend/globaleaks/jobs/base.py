@@ -39,15 +39,19 @@ class JobMonitor(task.LoopingCall):
 
         self.elapsed_time = self.monitor_time * self.run
 
-        if (self.elapsed_time > 3600):
-            hours = int(self.elapsed_time / 3600)
-            error = "Warning: [%s] is taking more than %d hours to execute; killing it." % (self.job.name, hours)
-            self.job.stop()
-        if (self.elapsed_time > 60):
+        if (self.elapsed_time < 60):
+            error = "Warning: [%s] is taking more than %d seconds to execute" % (self.job.name, self.elapsed_time)
+        elif (self.elapsed_time < 3600):
             minutes = int(self.elapsed_time / 60)
             error = "Warning: [%s] is taking more than %d minutes to execute" % (self.job.name, minutes)
         else:
-            error = "Warning: [%s] is taking more than %d seconds to execute" % (self.job.name, self.elapsed_time)
+            hours = int(self.elapsed_time / 3600)
+            error = "Warning: [%s] is taking more than %d hours to execute; killing it." % (self.job.name, hours)
+
+            try:
+                self.job.stop()
+            except Exception as e:
+                pass
 
         log.err(error)
         send_exception_email(error, mail_reason="Job Time Exceeded")
@@ -83,7 +87,7 @@ class GLJob(task.LoopingCall):
         if self.monitor is not None:
             try:
                 self.monitor.stop()
-            except exceptions.AssertionError:
+            except:
                 pass
             finally:
                 self.monitor = None
