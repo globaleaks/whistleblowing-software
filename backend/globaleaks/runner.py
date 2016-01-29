@@ -38,21 +38,21 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         if reactor_override:
             self._reactor = reactor_override
 
-        # Scheduling the Session Management schedule to be executed every minute
-        session_management = session_management_sched.SessionManagementSchedule()
-        self._reactor.callLater(0, session_management.start, 60)
+        # Scheduling the Delivery schedule to be executed every 2 seconds
+        delivery = delivery_sched.DeliverySchedule()
+        self._reactor.callLater(1, delivery.start, 2)
 
         # Scheduling the Anomalies Check schedule to be executed every 10 seconds
         anomaly = statistics_sched.AnomaliesSchedule()
         self._reactor.callLater(0, anomaly.start, 10)
 
-        # Scheduling the Delivery schedule to be executed every 20 seconds
-        delivery = delivery_sched.DeliverySchedule()
-        self._reactor.callLater(1, delivery.start, 20)
-
         # Scheduling the Notification schedule to be executed every 60 seconds
         notification = notification_sched.NotificationSchedule()
         self._reactor.callLater(1, notification.start, 60)
+
+        # Scheduling the Session Management schedule to be executed every minute
+        session_management = session_management_sched.SessionManagementSchedule()
+        self._reactor.callLater(0, session_management.start, 60)
 
         # Scheduling the Tip Cleaning scheduler to be executed every day at 00:00
         current_time = datetime_now()
