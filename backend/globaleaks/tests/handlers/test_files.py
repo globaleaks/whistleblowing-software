@@ -30,10 +30,12 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
             handler = self.request(body=self.get_dummy_file())
             yield handler.post(self.dummyToken.id)
 
+        token.TokenList.reactor.pump([1] * (token.TokenList.get_timeout() - 1))
+
         for f in self.dummyToken.uploaded_files:
             self.assertTrue(os.path.exists(f['encrypted_path']))
 
-        token.TokenList.reactor.advance(360000)  # advance clock of 100 hours
+        token.TokenList.reactor.advance(1)
 
         for f in self.dummyToken.uploaded_files:
             self.assertFalse(os.path.exists(f['encrypted_path']))

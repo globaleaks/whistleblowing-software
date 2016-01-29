@@ -69,7 +69,7 @@ class TestToken(helpers.TestGL):
                 self.assertTrue(os.path.exists(f['encrypted_path']))
                 file_list.append(f['encrypted_path'])
 
-        TokenList.reactor.advance(999999999)
+        TokenList.reactor.pump([1] * TokenList.get_timeout())
 
         for t in token_collection:
             self.assertRaises(errors.TokenFailure, TokenList.get, t.id)
