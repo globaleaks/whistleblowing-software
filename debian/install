@@ -1,0 +1,4 @@
+backend/requirements.txt usr/share/globaleaks
+backend/default usr/share/globaleaks
+data usr/share/globaleaks/data
+client/build/* usr/share/globaleaks/client
