@@ -65,12 +65,6 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
     EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
-test_reactor = task.Clock()
-jobs.base.test_reactor = test_reactor
-token.TokenList.reactor = test_reactor
-runner.test_reactor = test_reactor
-tempdict.test_reactor = test_reactor
-GLSettings.sessions.reactor = test_reactor
 
 # client/app/data/fields/whistleblower_identity.json
 WHISTLEBLOWER_IDENTITY_FIELD_PATH = \
@@ -155,12 +149,18 @@ BaseHandler.get_file_upload = get_file_upload
 
 
 class TestGL(unittest.TestCase):
-    test_reactor = test_reactor
     initialize_test_database_using_archived_db = True
     encryption_scenario = 'MIXED'  # receivers with pgp and receivers without pgp
 
     @inlineCallbacks
     def setUp(self):
+        self.test_reactor = task.Clock()
+        jobs.base.test_reactor = self.test_reactor
+        token.TokenList.reactor = self.test_reactor
+        runner.test_reactor = self.test_reactor
+        tempdict.test_reactor = self.test_reactor
+        GLSettings.sessions.reactor = self.test_reactor
+
         init_glsettings_for_unit_tests()
 
         self.setUp_dummy()
