@@ -6,7 +6,7 @@ from twisted.internet import reactor
 
 
 # needed in order to allow UT override
-reactor_override = None
+test_reactor = None
 
 
 class TempDict(OrderedDict):
@@ -18,10 +18,7 @@ class TempDict(OrderedDict):
         self.size_limit = size_limit
         OrderedDict.__init__(self)
 
-        if reactor_override:
-            self.reactor = reactor_override
-        else:
-            self.reactor = reactor
+        self.reactor = reactor if test_reactor is None else test_reactor
 
         self._check_size_limit()
 

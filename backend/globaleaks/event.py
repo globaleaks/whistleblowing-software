@@ -2,9 +2,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
-# needed in order to allow UT override
-reactor_override = None
-
 # follow the checker, they are executed from handlers/base.py
 # by prepare() and/or flush()
 
