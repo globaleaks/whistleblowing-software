@@ -19,6 +19,11 @@ browser.getCapabilities().then(function(s) {
     browserVersion = s.caps_.version;
     return (browserName == 'internet explorer' && browserVersion < 11);
   };
+
+  exports.isChrome = function() {
+    browserName = s.caps_.browserName;
+    return browserName == 'chrome';
+  };
 });
 
 
