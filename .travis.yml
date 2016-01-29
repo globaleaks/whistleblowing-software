@@ -54,47 +54,57 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='firefox 42'
+    - env: GLTEST='end2end-5' BROWSER='firefox 43'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='chrome 37'
+    - env: GLTEST='end2end-6' BROWSER='firefox beta'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-7' BROWSER='chrome 46'
+    - env: GLTEST='end2end-7' BROWSER='chrome 37'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-8' BROWSER='safari 8'
+    - env: GLTEST='end2end-8' BROWSER='chrome 47'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-9' BROWSER='safari 9'
+    - env: GLTEST='end2end-9' BROWSER='chrome beta'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-10' BROWSER='android 4.4'
+    - env: GLTEST='end2end-10' BROWSER='safari 8'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-11' BROWSER='android 5.1'
+    - env: GLTEST='end2end-11' BROWSER='safari 9'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
+    - env: GLTEST='end2end-12' BROWSER='android 4.4'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
+    - env: GLTEST='end2end-13' BROWSER='android 5.1'
+      python: "2.7"
+      addons:
+        sauce_connect: true
+
+    - env: GLTEST='end2end-14' BROWSER='iphone 7.1'
+      python: "2.7"
+      addons:
+        sauce_connect: true
+
+    - env: GLTEST='end2end-15' BROWSER='iphone 9.2'
       python: "2.7"
       addons:
         sauce_connect: true
@@ -105,15 +115,17 @@ matrix:
     - env: GLTEST='end2end-2' BROWSER='ie 11'
     - env: GLTEST='end2end-3' BROWSER='edge 20.10240'
     - env: GLTEST='end2end-4' BROWSER='firefox 34'
-    - env: GLTEST='end2end-5' BROWSER='firefox 42'
-    - env: GLTEST='end2end-6' BROWSER='chrome 37'
-    - env: GLTEST='end2end-7' BROWSER='chrome 46'
-    - env: GLTEST='end2end-8' BROWSER='safari 8'
-    - env: GLTEST='end2end-9' BROWSER='safari 9'
-    - env: GLTEST='end2end-10' BROWSER='android 4.4'
-    - env: GLTEST='end2end-11' BROWSER='android 5.1'
-    - env: GLTEST='end2end-12' BROWSER='iphone 7.1'
-    - env: GLTEST='end2end-13' BROWSER='iphone 9.1'
+    - env: GLTEST='end2end-5' BROWSER='firefox 43'
+    - env: GLTEST='end2end-6' BROWSER='firefox beta'
+    - env: GLTEST='end2end-7' BROWSER='chrome 37'
+    - env: GLTEST='end2end-8' BROWSER='chrome 47'
+    - env: GLTEST='end2end-9' BROWSER='chrome beta'
+    - env: GLTEST='end2end-10' BROWSER='safari 8'
+    - env: GLTEST='end2end-11' BROWSER='safari 9'
+    - env: GLTEST='end2end-12' BROWSER='android 4.4'
+    - env: GLTEST='end2end-13' BROWSER='android 5.1'
+    - env: GLTEST='end2end-14' BROWSER='iphone 7.1'
+    - env: GLTEST='end2end-15' BROWSER='iphone 9.2'
 before_install:
   - nvm install 4.2
   - nvm use 4.2
