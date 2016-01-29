@@ -8,6 +8,9 @@ env:
 matrix:
   fast_finish: true
   include:
+    - env: GLTEST='build_and_install'
+      python: "2.7"
+
     - env: GLTEST='unit' GLREQUIREMENTS='precise'
       python: "2.7"
 
@@ -24,9 +27,6 @@ matrix:
       python: "2.7"
 
     - env: GLTEST='unit' GLREQUIREMENTS='stretch'
-      python: "2.7"
-
-    - env: GLTEST='build_and_install'
       python: "2.7"
 
     - env: GLTEST='end2end-0' BROWSER='ie 9'
