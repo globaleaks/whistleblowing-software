@@ -162,25 +162,27 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to see files and download them', function() {
-    expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
-    element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
-    if (utils.isChrome()) {
-      // Chrome is the only browser on which currently is easy to configure a know download path
-       var download_path = "/tmp/test-globaleaks-process.js";
+    if (utils.testFileUpload()) {
+      expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
+      element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
+        if (utils.isChrome()) {
+          // Chrome is the only browser on which currently is easy to configure a know download path
+          var download_path = "/tmp/test-globaleaks-process.js";
 
-        browser.driver.wait(function() {
-          // Wait until the file has been downloaded.
-          // We need to wait thus as otherwise protractor has a nasty habit of
-          // trying to do any following tests while the file is still being
-          // downloaded and hasn't been moved to its final location.
-          return fs.existsSync(download_path);
-        }, 3000000).then(function() {
-           expect(fs.readFileSync(download_path, { encoding: 'utf8' })).toContain("Recipient should be able to see files and download them");
-        });
-      } else {
-        browser.waitForAngular();
-      }
-    });
+          browser.driver.wait(function() {
+            // Wait until the file has been downloaded.
+            // We need to wait thus as otherwise protractor has a nasty habit of
+            // trying to do any following tests while the file is still being
+            // downloaded and hasn't been moved to its final location.
+            return fs.existsSync(download_path);
+          }, 3000000).then(function() {
+             expect(fs.readFileSync(download_path, { encoding: 'utf8' })).toContain("Recipient should be able to see files and download them");
+          });
+        } else {
+          browser.waitForAngular();
+        }
+      });
+    }
   });
 
   it('Recipient should be able to leave a comment to the whistleblower', function() {
