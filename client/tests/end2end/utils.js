@@ -11,17 +11,25 @@ exports.waitUntilReady = function (elm, timeout) {
 
 browser.getCapabilities().then(function(s) {
   exports.testFileUpload = function() {
-    return (s.caps_.platform === 'LINUX');
+    // Test on file upload is currently performed in all browsers;
+    return true;
+  };
+
+  exports.testFileDownload = function() {
+    // Test on file download is currently performed only in chrome and safary;
+    // the reason is that except this these, the other browsers asks user interaction;
+    var browserName = s.caps_.browserName.toLowerCase();
+    return (['chrome', 'safari'].indexOf(browserName) !== -1);
   };
 
   exports.isOldIE = function() {
-    browserName = s.caps_.browserName;
-    browserVersion = s.caps_.version;
+    var browserName = s.caps_.browserName.toLowerCase();
+    var browserVersion = s.caps_.version;
     return (browserName == 'internet explorer' && browserVersion < 11);
   };
 
   exports.isChrome = function() {
-    browserName = s.caps_.browserName;
+    var browserName = s.caps_.browserName.toLowerCase();
     return browserName == 'chrome';
   };
 });

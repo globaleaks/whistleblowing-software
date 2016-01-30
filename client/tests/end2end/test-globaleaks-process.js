@@ -1,6 +1,9 @@
 var utils = require('./utils.js');
 
 var fs = require('fs');
+var path = require('path');
+
+var fileToUpload = path.resolve(__filename);
 
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
@@ -58,9 +61,9 @@ describe('globaLeaks process', function() {
             // Currently the saucelabs file test seems to work only on linux
             if (utils.testFileUpload()) {
               browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-              element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+              element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
                 browser.waitForAngular();
-                element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+                element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
                   browser.waitForAngular();
                   element(by.id('NextStepButton')).click().then(function () {
                     element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
@@ -164,24 +167,26 @@ describe('globaLeaks process', function() {
   it('Recipient should be able to see files and download them', function() {
     if (utils.testFileUpload()) {
       expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
-      element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
-        if (utils.isChrome()) {
-          // Chrome is the only browser on which currently is easy to configure a know download path
-          var download_path = "/tmp/test-globaleaks-process.js";
+      if (utils.testFileDownload()) {
+        element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
+          if (utils.isChrome()) {
+            // Chrome is the only browser on which currently is easy to configure a know download path
+            var download_path = "/tmp/test-globaleaks-process.js";
 
-          browser.driver.wait(function() {
-            // Wait until the file has been downloaded.
-            // We need to wait thus as otherwise protractor has a nasty habit of
-            // trying to do any following tests while the file is still being
-            // downloaded and hasn't been moved to its final location.
-            return fs.existsSync(download_path);
-          }, 3000000).then(function() {
-             expect(fs.readFileSync(download_path, { encoding: 'utf8' })).toContain("Recipient should be able to see files and download them");
-          });
-        } else {
-          browser.waitForAngular();
-        }
-      });
+            browser.driver.wait(function() {
+              // Wait until the file has been downloaded.
+              // We need to wait thus as otherwise protractor has a nasty habit of
+              // trying to do any following tests while the file is still being
+              // downloaded and hasn't been moved to its final location.
+              return fs.existsSync(download_path);
+            }, 3000000).then(function() {
+               expect(fs.readFileSync(download_path, { encoding: 'utf8' })).toContain("Recipient should be able to see files and download them");
+            });
+          } else {
+            browser.waitForAngular();
+          }
+        });
+      }
     }
   });
 
@@ -219,8 +224,8 @@ describe('globaLeaks process', function() {
     login_whistleblower(receipts[0]).then(function() {
       if (utils.testFileUpload()) {
         browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-        element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
-          element(by.xpath("//input[@type='file']")).sendKeys(__filename).then(function() {
+        element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+          element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
             // TODO: test file addition
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/');
@@ -234,10 +239,12 @@ describe('globaLeaks process', function() {
   it('Recipient should be able to export the submission', function() {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-export')).click().then(function () {
-          browser.waitForAngular();
-          // TODO: test the downloaded zip file opening it and verifying its content.
-        });
+        if (utils.testFileDownload()) {
+          element(by.id('tip-action-export')).click().then(function () {
+            browser.waitForAngular();
+            // TODO: test the downloaded zip file opening it and verifying its content.
+          });
+        }
       });
     });
   });
