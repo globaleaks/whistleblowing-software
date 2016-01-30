@@ -160,24 +160,16 @@ class EventTrack(object):
 
         EventTrackQueue.set(self.event_id, self)
 
-        # self.expireCallbacks.append(self.synthesis)
-
-    def synthesis(self):
-        """
-        This is a callback append to the expireCallbacks, and
-        just make a synthesis of the Event in the RecentEventQ
-        """
-        GLSettings.RecentEventQ.append(
-            dict({
-                'id': self.event_id,
-                'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
-                'event':  self.event_type,
-                'duration': round(self.request_time, 1),
-            })
-        )
-
     def __repr__(self):
         return "%s" % self.serialize_event()
+
+    def synthesis(self):
+        return {
+            'id': self.event_id,
+            'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
+            'event':  self.event_type,
+            'duration': round(self.request_time, 1),
+        }
 
 
 class EventTrackQueueClass(TempDict):
@@ -186,6 +178,13 @@ class EventTrackQueueClass(TempDict):
     event happened on the latest minutes.
     """
     event_absolute_counter = 0
+
+    def expireCallback(self, event):
+        """
+        On expiration of an event perform the synthesis and
+        append them to the RecentEventQueue.
+        """
+        GLSettings.RecentEventQ.append(event.synthesis())
 
     def event_number(self):
         self.event_absolute_counter += 1
@@ -197,5 +196,6 @@ class EventTrackQueueClass(TempDict):
     def reset(self):
         self.clear()
         self.event_absolute_counter = 0
+
 
 EventTrackQueue = EventTrackQueueClass()

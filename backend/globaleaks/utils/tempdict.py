@@ -42,12 +42,22 @@ class TempDict(OrderedDict):
         self._check_size_limit()
 
     def get(self, key):
-        item = self[key] if key in self else None
+        if key in self:
+            if self[key]._expireCall is not None:
+                self[key]._expireCall.reset(self.get_timeout())
 
-        if item is not None and item._expireCall is not None:
-            item._expireCall.reset(self.get_timeout())
+            return self[key]
 
-        return item
+        return None
+
+    def delete(self, key):
+        if key in self:
+            try:
+                self[key]._expireCall.stop()
+            except:
+                pass
+
+            del self[key]
 
     def _check_size_limit(self):
         size_limit = self.get_size_limit()
@@ -56,7 +66,8 @@ class TempDict(OrderedDict):
                 self.popitem(last=False)
 
     def _expire(self, key):
-        if self.expireCallback is not None:
-            self.expireCallback(self[key])
+        if key in self:
+            if self.expireCallback is not None:
+                self.expireCallback(self[key])
 
-        del self[key]
+            del self[key]
