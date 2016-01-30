@@ -56,14 +56,7 @@ class TempDict(OrderedDict):
                 self.popitem(last=False)
 
     def _expire(self, key):
-        try:
-            if self.expireCallback is not None:
-                self.expireCallback(self[key])
-        except Exception as e:
-          print e
-          pass
+        if self.expireCallback is not None:
+            self.expireCallback(self[key])
 
-        try:
-            del self[key]
-        except:
-            pass
+        del self[key]
