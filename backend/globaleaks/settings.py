@@ -486,15 +486,13 @@ class GLSettingsClass(object):
         if not os.path.exists(path):
             try:
                 os.mkdir(path)
-                return True
             except OSError as excep:
                 self.print_msg("Error in creating directory: %s (%s)" % (path, excep.strerror))
                 raise excep
-        else:
-            if not os.path.isdir(path):
-                self.print_msg("Error creating directory: %s (path exists and is not a dir)" % path)
-                raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
-            return False
+
+            return True
+
+        return False
 
     def create_directories(self):
         """
@@ -504,19 +502,17 @@ class GLSettingsClass(object):
         here the static files (default logs, and in the future pot files for localization)
         because here stay all the files needed by the application except the python scripts
         """
-        new_environment = self.create_directory(self.working_path)
-
-        for dirpath in [self.db_path,
+        for dirpath in [self.working_path,
+                        self.db_path,
                         self.glfiles_path,
-                        self.static_path,
-                        self.static_path_l10n,
                         self.submission_path,
                         self.tmp_upload_path,
                         self.torhs_path,
                         self.log_path,
                         self.ramdisk_path]:
-           self.create_directory(dirpath)
+            self.create_directory(dirpath)
 
+        new_environment = self.create_directory(self.static_path)
         if new_environment:
             dir_util.copy_tree(self.static_source, self.static_path)
             self.create_directory(self.static_path_l10n)
