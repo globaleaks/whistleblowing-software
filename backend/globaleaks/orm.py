@@ -114,7 +114,6 @@ class transact(object):
         except exceptions.DisconnectionError as e:
             transaction.abort()
             # we print the exception here because we do not propagate it
-            GLSettings.log_debug(e)
             result = None
         except Exception as e:
             transaction.abort()
