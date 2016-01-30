@@ -1,5 +1,5 @@
 exports.config = {
-  framework: 'jasmine2',
+  framework: 'jasmine',
 
   baseUrl: 'http://127.0.0.1:8082/',
 
@@ -18,19 +18,7 @@ exports.config = {
   ],
 
   capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
-      // Get rid of --ignore-certificate yellow warning
-      args: ['--no-sandbox', '--test-type=browser'],
-      // Set download path and avoid prompting for download even though
-      // this is already the default on Chrome but for completeness
-      prefs: {
-        'download': {
-          'prompt_for_download': false,
-          'default_directory': '/tmp/'
-        }
-      }
-    }
+    'browserName': 'firefox'
   },
 
   jasmineNodeOpts: {
