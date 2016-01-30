@@ -12,7 +12,7 @@
     "bower": "*"
   },
   "devDependencies": {
-    "chai": "3.4.1",
+    "chai": "3.5.0",
     "coveralls": "2.11.6",
     "grunt": "0.4.5",
     "grunt-angular-templates": "1.0.2",
@@ -25,7 +25,6 @@
     "grunt-contrib-copy": "0.8.2",
     "grunt-contrib-cssmin": "0.14.0",
     "grunt-contrib-jshint": "0.12.0",
-    "grunt-css": "0.5.4",
     "grunt-istanbul": "0.6.1",
     "grunt-line-remover": "0.0.2",
     "grunt-inline-alt": "0.3.10",
@@ -34,11 +33,11 @@
     "grunt-protractor-runner": "3.0.0",
     "grunt-string-replace": "1.2.1",
     "grunt-usemin": "3.1.1",
-    "mocha": "2.3.4",
+    "mocha": "2.4.5",
     "node-gettext": "0.2.14",
     "protractor": "3.0.0",
-    "should": "8.2.0",
-    "superagent": "1.7.1",
+    "should": "8.2.1",
+    "superagent": "1.7.2",
     "supertest": "1.1.0"
   }
 }
