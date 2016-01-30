@@ -224,8 +224,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-connect');
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
