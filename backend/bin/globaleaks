@@ -83,7 +83,7 @@ sys.path.insert(0, root)
 
 requirements_path = os.path.join(root, 'requirements.txt')
 if not os.path.exists(requirements_path):
-    requirements_path = '/usr/share/globaleaks/backend/requirements.txt'
+    requirements_path = '/usr/share/globaleaks/requirements.txt'
 
 pip_version_check(requirements_path)
 
