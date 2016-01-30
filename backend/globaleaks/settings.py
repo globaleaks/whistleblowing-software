@@ -256,10 +256,6 @@ class GLSettingsClass(object):
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
 
-        self.ramdisk_path = '/dev/shm/globaleaks'
-        if not os.path.isdir('/dev/shm'):
-            self.ramdisk_path = os.path.join(self.working_path, 'ramdisk')
-
         # gnupg path is used by PGP as temporary directory with keyring and files encryption.
         self.pgproot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
 
