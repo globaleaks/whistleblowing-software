@@ -1,7 +1,6 @@
 #include <tunables/global>
 
 profile usr.bin.globaleaks {
-
     #include <abstractions/base>
     #include <abstractions/nameservice>
 
@@ -18,9 +17,15 @@ profile usr.bin.globaleaks {
     /usr/bin/ r,
     /usr/bin/globaleaks r,
 
-    /bin/sh ix, # needed due to python_gnupg implementation using shell
+     # sh, dash and gpg are required by python_gnupg
+     # that sadly use the shell for communicating to gnupg
+    /bin/sh ix,
     /bin/dash ix,
     /usr/bin/gpg ix,
+
+    # uname is required by pip
+    # https://github.com/globaleaks/GlobaLeaks/issues/1468
+    /bin/uname ix,
 
     /usr/share/** r,
     /usr/include/python2.7/** r,
