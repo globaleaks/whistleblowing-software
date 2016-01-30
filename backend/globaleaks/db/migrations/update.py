@@ -148,7 +148,7 @@ class MigrationBase(object):
         if self.start_version + 1 == DATABASE_VERSION:
             # we are there!
             if not os.access(GLSettings.db_schema, os.R_OK):
-                print 'Unable to access %s ' % GLSettings.db_schema
+                GLSettings.print_msg("Unable to access %s ' % GLSettings.db_schema")
                 raise IOError('Unable to access db schema file')
             with open(GLSettings.db_schema) as f:
                 queries = ''.join(f).split(';')
@@ -170,7 +170,7 @@ class MigrationBase(object):
         try:
             self.store_new.execute(query + ';')
         except OperationalError as excep:
-            print 'OperationalError %s while executing query: %s' % (excep, query)
+            GLSetting.print_msg('OperationalError %s while executing query: %s' % (excep, query))
             raise excep
 
     def commit(self):
@@ -247,8 +247,8 @@ class MigrationBase(object):
 
         specific_migration_function = getattr(self, 'migrate_%s' % model_name, None)
         if specific_migration_function is not None:
-            print ' ł %s [#%d]' % (model_name, objs_count)
+            GLSettings.print_msg(' ł %s [#%d]' % (model_name, objs_count))
             specific_migration_function()
         else:
-            print ' * %s [#%d]' % (model_name, objs_count)
+            GLSettings.print_msg(' * %s [#%d]' % (model_name, objs_count))
             self.generic_migration_function(model_name)

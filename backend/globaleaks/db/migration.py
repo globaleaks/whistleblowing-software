@@ -76,8 +76,8 @@ def perform_version_update(version):
     to_delete_on_success = []
 
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
-        print "Migrations from DB version lower than %d are no more supported!" % FIRST_DATABASE_VERSION_SUPPORTED
-        print "If you can't create your Node from scratch, contact us asking for support."
+        GLSettings.print_msg("Migrations from DB version lower than %d are no more supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
+        GLSettings.print_msg("If you can't create your Node from scratch, contact us asking for support.")
         quit()
 
     try:
@@ -99,7 +99,7 @@ def perform_version_update(version):
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
             
-            print "Updating DB from version %d to version %d" % (version, version + 1)
+            GLSettings.print_msg("Updating DB from version %d to version %d" % (version, version + 1))
 
             store_old = Store(create_database('sqlite:' + old_db_file))
             store_new = Store(create_database('sqlite:' + new_db_file))
@@ -108,13 +108,13 @@ def perform_version_update(version):
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
             migration_script = MigrationModule.MigrationScript(migration_mapping, version, store_old, store_new)
 
-            print "Migrating table:"
+            GLSettings.print_msg("Migrating table:")
 
             try:
                 try:
                     migration_script.prologue()
                 except Exception as exception:
-                    print "Failure while executing migration prologue: %s " % exception
+                    GLSettings.print_msg("Failure while executing migration prologue: %s" % exception)
                     raise exception
 
                 for model_name, _ in migration_mapping.iteritems():
@@ -126,13 +126,13 @@ def perform_version_update(version):
                             # the precise migration that may fail.
                             migration_script.commit()
                         except Exception as exception:
-                            print "Failure while migrating table %s: %s " % (model_name, exception)
+                            GLSettings.print_msg("Failure while migrating table %s: %s " % (model_name, exception))
                             raise exception
                 try:
                     migration_script.epilogue()
                     migration_script.commit()
                 except Exception as exception:
-                    print "Failure while executing migration epilogue: %s " % exception
+                    GLSettings.print_msg("Failure while executing migration epilogue: %s " % exception)
                     raise exception
 
             finally:
@@ -140,7 +140,7 @@ def perform_version_update(version):
                 # in order to not keep leaking journal files.
                 migration_script.close()
 
-            print "Migration stats:"
+            GLSettings.print_msg("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
             store_verify = Store(create_database('sqlite:' + new_db_file))
@@ -153,14 +153,14 @@ def perform_version_update(version):
                      count = store_verify.find(migration_script.model_to[model_name]).count()
                      if migration_script.entries_count[model_name] != count:
                          if migration_script.fail_on_count_mismatch[model_name]:
-                             raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" %
-                                                (model_name, count, migration_script.entries_count[model_name]))
+                             raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
+                                                  (model_name, count, migration_script.entries_count[model_name]))
                          else:
-                             print " * %s table migrated (entries count changed from %d to %d)" % \
-                                     (model_name, migration_script.entries_count[model_name], count)
+                             GLSettings.print_msg(" * %s table migrated (entries count changed from %d to %d)" % \
+                                                  (model_name, migration_script.entries_count[model_name], count))
                      else:
-                         print " * %s table migrated (%d entry(s))" % \
-                                 (model_name, migration_script.entries_count[model_name])
+                         GLSettings.print_msg(" * %s table migrated (%d entry(s))" % \
+                                              (model_name, migration_script.entries_count[model_name]))
 
             version += 1
 

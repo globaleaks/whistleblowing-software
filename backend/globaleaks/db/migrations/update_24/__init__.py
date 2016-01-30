@@ -606,7 +606,6 @@ class MigrationScript(MigrationBase):
                     if old_obj.is_template:
                         new_obj.instance = 'template'
                     elif old_obj.template_id is not None and old_obj.template_id != '':
-                        print old_obj.template_id
                         new_obj.instance = 'reference'
                     else:
                         new_obj.instance = 'instance'

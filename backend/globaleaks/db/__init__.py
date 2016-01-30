@@ -117,28 +117,27 @@ def check_db_files():
     if len(db_files) == 1 and db_version > 0:
         from globaleaks.db import migration
 
-        print "Found an already initialized database version: %d" % db_version
+        log.msg("Found an already initialized database version: %d" % db_version)
 
         if db_version < DATABASE_VERSION:
-            print "Performing update of database from version %d to version %d" % \
-                  (db_version, DATABASE_VERSION)
+            log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
                 migration.perform_version_update(db_version)
-                print "Migration completed with success!"
+                log.msg("Migration completed with success!")
             except Exception as exception:
-                print "Migration failure: %s" % exception
-                print "Verbose exception traceback:"
-                _, _, exc_traceback = sys.exc_info()
-                traceback.print_tb(exc_traceback)
+                log.msg("Migration failure: %s" % exception)
+                log.msg("Verbose exception traceback:")
+                etype, value, tback = sys.exc_info()
+                log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
                 return -1
 
     elif len(db_files) > 1:
-        print "Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path
-        print "Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path
-        print "Files found:"
+        log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
+        log.msg("Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path)
+        log.msg("Files found:")
 
         for f in db_files:
-            print "\t%s" % f
+            log.msg("\t%s" % f)
 
         return -1
 
@@ -280,33 +279,33 @@ def apply_cmdline_options(store):
 
         if not (re.match(requests.hidden_service_regexp, composed_hs_url) or
                     re.match(requests.https_url_regexp, composed_t2w_url)):
-            print "[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
-                  GLSettings.unchecked_tor_input['hostname_tor_content']
+            log.msg("[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
+                    GLSettings.unchecked_tor_input['hostname_tor_content'])
         else:
             node.hidden_service = unicode(composed_hs_url)
-            print "[+] %s hidden service in the DB: %s" % (verb, composed_hs_url)
+            log.msg("[+] %s hidden service in the DB: %s" % (verb, composed_hs_url))
 
             if node.public_site:
-                print "[!!] Public Website (%s) is not automatically overwritten by (%s)" % \
-                      (node.public_site, composed_t2w_url)
+                log.msg("[!!] Public Website (%s) is not automatically overwritten by (%s)" % \
+                        (node.public_site, composed_t2w_url))
             else:
                 node.public_site = unicode(composed_t2w_url)
-                print "[+] %s public site in the DB: %s" % (verb, composed_t2w_url)
+                log_msg("[+] %s public site in the DB: %s" % (verb, composed_t2w_url))
 
             verb = "Overwriting"
 
     if GLSettings.cmdline_options.public_website:
         if not re.match(requests.https_url_regexp, GLSettings.cmdline_options.public_website):
-            print "[!!] Invalid public site: %s: Ignored" % GLSettings.cmdline_options.public_website
+            log.msg("[!!] Invalid public site: %s: Ignored" % GLSettings.cmdline_options.public_website)
         else:
-            print "[+] %s public site in the DB: %s" % (verb, GLSettings.cmdline_options.public_website)
+            log.msg("[+] %s public site in the DB: %s" % (verb, GLSettings.cmdline_options.public_website))
             node.public_site = unicode(GLSettings.cmdline_options.public_website)
 
     if GLSettings.cmdline_options.hidden_service:
         if not re.match(requests.hidden_service_regexp, GLSettings.cmdline_options.hidden_service):
-            print "[!!] Invalid hidden service: %s: Ignored" % GLSettings.cmdline_options.hidden_service
+            log.msg("[!!] Invalid hidden service: %s: Ignored" % GLSettings.cmdline_options.hidden_service)
         else:
-            print "[+] %s hidden service in the DB: %s" % (verb, GLSettings.cmdline_options.hidden_service)
+            log.msg("[+] %s hidden service in the DB: %s" % (verb, GLSettings.cmdline_options.hidden_service))
             node.hidden_service = unicode(GLSettings.cmdline_options.hidden_service)
 
     # return configured URL for the log/console output
