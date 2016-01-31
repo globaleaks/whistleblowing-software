@@ -105,76 +105,84 @@ describe('globaLeaks process', function() {
     });
   }
 
-  it('should redirect to /submission by clicking on the blow the whistle button', function() {
+  it('should redirect to /submission by clicking on the blow the whistle button', function(done) {
     browser.get('/#/');
 
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
       utils.waitForUrl('/submission');
+      done();
     });
   });
 
-  it('should be able to submit a tip (1)', function() {
+  it('should be able to submit a tip (1)', function(done) {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         utils.waitForUrl('/status');
+        done();
       });
     });
   });
 
-  it('should be able to submit a tip (2)', function() {
+  it('should be able to submit a tip (2)', function(done) {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         utils.waitForUrl('/status');
+        done();
       });
     });
   });
 
-  it('should be able to submit a tip (3)', function() {
+  it('should be able to submit a tip (3)', function(done) {
     perform_submission().then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         utils.waitForUrl('/status');
         element(by.id('LogoutLink')).click().then(function() {
           utils.waitForUrl('/');
+          done();
         });
       });
     });
   });
 
-  it('Whistleblower should be able to access the first submission', function() {
+  it('Whistleblower should be able to access the first submission', function(done) {
     login_whistleblower(receipts[0]).then(function() {
       expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
       element(by.id('LogoutLink')).click().then(function() {
         utils.waitForUrl('/');
+        done();
       });
     });
   });
 
-  it('Recipient should be able to access the first submission', function() {
+  it('Recipient should be able to access the first submission', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
         expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+        done();
       });
     });
   });
 
-  it('Recipient should be able to refresh tip page', function() {
+  it('Recipient should be able to refresh tip page', function(done) {
     element(by.id('link-reload')).click().then(function () {
       browser.waitForAngular();
+      done();
     });
   });
 
-  it('Recipient should be able to see files and download them', function() {
+  it('Recipient should be able to see files and download them', function(done) {
     if (utils.testFileUpload()) {
       expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
       if (utils.testFileDownload()) {
         element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
           browser.waitForAngular();
+          done();
         });
       }
     }
   });
 
-  it('Recipient should be able to leave a comment to the whistleblower', function() {
+  it('Recipient should be able to leave a comment to the whistleblower', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
         element(by.model('tip.newCommentContent')).sendKeys(comment);
@@ -183,6 +191,7 @@ describe('globaLeaks process', function() {
             expect(c).toContain(comment);
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/login');
+              done();
             });
           });
         });
@@ -190,7 +199,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Whistleblower should be able to read the comment from the receiver and reply', function() {
+  it('Whistleblower should be able to read the comment from the receiver and reply', function(done) {
     login_whistleblower(receipts[0]).then(function() {
       element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
         expect(c).toEqual(comment);
@@ -198,13 +207,14 @@ describe('globaLeaks process', function() {
         element(by.id('comment-action-send')).click().then(function() {
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
             expect(c).toContain(comment_reply);
+            done();
           });
         });
       });
     });
   });
 
-  it('Whistleblower should be able to attach a new file to the first submission', function() {
+  it('Whistleblower should be able to attach a new file to the first submission', function(done) {
     login_whistleblower(receipts[0]).then(function() {
       if (utils.testFileUpload()) {
         browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
@@ -213,6 +223,7 @@ describe('globaLeaks process', function() {
             // TODO: test file addition
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/');
+              done();
             });
           });
         });
@@ -220,20 +231,21 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export the submission', function() {
+  it('Recipient should be able to export the submission', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
         if (utils.testFileDownload()) {
           element(by.id('tip-action-export')).click().then(function () {
             browser.waitForAngular();
             // TODO: test the downloaded zip file opening it and verifying its content.
+            done();
           });
         }
       });
     });
   });
 
-  it('Recipient should be able to postpone first submission from tip page', function() {
+  it('Recipient should be able to postpone first submission from tip page', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
         element(by.id('tip-action-postpone')).click().then(function () {
@@ -241,6 +253,7 @@ describe('globaLeaks process', function() {
             //TODO: check postpone
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/login');
+              done();
             });
           });
         });
@@ -248,7 +261,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to delete first submission from tip page', function() {
+  it('Recipient should be able to delete first submission from tip page', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
         element(by.id('tip-action-delete')).click().then(function () {
@@ -257,6 +270,7 @@ describe('globaLeaks process', function() {
             //TODO: check delete
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/login');
+              done();
             });
           });
         });
@@ -264,7 +278,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to postpone all tips', function() {
+  it('Recipient should be able to postpone all tips', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-action-select-all')).click().then(function() {
         element(by.id('tip-action-postpone-selected')).click().then(function () {
@@ -273,6 +287,7 @@ describe('globaLeaks process', function() {
             //TODO: check postpone
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/login');
+              done();
             });
           });
         });

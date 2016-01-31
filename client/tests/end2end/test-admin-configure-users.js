@@ -1,7 +1,7 @@
 var utils = require('./utils.js');
 
 describe('admin add users', function() {
-  it('should add new users', function() {
+  it('should add new users', function(done) {
     browser.setLocation('admin/users');
 
     var add_user = function(username, role, roleSelector, name, address) {
@@ -22,5 +22,6 @@ describe('admin add users', function() {
     add_user("receiver2", "receiver", "Recipient", "Recipient 2", "globaleaks-receiver2@mailinator.com");
     add_user("receiver3", "receiver", "Recipient", "Recipient 3", "globaleaks-receiver3@mailinator.com");
     add_user("custodian1", "custodian", "Custodian", "Custodian 1", "globaleaks-custodian1@mailinator.com");
+    done();
   });
 });
