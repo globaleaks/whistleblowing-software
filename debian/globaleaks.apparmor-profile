@@ -23,19 +23,12 @@ profile usr.bin.globaleaks {
     /bin/dash ix,
     /usr/bin/gpg ix,
 
-    # uname is required by pip
-    # https://github.com/globaleaks/GlobaLeaks/issues/1468
-    /bin/uname ix,
-
     /usr/share/** r,
     /usr/include/python2.7/** r,
     /usr/lib/python2.7/** mr,
     /usr/local/lib/python2.7/** mr,
     /etc/python2.7/** r,
     /etc/mime.types r,
-
-    deny /usr/bin/gcc-** x, # needed to silent deny errors for gpg trying to use gcc wtf?!
-    deny /sbin/ldconfig x,  # needed to silent deny errors for gpg
 
     /var/globaleaks/ r,
     /var/globaleaks/** lrwk,
@@ -47,4 +40,9 @@ profile usr.bin.globaleaks {
 
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
+
+    # Explicit silent deny rules:
+    deny /bin/uname x,      # needed by os.uname in pip
+    deny /usr/bin/gcc-** x, # needed to silent deny errors for gpg trying to use gcc wtf?!
+    deny /sbin/ldconfig x   # needed to silent deny errors for gpg
 }
