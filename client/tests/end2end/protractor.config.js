@@ -4,7 +4,7 @@ exports.config = {
   baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: true,
-  directConnect: false,
+  directConnect: true,
 
   specs: [
     'test-init.js',

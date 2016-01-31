@@ -12,6 +12,8 @@ exports.config = {
 
   baseUrl: 'http://localhost:9000/',
 
+  directConnect: false,
+
   specs: [
     'test-init.js',
     'test-admin-perform-wizard.js',
