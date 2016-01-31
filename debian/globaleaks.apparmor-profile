@@ -17,8 +17,8 @@ profile usr.bin.globaleaks {
     /usr/bin/ r,
     /usr/bin/globaleaks r,
 
-     # sh, dash and gpg are required by python_gnupg
-     # that sadly use the shell for communicating to gnupg
+    # sh, dash and gpg are required by python_gnupg
+    # that sadly use the shell for communicating to gnupg
     /bin/sh ix,
     /bin/dash ix,
     /usr/bin/gpg ix,
