@@ -58,7 +58,6 @@ describe('globaLeaks process', function() {
       element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
         element(by.id('NextStepButton')).click().then(function () {
           element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
-            // Currently the saucelabs file test seems to work only on linux
             if (utils.testFileUpload()) {
               browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
               element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
@@ -169,22 +168,7 @@ describe('globaLeaks process', function() {
       expect(element.all(by.cssContainingText("button", "download")).count()).toEqual(2);
       if (utils.testFileDownload()) {
         element.all(by.cssContainingText("button", "download")).get(0).click().then(function() {
-          if (utils.isChrome()) {
-            // Chrome is the only browser on which currently is easy to configure a know download path
-            var download_path = "/tmp/test-globaleaks-process.js";
-
-            browser.driver.wait(function() {
-              // Wait until the file has been downloaded.
-              // We need to wait thus as otherwise protractor has a nasty habit of
-              // trying to do any following tests while the file is still being
-              // downloaded and hasn't been moved to its final location.
-              return fs.existsSync(download_path);
-            }, 3000000).then(function() {
-               expect(fs.readFileSync(download_path, { encoding: 'utf8' })).toContain("Recipient should be able to see files and download them");
-            });
-          } else {
-            browser.waitForAngular();
-          }
+          browser.waitForAngular();
         });
       }
     }
