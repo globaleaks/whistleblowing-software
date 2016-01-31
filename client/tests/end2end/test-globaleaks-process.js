@@ -61,9 +61,7 @@ describe('globaLeaks process', function() {
             if (utils.testFileUpload()) {
               browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
               element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                browser.waitForAngular();
                 element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                  browser.waitForAngular();
                   element(by.id('NextStepButton')).click().then(function () {
                     element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
                       var submit_button = element(by.id('SubmitButton'));

@@ -16,8 +16,8 @@ browser.getCapabilities().then(function(s) {
   };
 
   exports.testFileDownload = function() {
-    // Test on file upload is currently performed in all browsers;
-    return true;
+    // The only browser that does not ask for user interaction is chrome
+    return (['chrome'].indexOf(browserName) !== -1);
   };
 
   exports.isOldIE = function() {
