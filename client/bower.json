@@ -47,7 +47,7 @@
     "jquery": "2.2.0",
     "js-polyfills": "0.1.12",
     "ng-flow": "2.7.1",
-    "openpgp": "1.5.6",
+    "openpgp": "1.5.7",
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.0.1"
   }
