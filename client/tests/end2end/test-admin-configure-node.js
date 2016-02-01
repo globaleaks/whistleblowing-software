@@ -109,7 +109,8 @@ describe('verify navigation of admin sections', function() {
 
 describe('configure short urls', function() {
   it('should should be able to configure short urls', function(done) {
-    for (var i = 0; i < 3; i++) {
+    var j = 3;
+    for (var i = 0; i < j; i++) {
       element(by.cssContainingText("a", "URL shortener")).click().then(function() {
         element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
         element(by.model('new_shorturl.longurl')).sendKeys('longurl');
@@ -117,7 +118,10 @@ describe('configure short urls', function() {
           browser.waitForAngular();
           element(by.cssContainingText("button", "Delete")).click().then(function() {
             browser.waitForAngular();
-            done();
+            j = j - 1;
+            if (j == 0) {
+              done();
+            }
           });
         });
       });
