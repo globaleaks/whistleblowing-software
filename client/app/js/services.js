@@ -124,15 +124,15 @@ angular.module('GLServices', ['ngResource']).
           // the magical IE7/IE8 that do not allow delete as identifier
           // https://github.com/globaleaks/GlobaLeaks/issues/943
           if (self.session.role === 'whistleblower') {
-            $http['delete']('receiptauth').then($rootScope.logout_performed,
-                                                $rootScope.logout_performed);
+            $http['delete']('receiptauth').then($rootScope.logoutPerformed,
+                                                $rootScope.logoutPerformed);
           } else {
-            $http['delete']('authentication').then($rootScope.logout_performed,
-                                                   $rootScope.logout_performed);
+            $http['delete']('authentication').then($rootScope.logoutPerformed,
+                                                   $rootScope.logoutPerformed);
           }
         };
 
-        $rootScope.logout_performed = function(sessionExpired) {
+        $rootScope.loginRedirect = function(sessionExpired) {
           var role = self.session === undefined ? undefined : self.session.role;
 
           self.session = undefined;
@@ -149,6 +149,10 @@ angular.module('GLServices', ['ngResource']).
             }
           }
         };
+
+        $rootScope.logoutPerformed = function() {
+          $rootScope.loginRedirect(true);
+        }
 
         self.get_auth_headers = function() {
           var h = {};
@@ -213,7 +217,7 @@ angular.module('GLServices', ['ngResource']).
 
           /* 30: Not Authenticated / 24: Wrong Authentication */
           if (error.code === 30 || error.code === 24) {
-            $rootScope.logout_performed(error.code === 30);
+            $rootScope.loginRedirect(error.code === 30);
           }
 
           $rootScope.errors.push(error);
