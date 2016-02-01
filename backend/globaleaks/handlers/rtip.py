@@ -328,7 +328,7 @@ def create_message(store, user_id, rtip_id, request):
     return serialize_message(msg)
 
 
-@transact
+@transact_ro
 def get_identityaccessrequest_list(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
