@@ -49,97 +49,77 @@ describe('globaLeaks process', function() {
     });
   }
 
-  var perform_submission = function() {
-    return protractor.promise.controlFlow().execute(function() {
-      var deferred = protractor.promise.defer();
+  var perform_submission = function(done) {
+    browser.get('/#/submission');
 
-      browser.get('/#/submission');
-
-      element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
-        element(by.id('NextStepButton')).click().then(function () {
-          element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
-            if (utils.testFileUpload()) {
-              browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
+      element(by.id('NextStepButton')).click().then(function () {
+        element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
+          if (utils.testFileUpload()) {
+            browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+            element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
               element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                  element(by.id('NextStepButton')).click().then(function () {
-                    element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
-                      var submit_button = element(by.id('SubmitButton'));
-                      var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-                      browser.wait(isClickable);
-                      submit_button.click().then(function() {
-                        utils.waitForUrl('/receipt');
-                        element(by.id('KeyCode')).getText().then(function (txt) {
-                          receipts.unshift(txt);
-                          deferred.fulfill();
-                        });
+                element(by.id('NextStepButton')).click().then(function () {
+                  element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
+                    var submit_button = element(by.id('SubmitButton'));
+                    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+                    browser.wait(isClickable);
+                    submit_button.click().then(function() {
+                      utils.waitForUrl('/receipt');
+                      element(by.id('KeyCode')).getText().then(function (txt) {
+                        receipts.unshift(txt);
                       });
                     });
                   });
                 });
               });
-            } else {
-              element(by.id('NextStepButton')).click().then(function () {
-                element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
-                  var submit_button = element(by.id('SubmitButton'));
-                  var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-                  browser.wait(isClickable);
-                  submit_button.click().then(function() {
+            });
+          } else {
+            element(by.id('NextStepButton')).click().then(function () {
+              element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
+                var submit_button = element(by.id('SubmitButton'));
+                var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+                browser.wait(isClickable);
+                submit_button.click().then(function() {
                   utils.waitForUrl('/receipt');
-                    element(by.id('KeyCode')).getText().then(function (txt) {
-                      receipts.unshift(txt);
-                      deferred.fulfill();
-                    });
+                  element(by.id('KeyCode')).getText().then(function (txt) {
+                    receipts.unshift(txt);
                   });
                 });
               });
-            }
+            });
+          }
 
+          element(by.id('ReceiptButton')).click().then(function() {
+            utils.waitForUrl('/status');
+            element(by.id('LogoutLink')).click().then(function() {
+              utils.waitForUrl('/');
+              done();
+            });
           });
         });
       });
-
-      return deferred.promise;
     });
   }
 
   it('should redirect to /submission by clicking on the blow the whistle button', function(done) {
     browser.get('/#/');
-
     element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
       utils.waitForUrl('/submission');
       done();
     });
   });
 
-  it('should be able to submit a tip (1)', function(done) {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-        done();
-      });
-    });
+  it('Whistleblowers should be able to submit tips (1)', function(done) {
+    perform_submission(done);
   });
 
-  it('should be able to submit a tip (2)', function(done) {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-        done();
-      });
-    });
+  it('Whistleblowers should be able to submit tips (2)', function(done) {
+    perform_submission(done);
   });
 
-  it('should be able to submit a tip (3)', function(done) {
-    perform_submission().then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
-        element(by.id('LogoutLink')).click().then(function() {
-          utils.waitForUrl('/');
-          done();
-        });
-      });
-    });
+  it('Whistleblowers should be able to submit tips (3)', function(done) {
+    perform_submission(done);
   });
 
   it('Whistleblower should be able to access the first submission', function(done) {
@@ -176,6 +156,8 @@ describe('globaLeaks process', function() {
           browser.waitForAngular();
           done();
         });
+      } else {
+        done();
       }
     }
   });
@@ -238,6 +220,8 @@ describe('globaLeaks process', function() {
             // TODO: test the downloaded zip file opening it and verifying its content.
             done();
           });
+        } else {
+          done();
         }
       });
     });
