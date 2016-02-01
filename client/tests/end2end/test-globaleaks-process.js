@@ -58,7 +58,9 @@ describe('globaLeaks process', function() {
           if (utils.testFileUpload()) {
             browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
             element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+              browser.waitForAngular();
               element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+                browser.waitForAngular();
                 element(by.id('NextStepButton')).click().then(function () {
                   element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
                     var submit_button = element(by.id('SubmitButton'));
@@ -159,6 +161,8 @@ describe('globaLeaks process', function() {
       } else {
         done();
       }
+    } else {
+      done();
     }
   });
 
@@ -167,6 +171,7 @@ describe('globaLeaks process', function() {
       element(by.id('tip-0')).click().then(function() {
         element(by.model('tip.newCommentContent')).sendKeys(comment);
         element(by.id('comment-action-send')).click().then(function() {
+          browser.waitForAngular();
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
             expect(c).toContain(comment);
             element(by.id('LogoutLink')).click().then(function() {
@@ -185,6 +190,7 @@ describe('globaLeaks process', function() {
         expect(c).toEqual(comment);
         element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
         element(by.id('comment-action-send')).click().then(function() {
+          browser.waitForAngular();
           element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
             expect(c).toContain(comment_reply);
             done();
@@ -199,7 +205,9 @@ describe('globaLeaks process', function() {
       if (utils.testFileUpload()) {
         browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
         element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+          browser.waitForAngular();
           element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+            browser.waitForAngular();
             // TODO: test file addition
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/');
@@ -207,6 +215,8 @@ describe('globaLeaks process', function() {
             });
           });
         });
+      } else {
+        done();
       }
     });
   });

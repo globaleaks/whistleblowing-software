@@ -24,7 +24,7 @@ browser.getCapabilities().then(function(s) {
   exports.isOldIE = function() {
     var browserName = s.caps_.browserName.toLowerCase();
     var browserVersion = s.caps_.version;
-    return (browserName == 'internet explorer' && browserVersion < 11);
+    return (browserName === 'internet explorer' && browserVersion < 11);
   };
 });
 
