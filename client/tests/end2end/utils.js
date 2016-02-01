@@ -17,6 +17,7 @@ browser.getCapabilities().then(function(s) {
 
   exports.testFileDownload = function() {
     // The only browser that does not ask for user interaction is chrome
+    var browserName = s.caps_.browserName.toLowerCase();
     return (['chrome'].indexOf(browserName) !== -1);
   };
 
@@ -30,7 +31,7 @@ browser.getCapabilities().then(function(s) {
 
 exports.waitForUrl = function (url) {
   browser.wait(function() {
-    return browser.getLocationAbsUrl().then(function(current_url) {
+    return browser.getCurrentUrl().then(function(current_url) {
       return (current_url.indexOf(url) !== -1);
     });
   });
