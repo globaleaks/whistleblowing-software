@@ -111,25 +111,21 @@ class transact(object):
             else:
                 result = function(self.store, *args, **kwargs)
 
+            if not self.readonly:
+                self.store.commit()
+            else:
+                self.store.flush()
+                self.store.invalidate()
+
         except exceptions.DisconnectionError as e:
             transaction.abort()
-            # we print the exception here because we do not propagate it
             result = None
+        except exceptions.IntegrityError as e:
+            transaction.abort()
+            raise DatabaseIntegrityError(str(e))
         except Exception as e:
             transaction.abort()
-            self.store.close()
-            # propagate the exception
             raise
-        else:
-            try:
-                if not self.readonly:
-                    self.store.commit()
-                else:
-                    self.store.flush()
-                    self.store.invalidate()
-            except exceptions.IntegrityError as e:
-                transaction.abort()
-                raise DatabaseIntegrityError(str(e))
         finally:
             self.store.close()
 
