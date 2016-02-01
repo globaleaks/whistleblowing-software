@@ -102,7 +102,7 @@ def create_comment(store, wbtip_id, request):
     return serialize_comment(comment)
 
 
-@transact
+@transact_ro
 def get_message_list(store, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread

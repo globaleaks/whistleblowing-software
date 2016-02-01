@@ -13,7 +13,7 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 
-@transact
+@transact_ro
 def get_step_id(store, context_id):
     return store.find(models.Step, models.Step.context_id == context_id)[0].id
 
