@@ -2,7 +2,7 @@ var utils = require('./utils.js');
 
 describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function(done) {
-    browser.setLocation('wizard');
+    browser.get('/#/wizard');
 
     // Go to step 2
     element(by.id('ButtonNext1')).click();

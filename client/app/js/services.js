@@ -151,7 +151,7 @@ angular.module('GLServices', ['ngResource']).
         };
 
         $rootScope.logoutPerformed = function() {
-          $rootScope.loginRedirect(true);
+          $rootScope.loginRedirect(false);
         }
 
         self.get_auth_headers = function() {
