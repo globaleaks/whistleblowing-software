@@ -192,14 +192,11 @@ class MigrationScript(MigrationBase):
         old_notification = self.store_old.find(self.model_from['Notification']).one()
         new_notification = self.model_to['Notification']()
 
-        new_templates = [
-            'export_template',
-            'export_message_whistleblower',
-            'export_message_recipient'
-        ]
-
         for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
+            if self.update_model_with_new_templates(new_notification,
+                                                    v.name,
+                                                    self.appdata['templates'].keys(),
+                                                    self.appdata['templates']):
                 continue
 
         self.store_new.add(new_notification)
