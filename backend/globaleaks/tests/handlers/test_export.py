@@ -22,7 +22,6 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_export(self):
         rtips_desc = yield self.get_rtips()
-
         for rtip_desc in rtips_desc:
             handler = self.request({}, role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']

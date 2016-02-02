@@ -75,6 +75,7 @@ def db_update_step(store, step_id, request, language):
 def update_step(store, step_id, request, language):
     return serialize_step(store, db_update_step(store, step_id, request, language), language)
 
+
 @transact_ro
 def get_step(store, step_id, language):
     """

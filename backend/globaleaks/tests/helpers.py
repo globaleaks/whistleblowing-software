@@ -32,6 +32,7 @@ from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.user import create_admin, create_custodian
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
@@ -193,7 +194,6 @@ class TestGL(unittest.TestCase):
 
         self.dummyFields = dummyStuff.dummyFields
         self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
-        self.dummySteps = dummyStuff.dummySteps
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
@@ -248,6 +248,15 @@ class TestGL(unittest.TestCase):
         new_r = dict(MockDict().dummyReceiver)
 
         return sum_dicts(new_r, new_u)
+
+    def get_dummy_step(self):
+        return {
+            'id': '',
+            'label': u'Step 1',
+            'description': u'Step Description',
+            'presentation_order': 0,
+            'children': []
+        }
 
     def get_dummy_field(self):
         return {
@@ -500,15 +509,29 @@ class TestGLWithPopulatedDB(TestGL):
             f = yield create_field(copy.deepcopy(field), 'en', 'import')
             self.dummyFieldTemplates[idx]['id'] = f['id']
 
+        self.dummyContext['steps'].append(self.get_dummy_step())
+        self.dummyContext['steps'][2]['context_id'] = self.dummyContext['id']
+        self.dummyContext['steps'][2]['label'] = 'Whistleblower identity'
+        self.dummyContext['steps'][2]['presentation_order'] = 1
+        self.dummyContext['steps'][2] = yield create_step(self.dummyContext['steps'][2], 'en')
+
+        self.dummyContext['steps'][1]['presentation_order'] = 2
+        yield update_step(self.dummyContext['steps'][1]['id'], self.dummyContext['steps'][1], 'en')
+
+        self.dummyContext['steps'] = [
+            self.dummyContext['steps'][0],
+            self.dummyContext['steps'][2],
+            self.dummyContext['steps'][1]
+        ]
+
         for idx, field in enumerate(self.dummyFields):
             change_field_type(field, 'instance')
-            field['step_id'] = self.dummyContext['steps'][0]['id']
+            field['step_id'] = self.dummyContext['steps'][1]['id']
             f = yield create_field(copy.deepcopy(field), 'en', 'import')
             self.dummyFields[idx]['id'] = f['id']
+            self.dummyContext['steps'][1]['children'].append(f)
 
-            self.dummyContext['steps'][0]['children'].append(f)
-
-        yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
+        self.dummyContext = yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
 
     def perform_submission_start(self):
         self.dummyToken = token.Token(token_kind='submission')
@@ -737,24 +760,6 @@ class MockDict():
             f['fieldgroup_id'] = ''
 
         self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
-
-        self.dummySteps = [
-            {
-                'id': '',
-                'label': u'Step 1',
-                'description': u'Step Description',
-                'presentation_order': 0,
-                'children': []
-            },
-            {
-                'id': '',
-                'label': u'Step 2',
-                'description': u'Step Description',
-                'hint': u'Step Hint',
-                'presentation_order': 1,
-                'children': []
-            }
-        ]
 
         self.dummyContext = {
             'id': '',
