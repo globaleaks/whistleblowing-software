@@ -23,8 +23,7 @@ class TestFirstSetup(helpers.TestHandler):
             'node': self.dummyNode,
             'admin': admin,
             'receiver': self.get_dummy_receiver("christianice"),
-            'context': self.dummyContext,
-            'fields': self.dummyFields
+            'context': self.dummyContext
         }
 
         handler = self.request(wizard_blob, role='admin')

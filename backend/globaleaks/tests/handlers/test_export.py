@@ -11,6 +11,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
 class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
+    complex_field_population = True
     _handler = export.ExportHandler
 
     @inlineCallbacks
