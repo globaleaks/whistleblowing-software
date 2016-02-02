@@ -9,6 +9,12 @@ GLClient.controller('TipCtrl',
 
     $scope.showEditLabelInput = false;
 
+    if (!$scope.session) {
+      // FIXME: handle this applicationwide with somekind of state
+      $scope.loginRedirect(true);
+      return;
+    }
+
     $scope.getAnswersEntries = function(entry) {
       if (entry === undefined) {
         return $scope.answers[$scope.field.id];
