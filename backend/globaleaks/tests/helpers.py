@@ -4,6 +4,10 @@
 Utilities and basic TestCases.
 """
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
 import copy
 import json
 import os
@@ -16,11 +20,6 @@ from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-
-import sys
-reload(sys)
-sys.getdefaultencoding()
-
 
 from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
