@@ -50,8 +50,7 @@ file_keywords = [
 export_template_keywords = [
     '%QuestionnaireAnswers%',
     '%Comments%',
-    '%Messages%',
-    '%FileList%',
+    '%Messages%'
 ]
 
 export_message_keywords = [
@@ -67,18 +66,18 @@ user_pgp_alert_keywords = [
 ]
 
 admin_anomaly_keywords = [
-    "%AnomalyDetailDisk%",
-    "%AnomalyDetailActivities%",
-    "%ActivityAlarmLevel%",
-    "%ActivityDump%",
-    "%NodeName%",
-    "%FreeMemory%",
-    "%TotalMemory%"
+    '%AnomalyDetailDisk%',
+    '%AnomalyDetailActivities%',
+    '%ActivityAlarmLevel%',
+    '%ActivityDump%',
+    '%NodeName%',
+    '%FreeMemory%',
+    '%TotalMemory%'
 ]
 
 
 def indent(n=1):
-    return "  " * n
+    return '  ' * n
 
 
 def indent_text(text, n=1):
@@ -86,27 +85,27 @@ def indent_text(text, n=1):
 
 
 def dump_field_entry(output, field, entry, indent_n):
-    field_type = field["type"]
-    if field_type == "checkbox":
+    field_type = field['type']
+    if field_type == 'checkbox':
         for v, k in entry.iteritems():
-            for option in field["options"]:
-                if k == option['id'] and v == "True":
-                    output += indent(indent_n) + option["label"] + "\n"
-    elif field_type in ["selectbox", "multichoice"]:
-        for option in field["options"]:
-            if entry["value"] == option['id']:
-                output += indent(indent_n) + option["label"] + "\n"
-    elif field_type == "date":
-        output += indent(indent_n) + entry["value"] # FIXME: format date
-    elif field_type == "tos":
-        if entry["value"] == "True":
-            output += indent(indent_n) + "\u2713" + "\n"
-    elif field_type == "fieldgroup":
-        output = dump_fields(output, field["children"], entry, indent_n)
+            for option in field['options']:
+                if k == option['id'] and v == 'True':
+                    output += indent(indent_n) + option['label'] + '\n'
+    elif field_type in ['selectbox', 'multichoice']:
+        for option in field['options']:
+            if entry['value'] == option['id']:
+                output += indent(indent_n) + option['label'] + '\n'
+    elif field_type == 'date':
+        output += indent(indent_n) + entry['value'] # FIXME: format date
+    elif field_type == 'tos':
+        answer = '☑' if entry['value'] == 'True' else '☐'
+        output += indent(indent_n) + answer + '\n'
+    elif field_type == 'fieldgroup':
+        output = dump_fields(output, field['children'], entry, indent_n)
     else:
-        output += indent(indent_n) + entry["value"] + "\n"
+        output += indent(indent_n) + entry['value'] + '\n'
 
-    output += "\n"
+    output += '\n'
 
     return output
 
@@ -126,15 +125,15 @@ def dump_fields(output, fields, answers, indent_n):
 
     for index_x, row in rows.iteritems():
         for field in row:
-            if field["type"] != "fileupload" and field["id"] in answers:
-                output += indent(indent_n) + field["label"] + "\n"
-                entries = answers[field["id"]]
+            if field['type'] != 'fileupload' and field['id'] in answers:
+                output += indent(indent_n) + field['label'] + '\n'
+                entries = answers[field['id']]
                 if len(entries) == 1:
                     output = dump_field_entry(output, field, entries[0], indent_n + 1)
                 else:
                     i = 1
                     for entry in entries:
-                        output += indent(intent_n) + "#" + str(i) + "\n"
+                        output += indent(intent_n) + '#' + str(i) + '\n'
                         output = dump_field_entry(output, field, entry, indent_n + 2)
                         i += 1
 
@@ -142,34 +141,25 @@ def dump_fields(output, fields, answers, indent_n):
 
 
 def dump_questionnaire_answers(questionnaire, answers):
-    output = ""
+    output = ''
 
-    questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
+    try:
+        questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
+    except:
+        pass
+
     for step in questionnaire:
-        output += step["label"] + "\n"
-        output = dump_fields(output, step["children"], answers, 1)
-        output += "\n"
+        output += step['label'] + '\n'
+        output = dump_fields(output, step['children'], answers, 1)
+        output += '\n'
 
     return output
 
 
-def dump_file_list(file_list):
-    info = "%s%s%s\n" % ("Filename",
-                             " "*(40-len("Filename")),
-                             "Size (Bytes)")
-
-    for i in xrange(len(file_list)):
-        info += "%s%s%i\n" % (file_list[i]["name"],
-                              " "*(40 - len(file_list[i]["name"])),
-                              file_list[i]["size"])
-
-    return info
-
-
 class Keyword(object):
-    """
+    '''
     This class define the base keyword list supported by all the events
-    """
+    '''
     keyword_list = node_keywords
     data_keys = ['node', 'notification']
 
@@ -177,7 +167,7 @@ class Keyword(object):
         # node and notification are always injected as they contain general information
         for k in self.data_keys:
             if k not in data:
-                raise errors.InternalServerError("Missing key '%s' while resolving template '%s'" % (k, type(self).__name__))
+                raise errors.InternalServerError('Missing key \'%s\' while resolving template \'%s\'' % (k, type(self).__name__))
 
         self.data = data
 
@@ -212,7 +202,7 @@ class TipKeyword(Keyword):
         public_site = self.data['node']['public_site']
 
         if not GLSettings.memory_copy.tor2web_access['receiver']:
-            retstr = "DISABLED"
+            retstr = 'DISABLED'
         elif len(public_site):
             retstr =  '%s/#/status/%s' % (public_site, self.data['tip']['id'])
         else:
@@ -230,7 +220,7 @@ class TipKeyword(Keyword):
         return self.data['tip']['sequence_number']
 
     def TipLabel(self):
-        return "[" + self.data['tip']['label'] + "] " if self.data['tip']['label'] != '' else ""
+        return self.data['tip']['label']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['tip']['creation_date'], float(self.data['receiver']['timezone']))
@@ -305,17 +295,20 @@ class ExportKeyword(TipKeyword):
         return dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
 
     def Comments(self):
+        if len(self.data['comments']) == 0:
+            return '%Blank%'
+
         ret = self.data['node']['widget_comments_title'] + ':\n'
-        ret += self.dump_messages(self.data['comments'])
-        return ret
+        ret += self.dump_messages(self.data['comments']) + '\n'
+        return ret + '\n'
 
     def Messages(self):
+        if len(self.data['messages']) == 0:
+            return '%Blank%'
+
         ret = self.data['node']['widget_messages_title'] + ':\n'
         ret += self.dump_messages(self.data['messages'])
-        return ret
-
-    def FileList(self):
-        return dump_file_list(self.data['files'])
+        return ret + '\n'
 
 
 class ExportMessageKeyword(TipKeyword):
@@ -331,12 +324,12 @@ class AdminPGPAlertKeyword(Keyword):
     data_keys =  ['node', 'notification', 'users']
 
     def PGPKeyInfoList(self):
-        ret = ""
+        ret = ''
         for r in self.data['users']:
             fingerprint = r['pgp_key_fingerprint']
-            key = fingerprint[:7] if fingerprint is not None else ""
+            key = fingerprint[:7] if fingerprint is not None else ''
 
-            ret += "\t%s, %s (%s)\n" % (r['name'],
+            ret += '\t%s, %s (%s)\n' % (r['name'],
                                         key,
                                         ISO8601_to_day_str(r['pgp_key_expiration']))
         return ret
@@ -348,9 +341,9 @@ class PGPAlertKeyword(Keyword):
 
     def PGPKeyInfo(self):
         fingerprint = self.data['user']['pgp_key_fingerprint']
-        key = fingerprint[:7] if fingerprint is not None else ""
+        key = fingerprint[:7] if fingerprint is not None else ''
 
-        return "\t0x%s (%s)" % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
+        return '\t0x%s (%s)' % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
 
 
 class AnomalyKeyword(Keyword):
@@ -377,23 +370,23 @@ class AnomalyKeyword(Keyword):
         return self.data['notification']['admin_anomaly_activities']
 
     def ActivityAlarmLevel(self):
-        return "%s" % self.data['alert']['stress_levels']['activity']
+        return '%s' % self.data['alert']['stress_levels']['activity']
 
     def ActivityDump(self):
-        retstr = ""
+        retstr = ''
 
         for event, amount in self.data['alert']['event_matrix'].iteritems():
             if not amount:
                 continue
-            retstr = "%s%s%d\n%s" % (event, (25 - len(event)) * " ", amount, retstr)
+            retstr = '%s%s%d\n%s' % (event, (25 - len(event)) * ' ', amount, retstr)
 
         return retstr
 
     def FreeMemory(self):
-        return "%s" % bytes_to_pretty_str(self.data['alert']['latest_measured_freespace'])
+        return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_freespace'])
 
     def TotalMemory(self):
-        return "%s" % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
+        return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
 
 
 supported_template_types = {
@@ -449,10 +442,14 @@ class Templating(object):
             subject_template = data['notification'][data['type'] + '_mail_title']
             body_template = data['notification'][data['type'] + '_mail_template']
         else:
-            raise NotImplementedError("This data_type (%s) is not supported" % ['data.type'])
+            raise NotImplementedError('This data_type (%s) is not supported' % ['data.type'])
 
         if data['type'] in [u'tip', u'comment', u'file', u'message', u'tip_expiration']:
-            subject_template = "%TipNum% %TipLabel% " + subject_template
+            prefix = '%TipNum% '
+            if data['tip']['label'] != '':
+                prefix += '[%TipLabel%] '
+
+            subject_template = prefix + subject_template
 
         subject = self.format_template(subject_template, data)
         body = self.format_template(body_template, data)
@@ -467,4 +464,3 @@ class Templating(object):
             'subject': subject,
             'body': body
         })
-
