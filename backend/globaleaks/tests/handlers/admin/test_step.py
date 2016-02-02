@@ -19,7 +19,7 @@ class TestStepCollection(helpers.TestHandler):
             Attempt to create a new step via a post request.
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
+            step = self.get_dummy_step()
             step['context_id'] = context['id']
             handler = self.request(step, role='admin')
             yield handler.post()
@@ -39,7 +39,7 @@ class TestStepInstance(helpers.TestHandler):
             Create a new step, then get it back using the received id.
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
+            step = self.get_dummy_step()
             step['context_id'] = context['id']
             step = yield create_step(step, 'en')
 
@@ -54,7 +54,7 @@ class TestStepInstance(helpers.TestHandler):
             Attempt to update a step, changing it presentation order
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
+            step = self.get_dummy_step()
             step['context_id'] = context['id']
             step = yield create_step(step, 'en')
 
@@ -72,7 +72,7 @@ class TestStepInstance(helpers.TestHandler):
             Create a new step, then attempt to delete it.
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = copy.deepcopy(self.dummySteps[0])
+            step = self.get_dummy_step()
             step['context_id'] = context['id']
             step = yield create_step(step, 'en')
 

@@ -10,6 +10,8 @@
 
 import copy
 
+import collections
+
 from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -46,6 +48,7 @@ file_keywords = [
 ]
 
 export_template_keywords = [
+    '%QuestionnaireAnswers%',
     '%Comments%',
     '%Messages%',
     '%FileList%',
@@ -87,11 +90,11 @@ def dump_field_entry(output, field, entry, indent_n):
     if field_type == "checkbox":
         for v, k in entry.iteritems():
             for option in field["options"]:
-                if k == option.id and v == "True":
+                if k == option['id'] and v == "True":
                     output += indent(indent_n) + option["label"] + "\n"
     elif field_type in ["selectbox", "multichoice"]:
         for option in field["options"]:
-            if entry["value"] == option.id:
+            if entry["value"] == option['id']:
                 output += indent(indent_n) + option["label"] + "\n"
     elif field_type == "date":
         output += indent(indent_n) + entry["value"] # FIXME: format date
@@ -109,24 +112,39 @@ def dump_field_entry(output, field, entry, indent_n):
 
 
 def dump_fields(output, fields, answers, indent_n):
-    for field in fields:
-        if field["type"] != "fileupload" and field["id"] in answers:
-            output += indent(indent_n) + field["label"] + "\n"
-            entries = answers[field["id"]]
-            if len(entries) == 1:
-                output = dump_field_entry(output, field, entries[0], indent_n + 1)
-            else:
-                i = 1
-                for entry in entries:
-                    output += indent(intent_n) + "#" + str(i) + "\n"
-                    output = dump_field_entry(output, field, entry, indent_n + 2)
-                    i += 1
+    rows = {}
+    for f in fields:
+        y = f['y']
+        if y not in rows:
+            rows[y] = []
+        rows[y].append(f)
+
+    rows = collections.OrderedDict(sorted(rows.items()))
+
+    for r in rows:
+        rows[r] = sorted(rows[r], key=lambda k: k['x'])
+
+    for index_x, row in rows.iteritems():
+        for field in row:
+            if field["type"] != "fileupload" and field["id"] in answers:
+                output += indent(indent_n) + field["label"] + "\n"
+                entries = answers[field["id"]]
+                if len(entries) == 1:
+                    output = dump_field_entry(output, field, entries[0], indent_n + 1)
+                else:
+                    i = 1
+                    for entry in entries:
+                        output += indent(intent_n) + "#" + str(i) + "\n"
+                        output = dump_field_entry(output, field, entry, indent_n + 2)
+                        i += 1
 
     return output
 
 
 def dump_questionnaire_answers(questionnaire, answers):
     output = ""
+
+    questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
     for step in questionnaire:
         output += step["label"] + "\n"
         output = dump_fields(output, step["children"], answers, 1)
@@ -282,6 +300,9 @@ class ExportKeyword(TipKeyword):
             ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
 
         return ret
+
+    def QuestionnaireAnswers(self):
+        return dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
 
     def Comments(self):
         ret = self.data['node']['widget_comments_title'] + ':\n'
