@@ -1,12 +1,13 @@
 import binascii
-
+from cryptography.hazmat.primitives import hashes
+from datetime import datetime
 import os
 import scrypt
-from cryptography.hazmat.primitives import hashes
+
 from twisted.trial import unittest
 from globaleaks.tests import helpers
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, check_password_format, \
-    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend
+    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend, GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
 
@@ -121,3 +122,73 @@ class TestGLSecureFiles(helpers.TestGL):
         os.remove(a.keypath)
         self.assertRaises(IOError, GLSecureFile, a.filepath)
         a.close()
+
+PGPROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
+
+
+class TestPGP(helpers.TestGL):
+    def test_encrypt_message(self):
+        mail_content = "https://www.youtube.com/watch?v=FYdX0W96-os"
+
+        GLSettings.pgproot = PGPROOT
+
+        fake_receiver_desc = {
+            'pgp_key_public': unicode(helpers.VALID_PGP_KEY1),
+            'pgp_key_fingerprint': u"CF4A22020873A76D1DCB68D32B25551568E49345",
+            'pgp_key_status': u'enabled',
+            'username': u'fake@username.net',
+        }
+
+        pgpobj = GLBPGP()
+        pgpobj.load_key(helpers.VALID_PGP_KEY1)
+
+        encrypted_body = pgpobj.encrypt_message(fake_receiver_desc['pgp_key_fingerprint'], mail_content)
+        self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_body)
+        self.assertSubstring('-----END PGP MESSAGE-----', encrypted_body)
+
+        pgpobj.destroy_environment()
+
+    def test_encrypt_file(self):
+        # setup the PGP key before
+        GLSettings.pgproot = PGPROOT
+
+        tempsource = os.path.join(os.getcwd(), "temp_source.txt")
+        with file(tempsource, 'w+') as f1:
+            f1.write("\n\nDecrypt the Cat!\n\nhttp://tobtu.com/decryptocat.php\n\n")
+
+            f1.seek(0)
+
+            fake_receiver_desc = {
+                'pgp_key_public': unicode(helpers.VALID_PGP_KEY1),
+                'pgp_key_status': u'enabled',
+                'pgp_key_fingerprint': u"CF4A22020873A76D1DCB68D32B25551568E49345",
+                'username': u'fake@username.net',
+            }
+
+            # these are the same lines used in delivery_sched.py
+            pgpobj = GLBPGP()
+            pgpobj.load_key(helpers.VALID_PGP_KEY1)
+            encrypted_file_path, encrypted_file_size = pgpobj.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'],
+                                                                           tempsource, f1, "/tmp")
+            pgpobj.destroy_environment()
+
+            with file(encrypted_file_path, "r") as f2:
+                first_line = f2.readline()
+
+            self.assertSubstring('-----BEGIN PGP MESSAGE-----', first_line)
+
+            with file(encrypted_file_path, "r") as f2:
+                whole = f2.read()
+
+            self.assertEqual(encrypted_file_size, len(whole))
+
+    def test_pgp_read_expirations(self):
+        pgpobj = GLBPGP()
+
+        self.assertEqual(pgpobj.load_key(helpers.VALID_PGP_KEY1)['expiration'],
+                         datetime.utcfromtimestamp(0))
+
+        self.assertEqual(pgpobj.load_key(helpers.EXPIRED_PGP_KEY)['expiration'],
+                         datetime.utcfromtimestamp(1391012793))
+
+        pgpobj.destroy_environment()
