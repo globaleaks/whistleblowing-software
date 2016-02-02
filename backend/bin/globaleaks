@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+sys.excepthook = None
+
 import os
 import random
 import re
-import sys
 import pip
 
 from pkg_resources import parse_version
@@ -70,12 +75,6 @@ def pip_version_check(path):
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
         print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/backend/requirements.txt"
         quit(-1)
-
-import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-sys.excepthook = None
 
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
