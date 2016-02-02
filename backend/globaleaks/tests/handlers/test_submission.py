@@ -19,6 +19,7 @@ from globaleaks.handlers.submission import create_submission
 
 
 class TestSubmission(helpers.TestGLWithPopulatedDB):
+    compllex_field_population = True
     encryption_scenario = 'ALL_PLAINTEXT'
 
     @inlineCallbacks

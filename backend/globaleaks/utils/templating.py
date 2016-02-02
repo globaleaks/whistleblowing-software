@@ -81,13 +81,16 @@ def indent(n=1):
 
 
 def indent_text(text, n=1):
-    return '\n'.join(['  ' * n + l for l in text.splitlines()])
+    '''
+    Add n * 2 space as indentation to each of the non empty lines of the provided text
+    '''
+    return '\n'.join([('  ' * n if not l.isspace() else '') + l for l in text.splitlines()])
 
 
 def dump_field_entry(output, field, entry, indent_n):
     field_type = field['type']
     if field_type == 'checkbox':
-        for v, k in entry.iteritems():
+        for k, v in entry.iteritems():
             for option in field['options']:
                 if k == option['id'] and v == 'True':
                     output += indent(indent_n) + option['label'] + '\n'
@@ -96,18 +99,16 @@ def dump_field_entry(output, field, entry, indent_n):
             if entry['value'] == option['id']:
                 output += indent(indent_n) + option['label'] + '\n'
     elif field_type == 'date':
-        output += indent(indent_n) + entry['value'] # FIXME: format date
+        output += indent(indent_n) + ISO8601_to_pretty_str(entry['value']) + '\n' # FIXME: format date
     elif field_type == 'tos':
         answer = '☑' if entry['value'] == 'True' else '☐'
         output += indent(indent_n) + answer + '\n'
     elif field_type == 'fieldgroup':
         output = dump_fields(output, field['children'], entry, indent_n)
     else:
-        output += indent(indent_n) + entry['value'] + '\n'
+        output += indent_text(entry['value'], indent_n)
 
-    output += '\n'
-
-    return output
+    return output + '\n'
 
 
 def dump_fields(output, fields, answers, indent_n):
@@ -150,8 +151,7 @@ def dump_questionnaire_answers(questionnaire, answers):
 
     for step in questionnaire:
         output += step['label'] + '\n'
-        output = dump_fields(output, step['children'], answers, 1)
-        output += '\n'
+        output = dump_fields(output, step['children'], answers, 1) +'\n'
 
     return output
 

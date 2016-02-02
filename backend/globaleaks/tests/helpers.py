@@ -30,7 +30,7 @@ from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
 from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
-from globaleaks.handlers.admin.field import create_field
+from globaleaks.handlers.admin.field import create_field, db_create_field
 from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.user import create_admin, create_custodian
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
@@ -40,7 +40,8 @@ from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
 from globaleaks.utils import tempdict, token, mailutils
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import sum_dicts, datetime_null, datetime_now, log
+from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
+    log, sum_dicts
 
 from . import TEST_DIR
 
@@ -65,11 +66,6 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
     EXPIRED_PGP_KEY = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
-
-# client/app/data/fields/whistleblower_identity.json
-WHISTLEBLOWER_IDENTITY_FIELD_PATH = \
-    os.path.join(GLSettings.client_path,
-                 '../../client/app/data/fields/whistleblower_identity.json')
 
 def load_json_file(file_path):
     with open(file_path) as f:
@@ -191,8 +187,6 @@ class TestGL(unittest.TestCase):
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
-        self.dummyFields = dummyStuff.dummyFields
-        self.dummyFieldTemplates = dummyStuff.dummyFieldTemplates
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
@@ -293,16 +287,27 @@ class TestGL(unittest.TestCase):
 
         return models.Field.new(store, field).id
 
-    def fill_random_field_recursively(self, answers, field, value=None):
-        # FIXME: currently the function consider:
-        # - only first level of fields
-        # - all fields are considered as inputboxes
-        if value is None:
-            value = unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))
-        else:
-            value = unicode(value)
+    def fill_random_field_recursively(self, answers, field):
+        field_type = field['type']
 
-        answers[field['id']] = [{'value': value}]
+        if field_type == 'checkbox':
+            value = {}
+            for option in field['options']:
+                value[option['id']] = 'True'
+        elif field_type in ['selectbox', 'multichoice']:
+            value = {'value': field['options'][0]['id']}
+        elif field_type == 'date':
+            value = {'value': datetime_to_ISO8601(datetime_now())}
+        elif field_type == 'tos':
+            value = {'value': 'True'}
+        elif field_type == 'fieldgroup':
+            value = {}
+            for child in field['children']:
+                self.fill_random_field_recursively(value, child)
+        else:
+            value = {'value': unicode(''.join(unichr(x) for x in range(0x400, 0x4FF)))}
+
+        answers[field['id']] = [value]
 
     @transact
     def fill_random_answers(self, store, context_id, value=None):
@@ -376,7 +381,6 @@ class TestGL(unittest.TestCase):
         """
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
-
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             dummyFile['creation_date'] = datetime_null()
 
@@ -470,6 +474,8 @@ class TestGL(unittest.TestCase):
 
 
 class TestGLWithPopulatedDB(TestGL):
+    complex_field_population = False
+
     @inlineCallbacks
     def setUp(self):
         yield TestGL.setUp(self)
@@ -503,34 +509,33 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
-        # fill_data: create field templates
-        for idx, field in enumerate(self.dummyFieldTemplates):
-            f = yield create_field(copy.deepcopy(field), 'en', 'import')
-            self.dummyFieldTemplates[idx]['id'] = f['id']
-
         self.dummyContext['steps'].append(self.get_dummy_step())
         self.dummyContext['steps'][2]['context_id'] = self.dummyContext['id']
         self.dummyContext['steps'][2]['label'] = 'Whistleblower identity'
         self.dummyContext['steps'][2]['presentation_order'] = 1
         self.dummyContext['steps'][2] = yield create_step(self.dummyContext['steps'][2], 'en')
 
-        self.dummyContext['steps'][1]['presentation_order'] = 2
-        yield update_step(self.dummyContext['steps'][1]['id'], self.dummyContext['steps'][1], 'en')
+        if self.complex_field_population:
+            yield self.add_whistleblower_identity_field_to_step(self.dummyContext['steps'][2]['id'])
 
-        self.dummyContext['steps'] = [
-            self.dummyContext['steps'][0],
-            self.dummyContext['steps'][2],
-            self.dummyContext['steps'][1]
-        ]
+            self.dummyContext['steps'][1]['presentation_order'] = 2
+            yield update_step(self.dummyContext['steps'][1]['id'], self.dummyContext['steps'][1], 'en')
 
-        for idx, field in enumerate(self.dummyFields):
-            change_field_type(field, 'instance')
-            field['step_id'] = self.dummyContext['steps'][1]['id']
-            f = yield create_field(copy.deepcopy(field), 'en', 'import')
-            self.dummyFields[idx]['id'] = f['id']
-            self.dummyContext['steps'][1]['children'].append(f)
+            self.dummyContext['steps'] = [
+                self.dummyContext['steps'][0],
+                self.dummyContext['steps'][2],
+                self.dummyContext['steps'][1]
+            ]
 
-        self.dummyContext = yield update_context(self.dummyContext['id'], copy.deepcopy(self.dummyContext), 'en')
+    @transact
+    def add_whistleblower_identity_field_to_step(self, store, step_id):
+        wbf = store.find(models.Field, models.Field.key == u'whistleblower_identity').one()
+
+        reference_field = self.get_dummy_field()
+        reference_field['instance'] = 'reference'
+        reference_field['template_id'] = wbf.id
+        reference_field['step_id'] = step_id
+        db_create_field(store, reference_field, 'en')
 
     def perform_submission_start(self):
         self.dummyToken = token.Token(token_kind='submission')
@@ -753,12 +758,6 @@ class MockDict():
             'presentation_order': 0,
             'configuration': 'default'
         })
-
-        self.dummyFieldTemplates = load_json_file(WHISTLEBLOWER_IDENTITY_FIELD_PATH)['children']
-        for f in self.dummyFieldTemplates:
-            f['fieldgroup_id'] = ''
-
-        self.dummyFields = copy.deepcopy(self.dummyFieldTemplates)
 
         self.dummyContext = {
             'id': '',
