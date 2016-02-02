@@ -258,17 +258,16 @@ class Download(BaseHandler):
     def post(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
 
-        # keys:  'file_path'  'size' : 'content_type' 'file_name'
-
-        self.set_status(200)
-
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Length', rfile['size'])
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % rfile['name'])
-
         filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
 
-        self.write_file(filelocation)
+        if os.path.exists(filelocation):
+            self.set_status(200)
+            self.set_header('X-Download-Options', 'noopen')
+            self.set_header('Content-Type', 'application/octet-stream')
+            self.set_header('Content-Length', rfile['size'])
+            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % rfile['name'])
+            self.write_file(filelocation)
+        else:
+            self.set_status(404)
 
         self.finish()

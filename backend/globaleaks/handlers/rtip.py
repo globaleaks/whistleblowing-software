@@ -202,6 +202,22 @@ def db_postpone_expiration_date(rtip):
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
 
+def db_get_itip_receiver_list(store, itip, language):
+    return [{
+        "id": rtip.receiver.id,
+        "name": rtip.receiver.user.name,
+        "last_access": datetime_to_ISO8601(rtip.last_access),
+        "access_counter": rtip.access_counter,
+    } for rtip in itip.receivertips]
+
+
+@transact_ro
+def get_receiver_list(store, user_id, rtip_id, language):
+    rtip = db_access_rtip(store, user_id, rtip_id)
+
+    return db_get_itip_receiver_list(store, rtip.internaltip, language)
+
+
 @transact
 def delete_rtip(store, user_id, rtip_id):
     """
@@ -443,22 +459,6 @@ class RTipCommentCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.finish(answer)
-
-
-def db_get_itip_receiver_list(store, itip, language):
-    return [{
-        "id": rtip.receiver.id,
-        "name": rtip.receiver.user.name,
-        "last_access": datetime_to_ISO8601(rtip.last_access),
-        "access_counter": rtip.access_counter,
-    } for rtip in itip.receivertips]
-
-
-@transact_ro
-def get_receiver_list(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    return db_get_itip_receiver_list(store, rtip.internaltip, language)
 
 
 class RTipReceiversCollection(BaseHandler):
