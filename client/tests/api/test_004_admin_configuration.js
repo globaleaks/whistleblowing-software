@@ -16,8 +16,9 @@ var receivers = new Array();
 var receivers_ids = new Array();
 var contexts = new Array();
 var contexts_ids = new Array();
-var fields = new Array();
 var fields_ids = new Array();
+
+var i;
 
 var authentication;
 var node;
@@ -157,7 +158,7 @@ var validate_mandatory_headers = function(headers) {
   }
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
@@ -229,7 +230,7 @@ describe('PUT /admin/node', function () {
 })
 
 // we popolate population_order receivers
-for (var i=0; i<population_order; i++) {
+for (i=0; i<population_order; i++) {
   (function (i) {
     describe('POST /admin/users', function () {
       it('responds 201 on POST /admin/users ' + i + ' (authenticated, valid new  receiver)', function (done) {
@@ -262,7 +263,7 @@ for (var i=0; i<population_order; i++) {
 }
 
 // we popolate population_order contexts
-for (var i=0; i<population_order; i++) {
+for (i=0; i<population_order; i++) {
   (function (i) {
     describe('POST /admin/contexts', function () {
       it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {

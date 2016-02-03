@@ -3,6 +3,7 @@
 #   *******
 #
 # GlobaLeaks Utility Functions
+from __future__ import print_function
 
 import cgi
 import codecs
@@ -209,7 +210,7 @@ class Logger(object):
 
     def info(self, msg):
         if GLSettings.loglevel and GLSettings.loglevel <= logging.INFO:
-            print "[-] %s" % self._str(msg)
+            print("[-] %s" % self._str(msg))
 
     def err(self, msg):
         if GLSettings.loglevel:
@@ -217,12 +218,12 @@ class Logger(object):
 
     def debug(self, msg):
         if GLSettings.loglevel and GLSettings.loglevel <= logging.DEBUG:
-            print "[D] %s" % self._str(msg)
+            print("[D] %s" % self._str(msg))
 
     def time_debug(self, msg):
         # read the command in settings.py near 'verbosity_dict'
         if GLSettings.loglevel and GLSettings.loglevel <= (logging.DEBUG - 1):
-            print "[T] %s" % self._str(msg)
+            print("[T] %s" % self._str(msg))
 
     def msg(self, msg):
         if GLSettings.loglevel:
