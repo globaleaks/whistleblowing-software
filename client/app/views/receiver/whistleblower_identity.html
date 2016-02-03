@@ -12,31 +12,29 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div>
-      <div data-ng-if="tip.last_iar && tip.last_iar.reply != 'authorized'">
-        <div>
-          <label data-translate>Access to the whistleblower's identity has been requested to the custodian.</label>
-        </div>
-        <div>
-          <label data-translate>Date of the request</label><span>:</span>
-          <span>{{tip.last_iar.request_date | date:'dd-MM-yyyy HH:mm'}}</span>
-        </div>
-        <div>
-          <label data-translate>Request status</label><span>:</span>
-          <span data-ng-switch="" on="tip.last_iar.reply">
-            <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
-            <span data-ng-switch-when="denied" data-translate>Denied</span>
-          </span>
-        </div>
-        <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iarl.reply_motivation}}</span></div>
+    <div data-ng-if="tip.last_iar && tip.last_iar.reply != 'authorized'">
+      <div>
+        <label data-translate>Access to the whistleblower's identity has been requested to the custodian.</label>
       </div>
+      <div>
+        <label data-translate>Date of the request</label><span>:</span>
+        <span>{{tip.last_iar.request_date | date:'dd-MM-yyyy HH:mm'}}</span>
+      </div>
+      <div>
+        <label data-translate>Request status</label><span>:</span>
+        <span data-ng-switch="" on="tip.last_iar.reply">
+          <span data-ng-switch-when="pending" data-translate>Waiting for authorization</span>
+          <span data-ng-switch-when="denied" data-translate>Denied</span>
+        </span>
+      </div>
+      <div data-ng-if="iar.reply == 'denied'"><label data-translate>Reply motivation</label>:<span>{{tip.last_iarl.reply_motivation}}</span></div>
     </div>
-    <div data-ng-if="tip.last_iar && tip.last_iar.reply == 'authorized'">
+    <div data-ng-if="!whistleblower_identity_field.attrs.visibility_subject_to_authorization.value || (tip.last_iar && tip.last_iar.reply == 'authorized')">
       <dd data-ng-repeat="field in whistleblower_identity_field.children | orderBy:['y', 'x']">
         <span data-ng-init="fieldAnswers=tip.answers[whistleblower_identity_field.id][0]" data-ng-include="'views/partials/tip_field.html'"></span>
       <dd>
     </div>
-    <div data-ng-if="!tip.last_iar || tip.last_iar.reply == 'denied'">
+    <div data-ng-if="whistleblower_identity_field.attrs.visibility_subject_to_authorization.value && (!tip.last_iar || tip.last_iar.reply == 'denied')">
       <a class="btn btn-primary" data-ng-click="file_identity_access_request()">
         <span data-translate>Request access to the whistleblower's identity</span>
       </a>
