@@ -26,15 +26,7 @@ describe('adming configure node', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.setLocation('/admin/mail');
-
-      element(by.cssContainingText("a", "Exception notification")).click();
-
-      // configure email used for exceptions testin
-      element(by.model('admin.notification.exception_email_address')).clear();
-      element(by.model('admin.notification.exception_email_address')).sendKeys('globaleaks-exceptions@mailinator.com');
-
-      element(by.css('[data-ng-click="update(admin.notification)"]')).click().then(function() {
+      browser.waitForAngular();
       done();
       });
     });
