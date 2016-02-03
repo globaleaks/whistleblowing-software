@@ -40,7 +40,7 @@
         </select>
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
-        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value == 'vertical')}">
+        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'vertical')}">
           <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
             <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
