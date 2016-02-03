@@ -290,7 +290,7 @@ def apply_cmdline_options(store):
                         (node.public_site, composed_t2w_url))
             else:
                 node.public_site = unicode(composed_t2w_url)
-                log_msg("[+] %s public site in the DB: %s" % (verb, composed_t2w_url))
+                log.msg("[+] %s public site in the DB: %s" % (verb, composed_t2w_url))
 
             verb = "Overwriting"
 

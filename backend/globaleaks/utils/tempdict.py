@@ -33,9 +33,9 @@ class TempDict(OrderedDict):
     def set(self, key, value):
         timeout = self.get_timeout()
         if timeout is not None:
-            value._expireCall = self.reactor.callLater(timeout, self._expire, key)
+            value.expireCall = self.reactor.callLater(timeout, self._expire, key)
         else:
-            value._expireCall = None
+            value.expireCall = None
 
         self[key] = value
 
@@ -43,8 +43,8 @@ class TempDict(OrderedDict):
 
     def get(self, key):
         if key in self:
-            if self[key]._expireCall is not None:
-                self[key]._expireCall.reset(self.get_timeout())
+            if self[key].expireCall is not None:
+                self[key].expireCall.reset(self.get_timeout())
 
             return self[key]
 
@@ -53,7 +53,7 @@ class TempDict(OrderedDict):
     def delete(self, key):
         if key in self:
             try:
-                self[key]._expireCall.stop()
+                self[key].expireCall.stop()
             except:
                 pass
 
@@ -68,6 +68,7 @@ class TempDict(OrderedDict):
     def _expire(self, key):
         if key in self:
             if self.expireCallback is not None:
+                # pylint: disable=not-callable
                 self.expireCallback(self[key])
 
             del self[key]

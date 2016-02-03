@@ -208,7 +208,7 @@ class FileInstance(BaseHandler):
             token.associate_file(uploaded_file)
 
             serialize_memory_file(uploaded_file)
-        except:
+        except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
 

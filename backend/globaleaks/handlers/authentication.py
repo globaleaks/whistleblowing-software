@@ -30,10 +30,10 @@ class GLSession(object):
         GLSettings.sessions.set(self.id, self)
 
     def getTime(self):
-        return self._expireCall.getTime()
+        return self.expireCall.getTime()
 
     def __repr__(self):
-        return "%s %s expire in %s" % (self.user_role, self.user_id, self._expireCall)
+        return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
 def random_login_delay():
