@@ -204,8 +204,10 @@ def login(store, username, password, using_tor2web):
 
 class AuthenticationHandler(BaseHandler):
     """
-    Login handler for admins and receivers
+    Login handler for admins and recipents and custodians
     """
+    handler_exec_time_threshold = 60
+
     @authenticated('*')
     def get(self):
         if self.current_user and self.current_user.id not in GLSettings.sessions:
@@ -268,12 +270,15 @@ class AuthenticationHandler(BaseHandler):
 
 
 class ReceiptAuthHandler(AuthenticationHandler):
+    handler_exec_time_threshold = 60
+
     @unauthenticated
     @inlineCallbacks
     def post(self):
         """
-        Login
+        Receipt login handler used by whistleblowers
         """
+
         request = self.validate_message(self.request.body, requests.ReceiptAuthDesc)
 
         receipt = request['receipt']
