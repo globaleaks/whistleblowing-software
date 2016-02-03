@@ -63,7 +63,7 @@ module.exports = function(grunt) {
     useminPrepare: {
       html: [
         'tmp/index.html',
-        'tmp/app.html',
+        'tmp/app.html'
       ],
       options: {
         staging: 'tmp',
@@ -233,7 +233,7 @@ module.exports = function(grunt) {
     ret['inverse_mapping'] = {}
     for (var key in ret['mapping']) {
       ret['inverse_mapping'][(ret['mapping'][key])] = key;
-    };
+    }
 
     return ret;
   }
@@ -270,6 +270,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
+    var dirs;
+
     var rm_rf = function(dir) {
       var s = fs.statSync(dir);
 
@@ -293,14 +295,14 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
-    var dirs = ['js/crypto']
+    dirs = ['js/crypto']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
       });
     }
 
-    var dirs = ['fonts', 'l10n', 'data']
+    dirs = ['fonts', 'l10n', 'data']
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
@@ -311,14 +313,14 @@ module.exports = function(grunt) {
   });
 
   function str_escape (val) {
-      if (typeof(val)!="string") return val;
+      if (typeof(val) !== "string") return val;
       return val
         .replace(/[\n]/g, '\\n')
         .replace(/[\t]/g, '\\r');
   }
 
   function str_unescape (val) {
-      if (typeof(val)!="string") return val;
+      if (typeof(val) !== "string") return val;
       return val
         .replace(/\\n/g, '\n')
         .replace(/\\t/g, '\t');
@@ -482,7 +484,7 @@ module.exports = function(grunt) {
 
           fetched_languages += 1;
 
-          if (total_languages == fetched_languages) {
+          if (total_languages === fetched_languages) {
             var sorted_keys = Object.keys(supported_languages).sort();
 
             console.log("List of available translations:");
@@ -556,7 +558,7 @@ module.exports = function(grunt) {
 
       for (var i=0; i<lines.length; i++){
         // we skip adding empty strings and variable only strings
-        if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+        if (lines[i] !== '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
           addString(lines[i]);
         }
       }
@@ -597,7 +599,8 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      fileContents = fs.readFileSync("pot/en.po");
+      fileContents = fs.readFileSync("pot/en.po"),
+      lang_code;
 
     function addTranslation(translations, key, value) {
       if (key in dynamic_strings['inverse_mapping']) {
@@ -607,12 +610,11 @@ module.exports = function(grunt) {
       translations[key] = value;
     };
 
-    fetchTxTranslations(function(supported_languages){
-
+    fetchTxTranslations(function(supported_languages) {
       gt.addTextdomain("en", fileContents);
       strings = gt.listKeys("en", "");
 
-      for (var lang_code in supported_languages) {
+      for (lang_code in supported_languages) {
         var translations = {}, output;
 
         strings.forEach(function(string){
@@ -623,11 +625,9 @@ module.exports = function(grunt) {
         output = JSON.stringify(translations);
 
         fs.writeFileSync("app/l10n/" + lang_code + ".json", output);
-
       }
 
       done();
-
     });
   });
 
@@ -635,7 +635,8 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      fileContents = fs.readFileSync("pot/en.po");
+      fileContents = fs.readFileSync("pot/en.po")
+      lang_code;
 
     fetchTxTranslations(function(supported_languages){
       var json = JSON.parse(fs.readFileSync("app/data_src/appdata.json")),
@@ -647,7 +648,7 @@ module.exports = function(grunt) {
 
       var translate_object = function(object, keys) {
         for (var k in keys) {
-          for (var lang_code in supported_languages) {
+          for (lang_code in supported_languages) {
             object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
           }
         }
@@ -680,12 +681,12 @@ module.exports = function(grunt) {
       var translate_questionnaire = function(questionnaire) {
         for (var s in questionnaire) {
           translate_step(questionnaire[s]);
-        };
+        }
       }
 
       gt.addTextdomain("en", fileContents);
 
-      for (var lang_code in supported_languages) {
+      for (lang_code in supported_languages) {
         gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
       }
 
@@ -697,7 +698,7 @@ module.exports = function(grunt) {
         templates_sources[template_name] = grunt.file.read(filepath);
       });
 
-      for (var lang_code in supported_languages) {
+      for (lang_code in supported_languages) {
         for (var template_name in templates_sources) {
           if (!(template_name in templates)) {
             templates[template_name] = {}
@@ -710,14 +711,14 @@ module.exports = function(grunt) {
           for (var i=0; i<lines.length; i++){
 
             // we skip adding empty strings and variable only strings
-            if (lines[i] != '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
+            if (lines[i] !== '' && !lines[i].match(/^%[a-zA-Z0-9]+%/g)) {
               tmp = tmp.replace(lines[i], str_unescape(gt.dgettext(lang_code, str_escape(lines[i]))));
             }
           }
 
           templates[template_name][lang_code] = tmp;
         }
-      };
+      }
 
       output['version'] = version;
       output['default_questionnaire'] = default_questionnaire;
@@ -726,10 +727,10 @@ module.exports = function(grunt) {
 
       for (var k in json['node']) {
         output['node'][k] = {};
-        for (var lang_code in supported_languages) {
+        for (lang_code in supported_languages) {
           output['node'][k][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(json['node'][k]['en'])));
-        };
-      };
+        }
+      }
 
       translate_questionnaire(output['default_questionnaire']);
 

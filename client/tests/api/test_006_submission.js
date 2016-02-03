@@ -16,6 +16,8 @@ var comments_population_order = 10;
 
 var authentication;
 
+var i;
+
 var receivers = new Array();
 var receivers_ids = new Array();
 var contexts = new Array();
@@ -37,7 +39,7 @@ var validate_mandatory_headers = function(headers) {
   }
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
@@ -59,7 +61,7 @@ var fill_field_recursively = function(answers, field) {
   answers[field['id']] = {'0': {'0': ''}}
   for (var i = 0; i < field.children.length; j++) {
     fill_field_recursively(field.children[i]);
-  };
+  }
 }
 
 var fill_answers = function(steps) {
@@ -68,7 +70,7 @@ var fill_answers = function(steps) {
     for (c in steps[i].children) {
       fill_field_recursively(answers, steps[i].children[c]);
     }
-  };
+  }
 
   return answers;
 }
@@ -85,7 +87,7 @@ describe('GET /contexts', function(){
         } else {
           validate_mandatory_headers(res.headers);
 
-          if (res.body.length != population_order) {
+          if (res.body.length !== population_order) {
             throw '/contexts didn\'t return ' + population_order + ' contexts';
           }
 
@@ -94,7 +96,7 @@ describe('GET /contexts', function(){
           for (var i=0; i<population_order; i++) {
             contexts_ids.push(contexts[i].id);
 
-            if(contexts[i].receivers.length != population_order) {
+            if(contexts[i].receivers.length !== population_order) {
               throw '/contexts didn\'t return ' + population_order + ' receivers associated to each context';
             }
           }
@@ -117,7 +119,7 @@ describe('GET /receivers', function(){
         } else {
           validate_mandatory_headers(res.headers);
 
-          if (res.body.length != population_order) {
+          if (res.body.length !== population_order) {
             throw '/receivers didn\'t return ' + population_order + ' receivers';
           }
 
@@ -126,7 +128,7 @@ describe('GET /receivers', function(){
           for (var i=0; i<population_order; i++) {
             receivers_ids.push(receivers[i].id);
 
-            if(receivers[i].contexts.length != population_order) {
+            if(receivers[i].contexts.length !== population_order) {
               throw '/receivers didn\'t return ' + population_order + ' contexts associated to each receiver';
             }
           }
@@ -137,7 +139,7 @@ describe('GET /receivers', function(){
   })
 })
 
-for (var i=0; i<submission_population_order; i++) {
+for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('POST /token', function(){
       it('responds with ', function(done){
@@ -163,12 +165,11 @@ for (var i=0; i<submission_population_order; i++) {
   })(i);
 }
 
-for (var i=0; i<submission_population_order; i++) {
+for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /token/token_id', function(){
       it('responds with ', function(done){
         if(submission_tokens[i].human_captcha) {
-          submission_tokens[i].human_captcha_answer = eval(submission_tokens[i].human_captcha);
           app
             .put('/token/' + submission_tokens[i].id)
             .send(submission_tokens[i])
@@ -192,7 +193,7 @@ for (var i=0; i<submission_population_order; i++) {
   })(i);
 }
 
-for (var i=0; i<submission_population_order; i++) {
+for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /submission/submission_id', function(){
       it('responds with ', function(done){
@@ -237,11 +238,8 @@ describe('POST /receiptauth', function () {
         if (err) {
           return done(err);
         }
-
         validate_mandatory_headers(res.headers);
-
         authentication = res.body;
-
         done();
       });
   })
@@ -258,11 +256,8 @@ describe('POST /receiptauth', function () {
         if (err) {
           return done(err);
         }
-
         validate_mandatory_headers(res.headers);
-
         authentication = res.body;
-
         done();
       });
   })
@@ -282,9 +277,7 @@ for (var i=1; i<comments_population_order; i++) {
             if (err) {
               return done(err);
             }
-
             validate_mandatory_headers(res.headers);
-
             done();
           });
       })

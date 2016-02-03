@@ -39,77 +39,77 @@ var admin_resources = [
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 406,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/contexts',
     'status_GET': 200,
     'status_POST': 406,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/fields',
     'status_GET': 405,
     'status_POST': 406,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/fieldtemplates',
     'status_GET': 200,
     'status_POST': 406,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/users',
     'status_GET': 200,
     'status_POST': 406,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/receivers',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/notification',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 406,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/staticfiles',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/overview/users',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/overview/files',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   },
   {
     'url': '/admin/overview/tips',
     'status_GET': 200,
     'status_POST': 405,
     'status_PUT': 405,
-    'status_DELETE': 405,
+    'status_DELETE': 405
   }
 ]
 
