@@ -35,7 +35,7 @@
     "angular-translate": "2.9.0",
     "angular-translate-loader-url": "2.9.0",
     "angular-translate-loader-static-files": "2.9.0",
-    "angular-ui-bootstrap-bower": "1.1.1",
+    "angular-ui-bootstrap-bower": "1.1.2",
     "bowser": "1.0.0",
     "bootstrap": "3.3.6",
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
