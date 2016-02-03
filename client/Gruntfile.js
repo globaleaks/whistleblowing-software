@@ -645,7 +645,7 @@ module.exports = function(grunt) {
           templates = json['templates'],
           templates_sources = {};
 
-      var translate_model = function(object, keys) {
+      var translate_object = function(object, keys) {
         for (var k in keys) {
           for (var lang_code in supported_languages) {
             object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
@@ -653,19 +653,15 @@ module.exports = function(grunt) {
         }
       }
 
-      var translate_fieldattr = function(fieldattr) {
-        if (fieldattr['type'] == 'localized') {
-          for (var lang_code in supported_languages) {
-            fieldattr['value'][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(fieldattr['value']['en'])));
-          }
-        }
-      }
-
       var translate_field = function(field) {
-        translate_model(field, ['label', 'description', 'hint', 'multi_entry_hint']);
+        translate_object(field, ['label', 'description', 'hint', 'multi_entry_hint']);
 
         for (var i in field['attrs']) {
-          translate_fieldattr(field['attrs'][i]);
+          translate_object(field['attrs'][i], ['value']);
+        }
+
+        for (var i in field['options']) {
+          translate_object(field['options'][i], ['label']);
         }
 
         for (var c in field['children']) {
@@ -674,7 +670,7 @@ module.exports = function(grunt) {
       }
 
       var translate_step = function(step) {
-        translate_model(step, ['label', 'description']);
+        translate_object(step, ['label', 'description']);
 
         for (var c in step['children']) {
           translate_field(step['children'][c]);
