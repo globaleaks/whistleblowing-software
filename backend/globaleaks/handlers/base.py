@@ -128,8 +128,15 @@ class BaseHandler(RequestHandler):
         self.req_id = GLSettings.requests_counter
         GLSettings.requests_counter += 1
 
-        self.request.language = GLSettings.memory_copy.default_language
-        self.request.import_export = None
+        self.request.start_time = datetime_now()
+
+        self.request.request_type = None
+        if 'import' in self.request.arguments:
+            self.request.request_type = 'import'
+        elif 'export' in self.request.arguments:
+            self.request.request_type = 'export'
+
+        self.request.language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
 
     def set_default_headers(self):
         """
@@ -162,13 +169,6 @@ class BaseHandler(RequestHandler):
         # same origin is needed in order to include svg and other html <object>
         if not GLSettings.memory_copy.allow_iframes_inclusion:
             self.set_header("X-Frame-Options", "sameorigin")
-
-        if 'import' in self.request.arguments:
-            self.request_type = 'import'
-        elif 'export' in self.request.arguments:
-            self.request_type = 'export'
-
-        self.request.language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
 
     @staticmethod
     def validate_python_type(value, python_type):
