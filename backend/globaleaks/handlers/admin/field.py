@@ -237,13 +237,13 @@ def db_create_field(store, field_dict, language):
 
 
 @transact
-def create_field(store, field_dict, language, import_export=None):
+def create_field(store, field_dict, language, request_type=None):
     """
     Transaction that perform db_create_field
     """
-    field = db_create_field(store, field_dict, language if import_export != 'import' else None)
+    field = db_create_field(store, field_dict, language if request_type != 'import' else None)
 
-    return serialize_field(store, field, language if import_export != 'export' else None)
+    return serialize_field(store, field, language)
 
 
 def db_update_field(store, field_id, field_dict, language):
@@ -314,7 +314,7 @@ def db_update_field(store, field_id, field_dict, language):
 
 
 @transact
-def update_field(store, field_id, field, language):
+def update_field(store, field_id, field, language, request_type=None):
     """
     Update the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
@@ -326,13 +326,13 @@ def update_field(store, field_id, field, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    field = db_update_field(store, field_id, field, language)
+    field = db_update_field(store, field_id, field, language if request_type != 'import' else None)
 
     return serialize_field(store, field, language)
 
 
 @transact_ro
-def get_field(store, field_id, language):
+def get_field(store, field_id, language, request_type=None):
     """
     Serialize a specified field
 
@@ -346,7 +346,7 @@ def get_field(store, field_id, language):
     if not field:
         raise errors.FieldIdNotFound
 
-    return serialize_field(store, field, language)
+    return serialize_field(store, field, language if request_type != 'export' else None)
 
 
 @transact
@@ -365,7 +365,7 @@ def delete_field(store, field_id):
     if not field:
         raise errors.FieldIdNotFound
 
-    # To be uncommented upon completion of fields implementaion
+    # TODO: to be uncommented upon completion of fields implementaion
     # if not field.editable:
     #     raise errors.FieldNotEditable
 
@@ -401,7 +401,7 @@ def fieldtree_ancestors(store, field_id):
 
 
 @transact_ro
-def get_fieldtemplate_list(store, language):
+def get_fieldtemplate_list(store, language, request_type=None):
     """
     Serialize all the field templates localizing their content depending on the language.
 
@@ -410,8 +410,9 @@ def get_fieldtemplate_list(store, language):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    ret = []
+    language  = language if request_type != 'export' else None
 
+    ret = []
     for f in store.find(models.Field, models.Field.instance == u'template'):
         if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
             ret.append(serialize_field(store, f, language))
@@ -430,7 +431,8 @@ class FieldTemplatesCollection(BaseHandler):
         :return: the list of field templates registered on the node.
         :rtype: list
         """
-        response = yield get_fieldtemplate_list(self.request.language)
+        response = yield get_fieldtemplate_list(self.request.language,
+                                                self.request.request_type)
 
         self.set_status(200)
         self.finish(response)
@@ -446,7 +448,7 @@ class FieldTemplatesCollection(BaseHandler):
 
         request = self.validate_message(self.request.body, validator)
 
-        response = yield create_field(request, self.request.language)
+        response = yield create_field(request, self.request.language, self.request.request_type)
 
         self.set_status(201)
         self.finish(response)
@@ -465,7 +467,11 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id, self.request.language)
+        print self.request.request_type
+        print self.request.language
+        response = yield get_field(field_id,
+                                   self.request.language,
+                                   self.request.request_type)
 
         self.set_status(200)
         self.finish(response)
@@ -485,7 +491,10 @@ class FieldTemplateInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.AdminFieldDesc)
 
-        response = yield update_field(field_id, request, self.request.language)
+        response = yield update_field(field_id,
+                                      request,
+                                      self.request.language,
+                                      self.request.request_type)
 
         GLApiCache.invalidate('contexts')
 
@@ -529,7 +538,9 @@ class FieldCollection(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.AdminFieldDesc)
 
-        response = yield create_field(request, self.request.language)
+        response = yield create_field(request,
+                                      self.request.language,
+                                      self.request.request_type)
 
         GLApiCache.invalidate('contexts')
 
@@ -556,7 +567,9 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id, self.request.language)
+        response = yield get_field(field_id,
+                                   self.request.language,
+                                   self.request.request_type)
 
         GLApiCache.invalidate('contexts')
 
@@ -579,7 +592,10 @@ class FieldInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.AdminFieldDesc)
 
-        response = yield update_field(field_id, request, self.request.language)
+        response = yield update_field(field_id,
+                                      request,
+                                      self.request.language,
+                                      self.request.request_type)
 
         GLApiCache.invalidate('contexts')
 
