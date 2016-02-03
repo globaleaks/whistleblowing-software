@@ -10,7 +10,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.admin import node, context, receiver, notification
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -21,7 +20,7 @@ from globaleaks.handlers.files import serialize_receiver_file
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
     db_get_comment_list, db_get_message_list
 from globaleaks.handlers.submission import get_submission_sequence_number
-from globaleaks.models import ReceiverTip, ReceiverFile
+from globaleaks.models import ReceiverFile
 from globaleaks.rest import errors
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.zipstream import ZipStream
@@ -58,16 +57,6 @@ def get_tip_export(store, user_id, rtip_id):
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
     return export_dict
-
-
-@transact_ro
-def get_receiver_from_rtip(store, rtip_id, language):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    return receiver.admin_serialize_receiver(rtip.receiver, language)
 
 
 class ExportStreamer(object):
