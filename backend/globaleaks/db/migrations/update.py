@@ -170,7 +170,7 @@ class MigrationBase(object):
         try:
             self.store_new.execute(query + ';')
         except OperationalError as excep:
-            GLSetting.print_msg('OperationalError %s while executing query: %s' % (excep, query))
+            GLSettings.print_msg('OperationalError %s while executing query: %s' % (excep, query))
             raise excep
 
     def commit(self):

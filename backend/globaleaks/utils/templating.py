@@ -134,7 +134,7 @@ def dump_fields(output, fields, answers, indent_n):
                 else:
                     i = 1
                     for entry in entries:
-                        output += indent(intent_n) + '#' + str(i) + '\n'
+                        output += indent(indent_n) + '#' + str(i) + '\n'
                         output = dump_field_entry(output, field, entry, indent_n + 2)
                         i += 1
 
