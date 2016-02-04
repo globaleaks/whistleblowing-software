@@ -1,3 +1,6 @@
+Changes in version 2.60.135 - 2016-02-04
+    o Fix syntax error in apparmor script
+
 Changes in version 2.60.134 - 2016-02-04
     o Adopt CodeClimate for monitoring of code quality
     o Improve packaging including libraries version following #1515
