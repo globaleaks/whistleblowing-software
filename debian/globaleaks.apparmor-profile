@@ -44,5 +44,5 @@ profile usr.bin.globaleaks {
     # Explicit silent deny rules:
     deny /bin/uname x,      # needed by os.uname in pip
     deny /usr/bin/gcc-** x, # needed to silent deny errors for gpg trying to use gcc wtf?!
-    deny /sbin/ldconfig x   # needed to silent deny errors for gpg
+    deny /sbin/ldconfig x,  # needed to silent deny errors for gpg
 }
