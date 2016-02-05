@@ -11,11 +11,7 @@ override_dh_installman:
 	dh_installman
 
 override_dh_install:
-# install apparmor profile
-	mkdir -p debian/globaleaks/etc/apparmor.d/
-	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
 	dh_apparmor --profile-name=usr.bin.globaleaks
-# install copy of /etc/default/globaleaks in /usr/share/globaleaks/default
 	dh_install --fail-missing
 
 override_dh_installinit:
