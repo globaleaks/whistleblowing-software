@@ -28,7 +28,6 @@ describe('adming configure node', function() {
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       browser.waitForAngular();
       done();
-      });
     });
   });
 });
