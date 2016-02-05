@@ -1,4 +1,5 @@
-backend/requirements.txt usr/share/globaleaks
 backend/default usr/share/globaleaks
-data usr/share/globaleaks
+backend/requirements.txt usr/share/globaleaks
 client/build/* usr/share/globaleaks/client
+data usr/share/globaleaks
+debian/apparmor/usr.bin.globaleaks etc/apparmor.d/
