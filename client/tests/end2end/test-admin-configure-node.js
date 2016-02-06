@@ -110,7 +110,7 @@ describe('configure short urls', function() {
           element(by.cssContainingText("button", "Delete")).click().then(function() {
             browser.waitForAngular();
             j = j - 1;
-            if (j == 0) {
+            if (j === 0) {
               done();
             }
           });
