@@ -24,16 +24,16 @@ def load_appdata():
 
 
 def load_default_fields(store):
-    if os.path.exists(GLSettings.fields_path):
-        for fname in os.listdir(GLSettings.fields_path):
-            fpath = os.path.join(GLSettings.fields_path, fname)
-            with file(fpath, 'r') as f:
-                json_string = f.read()
-                field_dict = json.loads(json_string)
-                db_create_field(store, field_dict, None)
-                return
-
-    raise errors.InternalServerError("Unable to load default fields")
+    try:
+        if os.path.exists(GLSettings.fields_path):
+            for fname in os.listdir(GLSettings.fields_path):
+                fpath = os.path.join(GLSettings.fields_path, fname)
+                with file(fpath, 'r') as f:
+                    json_string = f.read()
+                    field_dict = json.loads(json_string)
+                    db_create_field(store, field_dict, None)
+    except Exception as e:
+        raise errors.InternalServerError("Unable to load default fields: %s" % e)
 
 
 def db_init_appdata(store):
