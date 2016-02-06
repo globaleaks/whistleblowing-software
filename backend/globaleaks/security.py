@@ -12,7 +12,6 @@ import base64
 import json
 import random
 import shutil
-from flask.ext.scrypt import generate_random_salt as scrypt_salt_gen #import flask version of scrypt to generate better and more secure salt
 import scrypt
 import string
 import time
@@ -58,15 +57,8 @@ def generateRandomKey(N):
 
 
 def generateRandomSalt():
-	salt1 = scrypt_salt_gen(32) #we generate a salt that is 32 chars long using scrypt
-	return salt1
-#the old one that only gens lowchars and numbers, but what we want is to use scrypt for this
-#def generateRandomSalt():
-#    """
-#    Return a string a-z0-9 long 32 chars (128 bit of entropy)
-#    """
-#    return ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(32)).encode('utf-8')
-
+    #flask-scrypt's random hash gen , rewritten easy by flipchan
+    return b64encode(urandom(32)) 
 
 def generateRandomPassword():
     """
