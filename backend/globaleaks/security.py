@@ -58,9 +58,9 @@ def generateRandomKey(N):
 
 def generateRandomSalt():
     """
-    Return a string a-z0-9 long 32 chars (128 bit of entropy)
+    Return a base64 encoded string with 128 bit of entropy
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.digits) for _ in range(32)).encode('utf-8')
+    return base64.b64encode(os.urandom(16))
 
 
 def generateRandomPassword():
