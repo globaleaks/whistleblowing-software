@@ -15,3 +15,17 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
     $scope.simplifiedLogin = false;
   }
 }]);
+
+GLClient.controller('AutoLoginCtrl', ['$scope', '$location', function($scope, $location) {
+  function receiveMessage(event) {
+    window.removeEventListener('message', this, false);
+    var receipt = event.data.replace(/\s+/g, '');
+    $scope.login('whistleblower', receipt);
+  }
+
+  window.addEventListener("message", receiveMessage, false);
+
+  var arr = window.parent.location.href.split("/");
+  var parent_domain = arr[0] + "//" + arr[2];
+  window.parent.postMessage("Ready", parent_domain);
+}]);

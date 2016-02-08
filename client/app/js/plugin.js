@@ -1,16 +1,11 @@
 'use strict';
-function closeGlobaLeaks() {
-  function deleteElementById(id) {
-    var element = document.getElementById(id);
-    element.parentNode.removeChild(element);
-  }
-  deleteElementById('globaleaks-overlay');
-  deleteElementById('globaleaks-container');
+
+function get_domain(url) {
+  var arr = url.split("/");
+  return arr[0] + "//" + arr[2];
 }
-function startGlobaLeaks(globaleaks_url) {
-  if (globaleaks_url === undefined) {
-    globaleaks_url = '/#/';
-  }
+
+function create_iframe(url) {
   var a = document.createElement('a');
   var linkText = document.createTextNode('\u274C');
   a.style.color = '#FFF';
@@ -21,7 +16,7 @@ function startGlobaLeaks(globaleaks_url) {
   var ifrm = document.createElement('IFRAME');
   ifrm.overflow = 'hidden';
   ifrm.setAttribute('id', 'globaleaks-iframe');
-  ifrm.setAttribute('src', globaleaks_url);
+  ifrm.setAttribute('src', url);
   ifrm.style.position = 'relative';
   ifrm.style.width = '100%';
   ifrm.style.height = '95%';
@@ -71,4 +66,43 @@ function startGlobaLeaks(globaleaks_url) {
   container.appendChild(ifrm);
   document.body.appendChild(container);
   document.body.appendChild(overlay);
+  return ifrm;
+}
+
+function closeGlobaLeaks() {
+  function deleteElementById(id) {
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
+  }
+
+  deleteElementById('globaleaks-overlay');
+  deleteElementById('globaleaks-container');
+}
+
+function startGlobaLeaks(url) {
+  if (url === undefined) {
+    url = get_domain(window.location.href) + '/#/';
+  }
+
+  create_iframe(url);
+}
+
+function receiptAutoLogin(receipt, url) {
+  if (url === undefined) {
+    url = get_domain(window.location.href) + '/#/autologin';
+  }
+
+  var domain = get_domain(url);
+
+  var ifrm = create_iframe(url);
+
+  function receiveMessage(event) {
+    if (event.origin !== domain) {
+      return;
+    }
+
+    ifrm.contentWindow.postMessage(receipt, domain);
+  }
+
+  window.addEventListener("message", receiveMessage, false);
 }
