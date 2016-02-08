@@ -6,18 +6,18 @@ if [ -z "$GLREQUIREMENTS" ]; then
   GLREQUIREMENTS="trusty"
 fi
 
-setupClientDependencies()
-{
+setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install -g grunt grunt-cli bower
   npm install -d
   grunt setupDependencies
   ./node_modules/protractor/bin/webdriver-manager update
-  grunt build
+  if [ "$1" = 1 ];
+    grunt build
+  fi
 }
 
-setupBackendDependencies()
-{
+setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
   ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
@@ -25,16 +25,15 @@ setupBackendDependencies()
   pip install coverage coveralls
 }
 
-setupDependencies()
-{
-  setupClientDependencies
+setupDependencies() {
+  setupClientDependencies $1
   setupBackendDependencies
 }
 
 if [ "$GLTEST" = "unit" ]; then
 
   echo "Running API tests"
-  setupDependencies
+  setupDependencies 1
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
@@ -107,7 +106,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   capability=${capabilities[${testkey}]}
 
   echo "Testing Configuration: ${testkey}"
-  setupDependencies
+  setupDependencies 0
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
   sleep 5
