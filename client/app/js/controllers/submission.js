@@ -1,10 +1,6 @@
 GLClient.controller('SubmissionCtrl',
     ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission',
       function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission) {
-  $scope.invalidForm = true;
-
-  $scope.uploads = {};
-
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
   $scope.contexts_selectable = $location.search().contexts_selectable;
@@ -179,6 +175,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.answers = {};
+    $scope.uploads = {};
 
     angular.forEach(context.steps, function(field) {
       angular.forEach(field.children, function(child) {
