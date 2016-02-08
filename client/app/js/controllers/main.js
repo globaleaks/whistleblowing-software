@@ -311,13 +311,12 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           $rootScope.language = language;
 
+          $scope.rtl = false;
           if (["ar", "he", "ur"].indexOf(language) !== -1) {
             $scope.rtl = true;
-            document.getElementsByTagName("html")[0].setAttribute('dir', 'rtl');
-          } else {
-            $scope.rtl = false;
-            document.getElementsByTagName("html")[0].setAttribute('dir', 'ltr');
           }
+
+          document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
 
           $translate.use($rootScope.language);
         };
