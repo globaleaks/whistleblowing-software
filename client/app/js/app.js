@@ -185,6 +185,12 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: ''
       }).
+      when('/autologin', {
+        templateUrl: 'views/autologin.html',
+        controller: 'AutoLoginCtrl',
+        header_title: 'Login',
+        header_subtitle: ''
+      }).
       when('/start', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
