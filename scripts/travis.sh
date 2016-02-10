@@ -12,7 +12,7 @@ setupClientDependencies() {
   npm install -d
   grunt setupDependencies
   ./node_modules/protractor/bin/webdriver-manager update
-  if [ "$1" = 1 ];
+  if [ "$1" = 1 ]; then
     grunt build
   fi
 }
