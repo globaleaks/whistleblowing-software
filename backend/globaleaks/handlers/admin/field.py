@@ -62,8 +62,8 @@ def disassociate_field(field):
     :param store: the store on which perform queries.
     :param field: the field to be deassociated.
     """
-    field.steps.clear()
-    field.fieldgroups.clear()
+    field.step = None
+    field.fieldgroup = None
 
 
 def db_import_fields(store, step, fieldgroup, fields):
@@ -105,12 +105,6 @@ def db_update_fieldoption(store, fieldoption_id, option, language):
         store.add(o)
 
     o.update(option)
-
-    for activated_field in option['activated_fields']:
-        o.activated_fields.add(store.find(models.Field, models.Field.id == activated_field))
-
-    for activated_step in option['activated_steps']:
-        o.activated_steps.add(store.find(models.Step, models.Step.id == activated_step))
 
     return o.id
 
@@ -216,10 +210,9 @@ def db_create_field(store, field_dict, language):
     if field.template:
         # special handling of the whistleblower_identity field
         if field.template.key == 'whistleblower_identity':
-            step = field.steps.one()
-            if step:
-                if not step.context.enable_whistleblower_identity:
-                    step.context.enable_whistleblower_identity = True
+            if field.step:
+                if not field.step.context.enable_whistleblower_identity:
+                    field.step.context.enable_whistleblower_identity = True
                 else:
                     raise errors.InvalidInputFormat("Whistleblower identity field already present")
             else:
@@ -377,11 +370,10 @@ def delete_field(store, field_id):
     if field.template:
         # special handling of the whistleblower_identity field
         if field.template.key == 'whistleblower_identity':
-            step = field.steps.one()
-            if step:
-                step.context.enable_whistleblower_identity = False
+            if field.step is not None:
+                field.step.context.enable_whistleblower_identity = False
 
-    field.delete(store)
+    store.remove(field)
 
 
 def fieldtree_ancestors(store, field_id):
@@ -392,12 +384,10 @@ def fieldtree_ancestors(store, field_id):
     :param field_id: the parent id.
     :return: a generator of Field.id
     """
-    parents = store.find(models.FieldField, models.FieldField.child_id == field_id)
-    for parent in parents:
-        if parent.parent_id != field_id:
-            yield parent.parent_id
-            for grandpa in fieldtree_ancestors(store, parent.parent_id):
-                yield grandpa
+    field = store.find(models.Field, models.Field.id == field_id).one()
+    if field.fieldgroup_id != None:
+        yield field.fieldgroup_id
+        yield fieldtree_ancestors(store, field.fieldgroup_id)
 
 
 @transact_ro
@@ -414,7 +404,7 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
     ret = []
     for f in store.find(models.Field, models.Field.instance == u'template'):
-        if not store.find(models.FieldField, models.FieldField.child_id == f.id).one():
+        if f.fieldgroup == None:
             ret.append(serialize_field(store, f, language))
 
     return ret
@@ -467,8 +457,6 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        print self.request.request_type
-        print self.request.language
         response = yield get_field(field_id,
                                    self.request.language,
                                    self.request.request_type)

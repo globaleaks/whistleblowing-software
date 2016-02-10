@@ -119,10 +119,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$uibModal', 'AdminField
     $scope.addOption = function (field) {
       var new_option = {
         'id': '',
+        'option_id': '',
         'label': '',
         'score_points': 0,
-        'activated_fields': [],
-        'activated_steps': []
+        'trigger_field': '',
+        'trigger_step': ''
       };
 
       new_option.presentation_order = $scope.newItemOrder(field.options, 'presentation_order');

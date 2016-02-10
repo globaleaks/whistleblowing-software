@@ -16,6 +16,7 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
 
+
 @transact_ro
 def serialize_ahmia(store, language):
     """
@@ -140,8 +141,8 @@ def serialize_field_option(option, language):
         'id': option.id,
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
-        'activated_fields': [field.id for field in option.activated_fields],
-        'activated_steps': [step.id for step in option.activated_steps]
+        'trigger_field': option.trigger_field if option.trigger_field else '',
+        'trigger_step': option.trigger_step if option.trigger_step else ''
     }
 
     return get_localized_values(ret_dict, option, option.localized_keys, language)
@@ -187,15 +188,16 @@ def serialize_field(store, field, language):
     else:
         f_to_serialize = field
 
-    sf = store.find(models.StepField, models.StepField.field_id == field.id).one()
-    step_id = sf.step_id if sf else ''
-
-    ff = store.find(models.FieldField, models.FieldField.child_id == field.id).one()
-    fieldgroup_id = ff.parent_id if ff else ''
-
     attrs = {}
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
         attrs[attr.name] = serialize_field_attr(attr, language)
+
+    triggered_by_option = None
+    if field.triggered_by_option:
+        triggered_by_option = {
+            'field': field.triggered_by_option.field_id,
+            'option': triggered_by_option.id
+        }
 
     ret_dict = {
         'id': field.id,
@@ -204,8 +206,8 @@ def serialize_field(store, field, language):
         'editable': field.editable,
         'type': f_to_serialize.type,
         'template_id': field.template_id if field.template_id else '',
-        'step_id': step_id,
-        'fieldgroup_id': fieldgroup_id,
+        'step_id': field.step_id if field.step_id else '',
+        'fieldgroup_id': field.fieldgroup_id if field.fieldgroup_id else '',
         'multi_entry': field.multi_entry,
         'required': field.required,
         'preview': field.preview,
@@ -214,8 +216,8 @@ def serialize_field(store, field, language):
         'x': field.x,
         'y': field.y,
         'width': field.width,
-        'activated_by_score': field.activated_by_score,
-        'activated_by_options': [activation.option_id for activation in field.activated_by_options],
+        'triggered_by_score': field.triggered_by_score,
+        'triggered_by_option': field.triggered_by_option,
         'options': [serialize_field_option(o, language) for o in f_to_serialize.options],
         'children': [serialize_field(store, f, language) for f in f_to_serialize.children]
     }
@@ -231,10 +233,19 @@ def serialize_step(store, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
+    triggered_by_option = None
+    if step.triggered_by_option:
+        triggered_by_option = {
+            'field': step.triggered_by_option.field_id,
+            'option': step.triggered_by_option.id
+        }
+
     ret_dict = {
         'id': step.id,
         'context_id': step.context_id,
         'presentation_order': step.presentation_order,
+        'triggered_by_score': step.triggered_by_score,
+        'triggered_by_option': triggered_by_option,
         'children': [serialize_field(store, f, language) for f in step.children]
     }
 

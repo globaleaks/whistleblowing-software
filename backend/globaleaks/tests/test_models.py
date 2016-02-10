@@ -237,7 +237,7 @@ class TestField(helpers.TestGL):
 
     @transact
     def field_delete(self, store, field_id):
-        models.Field.get(store, field_id).delete(store)
+        store.remove(models.Field.get(store, field_id))
 
     @transact
     def add_children(self, store, field_id, *field_ids):

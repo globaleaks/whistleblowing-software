@@ -109,7 +109,7 @@ def delete_step(store, step_id):
     if not step:
         raise errors.StepIdNotFound
 
-    step.delete(store)
+    store.remove(step)
 
 
 class StepCollection(BaseHandler):

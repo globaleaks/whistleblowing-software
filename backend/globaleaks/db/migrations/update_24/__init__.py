@@ -221,16 +221,6 @@ class ArchivedSchema_v_23(Model):
 
 
 class MigrationScript(MigrationBase):
-    def epilogue(self):
-        # Finalize loading the new whitleblower identity field
-        load_default_fields(self.store_new)
-
-        # Apply fixes to the counters
-        self.entries_count['Field'] += 21
-        self.entries_count['FieldAttr'] += 57
-        self.entries_count['FieldOption'] += 2
-        self.entries_count['FieldField'] += 20
-
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
