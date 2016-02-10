@@ -115,7 +115,6 @@ class BaseModel(Storm):
                 value = values[k]
                 setattr(self, k, value)
 
-
     def __repr___(self):
         values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
         return '<%s model with values %s>' % (self.__name__, ', '.join(values))
@@ -151,10 +150,6 @@ class Model(BaseModel):
     @classmethod
     def get(cls, store, obj_id):
         return store.find(cls, cls.id == obj_id).one()
-
-    @classmethod
-    def delete(cls, store):
-        store.remove(cls)
 
 
 class User(Model):
@@ -780,10 +775,10 @@ class Field(Model):
     # when encryption is enabled.
     stats_enabled = Bool(default=False)
 
-    activated_by_score = Int(default=0)
+    triggered_by_score = Int(default=0)
 
-    # This reference when != NULL means
-    # that the field is referencing a template
+    fieldgroup_id = Unicode()
+    step_id = Unicode()
     template_id = Unicode()
 
     type = Unicode(default=u'inputbox')
@@ -792,14 +787,9 @@ class Field(Model):
     editable = Bool(default=True)
 
     unicode_keys = ['type', 'instance', 'key']
-    int_keys = ['x', 'y', 'width', 'activated_by_score']
+    int_keys = ['x', 'y', 'width', 'triggered_by_score']
     localized_keys = ['label', 'description', 'hint', 'multi_entry_hint']
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
-
-    def delete(self, store):
-        for child in self.children:
-            child.delete(store)
-        store.remove(self)
 
 
 class FieldAttr(Model):
@@ -840,31 +830,16 @@ class FieldAttr(Model):
 
 class FieldOption(Model):
     field_id = Unicode()
+    option_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
     score_points = Int(default=0)
+    trigger_field = Unicode()
+    trigger_step = Unicode()
 
     unicode_keys = ['field_id']
     int_keys = ['presentation_order', 'score_points']
     localized_keys = ['label']
-
-
-class OptionActivateField(BaseModel):
-    __storm_primary__ = 'option_id', 'field_id'
-
-    option_id = Unicode()
-    field_id = Unicode()
-
-    unicode_keys = ['option_id', 'field_id']
-
-
-class OptionActivateStep(BaseModel):
-    __storm_primary__ = 'option_id', 'step_id'
-
-    option_id = Unicode()
-    step_id = Unicode()
-
-    unicode_keys = ['option_id', 'step_id']
 
 
 class FieldAnswer(Model):
@@ -898,42 +873,11 @@ class Step(Model):
     label = JSON()
     description = JSON()
     presentation_order = Int(default=0)
+    triggered_by_score = Int(default=0)
 
     unicode_keys = ['context_id']
-    int_keys = ['presentation_order']
+    int_keys = ['presentation_order', 'triggered_by_score']
     localized_keys = ['label', 'description']
-
-    def delete(self, store):
-        for child in self.children:
-            child.delete(store)
-        store.remove(self)
-
-
-class FieldField(BaseModel):
-    """
-    Class used to implement references between Fields and Fields!
-    parent - child relation used to implement fieldgroups
-    """
-    __storm_table__ = 'field_field'
-    __storm_primary__ = 'parent_id', 'child_id'
-
-    parent_id = Unicode()
-    child_id = Unicode()
-
-    unicode_keys = ['parent_id', 'child_id']
-
-
-class StepField(BaseModel):
-    """
-    Class used to implement references between Steps and Fields!
-    """
-    __storm_table__ = 'step_field'
-    __storm_primary__ = 'step_id', 'field_id'
-
-    step_id = Unicode()
-    field_id = Unicode()
-
-    unicode_keys = ['step_id', 'field_id']
 
 
 class Stats(Model):
@@ -1016,65 +960,34 @@ class ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
 
+Field.fieldgroup = Reference(Field.fieldgroup_id, Field.id)
+Field.step = Reference(Field.step_id, Step.id)
 Field.template = Reference(Field.template_id, Field.id)
-
-Field.steps = ReferenceSet(
-    Field.id,
-    StepField.field_id,
-    StepField.step_id,
-    Step.id
-)
-
-Field.fieldgroups = ReferenceSet(
-    Field.id,
-    FieldField.child_id,
-    FieldField.parent_id,
-    Field.id
-)
 
 Field.options = ReferenceSet(
     Field.id,
     FieldOption.field_id
 )
 
+FieldOption.parent = Reference(
+    FieldOption.option_id,
+    FieldOption.id
+)
+
+FieldOption.children = ReferenceSet(
+    FieldOption.id,
+    FieldOption.option_id
+)
+
 Field.children = ReferenceSet(
     Field.id,
-    FieldField.parent_id,
-    FieldField.child_id,
-    Field.id
+    Field.fieldgroup_id
 )
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
 
-Field.activated_by_options = ReferenceSet(
-    Field.id,
-    OptionActivateField.field_id,
-    OptionActivateField.option_id,
-    FieldOption.id
-)
-
-Step.activated_by_options = ReferenceSet(
-    Step.id,
-    OptionActivateStep.step_id,
-    OptionActivateStep.option_id,
-    FieldOption.id
-)
-
-FieldOption.field = Reference(FieldOption.field_id, Field.id)
-
-FieldOption.activated_fields = ReferenceSet(
-    FieldOption.id,
-    OptionActivateField.option_id,
-    OptionActivateField.field_id,
-    Field.id
-)
-
-FieldOption.activated_steps = ReferenceSet(
-    FieldOption.id,
-    OptionActivateStep.option_id,
-    OptionActivateStep.step_id,
-    Step.id
-)
+Field.triggered_by_option = Reference(Field.id, FieldOption.trigger_field)
+Step.triggered_by_option = Reference(Step.id, FieldOption.trigger_step)
 
 FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)
 
@@ -1094,9 +1007,7 @@ Receiver.internaltips = ReferenceSet(
 
 Step.children = ReferenceSet(
     Step.id,
-    StepField.step_id,
-    StepField.field_id,
-    Field.id
+    Field.step_id
 )
 
 Context.steps = ReferenceSet(Context.id, Step.context_id)
@@ -1224,7 +1135,6 @@ model_list = [Node,
                Context, ReceiverContext,
                Field, FieldOption, FieldAttr,
                FieldAnswer, FieldAnswerGroup,
-               OptionActivateField, OptionActivateStep,
                Step,
                InternalTip, ReceiverTip, WhistleblowerTip,
                Comment, Message,

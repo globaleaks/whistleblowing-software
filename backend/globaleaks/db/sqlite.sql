@@ -364,6 +364,8 @@ CREATE TABLE stats (
 
 CREATE TABLE field (
     id TEXT NOT NULL,
+    fieldgroup_id TEXT,
+    step_id TEXT,
     key TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
@@ -374,7 +376,7 @@ CREATE TABLE field (
     preview INTEGER NOT NULL,
     stats_enabled INTEGER NOT NULL DEFAULT 0,
     template_id TEXT,
-    activated_by_score INTEGER NOT NULL DEFAULT 0,
+    triggered_by_score INTEGER NOT NULL DEFAULT 0,
     x INTEGER NOT NULL DEFAULT 0,
     y INTEGER NOT NULL DEFAULT 0,
     width INTEGER NOT NULL DEFAULT 0 CHECK (width >= 0 AND width <= 12),
@@ -395,6 +397,8 @@ CREATE TABLE field (
                                                'reference',
                                                'template')),
     editable INT NOT NULL,
+    FOREIGN KEY (fieldgroup_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
     FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -414,28 +418,18 @@ CREATE TABLE fieldattr (
 
 CREATE TABLE fieldoption (
     id TEXT NOT NULL,
-    field_id TEXT NOT NULL,
+    field_id TEXT,
+    option_id TEXT,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL,
+    trigger_field TEXT,
+    trigger_step TEXT,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
+    FOREIGN KEY (trigger_field) REFERENCES field(id) ON DELETE CASCADE,
+    FOREIGN KEY (trigger_step) REFERENCES step(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-);
-
-CREATE TABLE optionactivatefield (
-    option_id TEXT NOT NULL,
-    field_id TEXT NOT NULL,
-    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
-    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (option_id, field_id)
-);
-
-CREATE TABLE optionactivatestep (
-    option_id TEXT NOT NULL,
-    step_id TEXT NOT NULL,
-    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
-    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
-    PRIMARY KEY (option_id, step_id)
 );
 
 CREATE TABLE step (
@@ -444,25 +438,9 @@ CREATE TABLE step (
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
+    triggered_by_score INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-);
-
-CREATE TABLE field_field (
-    parent_id TEXT NOT NULL,
-    child_id TEXT NOT NULL,
-    FOREIGN KEY (parent_id) REFERENCES field(id) ON DELETE CASCADE,
-    FOREIGN KEY (child_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (parent_id, child_id)
-);
-
-CREATE TABLE step_field (
-    step_id TEXT NOT NULL,
-    field_id TEXT NOT NULL,
-    UNIQUE (field_id),
-    FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
-    FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    PRIMARY KEY (step_id, field_id)
 );
 
 CREATE TABLE fieldanswer (
@@ -527,7 +505,5 @@ CREATE TABLE shorturl (
 CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
-CREATE INDEX optionactivatefield__field_id_index ON optionactivatefield(field_id);
-CREATE INDEX optionactivatestep__step_id_index ON optionactivatestep(step_id);
 CREATE INDEX step__context_id_index ON step(context_id);
 CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);
