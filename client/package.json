@@ -25,7 +25,7 @@
     "grunt-contrib-copy": "0.8.2",
     "grunt-contrib-cssmin": "0.14.0",
     "grunt-contrib-jshint": "0.12.0",
-    "grunt-istanbul": "0.6.1",
+    "grunt-istanbul": "0.6.2",
     "grunt-line-remover": "0.0.2",
     "grunt-inline-alt": "0.3.10",
     "grunt-manifest": "0.4.4",
@@ -35,9 +35,9 @@
     "grunt-usemin": "3.1.1",
     "mocha": "2.4.5",
     "node-gettext": "0.2.14",
-    "protractor": "3.0.0",
+    "protractor": "3.1.1",
     "selenium-webdriver": "2.48.2",
-    "should": "8.2.1",
+    "should": "8.2.2",
     "superagent": "1.7.2",
     "supertest": "1.1.0"
   }
