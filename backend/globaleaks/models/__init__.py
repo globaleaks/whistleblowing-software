@@ -986,8 +986,8 @@ Field.children = ReferenceSet(
 
 Field.attrs = ReferenceSet(Field.id, FieldAttr.field_id)
 
-Field.triggered_by_option = Reference(Field.id, FieldOption.trigger_field)
-Step.triggered_by_option = Reference(Step.id, FieldOption.trigger_step)
+Field.triggered_by_options = ReferenceSet(Field.id, FieldOption.trigger_field)
+Step.triggered_by_options = ReferenceSet(Step.id, FieldOption.trigger_step)
 
 FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_id)
 

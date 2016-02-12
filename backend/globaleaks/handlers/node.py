@@ -139,6 +139,7 @@ def serialize_field_option(option, language):
     """
     ret_dict = {
         'id': option.id,
+        'option_id': option.option_id if option.option_id is not None else '',
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'trigger_field': option.trigger_field if option.trigger_field else '',
@@ -192,12 +193,10 @@ def serialize_field(store, field, language):
     for attr in store.find(models.FieldAttr, models.FieldAttr.field_id == f_to_serialize.id):
         attrs[attr.name] = serialize_field_attr(attr, language)
 
-    triggered_by_option = None
-    if field.triggered_by_option:
-        triggered_by_option = {
-            'field': field.triggered_by_option.field_id,
-            'option': triggered_by_option.id
-        }
+    triggered_by_options = [{
+        'field': trigger.field_id,
+        'option': trigger.id
+    } for trigger in field.triggered_by_options]
 
     ret_dict = {
         'id': field.id,
@@ -217,7 +216,7 @@ def serialize_field(store, field, language):
         'y': field.y,
         'width': field.width,
         'triggered_by_score': field.triggered_by_score,
-        'triggered_by_option': field.triggered_by_option,
+        'triggered_by_options': triggered_by_options,
         'options': [serialize_field_option(o, language) for o in f_to_serialize.options],
         'children': [serialize_field(store, f, language) for f in f_to_serialize.children]
     }
@@ -233,19 +232,17 @@ def serialize_step(store, step, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    triggered_by_option = None
-    if step.triggered_by_option:
-        triggered_by_option = {
-            'field': step.triggered_by_option.field_id,
-            'option': step.triggered_by_option.id
-        }
+    triggered_by_options = [{
+        'field': trigger.field_id,
+        'option': trigger.id
+    } for trigger in step.triggered_by_options]
 
     ret_dict = {
         'id': step.id,
         'context_id': step.context_id,
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
-        'triggered_by_option': triggered_by_option,
+        'triggered_by_options': triggered_by_options,
         'children': [serialize_field(store, f, language) for f in step.children]
     }
 

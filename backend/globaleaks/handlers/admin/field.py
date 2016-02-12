@@ -104,6 +104,9 @@ def db_update_fieldoption(store, fieldoption_id, option, language):
         o = models.FieldOption()
         store.add(o)
 
+    o.trigger_field = option['trigger_field'] if option['trigger_field'] != '' else None
+    o.trigger_step = option['trigger_step'] if option['trigger_step'] != '' else None
+
     o.update(option)
 
     return o.id

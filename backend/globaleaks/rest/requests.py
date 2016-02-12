@@ -328,7 +328,8 @@ AdminFieldDesc = {
     'type': field_type_regexp,
     'attrs': dict,
     'options': [AdminFieldOptionDesc],
-    'children': list
+    'children': list,
+    'triggered_by_score': int
 }
 
 AdminFieldDescRaw = get_raw_request_format(AdminFieldDesc, models.Field.localized_keys)
@@ -342,7 +343,8 @@ AdminStepDesc = {
     'description': unicode,
     'children': [AdminFieldDesc],
     'context_id': uuid_regexp,
-    'presentation_order': int
+    'presentation_order': int,
+    'triggered_by_score': int
 }
 
 AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_keys)
