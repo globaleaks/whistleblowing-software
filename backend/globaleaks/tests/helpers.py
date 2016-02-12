@@ -274,7 +274,8 @@ class TestGL(unittest.TestCase):
             'children': [],
             'y': 1,
             'x': 1,
-            'width': 0 
+            'width': 0,
+            'triggered_by_score': 0
         }
 
     @transact
