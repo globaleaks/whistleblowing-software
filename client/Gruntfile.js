@@ -295,7 +295,7 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
-    dirs = ['js/crypto']
+    dirs = ['js/crypto'];
     for (var x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
@@ -635,10 +635,10 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      fileContents = fs.readFileSync("pot/en.po")
+      fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
-    fetchTxTranslations(function(supported_languages){
+    fetchTxTranslations(function(supported_languages) {
       var json = JSON.parse(fs.readFileSync("app/data_src/appdata.json")),
           output = {},
           version = json['version'],
