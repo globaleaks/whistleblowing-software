@@ -95,7 +95,7 @@ GLClient.controller('AdminCtrl',
       }
 
       var cb = function() {
-        $rootScope.$broadcast("REFRESH");
+        $scope.$emit("REFRESH");
       };
 
       $scope.update(node, cb);
