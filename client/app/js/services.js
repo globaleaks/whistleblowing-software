@@ -266,6 +266,7 @@ angular.module('GLServices', ['ngResource']).
       self.context = undefined;
       self.receivers = [];
       self.receivers_selected = {};
+      self.score = 0;
       self.done = false;
 
       self.isDisabled = function() {
@@ -700,6 +701,7 @@ angular.module('GLServices', ['ngResource']).
           field.fieldgroup_id = fieldgroup_id;
           field.step_id = step_id;
           field.template_id = '';
+          field.triggered_by_score = 0;
           return field;
         };
 

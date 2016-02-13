@@ -160,6 +160,44 @@ GLClient.controller('SubmissionCtrl',
     return 'submission/' + $scope.submission._token.id + '/file';
   };
 
+  $scope.calculateScoreRecursively = function(field, entry) {
+    var score = 0;
+
+    if (['selectbox', 'multichoice'].indexOf(field.type) !== -1) {
+      for(var i=0; i<field.options.length; i++) {
+        if (entry['value'] === field.options[i].id) {
+          score += field.options[i].score_points;
+        }
+      }
+    }
+
+    angular.forEach(field.children, function(child) {
+      angular.forEach(entry[child.id], function(entry) {
+        score += $scope.calculateScoreRecursively(child, entry);
+      });
+    });
+
+    return score;
+  }
+
+  $scope.calculateScore = function() {
+    if (!$scope.node.enable_experimental_features) {
+      return 0;
+    }
+
+    var score = 0;
+
+    angular.forEach($scope.submission.context.steps, function(step) {
+      angular.forEach(step.children, function(field) {
+        angular.forEach($scope.answers[field.id], function(entry) {
+          score += $scope.calculateScoreRecursively(field, entry);
+        });
+      });
+    });
+
+    return score;
+  }
+
   $scope.prepare_field_answers_structure = function(field) {
     if (field.answers_structure === undefined) {
       field.answer_structure = {};
@@ -171,7 +209,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return field.answer_structure;
-  };
+  }
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.answers = {};
@@ -182,6 +220,10 @@ GLClient.controller('SubmissionCtrl',
         $scope.answers[child.id] = [angular.copy($scope.prepare_field_answers_structure(child))];
       });
     });
+
+    $scope.$watch('answers', function(){
+      $scope.submission.score = $scope.calculateScore();
+    }, true);
 
     $scope.submission.create(context.id, receivers_ids, function () {
       startCountdown();
@@ -237,6 +279,50 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission._submission.answers = $scope.answers;
     $scope.submission.submit();
   };
+
+  $scope.showStep = function(step) {
+    if (!$scope.node.enable_experimental_features) {
+      return true;
+    }
+
+    if (step.triggered_by_score > $scope.submission.score) {
+      return false;
+    }
+
+    if (step.triggered_by_options.length === 0) {
+      return true;
+    }
+
+    for (var i=0; i<step.triggered_by_options.length; i++) {
+      if (step.triggered_by_options[i].option === $scope.answers[step.triggered_by_options[i].field][0]['value']) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  $scope.showField = function(field) {
+    if (!$scope.node.enable_experimental_features) {
+      return true;
+    }
+
+    if (field.triggered_by_score > $scope.submission.score) {
+      return false;
+    }
+
+    if (field.triggered_by_options.length === 0) {
+      return true;
+    }
+
+    for (var i=0; i<field.triggered_by_options.length; i++) {
+      if (field.triggered_by_options[i].option === $scope.answers[field.triggered_by_options[i].field][0]['value']) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
   new Submission(function(submission) {
     $scope.submission = submission;

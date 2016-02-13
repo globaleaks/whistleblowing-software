@@ -2,12 +2,12 @@
 
 <div class="tabbable tabs-below">
   <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
-    <li data-ng-if="!skip_first_step" data-ng-class="{active: selection==0, disabled: uploading}">
+    <li data-ng-if="!skip_first_step" data-ng-class="{active: selection === 0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Recipient selection</span>
       </a>
     </li>
-    <li data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-class="{active: selection==$index + 1, disabled: uploading}">
+    <li data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index + 1, disabled: uploading}" data-ng-if="showStep(step)">
       <a id="step-{{$index + (skip_first_step ? 0 : 1)}}-link" href="javascript:void(0)" data-ng-click="goToStep($index + 1)" data-ng-disabled="uploading">
         <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
         <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
@@ -18,12 +18,12 @@
 
   <div id="SubmissionTabsContentBox" class="tab-content">
     <div data-ng-if="receivers_selectable && submission.context.allow_recipients_selection">
-      <div id="step-0" data-ng-show="selection == 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
+      <div id="step-0" data-ng-show="selection === 0" data-ng-include="'views/submission/receiver_selection.html'"></div>
     </div>
 
     <!-- Configured Context Steps -->
-    <div data-ng-repeat="step in  submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" ng-init="stepId = 'step-' + ($index + 1)">
-      <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection == $index + 1">
+    <div data-ng-repeat="step in  submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + ($index + 1)" data-ng-if="showStep(step)">
+      <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index + 1">
         <div class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row" data-ng-init="submission = submission._submission">
           <div class="col-md-7">
