@@ -25,16 +25,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
     });
   };
 
-  $scope.userDeleteDialog = function(user){
-    var modalInstance = $uibModal.open({
-        templateUrl:  'views/partials/user_delete.html',
-        controller: 'ConfirmableDialogCtrl',
-        resolve: {
-          object: function () {
-            return user;
-          }
-        }
-    });
+  $scope.userDeleteDialog = function(user) {
+    var modalInstance = $scope.openConfirmableModalDialog('views/partials/user_delete.html', user);
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },

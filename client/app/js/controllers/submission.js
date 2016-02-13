@@ -25,27 +25,17 @@ GLClient.controller('SubmissionCtrl',
       $scope.problemModal.dismiss();
     }
 
-    $scope.problemModal = $uibModal.open({
-        templateUrl: 'views/partials/captchas.html',
-        controller: 'ConfirmableDialogCtrl',
-        backdrop: 'static',
-        keyboard: false,
-        resolve: {
-          object: function () {
-            return submission;
-          },
-          problemSolved: function() {
-            return $scope.problemSolved;
-          }
-        }
+    var args = {
+      submission: submission,
+      problemSolved: $scope.problemSolved
+    }
 
-    });
+    $scope.problemModal = $scope.openConfirmableModalDialog('views/partials/captchas.html', args);
 
     $scope.problemModal.result.then(
        function(result) { $scope.problemSolved($scope.submission); },
        function(result) { }
     );
-
   };
 
   if ($scope.receivers_ids) {
