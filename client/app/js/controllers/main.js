@@ -505,7 +505,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $rootScope.$watch('language', function (newVal, oldVal) {
       if (newVal && newVal !== oldVal && oldVal !== undefined) {
-        $rootScope.$broadcast("REFRESH");
+        $scope.$emit("REFRESH");
       }
     });
 
@@ -513,7 +513,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
        if (((e.which || e.keyCode) === 116) || /* F5 */
            ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
          e.preventDefault();
-         $rootScope.$broadcast("REFRESH");
+         $scope.$emit("REFRESH");
        }
     };
 
