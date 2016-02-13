@@ -18,15 +18,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.contextDeleteDialog = function(context){
-    var modalInstance = $uibModal.open({
-        templateUrl:  'views/partials/context_delete.html',
-        controller: 'ConfirmableDialogCtrl',
-        resolve: {
-          object: function () {
-            return context;
-          }
-        }
-    });
+    var modalInstance = $scope.openConfirmableModalDialog('views/partials/context_delete.html', context);
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },

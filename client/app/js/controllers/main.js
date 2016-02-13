@@ -451,9 +451,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.openConfirmableModalDialog = function(template, args) {
-      $uibModal.open({
+      args = args === undefined ? {} : args;
+
+      return $uibModal.open({
         templateUrl: template,
         controller: 'ConfirmableDialogCtrl',
+        backdrop: 'static',
+        keyboard: false,
         scope: $scope,
         resolve: {
           args: function () {
