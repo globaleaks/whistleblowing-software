@@ -53,11 +53,12 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
   }
 ]);
 
-GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
   function($scope, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
+    $scope.siblings =  $scope.fields || [];
     $scope.fields = $scope.field.children;
 
     $scope.toggleEditing = function () {
@@ -206,6 +207,18 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope',  '$uibModal', 'AdminField
     $scope.fieldIsMarkableMultiEntry = $scope.isMarkableMultiEntry($scope.field);
     $scope.fieldIsMarkableSubjectToStats = $scope.isMarkableSubjectToStats($scope.field);
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
+
+    $scope.triggerFieldDialog = function(option) {
+      return $scope.openConfirmableModalDialog('views/partials/trigger_field.html', option);
+    };
+
+    $scope.triggerStepDialog = function(option) {
+      return $scope.openConfirmableModalDialog('views/partials/trigger_step.html', option);
+    };
+
+    $scope.assignScorePointsDialog = function(option) {
+      return $scope.openConfirmableModalDialog('views/partials/assign_score_points.html', option);
+    };
   }
 ]);
 

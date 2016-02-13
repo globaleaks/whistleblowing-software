@@ -59,11 +59,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
+      "triggered_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -106,11 +106,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -146,11 +146,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -160,8 +160,8 @@
       "options": [
         {
           "presentation_order": 0,
-          "activated_steps": [],
-          "activated_fields": [],
+          "trigger_field": "",
+          "trigger_step": "",
           "score_points": 0,
           "label": {
             "en": "Male"
@@ -170,8 +170,8 @@
         },
         {
           "presentation_order": 1,
-          "activated_steps": [],
-          "activated_fields": [],
+          "trigger_field": "",
+          "trigger_step": "",
           "score_points": 0,
           "label": {
             "en": "Female"
@@ -201,11 +201,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -248,11 +248,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -295,11 +295,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -347,11 +347,11 @@
           },
           "stats_enabled": false,
           "editable": true,
-          "activated_by_score": 0,
           "key": "",
           "step_id": "",
           "required": true,
-          "activated_by_options": [],
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
           "multi_entry_hint": {
             "en": ""
           },
@@ -394,11 +394,11 @@
           },
           "stats_enabled": false,
           "editable": true,
-          "activated_by_score": 0,
           "key": "",
           "step_id": "",
           "required": true,
-          "activated_by_options": [],
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
           "multi_entry_hint": {
             "en": ""
           },
@@ -441,11 +441,11 @@
           },
           "stats_enabled": false,
           "editable": true,
-          "activated_by_score": 0,
           "key": "",
           "step_id": "",
           "required": true,
-          "activated_by_options": [],
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
           "multi_entry_hint": {
             "en": ""
           },
@@ -488,11 +488,11 @@
           },
           "stats_enabled": false,
           "editable": true,
-          "activated_by_score": 0,
           "key": "",
           "step_id": "",
           "required": true,
-          "activated_by_options": [],
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
           "multi_entry_hint": {
             "en": ""
           },
@@ -535,11 +535,11 @@
           },
           "stats_enabled": false,
           "editable": true,
-          "activated_by_score": 0,
           "key": "",
           "step_id": "",
           "required": true,
-          "activated_by_options": [],
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
           "multi_entry_hint": {
             "en": ""
           },
@@ -565,11 +565,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -612,11 +612,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -659,11 +659,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -706,11 +706,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -753,11 +753,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -800,11 +800,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -847,11 +847,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": false,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -894,11 +894,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -941,11 +941,11 @@
       },
       "stats_enabled": false,
       "editable": true,
-      "activated_by_score": 0,
       "key": "",
       "step_id": "",
       "required": true,
-      "activated_by_options": [],
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
       "multi_entry_hint": {
         "en": ""
       },
@@ -971,10 +971,10 @@
   },
   "stats_enabled": false,
   "editable": false,
-  "activated_by_score": 0,
   "step_id": "",
   "required": false,
-  "activated_by_options": [],
+  "triggered_by_score": 0,
+  "triggered_by_options": [],
   "multi_entry_hint": {
     "en": ""
   },

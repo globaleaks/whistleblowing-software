@@ -297,6 +297,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         });
 
+        $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+
         $scope.languages_enabled_length = Object.keys(node.languages_enabled).length;
 
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
@@ -448,7 +450,20 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return sum / n;
     };
 
-  //////////////////////////////////////////////////////////////////
+    $scope.openConfirmableModalDialog = function(template, args) {
+      $uibModal.open({
+        templateUrl: template,
+        controller: 'ConfirmableDialogCtrl',
+        scope: $scope,
+        resolve: {
+          args: function () {
+            return args;
+          }
+        }
+      });
+    }
+
+    //////////////////////////////////////////////////////////////////
 
     $scope.$on("$routeChangeStart", function(event, next, current) {
       $scope.route_check();
@@ -525,10 +540,10 @@ GLClient.controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', fun
     $scope.no = function() {
       $uibModalInstance.close(false);
     };
+
     $scope.ok = function() {
       $uibModalInstance.close(true);
     };
-
 }]);
 
 GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
@@ -567,14 +582,14 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', f
       $rootScope.language = $scope.data.language;
     }
   });
-
 }]);
 
-GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'object', function($scope, $uibModalInstance, object) {
-  $scope.object = object;
+GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'args', function($scope, $uibModalInstance, args) {
+  $scope.args = args;
 
-  $scope.ok = function () {
-    $uibModalInstance.close($scope.object);
+  $scope.ok = function (result) {
+    result = result === undefined ? $scope.args : result;
+    $uibModalInstance.close(result);
   };
 
   $scope.cancel = function () {

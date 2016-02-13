@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$rootScope', '$http', '$route', '$location', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
-    function($scope, $rootScope, $http, $route, $location, Admin, Node, GLCache, CONSTANTS) {
+    ['$scope', '$http', '$route', '$location', '$filter', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
+    function($scope, $http, $route, $location, $filter, Admin, Node, GLCache, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.http_or_https_regexp = CONSTANTS.http_or_https_regexp;
@@ -15,7 +15,7 @@ GLClient.controller('AdminCtrl',
   $scope.admin = new Admin(function() {
 
     $scope.languages_enabled_edit = {};
-    $scope.languages_enabled_selector = {};
+    $scope.languages_enabled_selector = [];
 
     Node.get(function(node) {
       $scope.languages_supported = {};
@@ -30,6 +30,8 @@ GLClient.controller('AdminCtrl',
           $scope.languages_enabled_selector.push({"name": name,"code": code});
         }
       });
+
+      $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
 
       $scope.$watch('languages_enabled', function(){
         if ($scope.languages_enabled) {
@@ -80,7 +82,6 @@ GLClient.controller('AdminCtrl',
     // We need to have a special function for updating the node since we need to add old_password and password attribute
     // if they are not present
     $scope.updateNode = function(node) {
-
       if (node.password === undefined) {
         node.password = "";
       }
@@ -171,7 +172,6 @@ GLClient.controller('AdminImgUploadCtrl', ['$scope', '$http', function($scope, $
       }
     });
 }]);
-
 
 GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   function($scope, $http, StaticFiles){
