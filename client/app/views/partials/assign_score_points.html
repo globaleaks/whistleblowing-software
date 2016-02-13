@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <div class="modal-title" data-translate>Assign score points</div>
+</div>
+<div class="modal-body">
+  <div class="alert alert-default">
+    <span data-translate>Enter the number of score points to be assigned when this option is selected:</div>
+    <input id="score_points" class="form-control" ng-model="args.score_points" type="number" />
+  </div>
+</div>
+<div class="modal-footer">
+  <a id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-translate>Cancel</span>
+  </a>
+  <a id="modal-action-ok" class="btn btn-danger" data-ng-click="args.score_points = '0'; cancel()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Reset</span>
+  </a>
+  <a id="modal-action-ok" class="btn btn-primary" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Confirm</span>
+  </a>
+</div>
