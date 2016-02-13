@@ -248,6 +248,7 @@ class TestGL(unittest.TestCase):
             'label': u'Step 1',
             'description': u'Step Description',
             'presentation_order': 0,
+            'triggered_by_score': 0,
             'children': []
         }
 
