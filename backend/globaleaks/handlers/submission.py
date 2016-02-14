@@ -82,11 +82,16 @@ def _db_get_archived_questionnaire_schema(store, hash, type, language):
     else:
         questionnaire = copy.deepcopy(aqs.schema)
 
-    for step in questionnaire:
-        for field in step['children']:
-            _db_get_archived_field_recursively(field, language)
+    if type == 'questionnaire':
+        for step in questionnaire:
+            for field in step['children']:
+                _db_get_archived_field_recursively(field, language)
 
-        get_localized_values(step, step, models.Step.localized_keys, language)
+            get_localized_values(step, step, models.Step.localized_keys, language)
+
+    elif type == 'preview':
+        for field in questionnaire:
+            _db_get_archived_field_recursively(field, language)
 
     return questionnaire
 
