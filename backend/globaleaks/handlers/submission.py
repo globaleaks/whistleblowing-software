@@ -350,6 +350,12 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
 
+    # this is get from the client as it the only possibility possible
+    # that would fit with the end to end submission.
+    # the score is only an indicator and not a critical information so we can accept to
+    # be fooled by the malicious user.
+    submission.total_score = request['total_score']
+
     # The use of Tor2Web is detected by the basehandler and the status forwared  here;
     # The status is used to keep track of the security level adopted by the whistleblower
     submission.tor2web = t2w

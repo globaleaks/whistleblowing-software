@@ -162,6 +162,16 @@
               <span data-translate>Preview</span>
             </span>
           </th>
+          <th data-ng-if="::node.enable_experimental_features">
+            <span ng-click="sortKey = 'score'; sortReverse = !sortReverse">
+              <i class="glyphicon glyphicon-flash"></i>
+              <span data-translate>Score</span>
+              <span class="btn btn-xs" ng-show="sortKey == 'score'">
+                <span ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+              </span>
+            </span>
+          </th>
         </tr>
       </thead>
       <tbody id="tipListTableBody">
@@ -193,9 +203,10 @@
                   uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                   data-translate>Tor</span>
           </td>
-          <td data-ng-repeat="field in tip.preview_schema">
-            <div data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
+          <td>
+            <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
           </td>
+          <td data-ng-if="::node.enable_experimental_features">{{::tip.total_score}}</td>
         </tr>
       </tbody>
     </table>

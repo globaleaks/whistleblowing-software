@@ -86,6 +86,7 @@ def get_receivertip_list(store, receiver_id, language):
             'questionnaire_hash': rtip.internaltip.questionnaire_hash,
             'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
             'preview': rtip.internaltip.preview,
+            'total_score': rtip.internaltip.total_score,
             'label': rtip.label
         })
 

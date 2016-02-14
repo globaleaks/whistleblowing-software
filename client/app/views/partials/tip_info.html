@@ -55,6 +55,10 @@
             <i class="glyphicon glyphicon-send"></i>
             <span data-translate>Connection</span>
           </th>
+          <th data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">
+            <i class="glyphicon glyphicon-flash"></i>
+            <span data-translate>Score</span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -74,6 +78,7 @@
                 uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
                 data-translate>Tor</span>
           </td>
+          <td data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
         </tr>
       </tbody>
     </table>
