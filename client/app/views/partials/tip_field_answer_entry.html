@@ -30,7 +30,7 @@
   </span>
 
   <span data-ng-switch-when="fieldgroup">
-    <div data-ng-repeat="field in field.children | orderBy:['y', 'x']">
+    <div data-ng-repeat="field in field.children | orderBy:['y', 'x'] | filter:{ type: '!fileupload'}">
       <div data-ng-init="fieldAnswers=entry" data-ng-include="'views/partials/tip_field.html'"></div>
     </div>
   </span>
