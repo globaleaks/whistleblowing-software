@@ -288,7 +288,6 @@ AdminNotificationDesc = {
 
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
-    'option_id': uuid_regexp_or_empty,
     'label': unicode,
     'presentation_order': int,
     'score_points': int,

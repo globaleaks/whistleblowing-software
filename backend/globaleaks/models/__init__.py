@@ -830,7 +830,6 @@ class FieldAttr(Model):
 
 class FieldOption(Model):
     field_id = Unicode()
-    option_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
     score_points = Int(default=0)
@@ -967,16 +966,6 @@ Field.template = Reference(Field.template_id, Field.id)
 Field.options = ReferenceSet(
     Field.id,
     FieldOption.field_id
-)
-
-FieldOption.parent = Reference(
-    FieldOption.option_id,
-    FieldOption.id
-)
-
-FieldOption.children = ReferenceSet(
-    FieldOption.id,
-    FieldOption.option_id
 )
 
 Field.children = ReferenceSet(

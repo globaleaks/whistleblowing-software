@@ -120,7 +120,6 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldR
     $scope.addOption = function (field) {
       var new_option = {
         'id': '',
-        'option_id': '',
         'label': '',
         'score_points': 0,
         'trigger_field': '',

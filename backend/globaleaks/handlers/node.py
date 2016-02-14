@@ -139,7 +139,6 @@ def serialize_field_option(option, language):
     """
     ret_dict = {
         'id': option.id,
-        'option_id': option.option_id if option.option_id is not None else '',
         'presentation_order': option.presentation_order,
         'score_points': option.score_points,
         'trigger_field': option.trigger_field if option.trigger_field else '',
