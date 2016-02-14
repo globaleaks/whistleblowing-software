@@ -212,7 +212,7 @@ GLClient.controller('SubmissionCtrl',
     });
 
     $scope.$watch('answers', function(){
-      $scope.submission.score = $scope.calculateScore();
+      $scope.submission._submission.total_score = $scope.calculateScore();
     }, true);
 
     $scope.submission.create(context.id, receivers_ids, function () {
@@ -275,7 +275,7 @@ GLClient.controller('SubmissionCtrl',
       return true;
     }
 
-    if (step.triggered_by_score > $scope.submission.score) {
+    if (step.triggered_by_score > $scope.submission._submission.total_score) {
       return false;
     }
 
@@ -297,7 +297,7 @@ GLClient.controller('SubmissionCtrl',
       return true;
     }
 
-    if (field.triggered_by_score > $scope.submission.score) {
+    if (field.triggered_by_score > $scope.submission._submission.total_score) {
       return false;
     }
 

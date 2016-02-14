@@ -266,7 +266,6 @@ angular.module('GLServices', ['ngResource']).
       self.context = undefined;
       self.receivers = [];
       self.receivers_selected = {};
-      self.score = 0;
       self.done = false;
 
       self.isDisabled = function() {
@@ -354,7 +353,8 @@ angular.module('GLServices', ['ngResource']).
           answers: {},
           human_captcha_answer: 0,
           proof_of_work_answer: 0,
-          graph_captcha_answer: ""
+          graph_captcha_answer: "",
+          total_score: 0
         });
 
         self._token = new TokenResource({'type': 'submission'}).$save(function(token) {
