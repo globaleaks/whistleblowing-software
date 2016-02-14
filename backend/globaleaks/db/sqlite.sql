@@ -418,15 +418,13 @@ CREATE TABLE fieldattr (
 
 CREATE TABLE fieldoption (
     id TEXT NOT NULL,
-    field_id TEXT,
-    option_id TEXT,
+    field_id TEXT NOT NULL,
     label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
-    score_points INTEGER NOT NULL,
+    score_points INTEGER NOT NULL CHECK (score_points >= 0 AND score_points <= 1000),
     trigger_field TEXT,
     trigger_step TEXT,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
-    FOREIGN KEY (option_id) REFERENCES fieldoption(id) ON DELETE CASCADE,
     FOREIGN KEY (trigger_field) REFERENCES field(id) ON DELETE CASCADE,
     FOREIGN KEY (trigger_step) REFERENCES step(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
