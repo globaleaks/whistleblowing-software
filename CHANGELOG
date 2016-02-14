@@ -1,3 +1,9 @@
+Changes in version 2.60.135 - 2016-02-14
+    o Implement experimental score feature on selectbox and checkboxes
+    o Implement experimental contitional questions/steps feature
+    o Implement autologin controller for embedded receipts use case
+    o Rewrite debian packaging of apparmo script
+
 Changes in version 2.60.135 - 2016-02-04
     o Fix syntax error in apparmor script
 
