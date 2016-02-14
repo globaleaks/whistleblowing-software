@@ -203,6 +203,7 @@ for (i=0; i<submission_population_order; i++) {
         new_submission.receivers = receivers_ids;
         new_submission.identity_provided = false;
         new_submission.answers = fill_answers(contexts[0].steps);
+        new_submission.total_score = 0;
 
         app
           .put('/submission/' + submission_tokens[i].id)
