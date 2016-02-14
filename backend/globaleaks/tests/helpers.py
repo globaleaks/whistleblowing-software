@@ -343,6 +343,7 @@ class TestGL(unittest.TestCase):
             'graph_captcha_answer': '',
             'proof_of_work_answer': 0,
             'identity_provided': False,
+            'total_score': 0,
             'answers': (yield self.fill_random_answers(context_id))
         })
 
@@ -553,6 +554,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
+        self.dummySubmission['total_score'] = 0
 
         self.dummySubmission = yield create_submission(self.dummyToken.id,
                                                        self.dummySubmission, 
