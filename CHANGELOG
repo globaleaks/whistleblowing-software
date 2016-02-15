@@ -1,4 +1,8 @@
-Changes in version 2.60.135 - 2016-02-14
+Changes in version 2.60.137 - 2016-02-15
+    o Improve startup messaging
+    o Wait migration script to complete before going to background
+
+Changes in version 2.60.136 - 2016-02-14
     o Implement experimental score feature on selectbox and checkboxes
     o Implement experimental contitional questions/steps feature
     o Implement autologin controller for embedded receipts use case
