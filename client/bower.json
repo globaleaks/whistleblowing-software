@@ -32,7 +32,7 @@
     "angular-filter": "0.5.8",
     "angular-resource": "1.5.0",
     "angular-route": "1.5.0",
-    "angular-translate": "~2.9.1",
+    "angular-translate": "2.9.1",
     "angular-translate-loader-url": "2.9.1",
     "angular-translate-loader-static-files": "2.9.1",
     "angular-ui-bootstrap-bower": "1.1.2",
@@ -47,9 +47,9 @@
     "jquery": "2.2.0",
     "js-polyfills": "0.1.14",
     "ng-flow": "2.7.1",
-    "openpgp": "2.0.0",
+    "openpgp": "2.0.1",
     "scrypt-async": "1.2.0",
-    "stacktrace-js": "1.0.2"
+    "stacktrace-js": "1.0.3"
   },
   "resolutions": {
     "angular": "1.5.0"
