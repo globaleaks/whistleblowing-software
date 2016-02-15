@@ -26,7 +26,7 @@
         </div>
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
-        <div data-ng-class="{'radio': (field.attrs.layout_orientation.value == 'vertical')}">
+        <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
             <input type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
             <span>{{::option.label}}</span>
@@ -40,7 +40,7 @@
         </select>
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
-        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'vertical')}">
+        <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
             <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
@@ -50,7 +50,7 @@
                    data-ng-change="field.required_check = !validateRequiredCheckbox(field, entry)"
                    data-ng-attr-placeholder="{{field.placeholder || 'false'}}"
                    type="checkbox" />
-            <span>{{::option.label}}</span>
+            {{::option.label}}
           </label>
         </div>
       </div>
