@@ -81,6 +81,7 @@ class GLSettingsClass(object):
         self.store_name = 'main_store'
 
         self.db_type = 'sqlite'
+        self.initialize_db = True
 
         # debug defaults
         self.orm_debug = False
@@ -128,7 +129,7 @@ class GLSettingsClass(object):
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1, localhost"
-        self.configured_hosts = []
+        self.tor_address = None
 
         self.receipt_regexp = u'[0-9]{16}'
 
@@ -155,11 +156,6 @@ class GLSettingsClass(object):
 
         # Default request time uniform value
         self.side_channels_guard = 0.150
-
-        # unchecked_tor_input contains information that cannot be validated now
-        # due to complex inclusions or requirements. Data is used in
-        # globaleaks.db.appdata.apply_cli_options()
-        self.unchecked_tor_input = {}
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
@@ -368,15 +364,7 @@ class GLSettingsClass(object):
                 quit(-1)
 
             with file(hostname_tor_file, 'r') as htf:
-                hostname_tor_content = htf.read(22)  # hostname + .onion
-                GLSettings.unchecked_tor_input['hostname_tor_content'] = hostname_tor_content
-        # URL validation and DB import continue in apply_cli_options
-
-        if self.cmdline_options.hidden_service:
-            GLSettings.unchecked_tor_input['hidden_service'] = self.cmdline_options.hidden_service
-
-        if self.cmdline_options.public_website:
-            GLSettings.unchecked_tor_input['public_website'] = self.cmdline_options.public_website
+                self.tor_address = htf.read(22)
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
