@@ -94,7 +94,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User configuration'
+        header_subtitle: 'User management'
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
@@ -106,7 +106,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Email configuration'
+        header_subtitle: 'Notification settings'
       }).
       when('/admin/url_shortener', {
         templateUrl: 'views/admin/url_shortener.html',
