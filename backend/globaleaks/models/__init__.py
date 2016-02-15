@@ -194,9 +194,9 @@ class User(Model):
 
     localized_keys = ['description']
 
-    int_keys = ['timezone', 'password_change_needed']
+    int_keys = ['timezone']
 
-    bool_keys = ['deletable']
+    bool_keys = ['deletable', 'password_change_needed']
 
 
 class Context(Model):
@@ -205,6 +205,7 @@ class Context(Model):
     """
     show_small_cards = Bool(default=False)
     show_context = Bool(default=True)
+    show_steps_navigation_bar = Bool(default=True)
     show_recipients_details = Bool(default=False)
     allow_recipients_selection = Bool(default=False)
     maximum_selectable_receivers = Int(default=0)
@@ -234,16 +235,19 @@ class Context(Model):
 
     localized_keys = ['name', 'description', 'recipients_clarification']
 
-    int_keys = ['tip_timetolive',
-                'maximum_selectable_receivers',
-                'show_receivers_in_alphabetical_order',
-                'presentation_order' ]
+    int_keys = [
+      'tip_timetolive',
+      'maximum_selectable_receivers',
+      'presentation_order'
+    ]
 
     bool_keys = [
       'select_all_receivers',
       'show_small_cards',
       'show_context',
+      'show_steps_navigation_bar',
       'show_recipients_details',
+      'show_receivers_in_alphabetical_order',
       'allow_recipients_selection',
       'enable_comments',
       'enable_messages',
@@ -520,10 +524,8 @@ class Node(Model):
         'maximum_textsize',
         'maximum_filesize',
         'default_timezone',
-        'show_contexts_in_alphabetical_order',
         'submission_minimum_delay',
         'submission_maximum_ttl',
-        'simplified_login',
         'threshold_free_disk_megabytes_high',
         'threshold_free_disk_megabytes_medium',
         'threshold_free_disk_megabytes_low',
@@ -535,7 +537,10 @@ class Node(Model):
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
                  'tor2web_custodian', 'tor2web_unauth',
                  'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
-                 'ahmia', 'allow_unencrypted',
+                 'ahmia',
+                 'allow_unencrypted',
+                 'simplified_login',
+                 'show_contexts_in_alphabetical_order',
                  'allow_iframes_inclusion',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',

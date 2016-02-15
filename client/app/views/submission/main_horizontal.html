@@ -1,7 +1,7 @@
 <a id="top"></a>
 
 <div class="tabbable tabs-below">
-  <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
+  <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_bar">
     <li data-ng-if="!skip_first_step" data-ng-class="{active: selection === 0, disabled: uploading}">
       <a id="step-0-link" href="javascript:void(0)" data-ng-click="goToStep(0)" data-ng-disabled="uploading">
         1 - <span data-translate>Recipient selection</span>
@@ -22,9 +22,10 @@
     </div>
 
     <!-- Configured Context Steps -->
-    <div data-ng-repeat="step in  submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + ($index + 1)" data-ng-if="showStep(step)">
+    <div data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + ($index + 1)" data-ng-if="showStep(step)">
       <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index + 1">
-        <div class="preformatted" data-ng-if="step.description">{{step.description}}</div>
+        <div id="StepTitle" data-ng-if="::!submission.context.show_steps_navigation_bar">{{::step.label}}</div>
+        <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row" data-ng-init="submission = submission._submission">
           <div class="col-md-7">
             <div data-ng-include="'views/submission/form.html'"></div>

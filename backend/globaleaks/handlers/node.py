@@ -111,6 +111,7 @@ def serialize_context(store, context, language):
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
+        'show_steps_navigation_bar': context.show_steps_navigation_bar,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_cards': context.show_small_cards,
