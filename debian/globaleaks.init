@@ -210,7 +210,8 @@ do_start()
     GLBACKEND_ARGS="--ip=${IPS}
                     --port=${LISTENING_PORT}
                     --accept-host=${HOSTS}
-                    --user=${USERNAME} --group=${GROUP}
+                    --user=${USERNAME}
+                    --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
                     --tor-dir=${TOR_DIR}

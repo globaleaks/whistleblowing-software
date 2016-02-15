@@ -9,8 +9,8 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
 
-from globaleaks.db import check_db_files, init_db, clean_untracked_files, \
-    refresh_memory_variables, apply_cmdline_options, update_version
+from globaleaks.db import init_db, clean_untracked_files, \
+    refresh_memory_variables, update_version
 
 from globaleaks.db.appdata import init_appdata
 
@@ -80,11 +80,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             GLSettings.drop_privileges()
             GLSettings.check_directories()
 
-            # Check presence of an existing database and eventually perform its migration
-            check = check_db_files()
-            if check == -1:
-                 self._reactor.stop()
-            elif check == 0:
+            if GLSettings.initialize_db:
                 yield init_db()
             else:
                 yield update_version()
@@ -94,25 +90,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             yield refresh_memory_variables()
 
-            if GLSettings.cmdline_options:
-                yield apply_cmdline_options()
-
             self.start_asynchronous_jobs()
-
-            log.msg("GLBackend is now running")
-            for ip in GLSettings.bind_addresses:
-                log.msg("Visit http://%s:%d to interact with me" % (ip, GLSettings.bind_port))
-
-            for host in GLSettings.accepted_hosts:
-                if host not in GLSettings.bind_addresses:
-                    log.msg("Visit http://%s:%d to interact with me" % (host, GLSettings.bind_port))
-
-            for other in GLSettings.configured_hosts:
-                if other:
-                    log.msg("Visit %s to interact with me" % other)
-
-            log.msg("Remind: GlobaLeaks is not accessible from other URLs, this is strictly enforced")
-            log.msg("Check documentation in https://github.com/globaleaks/GlobaLeaks/wiki/ for special enhancement")
 
         except Exception as excep:
             log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")

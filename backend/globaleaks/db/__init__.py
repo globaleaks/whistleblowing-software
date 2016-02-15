@@ -264,56 +264,6 @@ def refresh_memory_variables(*args):
 
 
 @transact
-def apply_cmdline_options(store):
-    """
-    Remind: GLSettings.unchecked_tor_input contain data that are not
-    checked until this function!
-    """
-    node = store.find(models.Node).one()
-
-    verb = "Hardwriting"
-    if 'hostname_tor_content' in GLSettings.unchecked_tor_input:
-        composed_hs_url = 'http://%s' % GLSettings.unchecked_tor_input['hostname_tor_content']
-        hs = GLSettings.unchecked_tor_input['hostname_tor_content'].split('.onion')[0]
-        composed_t2w_url = 'https://%s.tor2web.org' % hs
-
-        if not (re.match(requests.hidden_service_regexp, composed_hs_url) or
-                    re.match(requests.https_url_regexp, composed_t2w_url)):
-            log.msg("[!!] Invalid content found in the 'hostname' file specified (%s): Ignored" % \
-                    GLSettings.unchecked_tor_input['hostname_tor_content'])
-        else:
-            node.hidden_service = unicode(composed_hs_url)
-            log.msg("[+] %s hidden service in the DB: %s" % (verb, composed_hs_url))
-
-            if node.public_site:
-                log.msg("[!!] Public Website (%s) is not automatically overwritten by (%s)" % \
-                        (node.public_site, composed_t2w_url))
-            else:
-                node.public_site = unicode(composed_t2w_url)
-                log.msg("[+] %s public site in the DB: %s" % (verb, composed_t2w_url))
-
-            verb = "Overwriting"
-
-    if GLSettings.cmdline_options.public_website:
-        if not re.match(requests.https_url_regexp, GLSettings.cmdline_options.public_website):
-            log.msg("[!!] Invalid public site: %s: Ignored" % GLSettings.cmdline_options.public_website)
-        else:
-            log.msg("[+] %s public site in the DB: %s" % (verb, GLSettings.cmdline_options.public_website))
-            node.public_site = unicode(GLSettings.cmdline_options.public_website)
-
-    if GLSettings.cmdline_options.hidden_service:
-        if not re.match(requests.hidden_service_regexp, GLSettings.cmdline_options.hidden_service):
-            log.msg("[!!] Invalid hidden service: %s: Ignored" % GLSettings.cmdline_options.hidden_service)
-        else:
-            log.msg("[+] %s hidden service in the DB: %s" % (verb, GLSettings.cmdline_options.hidden_service))
-            node.hidden_service = unicode(GLSettings.cmdline_options.hidden_service)
-
-    # return configured URL for the log/console output
-    if node.hidden_service or node.public_site:
-        GLSettings.configured_hosts = [node.hidden_service, node.public_site]
-
-
-@transact
 def update_version(store):
     node = store.find(models.Node).one()
     node.version = unicode(__version__)

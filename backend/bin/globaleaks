@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 
 import sys
 reload(sys)
@@ -63,18 +64,20 @@ def pip_version_check(path):
                             unmet_requirements.append([requirement, installed_version])
 
     if unmet_requirements:
-        print "Some GlobaLeaks requirements are unmet\n"
-        print "Unmet requirements:"
+        print("Some GlobaLeaks requirements are unmet\n")
+        print("Unmet requirements:")
         for unmet_requirement_desc in unmet_requirements:
             if unmet_requirement_desc[1] != "":
-                print "\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]"
+                print("\t", unmet_requirement_desc[0] + " [ Installed", unmet_requirement_desc[1], "]")
             else:
-                print "\t", unmet_requirement_desc[0]
-        print "\n"
-        print "The problem can be solved by:"
-        print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
-        print "2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/backend/requirements.txt"
+                print("\t", unmet_requirement_desc[0])
+        print("\n")
+        print("The problem can be solved by:")
+        print("1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki")
+        print("2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/backend/requirements.txt")
         quit(-1)
+
+print("Starting GlobaLeaks")
 
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
@@ -90,6 +93,7 @@ from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
 from globaleaks import DATABASE_VERSION
+from globaleaks.db import check_db_files
 from globaleaks.runner import GlobaLeaksRunner
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
@@ -153,14 +157,6 @@ GLSettings.parser.add_option("-x", "--tor-dir", type="string",
     help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
     dest="tor_dir")
 
-GLSettings.parser.add_option("-H", "--hidden-service", type="string",
-    help="hidden service (http:// needed) [default: None]",
-    dest="hidden_service")
-
-GLSettings.parser.add_option("-T", "--tor2web", type="string",
-    help="public website url (https:// needed) [default: None]",
-    dest="public_website")
-
 GLSettings.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user")
@@ -222,8 +218,8 @@ GLSettings.parser.add_option("-v", "--version", action='store_true',
 (GLSettings.cmdline_options, args) = GLSettings.parser.parse_args()
 
 if GLSettings.cmdline_options.version:
-    print "GlobaLeaks Version:", GLSettings.version_string
-    print "GlobaLeaks DB version:", DATABASE_VERSION
+    print("GlobaLeaks Version:", GLSettings.version_string)
+    print("GlobaLeaks DB version:", DATABASE_VERSION)
     quit()
 
 GLSettings.load_cmdline_options()
@@ -235,8 +231,7 @@ if GLSettings.cmdline_options.kill:
         os.kill(target_pid, GLSettings.cmdline_options.kill)
         os.remove(GLSettings.pidfile_path)
     except Exception as excep:
-        print "Unable kill PID found in %s: kill option ignored (%s)" %\
-              (GLSettings.pidfile_path, excep)
+        print("Unable kill PID found in %s: kill option ignored (%s)" % (GLSettings.pidfile_path, excep))
 
 if GLSettings.start_clean:
     if GLSettings.devel_mode or \
@@ -261,6 +256,27 @@ args +=['--logfile', os.devnull]
 sys.argv[1:] = args
 
 def run_backend():
+    # Check presence of an existing database and eventually perform its migration
+    db_status = check_db_files()
+    if db_status == -1:
+        return
+    elif db_status == 0:
+        GLSettings.initialize_db = True
+    else:
+        GLSettings.initialize_db = False
+
+    print("GlobaLeaks is now running and accessible at the following urls:")
+
+    for ip in GLSettings.bind_addresses:
+        print("- http://%s:%d" % (ip, GLSettings.bind_port))
+
+    for host in GLSettings.accepted_hosts:
+        if host not in GLSettings.bind_addresses:
+            print("- http://%s:%d" % (host, GLSettings.bind_port))
+
+    if GLSettings.tor_address is not None:
+        print("- http://%s" % (GLSettings.tor_address))
+
     log.start_logging()
 
     sys.excepthook = mail_exception_handler
@@ -269,17 +285,16 @@ def run_backend():
     try:
         config.parseOptions()
     except usage.error, ue:
-        print "%s: %s" % (sys.argv[0], ue)
+        print("%s: %s" % (sys.argv[0], ue))
     else:
-        print "Starting GlobaLeaks"
         try:
             GlobaLeaksRunner(config).run()
 
             # this is a blocking operation, until app exit
 
-            print "Exiting GlobaLeaks"
+            print("Exiting GlobaLeaks")
         except Exception as excep:
-            print "Unable to start globaleaks: %s" % excep
+            print("Unable to start GlobaLeaks: %s" % excep)
             quit(-1)
 
 # "And now his watch begins"
