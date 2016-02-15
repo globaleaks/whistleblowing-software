@@ -776,6 +776,7 @@ class MockDict():
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
             'show_context': True,
+            'show_steps_navigation_bar': True,
             'show_recipients_details': True,
             'allow_recipients_selection': False,
             'enable_comments': True,

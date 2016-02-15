@@ -128,6 +128,7 @@ var context = {
   can_postpone_expiration: false,
   can_delete_submission: true,
   show_context: true,
+  show_steps_navigation_bar: true,
   show_recipients_details: true,
   allow_recipients_selection: true,
   show_small_cards: false,

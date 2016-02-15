@@ -147,9 +147,8 @@
                           <div data-translate>If disabled, submissions for this context will only be accessible through a direct link to it.</div>
                         </div>
                         <div class="form-group">
-                          <label data-translate>Submission expiration, in days</label>
-                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" />
-                          <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
+                          <input data-ng-model="context.show_steps_navigation_bar" type="checkbox" />
+                          <label data-translate>Show steps navigation bar</label>
                         </div>
                         <div class="form-group">
                           <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
@@ -196,6 +195,11 @@
                         <div class="form-group">
                           <input data-ng-model="context.show_recipients_details" type="checkbox" />
                           <label data-translate>Show recipient details on the status page of the submission</label>
+                        </div>
+                        <div class="form-group">
+                          <label data-translate>Submission expiration, in days</label>
+                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" />
+                          <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
                       </div>
                     </div>
