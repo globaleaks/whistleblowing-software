@@ -161,6 +161,14 @@ GLClient.controller('SubmissionCtrl',
       }
     }
 
+    if (field.type === 'checkbox') {
+      for(var i=0; i<field.options.length; i++) {
+        if (entry[field.options[i].id] === true) {
+          score += field.options[i].score_points;
+        }
+      }
+    }
+
     angular.forEach(field.children, function(child) {
       angular.forEach(entry[child.id], function(entry) {
         score += $scope.calculateScoreRecursively(child, entry);
