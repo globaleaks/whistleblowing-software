@@ -26,7 +26,7 @@
       <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index + 1">
         <div id="StepTitle" data-ng-if="::!submission.context.show_steps_navigation_bar">{{::step.label}}</div>
         <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
-        <div class="row" data-ng-init="submission = submission._submission">
+        <div class="row">
           <div class="col-md-7">
             <div data-ng-include="'views/submission/form.html'"></div>
           </div>
