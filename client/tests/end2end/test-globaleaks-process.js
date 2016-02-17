@@ -52,17 +52,17 @@ describe('globaLeaks process', function() {
   var perform_submission = function(done) {
     browser.get('/#/submission');
 
-    element(by.id('step-0')).element(by.id('receiver-0')).click().then(function () {
+    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click().then(function () {
       element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).sendKeys(tip_text).then(function () {
+        element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text).then(function () {
           if (utils.testFileUpload()) {
             browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-            element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+            element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
               browser.waitForAngular();
-              element(by.id('step-1')).element(by.id('step-1-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+              element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
                 browser.waitForAngular();
                 element(by.id('NextStepButton')).click().then(function () {
-                  element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
+                  element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
                     var submit_button = element(by.id('SubmitButton'));
                     var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
                     browser.wait(isClickable);
@@ -78,7 +78,7 @@ describe('globaLeaks process', function() {
             });
           } else {
             element(by.id('NextStepButton')).click().then(function () {
-              element(by.id('step-2')).element(by.id('step-2-field-0-0-input-0')).click().then(function () {
+              element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
                 var submit_button = element(by.id('SubmitButton'));
                 var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
                 browser.wait(isClickable);

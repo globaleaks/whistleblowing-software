@@ -1,6 +1,6 @@
 <div id="SubmissionTabsContentBox">
-  <div class="row" data-ng-if="receivers_selectable && submission.context.allow_recipients_selection">
-    <div id="step-0" class="col-md-12">
+  <div class="row" data-ng-if="!skip_first_step">
+    <div id="step-receiver-selection" class="col-md-12">
       <div id="StepTitle" data-translate>Recipient selection</div>
       <div class="row">
          <div class="col-md-12" data-ng-include="'views/submission/receiver_selection.html'"></div>
@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps" data-ng-init="stepId = 'step-' + $index" data-ng-if="showStep(step)">
+    <div class="col-md-12" data-ng-controller="SubmissionStepCtrl" data-ng-repeat="step in submission.context.steps" data-ng-init="stepId = 'step-' + $index" data-ng-if="stepIsTriggered(step)">
       <div id="{{stepId}}">
         <div id="StepTitle">{{::step.label}}</div>
         <div id="StepDescription">{{::step.description}}</div>

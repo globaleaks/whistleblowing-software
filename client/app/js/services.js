@@ -643,6 +643,7 @@ angular.module('GLServices', ['ngResource']).
           step.presentation_order = 0;
           step.children = [];
           step.context_id = context_id;
+          step.triggered_by_score = 0;
           return step;
         };
 

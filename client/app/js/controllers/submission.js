@@ -112,12 +112,20 @@ GLClient.controller('SubmissionCtrl',
     $scope.selection = index;
   };
 
+  $scope.firstStepIndex = function() {
+    return $scope.skip_first_step ? 0 : -1;
+  }
+
+  $scope.lastStepIndex = function() {
+    return $scope.selected_context.steps.length - 1;
+  }
+
   $scope.hasNextStep = function(){
     if ($scope.selected_context === undefined) {
       return false;
     }
 
-    return $scope.selection < $scope.selected_context.steps.length;
+    return $scope.selection < $scope.lastStepIndex();
   };
 
   $scope.hasPreviousStep = function(){
@@ -125,20 +133,30 @@ GLClient.controller('SubmissionCtrl',
       return false;
     }
 
-    return ($scope.selection > 0 && $scope.selected_context.allow_recipients_selection) || $scope.selection > 1 ;
+    return $scope.selection > $scope.firstStepIndex();
   };
 
   $scope.incrementStep = function() {
     if ($scope.hasNextStep()) {
-      $scope.selection++;
-      $anchorScroll('top');
+      for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
+        if ($scope.stepIsTriggered($scope.submission.context.steps[i])) {
+          $scope.selection = i;
+          $anchorScroll('top');
+          break;
+        }
+      }
     }
   };
 
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
-      $scope.selection--;
-      $anchorScroll('top');
+      for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
+        if (i === -1 || $scope.stepIsTriggered($scope.submission.context.steps[i])) {
+          $scope.selection = i;
+          $anchorScroll('top');
+          break;
+        }
+      }
     }
   };
 
@@ -213,6 +231,9 @@ GLClient.controller('SubmissionCtrl',
     $scope.answers = {};
     $scope.uploads = {};
 
+    // iterations over steps require the steps array to be ordered
+    context.steps = $filter('orderBy')(context.steps, 'presentation_order');
+
     angular.forEach(context.steps, function(field) {
       angular.forEach(field.children, function(child) {
         $scope.answers[child.id] = [angular.copy($scope.prepare_field_answers_structure(child))];
@@ -265,10 +286,10 @@ GLClient.controller('SubmissionCtrl',
 
       if ((!$scope.receivers_selectable || !$scope.submission.context.allow_recipients_selection)) {
         $scope.skip_first_step = true;
-        $scope.selection = 1;
+        $scope.selection = 0;
       } else {
         $scope.skip_first_step = false;
-        $scope.selection = 0;
+        $scope.selection = -1;
       }
     });
   };
@@ -278,7 +299,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.submit();
   };
 
-  $scope.showStep = function(step) {
+  $scope.stepIsTriggered = function(step) {
     if (!$scope.node.enable_experimental_features) {
       return true;
     }
@@ -300,7 +321,7 @@ GLClient.controller('SubmissionCtrl',
     return false;
   }
 
-  $scope.showField = function(field) {
+  $scope.fieldIsTriggered = function(field) {
     if (!$scope.node.enable_experimental_features) {
       return true;
     }
