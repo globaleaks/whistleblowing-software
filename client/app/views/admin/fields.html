@@ -157,7 +157,7 @@
                     <div class="form-group">
                       <label data-translate>Minimum number of input characters</label>
                       <div>
-                        <input ng-model="field.attrs.min_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
+                        <input data-ng-model="field.attrs.min_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                     <div class="form-group">
@@ -166,13 +166,13 @@
                         <span>(<span data-translate>-1 = unlimited</span>)</span>
                       </label>
                       <div>
-                        <input ng-model="field.attrs.max_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
+                        <input data-ng-model="field.attrs.max_len.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                     <div class="form-group">
                       <label data-translate>Regular expression validator</label>
                       <div>
-                        <input ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!editable" />
+                        <input data-ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                   </div>
@@ -181,12 +181,12 @@
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Agreement Text</label>
-                      <textarea ng-model="field.attrs.agreement_statement.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!editable">{{field.attrs.agreement_statement.value}}</textarea>
+                      <textarea data-ng-model="field.attrs.agreement_statement.value" maxlength="{{node.maximum_textsize}}" class="form-control" data-ng-disabled="!editable">{{field.attrs.agreement_statement.value}}</textarea>
                     </div>
                     <div class="form-group">
                       <label data-translate>Clause</label>
                       <div>
-                        <input ng-model="field.attrs.clause.value" type="text" class="form-control" data-ng-disabled="!editable" />
+                        <input data-ng-model="field.attrs.clause.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
                     </div>
                   </div>
