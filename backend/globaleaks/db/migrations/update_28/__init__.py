@@ -95,6 +95,13 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['Field']()
             for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'preview':
+                    if old_obj.preview is None:
+                        new_obj.preview = False
+                    else:
+                        new_obj.preview = old_obj.preview
+                    continue
+
                 if v.name == 'step_id':
                     sf = self.store_old.find(self.model_from['StepField'], self.model_from['StepField'].field_id == old_obj.id).one()
                     if sf is not None:
