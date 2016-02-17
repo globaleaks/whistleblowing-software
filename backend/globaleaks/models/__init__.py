@@ -205,7 +205,8 @@ class Context(Model):
     """
     show_small_cards = Bool(default=False)
     show_context = Bool(default=True)
-    show_steps_navigation_bar = Bool(default=True)
+    show_steps_navigation_bar = Bool(default=False)
+    steps_navigation_requires_completion = Bool(default=True)
     show_recipients_details = Bool(default=False)
     allow_recipients_selection = Bool(default=False)
     maximum_selectable_receivers = Int(default=0)
@@ -238,7 +239,8 @@ class Context(Model):
     int_keys = [
       'tip_timetolive',
       'maximum_selectable_receivers',
-      'presentation_order'
+      'presentation_order',
+      'steps_navigation_requires_completion'
     ]
 
     bool_keys = [
