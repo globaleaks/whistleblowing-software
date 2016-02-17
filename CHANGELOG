@@ -1,3 +1,9 @@
+Changes in version 2.60.138 - 2016-02-17
+    o Minor UI fixes
+    o Add possibility to disable submission steps navigation bar
+    o Enable score feature on checkboxes
+    o Add autocomplete==off to relevant inputboxes
+
 Changes in version 2.60.137 - 2016-02-15
     o Improve startup messaging
     o Wait migration script to complete before going to background
