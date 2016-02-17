@@ -61,6 +61,7 @@ CREATE TABLE context (
     show_small_cards INTEGER NOT NULL,
     show_context INTEGER NOT NULL,
     show_steps_navigation_bar INTEGER NOT NULL,
+    steps_navigation_requires_completion INTEGER NOT NULL,
     show_recipients_details INTEGER NOT NULL,
     allow_recipients_selection INTEGER NOT NULL,
     enable_comments INTEGER NOT NULL,

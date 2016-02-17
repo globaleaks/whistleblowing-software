@@ -129,6 +129,7 @@ var context = {
   can_delete_submission: true,
   show_context: true,
   show_steps_navigation_bar: true,
+  steps_navigation_requires_completion: false,
   show_recipients_details: true,
   allow_recipients_selection: true,
   show_small_cards: false,

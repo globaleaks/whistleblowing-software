@@ -616,6 +616,7 @@ angular.module('GLServices', ['ngResource']).
           context.tip_timetolive = 15;
           context.show_context = true;
           context.show_steps_navigation_bar = true;
+          context.steps_navigation_requires_completion = false;
           context.show_recipients_details = false;
           context.allow_recipients_selection = false;
           context.show_receivers_in_alphabetical_order = true;

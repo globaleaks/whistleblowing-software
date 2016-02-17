@@ -37,6 +37,7 @@ def admin_serialize_context(store, context, language):
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
         'show_steps_navigation_bar': context.show_steps_navigation_bar,
+        'steps_navigation_requires_completion': context.steps_navigation_requires_completion,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_cards': context.show_small_cards,

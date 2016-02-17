@@ -134,6 +134,10 @@ class MigrationScript(MigrationBase):
                     new_obj.show_steps_navigation_bar = True
                     continue
 
+                if v.name == 'steps_navigation_requires_completion':
+                    new_obj.steps_navigation_requires_completion = False
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
