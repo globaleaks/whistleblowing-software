@@ -6,25 +6,25 @@
         <table class="table table-condensed table-striped" id="RecentEventList" data-ng-init="sortKey = 'time'; sortReverse=true;">
         <thead>
             <tr>
-              <th class="col-md-2" ng-click="sortKey = 'event_id'; sortReverse = !sortReverse">
+              <th class="col-md-2" data-ng-click="sortKey = 'event_id'; sortReverse = !sortReverse">
                 <span data-translate>Event ID</span>
-                <span ng-show="sortKey == 'event_id' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortKey == 'event_id' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="sortKey == 'event_id' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortKey == 'event_id' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </th>
-              <th class="col-md-2" ng-click="sortKey = 'time'; sortReverse = !sortReverse">
+              <th class="col-md-2" data-ng-click="sortKey = 'time'; sortReverse = !sortReverse">
                 <span data-translate>Time</span>
-                <span ng-show="sortKey == 'time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortKey == 'time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="sortKey == 'time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortKey == 'time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </th>
-              <th class="col-md-2" ng-click="sortKey = 'event'; sortReverse = !sortReverse">
+              <th class="col-md-2" data-ng-click="sortKey = 'event'; sortReverse = !sortReverse">
                 <span data-translate>Event</span>
-                <span ng-show="sortKey == 'event' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortKey == 'event' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="sortKey == 'event' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortKey == 'event' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </th>
-              <th class="col-md-2" ng-click="sortKey = 'response_time'; sortReverse = !sortReverse">
+              <th class="col-md-2" data-ng-click="sortKey = 'response_time'; sortReverse = !sortReverse">
                 <span data-translate>Response time</span>
-                <span ng-show="sortKey == 'response_time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                <span ng-show="sortKey == 'response_time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="sortKey == 'response_time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortKey == 'response_time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </th>
             </tr>
           </thead>

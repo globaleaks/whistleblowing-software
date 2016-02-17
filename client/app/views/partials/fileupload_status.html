@@ -10,7 +10,7 @@
     <div data-ng-show="isUploading(uploads)">
       <span data-translate>Estimated upload time:</span> <span>{{remainingUploadTime(uploads)}} </span><span data-translate>seconds</span>
       <div class="progress progress-striped" data-ng-class="active">
-        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
+        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{width: (uploadProgress(uploads) * 100) + '%'}"></div>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
                   <i class="glyphicon glyphicon-ok"></i>
                 </div>
                 <div class="progress progress-striped fileuploadprogress" data-ng-class="{active: file.isUploading()}" data-ng-show="file.isUploading()">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{'width': (uploadProgress() * 100) + 'px'}"></div>
+                  <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{'width': (uploadProgress() * 100) + 'px'}"></div>
                 </div>
               </div>
             </div>
