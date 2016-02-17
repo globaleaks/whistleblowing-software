@@ -52,7 +52,7 @@
             <span data-translate>Email address</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.adminemail.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.admin_email.$error.required}">
             <input name="admin_email" class="form-control" data-ng-model="admin_mail_address" data-ng-attr-placeholder="{{'Enter an email address for the administrator' | translate}}" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="text-red" data-ng-show="wizardForm.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
