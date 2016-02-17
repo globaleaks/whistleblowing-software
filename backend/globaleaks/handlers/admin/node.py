@@ -60,6 +60,7 @@ def db_admin_serialize_node(store, language):
         'password': u'',
         'old_password': u'',
         'custom_homepage': custom_homepage,
+        'disable_submissions': node.disable_submissions,
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,

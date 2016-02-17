@@ -31,7 +31,7 @@ from globaleaks.db.migrations.update_25 import User_v_24
 from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
 from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField_v_27, StepField_v_27, FieldOption_v_27
-from globaleaks.db.migrations.update_29 import Context_v_28
+from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0]),
@@ -50,7 +50,7 @@ migration_mapping = OrderedDict([
     ('IdentityAccessRequest', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest, 0, 0, 0, 0, 0]),
     ('Mail', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail, 0, 0, 0]),
     ('Message', [Message_v_19, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('Node', [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, models.Node, 0, 0]),
+    ('Node', [Node_v_11, Node_v_12, Node_v_13, Node_v_14, Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, Node_v_28, 0, models.Node]),
     ('Notification', [Notification_v_14, 0, 0, 0, Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, Notification_v_26, 0, 0, models.Notification, 0, 0]),
     ('InternalFile', [InternalFile_v_19, 0, 0, 0, 0, 0, 0, 0, 0, InternalFile_v_22, 0, 0, InternalFile_v_25, 0, 0, models.InternalFile, 0, 0, 0]),
     ('InternalTip', [InternalTip_v_14, 0, 0, 0, InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, models.InternalTip, 0, 0, 0, 0, 0]),

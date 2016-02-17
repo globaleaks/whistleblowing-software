@@ -830,6 +830,7 @@ class MockDict():
             'allow_iframes_inclusion': False,
             'send_email_for_every_event': False,
             'custom_homepage': False,
+            'disable_submissions': False,
             'disable_privacy_badge': False,
             'disable_security_awareness_badge': False,
             'disable_security_awareness_questions': False,
