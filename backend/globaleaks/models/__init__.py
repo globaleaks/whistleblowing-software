@@ -420,11 +420,6 @@ class Message(Model):
 
 class Node(Model):
     """
-    This table has only one instance, has the "id", but would not exists a
-    second element of this table. This table acts, more or less, like the
-    configuration file of the previous GlobaLeaks release (and some of the GL
-    0.1 details are specified in Context)
-
     This table represent the System-wide settings
     """
     version = Unicode(default=unicode(__version__))
@@ -470,6 +465,7 @@ class Node(Model):
     ahmia = Bool(default=False)
     wizard_done = Bool(default=False)
 
+    disable_submissions = Bool(default=False)
     disable_privacy_badge = Bool(default=False)
     disable_security_awareness_badge = Bool(default=False)
     disable_security_awareness_questions = Bool(default=False)
@@ -542,6 +538,7 @@ class Node(Model):
                  'simplified_login',
                  'show_contexts_in_alphabetical_order',
                  'allow_iframes_inclusion',
+                 'disable_submissions',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
                  'disable_security_awareness_questions', 'enable_custom_privacy_badge',
                  'disable_key_code_hint',

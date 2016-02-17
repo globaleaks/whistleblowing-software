@@ -78,6 +78,7 @@ def serialize_node(store, language):
         'configured': configured,
         'password': u'',
         'old_password': u'',
+        'disable_submissions': node.disable_submissions,
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
         'disable_security_awareness_questions': node.disable_security_awareness_questions,

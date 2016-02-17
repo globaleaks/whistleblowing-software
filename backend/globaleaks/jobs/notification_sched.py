@@ -76,7 +76,6 @@ class MailGenerator(object):
 
         self.process_mail_creation(store, data)
 
-
     def process_Message(self, store, message, data):
         # if the message is destinated to the whistleblower no mail should be sent
         if message.type == u"receiver":
@@ -90,7 +89,6 @@ class MailGenerator(object):
         data['message'] = serialize_content(store, self.cache, 'message', message, language)
 
         self.process_mail_creation(store, data)
-
 
     def process_Comment(self, store, comment, data):
         for rtip in comment.internaltip.receivertips:
@@ -107,7 +105,6 @@ class MailGenerator(object):
 
             self.process_mail_creation(store, dataX)
 
-
     def process_ReceiverFile(self, store, rfile, data):
         language = rfile.receiver.user.language
 
@@ -117,7 +114,6 @@ class MailGenerator(object):
         data['file'] = serialize_content(store, self.cache, 'file', rfile.internalfile, language)
 
         self.process_mail_creation(store, data)
-
 
     def process_mail_creation(self, store, data):
         # https://github.com/globaleaks/GlobaLeaks/issues/798
@@ -163,7 +159,6 @@ class MailGenerator(object):
                 # except contains a return or a raise
                 gpob.destroy_environment()
 
-
         mail = models.Mail({
             'address': data['receiver']['mail_address'],
             'subject': subject,
@@ -171,7 +166,6 @@ class MailGenerator(object):
         })
 
         store.add(mail)
-
 
     @transact
     def process_data(self, store, trigger):
