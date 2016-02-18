@@ -140,7 +140,7 @@ GLClient.controller('SubmissionCtrl',
     try {
       // find the first invalid element
       var form = document.getElementById('submissionForm');
-      var firstInvalid = form.querySelector('input.ng-invalid', 'textarea.ng-invalid', 'select.ng-invalid');
+      var firstInvalid = form.querySelector('.inputelem.ng-invalid');
 
       // if we find one, set focus
       if (firstInvalid) {
