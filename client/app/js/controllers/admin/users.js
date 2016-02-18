@@ -68,7 +68,7 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTA
     };
 
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = "static/" + $scope.user.id + ".png?" + $scope.randomFluff();
+      $scope.userImgUrl = "s/" + $scope.user.id + ".png?" + $scope.randomFluff();
     };
 
     $scope.updateUserImgUrl();

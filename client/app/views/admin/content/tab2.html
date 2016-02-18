@@ -37,7 +37,7 @@
           </div>
         </span>
         <span data-ng-if="fileExists('custom_stylesheet.css')">
-          <a class="btn btn-primary" data-ng-href="{{'static/custom_stylesheet.css'}}" download="custom_stylesheet.css">
+          <a class="btn btn-primary" data-ng-href="{{'s/custom_stylesheet.css'}}" download="custom_stylesheet.css">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
@@ -63,7 +63,7 @@
           </div>
         </span>
         <span data-ng-show="fileExists('custom_homepage.html')">
-          <a class="btn btn-primary" data-ng-href="{{'static/custom_homepage.html'}}" download="homepage.html">
+          <a class="btn btn-primary" data-ng-href="{{'s/custom_homepage.html'}}" download="homepage.html">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
@@ -75,7 +75,7 @@
       </div>
       <label data-translate>Upload custom file</label>
       <br />
-      <span data-translate>The file will be available at the URL: /static/$filename</span>
+      <span data-translate>The file will be available at the URL: /s/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span flow-init="{target: getUploadUrl('admin/staticfiles/customization'), headers: get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
@@ -96,7 +96,7 @@
             <tr>
               <td>{{file.filename}}</td>
               <td>
-                <a class="btn btn-primary" data-ng-href="{{'static/' + file.filename}}" download="{{file.filename}}">
+                <a class="btn btn-primary" data-ng-href="{{'s/' + file.filename}}" download="{{file.filename}}">
                   <span class="glyphicon glyphicon-download"></span>
                   <span data-translate>Download</span>
                 </a>

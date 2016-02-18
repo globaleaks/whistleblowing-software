@@ -129,12 +129,13 @@ spec = [
     ## Special Files Handlers##
     (r'/(favicon.ico)', base.BaseStaticFileHandler),
     (r'/(robots.txt)', base.BaseStaticFileHandler),
-    (r'/static/(.*)', base.BaseStaticFileHandler),
+    (r'/s/(.*)', base.BaseStaticFileHandler),
+    (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/css/styles.css', css.CSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 
-    (r'/s/timingstats', base.TimingStatsHandler),
+    (r'/x/timingstats', base.TimingStatsHandler),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
