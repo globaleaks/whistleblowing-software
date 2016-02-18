@@ -42,7 +42,7 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/static/logo.png',
+    'url': '/s/logo.png',
     'type': 'image/png',
     'status': 200
   },
