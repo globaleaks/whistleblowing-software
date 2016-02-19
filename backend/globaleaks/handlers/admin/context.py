@@ -4,16 +4,14 @@
 #   *****
 # Implementation of the code executed on handler /admin/contexts
 #
-import copy
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.node import serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
@@ -31,13 +29,12 @@ def admin_serialize_context(store, context, language):
     """
     ret_dict = {
         'id': context.id,
+        'questionnaire_id': context.questionnaire.id,
         'receivers': [r.id for r in context.receivers],
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
-        'show_steps_navigation_bar': context.show_steps_navigation_bar,
-        'steps_navigation_requires_completion': context.steps_navigation_requires_completion,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_cards': context.show_small_cards,
@@ -47,10 +44,7 @@ def admin_serialize_context(store, context, language):
         'enable_two_way_messages': context.enable_two_way_messages,
         'enable_attachments': context.enable_attachments,
         'presentation_order': context.presentation_order,
-        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'questionnaire_layout': context.questionnaire_layout,
-        'reset_questionnaire': False,
-        'steps': [serialize_step(store, s, language) for s in context.steps]
+        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -112,26 +106,12 @@ def db_get_context_steps(store, context_id, language):
         log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
-    return [serialize_step(store, s, language) for s in context.steps]
+    return [serialize_step(store, s, language) for s in context.questionnaire.steps]
 
 
 @transact_ro
 def get_context_steps(*args):
     return db_get_context_steps(*args)
-
-
-def db_reset_questionnaire(store, context):
-    store.find(models.Step, models.Step.context_id == context.id).remove()
-
-
-def db_setup_default_questionnaire(store, context):
-    appdata = store.find(models.ApplicationData).one()
-    for step in copy.deepcopy(appdata.default_questionnaire):
-        f_children = copy.deepcopy(step['children'])
-        del step['children']
-        s = models.db_forge_obj(store, models.Step, step)
-        db_import_fields(store, s, None, f_children)
-        s.context_id = context.id
 
 
 def fill_context_request(request, language):
@@ -150,11 +130,10 @@ def fill_context_request(request, language):
 def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)
 
-    context.update(request)
+    if request['questionnaire_id'] == '':
+        request['questionnaire_id'] = db_get_default_questionnaire_id(store)
 
-    if request['reset_questionnaire']:
-        db_reset_questionnaire(store, context)
-        db_setup_default_questionnaire(store, context)
+    context.update(request)
 
     db_associate_context_receivers(store, context, request['receivers'])
 
@@ -177,14 +156,12 @@ def db_create_steps(store, context, steps, language):
 def db_create_context(store, request, language):
     request = fill_context_request(request, language)
 
+    if request['questionnaire_id'] == '':
+        request['questionnaire_id'] = db_get_default_questionnaire_id(store)
+
     context = models.Context(request)
 
     store.add(context)
-
-    if request['reset_questionnaire']:
-        db_setup_default_questionnaire(store, context)
-    else:
-        db_create_steps(store, context, request['steps'], language)
 
     db_associate_context_receivers(store, context, request['receivers'])
 

@@ -21,6 +21,7 @@ from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.handlers.admin import receiver as admin_receiver
 from globaleaks.handlers.admin import context as admin_context
+from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import langfiles as admin_langfiles
@@ -102,6 +103,8 @@ spec = [
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
     (r'/admin/contexts', admin_context.ContextsCollection),
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
+    (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
+    (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
     (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
     (r'/admin/notification', admin_notification.NotificationInstance),

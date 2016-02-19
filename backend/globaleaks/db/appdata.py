@@ -1,14 +1,13 @@
 # -*- coding: UTF-8
 # datainit.py: database initialization
 #   ******************
+import copy
 import json
-
 import os
 
 from globaleaks import models
 from globaleaks.orm import transact
-#from globaleaks.handlers.submission import db_assign_submission_sequence
-from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.handlers.admin.field import db_create_field, db_import_fields
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 
@@ -21,6 +20,25 @@ def load_appdata():
             return appdata_dict
 
     raise errors.InternalServerError("Unable to load application data")
+
+
+def load_default_questionnaires(store):
+    appdata = store.find(models.ApplicationData).one()
+    steps = appdata.default_questionnaire['steps']
+    del appdata.default_questionnaire['steps']
+
+    questionnaire = store.find(models.Questionnaire, models.Questionnaire.key == u'default').one()
+    if questionnaire is not None:
+        store.remove(questionnaire.steps)
+    else:
+        questionnaire = models.db_forge_obj(store, models.Questionnaire, appdata.default_questionnaire)
+
+    for step in steps:
+        f_children = step['children']
+        del step['children']
+        s = models.db_forge_obj(store, models.Step, step)
+        db_import_fields(store, s, None, f_children)
+        s.questionnaire_id = questionnaire.id
 
 
 def load_default_fields(store):

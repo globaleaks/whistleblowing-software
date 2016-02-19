@@ -214,8 +214,8 @@ def db_create_field(store, field_dict, language):
         # special handling of the whistleblower_identity field
         if field.template.key == 'whistleblower_identity':
             if field.step:
-                if not field.step.context.enable_whistleblower_identity:
-                    field.step.context.enable_whistleblower_identity = True
+                if not field.step.questionnaire.enable_whistleblower_identity:
+                    field.step.questionnaire.enable_whistleblower_identity = True
                 else:
                     raise errors.InvalidInputFormat("Whistleblower identity field already present")
             else:
@@ -374,7 +374,7 @@ def delete_field(store, field_id):
         # special handling of the whistleblower_identity field
         if field.template.key == 'whistleblower_identity':
             if field.step is not None:
-                field.step.context.enable_whistleblower_identity = False
+                field.step.questionnaire.enable_whistleblower_identity = False
 
     store.remove(field)
 

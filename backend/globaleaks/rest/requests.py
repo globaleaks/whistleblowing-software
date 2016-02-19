@@ -342,13 +342,25 @@ AdminStepDesc = {
     'label': unicode,
     'description': unicode,
     'children': [AdminFieldDesc],
-    'context_id': uuid_regexp,
+    'questionnaire_id': uuid_regexp,
     'presentation_order': int,
     'triggered_by_score': int
 }
 
 AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_keys)
 AdminStepDescRaw['children'] = [AdminFieldDescRaw]
+
+AdminQuestionnaireDesc = {
+  'id': uuid_regexp_or_empty,
+  'key': unicode,
+  'name': unicode,
+  'show_steps_navigation_bar': bool,
+  'steps_navigation_requires_completion': bool,
+  'steps': [AdminStepDesc]
+}
+
+AdminQuestionnaireDescRaw = get_raw_request_format(AdminQuestionnaireDesc, models.Questionnaire.localized_keys)
+AdminQuestionnaireDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminContextDesc = {
     'id': uuid_regexp_or_empty,
@@ -358,8 +370,6 @@ AdminContextDesc = {
     'tip_timetolive': int,
     'receivers': [uuid_regexp],
     'show_context': bool,
-    'show_steps_navigation_bar': bool,
-    'steps_navigation_requires_completion': bool,
     'select_all_receivers': bool,
     'show_recipients_details': bool,
     'allow_recipients_selection': bool,
@@ -371,13 +381,10 @@ AdminContextDesc = {
     'enable_attachments': bool,
     'presentation_order': int,
     'show_receivers_in_alphabetical_order': bool,
-    'questionnaire_layout': unicode,
-    'steps': [AdminStepDesc],
-    'reset_questionnaire': bool
+    'questionnaire_id': unicode
 }
 
 AdminContextDescRaw = get_raw_request_format(AdminContextDesc, models.Context.localized_keys)
-AdminContextDescRaw['steps'] = [AdminStepDescRaw]
 
 AdminReceiverDesc = {
     'id': uuid_regexp_or_empty,
@@ -522,8 +529,6 @@ ContextDesc = {
     'select_all_receivers': bool,
     'tip_timetolive': int,
     'show_context': bool,
-    'show_steps_navigation_bar': bool,
-    'steps_navigation_requires_completion': bool,
     'show_recipients_details': bool,
     'allow_recipients_selection': bool,
     'show_small_cards': bool,
