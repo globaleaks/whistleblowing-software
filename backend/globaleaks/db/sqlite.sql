@@ -60,8 +60,6 @@ CREATE TABLE context (
     maximum_selectable_receivers INTEGER,
     show_small_cards INTEGER NOT NULL,
     show_context INTEGER NOT NULL,
-    show_steps_navigation_bar INTEGER NOT NULL,
-    steps_navigation_requires_completion INTEGER NOT NULL,
     show_recipients_details INTEGER NOT NULL,
     allow_recipients_selection INTEGER NOT NULL,
     enable_comments INTEGER NOT NULL,
@@ -69,10 +67,11 @@ CREATE TABLE context (
     enable_two_way_comments INTEGER NOT NULL,
     enable_two_way_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
-    enable_whistleblower_identity INTEGER NOT NULL,
+    status_page_message BLOB NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
-    questionnaire_layout TEXT NOT NULL CHECK (questionnaire_layout IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
+    questionnaire_id TEXT,
+    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id),
     PRIMARY KEY (id)
 );
 
@@ -433,14 +432,26 @@ CREATE TABLE fieldoption (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE questionnaire (
+    id TEXT NOT NULL,
+    key TEXT NOT NULL,
+    name TEXT NOT NULL,
+    layout TEXT NOT NULL CHECK (layout IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
+    show_steps_navigation_bar INTEGER NOT NULL,
+    steps_navigation_requires_completion INTEGER NOT NULL,
+    enable_whistleblower_identity INTEGER NOT NULL,
+    editable INTEGER NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE step (
     id TEXT NOT NULL,
-    context_id TEXT NOT NULL,
+    questionnaire_id TEXT NOT NULL,
     label TEXT NOT NULL,
     description TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     triggered_by_score INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -503,8 +514,9 @@ CREATE TABLE shorturl (
     PRIMARY KEY (id)
 );
 
-CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);
 CREATE INDEX fieldoption__field_id_index ON fieldoption(field_id);
-CREATE INDEX step__context_id_index ON step(context_id);
+CREATE INDEX field__template_id_index ON field(template_id);
+CREATE INDEX step__questionnaire_id_index ON step(questionnaire_id);
+CREATE INDEX context_questionnaire_id_index ON context(questionnaire_id);
 CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);

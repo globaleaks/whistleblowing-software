@@ -112,8 +112,6 @@ def serialize_context(store, context, language):
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
-        'show_steps_navigation_bar': context.show_steps_navigation_bar,
-        'steps_navigation_requires_completion': context.steps_navigation_requires_completion,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
         'show_small_cards': context.show_small_cards,
@@ -124,12 +122,33 @@ def serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'field_whistleblower_identity': '',
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'questionnaire_layout': context.questionnaire_layout,
-        'receivers': [r.id for r in context.receivers],
-        'steps': [serialize_step(store, s, language) for s in context.steps]
+        'questionnaire': serialize_questionnaire(store, context.questionnaire, language), 
+        'receivers': [r.id for r in context.receivers]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
+
+
+def serialize_questionnaire(store, questionnaire, language):
+    """
+    Serialize the specified questionnaire
+
+    :param store: the store on which perform queries.
+    :param language: the language in which to localize data.
+    :return: a dictionary representing the serialization of the questionnaire.
+    """
+    ret_dict = {
+        'id': questionnaire.id,
+        'key': questionnaire.key,
+        'editable': questionnaire.editable,
+        'name': questionnaire.name,
+        'layout': questionnaire.layout,
+        'show_steps_navigation_bar': questionnaire.show_steps_navigation_bar,
+        'steps_navigation_requires_completion': questionnaire.steps_navigation_requires_completion,
+        'steps': [serialize_step(store, s, language) for s in questionnaire.steps]
+    }
+
+    return get_localized_values(ret_dict, questionnaire, questionnaire.localized_keys, language)
 
 
 def serialize_field_option(option, language):
@@ -241,7 +260,7 @@ def serialize_step(store, step, language):
 
     ret_dict = {
         'id': step.id,
-        'context_id': step.context_id,
+        'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
         'triggered_by_options': triggered_by_options,

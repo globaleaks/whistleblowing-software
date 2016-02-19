@@ -11,7 +11,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models,  __version__, DATABASE_VERSION
-from globaleaks.db.appdata import db_init_appdata, load_default_fields
+from globaleaks.db.appdata import db_init_appdata, load_default_fields, load_default_questionnaires
 from globaleaks.handlers.admin.user import db_create_admin
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
@@ -66,6 +66,7 @@ def init_db(store):
     store.add(node)
     store.add(notification)
 
+    load_default_questionnaires(store)
     load_default_fields(store)
 
     admin_dict = {

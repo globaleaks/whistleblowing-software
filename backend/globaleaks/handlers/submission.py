@@ -370,9 +370,9 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
     submission.enable_attachments = context.enable_attachments
-    submission.enable_whistleblower_identity = context.enable_whistleblower_identity
+    submission.enable_whistleblower_identity = context.questionnaire.enable_whistleblower_identity
 
-    if context.enable_whistleblower_identity and request['identity_provided']:
+    if submission.enable_whistleblower_identity and request['identity_provided']:
         submission.identity_provided = True
         submission.identity_provided_date = datetime_now()
 

@@ -17,7 +17,9 @@ from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v
 
+
 empty_localization = {}
+
 
 def db_forge_obj(store, mock_class, mock_fields):
     obj = mock_class()
@@ -74,22 +76,22 @@ class BaseModel(Storm):
         if values is None:
             return
 
-        for k in getattr(self, "unicode_keys"):
+        for k in getattr(self, 'unicode_keys'):
             if k in values and values[k] is not None:
                 value = unicode(values[k])
                 setattr(self, k, value)
 
-        for k in getattr(self, "int_keys"):
+        for k in getattr(self, 'int_keys'):
             if k in values and values[k] is not None:
                 value = int(values[k])
                 setattr(self, k, value)
 
-        for k in getattr(self, "datetime_keys"):
+        for k in getattr(self, 'datetime_keys'):
             if k in values and values[k] is not None:
                 value = values[k]
                 setattr(self, k, value)
 
-        for k in getattr(self, "bool_keys"):
+        for k in getattr(self, 'bool_keys'):
             if k in values and values[k] is not None:
                 if values[k] == u'true':
                     value = True
@@ -99,7 +101,7 @@ class BaseModel(Storm):
                     value = bool(values[k])
                 setattr(self, k, value)
 
-        for k in getattr(self, "localized_keys"):
+        for k in getattr(self, 'localized_keys'):
             if k in values and values[k] is not None:
                 value = values[k]
                 previous = getattr(self, k)
@@ -110,7 +112,7 @@ class BaseModel(Storm):
                 else:
                     setattr(self, k, value)
 
-        for k in getattr(self, "json_keys"):
+        for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
                 value = values[k]
                 setattr(self, k, value)
@@ -205,8 +207,6 @@ class Context(Model):
     """
     show_small_cards = Bool(default=False)
     show_context = Bool(default=True)
-    show_steps_navigation_bar = Bool(default=False)
-    steps_navigation_requires_completion = Bool(default=True)
     show_recipients_details = Bool(default=False)
     allow_recipients_selection = Bool(default=False)
     maximum_selectable_receivers = Int(default=0)
@@ -217,7 +217,6 @@ class Context(Model):
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
-    enable_whistleblower_identity = Bool(default=False)
 
     tip_timetolive = Int()
 
@@ -226,15 +225,17 @@ class Context(Model):
     description = JSON(validator=longlocal_v)
     recipients_clarification = JSON(validator=longlocal_v)
 
-    questionnaire_layout = Unicode(default=u'horizontal')
+    status_page_message = JSON(validator=longlocal_v)
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 
     presentation_order = Int(default=0)
 
-    unicode_keys = ['questionnaire_layout']
+    questionnaire_id = Unicode()
 
-    localized_keys = ['name', 'description', 'recipients_clarification']
+    unicode_keys = ['questionnaire_id']
+
+    localized_keys = ['name', 'description', 'recipients_clarification', 'status_page_message']
 
     int_keys = [
       'tip_timetolive',
@@ -247,7 +248,6 @@ class Context(Model):
       'select_all_receivers',
       'show_small_cards',
       'show_context',
-      'show_steps_navigation_bar',
       'show_recipients_details',
       'show_receivers_in_alphabetical_order',
       'allow_recipients_selection',
@@ -303,7 +303,7 @@ class ReceiverTip(Model):
     last_access = DateTime(default_factory=datetime_null)
     access_counter = Int(default=0)
 
-    label = Unicode(default=u"")
+    label = Unicode(default=u'')
 
     can_access_whistleblower_identity = Bool(default=False)
 
@@ -333,11 +333,11 @@ class IdentityAccessRequest(Model):
     """
     receivertip_id = Unicode()
     request_date = DateTime(default_factory=datetime_now)
-    request_motivation = Unicode(default=u"")
+    request_motivation = Unicode(default=u'')
     reply_date = DateTime(default_factory=datetime_null)
     reply_user_id = Unicode()
-    reply_motivation = Unicode(default=u"")
-    reply = Unicode(default=u"pending")
+    reply_motivation = Unicode(default=u'')
+    reply = Unicode(default=u'pending')
 
 
 class InternalFile(Model):
@@ -587,7 +587,7 @@ class Notification(Model):
     source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION')
     source_email = Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org')
 
-    security = Unicode(validator=shorttext_v, default=u"TLS")
+    security = Unicode(validator=shorttext_v, default=u'TLS')
     # security_types: 'TLS', 'SSL'
 
     # Admin
@@ -639,7 +639,7 @@ class Notification(Model):
     notification_threshold_per_hour = Int(default=20)
     notification_suspension_time=Int(default=(2 * 3600))
 
-    exception_email_address = Unicode(validator=shorttext_v, default=u"globaleaks-stackexception@lists.globaleaks.org")
+    exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
     exception_email_pgp_key_info = Unicode(default=u'')
     exception_email_pgp_key_fingerprint = Unicode(default=u'')
     exception_email_pgp_key_public = Unicode(default=u'')
@@ -734,7 +734,7 @@ class Receiver(Model):
     """
     This model keeps track of receivers settings.
     """
-    configuration = Unicode(default=u"default")
+    configuration = Unicode(default=u'default')
     # configurations: 'default', 'forcefully_selected', 'unselectable'
 
     # Admin chosen options
@@ -763,7 +763,7 @@ class Field(Model):
     y = Int(default=0)
     width = Int(default = 0)
 
-    key = Unicode(default=u"")
+    key = Unicode(default=u'')
 
     label = JSON(validator=longlocal_v)
     description = JSON(validator=longlocal_v)
@@ -863,6 +863,17 @@ class FieldAnswerGroup(Model):
     int_keys = ['number']
 
 
+class FieldAnswerGroupFieldAnswer(BaseModel):
+    """
+    Class used to implement references between FieldAnswerGroup and FieldAnswer
+    """
+    __storm_table__ = 'fieldanswergroup_fieldanswer'
+    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
+
+    fieldanswergroup_id = Unicode()
+    fieldanswer_id = Unicode()
+
+
 class ArchivedSchema(Model):
     hash = Unicode()
     type = Unicode()
@@ -872,15 +883,34 @@ class ArchivedSchema(Model):
 
 
 class Step(Model):
-    context_id = Unicode()
+    questionnaire_id = Unicode()
     label = JSON()
     description = JSON()
     presentation_order = Int(default=0)
     triggered_by_score = Int(default=0)
 
-    unicode_keys = ['context_id']
+    unicode_keys = ['questionnaire_id']
     int_keys = ['presentation_order', 'triggered_by_score']
     localized_keys = ['label', 'description']
+
+
+class Questionnaire(Model):
+    key = Unicode(default=u'')
+    name = Unicode()
+    layout = Unicode(default=u'horizontal')
+    show_steps_navigation_bar = Bool(default=False)
+    steps_navigation_requires_completion = Bool(default=False)
+    enable_whistleblower_identity = Bool(default=False)
+
+    editable = Bool(default=True)
+
+    unicode_keys = ['name', 'key', 'layout']
+
+    bool_keys = [
+      'editable',
+      'show_steps_navigation_bar',
+      'steps_navigation_requires_completion'
+    ]
 
 
 class Stats(Model):
@@ -928,17 +958,6 @@ class ReceiverInternalTip(BaseModel):
 
     receiver_id = Unicode()
     internaltip_id = Unicode()
-
-
-class FieldAnswerGroupFieldAnswer(BaseModel):
-    """
-    Class used to implement references between FieldAnswerGroup and FieldAnswer
-    """
-    __storm_table__ = 'fieldanswergroup_fieldanswer'
-    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
-
-    fieldanswergroup_id = Unicode()
-    fieldanswer_id = Unicode()
 
 
 class Counter(Model):
@@ -1003,9 +1022,11 @@ Step.children = ReferenceSet(
     Field.step_id
 )
 
-Context.steps = ReferenceSet(Context.id, Step.context_id)
+Context.questionnaire = Reference(Context.questionnaire_id, Questionnaire.id)
 
-Step.context = Reference(Step.context_id, Context.id)
+Questionnaire.steps = ReferenceSet(Questionnaire.id, Step.questionnaire_id)
+
+Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
 
 Custodian.user = Reference(Custodian.id, User.id)
 Receiver.user = Reference(Receiver.id, User.id)
