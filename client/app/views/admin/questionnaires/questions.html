@@ -1,8 +1,7 @@
-<div class="row">
-  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
-  <div class="col-md-9" data-ng-controller="AdminFieldTemplatesCtrl">
-    <div class="adminConfigSection row">
-      <form name="newField" class="addField col-md-6" novalidate>
+<div data-ng-controller="AdminFieldTemplatesCtrl">
+  <div class="adminConfigSection row">
+    <div class="addField col-md-6">
+      <form name="newField" class="addField" novalidate>
         <div class="editorTitle row">
           <span class="col-md-8">
             <span data-translate>Add new question template</span>
@@ -21,7 +20,9 @@
         <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/add_field.html'"></div>
       </form>
     </div>
-    <div class="adminConfigSection row" data-ng-show="fields.length > 0">
+  </div>
+  <div class="adminConfigSection row" data-ng-init="fields = admin.fieldtemplates" data-ng-show="fields.length > 0">
+    <div class="col-md-12">
       <div class="editorTitle row">
         <span class="col-md-8">
           <span data-translate>Configured question templates:</span>
@@ -33,9 +34,9 @@
           </button>
         </span>
       </div>
-      <div data-ng-repeat="field in admin.fieldtemplates | orderBy:'label'">
-        <div data-ng-include="'views/admin/fields.html'"></div>
-      </div>
+    </div>
+    <div class="col-md-12" data-ng-repeat="field in fields | orderBy:'label'">
+      <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
     </div>
   </div>
 </div>

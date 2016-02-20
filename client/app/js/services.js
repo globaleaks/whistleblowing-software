@@ -563,6 +563,9 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/contexts/:id', {id: '@id'});
 }]).
+  factory('AdminQuestionnaireResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/questionnaires/:id', {id: '@id'});
+}]).
   factory('AdminStepResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/steps/:id', {id: '@id'});
 }]).
@@ -587,13 +590,14 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
-    function(GLResource, $q, AdminContextResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return function(fn) {
       var self = this;
 
       self.node = AdminNodeResource.get();
       self.contexts = AdminContextResource.query();
+      self.questionnaires = AdminQuestionnaireResource.query();
       self.fieldtemplates = AdminFieldTemplateResource.query();
       self.users = AdminUserResource.query();
       self.receivers = AdminReceiverResource.query();
@@ -602,6 +606,7 @@ angular.module('GLServices', ['ngResource']).
 
       $q.all([self.node.$promise,
               self.contexts.$promise,
+              self.questionnaires.$promise,
               self.fieldtemplates.$promise,
               self.receivers.$promise,
               self.notification.$promise,
@@ -615,8 +620,6 @@ angular.module('GLServices', ['ngResource']).
           context.presentation_order = 0;
           context.tip_timetolive = 15;
           context.show_context = true;
-          context.show_steps_navigation_bar = true;
-          context.steps_navigation_requires_completion = false;
           context.show_recipients_details = false;
           context.allow_recipients_selection = false;
           context.show_receivers_in_alphabetical_order = true;
@@ -628,22 +631,35 @@ angular.module('GLServices', ['ngResource']).
           context.enable_two_way_comments = true;
           context.enable_two_way_messages = true;
           context.enable_attachments = true;
-          context.questionnaire_layout = 'horizontal';
+          context.layout = 'horizontal';
           context.reset_questionnaire = true;
+          context.questionnaire_id = '';
           context.custodians = [];
           context.receivers = [];
-          context.steps = [];
           return context;
         };
 
-        self.new_step = function(context_id) {
+        self.new_questionnaire = function() {
+          var questionnaire = new AdminQuestionnaireResource();
+          questionnaire.id = '';
+          questionnaire.key = '';
+          questionnaire.name = '';
+          questionnaire.show_steps_navigation_bar = true;
+          questionnaire.steps_navigation_requires_completion = false;
+          questionnaire.layout = 'horizontal';
+          questionnaire.steps = [];
+          questionnaire.editable = true;
+          return questionnaire;
+        };
+
+        self.new_step = function(questionnaire_id) {
           var step = new AdminStepResource();
           step.id = '';
           step.label = '';
           step.description = '';
           step.presentation_order = 0;
           step.children = [];
-          step.context_id = context_id;
+          step.questionnaire_id = questionnaire_id;
           step.triggered_by_score = 0;
           return step;
         };
@@ -739,6 +755,7 @@ angular.module('GLServices', ['ngResource']).
           field.fieldgroup_id = fieldgroup_id;
           field.step_id = '';
           field.template_id = '';
+          field.triggered_by_score = 0;
           return field;
         };
 

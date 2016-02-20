@@ -99,7 +99,7 @@ def dump_field_entry(output, field, entry, indent_n):
             if entry['value'] == option['id']:
                 output += indent(indent_n) + option['label'] + '\n'
     elif field_type == 'date':
-        output += indent(indent_n) + ISO8601_to_pretty_str(entry['value']) + '\n' # FIXME: format date
+        output += indent(indent_n) + ISO8601_to_pretty_str(entry['value']) + '\n'
     elif field_type == 'tos':
         answer = '☑' if entry['value'] == 'True' else '☐'
         output += indent(indent_n) + answer + '\n'

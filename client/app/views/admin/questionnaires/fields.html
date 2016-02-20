@@ -58,14 +58,14 @@
                 data-ng-click="save_field(field)">
                 <span data-translate>Save</span>
               </button>
-              <button 
+              <button
                 class="actionButton btn btn-xs btn-default"
                 data-ng-show="editing"
                 data-ng-click="toggleEditing(); $event.stopPropagation();">
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
-                data-ng-show="field.editable"
+                data-ng-show="editable"
                 data-ng-click="delField($parent.fields, field); $event.stopPropagation();"
                 popover-placement="right"
                 popover-trigger="mouseenter">
@@ -97,19 +97,19 @@
       <div class="fieldEditor" data-ng-if="editing">
         <hr />
         <div class="row">
-          <fieldset class="col-md-6" data-ng-if="field.editable">
-            <div class="form-group" data-ng-if="editable">
+          <fieldset class="col-md-6" data-ng-if="editable">
+            <div class="form-group">
               <label data-translate>Name</label>
               <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" type="text" required />
               <div class="text-red" data-ng-show="editField.label.$error.required">
                 <span data-translate>This field is mandatory</span>
               </div>
             </div>
-            <div class="form-group" data-ng-if="editable">
+            <div class="form-group">
               <label data-translate>Hint</label>
               <input name="hint" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.hint" type="text">
             </div>
-            <div class="form-group" data-ng-if="editable">
+            <div class="form-group">
               <label data-translate>Description</label>
               <textarea name="description" class="form-control" maxlength="{{node.maximum_textsize}}" data-ng-model="field.description">{{field.description}}</textarea>
             </div>
@@ -192,7 +192,7 @@
                   </div>
                 </div>
                 <div data-ng-if="field.type == 'checkbox' || field.type == 'multichoice'">
-                  <div class="row">
+                  <div class="row" data-ng-disabled="!editable">
                     <label data-translate>Layout orientation</label>
                     <select name="type" class="form-control" data-ng-model="field.attrs.layout_orientation.value" required>
                       <option value="vertical" data-translate>vertical</option>
@@ -298,7 +298,7 @@
               <div class="editorTitle" data-translate>Configured questions:</div>
               <div class="configuredFields">
                 <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
-                  <div data-ng-include="'views/admin/fields.html'"></div>
+                  <div data-ng-include="'views/admin/questionnaire/fields.html'"></div>
                 </div>
               </div>
             </div>

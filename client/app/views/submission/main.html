@@ -5,7 +5,7 @@
 
 <div id="ContextDescription">{{submission.context.description}}</div>
 
-<form id="submissionForm" name="submissionForm" data-ng-if="submission.context" data-ng-switch="submission.context.questionnaire_layout" novalidate>
+<form id="submissionForm" name="submissionForm" data-ng-if="submission.context.questionnaire" data-ng-switch="submission.context.questionnaire.layout" novalidate>
   <div data-ng-switch-when="vertical">
     <div data-ng-include="'views/submission/main_vertical.html'"></div>
   </div>

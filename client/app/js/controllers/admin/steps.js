@@ -3,12 +3,12 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     $scope.new_step = {};
 
     $scope.add_step = function() {
-      var step = new $scope.admin.new_step($scope.context.id);
+      var step = new $scope.admin.new_step($scope.questionnaire.id);
       step.label = $scope.new_step.label;
-      step.presentation_order = $scope.newItemOrder($scope.context.steps, 'presentation_order');
+      step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, 'presentation_order');
 
       step.$save(function(new_step){
-        $scope.context.steps.push(new_step);
+        $scope.questionnaire.steps.push(new_step);
         $scope.new_step = {};
       });
     };

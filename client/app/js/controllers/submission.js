@@ -117,7 +117,7 @@ GLClient.controller('SubmissionCtrl',
   }
 
   $scope.lastStepIndex = function() {
-    return $scope.selected_context.steps.length - 1;
+    return $scope.selected_context.questionnaire.steps.length - 1;
   }
 
   $scope.hasNextStep = function(){
@@ -153,13 +153,13 @@ GLClient.controller('SubmissionCtrl',
   }
 
   $scope.incrementStep = function() {
-    if ($scope.submission.context.steps_navigation_requires_completion && !$scope.checkForMandatoryFields()) {
+    if ($scope.submission.context.questionnaire.steps_navigation_requires_completion && !$scope.checkForMandatoryFields()) {
       return;
     }
 
     if ($scope.hasNextStep()) {
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        if ($scope.stepIsTriggered($scope.submission.context.steps[i])) {
+        if ($scope.stepIsTriggered($scope.submission.context.questionnaire.steps[i])) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
@@ -171,7 +171,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || $scope.stepIsTriggered($scope.submission.context.steps[i])) {
+        if (i === -1 || $scope.stepIsTriggered($scope.submission.context.questionnaire.steps[i])) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
@@ -223,7 +223,7 @@ GLClient.controller('SubmissionCtrl',
 
     var score = 0;
 
-    angular.forEach($scope.submission.context.steps, function(step) {
+    angular.forEach($scope.submission.context.questionnaire.steps, function(step) {
       angular.forEach(step.children, function(field) {
         angular.forEach($scope.answers[field.id], function(entry) {
           score += $scope.calculateScoreRecursively(field, entry);
@@ -252,9 +252,9 @@ GLClient.controller('SubmissionCtrl',
     $scope.uploads = {};
 
     // iterations over steps require the steps array to be ordered
-    context.steps = $filter('orderBy')(context.steps, 'presentation_order');
+    context.questionnaire.steps = $filter('orderBy')(context.questionnaire.steps, 'presentation_order');
 
-    angular.forEach(context.steps, function(field) {
+    angular.forEach(context.questionnaire.steps, function(field) {
       angular.forEach(field.children, function(child) {
         $scope.answers[child.id] = [angular.copy($scope.prepare_field_answers_structure(child))];
       });

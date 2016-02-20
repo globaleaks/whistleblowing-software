@@ -249,8 +249,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   ];
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', '$uibModal',
-                    function($scope, $http, $uibModal){
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
+                    function($scope, $uibModal){
   $scope.tabs = [
     {
       title:"Main configuration",
