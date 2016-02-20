@@ -1,13 +1,13 @@
 <a id="top"></a>
 
 <div class="tabbable tabs-below">
-  <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.show_steps_navigation_bar">
+  <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs" data-ng-if="submission.context.questionnaire.show_steps_navigation_bar">
     <li data-ng-if="!skip_first_step" data-ng-class="{active: selection === -1, disabled: uploading}">
       <a id="receiver-selection-link" href="javascript:void(0)" data-ng-click="goToStep(-1)" data-ng-disabled="uploading">
         1 - <span data-translate>Recipient selection</span>
       </a>
     </li>
-    <li data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index, disabled: uploading}" data-ng-if="stepIsTriggered(step)">
+    <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index, disabled: uploading}" data-ng-if="stepIsTriggered(step)">
       <a id="step-{{$index}}-link" href="javascript:void(0)" data-ng-click="goToStep($index)" data-ng-disabled="uploading">
         <span data-ng-if="skip_first_step">{{$index + 1}} - </span>
         <span data-ng-if="!skip_first_step">{{$index + 2}} - </span>
@@ -18,14 +18,14 @@
 
   <div id="SubmissionTabsContentBox" class="tab-content">
     <div id="step-receiver-selection" data-ng-if="!skip_first_step && selection === -1">
-      <div id="StepTitle" data-ng-if="::!submission.context.show_steps_navigation_bar" data-translate>Recipient selection</div>
+      <div id="StepTitle" data-ng-if="::!submission.context.questionnaire.show_steps_navigation_bar" data-translate>Recipient selection</div>
       <div data-ng-show="selection === -1" data-ng-include="'views/submission/receiver_selection.html'"></div>
     </div>
 
     <!-- Configured Context Steps -->
-    <div data-ng-repeat="step in submission.context.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + $index" data-ng-if="stepIsTriggered(step)">
+    <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + $index" data-ng-if="stepIsTriggered(step)">
       <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
-        <div id="StepTitle" data-ng-if="::!submission.context.show_steps_navigation_bar">{{::step.label}}</div>
+        <div id="StepTitle" data-ng-if="::!submission.context.questionnaire.show_steps_navigation_bar">{{::step.label}}</div>
         <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
         <div class="row">
           <div class="col-md-7">

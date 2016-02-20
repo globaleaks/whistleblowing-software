@@ -75,7 +75,7 @@
       </div>
       <label data-translate>Upload custom file</label>
       <br />
-      <span data-translate>The file will be available at the URL: /s/$filename</span>
+      <span data-translate>The file will be available at URL: /s/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span flow-init="{target: getUploadUrl('admin/staticfiles/customization'), headers: get_auth_headers()}"
               flow-files-submitted="$flow.upload()"

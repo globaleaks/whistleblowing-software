@@ -1,0 +1,112 @@
+<div class="row" data-ng-controller="AdminQuestionnairesCtrl">
+  <div class="adminConfigSection col-md-6" data-ng-controller="AdminQuestionnaireAddCtrl">
+    <form name="newQuestionnaire" class="addQuestionnaire" novalidate>
+      <div class="editorTitle">
+        <span data-translate>Add new questionnaire</span>
+      </div>
+      <div class="form-group">
+        <label data-translate>Name</label>
+        <input name="name" class="form-control" data-ng-model="new_questionnaire.name" maxlength="{{node.maximum_namesize}}" type="text" required>
+        <div class="text-red" data-ng-show="newQuestionnaire.name.$error.required">
+          <span data-translate>This field is mandatory</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="pull-left btn btn-primary" data-ng-disabled="newQuestionnaire.$invalid" data-ng-click="add_questionnaire()" type="submit">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          <span data-translate>Add</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="adminConfigSection col-md-12" data-ng-show="admin.questionnaires.length > 0">
+    <div class="editorTitle" data-translate>Configured questionnaires:</div>
+    <div data-ng-repeat="questionnaire in admin.questionnaires | orderBy:'presentation_order'">
+      <form id="questionnaire-{{$index}}" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
+        <fieldset class="configItem questionnaireItem" data-ng-disabled="!questionnaire.editable">
+          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+            <span class="col-md-7 editorHeaderTitle">
+              <span>{{questionnaire.name}}</span>
+            </span>
+            <span class="col-md-5">
+              <span class="pull-right">
+                <button
+                  class="actionButton actionButtonQuestionnaireEdit btn btn-xs btn-default"
+                  data-ng-show="!editing"
+                  data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Edit</span>
+                </button>
+                <button
+                  class="actionButton actionButtonQuestionnaireSave btn btn-xs btn-success"
+                  data-ng-show="editing"
+                  data-ng-if="questionnaire.editable"
+                  data-ng-click="save_questionnaire(questionnaire)">
+                  <span data-translate>Save</span>
+                </button>
+                <button
+                  class="actionButton actionButtonQuestionnaireCancel btn btn-xs btn-default"
+                  data-ng-show="editing"
+                  data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Cancel</span>
+                </button>
+                <button
+                  class="actionButton actionButtonQuestionnaireDelete btn btn-xs btn-danger"
+                  data-ng-if="questionnaire.editable"
+                  data-ng-click="delete_questionnaire(questionnaire); $event.stopPropagation();"
+                  popover-placement="right"
+                  popover-trigger="mouseenter">
+                  <span data-translate>Delete</span>
+                </button>
+              </span>
+            </span>
+          </div>
+          <div data-ng-if="editing">
+            <hr />
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label data-translate>Name</label>
+                  <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="questionnaire.name" type="text" required>
+                  <div class="text-red" data-ng-show="editQuestionnaire.name.$error.required">
+                    <span data-translate>This field is mandatory</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a class="actionButton actionButtonAdvancedSettings btn btn-info" data-ng-click="show_advanced_settings = !show_advanced_settings" data-ng-init="show_advanced_settings=false">
+                  <i data-ng-if="!show_advanced_settings" class="glyphicon glyphicon-plus"></i>
+                  <i data-ng-if="show_advanced_settings" class="glyphicon glyphicon-minus"></i>
+                  <span data-translate>Advanced settings</span>
+                </a>
+                <div id="QuestionnaireAdvancedSettingsBox">
+                  <div class="row" data-ng-show="show_advanced_settings">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label data-translate>Questionnaire layout</label>
+                        <select name="type" class="form-control" data-ng-model="questionnaire.layout" required>
+                          <option value="vertical" data-translate>vertical</option>
+                          <option value="horizontal" data-translate>horizontal</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <input data-ng-model="questionnaire.show_steps_navigation_bar" type="checkbox" />
+                        <label data-translate>Show steps navigation bar</label>
+                      </div>
+                      <div class="form-group">
+                        <input data-ng-model="questionnaire.steps_navigation_requires_completion" type="checkbox" />
+                        <label data-translate>Allow to advance through submission steps only when current step is completed</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div data-ng-include="'views/admin/questionnaires/steps.html'"></div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

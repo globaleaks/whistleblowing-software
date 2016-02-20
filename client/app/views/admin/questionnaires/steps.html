@@ -32,14 +32,14 @@
     </div>
   </div>
 </div>
-<div id="StepsEditBox" data-ng-show="context.steps.length > 0">
+<div id="StepsEditBox" data-ng-show="questionnaire.steps.length > 0">
   <div class="editorTitle row">
     <span class="col-md-8">
       <span data-translate>Configured steps:</span>
     </span>
     <span class="col-md-4 text-align-right">
       <button class="btn btn-xs btn-danger"
-              data-ng-show="context.steps.length > 0"
+              data-ng-show="questionnaire.steps.length > 0"
               data-ng-click="delAllSteps()"
               popover-placement="right"
               popover-trigger="mouseenter">
@@ -48,7 +48,7 @@
     </span>
   </div>
   <div class="row">
-    <div data-ng-repeat="step in context.steps | orderBy:'presentation_order'">
+    <div data-ng-repeat="step in questionnaire.steps | orderBy:'presentation_order'">
       <div class="col-md-12"
            data-ng-controller="AdminStepEditorCtrl">
         <div class="configItem configStep">
@@ -85,7 +85,7 @@
                   popover-trigger="mouseenter">
                   <span data-translate>Delete</span>
                 </button>
-                <span data-ng-if="context.steps.length > 1">
+                <span data-ng-if="questionnaire.steps.length > 1">
                   <button class="actionButton btn btn-xs btn-primary" data-ng-click="moveUpAndSave(step); $event.stopPropagation();" uib-popover="{{'Move up' | translate}}" popover-placement="left" popover-trigger="mouseenter">
                     <i class="glyphicon glyphicon-menu-up"></i>
                   </button>
@@ -166,7 +166,7 @@
               </div>
               <div class="configuredFields">
                 <div data-ng-repeat="field in step.children | orderBy:['y', 'x']">
-                  <div data-ng-include="'views/admin/fields.html'"></div>
+                  <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
                 </div>
               </div>
             </div>

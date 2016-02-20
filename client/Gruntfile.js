@@ -732,7 +732,7 @@ module.exports = function(grunt) {
         }
       }
 
-      translate_questionnaire(output['default_questionnaire']);
+      translate_questionnaire(output['default_questionnaire']['steps']);
 
       output = JSON.stringify(output);
 
