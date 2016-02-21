@@ -14,8 +14,8 @@ from globaleaks.tests import helpers
 
 
 @transact_ro
-def get_step_id(store, context_id):
-    return store.find(models.Step, models.Step.context_id == context_id)[0].id
+def get_id_of_first_step_of_questionnaire(store, questionnaire_id):
+    return store.find(models.Step, models.Step.questionnaire_id == questionnaire_id)[0].id
 
 
 class TestFieldCreate(helpers.TestHandler):
@@ -29,7 +29,7 @@ class TestFieldCreate(helpers.TestHandler):
             values = self.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(self.dummyContext, 'en')
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             handler = self.request(values, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
@@ -48,12 +48,12 @@ class TestFieldCreate(helpers.TestHandler):
             field_template = yield create_field(values, 'en')
 
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step_id = yield get_step_id(context['id'])
+            step_id = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
 
             values = self.get_dummy_field()
             values['instance'] = 'reference'
             values['template_id'] = field_template['id']
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
 
             handler = self.request(values, role='admin')
             yield handler.post()
@@ -80,7 +80,7 @@ class TestFieldInstance(helpers.TestHandler):
             values = self.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             field = yield create_field(values, 'en')
 
             handler = self.request(role='admin')
@@ -96,13 +96,13 @@ class TestFieldInstance(helpers.TestHandler):
             values = self.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             field = yield create_field(values, 'en')
 
             updated_sample_field = self.get_dummy_field()
             updated_sample_field['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            updated_sample_field['step_id'] = yield get_step_id(context['id'])
+            updated_sample_field['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             updated_sample_field.update(type='inputbox')
             handler = self.request(updated_sample_field, role='admin')
             yield handler.put(field['id'])
@@ -112,7 +112,7 @@ class TestFieldInstance(helpers.TestHandler):
 
             wrong_sample_field = self.get_dummy_field()
             values['instance'] = 'instance'
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
             self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
@@ -125,7 +125,7 @@ class TestFieldInstance(helpers.TestHandler):
             values = self.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            values['step_id'] = yield get_step_id(context['id'])
+            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             field = yield create_field(values, 'en')
 
             handler = self.request(role='admin')

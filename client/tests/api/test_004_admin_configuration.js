@@ -128,8 +128,6 @@ var context = {
   can_postpone_expiration: false,
   can_delete_submission: true,
   show_context: true,
-  show_steps_navigation_bar: true,
-  steps_navigation_requires_completion: false,
   show_recipients_details: true,
   allow_recipients_selection: true,
   show_small_cards: false,
@@ -140,12 +138,9 @@ var context = {
   enable_attachments: true,
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
-  questionnaire_layout: 'horizontal',
-  reset_questionnaire: true,
-  maximum_selectable_receivers:0,
-  receivers: [],
-  custodians: [],
-  steps: []
+  maximum_selectable_receivers: 0,
+  questionnaire_id: '',
+  receivers: []
 }
 
 var validate_mandatory_headers = function(headers) {

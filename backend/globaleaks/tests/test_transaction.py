@@ -9,7 +9,6 @@ from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 
 class TestTransaction(helpers.TestGL):
-
     @transact
     def _transaction_with_exception(self, store):
         raise Exception
@@ -66,16 +65,14 @@ class TestTransaction(helpers.TestGL):
         raise exceptions.DisconnectionError
 
     @transact_ro
-    def _transact_ro_add_context(self, store):
-        c = self.localization_set(self.dummyContext, Context, 'en')
-        context = Context(c)
-
-        context.tip_timetolive = 1000
-        context.description = context.name = \
-            context.submission_disclaimer = \
-            context.submission_introduction = { "en": u'Localized723' }
-        store.add(context)
-        return context.id
+    def _transact_ro_add_mail(self, store):
+        m = Mail({
+          'address': 'evilaliv3@globaleaks.org',
+          'subject': '',
+          'body': ''
+        })
+        store.add(m)
+        return m.id
 
     @transact_ro
     def _transact_ro_context_bla_bla(self, store, context_id):
@@ -112,10 +109,10 @@ class TestTransaction(helpers.TestGL):
         yield transaction()
 
     @transact_ro
-    def _transact_ro_context_bla_bla(self, store, context_id):
-        self.assertEqual(store.find(Context, Context.id == context_id).one(), None)
+    def _transact_ro_check_mail_not_exists(self, store, mail_id):
+        self.assertEqual(store.find(Mail, Mail.id == mail_id).one(), None)
 
     @inlineCallbacks
     def test_transact_ro(self):
-        created_id = yield self._transact_ro_add_context()
-        yield self._transact_ro_context_bla_bla(created_id)
+        created_id = yield self._transact_ro_add_mail()
+        yield self._transact_ro_check_mail_not_exists(created_id)
