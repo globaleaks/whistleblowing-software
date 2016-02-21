@@ -32,6 +32,7 @@ from globaleaks.handlers.admin.context import create_context, \
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field, db_create_field
 from globaleaks.handlers.admin.step import create_step, update_step
+from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin, create_custodian
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
@@ -245,6 +246,7 @@ class TestGL(unittest.TestCase):
     def get_dummy_step(self):
         return {
             'id': '',
+            'questionnaire_id': '',
             'label': u'Step 1',
             'description': u'Step Description',
             'presentation_order': 0,
@@ -512,22 +514,24 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyContext['receivers'] = receivers_ids
         self.dummyContext = yield create_context(copy.deepcopy(self.dummyContext), 'en')
 
-        self.dummyContext['steps'].append(self.get_dummy_step())
-        self.dummyContext['steps'][2]['context_id'] = self.dummyContext['id']
-        self.dummyContext['steps'][2]['label'] = 'Whistleblower identity'
-        self.dummyContext['steps'][2]['presentation_order'] = 1
-        self.dummyContext['steps'][2] = yield create_step(self.dummyContext['steps'][2], 'en')
+        self.dummyQuestionnaire = yield get_questionnaire(self.dummyContext['questionnaire_id'], 'en')
+
+        self.dummyQuestionnaire['steps'].append(self.get_dummy_step())
+        self.dummyQuestionnaire['steps'][2]['questionnaire_id'] = self.dummyContext['questionnaire_id']
+        self.dummyQuestionnaire['steps'][2]['label'] = 'Whistleblower identity'
+        self.dummyQuestionnaire['steps'][2]['presentation_order'] = 1
+        self.dummyQuestionnaire['steps'][2] = yield create_step(self.dummyQuestionnaire['steps'][2], 'en')
 
         if self.complex_field_population:
-            yield self.add_whistleblower_identity_field_to_step(self.dummyContext['steps'][2]['id'])
+            yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][2]['id'])
 
-            self.dummyContext['steps'][1]['presentation_order'] = 2
-            yield update_step(self.dummyContext['steps'][1]['id'], self.dummyContext['steps'][1], 'en')
+            self.dummyQuestionnaire['steps'][1]['presentation_order'] = 2
+            yield update_step(self.dummyQuestionnaire['steps'][1]['id'], self.dummyQuestionnaire['steps'][1], 'en')
 
-            self.dummyContext['steps'] = [
-                self.dummyContext['steps'][0],
-                self.dummyContext['steps'][2],
-                self.dummyContext['steps'][1]
+            self.dummyQuestionnaire['steps'] = [
+                self.dummyQuestionnaire['steps'][0],
+                self.dummyQuestionnaire['steps'][2],
+                self.dummyQuestionnaire['steps'][1]
             ]
 
     @transact
@@ -770,14 +774,12 @@ class MockDict():
             'recipients_clarification': u'',
             'presentation_order': 0,
             'receivers': [],
-            'steps': [],
+            'questionnaire_id': '',
             'select_all_receivers': True,
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,
             'show_small_cards': False,
             'show_context': True,
-            'show_steps_navigation_bar': True,
-            'steps_navigation_requires_completion': False,
             'show_recipients_details': True,
             'allow_recipients_selection': False,
             'enable_comments': True,
@@ -786,8 +788,7 @@ class MockDict():
             'enable_two_way_messages': True,
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
-            'questionnaire_layout': 'horizontal',
-            'reset_questionnaire': True
+            'status_page_message': ''
         }
 
         self.dummySubmission = {

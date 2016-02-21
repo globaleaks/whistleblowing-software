@@ -257,7 +257,7 @@ class MigrationScript(MigrationBase):
         new_field_model = self.model_to['Field']
         new_fieldoption_model = self.model_to['FieldOption']
 
-        steps = self.appdata['default_questionnaire']
+        steps = self.appdata['default_questionnaire']['steps']
         i = 1
         for step in steps:
             step['number'] = i
@@ -348,7 +348,7 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_receiver)
 
     def migrate_InternalTip(self):
-        steps = [self.appdata['default_questionnaire'][0]]
+        steps = [self.appdata['default_questionnaire']['steps'][0]]
 
         i = 1
         for step in steps:

@@ -20,14 +20,14 @@ class TestStepCollection(helpers.TestHandler):
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = self.get_dummy_step()
-            step['context_id'] = context['id']
+            step['questionnaire_id'] = context['questionnaire_id']
             handler = self.request(step, role='admin')
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
 
             resp, = self.responses
             self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('context_id'), None)
+            self.assertNotEqual(resp.get('questionnaire_id'), None)
 
 
 class TestStepInstance(helpers.TestHandler):
@@ -40,7 +40,7 @@ class TestStepInstance(helpers.TestHandler):
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = self.get_dummy_step()
-            step['context_id'] = context['id']
+            step['questionnaire_id'] = context['questionnaire_id']
             step = yield create_step(step, 'en')
 
             handler = self.request(role='admin')
@@ -55,7 +55,7 @@ class TestStepInstance(helpers.TestHandler):
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = self.get_dummy_step()
-            step['context_id'] = context['id']
+            step['questionnaire_id'] = context['questionnaire_id']
             step = yield create_step(step, 'en')
 
             step['presentation_order'] = 666
@@ -73,7 +73,7 @@ class TestStepInstance(helpers.TestHandler):
             """
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step = self.get_dummy_step()
-            step['context_id'] = context['id']
+            step['questionnaire_id'] = context['questionnaire_id']
             step = yield create_step(step, 'en')
 
             handler = self.request(role='admin')
