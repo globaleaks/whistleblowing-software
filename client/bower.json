@@ -32,14 +32,14 @@
     "angular-filter": "0.5.8",
     "angular-resource": "1.5.0",
     "angular-route": "1.5.0",
-    "angular-translate": "2.9.1",
-    "angular-translate-loader-url": "2.9.1",
-    "angular-translate-loader-static-files": "2.9.1",
+    "angular-translate": "2.9.2",
+    "angular-translate-loader-url": "2.9.2",
+    "angular-translate-loader-static-files": "2.9.2",
     "angular-ui-bootstrap-bower": "1.1.2",
     "bowser": "1.0.0",
     "bootstrap": "3.3.6",
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
-    "d3": "3.5.15",
+    "d3": "3.5.16",
     "es6-promise": "3.1.2",
     "FileSaver.js": "0.0.2",
     "flow.js": "2.10.1",
@@ -47,11 +47,8 @@
     "jquery": "2.2.0",
     "js-polyfills": "0.1.14",
     "ng-flow": "2.7.1",
-    "openpgp": "2.0.1",
+    "openpgp": "2.1.0",
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.0.3"
-  },
-  "resolutions": {
-    "angular": "1.5.0"
   }
 }
