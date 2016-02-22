@@ -195,6 +195,7 @@ AdminNodeDesc = {
     'can_grant_permissions': bool,
     'ahmia': bool,
     'allow_unencrypted': bool,
+    'disable_encryption_warnings': bool,
     'allow_iframes_inclusion': bool,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,

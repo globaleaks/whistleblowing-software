@@ -74,6 +74,7 @@ def serialize_node(store, language):
         'can_grant_permissions': node.can_grant_permissions,
         'wizard_done': node.wizard_done,
         'allow_unencrypted': node.allow_unencrypted,
+        'disable_encryption_warnings': node.disable_encryption_warnings,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'configured': configured,
         'password': u'',
