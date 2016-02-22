@@ -181,15 +181,15 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
 }]);
 
-GLClient.controller('AnomaliesCtrl', ['$scope', 'Node', 'AnomaliesHistCollection',
-  function($scope, Node, AnomaliesHistCollection) {
+GLClient.controller('AnomaliesCtrl', ['$scope', 'AnomaliesCollection',
+  function($scope, AnomaliesCollection) {
 
     $scope.showLevel = true;
-    $scope.anomalies = AnomaliesHistCollection.query();
+    $scope.anomalies = AnomaliesCollection.query();
 }]);
 
-GLClient.controller('ActivitiesCtrl', ['$scope', 'Node', 'ActivitiesCollection',
-  function($scope, Node, ActivitiesCollection) {
+GLClient.controller('ActivitiesCtrl', ['$scope', 'ActivitiesCollection',
+  function($scope, ActivitiesCollection) {
 
     $scope.activities = ActivitiesCollection.query();
 }]);

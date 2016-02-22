@@ -177,22 +177,6 @@ def delete_anomaly_history(store):
 
 
 class AnomaliesCollection(BaseHandler):
-    """
-    This Handler returns the list of the triggered anomalies based on
-    activity monitored in a timedelta (is considered anomalous if they
-    reach the thresholds defined in GLSettingss)
-    """
-    @transport_security_check("admin")
-    @authenticated("admin")
-    def get(self):
-        """
-        Anomalies history is track in Alarm, but is also stored in the
-        DB in order to provide a good history.
-        """
-        self.finish(GLSettings.RecentAnomaliesQ)
-
-
-class AnomalyHistoryCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks

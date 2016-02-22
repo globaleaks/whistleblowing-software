@@ -839,9 +839,6 @@ angular.module('GLServices', ['ngResource']).
   factory('AnomaliesCollection', ['GLResource', function(GLResource) {
     return new GLResource('admin/anomalies');
 }]).
-  factory('AnomaliesHistCollection', ['GLResource', function(GLResource) {
-    return new GLResource('admin/history');
-}]).
   factory('ActivitiesCollection', ['GLResource', function(GLResource) {
     return new GLResource('admin/activities/details');
 }]).
