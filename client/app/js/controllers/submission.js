@@ -153,7 +153,9 @@ GLClient.controller('SubmissionCtrl',
   }
 
   $scope.incrementStep = function() {
-    if ($scope.submission.context.questionnaire.steps_navigation_requires_completion && !$scope.checkForMandatoryFields()) {
+    if ($scope.selection >=0 &&
+        $scope.submission.context.questionnaire.steps_navigation_requires_completion &&
+        !$scope.checkForMandatoryFields()) {
       return;
     }
 

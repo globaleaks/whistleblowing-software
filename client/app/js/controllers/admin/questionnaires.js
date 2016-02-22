@@ -19,7 +19,6 @@ GLClient.controller('AdminQuestionnairesCtrl',
   function($scope, AdminQuestionnaireResource) {
 
   $scope.save_questionnaire = function(questionnaire, cb) {
-    alert(123);
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 
     return $scope.update(updated_questionnaire, cb);
