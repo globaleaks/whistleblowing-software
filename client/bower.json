@@ -49,6 +49,6 @@
     "ng-flow": "2.7.1",
     "openpgp": "2.1.0",
     "scrypt-async": "1.2.0",
-    "stacktrace-js": "1.0.3"
+    "stacktrace-js": "1.0.4"
   }
 }
