@@ -380,6 +380,7 @@ AdminContextDesc = {
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
     'presentation_order': int,
+    'status_page_message': unicode,
     'show_receivers_in_alphabetical_order': bool,
     'questionnaire_id': unicode
 }

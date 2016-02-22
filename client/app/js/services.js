@@ -631,8 +631,7 @@ angular.module('GLServices', ['ngResource']).
           context.enable_two_way_comments = true;
           context.enable_two_way_messages = true;
           context.enable_attachments = true;
-          context.layout = 'horizontal';
-          context.reset_questionnaire = true;
+          context.status_page_message = '';
           context.questionnaire_id = '';
           context.custodians = [];
           context.receivers = [];

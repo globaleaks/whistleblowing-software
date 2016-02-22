@@ -120,7 +120,6 @@ def serialize_context(store, context, language):
         'enable_two_way_comments': context.enable_two_way_comments,
         'enable_two_way_messages': context.enable_two_way_messages,
         'enable_attachments': context.enable_attachments,
-        'field_whistleblower_identity': '',
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire': serialize_questionnaire(store, context.questionnaire, language), 
         'receivers': [r.id for r in context.receivers]
