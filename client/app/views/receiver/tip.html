@@ -51,7 +51,7 @@
   </div>
 </div>
 
-<div class="row" data-ng-show="preferences.pgp_key_status != 'enabled'">
+<div class="row" data-ng-if="!node.disable_encryption_warning && preferences.pgp_key_status !== 'enabled'">
   <div class="col-md-12">
     <div class="alert alert-warning">
       <i class="glyphicon glyphicon-warning-sign"></i>
@@ -62,7 +62,7 @@
     </div>
   </div>
 </div>
-<div class="row" data-ng-show="tip_unencrypted">
+<div class="row" data-ng-if="!node.disable_encryption_warning && tip_unencrypted">
   <div class="col-md-12">
     <div class="alert alert-warning">
       <i class="glyphicon glyphicon-warning-sign"></i>
