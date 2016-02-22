@@ -67,16 +67,11 @@ class PGPCheckSchedule(GLJob):
             if user.pgp_key_public and user.pgp_key_expiration != datetime_null():
                 if user.pgp_key_expiration < datetime_now():
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
-                    if GLSettings.memory_copy.allow_unencrypted:
-                        # The PGP key status should be downgraded only if the node
-                        # accept non PGP mails/files to be sent/stored.
-                        # If the node wont accept this the pgp key status
-                        # will remain enabled and mail won't be sent by regular flow.
-                        user.pgp_key_status = u'disabled'
-                        user.pgp_key_info = None
-                        user.pgp_key_public = None
-                        user.pgp_key_fingerprint = None
-                        user.pgp_key_expiration = None
+                    user.pgp_key_status = u'disabled'
+                    user.pgp_key_info = None
+                    user.pgp_key_public = None
+                    user.pgp_key_fingerprint = None
+                    user.pgp_key_expiration = None
                 elif user.pgp_key_expiration < datetime_now() - timedelta(days=15):
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
 
