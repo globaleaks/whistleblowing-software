@@ -17,16 +17,11 @@ class TestToken(helpers.TestGL):
     to check the handler testing, see in
     test_anomalies
     """
-    pollute_events_for_testing()
-
     stress_indicator = [ 'graph_captcha', 'human_captcha', 'proof_of_work' ]
 
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGL.setUp(self)
-
-        # This is at the beginning
-        event.EventTrackQueue.reset()
 
         pollute_events_for_testing()
         yield Alarm.compute_activity_level()
@@ -77,8 +72,6 @@ class TestToken(helpers.TestGL):
             for f in file_list:
                 self.assertFalse(os.path.exists(f))
 
-
-
     def test_token_update_right_answer(self):
         token = Token('submission')
 
@@ -120,11 +113,7 @@ class TestToken(helpers.TestGL):
             token.use
         )
 
-
-    def test_proof_of_work_right_answer(self):
-        # This is at the beginning
-        event.EventTrackQueue.reset()
-
+    def test_proof_of_work_wrong_answer(self):
         token = Token('submission')
 
         difficulty = {

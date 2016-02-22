@@ -18,27 +18,22 @@ def expireCallback(self):
         
 
 class TestTempDict(helpers.TestGL):
-
     def test_timeout(self):
         timeout = 1337
         size_limit = 1000000
-
-        c = task.Clock() # deterministic clock
 
         xxx = TempDict(timeout=timeout, size_limit=size_limit)
 
         xxx.expireCallback = expireCallback
 
-        xxx.reactor = c
-
         for x in range(1, timeout + 1):
             xxx.set(x, TestObject(x))
             self.assertEqual(len(xxx), x)
-            c.advance(1)
+            self.test_reactor.advance(1)
 
         for x in range(1, timeout + 1):
             self.assertEqual(len(xxx), timeout - x)
-            c.advance(1)
+            self.test_reactor.advance(1)
 
         self.assertEqual(len(xxx), 0)
 
@@ -48,8 +43,6 @@ class TestTempDict(helpers.TestGL):
     def test_size_limit(self):
         timeout = 666
         size_limit = 666
-
-        c = task.Clock() # deterministic clock
 
         xxx = TempDict(timeout=timeout, size_limit=size_limit)
 

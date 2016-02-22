@@ -3,30 +3,20 @@
 The event collection and reporting works in this way:
 
   * Every handler has an hook called prepare and finish, in those functions implemented in handlers/base.py there are some check about event accounting.
-  * in anomaly.py there are two lists of event: incoming event and outcome event.
-    * incoming event is check if the handler requested match and is created a temporay object.
-    * outcome event is check handler and status code, ands is created an Event.
-
-  * When needed, the event queueu the current event queue can be analized and the appropriate Alarm level can be determinated.
+  * At a periodic time event queue is analized and the appropriate Alarm Level is determinated.
   * The Event window is set to 60 seconds, this mean that the event memory contains all the event happened in the latest 60 seconds.
-  * The Event window can be dumped by the admin, accessing to a spefic REST API /admin/activities intended to show the recent activities.
+  * The current event queue can be exported by the admin, accessing to a spefic REST API /admin/activities intended to show the recent activities.
+  * When an Event expire (after 60 seconds) a short summary is written; this is called RecentEventQueue.
+  * Every hour the stats collection take the RecentEventQueue and flush it on the database.
 
-  * When an Event expire (after 60 seconds) a short summary is written; this is called RecentEventQueue, and this queue is cleaned every 10 minutes.
-  * Every 10 minutes the stats collection take the RecentEventQueue and flush it on the database.
-
-  * Every 30 seconds a ResourceChecker routine is run; at the moment this routine monitors only the disk space with the aim to raise an alarm whenever the space is going to exausted (and this can eventually impair some upload or encryption activity)
-
-
-The following is the detail on the periodic routines and it's executin time (implemented in statistic_sched.py):
+The following is the detail on the periodic routines and their executing time (implemented in statistic_sched.py):
 
   * AnomaliesSchedule, 30 seconds
-  * ResourcesCheckSchedule, 30 seconds
-  * StatisticSchedule, 10 minutes
+  * StatisticSchedule, 1 hour
 
+# GLBackend internal scheduler
 
-# GLBacken internal scheduler
-
-## AnomaliesSchedule
+## AnomaliesSchedule (HANDLERS CHECK)
 
 Every 30 seconds is instanced an object of the class Alarm (anomaly.py) and 
 is ask to compute the stress level based on the last 30 seconds window.
@@ -38,7 +28,7 @@ Is evaluated when in the 30 second window between the first and the last, has a 
 
 At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
 
-    OUTCOMING_ANOMALY_MAP = {
+    ANOMALY_MAP = {
         'failed_logins': 5,
         'successful_logins': 3,
         'started_submissions': 5,
@@ -51,20 +41,13 @@ At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
         'receiver_messages': 3,
     }
 
-There are two separated dictionary, because the OUTCOMING and the INCOMING
-are two separate hooks where the event accounting is recorded. At the
-moment only the OUTCOMING_ANOMALY is used, because is important associate
-the time elapsed and the status error code in the Event collection.
-INCOMING hook is present, not yet used.
-
 When an event reach the threshold, the "activity stress level" is raised to 2 or 1.
 
   * if only one event-kind has reached anomaly threshold, alarm goes 1
   * if two or more event-kind has reached anomaly threshold, alarm goes 2
   * if the alarm was 2, and in the successive assessment the alarm can go to 0, still go to 1
 
-
-## ResourceChecker
+## AnomaliesSchedule (DISK SPACE CHECK)
 
 Is the job collecting the amount of free space in the disk, in order to keep
 monitored the ability of the node to store uploaded material.
@@ -77,15 +60,12 @@ Also this checker raise another stress level, called 'disk stress level':
 
 ## StatisticSchedule
 
-Every 10 minutes, all the collected event counters shift, are
-summed and stored as activity statistics.
+Every hour all the collected event counters are collected and stored as activity statistics.
 
-It make two operation:
+The scheduler makes two operations:
 
-  * take all the recent activities in the EventQueue, make a summary and record them for the statistics
-  * take all the recent alarms raised, and save them in the *anomalies* table, to be conserved.
-
-_After the Statistics, the queue are empty_, and therefore 'activities' and 'anomalies' REST API will return an empty list.
+  * it takes all the recent activities in the EventQueue, make a summary and record them for the statistics
+  * it takes all the recent alarms raised, and save them in the *anomalies* table, to be conserved.
 
 # Events monitoring signature definition
 
@@ -98,7 +78,6 @@ The kind of monitored event is dynamic, can be defined in the appropriate dictio
             'anomaly_management': None,
             'method': 'POST'
         },
-
 
 # REST API
 
@@ -138,8 +117,7 @@ Need to be defined the proper way to export a certain window time.
         "summary": {},
         "free_disk_space": 0,
         "valid": 0
-    }, 
-
+    }, ...
 
 the time is expressed in day, hour, week and year to facilitate heatmap visualisation.
 summary may be empty because of no event, or because the box was down. if 
@@ -153,22 +131,18 @@ lost.
 Current queue of alarm raised in the latest 10 minutes:
 
     {
-    "2014-11-12T14:47:37": [
+      "2014-11-12T14:47:37": [
         {
             "submission": 39
-        }, 
-        1
-    ] }
-
-The key is the timedate (ISO8061 format, but without milliseconds because d3.js
-used to display viz
-
+        }, ...
+      ]
+    }
 
 ### /admin/activities
 
-Every time a new handlers, /admin/activities is called, the current logged 
-events queue is copied and reported to the admin; this permits
-realtime monitoring of the activities.
+Every time /admin/activities handler is requested the current logged 
+events queue is copied and reported to the admin; this enables realtime
+monitoring of the activities.
 
     "124": [
         "2014-11-12T14:29:18", 
@@ -189,28 +163,28 @@ realtime monitoring of the activities.
     "128": [
         "2014-11-12T14:29:20", 
         "comment"
-    ], 
+    ], ... 
 
 Every event has an incremental number, used as ID, and are collected the time of the event and the kind.
 
-### /admin/history
+### /admin/anomalies
 
-With a query over /admin/history is possible extract the previous alarm collected:
+The handler /admin/anomalies exports the previous alarms collected:
 
-    [ {
+    [
+      {
         "alarm": 2, 
         "events": {
             "comment": 15, 
             "login": 42
         }, 
         "when": "2014-11-12T01:28:29"
-    }, 
-    {
+      }, 
+      {
         "alarm": 1, 
         "events": {
             "submission": 43
         }, 
         "when": "2014-11-12T01:27:29"
-    } ]
-
-
+      }
+    ]

@@ -11,7 +11,6 @@ The basic measure to keep accounting, in order to avoid a node exhausted in reso
   * submission number: every 30 seconds, if they overcome the number 2, is increased an anomaly counter (for example: from 0 to 1)
   * disk space: every 30 seconds is checked the amount of free space. When the free space start to be short, the anomaly tracker is increased.
 
-
 ## Token deploy roadmap
 
   * **upload a file** and **perform a submission** (and others, in the future) are operation CPU/Disk intensive, and left them available without any limits to an anonymous users, can expose GlobaLeaks software to flood and resources exhaustion.
@@ -25,7 +24,6 @@ The basic measure to keep accounting, in order to avoid a node exhausted in reso
     * Resources availability on the system (fixed threshold, for example, if a node has a file limit of 30 megabyte, when 300 Mb are available or 150 Mb are available, two separate level of alarm are triggered.)
 
 To accomplish a CPU/Disk Intensive Operation (CDIO) a token is needed, and a token is usable only if the circumstances permit that.
-
 
 ## Threshold level
 
@@ -72,8 +70,6 @@ The token is always used as part of the URL requested. the problem resolution (c
 
 
 # That's all.
-# That's all.
-
 
 ### minor notes:
 
@@ -81,11 +77,9 @@ The token is always used as part of the URL requested. the problem resolution (c
 
 An admin has to be updated via email, (PGP encryption and Tor support by default, security can be disabled) whenever the node is under stress. 
 
-
 ### multiple file upload and space
 
 The number of files that can be uploaded can vary on the alarm level threshold.
-
 
 ### The (active) anti flood subsystems
 
@@ -102,5 +96,3 @@ The number of files that can be uploaded can vary on the alarm level threshold.
 ### Not submission related issues:
 
   * Notification limit https://github.com/globaleaks/GlobaLeaks/issues/798
-
-

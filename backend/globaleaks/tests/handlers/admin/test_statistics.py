@@ -57,8 +57,8 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(count, 0)
 
 
-class TestAnomaliesCollection(helpers.TestHandler):
-    _handler = statistics.AnomaliesCollection
+class TestAnomalyCollection(helpers.TestHandler):
+    _handler = statistics.AnomalyCollection
 
     @inlineCallbacks
     def test_get(self):

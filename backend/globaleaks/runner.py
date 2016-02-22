@@ -42,9 +42,9 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         delivery = delivery_sched.DeliverySchedule()
         self._reactor.callLater(1, delivery.start, 2)
 
-        # Scheduling the Anomalies Check schedule to be executed every 10 seconds
+        # Scheduling the Anomalies Check schedule to be executed every 30 seconds
         anomaly = statistics_sched.AnomaliesSchedule()
-        self._reactor.callLater(0, anomaly.start, 10)
+        self._reactor.callLater(0, anomaly.start, 30)
 
         # Scheduling the Notification schedule to be executed every 60 seconds
         notification = notification_sched.NotificationSchedule()

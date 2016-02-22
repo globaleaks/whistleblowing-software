@@ -29,8 +29,6 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_post(self):
-        event.EventTrackQueue.reset()
-
         yield Alarm.compute_activity_level()
 
         handler = self.request({'type': 'submission'})
@@ -47,8 +45,6 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_right_answer(self):
-        event.EventTrackQueue.reset()
-
         pollute_events_for_testing()
         yield Alarm.compute_activity_level()
 
@@ -68,8 +64,6 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_wrong_answer(self):
-        event.EventTrackQueue.reset()
-
         pollute_events_for_testing()
         yield Alarm.compute_activity_level()
 

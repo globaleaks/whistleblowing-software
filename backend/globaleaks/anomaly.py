@@ -13,7 +13,7 @@
 import copy
 from twisted.internet import defer
 
-from globaleaks import event
+from globaleaks.event import EventTrackQueue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
@@ -117,11 +117,7 @@ class AlarmClass(object):
     # is a rough indicator, every file got compression + encryption so the true disk
     # space can't be estimated correctly.
 
-    INCOMING_ANOMALY_MAP = {
-    }
-
-    OUTCOMING_ANOMALY_MAP = {
-         # Remind: started submission at the moment can be triggered also by a crawler
+    ANOMALY_MAP = {
         'started_submissions': 50,
         'completed_submissions': 5,
         'rejected_submissions': 5,
@@ -173,7 +169,7 @@ class AlarmClass(object):
 
         requests_timing = []
 
-        for _, event_obj in event.EventTrackQueue.iteritems():
+        for _, event_obj in EventTrackQueue.iteritems():
             current_event_matrix.setdefault(event_obj.event_type, 0)
             current_event_matrix[event_obj.event_type] += 1
             requests_timing.append(event_obj.request_time)
@@ -184,7 +180,7 @@ class AlarmClass(object):
                       round(max(requests_timing), 2),
                       round(min(requests_timing), 2)))
 
-        for event_name, threshold in self.OUTCOMING_ANOMALY_MAP.iteritems():
+        for event_name, threshold in self.ANOMALY_MAP.iteritems():
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     self.number_of_anomalies += 1
@@ -226,7 +222,9 @@ class AlarmClass(object):
 
         yield self.generate_admin_alert_mail(current_event_matrix)
 
-        defer.returnValue(self.stress_levels['activity'] - previous_activity_sl)
+        ret = self.stress_levels['activity'] - previous_activity_sl
+
+        defer.returnValue(ret if ret > 0 else 0)
 
 
     @defer.inlineCallbacks

@@ -35,10 +35,8 @@ def get_ramdisk_space():
 
 
 @transact
-def save_anomalies(store, anomalie_list):
-    anomalies_counter = 0
-    for anomaly in anomalie_list:
-        anomalies_counter += 1
+def save_anomalies(store, anomaly_list):
+    for anomaly in anomaly_list:
         anomaly_date, anomaly_desc, alarm_raised = anomaly
 
         newanom = Anomalies()
@@ -48,17 +46,15 @@ def save_anomalies(store, anomalie_list):
         log.debug("adding new anomaly in to the record: %s, %s, %s" % (alarm_raised, anomaly_date, anomaly_desc))
         store.add(newanom)
 
-    if anomalies_counter:
-        log.debug("save_anomalies: Saved %d anomalies collected during the last hour" %
-                  anomalies_counter)
+    if len(anomaly_list):
+        log.debug("save_anomalies: Saved %d anomalies collected during the last hour" % len(anomaly_list))
 
 
 def get_anomalies():
     anomalies = []
     for when, anomaly_blob in dict(GLSettings.RecentAnomaliesQ).iteritems():
-        anomalies.append(
-            [when, anomaly_blob[0], anomaly_blob[1]]
-        )
+        anomalies.append([when, anomaly_blob[0], anomaly_blob[1]])
+
     return anomalies
 
 def get_statistics():
@@ -88,17 +84,12 @@ def save_statistics(store, start, end, activity_collection):
 
 class AnomaliesSchedule(GLJob):
     """
-    This class check for Anomalies, using the Alarm object
-    implemented in anomaly.py
+    This job checks for anomalies and take care of saving them on the db.
     """
     name = "Anomalies"
 
     @defer.inlineCallbacks
     def operation(self):
-        """
-        The routine periodically checks is checked if the system is having some anomalies
-        If the alarm has been raises, it is logged in the db.
-        """
         yield Alarm.compute_activity_level()
 
         free_disk_bytes, total_disk_bytes = get_workingdir_space()
