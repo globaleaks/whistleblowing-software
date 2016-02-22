@@ -455,6 +455,7 @@ class Node(Model):
     tor2web_receiver = Bool(default=True)
     tor2web_unauth = Bool(default=True)
     allow_unencrypted = Bool(default=False)
+    disable_encryption_warnings = Bool(default=False)
     allow_iframes_inclusion = Bool(default=False)
     submission_minimum_delay = Int(default=10)
     submission_maximum_ttl = Int(default=10800)
@@ -537,6 +538,7 @@ class Node(Model):
                  'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
                  'ahmia',
                  'allow_unencrypted',
+                 'disable_encryption_warnings',
                  'simplified_login',
                  'show_contexts_in_alphabetical_order',
                  'allow_iframes_inclusion',
