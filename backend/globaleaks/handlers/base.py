@@ -472,7 +472,7 @@ class BaseHandler(RequestHandler):
 
             upload_time = time.time() - f.creation_date
 
-            track_event(self)
+            track_handler(self)
 
             return uploaded_file
 
