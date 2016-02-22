@@ -190,6 +190,12 @@
                           <input class="form-control" data-ng-model="context.tip_timetolive" type="number" />
                           <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
+                        <div class="form-group">
+                          <label data-translate>Message shown on top of the status page of the submission</label>
+                          <div>
+                            <textarea name="description" class="form-control" data-ng-model="context.status_page_message" maxlength="{{node.maximum_textsize}}">{{context.status_page_message}}</textarea>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

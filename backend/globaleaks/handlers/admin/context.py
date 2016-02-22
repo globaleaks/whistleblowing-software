@@ -29,8 +29,6 @@ def admin_serialize_context(store, context, language):
     """
     ret_dict = {
         'id': context.id,
-        'questionnaire_id': context.questionnaire.id,
-        'receivers': [r.id for r in context.receivers],
         'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
@@ -44,7 +42,9 @@ def admin_serialize_context(store, context, language):
         'enable_two_way_messages': context.enable_two_way_messages,
         'enable_attachments': context.enable_attachments,
         'presentation_order': context.presentation_order,
-        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order
+        'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
+        'questionnaire_id': context.questionnaire.id,
+        'receivers': [r.id for r in context.receivers]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
