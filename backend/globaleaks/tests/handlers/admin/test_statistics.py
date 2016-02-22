@@ -11,22 +11,6 @@ from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
     pollute_events_for_testing_and_perform_synthesis
 
 
-class TestAnomaliesCollection(helpers.TestHandler):
-    _handler = statistics.AnomaliesCollection
-
-    @inlineCallbacks
-    def test_get(self):
-        pollute_events_for_testing(50)
-        yield AnomaliesSchedule().operation()
-
-        handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self.assertTrue(isinstance(self.responses[0], dict))
-
-
 class TestStatsCollection(helpers.TestHandler):
     _handler = statistics.StatsCollection
 
@@ -73,8 +57,8 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(count, 0)
 
 
-class TestAnomHistCollection(helpers.TestHandler):
-    _handler = statistics.AnomalyHistoryCollection
+class TestAnomaliesCollection(helpers.TestHandler):
+    _handler = statistics.AnomaliesCollection
 
     @inlineCallbacks
     def test_get(self):
