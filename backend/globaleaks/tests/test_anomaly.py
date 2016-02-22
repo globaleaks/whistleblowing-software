@@ -10,14 +10,14 @@ from globaleaks.anomaly import Alarm
 
 def pollute_events_for_testing(number_of_times=10):
     for _ in xrange(number_of_times):
-        for event_obj in event.outcoming_event_monitored:
+        for event_obj in event.events_monitored:
             for x in xrange(2):
                 event.EventTrack(event_obj, 1.0 * x)
 
 
 def pollute_events_for_testing_and_perform_synthesis(number_of_times=10):
     for _ in xrange(number_of_times):
-        for event_obj in event.outcoming_event_monitored:
+        for event_obj in event.events_monitored:
             for x in xrange(2):
                 event.EventTrack(event_obj, 1.0 * x).synthesis()
 
@@ -30,7 +30,7 @@ class TestAlarm(helpers.TestGL):
         Alarm.compute_activity_level()
 
         # create one event per type.
-        for event_obj in event.outcoming_event_monitored:
+        for event_obj in event.events_monitored:
             event.EventTrack(event_obj, 1.0)
 
         x = event.EventTrackQueue.take_current_snapshot()

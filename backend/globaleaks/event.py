@@ -37,97 +37,94 @@ def failure_status_check(http_code):
     # the status.
     return http_code >= 400
 
-def created_status_check(http_code):
-    # if missing, is a failure => False
-    return http_code == 201
-
 def ok_status_check(HTTP_code):
     return HTTP_code == 200
 
-def update_status_check(http_code):
+def created_status_check(http_code):
+    return http_code == 201
+
+def updated_status_check(http_code):
     return http_code == 202
 
 
-outcoming_event_monitored = [
+events_monitored = [
     {
         'name': 'failed_logins',
-        'method': 'POST',
         'handler_check': login_check,
-        'status_checker': failure_status_check,
-        'anomaly_management': None,
+        'method': 'POST',
+        'status_check': failure_status_check,
     },
     {
         'name': 'successful_logins',
-        'method': 'POST',
         'handler_check': login_check,
-        'status_checker': ok_status_check,
-        'anomaly_management': None,
+        'method': 'POST',
+        'status_check': ok_status_check
     },
     {
         'name': 'started_submissions',
-        'method': 'POST',
         'handler_check': submission_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'completed_submissions',
-        'method': 'PUT',
         'handler_check': submission_check,
-        'status_checker': update_status_check,
-        'anomaly_management': None,
+        'method': 'PUT',
+        'status_check': updated_status_check
     },
     {
         'name': 'rejected_submissions',
-        'method': 'PUT',
         'handler_check': submission_check,
-        'status_checker': failure_status_check,
-        'anomaly_management': None,
+        'method': 'PUT',
+        'status_check': failure_status_check
     },
     {
         'name': 'wb_comments',
         'handler_check': wb_comment_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'wb_messages',
         'handler_check': wb_message_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'uploaded_files',
         'handler_check': file_upload_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'appended_files',
         'handler_check': file_append_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'receiver_comments',
         'handler_check': rcvr_comment_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     },
     {
         'name': 'receiver_messages',
         'handler_check': rcvr_message_check,
-        'status_checker': created_status_check,
-        'anomaly_management': None,
-        'method': 'POST'
+        'method': 'POST',
+        'status_check': created_status_check
     }
 
 ]
+
+
+def track_handler(handler):
+    for event in events_monitored:
+        if event['handler_check'](handler.request.uri) and \
+                event['method'] == handler.request.method and \
+                event['status_check'](handler._status_code):
+            EventTrack(event, handler.request.request_time())
+            break
 
 
 class EventTrack(object):
@@ -193,9 +190,5 @@ class EventTrackQueueClass(TempDict):
     def take_current_snapshot(self):
         return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.iteritems()]
 
-    def reset(self):
-        self.clear()
-        self.event_absolute_counter = 0
 
-
-EventTrackQueue = EventTrackQueueClass()
+EventTrackQueue = EventTrackQueueClass(timeout = 60)

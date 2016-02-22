@@ -11,7 +11,7 @@ from storm.expr import Desc, And
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
-from globaleaks.event import EventTrackQueue, outcoming_event_monitored
+from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, \
     authenticated
@@ -176,7 +176,7 @@ def delete_anomaly_history(store):
     log.info("Anomalies collection removal completed.")
 
 
-class AnomaliesCollection(BaseHandler):
+class AnomalyCollection(BaseHandler):
     @transport_security_check("admin")
     @authenticated("admin")
     @inlineCallbacks
@@ -230,7 +230,7 @@ class RecentEventsCollection(BaseHandler):
     """
     def get_summary(self, templist):
         eventmap = dict()
-        for event in outcoming_event_monitored:
+        for event in events_monitored:
             eventmap.setdefault(event['name'], 0)
 
         for e in templist:

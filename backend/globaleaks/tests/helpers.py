@@ -179,7 +179,7 @@ class TestGL(unittest.TestCase):
         GLSettings.memory_copy.allow_unencrypted = True
 
         Alarm.reset()
-        event.EventTrackQueue.reset()
+        event.EventTrackQueue.clear()
         jobs.statistics_sched.StatisticsSchedule.reset()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']

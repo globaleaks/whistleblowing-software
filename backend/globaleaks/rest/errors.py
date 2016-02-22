@@ -58,7 +58,7 @@ class TokenFailure(GLException):
     Some kind of reason to reject a submission Token
     """
     error_code = 11
-    status_code = 401
+    status_code = 403 # Authentication failure
 
     def __init__(self, reason):
         self.reason = ("Unacceptable condition for usage of Token: %s" % reason)
@@ -199,7 +199,7 @@ class ForbiddenOperation(GLException):
     """
     reason = "Operation Forbidden"
     error_code = 25
-    status_code = 401 # Unauthorized
+    status_code = 403 # Authentication failure
 
 
 class FileIdNotFound(GLException):
@@ -227,7 +227,7 @@ class InvalidAuthentication(GLException):
     """
     reason = "Authentication Failed"
     error_code = 29
-    status_code = 401 # Unauthorized
+    status_code = 403 # Authentication failure
 
 
 class NotAuthenticated(GLException):
@@ -276,7 +276,7 @@ class InvalidHostSpecified(GLException):
     """
     reason = "The specified host do not match a configured one"
     error_code = 36
-    status_code = 417 # Expectation Fail
+    status_code = 403 # Forbidden
 
 
 class TorNetworkRequired(GLException):
@@ -286,7 +286,7 @@ class TorNetworkRequired(GLException):
     """
     reason = "Resource can be accessed only within Tor network"
     error_code = 37
-    status_code = 417 # Expectation Fail
+    status_code = 413 # Forbidden
 
 
 class ReservedFileName(GLException):

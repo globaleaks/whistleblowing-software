@@ -506,7 +506,7 @@ AnomalyDesc = {
      'creation_date': DateType
 }
 
-AnomaliesCollectionDesc = [AnomalyDesc]
+AnomalyCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
      'name': unicode,

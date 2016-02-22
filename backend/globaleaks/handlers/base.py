@@ -25,7 +25,7 @@ from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from globaleaks.event import outcoming_event_monitored, EventTrack
+from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
@@ -349,11 +349,7 @@ class BaseHandler(RequestHandler):
         # file uploads works on chunk basis so that we count 1 the file upload
         # as a whole in function get_file_upload()
         if not self.filehandler:
-            for event in outcoming_event_monitored:
-                if event['status_checker'](self._status_code) and \
-                        event['method'] == self.request.method and \
-                        event['handler_check'](self.request.uri):
-                    EventTrack(event, self.request.request_time())
+            track_handler(self)
 
         self.handler_time_analysis_end()
         self.handler_request_logging_end()
@@ -476,13 +472,7 @@ class BaseHandler(RequestHandler):
 
             upload_time = time.time() - f.creation_date
 
-            # file uploads works on chunk basis so that we count 1 the file upload
-            # as a whole in function get_file_upload()
-            for event in outcoming_event_monitored:
-                if event['status_checker'](self._status_code) and \
-                        event['method'] == self.request.method and \
-                        event['handler_check'](self.request.uri):
-                    EventTrack(event, upload_time)
+            track_event(self)
 
             return uploaded_file
 

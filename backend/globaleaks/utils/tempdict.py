@@ -18,7 +18,6 @@ class TempDict(OrderedDict):
         self.size_limit = size_limit
         OrderedDict.__init__(self)
 
-        self.reactor = reactor if test_reactor is None else test_reactor
 
         self._check_size_limit()
 
@@ -33,7 +32,10 @@ class TempDict(OrderedDict):
     def set(self, key, value):
         timeout = self.get_timeout()
         if timeout is not None:
-            value.expireCall = self.reactor.callLater(timeout, self._expire, key)
+            if test_reactor is None:
+                value.expireCall = reactor.callLater(timeout, self._expire, key)
+            else:
+                value.expireCall = test_reactor.callLater(timeout, self._expire, key)
         else:
             value.expireCall = None
 
