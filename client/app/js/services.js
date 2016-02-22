@@ -644,7 +644,7 @@ angular.module('GLServices', ['ngResource']).
           questionnaire.key = '';
           questionnaire.name = '';
           questionnaire.show_steps_navigation_bar = true;
-          questionnaire.steps_navigation_requires_completion = false;
+          questionnaire.steps_navigation_requires_completion = true;
           questionnaire.layout = 'horizontal';
           questionnaire.steps = [];
           questionnaire.editable = true;

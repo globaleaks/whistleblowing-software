@@ -829,6 +829,7 @@ class MockDict():
             'can_grant_permissions': False,
             'ahmia': False,
             'allow_unencrypted': True,
+            'disable_encryption_warnings': False,
             'allow_iframes_inclusion': False,
             'send_email_for_every_event': False,
             'custom_homepage': False,
