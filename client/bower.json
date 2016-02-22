@@ -44,7 +44,7 @@
     "FileSaver.js": "0.0.2",
     "flow.js": "2.10.1",
     "fusty-flow.js": "1.2.0",
-    "jquery": "2.2.0",
+    "jquery": "2.2.1",
     "js-polyfills": "0.1.14",
     "ng-flow": "2.7.1",
     "openpgp": "2.1.0",
