@@ -34,10 +34,13 @@ class SQLite(storm.databases.sqlite.Database):
         self._journal_mode = uri.options.get("journal_mode")
         self._foreign_keys = uri.options.get("foreign_keys")
 
+        self.raw_connect().execute("VACUUM")
+
     def raw_connect(self):
         # See the story at the end to understand why we set isolation_level.
         raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
                                         isolation_level=None)
+
         if self._synchronous is not None:
             raw_connection.execute("PRAGMA synchronous = %s" %
                                    (self._synchronous,))

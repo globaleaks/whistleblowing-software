@@ -1,4 +1,5 @@
 PRAGMA foreign_keys = ON;
+PRAGMA auto_vacuum = FULL;
 
 CREATE TABLE user (
     id TEXT NOT NULL,
