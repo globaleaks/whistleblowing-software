@@ -44,10 +44,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       document.getElementById("BrowserNotSupported").style.display = "block";
     };
 
-    $scope.today = function() {
-      return new Date();
-    };
-
     $scope.update = function (model, cb, errcb) {
       var success = {};
       model.$update(function(result) {
