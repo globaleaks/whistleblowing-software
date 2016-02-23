@@ -81,9 +81,9 @@ def indent(n=1):
 
 
 def indent_text(text, n=1):
-    '''
+    """
     Add n * 2 space as indentation to each of the non empty lines of the provided text
-    '''
+    """
     return '\n'.join([('  ' * n if not l.isspace() else '') + l for l in text.splitlines()])
 
 
@@ -106,7 +106,8 @@ def dump_field_entry(output, field, entry, indent_n):
     elif field_type == 'fieldgroup':
         output = dump_fields(output, field['children'], entry, indent_n)
     else:
-        output += indent_text(entry['value'], indent_n)
+        answer = entry['value'] if 'value' in entry else ''
+        output += indent_text(answer, indent_n) + '\n'
 
     return output + '\n'
 
@@ -157,9 +158,9 @@ def dump_questionnaire_answers(questionnaire, answers):
 
 
 class Keyword(object):
-    '''
+    """
     This class define the base keyword list supported by all the events
-    '''
+    """
     keyword_list = node_keywords
     data_keys = ['node', 'notification']
 

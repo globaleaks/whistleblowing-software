@@ -27,7 +27,7 @@ from globaleaks.utils.zipstream import ZipStream
 
 
 @transact_ro
-def get_tip_export(store, user_id, rtip_id):
+def get_tip_export(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
     files = []
@@ -38,15 +38,14 @@ def get_tip_export(store, user_id, rtip_id):
         files.append(copy.deepcopy(file_dict))
 
     receiver = rtip.receiver
-    user_language = receiver.user.language
 
     export_dict = {
         'type': u'export_template',
-        'node': db_admin_serialize_node(store, user_language),
-        'notification': db_get_notification(store, user_language),
-        'tip': serialize_rtip(store, rtip, user_language),
-        'context': admin_serialize_context(store, rtip.internaltip.context, user_language),
-        'receiver': admin_serialize_receiver(receiver, user_language),
+        'node': db_admin_serialize_node(store, language),
+        'notification': db_get_notification(store, language),
+        'tip': serialize_rtip(store, rtip, language),
+        'context': admin_serialize_context(store, rtip.internaltip.context, language),
+        'receiver': admin_serialize_receiver(receiver, language),
         'comments': db_get_comment_list(rtip),
         'messages': db_get_message_list(rtip),
         'files': []
@@ -75,7 +74,7 @@ class ExportHandler(BaseHandler):
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, rtip_id):
-        tip_export = yield get_tip_export(self.current_user.user_id, rtip_id)
+        tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
 
         self.set_status(200)
 

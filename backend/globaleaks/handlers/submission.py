@@ -39,9 +39,9 @@ def db_assign_submission_progressive(store):
     else:
         now = datetime_now()
         update = counter.update_date
-        if ((now > counter.update_date) and (not((now.year == update.year) and \
-                                                 (now.month == update.month) and \
-                                                 (now.day == update.day)))):
+        if ((now > counter.update_date) and (not((now.year == update.year) and
+                                                     (now.month == update.month) and
+                                                     (now.day == update.day)))):
             counter.counter = 1
         else:
             counter.counter += 1
@@ -145,19 +145,22 @@ def db_save_questionnaire_answers(store, internaltip_id, entries):
     ret = []
 
     for key, value in entries.iteritems():
-        field_answer = models.FieldAnswer()
-        field_answer.internaltip_id = internaltip_id
-        field_answer.key = key
+        field_answer = models.FieldAnswer({
+            'internaltip_id': internaltip_id,
+            'key': key
+        })
         store.add(field_answer)
         if isinstance(value, list):
             field_answer.is_leaf = False
             field_answer.value = ""
             n = 0
             for entries in value:
+                print field_answer.id
                 group = models.FieldAnswerGroup({
                   'fieldanswer_id': field_answer.id,
                   'number': n
                 })
+                store.add(group)
                 group_elems = db_save_questionnaire_answers(store, internaltip_id, entries)
                 for group_elem in group_elems:
                     group.fieldanswers.add(group_elem)
@@ -328,7 +331,6 @@ def import_receivers(store, submission, receiver_id_list):
 
         if not GLSettings.memory_copy.allow_unencrypted and receiver.user.pgp_key_status != u'enabled':
             raise errors.SubmissionValidationFailure("the platform does not allow selection of receivers with encryption disabled")
-            continue
 
         submission.receivers.add(receiver)
 

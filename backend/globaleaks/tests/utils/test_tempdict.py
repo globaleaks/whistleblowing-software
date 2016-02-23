@@ -11,11 +11,12 @@ class TestObject(object):
     def __init__(self, obj_id):
         self.id = obj_id
 
+
 def expireCallback(self):
     TestObject.callbacks_count += 1
     if self.id != TestObject.callbacks_count:
         raise Exception
-        
+
 
 class TestTempDict(helpers.TestGL):
     def test_timeout(self):
@@ -39,7 +40,6 @@ class TestTempDict(helpers.TestGL):
 
         self.assertEqual(TestObject.callbacks_count, timeout)
 
-
     def test_size_limit(self):
         timeout = 666
         size_limit = 666
@@ -51,8 +51,8 @@ class TestTempDict(helpers.TestGL):
             if x < size_limit:
                 self.assertEqual(len(xxx), x)
                 self.assertEqual(xxx.get(x).id, x)
-                self.assertEqual(xxx.get(x+1), None)
+                self.assertEqual(xxx.get(x + 1), None)
             else:
                 self.assertEqual(len(xxx), size_limit)
-                self.assertEqual(xxx.get(x-size_limit+1).id, x-size_limit+1)
-                self.assertEqual(xxx.get(x-size_limit), None)
+                self.assertEqual(xxx.get(x - size_limit + 1).id, x - size_limit + 1)
+                self.assertEqual(xxx.get(x - size_limit), None)

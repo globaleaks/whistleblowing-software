@@ -36,7 +36,7 @@ angular.module('GLServices', ['ngResource']).
               'password_change_needed': response.password_change_needed,
               'homepage': '',
               'auth_landing_page': ''
-            }
+            };
 
             if (self.session.role === 'admin') {
               self.session.homepage = '#/admin/landing';
@@ -152,7 +152,7 @@ angular.module('GLServices', ['ngResource']).
 
         $rootScope.logoutPerformed = function() {
           $rootScope.loginRedirect(false);
-        }
+        };
 
         self.get_auth_headers = function() {
           var h = {};
@@ -190,7 +190,7 @@ angular.module('GLServices', ['ngResource']).
 
         $rootScope.pendingRequests = function () {
           return $http.pendingRequests.length;
-        }
+        };
 
         // the last response should hide the loader overlay
         if ($http.pendingRequests.length < 1) {

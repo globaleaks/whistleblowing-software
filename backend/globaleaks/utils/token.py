@@ -36,7 +36,7 @@ class TokenListClass(TempDict):
 
     def get(self, key):
         ret = TempDict.get(self, key)
-        if ret == None:
+        if ret is None:
             raise errors.TokenFailure("Not found")
 
         return ret

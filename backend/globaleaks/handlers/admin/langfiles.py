@@ -6,7 +6,7 @@
 # Backend supports for jQuery File Uploader, and implementation of the
 # file language statically uploaded by the Admin
 
-#`This code differs from handlers/file.py because files here are not tracked in the DB
+# This code differs from handlers/file.py because files here are not tracked in the DB
 
 from __future__ import with_statement
 import os

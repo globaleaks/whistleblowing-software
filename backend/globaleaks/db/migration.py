@@ -83,15 +83,15 @@ def perform_version_update(version):
         GLSettings.print_msg("If you can't create your Node from scratch, contact us asking for support.")
         quit()
 
+    tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
+    orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
+    final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
+
+    shutil.rmtree(tmpdir, True)
+    os.mkdir(tmpdir)
+    shutil.copy2(orig_db_file, tmpdir)
+
     try:
-        tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
-        orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
-        final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
-
-        shutil.rmtree(tmpdir, True)
-        os.mkdir(tmpdir)
-        shutil.copy2(orig_db_file, tmpdir)
-
         while version < DATABASE_VERSION:
             old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
             new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))

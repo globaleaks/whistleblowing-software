@@ -309,10 +309,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           $rootScope.language = language;
 
-          $scope.rtl = false;
-          if (["ar", "he", "ur"].indexOf(language) !== -1) {
-            $scope.rtl = true;
-          }
+          $scope.rtl = ["ar", "he", "ur"].indexOf(language) !== -1;
 
           document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
 
@@ -461,7 +458,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         }
       });
-    }
+    };
 
     //////////////////////////////////////////////////////////////////
 

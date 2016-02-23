@@ -6,8 +6,9 @@ import scrypt
 
 from twisted.trial import unittest
 from globaleaks.tests import helpers
-from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, check_password_format, \
-    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, crypto_backend, GLBPGP
+from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
+    check_password_format, directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
+    crypto_backend, GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
 

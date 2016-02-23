@@ -120,12 +120,11 @@
             <div class="editor" data-ng-if="editing">
               <hr />
               <div class="row">
-                <div class="col-md-12"
+                <div class="col-md-12 uploadfile"
                      flow-init="{target: 'admin/staticfiles/' + user.id, headers: get_auth_headers()}"
                      flow-files-submitted="$flow.upload()"
                      flow-file-success="updateUserImgUrl()"
-                     flow-name="flowObj"
-                     class="uploadfile">
+                     flow-name="flowObj">
                   <div class="imageUpload" data-ng-controller="AdminImgUploadCtrl">
                     <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
                       <div flow-btn>

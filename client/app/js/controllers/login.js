@@ -9,11 +9,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
   $scope.loginUsername = "";
   $scope.loginPassword = "";
 
-  if ($location.path() === '/login' && $scope.node.simplified_login) {
-    $scope.simplifiedLogin = true;
-  } else {
-    $scope.simplifiedLogin = false;
-  }
+  $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
 }]);
 
 GLClient.controller('AutoLoginCtrl', ['$scope', '$location', function($scope, $location) {

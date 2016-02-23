@@ -352,12 +352,12 @@ AdminStepDescRaw = get_raw_request_format(AdminStepDesc, models.Step.localized_k
 AdminStepDescRaw['children'] = [AdminFieldDescRaw]
 
 AdminQuestionnaireDesc = {
-  'id': uuid_regexp_or_empty,
-  'key': unicode,
-  'name': unicode,
-  'show_steps_navigation_bar': bool,
-  'steps_navigation_requires_completion': bool,
-  'steps': [AdminStepDesc]
+    'id': uuid_regexp_or_empty,
+    'key': unicode,
+    'name': unicode,
+    'show_steps_navigation_bar': bool,
+    'steps_navigation_requires_completion': bool,
+    'steps': [AdminStepDesc]
 }
 
 AdminQuestionnaireDescRaw = get_raw_request_format(AdminQuestionnaireDesc, models.Questionnaire.localized_keys)
@@ -494,30 +494,30 @@ CustodianIdentityAccessRequestDesc = {
 FilesOverviewDesc = [FileOverviewDesc]
 
 StatsDesc = {
-     'file_uploaded': int,
-     'new_submission': int,
-     'finalized_submission': int,
-     'anon_requests': int,
-     'creation_date': DateType
+    'file_uploaded': int,
+    'new_submission': int,
+    'finalized_submission': int,
+    'anon_requests': int,
+    'creation_date': DateType
 }
 
 StatsCollectionDesc = [StatsDesc]
 
 AnomalyDesc = {
-     'message': unicode,
-     'creation_date': DateType
+    'message': unicode,
+    'creation_date': DateType
 }
 
 AnomalyCollectionDesc = [AnomalyDesc]
 
 ReceiverDesc = {
-     'name': unicode,
-     'contexts': [uuid_regexp],
-     'description': unicode,
-     'presentation_order': int,
-     'pgp_key_status': unicode,
-     'id': uuid_regexp,
-     'state': user_states_regexp
+    'name': unicode,
+    'contexts': [uuid_regexp],
+    'description': unicode,
+    'presentation_order': int,
+    'pgp_key_status': unicode,
+    'id': uuid_regexp,
+    'state': user_states_regexp
 }
 
 ReceiverCollectionDesc = [ReceiverDesc]

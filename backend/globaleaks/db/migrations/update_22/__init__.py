@@ -4,6 +4,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 
+
 class Context_v_21(Model):
     __storm_table__ = 'context'
     show_small_cards = Bool()

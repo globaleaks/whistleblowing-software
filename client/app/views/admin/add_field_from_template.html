@@ -3,7 +3,7 @@
   <div class="form-inline">
     <div class="form-group">
       <div class="input-group">
-        <select class="form-control" data-ng-model="template_id" data-ng-options="f.id as f.label for f in admin.fieldtemplates" class="form-control"></select>
+        <select class="form-control" data-ng-model="template_id" data-ng-options="f.id as f.label for f in admin.fieldtemplates"></select>
         <span class="input-group-btn keybutton">
           <button data-ng-click="add_field_from_template(template_id)" class="btn btn-primary"
                   data-ng-disabled="template_id === undefined" type="submit">

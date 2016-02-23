@@ -2,6 +2,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
+
 # follow the checker, they are executed from handlers/base.py
 # by prepare() and/or flush()
 
@@ -9,39 +10,50 @@ def file_upload_check(uri):
     # /submission/ + token_id + /file  = 59 bytes
     return len(uri) == 59 and uri.endswith('/file')
 
+
 def file_append_check(uri):
     return uri == '/wbtip/upload'
+
 
 def submission_check(uri):
     # Precise len checks are needed to match only submission urls and not file ones
     # that are like /submission/0SjnzrUhuKx89hePh5Tw9eR3D18ftFZVQG6MaiK1Dy/file
     return uri.startswith('/submission') and (len(uri) == 54 or len(uri) == 11)
 
+
 def login_check(uri):
     return uri == '/authentication'
+
 
 def wb_message_check(uri):
     return uri.startswith('/wbtip/messages/')
 
+
 def wb_comment_check(uri):
     return uri == '/wbtip/comments'
+
 
 def rcvr_message_check(uri):
     return uri.startswith('/rtip/messages/')
 
+
 def rcvr_comment_check(uri):
     return uri.startswith('/rtip/comments')
+
 
 def failure_status_check(http_code):
     # if code is missing is a failure because an Exception is raise before set
     # the status.
     return http_code >= 400
 
+
 def ok_status_check(HTTP_code):
     return HTTP_code == 200
 
+
 def created_status_check(http_code):
     return http_code == 201
+
 
 def updated_status_check(http_code):
     return http_code == 202
@@ -121,7 +133,7 @@ events_monitored = [
 def track_handler(handler):
     for event in events_monitored:
         if event['handler_check'](handler.request.uri) and \
-                event['method'] == handler.request.method and \
+                        event['method'] == handler.request.method and \
                 event['status_check'](handler._status_code):
             EventTrack(event, handler.request.request_time())
             break
@@ -136,6 +148,7 @@ class EventTrack(object):
     - Anomaly check is based on those elements.
     - Real-time analysis is based on these, too.
     """
+
     def serialize_event(self):
         return {
             # if the [:-8] I'll strip "." + $millisecond "Z"
@@ -164,7 +177,7 @@ class EventTrack(object):
         return {
             'id': self.event_id,
             'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
-            'event':  self.event_type,
+            'event': self.event_type,
             'duration': round(self.request_time, 1),
         }
 
@@ -191,4 +204,4 @@ class EventTrackQueueClass(TempDict):
         return [event_obj.serialize_event() for _, event_obj in EventTrackQueue.iteritems()]
 
 
-EventTrackQueue = EventTrackQueueClass(timeout = 60)
+EventTrackQueue = EventTrackQueueClass(timeout=60)

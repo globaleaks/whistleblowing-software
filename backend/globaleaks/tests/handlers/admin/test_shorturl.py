@@ -10,6 +10,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import shorturl
 from globaleaks.models import ShortURL
 
+
 class TesShortURLCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURLCollection
 
@@ -28,6 +29,7 @@ class TesShortURLCollection(helpers.TestHandlerWithPopulatedDB):
         shorturl_desc = self.get_dummy_shorturl()
         handler = self.request(shorturl_desc, role='admin')
         yield handler.post()
+
 
 class TesShortURLInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURLInstance

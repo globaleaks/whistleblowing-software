@@ -9,6 +9,7 @@ from globaleaks.utils.utility import log
 
 __all__ = ['SessionManagementSchedule']
 
+
 class SessionManagementSchedule(GLJob):
     name = "Session Management"
 

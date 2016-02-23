@@ -1,4 +1,3 @@
-
 from twisted.internet.defer import inlineCallbacks
 from storm import exceptions
 
@@ -7,6 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.orm import transact, transact_ro
 from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
+
 
 class TestTransaction(helpers.TestGL):
     @transact
@@ -67,9 +67,9 @@ class TestTransaction(helpers.TestGL):
     @transact_ro
     def _transact_ro_add_mail(self, store):
         m = Mail({
-          'address': 'evilaliv3@globaleaks.org',
-          'subject': '',
-          'body': ''
+            'address': 'evilaliv3@globaleaks.org',
+            'subject': '',
+            'body': ''
         })
         store.add(m)
         return m.id
@@ -106,6 +106,7 @@ class TestTransaction(helpers.TestGL):
         @transact
         def transaction(store):
             self.assertTrue(getattr(store, 'find'))
+
         yield transaction()
 
     @transact_ro
