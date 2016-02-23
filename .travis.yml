@@ -97,9 +97,6 @@ matrix:
     - env: GLTEST='unit' GLREQUIREMENTS='precise'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='trusty'
-      python: "2.7"
-
     - env: GLTEST='unit' GLREQUIREMENTS='xenial'
       python: "2.7"
 
