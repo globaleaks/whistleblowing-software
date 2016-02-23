@@ -1,3 +1,13 @@
+Changes in version 2.60.139 - 2016-02-23
+    o Implement autofocus on unfilled mandatory questions
+    o Make possible configure questionnaires out of contexts and reuse them
+    o Enable autovacuum support for sqlite
+    o Prevent leakage of server timezone in zipfiles
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1574
+    - https://github.com/globaleaks/GlobaLeaks/issues/1467
+
 Changes in version 2.60.138 - 2016-02-17
     o Minor UI fixes
     o Add possibility to disable submission steps navigation bar
