@@ -167,6 +167,8 @@ def perform_version_update(version):
 
             version += 1
 
+            store_verify.close()
+
     except Exception as exception:
         # simply propagage the exception
         raise exception
