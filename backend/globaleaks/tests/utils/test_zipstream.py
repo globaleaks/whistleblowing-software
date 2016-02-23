@@ -11,6 +11,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream
 
+
 class TestZipStream(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
@@ -18,7 +19,8 @@ class TestZipStream(helpers.TestGL):
 
         self.files = []
         for k in self.internationalized_text:
-            self.files.append({'name': self.internationalized_text[k].encode('utf8'), 'buf': self.internationalized_text[k].encode('utf-8')})
+            self.files.append({'name': self.internationalized_text[k].encode('utf8'),
+                               'buf': self.internationalized_text[k].encode('utf-8')})
 
     def test_zipstream(self):
         output = StringIO.StringIO()

@@ -11,10 +11,12 @@ from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.utility import datetime_to_ISO8601
 
+
 class TestStatistics(helpers.TestGL):
     """
     This test mostly the function in anomaly.py Alarm object
     """
+
     @inlineCallbacks
     def test_save_anomalies(self):
         """

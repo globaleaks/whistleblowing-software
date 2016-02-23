@@ -154,6 +154,7 @@ class MigrationScript(MigrationBase):
                     group.fieldanswer_id = field_answer.id
                     group.number = n
                     group_elems = self.db_save_questionnaire_answers(store, internaltip_id, entries)
+                    store.add(group)
                     for group_elem in group_elems:
                         group.fieldanswers.add(group_elem)
                     n += 1

@@ -388,7 +388,7 @@ def fieldtree_ancestors(store, field_id):
     :return: a generator of Field.id
     """
     field = store.find(models.Field, models.Field.id == field_id).one()
-    if field.fieldgroup_id != None:
+    if field.fieldgroup_id is not None:
         yield field.fieldgroup_id
         yield fieldtree_ancestors(store, field.fieldgroup_id)
 
@@ -407,7 +407,7 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
     ret = []
     for f in store.find(models.Field, models.Field.instance == u'template'):
-        if f.fieldgroup == None:
+        if f.fieldgroup is None:
             ret.append(serialize_field(store, f, language))
 
     return ret

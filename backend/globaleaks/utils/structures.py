@@ -10,6 +10,7 @@ import copy
 from globaleaks.models import Model
 from globaleaks.settings import GLSettings
 
+
 # Localized strings utility management
 
 class Rosetta(object):
@@ -18,6 +19,7 @@ class Rosetta(object):
     one Storm object. AKA: manage three language on a single
     stone. Hell fucking yeah, History!
     """
+
     def __init__(self, keys):
         self._localized_strings = {}
         self._localized_keys = keys
@@ -37,7 +39,6 @@ class Rosetta(object):
             value = {language: obj[key]} if key in obj else {language: ''}
             ret[key] = value
         return ret
-
 
     def dump_localized_key(self, key, language):
         default_language = GLSettings.memory_copy.default_language
@@ -81,9 +82,9 @@ def get_localized_values(dictionary, obj, keys, language):
     if language is not None:
         dictionary.update({key: mo.dump_localized_key(key, language) for key in keys})
     else:
-       for key in keys:
-           value = mo._localized_strings[key] if key in mo._localized_strings else ''
-           dictionary.update({key: value})
+        for key in keys:
+            value = mo._localized_strings[key] if key in mo._localized_strings else ''
+            dictionary.update({key: value})
 
     return dictionary
 

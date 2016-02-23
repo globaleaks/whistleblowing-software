@@ -4,6 +4,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.handlers import wizard
 
+
 class TestFirstSetup(helpers.TestHandler):
     _handler = wizard.FirstSetup
 
@@ -14,9 +15,9 @@ class TestFirstSetup(helpers.TestHandler):
         self.dummyContext['steps'] = []
 
         admin = {
-          'old_password': 'globaleaks',
-          'password': 'P4ssword', # <- hackingteam password! :)
-          'mail_address': 'evilaliv3@globaleaks.org'
+            'old_password': 'globaleaks',
+            'password': 'P4ssword',  # <- hackingteam password! :)
+            'mail_address': 'evilaliv3@globaleaks.org'
         }
 
         wizard_blob = {

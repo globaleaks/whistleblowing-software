@@ -9,6 +9,7 @@ from globaleaks.handlers import admin
 
 stuff = u"³²¼½¬¼³²"
 
+
 class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = admin.notification.NotificationInstance
 

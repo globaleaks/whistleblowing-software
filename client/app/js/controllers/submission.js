@@ -18,7 +18,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.openProblemDialog($scope.submission);
       }
     });
-  }
+  };
 
   $scope.openProblemDialog = function(submission){
     if ($scope.problemModal) {
@@ -28,7 +28,7 @@ GLClient.controller('SubmissionCtrl',
     var args = {
       submission: submission,
       problemSolved: $scope.problemSolved
-    }
+    };
 
     $scope.problemModal = $scope.openConfirmableModalDialog('views/partials/captchas.html', args);
 
@@ -47,17 +47,9 @@ GLClient.controller('SubmissionCtrl',
     }
   }
 
-  if ($scope.contexts_selectable === "false" && $scope.context_id) {
-    $scope.contexts_selectable = false;
-  } else {
-    $scope.contexts_selectable = true;
-  }
+  $scope.contexts_selectable = !($scope.contexts_selectable === "false" && $scope.context_id);
 
-  if ($scope.receivers_selectable === "false" && $scope.receivers_ids) {
-    $scope.receivers_selectable = false;
-  } else {
-    $scope.receivers_selectable = true;
-  }
+  $scope.receivers_selectable = !($scope.receivers_selectable === "false" && $scope.receivers_ids);
 
   if ($scope.node.show_contexts_in_alphabetical_order) {
     $scope.contextsOrderPredicate = 'name';
@@ -81,10 +73,10 @@ GLClient.controller('SubmissionCtrl',
       } else {
         $timeout(countDown, 1000);
       }
-    }
+    };
 
     countDown();
-  }
+  };
 
   $scope.selectable = function () {
     if ($scope.submission.context.maximum_selectable_receivers === 0) {
@@ -92,7 +84,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return $scope.submission.count_selected_receivers() < $scope.submission.context.maximum_selectable_receivers;
-  }
+  };
 
   $scope.switch_selection = function (receiver) {
     if (receiver.configuration !== 'default' || (!$scope.node.allow_unencrypted && receiver.pgp_key_status !== 'enabled')) {
@@ -102,23 +94,23 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
       $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
     }
-  }
+  };
 
   $scope.getCurrentStepIndex = function() {
     return $scope.selection;
-  }
+  };
 
   $scope.goToStep = function(index) {
     $scope.selection = index;
-  }
+  };
 
   $scope.firstStepIndex = function() {
     return $scope.skip_first_step ? 0 : -1;
-  }
+  };
 
   $scope.lastStepIndex = function() {
     return $scope.selected_context.questionnaire.steps.length - 1;
-  }
+  };
 
   $scope.hasNextStep = function(){
     if ($scope.selected_context === undefined) {
@@ -126,7 +118,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return $scope.selection < $scope.lastStepIndex();
-  }
+  };
 
   $scope.hasPreviousStep = function(){
     if ($scope.selected_context === undefined) {
@@ -134,7 +126,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return $scope.selection > $scope.firstStepIndex();
-  }
+  };
 
   $scope.checkForMandatoryFields = function() {
     try {
@@ -150,7 +142,7 @@ GLClient.controller('SubmissionCtrl',
     } catch(err) { }
 
     return true;
-  }
+  };
 
   $scope.incrementStep = function() {
     if ($scope.selection >=0 &&
@@ -168,7 +160,7 @@ GLClient.controller('SubmissionCtrl',
         }
       }
     }
-  }
+  };
 
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
@@ -180,7 +172,7 @@ GLClient.controller('SubmissionCtrl',
         }
       }
     }
-  }
+  };
 
   $scope.fileupload_url = function() {
     if (!$scope.submission) {
@@ -188,7 +180,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return 'submission/' + $scope.submission._token.id + '/file';
-  }
+  };
 
   $scope.calculateScoreRecursively = function(field, entry) {
     var score = 0;
@@ -216,7 +208,7 @@ GLClient.controller('SubmissionCtrl',
     });
 
     return score;
-  }
+  };
 
   $scope.calculateScore = function() {
     if (!$scope.node.enable_experimental_features) {
@@ -234,7 +226,7 @@ GLClient.controller('SubmissionCtrl',
     });
 
     return score;
-  }
+  };
 
   $scope.prepare_field_answers_structure = function(field) {
     if (field.answers_structure === undefined) {
@@ -247,7 +239,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return field.answer_structure;
-  }
+  };
 
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.answers = {};
@@ -314,12 +306,12 @@ GLClient.controller('SubmissionCtrl',
         $scope.selection = -1;
       }
     });
-  }
+  };
 
   $scope.completeSubmission = function() {
     $scope.submission._submission.answers = $scope.answers;
     $scope.submission.submit();
-  }
+  };
 
   $scope.stepIsTriggered = function(step) {
     if (!$scope.node.enable_experimental_features) {
@@ -341,7 +333,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return false;
-  }
+  };
 
   $scope.fieldIsTriggered = function(field) {
     if (!$scope.node.enable_experimental_features) {
@@ -363,7 +355,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     return false;
-  }
+  };
 
   new Submission(function(submission) {
     $scope.submission = submission;
@@ -407,7 +399,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
     }
 
     return "col-md-" + ((row_length > 12) ? 1 : (12 / row_length));
-  }
+  };
 
   $scope.getAnswersEntries = function(entry) {
     if (entry === undefined) {
@@ -415,11 +407,11 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
     }
 
     return entry[$scope.field.id];
-  }
+  };
 
   $scope.addAnswerEntry = function(entries) {
     entries.push(angular.copy($scope.field.answer_structure));
-  }
+  };
 
   $scope.fields = $scope.field.children;
   $scope.rows = fieldsUtilities.splitRows($scope.fields);
@@ -427,11 +419,11 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
 
   $scope.status = {
     opened: false
-  }
+  };
 
   $scope.open = function() {
     $scope.status.opened = true;
-  }
+  };
 
   $scope.validateRequiredCheckbox = function(field, entry) {
     if (!field.required) {

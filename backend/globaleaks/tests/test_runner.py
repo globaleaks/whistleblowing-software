@@ -7,6 +7,7 @@ from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.scripts._twistd_unix import ServerOptions
 
+
 class TestRunner(helpers.TestGL):
     @inlineCallbacks
     def test_runner(self):

@@ -11,13 +11,14 @@ from globaleaks.tests import helpers
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.token import Token, TokenList
 
+
 class TestToken(helpers.TestGL):
     """
     This is an object testing class,
     to check the handler testing, see in
     test_anomalies
     """
-    stress_indicator = [ 'graph_captcha', 'human_captcha', 'proof_of_work' ]
+    stress_indicator = ['graph_captcha', 'human_captcha', 'proof_of_work']
 
     @inlineCallbacks
     def setUp(self):
@@ -75,7 +76,7 @@ class TestToken(helpers.TestGL):
     def test_token_update_right_answer(self):
         token = Token('submission')
 
-        token.human_captcha = {'question': '1 + 0','answer': 1}
+        token.human_captcha = {'question': '1 + 0', 'answer': 1}
         token.proof_of_work = False
 
         # validate with right value: OK
@@ -87,7 +88,7 @@ class TestToken(helpers.TestGL):
     def test_token_update_wrong_answer(self):
         token = Token('submission')
 
-        token.human_captcha = {'question': 'XXX','answer': 1}
+        token.human_captcha = {'question': 'XXX', 'answer': 1}
 
         token.update({'human_captcha_answer': 0})
 
@@ -109,8 +110,8 @@ class TestToken(helpers.TestGL):
         # validate with right value but with no additional
         # attempts available: FAIL
         self.assertRaises(
-            errors.TokenFailure,
-            token.use
+                errors.TokenFailure,
+                token.use
         )
 
     def test_proof_of_work_wrong_answer(self):
@@ -127,7 +128,7 @@ class TestToken(helpers.TestGL):
         token = TokenList.get(token.id)
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
-        token.proof_of_work = { 'question': "7GJ4Sl37AEnP10Zk9p7q" }
+        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q"}
 
         # validate with right value: OK
         self.assertFalse(token.update({'proof_of_work_answer': 26}))
@@ -149,7 +150,7 @@ class TestToken(helpers.TestGL):
         token = TokenList.get(token.id)
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
-        token.proof_of_work = { 'question': "7GJ4Sl37AEnP10Zk9p7q" }
+        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q"}
 
         # validate with right value: OK
         self.assertTrue(token.update({'proof_of_work_answer': 0}))

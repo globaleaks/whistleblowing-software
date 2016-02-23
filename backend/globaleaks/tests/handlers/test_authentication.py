@@ -8,6 +8,7 @@ from globaleaks.utils import utility
 
 FUTURE = 100
 
+
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated
     def get(self):

@@ -5,6 +5,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.jobs import pgp_check_sched
 
+
 class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
     encryption_scenario = 'ONE_VALID_ONE_EXPIRED'
 
@@ -13,4 +14,3 @@ class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
         # FIXME: complete this unit test by performing checks
         #        on the actions performed by the scheduler.
         yield pgp_check_sched.PGPCheckSchedule().operation()
-

@@ -2,6 +2,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.utils.utility import log
 
+
 class GLApiCache(object):
     memory_cache_dict = {}
 
@@ -34,7 +35,7 @@ class GLApiCache(object):
             returnValue(None)
 
     @classmethod
-    def invalidate(cls, resource_name = None):
+    def invalidate(cls, resource_name=None):
         """
         When a function has an update, all the language need to be
         invalidated, because the change is still effective

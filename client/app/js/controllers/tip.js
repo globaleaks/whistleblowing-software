@@ -39,8 +39,8 @@ GLClient.controller('TipCtrl',
             });
             return;
           }
-        };
-      };
+        }
+      }
     };
 
     $scope.getFields = function(field) {

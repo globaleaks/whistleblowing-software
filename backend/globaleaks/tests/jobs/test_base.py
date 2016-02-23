@@ -5,6 +5,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.jobs import base
 
+
 class TestGLJob(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_base_scheduler(self):

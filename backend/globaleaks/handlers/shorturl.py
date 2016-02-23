@@ -5,6 +5,7 @@ from globaleaks.handlers.authentication import transport_security_check, unauthe
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact_ro
 
+
 @transact_ro
 def translate_shorturl(store, shorturl):
     shorturl = store.find(models.ShortURL, models.ShortURL.shorturl == shorturl).one()
