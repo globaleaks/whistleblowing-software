@@ -139,6 +139,7 @@ var context = {
   select_all_receivers: true,
   show_receivers_in_alphabetical_order: false,
   maximum_selectable_receivers: 0,
+  status_page_message: '',
   questionnaire_id: '',
   receivers: []
 }
