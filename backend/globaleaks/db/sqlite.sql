@@ -460,9 +460,12 @@ CREATE TABLE step (
 CREATE TABLE fieldanswer (
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
+    fieldanswergroup_id TEXT,
     key TEXT NOT NULL,
     is_leaf INTEGER NOT NULL,
     value TEXT NOT NULL,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (fieldanswergroup_id) REFERENCES fieldanswergroup(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -473,14 +476,6 @@ CREATE TABLE fieldanswergroup (
     UNIQUE (id, fieldanswer_id, number),
     FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
-);
-
-CREATE TABLE fieldanswergroup_fieldanswer (
-    fieldanswergroup_id TEXT NOT NULL,
-    fieldanswer_id TEXT NOT NULL,
-    FOREIGN KEY (fieldanswergroup_id) REFERENCES fieldanswergroup(id) ON DELETE CASCADE,
-    FOREIGN KEY (fieldanswer_id) REFERENCES fieldanswer(id) ON DELETE CASCADE,
-    PRIMARY KEY (fieldanswergroup_id, fieldanswer_id)
 );
 
 CREATE TABLE archivedschema (

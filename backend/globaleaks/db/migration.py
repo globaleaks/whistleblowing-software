@@ -32,20 +32,20 @@ from globaleaks.db.migrations.update_26 import InternalFile_v_25
 from globaleaks.db.migrations.update_27 import Node_v_26, Context_v_26, Notification_v_26
 from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField_v_27, StepField_v_27, FieldOption_v_27
 from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
-from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29
+from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 
 
 migration_mapping = OrderedDict([
-    ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0, 0]),
+    ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies]),
     ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0]),
     ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_14, 0, 0, 0, Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, models.Comment, 0, 0, 0, 0, 0, 0, 0]),
     ('Context', [Context_v_11, Context_v_12, Context_v_13, Context_v_14, Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, models.Context]),
     ('Custodian', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Custodian, 0, 0, 0, 0, 0, 0]),
     ('Field', [-1, -1, -1, -1, Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, Field_v_27, 0, 0, 0, models.Field, 0, 0]),
-    ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswer, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroup, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldAnswerGroupFieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAnswerGroupFieldAnswer, 0, 0, 0, 0, 0, 0, 0]),
+    ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, FieldAnswer_v_29, 0, 0, 0, 0, 0, 0, models.FieldAnswer]),
+    ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, 0, models.FieldAnswerGroup]),
+    ('FieldAnswerGroupFieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, 0, -1]),
     ('FieldAttr', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.FieldAttr, 0, 0, 0, 0, 0, 0, 0]),
     ('FieldField', [-1, -1, -1, -1, FieldField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, 0]),
     ('FieldOption', [-1, -1, -1, -1, FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, FieldOption_v_27, 0, 0, 0, 0, models.FieldOption, 0, 0]),
