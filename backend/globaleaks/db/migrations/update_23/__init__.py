@@ -137,6 +137,33 @@ class Notification_v_22(Model):
 
 
 class MigrationScript(MigrationBase):
+    def db_save_questionnaire_answers(self, store, internaltip_id, entries):
+        ret = []
+
+        for key, value in entries.iteritems():
+            field_answer = self.model_to['FieldAnswer']()
+            field_answer.internaltip_id = internaltip_id
+            field_answer.key = key
+            store.add(field_answer)
+            if isinstance(value, list):
+                field_answer.is_leaf = False
+                field_answer.value = ""
+                n = 0
+                for entries in value:
+                    group = self.model_to['FieldAnswerGroup']()
+                    group.fieldanswer_id = field_answer.id
+                    group.number = n
+                    group_elems = self.db_save_questionnaire_answers(store, internaltip_id, entries)
+                    for group_elem in group_elems:
+                        group.fieldanswers.add(group_elem)
+                    n += 1
+            else:
+                field_answer.is_leaf = True
+                field_answer.value = unicode(value)
+            ret.append(field_answer)
+
+        return ret
+
     def fix_field_answer_id(self, f):
         if f['id'] == '':
             for x in self.store_old.find(self.model_from['Field']):
@@ -229,7 +256,7 @@ class MigrationScript(MigrationBase):
                 aqsp.schema = preview
                 self.store_new.add(aqsp)
 
-        db_save_questionnaire_answers(self.store_new, new_obj.id, answers)
+        self.db_save_questionnaire_answers(self.store_new, new_obj.id, answers)
 
         new_obj.preview = extract_answers_preview(questionnaire, answers)
 

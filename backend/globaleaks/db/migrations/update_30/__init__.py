@@ -112,6 +112,36 @@ class Step_v_29(Model):
     triggered_by_score = Int()
 
 
+class FieldAnswer_v_29(Model):
+    __storm_table__ = 'fieldanswer'
+    internaltip_id = Unicode()
+    key = Unicode(default=u'')
+    is_leaf = Bool(default=True)
+    value = Unicode(default=u'')
+
+
+class FieldAnswerGroup_v_29(Model):
+    __storm_table__ = 'fieldanswergroup'
+    number = Int(default=0)
+    fieldanswer_id = Unicode()
+
+
+class FieldAnswerGroupFieldAnswer_v_29(BaseModel):
+    __storm_table__ = 'fieldanswergroup_fieldanswer'
+    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
+
+    fieldanswergroup_id = Unicode()
+    fieldanswer_id = Unicode()
+
+
+FieldAnswerGroup_v_29.fieldanswers = ReferenceSet(
+    FieldAnswerGroup_v_29.id,
+    FieldAnswerGroupFieldAnswer_v_29.fieldanswergroup_id,
+    FieldAnswerGroupFieldAnswer_v_29.fieldanswer_id,
+    FieldAnswer_v_29.id
+)
+
+
 class MigrationScript(MigrationBase):
     def prologue(self):
         appdata = load_appdata()
@@ -142,6 +172,22 @@ class MigrationScript(MigrationBase):
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
+
+    def migrate_FieldAnswer(self):
+        old_objs = self.store_old.find(self.model_from['FieldAnswer'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['FieldAnswer']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'fieldanswergroup_id':
+                    old_ref = self.store_old.find(FieldAnswerGroupFieldAnswer_v_29,
+                                                  FieldAnswerGroupFieldAnswer_v_29.fieldanswer_id == old_obj.id).one()
+                    if old_ref is not None:
+                        new_obj.fieldanswergroup_id = old_ref.fieldanswergroup_id
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
 
     def migrate_Context(self):
         # Migrated in the epilogue

@@ -849,6 +849,7 @@ class FieldOption(Model):
 
 class FieldAnswer(Model):
     internaltip_id = Unicode()
+    fieldanswergroup_id = Unicode()
     key = Unicode(default=u'')
     is_leaf = Bool(default=True)
     value = Unicode(default=u'')
@@ -863,25 +864,6 @@ class FieldAnswerGroup(Model):
 
     unicode_keys = ['fieldanswer_id']
     int_keys = ['number']
-
-
-class FieldAnswerGroupFieldAnswer(BaseModel):
-    """
-    Class used to implement references between FieldAnswerGroup and FieldAnswer
-    """
-    __storm_table__ = 'fieldanswergroup_fieldanswer'
-    __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
-
-    fieldanswergroup_id = Unicode()
-    fieldanswer_id = Unicode()
-
-
-class ArchivedSchema(Model):
-    hash = Unicode()
-    type = Unicode()
-    schema = JSON()
-
-    unicode_keys = ['hash']
 
 
 class Step(Model):
@@ -913,6 +895,14 @@ class Questionnaire(Model):
       'show_steps_navigation_bar',
       'steps_navigation_requires_completion'
     ]
+
+
+class ArchivedSchema(Model):
+    hash = Unicode()
+    type = Unicode()
+    schema = JSON()
+
+    unicode_keys = ['hash']
 
 
 class Stats(Model):
@@ -1007,9 +997,7 @@ FieldAnswer.groups = ReferenceSet(FieldAnswer.id, FieldAnswerGroup.fieldanswer_i
 
 FieldAnswerGroup.fieldanswers = ReferenceSet(
     FieldAnswerGroup.id,
-    FieldAnswerGroupFieldAnswer.fieldanswergroup_id,
-    FieldAnswerGroupFieldAnswer.fieldanswer_id,
-    FieldAnswer.id
+    FieldAnswer.fieldanswergroup_id
 )
 
 Receiver.internaltips = ReferenceSet(
@@ -1146,17 +1134,18 @@ Receiver.contexts = ReferenceSet(
     Context.id
 )
 
-model_list = [Node,
-               User, Custodian, Receiver,
-               Context, ReceiverContext,
-               Field, FieldOption, FieldAttr,
-               FieldAnswer, FieldAnswerGroup,
-               Step,
-               InternalTip, ReceiverTip, WhistleblowerTip,
-               Comment, Message,
-               InternalFile, ReceiverFile,
-               Notification, Mail,
-               Stats, Anomalies,
-               SecureFileDelete,
-               IdentityAccessRequest,
-               ArchivedSchema, ApplicationData]
+model_list = [
+    Node,
+    User, Custodian, Receiver,
+    Context, ReceiverContext,
+    Questionnaire, Step, Field, FieldOption, FieldAttr,
+    FieldAnswer, FieldAnswerGroup,
+    InternalTip, ReceiverTip, WhistleblowerTip,
+    Comment, Message,
+    InternalFile, ReceiverFile,
+    Notification, Mail,
+    Stats, Anomalies,
+    SecureFileDelete,
+    IdentityAccessRequest,
+    ArchivedSchema, ApplicationData
+]
