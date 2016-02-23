@@ -8,7 +8,6 @@
 # our purpose (that's the reason why is not in third party)
 
 import struct
-import time
 import binascii
 
 import os
@@ -219,7 +218,7 @@ class ZipStream(object):
         self.filelist = []              # List of ZipInfo instances for archive
         self.data_ptr = 0               # Keep track of location inside archive
 
-        self.time = time.localtime()[0:6] # Security: Forced Time
+        self.time = (1980,1,1,0,0,0) # Security: Forced Time
 
 
     def __iter__(self):
