@@ -295,7 +295,6 @@ def db_create_whistleblower_tip(store, internaltip):
     receipt = unicode(generateRandomReceipt())
 
     wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
-    wbtip.access_counter = 0
     wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)
@@ -448,8 +447,8 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
-        status = yield create_submission(token_id, request,
-                                         get_tor2web_header(self.request.headers),
-                                         self.request.language)
+        submission = yield create_submission(token_id, request,
+                                             get_tor2web_header(self.request.headers),
+                                             self.request.language)
         self.set_status(202)  # Updated, also if submission if effectively created (201)
-        self.finish(status)
+        self.finish(submission)
