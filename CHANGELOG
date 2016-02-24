@@ -1,3 +1,7 @@
+Changes in version 2.60.140 - 2016-02-24
+    o Minor UI fixes
+    o Fix serialization of files in submission export
+
 Changes in version 2.60.139 - 2016-02-23
     o Implement autofocus on unfilled mandatory questions
     o Make possible configure questionnaires out of contexts and reuse them
