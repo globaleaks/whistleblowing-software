@@ -6,8 +6,7 @@ import os
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_update_fieldattr
-from globaleaks.handlers.submission import db_save_questionnaire_answers, \
-    extract_answers_preview
+from globaleaks.handlers.submission import extract_answers_preview
 from globaleaks.models import Model
 from globaleaks.security import sha256, generateRandomKey
 from globaleaks.settings import GLSettings
