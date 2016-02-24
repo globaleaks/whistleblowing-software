@@ -92,22 +92,21 @@ def dump_field_entry(output, field, entry, indent_n):
     if field_type == 'checkbox':
         for k, v in entry.iteritems():
             for option in field['options']:
-                if k == option['id'] and v == 'True':
+                if k == option.get('id', '') and v == 'True':
                     output += indent(indent_n) + option['label'] + '\n'
     elif field_type in ['selectbox', 'multichoice']:
         for option in field['options']:
-            if entry['value'] == option['id']:
+            if entry.get('value', '') == option['id']:
                 output += indent(indent_n) + option['label'] + '\n'
     elif field_type == 'date':
-        output += indent(indent_n) + ISO8601_to_pretty_str(entry['value']) + '\n'
+        output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value', '')) + '\n'
     elif field_type == 'tos':
-        answer = '☑' if entry['value'] == 'True' else '☐'
+        answer = '☑' if entry.get('value', '') == 'True' else '☐'
         output += indent(indent_n) + answer + '\n'
     elif field_type == 'fieldgroup':
         output = dump_fields(output, field['children'], entry, indent_n)
     else:
-        answer = entry['value'] if 'value' in entry else ''
-        output += indent_text(answer, indent_n) + '\n'
+        output += indent_text(entry.get('value', ''), indent_n) + '\n'
 
     return output + '\n'
 
