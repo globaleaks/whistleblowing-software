@@ -423,9 +423,9 @@ angular.module('GLServices', ['ngResource']).
 
       self.tip = RTipResource.get(tipID, function (tip) {
         tip.receivers = RTipReceiverResource.query(tipID);
-        tip.comments = RTipCommentResource.query(tipID);
-        tip.messages = RTipMessageResource.query(tipID);
-        tip.iars = RTipIdentityAccessRequestResource.query(tipID);
+        tip.comments = tip.enable_comments ? RTipCommentResource.query(tipID) : [];
+        tip.messages = tip.enable_messages ? RTipMessageResource.query(tipID) : [];
+        tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
@@ -492,7 +492,7 @@ angular.module('GLServices', ['ngResource']).
 
       self.tip = WBTipResource.get(function (tip) {
         tip.receivers = WBTipReceiverResource.query();
-        tip.comments = WBTipCommentResource.query();
+        tip.comments = tip.enable_comments ? WBTipCommentResource.query() : [];
         tip.messages = [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
