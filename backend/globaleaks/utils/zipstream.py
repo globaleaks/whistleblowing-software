@@ -7,10 +7,10 @@
 # that is initially derived from zipfile.py and then changed heavily for
 # our purpose (that's the reason why is not in third party)
 
-import struct
 import binascii
-
 import os
+import struct
+import time
 
 try:
     import zlib # We may need its compression method
@@ -200,9 +200,6 @@ class ZipInfo(object):
         return header + filename + extra
 
 class ZipStream(object):
-    """
-    """
-
     def __init__(self, files, compression=ZIP_DEFLATED):
         if compression == ZIP_STORED:
             pass
@@ -218,7 +215,7 @@ class ZipStream(object):
         self.filelist = []              # List of ZipInfo instances for archive
         self.data_ptr = 0               # Keep track of location inside archive
 
-        self.time = (1980,1,1,0,0,0) # Security: Forced Time
+        self.time = time.gmtime()[0:6]  # Security: Forced Time
 
 
     def __iter__(self):
