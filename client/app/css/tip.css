@@ -52,3 +52,12 @@
 #TipExportForm {
   display: inline;
 }
+
+#StatusPageMessage {
+  margin: 20px;
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border: 1px solid #faebcc;
+  font-weight: bold;
+  text-align: center;
+}
