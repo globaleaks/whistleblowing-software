@@ -131,7 +131,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.checkForMandatoryFields = function() {
     try {
       // find the first invalid element
-      var form = document.getElementById('submissionForm');
+      var form = document.getElementById('step-' + $scope.selection);
       var firstInvalid = form.querySelector('.inputelem.ng-invalid');
 
       // if we find one, set focus
