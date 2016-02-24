@@ -30,13 +30,6 @@ from globaleaks.utils.zipstream import ZipStream
 def get_tip_export(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    files = []
-    for rf in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
-        rf.downloads += 1
-        file_dict = serialize_receiver_file(rf)
-        file_dict['name'] = 'files/' + file_dict['name']
-        files.append(copy.deepcopy(file_dict))
-
     receiver = rtip.receiver
 
     export_dict = {
@@ -54,6 +47,12 @@ def get_tip_export(store, user_id, rtip_id, language):
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
+
+    for rf in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
+        rf.downloads += 1
+        file_dict = serialize_receiver_file(rf)
+        file_dict['name'] = 'files/' + file_dict['name']
+        export_dict['files'].append(copy.deepcopy(file_dict))
 
     return export_dict
 
