@@ -235,6 +235,7 @@ class MigrationScript(MigrationBase):
                 new_questionnaire.steps_navigation_requires_completion = old_context.steps_navigation_requires_completion
                 new_questionnaire.enable_whistleblower_identity = old_context.enable_whistleblower_identity
                 self.store_new.add(new_questionnaire)
+                new_questionnaire_id = new_questionnaire.id
 
                 for old_step in old_context.steps:
                     new_step = self.model_to['Step']()
