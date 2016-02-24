@@ -111,7 +111,7 @@ module.exports = function(grunt) {
           base: 'app/',
           quotes: 'single'
         },
-        src: ['views/**/*.html'],
+        src: ['app.html', 'views/**/*.html'],
         dest: 'tmp/js/templates.js'
       }
     },
@@ -286,7 +286,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'index.js', 'app.html']
+    var files = ['index.html', 'index.js']
     for (var x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
