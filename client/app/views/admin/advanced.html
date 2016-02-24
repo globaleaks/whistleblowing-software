@@ -1,7 +1,6 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-
     <div class="row">
       <form name="advancedForm" data-ng-controller="AdminAdvancedCtrl" novalidate>
         <uib-tabset class="tab-content">
@@ -10,16 +9,20 @@
           </uib-tab>
         </uib-tabset>
 
-        <div class="form-group">
-          <button class="btn btn-success"
-                  data-ng-disabled="advancedForm.$invalid"
-                  data-ng-click="updateNode(admin.node)" type="submit">
-            <i class="glyphicon glyphicon-ok"></i>
-            <span data-translate>Save</span>
-          </button>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <button class="btn btn-success"
+                      data-ng-disabled="advancedForm.$invalid"
+                      data-ng-click="updateNode(admin.node)" type="submit">
+                <i class="glyphicon glyphicon-ok"></i>
+                <span data-translate>Save</span>
+              </button>
+            </div>
+          </div>
         </div>
+
       </form>
     </div>
-
   </div>
 </div>
