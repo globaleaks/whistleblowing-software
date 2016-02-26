@@ -70,8 +70,10 @@ var validate_mandatory_headers = function(headers) {
     'X-Content-Type-Options': 'nosniff',
     'Expires': '-1',
     'Server': 'globaleaks',
-    'Pragma':  'no-cache',
-    'Cache-control': 'no-cache, no-store, must-revalidate'
+    'Pragma': 'no-cache',
+    'Cache-control': 'no-cache, no-store, must-revalidate',
+    'Content-Security-Policy': 'referrer no-referrer',
+    'X-Frame-Options': 'sameorigin'
   }
 
   for (var key in mandatory_headers) {
