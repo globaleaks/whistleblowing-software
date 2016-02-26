@@ -15,6 +15,6 @@ var iterateOverSHA = function(seed) {
   postMessage("12345");
 };
 
-var onmessage = function(e) {
+onmessage = function(e) {
   iterateOverSHA(e.data.pow);
 };
