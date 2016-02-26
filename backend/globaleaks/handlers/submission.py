@@ -155,7 +155,6 @@ def db_save_questionnaire_answers(store, internaltip_id, entries):
             field_answer.value = ""
             n = 0
             for entries in value:
-                print field_answer.id
                 group = models.FieldAnswerGroup({
                   'fieldanswer_id': field_answer.id,
                   'number': n
