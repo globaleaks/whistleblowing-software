@@ -11,8 +11,8 @@ var GLClient = angular.module('GLClient', [
     'GLDirectives',
     'GLFilters'
   ]).
-  config(['$compileProvider', '$httpProvider', '$routeProvider', '$translateProvider', '$uibTooltipProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $translateProvider, $uibTooltipProvider) {
+  config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$translateProvider', '$uibTooltipProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider) {
     $compileProvider.debugInfoEnabled(false);
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
@@ -200,6 +200,10 @@ var GLClient = angular.module('GLClient', [
       otherwise({
         redirectTo: '/'
       });
+
+      // Raise the default digest loop limit to 30 because of the template recursion used by fields:
+      // https://github.com/angular/angular.js/issues/6440
+      $rootScopeProvider.digestTtl(30);
 
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
