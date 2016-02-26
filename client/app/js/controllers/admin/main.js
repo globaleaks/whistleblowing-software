@@ -3,7 +3,7 @@ GLClient.controller('AdminCtrl',
     function($scope, $http, $route, $location, $filter, AdminService, Node, GLCache, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
-  $scope.http_or_https_regexp = CONSTANTS.http_or_https_regexp;
+  $scope.tor_regexp = CONSTANTS.tor_regexp;
   $scope.timezones = CONSTANTS.timezones;
 
   // XXX convert this to a directive

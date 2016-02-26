@@ -1012,6 +1012,7 @@ angular.module('GLServices', ['ngResource']).
      "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
+     "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,
      "shortener_shorturl_regexp": /^\/s\/[a-z0-9]{1,100}$/,
      "shortener_longurl_regexp": /^\/[a-z0-9_\-%?\[\]\'\"]{1,100}$/,
      "timezones": [
