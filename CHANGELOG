@@ -1,3 +1,6 @@
+Changes in version 2.60.143 - 2016-02-27
+    o Solve recursion issue on field templates
+
 Changes in version 2.60.142 - 2016-02-26
     o Remove migration support for db versions < 15
     o Minor UI fixes
