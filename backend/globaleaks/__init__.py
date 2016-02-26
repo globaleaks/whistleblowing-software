@@ -12,7 +12,7 @@ __version__ = u'2.60.141'
 __license__ = u'AGPL-3.0'
 
 DATABASE_VERSION = 30
-FIRST_DATABASE_VERSION_SUPPORTED = 11
+FIRST_DATABASE_VERSION_SUPPORTED = 15
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'
