@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$rootScope', '$http', '$route', '$location', '$filter', 'AdminService', 'Node', 'GLCache', 'CONSTANTS',
-    function($scope, $rootScope, $http, $route, $location, $filter, AdminService, Node, GLCache, CONSTANTS) {
+    ['$scope', '$http', '$route', '$location', '$filter', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
+    function($scope, $http, $route, $location, $filter, Admin, Node, GLCache, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.tor_regexp = CONSTANTS.tor_regexp;
@@ -12,73 +12,69 @@ GLClient.controller('AdminCtrl',
   $scope.active = {};
   $scope.active[current_menu] = "active";
 
-  $scope.admin_init = function(refresh) {
-    AdminService.getAdmin(refresh).then(function(admin) {
-      $scope.admin = admin;
+  $scope.admin = new Admin(function() {
+    $scope.languages_enabled_edit = {};
+    $scope.languages_enabled_selector = [];
 
-      $scope.languages_enabled_edit = {};
-      $scope.languages_enabled_selector = [];
-
-      $scope.languages_supported = {};
-      $scope.languages_enabled = [];
-      $scope.languages_enabled_selector = [];
-      angular.forEach($scope.admin.node.languages_supported, function(lang) {
-        var code = lang.code;
-        var name = lang.name;
-        $scope.languages_supported[code] = name;
-        if ($scope.admin.node.languages_enabled.indexOf(code) !== -1) {
-          $scope.languages_enabled[code] = name;
-          $scope.languages_enabled_selector.push({"name": name,"code": code});
-        }
-      });
-
-      $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
-
-      $scope.$watch('languages_enabled', function() {
-        if ($scope.languages_enabled) {
-          $scope.languages_enabled_edit = {};
-          angular.forEach($scope.languages_supported, function(lang, code){
-            $scope.languages_enabled_edit[code] = code in $scope.languages_enabled;
-          });
-        }
-      }, true);
-
-      $scope.$watch('languages_enabled_edit', function() {
-        if ($scope.languages_enabled) {
-          var languages_enabled_selector = [];
-          var change_default = false;
-          var language_selected = $scope.admin.node.default_language;
-          if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
-            change_default = true;
-          }
-
-          angular.forEach($scope.languages_supported, function(lang, code) {
-            if ($scope.languages_enabled_edit[code]) {
-              languages_enabled_selector.push({'name': lang, 'code': code});
-
-              if (change_default === true) {
-                language_selected = code;
-                change_default = false;
-              }
-            }
-          });
-
-          var languages_enabled = [];
-          angular.forEach($scope.languages_enabled_edit, function(enabled, code) {
-            if (enabled) {
-              languages_enabled.push(code);
-            }
-          });
-
-          $scope.admin.node.default_language = language_selected;
-          $scope.admin.node.languages_enabled = languages_enabled;
-  
-          $scope.languages_enabled_selector = languages_enabled_selector;
-
-        }
-      }, true);
+    $scope.languages_supported = {};
+    $scope.languages_enabled = [];
+    $scope.languages_enabled_selector = [];
+    angular.forEach($scope.admin.node.languages_supported, function(lang) {
+      var code = lang.code;
+      var name = lang.name;
+      $scope.languages_supported[code] = name;
+      if ($scope.admin.node.languages_enabled.indexOf(code) !== -1) {
+        $scope.languages_enabled[code] = name;
+        $scope.languages_enabled_selector.push({"name": name,"code": code});
+      }
     });
-  }
+
+    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+
+    $scope.$watch('languages_enabled', function() {
+      if ($scope.languages_enabled) {
+        $scope.languages_enabled_edit = {};
+        angular.forEach($scope.languages_supported, function(lang, code){
+          $scope.languages_enabled_edit[code] = code in $scope.languages_enabled;
+        });
+      }
+    }, true);
+
+    $scope.$watch('languages_enabled_edit', function() {
+      if ($scope.languages_enabled) {
+        var languages_enabled_selector = [];
+        var change_default = false;
+        var language_selected = $scope.admin.node.default_language;
+        if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
+          change_default = true;
+        }
+
+        angular.forEach($scope.languages_supported, function(lang, code) {
+          if ($scope.languages_enabled_edit[code]) {
+            languages_enabled_selector.push({'name': lang, 'code': code});
+
+            if (change_default === true) {
+              language_selected = code;
+              change_default = false;
+            }
+          }
+        });
+
+        var languages_enabled = [];
+        angular.forEach($scope.languages_enabled_edit, function(enabled, code) {
+          if (enabled) {
+            languages_enabled.push(code);
+          }
+        });
+
+        $scope.admin.node.default_language = language_selected;
+        $scope.admin.node.languages_enabled = languages_enabled;
+  
+        $scope.languages_enabled_selector = languages_enabled_selector;
+
+      }
+    }, true);
+  });
 
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
@@ -116,12 +112,6 @@ GLClient.controller('AdminCtrl',
 
     return max + 1;
   };
-
-  $rootScope.$on("REFRESH", function() {
-    $scope.admin_init(true);
-  });
-
-  $scope.admin_init(false);
 }]);
 
 GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',

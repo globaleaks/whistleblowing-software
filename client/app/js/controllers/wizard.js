@@ -1,11 +1,7 @@
-GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'AdminService',
+GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'Admin',
                     'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
-                    function($scope, $rootScope, $location, $route, $http, $uibModal,
-                                                      AdminService, DefaultAppdata,
-                                                      passwordWatcher,
-                                                      changePasswordWatcher,
-                                                      CONSTANTS) {
-
+                    function($scope, $rootScope, $location, $route, $http, $uibModal, Admin,
+                             DefaultAppdata, passwordWatcher, changePasswordWatcher, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -44,10 +40,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         };
 
         $http.post('admin/wizard', $scope.wizard).success(function(response) {
-          AdminService.getAdmin(true).then(function(admin) {
-            $scope.admin = admin;
-            $scope.reload("/admin/landing");
-          });
+          $scope.reload("/admin/landing");
         });
       }
     };
@@ -63,8 +56,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       $location.path('/');
     } else {
       $scope.login('admin', 'globaleaks', function(response){
-        AdminService.getAdmin(true).then(function(admin) {
-          $scope.admin = admin;
+        $scope.admin = new Admin(function() {
           $scope.receiver = new $scope.admin.new_receiver();
           $scope.receiver.username = 'receiver';
           $scope.receiver.password = ''; // this causes the system to set the default password
