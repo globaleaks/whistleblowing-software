@@ -44,7 +44,10 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         };
 
         $http.post('admin/wizard', $scope.wizard).success(function(response) {
-          $scope.reload("/admin/landing");
+          AdminService.getAdmin(true).then(function(admin) {
+            $scope.admin = admin;
+            $scope.reload("/admin/landing");
+          });
         });
       }
     };
@@ -60,7 +63,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       $location.path('/');
     } else {
       $scope.login('admin', 'globaleaks', function(response){
-        AdminService.getAdmin().then(function(admin) {
+        AdminService.getAdmin(true).then(function(admin) {
           $scope.admin = admin;
           $scope.receiver = new $scope.admin.new_receiver();
           $scope.receiver.username = 'receiver';
@@ -76,6 +79,5 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         });
       });
     }
-
   }
 ]);

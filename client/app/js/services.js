@@ -592,19 +592,13 @@ angular.module('GLServices', ['ngResource']).
 }]).
   service('AdminService', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
-
       this.admin = null;
 
-      this.getAdmin = function() {
+      this.getAdmin = function(refresh) {
           var self = this;
           var deferred = $q.defer();
 
-          if (self.admin != null) {
-
-            deferred.resolve(this.admin);
-
-          } else {
-
+          if (refresh || self.admin == null) {
             var admin = {
               node: AdminNodeResource.get(),
               contexts: AdminContextResource.query(),
@@ -833,7 +827,8 @@ angular.module('GLServices', ['ngResource']).
               self.admin = admin;
               deferred.resolve(self.admin);
             });
-
+          } else {
+            deferred.resolve(this.admin);
           }
 
           return deferred.promise;
