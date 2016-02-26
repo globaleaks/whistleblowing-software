@@ -1,6 +1,10 @@
-Changes in version 2.60.140 - 2016-02-24
+Changes in version 2.60.141 - 2016-02-26
+    o Fix regression in proof of work present since 2.60.136 and affecting IE
     o Minor UI fixes
+
+Changes in version 2.60.140 - 2016-02-24
     o Fix serialization of files in submission export
+    o Minor UI fixes
 
 Changes in version 2.60.139 - 2016-02-23
     o Implement autofocus on unfilled mandatory questions
