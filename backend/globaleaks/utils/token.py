@@ -86,19 +86,8 @@ class Token(object):
 
         TokenList.set(self.id, self)
 
-    def expire(self):
-        for f in self.uploaded_files:
-            try:
-                os.remove(f['encrypted_path'])
-            except Exception:
-                pass
-
     def associate_file(self, fileinfo):
         self.uploaded_files.append(fileinfo)
-
-    def touch(self):
-        # On token objects validity postponing is denied
-        return
 
     def __repr__(self):
         test_desc = ""
