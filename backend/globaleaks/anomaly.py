@@ -124,7 +124,6 @@ class AlarmClass(object):
         'failed_logins': 8,
         'successful_logins': 20,
         'uploaded_files': 10,
-        'appended_files': 10,
         'wb_comments': 20,
         'wb_messages': 20,
         'receiver_comments': 30,
