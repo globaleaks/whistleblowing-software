@@ -123,5 +123,5 @@ class TestRecentEventsCollection(helpers.TestHandler):
                   'receiver_messages', 'receiver_comments',
                   'started_submissions', 'completed_submissions',
                   'successful_logins', 'failed_logins',
-                  'uploaded_files', 'appended_files']:
+                  'uploaded_files']:
             self.assertTrue(k in self.responses[1])

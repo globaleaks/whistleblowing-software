@@ -34,7 +34,6 @@ At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
         'started_submissions': 5,
         'completed_submissions': 4,
         'uploaded_files': 11,
-        'appended_files': 11,
         'wb_comments': 4,
         'wb_messages': 4,
         'receiver_comments': 3,

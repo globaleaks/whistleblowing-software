@@ -8,11 +8,7 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 def file_upload_check(uri):
     # /submission/ + token_id + /file  = 59 bytes
-    return len(uri) == 59 and uri.endswith('/file')
-
-
-def file_append_check(uri):
-    return uri == '/wbtip/upload'
+    return (len(uri) == 59 and uri.endswith('/file')) or uri == '/wbtip/upload'
 
 
 def submission_check(uri):
@@ -105,12 +101,6 @@ events_monitored = [
     {
         'name': 'uploaded_files',
         'handler_check': file_upload_check,
-        'method': 'POST',
-        'status_check': created_status_check
-    },
-    {
-        'name': 'appended_files',
-        'handler_check': file_append_check,
         'method': 'POST',
         'status_check': created_status_check
     },
