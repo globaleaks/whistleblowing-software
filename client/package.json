@@ -38,7 +38,7 @@
     "protractor": "3.1.1",
     "selenium-webdriver": "2.52.0",
     "should": "8.2.2",
-    "superagent": "1.7.2",
+    "superagent": "1.8.0",
     "supertest": "1.2.0"
   }
 }
