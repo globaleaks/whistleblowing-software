@@ -240,7 +240,7 @@ class Logger(object):
 
             logfile = twlogfile.LogFile(name, directory,
                                         rotateLength=GLSettings.log_file_size,
-                                        maxRotatedFiles=GLSettings.maximum_rotated_log_files)
+                                        maxRotatedFiles=GLSettings.num_log_files)
             twlog.addObserver(GLLogObserver(logfile).emit)
 
 

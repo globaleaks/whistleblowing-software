@@ -183,12 +183,11 @@ class GLSettingsClass(object):
         # Alarm to be ignored: can be raise with the -A command line switch
         self.disk_alarm_threshold = 0
 
-        # Size in bytes of every log file. Once this size is reached the
-        # logfile is rotated.
-        # Default: 1M
-        self.log_file_size = 1000000
-        # Number of log files to conserve.
-        self.maximum_rotated_log_files = 100
+        # Limit for log sizes and number of log files
+        # https://github.com/globaleaks/GlobaLeaks/issues/1578
+        self.log_size = 10000000 # 10MB
+        self.log_file_size = 1000000 # 1MB
+        self.num_log_files = self.log_size / self.log_file_size
 
         # size used while streaming files
         self.file_chunk_size = 8192
