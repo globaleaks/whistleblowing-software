@@ -10,6 +10,8 @@ describe('globaLeaks process', function() {
   var receipts = [];
   var comment = 'comment';
   var comment_reply = 'comment reply';
+  var message = 'message';
+  var message_reply = 'message reply';
   var receiver_username = "Recipient 1";
   var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
 
@@ -53,50 +55,52 @@ describe('globaLeaks process', function() {
     browser.get('/#/submission');
 
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click().then(function () {
-      element(by.id('NextStepButton')).click().then(function () {
-        element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text).then(function () {
-          if (utils.testFileUpload()) {
-            browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-            element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-              browser.waitForAngular();
+      element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click().then(function () {
+        element(by.id('NextStepButton')).click().then(function () {
+          element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text).then(function () {
+            if (utils.testFileUpload()) {
+              browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
               element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
                 browser.waitForAngular();
-                element(by.id('NextStepButton')).click().then(function () {
-                  element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
-                    var submit_button = element(by.id('SubmitButton'));
-                    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-                    browser.wait(isClickable);
-                    submit_button.click().then(function() {
-                      utils.waitForUrl('/receipt');
-                      element(by.id('KeyCode')).getText().then(function (txt) {
-                        receipts.unshift(txt);
+                element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+                  browser.waitForAngular();
+                  element(by.id('NextStepButton')).click().then(function () {
+                    element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
+                      var submit_button = element(by.id('SubmitButton'));
+                      var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+                      browser.wait(isClickable);
+                      submit_button.click().then(function() {
+                        utils.waitForUrl('/receipt');
+                        element(by.id('KeyCode')).getText().then(function (txt) {
+                          receipts.unshift(txt);
+                        });
                       });
                     });
                   });
                 });
               });
-            });
-          } else {
-            element(by.id('NextStepButton')).click().then(function () {
-              element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
-                var submit_button = element(by.id('SubmitButton'));
-                var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-                browser.wait(isClickable);
-                submit_button.click().then(function() {
-                  utils.waitForUrl('/receipt');
-                  element(by.id('KeyCode')).getText().then(function (txt) {
-                    receipts.unshift(txt);
+            } else {
+              element(by.id('NextStepButton')).click().then(function () {
+                element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
+                  var submit_button = element(by.id('SubmitButton'));
+                  var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+                  browser.wait(isClickable);
+                  submit_button.click().then(function() {
+                    utils.waitForUrl('/receipt');
+                    element(by.id('KeyCode')).getText().then(function (txt) {
+                      receipts.unshift(txt);
+                    });
                   });
                 });
               });
-            });
-          }
+            }
 
-          element(by.id('ReceiptButton')).click().then(function() {
-            utils.waitForUrl('/status');
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/');
-              done();
+            element(by.id('ReceiptButton')).click().then(function() {
+              utils.waitForUrl('/status');
+              element(by.id('LogoutLink')).click().then(function() {
+                utils.waitForUrl('/');
+                done();
+              });
             });
           });
         });
@@ -218,6 +222,42 @@ describe('globaLeaks process', function() {
       } else {
         done();
       }
+    });
+  });
+
+  it('Recipient should be able to start a private discussion with the whistleblower', function(done) {
+    login_receiver(receiver_username, receiver_password).then(function() {
+      element(by.id('tip-0')).click().then(function() {
+        element(by.model('tip.newMessageContent')).sendKeys(message);
+        element(by.id('message-action-send')).click().then(function() {
+          browser.waitForAngular();
+          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+            expect(m).toContain(message);
+            element(by.id('LogoutLink')).click().then(function() {
+              utils.waitForUrl('/login');
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
+
+  it('Whistleblower should be able to read the private message from the receiver and reply', function(done) {
+    login_whistleblower(receipts[0]).then(function() {
+      element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
+        element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+          expect(message).toEqual(message);
+          element(by.model('tip.newMessageContent')).sendKeys(message_reply);
+          element(by.id('message-action-send')).click().then(function() {
+            browser.waitForAngular();
+            element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+              expect(m).toContain(message_reply);
+              done();
+            });
+          });
+        });
+      });
     });
   });
 

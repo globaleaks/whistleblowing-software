@@ -12,18 +12,19 @@
     <div data-ng-if="session.role !== 'whistleblower' || tip.enable_two_way_messages" class="row">
       <div class="col-md-12">
         <div class="form-inline">
-          <span data-ng-if="session.role === 'wb'">
+          <span data-ng-if="session.role === 'whistleblower'">
             <label><span data-translate>Recipient</span>:<span>&nbsp;</span></label>
-            <select data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
+            <select id="message-recipient-selector" data-ng-model="tip.msg_receiver_selected" data-ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'" class="form-control"></select>
           </span>
         </div>
+        <br />
         <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control"></textarea>
         <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newMessageContent.length}"
              data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
       </div>
       <div class="col-md-12">
         <span class="pull-left">
-          <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'wb' && !tip.msg_receiver_selected)">
+          <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'whistleblower' && !tip.msg_receiver_selected)">
             <i class="glyphicon glyphicon-envelope"></i>
             <span data-translate>Send</span>
           </a>
