@@ -8,12 +8,16 @@ describe('admin add contexts', function() {
     };
 
     element(by.css('.actionButtonContextEdit')).click().then(function() {
+      element(by.cssContainingText("span", "Recipient 2")).click();
+      element(by.cssContainingText("span", "Recipient 3")).click();
       element(by.id('context-0')).element(by.css('.actionButtonAdvancedSettings')).click().then(function() {
         element(by.id('context-0')).element(by.model('context.allow_recipients_selection')).click().then(function() {
-          element(by.id('context-0')).element(by.css('.actionButtonContextSave')).click().then(function() {
-            add_context('Context 2').then(function() {
-              add_context('Context 3');
-              done();
+          element(by.id('context-0')).element(by.model('context.enable_messages')).click().then(function() {
+            element(by.id('context-0')).element(by.css('.actionButtonContextSave')).click().then(function() {
+              add_context('Context 2').then(function() {
+                add_context('Context 3');
+                done();
+              });
             });
           });
         });
