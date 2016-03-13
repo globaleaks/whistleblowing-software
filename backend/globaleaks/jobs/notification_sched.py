@@ -106,6 +106,10 @@ class MailGenerator(object):
             self.process_mail_creation(store, dataX)
 
     def process_ReceiverFile(self, store, rfile, data):
+        # avoid sending an email for the files that have been loaded during the initial submission
+        if rfile.internalfile.submission:
+            return
+
         language = rfile.receiver.user.language
 
         data['tip'] = serialize_content(store, self.cache, 'tip', rfile.receivertip, language)
@@ -193,7 +197,7 @@ class MailGenerator(object):
 
         count = elements.count()
         if count > 0:
-            log.debug("Notification: generated %d notificatins of type %s" %
+            log.debug("Notification: generated %d notifications of type %s" %
                       (count, trigger))
 
 

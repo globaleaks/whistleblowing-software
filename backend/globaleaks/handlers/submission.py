@@ -401,16 +401,17 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     try:
         for filedesc in token.uploaded_files:
-            associated_f = models.InternalFile()
-            associated_f.name = filedesc['filename']
-            associated_f.description = ""
-            associated_f.content_type = filedesc['content_type']
-            associated_f.size = filedesc['body_len']
-            associated_f.internaltip_id = submission.id
-            associated_f.file_path = filedesc['encrypted_path']
-            store.add(associated_f)
+            new_file = models.InternalFile()
+            new_file.name = filedesc['filename']
+            new_file.description = ""
+            new_file.content_type = filedesc['content_type']
+            new_file.size = filedesc['body_len']
+            new_file.internaltip_id = submission.id
+            new_file.submission = filedesc['submission']
+            new_file.file_path = filedesc['encrypted_path']
+            store.add(new_file)
             log.debug("=> file associated %s|%s (%d bytes)" % (
-                associated_f.name, associated_f.content_type, associated_f.size))
+                new_file.name, new_file.content_type, new_file.size))
     except Exception as excep:
         log.err("Submission create: unable to create db entry for files: %s" % excep)
         raise excep
