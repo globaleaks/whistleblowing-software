@@ -181,7 +181,7 @@ angular.module('GLServices', ['ngResource']).
     return {
       request: function(config) {
         // A new request should display the loader overlay
-        $rootScope.showRequestBox = true;
+        $rootScope.showLoadingPanel = true;
         return config;
       },
 
@@ -194,7 +194,7 @@ angular.module('GLServices', ['ngResource']).
 
         // the last response should hide the loader overlay
         if ($http.pendingRequests.length < 1) {
-          $rootScope.showRequestBox = false;
+          $rootScope.showLoadingPanel = false;
         }
 
         return response;
@@ -224,7 +224,7 @@ angular.module('GLServices', ['ngResource']).
         }
 
         if ($http.pendingRequests.length < 1) {
-          $rootScope.showRequestBox = false;
+          $rootScope.showLoadingPanel = false;
         }
 
         return $q.reject(response);
