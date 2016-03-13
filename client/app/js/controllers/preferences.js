@@ -66,9 +66,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'ch
     };
 
     $scope.pref_save = function() {
-      alert(321);
-      alert($location.path());
-
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
