@@ -107,7 +107,7 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(c < d)
 
     def test_get_future_epoch(self):
-        a = time.time()
+        a = utility.time_now()
         b = utility.get_future_epoch(seconds=1)
         c = utility.get_future_epoch(seconds=2)
         d = utility.get_future_epoch(seconds=3)
