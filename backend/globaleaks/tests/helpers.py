@@ -392,6 +392,7 @@ class TestGL(unittest.TestCase):
             f = files.serialize_memory_file(dummyFile)
 
             token.associate_file(dummyFile)
+            dummyFile['body'].close()
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
