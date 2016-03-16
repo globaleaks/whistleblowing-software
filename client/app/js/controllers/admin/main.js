@@ -114,12 +114,6 @@ GLClient.controller('AdminCtrl',
   };
 }]);
 
-GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
-                    function($scope, changePasswordWatcher) {
-    changePasswordWatcher($scope, "admin.node.old_password",
-        "admin.node.password", "admin.node.check_password");
-}]);
-
 GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
     $scope.uploadfile = false;
 

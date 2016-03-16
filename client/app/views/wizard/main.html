@@ -52,7 +52,7 @@
             <span data-translate>Email address</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.admin_email.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.admin_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="admin_email" class="form-control" data-ng-model="admin_mail_address" data-ng-attr-placeholder="{{'Enter an email address for the administrator' | translate}}" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
             <div class="text-red" data-ng-show="wizardForm.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
@@ -64,7 +64,7 @@
             <span data-translate>Password</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" zxcvbn="passwordStrength" zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
           </div>
@@ -74,9 +74,9 @@
             <span data-translate>Confirm password</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" required />
-            <div class="text-red" data-ng-show="mismatch_password">
+            <div class="text-red" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)">
               <span data-translate>The two passwords do not match</span>
             </div>
           </div>
@@ -105,7 +105,7 @@
             <span data-translate>Email address</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
             <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
@@ -177,7 +177,7 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </a>
-      <a id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public)">
+      <a id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public) || (admin_password !== admin_check_password)">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </a>
