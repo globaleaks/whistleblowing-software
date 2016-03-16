@@ -127,14 +127,14 @@ def longlocal_v(_self, attr, value):
 
 
 def shorturl_v(_self, attr, value):
-    if not re.match(r'^/s/[a-zA-Z0-9_\-%?]{1,30}$', value):
+    if not re.match(r'^(/s/[a-z0-9]{1,30})$', value):
         raise errors.InvalidModelInput("invalid shorturl")
 
     return value
 
 
 def longurl_v(_self, attr, value):
-    if not re.match(r'^/[a-zA-Z0-9 _\-%?]{0,255}$', value):
+    if not re.match(r'^(/[a-z0-9#=_&?/-]{1,255})$', value):
         raise errors.InvalidModelInput("invalid longurl")
 
     return value
