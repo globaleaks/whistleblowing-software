@@ -64,6 +64,9 @@
             <span data-translate>Password</span>
             <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required}">
+            <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" required>
+          </div>
         </div>
         <div class="form-group col-md-12">
           <label class="col-md-4">
