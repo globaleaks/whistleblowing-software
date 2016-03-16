@@ -27,11 +27,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.5.0",
-    "angular-aria": "1.5.0",
+    "angular": "1.5.1",
+    "angular-aria": "1.5.1",
     "angular-filter": "0.5.8",
-    "angular-resource": "1.5.0",
-    "angular-route": "1.5.0",
+    "angular-resource": "1.5.1",
+    "angular-route": "1.5.1",
     "angular-translate": "2.10.0",
     "angular-translate-loader-url": "2.10.0",
     "angular-translate-loader-static-files": "2.10.0",
