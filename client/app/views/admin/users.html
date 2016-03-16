@@ -162,7 +162,8 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Password</label>
-                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" />
+                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" zxcvbn="passwordStrength" />
+                    <zx-password-meter value="passwordStrength"></zx-password-meter>
                   </div>
                   <div class="form-group">
                     <input data-ng-model="user.password_change_needed" type="checkbox" />

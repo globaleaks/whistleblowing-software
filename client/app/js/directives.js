@@ -133,4 +133,42 @@ angular.module('GLDirectives', []).
        });
      }
    };
-}]);
+}]).
+directive('zxPasswordMeter', function() {
+  return {
+    scope: {
+      value: "="
+    },
+    templateUrl: "views/partials/password_meter.html",
+    link: function(scope) {
+      scope.type = null;
+      scope.text = '';
+
+      scope.$watch('value', function(newValue) {
+        if (newValue.password === 'undefined') {
+          // Short term fix for:
+          // https://github.com/ghostbar/angular-zxcvbn/issues/13
+          newValue.score = 0;
+          newValue.password == '';
+        }
+
+        // https://github.com/dropbox/zxcvbn/blob/master/README.md
+        if (newValue.score === 0) {
+          scope.type = null;
+          scope.text = '';
+        } else if (newValue.score < 3) {
+          scope.type = 'danger';
+          scope.text = 'Weak';
+        } else if (newValue.score < 4) {
+          // guesses needed >= 10^8, <= 10^10
+          scope.type = 'warning';
+          scope.text = 'Acceptable';
+        } else {
+          // guesses needed >= 10^10
+          scope.type = 'success';
+          scope.text = 'Strong';
+        }
+      });
+    }
+  }
+});
