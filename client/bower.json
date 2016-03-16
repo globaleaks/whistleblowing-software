@@ -52,5 +52,8 @@
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.0.4",
     "zxcvbn": "4.3.0"
+  },
+  "resolutions": {
+    "zxcvbn": "4.3.0"
   }
 }
