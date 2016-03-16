@@ -308,22 +308,23 @@ class AlarmClass(object):
                     disk_space = 0
                 else:
                     if disk_space == 3:
-                        disk_message = "Fatal (Submission disabled): %s" % info_msg
+                        disk_message = "[FATAL] Disk anomaly, submissions disabled: %s" % info_msg
                     elif disk_space == 2:
-                        disk_message = "Critical (Submission near to be disabled): %s" % info_msg
+                        disk_message = "[CRITICAL] Disk anomaly, submissions near to be disabled: %s" % info_msg
                     else:  # == 1
-                        disk_message = "Warning: %s" % info_msg
+                        disk_message = "[WARNING]: Disk anomaly: %s" % info_msg
 
                     accept_submissions = c['accept_submissions']
-                    log.err(disk_message)
                     break
 
         # This check is temporarily, want to be verified that the switch can be
         # logged as part of the Anomalies via this function
         old_stress_level = self.stress_levels['disk_space']
         if old_stress_level != disk_space:
-            log.debug("Switch in Disk space available status, %d => %d" %
-                      (old_stress_level, disk_space))
+            if (disk_message != ''):
+                log.err(disk_message)
+            else:
+                log.err("Available disk space returned to normal levels")
 
         # the value is set here with a single assignment in order to
         # minimize possible race conditions resetting/settings the values
