@@ -997,8 +997,8 @@ angular.module('GLServices', ['ngResource']).
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,
-     "shortener_shorturl_regexp": /^\/s\/[a-z0-9]{1,100}$/,
-     "shortener_longurl_regexp": /^\/[a-z0-9_\-%?\[\]\'\"]{1,100}$/,
+     "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
+     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
      "timezones": [
         {"timezone": -12.0, "label": "(GMT -12:00) Eniwetok, Kwajalein"},
         {"timezone": -11.0, "label": "(GMT -11:00) Midway Island, Samoa"},
