@@ -105,6 +105,10 @@ directive('zxPasswordMeter', function() {
       scope.text = '';
 
       scope.$watch('value', function(newValue) {
+        if (newValue === undefined) {
+          return;
+        }
+
         if (newValue.password === 'undefined') {
           // Short term fix for:
           // https://github.com/ghostbar/angular-zxcvbn/issues/13
