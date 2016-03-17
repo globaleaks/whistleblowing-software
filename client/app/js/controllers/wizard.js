@@ -1,7 +1,7 @@
 GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'Admin',
-                    'DefaultAppdata', 'passwordWatcher', 'changePasswordWatcher', 'CONSTANTS',
+                    'DefaultAppdata', 'CONSTANTS',
                     function($scope, $rootScope, $location, $route, $http, $uibModal, Admin,
-                             DefaultAppdata, passwordWatcher, changePasswordWatcher, CONSTANTS) {
+                             DefaultAppdata, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -63,11 +63,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
                                          // the system will then force the user to change the password
                                          // at first login
           $scope.context = $scope.admin.new_context();
-          passwordWatcher($scope, 'admin_password');
-          changePasswordWatcher($scope,
-                                "globaleaks",
-                                "admin_password",
-                                "admin_check_password");
         });
       });
     }

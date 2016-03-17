@@ -36,6 +36,7 @@
     "angular-translate-loader-url": "2.10.0",
     "angular-translate-loader-static-files": "2.10.0",
     "angular-ui-bootstrap-bower": "1.2.4",
+    "angular-zxcvbn": "3.2.0",
     "bowser": "1.0.0",
     "bootstrap": "3.3.6",
     "bootstrap-rtl-ondemand": "3.3.4-ondemand",
@@ -49,6 +50,10 @@
     "ng-flow": "2.7.1",
     "openpgp": "2.1.0",
     "scrypt-async": "1.2.0",
-    "stacktrace-js": "1.0.4"
+    "stacktrace-js": "1.0.4",
+    "zxcvbn": "4.3.0"
+  },
+  "resolutions": {
+    "zxcvbn": "4.3.0"
   }
 }

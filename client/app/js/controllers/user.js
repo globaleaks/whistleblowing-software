@@ -16,11 +16,8 @@ GLClient.controller('UserCtrl',
   };
 }]);
 
-GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', 'changePasswordWatcher',
-  function($scope, $rootScope, $location, changePasswordWatcher) {
-
-    changePasswordWatcher($scope, "preferences.old_password",
-        "preferences.password", "preferences.check_password");
+GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
+  function($scope, $rootScope, $location) {
 
     $scope.pass_save = function () {
       // avoid changing any PGP setting
