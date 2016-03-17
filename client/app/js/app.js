@@ -7,6 +7,7 @@ var GLClient = angular.module('GLClient', [
     'ui.bootstrap',
     'flow',
     'pascalprecht.translate',
+    'zxcvbn',
     'GLServices',
     'GLDirectives',
     'GLFilters'

@@ -35,8 +35,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
   };
 }]);
 
-GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTANTS',
-  function($scope, passwordWatcher, CONSTANTS) {
+GLClient.controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
+  function($scope, CONSTANTS) {
 
     $scope.editing = false;
 
@@ -49,8 +49,6 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'passwordWatcher', 'CONSTA
     };
 
     $scope.timezones = CONSTANTS.timezones;
-
-    passwordWatcher($scope, 'user.password');
 
     $scope.isSelected = function (context) {
       return $scope.user.contexts.indexOf(context.id) !== -1;
