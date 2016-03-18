@@ -140,10 +140,9 @@ class MigrationBase(object):
             self.model_from[model_name] = self.get_right_model(model_name, start_version)
             self.model_to[model_name] = self.get_right_model(model_name, start_version + 1)
 
+            self.entries_count[model_name] = 0
             if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
                 self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
-            else:
-                self.entries_count[model_name] = 0
 
         if self.start_version + 1 == DATABASE_VERSION:
             # we are there!

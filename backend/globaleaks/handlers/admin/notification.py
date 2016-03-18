@@ -4,7 +4,6 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.models import Notification
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
@@ -122,8 +121,8 @@ class NotificationInstance(BaseHandler):
     Manage Notification settings (account details and template)
     """
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -135,8 +134,8 @@ class NotificationInstance(BaseHandler):
         self.set_status(200)
         self.finish(notification_desc)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self):
         """

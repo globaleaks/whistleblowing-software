@@ -23,7 +23,7 @@
     "grunt-contrib-concat": "1.0.0",
     "grunt-contrib-connect": "1.0.0",
     "grunt-contrib-copy": "1.0.0",
-    "grunt-contrib-cssmin": "1.0.0",
+    "grunt-contrib-cssmin": "1.0.1",
     "grunt-contrib-jshint": "1.0.0",
     "grunt-istanbul": "0.7.0",
     "grunt-line-remover": "0.0.2",
@@ -36,9 +36,9 @@
     "mocha": "2.4.5",
     "node-gettext": "0.2.14",
     "protractor": "3.1.1",
-    "selenium-webdriver": "2.52.0",
+    "selenium-webdriver": "2.53.1",
     "should": "8.2.2",
-    "superagent": "1.8.0",
+    "superagent": "1.8.1",
     "supertest": "1.2.0"
   }
 }

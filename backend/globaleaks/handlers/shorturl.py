@@ -1,7 +1,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact_ro
 
@@ -21,8 +20,8 @@ class ShortUrlInstance(BaseHandler):
     """
     handler_exec_time_threshold = 30
 
-    @transport_security_check('unauth')
-    @unauthenticated
+    @BaseHandler.transport_security_check('unauth')
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self, shorturl):
         longurl = yield translate_shorturl(shorturl)

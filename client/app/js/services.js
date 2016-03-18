@@ -847,120 +847,6 @@ angular.module('GLServices', ['ngResource']).
   factory('DefaultAppdata', ['GLResource', function(GLResource) {
     return new GLResource('data/appdata_l10n.json', {});
 }]).
-  factory('passwordWatcher', ['$parse', function($parse) {
-    return function(scope, password) {
-      /** This is used to watch the new password and check that is
-       *  effectively the same. Sets a local variable mismatch_password.
-       *
-       *  @param {obj} scope the scope under which we should register watchers
-       *                     and insert the mismatch_password field.
-       *  @param {string} old_password the old password model name.
-       *  @param {string} password the new password model name.
-       *  @param {string} check_password need to be equal to the new password.
-       **/
-      scope.mismatch_password = false;
-      scope.unsafe_password = false;
-      scope.pwdValidLength = true;
-      scope.pwdHasLetter = true;
-      scope.pwdHasNumber = true;
-
-      var validatePasswordChange = function () {
-        if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
-          scope.pwdValidLength = ( scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password))) ? true : false;
-          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
-          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
-        } else {
-          /*
-           * This values permits to not show errors when
-           * the user has not yed typed any password.
-           */
-          scope.unsafe_password = false;
-          scope.pwdValidLength = true;
-          scope.pwdHasLetter = true;
-          scope.pwdHasNumber = true;
-        }
-      };
-
-      scope.$watch(password, function(){
-          validatePasswordChange();
-      }, true);
-
-    };
-}]).
-  factory('changePasswordWatcher', ['$parse', function($parse) {
-    return function(scope, old_password, password, check_password) {
-      /** This is used to watch the new password and check that is
-       *  effectively the same. Sets a local variable mismatch_password.
-       *
-       *  @param {obj} scope the scope under which we should register watchers
-       *                     and insert the mismatch_password field.
-       *  @param {string} old_password the old password model name.
-       *  @param {string} password the new password model name.
-       *  @param {string} check_password need to be equal to the new password.
-       **/
-      scope.invalid = true;
-
-      scope.mismatch_password = false;
-      scope.missing_old_password = false;
-      scope.unsafe_password = false;
-
-      scope.pwdValidLength = true;
-      scope.pwdHasLetter = true;
-      scope.pwdHasNumber = true;
-
-      var validatePasswordChange = function () {
-        if (scope.$eval(password) !== undefined && scope.$eval(password) !== '') {
-          scope.pwdValidLength = (scope.$eval(password)).length >= 8;
-          scope.pwdHasLetter = (/[A-z]/.test(scope.$eval(password))) ? true : false;
-          scope.pwdHasNumber = ( /\d/.test(scope.$eval(password))) ? true : false;
-          scope.unsafe_password = !(scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber);
-        } else {
-          /*
-           * This values permits to not show errors when
-           * the user has not yed typed any password.
-           */
-          scope.unsafe_password = false;
-          scope.pwdValidLength = true;
-          scope.pwdHasLetter = true;
-          scope.pwdHasNumber = true;
-        }
-
-        if (((scope.$eval(password) === undefined || scope.$eval(password) === '') &&
-             (scope.$eval(check_password) === undefined || scope.$eval(check_password === ''))) ||
-            (scope.$eval(password) === scope.$eval(check_password))) {
-          scope.mismatch_password = false;
-        } else {
-          scope.mismatch_password = true;
-        }
-
-        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1) {
-          scope.missing_old_password = false;
-        } else {
-          scope.missing_old_password = true;
-        }
-
-        scope.invalid = scope.$eval(password) === undefined ||
-          scope.$eval(password) === '' ||
-          scope.mismatch_password ||
-          scope.unsafe_password ||
-          scope.missing_old_password;
-      };
-
-      scope.$watch(password, function(){
-          validatePasswordChange();
-      }, true);
-
-      scope.$watch(old_password, function(){
-          validatePasswordChange();
-      }, true);
-
-      scope.$watch(check_password, function(){
-          validatePasswordChange();
-      }, true);
-
-    };
-}]).
   factory('fieldsUtilities', ['$filter', function($filter) {
       var minY = function(arr) {
         return $filter('min')($filter('map')(arr, 'y'));
@@ -997,8 +883,8 @@ angular.module('GLServices', ['ngResource']).
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,
-     "shortener_shorturl_regexp": /^\/s\/[a-z0-9]{1,100}$/,
-     "shortener_longurl_regexp": /^\/[a-z0-9_\-%?\[\]\'\"]{1,100}$/,
+     "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
+     "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/,
      "timezones": [
         {"timezone": -12.0, "label": "(GMT -12:00) Eniwetok, Kwajalein"},
         {"timezone": -11.0, "label": "(GMT -11:00) Midway Island, Samoa"},

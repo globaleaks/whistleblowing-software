@@ -18,7 +18,6 @@ from globaleaks import models
 from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.rest.requests import receiver_img_regexp
@@ -120,14 +119,14 @@ class StaticFileInstance(BaseHandler):
     handler_exec_time_threshold = 3600
     filehandler = True
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def get(self, filename):
         self.set_status(204)
         self.finish()
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self, filename):
         """
@@ -207,8 +206,8 @@ class StaticFileInstance(BaseHandler):
         self.finish()
 
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def delete(self, filename):
         """
         Parameter: filename
@@ -227,8 +226,8 @@ class StaticFileInstance(BaseHandler):
 
 
 class StaticFileList(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def get(self):
         """
         Return the list of static files, with few filesystem info

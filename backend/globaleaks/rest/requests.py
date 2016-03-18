@@ -23,8 +23,8 @@ https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
 tip_operation_regexp              = r'^(postpone|set)$'
-shorturl_regexp                   = r'^(\/s\/[a-z0-9]{1,30})$'
-longurl_regexp                    = r'^(\/[a-z0-9=_\-%?\[\]\'\"]{0,255})$'
+shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
+longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
 
 token_regexp                      = r'([a-zA-Z0-9]{42})'
 token_type_regexp                 = r'^submission$'
@@ -226,7 +226,10 @@ AdminNodeDesc = {
     'threshold_free_disk_megabytes_low': int,
     'threshold_free_disk_percentage_high': int,
     'threshold_free_disk_percentage_medium': int,
-    'threshold_free_disk_percentage_low': int
+    'threshold_free_disk_percentage_low': int,
+    'basic_auth': bool,
+    'basic_auth_username': unicode,
+    'basic_auth_password': unicode
 }
 
 AdminNotificationDesc = {

@@ -17,7 +17,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.admin.staticfiles import dump_static_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
@@ -34,14 +33,14 @@ class AdminLanguageFileHandler(BaseHandler):
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSettings.static_path_l10n, '%s.json' % lang))
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def get(self, lang):
         self.set_status(204)
         self.finish()
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self, lang):
         """
@@ -70,8 +69,8 @@ class AdminLanguageFileHandler(BaseHandler):
         self.set_status(201)  # Created
         self.finish()
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def delete(self, lang):
         """
         Parameter: filename

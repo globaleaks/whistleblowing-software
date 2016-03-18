@@ -8,7 +8,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
     serialize_comment, serialize_message
@@ -150,8 +149,8 @@ class WBTipInstance(BaseHandler):
     promote, and perform other operations in this protected environment.
     """
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -175,8 +174,8 @@ class WBTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -188,8 +187,8 @@ class WBTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(wb_comment_list)
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self):
         """
@@ -211,8 +210,8 @@ class WBTipReceiversCollection(BaseHandler):
     GET /tip/receivers
     """
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def get(self):
         """
@@ -233,8 +232,8 @@ class WBTipMessageCollection(BaseHandler):
     Supports the creation of a new message for the requested receiver
     """
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def get(self, receiver_id):
         messages = yield get_message_list(self.current_user.user_id, receiver_id)
@@ -242,8 +241,8 @@ class WBTipMessageCollection(BaseHandler):
         self.set_status(200)
         self.finish(messages)
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self, receiver_id):
         request = self.validate_message(self.request.body, requests.CommentDesc)
@@ -258,8 +257,8 @@ class WBTipIdentityHandler(BaseHandler):
     """
     This is the interface that securely allows the whistleblower to provide his identity
     """
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self, tip_id):
         """

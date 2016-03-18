@@ -12,7 +12,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import Notification, Comment, Message, \
@@ -358,8 +357,8 @@ class RTipInstance(BaseHandler):
     """
     This interface expose the Receiver Tip
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -371,7 +370,7 @@ class RTipInstance(BaseHandler):
         ignored, only authenticated user with whistleblower token can access to
         the wbtip, this is why tip_is is not checked if self.is_whistleblower)
 
-        This method is decorated as @unauthenticated because in the handler
+        This method is decorated as @BaseHandler.unauthenticated because in the handler
         the various cases are managed differently.
         """
 
@@ -380,8 +379,8 @@ class RTipInstance(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self, tip_id):
         """
@@ -408,8 +407,8 @@ class RTipInstance(BaseHandler):
         self.set_status(202)  # Updated
         self.finish()
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def delete(self, tip_id):
         """
@@ -431,8 +430,8 @@ class RTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -445,8 +444,8 @@ class RTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(comment_list)
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -467,8 +466,8 @@ class RTipReceiversCollection(BaseHandler):
     This interface return the list of the Receiver active in a Tip.
     GET /tip/<auth_tip_id>/receivers
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, rtip_id):
         """
@@ -486,8 +485,8 @@ class ReceiverMsgCollection(BaseHandler):
     """
     This interface return the lists of the private messages exchanged.
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         answer = yield get_message_list(self.current_user.user_id, tip_id)
@@ -495,8 +494,8 @@ class ReceiverMsgCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -518,8 +517,8 @@ class IdentityAccessRequestsCollection(BaseHandler):
     on the tip and allow to perform new ones.
     """
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -533,8 +532,8 @@ class IdentityAccessRequestsCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """

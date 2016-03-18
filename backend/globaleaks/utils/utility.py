@@ -94,7 +94,7 @@ def randbits(bits):
 
 
 def choice(population):
-    return population[randint(len(population)-1)]
+    return population[randint(len(population) - 1)]
 
 
 def shuffle(x):
@@ -334,14 +334,6 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @return a date in the future with the specified delta
     """
     return utc_dynamic_date(datetime_now(), seconds, minutes, hours)
-
-
-def get_future_epoch(seconds=0):
-    """
-    @param seconds: optional, the second in the future
-    @return: seconds since the Epoch
-    """
-    return int(time_now()) - time.timezone + seconds
 
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):

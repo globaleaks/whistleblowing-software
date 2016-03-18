@@ -8,7 +8,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, GLBPGP
@@ -159,7 +158,7 @@ class UserInstance(BaseHandler):
         - notification settings
         - pgp key
     """
-    @authenticated('*')
+    @BaseHandler.authenticated('*')
     @inlineCallbacks
     def get(self):
         """
@@ -174,7 +173,7 @@ class UserInstance(BaseHandler):
         self.finish(user_status)
 
 
-    @authenticated('*')
+    @BaseHandler.authenticated('*')
     @inlineCallbacks
     def put(self):
         """

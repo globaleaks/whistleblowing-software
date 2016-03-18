@@ -1,10 +1,8 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$rootScope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission',
-      function ($scope, $rootScope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission) {
+    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission',
+      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission) {
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
-  $scope.contexts_selectable = $location.search().contexts_selectable;
-  $scope.receivers_selectable = $location.search().receivers_selectable;
 
   $scope.problemToBeSolved = false;
   $scope.problemModal = undefined;
@@ -47,18 +45,14 @@ GLClient.controller('SubmissionCtrl',
     }
   }
 
-  $scope.contexts_selectable = !($scope.contexts_selectable === "false" && $scope.context_id);
-
-  $scope.receivers_selectable = !($scope.receivers_selectable === "false" && $scope.receivers_ids);
-
   if ($scope.node.show_contexts_in_alphabetical_order) {
     $scope.contextsOrderPredicate = 'name';
   } else {
     $scope.contextsOrderPredicate = 'presentation_order';
   }
 
-  $scope.public_contexts = $filter('filter')($rootScope.contexts, {'show_context': true});
-  $scope.public_contexts = $filter('orderBy')($scope.public_contexts, $scope.contextsOrderPredicate);
+  $scope.selectable_contexts = $filter('filter')($scope.contexts, {'show_context': true});
+  $scope.selectable_contexts = $filter('orderBy')($scope.selectable_contexts, $scope.contextsOrderPredicate);
 
   var startCountdown = function() {
     $scope.submission.wait = true;
@@ -298,7 +292,7 @@ GLClient.controller('SubmissionCtrl',
         $scope.receiversOrderPredicate = 'presentation_order';
       }
 
-      if ((!$scope.receivers_selectable || !$scope.submission.context.allow_recipients_selection)) {
+      if (!$scope.submission.context.allow_recipients_selection) {
         $scope.skip_first_step = true;
         $scope.selection = 0;
       } else {
@@ -365,8 +359,8 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.context_id) {
       context = $filter('filter')($scope.contexts,
                                   {"id": $scope.context_id})[0];
-    } else if ($scope.public_contexts.length == 1) {
-      context = $scope.public_contexts[0];
+    } else if ($scope.selectable_contexts.length == 1) {
+      context = $scope.selectable_contexts[0];
     }
 
     if (context) {
@@ -376,7 +370,7 @@ GLClient.controller('SubmissionCtrl',
     // Watch for changes in certain variables
     $scope.$watch('selected_context', function (newVal, oldVal) {
       if ($scope.submission && $scope.selected_context) {
-        $scope.prepareSubmission($scope.selected_context, []);
+        $scope.prepareSubmission($scope.selected_context, $scope.receivers_ids);
       }
     });
 

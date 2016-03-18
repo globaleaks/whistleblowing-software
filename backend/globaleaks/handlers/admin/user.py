@@ -11,7 +11,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.rest import requests, errors
@@ -261,8 +260,8 @@ def get_user_list(store, language):
 
 
 class UsersCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -277,8 +276,8 @@ class UsersCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -305,8 +304,8 @@ class UsersCollection(BaseHandler):
 
 
 class UserInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, user_id):
         """
@@ -321,8 +320,8 @@ class UserInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, user_id):
         """
@@ -342,8 +341,8 @@ class UserInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def delete(self, user_id):
         """
         Delete the specified user.

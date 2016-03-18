@@ -54,7 +54,7 @@ def init_db(store):
 
     node = models.Node()
     node.wizard_done = GLSettings.skip_wizard
-    node.receipt_salt = generateRandomSalt()
+    node.password_salt = generateRandomSalt()
 
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
@@ -117,20 +117,20 @@ def check_db_files():
 
     if len(db_files) == 1 and db_version > 0:
         from globaleaks.db import migration
-
         log.msg("Found an already initialized database version: %d" % db_version)
 
         if db_version < DATABASE_VERSION:
             log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
                 migration.perform_version_update(db_version)
-                log.msg("Migration completed with success!")
             except Exception as exception:
                 log.msg("Migration failure: %s" % exception)
                 log.msg("Verbose exception traceback:")
                 etype, value, tback = sys.exc_info()
                 log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
                 return -1
+
+            log.msg("Migration completed with success!")
 
     elif len(db_files) > 1:
         log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
@@ -181,11 +181,15 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy.nodename = node.name
 
+    GLSettings.memory_copy.basic_auth = node.basic_auth
+    GLSettings.memory_copy.basic_auth_username = node.basic_auth_username
+    GLSettings.memory_copy.basic_auth_password = node.basic_auth_password
+
     GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
     GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
     GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
-    GLSettings.memory_copy.tor2web_access = {
+    GLSettings.memory_copy.accept_tor2web_access = {
         'admin': node.tor2web_admin,
         'custodian': node.tor2web_custodian,
         'whistleblower': node.tor2web_whistleblower,
@@ -210,7 +214,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.default_timezone = node.default_timezone
     GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
-    GLSettings.memory_copy.receipt_salt  = node.receipt_salt
+    GLSettings.memory_copy.password_salt  = node.password_salt
 
     GLSettings.memory_copy.simplified_login = node.simplified_login
 

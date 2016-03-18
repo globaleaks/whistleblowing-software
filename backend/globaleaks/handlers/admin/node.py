@@ -12,9 +12,9 @@ from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
@@ -79,7 +79,10 @@ def db_admin_serialize_node(store, language):
         'threshold_free_disk_megabytes_low': node.threshold_free_disk_megabytes_low,
         'threshold_free_disk_percentage_high': node.threshold_free_disk_percentage_high,
         'threshold_free_disk_percentage_medium': node.threshold_free_disk_percentage_medium,
-        'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low
+        'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low,
+        'basic_auth': node.basic_auth,
+        'basic_auth_username': node.basic_auth_username,
+        'basic_auth_password': ''
     }
 
     return get_localized_values(ret_dict, node, models.Node.localized_keys, language)
@@ -124,6 +127,14 @@ def db_update_node(store, request, wizard_done, language):
         node.default_language = node.languages_enabled[0]
         log.err("Default language not set!? fallback on %s" % node.default_language)
 
+    node.basic_auth = request['basic_auth']
+    if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
+        node.basic_auth = True
+        node.basic_auth_username = request['basic_auth_username']
+        node.basic_auth_password = hash_password(request['basic_auth_password'], GLSettings.memory_copy.password_salt)
+    else:
+        node.basic_auth = False
+
     if wizard_done:
         node.wizard_done = True
 
@@ -140,8 +151,8 @@ def update_node(*args):
 
 
 class NodeInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -154,8 +165,8 @@ class NodeInstance(BaseHandler):
         self.set_status(200)
         self.finish(node_description)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self):
         """

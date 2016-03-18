@@ -25,8 +25,8 @@ from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers import authentication, files, rtip, wbtip
-from globaleaks.handlers.base import GLHTTPConnection, BaseHandler
+from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
 from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
@@ -39,7 +39,7 @@ from globaleaks.handlers.submission import create_submission, serialize_usertip,
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
-from globaleaks.utils import tempdict, token, mailutils
+from globaleaks.utils import mailutils, tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
@@ -68,6 +68,11 @@ with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
 
 transact.tp = FakeThreadPool()
 
+def deferred_sleep_mock(seconds):
+    return
+
+utility.deferred_sleep = deferred_sleep_mock
+
 def load_json_file(file_path):
     with open(file_path) as f:
       return json.loads(f.read())
@@ -91,7 +96,6 @@ def init_glsettings_for_unit_tests():
     GLSettings.set_devel_mode()
     GLSettings.logging = None
     GLSettings.scheduler_threadpool = FakeThreadPool()
-    GLSettings.sessions.clear()
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
     GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
@@ -99,6 +103,8 @@ def init_glsettings_for_unit_tests():
     GLSettings.eval_paths()
     GLSettings.remove_directories()
     GLSettings.create_directories()
+
+    GLSessions.clear()
 
 
 def export_fixture(*models):
@@ -156,7 +162,7 @@ class TestGL(unittest.TestCase):
         token.TokenList.reactor = self.test_reactor
         runner.test_reactor = self.test_reactor
         tempdict.test_reactor = self.test_reactor
-        GLSettings.sessions.reactor = self.test_reactor
+        GLSessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
 
@@ -392,6 +398,7 @@ class TestGL(unittest.TestCase):
             f = files.serialize_memory_file(dummyFile)
 
             token.associate_file(dummyFile)
+            dummyFile['body'].close()
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
@@ -647,7 +654,7 @@ class TestHandler(TestGLWithPopulatedDB):
         self._handler.finish = mock_write
 
         # we need to reset settings.session to keep each test independent
-        GLSettings.sessions.clear()
+        GLSessions.clear()
 
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
@@ -711,7 +718,7 @@ class TestHandler(TestGLWithPopulatedDB):
         handler = self._handler(application, request, **kwargs)
 
         if role is not None:
-            session = authentication.GLSession(user_id, role, 'enabled')
+            session = GLSession(user_id, role, 'enabled')
             handler.request.headers['X-Session'] = session.id
 
         return handler

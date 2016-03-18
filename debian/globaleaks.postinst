@@ -68,6 +68,10 @@ gl-fix-permissions
 # restart apparmor service in order to load tor and globaleaks rules
 service apparmor restart
 
+# raise havege default water mark to 4096 bits
+sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
+service haveged restart
+
 # Restart tor so that it would use the new configuration and generate the hidden service
 service tor restart
 

@@ -5,7 +5,6 @@
 import json
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import send_exception_email
@@ -15,8 +14,8 @@ from globaleaks.utils.utility import log
 class ExceptionHandler(BaseHandler):
     """
     """
-    @transport_security_check("unauth")
-    @unauthenticated
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     def post(self):
         """
         """

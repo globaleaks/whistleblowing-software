@@ -18,7 +18,6 @@ from globaleaks import models
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated, get_tor2web_header
 from globaleaks.utils.token import TokenList
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
@@ -293,7 +292,7 @@ def db_create_whistleblower_tip(store, internaltip):
 
     receipt = unicode(generateRandomReceipt())
 
-    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
+    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.password_salt)
     wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)
@@ -434,8 +433,8 @@ class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
     """
-    @transport_security_check('whistleblower')
-    @unauthenticated
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.unauthenticated
     @defer.inlineCallbacks
     def put(self, token_id):
         """
@@ -448,7 +447,7 @@ class SubmissionInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
         submission = yield create_submission(token_id, request,
-                                             get_tor2web_header(self.request.headers),
+                                             self.check_tor2web(),
                                              self.request.language)
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.finish(submission)
