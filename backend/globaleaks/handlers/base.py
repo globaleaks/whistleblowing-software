@@ -674,6 +674,12 @@ class BaseStaticFileHandler(BaseHandler):
 
         self.root = "%s%s" % (os.path.abspath(path), os.path.sep)
 
+    def parse_url_path(self, url_path):
+        if os.path.sep != "/":
+            url_path = url_path.replace("/", os.path.sep)
+        return url_path
+
+    @BaseHandler.unauthenticated
     def get(self, path):
         if path == '':
             path = 'index.html'
@@ -691,11 +697,6 @@ class BaseStaticFileHandler(BaseHandler):
             self.set_header("Content-Type", mime_type)
 
         self.write_file(abspath)
-
-    def parse_url_path(self, url_path):
-        if os.path.sep != "/":
-            url_path = url_path.replace("/", os.path.sep)
-        return url_path
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
