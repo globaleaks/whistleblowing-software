@@ -35,6 +35,22 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
     return $scope.selected_tips.indexOf(id) !== -1;
   };
 
+  $scope.tip_export_all = function () {
+    export_tips($scope.selected_tips, $scope.session, $http);
+    var modalInstance = $uibModal.open({
+      templateUrl: 'views/partials/tip_operation_export_selected.html',
+      controller: TipBulkOperationsCtrl,
+      resolve: {
+        selected_tips: function () {
+          return $scope.selected_tips;
+        },
+        operation: function() {
+          return 'export';
+        }
+      }
+    });
+  };
+
   $scope.tip_delete_all = function () {
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_delete_selected.html',
@@ -66,8 +82,8 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]);
 
-TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
+TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$q', '$uibModalInstance', 'selected_tips', 'operation',
+                        function ($scope, $http, $route, $location, $q, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 
@@ -78,16 +94,29 @@ TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalIns
   $scope.ok = function () {
      $uibModalInstance.close();
 
-    if (['postpone', 'delete'].indexOf(operation) === -1) {
-      return;
+    switch (operation) {
+      case 'export':
+          export_tips(selected_tips, $scope.session, $http);
+          return;
+      case 'postpone':
+      case 'delete':
+          return $http({method: 'PUT', url: '/rtip/operations', data:{
+            'operation': $scope.operation,
+            'rtips': $scope.selected_tips
+          }}).success(function(data, status, headers, config){
+            $scope.selected_tips = [];
+            $route.reload();
+          });
+      default:
+          return;
     }
-
-    return $http({method: 'PUT', url: '/rtip/operations', data:{
-      'operation': $scope.operation,
-      'rtips': $scope.selected_tips
-    }}).success(function(data, status, headers, config){
-      $scope.selected_tips = [];
-      $route.reload();
-    });
   };
 }];
+
+function export_tips(selected_tips, session, $http) {
+  angular.forEach(selected_tips, function(tip) {
+             // Chain the series of http post's together
+             $http({method: 'POST', url: '/rtip/'+tip+'/export', 
+                data: session.id})
+  })
+}

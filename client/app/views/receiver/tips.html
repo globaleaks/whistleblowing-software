@@ -1,6 +1,7 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
-    <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" class="pull-left">
+
+    <span class="pull-left">
       <span id="tip-action-select-all"
             data-ng-if="selected_tips.length !== tips.length"
             data-ng-click="select_all()"
@@ -21,6 +22,17 @@
         <i class="glyphicon glyphicon-check"></i>
       </span>
 
+      <span id="tip-action-export-selected"
+          uib-popover="{{'Export selected submissions' | translate}}"
+          data-ng-click="tip_export_all()"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+        <i class="glyphicon glyphicon-save"></i>
+      </span>
+    </span>
+
+    <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" class="pull-left">
       <span id="tip-action-postpone-selected"
           data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
           data-ng-click="tip_postpone_all()"
@@ -62,7 +74,7 @@
     <table class="table table-condensed table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
       <thead>
         <tr>
-          <th data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission"></th>
+          <th></th>
           <th>
             <span>
               <i class="glyphicon glyphicon-barcode"></i>
@@ -174,7 +186,7 @@
       </thead>
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
-          <td data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
+          <td>
             <span class="btn btn-xs" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="glyphicon glyphicon-check"></i>
             </span>
