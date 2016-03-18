@@ -219,5 +219,3 @@ class TestTimingStats(helpers.TestHandler):
 
         self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
         self.assertEqual(splits[1], "")
-
-
