@@ -54,7 +54,7 @@ def init_db(store):
 
     node = models.Node()
     node.wizard_done = GLSettings.skip_wizard
-    node.receipt_salt = generateRandomSalt()
+    node.password_salt = generateRandomSalt()
 
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
@@ -181,6 +181,10 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy.nodename = node.name
 
+    GLSettings.memory_copy.basic_auth = node.basic_auth
+    GLSettings.memory_copy.basic_auth_username = node.basic_auth_username
+    GLSettings.memory_copy.basic_auth_password = node.basic_auth_password
+
     GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
     GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
     GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
@@ -210,7 +214,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.default_timezone = node.default_timezone
     GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
-    GLSettings.memory_copy.receipt_salt  = node.receipt_salt
+    GLSettings.memory_copy.password_salt  = node.password_salt
 
     GLSettings.memory_copy.simplified_login = node.simplified_login
 

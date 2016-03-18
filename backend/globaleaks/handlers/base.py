@@ -4,6 +4,7 @@ Implementation of BaseHandler, the Cyclone class RequestHandler postponeed with
 our needs.
 """
 
+import base64
 import collections
 import httplib
 import json
@@ -20,15 +21,16 @@ from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
-from cyclone import escape, httputil
+from cyclone import escape, httputil, web
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
+from globaleaks.digest import DigestAuthMixin
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_password
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
@@ -130,7 +132,7 @@ class GLHTTPConnection(HTTPConnection):
             self.transport.loseConnection()
 
 
-class BaseHandler(RequestHandler):
+class BaseHandler(DigestAuthMixin, RequestHandler):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
 
     filehandler = False
@@ -224,6 +226,24 @@ class BaseHandler(RequestHandler):
             return call_handler
 
         return wrapper
+
+    def basic_auth(self):
+        msg = None
+        if "Authorization" in self.request.headers:
+            try:
+                auth_type, data = self.request.headers["Authorization"].split()
+                usr, pwd = base64.b64decode(data).split(":", 1)
+                if auth_type != "Basic" or \
+                    usr != GLSettings.memory_copy.basic_auth_username or \
+                    hash_password(pwd, GLSettings.memory_copy.password_salt) != GLSettings.memory_copy.basic_auth_password:
+                    msg = "Authentication failed"
+            except AssertionError:
+                msg = "Authentication failed"
+        else:
+            msg = "Authentication required"
+
+        if msg is not None:
+            raise web.HTTPAuthenticationRequired(log_message=msg, auth_type="Basic", realm="")
 
     def set_default_headers(self):
         """

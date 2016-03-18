@@ -52,7 +52,7 @@ def login_whistleblower(store, receipt, using_tor2web):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
-    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.receipt_salt)
+    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.password_salt)
     wbtip = store.find(WhistleblowerTip,
                         WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 
