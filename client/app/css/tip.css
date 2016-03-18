@@ -61,3 +61,11 @@
   font-weight: bold;
   text-align: center;
 }
+
+#RecvSearchFilter {
+  margin-left: 5px;
+}
+
+#ExportFormContainer form {
+  display: inline-block; 
+}

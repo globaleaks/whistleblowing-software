@@ -36,16 +36,14 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 
   $scope.tip_export_all = function () {
-    export_tips($scope.selected_tips, $scope.session, $http);
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_export_selected.html',
-      controller: TipBulkOperationsCtrl,
+      controller: TipListExportCtrl,
       resolve: {
-        selected_tips: function () {
-          return $scope.selected_tips;
-        },
-        operation: function() {
-          return 'export';
+        selected_rtips: function () {
+          return $scope.tips.filter(function(rtip) {
+              return $scope.selected_tips.indexOf(rtip.id) > -1;
+          })
         }
       }
     });
@@ -82,8 +80,48 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]);
 
-TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$q', '$uibModalInstance', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $q, $uibModalInstance, selected_tips, operation) {
+TipListExportCtrl = ['$scope', '$http', '$route', '$location', '$filter', '$uibModalInstance', 'Authentication', 'selected_rtips',
+                        function ($scope, $http, $route, $location, $filter, $uibModalInstance, Authentication, selected_rtips) {
+  // DANGER this is not canonical usage DANGER
+  $scope.session = Authentication.session;
+  // DANGER
+
+  $scope.cancel = function () {
+    $uibModalInstance.close();
+  };
+
+  $scope.tips = selected_rtips;
+
+  $scope.export_urls = selected_rtips.map(function(tip) {
+    return "/rtip/" + tip.id + "/export";
+  });
+
+  $scope.ok = function () {
+    $uibModalInstance.close();
+    var forms = angular.element("#ExportFormContainer form button")
+    for (var i = 0; i < $scope.export_urls.length; i++) {
+       console.log("triggering click");
+       var b = angular.element(forms[i]).triggerHandler('click');
+    }
+
+   /*// Chain the series of http post's together
+     $http({
+          method: 'POST', url: url,
+          data: {'session': $scope.session.id},
+          headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+      }).then(function(data) {
+        console.log("Success!", url, data);
+      }, function(fail) {
+        console.log("failure!", url, data);
+      });
+   */
+
+  }
+
+}];
+
+TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'Authentication', 'selected_tips', 'operation', 
+                        function ($scope, $http, $route, $location, $uibModalInstance, Authentication, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 
@@ -95,9 +133,6 @@ TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$q', '$uibMo
      $uibModalInstance.close();
 
     switch (operation) {
-      case 'export':
-          export_tips(selected_tips, $scope.session, $http);
-          return;
       case 'postpone':
       case 'delete':
           return $http({method: 'PUT', url: '/rtip/operations', data:{
@@ -113,10 +148,3 @@ TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$q', '$uibMo
   };
 }];
 
-function export_tips(selected_tips, session, $http) {
-  angular.forEach(selected_tips, function(tip) {
-             // Chain the series of http post's together
-             $http({method: 'POST', url: '/rtip/'+tip+'/export', 
-                data: session.id})
-  })
-}

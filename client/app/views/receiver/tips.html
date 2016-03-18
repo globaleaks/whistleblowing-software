@@ -1,70 +1,70 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
-
     <span class="pull-left">
       <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length !== tips.length"
-            data-ng-click="select_all()"
-            uib-popover="{{'Select all' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        data-ng-if="selected_tips.length !== tips.length"
+        data-ng-click="select_all()"
+        uib-popover="{{'Select all' | translate}}"
+        popover-placement="top"
+        popover-trigger="mouseenter"
+        class="btn btn-default">
         <i class="glyphicon glyphicon glyphicon-unchecked"></i>
       </span>
 
       <span id="tip-action-select-all"
-            data-ng-if="selected_tips.length === tips.length"
-            data-ng-click="deselect_all()"
-            uib-popover="{{'Deselect all' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        data-ng-if="selected_tips.length === tips.length"
+        data-ng-click="deselect_all()"
+        uib-popover="{{'Deselect all' | translate}}"
+        popover-placement="top"
+        popover-trigger="mouseenter"
+        class="btn btn-default">
         <i class="glyphicon glyphicon-check"></i>
       </span>
 
       <span id="tip-action-export-selected"
-          uib-popover="{{'Export selected submissions' | translate}}"
-          data-ng-click="tip_export_all()"
-          popover-placement="top"
-          popover-trigger="mouseenter"
-          class="btn btn-default">
+        uib-popover="{{'Export tips' | translate}}"
+        data-ng-if="selected_tips.length"
+        data-ng-click="tip_export_all()"
+        popover-placement="top"
+        popover-trigger="mouseenter"
+        class="btn btn-default">
         <i class="glyphicon glyphicon-save"></i>
       </span>
-    </span>
 
-    <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" class="pull-left">
-      <span id="tip-action-postpone-selected"
+      <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
+        <span id="tip-action-postpone-selected"
           data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
           data-ng-click="tip_postpone_all()"
           uib-popover="{{'Postpone the expiration date' | translate}}"
           popover-placement="top"
           popover-trigger="mouseenter"
           class="btn btn-default">
-        <i class="glyphicon glyphicon-time"></i>
+          <i class="glyphicon glyphicon-time"></i>
+        </span>
+
+        <span id="tip-action-delete-selected"
+          data-ng-if="selected_tips.length && preferences.can_delete_submission"
+          data-ng-click="tip_delete_all()"
+          uib-popover="{{'Delete tips' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+          <span class="glyphicon glyphicon-trash"></span>
+        </span>
       </span>
 
-      <span id="tip-action-delete-selected"
-            data-ng-if="selected_tips.length && preferences.can_delete_submission"
-            data-ng-click="tip_delete_all()"
-            uib-popover="{{'Delete tips' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
-        <span class="glyphicon glyphicon-trash"></span>
-      </span>
-    </span>
-    <span>
       <span id="tip-action-reload"
-            data-ng-click="reload()"
-            uib-popover="{{'Refresh page' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        data-ng-click="reload()"
+        uib-popover="{{'Refresh page' | translate}}"
+        popover-placement="top"
+        popover-trigger="mouseenter"
+        class="btn btn-default">
         <span class="glyphicon glyphicon-refresh"></span>
       </span>
-    </span>
-    <span class="pull-left form-group">
-      <input id="search-filter" type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}" data-ng-model="search">
+
+      <span id="RecvSearchFilter" class="form-group pull-right">
+        <input id="search-filter" type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}" data-ng-model="search">
+      </span>
     </span>
   </div>
 </div>
@@ -95,8 +95,8 @@
               <i class="glyphicon glyphicon-tag"></i>
               <span data-translate>Label</span>
               <span class="btn btn-xs" data-ng-show="sortKey == 'label'">
-                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
             </span>
           </th>
@@ -205,13 +205,13 @@
           <td>{{::tip.message_counter}}</td>
           <td>
             <span data-ng-if="tip.tor2web"
-                  class="label label-warning"
-                  uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-                  data-translate>HTTPS</span>
+              class="label label-warning"
+              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+              data-translate>HTTPS</span>
             <span data-ng-if="!tip.tor2web"
-                  class="label label-success"
-                  uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-                  data-translate>Tor</span>
+              class="label label-success"
+              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+              data-translate>Tor</span>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
