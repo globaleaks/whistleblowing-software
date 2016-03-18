@@ -15,7 +15,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.rest import errors
@@ -158,8 +157,8 @@ class FileAdd(BaseHandler):
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-    @transport_security_check('whistleblower')
-    @authenticated('whistleblower')
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self, *args):
         """
@@ -212,8 +211,8 @@ class FileInstance(BaseHandler):
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
 
-    @transport_security_check('whistleblower')
-    @unauthenticated
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def post(self, token_id):
         """
@@ -252,8 +251,8 @@ def download_file(store, user_id, rtip_id, file_id):
 class Download(BaseHandler):
     handler_exec_time_threshold = 3600
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)

@@ -94,7 +94,7 @@ def randbits(bits):
 
 
 def choice(population):
-    return population[randint(len(population)-1)]
+    return population[randint(len(population) - 1)]
 
 
 def shuffle(x):

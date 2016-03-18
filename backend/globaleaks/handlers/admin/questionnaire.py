@@ -11,7 +11,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.node import serialize_step, serialize_questionnaire
@@ -170,8 +169,8 @@ def delete_questionnaire(store, questionnaire_id):
 
 
 class QuestionnairesCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -186,8 +185,8 @@ class QuestionnairesCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -210,8 +209,8 @@ class QuestionnairesCollection(BaseHandler):
 
 
 class QuestionnaireInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, questionnaire_id):
         """
@@ -226,8 +225,8 @@ class QuestionnaireInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, questionnaire_id):
         """
@@ -249,8 +248,8 @@ class QuestionnaireInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, questionnaire_id):
         """

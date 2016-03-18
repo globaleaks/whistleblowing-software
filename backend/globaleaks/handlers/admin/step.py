@@ -10,7 +10,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import serialize_step
@@ -118,8 +117,8 @@ class StepCollection(BaseHandler):
 
     /admin/steps
     """
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -146,8 +145,8 @@ class StepInstance(BaseHandler):
 
     /admin/step
     """
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, step_id):
         """
@@ -165,8 +164,8 @@ class StepInstance(BaseHandler):
         self.finish(response)
 
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, step_id):
         """
@@ -189,8 +188,8 @@ class StepInstance(BaseHandler):
         self.finish(response)
 
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, step_id):
         """

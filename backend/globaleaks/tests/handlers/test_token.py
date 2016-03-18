@@ -8,7 +8,7 @@ from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.jobs import delivery_sched
-from globaleaks.handlers import authentication, wbtip, token
+from globaleaks.handlers import wbtip, token
 from globaleaks.handlers.admin.context import get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.rest import errors

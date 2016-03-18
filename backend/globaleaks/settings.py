@@ -22,7 +22,6 @@ from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.tempdict import TempDict
 
 this_directory = os.path.dirname(__file__)
 
@@ -105,9 +104,7 @@ class GLSettingsClass(object):
 
         self.default_password = 'globaleaks'
 
-        # some singleton classes: sessions and some event queues
         self.authentication_lifetime = 3600
-        self.sessions = TempDict(timeout=self.authentication_lifetime)
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
 
@@ -145,7 +142,7 @@ class GLSettingsClass(object):
             'maximum_textsize': 4096,
             'maximum_filesize': 30,
             'allow_iframes_inclusion': False,
-            'tor2web_access': {
+            'accept_tor2web_access': {
                 'admin': True,
                 'whistleblower': False,
                 'custodian': False,

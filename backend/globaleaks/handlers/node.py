@@ -11,7 +11,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.orm import transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
@@ -323,8 +322,8 @@ def get_public_receiver_list(store, language):
 
 
 class NodeInstance(BaseHandler):
-    @transport_security_check("unauth")
-    @unauthenticated
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self):
         """
@@ -340,8 +339,8 @@ class NodeInstance(BaseHandler):
 
 
 class AhmiaDescriptionHandler(BaseHandler):
-    @transport_security_check("unauth")
-    @unauthenticated
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self):
         """
@@ -361,8 +360,8 @@ class AhmiaDescriptionHandler(BaseHandler):
 
 
 class ContextsCollection(BaseHandler):
-    @transport_security_check("unauth")
-    @unauthenticated
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self):
         """
@@ -374,8 +373,8 @@ class ContextsCollection(BaseHandler):
 
 
 class ReceiversCollection(BaseHandler):
-    @transport_security_check("unauth")
-    @unauthenticated
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self):
         """

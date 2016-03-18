@@ -7,7 +7,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
@@ -45,8 +44,8 @@ def delete_shorturl(store, shorturl_id):
 
 
 class ShortURLCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -57,8 +56,8 @@ class ShortURLCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -74,8 +73,8 @@ class ShortURLCollection(BaseHandler):
 
 class ShortURLInstance(BaseHandler):
     @inlineCallbacks
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     def delete(self, shorturl_id):
         """
         Delete the specified shorturl.

@@ -10,7 +10,6 @@ from storm.expr import And, In
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.user import db_user_update_user
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
@@ -129,8 +128,8 @@ class ReceiverInstance(BaseHandler):
         - pgp key
     """
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self):
         """
@@ -145,8 +144,8 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self):
         """
@@ -172,8 +171,8 @@ class TipsCollection(BaseHandler):
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self):
         """
@@ -192,8 +191,8 @@ class TipsOperations(BaseHandler):
     This interface receive some operation (postpone or delete) and a list of
     tips to apply.
     """
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self):
         """
