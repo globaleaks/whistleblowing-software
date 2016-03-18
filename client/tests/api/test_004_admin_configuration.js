@@ -197,23 +197,80 @@ describe('GET /admin/node', function () {
 
         node = JSON.parse(JSON.stringify(res.body));
 
-        /* adding various keys needed next POST */
-        node['allow_unencrypted'] = true;
-        node['languages_enabled'] = ['en', 'it'];
-        node['enable_proof_of_work'] = false;
-        node['tor2web_whistleblower'] = true;
-
         done();
       });
   })
 })
 
 describe('PUT /admin/node', function () {
-  it('responds 202 on PUT /admin/node (allow_unencrypted, valid configuration)', function (done) {
+  it('responds 202 on PUT /admin/node', function (done) {
+    node['allow_unencrypted'] = true;
+    node['languages_enabled'] = ['en', 'it'];
+    node['enable_proof_of_work'] = false;
+    node['tor2web_whistleblower'] = true;
+    node['basic_auth'] = true;
+    node['basic_auth_username'] = 'mario.rossi';
+    node['basic_auth_password'] = '12345';
+
     app
       .put('/admin/node')
       .send(node)
       .set('X-Session', authentication['session_id'])
+      .expect(202)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
+
+        done();
+      });
+  })
+})
+
+describe('GET /admin/node (basic auth enabled, invalid credentials', function () {
+  it('responds 200 on GET /admin/node', function (done) {
+    app
+      .get('/admin/node')
+      .set('X-Session', authentication['session_id'])
+      .expect(401)
+      .end(function (err, res) {
+        done();
+      });
+  })
+})
+
+describe('GET /admin/node (basic auth enabled, valid credentials)', function () {
+  it('responds 200 on GET /admin/node', function (done) {
+    app
+      .get('/admin/node')
+      .set('X-Session', authentication['session_id'])
+      .auth('mario.rossi', '12345')
+      .expect(200)
+      .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
+
+        node = JSON.parse(JSON.stringify(res.body));
+
+        done();
+      });
+  })
+})
+
+describe('PUT /admin/node (disable basic auth)', function () {
+  it('responds 202 on PUT /admin/node', function (done) {
+    node['basic_auth'] = false;
+
+    app
+      .put('/admin/node')
+      .send(node)
+      .set('X-Session', authentication['session_id'])
+      .auth('mario.rossi', '12345')
       .expect(202)
       .end(function (err, res) {
         if (err) {
