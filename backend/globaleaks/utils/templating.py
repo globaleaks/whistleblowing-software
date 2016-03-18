@@ -201,7 +201,7 @@ class TipKeyword(Keyword):
     def TipT2WURL(self):
         public_site = self.data['node']['public_site']
 
-        if not GLSettings.memory_copy.tor2web_access['receiver']:
+        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
             retstr = 'DISABLED'
         elif len(public_site):
             retstr =  '%s/#/status/%s' % (public_site, self.data['tip']['id'])

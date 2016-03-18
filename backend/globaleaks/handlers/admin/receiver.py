@@ -10,7 +10,6 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.user import db_create_receiver
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
@@ -109,8 +108,8 @@ def update_receiver(store, receiver_id, request, language):
 
 
 class ReceiversCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -127,8 +126,8 @@ class ReceiversCollection(BaseHandler):
 
 
 class ReceiverInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, receiver_id):
         """
@@ -143,8 +142,8 @@ class ReceiverInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, receiver_id):
         """

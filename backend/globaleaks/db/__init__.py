@@ -185,7 +185,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
     GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
 
-    GLSettings.memory_copy.tor2web_access = {
+    GLSettings.memory_copy.accept_tor2web_access = {
         'admin': node.tor2web_admin,
         'custodian': node.tor2web_custodian,
         'whistleblower': node.tor2web_whistleblower,

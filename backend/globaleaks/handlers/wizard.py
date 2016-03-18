@@ -5,7 +5,6 @@
 from globaleaks import models, security
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.node import db_update_node
@@ -56,8 +55,8 @@ def wizard(store, request, language):
 class FirstSetup(BaseHandler):
     """
     """
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """

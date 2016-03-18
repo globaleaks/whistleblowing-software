@@ -12,7 +12,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.node import serialize_field
 from globaleaks.rest import errors, requests
@@ -414,8 +413,8 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
 
 class FieldTemplatesCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -430,8 +429,8 @@ class FieldTemplatesCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -448,8 +447,8 @@ class FieldTemplatesCollection(BaseHandler):
 
 
 class FieldTemplateInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -467,8 +466,8 @@ class FieldTemplateInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, field_id):
         """
@@ -492,8 +491,8 @@ class FieldTemplateInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, field_id):
         """
@@ -515,8 +514,8 @@ class FieldCollection(BaseHandler):
 
     /admin/fields
     """
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -545,8 +544,8 @@ class FieldInstance(BaseHandler):
 
     /admin/fields
     """
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -567,8 +566,8 @@ class FieldInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, field_id):
         """
@@ -593,8 +592,8 @@ class FieldInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, field_id):
         """

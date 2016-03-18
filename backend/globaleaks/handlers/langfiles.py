@@ -8,8 +8,7 @@ from __future__ import with_statement
 import os
 
 from globaleaks.settings import GLSettings
-from globaleaks.handlers.base import BaseStaticFileHandler
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.security import directory_traversal_check
 
 
@@ -26,8 +25,8 @@ class LanguageFileHandler(BaseStaticFileHandler):
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(GLSettings.static_path_l10n, '%s.json' % lang))
 
-    @transport_security_check('unauth')
-    @unauthenticated
+    @BaseHandler.transport_security_check('unauth')
+    @BaseHandler.unauthenticated
     def get(self, lang):
         self.set_header('Content-Type', 'application/json')
 

@@ -13,8 +13,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, \
-    authenticated
 from globaleaks.models import Stats, Anomalies
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
@@ -177,15 +175,15 @@ def delete_anomaly_history(store):
 
 
 class AnomalyCollection(BaseHandler):
-    @transport_security_check("admin")
-    @authenticated("admin")
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def get(self):
         anomaly_history = yield get_anomaly_history(limit=20)
         self.finish(anomaly_history)
 
-    @transport_security_check("admin")
-    @authenticated("admin")
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def delete(self):
         log.info("Received anomalies history delete command")
@@ -199,8 +197,8 @@ class StatsCollection(BaseHandler):
     amount of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
-    @transport_security_check("admin")
-    @authenticated("admin")
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def get(self, week_delta):
         week_delta = int(week_delta)
@@ -214,8 +212,8 @@ class StatsCollection(BaseHandler):
 
         self.finish(ret)
 
-    @transport_security_check("admin")
-    @authenticated("admin")
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def delete(self):
         log.info("Received statistic history delete command")
@@ -238,8 +236,8 @@ class RecentEventsCollection(BaseHandler):
 
         return eventmap
 
-    @transport_security_check("admin")
-    @authenticated("admin")
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
     def get(self, kind):
         templist = []
 

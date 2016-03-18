@@ -9,7 +9,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.node import serialize_step
@@ -231,8 +230,8 @@ def delete_context(store, context_id):
 
 
 class ContextsCollection(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -247,8 +246,8 @@ class ContextsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -271,8 +270,8 @@ class ContextsCollection(BaseHandler):
 
 
 class ContextInstance(BaseHandler):
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, context_id):
         """
@@ -287,8 +286,8 @@ class ContextInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, context_id):
         """
@@ -310,8 +309,8 @@ class ContextInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @transport_security_check('admin')
-    @authenticated('admin')
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, context_id):
         """

@@ -14,7 +14,6 @@ from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
-from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
@@ -69,8 +68,8 @@ class ExportStreamer(object):
 class ExportHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
-    @transport_security_check('receiver')
-    @authenticated('receiver')
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, rtip_id):
         tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)

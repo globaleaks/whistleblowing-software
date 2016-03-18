@@ -30,12 +30,30 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
 
 GLUploads = {}
+GLSessions = TempDict(timeout=GLSettings.authentication_lifetime)
+
+
+class GLSession(object):
+    def __init__(self, user_id, user_role, user_status):
+        self.id = generateRandomKey(42)
+        self.user_id = user_id
+        self.user_role = user_role
+        self.user_status = user_status
+
+        GLSessions.set(self.id, self)
+
+    def getTime(self):
+        return self.expireCall.getTime()
+
+    def __repr__(self):
+        return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
 def validate_host(host_key):
@@ -137,6 +155,75 @@ class BaseHandler(RequestHandler):
             self.request.request_type = 'export'
 
         self.request.language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
+
+    @staticmethod
+    def authenticated(role):
+        """
+        Decorator for authenticated sessions.
+        If the user is not authenticated, return a http 412 error.
+        """
+        def wrapper(method_handler):
+            def call_handler(cls, *args, **kwargs):
+                """
+                If not yet auth, is redirected
+                If is logged with the right account, is accepted
+                If is logged with the wrong account, is rejected with a special message
+                """
+                if not cls.current_user:
+                    raise errors.NotAuthenticated
+
+                if role == '*' or role == cls.current_user.user_role:
+                    log.debug("Authentication OK (%s)" % cls.current_user.user_role)
+                    return method_handler(cls, *args, **kwargs)
+
+                raise errors.InvalidAuthentication
+
+            return call_handler
+
+        return wrapper
+
+
+    @staticmethod
+    def unauthenticated(method_handler):
+        """
+        Decorator for unauthenticated requests.
+        If the user is logged in an authenticated sessions it does refresh the session.
+        """
+        def call_handler(cls, *args, **kwargs):
+            return method_handler(cls, *args, **kwargs)
+
+        return call_handler
+
+    @staticmethod
+    def transport_security_check(role):
+        """
+        Decorator for enforcing the required transport security: Tor/HTTPS
+        """
+        def wrapper(method_handler):
+            def call_handler(cls, *args, **kwargs):
+                """
+                GLSettings contain the copy of the latest admin configuration, this
+                enhance performance instead of searching in te DB at every handler
+                connection.
+                """
+                tor2web_roles = ['whistleblower', 'receiver', 'admin', 'custodian', 'unauth']
+
+                using_tor2web = cls.check_tor2web()
+
+                if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[role]:
+                    log.err("Denied request on Tor2web for role %s and resource '%s'" %
+                            (role, cls.request.uri))
+                    raise errors.TorNetworkRequired
+
+                if using_tor2web:
+                    log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
+                              (role, cls.request.uri))
+
+                return method_handler(cls, *args, **kwargs)
+
+            return call_handler
+
+        return wrapper
 
     def set_default_headers(self):
         """
@@ -435,7 +522,14 @@ class BaseHandler(RequestHandler):
         if session_id is None:
             return None
 
-        return GLSettings.sessions.get(session_id)
+        return GLSessions.get(session_id)
+
+
+    def check_tor2web(self):
+        """
+        @return: True or False content string of X-Tor2Web header is ignored
+        """
+        return self.request.headers.get('X-Tor2Web', False)
 
     def get_file_upload(self):
         try:

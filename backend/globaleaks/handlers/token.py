@@ -7,7 +7,6 @@
 # subject in general to rate limit.
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import unauthenticated
 from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -17,7 +16,7 @@ class TokenCreate(BaseHandler):
     """
     This class implement the handler for requesting a token.
     """
-    @unauthenticated
+    @BaseHandler.unauthenticated
     def post(self):
         """
         Request: None
@@ -48,7 +47,7 @@ class TokenInstance(BaseHandler):
     """
     This class impleement the handler for updating a token (e.g.: solving a captcha)
     """
-    @unauthenticated
+    @BaseHandler.unauthenticated
     def put(self, token_id):
         """
         Parameter: token_id

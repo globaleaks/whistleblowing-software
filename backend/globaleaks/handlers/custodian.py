@@ -7,7 +7,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
 from globaleaks.rest import requests
@@ -69,8 +68,8 @@ class IdentityAccessRequestInstance(BaseHandler):
     """
     This handler allow custodians to manage an identity access request by a receiver
     """
-    @transport_security_check('custodian')
-    @authenticated('custodian')
+    @BaseHandler.transport_security_check('custodian')
+    @BaseHandler.authenticated('custodian')
     @inlineCallbacks
     def get(self, identityaccessrequest_id):
         """
@@ -85,8 +84,8 @@ class IdentityAccessRequestInstance(BaseHandler):
         self.finish(identityaccessrequest)
 
 
-    @transport_security_check('custodian')
-    @authenticated('custodian')
+    @BaseHandler.transport_security_check('custodian')
+    @BaseHandler.authenticated('custodian')
     @inlineCallbacks
     def put(self, identityaccessrequest_id):
         """
@@ -112,8 +111,8 @@ class IdentityAccessRequestsCollection(BaseHandler):
     GET /identityrequests
     """
 
-    @transport_security_check('custodian')
-    @authenticated('custodian')
+    @BaseHandler.transport_security_check('custodian')
+    @BaseHandler.authenticated('custodian')
     @inlineCallbacks
     def get(self):
         """
