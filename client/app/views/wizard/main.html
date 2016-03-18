@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <a id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="step=step+1">
+      <button id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="step=step+1">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
-      </a>
+      </button>
     </div>
   </div>
   <div id="WizardStep2" data-ng-show="step == 2">
@@ -173,14 +173,14 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <a id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="step=step-1">
+      <button id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="step=step-1">
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
-      </a>
-      <a id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public) || (admin_password !== admin_check_password)">
+      </button>
+      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!admin.node.allow_unencrypted && !receiver.pgp_key_public) || (admin_password !== admin_check_password)">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
-      </a>
+      </button>
     </div>
   </div>
   <div id="WizardStep3" data-ng-show="step == 3">
