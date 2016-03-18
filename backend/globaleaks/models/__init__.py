@@ -437,7 +437,7 @@ class Node(Model):
     public_site = Unicode(validator=shorttext_v, default=u'')
     hidden_service = Unicode(validator=shorttext_v, default=u'')
 
-    password_salt = Unicode(validator=shorttext_v)
+    receipt_salt = Unicode(validator=shorttext_v)
 
     languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
     default_language = Unicode(validator=shorttext_v, default=u'en')

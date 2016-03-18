@@ -164,7 +164,7 @@ CREATE TABLE node (
     default_language TEXT NOT NULL,
     default_timezone INTEGER,
     name TEXT NOT NULL,
-    password_salt TEXT NOT NULL,
+    receipt_salt TEXT NOT NULL,
     public_site TEXT NOT NULL,
     maximum_namesize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,
