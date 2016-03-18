@@ -15,7 +15,7 @@
         <span data-translate>Enable insecure configuration without PGP encryption</span>
       </label>
       <div data-ng-if="admin.node.allow_unencrypted">
-        <span class="label label-danger" data-translate>Danger!</span>
+        <span class="label label-danger" data-translate>Danger</span>
         <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
         <span data-translate>This happens whenever encryption is unavailable.</span>
       </div>
@@ -27,7 +27,7 @@
        <span data-translate>Disable the warning messages that are shown when encryption is not available</span>
       </label>
       <div data-ng-if="admin.node.disable_encryption_warnings">
-        <span class="label label-danger" data-translate>Danger!</span>
+        <span class="label label-danger" data-translate>Danger</span>
         <span data-translate>This setting affects the security of the users and must not be used in production.</span>
       </div>
     </div>
@@ -38,7 +38,7 @@
         <span data-translate>Allow other websites to include the platform inside iframes</span>
       </label>
       <div data-ng-if="admin.node.allow_iframes_inclusion">
-        <span class="label label-danger" data-translate>Danger!</span>
+        <span class="label label-danger" data-translate>Danger</span>
         <span data-translate>By enabling this option, you are allowing other websites to include the platform inside iframes; this could potentially be used to endanger the platform or intercept users' communications</span>
       </div>
     </div>
@@ -223,12 +223,16 @@ protected.</div>
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.basic_auth" type="checkbox" />
-        <span data-translate>Protect platform access via username/password authentication</span>
+        <span data-translate>Use HTTP Basic Authentication to limit platform access</span>
         <div class="well well-lg" data-ng-if="admin.node.basic_auth">
+          <div data-translate>This can prevent unauthorized access to users who do not know the username and password.</div>
+          <br />
           <label data-translate>Username</label>
           <input class="form-control" name="username" data-ng-model="admin.node.basic_auth_username" type="text" autocomplete="off" />
           <label data-translate>Password</label>
-          <input class="form-control" name="password" data-ng-model="admin.node.basic_auth_password" type="password" autocomplete="off" />
+          <input class="form-control" name="password" data-ng-model="admin.node.basic_auth_password" type="text" autocomplete="off" />
+          <span class="label label-danger" data-translate>Danger</span>
+          <span data-translate>This feature is not intended for hostile environments. The input password is stored in plaintext on the server.</span>
         </div>
       </label>
     </div>
@@ -239,7 +243,7 @@ protected.</div>
         <span data-translate>Enable experimental features</span>
       </label>
       <div data-ng-if="admin.node.enable_experimental_features">
-        <span class="label label-danger" data-translate>Warning!</span>
+        <span class="label label-danger" data-translate>Warning</span>
         <span data-translate>The experimental features may be less stable or even not work at all; enable this option at your own risk. Support for these features may vary and they may be removed in the future.</span>
       </div>
     </div>
