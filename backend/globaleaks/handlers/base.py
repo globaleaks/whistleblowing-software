@@ -32,7 +32,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_password
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
+from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep, randint
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -170,6 +170,9 @@ class BaseHandler(RequestHandler):
                 If is logged with the right account, is accepted
                 If is logged with the wrong account, is rejected with a special message
                 """
+                if GLSettings.memory_copy.basic_auth:
+                    cls.basic_auth()
+
                 if not cls.current_user:
                     raise errors.NotAuthenticated
 
@@ -183,7 +186,6 @@ class BaseHandler(RequestHandler):
 
         return wrapper
 
-
     @staticmethod
     def unauthenticated(method_handler):
         """
@@ -191,6 +193,9 @@ class BaseHandler(RequestHandler):
         If the user is logged in an authenticated sessions it does refresh the session.
         """
         def call_handler(cls, *args, **kwargs):
+            if GLSettings.memory_copy.basic_auth:
+                cls.basic_auth()
+
             return method_handler(cls, *args, **kwargs)
 
         return call_handler
@@ -234,7 +239,7 @@ class BaseHandler(RequestHandler):
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
                     usr != GLSettings.memory_copy.basic_auth_username or \
-                    hash_password(pwd, GLSettings.memory_copy.password_salt) != GLSettings.memory_copy.basic_auth_password:
+                    pwd != GLSettings.memory_copy.basic_auth_password:
                     msg = "Authentication failed"
             except AssertionError:
                 msg = "Authentication failed"

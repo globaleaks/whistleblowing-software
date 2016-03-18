@@ -131,7 +131,7 @@ def db_update_node(store, request, wizard_done, language):
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
         node.basic_auth = True
         node.basic_auth_username = request['basic_auth_username']
-        node.basic_auth_password = hash_password(request['basic_auth_password'], GLSettings.memory_copy.password_salt)
+        node.basic_auth_password = request['basic_auth_password']
     else:
         node.basic_auth = False
 
