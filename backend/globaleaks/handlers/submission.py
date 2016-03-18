@@ -292,7 +292,7 @@ def db_create_whistleblower_tip(store, internaltip):
 
     receipt = unicode(generateRandomReceipt())
 
-    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.password_salt)
+    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)

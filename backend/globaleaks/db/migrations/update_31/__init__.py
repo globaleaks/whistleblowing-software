@@ -85,11 +85,6 @@ class MigrationScript(MigrationBase):
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-            if v.name == 'password_salt':
-                # argument renamed as it no more apply only to receipts
-                new_node.password_salt = old_node.receipt_salt
-                continue
-
             if v.name == 'basic_auth':
                 new_node.basic_auth = False
                 continue
