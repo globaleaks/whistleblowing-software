@@ -26,7 +26,6 @@ from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
 
-from globaleaks.digest import DigestAuthMixin
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -132,7 +131,7 @@ class GLHTTPConnection(HTTPConnection):
             self.transport.loseConnection()
 
 
-class BaseHandler(DigestAuthMixin, RequestHandler):
+class BaseHandler(RequestHandler):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
 
     filehandler = False
