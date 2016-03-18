@@ -11,12 +11,12 @@
       <div data-ng-if="::!simplifiedLogin">
         <div class="form-group">
           <label data-translate>Username</label>
-          <input class="form-control" name="username" data-ng-model="loginUsername" type="text" autocomplete="off">
+          <input class="form-control" name="username" data-ng-model="loginUsername" type="text" autocomplete="off" required />
         </div>
 
         <div class="form-group">
           <label data-translate>Password</label>
-          <input class="form-control" name="password" data-ng-model="loginPassword" type="password" autocomplete="off">
+          <input class="form-control" name="password" data-ng-model="loginPassword" type="password" autocomplete="off" required />
         </div>
 
         <button class="btn btn-success" data-ng-disabled="loginInProgress || loginForm.$invalid" data-ng-click="login(loginUsername, loginPassword)" type="submit">
