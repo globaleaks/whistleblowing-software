@@ -82,7 +82,7 @@ def db_admin_serialize_node(store, language):
         'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low,
         'basic_auth': node.basic_auth,
         'basic_auth_username': node.basic_auth_username,
-        'basic_auth_password': ''
+        'basic_auth_password': node.basic_auth_password
     }
 
     return get_localized_values(ret_dict, node, models.Node.localized_keys, language)
