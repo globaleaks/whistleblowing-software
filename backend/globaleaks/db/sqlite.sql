@@ -164,7 +164,7 @@ CREATE TABLE node (
     default_language TEXT NOT NULL,
     default_timezone INTEGER,
     name TEXT NOT NULL,
-    receipt_salt TEXT NOT NULL,
+    password_salt TEXT NOT NULL,
     public_site TEXT NOT NULL,
     maximum_namesize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,
@@ -212,6 +212,9 @@ CREATE TABLE node (
     threshold_free_disk_percentage_high INTEGER NOT NULL,
     threshold_free_disk_percentage_medium INTEGER NOT NULL,
     threshold_free_disk_percentage_low INTEGER NOT NULL,
+    basic_auth INTEGER NOT NULL,
+    basic_auth_username TEXT NOT NULL,
+    basic_auth_password TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
