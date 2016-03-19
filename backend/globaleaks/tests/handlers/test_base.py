@@ -14,9 +14,6 @@ FUTURE = 100
 
 
 class BaseHandlerMock(base.BaseHandler):
-    def __init__(self):
-        pass
-
     @base.BaseHandler.authenticated('admin')
     def get_authenticated(self):
         self.set_status(200)
@@ -38,7 +35,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.test_reactor.pump([1] * FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get_unauthenticated()
-        date2 = GLSettings.sessions.get(session.id).getTime()
+        date2 = base.GLSessions.get(session.id).getTime()
         self.assertEqual(date1 + FUTURE, date2)
 
 
@@ -52,7 +49,7 @@ class TestSessionUpdateOnAuthRequests(helpers.TestHandlerWithPopulatedDB):
         self.test_reactor.pump([1] * FUTURE)
         handler = self.request({}, headers={'X-Session': session.id})
         yield handler.get_authenticated()
-        date2 = GLSettings.sessions.get(session.id).getTime()
+        date2 = base.GLSessions.get(session.id).getTime()
         self.assertEqual(date1 + FUTURE, date2)
 
 
