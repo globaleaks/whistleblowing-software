@@ -35,7 +35,7 @@
     "grunt-usemin": "3.1.1",
     "mocha": "2.4.5",
     "node-gettext": "0.2.14",
-    "protractor": "3.1.1",
+    "protractor": "3.2.1",
     "selenium-webdriver": "2.53.1",
     "should": "8.2.2",
     "superagent": "1.8.1",
