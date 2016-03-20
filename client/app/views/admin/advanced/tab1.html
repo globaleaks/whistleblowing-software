@@ -64,23 +64,16 @@
       </label>
     </div>
 
-    <!--
-
-    Commented out as the feature it is not implemented/merged in the backend.
-    The code on the GLClient is complete and putted here in order to allow user to translate the feature texts on transifex
-
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.indexing" type="checkbox" />
         <span data-translate>Enable search engines indexing</span>
       </label>
-      <div>
+      <div data-ng-if="admin.node.indexing">
         <span class="label label-info" data-translate>Enabled</span>
         <span data-translate>Search engine spiders will be allowed to index the application.</span>
       </div>
     </div>
-
-    -->
 
     <div class="form-group">
       <label>
@@ -223,7 +216,7 @@ protected.</div>
     <div class="form-group">
       <label>
         <input data-ng-model="admin.node.basic_auth" type="checkbox" />
-        <span data-translate>Use HTTP Basic Authentication to limit platform access</span>
+        <span data-translate>Enable HTTP Basic Authentication to limit platform access</span>
       </label>
       <div class="well well-lg" data-ng-if="admin.node.basic_auth">
         <label data-translate>Username</label>

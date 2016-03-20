@@ -211,7 +211,6 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   };
 
   $scope.update_static_files();
-
 }]);
 
 GLClient.controller('AdminMailCtrl', ['$scope', function($scope){

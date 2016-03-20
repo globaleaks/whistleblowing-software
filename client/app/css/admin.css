@@ -4,11 +4,6 @@
   margin-bottom: 25px;
 }
 
-.actionButton {
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
 .configItem {
   background-color: #FCFCFC;
   box-shadow: 2px 1px 5px #888888;
@@ -127,41 +122,6 @@
 
 .fieldOption {
   margin-bottom: 10px;
-}
-
-.imageUpload .profile {
-  position: relative;
-  width: 160px;
-}
-
-.imageUpload .profile .uploadfile {
-}
-
-.imageUpload .changePicture {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 5px;
-  text-align: center;
-  background-color: #0088cc;
-  z-index: 2;
-  color: #FFF;
-}
-
-.imageUpload .profile .close {
-  position: absolute;
-  top: 0;
-  right: 6px;
-  color: #fff;
-  text-shadow: 0 1px 0 #000;
-  opacity: 0.8;
-}
-
-.imageUpload .profile .fileselector input {
-  position: relative;
-  opacity: 0;
-  height: 100%;
-  z-index: 100;
 }
 
 .uploadProgress .progress {

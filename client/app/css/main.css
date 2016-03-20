@@ -148,7 +148,7 @@ th {
   color: #000;
   padding: 15px;
   background-color: #FFF;
-  border-radius: 7px;
+  border-radius: 5px;
 }
 
 #LogoBox {
@@ -159,7 +159,7 @@ th {
   margin: 0 auto;
   width: 200px;
   height: auto;
-  border-radius: 7px;
+  border-radius: 5px;
 }
 
 /** Submission details **/
@@ -193,12 +193,47 @@ th {
 
 /* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */
 
-.img-thumbnail {
+.imageUpload, .imageReceiver, .imageContext {
   position: relative;
   width: 160px;
+  height: 160px;
   min-width: 160px;
   min-height: 160px;
+  border: 1px solid #DDD;
+  border-radius: 5px;
   z-index: 0;
+}
+
+.imageUpload {
+  border: 1px solid #DDD;
+}
+
+.imageUpload .changePicture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  z-index: 2;
+}
+
+.imageUpload .deletePicture {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.imageUpload .imageUploadThumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+}
+
+.imageUpload, .imageUploadThumbnail {
+  z-index: 1;
 }
 
 #titleboxdefault {
@@ -215,7 +250,7 @@ th {
   padding: 15px;
   margin: 0 0 15px;
   border: 1px solid #ddd;
-  border-radius: 4px 4px 0 0;
+  border-radius: 5px 5px 0 0;
   box-shadow: none;
 }
 

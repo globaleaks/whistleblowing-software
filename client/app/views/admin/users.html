@@ -8,7 +8,7 @@
             <div class="editorTitle">
               <span data-translate>Add new user</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" data-ng-if="!node.simplified_login">
               <label data-translate>Username</label>
               <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
               <div class="text-red" data-ng-show="newUser.username.$error.required">
@@ -101,9 +101,7 @@
                   </button>
                   <button class="actionButton btn btn-xs btn-danger"
                     data-ng-show="user.deletable"
-                    data-ng-click="userDeleteDialog(user); $event.stopPropagation();"
-                    popover-placement="right"
-                    popover-trigger="mouseenter">
+                    data-ng-click="userDeleteDialog(user); $event.stopPropagation();">
                     <span data-translate>Delete</span>
                   </button>
                   <span data-ng-if="admin.users.length > 1">
@@ -120,23 +118,11 @@
             <div class="editor" data-ng-if="editing">
               <hr />
               <div class="row">
-                <div class="col-md-12 uploadfile"
-                     flow-init="{target: 'admin/staticfiles/' + user.id, headers: get_auth_headers()}"
-                     flow-files-submitted="$flow.upload()"
-                     flow-file-success="updateUserImgUrl()"
-                     flow-name="flowObj">
-                  <div class="imageUpload" data-ng-controller="AdminImgUploadCtrl">
-                    <div class="profile" data-ng-mouseenter="openUploader()" data-ng-mouseleave="closeUploader()">
-                      <div flow-btn>
-                        <span class="col-md-12 changePicture">
-                          <span data-translate>Change picture</span>
-                        </span>
-                        <img data-ng-src="{{userImgUrl}}" class="img-thumbnail baseimage">
-                      </div>
-                    </div>
-                    <div data-ng-if="file_upload_error" class="text-red"><span data-translate>Error:</span> <span>{{file_upload_error}}</span></div>
-                  </div>
+                <div class="col-md-12">
                   <div class="form-group">
+                    <div image-upload image-upload-model="user" image-upload-model-attr="picture" image-upload-url="{{'admin/users/' + user.id + '/img'}}"></div>
+                  </div>
+                  <div class="form-group" data-ng-if="!node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
                     <div class="text-red" data-ng-show="editUser.name.$error.required">

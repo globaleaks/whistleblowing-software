@@ -36,6 +36,12 @@ GLClient.controller('SubmissionCtrl',
     );
   };
 
+  $scope.selected_context = undefined;
+
+  $scope.selectContext = function(context) {
+    $scope.selected_context = context;
+  }
+
   if ($scope.receivers_ids) {
     try {
       $scope.receivers_ids = JSON.parse($scope.receivers_ids);
@@ -292,11 +298,14 @@ GLClient.controller('SubmissionCtrl',
         $scope.receiversOrderPredicate = 'presentation_order';
       }
 
-      if (!$scope.submission.context.allow_recipients_selection) {
-        $scope.skip_first_step = true;
-        $scope.selection = 0;
-      } else {
-        $scope.skip_first_step = false;
+      // --------------------------------------------------------------------------
+      // fix steps numbering adding context and receiver selection steps if neeeded
+      $scope.receiver_selection_step = false;
+      $scope.receiver_selection_step_index = -1;
+      $scope.selection = 0;
+
+      if ($scope.submission.context.allow_recipients_selection) {
+        $scope.receiver_selection_step = true;
         $scope.selection = -1;
       }
     });

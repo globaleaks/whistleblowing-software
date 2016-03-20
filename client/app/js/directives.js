@@ -15,7 +15,7 @@ angular.module('GLDirectives', []).
       element.fadeOut(fadeout_delay);
     };
 }).
-  directive('inputPrefix', [function() {
+  directive('inputPrefix', function() {
     return {
       require: 'ngModel',
       link: function(scope, elem, attrs, controller) {
@@ -42,8 +42,8 @@ angular.module('GLDirectives', []).
         controller.$parsers.push(inputPrefix);
       }
     };
-}]).
-  directive('keycodevalidator', [function() {
+}).
+  directive('keycodevalidator', function() {
     return {
       require: 'ngModel',
       link: function(scope, elem, attrs, ngModel) {
@@ -71,8 +71,8 @@ angular.module('GLDirectives', []).
         });
       }
     };
-}]).
- directive("fileread", [function () {
+}).
+ directive("fileread", function () {
    return {
      scope: {
        fileread: "="
@@ -93,7 +93,7 @@ angular.module('GLDirectives', []).
        });
      }
    };
-}]).
+}).
 directive('zxPasswordMeter', function() {
   return {
     scope: {
@@ -135,4 +135,16 @@ directive('zxPasswordMeter', function() {
       });
     }
   }
+}).
+directive('imageUpload', function () {
+  return {
+    restrict: 'A',
+    scope: {
+      imageUploadModel: '=',
+      imageUploadModelAttr: '@',
+      imageUploadUrl: '@'
+    },
+    templateUrl: 'views/partials/image_upload.html',
+    controller: 'ImageUploadCtrl'
+  };
 });

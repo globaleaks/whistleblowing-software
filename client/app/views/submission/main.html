@@ -1,15 +1,67 @@
-<div id="ContextSelectorBox" data-ng-show="context_id == undefined && selectable_contexts.length > 1" class="form-inline">
-  <label id="ContextSelectorLabel">{{node.context_selector_label}}</label>
-  <select id="ContextSelectorPick" class="form-control" data-ng-options="context as context.name for context in selectable_contexts" data-ng-model="selected_context"></select>
+<div data-ng-if="!submission.context" data-ng-include="'views/submission/context_selection.html'"></div>
+
+<div data-ng-if="submission.context">
+  <form id="submissionForm" name="submissionForm" novalidate>
+    <div class="tabbable tabs-below">
+      <ul id="SubmissionTabsNavigationBox" class="nav nav-tabs">
+        <li data-ng-if="receiver_selection_step" data-ng-class="{active: selection === receiver_selection_step_index}">
+          <a id="receiver-selection-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep(receiver_selection_step_index)">
+            1 - <span data-translate>Recipient selection</span>
+          </a>
+        </li>
+        <li data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-class="{active: selection === $index}" data-ng-if="stepIsTriggered(step)">
+          <a id="step-{{$index}}-link" class="StepTitle" href="javascript:void(0)" data-ng-click="goToStep($index)">
+            <span>{{$index + (receiver_selection_step ? 2 : 1)}} - {{::step.label}}</span>
+          </a>
+        </li>
+      </ul>
+
+      <div id="SubmissionTabsContentBox" class="tab-content">
+        <div id="step-receiver-selection" data-ng-if="receiver_selection_step">
+          <div data-ng-if="selection === receiver_selection_step_index" data-ng-include="'views/submission/receiver_selection.html'"></div>
+        </div>
+        <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + $index" data-ng-if="stepIsTriggered(step)">
+          <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
+            <div id="StepTitle" data-ng-if="::!submission.context.questionnaire.show_steps_navigation_bar">{{::step.label}}</div>
+            <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
+            <div class="row">
+              <div class="col-md-7">
+                <div data-ng-include="'views/submission/form.html'"></div>
+              </div>
+              <div class="col-md-offset-1 col-md-4">
+                <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div id="StepsNavBar" class="pull-left">
+        <ul class="pager">
+          <li class="SubmissionNavButton previous" data-ng-if="hasPreviousStep()">
+            <a id="PreviousStepButton" data-ng-click="decrementStep()">
+              <i class="glyphicon glyphicon-circle-arrow-left"></i>
+              <span data-translate>previous step</span>
+            </a>
+          </li>
+          <li class="SubmissionNavButton next" data-ng-if="hasNextStep()">
+            <a id="NextStepButton" data-ng-click="incrementStep()">
+              <span data-translate>next step</span>
+              <i class="glyphicon glyphicon-circle-arrow-right"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div id="SubmitBox" class="pager pull-left" style="margin-left: 20px" data-ng-show="!hasNextStep()">
+        <button id="SubmitButton" class="btn btn-success" data-ng-click="completeSubmission()" data-ng-disabled="submission.isDisabled() || submissionForm.$pristine || submissionForm.$invalid || isUploading(uploads)" type="submit">
+          <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+          <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Submit</span>
+          <span data-ng-show="submission.wait">({{submission.countdown}})</span>
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
-
-<div id="ContextDescription">{{submission.context.description}}</div>
-
-<form id="submissionForm" name="submissionForm" data-ng-if="submission.context.questionnaire" data-ng-switch="submission.context.questionnaire.layout" novalidate>
-  <div data-ng-switch-when="vertical">
-    <div data-ng-include="'views/submission/main_vertical.html'"></div>
-  </div>
-  <div data-ng-switch-when="horizontal">
-    <div data-ng-include="'views/submission/main_horizontal.html'"></div>
-  </div>
-</form>

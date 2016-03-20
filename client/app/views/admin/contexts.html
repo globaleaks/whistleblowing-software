@@ -60,9 +60,7 @@
                   </button>
                   <button
                     class="actionButton actionButtonContextDelete btn btn-xs btn-danger"
-                    data-ng-click="contextDeleteDialog(context); $event.stopPropagation();"
-                    popover-placement="right"
-                    popover-trigger="mouseenter">
+                    data-ng-click="contextDeleteDialog(context); $event.stopPropagation();">
                     <span data-translate>Delete</span>
                   </button>
                   <span data-ng-if="admin.contexts.length > 1">
@@ -80,6 +78,9 @@
               <hr />
               <div class="row">
                 <div class="col-md-6">
+                  <div class="form-group">
+                    <div image-upload image-upload-model="context" image-upload-model-attr="picture" image-upload-url="{{'admin/contexts/' + context.id + '/img'}}"></div>
+                  </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
                     <input name="name" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="context.name" type="text" required>
@@ -157,8 +158,8 @@
                           <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
                           <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" />
                         </div>
-                        <div class="form-group" data-ng-show="context.show_receivers">
-                          <input data-ng-model="context.show_small_cards" type="checkbox" />
+                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
+                          <input data-ng-model="context.show_small_receiver_cards" type="checkbox" />
                           <label data-translate>Show small recipient cards on submission interface</label>
                         </div>
                         <div class="form-group">
