@@ -1,4 +1,0 @@
-include requirements.txt
-include debian/*
-graft staticdata
-graft client
