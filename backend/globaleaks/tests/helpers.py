@@ -33,7 +33,7 @@ from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field, db_create_field
 from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
-from globaleaks.handlers.admin.user import create_admin, create_custodian
+from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
 from globaleaks.handlers.submission import create_submission, serialize_usertip, \
     serialize_internalfile, serialize_receiverfile
 from globaleaks.rest.apicache import GLApiCache
@@ -498,17 +498,15 @@ class TestGLWithPopulatedDB(TestGL):
         self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
 
     def context_assertions(self, source_c, created_c):
-        self.assertEqual(source_c['show_small_cards'], created_c['show_small_cards'])
+        self.assertEqual(source_c['show_small_receiver_cards'], created_c['show_small_receiver_cards'])
 
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
-        self.dummyAdmin = yield create_admin(copy.deepcopy(self.dummyAdminUser), 'en')
-        self.dummyAdminUser['id'] = self.dummyAdmin['id']
+        self.dummyAdminUser = yield create_admin_user(copy.deepcopy(self.dummyAdminUser), 'en')
 
         # fill_data/create_custodian
-        self.dummyCustodian = yield create_custodian(copy.deepcopy(self.dummyCustodianUser), 'en')
-        self.dummyCustodianUser['id'] = self.dummyCustodian['id']
+        self.dummyCustodianUser = yield create_custodian_user(copy.deepcopy(self.dummyCustodianUser), 'en')
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
@@ -785,7 +783,7 @@ class MockDict():
             'select_all_receivers': True,
             'tip_timetolive': 20,
             'maximum_selectable_receivers': 0,
-            'show_small_cards': False,
+            'show_small_receiver_cards': False,
             'show_context': True,
             'show_recipients_details': True,
             'allow_recipients_selection': False,
@@ -835,6 +833,7 @@ class MockDict():
             'can_delete_submission': False,
             'can_grant_permissions': False,
             'ahmia': False,
+            'allow_indexing': False,
             'allow_unencrypted': True,
             'disable_encryption_warnings': False,
             'allow_iframes_inclusion': False,
@@ -862,8 +861,10 @@ class MockDict():
             'header_title_receiptpage': u'',
             'header_title_tippage': u'',
             'landing_page': u'homepage',
-            'context_selector_label': u'',
+            'context_selector_type': u'list',
+            'contexts_clarification': u'',
             'show_contexts_in_alphabetical_order': False,
+            'show_small_context_cards': False,
             'submission_minimum_delay': 123,
             'submission_maximum_ttl': 1111,
             'widget_comments_title': '',
@@ -874,5 +875,8 @@ class MockDict():
             'threshold_free_disk_megabytes_low': 1000,
             'threshold_free_disk_percentage_high': 3,
             'threshold_free_disk_percentage_medium': 5,
-            'threshold_free_disk_percentage_low': 10
+            'threshold_free_disk_percentage_low': 10,
+            'basic_auth': False,
+            'basic_auth_username': '',
+            'basic_auth_password': ''
         }

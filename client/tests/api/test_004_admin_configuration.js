@@ -130,7 +130,7 @@ var context = {
   show_context: true,
   show_recipients_details: true,
   allow_recipients_selection: true,
-  show_small_cards: false,
+  show_small_receiver_cards: false,
   enable_comments: true,
   enable_messages: true,
   enable_two_way_comments: true,
