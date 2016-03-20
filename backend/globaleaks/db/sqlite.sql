@@ -212,6 +212,9 @@ CREATE TABLE node (
     threshold_free_disk_percentage_high INTEGER NOT NULL,
     threshold_free_disk_percentage_medium INTEGER NOT NULL,
     threshold_free_disk_percentage_low INTEGER NOT NULL,
+    basic_auth INTEGER NOT NULL,
+    basic_auth_username TEXT NOT NULL,
+    basic_auth_password TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 

@@ -226,7 +226,10 @@ AdminNodeDesc = {
     'threshold_free_disk_megabytes_low': int,
     'threshold_free_disk_percentage_high': int,
     'threshold_free_disk_percentage_medium': int,
-    'threshold_free_disk_percentage_low': int
+    'threshold_free_disk_percentage_low': int,
+    'basic_auth': bool,
+    'basic_auth_username': unicode,
+    'basic_auth_password': unicode
 }
 
 AdminNotificationDesc = {
