@@ -30,7 +30,7 @@
     "grunt-inline-alt": "0.3.10",
     "grunt-manifest": "0.4.4",
     "grunt-protractor-coverage": "0.2.17",
-    "grunt-protractor-runner": "3.0.0",
+    "grunt-protractor-runner": "3.1.0",
     "grunt-string-replace": "1.2.1",
     "grunt-usemin": "3.1.1",
     "mocha": "2.4.5",
