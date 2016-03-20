@@ -23,7 +23,9 @@ CREATE TABLE user (
     pgp_key_fingerprint TEXT,
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
+    img_id TEXT,
     UNIQUE (username),
+    FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -59,7 +61,7 @@ CREATE TABLE context (
     tip_timetolive INTEGER NOT NULL,
     select_all_receivers INTEGER NOT NULL,
     maximum_selectable_receivers INTEGER,
-    show_small_cards INTEGER NOT NULL,
+    show_small_receiver_cards INTEGER NOT NULL,
     show_context INTEGER NOT NULL,
     show_recipients_details INTEGER NOT NULL,
     allow_recipients_selection INTEGER NOT NULL,
@@ -72,7 +74,9 @@ CREATE TABLE context (
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
     questionnaire_id TEXT,
-    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id),
+    img_id TEXT,
+    FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,
+    FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -156,7 +160,7 @@ CREATE TABLE node (
     footer BLOB NOT NULL,
     security_awareness_title BLOB NOT NULL,
     security_awareness_text BLOB NOT NULL,
-    context_selector_label BLOB NOT NULL,
+    contexts_clarification BLOB NOT NULL,
     whistleblowing_question BLOB NOT NULL,
     whistleblowing_button BLOB NOT NULL,
     hidden_service TEXT NOT NULL,
@@ -180,6 +184,7 @@ CREATE TABLE node (
     can_delete_submission INTEGER NOT NULL,
     can_grant_permissions INTEGER NOT NULL,
     ahmia INTEGER NOT NULL,
+    allow_indexing INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
     allow_unencrypted INTEGER NOT NULL,
     disable_encryption_warnings INTEGER NOT NULL,
@@ -206,15 +211,19 @@ CREATE TABLE node (
     widget_files_title BLOB NOT NULL,
     landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
+    show_small_context_cards INTEGER NOT NULL,
     threshold_free_disk_megabytes_high INTEGER NOT NULL,
     threshold_free_disk_megabytes_medium INTEGER NOT NULL,
     threshold_free_disk_megabytes_low INTEGER NOT NULL,
     threshold_free_disk_percentage_high INTEGER NOT NULL,
     threshold_free_disk_percentage_medium INTEGER NOT NULL,
     threshold_free_disk_percentage_low INTEGER NOT NULL,
+    context_selector_type TEXT NOT NULL,
+    logo_id TEXT,
     basic_auth INTEGER NOT NULL,
     basic_auth_username TEXT NOT NULL,
     basic_auth_password TEXT NOT NULL,
+    FOREIGN KEY (logo_id) REFERENCES img(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -285,12 +294,6 @@ CREATE TABLE mail (
     subject TEXT NOT NULL,
     body TEXT NOT NULL,
     processing_attempts INTEGER NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE custodian (
-    id TEXT NOT NULL,
-    FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -441,7 +444,6 @@ CREATE TABLE questionnaire (
     id TEXT NOT NULL,
     key TEXT NOT NULL,
     name TEXT NOT NULL,
-    layout TEXT NOT NULL CHECK (layout IN ('vertical', 'horizontal')) DEFAULT 'horizontal',
     show_steps_navigation_bar INTEGER NOT NULL,
     steps_navigation_requires_completion INTEGER NOT NULL,
     enable_whistleblower_identity INTEGER NOT NULL,
@@ -511,6 +513,12 @@ CREATE TABLE shorturl (
     shorturl TEXT NOT NULL,
     longurl TEXT NOT NULL,
     UNIQUE (shorturl),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE img (
+    id TEXT NOT NULL,
+    data TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 

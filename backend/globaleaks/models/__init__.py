@@ -191,6 +191,8 @@ class User(Model):
     pgp_key_status = Unicode(default=u'disabled') # 'disabled', 'enabled'
     # END of PGP key fields
 
+    img_id = Unicode()
+
     unicode_keys = ['username', 'password', 'salt', 'role',
                     'state', 'language', 'mail_address',
                     'name']
@@ -206,7 +208,7 @@ class Context(Model):
     """
     This model keeps track of contexts settings.
     """
-    show_small_cards = Bool(default=False)
+    show_small_receiver_cards = Bool(default=False)
     show_context = Bool(default=True)
     show_recipients_details = Bool(default=False)
     allow_recipients_selection = Bool(default=False)
@@ -234,6 +236,8 @@ class Context(Model):
 
     questionnaire_id = Unicode()
 
+    img_id = Unicode()
+
     unicode_keys = ['questionnaire_id']
 
     localized_keys = ['name', 'description', 'recipients_clarification', 'status_page_message']
@@ -247,7 +251,7 @@ class Context(Model):
 
     bool_keys = [
       'select_all_receivers',
-      'show_small_cards',
+      'show_small_receiver_cards',
       'show_context',
       'show_recipients_details',
       'show_receivers_in_alphabetical_order',
@@ -448,7 +452,6 @@ class Node(Model):
     footer = JSON(validator=longlocal_v, default=empty_localization)
     security_awareness_title = JSON(validator=longlocal_v, default=empty_localization)
     security_awareness_text = JSON(validator=longlocal_v, default=empty_localization)
-    context_selector_label = JSON(validator=longlocal_v, default=empty_localization)
 
     # Advanced settings
     maximum_namesize = Int(default=128)
@@ -471,6 +474,8 @@ class Node(Model):
     can_grant_permissions = Bool(default=False)
 
     ahmia = Bool(default=False)
+    allow_indexing = Bool(default=False)
+
     wizard_done = Bool(default=False)
 
     disable_submissions = Bool(default=False)
@@ -505,6 +510,8 @@ class Node(Model):
 
     landing_page = Unicode(default=u'homepage')
 
+    contexts_clarification = JSON(validator=longlocal_v, default=empty_localization)
+    show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 
     threshold_free_disk_megabytes_high = Int(default=200)
@@ -515,12 +522,17 @@ class Node(Model):
     threshold_free_disk_percentage_medium = Int(default=5)
     threshold_free_disk_percentage_low = Int(default=10)
 
+    context_selector_type = Unicode(validator=shorttext_v, default=u'list')
+
+    logo_id = Unicode()
+
     unicode_keys = [
         'name',
         'public_site',
         'hidden_service',
         'default_language',
-        'landing_page'
+        'landing_page',
+        'context_selector_type'
     ]
 
     int_keys = [
@@ -541,11 +553,12 @@ class Node(Model):
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
                  'tor2web_custodian', 'tor2web_unauth',
                  'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
-                 'ahmia',
+                 'ahmia', 'allow_indexing',
                  'allow_unencrypted',
                  'disable_encryption_warnings',
                  'simplified_login',
                  'show_contexts_in_alphabetical_order',
+                 'show_small_context_cards',
                  'allow_iframes_inclusion',
                  'disable_submissions',
                  'disable_privacy_badge', 'disable_security_awareness_badge',
@@ -572,7 +585,7 @@ class Node(Model):
         'header_title_submissionpage',
         'header_title_receiptpage',
         'header_title_tippage',
-        'context_selector_label',
+        'contexts_clarification',
         'widget_comments_title',
         'widget_messages_title',
         'widget_files_title'
@@ -728,15 +741,6 @@ class Mail(Model):
     unicode_keys = ['address', 'subject', 'body']
 
 
-class Custodian(Model):
-    """
-    This model keeps track of custodians settings.
-    """
-    # currently custodians do not need special settings but
-    # but the model is anyhow needed in order to allow the grouping
-    pass
-
-
 class Receiver(Model):
     """
     This model keeps track of receivers settings.
@@ -886,14 +890,13 @@ class Step(Model):
 class Questionnaire(Model):
     key = Unicode(default=u'')
     name = Unicode()
-    layout = Unicode(default=u'horizontal')
     show_steps_navigation_bar = Bool(default=False)
     steps_navigation_requires_completion = Bool(default=False)
     enable_whistleblower_identity = Bool(default=False)
 
     editable = Bool(default=True)
 
-    unicode_keys = ['name', 'key', 'layout']
+    unicode_keys = ['name', 'key']
 
     bool_keys = [
       'editable',
@@ -979,6 +982,18 @@ class ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
 
+class Img(Model):
+    """
+    Class used for storing PNG pictures of context/users
+    """
+    data = Unicode()
+
+
+Node.logo = Reference(Node.logo_id, Img.id)
+Context.picture = Reference(Context.img_id, Img.id)
+User.picture = Reference(User.img_id, Img.id)
+
+
 Field.fieldgroup = Reference(Field.fieldgroup_id, Field.id)
 Field.step = Reference(Field.step_id, Step.id)
 Field.template = Reference(Field.template_id, Field.id)
@@ -1023,7 +1038,6 @@ Questionnaire.steps = ReferenceSet(Questionnaire.id, Step.questionnaire_id)
 
 Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
 
-Custodian.user = Reference(Custodian.id, User.id)
 Receiver.user = Reference(Receiver.id, User.id)
 
 Receiver.internaltips = ReferenceSet(
@@ -1141,7 +1155,7 @@ Receiver.contexts = ReferenceSet(
 
 model_list = [
     Node,
-    User, Custodian, Receiver,
+    User, Receiver,
     Context, ReceiverContext,
     Questionnaire, Step, Field, FieldOption, FieldAttr,
     FieldAnswer, FieldAnswerGroup,
