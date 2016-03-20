@@ -296,7 +296,6 @@ do_stop()
     if [ "${NETWORK_SANDBOXING}" -eq "1" ]; then
         network_sandboxing_stop
     fi
-
 }
 
 do_restart()
