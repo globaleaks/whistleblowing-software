@@ -274,7 +274,8 @@ class BaseHandler(RequestHandler):
         self.set_header("Content-Security-Policy", "referrer no-referrer")
 
         # to avoid Robots spidering, indexing, caching
-        self.set_header("X-Robots-Tag", "noindex")
+        if not GLSettings.memory_copy.allow_indexing:
+            self.set_header("X-Robots-Tag", "noindex")
 
         # to mitigate clickjaking attacks on iframes allowing only same origin
         # same origin is needed in order to include svg and other html <object>
@@ -581,12 +582,13 @@ class BaseHandler(RequestHandler):
                 if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
                     return None
 
-            uploaded_file = {}
-            uploaded_file['filename'] = self.request.files['file'][0]['filename']
-            uploaded_file['content_type'] = self.request.files['file'][0]['content_type']
-            uploaded_file['body_len'] = total_file_size
-            uploaded_file['body_filepath'] = f.filepath
-            uploaded_file['body'] = f
+            uploaded_file = {
+                'filename': self.request.files['file'][0]['filename'],
+                'content_type': self.request.files['file'][0]['content_type'],
+                'body_len': total_file_size,
+                'body_filepath': f.filepath,
+                'body': f
+            }
 
             upload_time = time.time() - f.creation_date
 

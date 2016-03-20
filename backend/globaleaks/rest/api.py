@@ -97,10 +97,13 @@ spec = [
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),
+    (r'/admin/node/img', admin_staticfiles.NodeLogoInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
+    (r'/admin/users/' + uuid_regexp  + r'/img', admin_staticfiles.UserImgInstance),
     (r'/admin/contexts', admin_context.ContextsCollection),
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
+    (r'/admin/contexts/' + uuid_regexp  + r'/img', admin_staticfiles.ContextImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
@@ -128,7 +131,7 @@ spec = [
 
     ## Special Files Handlers##
     (r'/(favicon.ico)', base.BaseStaticFileHandler),
-    (r'/(robots.txt)', base.BaseStaticFileHandler),
+    (r'/robots.txt', node.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/css/styles.css', css.CSSFileHandler),
