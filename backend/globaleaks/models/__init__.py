@@ -12,6 +12,7 @@ from .properties import MetaModel, DateTime
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
 from globaleaks.orm import transact
+from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.utils.validator import shorttext_v, longtext_v, \
@@ -428,6 +429,10 @@ class Node(Model):
     version_db = Unicode(default=unicode(DATABASE_VERSION))
 
     name = Unicode(validator=shorttext_v, default=u'')
+
+    basic_auth = Bool(default=False)
+    basic_auth_username = Unicode(default=u'')
+    basic_auth_password = Unicode(default=u'')
 
     public_site = Unicode(validator=shorttext_v, default=u'')
     hidden_service = Unicode(validator=shorttext_v, default=u'')

@@ -4,6 +4,7 @@ Implementation of BaseHandler, the Cyclone class RequestHandler postponeed with
 our needs.
 """
 
+import base64
 import collections
 import httplib
 import json
@@ -20,7 +21,7 @@ from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
-from cyclone import escape, httputil
+from cyclone import escape, httputil, web
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
@@ -28,10 +29,10 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, R
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_password
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep
+from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep, randint
 
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -169,6 +170,9 @@ class BaseHandler(RequestHandler):
                 If is logged with the right account, is accepted
                 If is logged with the wrong account, is rejected with a special message
                 """
+                if GLSettings.memory_copy.basic_auth:
+                    cls.basic_auth()
+
                 if not cls.current_user:
                     raise errors.NotAuthenticated
 
@@ -182,7 +186,6 @@ class BaseHandler(RequestHandler):
 
         return wrapper
 
-
     @staticmethod
     def unauthenticated(method_handler):
         """
@@ -190,6 +193,9 @@ class BaseHandler(RequestHandler):
         If the user is logged in an authenticated sessions it does refresh the session.
         """
         def call_handler(cls, *args, **kwargs):
+            if GLSettings.memory_copy.basic_auth:
+                cls.basic_auth()
+
             return method_handler(cls, *args, **kwargs)
 
         return call_handler
@@ -224,6 +230,24 @@ class BaseHandler(RequestHandler):
             return call_handler
 
         return wrapper
+
+    def basic_auth(self):
+        msg = None
+        if "Authorization" in self.request.headers:
+            try:
+                auth_type, data = self.request.headers["Authorization"].split()
+                usr, pwd = base64.b64decode(data).split(":", 1)
+                if auth_type != "Basic" or \
+                    usr != GLSettings.memory_copy.basic_auth_username or \
+                    pwd != GLSettings.memory_copy.basic_auth_password:
+                    msg = "Authentication failed"
+            except AssertionError:
+                msg = "Authentication failed"
+        else:
+            msg = "Authentication required"
+
+        if msg is not None:
+            raise web.HTTPAuthenticationRequired(log_message=msg, auth_type="Basic", realm="")
 
     def set_default_headers(self):
         """
