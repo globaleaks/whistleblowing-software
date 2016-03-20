@@ -625,7 +625,7 @@ angular.module('GLServices', ['ngResource']).
           context.show_receivers_in_alphabetical_order = true;
           context.select_all_receivers = false;
           context.maximum_selectable_receivers = 0;
-          context.show_small_cards = false;
+          context.show_small_receiver_cards = false;
           context.enable_comments = true;
           context.enable_messages = false;
           context.enable_two_way_comments = true;
@@ -645,7 +645,6 @@ angular.module('GLServices', ['ngResource']).
           questionnaire.name = '';
           questionnaire.show_steps_navigation_bar = true;
           questionnaire.steps_navigation_requires_completion = true;
-          questionnaire.layout = 'horizontal';
           questionnaire.steps = [];
           questionnaire.editable = true;
           return questionnaire;
@@ -783,43 +782,11 @@ angular.module('GLServices', ['ngResource']).
           return user;
         };
 
-        self.new_receiver = function () {
-          var receiver = new AdminReceiverResource();
-          receiver.id = '';
-          receiver.username = '';
-          receiver.role = 'receiver';
-          receiver.state = 'enable';
-          receiver.deletable = 'true';
-          receiver.configuration = 'default';
-          receiver.password = 'globaleaks';
-          receiver.old_password = '';
-          receiver.password_change_needed = true;
-          receiver.state = 'enabled';
-          receiver.contexts = [];
-          receiver.name = '';
-          receiver.description = '';
-          receiver.mail_address = '';
-          receiver.can_delete_submission = false;
-          receiver.can_postpone_expiration = false;
-          receiver.tip_notification = true;
-          receiver.pgp_key_info = '';
-          receiver.pgp_key_fingerprint = '';
-          receiver.pgp_key_remove = false;
-          receiver.pgp_key_public = '';
-          receiver.pgp_key_expiration = '';
-          receiver.pgp_key_status = 'ignored';
-          receiver.presentation_order = 0;
-          receiver.language = 'en';
-          receiver.timezone = 0;
-          return receiver;
-        };
-
         self.new_shorturl = function () {
           return new AdminShorturlResource();
         };
 
         fn(this);
-
       });
     };
 }]).

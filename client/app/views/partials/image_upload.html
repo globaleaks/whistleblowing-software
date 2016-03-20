@@ -1,0 +1,14 @@
+<div class="imageUpload"
+    flow-init="{target: imageUploadUrl, headers: get_auth_headers()}"
+    flow-files-submitted="$flow.upload()"
+    flow-name="imageUploadObj.flow" flow-btn>
+  <button class="changePicture actionButton btn btn-xs btn-primary" data-translate>Change picture</button>
+  <img data-ng-src="{{imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnail" />
+  <img data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnail" />
+  <button class="deletePicture actionButton btn btn-xs btn-danger"
+      data-ng-show="imageUploadModel[imageUploadModelAttr] || imageUploadObj.flow.files.length > 0"
+      data-ng-click="deletePicture(); $event.stopPropagation();">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+  <div data-ng-if="file_upload_error" class="text-red"><span data-translate>Error:</span> <span>{{file_upload_error}}</span></div>
+</div>

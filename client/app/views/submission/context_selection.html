@@ -1,0 +1,28 @@
+<div data-ng-switch="node.context_selector_type">
+  <div data-ng-switch-when="list">
+    <div id="ContextSelectorBox" class="row">
+      <div id="ContextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
+      <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-12" data-ng-click="selectContext(context)">
+        <div class="contextListElem">
+          <span class="contextListElemTitle">{{::context.name}}</span><span data-ng-if="::context.description">: <span class="contextListElemDescription">{{::context.description}}</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-ng-switch-when="cards">
+    <div id="ContextSelectionBox" class="contextCards row">
+      <div id="ContextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
+      <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" data-ng-class="{'col-md-6': !node.show_small_context_cards, 'col-md-3': node.show_small_context_cards}" data-ng-click="selectContext(context)">
+        <div class="contextCard">
+          <div class="contextCardTitle">{{::context.name}}</div>
+          <div class="contextCardContent row">
+            <div class="contextCardImg" data-ng-class="{'col-md-3': !node.small_context_cards, 'col-md-12': node.show_small_context_cards}">
+              <img class="imageContext" data-ng-src="{{::imgDataUri(context.picture)}}">
+            </div>
+            <div data-ng-if="!node.show_small_context_cards" class="contextCardDescription col-md-7">{{::context.description}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

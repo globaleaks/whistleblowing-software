@@ -62,6 +62,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return Math.random() * 1000000 + 1000000;
     };
 
+    $scope.imgDataUri = function(data) {
+      if (data === '') {
+        data = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=';
+      }
+
+      return 'data:image/png;base64,' + data;
+    }
+
     $scope.isWizard = function () {
       var path = $location.path();
       return path === '/wizard';
@@ -249,8 +257,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.init = function () {
       var deferred = $q.defer();
 
-      $scope.app_logo = 's/logo.png?' + $scope.randomFluff();
-      $scope.app_stylesheet = "css/styles.css?" + $scope.randomFluff();
+      $scope.app_logo = 's/logo.png#' + $scope.randomFluff();
+      $scope.app_stylesheet = "css/styles.css#" + $scope.randomFluff();
 
       Node.get(function(node, getResponseHeaders) {
         $rootScope.node = node;

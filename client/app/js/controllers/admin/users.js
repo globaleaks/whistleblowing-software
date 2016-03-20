@@ -50,23 +50,8 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
 
     $scope.timezones = CONSTANTS.timezones;
 
-    $scope.isSelected = function (context) {
-      return $scope.user.contexts.indexOf(context.id) !== -1;
-    };
-
-    $scope.toggle = function (context) {
-      var idx = $scope.user.contexts.indexOf(context.id);
-      if (idx === -1) {
-        $scope.user.contexts.push(context.id);
-      } else {
-        $scope.user.contexts.splice(idx, 1);
-      }
-      $scope.editUser.$dirty = true;
-      $scope.editUser.$pristine = false;
-    };
-
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = "s/" + $scope.user.id + ".png?" + $scope.randomFluff();
+      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.randomFluff();
     };
 
     $scope.updateUserImgUrl();
@@ -79,7 +64,7 @@ GLClient.controller('AdminUserAddCtrl', ['$scope',
     $scope.add_user = function() {
       var user = new $scope.admin.new_user();
 
-      user.username = $scope.new_user.username;
+      user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : '';
       user.role = $scope.new_user.role;
       user.name = $scope.new_user.name;
       user.mail_address = $scope.new_user.email;

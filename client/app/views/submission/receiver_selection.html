@@ -1,68 +1,21 @@
 <div id="SubmissionStepReceiver" class="receiverCards">
-  <div id="StepTitle" data-ng-if="::submission.context.layout=='horirzontal' && !submission.context.show_steps_navigation_bar" data-translate>Recipient selection</div>
+  <div id="StepTitle" data-ng-if="::!submission.context.show_steps_navigation_bar" data-translate>Recipient selection</div>
   <div id="StepsDescription">{{submission.context.recipients_clarification}}</div>
   <div data-ng-if="submission.context.maximum_selectable_receivers !== 0 && !submission.context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
     <div><span data-translate>Maximum number of selectable recipients:</span> {{::submission.context.maximum_selectable_receivers}}</div>
     <div><span data-translate>Recipients selected:</span> {{submission.count_selected_receivers()}}</div>
   </div>
-  <div id="ReceiverSelectionBoxBig" data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" data-ng-if="!submission.context.show_small_cards">
-    <div id="receiver-{{$index}}" class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}" data-ng-click="switch_selection(receiver)">
-      <div class="row receiverCardTitle">
-        <div class="col-md-10">
-          <label>
-            <span data-ng-if="receiver.configuration !== 'unselectable' && receiver.pgp_key_status === 'enabled'">
-              <i class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </span>
-            <span data-ng-if="receiver.configuration !== 'unselectable' && receiver.pgp_key_status === 'disabled'">
-              <i class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipent has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </span>
-            <span data-ng-if="receiver.configuration === 'unselectable'">
-              <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </span>
-            <span>&nbsp;{{::receiver.name}}</span>
-          </label>
-        </div>
-        <div class="col-md-1" data-ng-if="receiver.pgp_key_status === 'enabled' || node.allow_unencrypted">
-          <div data-ng-if="submission.receivers_selected[receiver.id]">
-            <div data-ng-if="receiver.configuration === 'default'">
-              <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this receiver' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </div>
-            <div data-ng-if="receiver.configuration === 'forcefully_selected'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipent cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </div>
-          </div>
-          <div data-ng-if="!submission.receivers_selected[receiver.id]">
-            <div data-ng-if="receiver.configuration === 'default'">
-              <i class="glyphicon glyphicon-unchecked" uib-popover="{{'Select this receiver' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </div>
-            <div data-ng-if="receiver.configuration === 'unselectable'">
-              <i class="glyphicon glyphicon-unchecked" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-5">
-          <img data-ng-src="s/{{::receiver.id}}.png" class="img-thumbnail">
-        </div>
-        <div class="col-md-offset-1 col-md-6">
-          <p>{{::receiver.description}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="clearfix" data-ng-if="$index % 2"></div>
-  </div>
-  <div id="ReceiverSelectionBoxSmall" data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" data-ng-if="submission.context.show_small_cards">
-    <div class="form-group col-md-3">
-      <div id="receiver-{{$index}}" class="receiverCard" data-ng-class="{selected: submission.receivers_selected[receiver.id], disabled: receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}" data-ng-click="switch_selection(receiver)">
-        <div class="row receiverCardTitle">
-          <div class="col-md-9">
+  <div id="ReceiverSelectionBox">
+    <div data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" data-ng-class="{'col-md-6': !submission.context.show_small_receiver_cards, 'col-md-3': submission.context.show_small_receiver_cards}" data-ng-click="switch_selection(receiver)">
+      <div class="receiverCard" data-ng-class="{'selected': submission.receivers_selected[receiver.id], 'disabled': receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}">
+        <div class="receiverCardTitle row">
+          <div class="col-md-10">
             <label>
               <span data-ng-if="receiver.configuration !== 'unselectable' && receiver.pgp_key_status === 'enabled'">
                 <i class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </span>
               <span data-ng-if="receiver.configuration !== 'unselectable' && receiver.pgp_key_status === 'disabled'">
-                <i class="glyphicon glyphicon-warning-sign" uib-popover="{{'This receiver has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                <i class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipent has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </span>
               <span data-ng-if="receiver.configuration === 'unselectable'">
                 <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
@@ -76,7 +29,7 @@
                 <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this receiver' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
               <div data-ng-if="receiver.configuration === 'forcefully_selected'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                  <i class="glyphicon glyphicon-check" uib-popover="{{'This recipent cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
             </div>
             <div data-ng-if="!submission.receivers_selected[receiver.id]">
@@ -87,15 +40,15 @@
                 <i class="glyphicon glyphicon-unchecked" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
             </div>
-              </div>
-            </div>
-        <div class="row">
-          <div class="col-md-12">
-            <img data-ng-src="s/{{::receiver.id}}.png" class="img-thumbnail">
           </div>
+        </div>
+        <div class="receiverCardContent row">
+          <div class="receiverCardImg" data-ng-class="{'col-md-3': !submission.context.show_small_receiver_cards, 'col-md-12': submission.context.show_small_receiver_cards}">
+            <img class="imageReceiver" data-ng-src="{{::imgDataUri(receiver.picture)}}" />
+          </div>
+          <div data-ng-if="!submission.context.show_small_receiver_cards" class="receiverCardDescription col-md-7">{{::receiver.description}}</div>
         </div>
       </div>
     </div>
-    <div class="clearfix" data-ng-if="!(($index + 1) % 4)"></div>
   </div>
 </div>

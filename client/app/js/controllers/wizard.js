@@ -57,7 +57,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     } else {
       $scope.login('admin', 'globaleaks', function(response){
         $scope.admin = new Admin(function() {
-          $scope.receiver = new $scope.admin.new_receiver();
+          $scope.receiver = new $scope.admin.new_user();
           $scope.receiver.username = 'receiver';
           $scope.receiver.password = ''; // this causes the system to set the default password
                                          // the system will then force the user to change the password

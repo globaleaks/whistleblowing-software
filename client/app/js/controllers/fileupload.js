@@ -15,3 +15,20 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
     }
   };
 }]);
+
+GLClient.controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $http) {
+  $scope.get_auth_headers = $scope.$parent.get_auth_headers;
+  $scope.imgDataUri = $scope.$parent.imgDataUri;
+  $scope.imageUploadObj = {};
+
+  $scope.deletePicture = function() {
+    $http({
+      method: 'DELETE',
+      url: $scope.imageUploadUrl,
+      headers: $scope.get_auth_headers()
+    }).then(function successCallback(response) {
+      $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
+      $scope.imageUploadObj.flow.files = [];
+    }, function errorCallback(response) { });
+  };
+}]);

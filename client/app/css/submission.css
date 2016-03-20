@@ -7,23 +7,32 @@
   width: auto;
 }
 
-#ContextIntroductionBox {
+#ContextClarification, .StepTitle {
   font-size: 18px;
 }
 
-.receiverCards {
+.contextCards, .receiverCards {
   position: relative;
 }
 
-.receiverCard {
+.contextCard, .receiverCard {
+  margin: 5px;
   padding: 20px;
   background-color: white;
   border: 1px solid #DDD;
-  border-radius: 10px;
+  border-radius: 5px;
   word-wrap: break-word;
 }
 
-.receiverCard.selected {
+.contextCardTitle, .contextListElemTitle, .receiverCardTitle {
+  font-weight: bold;
+}
+
+.contextCardTitle, .receiverCardTitle {
+  margin-bottom: 10px;
+}
+
+.receiverCard.selected, .contextCard:hover {
   background-color: #fcf8e3;;
 }
 
@@ -119,12 +128,10 @@
   position: relative;
   padding: 10px;
   background: #FFF;
-  border-radius: 10px;
+  border-radius: 5px;
   margin-left: 30px;
   border: 1px solid rgb(204, 204, 204);
   box-shadow: 2px 1px 5px #888888;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
 }
 
 #KeyCodeHintBox:after {
@@ -157,7 +164,7 @@
   font-size: 20px;
   font-weight: bold;
   background-color: #FFF;
-  border-radius: 15px;
+  border-radius: 10px;
   direction: ltr;
 }
 
@@ -192,7 +199,7 @@
   word-break: break-word;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .radio label, .checkbox label {

@@ -74,6 +74,12 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
       $scope.delStep(step);
     });
   };
+
+  $scope.updateContextImgUrl = function() {
+    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.randomFluff();
+  };
+
+  $scope.updateContextImgUrl();
 }]);
 
 GLClient.controller('AdminContextAddCtrl', ['$scope', function($scope) {
