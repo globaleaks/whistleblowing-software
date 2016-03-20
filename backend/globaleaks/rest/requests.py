@@ -22,6 +22,7 @@ hidden_service_regexp_or_empty    = r'^http(s?)://[0-9a-z]{16}\.onion$$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
+context_selector_type_regexp      = r'^(list|cards)$'
 tip_operation_regexp              = r'^(postpone|set)$'
 shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
@@ -194,6 +195,7 @@ AdminNodeDesc = {
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
     'ahmia': bool,
+    'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_encryption_warnings': bool,
     'allow_iframes_inclusion': bool,
@@ -214,10 +216,12 @@ AdminNodeDesc = {
     'header_title_receiptpage': unicode,
     'header_title_tippage': unicode,
     'landing_page': landing_page_regexp,
-    'context_selector_label': unicode,
+    'context_selector_type': context_selector_type_regexp,
+    'contexts_clarification': unicode,
     'submission_minimum_delay': int,
     'submission_maximum_ttl': int,
     'show_contexts_in_alphabetical_order': bool,
+    'show_small_context_cards': bool,
     'widget_comments_title': unicode,
     'widget_messages_title': unicode,
     'widget_files_title': unicode,
@@ -377,7 +381,7 @@ AdminContextDesc = {
     'select_all_receivers': bool,
     'show_recipients_details': bool,
     'allow_recipients_selection': bool,
-    'show_small_cards': bool,
+    'show_small_receiver_cards': bool,
     'enable_comments': bool,
     'enable_messages': bool,
     'enable_two_way_comments': bool,
@@ -431,6 +435,7 @@ NodeDesc = {
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
     'ahmia': bool,
+    'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_privacy_badge': bool,
     'disable_security_awareness_badge': bool,
@@ -536,7 +541,7 @@ ContextDesc = {
     'show_context': bool,
     'show_recipients_details': bool,
     'allow_recipients_selection': bool,
-    'show_small_cards': bool,
+    'show_small_receiver_cards': bool,
     'maximum_selectable_receivers': int,
     'enable_comments': bool,
     'enable_messages': bool,

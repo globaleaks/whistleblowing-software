@@ -92,7 +92,6 @@ class GLSettingsClass(object):
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
-        self.static_source = '/usr/share/globaleaks/data'
 
         self.client_path = '/usr/share/globaleaks/client'
         for path in possible_client_paths:
@@ -229,14 +228,14 @@ class GLSettingsClass(object):
     def eval_paths(self):
         self.config_file_path = '/etc/globaleaks'
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks.pid')
-        self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
+        self.files_path = os.path.abspath(os.path.join(self.working_path, 'files'))
 
         self.db_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
-        self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        self.tmp_upload_path = os.path.abspath(os.path.join(self.glfiles_path, 'tmp'))
-        self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
-        self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
+        self.submission_path = os.path.abspath(os.path.join(self.files_path, 'submission'))
+        self.tmp_upload_path = os.path.abspath(os.path.join(self.files_path, 'tmp'))
+        self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
+        self.static_path_l10n = os.path.abspath(os.path.join(self.files_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
 
@@ -275,7 +274,6 @@ class GLSettingsClass(object):
 
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
-        self.static_source = os.path.join(self.root_path, '../data')
 
         self.set_ramdisk_path()
 
@@ -488,28 +486,25 @@ class GLSettingsClass(object):
         """
         for dirpath in [self.working_path,
                         self.db_path,
-                        self.glfiles_path,
+                        self.files_path,
                         self.submission_path,
                         self.tmp_upload_path,
                         self.torhs_path,
                         self.log_path,
-                        self.ramdisk_path]:
+                        self.ramdisk_path,
+                        self.static_path,
+                        self.static_path_l10n]:
             self.create_directory(dirpath)
-
-        new_environment = self.create_directory(self.static_path)
-        if new_environment:
-            dir_util.copy_tree(self.static_source, self.static_path)
-            self.create_directory(self.static_path_l10n)
 
     def check_directories(self):
         for path in (self.working_path, self.root_path, self.client_path,
-                     self.glfiles_path, self.static_path, self.submission_path, self.log_path):
+                     self.files_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
                 raise Exception("%s does not exist!" % path)
 
         # Directory with Write + Read access
         for rdwr in (self.working_path,
-                     self.glfiles_path, self.static_path, self.submission_path, self.log_path):
+                     self.files_path, self.static_path, self.submission_path, self.log_path):
             if not os.access(rdwr, os.W_OK | os.X_OK):
                 raise Exception("write capability missing in: %s" % rdwr)
 

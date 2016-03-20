@@ -14,6 +14,7 @@ from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire
 from globaleaks.handlers.node import serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
@@ -34,7 +35,7 @@ def admin_serialize_context(store, context, language):
         'show_context': context.show_context,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
-        'show_small_cards': context.show_small_cards,
+        'show_small_receiver_cards': context.show_small_receiver_cards,
         'enable_comments': context.enable_comments,
         'enable_messages': context.enable_messages,
         'enable_two_way_comments': context.enable_two_way_comments,
@@ -43,7 +44,8 @@ def admin_serialize_context(store, context, language):
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire.id,
-        'receivers': [r.id for r in context.receivers]
+        'receivers': [r.id for r in context.receivers],
+        'picture': context.picture.data if context.picture is not None else ''
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -125,6 +127,7 @@ def fill_context_request(request, language):
         request['maximum_selectable_receivers'] = 0
 
     return request
+
 
 def db_update_context(store, context, request, language):
     request = fill_context_request(request, language)

@@ -9,11 +9,11 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.orm import transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.utils.structures import Rosetta, get_localized_values
 
 
 @transact_ro
@@ -68,6 +68,7 @@ def serialize_node(store, language):
         'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
         'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
         'ahmia': node.ahmia,
+        'allow_indexing': node.allow_indexing,
         'can_postpone_expiration': node.can_postpone_expiration,
         'can_delete_submission': node.can_delete_submission,
         'can_grant_permissions': node.can_grant_permissions,
@@ -87,11 +88,14 @@ def serialize_node(store, language):
         'simplified_login': node.simplified_login,
         'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
         'landing_page': node.landing_page,
+        'context_selector_type': node.context_selector_type,
         'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
+        'show_small_context_cards': node.show_small_context_cards,
         'accept_submissions': GLSettings.accept_submissions,
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,
-        'enable_experimental_features': node.enable_experimental_features
+        'enable_experimental_features': node.enable_experimental_features,
+        'logo': node.logo.data if node.logo is not None else ''
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)
@@ -114,7 +118,7 @@ def serialize_context(store, context, language):
         'show_context': context.show_context,
         'show_recipients_details': context.show_recipients_details,
         'allow_recipients_selection': context.allow_recipients_selection,
-        'show_small_cards': context.show_small_cards,
+        'show_small_receiver_cards': context.show_small_receiver_cards,
         'enable_comments': context.enable_comments,
         'enable_messages': context.enable_messages,
         'enable_two_way_comments': context.enable_two_way_comments,
@@ -122,7 +126,8 @@ def serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire': serialize_questionnaire(store, context.questionnaire, language), 
-        'receivers': [r.id for r in context.receivers]
+        'receivers': [r.id for r in context.receivers],
+        'picture': context.picture.data if context.picture is not None else ''
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -141,7 +146,6 @@ def serialize_questionnaire(store, questionnaire, language):
         'key': questionnaire.key,
         'editable': questionnaire.editable,
         'name': questionnaire.name,
-        'layout': questionnaire.layout,
         'show_steps_navigation_bar': questionnaire.show_steps_navigation_bar,
         'steps_navigation_requires_completion': questionnaire.steps_navigation_requires_completion,
         'steps': [serialize_step(store, s, language) for s in questionnaire.steps]
@@ -285,7 +289,8 @@ def serialize_receiver(receiver, language):
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
         'pgp_key_status': receiver.user.pgp_key_status,
-        'contexts': [c.id for c in receiver.contexts]
+        'contexts': [c.id for c in receiver.contexts],
+        'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
     }
 
     # description and eventually other localized strings should be taken from user model
@@ -344,7 +349,7 @@ class AhmiaDescriptionHandler(BaseHandler):
     @inlineCallbacks
     def get(self):
         """
-        Get the Ahmia.fi descriptor
+        Get the ahmia.fi descriptor
         """
         node_info = yield GLApiCache.get('node', self.request.language,
                                          serialize_node, self.request.language)
@@ -357,6 +362,27 @@ class AhmiaDescriptionHandler(BaseHandler):
         else:  # in case of disabled option we return 404
             self.set_status(404)
             self.finish()
+
+
+class RobotstxtHandler(BaseHandler):
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Get the robots.txt
+        """
+        node_info = yield GLApiCache.get('node', self.request.language,
+                                         serialize_node, self.request.language)
+
+        self.set_header('Content-Type', 'text/plain')
+
+        if node_info['allow_indexing']:
+            self.write("User-agent: *\nAllow: /")
+        else:
+            self.write("User-agent: *\nDisallow: /")
+
+        self.finish()
 
 
 class ContextsCollection(BaseHandler):

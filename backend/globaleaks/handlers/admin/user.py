@@ -4,9 +4,6 @@
 #   *****
 # Implementation of the User model functionalities
 #
-import os
-import shutil
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security
@@ -20,7 +17,7 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_now
 
 
-def db_create_admin(store, request, language):
+def db_create_admin_user(store, request, language):
     """
     Creates a new admin
     Returns:
@@ -33,20 +30,11 @@ def db_create_admin(store, request, language):
     return user
 
 @transact
-def create_admin(store, request, language):
-    """
-    Currently this function simply serialize the admin user.
-    In the future this will serialize the admin model with its peculiatieis.
-    """
-    return user_serialize_user(db_create_admin(store, request, language), language)
-
-
-@transact
 def create_admin_user(store, request, language):
-    return user_serialize_user(db_create_admin(store, request, language), language)
+    return user_serialize_user(db_create_admin_user(store, request, language), language)
 
 
-def db_create_custodian(store, request, language):
+def db_create_custodian_user(store, request, language):
     """
     Creates a new custodian
     Returns:
@@ -54,32 +42,14 @@ def db_create_custodian(store, request, language):
     """
     user = db_create_user(store, request, language)
 
-    fill_localized_keys(request, models.Custodian.localized_keys, language)
-
-    custodian = models.Custodian(request)
-
-    # set custodian.id = user.id
-    custodian.id = user.id
-
-    store.add(custodian)
-
     log.debug("Created new custodian")
 
     return user
 
 
 @transact
-def create_custodian(store, request, language):
-    """
-    Currently this function simply serialize the custodian user.
-    In the future this will serialize the admin model with its peculiatieis.
-    """
-    return user_serialize_user(db_create_custodian(store, request, language), language)
-
-
-@transact
 def create_custodian_user(store, request, language):
-    return user_serialize_user(db_create_custodian(store, request, language), language)
+    return user_serialize_user(db_create_custodian_user(store, request, language), language)
 
 
 def db_create_receiver(store, request, language):
@@ -116,21 +86,6 @@ def create_receiver_user(store, request, language):
     return user_serialize_user(receiver.user, language)
 
 
-def create_user_picture(user_id):
-    """
-    Instantiate a copy of the default profile picture for a new user.
-    By default take a picture and put in the receiver face,
-    """
-    try:
-        shutil.copy(
-            os.path.join(GLSettings.static_source, "default-profile-picture.png"),
-            os.path.join(GLSettings.static_path, "%s.png" % user_id)
-        )
-    except Exception as excep:
-        log.err("Unable to copy default user picture! %s" % excep.message)
-        raise excep
-
-
 def db_create_user(store, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
@@ -163,8 +118,6 @@ def db_create_user(store, request, language):
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
-
-    create_user_picture(user.id)
 
     store.add(user)
 
@@ -241,10 +194,6 @@ def delete_user(store, user_id):
 
     if not user.deletable:
         raise errors.UserNotDeletable
-
-    user_picture = os.path.join(GLSettings.static_path, "%s.png" % user_id)
-    if os.path.exists(user_picture):
-        os.remove(user_picture)
 
     store.remove(user)
 

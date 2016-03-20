@@ -1,6 +1,7 @@
 # -*- coding: UTF-8
 # Database routines
 # ******************
+import base64
 import os
 import re
 import sys
@@ -12,7 +13,7 @@ from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models,  __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_init_appdata, load_default_fields, load_default_questionnaires
-from globaleaks.handlers.admin.user import db_create_admin
+from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
 from globaleaks.security import generateRandomSalt
@@ -63,6 +64,13 @@ def init_db(store):
     for k in appdata_dict['templates']:
         setattr(notification, k, appdata_dict['templates'][k])
 
+    logo = ''
+    with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
+        logo = logo_file.read()
+
+    node.logo = models.Img()
+    node.logo.data = base64.b64encode(logo)
+
     store.add(node)
     store.add(notification)
 
@@ -90,7 +98,7 @@ def init_db(store):
         'pgp_key_expiration': datetime_null()
     }
 
-    admin = db_create_admin(store, admin_dict, node.default_language)
+    admin = db_create_admin_user(store, admin_dict, node.default_language)
     admin.password_change_needed = False
 
 
@@ -204,6 +212,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
     GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
 
+    GLSettings.memory_copy.allow_indexing = node.allow_indexing
     GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
     GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
