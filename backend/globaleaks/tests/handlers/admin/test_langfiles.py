@@ -16,7 +16,7 @@ class TestLanguageFileHandler(helpers.TestHandler):
 
         handler = self.request({}, role='admin')
 
-        yield handler.get(lang='en')
+        yield handler.get(lang='whatever')
 
     @inlineCallbacks
     def test_post(self):

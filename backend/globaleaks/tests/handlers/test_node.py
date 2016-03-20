@@ -50,6 +50,37 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         self._handler.validate_message(json.dumps(self.responses[0]), requests.AhmiaDesc)
 
 
+class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
+    _handler = node.RobotstxtHandler
+
+    @inlineCallbacks
+    def test_get_with_indexing_disabled(self):
+        handler = self.request({}, role='admin')
+
+        nodedict = helpers.MockDict().dummyNode
+        nodedict['allow_indexing'] = False
+
+        yield admin.node.update_node(nodedict, True, 'en')
+
+        yield handler.get()
+        self.assertTrue(isinstance(self.responses, list))
+        self.assertEqual(len(self.responses), 1)
+        self.assertEqual(self.responses[0], "User-agent: *\nDisallow: /")
+
+    @inlineCallbacks
+    def test_get_with_indexing_enabled(self):
+        handler = self.request({}, role='admin')
+
+        nodedict = helpers.MockDict().dummyNode
+        nodedict['allow_indexing'] = True
+        yield admin.node.update_node(nodedict, True, 'en')
+
+        yield handler.get()
+        self.assertTrue(isinstance(self.responses, list))
+        self.assertEqual(len(self.responses), 1)
+        self.assertEqual(self.responses[0], "User-agent: *\nAllow: /")
+
+
 class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = node.ContextsCollection
 
