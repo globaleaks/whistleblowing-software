@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import base64
 import os
 import shutil
 
@@ -79,12 +80,82 @@ class Node_v_30(Model):
     threshold_free_disk_percentage_low = Int()
 
 
+class User_v_30(Model):
+    __storm_table__ = 'user'
+    creation_date = DateTime()
+    username = Unicode()
+    password = Unicode()
+    salt = Unicode()
+    deletable = Bool()
+    name = Unicode()
+    description = JSON()
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime()
+    mail_address = Unicode()
+    language = Unicode()
+    timezone = Int()
+    password_change_needed = Bool()
+    password_change_date = DateTime()
+    pgp_key_info = Unicode()
+    pgp_key_fingerprint = Unicode()
+    pgp_key_public = Unicode()
+    pgp_key_expiration = DateTime()
+    pgp_key_status = Unicode()
+
+
+class Context_v_30(Model):
+    __storm_table__ = 'context'
+    show_small_cards = Bool()
+    show_context = Bool()
+    show_recipients_details = Bool()
+    allow_recipients_selection = Bool()
+    maximum_selectable_receivers = Int()
+    select_all_receivers = Bool()
+    enable_comments = Bool()
+    enable_messages = Bool()
+    enable_two_way_comments = Bool()
+    enable_two_way_messages = Bool()
+    enable_attachments = Bool()
+    tip_timetolive = Int()
+    name = JSON()
+    description = JSON()
+    recipients_clarification = JSON()
+    status_page_message = JSON()
+    show_receivers_in_alphabetical_order = Bool()
+    presentation_order = Int()
+    questionnaire_id = Unicode()
+
+
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'allow_indexing':
+                new_node.allow_indexing = False
+                continue
+
+            if v.name == 'logo_id':
+                try:
+                    logo_path = os.path.join(GLSettings.static_path, 'logo.png')
+                    if not os.path.exists(logo_path):
+                        continue
+
+                    logo = ''
+                    with open(logo_path, 'r') as logo_file:
+                        logo = logo_file.read()
+
+                    new_node.logo =  self.model_to['Img']()
+                    new_node.logo.data = base64.b64encode(logo)
+                    os.remove(logo_path)
+
+                except:
+                    pass
+
+                continue
+
             if v.name == 'basic_auth':
                 new_node.basic_auth = False
                 continue
@@ -97,6 +168,62 @@ class MigrationScript(MigrationBase):
                 new_node.basic_auth_password = u''
                 continue
 
+            if v.name == 'contexts_clarification':
+                new_node.contexts_clarification = old_node.context_selector_label
+                continue
+
+            if v.name == 'context_selector_type':
+                new_node.context_selector_type = u'list'
+                continue
+
+            if v.name == 'show_small_context_cards':
+                new_node.show_small_context_cards = False
+                continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
+
+    def migrate_User(self):
+        old_objs = self.store_old.find(self.model_from['User'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['User']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'img_id':
+                    try:
+                        img_path = os.path.join(GLSettings.static_path, old_obj.id + ".png")
+                        if not os.path.exists(img_path):
+                            continue
+
+                        img = ''
+                        with open(img_path, 'r') as img_file:
+                            img = img_file.read()
+
+                        new_node.picture =  self.model_to['Img']()
+                        new_node.picture.data = base64.b64encode(img)
+                        os.remove(img_path)
+
+                    except:
+                        pass
+
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_Context(self):
+        old_objs = self.store_old.find(self.model_from['Context'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Context']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'img_id':
+                    continue
+
+                if v.name == 'show_small_receiver_cards':
+                    new_obj.show_small_receiver_cards = old_obj.show_small_cards
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
