@@ -87,7 +87,6 @@ def get_receivertip_list(store, receiver_id, language):
             'preview': rtip.internaltip.preview,
             'total_score': rtip.internaltip.total_score,
             'label': rtip.label,
-            'export': '/rtip/' + rtip.id + '/export'
         })
 
     return rtip_summary_list
