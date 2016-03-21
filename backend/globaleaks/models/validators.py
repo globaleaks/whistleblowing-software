@@ -12,7 +12,7 @@ from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
 
-def shorttext_v(_self, attr, value):
+def shorttext_v(self, attr, value):
     """
     """
     if isinstance(value, str):
@@ -28,7 +28,7 @@ def shorttext_v(_self, attr, value):
     return value
 
 
-def longtext_v(_self, attr, value):
+def longtext_v(self, attr, value):
     """
     """
     if not attr:
@@ -49,7 +49,7 @@ def longtext_v(_self, attr, value):
     return value
 
 
-def dict_v(_self, attr, value):
+def dict_v(self, attr, value):
     """
     """
     if not value:
@@ -69,12 +69,12 @@ def dict_v(_self, attr, value):
                                                                                   GLSettings.memory_copy.maximum_textsize))
 
         if isinstance(subvalue, dict):
-            dict_v(_self, attr, subvalue)
+            dict_v(self, attr, subvalue)
 
     return value
 
 
-def shortlocal_v(_self, attr, value):
+def shortlocal_v(self, attr, value):
     """
     """
     dict_v(None, attr, value)
@@ -101,7 +101,7 @@ def shortlocal_v(_self, attr, value):
     return value
 
 
-def longlocal_v(_self, attr, value):
+def longlocal_v(self, attr, value):
     dict_v(None, attr, value)
 
     if not value:
@@ -126,14 +126,14 @@ def longlocal_v(_self, attr, value):
     return value
 
 
-def shorturl_v(_self, attr, value):
+def shorturl_v(self, attr, value):
     if not re.match(r'^(/s/[a-z0-9]{1,30})$', value):
         raise errors.InvalidModelInput("invalid shorturl")
 
     return value
 
 
-def longurl_v(_self, attr, value):
+def longurl_v(self, attr, value):
     if not re.match(r'^(/[a-z0-9#=_&?/-]{1,255})$', value):
         raise errors.InvalidModelInput("invalid longurl")
 

@@ -11,12 +11,13 @@ from .properties import MetaModel, DateTime
 
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
+from globaleaks.models.validators import shorttext_v, longtext_v, \
+    shortlocal_v, longlocal_v, shorturl_v, longurl_v
+
 from globaleaks.orm import transact
 from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
-from globaleaks.utils.validator import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v
 
 
 empty_localization = {}
