@@ -127,6 +127,17 @@ class Context_v_30(Model):
     questionnaire_id = Unicode()
 
 
+class ReceiverTip_v_30(Model):
+    __storm_table__ = 'receivertip'
+    internaltip_id = Unicode()
+    receiver_id = Unicode()
+    last_access = DateTime()
+    access_counter = Int()
+    label = Unicode()
+    can_access_whistleblower_identity = Bool()
+    new = Int()
+
+
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
@@ -222,6 +233,20 @@ class MigrationScript(MigrationBase):
 
                 if v.name == 'show_small_receiver_cards':
                     new_obj.show_small_receiver_cards = old_obj.show_small_cards
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+
+    def migrate_ReceiverTip(self):
+        old_objs = self.store_old.find(self.model_from['ReceiverTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['ReceiverTip']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'enable_notifications':
+                    new_obj.enable_notifications = True
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
