@@ -69,3 +69,15 @@
 #ExportFormContainer form {
   display: inline-block; 
 }
+
+#tipList tbody .interactive {
+  background: none;
+  margin: 1px;
+  border: none;
+  border-radius: 2px;
+}
+
+#tipList tbody .interactive:hover {
+  border: solid 1px #BBB;
+  margin: 0px;
+}

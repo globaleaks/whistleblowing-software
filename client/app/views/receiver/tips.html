@@ -21,16 +21,6 @@
         <i class="glyphicon glyphicon-check"></i>
       </span>
 
-      <span id="tip-action-export-selected"
-        uib-popover="{{'Export tips' | translate}}"
-        data-ng-if="selected_tips.length"
-        data-ng-click="tip_export_all()"
-        popover-placement="top"
-        popover-trigger="mouseenter"
-        class="btn btn-default">
-        <i class="glyphicon glyphicon-save"></i>
-      </span>
-
       <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
         <span id="tip-action-postpone-selected"
           data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
@@ -187,14 +177,27 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
           <td>
-            <span class="btn btn-xs" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+            <span class="btn btn-xs interactive" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="glyphicon glyphicon-check"></i>
             </span>
-            <span class="btn btn-xs" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+            <span class="btn btn-xs interactive" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
               <i class="glyphicon glyphicon-unchecked"></i>
             </span>
+            <form class="tipExport pull-right"
+                  method="POST" action="{{::tip.export }}" 
+                  ng-click="console.log('blah'); alert('hello'); $event.stopPropagation(); debugger;"
+                  uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
+                  novalidate>
+                <input type="hidden" name="session" value="{{ session.id }}" />
+                <button class="interactive btn btn-xs">
+                  <i class="glyphicon glyphicon-save"></i>
+                </button>
+              </form>
+
           </td>
-          <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
+          <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}
+
+          </td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
