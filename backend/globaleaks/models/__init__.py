@@ -315,7 +315,11 @@ class ReceiverTip(Model):
 
     new = Int(default=True)
 
+    enable_notifications = Int(default=True)
+
     unicode_keys = ['label']
+
+    bool_keys = ['enable_notifications']
 
 
 class WhistleblowerTip(Model):

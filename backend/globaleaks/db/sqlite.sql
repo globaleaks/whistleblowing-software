@@ -333,6 +333,7 @@ CREATE TABLE receivertip (
     receiver_id TEXT NOT NULL,
     label TEXT NOT NULL,
     can_access_whistleblower_identity INTEGER NOT NULL,
+    enable_notifications INTEGER NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
