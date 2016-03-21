@@ -7,12 +7,7 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
 
 GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'ReceiverTips',
   function($scope, $http, $route, $location, $uibModal, ReceiverTips) {
-  $scope.tips = ReceiverTips.query(function(tips) {
-      angular.forEach(tips ,function(tip) {
-          tip.export = '/rtip/' + tip.id + '/export';
-        });
-      return tips;
-  });
+  $scope.tips = ReceiverTips.query();
 
   $scope.selected_tips = [];
 

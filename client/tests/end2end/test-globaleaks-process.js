@@ -279,15 +279,15 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to export the first submission from the tips page', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.css('#tip-0 form.tipExport button')).click().then(function() {
-        if (utils.testFileDownload()) {
+      if (utils.testFileDownload()) {
+        element(by.id('tip-0')).element(by.id('tip-action-export')).click().then(function() {
           browser.waitForAngular();
           // TODO: test the downloaded zip file opening it and verifying its content.
           done();
-        } else {
-          done();
-        }
-      });
+        });
+      } else {
+        done();
+      }
     });
   });
 

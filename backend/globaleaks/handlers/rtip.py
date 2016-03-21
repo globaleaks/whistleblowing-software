@@ -89,7 +89,6 @@ def serialize_rtip(store, rtip, language):
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['export'] = '/rtip/' + rtip.id + '/export'
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
     ret['total_score'] = rtip.internaltip.total_score
 

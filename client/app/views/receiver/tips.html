@@ -178,20 +178,20 @@
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
           <td>
             <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" >
-              <span class="btn btn-xs interactive" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <span class="btn btn-xs btn-default" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
                 <i class="glyphicon glyphicon-check"></i>
               </span>
-              <span class="btn btn-xs interactive" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+              <span class="btn btn-xs btn-default" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
                 <i class="glyphicon glyphicon-unchecked"></i>
               </span>
             </span>
-            <form class="tipExport pull-right"
-                method="POST" action="{{::tip.export }}" 
-                ng-click="console.log('blah'); alert('hello'); $event.stopPropagation(); debugger;"
+            <form name="TipExportForm" class="pull-right"
+                method="POST" action="{{::'/rtip/' + tip.id + '/export'}}"
+                ng-click="$event.stopPropagation()"
                 uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
                 novalidate>
               <input type="hidden" name="session" value="{{ session.id }}" />
-              <button class="interactive btn btn-xs">
+              <button id="tip-action-export" class="btn btn-xs btn-default">
                 <i class="glyphicon glyphicon-save"></i>
               </button>
             </form>
