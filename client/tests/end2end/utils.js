@@ -9,21 +9,21 @@ exports.waitUntilReady = function (elm, timeout) {
 };
 
 
-browser.getCapabilities().then(function(s) {
+browser.getCapabilities().then(function(capabilities) {
   exports.testFileUpload = function() {
-    var browserName = s.caps_.browserName.toLowerCase();
+    var browserName = capabilities.get('browserName').toLowerCase();
     return (['chrome', 'firefox', 'internet explorer', 'edge'].indexOf(browserName) !== -1);
   };
 
   exports.testFileDownload = function() {
     // The only browser that does not ask for user interaction is chrome
-    var browserName = s.caps_.browserName.toLowerCase();
+    var browserName = capabilities.get('browserName').toLowerCase();
     return (['chrome'].indexOf(browserName) !== -1);
   };
 
   exports.isOldIE = function() {
-    var browserName = s.caps_.browserName.toLowerCase();
-    var browserVersion = s.caps_.version;
+    var browserName = capabilities.get('browserName').toLowerCase();
+    var browserVersion = capabilities.get('version');
     return (browserName === 'internet explorer' && browserVersion < 11);
   };
 });
