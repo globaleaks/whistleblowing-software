@@ -57,30 +57,6 @@ class GLSession(object):
         return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
-def validate_host(host_key):
-    """
-    validate_host checks in the GLSettings list of valid 'Host:' values
-    and if matched, return True, else return False
-    Is used by all the Web handlers inherit from Cyclone
-    """
-    # strip eventually port
-    hostchunk = str(host_key).split(":")
-    if len(hostchunk) == 2:
-        host_key = hostchunk[0]
-
-    # hidden service has not a :port
-    if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
-        return True
-
-    if host_key != '' and host_key in GLSettings.accepted_hosts:
-        return True
-
-    log.debug("Error in host requested: %s not accepted between: %s " %
-              (host_key, GLSettings.accepted_hosts))
-
-    return False
-
-
 class GLHTTPConnection(HTTPConnection):
     def __init__(self):
         self.uploaded_file = {}
@@ -283,6 +259,30 @@ class BaseHandler(RequestHandler):
             self.set_header("X-Frame-Options", "sameorigin")
 
     @staticmethod
+    def validate_host(host_key):
+        """
+        validate_host checks in the GLSettings list of valid 'Host:' values
+        and if matched, return True, else return False
+        Is used by all the Web handlers inherit from Cyclone
+        """
+        # strip eventually port
+        hostchunk = str(host_key).split(":")
+        if len(hostchunk) == 2:
+            host_key = hostchunk[0]
+
+        # hidden service has not a :port
+        if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
+            return True
+
+        if host_key != '' and host_key in GLSettings.accepted_hosts:
+            return True
+
+        log.debug("Error in host requested: %s not accepted between: %s " %
+                  (host_key, GLSettings.accepted_hosts))
+
+        return False
+
+    @staticmethod
     def validate_python_type(value, python_type):
         """
         Return True if the python class instantiates the specified python_type.
@@ -449,7 +449,7 @@ class BaseHandler(RequestHandler):
           - The performance analysts
           - the Request/Response logging
         """
-        if not validate_host(self.request.host):
+        if not self.validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
     def on_finish(self):
