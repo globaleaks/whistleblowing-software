@@ -1,58 +1,60 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
-    <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" class="pull-left">
-      <span id="tip-action-select-all"
+    <span class="pull-left">
+      <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
+        <span id="tip-action-select-all"
             data-ng-if="selected_tips.length !== tips.length"
             data-ng-click="select_all()"
             uib-popover="{{'Select all' | translate}}"
             popover-placement="top"
             popover-trigger="mouseenter"
             class="btn btn-default">
-        <i class="glyphicon glyphicon glyphicon-unchecked"></i>
-      </span>
+          <i class="glyphicon glyphicon glyphicon-unchecked"></i>
+        </span>
 
-      <span id="tip-action-select-all"
+        <span id="tip-action-select-all"
             data-ng-if="selected_tips.length === tips.length"
             data-ng-click="deselect_all()"
             uib-popover="{{'Deselect all' | translate}}"
             popover-placement="top"
             popover-trigger="mouseenter"
             class="btn btn-default">
-        <i class="glyphicon glyphicon-check"></i>
-      </span>
+          <i class="glyphicon glyphicon-check"></i>
+        </span>
 
-      <span id="tip-action-postpone-selected"
-          data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-          data-ng-click="tip_postpone_all()"
-          uib-popover="{{'Postpone the expiration date' | translate}}"
+        <span id="tip-action-postpone-selected"
+            data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
+            data-ng-click="tip_postpone_all()"
+            uib-popover="{{'Postpone the expiration date' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+          <i class="glyphicon glyphicon-time"></i>
+        </span>
+
+        <span id="tip-action-delete-selected"
+          data-ng-if="selected_tips.length && preferences.can_delete_submission"
+          data-ng-click="tip_delete_all()"
+          uib-popover="{{'Delete tips' | translate}}"
           popover-placement="top"
           popover-trigger="mouseenter"
           class="btn btn-default">
-        <i class="glyphicon glyphicon-time"></i>
+          <span class="glyphicon glyphicon-trash"></span>
+        </span>
       </span>
 
-      <span id="tip-action-delete-selected"
-            data-ng-if="selected_tips.length && preferences.can_delete_submission"
-            data-ng-click="tip_delete_all()"
-            uib-popover="{{'Delete tips' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
-        <span class="glyphicon glyphicon-trash"></span>
-      </span>
-    </span>
-    <span>
       <span id="tip-action-reload"
-            data-ng-click="reload()"
-            uib-popover="{{'Refresh page' | translate}}"
-            popover-placement="top"
-            popover-trigger="mouseenter"
-            class="btn btn-default">
+        data-ng-click="reload()"
+        uib-popover="{{'Refresh page' | translate}}"
+        popover-placement="top"
+        popover-trigger="mouseenter"
+        class="btn btn-default">
         <span class="glyphicon glyphicon-refresh"></span>
       </span>
-    </span>
-    <span class="pull-left form-group">
-      <input id="search-filter" type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}" data-ng-model="search">
+
+      <span id="RecvSearchFilter" class="form-group pull-right">
+        <input id="search-filter" type="text" class="form-control" data-ng-attr-placeholder="{{'Search' | translate}}" data-ng-model="search">
+      </span>
     </span>
   </div>
 </div>
@@ -62,7 +64,7 @@
     <table class="table table-condensed table-striped" id="tipList" data-ng-init="sortKey = 'creation_date'; sortReverse=true;">
       <thead>
         <tr>
-          <th data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission"></th>
+          <th></th>
           <th>
             <span>
               <i class="glyphicon glyphicon-barcode"></i>
@@ -83,8 +85,8 @@
               <i class="glyphicon glyphicon-tag"></i>
               <span data-translate>Label</span>
               <span class="btn btn-xs" data-ng-show="sortKey == 'label'">
-                 <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
-                 <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                <span data-ng-show="!sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                <span data-ng-show="sortReverse" class="glyphicon glyphicon-triangle-top"></span>
               </span>
             </span>
           </th>
@@ -174,13 +176,25 @@
       </thead>
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
-          <td data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
-            <span class="btn btn-xs" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="glyphicon glyphicon-check"></i>
+          <td>
+            <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" >
+              <span class="btn btn-xs interactive" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+                <i class="glyphicon glyphicon-check"></i>
+              </span>
+              <span class="btn btn-xs interactive" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+                <i class="glyphicon glyphicon-unchecked"></i>
+              </span>
             </span>
-            <span class="btn btn-xs" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="glyphicon glyphicon-unchecked"></i>
-            </span>
+            <form class="tipExport pull-right"
+                method="POST" action="{{::tip.export }}" 
+                ng-click="console.log('blah'); alert('hello'); $event.stopPropagation(); debugger;"
+                uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
+                novalidate>
+              <input type="hidden" name="session" value="{{ session.id }}" />
+              <button class="interactive btn btn-xs">
+                <i class="glyphicon glyphicon-save"></i>
+              </button>
+            </form>
           </td>
           <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
@@ -193,13 +207,13 @@
           <td>{{::tip.message_counter}}</td>
           <td>
             <span data-ng-if="tip.tor2web"
-                  class="label label-warning"
-                  uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-                  data-translate>HTTPS</span>
+              class="label label-warning"
+              uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+              data-translate>HTTPS</span>
             <span data-ng-if="!tip.tor2web"
-                  class="label label-success"
-                  uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
-                  data-translate>Tor</span>
+              class="label label-success"
+              uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+              data-translate>Tor</span>
           </td>
           <td>
             <div data-ng-repeat="field in tip.preview_schema" data-ng-init="fieldAnswers = tip.preview; preview=true" data-ng-include="'views/partials/tip_field.html'"></div>
