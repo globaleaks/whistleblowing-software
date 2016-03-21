@@ -127,13 +127,6 @@ def db_get_rtip(store, user_id, rtip_id, language):
 
     db_increment_receiver_access_count(store, user_id, rtip_id)
 
-    notif = store.find(Notification).one()
-
-    if not notif.send_email_for_every_event:
-        # If Receiver is accessing this Tip, Events related can be removed before
-        # Notification is sent. This is a Twitter/Facebook -like behavior.
-        pass
-
     return serialize_rtip(store, rtip, language)
 
 
