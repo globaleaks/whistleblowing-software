@@ -8,14 +8,17 @@
   <div class="alert alert-warn">
     <span data-translate>Are you sure that you want to download all of the selected tips?</span>
     <span id="ExportFormContainer">
-    <form ng-repeat="url in export_urls" 
-      method="POST" action="{{ url }}" 
-      novalidate>
-      <input type="hidden" name="session" value="{{ session.id }}">
-      <code>{{::tips[$index].creation_date | date:'yyyyMMdd' }}-{{::tips[$index].progressive}}.zip</code>
-      <button>
-        <small><i class="glyphicon glyphicon-save"></i></small>
-      </button>
+      <div>
+        <form ng-repeat="url in export_urls" 
+          method="POST" action="{{ url }}" 
+          novalidate>
+          <input type="hidden" name="session" value="{{ session.id }}">
+          <code>{{::tips[$index].creation_date | date:'yyyyMMdd' }}-{{::tips[$index].progressive}}.zip</code>
+          <button>
+            <small><i class="glyphicon glyphicon-save"></i></small>
+          </button>
+        </form>
+      </div>
     </span>
   </div>
 </div>
@@ -24,12 +27,12 @@
     <i class="glyphicon glyphicon-remove"></i>
     <span data-translate>Cancel</span>
   </span>
-    <!--
+  <!--
   <button data-ng-click="ok()">
     <span id="modal-action-ok" class="btn btn-warn">
-    <i class="glyphicon glyphicon-save"></i>
-    <span data-translate>Export</span>
-  </button>
-  -->
+      <i class="glyphicon glyphicon-save"></i>
+      <span data-translate>Export</span>
+    </button>
+    -->
 
-</div>
+  </div>
