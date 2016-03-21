@@ -46,7 +46,7 @@ class InvalidInputFormat(GLException):
     The expected format described in the REST specification is not
     respected by the data body in the HTTP request.
     """
-    error_code = 10
+    error_code = 2
     status_code = 406  # Not Acceptable
 
     def __init__(self, wrong_source):
@@ -58,7 +58,7 @@ class TokenFailure(GLException):
     """
     Some kind of reason to reject a submission Token
     """
-    error_code = 11
+    error_code = 3
     status_code = 401  # Unauthorized
 
     def __init__(self, reason):
@@ -70,6 +70,15 @@ class ContextIdNotFound(GLException):
     The context_id used do not exist in the database.
     """
     reason = "Not found a Context with the specified id"
+    error_code = 11
+    status_code = 404  # Not Found
+
+
+class QuestionnaireIdNotFound(GLException):
+    """
+    The questionnaire_id used do not exist in the database.
+    """
+    reason = "Not found a Questionnaire with the specified id"
     error_code = 12
     status_code = 404  # Not Found
 
@@ -187,7 +196,7 @@ class UserNotDeletable(GLException):
 
 class FieldNotEditable(GLException):
     """
-    The selected user is not eeditable
+    The selected field is not editable
     """
     reason = "The selected field is not editable"
     error_code = 24
