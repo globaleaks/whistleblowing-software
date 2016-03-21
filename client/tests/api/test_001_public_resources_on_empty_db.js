@@ -37,11 +37,6 @@ public_resources = [
     'status': 200
   },
   {
-    'url': '/s/logo.png',
-    'type': 'image/png',
-    'status': 200
-  },
-  {
     'url': '/node',
     'type': 'application/json',
     'status': 200
