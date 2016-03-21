@@ -1,34 +1,34 @@
 <div id="ReceiverToolbar" class="row">
   <div class="col-md-12">
     <span class="pull-left">
-      <span id="tip-action-select-all"
-        data-ng-if="selected_tips.length !== tips.length"
-        data-ng-click="select_all()"
-        uib-popover="{{'Select all' | translate}}"
-        popover-placement="top"
-        popover-trigger="mouseenter"
-        class="btn btn-default">
-        <i class="glyphicon glyphicon glyphicon-unchecked"></i>
-      </span>
-
-      <span id="tip-action-select-all"
-        data-ng-if="selected_tips.length === tips.length"
-        data-ng-click="deselect_all()"
-        uib-popover="{{'Deselect all' | translate}}"
-        popover-placement="top"
-        popover-trigger="mouseenter"
-        class="btn btn-default">
-        <i class="glyphicon glyphicon-check"></i>
-      </span>
-
       <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission">
+        <span id="tip-action-select-all"
+            data-ng-if="selected_tips.length !== tips.length"
+            data-ng-click="select_all()"
+            uib-popover="{{'Select all' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+          <i class="glyphicon glyphicon glyphicon-unchecked"></i>
+        </span>
+
+        <span id="tip-action-select-all"
+            data-ng-if="selected_tips.length === tips.length"
+            data-ng-click="deselect_all()"
+            uib-popover="{{'Deselect all' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
+          <i class="glyphicon glyphicon-check"></i>
+        </span>
+
         <span id="tip-action-postpone-selected"
-          data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
-          data-ng-click="tip_postpone_all()"
-          uib-popover="{{'Postpone the expiration date' | translate}}"
-          popover-placement="top"
-          popover-trigger="mouseenter"
-          class="btn btn-default">
+            data-ng-if="selected_tips.length && preferences.can_postpone_expiration"
+            data-ng-click="tip_postpone_all()"
+            uib-popover="{{'Postpone the expiration date' | translate}}"
+            popover-placement="top"
+            popover-trigger="mouseenter"
+            class="btn btn-default">
           <i class="glyphicon glyphicon-time"></i>
         </span>
 
@@ -177,27 +177,26 @@
       <tbody id="tipListTableBody">
         <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
           <td>
-            <span class="btn btn-xs interactive" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="glyphicon glyphicon-check"></i>
-            </span>
-            <span class="btn btn-xs interactive" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
-              <i class="glyphicon glyphicon-unchecked"></i>
+            <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" >
+              <span class="btn btn-xs interactive" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+                <i class="glyphicon glyphicon-check"></i>
+              </span>
+              <span class="btn btn-xs interactive" data-ng-if="!isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
+                <i class="glyphicon glyphicon-unchecked"></i>
+              </span>
             </span>
             <form class="tipExport pull-right"
-                  method="POST" action="{{::tip.export }}" 
-                  ng-click="console.log('blah'); alert('hello'); $event.stopPropagation(); debugger;"
-                  uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
-                  novalidate>
-                <input type="hidden" name="session" value="{{ session.id }}" />
-                <button class="interactive btn btn-xs">
-                  <i class="glyphicon glyphicon-save"></i>
-                </button>
-              </form>
-
+                method="POST" action="{{::tip.export }}" 
+                ng-click="console.log('blah'); alert('hello'); $event.stopPropagation(); debugger;"
+                uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
+                novalidate>
+              <input type="hidden" name="session" value="{{ session.id }}" />
+              <button class="interactive btn btn-xs">
+                <i class="glyphicon glyphicon-save"></i>
+              </button>
+            </form>
           </td>
-          <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}
-
-          </td>
+          <td>{{::tip.creation_date | date:'yyyyMMdd'}}-{{::tip.progressive}}</td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>
           <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
