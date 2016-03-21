@@ -61,3 +61,19 @@
   font-weight: bold;
   text-align: center;
 }
+
+#RecvSearchFilter {
+  margin-left: 5px;
+}
+
+#tipList tbody .interactive {
+  background: none;
+  margin: 1px;
+  border: none;
+  border-radius: 2px;
+}
+
+#tipList tbody .interactive:hover {
+  border: solid 1px #BBB;
+  margin: 0px;
+}
