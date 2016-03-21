@@ -9,6 +9,11 @@
 
 #ContextClarification, .StepTitle {
   font-size: 18px;
+  white-space: pre-wrap;
+}
+
+#ContextClarification, .StepsDescription {
+  white-space: pre-wrap;
 }
 
 .contextCards, .receiverCards {
