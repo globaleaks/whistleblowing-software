@@ -66,10 +66,6 @@
   margin-left: 5px;
 }
 
-#ExportFormContainer form {
-  display: inline-block; 
-}
-
 #tipList tbody .interactive {
   background: none;
   margin: 1px;

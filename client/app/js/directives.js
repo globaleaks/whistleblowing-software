@@ -135,15 +135,4 @@ directive('zxPasswordMeter', function() {
       });
     }
   }
-}).
-directive('formbindclick', function() {
-  return {
-    restrict: 'A',
-    link: function(scope, element) {
-
-      element.bind('submit', function(e) {
-        angular.element(e.target).parent().parent().parent().children().trigger('submit');
-      });
-    }
-  };
 });
