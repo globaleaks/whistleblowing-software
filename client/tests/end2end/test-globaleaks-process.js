@@ -1,7 +1,6 @@
 var utils = require('./utils.js');
 
 var path = require('path');
-var q = require('q');
 
 var fileToUpload = path.resolve(__filename);
 
@@ -12,8 +11,8 @@ describe('globaLeaks process', function() {
   var comment_reply = 'comment reply';
   var message = 'message';
   var message_reply = 'message reply';
-  var receiver_username = "nn2@n.org";
-  var receiver_password = "nn2@n.org"
+  var receiver_username = "Recipient 1";
+  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
 
   var login_whistleblower = function(receipt) {
     return protractor.promise.controlFlow().execute(function() {
@@ -282,43 +281,6 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to postpone first submission from tip page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        // Get the tip's original expiration.
-        element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
-          var startExpiration = new Date(d);
-          element(by.id('tip-action-postpone')).click().then(function () {
-            element(by.id('modal-action-ok')).click().then(function() {
-              element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
-                var newExpiration = new Date(d);
-                expect(newExpiration).toBeGreaterThan(startExpiration);
-                done();
-              });
-            });
-          });
-        });
-      });
-    });
-  });
-
-  it('Recipient should be able to delete first submission from tip page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-delete')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            utils.waitForUrl('/receiver/tips');
-            //TODO: check delete
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
-      });
-    });
-  });
-
   it('Recipient should be able to export two submissions from the tips page', function(done) {
     login_receiver(receiver_username, receiver_password)
     .then(element(by.css('#tip-0 form.tipExport button')).click())
@@ -348,6 +310,43 @@ describe('globaLeaks process', function() {
           element(by.id('modal-action-ok')).click().then(function() {
             utils.waitForUrl('/receiver/tips');
             //TODO: check postpone
+            element(by.id('LogoutLink')).click().then(function() {
+              utils.waitForUrl('/login');
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
+
+  it('Recipient should be able to postpone first submission from tip page', function(done) {
+    login_receiver(receiver_username, receiver_password);
+    
+    element(by.id('tip-0')).click();
+    // Get the tip's original expiration.
+    element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+      expect(d).toEqual(jasmine.any(String));
+      var startExpiration = new Date(d);
+      element(by.id('tip-action-postpone')).click();
+      element(by.id('modal-action-ok')).click();
+
+      element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+        expect(d).toEqual(jasmine.any(String));
+        var newExpiration = new Date(d);
+        expect(newExpiration).toBeGreaterThan(startExpiration);
+        done();
+      })
+    })
+  });
+
+  it('Recipient should be able to delete first submission from tip page', function(done) {
+    login_receiver(receiver_username, receiver_password).then(function() {
+      element(by.id('tip-0')).click().then(function() {
+        element(by.id('tip-action-delete')).click().then(function () {
+          element(by.id('modal-action-ok')).click().then(function() {
+            utils.waitForUrl('/receiver/tips');
+
             element(by.id('LogoutLink')).click().then(function() {
               utils.waitForUrl('/login');
               done();
