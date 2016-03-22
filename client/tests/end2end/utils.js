@@ -39,23 +39,22 @@ exports.waitForUrl = function (url) {
   });
 }
 
-exports.waitForFile = function (filename) {
-    var fp = path.resolve(browser.params.tmpDir, filename);
-    return browser.wait(function() {
-      try {
-        var buf = fs.readFileSync(fp);
-        if (buf.length > 1000) {
-          return true;
-        }
-      } catch(err) {
-        return false;
+exports.waitForFile = function (filename, timeout) {
+  var fp = path.resolve(browser.params.tmpDir, filename);
+  browser.wait(function() {
+    try {
+      var buf = fs.readFileSync(fp);
+      if (buf.length > 1000) {
+        return true;
       }
-    }, 10000)
-  }
+    } catch(err) {
+      return false;
+    }
+  }, timeout)
+}
 
 exports.makeFileNameFromTip = function (tip) {
     d = tip.creation_date;
     // The name should look like: 20160821-1.zip
-    var name = d.slice(0,4)+d.slice(5,7)+d.slice(8,10)+'-'+ tip.progressive;
-    return name + '.zip'
+    return d.slice(0,4)+d.slice(5,7)+d.slice(8,10)+'-'+ tip.progressive + '.zip';
   }
