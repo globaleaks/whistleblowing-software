@@ -340,21 +340,15 @@ describe('globaLeaks process', function() {
     })
   });
 
-  it('Recipient should be able to delete first submission from tip page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-delete')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            utils.waitForUrl('/receiver/tips');
+  it('Recipient should be able to delete first submission from tip page', function() {
+    login_receiver(receiver_username, receiver_password)
+    element(by.id('tip-0')).click();
+    element(by.id('tip-action-delete')).click();
+    element(by.id('modal-action-ok')).click();
+    utils.waitForUrl('/receiver/tips');
 
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
-      });
-    });
+    element(by.id('LogoutLink')).click();
+    utils.waitForUrl('/login');
   });
 
 });
