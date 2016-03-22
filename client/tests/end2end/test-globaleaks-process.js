@@ -1,7 +1,7 @@
 var utils = require('./utils.js');
 
-var fs = require('fs');
 var path = require('path');
+var q = require('q');
 
 var fileToUpload = path.resolve(__filename);
 
@@ -12,8 +12,8 @@ describe('globaLeaks process', function() {
   var comment_reply = 'comment reply';
   var message = 'message';
   var message_reply = 'message reply';
-  var receiver_username = "Recipient 1";
-  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
+  var receiver_username = "nn2@n.org";
+  var receiver_password = "nn2@n.org"
 
   var login_whistleblower = function(receipt) {
     return protractor.promise.controlFlow().execute(function() {
@@ -261,45 +261,40 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export the submission', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        if (utils.testFileDownload()) {
-          element(by.id('tip-action-export')).click().then(function () {
-            browser.waitForAngular();
-            // TODO: test the downloaded zip file opening it and verifying its content.
-            done();
-          });
-        } else {
-          done();
-        }
-      });
-    });
-  });
 
-  it('Recipient should be able to export the first submission from the tips page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
+  it('Recipient should be able to export the submission', function(done) {
+    login_receiver(receiver_username, receiver_password)
+    .then(element(by.id('tip-0')).click())
+    .then(function() {
       if (utils.testFileDownload()) {
-        element(by.id('tip-0')).element(by.id('tip-action-export')).click().then(function() {
-          browser.waitForAngular();
-          // TODO: test the downloaded zip file opening it and verifying its content.
-          done();
+        element(by.id('tip-action-export')).click().then(function() {
+          element(by.id('tipFileName')).getText().then(function(t) {
+              var filename = t + '.zip';
+              // TODO: Verify the zips content
+              return utils.waitForFile(filename)
+            })
         });
       } else {
         done();
       }
+    }).then(function() {
+      done(); 
     });
   });
 
   it('Recipient should be able to postpone first submission from tip page', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-postpone')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            //TODO: check postpone
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
+        // Get the tip's original expiration.
+        element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+          var startExpiration = new Date(d);
+          element(by.id('tip-action-postpone')).click().then(function () {
+            element(by.id('modal-action-ok')).click().then(function() {
+              element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+                var newExpiration = new Date(d);
+                expect(newExpiration).toBeGreaterThan(startExpiration);
+                done();
+              });
             });
           });
         });
@@ -324,6 +319,28 @@ describe('globaLeaks process', function() {
     });
   });
 
+  it('Recipient should be able to export two submissions from the tips page', function(done) {
+    login_receiver(receiver_username, receiver_password)
+    .then(element(by.css('#tip-0 form.tipExport button')).click())
+    .then(element(by.css('tr#tip-0'))
+    .evaluate('tip').then(function(tip) {
+      if (utils.testFileDownload()) {
+        var filename = utils.makeFileNameFromTip(tip);
+        return utils.waitForFile(filename)
+      }
+     }))
+    .then(element(by.css('#tip-1 form.tipExport button')).click())
+    .then(element(by.css('tr#tip-1'))
+    .evaluate('tip').then(function(tip) {
+      if (utils.testFileDownload()) {
+        var filename = utils.makeFileNameFromTip(tip);
+        return utils.waitForFile(filename, 2000)
+      }
+     })).then(function() {
+        done();
+     });
+  });
+
   it('Recipient should be able to postpone all tips', function(done) {
     login_receiver(receiver_username, receiver_password).then(function() {
       element(by.id('tip-action-select-all')).click().then(function() {
@@ -340,4 +357,5 @@ describe('globaLeaks process', function() {
       });
     });
   });
+
 });
