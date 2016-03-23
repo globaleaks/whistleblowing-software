@@ -987,16 +987,16 @@ class ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
 
-class Img(Model):
+class File(Model):
     """
     Class used for storing PNG pictures of context/users
     """
     data = Unicode()
 
 
-Node.logo = Reference(Node.logo_id, Img.id)
-Context.picture = Reference(Context.img_id, Img.id)
-User.picture = Reference(User.img_id, Img.id)
+Node.logo = Reference(Node.logo_id, File.id)
+Context.picture = Reference(Context.img_id, File.id)
+User.picture = Reference(User.img_id, File.id)
 
 
 Field.fieldgroup = Reference(Field.fieldgroup_id, Field.id)

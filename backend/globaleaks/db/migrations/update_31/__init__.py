@@ -154,12 +154,11 @@ class MigrationScript(MigrationBase):
                     if not os.path.exists(logo_path):
                         continue
 
-                    logo = ''
+                    new_node.logo =  self.model_to['File']()
                     with open(logo_path, 'r') as logo_file:
                         logo = logo_file.read()
+                        new_node.logo.data = base64.b64encode(logo)
 
-                    new_node.logo =  self.model_to['Img']()
-                    new_node.logo.data = base64.b64encode(logo)
                     os.remove(logo_path)
 
                 except:
@@ -206,12 +205,11 @@ class MigrationScript(MigrationBase):
                         if not os.path.exists(img_path):
                             continue
 
-                        img = ''
+                        new_user.picture =  self.model_to['File']()
                         with open(img_path, 'r') as img_file:
                             img = img_file.read()
+                            new_user.picture.data = base64.b64encode(img)
 
-                        new_node.picture =  self.model_to['Img']()
-                        new_node.picture.data = base64.b64encode(img)
                         os.remove(img_path)
 
                     except:
