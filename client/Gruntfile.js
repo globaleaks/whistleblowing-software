@@ -12,12 +12,13 @@ module.exports = function(grunt) {
       }
     },
 
-    lint: {
-      files: ['Gruntfile.js', 'app/js/**/*.js'],
-    },
-
     jshint: {
-      all: ['Gruntfile.js', 'app/js/**/*.js'],
+      all: [
+        'Gruntfile.js',
+        'app/js/**/*.js',
+        '!app/js/crypto/openpgp*.js',
+        '!app/js/crypto/scrypt-async.*.js'
+      ],
       options: {
         curly: true,
         eqeqeq: true,
@@ -29,10 +30,18 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        browser: true
-      },
-      globals: {
-        angular: true
+        browser: true,
+        worker: true,
+        node: true,
+        globals: {
+          angular: true,
+          fustyFlowFactory: true,
+          d3: true,
+          GLClient: true,
+          importScripts: true,
+          saveAs: true,
+          StackTrace: true
+        }
       }
     },
 

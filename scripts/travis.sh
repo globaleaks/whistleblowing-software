@@ -54,6 +54,12 @@ if [ "$GLTEST" = "unit" ]; then
   cd $TRAVIS_BUILD_DIR/backend
   coveralls --merge=../client/coverage/coveralls.json || true
 
+elif [ "$GLTEST" = "lint" ]; then
+
+  echo "Running lint checks"
+  cd $TRAVIS_BUILD_DIR/client
+  grunt jshint
+
 elif [ "$GLTEST" = "build_and_install" ]; then
 
   echo "Running Build & Install and BrowserTesting tests"
