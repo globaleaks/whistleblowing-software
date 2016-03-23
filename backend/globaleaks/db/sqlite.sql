@@ -25,7 +25,7 @@ CREATE TABLE user (
     pgp_key_expiration INTEGER,
     img_id TEXT,
     UNIQUE (username),
-    FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE SET NULL,
+    FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE context (
     questionnaire_id TEXT,
     img_id TEXT,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,
-    FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE SET NULL,
+    FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -223,7 +223,7 @@ CREATE TABLE node (
     basic_auth INTEGER NOT NULL,
     basic_auth_username TEXT NOT NULL,
     basic_auth_password TEXT NOT NULL,
-    FOREIGN KEY (logo_id) REFERENCES img(id) ON DELETE SET NULL,
+    FOREIGN KEY (logo_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 
@@ -517,7 +517,7 @@ CREATE TABLE shorturl (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE img (
+CREATE TABLE file (
     id TEXT NOT NULL,
     data TEXT NOT NULL,
     PRIMARY KEY (id)

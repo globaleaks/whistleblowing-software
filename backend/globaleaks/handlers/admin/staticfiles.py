@@ -75,7 +75,7 @@ def dump_static_file(uploaded_file, filelocation):
 def add_node_logo(store, data):
     node = store.find(models.Node).one()
     if node.logo is None:
-        node.logo = models.Img()
+        node.logo = models.File()
 
     node.logo.data = data
 
@@ -92,7 +92,7 @@ def add_model_img(store, model, obj_id, data):
     obj = store.find(model, model.id == obj_id).one()
     if obj:
         if obj.picture is None:
-            obj.picture = models.Img()
+            obj.picture = models.File()
 
         obj.picture.data = data
 

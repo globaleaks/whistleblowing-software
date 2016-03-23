@@ -68,7 +68,7 @@ def init_db(store):
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo = logo_file.read()
 
-    node.logo = models.Img()
+    node.logo = models.File()
     node.logo.data = base64.b64encode(logo)
 
     store.add(node)
