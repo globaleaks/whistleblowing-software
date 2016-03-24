@@ -82,8 +82,8 @@ public_resources.forEach(function(req){
     it('responds with ' + req['type'], function(done){
       app
       .get(req['url'])
-      .expect('Content-Type', req['type'])
       .expect(req['status'])
+      .expect('Content-Type', req['type'])
       .end(function(err, res) {
         if (err) {
           return done(err);

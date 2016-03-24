@@ -143,9 +143,19 @@ module.exports = function(grunt) {
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
-          build: process.env.TRAVIS_BUILD_NUMBER
-        }
-      }
+          build: process.env.TRAVIS_BUILD_NUMBER,
+        },
+      },
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          timeout: 30000, 
+          reporter: 'list',
+        },
+        src: ['tests/api/test_*.js'],
+      },
     },
 
     'string-replace': {
@@ -239,6 +249,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
@@ -828,6 +839,6 @@ module.exports = function(grunt) {
     'instrument',
     'protractor_coverage:local',
     'makeReport',
-    'generateCoverallsJson'
+    'generateCoverallsJson',
   ]);
 };
