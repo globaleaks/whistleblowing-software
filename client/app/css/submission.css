@@ -7,7 +7,7 @@
   width: auto;
 }
 
-#ContextClarification, .StepTitle {
+#ContextClarification {
   font-size: 18px;
   white-space: pre-wrap;
 }
@@ -20,7 +20,7 @@
   position: relative;
 }
 
-.contextCard, .receiverCard {
+.contextCard, .contextListElem, .receiverCard {
   margin: 5px;
   padding: 20px;
   background-color: white;

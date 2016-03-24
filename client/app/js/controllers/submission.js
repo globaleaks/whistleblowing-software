@@ -369,7 +369,7 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.context_id) {
       context = $filter('filter')($scope.contexts,
                                   {"id": $scope.context_id})[0];
-    } else if ($scope.selectable_contexts.length !== 1) {
+    } else if ($scope.selectable_contexts.length === 1) {
       context = $scope.selectable_contexts[0];
     }
 
