@@ -533,11 +533,6 @@ GLClient.controller('ModalCtrl', ['$scope',
     $scope.seconds = error.arguments[0];
 }]);
 
-GLClient.controller('TabCtrl', ['$scope',
-  function($scope) {
-  /* Empty controller function used to implement TAB pages */
-}]);
-
 GLClient.controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     $scope.close = function() {
       $uibModalInstance.close(false);

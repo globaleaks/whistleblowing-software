@@ -5,41 +5,34 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
       $scope.tabs = [
         {
           title: "General preferences",
-          template: "views/receiver/preferences/tab1.html",
-          ctrl: 'TabCtrl'
+          template: "views/receiver/preferences/tab1.html"
         },
         {
           title: "Password configuration",
-          template: "views/receiver/preferences/tab2.html",
-          ctrl: 'TabCtrl'
+          template: "views/receiver/preferences/tab2.html"
         },
         {
           title: "Notification settings",
-          template: "views/receiver/preferences/tab3.html",
-          ctrl: 'TabCtrl'
+          template: "views/receiver/preferences/tab3.html"
         },
         {
           title:"Encryption settings",
-          template:"views/receiver/preferences/tab4.html",
-          ctrl: 'TabCtrl'
+          template:"views/receiver/preferences/tab4.html"
         }
       ];
     } else {
       $scope.tabs = [
         {
           title: "General preferences",
-          template: "views/user/preferences/tab1.html",
-          ctrl: 'TabCtrl'
+          template: "views/user/preferences/tab1.html"
         },
         {
           title: "Password configuration",
-          template: "views/user/preferences/tab2.html",
-          ctrl: 'TabCtrl'
+          template: "views/user/preferences/tab2.html"
         },
         {
           title:"Encryption settings",
-          template:"views/user/preferences/tab3.html",
-          ctrl: 'TabCtrl'
+          template:"views/user/preferences/tab3.html"
         }
       ];
     }

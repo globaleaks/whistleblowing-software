@@ -168,18 +168,15 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   $scope.tabs = [
     {
       title:"Main configuration",
-      template: "views/admin/content/tab1.html",
-      ctrl: 'TabCtrl'
+      template: "views/admin/content/tab1.html"
     },
     {
       title:"Theme customization",
-      template: "views/admin/content/tab2.html",
-      ctrl: 'TabCtrl'
+      template: "views/admin/content/tab2.html"
     },
     {
       title: "Translation customization",
-      template: "views/admin/content/tab3.html",
-      ctrl: 'TabCtrl'
+      template: "views/admin/content/tab3.html"
     }
   ];
 
@@ -217,23 +214,19 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
   $scope.tabs = [
     {
       title:"Main configuration",
-      template:"views/admin/mail/tab1.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/mail/tab1.html"
     },
     {
       title:"Admin notification templates",
-      template:"views/admin/mail/tab2.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/mail/tab2.html"
     },
     {
       title:"Recipient notification templates",
-      template:"views/admin/mail/tab3.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/mail/tab3.html"
     },
     {
       title:"Exception notification",
-      template:"views/admin/mail/tab4.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/mail/tab4.html"
     }
   ];
 }]);
@@ -243,18 +236,15 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   $scope.tabs = [
     {
       title:"Main configuration",
-      template:"views/admin/advanced/tab1.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/advanced/tab1.html"
     },
     {
       title:"HTTPS settings",
-      template:"views/admin/advanced/tab2.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/advanced/tab2.html"
     },
     {
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab3.html",
-      ctrl: 'TabCtrl'
+      template:"views/admin/advanced/tab3.html"
     }
   ];
 
