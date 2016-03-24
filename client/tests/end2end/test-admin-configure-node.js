@@ -99,23 +99,13 @@ describe('verify navigation of admin sections', function() {
 });
 
 describe('configure short urls', function() {
-  it('should should be able to configure short urls', function(done) {
-    var j = 3;
-    for (var i = 0; i < j; i++) {
-      element(by.cssContainingText("a", "URL shortener")).click().then(function() {
-        element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
-        element(by.model('new_shorturl.longurl')).sendKeys('longurl');
-        element(by.cssContainingText("button", "Add")).click().then(function() {
-          browser.waitForAngular();
-          element(by.cssContainingText("button", "Delete")).click().then(function() {
-            browser.waitForAngular();
-            j = j - 1;
-            if (j === 0) {
-              done();
-            }
-          });
-        });
-      });
+  it('should should be able to configure short urls', function() {
+    for (var i = 0; i < 3; i++) {
+      element(by.cssContainingText("a", "URL shortener")).click();
+      element(by.model('new_shorturl.shorturl')).sendKeys('shorturl');
+      element(by.model('new_shorturl.longurl')).sendKeys('longurl');
+      element(by.cssContainingText("button", "Add")).click();
+      element(by.cssContainingText("button", "Delete")).click();
     }
   });
 });

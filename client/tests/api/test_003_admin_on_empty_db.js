@@ -15,12 +15,12 @@ var authentication;
 var invalid_admin_login = {
   'username': 'admin',
   'password': 'antani'
-}
+};
 
 var valid_admin_login = {
   'username': 'admin',
   'password': 'globaleaks'
-}
+};
 
 /*
   The following is a list of all resources that has a
@@ -111,7 +111,7 @@ var admin_resources = [
     'status_PUT': 405,
     'status_DELETE': 405
   }
-]
+];
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -122,14 +122,14 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma':  'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate'
-  }
+  };
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 
 describe('POST /authentication', function () {
@@ -149,8 +149,8 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 admin_resources.forEach(function (req) {
   describe('GET ' + req['url'], function () {
@@ -169,9 +169,9 @@ admin_resources.forEach(function (req) {
 
           done();
         });
-    })
-  })
-})
+    });
+  });
+});
 
 admin_resources.forEach(function (req) {
   describe('POST ' + req['url'], function () {
@@ -189,9 +189,9 @@ admin_resources.forEach(function (req) {
 
           done();
         });
-    })
-  })
-})
+    });
+  });
+});
 
 admin_resources.forEach(function (req) {
   describe('PUT ' + req['url'], function () {
@@ -209,9 +209,9 @@ admin_resources.forEach(function (req) {
 
           done();
         });
-    })
-  })
-})
+    });
+  });
+});
 
 admin_resources.forEach(function (req) {
   describe('DELETE ' + req['url'], function () {
@@ -229,6 +229,6 @@ admin_resources.forEach(function (req) {
 
           done();
         });
-    })
-  })
-})
+    });
+  });
+});

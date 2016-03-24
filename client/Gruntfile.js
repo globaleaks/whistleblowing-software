@@ -18,6 +18,7 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'app/js/**/*.js',
+        'tests/**/*.js',
         '!app/js/crypto/openpgp*.js',
         '!app/js/crypto/scrypt-async.*.js'
       ],
@@ -34,7 +35,10 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true,
         worker: true,
-        node: true,
+        node: true,  
+        jasmine: true,
+        // Webdrive globals
+        predef: ['browser', 'element', 'by', 'protractor'],
         globals: {
           angular: true,
           fustyFlowFactory: true,
@@ -42,7 +46,7 @@ module.exports = function(grunt) {
           GLClient: true,
           importScripts: true,
           saveAs: true,
-          StackTrace: true
+          StackTrace: true,
         }
       }
     },

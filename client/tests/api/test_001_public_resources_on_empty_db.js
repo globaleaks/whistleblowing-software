@@ -3,14 +3,13 @@
   against public resources.
 */
 
-var request = require('supertest'),
-    should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-public_resources = [
+var public_resources = [
   {
     'url': '/',
     'type': 'text/html',
@@ -69,14 +68,14 @@ var validate_mandatory_headers = function(headers) {
     'Cache-control': 'no-cache, no-store, must-revalidate',
     'Content-Security-Policy': 'referrer no-referrer',
     'X-Frame-Options': 'sameorigin'
-  }
+  };
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 public_resources.forEach(function(req){
   describe('GET ' + req['url'], function(){
@@ -92,16 +91,16 @@ public_resources.forEach(function(req){
 
           validate_mandatory_headers(res.headers);
 
-          if (req['type'] == 'application/json') {
+          if (req['type'] === 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
-          };
+          }
           done();
         } 
       });
-    })
-  })
-})
+    });
+  });
+});
 
 public_resources.forEach(function(req){
   describe('POST ' + req['url'], function(){
@@ -115,16 +114,16 @@ public_resources.forEach(function(req){
         } else {
           validate_mandatory_headers(res.headers);
 
-          if (req['type'] == 'application/json') {
+          if (req['type'] === 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
           }
           done();
         }
       });
-    })
-  })
-})
+    });
+  });
+});
 
 public_resources.forEach(function(req){
   describe('DELETE ' + req['url'], function(){
@@ -138,13 +137,13 @@ public_resources.forEach(function(req){
         } else {
           validate_mandatory_headers(res.headers);
 
-          if (req['type'] == 'application/json') {
+          if (req['type'] === 'application/json') {
             // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
           }
           done();
         }
       });
-    })
-  })
-})
+    });
+  });
+});
