@@ -306,7 +306,7 @@ describe('globaLeaks process', function() {
     // Get the expiration dates of all of the tips.
     element.all(by.css('#tipListTableBody tr'))
     .evaluate('tip.expiration_date').then(function(exprs) {
-      start_expirations = make_dates(exprs); 
+      var start_expirations = make_dates(exprs); 
       // Postpone the expiration of all tips
       element(by.id('tip-action-select-all')).click();
       element(by.id('tip-action-postpone-selected')).click();
@@ -314,7 +314,7 @@ describe('globaLeaks process', function() {
       // Collect the new later expiration dates.
       element.all(by.css('#tipListTableBody tr'))
       .evaluate('tip.expiration_date').then(function(exprs) {
-        final_expirations = make_dates(exprs);
+        var final_expirations = make_dates(exprs);
         
         // Zip start and final together, then reduce the combined array to a bool
         var b = final_expirations.map(function(e, i) {

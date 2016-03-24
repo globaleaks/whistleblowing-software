@@ -2,13 +2,13 @@ var fs = require('fs');
 var path = require('path');
 
 exports.waitUntilReady = function (elm, timeout) {
-   var timeout = timeout == undefined ? 1000 : timeout;
+   var t = timeout === undefined ? 1000 : timeout;
    browser.wait(function () {
       return elm.isPresent();
-   }, timeout);
+   }, t);
    browser.wait(function () {
       return elm.isDisplayed();
-   }, timeout);
+   }, t);
 };
 
 
@@ -37,9 +37,10 @@ exports.waitForUrl = function (url) {
       return (current_url.indexOf(url) !== -1);
     });
   });
-}
+};
 
 exports.waitForFile = function (filename, timeout) {
+  var t = timeout === undefined ? 1000 : timeout;
   var fp = path.resolve(browser.params.tmpDir, filename);
   browser.wait(function() {
     try {
@@ -50,11 +51,11 @@ exports.waitForFile = function (filename, timeout) {
     } catch(err) {
       return false;
     }
-  }, timeout)
-}
+  }, t);
+};
 
 exports.makeFileNameFromTip = function (tip) {
-    d = tip.creation_date;
+    var d = tip.creation_date;
     // The name should look like: 20160821-1.zip
     return d.slice(0,4)+d.slice(5,7)+d.slice(8,10)+'-'+ tip.progressive + '.zip';
-  }
+  };

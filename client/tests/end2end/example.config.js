@@ -22,7 +22,6 @@ var makeFirefoxProfile = function(preferenceMap) {
 
 // The test directory
 var tmpDir = path.resolve(__dirname, 'tmp');
-console.log('configs tmp dir', tmpDir)
 
 exports.config = {
   // Parameters made directly available to the browser
@@ -50,4 +49,4 @@ exports.config = {
     includeStackTrace: true,
     defaultTimeoutInterval: 60000
   }
-}
+};
