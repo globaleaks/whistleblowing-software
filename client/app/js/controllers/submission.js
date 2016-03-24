@@ -40,7 +40,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.selectContext = function(context) {
     $scope.selected_context = context;
-  }
+  };
 
   if ($scope.receivers_ids) {
     try {
@@ -184,9 +184,10 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.calculateScoreRecursively = function(field, entry) {
     var score = 0;
+    var i;
 
     if (['selectbox', 'multichoice'].indexOf(field.type) !== -1) {
-      for(var i=0; i<field.options.length; i++) {
+      for(i=0; i<field.options.length; i++) {
         if (entry['value'] === field.options[i].id) {
           score += field.options[i].score_points;
         }
@@ -194,7 +195,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     if (field.type === 'checkbox') {
-      for(var i=0; i<field.options.length; i++) {
+      for(i=0; i<field.options.length; i++) {
         if (entry[field.options[i].id] === true) {
           score += field.options[i].score_points;
         }
@@ -368,7 +369,7 @@ GLClient.controller('SubmissionCtrl',
     if ($scope.context_id) {
       context = $filter('filter')($scope.contexts,
                                   {"id": $scope.context_id})[0];
-    } else if ($scope.selectable_contexts.length == 1) {
+    } else if ($scope.selectable_contexts.length !== 1) {
       context = $scope.selectable_contexts[0];
     }
 

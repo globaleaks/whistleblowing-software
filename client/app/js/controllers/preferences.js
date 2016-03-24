@@ -6,22 +6,22 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
         {
           title: "General preferences",
           template: "views/receiver/preferences/tab1.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         },
         {
           title: "Password configuration",
           template: "views/receiver/preferences/tab2.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         },
         {
           title: "Notification settings",
           template: "views/receiver/preferences/tab3.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         },
         {
           title:"Encryption settings",
           template:"views/receiver/preferences/tab4.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         }
       ];
     } else {
@@ -29,17 +29,17 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
         {
           title: "General preferences",
           template: "views/user/preferences/tab1.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         },
         {
           title: "Password configuration",
           template: "views/user/preferences/tab2.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         },
         {
           title:"Encryption settings",
           template:"views/user/preferences/tab3.html",
-          ctrl: TabCtrl
+          ctrl: 'TabCtrl'
         }
       ];
     }

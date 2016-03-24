@@ -1,3 +1,5 @@
+/* global console */
+
 module.exports = function(grunt) {
   grunt.initConfig({
     manifest:{
@@ -239,24 +241,24 @@ module.exports = function(grunt) {
 
     ret = {};
     ret['mapping'] = JSON.parse(filecontent);
-    ret['inverse_mapping'] = {}
+    ret['inverse_mapping'] = {};
     for (var key in ret['mapping']) {
       ret['inverse_mapping'][(ret['mapping'][key])] = key;
     }
 
     return ret;
-  }
+  };
 
   var readNoTranslateStrings = function() {
     return JSON.parse(grunt.file.read('app/data_src/notranslate_strings.json'));
-  }
+  };
 
   var path = require('path'),
     superagent = require('superagent'),
     fs = require('fs'),
     Gettext = require("node-gettext"),
     dynamic_strings = readDynamicStrings(),
-    notranslate_strings = readNoTranslateStrings()
+    notranslate_strings = readNoTranslateStrings();
 
   grunt.registerTask('copyBowerSources', function() {
     var files = [
@@ -265,12 +267,12 @@ module.exports = function(grunt) {
       ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
       ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
       ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
-    ]
+    ];
 
     grunt.file.mkdir('app/js/crypto');
 
     for (var x in files) {
-        grunt.file.copy(files[x][0], files[x][1])
+        grunt.file.copy(files[x][0], files[x][1]);
     }
 
     grunt.file.recurse('app/components/bootstrap/fonts', function(absdir, rootdir, subdir, filename) {
@@ -279,6 +281,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
+    var x;
     var dirs;
 
     var rm_rf = function(dir) {
@@ -287,7 +290,7 @@ module.exports = function(grunt) {
       if (!s.isDirectory()) {return fs.unlinkSync(dir);}
 
       fs.readdirSync(dir).forEach(function(f) {
-        rm_rf(path.join(dir || '', f || ''))
+        rm_rf(path.join(dir || '', f || ''));
       });
 
       fs.rmdirSync(dir);
@@ -296,7 +299,7 @@ module.exports = function(grunt) {
     grunt.file.mkdir('build/');
 
     var files = ['index.html', 'index.js', 'logo.png'];
-    for (var x in files) {
+    for (x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
 
@@ -305,34 +308,37 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
     dirs = ['js/crypto'];
-    for (var x in dirs) {
-      grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
-      });
+
+    var copy_fun = function(absdir, rootdir, subdir, filename) {
+      grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
+    };
+
+    for (x in dirs) {
+      grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
 
-    dirs = ['fonts', 'l10n', 'data']
-    for (var x in dirs) {
-      grunt.file.recurse('tmp/' + dirs[x], function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
-      });
+    dirs = ['fonts', 'l10n', 'data'];
+    for (x in dirs) {
+      grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
 
     rm_rf('tmp');
   });
 
   function str_escape (val) {
-      if (typeof(val) !== "string") return val;
-      return val
-        .replace(/[\n]/g, '\\n')
-        .replace(/[\t]/g, '\\r');
+      if (typeof(val) !== "string") {
+        return val;
+      }
+
+      return val.replace(/[\n]/g, '\\n').replace(/[\t]/g, '\\r');
   }
 
   function str_unescape (val) {
-      if (typeof(val) !== "string") return val;
-      return val
-        .replace(/\\n/g, '\n')
-        .replace(/\\t/g, '\t');
+      if (typeof(val) !== "string") {
+        return val;
+      }
+
+      return val.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
   }
 
   function readTransifexrc(){
@@ -415,11 +421,9 @@ module.exports = function(grunt) {
             console.log('Error: ' + res.text);
           }
         } else {
-          console.log('Error: failed to fetch resource ' + url);
+          console.log('Error: failed to fetch resource');
         }
-
     });
-
   }
 
   function fetchTxTranslationsForLanguage(langCode, cb) {
@@ -448,7 +452,7 @@ module.exports = function(grunt) {
                       console.log('Error: ' + res.text);
                     }
                   } else {
-                    console.log('Error: failed to fetch resource ' + url);
+                    console.log('Error: failed to fetch resource');
                   }
               });
             } else {
@@ -458,9 +462,9 @@ module.exports = function(grunt) {
             console.log('Error: ' + res.text);
           }
         } else {
-          console.log('Error: failed to fetch resource ' + url);
+          console.log('Error: failed to fetch resource');
         }
-      })
+      });
   }
 
   function fetchTxTranslations(cb){
@@ -524,8 +528,9 @@ module.exports = function(grunt) {
     gt.addTextdomain("en");
 
     function addString(str) {
-      if (notranslate_strings.indexOf(str) !== -1)
+      if (notranslate_strings.indexOf(str) !== -1) {
         return;
+      }
 
       if (str in dynamic_strings['mapping']) {
         str = dynamic_strings['mapping'][str];
@@ -535,7 +540,7 @@ module.exports = function(grunt) {
       }
 
       translationStringCount += 1;
-    };
+    }
 
     function extractPOFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
@@ -549,7 +554,7 @@ module.exports = function(grunt) {
         addString(result[1]);
       }
 
-    };
+    }
 
     function extractPOFromJSONFile(filepath) {
       var filecontent = grunt.file.read(filepath),
@@ -558,7 +563,7 @@ module.exports = function(grunt) {
       while (result = translationStringRegexpJSON.exec(filecontent)) {
         addString(result[1]);
       }
-    };
+    }
 
     function extractPOFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
@@ -571,7 +576,7 @@ module.exports = function(grunt) {
           addString(lines[i]);
         }
       }
-    };
+    }
 
     extractPOFromHTMLFile('app/app.html');
 
@@ -617,7 +622,7 @@ module.exports = function(grunt) {
       }
 
       translations[key] = value;
-    };
+    }
 
     fetchTxTranslations(function(supported_languages) {
       gt.addTextdomain("en", fileContents);
@@ -626,10 +631,11 @@ module.exports = function(grunt) {
       for (lang_code in supported_languages) {
         var translations = {}, output;
 
-        strings.forEach(function(string){
+        for (var i = 0; i < strings.length; i++) {
+          var string = strings[i];
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
           addTranslation(translations, string, str_unescape(gt.dgettext(lang_code, str_escape(string))));
-        });
+        }
 
         output = JSON.stringify(translations);
 
@@ -661,23 +667,24 @@ module.exports = function(grunt) {
             object[keys[k]][lang_code] = str_unescape(gt.dgettext(lang_code, str_escape(object[keys[k]]['en'])));
           }
         }
-      }
+      };
 
       var translate_field = function(field) {
+        var i;
         translate_object(field, ['label', 'description', 'hint', 'multi_entry_hint']);
 
-        for (var i in field['attrs']) {
+        for (i in field['attrs']) {
           translate_object(field['attrs'][i], ['value']);
         }
 
-        for (var i in field['options']) {
+        for (i in field['options']) {
           translate_object(field['options'][i], ['label']);
         }
 
-        for (var c in field['children']) {
-          translate_field(field['children'][c]);
+        for (i in field['children']) {
+          translate_field(field['children'][i]);
         }
-      }
+      };
 
       var translate_step = function(step) {
         translate_object(step, ['label', 'description']);
@@ -685,13 +692,13 @@ module.exports = function(grunt) {
         for (var c in step['children']) {
           translate_field(step['children'][c]);
         }
-      }
+      };
 
       var translate_questionnaire = function(questionnaire) {
         for (var s in questionnaire) {
           translate_step(questionnaire[s]);
         }
-      }
+      };
 
       gt.addTextdomain("en", fileContents);
 
@@ -710,7 +717,7 @@ module.exports = function(grunt) {
       for (lang_code in supported_languages) {
         for (var template_name in templates_sources) {
           if (!(template_name in templates)) {
-            templates[template_name] = {}
+            templates[template_name] = {};
           }
 
           var tmp = templates_sources[template_name];

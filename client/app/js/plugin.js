@@ -1,108 +1,115 @@
-'use strict';
+(function () {
+   'use strict';
 
-function get_domain(url) {
-  var arr = url.split("/");
-  return arr[0] + "//" + arr[2];
-}
-
-function create_iframe(url) {
-  var a = document.createElement('a');
-  var linkText = document.createTextNode('\u274C');
-  a.style.color = '#FFF';
-  a.style['text-decoration'] = 'none';
-  a.style['font-size'] = '20px';
-  a.href = 'javascript:closeGlobaLeaks()';
-  a.appendChild(linkText);
-  var ifrm = document.createElement('IFRAME');
-  ifrm.overflow = 'hidden';
-  ifrm.setAttribute('id', 'globaleaks-iframe');
-  ifrm.setAttribute('src', url);
-  ifrm.style.position = 'relative';
-  ifrm.style.width = '100%';
-  ifrm.style.height = '95%';
-  ifrm.style.margin = 0;
-  ifrm.style.border = 0;
-  ifrm.style.top = 0;
-  ifrm.style.left = 0;
-  ifrm.style.right = 0;
-  ifrm.style.bottom = 0;
-  ifrm.style['z-index'] = 2147483647;
-  ifrm.style['background-color'] = '#DDD';
-  ifrm.style.border = '1px solid #000';
-  ifrm.style.opacity = 1;
-  var container = document.createElement('DIV');
-  container.setAttribute('id', 'globaleaks-container');
-  container.style.position = 'absolute';
-  container.style.width = '95%';
-  container.style.height = '95%';
-  container.style.margin = '0px auto';
-  container.style.border = 0;
-  container.style.top = 0;
-  container.style.left = 0;
-  container.style.right = 0;
-  container.style.bottom = 0;
-  container.style['z-index'] = 2147483647;
-  container.style['background-color'] = 'transparent';
-  container.style['text-align'] = 'right';
-  container.style.padding = '10px';
-  container.style.border = 0;
-  container.style.opacity = 1;
-  var overlay = document.createElement('DIV');
-  overlay.setAttribute('id', 'globaleaks-overlay');
-  overlay.style.position = 'absolute';
-  overlay.style.width = '100%';
-  overlay.style.height = '100%';
-  overlay.style.display = 'flex';
-  overlay.style['align-items'] = 'center';
-  overlay.style.top = 0;
-  overlay.style.left = 0;
-  overlay.style.right = 0;
-  overlay.style['z-index'] = '2147483646';
-  overlay.style['text-align'] = 'center';
-  overlay.style['background-color'] = '#000';
-  overlay.style['text-align'] = 'center';
-  overlay.style.opacity = 0.7;
-  container.appendChild(a);
-  container.appendChild(ifrm);
-  document.body.appendChild(container);
-  document.body.appendChild(overlay);
-  return ifrm;
-}
-
-function closeGlobaLeaks() {
-  function deleteElementById(id) {
-    var element = document.getElementById(id);
-    element.parentNode.removeChild(element);
+  function get_domain(url) {
+    var arr = url.split("/");
+    return arr[0] + "//" + arr[2];
   }
 
-  deleteElementById('globaleaks-overlay');
-  deleteElementById('globaleaks-container');
-}
-
-function startGlobaLeaks(url) {
-  if (url === undefined) {
-    url = get_domain(window.location.href) + '/#/';
-  }
-
-  create_iframe(url);
-}
-
-function receiptAutoLogin(receipt, url) {
-  if (url === undefined) {
-    url = get_domain(window.location.href) + '/#/autologin';
-  }
-
-  var domain = get_domain(url);
-
-  var ifrm = create_iframe(url);
-
-  function receiveMessage(event) {
-    if (event.origin !== domain) {
-      return;
+  function closeGlobaLeaks() {
+    function deleteElementById(id) {
+      var element = document.getElementById(id);
+      element.parentNode.removeChild(element);
     }
 
-    ifrm.contentWindow.postMessage(receipt, domain);
+    deleteElementById('globaleaks-overlay');
+    deleteElementById('globaleaks-container');
   }
 
-  window.addEventListener("message", receiveMessage, false);
-}
+  function create_iframe(url) {
+    var linkText = document.createTextNode('\u274C');
+
+    var a = document.createElement('a');
+    a.style.color = '#FFF';
+    a.style['text-decoration'] = 'none';
+    a.style['font-size'] = '20px';
+    a.onclick = closeGlobaLeaks();
+    a.appendChild(linkText);
+
+    var ifrm = document.createElement('IFRAME');
+    ifrm.overflow = 'hidden';
+    ifrm.setAttribute('id', 'globaleaks-iframe');
+    ifrm.setAttribute('src', url);
+    ifrm.style.position = 'relative';
+    ifrm.style.width = '100%';
+    ifrm.style.height = '95%';
+    ifrm.style.margin = 0;
+    ifrm.style.border = 0;
+    ifrm.style.top = 0;
+    ifrm.style.left = 0;
+    ifrm.style.right = 0;
+    ifrm.style.bottom = 0;
+    ifrm.style['z-index'] = 2147483647;
+    ifrm.style['background-color'] = '#DDD';
+    ifrm.style.border = '1px solid #000';
+    ifrm.style.opacity = 1;
+
+    var container = document.createElement('DIV');
+    container.setAttribute('id', 'globaleaks-container');
+    container.style.position = 'absolute';
+    container.style.width = '95%';
+    container.style.height = '95%';
+    container.style.margin = '0px auto';
+    container.style.border = 0;
+    container.style.top = 0;
+    container.style.left = 0;
+    container.style.right = 0;
+    container.style.bottom = 0;
+    container.style['z-index'] = 2147483647;
+    container.style['background-color'] = 'transparent';
+    container.style['text-align'] = 'right';
+    container.style.padding = '10px';
+    container.style.border = 0;
+    container.style.opacity = 1;
+
+    var overlay = document.createElement('DIV');
+    overlay.setAttribute('id', 'globaleaks-overlay');
+    overlay.style.position = 'absolute';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.display = 'flex';
+    overlay.style['align-items'] = 'center';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.right = 0;
+    overlay.style['z-index'] = '2147483646';
+    overlay.style['text-align'] = 'center';
+    overlay.style['background-color'] = '#000';
+    overlay.style['text-align'] = 'center';
+    overlay.style.opacity = 0.7;
+
+    container.appendChild(a);
+    container.appendChild(ifrm);
+    document.body.appendChild(container);
+    document.body.appendChild(overlay);
+    return ifrm;
+  }
+
+  function startGlobaLeaks(url) {
+    if (url === undefined) {
+      url = get_domain(window.location.href) + '/#/';
+    }
+
+    create_iframe(url);
+  }
+
+  function receiptAutoLogin(receipt, url) {
+    if (url === undefined) {
+      url = get_domain(window.location.href) + '/#/autologin';
+    }
+
+    var domain = get_domain(url);
+
+    var ifrm = create_iframe(url);
+
+    function receiveMessage(event) {
+      if (event.origin !== domain) {
+        return;
+      }
+
+      ifrm.contentWindow.postMessage(receipt, domain);
+    }
+
+    window.addEventListener("message", receiveMessage, false);
+  }
+}());

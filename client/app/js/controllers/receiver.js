@@ -38,7 +38,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   $scope.tip_delete_all = function () {
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_delete_selected.html',
-      controller: TipBulkOperationsCtrl,
+      controller: 'TipBulkOperationsCtrl',
       resolve: {
         selected_tips: function () {
           return $scope.selected_tips;
@@ -53,7 +53,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   $scope.tip_postpone_all = function () {
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_postpone_selected.html',
-      controller: TipBulkOperationsCtrl,
+      controller: 'TipBulkOperationsCtrl',
       resolve: {
         selected_tips: function () {
           return $scope.selected_tips;
@@ -66,7 +66,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]);
 
-TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
+GLClient.controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
                         function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
@@ -90,4 +90,4 @@ TipBulkOperationsCtrl = ['$scope', '$http', '$route', '$location', '$uibModalIns
       $route.reload();
     });
   };
-}];
+}]);

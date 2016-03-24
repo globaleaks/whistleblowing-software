@@ -1,5 +1,3 @@
-"use strict";
-
 angular.module('GLServices', ['ngResource']).
   factory('GLCache',['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
