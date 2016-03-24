@@ -328,7 +328,6 @@ describe('globaLeaks process', function() {
         // initial value.
         expect(b).toEqual(true);
       });
-
     });
   });
 
