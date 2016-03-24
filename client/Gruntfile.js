@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         worker: true,
         node: true,  
         jasmine: true,
-        // Webdrive globals
+        // Webdriver globals
         predef: ['browser', 'element', 'by', 'protractor'],
         globals: {
           angular: true,
@@ -571,8 +571,7 @@ module.exports = function(grunt) {
 
     function extractPOFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
-          lines = filecontent.split("\n"),
-          result;
+          lines = filecontent.split("\n");
 
       for (var i=0; i<lines.length; i++){
         // we skip adding empty strings and variable only strings
