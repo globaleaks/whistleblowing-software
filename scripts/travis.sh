@@ -56,6 +56,7 @@ if [ "$GLTEST" = "unit" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
+  setupDependencies 0
   echo "Running lint checks"
   cd $TRAVIS_BUILD_DIR/client
   grunt jshint
