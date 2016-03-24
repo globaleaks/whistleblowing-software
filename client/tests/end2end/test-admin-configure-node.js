@@ -26,7 +26,6 @@ describe('adming configure node', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.waitForAngular();
       done();
     });
   });
@@ -38,61 +37,37 @@ describe('verify navigation of admin sections', function() {
 
   it('should should navigate through admin sections', function(done) {
     element(by.cssContainingText("a", "General settings")).click().then(function() {
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Main configuration")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Theme customization")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Translation customization")).click();
-      browser.waitForAngular();
     });
 
     element(by.cssContainingText("a", "User management")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "Recipient configuration")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "Context configuration")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "Questionnaire configuration")).click();
-    browser.waitForAngular();
 
     element(by.cssContainingText("a", "Notification settings")).click().then(function() {
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Main configuration")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Admin notification templates")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Recipient notification templates")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Exception notification")).click();
-      browser.waitForAngular();
     });
 
     element(by.cssContainingText("a", "URL shortener")).click();
-    browser.waitForAngular();
 
     element(by.cssContainingText("a", "Advanced settings")).click().then(function() {
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Main configuration")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "HTTPS settings")).click();
-      browser.waitForAngular();
       element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
-      browser.waitForAngular();
     });
 
     element(by.cssContainingText("a", "Recent activities")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "System stats")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "Anomalies")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "User overview")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "Submission overview")).click();
-    browser.waitForAngular();
     element(by.cssContainingText("a", "File overview")).click();
-    browser.waitForAngular();
 
     done();
   });
