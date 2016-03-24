@@ -39,6 +39,7 @@ if [ "$GLTEST" = "unit" ]; then
 
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --disable-mail-notification
   sleep 5
+  cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
   echo "Running BrowserTesting locally collecting code coverage"
