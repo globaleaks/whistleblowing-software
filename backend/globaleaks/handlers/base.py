@@ -248,9 +248,12 @@ class BaseHandler(RequestHandler):
         self.set_header("X-XSS-Protection", "1; mode=block")
 
         # to mitigate information leakage on Browser/Proxy Cache
-        self.set_header("Cache-control", "no-cache, no-store, must-revalidate")
-        self.set_header("Pragma", "no-cache")
-        self.set_header("Expires", "-1")
+        if self.request.uri.startswith('/fonts/') and re.search('MSIE|Edge', self.request.headers.get("User-Agent", "")):
+            # Special condition: https://github.com/globaleaks/GlobaLeaks/issues/1601
+            self.set_header("Cache-control", "no-cache, must-revalidate")
+        else:
+            self.set_header("Cache-control", "no-cache, no-store, must-revalidate")
+            self.set_header("Pragma", "no-cache")
 
         # to avoid information leakage via referrer
         self.set_header("Content-Security-Policy", "referrer no-referrer")
