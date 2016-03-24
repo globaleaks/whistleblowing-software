@@ -40,6 +40,12 @@ HANDLER_EXEC_TIME_THRESHOLD = 30
 GLUploads = {}
 GLSessions = TempDict(timeout=GLSettings.authentication_lifetime)
 
+# https://github.com/globaleaks/GlobaLeaks/issues/1601
+mimetypes.add_type('image/svg+xml', '.svg')
+mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
+mimetypes.add_type('application/x-font-ttf', '.ttf')
+mimetypes.add_type('application/woff', '.woff')
+mimetypes.add_type('application/woff2', '.woff2')
 
 class GLSession(object):
     def __init__(self, user_id, user_role, user_status):
