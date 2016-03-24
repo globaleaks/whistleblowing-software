@@ -58,4 +58,4 @@ exports.makeFileNameFromTip = function (tip) {
     var d = tip.creation_date;
     // The name should look like: 20160821-1.zip
     return d.slice(0,4)+d.slice(5,7)+d.slice(8,10)+'-'+ tip.progressive + '.zip';
-  };
+}
