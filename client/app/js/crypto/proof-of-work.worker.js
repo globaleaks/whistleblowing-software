@@ -1,3 +1,6 @@
+/* global postMessage:true */
+/* global onmessage:true */
+
 importScripts('openpgp.worker.min.js');
 
 var sha256 = window.openpgp.crypto.hash.sha256;
@@ -7,7 +10,7 @@ var iterateOverSHA = function(seed) {
   for (i = 0; i < 1024; i++) {
     var x = sha256(seed + i);
 
-    if (x[31] == 0) {
+    if (x[31] === 0) {
       postMessage(i);
     }
   }

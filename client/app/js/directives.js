@@ -1,5 +1,3 @@
-"use strict";
-
 angular.module('GLDirectives', []).
   directive('fadeout', function(){
     return function(scope, element, attrs) {
@@ -25,7 +23,7 @@ angular.module('GLDirectives', []).
           var result = prefix;
 
           if (value.length >= prefix.length) {
-            if (value.slice(0, prefix.length) != prefix) {
+            if (value.slice(0, prefix.length) !== prefix) {
               result = prefix + value;
             } else {
               result = value;
@@ -109,11 +107,11 @@ directive('zxPasswordMeter', function() {
           return;
         }
 
-        if (newValue.password === 'undefined') {
+        if (newValue.password === 'undefined') { // <- intentionally as string
           // Short term fix for:
           // https://github.com/ghostbar/angular-zxcvbn/issues/13
           newValue.score = 0;
-          newValue.password == '';
+          newValue.password = '';
         }
 
         // https://github.com/dropbox/zxcvbn/blob/master/README.md
@@ -134,7 +132,7 @@ directive('zxPasswordMeter', function() {
         }
       });
     }
-  }
+  };
 }).
 directive('imageUpload', function () {
   return {

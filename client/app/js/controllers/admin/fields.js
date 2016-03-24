@@ -35,14 +35,14 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.importQuestions = function(fields) {
-      var fields = JSON.parse(fields);
+      fields = JSON.parse(fields);
 
       if (Object.prototype.toString.call(fields) !== '[object Array]') {
         fields = [fields];
       }
 
       angular.forEach(fields, function(field) {
-        var field = new AdminFieldTemplateResource(field);
+        field = new AdminFieldTemplateResource(field);
         field.id = '';
         field.$save({import: true}, function(new_field) {
           $scope.reload();
@@ -98,7 +98,7 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldR
         return true;
       }
 
-      if (field.instance == 'template' && (['whistleblower_identity'].indexOf(field.key) > -1)) {
+      if (field.instance === 'template' && (['whistleblower_identity'].indexOf(field.key) > -1)) {
         return true;
       }
 
@@ -137,10 +137,11 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldR
     };
 
     $scope.save_field = function(field) {
+      var updated_field;
+
       $scope.assignUniqueOrderIndex(field.options);
 
-      var updated_field;
-      if (field.instance == 'template') {
+      if (field.instance === 'template') {
         updated_field = new AdminFieldTemplateResource(field);
       } else {
         updated_field = new AdminFieldResource(field);

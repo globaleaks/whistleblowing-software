@@ -169,17 +169,17 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
     {
       title:"Main configuration",
       template: "views/admin/content/tab1.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Theme customization",
       template: "views/admin/content/tab2.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title: "Translation customization",
       template: "views/admin/content/tab3.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     }
   ];
 
@@ -218,22 +218,22 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
     {
       title:"Main configuration",
       template:"views/admin/mail/tab1.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Admin notification templates",
       template:"views/admin/mail/tab2.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Recipient notification templates",
       template:"views/admin/mail/tab3.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Exception notification",
       template:"views/admin/mail/tab4.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     }
   ];
 }]);
@@ -244,17 +244,17 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     {
       title:"Main configuration",
       template:"views/admin/advanced/tab1.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"HTTPS settings",
       template:"views/admin/advanced/tab2.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Anomaly detection thresholds",
       template:"views/admin/advanced/tab3.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     }
   ];
 

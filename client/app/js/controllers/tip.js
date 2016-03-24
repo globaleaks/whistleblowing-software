@@ -34,9 +34,12 @@ GLClient.controller('TipCtrl',
             $scope.fields = $scope.whistleblower_identity_field.children;
             $scope.rows = fieldsUtilities.splitRows($scope.fields);
             $scope.field = $scope.whistleblower_identity_field;
-            angular.forEach($scope.field.children, function(child) {
+
+            for (var x = 0; x < $scope.field.children; x++) {
+              var child = $scope.field.children[x];
               $scope.answers[child.id] = [angular.copy(fieldsUtilities.prepare_field_answers_structure(child))];
-            });
+            }
+
             return;
           }
         }

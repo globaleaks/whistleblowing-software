@@ -4,12 +4,12 @@ GLClient.controller('AdminQuestionnaireCtrl', ['$scope', '$uibModal',
     {
       title:"Questionnaire configuration",
       template:"views/admin/questionnaires/main.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     },
     {
       title:"Question templates",
       template:"views/admin/questionnaires/questions.html",
-      ctrl: TabCtrl
+      ctrl: 'TabCtrl'
     }
   ];
 }]);

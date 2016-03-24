@@ -1,4 +1,46 @@
-'use strict';
+function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
+    return function(exception, cause) {
+
+        var $rootScope = $injector.get('$rootScope');
+
+        if ($rootScope.exceptions_count === undefined) {
+          $rootScope.exceptions_count = 0;
+        }
+
+        $rootScope.exceptions_count += 1;
+
+        if ($rootScope.exceptions_count >= 3) {
+          // Give each client the ability to forward only the first 3 exceptions
+          // scattered; this is also important to avoid looping exceptions to
+          // cause looping POST requests.
+          return;
+        }
+
+        $delegate(exception, cause);
+
+        var errorMessage = exception.toString();
+        stacktraceService.fromError(exception).then(function(result) {
+          var errorData = angular.toJson({
+            errorUrl: $window.location.href,
+            errorMessage: errorMessage,
+            stackTrace: result,
+            agent: navigator.userAgent
+          });
+
+          var $http = $injector.get('$http');
+
+          $http.post('exception', errorData);
+        });
+    };
+}
+
+extendExceptionHandler.$inject = ['$delegate', '$injector', '$window', 'stacktraceService'];
+
+function exceptionConfig($provide) {
+    $provide.decorator('$exceptionHandler', extendExceptionHandler);
+}
+
+exceptionConfig.$inject = ['$provide'];
 
 var GLClient = angular.module('GLClient', [
     'angular.filter',
@@ -238,50 +280,6 @@ var GLClient = angular.module('GLClient', [
        angular.extend(config.headers, $rootScope.get_auth_headers());
        return config;
      }
-   }
+   };
 }]).
   config(exceptionConfig);
-
-exceptionConfig.$inject = ['$provide'];
-
-function exceptionConfig($provide) {
-    $provide.decorator('$exceptionHandler', extendExceptionHandler);
-}
-
-extendExceptionHandler.$inject = ['$delegate', '$injector', '$window', 'stacktraceService'];
-
-function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
-    return function(exception, cause) {
-
-        var $rootScope = $injector.get('$rootScope');
-
-        if ($rootScope.exceptions_count === undefined) {
-          $rootScope.exceptions_count = 0;
-        }
-
-        $rootScope.exceptions_count += 1;
-
-        if ($rootScope.exceptions_count >= 3) {
-          // Give each client the ability to forward only the first 3 exceptions
-          // scattered; this is also important to avoid looping exceptions to
-          // cause looping POST requests.
-          return;
-        }
-
-        $delegate(exception, cause);
-
-        var errorMessage = exception.toString();
-        stacktraceService.fromError(exception).then(function(result) {
-          var errorData = angular.toJson({
-            errorUrl: $window.location.href,
-            errorMessage: errorMessage,
-            stackTrace: result,
-            agent: navigator.userAgent
-          });
-
-          var $http = $injector.get('$http');
-
-          $http.post('exception', errorData);
-        });
-    };
-}

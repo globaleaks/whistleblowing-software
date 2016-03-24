@@ -12,7 +12,7 @@ GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', 
   $scope.file_denied_identity_access_reply = function (iar_id) {
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/tip_operation_file_identity_access_reply.html',
-      controller: IdentityAccessReplyCtrl,
+      controller: 'IdentityAccessReplyCtrl',
       resolve: {
         iar: function () {
           return iar_id;
@@ -22,7 +22,7 @@ GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', 
   };
 }]);
 
-IdentityAccessReplyCtrl = ['$scope', '$http', '$route', '$uibModalInstance', 'iar',
+GLClient.controller('IdentityAccessReplyCtrl', ['$scope', '$http', '$route', '$uibModalInstance', 'iar',
   function ($scope, $http, $route, $uibModalInstance, iar) {
     $scope.iar = iar;
     $scope.cancel = function () {
@@ -36,4 +36,4 @@ IdentityAccessReplyCtrl = ['$scope', '$http', '$route', '$uibModalInstance', 'ia
           $route.reload();
         });
     };
-}];
+}]);
