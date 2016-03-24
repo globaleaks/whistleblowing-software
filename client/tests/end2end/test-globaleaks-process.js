@@ -12,7 +12,7 @@ describe('globaLeaks process', function() {
   var message = 'message';
   var message_reply = 'message reply';
   var receiver_username = "Recipient 1";
-  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
+  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#";
 
   var login_whistleblower = function(receipt) {
     return protractor.promise.controlFlow().execute(function() {
@@ -29,7 +29,7 @@ describe('globaLeaks process', function() {
 
       return deferred.promise;
     });
-  }
+  };
 
   var login_receiver = function(username, password) {
     return protractor.promise.controlFlow().execute(function() {
@@ -48,7 +48,7 @@ describe('globaLeaks process', function() {
 
       return deferred.promise;
     });
-  }
+  };
 
   var perform_submission = function(done) {
     browser.get('/#/submission');
@@ -105,7 +105,7 @@ describe('globaLeaks process', function() {
         });
       });
     });
-  }
+  };
 
   it('should redirect to /submission by clicking on the blow the whistle button', function(done) {
     browser.get('/#/');
@@ -269,13 +269,13 @@ describe('globaLeaks process', function() {
       element(by.id('tipFileName')).getText().then(function(t) {
         var filename = t + '.zip';
         // TODO: Verify the zips content
-        utils.waitForFile(filename, 2000)
+        utils.waitForFile(filename, 2000);
       });
     }
   });
 
   it('Recipient should be able to all of the submissions from the tips page', function() {
-    login_receiver(receiver_username, receiver_password)
+    login_receiver(receiver_username, receiver_password);
     // Select the export btn on all of the tips
     var expAction = element.all(by.css('button#tip-action-export'));
     element.all(by.css('#tipListTableBody td.tipFileName'))
@@ -287,7 +287,7 @@ describe('globaLeaks process', function() {
           expAction.get(i).click(); 
           expect(tip).toEqual(jasmine.any(Object));
           var filename = utils.makeFileNameFromTip(tip);
-          utils.waitForFile(filename)
+          utils.waitForFile(filename);
         }
       });
     });
@@ -320,14 +320,14 @@ describe('globaLeaks process', function() {
         var b = final_expirations.map(function(e, i) {
           return [start_expirations[i], e];
         }).reduce(function(pv, cv) {
-          var tmp = cv[0] < cv[1]
-          return pv && tmp
+          var tmp = cv[0] < cv[1];
+          return pv && tmp;
         }, true);
 
         // We expect that every final expiration is larger than its corresponding
         // initial value.
         expect(b).toEqual(true);
-      })
+      });
 
     });
   });
@@ -347,8 +347,8 @@ describe('globaLeaks process', function() {
         expect(d).toEqual(jasmine.any(String));
         var newExpiration = new Date(d);
         expect(newExpiration).toBeGreaterThan(startExpiration);
-      })
-    })
+      });
+    });
   });
 
   it('Recipient should be able to delete first submission from its tip page', function() {
@@ -363,9 +363,9 @@ describe('globaLeaks process', function() {
       // Ensure that the tip has disappeared from the recipient's view.
       element.all(by.css('#tipListTableBody tr'))
       .evaluate('tip.id').then(function(uuids) {
-        var i = uuids.indexOf(tip_uuid)
+        var i = uuids.indexOf(tip_uuid);
         expect(i).toEqual(-1);
-      })
+      });
     });
   });
 
