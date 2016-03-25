@@ -18,14 +18,14 @@ var authentication;
 
 var i;
 
-var receivers = new Array();
-var receivers_ids = new Array();
-var contexts = new Array();
-var contexts_ids = new Array();
-var submissions = new Array();
-var submission_tokens = new Array();
-var files = new Array();
-var wb_keycodes  = new Array();
+var receivers = [];
+var receivers_ids = [];
+var contexts = [];
+var contexts_ids = [];
+var submissions = [];
+var submission_tokens = [];
+var files = [];
+var wb_keycodes  = [];
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -36,44 +36,44 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma':  'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate'
-  }
+  };
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 var valid_login = function(i) {
   return {
     'receipt': wb_keycodes[i]
-  }
-}
+  };
+};
 
 var invalid_login = function() {
   return {
     'receipt': 'antani'
-  }
-}
+  };
+};
 
 var fill_field_recursively = function(answers, field) {
-  answers[field['id']] = {'0': {'0': ''}}
-  for (var i = 0; i < field.children.length; j++) {
+  answers[field.id] = {'0': {'0': ''}};
+  for (var i = 0; i < field.children.length; i++) {
     fill_field_recursively(field.children[i]);
   }
-}
+};
 
 var fill_answers = function(steps) {
-  answers = {}
-  for (i in steps) {
-    for (c in steps[i].children) {
+  var answers = {};
+  for (var i in steps) {
+    for (var c in steps[i].children) {
       fill_field_recursively(answers, steps[i].children[c]);
     }
   }
 
   return answers;
-}
+};
 
 describe('GET /contexts', function(){
   it('responds with ' + population_order + ' contexts associated to ' + population_order + ' receivers', function(done){
@@ -104,8 +104,8 @@ describe('GET /contexts', function(){
           done();
         }
       });
-  })
-})
+  });
+});
 
 describe('GET /receivers', function(){
   it('responds with ' + population_order + ' receivers associated to ' + population_order + ' contexts', function(done){
@@ -136,9 +136,10 @@ describe('GET /receivers', function(){
           done();
         }
       });
-  })
-})
+  });
+});
 
+/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('POST /token', function(){
@@ -160,11 +161,12 @@ for (i=0; i<submission_population_order; i++) {
               done();
             }
           });
-      })
-    })
+      });
+    });
   })(i);
 }
 
+/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /token/token_id', function(){
@@ -188,11 +190,12 @@ for (i=0; i<submission_population_order; i++) {
         } else {
           done();
         }
-      })
-    })
+      });
+    });
   })(i);
 }
 
+/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /submission/submission_id', function(){
@@ -223,8 +226,8 @@ for (i=0; i<submission_population_order; i++) {
               done();
             }
           });
-      })
-    })
+      });
+    });
   })(i);
 }
 
@@ -243,7 +246,7 @@ describe('POST /receiptauth', function () {
         authentication = res.body;
         done();
       });
-  })
+  });
 });
 
 describe('POST /receiptauth', function () {
@@ -261,10 +264,11 @@ describe('POST /receiptauth', function () {
         authentication = res.body;
         done();
       });
-  })
+  });
 });
 
 for (var i=1; i<comments_population_order; i++) {
+  /* jshint loopfunc:true */
   (function (i) {
     describe('POST /wbtip/comments', function () {
       it('responds 201 on wb adding a comment on an existent submission', function (done) {
@@ -272,7 +276,7 @@ for (var i=1; i<comments_population_order; i++) {
         app
           .post('/wbtip/comments')
           .send({"content": "COMMENT!"})
-          .set('X-Session', authentication['session_id'])
+          .set('X-Session', authentication.session_id)
           .expect(201)
           .end(function (err, res) {
             if (err) {
@@ -281,7 +285,7 @@ for (var i=1; i<comments_population_order; i++) {
             validate_mandatory_headers(res.headers);
             done();
           });
-      })
-    })
+      });
+    });
   })(i);
 }

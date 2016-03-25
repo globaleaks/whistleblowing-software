@@ -18,6 +18,7 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'app/js/**/*.js',
+        'tests/**/*.js',
         '!app/js/crypto/openpgp*.js',
         '!app/js/crypto/scrypt-async.*.js'
       ],
@@ -34,7 +35,10 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true,
         worker: true,
-        node: true,
+        node: true,  
+        jasmine: true,
+        // Webdriver globals
+        predef: ['browser', 'element', 'by', 'protractor'],
         globals: {
           angular: true,
           fustyFlowFactory: true,
@@ -42,7 +46,7 @@ module.exports = function(grunt) {
           GLClient: true,
           importScripts: true,
           saveAs: true,
-          StackTrace: true
+          StackTrace: true,
         }
       }
     },
@@ -139,9 +143,19 @@ module.exports = function(grunt) {
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
-          build: process.env.TRAVIS_BUILD_NUMBER
-        }
-      }
+          build: process.env.TRAVIS_BUILD_NUMBER,
+        },
+      },
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          timeout: 30000, 
+          reporter: 'list',
+        },
+        src: ['tests/api/test_*.js'],
+      },
     },
 
     'string-replace': {
@@ -235,6 +249,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
@@ -567,8 +582,7 @@ module.exports = function(grunt) {
 
     function extractPOFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
-          lines = filecontent.split("\n"),
-          result;
+          lines = filecontent.split("\n");
 
       for (var i=0; i<lines.length; i++){
         // we skip adding empty strings and variable only strings
@@ -825,6 +839,6 @@ module.exports = function(grunt) {
     'instrument',
     'protractor_coverage:local',
     'makeReport',
-    'generateCoverallsJson'
+    'generateCoverallsJson',
   ]);
 };

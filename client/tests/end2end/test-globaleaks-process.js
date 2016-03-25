@@ -1,6 +1,5 @@
 var utils = require('./utils.js');
 
-var fs = require('fs');
 var path = require('path');
 
 var fileToUpload = path.resolve(__filename);
@@ -13,7 +12,7 @@ describe('globaLeaks process', function() {
   var message = 'message';
   var message_reply = 'message reply';
   var receiver_username = "Recipient 1";
-  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#"
+  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#";
 
   var login_whistleblower = function(receipt) {
     return protractor.promise.controlFlow().execute(function() {
@@ -30,7 +29,7 @@ describe('globaLeaks process', function() {
 
       return deferred.promise;
     });
-  }
+  };
 
   var login_receiver = function(username, password) {
     return protractor.promise.controlFlow().execute(function() {
@@ -49,7 +48,7 @@ describe('globaLeaks process', function() {
 
       return deferred.promise;
     });
-  }
+  };
 
   var perform_submission = function(done) {
     browser.get('/#/submission');
@@ -106,7 +105,7 @@ describe('globaLeaks process', function() {
         });
       });
     });
-  }
+  };
 
   it('should redirect to /submission by clicking on the blow the whistle button', function(done) {
     browser.get('/#/');
@@ -261,83 +260,112 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export the submission', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
+
+  it('Recipient should be able to export the submission', function() {
+    login_receiver(receiver_username, receiver_password);
+    element(by.id('tip-0')).click();
+    if (utils.testFileDownload()) {
+      element(by.id('tip-action-export')).click();
+      element(by.id('tipFileName')).getText().then(function(t) {
+        var filename = t + '.zip';
+        // TODO: Verify the zips content
+        utils.waitForFile(filename, 2000);
+      });
+    }
+  });
+
+  it('Recipient should be able to all of the submissions from the tips page', function() {
+    login_receiver(receiver_username, receiver_password);
+    // Select the export btn on all of the tips
+    var expAction = element.all(by.css('button#tip-action-export'));
+    element.all(by.css('#tipListTableBody td.tipFileName'))
+    .evaluate('tip').then(function(tips) {
+      // Click export on each tip, wait to see if it downloads
+      tips.forEach(function(tip, i) {
+        // but only if the browser supports it...
         if (utils.testFileDownload()) {
-          element(by.id('tip-action-export')).click().then(function () {
-            browser.waitForAngular();
-            // TODO: test the downloaded zip file opening it and verifying its content.
-            done();
-          });
-        } else {
-          done();
+          expAction.get(i).click(); 
+          expect(tip).toEqual(jasmine.any(Object));
+          var filename = utils.makeFileNameFromTip(tip);
+          utils.waitForFile(filename);
         }
       });
     });
   });
 
-  it('Recipient should be able to export the first submission from the tips page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      if (utils.testFileDownload()) {
-        element(by.id('tip-0')).element(by.id('tip-action-export')).click().then(function() {
-          browser.waitForAngular();
-          // TODO: test the downloaded zip file opening it and verifying its content.
-          done();
-        });
-      } else {
-        done();
-      }
-    });
-  });
+  it('Recipient should be able to postpone all tips', function() {
+    login_receiver(receiver_username, receiver_password);
 
-  it('Recipient should be able to postpone first submission from tip page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-postpone')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            //TODO: check postpone
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
+    function make_dates(strings) {
+      return strings.map(function(s) {
+        expect(s).toEqual(jasmine.any(String));
+        return new Date(s); 
+      });
+    }
+      
+    // Get the expiration dates of all of the tips.
+    element.all(by.css('#tipListTableBody tr'))
+    .evaluate('tip.expiration_date').then(function(exprs) {
+      var start_expirations = make_dates(exprs); 
+      // Postpone the expiration of all tips
+      element(by.id('tip-action-select-all')).click();
+      element(by.id('tip-action-postpone-selected')).click();
+      element(by.id('modal-action-ok')).click();
+      // Collect the new later expiration dates.
+      element.all(by.css('#tipListTableBody tr'))
+      .evaluate('tip.expiration_date').then(function(exprs) {
+        var final_expirations = make_dates(exprs);
+        
+        // Zip start and final together, then reduce the combined array to a bool
+        var b = final_expirations.map(function(e, i) {
+          return [start_expirations[i], e];
+        }).reduce(function(pv, cv) {
+          var tmp = cv[0] < cv[1];
+          return pv && tmp;
+        }, true);
+
+        // We expect that every final expiration is larger than its corresponding
+        // initial value.
+        expect(b).toEqual(true);
       });
     });
   });
 
-  it('Recipient should be able to delete first submission from tip page', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.id('tip-action-delete')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            utils.waitForUrl('/receiver/tips');
-            //TODO: check delete
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
+  it('Recipient should be able to postpone first submission from its tip page', function() {
+    login_receiver(receiver_username, receiver_password);
+    
+    element(by.id('tip-0')).click();
+    // Get the tip's original expiration date.
+    element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+      expect(d).toEqual(jasmine.any(String));
+      var startExpiration = new Date(d);
+      element(by.id('tip-action-postpone')).click();
+      element(by.id('modal-action-ok')).click();
+
+      element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
+        expect(d).toEqual(jasmine.any(String));
+        var newExpiration = new Date(d);
+        expect(newExpiration).toBeGreaterThan(startExpiration);
       });
     });
   });
 
-  it('Recipient should be able to postpone all tips', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-action-select-all')).click().then(function() {
-        element(by.id('tip-action-postpone-selected')).click().then(function () {
-          element(by.id('modal-action-ok')).click().then(function() {
-            utils.waitForUrl('/receiver/tips');
-            //TODO: check postpone
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
+  it('Recipient should be able to delete first submission from its tip page', function() {
+    login_receiver(receiver_username, receiver_password);
+
+    // Find the uuid of the first tip.
+    element(by.id('tip-0')).click();
+    element(by.id('tipFileName')).evaluate('tip.id').then(function(tip_uuid) {
+      element(by.id('tip-action-delete')).click();
+      element(by.id('modal-action-ok')).click();
+      
+      // Ensure that the tip has disappeared from the recipient's view.
+      element.all(by.css('#tipListTableBody tr'))
+      .evaluate('tip.id').then(function(uuids) {
+        var i = uuids.indexOf(tip_uuid);
+        expect(i).toEqual(-1);
       });
     });
   });
+
 });
