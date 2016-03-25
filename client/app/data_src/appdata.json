@@ -11,7 +11,7 @@
       "en": "Warning! You are not anonymous."
     },
     "security_awareness_text": {
-      "en": "Sending submissions over HTTPS exposes the act of doing so, but not the content.\n\nWhen you also hide that you are submitting something, this is called an anonymous submission, meaning you are fully protected.\n\nAnonymous submissions are strongly advised, and can be made through the Tor Browser that is a special browser that anonymises your communication with the platform unlike Internet Explorer, Firefox, Chrome, Opera, etc."
+      "en": "Sending submissions over HTTPS exposes the act of doing so, but not the content.\n\nAlso, hiding the fact that you are submitting something makes the submission anonymous, which is strongly recommended.\n\nThis can be achieved with the use of the Tor Browser, providing anonymisation not found in other browsers like Internet Explorer, Firefox, Chrome, Opera etc."
     },
     "whistleblowing_question": {
       "en": "Are you a whistleblower?"
