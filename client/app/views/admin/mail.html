@@ -3,6 +3,7 @@
   <div class="col-md-9">
 
     <div class="row">
+
       <form name="notificationForm" data-ng-controller="AdminMailCtrl" novalidate>
 
         <uib-tabset class="tab-content">
@@ -16,6 +17,14 @@
             <button class="btn btn-success" data-ng-disabled="notificationForm.$invalid" data-ng-click="update(admin.notification)" type="submit">
               <i class="glyphicon glyphicon-ok"></i>
               <span data-translate>Save</span>
+            </button>
+            <input type="hidden" name="session" value="{{session.id}}" />
+            <button uib-popover="{{'Send a test email to and from the SMTP address. Calls save before sending.' | translate}}"
+                    popover-placement="right"
+                    popover-trigger="mouseenter"
+                    ng-click="update(admin.notification); sendTestMail('admin')"
+                    class="btn btn-success">
+              Test Admin Email <i class="glyphicon glyphicon-export"></i>
             </button>
           </div>
         </div>

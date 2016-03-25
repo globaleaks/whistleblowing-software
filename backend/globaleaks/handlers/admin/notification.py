@@ -9,7 +9,8 @@ from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-
+from globaleaks.utils.mailutils import sendmail
+from globaleaks.settings import GLSettings
 
 def parse_pgp_options(notification, request):
     """
@@ -157,3 +158,38 @@ class NotificationInstance(BaseHandler):
 
         self.set_status(202)
         self.finish(response)
+
+class EmailNotifInstance(BaseHandler):
+    """
+    Manage Test Email Notifications that the admin would like to handle.
+    """
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
+    def post(self):
+      """
+      Errors: InvalidAuthentication, ForbiddenOperation, TODOstmpError
+      """
+      request = self.validate_message(self.request.body, requests.AdminTestMailNotifDesc)
+      send_to = ''
+      if request['send_to'] == 'err-notif':
+        # TODO Get admin email from db.
+        send_to = GLSettings.memory_copy.notif_username
+      elif request['send_to'] == 'err-notif':
+        send_to = GLSettings.memory_copy.notif_username
+      elif request['send_to'] == 'reciever':
+        # TODO Validate reciever email addr.
+        send_to = request['']
+      else:
+        raise errors.ForbiddenOperation
+
+      print("Attempting to send test email to:", send_to)
+      try: 
+        result = yield sendmail(send_to, 'Test Email Config', '. . .')  
+        print(result)
+        self.set_status(200)
+      except Exception as e:
+        print(e)
+        self.set_status(400) # 402 Unprocessable entity threw a strange error.
+      self.finish()

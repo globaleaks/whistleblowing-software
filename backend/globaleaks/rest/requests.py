@@ -294,6 +294,11 @@ AdminNotificationDesc = {
     'exception_email_pgp_key_remove': bool
 }
 
+AdminTestMailNotifDesc = {
+    'send_to': r'^(admin|err-notif|reciever)',
+    'receiver_address': email_regexp_or_empty
+}
+
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,
     'label': unicode,
