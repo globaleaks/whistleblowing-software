@@ -12,11 +12,11 @@ var app = request(host);
 
 var population_order = 4;
 
-var receivers = new Array();
-var receivers_ids = new Array();
-var contexts = new Array();
-var contexts_ids = new Array();
-var fields_ids = new Array();
+var receivers = [];
+var receivers_ids = [];
+var contexts = [];
+var contexts_ids = [];
+var fields_ids = [];
 
 var i;
 
@@ -26,7 +26,7 @@ var node;
 var valid_admin_login = {
   'username': 'admin',
   'password': 'globaleaks'
-}
+};
 
 var user = {
   id: '',
@@ -48,7 +48,7 @@ var user = {
   password_change_needed: false,
   state: 'enabled',
   deletable: 'true'
-}
+};
 
 var fields = [
   {
@@ -117,7 +117,7 @@ var fields = [
     x: 0,
     width: 0
   }
-]
+];
 
 var context = {
   id: '',
@@ -142,7 +142,7 @@ var context = {
   status_page_message: '',
   questionnaire_id: '',
   receivers: []
-}
+};
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -153,14 +153,14 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma':  'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate'
-  }
+  };
 
   for (var key in mandatory_headers) {
     if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 describe('POST /authentication', function () {
   it('responds 200 on valid admin login', function (done) {
@@ -179,8 +179,8 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('GET /admin/node', function () {
   it('responds 200 on GET /admin/node', function (done) {
@@ -199,8 +199,8 @@ describe('GET /admin/node', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('PUT /admin/node', function () {
   it('responds 202 on PUT /admin/node', function (done) {
@@ -226,8 +226,8 @@ describe('PUT /admin/node', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('GET /admin/node (basic auth enabled, invalid credentials', function () {
   it('responds 200 on GET /admin/node', function (done) {
@@ -238,8 +238,8 @@ describe('GET /admin/node (basic auth enabled, invalid credentials', function ()
       .end(function (err, res) {
         done();
       });
-  })
-})
+  });
+});
 
 describe('GET /admin/node (basic auth enabled, valid credentials)', function () {
   it('responds 200 on GET /admin/node', function (done) {
@@ -259,8 +259,8 @@ describe('GET /admin/node (basic auth enabled, valid credentials)', function () 
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('PUT /admin/node (disable basic auth)', function () {
   it('responds 202 on PUT /admin/node', function (done) {
@@ -281,11 +281,12 @@ describe('PUT /admin/node (disable basic auth)', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 // we popolate population_order receivers
 for (i=0; i<population_order; i++) {
+  /* jshint loopfunc:true */
   (function (i) {
     describe('POST /admin/users', function () {
       it('responds 201 on POST /admin/users ' + i + ' (authenticated, valid new  receiver)', function (done) {
@@ -312,13 +313,14 @@ for (i=0; i<population_order; i++) {
 
             done();
         });
-      })
-    })
+      });
+    });
   })(i);
 }
 
 // we popolate population_order contexts
 for (i=0; i<population_order; i++) {
+  /* jshint loopfunc:true */
   (function (i) {
     describe('POST /admin/contexts', function () {
       it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {
@@ -346,7 +348,7 @@ for (i=0; i<population_order; i++) {
 
             done();
           });
-      })
-    })
+      });
+    });
   })(i);
 }

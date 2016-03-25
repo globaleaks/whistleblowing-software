@@ -15,12 +15,12 @@ var authentication;
 var invalid_admin_login = {
   'username': 'admin',
   'password': 'antani'
-}
+};
 
 var valid_admin_login = {
   'username': 'admin',
   'password': 'globaleaks'
-}
+};
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -31,14 +31,14 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma':  'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate'
-  }
+  };
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 describe('POST /authentication', function () {
   it('responds 401 on invalid admin login', function (done) {
@@ -56,8 +56,8 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('POST /authentication', function () {
   it('responds 200 on valid admin login', function (done) {
@@ -77,5 +77,5 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});

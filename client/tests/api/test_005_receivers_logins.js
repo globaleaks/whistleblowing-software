@@ -15,7 +15,7 @@ var valid_login;
 var invalid_login = {
   'username': 'invalid',
   'password': 'login'
-}
+};
 
 var population_order = 3;
 
@@ -28,14 +28,14 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma':  'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate'
-  }
+  };
 
   for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] != mandatory_headers[key]) {
+    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
       throw key + ' != ' + mandatory_headers[key];
     }
   }
-}
+};
 
 describe('GET /receivers', function () {
   it('responds 200 on GET /receivers', function (done) {
@@ -49,17 +49,17 @@ describe('GET /receivers', function () {
 
         validate_mandatory_headers(res.headers);
 
-        receiver_username = JSON.parse(JSON.stringify(res.body))[0]['username'];
+        var receiver_username = JSON.parse(JSON.stringify(res.body))[0]['username'];
 
         valid_login = {
           'username': receiver_username,
           'password': 'ringobongos3cur1ty'
-        }
+        };
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('POST /authentication', function () {
   it('responds 401 on invalid login', function (done) {
@@ -76,8 +76,8 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});
 
 describe('POST /authentication', function () {
   it('responds 200 on valid login', function (done) {
@@ -94,5 +94,5 @@ describe('POST /authentication', function () {
 
         done();
       });
-  })
-})
+  });
+});
