@@ -83,16 +83,14 @@ fi
 
 SUPPORTED_PLATFORM=0
 if [ "$DISTRO_CODENAME" = "precise" ] ||
-   [ "$DISTRO_CODENAME" = "trusty" ] ||
-   [ "$DISTRO_CODENAME" = "wheezy" ] ||
-   [ "$DISTRO_CODENAME" = "jessie" ]; then
+   [ "$DISTRO_CODENAME" = "trusty" ]; then
   SUPPORTED_PLATFORM=1
 fi
 
 if [ $SUPPORTED_PLATFORM -eq 0 ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Supported platform are Ubuntu (precise, trusty) and Debian (wheezy, jessie)"
+  echo "Supported platform is Ubuntu (precise, trusty)"
 
   while true; do
     read -p "Do you wish to continue anyhow? [y|n]?" yn
@@ -106,13 +104,20 @@ fi
 
 echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_CODENAME"
 
-if [ $SUPPORTED_PLATFORM -eq 0 ]; then
-  # In case of unsupported platforms we fallback on trusty
+# The supported platforms are experimentally more than only Ubuntu as
+# publicly communicated to users.
+#
+# Depending on the intention of the user to proceed anyhow installing on
+# a not supported distro we using the experimental package if it exists
+# or trusty as fallback.
+if [ "$DISTRO_CODENAME" != "precise" ] &&
+   [ "$DISTRO_CODENAME" != "trusty" ] &&
+   [ "$DISTRO_CODENAME" != "wheezy" ] &&
+   [ "$DISTRO_CODENAME" != "jessie" ]; then
+  # In case of unsupported platforms we fallback on Trusty
   echo "Given that the platform is not supported the install script will use trusty repository."
   echo "In case of failure refer to the wiki for manual setup possibilities."
   echo "GlobaLeaks Wiki Address: https://github.com/globaleaks/GlobaLeaks/wiki"
-
-  # Given the fact that the platform is not supported be try as it is an Ubuntu 14.04
   DISTRO="Ubuntu"
   DISTRO_CODENAME="trusty"
 fi
