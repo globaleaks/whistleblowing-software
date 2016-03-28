@@ -295,7 +295,7 @@ AdminNotificationDesc = {
 }
 
 AdminTestMailNotifDesc = {
-    'send_to': r'^(admin|err-notif|reciever)',
+    'send_to': r'^(admin|err-notif|receiver)',
     'receiver_address': email_regexp_or_empty
 }
 
