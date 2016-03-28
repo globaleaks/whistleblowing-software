@@ -274,6 +274,23 @@ describe('globaLeaks process', function() {
     }
   });
 
+
+  fit('Recipient should be able to disable and renable email notifications', function() {
+    login_receiver(receiver_username, receiver_password);
+    element(by.id('tip-0')).click();
+    var silence = element(by.id('tip-action-silence'));
+    silence.click();
+    var notif = element(by.id('tip-action-notify'));
+    notif.evaluate('tip.enable_notifications').then(function(enabled) {
+      expect(enabled).toEqual(false);
+      notif.click();
+      silence.evaluate('tip.enable_notifications').then(function(enabled) {
+        expect(enabled).toEqual(true);
+        // TODO Determine if emails are actually blocked.
+      });
+    });
+  });
+
   it('Recipient should be able to all of the submissions from the tips page', function() {
     login_receiver(receiver_username, receiver_password);
     // Select the export btn on all of the tips
