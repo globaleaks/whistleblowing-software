@@ -189,6 +189,10 @@ GLClient.controller('TipCtrl',
       $scope.tip.newMessageContent = '';
     };
 
+    $scope.tip_notify = function(enable) {
+      $scope.tip.setVar('enable_notifications', enable);
+    };
+
     $scope.tip_delete = function () {
       var modalInstance = $uibModal.open({
         templateUrl: 'views/partials/tip_operation_delete.html',
