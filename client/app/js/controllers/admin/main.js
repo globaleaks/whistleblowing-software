@@ -208,9 +208,12 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   };
 
   $scope.update_static_files();
+
 }]);
 
-GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
+GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
+
+
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -229,6 +232,25 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       template:"views/admin/mail/tab4.html"
     }
   ];
+  
+  $scope.sendTestMail = function(stage) {
+    if (['admin', 'err-notif', 'reciever'].indexOf(stage) > -1) {
+      $http({
+        method: 'POST',
+        url: '/admin/notification/mail', 
+        data: {
+          'send_to': stage,
+          'receiver_address': '',
+        }
+      }).then(function() {
+        console.log("email success!");
+      }, function() {
+        console.log("email fail!");
+      });
+    }
+  };
+
+
 }]);
 
 GLClient.controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
