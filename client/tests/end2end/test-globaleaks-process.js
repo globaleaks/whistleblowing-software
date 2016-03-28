@@ -275,7 +275,7 @@ describe('globaLeaks process', function() {
   });
 
 
-  fit('Recipient should be able to disable and renable email notifications', function() {
+  it('Recipient should be able to disable and renable email notifications', function() {
     login_receiver(receiver_username, receiver_password);
     element(by.id('tip-0')).click();
     var silence = element(by.id('tip-action-silence'));
