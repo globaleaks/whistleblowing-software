@@ -234,7 +234,7 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http)
   ];
   
   $scope.sendTestMail = function(stage) {
-    if (['admin', 'err-notif', 'reciever'].indexOf(stage) > -1) {
+    if (['admin', 'err-notif', 'receiver'].indexOf(stage) > -1) {
       $http({
         method: 'POST',
         url: '/admin/notification/mail', 

@@ -178,8 +178,8 @@ class EmailNotifInstance(BaseHandler):
         send_to = GLSettings.memory_copy.notif_username
       elif request['send_to'] == 'err-notif':
         send_to = GLSettings.memory_copy.notif_username
-      elif request['send_to'] == 'reciever':
-        # TODO Validate reciever email addr.
+      elif request['send_to'] == 'receiver':
+        # TODO Validate receiver email addr.
         send_to = request['']
       else:
         raise errors.ForbiddenOperation
