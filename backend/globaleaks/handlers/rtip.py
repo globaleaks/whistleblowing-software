@@ -91,6 +91,7 @@ def serialize_rtip(store, rtip, language):
     ret['label'] = rtip.label
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
     ret['total_score'] = rtip.internaltip.total_score
+    ret['enable_notifications'] = bool(rtip.enable_notifications)
 
     return ret
 
@@ -347,7 +348,7 @@ def get_identityaccessrequest_list(store, user_id, rtip_id, language):
 
 class RTipInstance(BaseHandler):
     """
-    This interface expose the Receiver Tip
+    This interface exposes the Receiver's Tip
     """
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -376,26 +377,27 @@ class RTipInstance(BaseHandler):
     @inlineCallbacks
     def put(self, tip_id):
         """
-        Some special operation over the Tip are handled here
+        Some special operations that manipulate a Tip are handled here
         """
         request = self.validate_message(self.request.body, requests.TipOpsDesc)
 
         if request['operation'] == 'postpone':
             yield postpone_expiration_date(self.current_user.user_id, tip_id)
-        elif request['operation'] == 'set' and \
-                (request['args']['key'] == 'label' and isinstance(request['args']['value'], unicode)):
-            set_receivertip_variable(self.current_user.user_id,
-                                     tip_id,
-                                     request['args']['key'],
-                                     request['args']['value'])
-        elif (request['args']['key'] in ['enable_two_way_comments',
-                                         'enable_two_way_messages',
-                                         'enable_attachments'] and isinstance(request['args']['value'], bool)):
-            set_internaltip_variable(self.current_user.user_id,
-                                     tip_id,
-                                     request['args']['key'],
-                                     request['args']['value'])
+        elif request['operation'] == 'set':
+            key = request['args']['key']
+            value = request['args']['value']
+            internal_var_lst = ['enable_two_way_comments', 
+                                'enable_two_way_messages', 
+                                'enable_attachments'] 
+            if key == 'label' and isinstance(value, unicode):
+                set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
+            elif key == 'enable_notifications' and isinstance(value, bool):
+                set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
+            elif key in internal_var_lst and isinstance(value, bool):
+                # Elements of internal_var_lst are not stored in the receiver's tip table
+                set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
 
+        # TODO A 202 is returned regardless of whether or not an update was performed.
         self.set_status(202)  # Updated
         self.finish()
 

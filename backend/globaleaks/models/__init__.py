@@ -315,7 +315,7 @@ class ReceiverTip(Model):
 
     new = Int(default=True)
 
-    enable_notifications = Int(default=True)
+    enable_notifications = Bool(default=True)
 
     unicode_keys = ['label']
 

@@ -120,9 +120,15 @@ class MailGenerator(object):
         self.process_mail_creation(store, data)
 
     def process_mail_creation(self, store, data):
+        receiver_id = data['receiver']['id']
+
+        # Do not spool emails if the receiver has opted out of ntfns for this tip.
+        if not data['tip']['enable_notifications']:
+          log.debug("Discarding emails for %s due to receiver's preference." % receiver_id)
+          return
+
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
-        receiver_id = data['receiver']['id']
         sent_emails = GLSettings.get_mail_counter(receiver_id)
         if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour" %
