@@ -40,6 +40,24 @@
       <span class="glyphicon glyphicon-trash"></span>
     </span>
 
+    <span id="tip-action-silence" ng-if="tip.enable_notifications" 
+          data-ng-click="tip_notify(false)"
+          uib-popover="{{'Silence email notifications' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <span class="glyphicon glyphicon-eye-open"></span>
+    </span>
+
+    <span id="tip-action-notify" ng-if="tip.enable_notifications !== undefined && !tip.enable_notifications" 
+          data-ng-click="tip_notify(true)"
+          uib-popover="{{'Email notifications for this tip are disabled.' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default alert-warning">
+      <span class="glyphicon glyphicon-eye-close"></span>
+    </span>
+
     <span id="link-reload"
           data-ng-click="reload()"
           uib-popover="{{'Refresh page' | translate}}"

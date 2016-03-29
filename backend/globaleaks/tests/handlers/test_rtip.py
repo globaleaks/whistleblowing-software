@@ -133,6 +133,26 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0]['label'], operation['args']['value'])
 
+    @inlineCallbacks
+    def test_put_silence_notify(self):
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            self.responses = []
+
+            operation = {
+              'operation': 'set',
+              'args': {
+                'key': 'enable_notifications',
+                'value': False
+              }
+            }
+
+            handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.put(rtip_desc['id'])
+            self.assertEqual(handler.get_status(), 202)
+
+            yield handler.get(rtip_desc['id'])
+            self.assertEqual(self.responses[0]['enable_notifications'], operation['args']['value'])
 
     @inlineCallbacks
     def test_delete_delete(self):
