@@ -62,7 +62,8 @@ def admin_serialize_notification(notif, language):
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
         'username': notif.username if notif.username else u"",
-        'password': notif.password if notif.password else u"",
+        # Explicitly do not include password in returned dict. Addresses #1615
+        'password': u"",
         'security': notif.security if notif.security else u"",
         'source_name': notif.source_name,
         'source_email': notif.source_email,
@@ -107,10 +108,14 @@ def update_notification(store, request, language):
         for k in appdata_dict['templates']:
             request[k] = appdata_dict['templates'][k]
 
+    if request['password'] == u'':
+      log.debug("No password set. Using pw already in the DB.")
+      request['password'] = notif.password
+
     notif.update(request)
 
     parse_pgp_options(notif, request)
-
+    # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
 
     return admin_serialize_notification(notif, language)
