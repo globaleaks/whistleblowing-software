@@ -1,5 +1,5 @@
 <div id="WhistleblowerLoginBox">
-  <div data-translate>Have you already filed a submission? Enter your key code.</div>
+  <div id="WhistleblowerLoginPrompt">{{::node.whistleblowing_receipt_prompt}}</div>
   <div data-ng-include="'views/partials/wb_login.html'"></div>
   <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
     <div class="col-md-12">

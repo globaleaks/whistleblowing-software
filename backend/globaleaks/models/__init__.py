@@ -497,6 +497,7 @@ class Node(Model):
 
     whistleblowing_question = JSON(validator=longlocal_v, default=empty_localization)
     whistleblowing_button = JSON(validator=longlocal_v, default=empty_localization)
+    whistleblowing_receipt_prompt = JSON(validator=longlocal_v, default=empty_localization)
 
     simplified_login = Bool(default=True)
 
@@ -584,6 +585,7 @@ class Node(Model):
         'security_awareness_text',
         'whistleblowing_question',
         'whistleblowing_button',
+        'whistleblowing_receipt_prompt',
         'custom_privacy_badge_tor',
         'custom_privacy_badge_none',
         'header_title_homepage',

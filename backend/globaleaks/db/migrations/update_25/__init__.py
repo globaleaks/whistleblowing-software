@@ -46,7 +46,6 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
