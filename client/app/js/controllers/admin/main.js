@@ -112,6 +112,7 @@ GLClient.controller('AdminCtrl',
 
     return max + 1;
   };
+
 }]);
 
 GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
@@ -211,9 +212,10 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
 
 }]);
 
-GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
-
-
+GLClient.controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource', 
+  function($scope, $http, Admin, AdminNotificationResource){
+  $scope.notif = Admin.notification;
+  
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -232,24 +234,27 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http)
       template:"views/admin/mail/tab4.html"
     }
   ];
-  
-  $scope.sendTestMail = function(stage) {
-    if (['admin', 'err-notif', 'receiver'].indexOf(stage) > -1) {
-      $http({
-        method: 'POST',
-        url: '/admin/notification/mail', 
-        data: {
-          'send_to': stage,
-          'receiver_address': '',
-        }
-      }).then(function() {
-        console.log("email success!");
-      }, function() {
-        console.log("email fail!");
-      });
-    }
+
+  sendTestMail = function() {
+    $http({
+      method: 'POST',
+      url: '/admin/notification/mail', 
+    }).then(function() {
+      console.log("email success!");
+    }, function() {
+      console.log("email fail!");
+    });
   };
 
+  $scope.updateThenTestMail = function() {
+    AdminNotificationResource.update($scope.admin.notification)
+    .$promise.then(function() {
+      console.log("update succeeded!");
+      sendTestMail();
+    }, function() {
+      console.log("update failed");
+    });
+  };
 
 }]);
 
