@@ -9,7 +9,7 @@
       <span class="glyphicon glyphicon-th-list"></span>
     </a>
 
-    <form id="TipExportForm" method="POST" action="{{::'/rtip/' + tip.id + '/export'}}" novalidate>
+    <form id="TipExportForm" method="POST" action="{{'/rtip/' + tip.id + '/export'}}" novalidate>
       <input type="hidden" name="session" value="{{session.id}}">
       <button id="tip-action-export"
               uib-popover="{{'Export' | translate}}"
