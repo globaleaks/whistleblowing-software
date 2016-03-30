@@ -19,12 +19,12 @@
               <span data-translate>Save</span>
             </button>
             <input type="hidden" name="session" value="{{session.id}}" />
-            <button uib-popover="{{'Send a test email to and from the SMTP address. Calls save before sending.' | translate}}"
+            <button uib-popover="{{'Send a test email from the SMTP account to your email address.' | translate}}"
                     popover-placement="right"
                     popover-trigger="mouseenter"
-                    ng-click="update(admin.notification); sendTestMail('admin')"
+                    ng-click="updateThenTestMail();"
                     class="btn btn-success">
-              Test Admin Email <i class="glyphicon glyphicon-export"></i>
+              Test Email <i class="glyphicon glyphicon-export"></i>
             </button>
           </div>
         </div>
