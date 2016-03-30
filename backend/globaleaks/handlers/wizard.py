@@ -71,4 +71,3 @@ class FirstSetup(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201)  # Created
-        self.finish()

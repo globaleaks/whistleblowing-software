@@ -170,8 +170,7 @@ class UserInstance(BaseHandler):
         user_status = yield get_user_settings(self.current_user.user_id,
                                               self.request.language)
 
-        self.set_status(200)
-        self.finish(user_status)
+        self.write(user_status)
 
 
     @BaseHandler.authenticated('*')
@@ -188,5 +187,4 @@ class UserInstance(BaseHandler):
         user_status = yield update_user_settings(self.current_user.user_id,
                                                  request, self.request.language)
 
-        self.set_status(200)
-        self.finish(user_status)
+        self.write(user_status)

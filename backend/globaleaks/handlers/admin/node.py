@@ -165,8 +165,7 @@ class NodeInstance(BaseHandler):
         Response: AdminNodeDesc
         """
         node_description = yield admin_serialize_node(self.request.language)
-        self.set_status(200)
-        self.finish(node_description)
+        self.write(node_description)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -186,4 +185,4 @@ class NodeInstance(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(202) # Updated
-        self.finish(node_description)
+        self.write(node_description)

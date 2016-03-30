@@ -37,7 +37,6 @@ class AdminLanguageFileHandler(BaseHandler):
     @BaseHandler.authenticated('admin')
     def get(self, lang):
         self.set_status(204)
-        self.finish()
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -49,7 +48,6 @@ class AdminLanguageFileHandler(BaseHandler):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             self.set_status(201)
-            self.finish()
             return
 
         path = self.custom_langfile_path(lang)
@@ -67,7 +65,6 @@ class AdminLanguageFileHandler(BaseHandler):
         log.debug("Admin uploaded new lang file: %s" % dumped_file['filename'])
 
         self.set_status(201)  # Created
-        self.finish()
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -83,6 +80,3 @@ class AdminLanguageFileHandler(BaseHandler):
             raise errors.LangFileNotFound
 
         os.remove(path)
-
-        self.set_status(200)
-        self.finish()

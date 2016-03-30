@@ -163,8 +163,7 @@ class WBTipInstance(BaseHandler):
 
         answer = yield get_wbtip(self.current_user.user_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -184,8 +183,7 @@ class WBTipCommentCollection(BaseHandler):
         """
         wb_comment_list = yield get_comment_list(self.current_user.user_id)
 
-        self.set_status(200)
-        self.finish(wb_comment_list)
+        self.write(wb_comment_list)
 
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
@@ -201,7 +199,7 @@ class WBTipCommentCollection(BaseHandler):
         answer = yield create_comment(self.current_user.user_id, request)
 
         self.set_status(201)  # Created
-        self.finish(answer)
+        self.write(answer)
 
 
 class WBTipReceiversCollection(BaseHandler):
@@ -220,8 +218,7 @@ class WBTipReceiversCollection(BaseHandler):
         """
         answer = yield get_receiver_list(self.current_user.user_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -238,8 +235,7 @@ class WBTipMessageCollection(BaseHandler):
     def get(self, receiver_id):
         messages = yield get_message_list(self.current_user.user_id, receiver_id)
 
-        self.set_status(200)
-        self.finish(messages)
+        self.write(messages)
 
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
@@ -250,7 +246,7 @@ class WBTipMessageCollection(BaseHandler):
         message = yield create_message(self.current_user.user_id, receiver_id, request)
 
         self.set_status(201)  # Created
-        self.finish(message)
+        self.write(message)
 
 
 class WBTipIdentityHandler(BaseHandler):
@@ -289,4 +285,3 @@ class WBTipIdentityHandler(BaseHandler):
         yield update_identity_information(request['identity_field_id'], request['identity_field_answers'], self.request.language)
 
         self.set_status(202)  # Updated
-        self.finish()
