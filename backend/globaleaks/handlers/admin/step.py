@@ -136,7 +136,7 @@ class StepCollection(BaseHandler):
         GLApiCache.invalidate('contexts')
 
         self.set_status(201)
-        self.finish(response)
+        self.write(response)
 
 
 class StepInstance(BaseHandler):
@@ -160,8 +160,7 @@ class StepInstance(BaseHandler):
         """
         response = yield get_step(step_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
 
     @BaseHandler.transport_security_check('admin')
@@ -185,7 +184,7 @@ class StepInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
 
         self.set_status(202) # Updated
-        self.finish(response)
+        self.write(response)
 
 
     @BaseHandler.transport_security_check('admin')
@@ -202,5 +201,3 @@ class StepInstance(BaseHandler):
         yield delete_step(step_id)
 
         GLApiCache.invalidate('contexts')
-
-        self.set_status(200)

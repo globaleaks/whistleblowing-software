@@ -80,8 +80,7 @@ class IdentityAccessRequestInstance(BaseHandler):
         identityaccessrequest = yield get_identityaccessrequest(identityaccessrequest_id,
                                                                 self.request.language)
 
-        self.set_status(200)
-        self.finish(identityaccessrequest)
+        self.write(identityaccessrequest)
 
 
     @BaseHandler.transport_security_check('custodian')
@@ -101,8 +100,7 @@ class IdentityAccessRequestInstance(BaseHandler):
                                                                    request,
                                                                    self.request.language)
 
-        self.set_status(200)
-        self.finish(identityaccessrequest)
+        self.write(identityaccessrequest)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
@@ -121,5 +119,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
         """
         answer = yield get_identityaccessrequest_list(self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)

@@ -340,7 +340,7 @@ class NodeInstance(BaseHandler):
         ret['custom_homepage'] = os.path.isfile(os.path.join(GLSettings.static_path,
                                                              "custom_homepage.html"))
 
-        self.finish(ret)
+        self.write(ret)
 
 
 class AhmiaDescriptionHandler(BaseHandler):
@@ -358,10 +358,9 @@ class AhmiaDescriptionHandler(BaseHandler):
             ret = yield GLApiCache.get('ahmia', self.request.language,
                                        serialize_ahmia, self.request.language)
 
-            self.finish(ret)
+            self.write(ret)
         else:  # in case of disabled option we return 404
             self.set_status(404)
-            self.finish()
 
 
 class RobotstxtHandler(BaseHandler):
@@ -382,8 +381,6 @@ class RobotstxtHandler(BaseHandler):
         else:
             self.write("User-agent: *\nDisallow: /")
 
-        self.finish()
-
 
 class ContextsCollection(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
@@ -395,7 +392,7 @@ class ContextsCollection(BaseHandler):
         """
         ret = yield GLApiCache.get('contexts', self.request.language,
                                    get_public_context_list, self.request.language)
-        self.finish(ret)
+        self.write(ret)
 
 
 class ReceiversCollection(BaseHandler):
@@ -408,4 +405,4 @@ class ReceiversCollection(BaseHandler):
         """
         ret = yield GLApiCache.get('receivers', self.request.language,
                                    get_public_receiver_list, self.request.language)
-        self.finish(ret)
+        self.write(ret)

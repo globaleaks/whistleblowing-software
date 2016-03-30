@@ -53,8 +53,7 @@ class ShortURLCollection(BaseHandler):
         """
         response = yield get_shorturl_list()
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -68,7 +67,7 @@ class ShortURLCollection(BaseHandler):
         response = yield create_shorturl(request)
 
         self.set_status(201) # Created
-        self.finish(response)
+        self.write(response)
 
 
 class ShortURLInstance(BaseHandler):
@@ -80,6 +79,3 @@ class ShortURLInstance(BaseHandler):
         Delete the specified shorturl.
         """
         yield delete_shorturl(shorturl_id)
-
-        self.set_status(200) # OK and return not content
-        self.finish()

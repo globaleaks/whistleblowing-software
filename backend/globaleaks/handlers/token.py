@@ -40,7 +40,7 @@ class TokenCreate(BaseHandler):
         token = Token(request['type'])
 
         self.set_status(201) # Created
-        self.finish(token.serialize())
+        self.write(token.serialize())
 
 
 class TokenInstance(BaseHandler):
@@ -60,4 +60,4 @@ class TokenInstance(BaseHandler):
         token.update(request)
 
         self.set_status(202) # Updated
-        self.finish(token.serialize())
+        self.write(token.serialize())

@@ -180,7 +180,7 @@ class AnomalyCollection(BaseHandler):
     @inlineCallbacks
     def get(self):
         anomaly_history = yield get_anomaly_history(limit=20)
-        self.finish(anomaly_history)
+        self.write(anomaly_history)
 
     @BaseHandler.transport_security_check("admin")
     @BaseHandler.authenticated("admin")
@@ -188,7 +188,7 @@ class AnomalyCollection(BaseHandler):
     def delete(self):
         log.info("Received anomalies history delete command")
         yield delete_anomaly_history()
-        self.finish([])
+        self.write([])
 
 
 class StatsCollection(BaseHandler):
@@ -210,7 +210,7 @@ class StatsCollection(BaseHandler):
 
         ret = yield get_stats(week_delta)
 
-        self.finish(ret)
+        self.write(ret)
 
     @BaseHandler.transport_security_check("admin")
     @BaseHandler.authenticated("admin")
@@ -218,7 +218,7 @@ class StatsCollection(BaseHandler):
     def delete(self):
         log.info("Received statistic history delete command")
         yield delete_weekstats_history()
-        self.finish([])
+        self.write([])
 
 
 class RecentEventsCollection(BaseHandler):
@@ -249,6 +249,6 @@ class RecentEventsCollection(BaseHandler):
         templist.sort(key=operator.itemgetter('id'))
 
         if kind == 'details':
-            self.finish(templist)
+            self.write(templist)
         else:  # kind == 'summary':
-            self.finish(self.get_summary(templist))
+            self.write(self.get_summary(templist))

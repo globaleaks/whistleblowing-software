@@ -246,8 +246,7 @@ class ContextsCollection(BaseHandler):
         """
         response = yield get_context_list(self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -269,7 +268,7 @@ class ContextsCollection(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201) # Created
-        self.finish(response)
+        self.write(response)
 
 
 class ContextInstance(BaseHandler):
@@ -286,8 +285,7 @@ class ContextInstance(BaseHandler):
         """
         response = yield get_context(context_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -310,7 +308,7 @@ class ContextInstance(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(202) # Updated
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -325,6 +323,3 @@ class ContextInstance(BaseHandler):
         """
         yield delete_context(context_id)
         GLApiCache.invalidate()
-
-        self.set_status(200) # Ok and return no content
-        self.finish()

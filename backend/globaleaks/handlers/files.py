@@ -175,7 +175,6 @@ class FileAdd(BaseHandler):
         yield self.handle_file_append(itip_id)
 
         self.set_status(201)  # Created
-        self.finish()
 
 
 class FileInstance(BaseHandler):
@@ -224,7 +223,6 @@ class FileInstance(BaseHandler):
         yield self.handle_file_upload(token_id)
 
         self.set_status(201)  # Created
-        self.finish()
 
 
 @transact
@@ -260,7 +258,6 @@ class Download(BaseHandler):
         filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
 
         if os.path.exists(filelocation):
-            self.set_status(200)
             self.set_header('X-Download-Options', 'noopen')
             self.set_header('Content-Type', 'application/octet-stream')
             self.set_header('Content-Length', rfile['size'])
@@ -268,5 +265,3 @@ class Download(BaseHandler):
             self.write_file(filelocation)
         else:
             self.set_status(404)
-
-        self.finish()
