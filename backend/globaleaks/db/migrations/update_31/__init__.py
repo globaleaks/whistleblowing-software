@@ -143,7 +143,14 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
+        new_templates = [
+            'whistleblowing_receipt_prompt'
+        ]
+
         for _, v in new_node._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_node, v.name, new_templates, self.appdata['node']):
+                continue
+
             if v.name == 'allow_indexing':
                 new_node.allow_indexing = False
                 continue
@@ -180,6 +187,9 @@ class MigrationScript(MigrationBase):
 
             if v.name == 'contexts_clarification':
                 new_node.contexts_clarification = old_node.context_selector_label
+                continue
+
+            if v.name == 'whistleblowing_receipt_prompt':
                 continue
 
             if v.name == 'context_selector_type':

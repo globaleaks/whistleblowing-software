@@ -163,6 +163,7 @@ CREATE TABLE node (
     contexts_clarification BLOB NOT NULL,
     whistleblowing_question BLOB NOT NULL,
     whistleblowing_button BLOB NOT NULL,
+    whistleblowing_receipt_prompt BLOB NOT NULL,
     hidden_service TEXT NOT NULL,
     languages_enabled BLOB NOT NULL,
     default_language TEXT NOT NULL,
