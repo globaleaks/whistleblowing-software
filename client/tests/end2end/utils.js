@@ -2,13 +2,13 @@ var fs = require('fs');
 var path = require('path');
 
 exports.waitUntilReady = function (elm, timeout) {
-   var t = timeout === undefined ? 1000 : timeout;
-   browser.wait(function () {
-      return elm.isPresent();
-   }, t);
-   browser.wait(function () {
-      return elm.isDisplayed();
-   }, t);
+  var t = timeout === undefined ? 1000 : timeout;
+  browser.wait(function () {
+    return elm.isPresent();
+  }, t);
+  browser.wait(function () {
+    return elm.isDisplayed();
+  }, t);
 };
 
 browser.getCapabilities().then(function(capabilities) {
@@ -20,7 +20,7 @@ browser.getCapabilities().then(function(capabilities) {
   exports.testFileDownload = function() {
     // The only browser that does not ask for user interaction is chrome
     var browserName = capabilities.get('browserName').toLowerCase();
-    return (['chrome'].indexOf(browserName) !== -1);
+    return (['firefox', 'chrome'].indexOf(browserName) !== -1);
   };
 
   exports.isOldIE = function() {
@@ -37,3 +37,18 @@ exports.waitForUrl = function (url) {
     });
   });
 };
+
+exports.waitForFile = function (filename, timeout) {    
+  var t = timeout === undefined ? 1000 : timeout;    
+  var fp = path.resolve(browser.params.tmpDir, filename);   
+  browser.wait(function() {    
+    try {   
+      var buf = fs.readFileSync(fp);   
+      if (buf.length > 1000) {    
+        return true;   
+      }   
+    } catch(err) {   
+      return false;   
+    }    
+  }, t);    
+};   

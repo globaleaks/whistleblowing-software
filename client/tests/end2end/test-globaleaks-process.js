@@ -262,15 +262,18 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export the submission', function(done) {
-    if (utils.testFileDownload()) {
+  it('Recipient should be able to export the submission', function() {
       login_receiver(receiver_username, receiver_password);
-      element(by.id('tip-0')).click().then(function() {
+      element(by.id('tip-0')).click();
+      element(by.id('tipFileName')).getText().then(function(t) {
+        expect(t).toEqual(jasmine.any(String));
         element(by.id('tip-action-export')).click();
-        // TODO tests if the file has been downloaded and is valid
-        done();
+        if (utils.testFileDownload()) {
+          var filename = t + '.zip';
+          // TODO: Verify the zips content
+          utils.waitForFile(filename, 5000);
+        }
       });
-    }
   });
 
   it('Recipient should be able to disable and renable email notifications', function() {
