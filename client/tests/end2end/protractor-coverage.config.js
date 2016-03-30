@@ -21,11 +21,12 @@ var makeFirefoxProfile = function(preferenceMap) {
 };
 
 // The test directory for downloaded files
-var tmpDir = path.resolve(__dirname, 'tmp');
+var tmpDir = '/tmp/';
 
 
 exports.config = {
   framework: 'jasmine',
+  params: { 'tmpDir': tmpDir };
 
   baseUrl: 'http://127.0.0.1:8082/',
 
