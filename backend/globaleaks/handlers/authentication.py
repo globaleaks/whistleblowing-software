@@ -161,9 +161,6 @@ class AuthenticationHandler(BaseHandler):
             except KeyError:
                 raise errors.NotAuthenticated
 
-        self.set_status(200)
-        self.finish()
-
 
 class ReceiptAuthHandler(AuthenticationHandler):
     handler_exec_time_threshold = 60

@@ -121,7 +121,6 @@ class StaticFileInstance(BaseHandler):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             self.set_status(201)
-            self.finish()
             return
 
         if filename == 'upload':
@@ -138,7 +137,6 @@ class StaticFileInstance(BaseHandler):
 
         log.debug('Admin uploaded new static file: %s' % dumped_file['filename'])
         self.set_status(201)
-        self.finish()
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -153,8 +151,6 @@ class StaticFileInstance(BaseHandler):
             raise errors.StaticFileNotFound
 
         os.remove(path)
-        self.set_status(200)
-        self.finish()
 
 
 class StaticFileList(BaseHandler):
@@ -164,8 +160,7 @@ class StaticFileList(BaseHandler):
         """
         Return the list of static files, with few filesystem info
         """
-        self.set_status(200)
-        self.finish(get_stored_files())
+        self.write(get_stored_files())
 
 
 class NodeLogoInstance(StaticFileInstance):
@@ -176,7 +171,6 @@ class NodeLogoInstance(StaticFileInstance):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             self.set_status(201)
-            self.finish()
             return
 
         try:
@@ -190,7 +184,6 @@ class NodeLogoInstance(StaticFileInstance):
         GLApiCache.invalidate()
 
         self.set_status(201)
-        self.finish()
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -199,9 +192,6 @@ class NodeLogoInstance(StaticFileInstance):
         yield del_node_logo()
 
         GLApiCache.invalidate()
-
-        self.set_status(200)
-        self.finish()
 
 
 class UserImgInstance(StaticFileInstance):
@@ -214,7 +204,6 @@ class UserImgInstance(StaticFileInstance):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             self.set_status(201)
-            self.finish()
             return
 
         try:
@@ -228,7 +217,6 @@ class UserImgInstance(StaticFileInstance):
         GLApiCache.invalidate()
 
         self.set_status(201)
-        self.finish()
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -237,9 +225,6 @@ class UserImgInstance(StaticFileInstance):
         yield del_model_img(self.model, obj_id)
 
         GLApiCache.invalidate()
-
-        self.set_status(200)
-        self.finish()
 
 
 class ContextImgInstance(UserImgInstance):

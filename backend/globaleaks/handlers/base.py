@@ -516,7 +516,7 @@ class BaseHandler(RequestHandler):
                 error_dict.update({'arguments': []})
 
             self.set_status(status_code)
-            self.finish(error_dict)
+            self.write(error_dict)
         else:
             RequestHandler.write_error(self, status_code, **kw)
 
@@ -781,5 +781,4 @@ class TimingStatsHandler(BaseHandler):
                                          measure['uri'],
                                          measure['start_time'],
                                          measure['run_time'])
-        self.set_status(200)
-        self.finish(csv)
+        self.write(csv)

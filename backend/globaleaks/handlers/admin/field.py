@@ -426,8 +426,7 @@ class FieldTemplatesCollection(BaseHandler):
         response = yield get_fieldtemplate_list(self.request.language,
                                                 self.request.request_type)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -443,7 +442,7 @@ class FieldTemplatesCollection(BaseHandler):
         response = yield create_field(request, self.request.language, self.request.request_type)
 
         self.set_status(201)
-        self.finish(response)
+        self.write(response)
 
 
 class FieldTemplateInstance(BaseHandler):
@@ -463,8 +462,7 @@ class FieldTemplateInstance(BaseHandler):
                                    self.request.language,
                                    self.request.request_type)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -489,7 +487,7 @@ class FieldTemplateInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
 
         self.set_status(202) # Updated
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -504,8 +502,6 @@ class FieldTemplateInstance(BaseHandler):
         yield delete_field(field_id)
 
         GLApiCache.invalidate('contexts')
-
-        self.set_status(200)
 
 
 class FieldCollection(BaseHandler):
@@ -535,7 +531,7 @@ class FieldCollection(BaseHandler):
         GLApiCache.invalidate('contexts')
 
         self.set_status(201)
-        self.finish(response)
+        self.write(response)
 
 
 class FieldInstance(BaseHandler):
@@ -563,8 +559,7 @@ class FieldInstance(BaseHandler):
 
         GLApiCache.invalidate('contexts')
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -590,7 +585,7 @@ class FieldInstance(BaseHandler):
         GLApiCache.invalidate('contexts')
 
         self.set_status(202) # Updated
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -606,5 +601,3 @@ class FieldInstance(BaseHandler):
         yield delete_field(field_id)
 
         GLApiCache.invalidate('contexts')
-
-        self.set_status(200)

@@ -222,8 +222,7 @@ class UsersCollection(BaseHandler):
         """
         response = yield get_user_list(self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -249,7 +248,7 @@ class UsersCollection(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201) # Created
-        self.finish(response)
+        self.write(response)
 
 
 class UserInstance(BaseHandler):
@@ -266,8 +265,7 @@ class UserInstance(BaseHandler):
         """
         response = yield get_user(user_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -287,7 +285,7 @@ class UserInstance(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201)
-        self.finish(response)
+        self.write(response)
 
     @inlineCallbacks
     @BaseHandler.transport_security_check('admin')
@@ -304,6 +302,3 @@ class UserInstance(BaseHandler):
         yield delete_user(user_id)
 
         GLApiCache.invalidate()
-
-        self.set_status(200) # OK and return not content
-        self.finish()

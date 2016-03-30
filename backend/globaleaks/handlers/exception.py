@@ -32,5 +32,4 @@ class ExceptionHandler(BaseHandler):
             log.debug("Received client exception and notified to exception email")
 
         self.set_status(201)  # Created
-        self.finish()
 
