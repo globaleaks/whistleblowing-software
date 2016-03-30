@@ -18,7 +18,6 @@ class TempDict(OrderedDict):
         self.size_limit = size_limit
         OrderedDict.__init__(self)
 
-
         self._check_size_limit()
 
     def get_timeout(self):
