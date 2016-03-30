@@ -27,11 +27,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.5.2",
-    "angular-aria": "1.5.2",
+    "angular": "1.5.3",
+    "angular-aria": "1.5.3",
     "angular-filter": "0.5.8",
-    "angular-resource": "1.5.2",
-    "angular-route": "1.5.2",
+    "angular-resource": "1.5.3",
+    "angular-route": "1.5.3",
     "angular-translate": "2.11.0",
     "angular-translate-loader-url": "2.11.0",
     "angular-translate-loader-static-files": "2.11.0",
@@ -46,9 +46,9 @@
     "flow.js": "2.10.1",
     "fusty-flow.js": "1.2.0",
     "jquery": "2.2.2",
-    "js-polyfills": "0.1.17",
+    "js-polyfills": "0.1.18",
     "ng-flow": "2.7.1",
-    "openpgp": "2.1.0",
+    "openpgp": "2.2.0",
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.0.4",
     "zxcvbn": "4.3.0"
