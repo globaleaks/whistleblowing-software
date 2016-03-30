@@ -265,11 +265,13 @@ describe('globaLeaks process', function() {
     login_receiver(receiver_username, receiver_password);
     element(by.id('tip-0')).click();
     if (utils.testFileDownload()) {
-      element(by.id('tip-action-export')).click();
-      element(by.id('tipFileName')).getText().then(function(t) {
+      tipFileName = element(by.id('tipFileName'));
+      tipFileName.getText().then(function(t) {
+        expect(t).toEqual(jasmine.any(String));
+        element(by.id('tip-action-export')).click();
         var filename = t + '.zip';
         // TODO: Verify the zips content
-        utils.waitForFile(filename, 2000);
+        utils.waitForFile(filename, 5000);
       });
     }
   });
