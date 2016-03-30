@@ -26,7 +26,7 @@ var tmpDir = '/tmp/';
 
 exports.config = {
   framework: 'jasmine',
-  params: { 'tmpDir': tmpDir };
+  params: { 'tmpDir': tmpDir },
 
   baseUrl: 'http://127.0.0.1:8082/',
 
