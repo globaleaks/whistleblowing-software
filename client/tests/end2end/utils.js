@@ -21,7 +21,7 @@ browser.getCapabilities().then(function(capabilities) {
   exports.testFileDownload = function() {
     // The only browser that does not ask for user interaction is chrome
     var browserName = capabilities.get('browserName').toLowerCase();
-    return (['chrome'].indexOf(browserName) !== -1);
+    return (['firefox', 'chrome'].indexOf(browserName) !== -1);
   };
 
   exports.isOldIE = function() {
