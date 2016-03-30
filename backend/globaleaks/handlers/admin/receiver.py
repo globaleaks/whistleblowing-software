@@ -121,8 +121,7 @@ class ReceiversCollection(BaseHandler):
         """
         response = yield get_receiver_list(self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
 
 class ReceiverInstance(BaseHandler):
@@ -139,8 +138,7 @@ class ReceiverInstance(BaseHandler):
         """
         response = yield get_receiver(receiver_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -160,4 +158,4 @@ class ReceiverInstance(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201)
-        self.finish(response)
+        self.write(response)

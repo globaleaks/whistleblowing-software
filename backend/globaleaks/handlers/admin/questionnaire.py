@@ -182,8 +182,7 @@ class QuestionnairesCollection(BaseHandler):
         """
         response = yield get_questionnaire_list(self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -205,7 +204,7 @@ class QuestionnairesCollection(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(201) # Created
-        self.finish(response)
+        self.write(response)
 
 
 class QuestionnaireInstance(BaseHandler):
@@ -222,8 +221,7 @@ class QuestionnaireInstance(BaseHandler):
         """
         response = yield get_questionnaire(questionnaire_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -246,7 +244,7 @@ class QuestionnaireInstance(BaseHandler):
         GLApiCache.invalidate()
 
         self.set_status(202) # Updated
-        self.finish(response)
+        self.write(response)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -261,6 +259,3 @@ class QuestionnaireInstance(BaseHandler):
         """
         yield delete_questionnaire(questionnaire_id)
         GLApiCache.invalidate()
-
-        self.set_status(200) # Ok and return no content
-        self.finish()

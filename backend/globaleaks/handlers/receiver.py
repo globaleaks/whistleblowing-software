@@ -140,8 +140,7 @@ class ReceiverInstance(BaseHandler):
         receiver_status = yield get_receiver_settings(self.current_user.user_id,
                                                       self.request.language)
 
-        self.set_status(200)
-        self.finish(receiver_status)
+        self.write(receiver_status)
 
 
     @BaseHandler.transport_security_check('receiver')
@@ -162,8 +161,7 @@ class ReceiverInstance(BaseHandler):
 
         GLApiCache.invalidate('receivers')
 
-        self.set_status(200)
-        self.finish(receiver_status)
+        self.write(receiver_status)
 
 
 class TipsCollection(BaseHandler):
@@ -182,8 +180,7 @@ class TipsCollection(BaseHandler):
         answer = yield get_receivertip_list(self.current_user.user_id,
                                             self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
 
 class TipsOperations(BaseHandler):
@@ -206,6 +203,3 @@ class TipsOperations(BaseHandler):
             raise errors.ForbiddenOperation
 
         yield perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])
-
-        self.set_status(200)
-        self.finish()

@@ -450,4 +450,4 @@ class SubmissionInstance(BaseHandler):
                                              self.check_tor2web(),
                                              self.request.language)
         self.set_status(202)  # Updated, also if submission if effectively created (201)
-        self.finish(submission)
+        self.write(submission)

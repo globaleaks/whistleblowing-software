@@ -369,8 +369,7 @@ class RTipInstance(BaseHandler):
 
         answer = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -399,7 +398,6 @@ class RTipInstance(BaseHandler):
 
         # TODO A 202 is returned regardless of whether or not an update was performed.
         self.set_status(202)  # Updated
-        self.finish()
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -412,9 +410,6 @@ class RTipInstance(BaseHandler):
         delete: remove the Internaltip and all the associated data
         """
         yield delete_rtip(self.current_user.user_id, tip_id)
-
-        self.set_status(200)  # Success
-        self.finish()
 
 
 class RTipCommentCollection(BaseHandler):
@@ -435,8 +430,7 @@ class RTipCommentCollection(BaseHandler):
         """
         comment_list = yield get_comment_list(self.current_user.user_id, tip_id)
 
-        self.set_status(200)
-        self.finish(comment_list)
+        self.write(comment_list)
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -452,7 +446,7 @@ class RTipCommentCollection(BaseHandler):
         answer = yield create_comment(self.current_user.user_id, tip_id, request)
 
         self.set_status(201)  # Created
-        self.finish(answer)
+        self.write(answer)
 
 
 class RTipReceiversCollection(BaseHandler):
@@ -471,8 +465,7 @@ class RTipReceiversCollection(BaseHandler):
         """
         answer = yield get_receiver_list(self.current_user.user_id, rtip_id, self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
 
 class ReceiverMsgCollection(BaseHandler):
@@ -485,8 +478,7 @@ class ReceiverMsgCollection(BaseHandler):
     def get(self, tip_id):
         answer = yield get_message_list(self.current_user.user_id, tip_id)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -502,7 +494,7 @@ class ReceiverMsgCollection(BaseHandler):
         message = yield create_message(self.current_user.user_id, tip_id, request)
 
         self.set_status(201)  # Created
-        self.finish(message)
+        self.write(message)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
@@ -523,8 +515,7 @@ class IdentityAccessRequestsCollection(BaseHandler):
                                                       tip_id,
                                                       self.request.language)
 
-        self.set_status(200)
-        self.finish(answer)
+        self.write(answer)
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
@@ -543,4 +534,4 @@ class IdentityAccessRequestsCollection(BaseHandler):
                                                                    self.request.language)
 
         self.set_status(201)
-        self.finish(identityaccessrequest)
+        self.write(identityaccessrequest)

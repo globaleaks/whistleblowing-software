@@ -224,8 +224,7 @@ class Tips(BaseHandler):
         """
         tips_complete_list = yield collect_tip_overview(self.request.language)
 
-        self.set_status(200)
-        self.finish(tips_complete_list)
+        self.write(tips_complete_list)
 
 
 class Users(BaseHandler):
@@ -245,8 +244,7 @@ class Users(BaseHandler):
         """
         users_complete_list = yield collect_users_overview()
 
-        self.set_status(200)
-        self.finish(users_complete_list)
+        self.write(users_complete_list)
 
 
 class Files(BaseHandler):
@@ -269,5 +267,4 @@ class Files(BaseHandler):
 
         file_complete_list = yield collect_files_overview()
 
-        self.set_status(200)
-        self.finish(file_complete_list)
+        self.write(file_complete_list)

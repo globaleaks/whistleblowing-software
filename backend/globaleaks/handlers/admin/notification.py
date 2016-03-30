@@ -136,8 +136,7 @@ class NotificationInstance(BaseHandler):
         Errors: None (return empty configuration, at worst)
         """
         notification_desc = yield get_notification(self.request.language)
-        self.set_status(200)
-        self.finish(notification_desc)
+        self.write(notification_desc)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -156,4 +155,4 @@ class NotificationInstance(BaseHandler):
         response = yield update_notification(request, self.request.language)
 
         self.set_status(202)
-        self.finish(response)
+        self.write(response)
