@@ -72,6 +72,13 @@ describe('globaLeaks process', function() {
                         utils.waitForUrl('/receipt');
                         element(by.id('KeyCode')).getText().then(function (txt) {
                           receipts.unshift(txt);
+                          element(by.id('ReceiptButton')).click().then(function() {
+                            utils.waitForUrl('/status');
+                            element(by.id('LogoutLink')).click().then(function() {
+                              utils.waitForUrl('/');
+                              done();
+                            });
+                          });
                         });
                       });
                     });
@@ -88,19 +95,18 @@ describe('globaLeaks process', function() {
                     utils.waitForUrl('/receipt');
                     element(by.id('KeyCode')).getText().then(function (txt) {
                       receipts.unshift(txt);
+                      element(by.id('ReceiptButton')).click().then(function() {
+                        utils.waitForUrl('/status');
+                        element(by.id('LogoutLink')).click().then(function() {
+                          utils.waitForUrl('/');
+                          done();
+                        });
+                      });
                     });
                   });
                 });
               });
             }
-
-            element(by.id('ReceiptButton')).click().then(function() {
-              utils.waitForUrl('/status');
-              element(by.id('LogoutLink')).click().then(function() {
-                utils.waitForUrl('/');
-                done();
-              });
-            });
           });
         });
       });
@@ -128,21 +134,19 @@ describe('globaLeaks process', function() {
   });
 
   it('Whistleblower should be able to access the first submission', function(done) {
-    login_whistleblower(receipts[0]).then(function() {
-      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-      element(by.id('LogoutLink')).click().then(function() {
-        utils.waitForUrl('/');
-        done();
-      });
+    login_whistleblower(receipts[0]);
+    expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+    element(by.id('LogoutLink')).click().then(function() {
+      utils.waitForUrl('/');
+      done();
     });
   });
 
   it('Recipient should be able to access the first submission', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-        done();
-      });
+    login_receiver(receiver_username, receiver_password);
+    element(by.id('tip-0')).click().then(function() {
+      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+      done();
     });
   });
 
@@ -170,32 +174,16 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to leave a comment to the whistleblower', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.model('tip.newCommentContent')).sendKeys(comment);
-        element(by.id('comment-action-send')).click().then(function() {
-          browser.waitForAngular();
-          element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
-            expect(c).toContain(comment);
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
-          });
-        });
-      });
-    });
-  });
+    login_receiver(receiver_username, receiver_password);
 
-  it('Whistleblower should be able to read the comment from the receiver and reply', function(done) {
-    login_whistleblower(receipts[0]).then(function() {
-      element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
-        expect(c).toEqual(comment);
-        element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
-        element(by.id('comment-action-send')).click().then(function() {
-          browser.waitForAngular();
-          element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
-            expect(c).toContain(comment_reply);
+    element(by.id('tip-0')).click().then(function() {
+      element(by.model('tip.newCommentContent')).sendKeys(comment);
+      element(by.id('comment-action-send')).click().then(function() {
+        browser.waitForAngular();
+        element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+          expect(c).toContain(comment);
+          element(by.id('LogoutLink')).click().then(function() {
+            utils.waitForUrl('/login');
             done();
           });
         });
@@ -203,39 +191,53 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Whistleblower should be able to attach a new file to the first submission', function(done) {
-    login_whistleblower(receipts[0]).then(function() {
-      if (utils.testFileUpload()) {
-        browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-        element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-          browser.waitForAngular();
-          element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-            browser.waitForAngular();
-            // TODO: test file addition
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/');
-              done();
-            });
-          });
+  it('Whistleblower should be able to read the comment from the receiver and reply', function(done) {
+    login_whistleblower(receipts[0]);
+
+    element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+      expect(c).toEqual(comment);
+      element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
+      element(by.id('comment-action-send')).click().then(function() {
+        browser.waitForAngular();
+        element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+          expect(c).toContain(comment_reply);
+          done();
         });
-      } else {
-        done();
-      }
+      });
     });
   });
 
-  it('Recipient should be able to start a private discussion with the whistleblower', function(done) {
-    login_receiver(receiver_username, receiver_password).then(function() {
-      element(by.id('tip-0')).click().then(function() {
-        element(by.model('tip.newMessageContent')).sendKeys(message);
-        element(by.id('message-action-send')).click().then(function() {
+  it('Whistleblower should be able to attach a new file to the first submission', function(done) {
+    if (utils.testFileUpload()) {
+      login_whistleblower(receipts[0]);
+
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+      element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+        browser.waitForAngular();
+        element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
           browser.waitForAngular();
-          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
-            expect(m).toContain(message);
-            element(by.id('LogoutLink')).click().then(function() {
-              utils.waitForUrl('/login');
-              done();
-            });
+          // TODO: test file addition
+          element(by.id('LogoutLink')).click().then(function() {
+            utils.waitForUrl('/');
+            done();
+          });
+        });
+      });
+    }
+  });
+
+  it('Recipient should be able to start a private discussion with the whistleblower', function(done) {
+    login_receiver(receiver_username, receiver_password);
+
+    element(by.id('tip-0')).click().then(function() {
+      element(by.model('tip.newMessageContent')).sendKeys(message);
+      element(by.id('message-action-send')).click().then(function() {
+        browser.waitForAngular();
+        element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+          expect(m).toContain(message);
+          element(by.id('LogoutLink')).click().then(function() {
+            utils.waitForUrl('/login');
+            done();
           });
         });
       });
@@ -243,40 +245,37 @@ describe('globaLeaks process', function() {
   });
 
   it('Whistleblower should be able to read the private message from the receiver and reply', function(done) {
-    login_whistleblower(receipts[0]).then(function() {
-      element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
-        element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
-          expect(message).toEqual(message);
-          element(by.model('tip.newMessageContent')).sendKeys(message_reply);
-          element(by.id('message-action-send')).click().then(function() {
-            browser.waitForAngular();
-            element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
-              expect(m).toContain(message_reply);
-              done();
-            });
+    login_whistleblower(receipts[0]);
+
+    element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
+      element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+        expect(message).toEqual(message);
+        element(by.model('tip.newMessageContent')).sendKeys(message_reply);
+        element(by.id('message-action-send')).click().then(function() {
+          browser.waitForAngular();
+          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+            expect(m).toContain(message_reply);
+            done();
           });
         });
       });
     });
   });
 
-
-  it('Recipient should be able to export the submission', function() {
-    login_receiver(receiver_username, receiver_password);
-    element(by.id('tip-0')).click();
+  it('Recipient should be able to export the submission', function(done) {
     if (utils.testFileDownload()) {
-      element(by.id('tip-action-export')).click();
-      element(by.id('tipFileName')).getText().then(function(t) {
-        var filename = t + '.zip';
-        // TODO: Verify the zips content
-        utils.waitForFile(filename, 2000);
+      login_receiver(receiver_username, receiver_password);
+      element(by.id('tip-0')).click().then(function() {
+        element(by.id('tip-action-export')).click();
+        // TODO tests if the file has been downloaded and is valid
+        done();
       });
     }
   });
 
-
   it('Recipient should be able to disable and renable email notifications', function() {
     login_receiver(receiver_username, receiver_password);
+
     element(by.id('tip-0')).click();
     var silence = element(by.id('tip-action-silence'));
     silence.click();
@@ -291,23 +290,14 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to all of the submissions from the tips page', function() {
-    login_receiver(receiver_username, receiver_password);
-    // Select the export btn on all of the tips
-    var expAction = element.all(by.css('button#tip-action-export'));
-    element.all(by.css('#tipListTableBody td.tipFileName'))
-    .evaluate('tip').then(function(tips) {
-      // Click export on each tip, wait to see if it downloads
-      tips.forEach(function(tip, i) {
-        // but only if the browser supports it...
-        if (utils.testFileDownload()) {
-          expAction.get(i).click(); 
-          expect(tip).toEqual(jasmine.any(Object));
-          var filename = utils.makeFileNameFromTip(tip);
-          utils.waitForFile(filename);
-        }
-      });
-    });
+  it('Recipient should be able to export first submission from the tips page', function() {
+    if (utils.testFileDownload()) {
+      login_receiver(receiver_username, receiver_password);
+
+      var first_tip_export = element(by.id('tip-0')).element(by.id('tip-action-export'));
+      first_tip_export.click();
+      // TODO tests if the file has been downloaded and is valid
+    }
   });
 
   it('Recipient should be able to postpone all tips', function() {
@@ -322,7 +312,7 @@ describe('globaLeaks process', function() {
       
     // Get the expiration dates of all of the tips.
     element.all(by.css('#tipListTableBody tr'))
-    .evaluate('tip.expiration_date').then(function(exprs) {
+        .evaluate('tip.expiration_date').then(function(exprs) {
       var start_expirations = make_dates(exprs); 
       // Postpone the expiration of all tips
       element(by.id('tip-action-select-all')).click();
@@ -330,7 +320,7 @@ describe('globaLeaks process', function() {
       element(by.id('modal-action-ok')).click();
       // Collect the new later expiration dates.
       element.all(by.css('#tipListTableBody tr'))
-      .evaluate('tip.expiration_date').then(function(exprs) {
+          .evaluate('tip.expiration_date').then(function(exprs) {
         var final_expirations = make_dates(exprs);
         
         // Zip start and final together, then reduce the combined array to a bool
@@ -384,5 +374,4 @@ describe('globaLeaks process', function() {
       });
     });
   });
-
 });
