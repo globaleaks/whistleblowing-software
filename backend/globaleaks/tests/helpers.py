@@ -812,6 +812,7 @@ class MockDict():
             'security_awareness_text': u'',
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
+            'whistleblowing_receipt_prompt': u'',
             'hidden_service': u"http://1234567890123456.onion",
             'public_site': u"https://globaleaks.org",
             'email': u"email@dummy.net",
