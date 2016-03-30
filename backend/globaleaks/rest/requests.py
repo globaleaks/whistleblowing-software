@@ -177,6 +177,7 @@ AdminNodeDesc = {
     'security_awareness_text': unicode,
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
+    'whistleblowing_receipt_prompt': unicode,
     'hidden_service': hidden_service_regexp_or_empty,
     'public_site': https_url_regexp_or_empty,
     'languages_enabled': [unicode],
