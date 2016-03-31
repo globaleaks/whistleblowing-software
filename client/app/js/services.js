@@ -2,7 +2,7 @@ angular.module('GLServices', ['ngResource']).
   factory('GLCache',['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
   }]).
-  factory('GLResource', ['$resource', 'GLCache', function($resource, GLCache) {
+  factory('GLResource', ['$resource', function($resource) {
     return function(url, params, actions) {
       var defaults = {
         get:    {method: 'get'},
