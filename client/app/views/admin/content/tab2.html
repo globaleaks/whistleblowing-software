@@ -72,28 +72,29 @@
           </div>
         </span>
       </div>
-      <label data-translate>Files</label>
-      <br />
-      <div class="table-container">
-        <table data-ng-show="staticfiles" class="table table-striped" id="fileList">
-          <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
-            <tr>
-              <td>{{file.filename}}</td>
-              <td>
-                <a class="btn btn-primary" data-ng-href="s/{{file.filename}}" download="{{file.filename}}">
-                  <span class="glyphicon glyphicon-download"></span>
-                  <span data-translate>Download</span>
-                </a>
-                <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/' + file.filename)">
-                  <span class="glyphicon glyphicon-trash"></span>
-                  <span data-translate>Delete</span>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div data-ng-if="staticfiles.length">
+        <label data-translate>Files</label>
+        <br />
+        <div class="table-container">
+          <table class="table table-striped" id="fileList">
+            <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
+              <tr>
+                <td>{{file.filename}}</td>
+                <td>
+                  <a class="btn btn-primary" data-ng-href="s/{{file.filename}}" download="{{file.filename}}">
+                    <span class="glyphicon glyphicon-download"></span>
+                    <span data-translate>Download</span>
+                  </a>
+                  <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/' + file.filename)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    <span data-translate>Delete</span>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

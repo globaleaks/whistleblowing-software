@@ -204,10 +204,6 @@ th {
   z-index: 0;
 }
 
-.imageUpload {
-  border: 1px solid #DDD;
-}
-
 .imageUpload .changePicture {
   position: absolute;
   top: 0;
@@ -225,14 +221,11 @@ th {
   z-index: 2;
 }
 
-.imageUpload .imageUploadThumbnail {
+.imageUploadThumbnail {
   position: absolute;
   top: 0;
   left: 0;
-  width: 160px;
-}
-
-.imageUpload, .imageUploadThumbnail {
+  width: 100%;
   z-index: 1;
 }
 
