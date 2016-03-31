@@ -1,7 +1,7 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
   $scope.disabled = false;
 
-  $scope.onFileAdded = function($event, $file, $flow) {
+  $scope.onFileAdded = function($event, $file) {
     if ($file.size > $scope.node.maximum_filesize * 1024 * 1024) {
       $file.error = true;
       $file.error_msg = "This file exceeds the maximum upload size for this server.";
@@ -26,9 +26,9 @@ GLClient.controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $htt
       method: 'DELETE',
       url: $scope.imageUploadUrl,
       headers: $scope.get_auth_headers()
-    }).then(function successCallback(response) {
+    }).then(function successCallback() {
       $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
       $scope.imageUploadObj.flow.files = [];
-    }, function errorCallback(response) { });
+    }, function errorCallback() { });
   };
 }]);

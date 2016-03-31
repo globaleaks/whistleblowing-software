@@ -60,7 +60,7 @@ elif [ "$GLTEST" = "lint" ]; then
   setupDependencies 0
   echo "Running lint checks"
   cd $TRAVIS_BUILD_DIR/client
-  grunt jshint
+  grunt eslint
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 

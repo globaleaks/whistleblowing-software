@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "startGlobaLeaks|receiptAutoLogin" }] */
+
 (function () {
    'use strict';
 

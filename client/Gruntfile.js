@@ -1,4 +1,4 @@
-/* global console */
+/* eslint no-console: 0 */
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -14,8 +14,8 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: {
-      all: [
+    eslint: {
+      src: [
         'Gruntfile.js',
         'app/js/**/*.js',
         'tests/**/*.js',
@@ -23,31 +23,15 @@ module.exports = function(grunt) {
         '!app/js/crypto/scrypt-async.*.js'
       ],
       options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        worker: true,
-        node: true,  
-        jasmine: true,
-        // Webdriver globals
-        predef: ['browser', 'element', 'by', 'protractor'],
-        globals: {
-          angular: true,
-          fustyFlowFactory: true,
-          d3: true,
-          GLClient: true,
-          importScripts: true,
-          saveAs: true,
-          StackTrace: true,
-        }
+        plugins: [
+          'protractor'
+        ],
+        "extends": [
+          "eslint:recommended",
+          "plugin:protractor/recommended",
+          "plugin:jasmine/recommended",
+          "plugin:angular/recommended"
+        ]
       }
     },
 
@@ -239,7 +223,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-inline-alt');
   grunt.loadNpmTasks('grunt-istanbul');
@@ -250,6 +233,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks("gruntify-eslint");
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
@@ -381,24 +365,6 @@ module.exports = function(grunt) {
     baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
     sourceFile = 'pot/en.po';
 
-  function fetchTxSource(cb){
-    var url = baseurl + '/resource/master/content',
-      login = readTransifexrc();
-
-    agent.get(url)
-      .auth(login.username, login.password)
-      .end(function(err, res){
-        if (res.ok) {
-          var content = JSON.parse(res.text)['content'];
-          fs.writeFileSync(sourceFile, content);
-          console.log("Written source to " + sourceFile + ".");
-          cb();
-        } else {
-          console.log('Error: ' + res.text);
-        }
-    });
-  }
-
   function updateTxSource(cb){
     var url = baseurl + '/resource/master/content/',
       content = grunt.file.read(sourceFile),
@@ -461,8 +427,7 @@ module.exports = function(grunt) {
                 .end(function(err, res){
                   if (res) {
                     if (res.ok) {
-                      var content = JSON.parse(res.text)['content'];
-                      cb(content);
+                      cb(JSON.parse(res.text)['content']);
                     } else {
                       console.log('Error: ' + res.text);
                     }
@@ -499,8 +464,6 @@ module.exports = function(grunt) {
 
       result.available_languages.forEach(function(language){
 
-        var content = grunt.file.read(sourceFile);
-
         fetchTxTranslationsForLanguage(language.code, function(content){
           if (content) {
             var potFile = "pot/" + language.code + ".po";
@@ -533,8 +496,6 @@ module.exports = function(grunt) {
   grunt.registerTask('updateTranslationsSource', function() {
     var done = this.async(),
       gt = new Gettext(),
-      strings,
-      translations = {},
       translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
       translationStringRegexpHTML2 = /translate>(.+?)</gi,
       translationStringRegexpJSON = /"en": "(.+)"/gi,
@@ -561,12 +522,16 @@ module.exports = function(grunt) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while (result = translationStringRegexpHTML1.exec(filecontent)) {
+      result = translationStringRegexpHTML1.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpHTML1.exec(filecontent);
       }
 
-      while (result = translationStringRegexpHTML2.exec(filecontent)) {
+      result = translationStringRegexpHTML2.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpHTML2.exec(filecontent);
       }
 
     }
@@ -575,8 +540,10 @@ module.exports = function(grunt) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while (result = translationStringRegexpJSON.exec(filecontent)) {
+      result = translationStringRegexpJSON.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpJSON.exec(filecontent);
       }
     }
 
@@ -626,7 +593,6 @@ module.exports = function(grunt) {
   grunt.registerTask('makeTranslations', function() {
     var done = this.async(),
       gt = new Gettext(),
-      strings,
       fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
@@ -640,7 +606,7 @@ module.exports = function(grunt) {
 
     fetchTxTranslations(function(supported_languages) {
       gt.addTextdomain("en", fileContents);
-      strings = gt.listKeys("en", "");
+      var strings = gt.listKeys("en", "");
 
       for (lang_code in supported_languages) {
         var translations = {}, output;
@@ -663,7 +629,6 @@ module.exports = function(grunt) {
   grunt.registerTask('makeAppData', function() {
     var done = this.async(),
       gt = new Gettext(),
-      strings,
       fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
@@ -722,8 +687,7 @@ module.exports = function(grunt) {
 
       grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
         var template_name = filename.split('.txt')[0],
-            filepath = path.join('app/data_src/txt', subdir || '', filename || ''),
-            result;
+            filepath = path.join('app/data_src/txt', subdir || '', filename || '');
 
         templates_sources[template_name] = grunt.file.read(filepath);
       });

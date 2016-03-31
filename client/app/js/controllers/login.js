@@ -12,7 +12,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
   $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
 }]);
 
-GLClient.controller('AutoLoginCtrl', ['$scope', '$location', function($scope, $location) {
+GLClient.controller('AutoLoginCtrl', ['$scope', function($scope) {
   function receiveMessage(event) {
     window.removeEventListener('message', this, false);
     var receipt = event.data.replace(/\s+/g, '');

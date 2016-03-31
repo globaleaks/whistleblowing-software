@@ -22,7 +22,7 @@ GLClient.controller('AdminContextsCtrl',
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },
-       function(result) { }
+       function() { }
     );
   };
 

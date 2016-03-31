@@ -44,7 +44,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       angular.forEach(fields, function(field) {
         field = new AdminFieldTemplateResource(field);
         field.id = '';
-        field.$save({import: true}, function(new_field) {
+        field.$save({import: true}, function() {
           $scope.reload();
         });
 

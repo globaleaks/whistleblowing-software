@@ -3,14 +3,11 @@
  to for the admin user.
  */
 
-var request = require('supertest'),
-  should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
-
-var authentication;
 
 var invalid_admin_login = {
   'username': 'admin',
@@ -66,14 +63,11 @@ describe('POST /authentication', function () {
       .send(valid_admin_login)
       .expect(200)
       .end(function (err, res) {
-
         if (err) {
           return done(err);
         }
 
         validate_mandatory_headers(res.headers);
-
-        authentication = res.body;
 
         done();
       });

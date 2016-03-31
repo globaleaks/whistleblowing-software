@@ -72,19 +72,23 @@ class GLHTTPConnection(HTTPConnection):
             data = native_str(data.decode("latin1"))
             eol = data.find("\r\n")
             start_line = data[:eol]
+
             try:
                 method, uri, version = start_line.split(" ")
             except ValueError:
                 raise _BadRequestException("Malformed HTTP request line")
+
             if not version.startswith("HTTP/"):
                 raise _BadRequestException(
                     "Malformed HTTP version in HTTP Request-Line")
+
             try:
                 headers = httputil.HTTPHeaders.parse(data[eol:])
                 content_length = int(headers.get("Content-Length", 0))
             except ValueError:
                 raise _BadRequestException(
                     "Malformed Content-Length header")
+
             self._request = HTTPRequest(
                 connection=self, method=method, uri=uri, version=version,
                 headers=headers, remote_ip=self._remote_ip)

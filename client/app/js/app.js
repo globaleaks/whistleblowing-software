@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "GLClient" }] */
+
 function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
     return function(exception, cause) {
 
@@ -264,7 +266,7 @@ var GLClient = angular.module('GLClient', [
         forceChunkSize: true,
         testChunks: false,
         simultaneousUploads: 1,
-        generateUniqueIdentifier: function (file) {
+        generateUniqueIdentifier: function () {
           return Math.random() * 1000000 + 1000000;
         }
     };

@@ -1,6 +1,5 @@
 GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
-                    'WhistleblowerTip',
-  function ($scope, $location, $uibModal, WhistleblowerTip) {
+  function ($scope, $location, $uibModal) {
     $scope.keycode = '';
     $scope.configured = false;
     $scope.step = 1;
@@ -10,7 +9,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
     $scope.showQuestions = false;
 
     var open_quiz = function () {
-      var modalInstance = $uibModal.open({
+      $uibModal.open({
         templateUrl: 'views/partials/security_awareness_quiz.html',
         controller: 'QuizCtrl',
         size: 'lg',
@@ -30,7 +29,6 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
         open_quiz();
       }
     };
-    
 }]);
 
 

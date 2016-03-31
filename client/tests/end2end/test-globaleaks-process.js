@@ -248,13 +248,13 @@ describe('globaLeaks process', function() {
     login_whistleblower(receipts[0]);
 
     element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
-      element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
-        expect(message).toEqual(message);
+      element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message1) {
+        expect(message1).toEqual(message);
         element(by.model('tip.newMessageContent')).sendKeys(message_reply);
         element(by.id('message-action-send')).click().then(function() {
           browser.waitForAngular();
-          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
-            expect(m).toContain(message_reply);
+          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message2) {
+            expect(message2).toContain(message_reply);
             done();
           });
         });
@@ -370,8 +370,7 @@ describe('globaLeaks process', function() {
       element(by.id('modal-action-ok')).click();
       
       // Ensure that the tip has disappeared from the recipient's view.
-      element.all(by.css('#tipListTableBody tr'))
-      .evaluate('tip.id').then(function(uuids) {
+      element.all(by.css('#tipListTableBody tr')).evaluate('tip.id').then(function(uuids) {
         var i = uuids.indexOf(tip_uuid);
         expect(i).toEqual(-1);
       });
