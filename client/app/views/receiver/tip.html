@@ -40,7 +40,7 @@
       <span class="glyphicon glyphicon-trash"></span>
     </span>
 
-    <span id="tip-action-silence" ng-if="tip.enable_notifications" 
+    <span id="tip-action-silence" data-ng-if="tip.enable_notifications"
           data-ng-click="tip_notify(false)"
           uib-popover="{{'Silence email notifications' | translate}}"
           popover-placement="top"
@@ -49,9 +49,9 @@
       <span class="glyphicon glyphicon-eye-open"></span>
     </span>
 
-    <span id="tip-action-notify" ng-if="tip.enable_notifications !== undefined && !tip.enable_notifications" 
+    <span id="tip-action-notify" data-ng-if="!tip.enable_notifications"
           data-ng-click="tip_notify(true)"
-          uib-popover="{{'Email notifications for this tip are disabled.' | translate}}"
+          uib-popover="{{'Turn on email notifications' | translate}}"
           popover-placement="top"
           popover-trigger="mouseenter"
           class="btn btn-default alert-warning">
