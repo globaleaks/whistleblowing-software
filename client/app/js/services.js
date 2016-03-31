@@ -79,13 +79,13 @@ angular.module('GLServices', ['ngResource']).
           if (username === 'whistleblower') {
             return $http.post('receiptauth', {'receipt': password}).
             success(success_fn).
-            error(function(response) {
+            error(function() {
               $rootScope.loginInProgress = false;
             });
           } else {
             return $http.post('authentication', {'username': username, 'password': password}).
             success(success_fn).
-            error(function(response) {
+            error(function() {
               $rootScope.loginInProgress = false;
             });
           }
@@ -170,10 +170,8 @@ angular.module('GLServices', ['ngResource']).
 
       return new Session();
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$rootScope', '$location',
-  function($q, $injector, $rootScope, $location) {
-    var $http = null;
-
+  factory('globalInterceptor', ['$q', '$injector', '$rootScope',
+  function($q, $injector, $rootScope) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return {
@@ -184,11 +182,7 @@ angular.module('GLServices', ['ngResource']).
       },
 
       response: function(response) {
-        $http = $http || $injector.get('$http');
-
-        $rootScope.pendingRequests = function () {
-          return $http.pendingRequests.length;
-        };
+        var $http = $injector.get('$http');
 
         // the last response should hide the loader overlay
         if ($http.pendingRequests.length < 1) {
@@ -203,7 +197,7 @@ angular.module('GLServices', ['ngResource']).
            When the response has failed write the rootScope
            errors array the error message.
         */
-        $http = $http || $injector.get('$http');
+        var $http = $injector.get('$http');
 
         if (response.data !== null) {
           var error = {
@@ -454,10 +448,9 @@ angular.module('GLServices', ['ngResource']).
               }
             };
 
-            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function (response) {
+            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function () {
               tip[var_name] = var_value;
             });
-
           };
 
           tip.updateLabel = function(label) {

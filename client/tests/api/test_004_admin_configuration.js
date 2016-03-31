@@ -3,8 +3,7 @@
  against public resources.
  */
 
-var request = require('supertest'),
-    should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
@@ -16,7 +15,6 @@ var receivers = [];
 var receivers_ids = [];
 var contexts = [];
 var contexts_ids = [];
-var fields_ids = [];
 
 var i;
 
@@ -49,75 +47,6 @@ var user = {
   state: 'enabled',
   deletable: 'true'
 };
-
-var fields = [
-  {
-    id: '',
-    instance: 'instance',
-    template_id: '',
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Question 1',
-    type: 'inputbox',
-    preview: false,
-    description: 'description',
-    hint: 'field hint',
-    multi_entry: false,
-    multi_entry_hint: '',
-    stats_enabled: false,
-    required: true,
-    attrs: {},
-    options: [],
-    children: [],
-    y: 1,
-    x: 0,
-    width: 0
-  },
-  {
-    id: '',
-    instance: 'instance',
-    template_id: '',
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Question 2',
-    type: 'inputbox',
-    preview: false,
-    description: 'description',
-    hint: 'field hint',
-    multi_entry: false,
-    multi_entry_hint: '',
-    stats_enabled: false,
-    required: false,
-    attrs: {},
-    options: [],
-    children: [],
-    y: 2,
-    x: 0,
-    width: 0
-  },
-  {
-    id: '',
-    instance: 'instance',
-    template_id: '',
-    step_id: '',
-    fieldgroup_id: '',
-    label: 'Question 3',
-    type: 'inputbox',
-    preview: false,
-    description: 'description',
-    hint: 'field hint',
-    multi_entry: false,
-    multi_entry_hint: '',
-    stats_enabled: false,
-    required: false,
-    attrs: {},
-    options: [],
-    children: [],
-    y: 3,
-    x: 0,
-    width: 0
-  }
-];
 
 var context = {
   id: '',
@@ -236,6 +165,12 @@ describe('GET /admin/node (basic auth enabled, invalid credentials', function ()
       .set('X-Session', authentication['session_id'])
       .expect(401)
       .end(function (err, res) {
+        if (err) {
+          return done(err);
+        }
+
+        validate_mandatory_headers(res.headers);
+
         done();
       });
   });
@@ -286,7 +221,6 @@ describe('PUT /admin/node (disable basic auth)', function () {
 
 // we popolate population_order receivers
 for (i=0; i<population_order; i++) {
-  /* jshint loopfunc:true */
   (function (i) {
     describe('POST /admin/users', function () {
       it('responds 201 on POST /admin/users ' + i + ' (authenticated, valid new  receiver)', function (done) {
@@ -320,7 +254,6 @@ for (i=0; i<population_order; i++) {
 
 // we popolate population_order contexts
 for (i=0; i<population_order; i++) {
-  /* jshint loopfunc:true */
   (function (i) {
     describe('POST /admin/contexts', function () {
       it('responds 201 on POST /admin/contexts ' + i + ' (authenticated, valid context)', function (done) {

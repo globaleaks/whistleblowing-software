@@ -11,9 +11,8 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
       legendElementWidth = gridSize*2,
       buckets = 9,
       colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"],
-      days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-      times = ["1am", "2am", "3am", "4am", "5am", "6am", "7am", "8am", "9am", "10am", "11am", "12am",
-               "1pm", "2pm", "3pm", "4pm", "5pm", "6pm", "7pm", "8pm", "9pm", "10pm", "11pm", "12pm"];
+      days = ["1", "2", "3", "4", "5", "6", "7"],
+      times = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24"];
 
     var show_data = function(data) {
 
@@ -46,8 +45,6 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
             d.summary.wb_messages = +d.summary.wb_messages ? d.summary.wb_messages : 0;
             d.summary.receiver_comments = +d.summary.receiver_comments ? d.summary.receiver_comments : 0;
             d.summary.receiver_messages = +d.summary.receiver_messages ? d.summary.receiver_messages : 0;
-            /* d.summary.homepage_access = +d.summary.homepage_access ? d.summary.homepage_access : 0; 
-             * -- remind: disabled, not recorded in the d.value below */
 
             d.value = 0;
             d.value += d.summary.failed_logins;
@@ -75,6 +72,27 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
           .append("g")
           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+      /* eslint-disable no-unused-vars */
+      svg.selectAll(".dayLabel")
+          .data(days)
+          .enter().append("text")
+            .text(function (d) { return d; })
+            .attr("x", 0)
+            .attr("y", function (d, i) { return i * gridSize; })
+            .style("text-anchor", "end")
+            .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
+            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+
+      svg.selectAll(".timeLabel")
+          .data(times)
+          .enter().append("text")
+            .text(function(d) { return d; })
+            .attr("x", function(d, i) { return i * gridSize; })
+            .attr("y", 0)
+            .style("text-anchor", "middle")
+            .attr("transform", "translate(" + gridSize / 2 + ", -6)")
+            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+
       var heatMap = svg.selectAll(".hour")
           .data(data)
           .enter().append("rect")
@@ -96,6 +114,7 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
               $scope.blob = undefined;
               $scope.$apply();
           });
+      /* eslint-enable no-unused-vars */
 
       heatMap.transition().duration(600)
           .style("fill", function(d) {

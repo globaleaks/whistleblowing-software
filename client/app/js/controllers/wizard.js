@@ -39,7 +39,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
           'context': $scope.context
         };
 
-        $http.post('admin/wizard', $scope.wizard).success(function(response) {
+        $http.post('admin/wizard', $scope.wizard).success(function() {
           $scope.reload("/admin/landing");
         });
       }
@@ -55,7 +55,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');
     } else {
-      $scope.login('admin', 'globaleaks', function(response){
+      $scope.login('admin', 'globaleaks', function(){
         $scope.admin = new Admin(function() {
           $scope.receiver = new $scope.admin.new_user();
           $scope.receiver.username = 'receiver';

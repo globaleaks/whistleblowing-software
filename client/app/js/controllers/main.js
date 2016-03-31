@@ -46,7 +46,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.update = function (model, cb, errcb) {
       var success = {};
-      model.$update(function(result) {
+      model.$update(function() {
         $rootScope.successes.push(success);
       }).then(
         function() { if (cb !== undefined){ cb(); } },
@@ -118,13 +118,12 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.intro_opened = true;
       }
 
-      var modalInstance = $uibModal.open({
+      $uibModal.open({
         templateUrl: 'views/partials/intro.html',
         controller: 'IntroCtrl',
         size: 'lg',
         scope: $scope
       });
-
     };
 
     $scope.set_title = function () {
@@ -181,7 +180,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return content_types.indexOf(content_type) > -1;
     };
 
-    $scope.getXOrderProperty = function(elem) {
+    $scope.getXOrderProperty = function() {
       return 'x';
     };
 
@@ -194,23 +193,19 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     };
 
     $scope.moveUp = function(elem) {
-      var key = $scope.getYOrderProperty(elem);
-      elem[key] -= 1;
+      elem[$scope.getYOrderProperty(elem)] -= 1;
     };
 
     $scope.moveDown = function(elem) {
-      var key = $scope.getYOrderProperty(elem);
-      elem[key] += 1;
+      elem[$scope.getYOrderProperty(elem)] += 1;
     };
 
     $scope.moveLeft = function(elem) {
-      var key = $scope.getXOrderProperty(elem);
-      elem[key] -= 1;
+      elem[$scope.getXOrderProperty(elem)] -= 1;
     };
 
     $scope.moveRight = function(elem) {
-      var key = $scope.getXOrderProperty(elem);
-      elem[key] += 1;
+      elem[$scope.getXOrderProperty(elem)] += 1;
     };
 
     $scope.deleteFromList = function(list, elem) {
@@ -383,7 +378,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.uploadedFiles = function(uploads) {
       var sum = 0;
 
-      angular.forEach(uploads, function(flow, key) {
+      angular.forEach(uploads, function(flow) {
         if (flow !== undefined) {
           sum += flow.files.length;
         }
@@ -424,7 +419,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.remainingUploadTime = function(uploads) {
       var sum = 0;
 
-      angular.forEach(uploads, function(flow, key) {
+      angular.forEach(uploads, function(flow) {
         var x = flow.timeRemaining();
         if (x === 'Infinity') {
           return 'Infinity';
@@ -439,7 +434,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       var sum = 0;
       var n = 0;
 
-      angular.forEach(uploads, function(flow, key) {
+      angular.forEach(uploads, function(flow) {
         sum += flow.progress();
         n += 1;
       });
@@ -470,7 +465,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     //////////////////////////////////////////////////////////////////
 
-    $scope.$on("$routeChangeStart", function(event, next, current) {
+    /* eslint-disable no-unused-vars */
+    $scope.$on("$routeChangeStart", function(event, next) {
+    /* eslint-enable no-unused-vars */
       $scope.route_check();
 
       var path = $location.path();
@@ -488,7 +485,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     });
 
+    /* eslint-disable no-unused-vars */
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+    /* eslint-enable no-unused-vars */
       if (current.$$route) {
         $rootScope.successes = [];
         $rootScope.errors = [];
@@ -502,9 +501,9 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.reload();
     });
 
-    $scope.$watch(function (scope) {
+    $scope.$watch(function () {
       return Authentication.session;
-    }, function (newVal, oldVal) {
+    }, function () {
       $scope.session = Authentication.session;
     });
 

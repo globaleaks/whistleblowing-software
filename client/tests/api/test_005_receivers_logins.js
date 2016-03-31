@@ -3,21 +3,17 @@
  against public resources.
  */
 
-var request = require('supertest'),
-  should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
-var authentication;
 var valid_login;
 var invalid_login = {
   'username': 'invalid',
   'password': 'login'
 };
-
-var population_order = 3;
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {

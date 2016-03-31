@@ -1,5 +1,4 @@
 var q = require("q");
-var path = require("path");
 var FirefoxProfile = require("firefox-profile");
 
 var makeFirefoxProfile = function(preferenceMap) {

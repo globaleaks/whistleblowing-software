@@ -1,5 +1,4 @@
-GLClient.controller('AdminQuestionnaireCtrl', ['$scope', '$uibModal',
-                    function($scope, $uibModal){
+GLClient.controller('AdminQuestionnaireCtrl', ['$scope', function($scope){
   $scope.tabs = [
     {
       title:"Questionnaire configuration",

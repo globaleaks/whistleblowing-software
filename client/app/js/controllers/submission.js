@@ -31,8 +31,8 @@ GLClient.controller('SubmissionCtrl',
     $scope.problemModal = $scope.openConfirmableModalDialog('views/partials/captchas.html', args);
 
     $scope.problemModal.result.then(
-       function(result) { $scope.problemSolved($scope.submission); },
-       function(result) { }
+      function() { $scope.problemSolved($scope.submission); },
+      function() { }
     );
   };
 
@@ -129,17 +129,15 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.checkForMandatoryFields = function() {
-    try {
-      // find the first invalid element
-      var form = document.getElementById('step-' + $scope.selection);
-      var firstInvalid = form.querySelector('.inputelem.ng-invalid');
+    // find the first invalid element
+    var form = document.getElementById('step-' + $scope.selection);
+    var firstInvalid = form.querySelector('.inputelem.ng-invalid');
 
-      // if we find one, set focus
-      if (firstInvalid) {
-        firstInvalid.focus();
-        return false;
-      }
-    } catch(err) { }
+    // if we find one, set focus
+    if (firstInvalid) {
+      firstInvalid.focus();
+      return false;
+    }
 
     return true;
   };
@@ -378,7 +376,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     // Watch for changes in certain variables
-    $scope.$watch('selected_context', function (newVal, oldVal) {
+    $scope.$watch('selected_context', function () {
       if ($scope.submission && $scope.selected_context) {
         $scope.prepareSubmission($scope.selected_context, $scope.receivers_ids);
       }

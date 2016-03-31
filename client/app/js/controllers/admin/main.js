@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$http', '$route', '$location', '$filter', 'Admin', 'Node', 'GLCache', 'CONSTANTS',
-    function($scope, $http, $route, $location, $filter, Admin, Node, GLCache, CONSTANTS) {
+    ['$scope', '$route', '$location', '$filter', 'Admin', 'CONSTANTS',
+    function($scope, $route, $location, $filter, Admin, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.tor_regexp = CONSTANTS.tor_regexp;
@@ -114,7 +114,7 @@ GLClient.controller('AdminCtrl',
   };
 }]);
 
-GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('AdminFileUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -131,7 +131,7 @@ GLClient.controller('AdminFileUploadCtrl', ['$scope', '$http', function($scope, 
     };
 }]);
 
-GLClient.controller('AdminImgUploadCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('AdminImgUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -202,7 +202,7 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   };
 
   $scope.perform_delete = function (url) {
-    $http['delete'](url).success(function (response) {
+    $http['delete'](url).success(function () {
       $scope.update_static_files();
     });
   };

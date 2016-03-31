@@ -1,6 +1,3 @@
-/* global postMessage:true */
-/* global onmessage:true */
-
 importScripts('openpgp.worker.min.js');
 
 var sha256 = window.openpgp.crypto.hash.sha256;

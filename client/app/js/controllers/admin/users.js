@@ -30,7 +30,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },
-       function(result) { }
+       function() { }
     );
   };
 }]);

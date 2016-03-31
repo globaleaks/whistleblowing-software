@@ -3,8 +3,7 @@
  against public resources.
  */
 
-var request = require('supertest'),
-  should = require('should');
+var request = require('supertest');
 
 var host = 'http://127.0.0.1:8082';
 
@@ -16,15 +15,12 @@ var comments_population_order = 10;
 
 var authentication;
 
-var i;
-
 var receivers = [];
 var receivers_ids = [];
 var contexts = [];
 var contexts_ids = [];
 var submissions = [];
 var submission_tokens = [];
-var files = [];
 var wb_keycodes  = [];
 
 var validate_mandatory_headers = function(headers) {
@@ -139,9 +135,8 @@ describe('GET /receivers', function(){
   });
 });
 
-/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
-  (function (i) {
+  (function () {
     describe('POST /token', function(){
       it('responds with ', function(done){
         var new_submission_token = {'type': 'submission'};
@@ -163,10 +158,9 @@ for (i=0; i<submission_population_order; i++) {
           });
       });
     });
-  })(i);
+  })();
 }
 
-/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /token/token_id', function(){
@@ -195,7 +189,6 @@ for (i=0; i<submission_population_order; i++) {
   })(i);
 }
 
-/* jshint loopfunc:true */
 for (i=0; i<submission_population_order; i++) {
   (function (i) {
     describe('PUT /submission/submission_id', function(){
@@ -268,11 +261,9 @@ describe('POST /receiptauth', function () {
 });
 
 for (var i=1; i<comments_population_order; i++) {
-  /* jshint loopfunc:true */
-  (function (i) {
+  (function () {
     describe('POST /wbtip/comments', function () {
       it('responds 201 on wb adding a comment on an existent submission', function (done) {
-        var credentials = valid_login(i);
         app
           .post('/wbtip/comments')
           .send({"content": "COMMENT!"})
@@ -287,5 +278,5 @@ for (var i=1; i<comments_population_order; i++) {
           });
       });
     });
-  })(i);
+  })();
 }

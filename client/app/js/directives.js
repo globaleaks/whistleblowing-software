@@ -1,6 +1,8 @@
 angular.module('GLDirectives', []).
-  directive('fadeout', function(){
+  directive('fadeout', function() {
+    /* eslint-disable no-unused-vars */
     return function(scope, element, attrs) {
+    /* eslint-enable no-unused-vars */
       var fadeout_delay = 3000;
 
       element.mouseenter(function() {
@@ -16,7 +18,7 @@ angular.module('GLDirectives', []).
   directive('inputPrefix', function() {
     return {
       require: 'ngModel',
-      link: function(scope, elem, attrs, controller) {
+      link: function(scope, elem, attrs, ngModel) {
         function inputPrefix(value) {
           var prefix = attrs.prefix;
 
@@ -30,14 +32,14 @@ angular.module('GLDirectives', []).
             }
           }
 
-          controller.$setViewValue(result);
-          controller.$render();
+          ngModel.$setViewValue(result);
+          ngModel.$render();
 
           return result;
         }
 
-        controller.$formatters.push(inputPrefix);
-        controller.$parsers.push(inputPrefix);
+        ngModel.$formatters.push(inputPrefix);
+        ngModel.$parsers.push(inputPrefix);
       }
     };
 }).
@@ -75,7 +77,9 @@ angular.module('GLDirectives', []).
      scope: {
        fileread: "="
      },
+     /* eslint-disable no-unused-vars */
      link: function (scope, element, attributes) {
+     /* eslint-enable no-unused-vars */
        element.bind('click', function(){
          element.val('');
        });
