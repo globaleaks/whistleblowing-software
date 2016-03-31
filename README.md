@@ -1,4 +1,6 @@
-# GlobaLeaks
+<p align="center">
+  <img src="/data/logo.png" width="300" height="300">
+</p>
 
 GlobaLeaks is a project aimed at creating an opensource and free software whistleblowing framework.
 
