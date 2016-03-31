@@ -1,0 +1,25 @@
+env:
+  browser: true
+  node: true
+  protractor: true
+  jasmine: true
+  serviceworker: true
+globals:
+  angular: true
+  console: true
+  fustyFlowFactory: true
+  d3: true
+  GLClient: true
+  importScripts: true
+  onmessage: true,
+  saveAs: true
+  StackTrace: true
+rules:
+  "comma-dangle": 0
+plugins: [
+  "protractor"
+]
+extends: [
+  "eslint:recommended",
+  "plugin:protractor/recommended"
+]
