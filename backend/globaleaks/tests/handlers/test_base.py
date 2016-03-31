@@ -52,10 +52,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         dummy_message = {'spam': 'ham', 'firstd': {3: 4}, 'fields': "CIAOCIAO", 'nest': [{1: 2, 3: 4}]}
         dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
-        handler = self.request({}, headers={})
-        yield handler.get_authenticated()
-        date2 = GLSessions.get(session.id).getTime()
-        self.assertEqual(date1 + FUTURE, date2)
+        self.assertTrue(BaseHandler.validate_jmessage(dummy_message, dummy_message_template))
 
     def test_validate_jmessage_invalid(self):
         dummy_message = {}
