@@ -11,12 +11,14 @@ globals:
   d3: true
   GLClient: true
   importScripts: true
-  onmessage: true,
+  onmessage: true
   saveAs: true
   StackTrace: true
 rules:
   "comma-dangle": 0
 plugins: [
+  "angular",
+  "jasmine",
   "protractor"
 ]
 extends: [
