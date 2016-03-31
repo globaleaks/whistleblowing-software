@@ -40,7 +40,7 @@
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "2.0.0",
     "mocha": "2.4.5",
-    "node-gettext": "1.0.1",
+    "node-gettext": "0.2.14",
     "protractor": "3.2.2",
     "q": "1.4.1",
     "selenium-webdriver": "2.53.1",
