@@ -53,6 +53,13 @@ describe('globaLeaks process', function() {
   var perform_submission = function(done) {
     browser.get('/#/submission');
 
+    browser.wait(function(){
+      // Wait until the proof of work is resolved;
+      return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
+        return submission.pow === true;
+      });
+    });
+
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click().then(function () {
       element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click().then(function () {
         element(by.id('NextStepButton')).click().then(function () {
