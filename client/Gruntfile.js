@@ -582,7 +582,7 @@ module.exports = function(grunt) {
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
 
-    //updateTxSource(done);
+    updateTxSource(done);
   });
 
   grunt.registerTask('makeTranslations', function() {
