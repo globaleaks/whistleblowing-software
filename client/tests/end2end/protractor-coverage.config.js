@@ -22,15 +22,18 @@ var makeFirefoxProfile = function(preferenceMap) {
 // The test directory for downloaded files
 var tmpDir = '/tmp/';
 
-
 exports.config = {
   framework: 'jasmine',
-  params: { 'tmpDir': tmpDir },
 
   baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: true,
   directConnect: true,
+
+  params: {
+    'testFileDownload': true,
+    'tmpDir': tmpDir
+  },
 
   specs: [
     'tests/end2end/test-init.js',

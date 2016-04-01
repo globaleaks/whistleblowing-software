@@ -18,6 +18,10 @@ browser.getCapabilities().then(function(capabilities) {
   };
 
   exports.testFileDownload = function() {
+    if (!browser.params.testFileDownload) {
+      return false;
+    }
+
     // The only browser that does not ask for user interaction is chrome
     var browserName = capabilities.get('browserName').toLowerCase();
     var platform = capabilities.get('platform').toLowerCase();

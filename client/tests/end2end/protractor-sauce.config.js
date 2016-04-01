@@ -4,16 +4,19 @@ browser_capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
 browser_capabilities['build'] = process.env.TRAVIS_BUILD_NUMBER;
 
 exports.config = {
-  sauceUser: process.env.SAUCE_USERNAME,
-  sauceKey: process.env.SAUCE_ACCESS_KEY,
-  capabilities: browser_capabilities,
-  params: { 'tmpDir': '/tmp/' },
-
   framework: 'jasmine',
 
   baseUrl: 'http://localhost:9000/',
 
   directConnect: false,
+
+  sauceUser: process.env.SAUCE_USERNAME,
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
+  capabilities: browser_capabilities,
+
+  params: {
+    'testFileDownload': false
+  },
 
   specs: [
     'test-init.js',
