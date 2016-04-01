@@ -2,10 +2,6 @@
 
 module.exports = function(grunt) {
   grunt.initConfig({
-    manifest:{
-      dest: 'tmp/'
-    },
-
     bower: {
       install: {
         options: {
@@ -216,7 +212,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-inline-alt');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-line-remover');
-  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
@@ -755,7 +750,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
