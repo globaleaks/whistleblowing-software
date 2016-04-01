@@ -18,9 +18,10 @@ FIRST_DATABASE_VERSION_SUPPORTED = 15
 # copy paste format from 'grunt updateTranslations'
 LANGUAGES_SUPPORTED = [
  { "code": "ar", "name": "Arabic" },
+ { "code": "bs", "name": "Bosnian" },
  { "code": "ca", "name": "Catalan" },
- { "code": "cs", "name": "Czech" },
  { "code": "de", "name": "German" },
+ { "code": "el", "name": "Greek" },
  { "code": "en", "name": "English" },
  { "code": "es", "name": "Spanish" },
  { "code": "fa", "name": "Persian" },
@@ -30,17 +31,23 @@ LANGUAGES_SUPPORTED = [
  { "code": "hu_HU", "name": "Hungarian (Hungary)" },
  { "code": "it", "name": "Italian" },
  { "code": "ja", "name": "Japanese" },
+ { "code": "ka", "name": "Georgian" },
+ { "code": "ko", "name": "Korean" },
  { "code": "nb_NO", "name": "Norwegian Bokmål (Norway)" },
  { "code": "nl", "name": "Dutch" },
  { "code": "pt_BR", "name": "Portuguese (Brazil)" },
  { "code": "pt_PT", "name": "Portuguese (Portugal)" },
+ { "code": "ro", "name": "Romanian" },
  { "code": "ru", "name": "Russian" },
+ { "code": "sq", "name": "Albanian" },
  { "code": "sv", "name": "Swedish" },
+ { "code": "ta", "name": "Tamil" },
  { "code": "th", "name": "Thai" },
  { "code": "tr", "name": "Turkish" },
  { "code": "uk", "name": "Ukrainian" },
  { "code": "ur", "name": "Urdu" },
- { "code": "zh_CN", "name": "Chinese (China)" }
+ { "code": "vi", "name": "Vietnamese" },
+ { "code": "zh_CN", "name": "Chinese (China)" },
 ]
 
 # Sorting the list of dict using the key 'code'

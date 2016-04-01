@@ -583,11 +583,11 @@ module.exports = function(grunt) {
     extractStringsFromFile('app/app.html');
     extractStringsFromFile('app/translations.html');
     extractStringsFromFile('app/data_src/appdata.json');
+    extractStringsFromFile('app/data_src/field_attrs.json');
 
     extractStringsFromDir('app/views');
     extractStringsFromDir('app/data_src/txt');
     extractStringsFromDir('app/data_src/fields');
-    extractStringsFromDir('app/data_src/structs');
 
     grunt.file.mkdir("pot");
 
