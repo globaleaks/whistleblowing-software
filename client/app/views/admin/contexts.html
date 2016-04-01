@@ -144,23 +144,25 @@
                           <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
                           <label data-translate>Allow whistleblowers to select their recipients</label>
                         </div>
-                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
-                          <label>
-                            <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
-                            <span data-translate>Show recipients in alphabetical order</span>
-                          </label>
-                        </div>
-                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
-                          <input data-ng-model="context.select_all_receivers" type="checkbox" />
-                          <label data-translate>Select all recipients by default</label>
-                        </div>
-                        <div class="form-group" data-ng-show="!context.select_all_receivers">
-                          <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
-                          <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" />
-                        </div>
-                        <div class="form-group" data-ng-show="context.allow_recipients_selection">
-                          <input data-ng-model="context.show_small_receiver_cards" type="checkbox" />
-                          <label data-translate>Show small recipient cards on submission interface</label>
+                        <div data-ng-show="context.allow_recipients_selection">
+                          <div class="form-group">
+                            <label>
+                              <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
+                              <span data-translate>Show recipients in alphabetical order</span>
+                            </label>
+                          </div>
+                          <div class="form-group">
+                            <input data-ng-model="context.select_all_receivers" type="checkbox" />
+                            <label data-translate>Select all recipients by default</label>
+                          </div>
+                          <div class="form-group" data-ng-show="!context.select_all_receivers">
+                            <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
+                            <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" />
+                          </div>
+                          <div class="form-group">
+                            <input data-ng-model="context.show_small_receiver_cards" type="checkbox" />
+                            <label data-translate>Show small recipient cards on submission interface</label>
+                          </div>
                         </div>
                         <div class="form-group">
                           <input data-ng-model="context.enable_comments" type="checkbox" />
