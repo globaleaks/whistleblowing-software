@@ -1,0 +1,22 @@
+{
+  "inputbox": {
+    "min_len": {"type": "int", "value": "-1"},
+    "max_len": {"type": "int", "value": "-1"},
+    "regexp": {"type": "unicode", "value": ""}
+  },
+  "textarea": {
+    "min_len": {"type": "int", "value": "-1"},
+    "max_len": {"type": "int", "value": "-1"},
+    "regexp": {"type": "unicode", "value": ""}
+  },
+  "multichoice": {
+    "layout_orientation": {"type": "unicode", "value": "vertical"}
+  },
+  "checkbox": {
+    "layout_orientation": {"type": "unicode", "value": "vertical"}
+  },
+  "tos": {
+    "clause": {"type": "unicode", "value": ""},
+    "agreement_statement": {"type": "unicode", "value": ""}
+  }
+}

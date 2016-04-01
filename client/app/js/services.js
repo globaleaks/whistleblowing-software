@@ -238,6 +238,9 @@ angular.module('GLServices', ['ngResource']).
   factory('SubmissionResource', ['GLResource', function(GLResource) {
     return new GLResource('submission/:id', {id: '@token_id'});
 }]).
+  factory('FieldAttrs', ['$resource', function($resource) {
+    return $resource('data/field_attrs.json');
+}]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
   factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource',
@@ -581,8 +584,8 @@ angular.module('GLServices', ['ngResource']).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs) {
   return function(fn) {
       var self = this;
 
@@ -590,6 +593,7 @@ angular.module('GLServices', ['ngResource']).
       self.contexts = AdminContextResource.query();
       self.questionnaires = AdminQuestionnaireResource.query();
       self.fieldtemplates = AdminFieldTemplateResource.query();
+      self.field_attrs = FieldAttrs.get();
       self.users = AdminUserResource.query();
       self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
@@ -599,6 +603,7 @@ angular.module('GLServices', ['ngResource']).
               self.contexts.$promise,
               self.questionnaires.$promise,
               self.fieldtemplates.$promise,
+              self.field_attrs.$promise,
               self.receivers.$promise,
               self.notification.$promise,
               self.shorturls.$promise]).then(function() {
@@ -651,29 +656,6 @@ angular.module('GLServices', ['ngResource']).
           step.questionnaire_id = questionnaire_id;
           step.triggered_by_score = 0;
           return step;
-        };
-
-        self.field_attrs = {
-          "inputbox": {
-            "min_len": {"type": "int", "value": "-1"},
-            "max_len": {"type": "int", "value": "-1"},
-            "regexp": {"type": "unicode", "value": ""}
-          },
-          "textarea": {
-            "min_len": {"type": "int", "value": "-1"},
-            "max_len": {"type": "int", "value": "-1"},
-            "regexp": {"type": "unicode", "value": ""}
-          },
-          "multichoice": {
-            "layout_orientation": {"type": "unicode", "value": "vertical"}
-          },
-          "checkbox": {
-            "layout_orientation": {"type": "unicode", "value": "vertical"}
-          },
-          "tos": {
-            "clause": {"type": "unicode", "value": ""},
-            "agreement_statement": {"type": "unicode", "value": ""}
-          }
         };
 
         self.get_field_attrs = function(type) {

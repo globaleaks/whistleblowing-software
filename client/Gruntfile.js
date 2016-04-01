@@ -507,7 +507,7 @@ module.exports = function(grunt) {
       translationStringCount += 1;
     }
 
-    function extractPOFromHTMLFile(filepath) {
+    function extractStringsFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
@@ -525,7 +525,7 @@ module.exports = function(grunt) {
 
     }
 
-    function extractPOFromJSONFile(filepath) {
+    function extractStringsFromJSONFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
@@ -536,7 +536,7 @@ module.exports = function(grunt) {
       }
     }
 
-    function extractPOFromTXTFile(filepath) {
+    function extractStringsFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
           lines = filecontent.split("\n");
 
@@ -548,27 +548,33 @@ module.exports = function(grunt) {
       }
     }
 
-    extractPOFromHTMLFile('app/app.html');
+    function extractStringsFromFile(filepath) {
+      var ext = filepath.split('.').pop();
 
-    /* Extract strings view file used to anticipate strings on transifex */
-    extractPOFromHTMLFile('app/translations.html');
+      if (ext === 'html') {
+        extractStringsFromHTMLFile(filepath);
+      } else if (ext === 'json') {
+        extractStringsFromJSONFile(filepath);
+      } else if (ext === 'txt') {
+        extractStringsFromTXTFile(filepath);
+      }
+    }
 
-    grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/views/', subdir || '', filename || '');
-      extractPOFromHTMLFile(filepath);
-    });
+    function extractStringsFromDir(dir) {
+      grunt.file.recurse(dir, function(absdir, rootdir, subdir, filename) {
+        var filepath = path.join(dir, subdir || '', filename || '');
+        extractStringsFromFile(filepath);
+      });
+    }
 
-    grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/data_src/txt', subdir || '', filename || '');
-      extractPOFromTXTFile(filepath);
-    });
+    extractStringsFromFile('app/app.html');
+    extractStringsFromFile('app/translations.html');
+    extractStringsFromFile('app/data_src/appdata.json');
 
-    grunt.file.recurse('app/data_src/fields', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/data_src/fields', subdir || '', filename || '');
-      extractPOFromJSONFile(filepath);
-    });
-
-    extractPOFromJSONFile('app/data_src/appdata.json');
+    extractStringsFromDir('app/views');
+    extractStringsFromDir('app/data_src/txt');
+    extractStringsFromDir('app/data_src/fields');
+    extractStringsFromDir('app/data_src/structs');
 
     grunt.file.mkdir("pot");
 
@@ -576,7 +582,7 @@ module.exports = function(grunt) {
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
 
-    updateTxSource(done);
+    //updateTxSource(done);
   });
 
   grunt.registerTask('makeTranslations', function() {
@@ -730,7 +736,7 @@ module.exports = function(grunt) {
         fs.writeFileSync(dstpath, field);
       });
 
-      console.log("Fields file was written!");
+      grunt.file.copy('app/data_src/field_attrs.json', 'app/data/field_attrs.json');
 
       done();
     });
