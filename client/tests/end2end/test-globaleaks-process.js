@@ -276,9 +276,8 @@ describe('globaLeaks process', function() {
         expect(t).toEqual(jasmine.any(String));
         element(by.id('tip-action-export')).click();
         if (utils.testFileDownload()) {
-          var filename = t + '.zip';
           // TODO: Verify the zips content
-          utils.waitForFile(filename, 5000);
+          utils.waitForFile(t + '.zip', 30000);
         }
       });
   });
