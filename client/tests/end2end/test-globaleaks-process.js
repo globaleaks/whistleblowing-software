@@ -70,31 +70,6 @@ describe('globaLeaks process', function() {
                 browser.waitForAngular();
                 element(by.id('step-0')).element(by.id('step-0-field-3-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
                   browser.waitForAngular();
-                  element(by.id('NextStepButton')).click().then(function () {
-                    element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
-                      var submit_button = element(by.id('SubmitButton'));
-                      var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-                      browser.wait(isClickable);
-                      submit_button.click().then(function() {
-                        utils.waitForUrl('/receipt');
-                        element(by.id('KeyCode')).getText().then(function (txt) {
-                          receipts.unshift(txt);
-                          element(by.id('ReceiptButton')).click().then(function() {
-                            utils.waitForUrl('/status');
-                            element(by.id('LogoutLink')).click().then(function() {
-                              utils.waitForUrl('/');
-                              done();
-                            });
-                          });
-                        });
-                      });
-                    });
-                  });
-                });
-              });
-            } else {
-              element(by.id('NextStepButton')).click().then(function () {
-                element(by.id('step-1')).element(by.id('step-1-field-0-0-input-0')).click().then(function () {
                   var submit_button = element(by.id('SubmitButton'));
                   var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
                   browser.wait(isClickable);
@@ -109,6 +84,23 @@ describe('globaLeaks process', function() {
                           done();
                         });
                       });
+                    });
+                  });
+                });
+              });
+            } else {
+              var submit_button = element(by.id('SubmitButton'));
+              var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+              browser.wait(isClickable);
+              submit_button.click().then(function() {
+                utils.waitForUrl('/receipt');
+                element(by.id('KeyCode')).getText().then(function (txt) {
+                  receipts.unshift(txt);
+                  element(by.id('ReceiptButton')).click().then(function() {
+                    utils.waitForUrl('/status');
+                    element(by.id('LogoutLink')).click().then(function() {
+                      utils.waitForUrl('/');
+                      done();
                     });
                   });
                 });
