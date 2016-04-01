@@ -5,7 +5,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.security import directory_traversal_check
 
 
-class CSSFileHandler(BaseHandler):
+class LTRCSSFileHandler(BaseHandler):
     original_css_filename = 'css/styles.css'
 
     def get(self):
@@ -21,3 +21,7 @@ class CSSFileHandler(BaseHandler):
 
         if (os.path.exists(custom_css) and os.path.isfile(custom_css)):
             self.write_file(custom_css)
+
+
+class RTLCSSFileHandler(LTRCSSFileHandler):
+    original_css_filename = 'css/styles-rtl.css'

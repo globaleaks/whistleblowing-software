@@ -87,6 +87,23 @@ module.exports = function(grunt) {
         }
     },
 
+    rtlcss: {
+      styles_css:{
+        // task options
+        options: {
+          map: false,
+          opts: {
+            clean: false
+          },
+          plugins:[],
+          saveUnmodified: true
+        },
+        files: {
+            'tmp/css/styles-rtl.css': 'tmp/css/styles.css'
+        }
+      }
+    },
+
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
@@ -214,6 +231,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-rtlcss');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -246,7 +264,6 @@ module.exports = function(grunt) {
   grunt.registerTask('copyBowerSources', function() {
     var files = [
       ['app/components/bootstrap/dist/css/bootstrap.min.css', 'app/css/bootstrap.min.css'],
-      ['app/components/bootstrap-rtl-ondemand/dist/css/bootstrap-rtl-ondemand.min.css', 'app/css/bootstrap-rtl-ondemand.min.css'],
       ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
       ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
       ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
@@ -287,6 +304,7 @@ module.exports = function(grunt) {
     }
 
     grunt.file.copy('tmp/css/styles.css', 'build/css/styles.css');
+    grunt.file.copy('tmp/css/styles-rtl.css', 'build/css/styles-rtl.css');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
@@ -750,7 +768,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'rtlcss', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();

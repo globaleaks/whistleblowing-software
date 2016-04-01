@@ -252,8 +252,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $scope.init = function () {
       var deferred = $q.defer();
 
-      $scope.app_logo = 's/logo.png#' + $scope.randomFluff();
-      $scope.app_stylesheet = "css/styles.css#" + $scope.randomFluff();
+      $scope.app_logo = 's/logo.png';
+      $scope.app_stylesheet = 'css/styles.css';
 
       Node.get(function(node, getResponseHeaders) {
         $rootScope.node = node;
@@ -314,7 +314,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           $scope.rtl = ["ar", "he", "ur"].indexOf(language) !== -1;
 
-          document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
+          if ($scope.rtl) {
+            document.getElementsByTagName("html")[0].setAttribute('dir', 'rtl');
+            $scope.app_stylesheet = 'css/styles-rtl.css';
+          } else {
+            document.getElementsByTagName("html")[0].setAttribute('dir', 'ltr');
+            $scope.app_stylesheet = 'css/styles.css';
+          }
 
           $translate.use($rootScope.language);
         };
