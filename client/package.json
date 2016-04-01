@@ -14,10 +14,7 @@
   "devDependencies": {
     "chai": "3.5.0",
     "coveralls": "2.11.9",
-    "eslint-config-angular": "0.5.0",
-    "eslint-plugin-angular": "1.0.0",
-    "eslint-plugin-jasmine": "1.7.0",
-    "eslint-plugin-protractor": "1.5.0",
+    "eslint": "2.5.3",
     "firefox-profile": "0.3.12",
     "grunt": "0.4.5",
     "grunt-angular-templates": "1.0.3",
