@@ -35,9 +35,9 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.importQuestions = function(fields) {
-      fields = JSON.parse(fields);
+      fields = angular.fromJson(fields);
 
-      if (Object.prototype.toString.call(fields) !== '[object Array]') {
+      if (!angular.isArray(fields)) {
         fields = [fields];
       }
 

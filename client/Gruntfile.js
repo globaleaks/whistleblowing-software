@@ -18,21 +18,10 @@ module.exports = function(grunt) {
       src: [
         'Gruntfile.js',
         'app/js/**/*.js',
-        'tests/**/*.js',
-        '!app/js/crypto/openpgp*.js',
-        '!app/js/crypto/scrypt-async.*.js'
-      ],
-      options: {
-        plugins: [
-          'protractor'
-        ],
-        "extends": [
-          "eslint:recommended",
-          "plugin:protractor/recommended",
-          "plugin:jasmine/recommended",
-          "plugin:angular/recommended"
-        ]
-      }
+        '!app/js/crypto/*.js',
+        'app/js/crypto/proof-of-work.worker.js',
+        'tests/**/*.js'
+      ]
     },
 
     clean: {

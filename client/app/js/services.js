@@ -1,5 +1,5 @@
 angular.module('GLServices', ['ngResource']).
-  factory('GLCache',['$cacheFactory', function ($cacheFactory) {
+  factory('GLCache', ['$cacheFactory', function ($cacheFactory) {
     return $cacheFactory('GLCache');
   }]).
   factory('GLResource', ['$resource', function($resource) {

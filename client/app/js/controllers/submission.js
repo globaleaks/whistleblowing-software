@@ -44,7 +44,7 @@ GLClient.controller('SubmissionCtrl',
 
   if ($scope.receivers_ids) {
     try {
-      $scope.receivers_ids = JSON.parse($scope.receivers_ids);
+      $scope.receivers_ids = angular.fromJson($scope.receivers_ids);
     }
     catch(err) {
       $scope.receivers_ids = [];
