@@ -689,6 +689,11 @@ module.exports = function(grunt) {
 
       for (lang_code in supported_languages) {
         for (var template_name in templates_sources) {
+          /* Skip to add these templates cause we still miss the database of storing them */
+          if (['test_email_static_title', 'test_email_static_template'].indexOf(template_name) !== -1) {
+            continue;
+          }
+
           if (!(template_name in templates)) {
             templates[template_name] = {};
           }
