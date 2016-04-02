@@ -308,9 +308,10 @@ class GLSettingsClass(object):
 
         happen in startglobaleaks before the sys.argv is modified
         """
-        assert self.cmdline_options is not None
-
         self.nodaemon = self.cmdline_options.nodaemon
+
+        if self.cmdline_options.disable_swap:
+            self.avoid_globaleaks_swap()
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
@@ -408,6 +409,20 @@ class GLSettingsClass(object):
             self.print_msg("Invalid port number ( > than 65535 can't work! )")
             return False
         return True
+
+    def avoid_globaleaks_swap(self):
+        """
+        use mlockall(2) system call to prevent GlobaLeaks from swapping
+        """
+        libc = ctypes.CDLL("libc.so.6", use_errno=True)
+
+        MCL_CURRENT = 1
+        MCL_FUTURE = 2
+
+        self.print_msg("Using mlockall(MCL_CURRENT|MCL_FUTURE) system call to disable process swap")
+        if libc.mlockall(MCL_CURRENT|MCL_FUTURE):
+            self.print_msg("mlockall failure: %s" % os.strerror(ctypes.get_errno()))
+            quit(-1)
 
     def create_directory(self, path):
         """
