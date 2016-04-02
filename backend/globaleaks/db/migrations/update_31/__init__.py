@@ -137,6 +137,76 @@ class ReceiverTip_v_30(Model):
     can_access_whistleblower_identity = Bool()
     new = Int()
 
+class Notification_v_30(Model):
+    __storm_table__ = 'notification'
+    server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
+    port = Int(default=9267)
+
+    username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
+    password = Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me')
+
+    source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION')
+    source_email = Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org')
+
+    security = Unicode(validator=shorttext_v, default=u'TLS')
+
+    # Admin
+    admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
+    admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
+    admin_anomaly_mail_template = JSON(validator=longlocal_v)
+    admin_anomaly_mail_title = JSON(validator=longlocal_v)
+    admin_anomaly_disk_low = JSON(validator=longlocal_v)
+    admin_anomaly_disk_medium = JSON(validator=longlocal_v)
+    admin_anomaly_disk_high = JSON(validator=longlocal_v)
+    admin_anomaly_activities = JSON(validator=longlocal_v)
+
+    # Receiver
+    tip_mail_template = JSON(validator=longlocal_v)
+    tip_mail_title = JSON(validator=longlocal_v)
+    file_mail_template = JSON(validator=longlocal_v)
+    file_mail_title = JSON(validator=longlocal_v)
+    comment_mail_template = JSON(validator=longlocal_v)
+    comment_mail_title = JSON(validator=longlocal_v)
+    message_mail_template = JSON(validator=longlocal_v)
+    message_mail_title = JSON(validator=longlocal_v)
+    tip_expiration_mail_template = JSON(validator=longlocal_v)
+    tip_expiration_mail_title = JSON(validator=longlocal_v)
+    pgp_alert_mail_title = JSON(validator=longlocal_v)
+    pgp_alert_mail_template = JSON(validator=longlocal_v)
+    receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
+    receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
+
+    export_template = JSON(validator=longlocal_v)
+    export_message_recipient = JSON(validator=longlocal_v)
+    export_message_whistleblower = JSON(validator=longlocal_v)
+
+    # Whistleblower Identity
+    identity_access_authorized_mail_template = JSON(validator=longlocal_v)
+    identity_access_authorized_mail_title = JSON(validator=longlocal_v)
+    identity_access_denied_mail_template = JSON(validator=longlocal_v)
+    identity_access_denied_mail_title = JSON(validator=longlocal_v)
+    identity_access_request_mail_template = JSON(validator=longlocal_v)
+    identity_access_request_mail_title = JSON(validator=longlocal_v)
+    identity_provided_mail_template = JSON(validator=longlocal_v)
+    identity_provided_mail_title = JSON(validator=longlocal_v)
+
+    disable_admin_notification_emails = Bool(default=False)
+    disable_custodian_notification_emails = Bool(default=False)
+    disable_receiver_notification_emails = Bool(default=False)
+    send_email_for_every_event = Bool(default=True)
+
+    tip_expiration_threshold = Int(default=72)
+    notification_threshold_per_hour = Int(default=20)
+    notification_suspension_time=Int(default=(2 * 3600))
+
+    exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
+    exception_email_pgp_key_info = Unicode(default=u'')
+    exception_email_pgp_key_fingerprint = Unicode(default=u'')
+    exception_email_pgp_key_public = Unicode(default=u'')
+    exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
+    exception_email_pgp_key_status = Unicode(default=u'disabled')
+
+
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
@@ -250,3 +320,19 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
+
+    def migrate_Notification(self):
+        # an other time fix templates by reloading updated translations
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
+
+        for _, v in new_notification._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_notification,
+                                                    v.name,
+                                                    self.appdata['templates'].keys(),
+                                                    self.appdata['templates']):
+                continue
+
+        self.store_new.add(new_notification)
+
+
