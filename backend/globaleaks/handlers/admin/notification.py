@@ -111,9 +111,9 @@ def update_notification(store, request, language):
             request[k] = appdata_dict['templates'][k]
 
     if request['password'] == u'':
-      log.debug("No password set. Using pw already in the DB.")
+      log.debug('No password set. Using pw already in the DB.')
       request['password'] = notif.password
-
+    
     notif.update(request)
 
     parse_pgp_options(notif, request)
@@ -157,6 +157,7 @@ class NotificationInstance(BaseHandler):
 
         response = yield update_notification(request, self.request.language)
 
+        print 'Post get_localized_keys', request['admin_test_static_mail_title']
         self.set_status(202)
         self.finish(response)
 
@@ -181,12 +182,11 @@ class EmailNotifInstance(BaseHandler):
       notif = yield get_notification(user['language'])
 
       send_to = user['mail_address']
-      # Get the test emails subject line and body internationalized from the db.
+      # Get the test emails subject line and body internationalized from notif
       subject = notif['admin_test_static_mail_title']
       msg = notif['admin_test_static_mail_template']
-      # TODO apply templating to msg
       
-      log.debug("Attempting to send test email to: " + send_to)
+      log.debug("Attempting to send test email to: %s" % send_to)
       # If sending the email fails the exception mail address will be mailed.
       # If the failure is due to a bad SMTP config that will fail too, but it 
       # doesn't hurt to try!
