@@ -185,6 +185,10 @@ GLSettings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
 
+GLSettings.parser.add_option("-P", "--disable-swap", action='store_true',
+    help="disable process swap [default: False]",
+    dest="disable_swap", default=False)
+
 GLSettings.parser.add_option("-R", "--ramdisk", type="string",
     help="optionally specify a path used as ramdisk storage",
     dest="ramdisk")
