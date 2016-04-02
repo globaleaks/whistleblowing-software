@@ -19,7 +19,7 @@ from globaleaks.jobs import session_management_sched, statistics_sched, \
     pgp_check_sched
 
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log, datetime_now, disable_swap
 
 
 test_reactor = None
