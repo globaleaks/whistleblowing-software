@@ -38,14 +38,6 @@ class TestUtility(unittest.TestCase):
         self.assertIsNotNone(re.match(r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})',
                                       utility.uuid4()))
 
-    def test_uuid4_debug(self):
-        GLSettings.debug_option_UUID_human = "antani"
-        self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000001")
-        self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000002")
-        self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000003")
-        self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000004")
-        self.assertEqual(utility.uuid4(), "antani00-0000-0000-0000-000000000005")
-
     def test_randint(self):
         self.assertEqual(utility.randint(0), 0)
         self.assertEqual(utility.randint(0, 0), 0)
@@ -123,7 +115,7 @@ class TestUtility(unittest.TestCase):
     def test_datetime_to_pretty_str(self):
         self.assertEqual(utility.datetime_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
         self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()),
-            'Thursday 01 January 1970 00:00 (UTC)')
+                        'Thursday 01 January 1970 00:00 (UTC)')
 
     def test_ISO8601_to_pretty_str(self):
         self.assertEqual(utility.ISO8601_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
