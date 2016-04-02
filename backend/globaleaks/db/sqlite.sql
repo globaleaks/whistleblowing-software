@@ -255,6 +255,8 @@ CREATE TABLE notification (
     admin_anomaly_activities BLOB,
     admin_pgp_alert_mail_template BLOB,
     admin_pgp_alert_mail_title BLOB,
+    admin_test_static_mail_template BLOB,
+    admin_test_static_mail_title BLOB,
     pgp_alert_mail_template BLOB,
     pgp_alert_mail_title BLOB,
     notification_digest_mail_title BLOB,

@@ -235,7 +235,7 @@ GLClient.controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotifica
     }
   ];
 
-  sendTestMail = function() {
+  var sendTestMail = function() {
     $http({
       method: 'POST',
       url: '/admin/notification/mail', 
