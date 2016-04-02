@@ -1,11 +1,8 @@
-/* global console */
+/* eslint no-console: 0 */
+
 
 module.exports = function(grunt) {
   grunt.initConfig({
-    manifest:{
-      dest: 'tmp/'
-    },
-
     bower: {
       install: {
         options: {
@@ -14,41 +11,14 @@ module.exports = function(grunt) {
       }
     },
 
-    jshint: {
-      all: [
+    eslint: {
+      src: [
         'Gruntfile.js',
         'app/js/**/*.js',
-        'tests/**/*.js',
-        '!app/js/crypto/openpgp*.js',
-        '!app/js/crypto/scrypt-async.*.js'
-      ],
-      options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: true,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        worker: true,
-        node: true,  
-        jasmine: true,
-        // Webdriver globals
-        predef: ['browser', 'element', 'by', 'protractor'],
-        globals: {
-          angular: true,
-          fustyFlowFactory: true,
-          d3: true,
-          GLClient: true,
-          importScripts: true,
-          saveAs: true,
-          StackTrace: true,
-        }
-      }
+        '!app/js/crypto/*.js',
+        'app/js/crypto/proof-of-work.worker.js',
+        'tests/**/*.js'
+      ]
     },
 
     clean: {
@@ -118,6 +88,23 @@ module.exports = function(grunt) {
         }
     },
 
+    rtlcss: {
+      styles_css:{
+        // task options
+        options: {
+          map: false,
+          opts: {
+            clean: false
+          },
+          plugins:[],
+          saveUnmodified: true
+        },
+        files: {
+            'tmp/css/styles-rtl.css': 'tmp/css/styles.css'
+        }
+      }
+    },
+
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
@@ -183,15 +170,13 @@ module.exports = function(grunt) {
     },
 
     confirm: {
-      updateTranslations: {
+      'pushTranslationsSource': {
         options: {
           // Static text.
           question: 'WARNING:\n'+
                     'this task may cause translations loss and should be executed only on master branch.\n\n' +
                     'Are you sure you want to proceed (Y/N)?',
-          continue: function(answer) {
-            return answer === 'Y';
-          }
+          input: '_key:y'
         }
       }
     },
@@ -239,17 +224,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-inline-alt');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-line-remover');
-  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-rtlcss');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks("gruntify-eslint");
 
   var readDynamicStrings = function() {
     var filecontent = grunt.file.read('app/data_src/dynamic_strings.json'),
@@ -278,7 +263,6 @@ module.exports = function(grunt) {
   grunt.registerTask('copyBowerSources', function() {
     var files = [
       ['app/components/bootstrap/dist/css/bootstrap.min.css', 'app/css/bootstrap.min.css'],
-      ['app/components/bootstrap-rtl-ondemand/dist/css/bootstrap-rtl-ondemand.min.css', 'app/css/bootstrap-rtl-ondemand.min.css'],
       ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
       ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
       ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
@@ -319,6 +303,7 @@ module.exports = function(grunt) {
     }
 
     grunt.file.copy('tmp/css/styles.css', 'build/css/styles.css');
+    grunt.file.copy('tmp/css/styles-rtl.css', 'build/css/styles-rtl.css');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
@@ -380,24 +365,6 @@ module.exports = function(grunt) {
   var agent = superagent.agent(),
     baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
     sourceFile = 'pot/en.po';
-
-  function fetchTxSource(cb){
-    var url = baseurl + '/resource/master/content',
-      login = readTransifexrc();
-
-    agent.get(url)
-      .auth(login.username, login.password)
-      .end(function(err, res){
-        if (res.ok) {
-          var content = JSON.parse(res.text)['content'];
-          fs.writeFileSync(sourceFile, content);
-          console.log("Written source to " + sourceFile + ".");
-          cb();
-        } else {
-          console.log('Error: ' + res.text);
-        }
-    });
-  }
 
   function updateTxSource(cb){
     var url = baseurl + '/resource/master/content/',
@@ -461,8 +428,7 @@ module.exports = function(grunt) {
                 .end(function(err, res){
                   if (res) {
                     if (res.ok) {
-                      var content = JSON.parse(res.text)['content'];
-                      cb(content);
+                      cb(JSON.parse(res.text)['content']);
                     } else {
                       console.log('Error: ' + res.text);
                     }
@@ -499,8 +465,6 @@ module.exports = function(grunt) {
 
       result.available_languages.forEach(function(language){
 
-        var content = grunt.file.read(sourceFile);
-
         fetchTxTranslationsForLanguage(language.code, function(content){
           if (content) {
             var potFile = "pot/" + language.code + ".po";
@@ -530,11 +494,8 @@ module.exports = function(grunt) {
     });
   }
 
-  grunt.registerTask('updateTranslationsSource', function() {
-    var done = this.async(),
-      gt = new Gettext(),
-      strings,
-      translations = {},
+  grunt.registerTask('makeTranslationsSource', function() {
+    var gt = new Gettext(),
       translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
       translationStringRegexpHTML2 = /translate>(.+?)</gi,
       translationStringRegexpJSON = /"en": "(.+)"/gi,
@@ -557,30 +518,36 @@ module.exports = function(grunt) {
       translationStringCount += 1;
     }
 
-    function extractPOFromHTMLFile(filepath) {
+    function extractStringsFromHTMLFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while (result = translationStringRegexpHTML1.exec(filecontent)) {
+      result = translationStringRegexpHTML1.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpHTML1.exec(filecontent);
       }
 
-      while (result = translationStringRegexpHTML2.exec(filecontent)) {
+      result = translationStringRegexpHTML2.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpHTML2.exec(filecontent);
       }
 
     }
 
-    function extractPOFromJSONFile(filepath) {
+    function extractStringsFromJSONFile(filepath) {
       var filecontent = grunt.file.read(filepath),
         result;
 
-      while (result = translationStringRegexpJSON.exec(filecontent)) {
+      result = translationStringRegexpJSON.exec(filecontent);
+      while (result) {
         addString(result[1]);
+        result = translationStringRegexpJSON.exec(filecontent);
       }
     }
 
-    function extractPOFromTXTFile(filepath) {
+    function extractStringsFromTXTFile(filepath) {
       var filecontent = grunt.file.read(filepath),
           lines = filecontent.split("\n");
 
@@ -592,41 +559,50 @@ module.exports = function(grunt) {
       }
     }
 
-    extractPOFromHTMLFile('app/app.html');
+    function extractStringsFromFile(filepath) {
+      var ext = filepath.split('.').pop();
 
-    /* Extract strings view file used to anticipate strings on transifex */
-    extractPOFromHTMLFile('app/translations.html');
+      if (ext === 'html') {
+        extractStringsFromHTMLFile(filepath);
+      } else if (ext === 'json') {
+        extractStringsFromJSONFile(filepath);
+      } else if (ext === 'txt') {
+        extractStringsFromTXTFile(filepath);
+      }
+    }
 
-    grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/views/', subdir || '', filename || '');
-      extractPOFromHTMLFile(filepath);
-    });
+    function extractStringsFromDir(dir) {
+      grunt.file.recurse(dir, function(absdir, rootdir, subdir, filename) {
+        var filepath = path.join(dir, subdir || '', filename || '');
+        extractStringsFromFile(filepath);
+      });
+    }
 
-    grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/data_src/txt', subdir || '', filename || '');
-      extractPOFromTXTFile(filepath);
-    });
+    extractStringsFromFile('app/app.html');
+    extractStringsFromFile('app/translations.html');
+    extractStringsFromFile('app/data_src/appdata.json');
+    extractStringsFromFile('app/data_src/field_attrs.json');
 
-    grunt.file.recurse('app/data_src/fields', function(absdir, rootdir, subdir, filename) {
-      var filepath = path.join('app/data_src/fields', subdir || '', filename || '');
-      extractPOFromJSONFile(filepath);
-    });
-
-    extractPOFromJSONFile('app/data_src/appdata.json');
+    extractStringsFromDir('app/views');
+    extractStringsFromDir('app/data_src/txt');
+    extractStringsFromDir('app/data_src/fields');
 
     grunt.file.mkdir("pot");
 
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
+  });
+
+  grunt.registerTask('☠☠☠pushTranslationsSource☠☠☠', function() {
+    var done = this.async();
 
     updateTxSource(done);
   });
 
-  grunt.registerTask('makeTranslations', function() {
+  grunt.registerTask('fetchTranslations', function() {
     var done = this.async(),
       gt = new Gettext(),
-      strings,
       fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
@@ -640,7 +616,7 @@ module.exports = function(grunt) {
 
     fetchTxTranslations(function(supported_languages) {
       gt.addTextdomain("en", fileContents);
-      strings = gt.listKeys("en", "");
+      var strings = gt.listKeys("en", "");
 
       for (lang_code in supported_languages) {
         var translations = {}, output;
@@ -663,7 +639,6 @@ module.exports = function(grunt) {
   grunt.registerTask('makeAppData', function() {
     var done = this.async(),
       gt = new Gettext(),
-      strings,
       fileContents = fs.readFileSync("pot/en.po"),
       lang_code;
 
@@ -722,14 +697,18 @@ module.exports = function(grunt) {
 
       grunt.file.recurse('app/data_src/txt', function(absdir, rootdir, subdir, filename) {
         var template_name = filename.split('.txt')[0],
-            filepath = path.join('app/data_src/txt', subdir || '', filename || ''),
-            result;
+            filepath = path.join('app/data_src/txt', subdir || '', filename || '');
 
         templates_sources[template_name] = grunt.file.read(filepath);
       });
 
       for (lang_code in supported_languages) {
         for (var template_name in templates_sources) {
+          /* Skip to add these templates cause we still miss the database of storing them */
+          if (['test_email_static_title', 'test_email_static_template'].indexOf(template_name) !== -1) {
+            continue;
+          }
+
           if (!(template_name in templates)) {
             templates[template_name] = {};
           }
@@ -777,7 +756,7 @@ module.exports = function(grunt) {
         fs.writeFileSync(dstpath, field);
       });
 
-      console.log("Fields file was written!");
+      grunt.file.copy('app/data_src/field_attrs.json', 'app/data/field_attrs.json');
 
       done();
     });
@@ -786,12 +765,15 @@ module.exports = function(grunt) {
 
   grunt.registerTask('setupDependencies', ['bower:install', 'copyBowerSources']);
 
-  // Run this task to update translation related files
-  grunt.registerTask('updateTranslations', ['confirm', 'updateTranslationsSource', 'makeTranslations', 'makeAppData']);
+  // Run this task to push translations on transifex
+  grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
+
+  // Run this task to fetch translations from transifex and create appliccation files
+  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeTranslationsSource', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'rtlcss', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
