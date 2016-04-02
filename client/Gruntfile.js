@@ -1,5 +1,6 @@
 /* eslint no-console: 0 */
 
+
 module.exports = function(grunt) {
   grunt.initConfig({
     bower: {
@@ -169,15 +170,13 @@ module.exports = function(grunt) {
     },
 
     confirm: {
-      updateTranslations: {
+      'pushTranslationsSource': {
         options: {
           // Static text.
           question: 'WARNING:\n'+
                     'this task may cause translations loss and should be executed only on master branch.\n\n' +
                     'Are you sure you want to proceed (Y/N)?',
-          continue: function(answer) {
-            return answer === 'Y';
-          }
+          input: '_key:y'
         }
       }
     },
@@ -495,9 +494,8 @@ module.exports = function(grunt) {
     });
   }
 
-  grunt.registerTask('updateTranslationsSource', function() {
-    var done = this.async(),
-      gt = new Gettext(),
+  grunt.registerTask('makeTranslationsSource', function() {
+    var gt = new Gettext(),
       translationStringRegexpHTML1 = /"(.+?)"\s+\|\s+translate/gi,
       translationStringRegexpHTML2 = /translate>(.+?)</gi,
       translationStringRegexpJSON = /"en": "(.+)"/gi,
@@ -594,11 +592,15 @@ module.exports = function(grunt) {
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
+  });
+
+  grunt.registerTask('☠☠☠pushTranslationsSource☠☠☠', function() {
+    var done = this.async();
 
     updateTxSource(done);
   });
 
-  grunt.registerTask('makeTranslations', function() {
+  grunt.registerTask('fetchTranslations', function() {
     var done = this.async(),
       gt = new Gettext(),
       fileContents = fs.readFileSync("pot/en.po"),
@@ -763,8 +765,11 @@ module.exports = function(grunt) {
 
   grunt.registerTask('setupDependencies', ['bower:install', 'copyBowerSources']);
 
-  // Run this task to update translation related files
-  grunt.registerTask('updateTranslations', ['confirm', 'updateTranslationsSource', 'makeTranslations', 'makeAppData']);
+  // Run this task to push translations on transifex
+  grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
+
+  // Run this task to fetch translations from transifex and create appliccation files
+  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
