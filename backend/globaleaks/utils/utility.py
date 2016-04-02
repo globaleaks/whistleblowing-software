@@ -7,6 +7,7 @@ from __future__ import print_function
 
 import cgi
 import codecs
+import ctypes
 import inspect
 import logging
 import os
@@ -143,11 +144,6 @@ class GLLogObserver(twlog.FileLogObserver):
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
         if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
-            # This code path flush the status of the broken log, in the case a flood is happen
-            # for few moment or in the case something goes wrong when logging below.
-            log.info("!! has been suppressed %d log lines due to error flood (last error %s)" %
-                     (GLLogObserver.limit_suppressed, GLLogObserver.last_exception_msg) )
-
             GLLogObserver.suppressed = 0
             GLLogObserver.limit_suppressed += 5
             GLLogObserver.last_exception_msg = ""
@@ -465,5 +461,19 @@ def caller_name(skip=2):
     codename = parentframe.f_code.co_name
     if codename != '<module>':  # top level usually
         name.append( codename ) # function or a method
-    del parentframe
+
     return ".".join(name)
+
+
+def disable_swap():
+    """
+    use mlockall() system call to prevent the procss to swap
+    """
+    libc = ctypes.CDLL("libc.so.6", use_errno=True)
+
+    MCL_CURRENT = 1
+    MCL_FUTURE = 2
+
+    log.debug("Using mlockall() system call to disable process swap")
+    if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
+        log.err("mlockall failure: %s" % os.strerror(ctypes.get_errno()))

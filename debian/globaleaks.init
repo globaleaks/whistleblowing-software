@@ -48,32 +48,6 @@ if [ "${TRAVIS}" = "true" ]; then
     NETWORK_SANDBOXING=0
 fi
 
-# Let's try to figure our some sane defaults:
-if [ -r /proc/sys/fs/file-max ]; then
-    system_max=`cat /proc/sys/fs/file-max`
-    if [ "$system_max" -gt "80000" ] ; then
-        MAX_FILEDESCRIPTORS=32768
-    elif [ "$system_max" -gt "40000" ] ; then
-        MAX_FILEDESCRIPTORS=16384
-    elif [ "$system_max" -gt "10000" ] ; then
-        MAX_FILEDESCRIPTORS=8192
-    else
-        MAX_FILEDESCRIPTORS=1024
-        cat << EOF
-
-Warning: Your system has very few filedescriptors available in total.
-
-Maybe you should try raising that by adding 'fs.file-max=100000' to your
-/etc/sysctl.conf file.  Feel free to pick any number that you deem appropriate.
-Then run 'sysctl -p'.  See /proc/sys/fs/file-max for the current value, and
-file-nr in the same directory for how many of those are used at the moment.
-
-EOF
-        fi
-else
-        MAX_FILEDESCRIPTORS=8192
-fi
-
 read_pid()
 {
     if [ -e ${GLBACKEND_PIDFILE} ]; then
@@ -194,9 +168,8 @@ do_start()
 {
     log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
 
-    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
-        ulimit -n "$MAX_FILEDESCRIPTORS"
-    fi
+    # Raise the file descriptors limit to the max
+    ulimit -n `cat /proc/sys/fs/file-max`
 
     GLBACKEND_DAEMON=`which globaleaks`
     if [ ! ${GLBACKEND_DAEMON} ]; then
@@ -223,6 +196,12 @@ do_start()
 
     if [ "${DISABLE_MAIL_NOTIFICATION}" -eq "1" ]; then
         GLBACKEND_ARGS+=" --disable-mail-notification"
+    fi
+
+    if [ "${DISABLE_SWAP}" -eq "1" ]; then
+        # Raise the mlock limit to the max
+        ulimit -l unlimited
+        GLBACKEND_ARGS+=" --disable-swap"
     fi
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
