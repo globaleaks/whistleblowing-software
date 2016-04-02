@@ -769,7 +769,7 @@ module.exports = function(grunt) {
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
   // Run this task to fetch translations from transifex and create appliccation files
-  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeTranslations', 'makeAppData']);
+  grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
