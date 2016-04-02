@@ -33,33 +33,7 @@ def uuid4():
 
     The function is not intended to be used for security reasons.
     """
-    if len(GLSettings.debug_option_UUID_human) > 1:
-        return huuid4()
-    else:
-        return unicode(uuid.uuid4())
-
-
-def huuid4():
-    """
-    This function returns an incremental id following uuid4 format.
-
-    http://www.ietf.org/rfc/rfc4122.txt
-
-    The function is intended to be used only for debugging purposes.
-    """
-    GLSettings.debug_UUID_human_counter += 1
-
-    str_padding = 8 - len(GLSettings.debug_option_UUID_human)
-    int_padding = 12 - len("%d" % GLSettings.debug_UUID_human_counter)
-
-    Huuidv4 = "%s%s-0000-0000-0000-%s%d" % (
-        GLSettings.debug_option_UUID_human,
-        str_padding * "0",
-        int_padding * "0",
-        GLSettings.debug_UUID_human_counter
-    )
-
-    return unicode(Huuidv4)
+    return unicode(uuid.uuid4())
 
 
 def sum_dicts(*dicts):
@@ -286,12 +260,7 @@ def time_now():
     """
     @return: current timestamp
     """
-    now = time.time()
-
-    if GLSettings.debug_option_in_the_future:
-        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
-
-    return now
+    return time.time()
 
 
 def datetime_null():
@@ -305,12 +274,7 @@ def datetime_now():
     """
     @return: a utc datetime object for the current time
     """
-    now = datetime.utcnow()
-
-    if GLSettings.debug_option_in_the_future:
-        now += timedelta(seconds=GLSettings.debug_option_in_the_future)
-
-    return now
+    return datetime.utcnow()
 
 
 def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):

@@ -3,18 +3,19 @@
 # ******
 from __future__ import print_function
 
+import ctypes
 import glob
 import logging
 import pwd
 import grp
 import getpass
+import os
+import re
+
 from optparse import OptionParser
-from ctypes import CDLL
 
 from distutils import dir_util
 
-import re
-import os
 from cyclone.util import ObjectDict as OD
 
 from twisted.internet import reactor
@@ -198,12 +199,6 @@ class GLSettingsClass(object):
         self.exceptions = {}
         self.exceptions_email_count = 0
         self.exceptions_email_hourly_limit = 20
-
-        # Extreme debug options triggered by --XXX, that's are the defaults
-        self.debug_option_in_the_future = 0
-        self.debug_option_UUID_human = ""
-        self.debug_UUID_human_counter = 0
-        self.debug_option_mlockall = False
 
         self.disable_mail_torification = False
         self.disable_mail_notification = False
@@ -389,6 +384,9 @@ class GLSettingsClass(object):
             self.print_msg("Enabling development mode for %s" % self.cmdline_options.developer_name)
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
+            self.orm_debug = self.cmdline_options.orm_debug
+            self.log_timing_stats = self.cmdline_options.log_timing_stats
+            self.log_requests_responses = self.cmdline_options.log_requests_responses
 
         self.skip_wizard = self.cmdline_options.skip_wizard
 
@@ -405,60 +403,11 @@ class GLSettingsClass(object):
             self.print_msg("Unable to find a directory where to load the client")
             quit(-1)
 
-        if self.devel_mode:
-            self.orm_debug = self.cmdline_options.orm_debug
-            self.log_timing_stats = self.cmdline_options.log_timing_stats
-            self.log_requests_responses = self.cmdline_options.log_requests_responses
-
-            # hardcore extremely dangerous --XXX option trigger
-            # one,two,three
-            if self.cmdline_options.xxx:
-                self.print_msg("\033[1;33mHardcore dangerous hazardous radioactive --XXX option used!\033[0m")
-                hardcore_opts = self.cmdline_options.xxx.split(',')
-                if len(hardcore_opts):
-                    try:
-                        GLSettings.debug_option_in_the_future = int(hardcore_opts[0])
-                    except ValueError:
-                        self.print_msg("Invalid number of seconds provided:", hardcore_opts[0])
-                        quit(-1)
-
-                    self.print_msg("→ \033[1;31mUsing %d seconds in the future\033[0m" % \
-                        GLSettings.debug_option_in_the_future)
-
-                if len(hardcore_opts) > 1 and len(hardcore_opts[1]) > 1:
-                    # at least two byte needed, so you can skip this option
-                    GLSettings.debug_option_UUID_human = hardcore_opts[1]
-  
-                    if len(GLSettings.debug_option_UUID_human) > 8:
-                        GLSettings.debug_option_UUID_human = GLSettings.debug_option_UUID_human[:8]
-
-                    self.print_msg("→ \033[1;31mUsing %s to generate human readable UUIDv4\033[0m" % \
-                        GLSettings.debug_option_UUID_human)
-
-                if len(hardcore_opts) > 2 and len(hardcore_opts[2]) > 1:
-                    self.debug_option_mlockall = True
-                    self.print_msg("→ \033[1;31mUsing mlockall(2) system call to prevent GlobaLeaks swap\033[0m")
-                    self.avoid_globaleaks_swap()
-
-                self.print_msg("\n")
-
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
             self.print_msg("Invalid port number ( > than 65535 can't work! )")
             return False
         return True
-
-    def avoid_globaleaks_swap(self):
-        """
-        use mlockall(2) system call to prevent GlobaLeaks from swapping
-        """
-        libc = CDLL("libc.so.6")
-
-        # lock memory from swapping that is created in the FUTURE
-        # (does NOT apply to stuff that is already in memory!)
-        if libc.mlockall(2):
-            self.print_msg("Unable to libc.mlockall")
-            quit(-1)
 
     def create_directory(self, path):
         """
