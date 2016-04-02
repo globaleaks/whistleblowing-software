@@ -182,7 +182,7 @@ GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     dest="skip_wizard", default=False)
 
 GLSettings.parser.add_option("-C", "--client-path", type='string',
-    help="specify GLClient path",
+    help="specify client path",
     dest="client_path", default=None)
 
 GLSettings.parser.add_option("-R", "--ramdisk", type="string",
@@ -192,10 +192,6 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
 GLSettings.parser.add_option("-z", "--devel-mode", type='string',
     help="hack some configs, specify your name to receive personalized exceptions' [default: %default]",
     dest="developer_name")
-
-GLSettings.parser.add_option("--XXX", type='string',
-    help="hardcore debug only options: check NOTES.md file (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="xxx")
 
 GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
