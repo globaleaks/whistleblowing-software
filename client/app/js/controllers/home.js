@@ -29,10 +29,8 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', '$uibModal',
         open_quiz();
       }
     };
-}]);
-
-
-GLClient.controller('QuizCtrl', ['$scope', '$uibModalInstance', '$location',
+}]).
+controller('QuizCtrl', ['$scope', '$uibModalInstance', '$location',
                     function($scope, $uibModalInstance, $location) {
   $scope.goToSubmission = function() {
     // After showing the security awareness panel
@@ -46,5 +44,4 @@ GLClient.controller('QuizCtrl', ['$scope', '$uibModalInstance', '$location',
   $scope.cancel = function () {
     $uibModalInstance.close();
   };
-
 }]);

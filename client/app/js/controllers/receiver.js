@@ -2,10 +2,8 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
-}]);
-
-
-GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'ReceiverTips',
+}]).
+controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'ReceiverTips',
   function($scope, $http, $route, $location, $uibModal, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
 
@@ -64,9 +62,8 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
       }
     });
   };
-}]);
-
-GLClient.controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
+}]).
+controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
                         function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;

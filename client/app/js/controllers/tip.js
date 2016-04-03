@@ -234,9 +234,8 @@ GLClient.controller('TipCtrl',
         }
       });
     };
-}]);
-
-GLClient.controller('TipOperationsCtrl',
+}]).
+controller('TipOperationsCtrl',
   ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'RTip', 'tip', 'operation',
    function ($scope, $http, $route, $location, $uibModalInstance, Tip, tip, operation) {
   $scope.tip = tip;
@@ -266,9 +265,8 @@ GLClient.controller('TipOperationsCtrl',
         });
     }
   };
-}]);
-
-GLClient.controller('IdentityAccessRequestCtrl',
+}]).
+controller('IdentityAccessRequestCtrl',
   ['$scope', '$http', '$route', '$uibModalInstance', 'tip',
    function ($scope, $http, $route, $uibModalInstance, tip) {
   $scope.tip = tip;

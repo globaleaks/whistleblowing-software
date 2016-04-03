@@ -9,9 +9,8 @@ GLClient.controller('AdminQuestionnaireCtrl', ['$scope', function($scope){
       template:"views/admin/questionnaires/questions.html"
     }
   ];
-}]);
-
-GLClient.controller('AdminQuestionnairesCtrl',
+}]).
+controller('AdminQuestionnairesCtrl',
   ['$scope', 'AdminQuestionnaireResource',
   function($scope, AdminQuestionnaireResource) {
 
@@ -29,9 +28,8 @@ GLClient.controller('AdminQuestionnairesCtrl',
       $scope.admin.questionnaires.splice(idx, 1);
     });
   };
-}]);
-
-GLClient.controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
+}]).
+controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
   function($scope, AdminStepResource) {
 
   $scope.editing = false;
@@ -53,9 +51,8 @@ GLClient.controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResourc
       $scope.delStep(step);
     });
   };
-}]);
-
-GLClient.controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
+}]).
+controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
@@ -68,5 +65,4 @@ GLClient.controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
       $scope.new_questionnaire = {};
     });
   };
-
 }]);

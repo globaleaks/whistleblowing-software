@@ -14,9 +14,8 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       }
     }
   };
-}]);
-
-GLClient.controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $http) {
+}]).
+controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.get_auth_headers = $scope.$parent.get_auth_headers;
   $scope.imgDataUri = $scope.$parent.imgDataUri;
   $scope.imageUploadObj = {};

@@ -35,9 +35,8 @@ GLClient.controller('AdminContextsCtrl',
     $scope.moveDown(elem);
     $scope.save_context(elem);
   };
-}]);
-
-GLClient.controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
+}]).
+controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   function($scope, AdminStepResource) {
 
   $scope.editing = false;
@@ -80,9 +79,8 @@ GLClient.controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.updateContextImgUrl();
-}]);
-
-GLClient.controller('AdminContextAddCtrl', ['$scope', function($scope) {
+}]).
+controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};
 
   $scope.add_context = function() {
@@ -96,5 +94,4 @@ GLClient.controller('AdminContextAddCtrl', ['$scope', function($scope) {
       $scope.new_context = {};
     });
   };
-
 }]);
