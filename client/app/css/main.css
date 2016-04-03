@@ -399,3 +399,12 @@ th {
 .text-align-right {
   text-align: right;
 }
+
+#TipList table {
+  table-layout: auto;
+}
+
+#TipList th, #TipList td {
+  white-space: nowrap;
+  min-width: 5em;
+}
