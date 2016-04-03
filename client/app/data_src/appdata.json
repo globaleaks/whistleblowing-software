@@ -58,7 +58,7 @@
             "label": { "en": "Short title" },
             "type": "inputbox",
             "preview": true,
-            "hint": {"en": "Describe your submission with a few words"},
+            "hint": {"en": "Describe your submission with in few words"},
             "description": {"en": ""},
             "multi_entry": false,
             "multi_entry_hint": {"en": ""},
@@ -78,7 +78,7 @@
             "label": { "en": "Full description" },
             "type": "textarea",
             "preview": false,
-            "hint": {"en": "Describe the details of the submission"},
+            "hint": {"en": "Describe your submission in detail"},
             "description": {"en": ""},
             "multi_entry": false,
             "multi_entry_hint": {"en": ""},
@@ -95,7 +95,7 @@
             "x": 0
           },
           {
-            "label": { "en": "Files description" },
+            "label": { "en": "Description of files" },
             "type": "textarea",
             "preview": false,
             "hint": {"en": "Describe the attachments of the submission"},

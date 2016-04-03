@@ -119,9 +119,5 @@ class TestRecentEventsCollection(helpers.TestHandler):
             for elem in self.responses[0]:
                 self.assertTrue(k in elem)
 
-        for k in ['wb_messages', 'wb_comments',
-                  'receiver_messages', 'receiver_comments',
-                  'started_submissions', 'completed_submissions',
-                  'successful_logins', 'failed_logins',
-                  'uploaded_files']:
+        for k in anomaly.ANOMALY_MAP.keys():
             self.assertTrue(k in self.responses[1])

@@ -33,11 +33,10 @@ At the moment the anomalies threshold are (defined in anomaly.py Alarm class)
         'successful_logins': 3,
         'started_submissions': 5,
         'completed_submissions': 4,
-        'uploaded_files': 11,
-        'wb_comments': 4,
-        'wb_messages': 4,
-        'receiver_comments': 3,
-        'receiver_messages': 3,
+        'failed_submissions': 5,
+        'files': 10,
+        'comments': 30,
+        'messages': 30
     }
 
 When an event reach the threshold, the "activity stress level" is raised to 2 or 1.
