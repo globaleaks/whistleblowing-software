@@ -1,7 +1,7 @@
 <div data-ng-class="{'nested': !preview}" class="fieldAnswer">
-  <div class="fieldTitle">
-    <span data-ng-if="!$parent.field && !preview">{{$index + 1}}) {{field.label}}:</span>
-    <span data-ng-if="$parent.field || preview">{{field.label}}:</span>
+  <div data-ng-class="{fieldTitle: !preview}">
+    <span data-ng-if="!$parent.field && !preview">{{$index + 1}})</span>
+    <span>{{field.label}}</span>
   </div>
   <div data-ng-if="!hasMultipleEntries(fieldAnswers[field.id])">
     <div data-ng-init="entry = fieldAnswers[field.id][0]" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
