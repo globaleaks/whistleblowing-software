@@ -58,7 +58,7 @@
             "label": { "en": "Short title" },
             "type": "inputbox",
             "preview": true,
-            "hint": {"en": "Describe your submission with in few words"},
+            "hint": {"en": "Describe your submission in few words"},
             "description": {"en": ""},
             "multi_entry": false,
             "multi_entry_hint": {"en": ""},
