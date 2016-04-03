@@ -25,6 +25,18 @@ from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log, datetime_now, is_expired, bytes_to_pretty_str
 
 
+ANOMALY_MAP = {
+    'started_submissions': 50,
+    'completed_submissions': 5,
+    'failed_submissions': 5,
+    'failed_logins': 8,
+    'successful_logins': 20,
+    'files': 10,
+    'comments': 30,
+    'messages': 30
+}
+
+
 def update_AnomalyQ(event_matrix, alarm_level):
     GLSettings.RecentAnomaliesQ.update({
         datetime_now(): [event_matrix, alarm_level]
@@ -105,31 +117,6 @@ class AlarmClass(object):
     """
     __metaclass__ = Singleton
 
-    stress_levels = {
-        'disk_space': 0,
-        'disk_message': None,
-        'activity': 0
-    }
-
-    # _DISK_ALARM express the number of files upload (at maximum size) that can be stored
-    _MEDIUM_DISK_ALARM = 15
-    _HIGH_DISK_ALARM = 5
-    # is a rough indicator, every file got compression + encryption so the true disk
-    # space can't be estimated correctly.
-
-    ANOMALY_MAP = {
-        'started_submissions': 50,
-        'completed_submissions': 5,
-        'rejected_submissions': 5,
-        'failed_logins': 8,
-        'successful_logins': 20,
-        'uploaded_files': 10,
-        'wb_comments': 20,
-        'wb_messages': 20,
-        'receiver_comments': 30,
-        'receiver_messages': 30
-    }
-
     # the level of the alarm in 30 seconds
     _alarm_level = {}
     _anomaly_history = {}
@@ -147,6 +134,8 @@ class AlarmClass(object):
             'human_captcha': False,
             'graph_captcha': False
         }
+
+        self.reset()
 
 
     def reset(self):
@@ -179,7 +168,7 @@ class AlarmClass(object):
                       round(max(requests_timing), 2),
                       round(min(requests_timing), 2)))
 
-        for event_name, threshold in self.ANOMALY_MAP.iteritems():
+        for event_name, threshold in ANOMALY_MAP.iteritems():
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     self.number_of_anomalies += 1

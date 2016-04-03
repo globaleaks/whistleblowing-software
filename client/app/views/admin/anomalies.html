@@ -3,33 +3,7 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-12">
-        <div data-translate>This interface shows you the unusual behaviour the system has identified.</div>
-        <div data-translate>Anomalies are automatically analysed to identify abuses or unusual usage spikes.</div>
-        <div data-translate>Since the platform is not able to distinguish Tor users, it is not possible to perform anomaly detection based on user policies.</div>
-        <div data-translate>The currently adopted policy is to check if some thresholds are reached within a 30 seconds observation window.</div>
-        <div data-translate>These are the thresholds used to identify anomalous behaviour:</div>
-
-        <div id="AnomaliesThresholdsSummary" class="infoTable" data-ng-show="showLevel">
-          <span class="col-md-3">
-            <label data-translate>Failed logins</label>: <span class="label label-info">50</span><br />
-            <label data-translate>Successful logins</label>: <span class="label label-info">70</span><br />
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Started submissions</label>: <span class="label label-info">100</span><br />
-            <label data-translate>Completed submissions</label>: <span class="label label-info">50</span><br />
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Whistleblower comments</label>: <span class="label label-info">20</span><br />
-            <label data-translate>Whistleblower messages</label>: <span class="label label-info">20</span><br />
-          </span>
-          <span class="col-md-3">
-            <label data-translate>Recipient comments</label>: <span class="label label-info">30</span><br />
-            <label data-translate>Recipient messages</label>: <span class="label label-info">30</span><br />
-          </span>
-        </div>
-
-        <br />
-        <br />
+        <div data-translate>This interface shows system anomalies, automatically detected and analysed to identify abuse.</div>
 
         <div id="AnomaliesHistoryTable">
           <table class="table table-condensed table-striped">
@@ -51,8 +25,8 @@
                 <td class="col-md-2">{{anomaly.date | date:'dd-MM-yyyy HH:mm'}}</td>
                 <td class="col-md-1">{{anomaly.alarm}}</td>
                 <td class="col-md-2">
-                  <span data-ng-repeat="single_event in anomaly.events">
-                    <span class="label label-info">{{single_event.name}}</span> {{single_event.amount}}<br />
+                  <span data-ng-repeat="event in anomaly.events">
+                    <span class="label label-info">{{event.type | anomalyToString | translate}}</span> {{event.count}}<br />
                   </span>
                 </td>
               </tr>

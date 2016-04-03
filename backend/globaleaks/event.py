@@ -21,20 +21,12 @@ def login_check(uri):
     return uri == '/authentication'
 
 
-def wb_message_check(uri):
-    return uri.startswith('/wbtip/messages/')
+def message_check(uri):
+    return uri.startswith('/wbtip/messages/') or uri.startswith('/rtip/messages/')
 
 
-def wb_comment_check(uri):
-    return uri == '/wbtip/comments'
-
-
-def rcvr_message_check(uri):
-    return uri.startswith('/rtip/messages/')
-
-
-def rcvr_comment_check(uri):
-    return uri.startswith('/rtip/comments')
+def comment_check(uri):
+    return uri == '/wbtip/comments' or uri.startswith('/rtip/comments')
 
 
 def failure_status_check(http_code):
@@ -81,42 +73,29 @@ events_monitored = [
         'status_check': updated_status_check
     },
     {
-        'name': 'rejected_submissions',
+        'name': 'failed_submissions',
         'handler_check': submission_check,
         'method': 'PUT',
         'status_check': failure_status_check
     },
     {
-        'name': 'wb_comments',
-        'handler_check': wb_comment_check,
+        'name': 'comments',
+        'handler_check': comment_check,
         'method': 'POST',
         'status_check': created_status_check
     },
     {
-        'name': 'wb_messages',
-        'handler_check': wb_message_check,
+        'name': 'messages',
+        'handler_check': message_check,
         'method': 'POST',
         'status_check': created_status_check
     },
     {
-        'name': 'uploaded_files',
+        'name': 'files',
         'handler_check': file_upload_check,
         'method': 'POST',
         'status_check': created_status_check
-    },
-    {
-        'name': 'receiver_comments',
-        'handler_check': rcvr_comment_check,
-        'method': 'POST',
-        'status_check': created_status_check
-    },
-    {
-        'name': 'receiver_messages',
-        'handler_check': rcvr_message_check,
-        'method': 'POST',
-        'status_check': created_status_check
     }
-
 ]
 
 

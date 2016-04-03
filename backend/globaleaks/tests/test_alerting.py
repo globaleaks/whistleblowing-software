@@ -24,8 +24,8 @@ class TestStatistics(helpers.TestGL):
         """
 
         # start test
-        ANOMALIES_AMOUNT = 50
-        pollute_events_for_testing(ANOMALIES_AMOUNT)
+        ANOMALIES_COUNT = 50
+        pollute_events_for_testing(ANOMALIES_COUNT)
 
         Alarm.compute_activity_level()
 
@@ -41,8 +41,8 @@ class TestStatistics(helpers.TestGL):
 
         # every stuff need to be ANOMALIES_AMOUNT * 2, because
         # pollute function put two event each
-        for event, amount in anomdet[0].iteritems():
-            self.assertEqual(amount, ANOMALIES_AMOUNT * 2)
+        for event, count in anomdet[0].iteritems():
+            self.assertEqual(count, ANOMALIES_COUNT * 2)
 
         # scheduler happen to save these anomalies, along with stats
         yield StatisticsSchedule().operation()

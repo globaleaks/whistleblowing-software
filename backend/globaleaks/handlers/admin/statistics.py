@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+#/a -*- coding: UTF-8
 #
 #   statistics
 #   **********
@@ -153,10 +153,10 @@ def get_anomaly_history(store, limit):
             'alarm': anomaly.alarm,
             'events': [],
         })
-        for event_name, event_amount in anomaly.events.iteritems():
+        for event_type, event_count in anomaly.events.iteritems():
             anomaly_entry['events'].append({
-                'name': event_name,
-                'amount': event_amount,
+                'type': event_type,
+                'count': event_count,
             })
         anomaly_history.append(anomaly_entry)
 
@@ -194,7 +194,7 @@ class AnomalyCollection(BaseHandler):
 class StatsCollection(BaseHandler):
     """
     This Handler returns the list of the stats, stats is the aggregated
-    amount of activities recorded in the delta defined in GLSettingss
+    count of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
     @BaseHandler.transport_security_check("admin")

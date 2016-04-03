@@ -375,10 +375,10 @@ class AnomalyKeyword(Keyword):
     def ActivityDump(self):
         retstr = ''
 
-        for event, amount in self.data['alert']['event_matrix'].iteritems():
-            if not amount:
+        for event, count in self.data['alert']['event_matrix'].iteritems():
+            if not count:
                 continue
-            retstr = '%s%s%d\n%s' % (event, (25 - len(event)) * ' ', amount, retstr)
+            retstr = '%s%s%d\n%s' % (event, (25 - len(event)) * ' ', count, retstr)
 
         return retstr
 
