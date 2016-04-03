@@ -222,6 +222,8 @@ describe('globaLeaks process', function() {
           });
         });
       });
+    } else {
+      done();
     }
   });
 
@@ -261,7 +263,7 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export the submission', function() {
+  it('Recipient should be able to export the submission', function(done) {
       login_receiver(receiver_username, receiver_password);
       element(by.id('tip-0')).click();
       element(by.id('tipFileName')).getText().then(function(t) {
@@ -270,11 +272,14 @@ describe('globaLeaks process', function() {
         if (utils.testFileDownload()) {
           // TODO: Verify the zips content
           utils.waitForFile(t + '.zip', 30000);
+          done();
+        } else {
+          done();
         }
       });
   });
 
-  it('Recipient should be able to disable and renable email notifications', function() {
+  it('Recipient should be able to disable and renable email notifications', function(done) {
     login_receiver(receiver_username, receiver_password);
 
     element(by.id('tip-0')).click();
@@ -287,21 +292,25 @@ describe('globaLeaks process', function() {
       silence.evaluate('tip.enable_notifications').then(function(enabled) {
         expect(enabled).toEqual(true);
         // TODO Determine if emails are actually blocked.
+        done();
       });
     });
   });
 
-  it('Recipient should be able to export first submission from the tips page', function() {
+  it('Recipient should be able to export first submission from the tips page', function(done) {
     if (utils.testFileDownload()) {
       login_receiver(receiver_username, receiver_password);
 
       var first_tip_export = element(by.id('tip-0')).element(by.id('tip-action-export'));
       first_tip_export.click();
       // TODO tests if the file has been downloaded and is valid
+      done();
+    } else {
+      done();
     }
   });
 
-  it('Recipient should be able to postpone all tips', function() {
+  it('Recipient should be able to postpone all tips', function(done) {
     login_receiver(receiver_username, receiver_password);
 
     function make_dates(strings) {
@@ -335,11 +344,12 @@ describe('globaLeaks process', function() {
         // We expect that every final expiration is larger than its corresponding
         // initial value.
         expect(b).toEqual(true);
+        done();
       });
     });
   });
 
-  it('Recipient should be able to postpone first submission from its tip page', function() {
+  it('Recipient should be able to postpone first submission from its tip page', function(done) {
     login_receiver(receiver_username, receiver_password);
     
     element(by.id('tip-0')).click();
@@ -354,11 +364,12 @@ describe('globaLeaks process', function() {
         expect(d).toEqual(jasmine.any(String));
         var newExpiration = new Date(d);
         expect(newExpiration).toBeGreaterThan(startExpiration);
+        done();
       });
     });
   });
 
-  it('Recipient should be able to delete first submission from its tip page', function() {
+  it('Recipient should be able to delete first submission from its tip page', function(done) {
     login_receiver(receiver_username, receiver_password);
 
     // Find the uuid of the first tip.
@@ -371,6 +382,7 @@ describe('globaLeaks process', function() {
       element.all(by.css('#tipListTableBody tr')).evaluate('tip.id').then(function(uuids) {
         var i = uuids.indexOf(tip_uuid);
         expect(i).toEqual(-1);
+        done();
       });
     });
   });
