@@ -24,11 +24,9 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiver
     $scope.moveDown(elem);
     $scope.save_receiver(elem);
   };
-}]);
-
-GLClient.controller('AdminReceiverEditorCtrl', ['$scope', 'CONSTANTS',
+}]).
+controller('AdminReceiverEditorCtrl', ['$scope', 'CONSTANTS',
   function($scope, CONSTANTS) {
-
     $scope.editing = false;
 
     $scope.toggleEditing = function () {

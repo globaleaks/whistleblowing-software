@@ -20,9 +20,8 @@ GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', 
       }
     });
   };
-}]);
-
-GLClient.controller('IdentityAccessReplyCtrl', ['$scope', '$http', '$route', '$uibModalInstance', 'iar',
+}]).
+controller('IdentityAccessReplyCtrl', ['$scope', '$http', '$route', '$uibModalInstance', 'iar',
   function ($scope, $http, $route, $uibModalInstance, iar) {
     $scope.iar = iar;
     $scope.cancel = function () {

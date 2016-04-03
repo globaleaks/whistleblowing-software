@@ -51,9 +51,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       });
     };
   }
-]);
-
-GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+]).
+controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
   function($scope, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
@@ -220,9 +219,8 @@ GLClient.controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldR
       return $scope.openConfirmableModalDialog('views/partials/assign_score_points.html', option);
     };
   }
-]);
-
-GLClient.controller('AdminFieldTemplatesAddCtrl', ['$scope',
+]).
+controller('AdminFieldTemplatesAddCtrl', ['$scope',
   function($scope) {
     $scope.new_field = {};
 

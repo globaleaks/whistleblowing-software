@@ -529,16 +529,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.init();
   }
-
-]);
-
-GLClient.controller('ModalCtrl', ['$scope', 
+]).
+controller('ModalCtrl', ['$scope', 
   function($scope, $uibModalInstance, error) {
     $scope.error = error;
     $scope.seconds = error.arguments[0];
-}]);
-
-GLClient.controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+}]).
+controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     $scope.close = function() {
       $uibModalInstance.close(false);
     };
@@ -550,9 +547,8 @@ GLClient.controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', fun
     $scope.ok = function() {
       $uibModalInstance.close(true);
     };
-}]);
-
-GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
+}]).
+controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
   var steps = 3;
 
   var first_step = 0;
@@ -588,9 +584,8 @@ GLClient.controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', f
       $rootScope.language = $scope.data.language;
     }
   });
-}]);
-
-GLClient.controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'args', function($scope, $uibModalInstance, args) {
+}]).
+controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'args', function($scope, $uibModalInstance, args) {
   $scope.args = args;
 
   $scope.ok = function (result) {

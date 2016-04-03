@@ -33,9 +33,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
        function() { }
     );
   };
-}]);
-
-GLClient.controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
+}]).
+controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
   function($scope, CONSTANTS) {
 
     $scope.editing = false;
@@ -55,9 +54,8 @@ GLClient.controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
     };
 
     $scope.updateUserImgUrl();
-}]);
-
-GLClient.controller('AdminUserAddCtrl', ['$scope',
+}]).
+controller('AdminUserAddCtrl', ['$scope',
   function($scope) {
     $scope.new_user = {};
 

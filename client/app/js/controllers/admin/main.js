@@ -112,9 +112,8 @@ GLClient.controller('AdminCtrl',
 
     return max + 1;
   };
-}]);
-
-GLClient.controller('AdminFileUploadCtrl', ['$scope', function($scope){
+}]).
+controller('AdminFileUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -129,9 +128,8 @@ GLClient.controller('AdminFileUploadCtrl', ['$scope', function($scope){
     $scope.closeUploader = function () {
       $scope.uploadfile = $scope.fileSelected = false;
     };
-}]);
-
-GLClient.controller('AdminImgUploadCtrl', ['$scope', function($scope){
+}]).
+controller('AdminImgUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -161,9 +159,8 @@ GLClient.controller('AdminImgUploadCtrl', ['$scope', function($scope){
         event.preventDefault();
       }
     });
-}]);
-
-GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
+}]).
+controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   function($scope, $http, StaticFiles){
   $scope.tabs = [
     {
@@ -208,9 +205,8 @@ GLClient.controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles
   };
 
   $scope.update_static_files();
-}]);
-
-GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
+}]).
+controller('AdminMailCtrl', ['$scope', function($scope){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -229,10 +225,8 @@ GLClient.controller('AdminMailCtrl', ['$scope', function($scope){
       template:"views/admin/mail/tab4.html"
     }
   ];
-}]);
-
-GLClient.controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
-                    function($scope, $uibModal){
+}]).
+controller('AdminAdvancedCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
   $scope.tabs = [
     {
       title:"Main configuration",

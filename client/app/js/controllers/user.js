@@ -14,9 +14,8 @@ GLClient.controller('UserCtrl',
       $location.path('/status');
     });
   };
-}]);
-
-GLClient.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
+}]).
+controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
   function($scope, $rootScope, $location) {
 
     $scope.pass_save = function () {

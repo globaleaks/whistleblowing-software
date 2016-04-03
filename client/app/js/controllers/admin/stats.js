@@ -1,6 +1,5 @@
 GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollection',
   function($scope, $filter, Node, StatsCollection) {
-
     $scope.week_delta = 0;
     $scope.blob = {};
 
@@ -198,16 +197,14 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollec
 
     $scope.update_week();
 
-}]);
-
-GLClient.controller('AnomaliesCtrl', ['$scope', 'AnomaliesCollection',
+}]).
+controller('AnomaliesCtrl', ['$scope', 'AnomaliesCollection',
   function($scope, AnomaliesCollection) {
 
     $scope.showLevel = true;
     $scope.anomalies = AnomaliesCollection.query();
-}]);
-
-GLClient.controller('ActivitiesCtrl', ['$scope', 'ActivitiesCollection',
+}]).
+controller('ActivitiesCtrl', ['$scope', 'ActivitiesCollection',
   function($scope, ActivitiesCollection) {
 
     $scope.activities = ActivitiesCollection.query();
