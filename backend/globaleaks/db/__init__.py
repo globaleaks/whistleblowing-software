@@ -12,7 +12,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models,  __version__, DATABASE_VERSION
-from globaleaks.db.appdata import db_init_appdata, load_default_fields, load_default_questionnaires
+from globaleaks.db.appdata import db_update_appdata
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
@@ -49,7 +49,7 @@ def db_create_tables(store):
 @transact
 def init_db(store):
     db_create_tables(store)
-    appdata_dict = db_init_appdata(store)
+    appdata_dict = db_update_appdata(store)
 
     log.debug("Performing database initialization...")
 
@@ -73,9 +73,6 @@ def init_db(store):
 
     store.add(node)
     store.add(notification)
-
-    load_default_questionnaires(store)
-    load_default_fields(store)
 
     admin_dict = {
         'username': u'admin',

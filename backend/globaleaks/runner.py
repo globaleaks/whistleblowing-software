@@ -12,7 +12,7 @@ from twisted.python.util import untilConcludes
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables, update_version
 
-from globaleaks.db.appdata import init_appdata
+from globaleaks.db.appdata import update_appdata
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
@@ -84,7 +84,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
                 yield init_db()
             else:
                 yield update_version()
-                yield init_appdata()
 
             yield clean_untracked_files()
 
