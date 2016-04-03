@@ -9,6 +9,8 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSettings
 
+from globaleaks.db.appdata import db_update_appdata
+
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
 from globaleaks.db.migrations.update_18 import Node_v_17
@@ -88,6 +90,9 @@ def perform_version_update(version):
     os.mkdir(tmpdir)
     shutil.copy2(orig_db_file, tmpdir)
 
+    old_db_file = None
+    new_db_file = None
+
     try:
         while version < DATABASE_VERSION:
             old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
@@ -166,13 +171,18 @@ def perform_version_update(version):
 
             store_verify.close()
 
+        store_appdata = Store(create_database('sqlite:' + new_db_file))
+        db_update_appdata(store_appdata)
+        store_appdata.commit()
+        store_appdata.close()
+
     except Exception as exception:
         # simply propagage the exception
         raise exception
 
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
-        shutil.copy(os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % DATABASE_VERSION)), final_db_file)
+        shutil.copy(new_db_file, final_db_file)
         os.remove(orig_db_file)
 
     finally:

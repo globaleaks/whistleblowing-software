@@ -123,7 +123,7 @@ def db_update_fieldoptions(store, field_id, options, language):
 
     for option in options:
         option['field_id'] = field_id
-        options_ids.append(db_update_fieldoption(store, unicode(option['id']), option, language))
+        options_ids.append(db_update_fieldoption(store, option['id'], option, language))
 
     store.find(models.FieldOption, And(models.FieldOption.field_id == field_id, Not(In(models.FieldOption.id, options_ids)))).remove()
 
