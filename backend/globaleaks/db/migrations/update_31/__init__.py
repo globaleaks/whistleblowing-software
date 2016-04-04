@@ -137,6 +137,76 @@ class ReceiverTip_v_30(Model):
     can_access_whistleblower_identity = Bool()
     new = Int()
 
+class Notification_v_30(Model):
+    __storm_table__ = 'notification'
+    server = Unicode()
+    port = Int()
+
+    username = Unicode()
+    password = Unicode()
+
+    source_name = Unicode()
+    source_email = Unicode()
+
+    security = Unicode()
+
+    # Admin
+    admin_pgp_alert_mail_title = JSON()
+    admin_pgp_alert_mail_template = JSON()
+    admin_anomaly_mail_template = JSON()
+    admin_anomaly_mail_title = JSON()
+    admin_anomaly_disk_low = JSON()
+    admin_anomaly_disk_medium = JSON()
+    admin_anomaly_disk_high = JSON()
+    admin_anomaly_activities = JSON()
+
+    # Receiver
+    tip_mail_template = JSON()
+    tip_mail_title = JSON()
+    file_mail_template = JSON()
+    file_mail_title = JSON()
+    comment_mail_template = JSON()
+    comment_mail_title = JSON()
+    message_mail_template = JSON()
+    message_mail_title = JSON()
+    tip_expiration_mail_template = JSON()
+    tip_expiration_mail_title = JSON()
+    pgp_alert_mail_title = JSON()
+    pgp_alert_mail_template = JSON()
+    receiver_notification_limit_reached_mail_template = JSON()
+    receiver_notification_limit_reached_mail_title = JSON()
+
+    export_template = JSON()
+    export_message_recipient = JSON()
+    export_message_whistleblower = JSON()
+
+    # Whistleblower Identity
+    identity_access_authorized_mail_template = JSON()
+    identity_access_authorized_mail_title = JSON()
+    identity_access_denied_mail_template = JSON()
+    identity_access_denied_mail_title = JSON()
+    identity_access_request_mail_template = JSON()
+    identity_access_request_mail_title = JSON()
+    identity_provided_mail_template = JSON()
+    identity_provided_mail_title = JSON()
+
+    disable_admin_notification_emails = Bool()
+    disable_custodian_notification_emails = Bool()
+    disable_receiver_notification_emails = Bool()
+    send_email_for_every_event = Bool()
+
+    tip_expiration_threshold = Int()
+    notification_threshold_per_hour = Int()
+    notification_suspension_time=Int()
+
+    exception_email_address = Unicode()
+    exception_email_pgp_key_info = Unicode()
+    exception_email_pgp_key_fingerprint = Unicode()
+    exception_email_pgp_key_public = Unicode()
+    exception_email_pgp_key_expiration = DateTime()
+    exception_email_pgp_key_status = Unicode()
+
+
 
 class MigrationScript(MigrationBase):
     def migrate_Node(self):
@@ -260,3 +330,19 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
+
+    def migrate_Notification(self):
+        # TODO an other time fix templates by reloading updated translations TODO
+        old_notification = self.store_old.find(self.model_from['Notification']).one()
+        new_notification = self.model_to['Notification']()
+
+        for _, v in new_notification._storm_columns.iteritems():
+            if self.update_model_with_new_templates(new_notification,
+                                                    v.name,
+                                                    self.appdata['templates'].keys(),
+                                                    self.appdata['templates']):
+                continue
+
+        self.store_new.add(new_notification)
+
+

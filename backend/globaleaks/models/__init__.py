@@ -626,6 +626,8 @@ class Notification(Model):
     admin_anomaly_disk_medium = JSON(validator=longlocal_v)
     admin_anomaly_disk_high = JSON(validator=longlocal_v)
     admin_anomaly_activities = JSON(validator=longlocal_v)
+    admin_test_static_mail_template = JSON(validator=longlocal_v)
+    admin_test_static_mail_title = JSON(validator=longlocal_v)
 
     # Receiver
     tip_mail_template = JSON(validator=longlocal_v)
@@ -692,6 +694,8 @@ class Notification(Model):
         'admin_anomaly_activities',
         'admin_pgp_alert_mail_title',
         'admin_pgp_alert_mail_template',
+        'admin_test_static_mail_template',
+        'admin_test_static_mail_title',
         'pgp_alert_mail_title',
         'pgp_alert_mail_template',
         'tip_mail_template',

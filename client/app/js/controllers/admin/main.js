@@ -206,27 +206,8 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
 
   $scope.update_static_files();
 }]).
-controller('AdminMailCtrl', ['$scope', function($scope){
-  $scope.tabs = [
-    {
-      title:"Main configuration",
-      template:"views/admin/mail/tab1.html"
-    },
-    {
-      title:"Admin notification templates",
-      template:"views/admin/mail/tab2.html"
-    },
-    {
-      title:"Recipient notification templates",
-      template:"views/admin/mail/tab3.html"
-    },
-    {
-      title:"Exception notification",
-      template:"views/admin/mail/tab4.html"
-    }
-  ];
-}]).
-controller('AdminAdvancedCtrl', ['$scope', '$uibModal', function($scope, $uibModal){
+controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
+  function($scope, $uibModal){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -256,4 +237,49 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal', function($scope, $uibMod
       $scope.admin.node.allow_unencrypted = result;
     });
   };
+}]).
+controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource', 
+  function($scope, $http, Admin, AdminNotificationResource){
+  $scope.notif = Admin.notification;
+  
+  $scope.tabs = [
+    {
+      title:"Main configuration",
+      template:"views/admin/mail/tab1.html"
+    },
+    {
+      title:"Admin notification templates",
+      template:"views/admin/mail/tab2.html"
+    },
+    {
+      title:"Recipient notification templates",
+      template:"views/admin/mail/tab3.html"
+    },
+    {
+      title:"Exception notification",
+      template:"views/admin/mail/tab4.html"
+    }
+  ];
+
+  var sendTestMail = function() {
+    $http({
+      method: 'POST',
+      url: '/admin/notification/mail', 
+    }).then(function() {
+      console.log("email success!");
+    }, function() {
+      console.log("email fail!");
+    });
+  };
+
+  $scope.updateThenTestMail = function() {
+    AdminNotificationResource.update($scope.admin.notification)
+    .$promise.then(function() {
+      console.log("update succeeded!");
+      sendTestMail();
+    }, function() {
+      console.log("update failed");
+    });
+  };
+
 }]);
