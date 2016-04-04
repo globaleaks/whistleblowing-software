@@ -109,7 +109,15 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.lastStepIndex = function() {
-    return $scope.selected_context.questionnaire.steps.length - 1;
+    var last_enabled = 0;
+
+    for (var i = 0; i < $scope.selected_context.questionnaire.steps.length; i++) {
+      if ($scope.stepIsTriggered($scope.selected_context.questionnaire.steps[i])) {
+        last_enabled = i;
+      }
+    }
+
+    return last_enabled;
   };
 
   $scope.hasNextStep = function(){

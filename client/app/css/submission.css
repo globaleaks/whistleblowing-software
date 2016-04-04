@@ -1,15 +1,9 @@
-/** Receiver selection page **/
-#ContextSelectorPick, #ContextIntroductionBox {
-  margin-bottom: 10px;
-}
-
-#ContextSelectorPick .form-control {
-  width: auto;
+#SubmissionTabsContentBox {
+  margin-bottom: 20px;
 }
 
 #ContextClarification {
   font-size: 18px;
-  white-space: pre-wrap;
 }
 
 #ContextClarification, .StepsDescription {
@@ -70,14 +64,6 @@
 #StepTitle {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 20px;
-}
-
-#ReceiverSelectionBoxBig .receiverCardTitle {
-  font-size: 20px;
-}
-
-#ReceiverSelectionBoxBig .receiverCard {
   margin-bottom: 20px;
 }
 
