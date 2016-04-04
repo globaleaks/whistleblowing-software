@@ -52,13 +52,20 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
-    $scope.siblings =  $scope.fields || [];
     $scope.fields = $scope.field.children;
+
+    if ($scope.$parent.fields) {
+      $scope.siblings = $scope.$parent.fields;
+    } else {
+      $scope.siblings = $scope.step.children;
+    }
+
+    $scope.siblings = $filter('filter')($scope.siblings, {'id': '!' + $scope.field.id});
 
     $scope.toggleEditing = function () {
       $scope.editing = !$scope.editing;
@@ -208,15 +215,15 @@ controller('AdminFieldEditorCtrl', ['$scope', '$uibModal', 'AdminFieldResource',
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
     $scope.triggerFieldDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/trigger_field.html', option);
+      return $scope.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };
 
     $scope.triggerStepDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/trigger_step.html', option);
+      return $scope.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/assign_score_points.html', option);
+      return $scope.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
     };
   }
 ]).

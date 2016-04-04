@@ -452,18 +452,18 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return sum / n;
     };
 
-    $scope.openConfirmableModalDialog = function(template, args) {
-      args = args === undefined ? {} : args;
+    $scope.openConfirmableModalDialog = function(template, arg, scope) {
+      scope = scope === undefined ? $rootScope : scope;
 
       return $uibModal.open({
         templateUrl: template,
         controller: 'ConfirmableDialogCtrl',
         backdrop: 'static',
         keyboard: false,
-        scope: $scope,
+        scope: scope,
         resolve: {
-          args: function () {
-            return args;
+          arg: function () {
+            return arg;
           }
         }
       });
@@ -585,11 +585,10 @@ controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function (
     }
   });
 }]).
-controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'args', function($scope, $uibModalInstance, args) {
-  $scope.args = args;
+controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', function($scope, $uibModalInstance, arg) {
+  $scope.arg = arg;
 
   $scope.ok = function (result) {
-    result = result === undefined ? $scope.args : result;
     $uibModalInstance.close(result);
   };
 
