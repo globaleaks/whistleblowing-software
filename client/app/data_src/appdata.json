@@ -58,7 +58,7 @@
             "label": { "en": "Short title" },
             "type": "inputbox",
             "preview": true,
-            "hint": {"en": "Describe your submission in few words"},
+            "hint": {"en": "Describe your submission in a few words"},
             "description": {"en": ""},
             "multi_entry": false,
             "multi_entry_hint": {"en": ""},
@@ -95,7 +95,7 @@
             "x": 0
           },
           {
-            "label": { "en": "Description of files" },
+            "label": { "en": "File description" },
             "type": "textarea",
             "preview": false,
             "hint": {"en": "Describe the attachments of the submission"},
