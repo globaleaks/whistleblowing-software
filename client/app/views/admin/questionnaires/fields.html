@@ -202,6 +202,25 @@
                     </select>
                   </div>
                 </div>
+                <div data-ng-if="field.type == 'date'">
+                  <div class="row" data-ng-disabled="!editable">
+                    <label data-translate>Earliest selectable date</label>
+                  </div>
+                  <div class="row" data-ng-disabled="!editable" data-ng-init="open_max_date">
+                    <label data-translate>Latest selectable date</label>
+                    <input class="form-control"
+                           data-ng-model="field.attrs.max_date"
+                           type="text"
+                           uib-datepicker-popup=""
+                           is-open="open_max_date"
+                           readonly="readonly"
+                           show-button-bar="false"
+                           data-ng-click="open_max_date = !open_max_date" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" data-ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                  </div>
+                </div>
                 <div data-ng-if="field.instance == 'template'" data-ng-switch="field.key" class="col-md-offset-1 col-md-11">
                   <div data-ng-switch-when="whistleblower_identity">
                     <div class="row">

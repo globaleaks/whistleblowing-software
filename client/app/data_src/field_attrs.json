@@ -18,5 +18,9 @@
   "tos": {
     "clause": {"type": "unicode", "value": ""},
     "agreement_statement": {"type": "unicode", "value": ""}
+  },
+  "date": {
+    "min_date": {"type": "unicode", "value": ""},
+    "max_date": {"type": "unicode", "value": ""}
   }
 }
