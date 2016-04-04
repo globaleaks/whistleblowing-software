@@ -95,26 +95,6 @@
             "x": 0
           },
           {
-            "label": { "en": "File description" },
-            "type": "textarea",
-            "preview": false,
-            "hint": {"en": "Describe the attachments of the submission"},
-            "description": {"en": ""},
-            "multi_entry": false,
-            "multi_entry_hint": {"en": ""},
-            "stats_enabled": false,
-            "required": false,
-            "attrs": {
-              "min_len": {"type": "int", "value": "-1"},
-              "max_len": {"type": "int", "value": "-1"},
-              "regexp": {"type": "unicode", "value": ""}
-            },
-            "options": [],
-            "children": [],
-            "y": 3,
-            "x": 0
-          },
-          {
             "label": { "en": "Files" },
             "type": "fileupload",
             "preview": false,
@@ -127,7 +107,7 @@
             "attrs": {},
             "options": [],
             "children": [],
-            "y": 4,
+            "y": 3,
             "x": 0
           }
         ]
