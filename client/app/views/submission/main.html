@@ -34,17 +34,16 @@
             </div>
           </div>
         </div>
+        <div class="clearfix"></div>
       </div>
 
-      <div class="clearfix"></div>
-
       <div id="SubmissionButtons">
-        <button id="NextStepButton" class="btn btn-default" data-ng-if="hasPreviousStep()" data-ng-click="decrementStep()">
+        <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
           <i class="glyphicon glyphicon-circle-arrow-left"></i>
           <span data-translate>previous step</span>
         </button>
 
-        <button id="NextStepButton" class="btn btn-default" data-ng-if="hasNextStep()" data-ng-click="incrementStep()">
+        <button id="NextStepButton" class="btn btn-default" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
           <span data-translate>next step</span>
           <i class="glyphicon glyphicon-circle-arrow-right"></i>
         </button>
