@@ -113,7 +113,7 @@ def update_notification(store, request, language):
     if request['password'] == u'':
       log.debug('No password set. Using pw already in the DB.')
       request['password'] = notif.password
-    
+
     notif.update(request)
 
     parse_pgp_options(notif, request)
@@ -157,7 +157,6 @@ class NotificationInstance(BaseHandler):
 
         response = yield update_notification(request, self.request.language)
 
-        print 'Post get_localized_keys', request['admin_test_static_mail_title']
         self.set_status(202)
         self.finish(response)
 
