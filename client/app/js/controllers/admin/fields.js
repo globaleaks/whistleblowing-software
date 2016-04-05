@@ -100,7 +100,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     };
 
     $scope.showConfiguration = function(field) {
-      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'tos'].indexOf(field.type) > -1) {
+      if (['inputbox', 'textarea', 'checkbox', 'multichoice', 'tos', 'date'].indexOf(field.type) > -1) {
         return true;
       }
 

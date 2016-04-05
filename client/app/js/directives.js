@@ -149,4 +149,15 @@ directive('imageUpload', function () {
     templateUrl: 'views/partials/image_upload.html',
     controller: 'ImageUploadCtrl'
   };
+}).
+directive('uibDatepickerPopupa', function () {
+  return {
+    restrict: 'EAC',
+    require: 'ngModel',
+    link: function(scope, elem, attrs, ngModel) {
+      ngModel.$parsers.push(function toModel(date) {
+        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+      });
+    }
+  }
 });
