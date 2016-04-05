@@ -235,16 +235,6 @@ GLClient.controller('SubmissionCtrl',
     return score;
   };
 
-  $scope.minDate = function(min_date) {
-    console.log(min_date);
-    console.log(Date(min_date));
-    return new Date(min_date);
-  }
-
-  $scope.maxDate = function(max_date) {
-    return new Date(max_date);
-  }
-
   $scope.prepare_field_answers_structure = function(field) {
     if (field.answers_structure === undefined) {
       field.answer_structure = {};
@@ -439,6 +429,23 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
   $scope.fields = $scope.field.children;
   $scope.rows = fieldsUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
+
+  // If the field is type 'date' attach an option configurator for the 
+  // uib-datepicker modal.
+  if ($scope.field.type === 'date') {
+    var options = {
+      showWeeks: false, // Just a sample option 
+    };
+    var max = $scope.field.attrs.max_date.value;
+    var min = $scope.field.attrs.min_date.value;
+    if (angular.isDefined(max)) {
+      options.maxDate = new Date(max);
+    }
+    if (angular.isDefined(min)) {
+      options.minDate = new Date(min);
+    }
+    $scope.dateOptions = options;
+  }
 
   $scope.status = {
     opened: false

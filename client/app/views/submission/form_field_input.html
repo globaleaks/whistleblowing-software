@@ -60,18 +60,17 @@
           <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                  name="input-{{entryIndex}}"
                  class="form-control inputelem"
-                 data-ng-model="entry['value']"
+                 type="text"
                  maxlength="{{node.maximum_namesize}}"
+                 readonly="readonly"
+                 data-ng-model="entry['value']"
                  data-ng-required="field.required"
                  data-ng-attr-placeholder="{{field.placeholder}}"
-                 type="text"
-                 uib-datepicker-popup=""
+                 data-ng-click="open()"
+                 uib-datepicker-popup 
+                 datepicker-options="dateOptions"
                  is-open="status.opened"
-                 readonly="readonly"
-                 show-button-bar="false"
-                 min-date="minDate(field.attrs.min_date.value)"
-                 max-date="maxDate(field.attrs.max_date.value)"
-                 data-ng-click="open()" />
+                 show-button-bar="false" />
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" data-ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
           </span>
