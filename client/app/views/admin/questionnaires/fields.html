@@ -154,7 +154,7 @@
             <div class="form-group" data-ng-if="showConfiguration(field)">
               <label data-translate>Configuration</label>
               <div class="col-md-12">
-                <div data-ng-if="field.type == 'inputbox' || field.type == 'textarea'">
+                <div data-ng-if="field.type === 'inputbox' || field.type === 'textarea'">
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Minimum number of input characters</label>
@@ -179,7 +179,7 @@
                     </div>
                   </div>
                 </div>
-                <div data-ng-if="field.type == 'tos'">
+                <div data-ng-if="field.type === 'tos'">
                   <div class="row">
                     <div class="form-group">
                       <label data-translate>Agreement Text</label>
@@ -193,7 +193,7 @@
                     </div>
                   </div>
                 </div>
-                <div data-ng-if="field.type == 'checkbox' || field.type == 'multichoice'">
+                <div data-ng-if="field.type === 'checkbox' || field.type === 'multichoice'">
                   <div class="row" data-ng-disabled="!editable">
                     <label data-translate>Layout orientation</label>
                     <select name="type" class="form-control" data-ng-model="field.attrs.layout_orientation.value" required>
@@ -202,26 +202,43 @@
                     </select>
                   </div>
                 </div>
-                <div data-ng-if="field.type == 'date'">
+                <div data-ng-if="field.type === 'date'" data-ng-init="open_min_date = false;">
                   <div class="row" data-ng-disabled="!editable">
-                    <label data-translate>Earliest selectable date</label>
+                    <div uib-datepicker-popup
+                         ng-model="field.attrs.min_date.value"
+                         is-open="open_min_date"
+                         show-button-bar="false"
+                         data-ng-click="open_min_date = !open_min_date">
+                      <label data-translate>Earliest selectable date</label>:
+                      <span data-ng-show="field.attrs.min_date.value !== ''">
+                        <span>{{field.attrs.min_date.value | date:'dd-MM-yyyy'}}</span>
+                        <button class="actionButton btn btn-xs btn-danger"
+                                data-ng-click="field.attrs.min_date.value = ''; $event.stopPropagation();">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </span>
+                      <button data-ng-show="field.attrs.min_date.value === ''" type="button" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </div>
                   </div>
-                  <div class="row" data-ng-disabled="!editable" data-ng-init="open_max_date">
-                    <label data-translate>Latest selectable date</label>
-                    <input class="form-control"
-                           data-ng-model="field.attrs.max_date"
-                           type="text"
-                           uib-datepicker-popup=""
-                           is-open="open_max_date"
-                           readonly="readonly"
-                           show-button-bar="false"
-                           data-ng-click="open_max_date = !open_max_date" />
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" data-ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-                    </span>
+                  <div class="row" data-ng-disabled="!editable" data-ng-init="open_max_date = false">
+                    <div uib-datepicker-popup
+                         ng-model="field.attrs.max_date.value"
+                         is-open="open_max_date"
+                         show-button-bar="false"
+                         data-ng-click="open_max_date = !open_max_date">
+                      <label data-translate>Latest selectable date</label>:
+                      <span data-ng-show="field.attrs.max_date.value !== ''">
+                        <span>{{field.attrs.max_date.value | date:'dd-MM-yyyy'}}</span>
+                        <button class="actionButton btn btn-xs btn-danger"
+                                data-ng-click="field.attrs.max_date.value = ''; $event.stopPropagation();">
+                          <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                      </span>
+                      <button data-ng-show="field.attrs.max_date.value === ''" type="button" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </div>
                   </div>
                 </div>
-                <div data-ng-if="field.instance == 'template'" data-ng-switch="field.key" class="col-md-offset-1 col-md-11">
+                <div data-ng-if="field.instance === 'template'" data-ng-switch="field.key" class="col-md-offset-1 col-md-11">
                   <div data-ng-switch-when="whistleblower_identity">
                     <div class="row">
                       <div class="form-group">

@@ -235,6 +235,16 @@ GLClient.controller('SubmissionCtrl',
     return score;
   };
 
+  $scope.minDate = function(min_date) {
+    console.log(min_date);
+    console.log(Date(min_date));
+    return new Date(min_date);
+  }
+
+  $scope.maxDate = function(max_date) {
+    return new Date(max_date);
+  }
+
   $scope.prepare_field_answers_structure = function(field) {
     if (field.answers_structure === undefined) {
       field.answer_structure = {};
