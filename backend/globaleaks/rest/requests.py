@@ -280,7 +280,6 @@ AdminNotificationDesc = {
     'admin_anomaly_disk_low': unicode,
     'admin_test_static_mail_template': unicode,
     'admin_test_static_mail_title': unicode,
-    'admin_anomaly_disk_low': unicode,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,

@@ -137,20 +137,16 @@ class ReceiverTip_v_30(Model):
     can_access_whistleblower_identity = Bool()
     new = Int()
 
+
 class Notification_v_30(Model):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
-
     username = Unicode()
     password = Unicode()
-
     source_name = Unicode()
     source_email = Unicode()
-
     security = Unicode()
-
-    # Admin
     admin_pgp_alert_mail_title = JSON()
     admin_pgp_alert_mail_template = JSON()
     admin_anomaly_mail_template = JSON()
@@ -159,8 +155,6 @@ class Notification_v_30(Model):
     admin_anomaly_disk_medium = JSON()
     admin_anomaly_disk_high = JSON()
     admin_anomaly_activities = JSON()
-
-    # Receiver
     tip_mail_template = JSON()
     tip_mail_title = JSON()
     file_mail_template = JSON()
@@ -175,12 +169,9 @@ class Notification_v_30(Model):
     pgp_alert_mail_template = JSON()
     receiver_notification_limit_reached_mail_template = JSON()
     receiver_notification_limit_reached_mail_title = JSON()
-
     export_template = JSON()
     export_message_recipient = JSON()
     export_message_whistleblower = JSON()
-
-    # Whistleblower Identity
     identity_access_authorized_mail_template = JSON()
     identity_access_authorized_mail_title = JSON()
     identity_access_denied_mail_template = JSON()
@@ -189,23 +180,19 @@ class Notification_v_30(Model):
     identity_access_request_mail_title = JSON()
     identity_provided_mail_template = JSON()
     identity_provided_mail_title = JSON()
-
     disable_admin_notification_emails = Bool()
     disable_custodian_notification_emails = Bool()
     disable_receiver_notification_emails = Bool()
     send_email_for_every_event = Bool()
-
     tip_expiration_threshold = Int()
     notification_threshold_per_hour = Int()
     notification_suspension_time=Int()
-
     exception_email_address = Unicode()
     exception_email_pgp_key_info = Unicode()
     exception_email_pgp_key_fingerprint = Unicode()
     exception_email_pgp_key_public = Unicode()
     exception_email_pgp_key_expiration = DateTime()
     exception_email_pgp_key_status = Unicode()
-
 
 
 class MigrationScript(MigrationBase):
@@ -344,5 +331,3 @@ class MigrationScript(MigrationBase):
                 continue
 
         self.store_new.add(new_notification)
-
-

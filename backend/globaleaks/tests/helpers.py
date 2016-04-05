@@ -522,22 +522,13 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummyQuestionnaire = yield get_questionnaire(self.dummyContext['questionnaire_id'], 'en')
 
         self.dummyQuestionnaire['steps'].append(self.get_dummy_step())
-        self.dummyQuestionnaire['steps'][2]['questionnaire_id'] = self.dummyContext['questionnaire_id']
-        self.dummyQuestionnaire['steps'][2]['label'] = 'Whistleblower identity'
-        self.dummyQuestionnaire['steps'][2]['presentation_order'] = 1
-        self.dummyQuestionnaire['steps'][2] = yield create_step(self.dummyQuestionnaire['steps'][2], 'en')
+        self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
+        self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
+        self.dummyQuestionnaire['steps'][1]['presentation_order'] = 1
+        self.dummyQuestionnaire['steps'][1] = yield create_step(self.dummyQuestionnaire['steps'][1], 'en')
 
         if self.complex_field_population:
-            yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][2]['id'])
-
-            self.dummyQuestionnaire['steps'][1]['presentation_order'] = 2
-            yield update_step(self.dummyQuestionnaire['steps'][1]['id'], self.dummyQuestionnaire['steps'][1], 'en')
-
-            self.dummyQuestionnaire['steps'] = [
-                self.dummyQuestionnaire['steps'][0],
-                self.dummyQuestionnaire['steps'][2],
-                self.dummyQuestionnaire['steps'][1]
-            ]
+            yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
 
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
