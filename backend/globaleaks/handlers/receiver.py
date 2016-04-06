@@ -76,6 +76,7 @@ def get_receivertip_list(store, receiver_id, language):
             'update_date': datetime_to_ISO8601(rtip.internaltip.update_date),
             'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
             'progressive': rtip.internaltip.progressive,
+            'new': rtip.access_counter == 0 or rtip.last_access < rtip.internaltip.update_date,
             'context_name': mo.dump_localized_key('name', language),
             'access_counter': rtip.access_counter,
             'file_counter': rtip.internaltip.internalfiles.count(),
