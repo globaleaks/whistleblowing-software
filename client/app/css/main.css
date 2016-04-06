@@ -382,3 +382,7 @@ th {
   white-space: nowrap;
   min-width: 5em;
 }
+
+.invisible {
+  opacity: 0;
+}
