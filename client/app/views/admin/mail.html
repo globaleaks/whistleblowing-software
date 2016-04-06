@@ -6,9 +6,9 @@
 
       <form name="notificationForm" data-ng-controller="AdminMailCtrl" novalidate>
 
-        <uib-tabset class="tab-content">
+        <uib-tabset>
           <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
-            <div data-ng-include="tab.template"></div>
+            <div class="tab-content" data-ng-include="tab.template"></div>
           </uib-tab>
         </uib-tabset>
 

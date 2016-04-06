@@ -1,9 +1,9 @@
 #SubmissionTabsContentBox {
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 #ContextClarification {
-  font-size: 18px;
+  font-size: 1.125em;
 }
 
 #ContextClarification, .StepsDescription {
@@ -16,10 +16,10 @@
 
 .contextCard, .contextListElem, .receiverCard {
   margin: 5px;
-  padding: 20px;
+  padding: 1.25em;
   background-color: white;
   border: 1px solid #DDD;
-  border-radius: 10px;
+  border-radius: 0.8em;
   word-wrap: break-word;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .contextCardTitle, .receiverCardTitle {
-  margin-bottom: 10px;
+  margin-bottom: 0.8em;
 }
 
 .receiverCard.selected, .contextCard:hover {
@@ -48,7 +48,7 @@
 }
 
 .fieldAnswerEntryLast {
-  margin-bottom: 10px;
+  margin-bottom: 0.8em;
 }
 
 .fieldAnswerEntryLabel:after {
@@ -58,13 +58,13 @@
 }
 
 .submissionFieldInput {
-  padding-left: 10px;
+  padding-left: 0.8em;
 }
 
 #StepTitle {
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 .fileName {
@@ -73,8 +73,8 @@
 }
 
 .imgPreview {
-  height: 120px;
-  width: 120px;
+  height: 11.25em;
+  width: 11.25em;
 }
 
 .imgPreview img {
@@ -106,14 +106,14 @@
 #KeyCodeBox {
   background-color: #F5F5F5;
   border: 1px solid #222;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-top: 0.8em;
+  margin-bottom: 1.25em;
+  padding: 0.8em;
 }
 
 #KeyCodeHintBox {
   position: relative;
-  padding: 10px;
+  padding: 0.8em;
   background: #FFF;
   border-radius: 5px;
   margin-left: 30px;
@@ -135,39 +135,39 @@
 }
 
 #Receipt {
-  padding-bottom: 20px;
+  padding-bottom: 1.25em;
 }
 
 #ReceiptButton {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 #KeyCode {
-  margin: 20px auto;
-  padding: 20px;
+  margin: 1.25em auto;
+  padding: 1.25em;
   width: 80%;
   text-align: center;
   font-family: monospace;
-  font-size: 20px;
+  font-size: 1.25em;
   font-weight: bold;
   background-color: #FFF;
-  border-radius: 10px;
+  border-radius: 0.8em;
   direction: ltr;
 }
 
 #SubmissionButtons button {
   margin-left: 0px;
-  margin-right: 10px;
+  margin-right: 0.8em;
 }
 
 #FileUploadsHeader {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 1.25em;
+  margin-bottom: 1.25em;
 }
 
 .fileuploadprogress {
   position: relative;
-  width: 120px;
+  width: 11.25em;
   bottom: 0px;
 }
 
@@ -178,7 +178,7 @@
 .TOS {
   display: block;
   padding: 9.5px;
-  margin: 0 0 10px;
+  margin: 0 0 0.8em;
   font-size: 13px;
   line-height: 1.42857143;
   color: #333;
@@ -198,5 +198,5 @@
 }
 
 .cc-text-2 {
-  font-size: 20px;
+  font-size: 1.25em;
 }

@@ -1,5 +1,3 @@
-/** Configuration Pages **/
-
 .adminConfigSection {
   margin-bottom: 25px;
 }
@@ -18,59 +16,9 @@
   margin-top: 30px;
 }
 
-.templateFieldAdder {
-  background:
-    linear-gradient(#fff 30%, rgba(255,0,0,0)),
-    linear-gradient(rgba(255,0,0,0), #fff 70%) 0 100%,
-    radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
-    radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size: 100% 60px, 100% 60px, 100% 10px, 100% 10px;
-  background-attachment: local, local, scroll, scroll;
-
-  max-height: 220px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  padding-right: 10px;
-  padding-left: 10px;
-}
-
-.templateFieldAdder .placeholder,
-.configuredFields .placeholder {
-  height: 100px;
-  width: 50%;
-  float: left;
-  border: 3px dotted #f1f1f1;
-  border-radius: 4px;
-  visibility: visible;
-}
-
-.templateFieldAdderContainer ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
-.templateFieldAdderContainer ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-}
-
-.templateFieldCard {
-  background-color: #fff;
-  border-radius: 3px;
-
-  -moz-border-radius: 3px;
-  box-shadow: 2px 1px 5px #888888;
-  padding: 10px;
-  margin-bottom: 10px;
-
-  font-weight: bold;
-}
-
 .addField, .addFieldFromTemplate {
   clear: both;
-  margin-bottom: 10px;
+  margin-bottom: 0.8em;
 }
 
 .addFieldButton {
@@ -78,7 +26,7 @@
 }
 
 .fileDetails {
-  margin: 0 0 10px 20px;
+  margin: 0 0 0.8em 20px;
 }
 
 .field {
@@ -98,8 +46,6 @@
 .stepEditor, .fieldEditor {
   padding-top: 20px;
 }
-
-/** END **/
 
 .editorHeader {
   background-color: rgb(252, 252, 252);
@@ -121,16 +67,7 @@
 }
 
 .fieldOption {
-  margin-bottom: 10px;
-}
-
-.uploadProgress .progress {
-  position: absolute;
-  top: 50px;
-  left: 5px;
-  z-index: 10;
-  display: block;
-  width: 100%;
+  margin-bottom: 0.8em;
 }
 
 .selectionList {
@@ -160,13 +97,6 @@
   stroke: #FFFFFF;
   stroke-width: 2px;
 }
-
-text.mono {
-  font-size: 9pt;
-  font-family: Consolas, courier, monospace;
-  fill: #aaa;
-}
-
 
 text.axis-workweek {
   fill: #000;

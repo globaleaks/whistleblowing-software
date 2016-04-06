@@ -1,21 +1,19 @@
 <div id="HomePageBox">
-  <div id="HomePageBoxHeader">
-    <div id="HomePageBoxNodePresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
-    <div id="HomePageBoxNodeDescription" data-ng-if="node.description">{{::node.description}}</div>
+  <div id="NodeIntro">
+    <div id="NodeIntroPresentation" data-ng-if="node.presentation">{{::node.presentation}}</div>
+    <div id="NodeIntroDescription" data-ng-if="node.description">{{::node.description}}</div>
   </div>
 
   <div id="WhistleblowerBox" class="row">
     <div data-ng-show="node.configured">
-      <div id="WhistleblowerSubmitBoxButtonDisabled" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.tor2web_whistleblower && !anonymous)">
+      <div id="WhistleblowerSubmitBoxButton" class="row" data-ng-show="node.disable_submissions || !node.accept_submissions || (!node.tor2web_whistleblower && !anonymous)">
         <button class="btn btn-danger" disable="disabled">
           <i class="glyphicon glyphicon-ban-circle"></i>
           <span data-translate>Whistleblowing disabled</span>
         </button>
       </div>
       <div class="row" data-ng-show="!node.tor2web_whistleblower && !anonymous">
-        <p class="text-red">
-          <span data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</span>
-        </p>
+        <p class="text-red" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
       </div>
       <div class="row" data-ng-show="!node.accept_submissions">
         <p class="text-red">
@@ -24,9 +22,7 @@
       </div>
       <div class="row" data-ng-show="!node.disable_submissions && node.accept_submissions && (node.tor2web_whistleblower || anonymous)">
         <div id="WhistleblowerSubmitBox">
-          <div id="WhistleblowerSubmitBoxHeader">
-            <span>{{::node.whistleblowing_question}}</span>
-          </div>
+          <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
           <div id="WhistleblowerSubmitBoxButton">
             <a data-ng-click="goToSubmission()" class="btn btn-primary">
               <i class="glyphicon glyphicon-bullhorn"></i>
@@ -34,9 +30,7 @@
             </a>
           </div>
         </div>
-        <div class="center-block">
-          <span data-ng-include="'views/partials/wb_login_box.html'"></span>
-        </div>
+        <div id="WhistleblowerReceiptBox" class="center-block" data-ng-include="'views/partials/wb_login_box.html'"></div>
       </div>
     </div>
     <div data-ng-hide="node.configured">
