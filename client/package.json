@@ -42,7 +42,6 @@
     "q": "1.4.1",
     "rtlcss": "2.0.3",
     "selenium-webdriver": "2.53.1",
-    "should": "8.3.0",
     "superagent": "1.8.3",
     "supertest": "1.2.0"
   }
