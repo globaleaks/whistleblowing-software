@@ -265,21 +265,11 @@ controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResou
     $http({
       method: 'POST',
       url: '/admin/notification/mail', 
-    }).then(function() {
-      console.log("email success!");
-    }, function() {
-      console.log("email fail!");
     });
   };
 
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.admin.notification)
-    .$promise.then(function() {
-      console.log("update succeeded!");
-      sendTestMail();
-    }, function() {
-      console.log("update failed");
-    });
+    .$promise.then(function() { sendTestMail(); }, function() { });
   };
-
 }]);
