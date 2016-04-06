@@ -175,7 +175,7 @@
         </tr>
       </thead>
       <tbody id="tipListTableBody">
-        <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': !tip.access_counter, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
+        <tr id="tip-{{$index}}" data-ng-repeat="tip in tips | orderBy:sortKey:sortReverse | filter:search" data-ng-class="{'newTip': tip.new, 'selectedTip': isSelected(tip.id)}" class="tip-action-open" data-ng-click="go('/status/' + tip.id)">
           <td>
             <span data-ng-if="preferences.can_postpone_expiration || preferences.can_delete_submission" >
               <span class="btn btn-xs btn-default" data-ng-if="isSelected(tip.id)" data-ng-click="tip_switch(tip.id); $event.stopPropagation();">
