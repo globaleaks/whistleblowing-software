@@ -114,15 +114,14 @@ directive('zxPasswordMeter', function() {
         if (newValue.password === 'undefined') { // <- intentionally as string
           // Short term fix for:
           // https://github.com/ghostbar/angular-zxcvbn/issues/13
-          newValue.score = 0;
           newValue.password = '';
         }
 
-        // https://github.com/dropbox/zxcvbn/blob/master/README.md
-        if (newValue.score === 0) {
+        if (newValue.password === '') {
           scope.type = null;
           scope.text = '';
         } else if (newValue.score < 3) {
+          newValue.score = 1;
           scope.type = 'danger';
           scope.text = 'Weak';
         } else if (newValue.score < 4) {
