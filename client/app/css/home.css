@@ -1,44 +1,41 @@
-/* Home Splash screen jumbotron */
-/* Language selector */
-
 #HomePageBox {
   text-align: center;
   color: #5a5a5a;
-}
-
-#spinnerBox {
-  position: relative;
-  background: #fff;
-  color: #fff;
-  width: 100%;
+  font-size: 1em;
+  margin: 0 auto;
   height: 200px;
-  direction: ltr;
 }
 
-#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #GlobaLeaksInfoBox {
-  margin-top: 20px;
-  margin-bottom: 20px;
+#NodeIntro, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox, #GlobaLeaksInfoBox {
+  font-size: 1.2em;
 }
 
-#HomePageBoxNodePresentation {
-  font-size: 40px;
+#NodeIntro {
+  margin-bottom: 3em;
+}
+
+#WhistleblowerSubmitBox {
+  margin-bottom: 2em;
+}
+
+#WhistleblowerReceiptBox {
+  margin-bottom: 5em;
+}
+
+#NodeIntroPresentation {
+  font-size: 1.6em;
   white-space: pre-wrap;
 }
 
-#HomePageBoxNodeDescription {
-  font-size: 32px;
+#NodeIntroDescription {
+  font-size: 1.4em;
   white-space: pre-wrap;
 }
 
 #WhistleblowerSubmitBoxHeader {
-  font-size: 40px;
+  font-size: 1.4em;
 }
 
-#WhistleblowerSubmitBoxButton  .btn, #WhistleblowerSubmitBoxButtonDisabled .btn {
-  font-size: 32px;
-  margin: 20px;
-}
-
-#GlobaleaksInfoBox {
-  text-align: center;
+#WhistleblowerSubmitBoxButton .btn {
+  font-size: 1.2em;
 }

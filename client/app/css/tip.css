@@ -1,10 +1,10 @@
 .TipPageSection {
   border: 1px solid #CCC;
-  margin-bottom: 20px;
+  margin-bottom: 1.25em;
 }
 
 .TipPageSectionContent {
-  padding: 10px;
+  padding: 0.8em;
 }
 
 .TipPageSectionContent .label {
@@ -30,7 +30,7 @@
 }
 
 .fieldAnswer {
-  margin-bottom: 10px;
+  margin-bottom: 0.8em;
 }
 
 .TipLabel {
@@ -46,7 +46,7 @@
 }
 
 #SubmissionComments, #SubmissionMessages {
-  margin-top: 20px;
+  margin-top: 1.25em;
 }
 
 #TipExportForm {
@@ -54,7 +54,7 @@
 }
 
 #StatusPageMessage {
-  margin: 20px;
+  margin: 1.25em;
   color: #8a6d3b;
   background-color: #fcf8e3;
   border: 1px solid #faebcc;
