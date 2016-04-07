@@ -7,7 +7,7 @@
   </div>
   <div id="ReceiverSelectionBox">
     <div data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" data-ng-class="{'col-md-6': !submission.context.show_small_receiver_cards, 'col-md-3': submission.context.show_small_receiver_cards}" data-ng-click="switch_selection(receiver)">
-      <div class="receiverCard" data-ng-class="{'selected': submission.receivers_selected[receiver.id], 'disabled': receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}">
+      <div class="receiverCard" data-ng-class="{'selected': submission.receivers_selected[receiver.id] && receiver.configuration !== 'forcefully_selected', 'forcefullySelected': receiver.configuration === 'forcefully_selected', 'disabled': receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}">
         <div class="receiverCardTitle row">
           <div class="col-md-10">
             <label>
@@ -29,7 +29,7 @@
                 <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this receiver' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
               <div data-ng-if="receiver.configuration === 'forcefully_selected'">
-                  <i class="glyphicon glyphicon-check" uib-popover="{{'This recipent cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipent cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
             </div>
             <div data-ng-if="!submission.receivers_selected[receiver.id]">
