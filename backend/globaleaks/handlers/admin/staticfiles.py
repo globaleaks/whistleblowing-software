@@ -88,6 +88,22 @@ def del_node_logo(store):
 
 
 @transact
+def add_node_css(store, data):
+    node = store.find(models.Node).one()
+    if node.css is None:
+        node.css = models.File()
+
+    node.css.data = data
+
+
+@transact
+def del_node_css(store):
+    node = store.find(models.Node).one()
+    if node.css is not None:
+        store.remove(node.css)
+
+
+@transact
 def add_model_img(store, model, obj_id, data):
     obj = store.find(model, model.id == obj_id).one()
     if obj:
@@ -190,6 +206,37 @@ class NodeLogoInstance(StaticFileInstance):
     @inlineCallbacks
     def delete(self):
         yield del_node_logo()
+
+        GLApiCache.invalidate()
+
+
+class NodeCSSInstance(NodeLogoInstance):
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
+    def post(self):
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            self.set_status(201)
+            return
+
+        try:
+            data = base64.b64encode(uploaded_file['body'].read())
+            yield add_node_css(data)
+        except:
+            pass
+        finally:
+            uploaded_file['body'].close()
+
+        GLApiCache.invalidate()
+
+        self.set_status(201)
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
+    def delete(self):
+        yield del_node_css()
 
         GLApiCache.invalidate()
 

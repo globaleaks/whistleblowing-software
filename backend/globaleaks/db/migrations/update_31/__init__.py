@@ -230,6 +230,24 @@ class MigrationScript(MigrationBase):
 
                 continue
 
+            if v.name == 'css_id':
+                try:
+                    css_path = os.path.join(GLSettings.static_path, 'custom_stylesheet.css')
+                    if not os.path.exists(css_path):
+                        continue
+
+                    new_node.css =  self.model_to['File']()
+                    with open(css_path, 'r') as css_file:
+                        css = css_file.read()
+                        new_node.css.data = base64.b64encode(css)
+
+                    os.remove(css_path)
+
+                except:
+                    pass
+
+                continue
+
             if v.name == 'basic_auth':
                 new_node.basic_auth = False
                 continue

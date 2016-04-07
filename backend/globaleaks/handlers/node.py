@@ -95,7 +95,8 @@ def serialize_node(store, language):
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,
         'enable_experimental_features': node.enable_experimental_features,
-        'logo': node.logo.data if node.logo is not None else ''
+        'logo': node.logo.data if node.logo is not None else '',
+        'css': node.css.data if node.css is not None else ''
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)

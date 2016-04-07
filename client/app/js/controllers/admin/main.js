@@ -198,7 +198,15 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
     $scope.update_static_files();
   };
 
-  $scope.perform_delete = function (url) {
+  $scope.delete_resource = function (url, refresh) {
+    return $http['delete'](url).success(function () {
+      if (refresh) {
+        $scope.$emit("REFRESH");
+      }
+    });
+  };
+
+  $scope.delete_file = function (url) {
     $http['delete'](url).success(function () {
       $scope.update_static_files();
     });

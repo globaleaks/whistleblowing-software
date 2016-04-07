@@ -1,6 +1,13 @@
 /* eslint no-console: 0 */
 
 module.exports = function(grunt) {
+  var fs = require('fs');
+
+  var fileToDataURI = function(mimetype, filepath) {
+      var filecontent = fs.readFileSync(filepath);
+      return 'data:' + mimetype + ';charset=utf-8;base64,' + new Buffer(filecontent).toString('base64');
+  };
+
   grunt.initConfig({
     bower: {
       install: {
@@ -77,16 +84,6 @@ module.exports = function(grunt) {
       files: ['**/*.html']
     },
 
-    inline: {
-        build: {
-            options:{
-                tag: 'inline'
-            },
-            src: 'tmp/index.html',
-            dest: 'tmp/index.html'
-        }
-    },
-
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
@@ -128,16 +125,13 @@ module.exports = function(grunt) {
     },
 
     'string-replace': {
-      inline: {
+      pass1: {
         files: {
-          'tmp/index.html': 'tmp/index.html'
+          'tmp/index.html': 'tmp/index.html',
+          'tmp/css/styles.css': 'tmp/css/styles.css'
         },
         options: {
           replacements: [
-            {
-              pattern: '<link rel="stylesheet" href="css/styles.css">',
-              replacement: '<link rel="stylesheet" data-ng-href="{{app_stylesheet}}">'
-            },
             {
               pattern: '<script src="js/scripts.js"></script>',
               replacement: ''
@@ -145,6 +139,49 @@ module.exports = function(grunt) {
             {
               pattern: '<!-- start_globaleaks(); -->',
               replacement: 'start_globaleaks();'
+            },
+            {
+              pattern: 'components/bowser/bowser.min.js',
+              replacement: fileToDataURI('text/javascript', 'app/components/bowser/bowser.min.js')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.eot',
+              replacement: fileToDataURI('application/vnd.ms-fontobject', 'app/fonts/glyphicons-halflings-regular.eot')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
+              replacement: fileToDataURI('application/vnd.ms-fontobject', 'app/fonts/glyphicons-halflings-regular.eot')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.woff2',
+              replacement: fileToDataURI('aapplication/woff2', 'app/fonts/glyphicons-halflings-regular.woff2')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.woff',
+              replacement: fileToDataURI('application/woff', 'app/fonts/glyphicons-halflings-regular.woff')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.ttf',
+              replacement: fileToDataURI('application/x-font-ttf', 'app/fonts/glyphicons-halflings-regular.ttf')
+            },
+            {
+              pattern: '../fonts/glyphicons-halflings-regular.svg',
+              replacement: fileToDataURI('application/svg+xml', 'app/fonts/glyphicons-halflings-regular.svg')
+            }
+          ]
+        }
+      },
+      pass2: {
+        files: {
+          'tmp/index.html': 'tmp/index.html'
+        },
+        options: {
+          replacements: [
+            {
+              pattern: 'css/styles.css',
+              replacement: function (match) {
+                return fileToDataURI('text/css', 'tmp/css/styles.css');
+              }
             }
           ]
         }
@@ -207,7 +244,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-inline-alt');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-protractor-coverage');
@@ -278,12 +314,11 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'index.js', 'logo.png'];
+    var files = ['index.html', 'logo.png'];
     for (x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
 
-    grunt.file.copy('tmp/css/styles.css', 'build/css/styles.css');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
@@ -753,7 +788,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'inline', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();

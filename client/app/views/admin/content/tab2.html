@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div class="form-group">
       <label data-translate>Current project logo</label>
-      <div image-upload image-upload-model="node" image-upload-model-attr="logo" image-upload-url="{{'admin/node/img'}}"></div>
+      <div image-upload image-upload-model="node" image-upload-model-attr="logo" image-upload-url="{{'admin/node/logo'}}"></div>
     </div>
     <div class="form-group">
       <label>
@@ -10,7 +10,7 @@
         (<span data-translate>CSS</span>)
       </label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: getUploadUrl('admin/staticfiles/custom_stylesheet.css'), headers: get_auth_headers()}"
+        <span flow-init="{target: getUploadUrl('admin/node/css'), headers: get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
@@ -20,12 +20,12 @@
             </span>
           </div>
         </span>
-        <span data-ng-if="fileExists('custom_stylesheet.css')">
-          <a class="btn btn-primary" href="s/custom_stylesheet.css" download="custom_stylesheet.css">
+        <span data-ng-if="node.css">
+          <a class="btn btn-primary" href="data:text/css;base64,{{node.css}}" download="custom_stylesheet.css">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_stylesheet.css')">
+          <a class="btn btn-danger" data-ng-click="delete_resource('admin/node/css', true)">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
           </a>
@@ -51,7 +51,7 @@
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/custom_homepage.html')">
+          <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/custom_homepage.html')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
           </a>
@@ -85,7 +85,7 @@
                     <span class="glyphicon glyphicon-download"></span>
                     <span data-translate>Download</span>
                   </a>
-                  <a class="btn btn-danger" data-ng-click="perform_delete('admin/staticfiles/' + file.filename)">
+                  <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/' + file.filename)">
                     <span class="glyphicon glyphicon-trash"></span>
                     <span data-translate>Delete</span>
                   </a>
