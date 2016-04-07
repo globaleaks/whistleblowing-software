@@ -1,3 +1,44 @@
+Changes in version 2.60.145 - 2016-04-07
+    o Implement haveged as additional source of entropy
+    o Implement password meter by means of zxcvbn
+    o Implement export tip on the tip list page
+    o Implement HTTP Basic Authentication in order to limit
+      platform access during development
+    o Implement online test for SMTP configuration
+    o Implement List visualization for contexts
+    o Implement Card visualization for contexts
+    o Serve Context and Receivers images through the REST API
+      reducing time and overhead of loading external images
+    o Implement experimental mlock capability in order to deny the
+      process to perform RAM swapping on disk
+    o Implement possibility for limiting date question with range
+      through min-date/max-date configurations
+    o Implement possibility for the recipient to selectively opt-in/opt-out
+      in submissions notifications
+    o Implement eslint in the continuous-integration lifecycle
+    o Refine RTL by means of bootstrap-inline-rtl
+
+    The following is the comprehensive list of closed tickets:
+    o https://github.com/globaleaks/GlobaLeaks/issues/1076
+    o https://github.com/globaleaks/GlobaLeaks/issues/1303
+    o https://github.com/globaleaks/GlobaLeaks/issues/1577
+    o https://github.com/globaleaks/GlobaLeaks/issues/1580
+    o https://github.com/globaleaks/GlobaLeaks/issues/1584
+    o https://github.com/globaleaks/GlobaLeaks/issues/1589
+    o https://github.com/globaleaks/GlobaLeaks/issues/1593
+    o https://github.com/globaleaks/GlobaLeaks/issues/1596
+    o https://github.com/globaleaks/GlobaLeaks/issues/1601
+    o https://github.com/globaleaks/GlobaLeaks/issues/1606
+    o https://github.com/globaleaks/GlobaLeaks/issues/1612
+    o https://github.com/globaleaks/GlobaLeaks/issues/1615
+    o https://github.com/globaleaks/GlobaLeaks/issues/1619
+    o https://github.com/globaleaks/GlobaLeaks/issues/1021
+    o https://github.com/globaleaks/GlobaLeaks/issues/1588
+    o https://github.com/globaleaks/GlobaLeaks/issues/1610
+    o https://github.com/globaleaks/GlobaLeaks/issues/1613
+    o https://github.com/globaleaks/GlobaLeaks/issues/1621
+    o https://github.com/globaleaks/GlobaLeaks/issues/1623
+
 Changes in version 2.60.144 - 2016-03-14
     o Fix regression on private messages
     o Fix visualization of the loader
