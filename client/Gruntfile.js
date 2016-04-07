@@ -3,8 +3,21 @@
 module.exports = function(grunt) {
   var fs = require('fs');
 
-  var fileToDataURI = function(mimetype, filepath) {
+  var fileToDataURI = function(filepath) {
+      var mimeMap = {
+        'css': 'text/css',
+        'eot': 'application/vnd.ms-fontobject',
+        'js': 'text/javascript',
+        'svg': 'application/svg+xml',
+        'ttf': 'application/x-font-ttf',
+        'woff': 'application/woff',
+        'woff2': 'application/woff2'
+      }
+
+      var ext = filepath.split('.').pop();
+      var mimetype = (ext in mimeMap) ? mimeMap[ext] : 'application/octet-stream';
       var filecontent = fs.readFileSync(filepath);
+
       return 'data:' + mimetype + ';charset=utf-8;base64,' + new Buffer(filecontent).toString('base64');
   };
 
@@ -142,31 +155,32 @@ module.exports = function(grunt) {
             },
             {
               pattern: 'components/bowser/bowser.min.js',
-              replacement: fileToDataURI('text/javascript', 'app/components/bowser/bowser.min.js')
+              replacement: fileToDataURI('app/components/bowser/bowser.min.js')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
-              replacement: fileToDataURI('application/vnd.ms-fontobject', 'app/fonts/glyphicons-halflings-regular.eot')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
-              replacement: fileToDataURI('application/vnd.ms-fontobject', 'app/fonts/glyphicons-halflings-regular.eot')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff2',
-              replacement: fileToDataURI('aapplication/woff2', 'app/fonts/glyphicons-halflings-regular.woff2')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2')
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff',
-              replacement: fileToDataURI('application/woff', 'app/fonts/glyphicons-halflings-regular.woff')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff')
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.ttf',
-              replacement: fileToDataURI('application/x-font-ttf', 'app/fonts/glyphicons-halflings-regular.ttf')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf')
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.svg',
-              replacement: fileToDataURI('application/svg+xml', 'app/fonts/glyphicons-halflings-regular.svg')
+              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg')
             }
           ]
         }
@@ -179,9 +193,7 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: 'css/styles.css',
-              replacement: function (match) {
-                return fileToDataURI('text/css', 'tmp/css/styles.css');
-              }
+              replacement: fileToDataURI('tmp/css/styles.css')
             }
           ]
         }
@@ -228,7 +240,6 @@ module.exports = function(grunt) {
         print: 'detail'
       }
     }
-
   });
 
   // Prefer explicit to loadNpmTasks to:
@@ -244,8 +255,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-line-remover');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
@@ -279,7 +288,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('copyBowerSources', function() {
     var files = [
-      ['app/components//bootstrap-inline-rtl/dist/css/bootstrap.min.css', 'app/css/bootstrap.min.css'],
       ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
       ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
       ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
@@ -290,10 +298,6 @@ module.exports = function(grunt) {
     for (var x in files) {
         grunt.file.copy(files[x][0], files[x][1]);
     }
-
-    grunt.file.recurse('app/components/bootstrap-inline-rtl/fonts', function(absdir, rootdir, subdir, filename) {
-      grunt.file.copy(absdir, path.join('app/fonts', subdir || '', filename || ''));
-    });
   });
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
