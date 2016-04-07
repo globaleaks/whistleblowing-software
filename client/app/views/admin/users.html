@@ -1,73 +1,55 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <div class="adminConfigSection" data-ng-controller="AdminUserAddCtrl">
-      <div class="row">
-        <form name="newUser" novalidate>
-          <div class="addUser col-md-6">
-            <div class="editorTitle">
-              <span data-translate>Add new user</span>
-            </div>
-            <div class="form-group" data-ng-if="!node.simplified_login">
-              <label data-translate>Username</label>
-              <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
-              <div class="text-red" data-ng-show="newUser.username.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Name</label>
-              <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
-              <div class="text-red" data-ng-show="newUser.name.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Role</label>
-              <select name="role" class="form-control" data-ng-model="new_user.role" required>
-                <option value="admin" data-translate>Admin</option>
-                <option value="receiver" data-translate>Recipient</option>
-                <option value="custodian" data-translate>Custodian</option>
-              </select>
-              <div class="text-red" data-ng-show="newUser.role.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Email address</label>
-              <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
-              <div class="text-red" data-ng-show="newUser.email.$error.pattern">
-                <span data-translate>Invalid email address</span>
-              </div>
-              <div class="text-red" data-ng-show="newUser.email.$error.required">
-                <span data-translate>This field is mandatory</span>
-              </div>
-            </div>
-            <div class="form-group">
-              <label data-translate>Password</label>
-              <div>
-                <span data-translate>Default user password is:</span>
-                <span class="label label-primary">globaleaks</span>
-              </div>
-              <div data-translate>The system forces users to change the password at first login.</div>
-            </div>
-            <div class="form-group">
-              <button class="pull-left btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user()" type="submit">
-                <i class="glyphicon glyphicon-plus-sign"></i>
-                <span data-translate>Add</span>
-              </button>
-            </div>
+    <div class="adminConfigSection row" data-ng-controller="AdminUserAddCtrl">
+      <form name="newUser" class="addUser col-md-6" novalidate>
+        <div class="editorTitle" data-translate>Add new user</div>
+        <div class="form-group" data-ng-if="!node.simplified_login">
+          <label data-translate>Username</label>
+          <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
+          <div class="text-red" data-ng-show="newUser.username.$error.required" data-translate>This field is mandatory</div>
+        </div>
+        <div class="form-group">
+          <label data-translate>Name</label>
+          <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
+          <div class="text-red" data-ng-show="newUser.name.$error.required" data-translate>This field is mandatory</div>
+        </div>
+        <div class="form-group">
+          <label data-translate>Role</label>
+          <select name="role" class="form-control" data-ng-model="new_user.role" required>
+            <option value="admin" data-translate>Admin</option>
+            <option value="receiver" data-translate>Recipient</option>
+            <option value="custodian" data-translate>Custodian</option>
+          </select>
+          <div class="text-red" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
+        </div>
+        <div class="form-group">
+          <label data-translate>Email address</label>
+          <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+          <div class="text-red" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
+          <div class="text-red" data-ng-show="newUser.email.$error.required" data-translate>This field is mandatory</div>
+        </div>
+        <div class="form-group">
+          <label data-translate>Password</label>
+          <div>
+            <span data-translate>Default user password is:</span>
+            <span class="label label-primary">globaleaks</span>
           </div>
-        </form>
-      </div>
+          <div data-translate>The system forces users to change the password at first login.</div>
+        </div>
+        <div class="form-group">
+          <button class="pull-left btn btn-primary" data-ng-disabled="newUser.$invalid" data-ng-click="add_user()" type="submit">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+            <span data-translate>Add</span>
+          </button>
+        </div>
+      </form>
     </div>
     <div class="adminConfigSection" data-ng-controller="AdminUsersCtrl" data-ng-show="admin.users.length > 0">
-      <div class="editorTitle">
-        <span data-translate>Configured users:</span>
-      </div>
+      <div class="editorTitle" data-translate>Configured users:</div>
       <div class="userList" data-ng-repeat="user in admin.users | orderBy:'name'">
         <form id="user-{{$index}}" name="editUser" data-ng-controller="AdminUserEditorCtrl" novalidate>
-          <div class="configItem userItem">
+          <div class="configItem">
             <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
               <span class="col-md-7 editorHeaderTitle">
                 <span>{{user.name}}</span>
@@ -125,26 +107,18 @@
                   <div class="form-group" data-ng-if="!node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required">
-                      <span data-translate>This field is mandatory</span>
-                    </div>
+                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
                     <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.name" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required">
-                      <span data-translate>This field is mandatory</span>
-                    </div>
+                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Email address</label>
                     <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
-                    <div class="text-red" data-ng-show="editUser.email.$error.required">
-                      <span data-translate>This field is mandatory</span>
-                    </div>
-                    <div class="text-red" data-ng-show="editUser.email.$error.pattern">
-                      <span data-translate>Invalid email address</span>
-                    </div>
+                    <div class="text-red" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-red" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Password</label>
@@ -155,15 +129,13 @@
                     <input data-ng-model="user.password_change_needed" type="checkbox" />
                     <label data-translate>Force password change</label>
                     <div data-ng-show="user.password_change_needed">
-                      <span class="label label-info" data-translate>Enabled</span>
+                     <span class="label label-info" data-translate>Enabled</span>
                       <span data-translate>The user will be forced to change its password on next login.</span>
                     </div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Description</label>
-                    <div>
-                      <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
-                    </div>
+                    <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
                   </div>
                   <div class="form-group">
                     <label data-translate>Status</label>

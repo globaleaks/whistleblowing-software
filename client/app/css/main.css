@@ -11,11 +11,13 @@ body {
   background-color: #FFF;
 
   /* Margin bottom by footer height */
-  margin-bottom: 3.5em;
+  margin-bottom: 4em;
 }
 
 .container-fluid {
-  padding: 3.6em;
+  width: 95%;
+  padding-top: 4em;
+  padding-bottom: 6em;
 }
 
 a, a:hover, a:active, a:focus {
@@ -82,7 +84,7 @@ th {
   bottom: 0;
 
   /* Set the fixed height of the footer here */
-  height: 3.5em;
+  height: 3.6em;
 
   background-color: #f5f5f5;
   width: 100%;
@@ -167,10 +169,6 @@ th {
   color: #FFF;
   font-size: 1em;
   padding: 0.8em 1.25em 0.8em 1.25em;
-}
-
-#PrivacyBadgeTextBox {
-  text-align: left;
 }
 
 .tab-content {
@@ -385,4 +383,11 @@ th {
 
 .invisible {
   opacity: 0;
+}
+
+.fadein {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
 }

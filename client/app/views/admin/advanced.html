@@ -1,22 +1,20 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <form class="row" name="advancedForm" data-ng-controller="AdminAdvancedCtrl" novalidate>
+    <form name="advancedForm" data-ng-controller="AdminAdvancedCtrl" novalidate>
       <uib-tabset>
         <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
           <div class="tab-content" data-ng-include="tab.template"></div>
         </uib-tab>
       </uib-tabset>
 
-      <div class="col-md-12">
-        <div class="form-group">
-          <button class="btn btn-success"
-                  data-ng-disabled="advancedForm.$invalid"
-                  data-ng-click="updateNode(admin.node)" type="submit">
-            <i class="glyphicon glyphicon-ok"></i>
-            <span data-translate>Save</span>
-          </button>
-        </div>
+      <div class="form-group">
+        <button class="btn btn-success"
+                data-ng-disabled="advancedForm.$invalid"
+                data-ng-click="updateNode(admin.node)" type="submit">
+          <i class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Save</span>
+        </button>
       </div>
     </form>
   </div>

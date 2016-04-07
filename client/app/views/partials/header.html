@@ -1,9 +1,9 @@
 <div id="HeaderBoxContent">
-  <div id="HeaderBoxContentLeft">
-    <div id="LogoBox">
+  <div id="HeaderBoxContentLeft" class="pull-left">
+    <div id="LogoBox" class="pull-left">
       <a href="#/"><img data-ng-src="{{::imgDataUri(node.logo)}}" /></a>
     </div>
-    <div id="TitleBox">
+    <div id="TitleBox" class="pull-right">
       <div id="titleboxdefault">
         <div id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</div>
         <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{header_subtitle | translate}}</div>
@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div id="HeaderBoxContentRight">
+  <div id="HeaderBoxContentRight" class="pull-right">
     <span id="UserBox" class="pull-right" data-ng-if="!isWizard()" data-ng-include="'views/partials/user.html'"></span>
   </div>
 </div>

@@ -12,7 +12,7 @@
   margin-bottom: 5px;
 }
 
-#StepAddBox, #StepsEditBox,#FieldsEditBox, #ContextAdvancedSettingsBox {
+#StepAddBox, #StepsEditBox, #FieldsEditBox, #ContextAdvancedSettingsBox {
   margin-top: 30px;
 }
 
@@ -72,9 +72,7 @@
 
 .selectionList {
   background-color: #fff;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 1em;
   border: 1px solid #cccccc;
 }
 
@@ -87,10 +85,6 @@
   top: 0;
   position: absolute;
   left: -40px;
-}
-
-.hour {
-  text-align: left;
 }
 
 .bordered {

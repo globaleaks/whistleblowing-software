@@ -1,7 +1,7 @@
 <div id="field-{{$index}}" class="fieldBox"
   data-ng-init="editing=false" data-ng-controller="AdminFieldEditorCtrl">
   <div data-ng-form="editField">
-    <div class="configItem configField">
+    <div class="configItem">
       <div class="editorHeader" data-ng-click="toggleEditing(); $event.stopPropagation();">
         <div class="row">
           <span class="col-md-6">
@@ -99,7 +99,7 @@
       <div class="fieldEditor" data-ng-if="editing">
         <hr />
         <div class="row">
-          <fieldset class="col-md-6" data-ng-if="editable">
+          <div class="col-md-6" data-ng-if="editable">
             <div class="form-group">
               <label data-translate>Name</label>
               <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" type="text" required />
@@ -149,7 +149,7 @@
               <label data-translate>Triggered by a score higher than:</label>
               <input class="form-control" data-ng-model="field.triggered_by_score" type="number" min="0" max="1000">
             </div>
-          </fieldset>
+          </div>
           <div class="col-md-6">
             <div class="form-group" data-ng-if="showConfiguration(field)">
               <label data-translate>Configuration</label>
