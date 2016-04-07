@@ -32,7 +32,11 @@
 }
 
 .receiverCard.selected, .contextCard:hover {
-  background-color: #fcf8e3;;
+  background-color: #fcf8e3;
+}
+
+.receiverCard.forcefullySelected {
+  background-color: #a0c5e5;
 }
 
 .receiverCard.disabled {
