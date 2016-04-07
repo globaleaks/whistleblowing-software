@@ -531,6 +531,8 @@ class Node(Model):
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
     logo_id = Unicode()
+    css_id = Unicode()
+    #homepage_id = Unicode()
 
     unicode_keys = [
         'name',
@@ -1001,6 +1003,7 @@ class File(Model):
 
 
 Node.logo = Reference(Node.logo_id, File.id)
+Node.css = Reference(Node.css_id, File.id)
 Context.picture = Reference(Context.img_id, File.id)
 User.picture = Reference(User.img_id, File.id)
 

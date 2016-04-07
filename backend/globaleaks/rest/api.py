@@ -15,7 +15,7 @@ from globaleaks.handlers import exception, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
                                 export, langfiles, wizard, \
-                                base, user, css, shorturl
+                                base, user, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import user as admin_user
@@ -97,7 +97,8 @@ spec = [
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),
-    (r'/admin/node/img', admin_staticfiles.NodeLogoInstance),
+    (r'/admin/node/logo', admin_staticfiles.NodeLogoInstance),
+    (r'/admin/node/css', admin_staticfiles.NodeCSSInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
     (r'/admin/users/' + uuid_regexp  + r'/img', admin_staticfiles.UserImgInstance),
@@ -135,7 +136,6 @@ spec = [
     (r'/robots.txt', node.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
-    (r'/css/styles.css', css.CSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 

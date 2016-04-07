@@ -21,18 +21,8 @@ var public_resources = [
     'status': 200
   },
   {
-    'url': '/index.js',
-    'type': 'application/javascript',
-    'status': 200
-  },
-  {
     'url': '/js/scripts.js',
     'type': 'application/javascript',
-    'status': 200
-  },
-  {
-    'url': '/css/styles.css',
-    'type': 'text/css',
     'status': 200
   },
   {
