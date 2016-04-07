@@ -532,7 +532,6 @@ class Node(Model):
 
     logo_id = Unicode()
     css_id = Unicode()
-    #homepage_id = Unicode()
 
     unicode_keys = [
         'name',
