@@ -314,13 +314,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
           $scope.rtl = ["ar", "he", "ur"].indexOf(language) !== -1;
 
-          if ($scope.rtl) {
-            document.getElementsByTagName("html")[0].setAttribute('dir', 'rtl');
-            $scope.app_stylesheet = 'css/styles-rtl.css';
-          } else {
-            document.getElementsByTagName("html")[0].setAttribute('dir', 'ltr');
-            $scope.app_stylesheet = 'css/styles.css';
-          }
+          document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
 
           $translate.use($rootScope.language);
         };

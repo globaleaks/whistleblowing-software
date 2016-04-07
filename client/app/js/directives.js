@@ -8,6 +8,7 @@ angular.module('GLDirectives', []).
       element.mouseenter(function() {
         element.stop().animate({opacity:'100'});
       });
+
       element.mouseleave(function() {
         element.fadeOut(fadeout_delay);
       });

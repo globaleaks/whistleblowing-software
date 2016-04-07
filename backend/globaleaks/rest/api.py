@@ -135,8 +135,7 @@ spec = [
     (r'/robots.txt', node.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
-    (r'/css/styles.css', css.LTRCSSFileHandler),
-    (r'/css/styles-rtl.css', css.RTLCSSFileHandler),
+    (r'/css/styles.css', css.CSSFileHandler),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
             langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
 
