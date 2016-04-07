@@ -9,7 +9,7 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.settings import GLSettings
 
-from globaleaks.db.appdata import db_update_appdata
+from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
@@ -173,6 +173,7 @@ def perform_version_update(version):
 
         store_appdata = Store(create_database('sqlite:' + new_db_file))
         db_update_appdata(store_appdata)
+        db_fix_fields_attrs(store_appdata)
         store_appdata.commit()
         store_appdata.close()
 
