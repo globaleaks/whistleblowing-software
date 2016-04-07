@@ -1,22 +1,22 @@
 Changes in version 2.60.145 - 2016-04-07
-    o Implement haveged as additional source of entropy
-    o Implement password meter by means of zxcvbn
-    o Implement export tip on the tip list page
-    o Implement HTTP Basic Authentication in order to limit
+    o Implement haveged as an additional source of entropy
+    o Implement password meters through the zxcvbn library
+    o Implement an export tip button on the tip list page
+    o Implement HTTP Basic Authentication support to limit 
       platform access during development
-    o Implement online test for SMTP configuration
+    o Implement a client side test for SMTP configuration
     o Implement List visualization for contexts
     o Implement Card visualization for contexts
     o Serve Context and Receivers images through the REST API
-      reducing time and overhead of loading external images
-    o Implement experimental mlock capability in order to deny the
-      process to perform RAM swapping on disk
-    o Implement possibility for limiting date question with range
-      through min-date/max-date configurations
-    o Implement possibility for the recipient to selectively opt-in/opt-out
-      in submissions notifications
-    o Implement eslint in the continuous-integration lifecycle
-    o Refine RTL by means of bootstrap-inline-rtl
+      reducing time and overhead loading external images
+    o Implement experimental mlock capability in order to prevent the
+      GL process from swapping RAM to disk
+    o Implement support for limiting date questions with min and max 
+      date options
+    o Implement support for recipients selectively opting in or 
+      opting out of submission notifications
+    o Implement eslint in the continuous integration lifecycle
+    o Refine RTL by using the bootstrap-inline-rtl library
 
     The following is the comprehensive list of closed tickets:
     o https://github.com/globaleaks/GlobaLeaks/issues/1076
