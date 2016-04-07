@@ -156,7 +156,6 @@ module.exports = function(grunt) {
             {
               pattern: 'components/bowser/bowser.min.js',
               replacement: fileToDataURI('app/components/bowser/bowser.min.js')
-              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
@@ -193,7 +192,9 @@ module.exports = function(grunt) {
           replacements: [
             {
               pattern: 'css/styles.css',
-              replacement: fileToDataURI('tmp/css/styles.css')
+              replacement: function () {
+                return fileToDataURI('tmp/css/styles.css');
+              }
             }
           ]
         }

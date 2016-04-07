@@ -178,6 +178,7 @@ def perform_version_update(version):
         store_appdata.close()
 
     except Exception as exception:
+        print exception
         # simply propagage the exception
         raise exception
 

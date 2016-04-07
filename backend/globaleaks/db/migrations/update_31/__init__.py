@@ -264,9 +264,6 @@ class MigrationScript(MigrationBase):
                 new_node.contexts_clarification = old_node.context_selector_label
                 continue
 
-            if v.name == 'whistleblowing_receipt_prompt':
-                continue
-
             if v.name == 'context_selector_type':
                 new_node.context_selector_type = u'list'
                 continue
@@ -279,6 +276,16 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
+        try:
+            os.remove(os.path.join(GLSettings.static_path, 'default-profile-picture.png'))
+        except:
+            pass
+
+        try:
+            os.remove(os.path.join(GLSettings.static_path, 'robots.txt'))
+        except:
+            pass
+
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
         for old_obj in old_objs:
@@ -290,10 +297,10 @@ class MigrationScript(MigrationBase):
                         if not os.path.exists(img_path):
                             continue
 
-                        new_user.picture =  self.model_to['File']()
+                        new_obj.picture =  self.model_to['File']()
                         with open(img_path, 'r') as img_file:
                             img = img_file.read()
-                            new_user.picture.data = base64.b64encode(img)
+                            new_obj.picture.data = base64.b64encode(img)
 
                         os.remove(img_path)
 
