@@ -180,7 +180,8 @@ class QuestionnairesCollection(BaseHandler):
         Response: adminQuestionnaireList
         Errors: None
         """
-        response = yield get_questionnaire_list(self.request.language)
+        response = yield GLApiCache.get('questionnaires', self.request.language,
+                                        get_questionnaire_list, self.request.language)
 
         self.write(response)
 
@@ -203,7 +204,7 @@ class QuestionnairesCollection(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(201) # Created
+        self.set_status(201)
         self.write(response)
 
 
@@ -241,9 +242,10 @@ class QuestionnaireInstance(BaseHandler):
                                         requests.AdminQuestionnaireDesc)
 
         response = yield update_questionnaire(questionnaire_id, request, self.request.language)
+
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
+        self.set_status(202)
         self.write(response)
 
     @BaseHandler.transport_security_check('admin')
