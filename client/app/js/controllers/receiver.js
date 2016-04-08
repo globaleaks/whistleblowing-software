@@ -34,18 +34,32 @@ controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uib
     return $scope.selected_tips.indexOf(id) !== -1;
   };
 
+  function selectTips() {
+    var selected_tips = $scope.tips.filter(function(tip) {
+      return $scope.selected_tips.indexOf(tip.id) > -1;
+    });
+    return selected_tips;
+  }
+
+  $scope.tip_export_all = function() {
+    $uibModal.open({
+      templateUrl: 'views/partials/tip_operation_export_selected.html',
+      controller: 'TipBulkOperationsCtrl',
+      resolve: {
+        selected_tips: selectTips,
+        operation: function() { return 'export'; },
+      },
+    });
+  };
+
   $scope.tip_delete_all = function () {
     $uibModal.open({
       templateUrl: 'views/partials/tip_operation_delete_selected.html',
       controller: 'TipBulkOperationsCtrl',
       resolve: {
-        selected_tips: function () {
-          return $scope.selected_tips;
-        },
-        operation: function() {
-          return 'delete';
-        }
-      }
+        selected_tips: selectTips,
+        operation: function() { return 'delete'; },
+      },
     });
   };
 
@@ -54,18 +68,14 @@ controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uib
       templateUrl: 'views/partials/tip_operation_postpone_selected.html',
       controller: 'TipBulkOperationsCtrl',
       resolve: {
-        selected_tips: function () {
-          return $scope.selected_tips;
-        },
-        operation: function() {
-          return 'postpone';
-        }
-      }
+        selected_tips: selectTips,
+        operation: function() { return 'postpone'; }, 
+      },
     });
   };
 }]).
-controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
+controller('TipBulkOperationsCtrl', ['$scope', '$q', '$http', '$route', '$location', '$uibModalInstance', 'RTipExport', 'selected_tips', 'operation',
+                        function ($scope, $q, $http, $route, $location, $uibModalInstance, RTipExport, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 
@@ -74,18 +84,30 @@ controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '
   };
 
   $scope.ok = function () {
-     $uibModalInstance.close();
+   $uibModalInstance.close();
 
-    if (['postpone', 'delete'].indexOf(operation) === -1) {
-      return;
+    switch (operation) {
+      case 'postpone':
+      case 'delete':
+        tip_ids = $scope.selected_tips.map(function(tip){ return tip.id; });
+
+        $http({method: 'PUT', url: '/rtip/operations', data:{
+              'operation': $scope.operation,
+              'rtips': tip_ids,
+        }}).success(function(){
+              $route.reload();
+        });
+        return;
+      case 'export':
+        export_promises = $scope.selected_tips.map(function(tip) {
+          return RTipExport(tip);
+        });
+
+        $q.all(export_promises); 
+        // Do not reload the page b/c further ops may be desired on selected_tips
+        return;
+      default:
+        return;
     }
-
-    return $http({method: 'PUT', url: '/rtip/operations', data:{
-      'operation': $scope.operation,
-      'rtips': $scope.selected_tips
-    }}).success(function(){
-      $scope.selected_tips = [];
-      $route.reload();
-    });
   };
 }]);
