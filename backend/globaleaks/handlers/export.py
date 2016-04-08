@@ -80,3 +80,14 @@ class ExportHandler(BaseHandler):
 
         for data in ZipStream(tip_export['files']):
             self.write(data)
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def get(self, rtip_id):
+        tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
+        self.set_header('Content-Type', 'application/octet-stream')
+
+        for data in ZipStream(tip_export['files']):
+            self.write(data)
+
