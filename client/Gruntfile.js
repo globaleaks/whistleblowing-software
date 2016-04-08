@@ -350,7 +350,7 @@ module.exports = function(grunt) {
       grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
 
-    dirs = ['fonts', 'l10n', 'data'];
+    dirs = ['l10n', 'data'];
     for (x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
