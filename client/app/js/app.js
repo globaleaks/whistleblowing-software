@@ -56,13 +56,12 @@ var GLClient = angular.module('GLClient', [
     'GLDirectives',
     'GLFilters'
   ]).
-  config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$compileProvider', '$translateProvider', '$uibTooltipProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $compileProvider, $translateProvider, $uibTooltipProvider) {
+  config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$translateProvider', '$uibTooltipProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider) {
     $compileProvider.debugInfoEnabled(false);
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
-
-    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 
     $routeProvider.
       when('/wizard', {
