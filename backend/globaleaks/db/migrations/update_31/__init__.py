@@ -356,3 +356,19 @@ class MigrationScript(MigrationBase):
                 continue
 
         self.store_new.add(new_notification)
+
+    def migrate_Field(self):
+        old_objs = self.store_old.find(self.model_from['Field'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Field']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'type':
+                    # specific field tpyes email and number have been removed
+                    # and the current implementation makes use of inputboxes
+                    if old_obj.type in [ 'email', 'number']:
+                        new_obj.type = 'inputbox'
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
