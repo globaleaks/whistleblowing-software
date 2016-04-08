@@ -200,19 +200,20 @@ angular.module('GLServices', ['ngResource']).
         var $http = $injector.get('$http');
 
         if (response.data !== null) {
-          var error = {
-            'url': response.config.url,
-            'message': response.data.error_message,
-            'code': response.data.error_code,
-            'arguments': response.data.arguments
-          };
+          try {
+            var error = {
+              'message': response.data.error_message,
+              'code': response.data.error_code,
+              'arguments': response.data.arguments
+            };
 
-          /* 30: Not Authenticated / 24: Wrong Authentication */
-          if (error.code === 30 || error.code === 24) {
-            $rootScope.loginRedirect(error.code === 30);
-          }
+            /* 30: Not Authenticated / 24: Wrong Authentication */
+            if (error.code === 30 || error.code === 24) {
+              $rootScope.loginRedirect(error.code === 30);
+            }
 
-          $rootScope.errors.push(error);
+            $rootScope.errors.push(error);
+          } catch(e) {};
         }
 
         if ($http.pendingRequests.length < 1) {
@@ -787,7 +788,19 @@ angular.module('GLServices', ['ngResource']).
   factory('DefaultAppdata', ['GLResource', function(GLResource) {
     return new GLResource('data/appdata_l10n.json', {});
 }]).
-  factory('fieldsUtilities', ['$filter', function($filter) {
+  factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
+      var getValidator = function(field) {
+        var validators = {
+          'custom': field.attrs.regexp,
+          'none': '',
+          'email': CONSTANTS.email_regexp,
+          'number': CONSTANTS.number_regexp,
+          'phonenumber': CONSTANTS.phonenumber_regexp,
+        };
+
+        return validators[field.attrs.input_validation.value];
+      };
+
       var minY = function(arr) {
         return $filter('min')($filter('map')(arr, 'y'));
       };
@@ -808,18 +821,21 @@ angular.module('GLServices', ['ngResource']).
             });
           }
         }
+
         return field.answer_structure;
       };
 
       return {
-        minY: minY,
+        getValidator: getValidator,
         splitRows: splitRows,
-        prepare_field_answers_structure: prepare_field_answers_structure
+        prepare_field_answers_structure: prepare_field_answers_structure,
       };
 }]).
   constant('CONSTANTS', {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
      "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,
+     "number_regexp": /^\d+$/,
+     "phonenumber_regexp": /^[\+]?[\ \d]+$/,
      "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
      "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,

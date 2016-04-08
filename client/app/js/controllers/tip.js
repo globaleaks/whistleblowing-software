@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldsUtilities',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldsUtilities) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldUtilities',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -32,12 +32,12 @@ GLClient.controller('TipCtrl',
             $scope.whistleblower_identity_field = step.children[j];
             step.children.splice(j, 1);
             $scope.fields = $scope.whistleblower_identity_field.children;
-            $scope.rows = fieldsUtilities.splitRows($scope.fields);
+            $scope.rows = fieldUtilities.splitRows($scope.fields);
             $scope.field = $scope.whistleblower_identity_field;
 
             for (var x = 0; x < $scope.field.children; x++) {
               var child = $scope.field.children[x];
-              $scope.answers[child.id] = [angular.copy(fieldsUtilities.prepare_field_answers_structure(child))];
+              $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
             }
 
             return;

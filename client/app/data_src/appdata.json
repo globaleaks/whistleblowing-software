@@ -67,6 +67,7 @@
             "attrs": {
               "min_len": {"type": "int", "value": "-1"},
               "max_len": {"type": "int", "value": "-1"},
+              "input_validation": {"type": "unicode", "value": "none"},
               "regexp": {"type": "unicode", "value": ""}
             },
             "options": [],
@@ -86,8 +87,7 @@
             "required": false,
             "attrs": {
               "min_len": {"type": "int", "value": "-1"},
-              "max_len": {"type": "int", "value": "-1"},
-              "regexp": {"type": "unicode", "value": ""}
+              "max_len": {"type": "int", "value": "-1"}
             },
             "options": [],
             "children": [],

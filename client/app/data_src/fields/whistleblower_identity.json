@@ -1,5 +1,12 @@
 {
+  "id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
   "key": "whistleblower_identity",
+  "label": {
+    "en": "Do you want to provide your identification information?"
+  },
+  "description": {
+    "en": ""
+  },
   "multi_entry": false,
   "attrs": {
     "visibility_subject_to_authorization": {
@@ -23,9 +30,37 @@
       "value": {}
     }
   },
-  "id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+  "instance": "template",
+  "hint": {
+    "en": ""
+  },
+  "width": 0,
+  "preview": false,
+  "type": "fieldgroup",
+  "fieldgroup_id": "",
+  "stats_enabled": false,
+  "editable": false,
+  "step_id": "",
+  "required": false,
+  "triggered_by_score": 0,
+  "triggered_by_options": [],
+  "multi_entry_hint": {
+    "en": ""
+  },
+  "template_id": "",
+  "y": 0,
+  "x": 0,
+  "options": [],
   "children": [
     {
+      "id": "2a3c71eb-6898-407d-a1f9-af6eeb08d609",
+      "key": "",
+      "label": {
+        "en": "First name"
+      },
+      "description": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -36,31 +71,26 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "2a3c71eb-6898-407d-a1f9-af6eeb08d609",
-      "children": [],
       "instance": "template",
       "hint": {
         "en": ""
-      },
-      "label": {
-        "en": "First name"
       },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
       "triggered_by_score": 0,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_options": [],
@@ -70,9 +100,18 @@
       "template_id": "",
       "y": 0,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "e562f090-41f5-472a-b36b-fe9b01acfff6",
+      "key": "",
+      "label": {
+        "en": "Last name"
+      },
+      "description": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -83,30 +122,25 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "e562f090-41f5-472a-b36b-fe9b01acfff6",
-      "children": [],
       "instance": "template",
       "hint": {
         "en": ""
-      },
-      "label": {
-        "en": "Last name"
       },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -117,9 +151,18 @@
       "template_id": "",
       "y": 0,
       "x": 1,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "994961dd-7d4d-442d-a63b-a8027a4e8e49",
+      "key": "",
+      "label": {
+        "en": "Gender"
+      },
+      "description": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "layout_orientation": {
@@ -127,26 +170,16 @@
           "value": "vertical"
         }
       },
-
-      "id": "994961dd-7d4d-442d-a63b-a8027a4e8e49",
-      "children": [],
       "instance": "template",
       "hint": {
         "en": ""
-      },
-      "label": {
-        "en": "Gender"
       },
       "width": 3,
       "preview": false,
       "type": "selectbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -178,9 +211,18 @@
           },
           "id": "6c7ae7dc-418a-4181-b561-a18d802833ca"
         }
-      ]
+      ],
+      "children": []
     },
     {
+      "id": "dc928e30-7527-49a2-abcd-6384cf03e4ed",
+      "key": "",
+      "label": {
+        "en": "Date of birth"
+      },
+      "description": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "min_date": {
@@ -191,30 +233,25 @@
           "type": "unicode",
           "value": ""
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
        },
-      "id": "dc928e30-7527-49a2-abcd-6384cf03e4ed",
-      "children": [],
       "instance": "template",
       "hint": {
         "en": ""
-      },
-      "label": {
-        "en": "Date of birth"
       },
       "width": 6,
       "preview": false,
       "type": "date",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -225,9 +262,18 @@
       "template_id": "",
       "y": 3,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "2c9f0a3a-fd45-4f8f-b35f-3bc3c63e69e2",
+      "key": "",
+      "label": {
+        "en": "Place of birth"
+      },
+      "description": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -238,30 +284,25 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "2c9f0a3a-fd45-4f8f-b35f-3bc3c63e69e2",
-      "children": [],
       "instance": "template",
       "hint": {
         "en": ""
-      },
-      "label": {
-        "en": "Place of birth"
       },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -272,9 +313,22 @@
       "template_id": "",
       "y": 3,
       "x": 1,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "7556d440-3d8d-4c30-b4ba-8571d0a51da9",
+      "key": "",
+      "label": {
+        "en": "Social security number"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -285,30 +339,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "7556d440-3d8d-4c30-b4ba-8571d0a51da9",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Social security number"
-      },
       "width": 0,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -319,266 +364,29 @@
       "template_id": "",
       "y": 5,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
-      "multi_entry": false,
-      "attrs": {},
       "id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-      "children": [
-        {
-          "multi_entry": false,
-          "attrs": {
-            "max_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "min_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "regexp": {
-              "type": "unicode",
-              "value": ""
-            }
-          },
-          "id": "537b5a04-46f3-4a33-b474-437e74cb08b1",
-          "children": [],
-          "instance": "template",
-          "hint": {
-            "en": ""
-          },
-          "label": {
-            "en": "Address"
-          },
-          "width": 0,
-          "preview": false,
-          "type": "inputbox",
-          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-          "description": {
-            "en": ""
-          },
-          "stats_enabled": false,
-          "editable": true,
-          "key": "",
-          "step_id": "",
-          "required": true,
-          "triggered_by_score": 0,
-          "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "template_id": "",
-          "y": 0,
-          "x": 0,
-          "options": []
-        },
-        {
-          "multi_entry": false,
-          "attrs": {
-            "max_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "min_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "regexp": {
-              "type": "unicode",
-              "value": ""
-            }
-          },
-          "id": "b147535b-4a38-43f2-b9aa-850ff5afc53d",
-          "children": [],
-          "instance": "template",
-          "hint": {
-            "en": ""
-          },
-          "label": {
-            "en": "Zip code / Postal code"
-          },
-          "width": 0,
-          "preview": false,
-          "type": "inputbox",
-          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-          "description": {
-            "en": ""
-          },
-          "stats_enabled": false,
-          "editable": true,
-          "key": "",
-          "step_id": "",
-          "required": true,
-          "triggered_by_score": 0,
-          "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "template_id": "",
-          "y": 0,
-          "x": 1,
-          "options": []
-        },
-        {
-          "multi_entry": false,
-          "attrs": {
-            "max_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "min_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "regexp": {
-              "type": "unicode",
-              "value": ""
-            }
-          },
-          "id": "9c69cf0a-998e-4764-8ff2-e15e0b8b348a",
-          "children": [],
-          "instance": "template",
-          "hint": {
-            "en": ""
-          },
-          "label": {
-            "en": "City"
-          },
-          "width": 0,
-          "preview": false,
-          "type": "inputbox",
-          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-          "description": {
-            "en": ""
-          },
-          "stats_enabled": false,
-          "editable": true,
-          "key": "",
-          "step_id": "",
-          "required": true,
-          "triggered_by_score": 0,
-          "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "template_id": "",
-          "y": 2,
-          "x": 0,
-          "options": []
-        },
-        {
-          "multi_entry": false,
-          "attrs": {
-            "max_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "min_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "regexp": {
-              "type": "unicode",
-              "value": ""
-            }
-          },
-          "id": "ca0b6818-52b6-46eb-b887-27b52fe0d776",
-          "children": [],
-          "instance": "template",
-          "hint": {
-            "en": ""
-          },
-          "label": {
-            "en": "Province"
-          },
-          "width": 0,
-          "preview": false,
-          "type": "inputbox",
-          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-          "description": {
-            "en": ""
-          },
-          "stats_enabled": false,
-          "editable": true,
-          "key": "",
-          "step_id": "",
-          "required": true,
-          "triggered_by_score": 0,
-          "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "template_id": "",
-          "y": 2,
-          "x": 1,
-          "options": []
-        },
-        {
-          "multi_entry": false,
-          "attrs": {
-            "max_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "min_len": {
-              "type": "int",
-              "value": "-1"
-            },
-            "regexp": {
-              "type": "unicode",
-              "value": ""
-            }
-          },
-          "id": "7d4c259c-b050-4642-b03b-2b070b296caa",
-          "children": [],
-          "instance": "template",
-          "hint": {
-            "en": ""
-          },
-          "label": {
-            "en": "State"
-          },
-          "width": 0,
-          "preview": false,
-          "type": "inputbox",
-          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
-          "description": {
-            "en": ""
-          },
-          "stats_enabled": false,
-          "editable": true,
-          "key": "",
-          "step_id": "",
-          "required": true,
-          "triggered_by_score": 0,
-          "triggered_by_options": [],
-          "multi_entry_hint": {
-            "en": ""
-          },
-          "template_id": "",
-          "y": 2,
-          "x": 2,
-          "options": []
-        }
-      ],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
+      "key": "",
       "label": {
         "en": "Residence"
       },
-      "width": 0,
-      "preview": false,
-      "type": "fieldgroup",
-      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
       "description": {
         "en": ""
       },
+      "multi_entry": false,
+      "attrs": {},
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },      "width": 0,
+      "preview": false,
+      "type": "fieldgroup",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -589,9 +397,278 @@
       "template_id": "",
       "y": 6,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": [
+        {
+          "id": "537b5a04-46f3-4a33-b474-437e74cb08b1",
+          "key": "",
+          "label": {
+            "en": "Address"
+          },
+          "description": {
+            "en": ""
+          },
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "stats_enabled": false,
+          "editable": true,
+          "step_id": "",
+          "required": true,
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 0,
+          "x": 0,
+          "options": [],
+          "children": []
+        },
+        {
+          "id": "b147535b-4a38-43f2-b9aa-850ff5afc53d",
+          "key": "",
+          "label": {
+            "en": "Zip code / Postal code"
+          },
+          "description": {
+            "en": ""
+          },
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "stats_enabled": false,
+          "editable": true,
+          "step_id": "",
+          "required": true,
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 0,
+          "x": 1,
+          "options": [],
+          "children": []
+        },
+        {
+          "id": "9c69cf0a-998e-4764-8ff2-e15e0b8b348a",
+          "key": "",
+          "label": {
+            "en": "City"
+          },
+          "description": {
+            "en": ""
+          },
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "stats_enabled": false,
+          "editable": true,
+          "step_id": "",
+          "required": true,
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 0,
+          "options": [],
+          "children": []
+        },
+        {
+          "id": "ca0b6818-52b6-46eb-b887-27b52fe0d776",
+          "key": "",
+          "label": {
+            "en": "Province"
+          },
+          "description": {
+            "en": ""
+          },
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "stats_enabled": false,
+          "editable": true,
+          "step_id": "",
+          "required": true,
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 1,
+          "options": [],
+          "children": []
+        },
+        {
+          "id": "7d4c259c-b050-4642-b03b-2b070b296caa",
+          "key": "",
+          "label": {
+            "en": "State"
+          },
+          "description": {
+            "en": ""
+          },
+          "instance": "template",
+          "hint": {
+            "en": ""
+          },
+          "multi_entry": false,
+          "attrs": {
+            "max_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "min_len": {
+              "type": "int",
+              "value": "-1"
+            },
+            "input_validation": {
+              "type": "unicode",
+              "value": "none"
+            },
+            "regexp": {
+              "type": "unicode",
+              "value": ""
+            }
+          },
+          "width": 0,
+          "preview": false,
+          "type": "inputbox",
+          "fieldgroup_id": "74b92ff9-4224-456e-ae84-2742c7773a1c",
+          "stats_enabled": false,
+          "editable": true,
+          "step_id": "",
+          "required": true,
+          "triggered_by_score": 0,
+          "triggered_by_options": [],
+          "multi_entry_hint": {
+            "en": ""
+          },
+          "template_id": "",
+          "y": 2,
+          "x": 2,
+          "options": [],
+          "children": []
+        }
+      ]
     },
     {
+      "id": "fa6deba5-b8d1-474b-a051-77af646a0ed7",
+      "key": "",
+      "label": {
+        "en": "Current job title"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -602,30 +679,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "fa6deba5-b8d1-474b-a051-77af646a0ed7",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Current job title"
-      },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -636,9 +704,22 @@
       "template_id": "",
       "y": 8,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "aaa15930-ab5b-49b9-9b6a-78d166cc0b83",
+      "key": "",
+      "label": {
+        "en": "Current job responsibility (role)"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -649,30 +730,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "aaa15930-ab5b-49b9-9b6a-78d166cc0b83",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Current job responsibility (role)"
-      },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -683,9 +755,22 @@
       "template_id": "",
       "y": 8,
       "x": 1,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "b8990c73-d221-4581-88bd-d9c9a953c4ac",
+      "key": "",
+      "label": {
+        "en": "Current organization unit and job location"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -696,30 +781,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "b8990c73-d221-4581-88bd-d9c9a953c4ac",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Current organization unit and job location"
-      },
       "width": 0,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -730,9 +806,22 @@
       "template_id": "",
       "y": 9,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "3c3c2ca9-210f-4cf2-89ff-1adf39dc6c7f",
+      "key": "",
+      "label": {
+        "en": "Job title at the time of the reported fact"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -743,30 +832,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "3c3c2ca9-210f-4cf2-89ff-1adf39dc6c7f",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Job title at the time of the reported fact"
-      },
       "width": 0,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -777,9 +857,22 @@
       "template_id": "",
       "y": 10,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "79d752e5-1e26-43d8-be89-e1ad839f26fe",
+      "key": "",
+      "label": {
+        "en": "Job responsibility (role) at the time of the reported fact"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -790,30 +883,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "79d752e5-1e26-43d8-be89-e1ad839f26fe",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Job responsibility (role) at the time of the reported fact"
-      },
       "width": 0,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -824,9 +908,22 @@
       "template_id": "",
       "y": 10,
       "x": 1,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
+      "id": "edb14e7a-23c7-4703-893e-9cde35046be8",
+      "key": "",
+      "label": {
+        "en": "Organization unit and job location at the time of the reported fact"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -837,30 +934,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "edb14e7a-23c7-4703-893e-9cde35046be8",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Organization unit and job location at the time of the reported fact"
-      },
       "width": 0,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": false,
       "triggered_by_score": 0,
@@ -871,56 +959,22 @@
       "template_id": "",
       "y": 11,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
     },
     {
-      "multi_entry": false,
-      "attrs": {
-        "max_len": {
-          "type": "int",
-          "value": "-1"
-        },
-        "min_len": {
-          "type": "int",
-          "value": "-1"
-        },
-        "regexp": {
-          "type": "unicode",
-          "value": ""
-        }
-      },
       "id": "47fc9c67-48f0-4153-be86-8eaa269e52b7",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
+      "key": "",
       "label": {
         "en": "Phone number"
       },
-      "width": 6,
-      "preview": false,
-      "type": "inputbox",
-      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
       "description": {
         "en": ""
       },
-      "stats_enabled": false,
-      "editable": true,
-      "key": "",
-      "step_id": "",
-      "required": true,
-      "triggered_by_score": 0,
-      "triggered_by_options": [],
-      "multi_entry_hint": {
+      "instance": "template",
+      "hint": {
         "en": ""
       },
-      "template_id": "",
-      "y": 7,
-      "x": 0,
-      "options": []
-    },
-    {
       "multi_entry": false,
       "attrs": {
         "max_len": {
@@ -931,30 +985,21 @@
           "type": "int",
           "value": "-1"
         },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
         "regexp": {
           "type": "unicode",
           "value": ""
         }
       },
-      "id": "26139a25-1b9a-45c4-90bf-344490a1ab12",
-      "children": [],
-      "instance": "template",
-      "hint": {
-        "en": ""
-      },
-      "label": {
-        "en": "Email address"
-      },
       "width": 6,
       "preview": false,
       "type": "inputbox",
       "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
-      "description": {
-        "en": ""
-      },
       "stats_enabled": false,
       "editable": true,
-      "key": "",
       "step_id": "",
       "required": true,
       "triggered_by_score": 0,
@@ -965,34 +1010,59 @@
       "template_id": "",
       "y": 7,
       "x": 0,
-      "options": []
+      "options": [],
+      "children": []
+    },
+    {
+      "id": "26139a25-1b9a-45c4-90bf-344490a1ab12",
+      "key": "",
+      "label": {
+        "en": "Email address"
+      },
+      "description": {
+        "en": ""
+      },
+      "instance": "template",
+      "hint": {
+        "en": ""
+      },
+      "multi_entry": false,
+      "attrs": {
+        "max_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "min_len": {
+          "type": "int",
+          "value": "-1"
+        },
+        "input_validation": {
+          "type": "unicode",
+          "value": "none"
+        },
+        "regexp": {
+          "type": "unicode",
+          "value": ""
+        }
+      },
+      "width": 6,
+      "preview": false,
+      "type": "inputbox",
+      "fieldgroup_id": "896a2c48-8a1f-47dd-b5a3-2c229f81763e",
+      "stats_enabled": false,
+      "editable": true,
+      "step_id": "",
+      "required": true,
+      "triggered_by_score": 0,
+      "triggered_by_options": [],
+      "multi_entry_hint": {
+        "en": ""
+      },
+      "template_id": "",
+      "y": 7,
+      "x": 0,
+      "options": [],
+      "children": []
     }
-  ],
-  "instance": "template",
-  "hint": {
-    "en": ""
-  },
-  "label": {
-    "en": "Do you want to provide your identification information?"
-  },
-  "width": 0,
-  "preview": false,
-  "type": "fieldgroup",
-  "fieldgroup_id": "",
-  "description": {
-    "en": ""
-  },
-  "stats_enabled": false,
-  "editable": false,
-  "step_id": "",
-  "required": false,
-  "triggered_by_score": 0,
-  "triggered_by_options": [],
-  "multi_entry_hint": {
-    "en": ""
-  },
-  "template_id": "",
-  "y": 0,
-  "x": 0,
-  "options": []
+  ]
 }

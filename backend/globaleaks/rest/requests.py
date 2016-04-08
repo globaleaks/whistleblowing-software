@@ -41,12 +41,8 @@ field_type_regexp                 = (r'^('
                                      'multichoice|'
                                      'selectbox|'
                                      'checkbox|'
-                                     'modal|'
-                                     'dialog|'
                                      'tos|'
                                      'fileupload|'
-                                     'number|'
-                                     'email|'
                                      'date|'
                                      'fieldgroup)$')
 
