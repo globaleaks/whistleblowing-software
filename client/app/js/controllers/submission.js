@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission',
-      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission) {
+    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission', 'fieldUtilities',
+      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission, fieldUtilities) {
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
 
@@ -136,7 +136,7 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection > $scope.firstStepIndex();
   };
 
-  $scope.checkForMandatoryFields = function() {
+  $scope.checkForInvalidFields = function() {
     // find the first invalid element
     var form = document.getElementById('step-' + $scope.selection);
     var firstInvalid = form.querySelector('.inputelem.ng-invalid');
@@ -153,7 +153,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.incrementStep = function() {
     if ($scope.selection >=0 &&
         $scope.submission.context.questionnaire.steps_navigation_requires_completion &&
-        !$scope.checkForMandatoryFields()) {
+        !$scope.checkForInvalidFields()) {
       return;
     }
 
@@ -235,19 +235,6 @@ GLClient.controller('SubmissionCtrl',
     return score;
   };
 
-  $scope.prepare_field_answers_structure = function(field) {
-    if (field.answers_structure === undefined) {
-      field.answer_structure = {};
-      if (field.type === 'fieldgroup') {
-        angular.forEach(field.children, function(child) {
-          field.answer_structure[child.id] = [$scope.prepare_field_answers_structure(child)];
-        });
-      }
-    }
-
-    return field.answer_structure;
-  };
-
   $scope.prepareSubmission = function(context, receivers_ids) {
     $scope.answers = {};
     $scope.uploads = {};
@@ -257,7 +244,7 @@ GLClient.controller('SubmissionCtrl',
 
     angular.forEach(context.questionnaire.steps, function(field) {
       angular.forEach(field.children, function(child) {
-        $scope.answers[child.id] = [angular.copy($scope.prepare_field_answers_structure(child))];
+        $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
       });
     });
 
@@ -395,17 +382,17 @@ GLClient.controller('SubmissionCtrl',
 
   });
 }]).
-controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldsUtilities',
-  function($scope, $filter, fieldsUtilities) {
+controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
+  function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
 
-  $scope.rows = fieldsUtilities.splitRows($scope.fields);
+  $scope.rows = fieldUtilities.splitRows($scope.fields);
 
   $scope.status = {
     opened: false
   };
 }]).
-controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope, fieldsUtilities) {
+controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
       return "col-md-" + field.width;
@@ -427,7 +414,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
   };
 
   $scope.fields = $scope.field.children;
-  $scope.rows = fieldsUtilities.splitRows($scope.fields);
+  $scope.rows = fieldUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
   // If the field is type 'date' attach an option configurator for the 
@@ -445,6 +432,10 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldsUtilities', function ($scope
       options.minDate = new Date(min);
     }
     $scope.dateOptions = options;
+  }
+
+  if ($scope.field.type === 'inputbox') {
+    $scope.validator = fieldUtilities.getValidator($scope.field);
   }
 
   $scope.status = {

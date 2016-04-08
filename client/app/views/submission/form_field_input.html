@@ -4,7 +4,7 @@
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
-      <div data-ng-switch-when="textarea" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
+      <div data-ng-switch-when="textarea" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
         <textarea id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
                   name="input-{{entryIndex}}"
@@ -41,7 +41,7 @@
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
         <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
-          <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': f['input-' + $parent.entryIndex + '-option-' + entryIndex].$error.required}">
+          <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': !f['input-' + $parent.entryIndex + '-option-' + entryIndex].$valid}">
             <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    class="inputelem"
@@ -55,7 +55,7 @@
           </label>
         </div>
       </div>
-      <div data-ng-switch-when="date" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$invalid}">
+      <div data-ng-switch-when="date" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
         <div class="input-group">
           <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                  name="input-{{entryIndex}}"
@@ -78,7 +78,7 @@
       </div>
       <div data-ng-switch-when="tos">
         <div class="form-group preformatted" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.clause.value}}</div>
-        <div class="checkbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
+        <div class="checkbox" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
           <label>
             <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                    name="input-{{entryIndex}}"
@@ -98,13 +98,14 @@
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
-      <div data-ng-switch-default data-ng-class="{'has-error': f['input-' + entryIndex].$error.required || f['input-' + entryIndex].$error.minlength}">
+      <div data-ng-switch-default data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">{{validator}}
         <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"
                data-ng-model="entry['value']"
                data-ng-minlength="field.attrs.min_len.value"
+               data-ng-pattern="validator"
                maxlength="{{maxlength}}"
                data-ng-required="field.required"
                data-ng-attr-placeholder="{{field.placeholder}}"

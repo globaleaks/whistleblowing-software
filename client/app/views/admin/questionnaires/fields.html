@@ -20,8 +20,6 @@
                 <span data-ng-switch-when="checkbox" data-translate>Checkbox</span>
                 <span data-ng-switch-when="fileupload" data-translate>Attachment</span>
                 <span data-ng-switch-when="tos" data-translate>Terms of service</span>
-                <span data-ng-switch-when="number" data-translate>Number</span>
-                <span data-ng-switch-when="email" data-translate>Email address</span>
                 <span data-ng-switch-when="date" data-translate>Date</span>
                 <span data-ng-switch-when="fieldgroup" data-translate>Question group</span>
               </span>
@@ -172,7 +170,17 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label data-translate>Regular expression validator</label>
+                      <label data-translate>Input validation</label>
+                      <select name="type" class="form-control" data-ng-model="field.attrs.input_validation.value" required>
+                        <option value="none" data-translate>None</option>
+                        <option value="email" data-translate>Email address</option>
+                        <option value="number" data-translate>Number</option>
+                        <option value="phonenumber" data-translate>Phone number</option>
+                        <option value="custom" data-translate>Custom</option>
+                      </select>
+                    </div>
+                    <div class="form-group" data-ng-if="field.attrs.input_validation.value === 'custom'">
+                      <label data-translate>Custom regular expression</label>
                       <div>
                         <input data-ng-model="field.attrs.regexp.value" type="text" class="form-control" data-ng-disabled="!editable" />
                       </div>
