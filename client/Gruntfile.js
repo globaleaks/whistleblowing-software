@@ -158,31 +158,45 @@ module.exports = function(grunt) {
             },
             {
               pattern: 'components/bowser/bowser.min.js',
-              replacement: fileToDataURI('app/components/bowser/bowser.min.js')
+              replacement: function () {
+                return fileToDataURI('app/components/bowser/bowser.min.js')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff2',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.ttf',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf')
+              }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.svg',
-              replacement: fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg')
+              replacement: function () {
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg')
+              }
             }
           ]
         }
