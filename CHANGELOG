@@ -1,4 +1,4 @@
-Changes in version 2.60.145 - 2016-04-07
+Changes in version 2.61.0 - 2016-04-09
     o Implement haveged as an additional source of entropy
     o Implement password meters through the zxcvbn library
     o Implement an export tip button on the tip list page
