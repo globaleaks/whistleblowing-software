@@ -199,8 +199,8 @@ angular.module('GLServices', ['ngResource']).
         */
         var $http = $injector.get('$http');
 
-        if (response.data !== null) {
-          try {
+        try {
+          if (response.data !== null) {
             var error = {
               'message': response.data.error_message,
               'code': response.data.error_code,
@@ -213,11 +213,11 @@ angular.module('GLServices', ['ngResource']).
             }
 
             $rootScope.errors.push(error);
-          } catch(e) {};
-        }
-
-        if ($http.pendingRequests.length < 1) {
-          $rootScope.showLoadingPanel = false;
+          }
+        } finally {
+          if ($http.pendingRequests.length < 1) {
+            $rootScope.showLoadingPanel = false;
+          }
         }
 
         return $q.reject(response);
