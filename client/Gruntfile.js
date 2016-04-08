@@ -1,7 +1,10 @@
 /* eslint no-console: 0 */
 
 module.exports = function(grunt) {
-  var fs = require('fs');
+  var fs = require('fs'),
+      path = require('path'),
+      superagent = require('superagent'),
+      Gettext = require("node-gettext");
 
   var fileToDataURI = function(filepath) {
       var mimeMap = {
@@ -280,12 +283,8 @@ module.exports = function(grunt) {
     return JSON.parse(grunt.file.read('app/data_src/notranslate_strings.json'));
   };
 
-  var path = require('path'),
-    superagent = require('superagent'),
-    fs = require('fs'),
-    Gettext = require("node-gettext"),
-    dynamic_strings = readDynamicStrings(),
-    notranslate_strings = readNoTranslateStrings();
+  var dynamic_strings = readDynamicStrings(),
+      notranslate_strings = readNoTranslateStrings();
 
   grunt.registerTask('copyBowerSources', function() {
     var files = [
