@@ -25,7 +25,7 @@ NETWORK_SANDBOXING=1
 
 # DISABLE_SWAP = [0/1]
 #  disable usage of swap
-DISABLE_SWAP = 0
+DISABLE_SWAP=0
 
 # ALLOWED_SRC_IP = ( ip_address1 ip_address2 ... )
 #   permits to configure a list of ip address used for outbound connections
