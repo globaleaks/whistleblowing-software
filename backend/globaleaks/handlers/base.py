@@ -561,10 +561,8 @@ class BaseHandler(RequestHandler):
 
 
     def check_tor2web(self):
-        """
-        @return: True or False content string of X-Tor2Web header is ignored
-        """
-        return self.request.headers.get('X-Tor2Web', False)
+        return False if self.request.headers.get('X-Tor2Web', None) is None else True
+
 
     def get_file_upload(self):
         try:
