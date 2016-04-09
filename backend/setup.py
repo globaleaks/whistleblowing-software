@@ -43,6 +43,7 @@ setup(
         'bin/globaleaks',
         'bin/gl-admin',
         'bin/gl-fix-permissions',
+        'bin/gl-update'
     ],
     install_requires=install_requires
 )
