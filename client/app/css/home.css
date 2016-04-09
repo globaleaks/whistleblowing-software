@@ -6,11 +6,15 @@
   height: 200px;
 }
 
-#NodeIntro, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox, #GlobaLeaksInfoBox {
+#NodeIntro, #WhistleblowerSubmitBox, #WhistleblowerReceiptBox {
   font-size: 1.2em;
 }
 
 #NodeIntro {
+  margin-bottom: 3em;
+}
+
+#WhistleblowerBox {
   margin-bottom: 3em;
 }
 
