@@ -1,3 +1,6 @@
+Changes in version 2.61.1 - 2016-04-09
+    o Fix ulimit setting in init script
+
 Changes in version 2.61.0 - 2016-04-09
     o Implement haveged as an additional source of entropy
     o Implement password meters through the zxcvbn library
