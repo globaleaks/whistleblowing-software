@@ -57,11 +57,9 @@ th {
 }
 
 #HeaderBox {
-  overflow: hidden;
   color: #FFF;
   background: #428bca;
   border-bottom: 1px solid #357ebd;
-  padding: 1em;
 }
 
 #HeaderBox:after, #HeaderBox:after {
@@ -100,22 +98,14 @@ th {
 
 #LogoBox, #TitleBox, #UserBox {
   position: relative;
-  margin-left: 1.25em;
-  margin-right: 1.25em;
+  margin: 1.5em;
   z-index: 10;
+  height: 10em;
+  width: auto;
 }
 
-#LogoBox {
-  text-align: center;
-  float: left;
-}
-
-#TitleBox {
-  float: left;
-}
-
-#UserBox {
-  text-transform: lowercase;
+#Logobox, #TitleBox {
+  line-height: 10em;
 }
 
 #PageTitle {
@@ -124,13 +114,13 @@ th {
   white-space: pre-wrap;
 }
 
-#PageTitleWithSubtitle {
-  font-size: 1.75em;
-}
-
 #PageSubtitle {
   font-size: 2em;
   font-weight: bold;
+}
+
+#PageTitle, #PageSubtitle, #PageSubtitleSeparator {
+  display: inline;
 }
 
 #LanguagePickerBox {
@@ -144,14 +134,8 @@ th {
   border-radius: 5px;
 }
 
-#LogoBox {
-  width: 20em;
-}
-
 #LogoBox img {
-  margin: 0 auto;
-  width: 12.5em;
-  height: auto;
+  height: 100%;
   border-radius: 5px;
 }
 
@@ -221,6 +205,7 @@ th {
 
 #titleboxoneline {
   display: none;
+  display: inline-block;
 }
 
 /** Wizard **/
@@ -344,14 +329,6 @@ th {
   text-align: center;
 }
 
-.text-gray {
-  color: #AAA;
-}
-
-.text-red {
-  color: #b94a48;
-}
-
 #ReceiverToolbar {
   margin-bottom: 1.25em;
 }
@@ -383,11 +360,4 @@ th {
 
 .invisible {
   opacity: 0;
-}
-
-.fadein {
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
 }

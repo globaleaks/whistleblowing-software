@@ -4,14 +4,7 @@
       <a href="#/"><img data-ng-src="{{imgDataUri(node.logo)}}" /></a>
     </div>
     <div id="TitleBox" class="pull-right">
-      <div id="titleboxdefault">
-        <div id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</div>
-        <div id="PageSubtitle" data-ng-if="hasSubtitle()">{{header_subtitle | translate}}</div>
-      </div>
-      <div id="titleboxoneline">
-        <span id="{{hasSubtitle() ? 'PageTitleWithSubtitle' : 'PageTitle'}}">{{ht}}</span>
-        <span id="PageSubtitle" data-ng-if="hasSubtitle()">- <span>{{header_subtitle | translate}}</span></span>
-      </div>
+      <div id="PageTitle">{{ht}}</div><div id="PageSubtitle" data-ng-if="hasSubtitle()"><span id="PageSubtitleSeparator"> -</span> {{header_subtitle | translate}}</div>
     </div>
   </div>
   <div id="HeaderBoxContentRight" class="pull-right">
