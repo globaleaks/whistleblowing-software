@@ -8,7 +8,7 @@
   </div>
   <div data-ng-if="hasMultipleEntries(fieldAnswers[field.id])">
     <div data-ng-repeat="entry in fieldAnswers[field.id]">
-      <div class="nested"><span class="text-gray">#{{$index + 1}}</span></div>
+      <div class="nested"><span class="text-muted">#{{$index + 1}}</span></div>
       <div class="nested" data-ng-include="'views/partials/tip_field_answer_entry.html'"></div>
     </div>
   </div>
