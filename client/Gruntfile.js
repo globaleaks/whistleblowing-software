@@ -7,10 +7,13 @@ module.exports = function(grunt) {
       Gettext = require("node-gettext");
 
   var fileToDataURI = function(filepath) {
+    try {
       var mimeMap = {
         'css': 'text/css',
         'eot': 'application/vnd.ms-fontobject',
+        'ico': 'image/x-icon',
         'js': 'text/javascript',
+        'png': 'image/png',
         'svg': 'application/svg+xml',
         'ttf': 'application/x-font-ttf',
         'woff': 'application/woff',
@@ -19,9 +22,14 @@ module.exports = function(grunt) {
 
       var ext = filepath.split('.').pop();
       var mimetype = (ext in mimeMap) ? mimeMap[ext] : 'application/octet-stream';
+
+      fs.accessSync(filepath, fs.F_OK);
       var filecontent = fs.readFileSync(filepath);
 
       return 'data:' + mimetype + ';charset=utf-8;base64,' + new Buffer(filecontent).toString('base64');
+    } catch (e) {
+      return filepath;
+    }
   };
 
   grunt.initConfig({
@@ -144,7 +152,8 @@ module.exports = function(grunt) {
       pass1: {
         files: {
           'tmp/index.html': 'tmp/index.html',
-          'tmp/css/styles.css': 'tmp/css/styles.css'
+          'tmp/css/styles.css': 'tmp/css/styles.css',
+          'tmp/js/scripts.js': 'tmp/js/scripts.js'
         },
         options: {
           replacements: [
@@ -165,37 +174,43 @@ module.exports = function(grunt) {
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff2',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.ttf',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.svg',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg')
+                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg');
+              }
+            },
+            {
+              pattern: /inlinefiles\/([^\'\"\)]+)*/g,
+              replacement: function (match, p1) {
+                return fileToDataURI('app/' + match);
               }
             }
           ]
