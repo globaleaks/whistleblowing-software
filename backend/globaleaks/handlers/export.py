@@ -65,7 +65,7 @@ class ExportHandler(BaseHandler):
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
-    def post(self, rtip_id):
+    def get(self, rtip_id):
         tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
 
         self.set_header('X-Download-Options', 'noopen')

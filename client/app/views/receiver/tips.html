@@ -186,8 +186,8 @@
               </span>
             </span>
             <form name="TipExportForm" class="pull-right"
-                method="POST" action="{{::'/rtip/' + tip.id + '/export'}}"
-                data-ng-click="$event.stopPropagation()"
+                method="GET"
+                data-ng-click="$event.stopPropogation(); getTip(tip)"
                 uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
                 novalidate>
               <input type="hidden" name="session" value="{{ session.id }}" />
