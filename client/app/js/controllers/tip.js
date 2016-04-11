@@ -133,8 +133,13 @@ GLClient.controller('TipCtrl',
         $scope.tip = tip;
         $scope.extractSpecialTipFields(tip);
 
+<<<<<<< HEAD
         $scope.exportTip = RTipExport;
         $scope.downloadFile = RTipDownloadFile;
+=======
+        $scope.tip = tip;
+        $scope.exportTip = RTipExport;
+>>>>>>> Import RTipExport service
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
