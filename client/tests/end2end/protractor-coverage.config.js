@@ -1,3 +1,6 @@
+var fs = require('fs');
+var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
+
 var q = require("q");
 var FirefoxProfile = require("firefox-profile");
 
@@ -35,16 +38,7 @@ exports.config = {
     'tmpDir': tmpDir
   },
 
-  specs: [
-    'tests/end2end/test-init.js',
-    'tests/end2end/test-admin-perform-wizard.js',
-    'tests/end2end/test-admin-login.js',
-    'tests/end2end/test-admin-configure-node.js',
-    'tests/end2end/test-admin-configure-users.js',
-    'tests/end2end/test-admin-configure-contexts.js',
-    'tests/end2end/test-receiver-first-login.js',
-    'tests/end2end/test-globaleaks-process.js'
-  ],
+  specs: specs,
 
   getMultiCapabilities: function() {
     return q.all([ 

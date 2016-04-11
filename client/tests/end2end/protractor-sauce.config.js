@@ -1,3 +1,6 @@
+var fs = require('fs');
+var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
+
 var browser_capabilities = JSON.parse(process.env.SELENIUM_BROWSER_CAPABILITIES);
 browser_capabilities['name'] = 'GlobaLeaks-E2E';
 browser_capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
@@ -18,16 +21,7 @@ exports.config = {
     'testFileDownload': false
   },
 
-  specs: [
-    'test-init.js',
-    'test-admin-perform-wizard.js',
-    'test-admin-login.js',
-    'test-admin-configure-node.js',
-    'test-admin-configure-users.js',
-    'test-admin-configure-contexts.js',
-    'test-receiver-first-login.js',
-    'test-globaleaks-process.js'
-  ],
+  specs: specs,
 
   jasmineNodeOpts: {
     isVerbose: true,
