@@ -49,6 +49,30 @@ controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uib
     });
   };
 
+  $scope.getTip = function(tip) {
+    $http({
+      method: 'GET',
+      url: '/rtip/' + tip.id + '/export',
+      responseType: 'blob',
+    }).then(function (response) {
+      var blob = response.data;
+      f = new FileReader();
+      f.onload = function(progressEvent) {
+        // onload is specified here: https://w3c.github.io/FileAPI/#APIASynch
+        var buf = this.result; // Tears occur at this moment. Buf is empty
+        console.log(buf);
+        var digest = openpgp.crypto.hash.sha512(buf);
+        console.log(digest);
+        digest = openpgp.crypto.hash.sha512(new Uint8Array());
+        console.log(digest);
+      };
+      f.readAsArrayBuffer(blob);
+    }, function(fail) {
+      console.log(fail);
+    });
+
+  };
+
   $scope.tip_postpone_all = function () {
     $uibModal.open({
       templateUrl: 'views/partials/tip_operation_postpone_selected.html',
