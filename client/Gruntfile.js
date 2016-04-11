@@ -86,7 +86,7 @@ module.exports = function(grunt) {
         flow: {
           steps: {
             js: ['concat'], // we avoid to minify intentionally! #1417 !
-            css: ['concat', 'cssmin']
+            css: ['concat']
           },
           post: {}
         }
@@ -286,7 +286,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-istanbul');
   grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
@@ -821,7 +820,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
