@@ -194,9 +194,8 @@ class User(Model):
 
     img_id = Unicode()
 
-    unicode_keys = ['username', 'password', 'salt', 'role',
-                    'state', 'language', 'mail_address',
-                    'name']
+    unicode_keys = ['username', 'role', 'state',
+                    'language', 'mail_address', 'name']
 
     localized_keys = ['description']
 

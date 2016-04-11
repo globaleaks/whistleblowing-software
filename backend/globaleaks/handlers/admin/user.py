@@ -89,19 +89,8 @@ def create_receiver_user(store, request, language):
 def db_create_user(store, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    password = request['password']
-    if len(password) and password != GLSettings.default_password:
-        security.check_password_format(password)
-    else:
-        password = GLSettings.default_password
-
-    password_salt = security.generateRandomSalt()
-    password_hash = security.hash_password(password, password_salt)
-
     user = models.User({
         'username': request['username'],
-        'password': password_hash,
-        'salt': password_salt,
         'role': request['role'],
         'state': u'enabled',
         'deletable': request['deletable'],
@@ -115,6 +104,15 @@ def db_create_user(store, request, language):
 
     if request['username'] == '':
         user.username = user.id
+
+    password = request['password']
+    if len(password) and password != GLSettings.default_password:
+        security.check_password_format(password)
+    else:
+        password = GLSettings.default_password
+
+    user.salt = security.generateRandomSalt()
+    user.password = security.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -135,15 +133,7 @@ def db_admin_update_user(store, user_id, request, language):
 
     fill_localized_keys(request, models.User.localized_keys, language)
 
-    user.name = request['name']
-    user.description = request['description']
-
-    user.state = request['state']
-    user.password_change_needed = request['password_change_needed']
-    user.mail_address = request['mail_address']
-
-    user.language = request.get('language', GLSettings.memory_copy.default_language)
-    user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
+    user.update(request)
 
     password = request['password']
     if len(password):
