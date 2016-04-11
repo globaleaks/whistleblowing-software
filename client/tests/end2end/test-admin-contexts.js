@@ -43,5 +43,4 @@ describe('admin configure, add, and delete contexts', function() {
     element(by.id('modal-action-ok')).click();
     // TODO check that the context is actually gone
   });
-
 });
