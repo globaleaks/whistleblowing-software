@@ -1,5 +1,5 @@
 [
-"test-init.js",
+  "test-init.js",
   "test-admin-perform-wizard.js",
   "test-admin-login.js",
   "test-admin-configure-node.js",

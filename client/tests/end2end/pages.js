@@ -1,8 +1,8 @@
 var utils = require('./utils.js');
 
 exports.adminLoginPage = function() {
-  var loginUser = element(by.model('loginUsername')); 
-  var loginPass = element(by.model('loginPassword')); 
+  var loginUser = element(by.model('loginUsername'));
+  var loginPass = element(by.model('loginPassword'));
 
   this.get = function() {
     browser.get('/#/admin');
