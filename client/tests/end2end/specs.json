@@ -6,5 +6,8 @@
   "test-admin-configure-users.js",
   "test-admin-configure-contexts.js",
   "test-receiver-first-login.js",
-  "test-globaleaks-process.js"
+  "test-globaleaks-process.js",
+  "test-admin-login.js",
+  "test-admin-delete-users.js",
+  "test-admin-delete-contexts.js"
 ]

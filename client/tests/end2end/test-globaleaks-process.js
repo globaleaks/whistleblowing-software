@@ -382,7 +382,10 @@ describe('globaLeaks process', function() {
       element.all(by.css('#tipListTableBody tr')).evaluate('tip.id').then(function(uuids) {
         var i = uuids.indexOf(tip_uuid);
         expect(i).toEqual(-1);
-        done();
+        element(by.id('LogoutLink')).click().then(function() {
+          utils.waitForUrl('/login');
+          done();
+        });
       });
     });
   });
