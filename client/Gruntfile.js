@@ -209,7 +209,7 @@ module.exports = function(grunt) {
             },
             {
               pattern: /inlinefiles\/([^\'\"\)]+)*/g,
-              replacement: function (match, p1) {
+              replacement: function (match) {
                 return fileToDataURI('app/' + match);
               }
             }
