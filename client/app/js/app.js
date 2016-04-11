@@ -52,6 +52,7 @@ var GLClient = angular.module('GLClient', [
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
+    'ngFileSaver',
     'GLServices',
     'GLDirectives',
     'GLFilters',
