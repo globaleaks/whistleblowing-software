@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldUtilities',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldUtilities) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'fieldsUtilities',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, fieldsUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -132,6 +132,8 @@ GLClient.controller('TipCtrl',
       new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.extractSpecialTipFields(tip);
+
+        $scope.exportTip = RTipExport;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
