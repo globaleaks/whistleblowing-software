@@ -42,7 +42,7 @@
       <div class="col-md-3">
         <div>
           <label data-translate>Free disk space</label>
-          {{blob.free_disk_space | prettyBytes}}
+          {{blob.free_disk_space | byteFmt:2 }}
         </div>
       </div>
     </div>
