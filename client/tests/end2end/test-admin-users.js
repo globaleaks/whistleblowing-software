@@ -63,7 +63,7 @@ describe('admin add, configure, and delete users', function() {
     
     // Add a description 
     var descriptBox = editUsrForm.element(by.model('user.description'));
-    var words = "A nice fellow with a neat quafe of hair!";
+    var words = "Description of recipient 1";
     descriptBox.clear();
     descriptBox.sendKeys(words);
     
