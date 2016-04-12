@@ -41,12 +41,11 @@ class TestModels(helpers.TestGL):
     def receiver_add(self, store):
         u = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
         receiver_user = models.User(u)
-        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
         receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']
         receiver_user.username = str(
             self.receiver_inc) + self.dummyReceiver_1['mail_address']
         receiver_user.password = self.dummyReceiverUser_1['password']
+        receiver_user.salt = self.dummyReceiverUser_1['salt']
         store.add(receiver_user)
 
         r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
@@ -83,13 +82,13 @@ class TestModels(helpers.TestGL):
     def create_context_with_receivers(self, store):
         u1 = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
         receiver_user1 = models.User(u1)
-        receiver_user1.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user1.password_change_date = self.dummyReceiverUser_1['password_change_date']
+        receiver_user1.password = self.dummyReceiverUser_1['password']
+        receiver_user1.salt = self.dummyReceiverUser_1['salt']
 
         u2 = self.localization_set(self.dummyReceiverUser_2, models.User, 'en')
         receiver_user2 = models.User(u2)
-        receiver_user2.last_login = self.dummyReceiverUser_2['last_login']
-        receiver_user2.password_change_date = self.dummyReceiverUser_2['password_change_date']
+        receiver_user2.password = self.dummyReceiverUser_2['password']
+        receiver_user2.salt = self.dummyReceiverUser_2['salt']
 
         store.add(receiver_user1)
         store.add(receiver_user2)
@@ -139,10 +138,10 @@ class TestModels(helpers.TestGL):
 
         u = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
         receiver_user = models.User(u)
-        receiver_user.last_login = self.dummyReceiverUser_1['last_login']
-        receiver_user.password_change_date = self.dummyReceiverUser_1['password_change_date']
         # Avoid receivers with the same username!
         receiver_user.username = u'xxx'
+        receiver_user.password = self.dummyReceiverUser_1['password']
+        receiver_user.salt = self.dummyReceiverUser_1['salt']
         store.add(receiver_user)
 
         receiver = models.Receiver(r)

@@ -27,6 +27,8 @@ class TestTransaction(helpers.TestGL):
     def _transact_with_stuff(self, store):
         r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
         receiver_user = User(self.dummyReceiverUser_1)
+        receiver_user.password = self.dummyReceiverUser_1['password']
+        receiver_user.salt = self.dummyReceiverUser_1['salt']
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
         receiver_user.password_change_needed = self.dummyReceiverUser_1['password_change_needed']
         receiver_user.password_change_date = datetime_null()
