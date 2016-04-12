@@ -9,10 +9,7 @@ describe('admin configure, add, and delete contexts', function() {
   });
 
   it('should configure an existing context', function() {
-    var editBtn = element(by.css('.actionButtonEdit'));
-    expect(editBtn.isDisplayed()).toBe(true);
-
-    editBtn.click();
+    element(by.id('context-0')).element(by.css('.actionButtonEdit')).click();
     // Add users and flip switches
     element(by.cssContainingText("span", "Recipient 2")).click();
     element(by.cssContainingText("span", "Recipient 3")).click();
@@ -22,19 +19,17 @@ describe('admin configure, add, and delete contexts', function() {
     // Save the results
     element(by.id('context-0')).element(by.css('.actionButtonSave')).click();
     // TODO check if the result was saved
-
   });
 
   it('should add new contexts', function() {
-
     var add_context = function(context) {
       element(by.model('new_context.name')).sendKeys(context);
       return element(by.css('[data-ng-click="add_context()"]')).click();
     };
+
     add_context('Context 2');
     add_context('Context 3');
     // TODO check if the contexts were made
-
   });
 
   it('should del existing contexts', function() {

@@ -15,6 +15,16 @@ describe('admin add, configure, and delete users', function() {
       address: "globaleaks-receiver3@mailinator.com",
     },
     {
+      role: "Recipient",
+      name: "Recipient 4",
+      address: "globaleaks-receiver4@mailinator.com",
+    },
+    {
+      role: "Recipient",
+      name: "Recipient 5",
+      address: "globaleaks-receiver5@mailinator.com",
+    },
+    {
       role: "Custodian",
       name: "Custodian 1", 
       address: "globaleaks-custodian1@mailinator.com",
@@ -27,7 +37,6 @@ describe('admin add, configure, and delete users', function() {
   });
 
   it('should add new users', function() {
-
     var make_account = function(user) {
       element(by.model('new_user.name')).sendKeys(user.name);
       element(by.model('new_user.email')).sendKeys(user.address);
@@ -41,8 +50,7 @@ describe('admin add, configure, and delete users', function() {
 
   it('should configure an existing user', function() {
     var user = { name: 'Recipient 1' };
-    // WARNING this xpath selector is dependent on form/div/span/span/{{ user.name }}
-    var path = ".//span[text()='" + user.name + "']/../../..";
+    var path = '//form[contains(.,"' + user.name + '")]';
 
     // Find Recipient 1, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
@@ -68,20 +76,19 @@ describe('admin add, configure, and delete users', function() {
     descriptBox.getAttribute('value').then(function(savedDescript) {
         expect(savedDescript).toEqual(words);
     });
-
   });
 
   it('should del existing users', function() {
     // delete's all accounts that match {{ user.name }} for all new_users
     var delete_account = function(user) {
-      // WARNING this xpath selector is dependent on div/span/span/{{ user.name }}
-      var path = ".//span[text()='" + user.name + "']/../..";
+      var path = '//form[contains(.,"' + user.name + '")]';
       element.all(by.xpath(path)).each(function(div) {
         div.element(by.css('.actionButtonDelete')).click();
         element(by.id('modal-action-ok')).click();
       });
     };
 
-    new_users.forEach(delete_account);
+    delete_account(new_users[2]);
+    delete_account(new_users[3]);
   });
 });
