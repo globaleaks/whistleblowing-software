@@ -118,8 +118,8 @@ class GLHTTPConnection(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
+    serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
-
     filehandler = False
 
     def __init__(self, application, request, **kwargs):
@@ -518,17 +518,6 @@ class BaseHandler(RequestHandler):
             self.write(error_dict)
         else:
             RequestHandler.write_error(self, status_code, **kw)
-
-    def write(self, chunk):
-        """
-        This is a monkey patch to RequestHandler to allow us to serialize also
-        json list objects.
-        """
-        if isinstance(chunk, types.ListType):
-            self.set_header("Content-Type", "application/json")
-            chunk = escape.json_encode(chunk)
-
-        RequestHandler.write(self, chunk)
 
     @inlineCallbacks
     def uniform_answers_delay(self):
