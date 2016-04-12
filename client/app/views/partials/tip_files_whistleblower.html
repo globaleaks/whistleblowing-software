@@ -40,7 +40,7 @@
                 <span>{{::file.content_type}}</span>
               </td>
               <td>
-                <span>{{::file.size | prettyBytes }}</span>
+                <span>{{::file.size | byteFmt:2}}</span>
               </td>
             </tr>
           </tbody>
