@@ -7,5 +7,5 @@
   "test-admin-users.js",
   "test-receiver-first-login.js",
   "test-globaleaks-process.js",
-  "test-admin-login.js",
+  "test-admin-login.js"
 ]

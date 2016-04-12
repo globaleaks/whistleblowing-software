@@ -40,7 +40,7 @@ describe('admin add, configure, and delete users', function() {
   });
 
   it('should configure an existing user', function() {
-    user = { name: 'Recipient 1' };
+    var user = { name: 'Recipient 1' };
     // WARNING this xpath selector is dependent on form/div/span/span/{{ user.name }}
     var path = ".//span[text()='" + user.name + "']/../../..";
 
