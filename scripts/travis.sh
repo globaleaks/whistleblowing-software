@@ -30,30 +30,32 @@ setupDependencies() {
   setupBackendDependencies
 }
 
-if [ "$GLTEST" = "unit" ]; then
+if [ "$GLTEST" = "test" ]; then
 
-  echo "Running API tests"
+  echo "Running backend unit tests"
   setupDependencies 1
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
+  echo "Running API tests"
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --disable-mail-notification
   sleep 5
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
-  echo "Running BrowserTesting locally collecting code coverage"
-  cd $TRAVIS_BUILD_DIR/client
-  rm -fr $TRAVIS_BUILD_DIR/client/coverage
+  if [ "$GLREQUIEREMENTS" = "trusty" ]; then
+    echo "Running BrowserTesting locally collecting code coverage"
+    cd $TRAVIS_BUILD_DIR/client
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
-  sleep 5
+    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
+    sleep 5
 
-  cd $TRAVIS_BUILD_DIR/client
-  grunt end2end-coverage
+    cd $TRAVIS_BUILD_DIR/client
+    grunt end2end-coverage
 
-  cd $TRAVIS_BUILD_DIR/backend
-  coveralls --merge=../client/coverage/coveralls.json || true
+    cd $TRAVIS_BUILD_DIR/backend
+    coveralls --merge=../client/coverage/coveralls.json || true
+  fi
 
 elif [ "$GLTEST" = "lint" ]; then
 
