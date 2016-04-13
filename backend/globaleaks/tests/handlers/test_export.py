@@ -10,7 +10,6 @@ from globaleaks.models import ReceiverTip
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
-
 class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True
     _handler = export.ExportHandler
@@ -27,4 +26,10 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request({}, role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
+
+            def flush_mock():
+                pass
+
+            handler.flush = flush_mock
+
             yield handler.post(rtip_desc['id'])
