@@ -56,15 +56,6 @@ def get_tip_export(store, user_id, rtip_id, language):
     return export_dict
 
 
-class ExportStreamer(object):
-    def __init__(self, handler):
-        self.handler = handler
-
-    def write(self, data):
-        if len(data) > 0:
-            self.handler.write(data)
-
-
 class ExportHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 

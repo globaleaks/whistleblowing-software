@@ -441,15 +441,6 @@ class BaseHandler(RequestHandler):
 
         raise errors.InvalidInputFormat("Unexpected condition!?")
 
-
-    def output_stripping(self, message, message_template):
-        """
-        @param message: the serialized dict received
-        @param message_template: the answers definition
-        @return: a dict or a list without the unwanted keys
-        """
-        pass
-
     def on_connection_close(self, *args, **kwargs):
         pass
 
