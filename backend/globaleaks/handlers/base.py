@@ -17,7 +17,7 @@ import types
 
 from StringIO import StringIO
 
-from twisted.internet import fdesc
+from twisted.internet import fdesc, reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
@@ -428,7 +428,6 @@ class BaseHandler(RequestHandler):
         else:
             raise errors.InvalidInputFormat("invalid json massage: expected dict or list")
 
-
     @staticmethod
     def validate_message(message, message_template):
         try:
@@ -481,16 +480,33 @@ class BaseHandler(RequestHandler):
         except Exception as excep:
             log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
-    def write_file(self, filepath):
+    def write_chunk(self, f):
         try:
-            with open(filepath, "rb") as f:
-                while True:
-                    chunk = f.read(GLSettings.file_chunk_size)
-                    if len(chunk) == 0:
-                        break
-                    self.write(chunk)
+            chunk = f.read(GLSettings.file_chunk_size)
+            if len(chunk) != 0:
+                self.write(chunk)
+                self.flush()
+                reactor.callLater(0.01, self.write_chunk, f)
+            else:
+                f.close()
+                self.finish()
+        except:
+            f.close()
+            self.finish()
+
+    def write_file(self, filepath):
+        f = None
+
+        try:
+            f = open(filepath, "rb")
         except IOError as srcerr:
             log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
+
+        try:
+            reactor.callLater(0, self.write_chunk, f)
+        except:
+            if f is not None:
+                f.close()
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -694,6 +710,7 @@ class BaseStaticFileHandler(BaseHandler):
         return url_path
 
     @BaseHandler.unauthenticated
+    @web.asynchronous
     def get(self, path):
         if path == '':
             path = 'index.html'

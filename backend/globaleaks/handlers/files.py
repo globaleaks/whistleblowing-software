@@ -10,6 +10,8 @@ from __future__ import with_statement
 import shutil
 
 import os
+
+from cyclone.web import asynchronous
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -251,6 +253,7 @@ class Download(BaseHandler):
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
+    @asynchronous
     @inlineCallbacks
     def post(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)

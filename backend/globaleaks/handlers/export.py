@@ -6,7 +6,8 @@
 # Tip export utils
 import copy
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet import threads
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
@@ -21,8 +22,10 @@ from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
 from globaleaks.handlers.submission import get_submission_sequence_number
 from globaleaks.models import ReceiverFile
 from globaleaks.rest import errors
+from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.zipstream import ZipStream
+from globaleaks.utils.utility import deferred_sleep
 
 
 @transact_ro
@@ -69,5 +72,24 @@ class ExportHandler(BaseHandler):
         self.set_header('Content-Type', 'application/octet-stream')
         self.set_header('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
 
-        for data in ZipStream(tip_export['files']):
-            self.write(data)
+        self.zip_stream = iter(ZipStream(tip_export['files']))
+
+        def zip_chunk():
+            chunk = []
+            chunk_size = 0
+
+            for data in self.zip_stream:
+                if len(data):
+                    chunk_size += len(data)
+                    chunk.append(data)
+                    if chunk_size >= GLSettings.file_chunk_size:
+                        return ''.join(chunk)
+
+            return ''.join(chunk)
+
+        chunk = yield threads.deferToThread(zip_chunk)
+        while len(chunk):
+            self.write(chunk)
+            self.flush()
+            yield deferred_sleep(0.01)
+            chunk = yield threads.deferToThread(zip_chunk)

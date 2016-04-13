@@ -187,7 +187,7 @@ class GLSettingsClass(object):
         self.num_log_files = self.log_size / self.log_file_size
 
         # size used while streaming files
-        self.file_chunk_size = 8192
+        self.file_chunk_size = 1000000 # 1MB
 
         self.AES_key_size = 32
         self.AES_key_id_regexp = u'[A-Za-z0-9]{16}'
