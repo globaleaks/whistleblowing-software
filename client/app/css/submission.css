@@ -76,24 +76,6 @@
   word-wrap: break-word;
 }
 
-.imgPreview {
-  height: 11.25em;
-  width: 11.25em;
-}
-
-.imgPreview img {
-  height: 100%;
-  width: 100%;
-}
-
-.fileUploadIcon {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  font-size: 40px;
- color: white;
-}
-
 #MaxSelectableReceiverBox {
   margin-bottom: 30px;
 }

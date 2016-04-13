@@ -298,9 +298,14 @@ th {
   padding-right: 1em;
 }
 
-.preview {
-  width: 100%;
+.imgPreview {
+  height: 11.25em;
+  width: 11.25em;
+}
+
+.imgPreview img {
   height: 100%;
+  width: 100%;
 }
 
 .fileUploadBox {
@@ -308,12 +313,13 @@ th {
 }
 
 .fileUploadProgress {
-  padding-top: 100px;
   position: absolute;
   top: 0;
   z-index: 100;
   height: 11.25em;
   width: 11.25em;
+  text-align: center;
+  line-height: 11.25em;
 }
 
 .fileUploadProgressOverlay {
@@ -323,6 +329,11 @@ th {
   width: 11.25em;
   position: absolute;
   top: 0;
+}
+
+.fileUploadIcon {
+  font-size: 3em;
+  color: white;
 }
 
 #EmbeddedReceiptBox {
