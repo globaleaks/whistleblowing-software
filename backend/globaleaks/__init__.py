@@ -19,7 +19,6 @@ FIRST_DATABASE_VERSION_SUPPORTED = 15
 LANGUAGES_SUPPORTED = [
  { "code": "ar", "name": "Arabic" },
  { "code": "bs", "name": "Bosnian" },
- { "code": "ca", "name": "Catalan" },
  { "code": "de", "name": "German" },
  { "code": "el", "name": "Greek" },
  { "code": "en", "name": "English" },
@@ -48,6 +47,7 @@ LANGUAGES_SUPPORTED = [
  { "code": "ur", "name": "Urdu" },
  { "code": "vi", "name": "Vietnamese" },
  { "code": "zh_CN", "name": "Chinese (China)" },
+ { "code": "zh_TW", "name": "Chinese (Taiwan)" }
 ]
 
 # Sorting the list of dict using the key 'code'
