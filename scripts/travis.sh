@@ -43,7 +43,7 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
-  if [ "$GLREQUIEREMENTS" = "trusty" ]; then
+  if [ "$GLREQUIREMENTS" = "trusty" ]; then
     echo "Running BrowserTesting locally collecting code coverage"
     cd $TRAVIS_BUILD_DIR/client
 
