@@ -11,7 +11,7 @@ matrix:
     - env: GLTEST='build_and_install'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='trusty'
+    - env: GLTEST='test' GLREQUIREMENTS='trusty'
       python: "2.7"
 
     - env: GLTEST='lint'
@@ -92,19 +92,19 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='unit' GLREQUIREMENTS='precise'
+    - env: GLTEST='test' GLREQUIREMENTS='precise'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='xenial'
+    - env: GLTEST='test' GLREQUIREMENTS='xenial'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='wheezy'
+    - env: GLTEST='test' GLREQUIREMENTS='wheezy'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='jessie'
+    - env: GLTEST='test' GLREQUIREMENTS='jessie'
       python: "2.7"
 
-    - env: GLTEST='unit' GLREQUIREMENTS='stretch'
+    - env: GLTEST='test' GLREQUIREMENTS='stretch'
       python: "2.7"
 
   allow_failures:
@@ -124,11 +124,11 @@ matrix:
     - env: GLTEST='end2end-13' BROWSER='android 5.1'
     - env: GLTEST='end2end-14' BROWSER='iphone 7.1'
     - env: GLTEST='end2end-15' BROWSER='iphone 9.2'
-    - env: GLTEST='unit' GLREQUIREMENTS='precise'
-    - env: GLTEST='unit' GLREQUIREMENTS='xenial'
-    - env: GLTEST='unit' GLREQUIREMENTS='wheezy'
-    - env: GLTEST='unit' GLREQUIREMENTS='jessie'
-    - env: GLTEST='unit' GLREQUIREMENTS='stretch'
+    - env: GLTEST='test' GLREQUIREMENTS='precise'
+    - env: GLTEST='test' GLREQUIREMENTS='xenial'
+    - env: GLTEST='test' GLREQUIREMENTS='wheezy'
+    - env: GLTEST='test' GLREQUIREMENTS='jessie'
+    - env: GLTEST='test' GLREQUIREMENTS='stretch'
 
 before_install:
   - nvm install 4.2
