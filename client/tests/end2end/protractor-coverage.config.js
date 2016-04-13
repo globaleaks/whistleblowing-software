@@ -8,8 +8,6 @@ for (var i=0; i<specs.length; i++) {
 
 specs = tmp;
 
-console.log(specs);
-
 var q = require("q");
 var FirefoxProfile = require("firefox-profile");
 
