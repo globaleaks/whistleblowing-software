@@ -80,10 +80,6 @@ def shuffle(x):
 
 
 def deferred_sleep(timeout):
-    """
-    @param timeout: this sleep is called to slow down bruteforce attacks
-    @return:
-    """
     d = Deferred()
 
     def callbackDeferred():
