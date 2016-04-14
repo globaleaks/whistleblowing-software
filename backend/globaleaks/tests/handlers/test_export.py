@@ -29,7 +29,7 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
 
             # As the handler calls internally the flush() we should
             # mock that function because during tests the flush could not
-            # be called as the handler is not fully runned.
+            # be called as the handler is not fully run.
             def flush_mock():
                 pass
 
