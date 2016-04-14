@@ -13,16 +13,8 @@
   margin-bottom: 3em;
 }
 
-#WhistleblowerBox {
-  margin-bottom: 3em;
-}
-
 #WhistleblowerSubmitBox {
   margin-bottom: 2em;
-}
-
-#WhistleblowerReceiptBox {
-  margin-bottom: 5em;
 }
 
 #NodeIntroPresentation {
@@ -41,4 +33,8 @@
 
 #WhistleblowerSubmitBoxButton .btn {
   font-size: 1.2em;
+}
+
+#DonationPanel {
+  margin-top: 3em;
 }
