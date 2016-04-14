@@ -363,10 +363,36 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['Field']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'type':
-                    # specific field tpyes email and number have been removed
+                    # specific field types email and number have been removed
                     # and the current implementation makes use of inputboxes
-                    if old_obj.type in [ 'email', 'number']:
+                    if old_obj.type in ['email', 'number']:
+                        self.entries_count['FieldAttr'] += 1
+
+                    if old_obj.type == 'number':
                         new_obj.type = 'inputbox'
+                        self.store_new.add(self.model_to['FieldAttr'](
+                            {
+                              'field_id': old_obj.id,
+                              'name': 'validator',
+                              'type': 'unicode',
+                              'value': 'number'
+                            }
+                        ))
+
+                    elif old_obj.type == 'email':
+                        new_obj.type = 'inputbox'
+                        self.store_new.add(self.model_to['FieldAttr'](
+                            {
+                              'field_id': old_obj.id,
+                              'name': 'validator',
+                              'type': 'unicode',
+                              'value': 'email'
+                            }
+                        ))
+
+                    else:
+                        new_obj.type = old_obj.type
+
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
