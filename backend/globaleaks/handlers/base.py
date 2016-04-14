@@ -501,12 +501,15 @@ class BaseHandler(RequestHandler):
             f = open(filepath, "rb")
         except IOError as srcerr:
             log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
+            self.finish()
 
         try:
             reactor.callLater(0, self.write_chunk, f)
         except:
             if f is not None:
                 f.close()
+
+            self.finish()
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -555,10 +558,8 @@ class BaseHandler(RequestHandler):
 
         return GLSessions.get(session_id)
 
-
     def check_tor2web(self):
         return False if self.request.headers.get('X-Tor2Web', None) is None else True
-
 
     def get_file_upload(self):
         try:

@@ -27,6 +27,9 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
             handler = self.request({}, role='receiver')
             handler.current_user.user_id = rtip_desc['receiver_id']
 
+            # As the handler calls internally the flush() we should
+            # mock that function because during tests the flush could not
+            # be called as the handler is not fully runned.
             def flush_mock():
                 pass
 
