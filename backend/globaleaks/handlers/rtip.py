@@ -163,7 +163,7 @@ def db_delete_itip_files(store, itip):
             if rfile.file_path == ifile.file_path:
                 continue
 
-            log.debug("Marking receiverfile %s for secure deletion" % ifile.file_path)
+            log.debug("Marking receiverfile %s for secure deletion" % rfile.file_path)
 
             db_mark_file_for_secure_deletion(store, rfile.file_path)
 
