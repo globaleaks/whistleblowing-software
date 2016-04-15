@@ -24,10 +24,7 @@
         <div id="WhistleblowerSubmitBox">
           <div id="WhistleblowerSubmitBoxHeader">{{::node.whistleblowing_question}}</div>
           <div id="WhistleblowerSubmitBoxButton">
-            <button data-ng-click="goToSubmission()" class="btn btn-primary">
-              <i class="glyphicon glyphicon-bullhorn"></i>
-              <span>{{::node.whistleblowing_button}}</span>
-            </button>
+            <button data-ng-click="goToSubmission()" class="btn btn-primary">{{::node.whistleblowing_button}}</button>
           </div>
         </div>
         <div id="WhistleblowerReceiptBox" class="center-block" data-ng-include="'views/partials/wb_login_box.html'"></div>
