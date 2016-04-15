@@ -1,0 +1,38 @@
+<!doctype html>
+<html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
+
+    <style>
+      body {
+        margin: 50px;
+      }
+
+      .has-error {
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        border: 1px solid #a94442;
+      }
+
+      form {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+      }
+      textarea {
+        width: 100%;
+        height: 100%;
+      }
+      div.wrap {
+        margin: 20px;
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+    
+    <div>
+    <gpgpubkeyinput attached-model="receiver.gpg_key_public" ></gpgpubkeyinput>
+    </div>
+
+    <script src="/components/js-polyfills/typedarray.js"></script>
+    <script src="/components/openpgp/dist/openpgp.min.js"></script>
+    <script src="/components/angular/angular.min.js"></script>
+    <script src="/sandbox/app.js"></script>
+</html>
