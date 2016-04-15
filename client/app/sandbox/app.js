@@ -1,18 +1,18 @@
 angular.module('GLClient', [])
 .controller('MainCtrl', ['$scope', function($scope) {
   rec = { 
-    gpg_key_public: "",
+    pgp_key_public: "",
     email: "nskelsey@gmail.com",
   }; 
   $scope.receiver = rec;
 }])
-// gpgpubkeyinput is an element directive that can display and validate gpg
+// pgppubkeyinput is an element directive that can display and validate pgp
 // public keys. The attached-model attribute will be bound to the input of the
 // text area.
-.directive('gpgpubkeyinput', function() {
+.directive('pgppubkeyinput', function() {
   
   // Craete object from valid pubKey
-  function gpgKeyDetails(pubKey) {
+  function pgpKeyDetails(pubKey) {
     // TODO
   }
 
@@ -23,6 +23,9 @@ angular.module('GLClient', [])
       localModel: '=attachedModel',
     },
     controller: ['$scope', function($scope) {
+      // The key point of the controller occurs when the keyForm.txt input 
+      // becomes valid. When that happens the public key attached via localModel
+      // is now both ready for use elsewhere in the application and for display
       $scope.$watch('keyForm.txt.$valid', function(newVal, oldVal) {
         console.log("into digest", newVal, oldVal);
         // When the watch is init this case fires.
@@ -47,13 +50,14 @@ angular.module('GLClient', [])
   };
 })
 
-// gpgPubKeyValidator binds to text-areas to provide input validation on user
+// pgpPubKeyValidator binds to text-areas to provide input validation on user
 // input GPG public keys. Note that the directive attaches itself to the 
 // containing form's ngModelController NOT the ngModel bound to the value of the 
 // text-area itself.
-.directive('gpgPubKeyValidator', function() {
+.directive('pgpPubKeyValidator', function() {
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
+    // TODO
     if (textInput === 'b' || textInput === 'c') {
       return true;
     }
@@ -66,7 +70,7 @@ angular.module('GLClient', [])
   // ngModel is the model controller attached to the form
   function link(scope, elem, attrs, ngModel){
     // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$validators.gpgPubKeyValidator = function(modelVal, viewVal) {
+    ngModel.$validators.pgpPubKeyValidator = function(modelVal, viewVal) {
       return validatePubKey(modelVal);
     };
   }
