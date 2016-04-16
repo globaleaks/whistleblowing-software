@@ -19,7 +19,7 @@ from globaleaks.models import InternalFile, ReceiverFile, ReceiverTip
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
-from globaleaks.security import GLBPGP, GLSecureFile
+from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 
 
@@ -117,9 +117,12 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
 
         filepath = os.path.join(GLSettings.submission_path, fpath)
 
-        with GLSecureFile(filepath) as f:
-            encrypted_file_path, encrypted_file_size = \
-                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], filepath, f, GLSettings.submission_path)
+        with open(filepath) as f:
+            encrypted_file_path = os.path.join(os.path.abspath(GLSettings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
+
+            encrypted_file_object, encrypted_file_size = \
+                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
+
     except:
         raise
 

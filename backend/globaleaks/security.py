@@ -377,8 +377,8 @@ class GLBPGP(object):
         try:
             temp_pgproot = os.path.join(GLSettings.pgproot, "%s" % generateRandomKey(8))
             os.makedirs(temp_pgproot, mode=0700)
-            self.pgph = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
-            self.pgph.encoding = "UTF-8"
+            self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
+            self.gnupg.encoding = "UTF-8"
         except OSError as ose:
             log.err("Critical, OS error in operating with GnuPG home: %s" % ose)
             raise
@@ -392,19 +392,19 @@ class GLBPGP(object):
         @return: True or False, True only if a key is effectively importable and listed.
         """
         try:
-            import_result = self.pgph.import_keys(key)
+            import_result = self.gnupg.import_keys(key)
         except Exception as excep:
             log.err("Error in PGP import_keys: %s" % excep)
             raise errors.PGPKeyInvalid
 
-        if len(import_result.fingerprints) != 1:
+        if len(import_result.fingerprints) == 0:
             raise errors.PGPKeyInvalid
 
         fingerprint = import_result.fingerprints[0]
 
         # looking if the key is effectively reachable
         try:
-            all_keys = self.pgph.list_keys()
+            all_keys = self.gnupg.list_keys()
         except Exception as excep:
             log.err("Error in PGP list_keys: %s" % excep)
             raise errors.PGPKeyInvalid
@@ -441,63 +441,30 @@ class GLBPGP(object):
             'info': info
         }
 
-    def encrypt_file(self, key_fingerprint, plainpath, filestream, output_path):
+    def encrypt_file(self, key_fingerprint, input_file, output_path):
         """
-        @param pgp_key_public:
-        @param plainpath:
-        @return:
+        Encrypt a file with the specified PGP key
         """
-        encrypt_obj = self.pgph.encrypt_file(filestream, str(key_fingerprint))
+        encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)
 
-        if not encrypt_obj.ok:
-            raise errors.PGPKeyInvalid
+        if not encrypted_obj.ok:
+            return None, 0
 
-        log.debug("Encrypting for key %s file %s (%d bytes)" %
-                  (key_fingerprint,
-                   plainpath, len(str(encrypt_obj))))
-
-        encrypted_path = os.path.join(os.path.abspath(output_path), "pgp_encrypted-%s" % generateRandomKey(16))
-
-        try:
-            with open(encrypted_path, "w+") as f:
-                f.write(str(encrypt_obj))
-        except Exception as excep:
-            log.err("Error in writing PGP file output: %s (%s) bytes %d" %
-                    (excep.message, encrypted_path, len(str(encrypt_obj)) ))
-            raise errors.InternalServerError("Error in writing [%s]" % excep.message)
-
-        else:
-            return encrypted_path, len(str(encrypt_obj))
+        return encrypted_obj,  os.stat(output_path).st_size
 
     def encrypt_message(self, key_fingerprint, plaintext):
         """
-        @param plaindata:
-            An arbitrary long text that would be encrypted
-
-        @param receiver_desc:
-
-            The output of
-                globaleaks.handlers.admin.admin_serialize_receiver()
-            dictionary. It contain the fingerprint of the Receiver PUBKEY
-
-        @return:
-            The unicode of the encrypted output (armored)
-
+        Encrypt a text message with the specified key
         """
-        # This second argument may be a list of fingerprint, not just one
-        encrypt_obj = self.pgph.encrypt(plaintext, str(key_fingerprint))
+        encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))
 
-        if not encrypt_obj.ok:
-            raise errors.PGPKeyInvalid
+        if not encrypted_obj.ok:
+            return None
 
-        log.debug("Encrypting for key %s %d byte of plain data (%d cipher output)" %
-                  (key_fingerprint,
-                   len(plaintext), len(str(encrypt_obj))))
-
-        return str(encrypt_obj)
+        return str(encrypted_obj)
 
     def destroy_environment(self):
         try:
-            shutil.rmtree(self.pgph.gnupghome)
+            shutil.rmtree(self.gnupg.gnupghome)
         except Exception as excep:
-            log.err("Unable to clean temporary PGP environment: %s: %s" % (self.pgph.gnupghome, excep))
+            log.err("Unable to clean temporary PGP environment: %s: %s" % (self.gnupg.gnupghome, excep))
