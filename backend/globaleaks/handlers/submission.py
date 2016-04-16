@@ -315,26 +315,24 @@ def create_whistleblower_tip(*args):
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
 
-    if not len(receiver_id_list):
-        raise errors.SubmissionValidationFailure("needed almost one receiver selected [1]")
-
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
-        raise errors.InvalidInputFormat("provided an invalid number of receivers")
+        raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
 
     for receiver in store.find(models.Receiver, In(models.Receiver.id, receiver_id_list)):
         if context not in receiver.contexts:
-            raise errors.InvalidInputFormat("forged receiver selection, you fuzzer! <:")
+            continue
 
         if not GLSettings.memory_copy.allow_unencrypted and receiver.user.pgp_key_status != u'enabled':
-            raise errors.SubmissionValidationFailure("the platform does not allow selection of receivers with encryption disabled")
+            continue
 
         submission.receivers.add(receiver)
 
         log.debug("+receiver [%s] In tip (%s) #%d" % \
-                  (receiver.user.name, submission.id, submission.receivers.count() ))
+                  (receiver.user.name, submission.id, submission.receivers.count()))
+
     if submission.receivers.count() == 0:
-        raise errors.SubmissionValidationFailure("needed almost one receiver selected [2]")
+        raise errors.SubmissionValidationFailure("needed almost one receiver")
 
 
 def db_create_submission(store, token_id, request, t2w, language):

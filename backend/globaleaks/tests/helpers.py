@@ -57,14 +57,12 @@ INVALID_PASSWORD = u'antani'
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
-with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key1.txt')) as pgp_file:
-    VALID_PGP_KEY1 = unicode(pgp_file.read())
+PGPKEYS = {}
 
-with open(os.path.join(TEST_DIR, 'keys/valid_pgp_key2.txt')) as pgp_file:
-    VALID_PGP_KEY2 = unicode(pgp_file.read())
-
-with open(os.path.join(TEST_DIR, 'keys/expired_pgp_key.txt')) as pgp_file:
-    EXPIRED_PGP_KEY = unicode(pgp_file.read())
+KEYS_PATH = os.path.join(TEST_DIR, 'keys')
+for filename in os.listdir(KEYS_PATH):
+    with open(os.path.join(KEYS_PATH, filename)) as pgp_file:
+        PGPKEYS[filename] = unicode(pgp_file.read())
 
 transact.tp = FakeThreadPool()
 
@@ -139,6 +137,11 @@ def import_fixture(store, fixture):
        store.commit()
 
 
+@transact
+def update_node_encryption_setting(store, allow_unencrypted):
+    store.find(models.Node).one().allow_unencrypted = allow_unencrypted
+
+
 def change_field_type(field, field_type):
     field['instance'] = field_type
     for f in field['children']:
@@ -153,7 +156,7 @@ BaseHandler.get_file_upload = get_file_upload
 
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
-    encryption_scenario = 'MIXED'  # receivers with pgp and receivers without pgp
+    encryption_scenario = 'ENCRYPTED'
 
     @inlineCallbacks
     def setUp(self):
@@ -176,13 +179,13 @@ class TestGL(unittest.TestCase):
         else:
             yield db.init_db()
 
-        yield db.refresh_memory_variables()
-
         for fixture in getattr(self, 'fixtures', []):
             yield import_fixture(fixture)
 
-        # override of imported memory variables
-        GLSettings.memory_copy.allow_unencrypted = True
+        allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
+        yield update_node_encryption_setting(allow_encrypted)
+
+        yield db.refresh_memory_variables()
 
         Alarm.reset()
         event.EventTrackQueue.clear()
@@ -204,16 +207,19 @@ class TestGL(unittest.TestCase):
         self.dummyReceiver_1 = self.get_dummy_receiver('receiver1')  # the one without PGP
         self.dummyReceiver_2 = self.get_dummy_receiver('receiver2')  # the one with PGP
 
+        if self.encryption_scenario == 'ENCRYPTED':
+            self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
+            self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY2_PUB']
+        elif self.encryption_scenario == 'ENCRYPTED_WITH_ONE_KEY_MISSING':
+            self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
+            self.dummyReceiver_2['pgp_key_public'] = ''
+        elif self.encryption_scenario == 'ENCRYPTED_WITH_ONE_KEY_EXPIRED':
+            self.dummyReceiver_1['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
+            #self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['EXPIRED_PGP_KEY_PUB']
         if self.encryption_scenario == 'MIXED':
             self.dummyReceiver_1['pgp_key_public'] = ''
-            self.dummyReceiver_2['pgp_key_public'] = VALID_PGP_KEY1
-        elif self.encryption_scenario == 'ALL_ENCRYPTED':
-            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
-            self.dummyReceiverUser_2['pgp_key_public'] = VALID_PGP_KEY2
-        elif self.encryption_scenario == 'ONE_VALID_ONE_EXPIRED':
-            self.dummyReceiver_1['pgp_key_public'] = VALID_PGP_KEY1
-            self.dummyReceiver_2['pgp_key_public'] = EXPIRED_PGP_KEY
-        elif self.encryption_scenario == 'ALL_PLAINTEXT':
+            self.dummyReceiver_2['pgp_key_public'] = PGPKEYS['VALID_PGP_KEY1_PUB']
+        elif self.encryption_scenario == 'PLAINTEXT':
             self.dummyReceiver_1['pgp_key_public'] = ''
             self.dummyReceiver_2['pgp_key_public'] = ''
 
@@ -727,7 +733,6 @@ class MockDict():
     """
     This class just create all the shit we need for emulate a GLNode
     """
-
     def __init__(self):
         self.dummyUser = {
             'id': '',
