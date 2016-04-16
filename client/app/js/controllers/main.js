@@ -387,7 +387,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
       for (var key in uploads) {
         if (uploads.hasOwnProperty(key)) {
-          if(!uploads[key].isComplete()) {
+          if(uploads[key].progress() != 1) {
             return 'uploading';
           }
 
