@@ -39,7 +39,7 @@ if [ "$GLTEST" = "test" ]; then
 
   echo "Running API tests"
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --disable-mail-notification
-  sleep 5
+  sleep 3
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
@@ -47,11 +47,13 @@ if [ "$GLTEST" = "test" ]; then
     echo "Running BrowserTesting locally collecting code coverage"
     cd $TRAVIS_BUILD_DIR/client
 
+    grunt end2end-coverage-instrument
+
     $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
-    sleep 5
+    sleep 3
 
     cd $TRAVIS_BUILD_DIR/client
-    grunt end2end-coverage
+    grunt end2end-coverage-run
 
     cd $TRAVIS_BUILD_DIR/backend
     coveralls --merge=../client/coverage/coveralls.json || true
@@ -82,7 +84,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo /etc/init.d/globaleaks restart
-  sleep 5
+  sleep 3
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
   grunt protractor:test
@@ -118,7 +120,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   setupDependencies 1
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
-  sleep 5
+  sleep 3
   cd $TRAVIS_BUILD_DIR/client
   grunt protractor:saucelabs
 
