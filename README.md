@@ -18,7 +18,7 @@ If instead you need to contact us privately to get feedback on a specific whistl
 
 Other resources:
 * [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
-* Join [#globaleaks](https://irc.lc/OFTC/globaleaks/GL_github_user), our IRC chat channel the irc.oftc.net server.
+* Join [#globaleaks](https://kiwiirc.com/client/irc.oftc.net/?nick=Im_patient|?#globaleaks), our IRC chat channel on the irc.oftc.net server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
