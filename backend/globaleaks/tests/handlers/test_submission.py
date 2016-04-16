@@ -18,24 +18,38 @@ from globaleaks.utils.token import Token
 from globaleaks.handlers.submission import create_submission
 
 
-class TestSubmission(helpers.TestGLWithPopulatedDB):
-    compllex_field_population = True
-    encryption_scenario = 'ALL_PLAINTEXT'
+class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
+    _handler = SubmissionInstance
+
+    complex_field_population = True
+
+    encryption_scenario = 'ENCRYPTED'
+
+    files_created = 6
+
+    counters_check = {
+        'encrypted': 6,
+        'reference': 0
+    }
 
     @inlineCallbacks
     def create_submission(self, request):
         token = Token('submission')
         token.proof_of_work = False
-        output = yield create_submission(token.id, request, True, 'en')
-        returnValue(output)
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        handler = self.request(self.submission_desc)
+        yield handler.put(token.id)
+        returnValue(self.responses[0])
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
         token = Token('submission')
         token.proof_of_work = False
         yield self.emulate_file_upload(token, 3)
-        output = yield create_submission(token.id, request, False, 'en')
-        returnValue(output)
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        handler = self.request(self.submission_desc)
+        result = yield handler.put(token.id)
+        returnValue(self.responses[0])
 
     @inlineCallbacks
     def test_create_submission_valid_submission(self):
@@ -43,28 +57,9 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
     @inlineCallbacks
-    def test_create_submission_with_wrong_receiver(self):
-        disassociated_receiver = yield create_receiver(self.get_dummy_receiver('dumb'), 'en')
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc['receivers'].append(disassociated_receiver['id'])
-        yield self.assertFailure(self.create_submission(self.submission_desc),
-                                 errors.InvalidInputFormat)
-
-    @inlineCallbacks
-    def test_create_submission_attach_files_finalize_and_access_wbtip(self):
+    def test_create_submission_attach_files_finalize_and_verify_file_creation(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
-
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
-
-        # remind: return a tuple (serzialized_itip, wb_itip)
-        wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
-
-        self.assertTrue('answers' in wbtip_desc)
-
-    @inlineCallbacks
-    def test_create_receiverfiles_allow_unencrypted_true_no_keys_loaded(self):
-        yield self.test_create_submission_attach_files_finalize_and_access_wbtip()
 
         yield delivery_sched.DeliverySchedule().operation()
 
@@ -74,25 +69,21 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
 
         self.rfi = yield self.get_receiverfiles_by_wbtip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), 6)
+        self.assertEqual(len(self.rfi), self.files_created)
 
-        for i in range(0, 6):
-            self.assertTrue(self.rfi[i]['status'] in [u'reference', u'encrypted'])
+        counters = {
+            'encrypted': 0,
+            'reference': 0
+        }
 
-    @inlineCallbacks
-    def test_submission_with_receiver_selection_allow_unencrypted_true_no_keys_loaded(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission(self.submission_desc)
+        for i in range(0, self.files_created):
+            if self.rfi[i]['status'] not in counters:
+                counters[self.rfi[i]['status']] = 1
+            else:
+                counters[self.rfi[i]['status']] += 1
 
-    @inlineCallbacks
-    def test_submission_with_receiver_selection_allow_unencrypted_false_no_keys_loaded(self):
-        GLSettings.memory_copy.allow_unencrypted = False
-
-        # Create a new request with selected three of the four receivers
-        submission_request = yield self.get_dummy_submission(self.dummyContext['id'])
-
-        yield self.assertFailure(self.create_submission(submission_request),
-                                 errors.SubmissionValidationFailure)
+        for key in self.counters_check.keys():
+            self.assertEqual(counters[key], self.counters_check[key])
 
     @inlineCallbacks
     def test_update_submission(self):
@@ -108,14 +99,44 @@ class TestSubmission(helpers.TestGLWithPopulatedDB):
         self.assertTrue('answers' in wbtip_desc)
 
 
-class Test_SubmissionInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = SubmissionInstance
+class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):
+    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
 
-    @inlineCallbacks
-    def test_put(self):
-        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        token = Token('submission')
-        token.proof_of_work = False
+    files_created = 3
 
-        handler = self.request(self.submission_desc)
-        yield handler.put(token.id)
+    counters_check = {
+        'encrypted': 3,
+        'reference': 0
+    }
+
+
+class TestSubmissionEncryptedScenarioOneKeyMissing(TestSubmissionEncryptedScenario):
+    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_MISSING'
+
+    files_created = 3
+
+    counters_check = {
+        'encrypted': 3,
+        'reference': 0
+    }
+
+
+class TestSubmissionMixedScenario(TestSubmissionEncryptedScenario):
+    encryption_scenario = 'MIXED'
+
+    files_created = 6
+
+    counters_check = {
+        'encrypted': 3,
+        'reference': 3
+    }
+
+class TestSubmissionPlaintextScenario(TestSubmissionEncryptedScenario):
+    encryption_scenario = 'PLAINTEXT'
+
+    files_created = 6
+
+    counters_check = {
+        'encrypted': 0,
+        'reference': 6
+    }
