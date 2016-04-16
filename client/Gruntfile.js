@@ -862,10 +862,13 @@ module.exports = function(grunt) {
     });
   });
 
-  grunt.registerTask('end2end-coverage', [
+  grunt.registerTask('end2end-coverage-instrument', [
     'clean:build',
     'copy:end2end_coverage',
-    'instrument',
+    'instrument'
+  ]);
+
+  grunt.registerTask('end2end-coverage-run', [
     'protractor_coverage:local',
     'makeReport',
     'generateCoverallsJson',
