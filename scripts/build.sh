@@ -79,7 +79,7 @@ git checkout $TAG
 cd client
 npm install grunt-cli
 npm install
-./node_modules/grunt-cli/bin/grunt setupDependencies
+bower update
 grunt build
 cd ../../../
 

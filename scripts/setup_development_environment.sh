@@ -88,7 +88,8 @@ sudo npm install -g grunt grunt-cli bower
 echo "Step 7/9: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
-grunt setupDependencies
+bower update
+grunt copy:sources
 cd ../../
 
 echo "Step 8/9: prepare backend virtualenv"

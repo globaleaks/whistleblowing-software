@@ -33,14 +33,6 @@ module.exports = function(grunt) {
   };
 
   grunt.initConfig({
-    bower: {
-      install: {
-        options: {
-          copy: false
-        }
-      }
-    },
-
     eslint: {
       src: [
         'Gruntfile.js',
@@ -56,10 +48,15 @@ module.exports = function(grunt) {
     },
 
     copy: {
+      sources: {
+        files: [
+          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
+        ]
+      },
       build: {
-          files: [{
-            dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
-          }]
+        files: [{ dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true }]
       },
       end2end_coverage: {
           files: [{
@@ -168,49 +165,49 @@ module.exports = function(grunt) {
             {
               pattern: 'components/bowser/bowser.min.js',
               replacement: function () {
-                return fileToDataURI('app/components/bowser/bowser.min.js')
+                return fileToDataURI('tmp/components/bowser/bowser.min.js')
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff2',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.woff',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.ttf',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf');
               }
             },
             {
               pattern: '../fonts/glyphicons-halflings-regular.svg',
               replacement: function () {
-                return fileToDataURI('app/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg');
+                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg');
               }
             },
             {
               pattern: /inlinefiles\/([^\'\"\)]+)*/g,
               replacement: function (match) {
-                return fileToDataURI('app/' + match);
+                return fileToDataURI('tmp/' + match);
               }
             }
           ]
@@ -226,6 +223,51 @@ module.exports = function(grunt) {
               pattern: 'css/styles.css',
               replacement: function () {
                 return fileToDataURI('tmp/css/styles.css');
+              }
+            }
+          ]
+        }
+      },
+      pass3: {
+        files: {
+          'tmp/js/crypto/openpgp.worker.min.js': 'tmp/js/crypto/openpgp.worker.min.js'
+        },
+        options: {
+          replacements: [
+            {
+              pattern: 'openpgp.min.js',
+              replacement: function () {
+                return fileToDataURI('tmp/js/crypto/openpgp.min.js');
+              }
+            }
+          ]
+        }
+      },
+      pass4: {
+        files: {
+          'tmp/js/crypto/proof-of-work.worker.js': 'tmp/js/crypto/proof-of-work.worker.js'
+        },
+        options: {
+          replacements: [
+            {
+              pattern: 'openpgp.worker.min.js',
+              replacement: function () {
+                return fileToDataURI('tmp/js/crypto/openpgp.worker.min.js');
+              }
+            }
+          ]
+        }
+      },
+      pass5: {
+        files: {
+          'tmp/js/crypto/scrypt-async.worker.js': 'tmp/js/crypto/scrypt-async.worker.js'
+        },
+        options: {
+          replacements: [
+            {
+              pattern: 'scrypt-async.min.js',
+              replacement: function () {
+                return fileToDataURI('tmp/js/crypto/scrypt-async.min.js');
               }
             }
           ]
@@ -253,6 +295,7 @@ module.exports = function(grunt) {
         basePath: 'build'
       }
     },
+
     protractor_coverage: {
       options: {
         keepAlive: true,
@@ -265,6 +308,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
     makeReport: {
       src: 'coverage/coverage*.json',
       options: {
@@ -280,7 +324,6 @@ module.exports = function(grunt) {
   //
   // the reasons is during time strangely the automating loading was causing problems.
   grunt.loadNpmTasks('grunt-angular-templates');
-  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-confirm');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -313,20 +356,6 @@ module.exports = function(grunt) {
 
   var dynamic_strings = readDynamicStrings(),
       notranslate_strings = readNoTranslateStrings();
-
-  grunt.registerTask('copyBowerSources', function() {
-    var files = [
-      ['app/components/scrypt-async/scrypt-async.min.js', 'app/js/crypto/scrypt-async.min.js'],
-      ['app/components/openpgp/dist/openpgp.min.js', 'app/js/crypto/openpgp.min.js'],
-      ['app/components/openpgp/dist/openpgp.worker.min.js', 'app/js/crypto/openpgp.worker.min.js']
-    ];
-
-    grunt.file.mkdir('app/js/crypto');
-
-    for (var x in files) {
-        grunt.file.copy(files[x][0], files[x][1]);
-    }
-  });
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var x;
@@ -810,8 +839,6 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('setupDependencies', ['bower:install', 'copyBowerSources']);
-
   // Run this task to push translations on transifex
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
@@ -820,7 +847,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
+    ['clean:build', 'copy:sources', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
