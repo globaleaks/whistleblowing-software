@@ -1,4 +1,4 @@
-importScripts('openpgp.worker.min.js');
+importScripts('../../components/openpgp/dist/openpgp.worker.min.js');
 
 var sha256 = window.openpgp.crypto.hash.sha256;
 
