@@ -21,11 +21,6 @@ var public_resources = [
     'status': 200
   },
   {
-    'url': '/js/scripts.js',
-    'type': 'application/javascript',
-    'status': 200
-  },
-  {
     'url': '/node',
     'type': 'application/json',
     'status': 200

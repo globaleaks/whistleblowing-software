@@ -33,7 +33,7 @@ setupDependencies() {
 if [ "$GLTEST" = "test" ]; then
 
   echo "Running backend unit tests"
-  setupDependencies 1
+  setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
   coverage run setup.py test
 
@@ -59,7 +59,7 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
-  setupDependencies 0
+  setupDependencies
   echo "Running lint checks"
   cd $TRAVIS_BUILD_DIR/client
   grunt eslint
@@ -115,7 +115,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   capability=${capabilities[${testkey}]}
 
   echo "Testing Configuration: ${testkey}"
-  setupDependencies 0
+  setupDependencies 1
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
   sleep 5
