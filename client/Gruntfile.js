@@ -44,7 +44,7 @@ module.exports = function(grunt) {
     },
 
     clean: {
-      build: ['tmp', 'build']
+      all: ['tmp', 'build']
     },
 
     copy: {
@@ -849,7 +849,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean:build', 'copy:sources', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
+    ['clean', 'copy:sources', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();
@@ -892,7 +892,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('end2end-coverage-instrument', [
-    'clean:build',
+    'clean',
+    'copy:sources',
     'copy:end2end_coverage',
     'instrument'
   ]);
