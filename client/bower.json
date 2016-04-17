@@ -43,7 +43,6 @@
     "es6-promise": "3.2.1",
     "flow.js": "2.10.1",
     "fusty-flow.js": "1.2.0",
-    "jquery": "2.2.3",
     "js-polyfills": "0.1.20",
     "ng-flow": "2.7.1",
     "openpgp": "2.2.0",
