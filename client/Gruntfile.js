@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         'css': 'text/css',
         'eot': 'application/vnd.ms-fontobject',
         'ico': 'image/x-icon',
-        'js': 'text/javascript',
+        'js': 'application/javascript',
         'png': 'image/png',
         'svg': 'application/svg+xml',
         'ttf': 'application/x-font-ttf',
