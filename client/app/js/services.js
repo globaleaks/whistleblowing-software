@@ -207,9 +207,9 @@ angular.module('GLServices', ['ngResource']).
               'arguments': response.data.arguments
             };
 
-            /* 30: Not Authenticated / 24: Wrong Authentication */
-            if (error.code === 30 || error.code === 24) {
-              $rootScope.loginRedirect(error.code === 30);
+            /* 30: Not Authenticated */
+            if (error.code === 30) {
+              $rootScope.loginRedirect(true);
             }
 
             $rootScope.errors.push(error);

@@ -300,16 +300,6 @@ class TorNetworkRequired(GLException):
     status_code = 413  # Forbidden
 
 
-class ReservedFileName(GLException):
-    """
-    The files uploaded in the static file directory, are also used for Receivers portrait
-    and Node Logo.
-    """
-    reason = "The file uploaded has a reserved name"
-    error_code = 38
-    status_code = 403  # Forbidden
-
-
 class FileTooBig(GLException):
     """
     Raised by GLHTTPConnection, when the uploaded file is bigger than acceptable
@@ -344,16 +334,7 @@ class InvalidTipTimeToLive(GLException):
     status_code = 406
 
 
-# UNUSED ERROR CODE 47 48 HERE!
-
-class FileRequiredMissing(GLException):
-    """
-    A submission has been finalized without a file, and
-    the context enforce the presence.
-    """
-    reason = "A file attachment is required to complete the submission"
-    error_code = 49
-    status_code = 406
+# UNUSED ERROR CODE 47 48 49 HERE!
 
 
 class ExtendTipLifeNotEnabled(GLException):
