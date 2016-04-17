@@ -383,7 +383,9 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
-    dirs = ['js/crypto'];
+    grunt.file.mkdir('build/js/crypto/');
+    grunt.file.copy('tmp/js/crypto/proof-of-work.worker.js', 'build/js/crypto/proof-of-work.worker.js');
+    grunt.file.copy('tmp/js/crypto/scrypt-async.worker.js', 'build/js/crypto/scrypt-async.worker.js');
 
     var copy_fun = function(absdir, rootdir, subdir, filename) {
       grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
