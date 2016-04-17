@@ -261,7 +261,6 @@ var GLClient = angular.module('GLClient', [
       $uibTooltipProvider.options({appendToBody: true});
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
-    flowFactoryProvider.factory = fustyFlowFactory;
     flowFactoryProvider.defaults = {
         chunkSize: 1024 * 1024,
         forceChunkSize: true,
