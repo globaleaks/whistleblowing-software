@@ -1,37 +1,25 @@
-<p>Public Key Directive
-<span ng-show="keyForm._pubKeyInp.$error.pgpPubKeyValidator && keyForm.$dirty"
-  class="has-error">
-  The PGP Public key you provided is invalid!</span>
-</p>
 <textarea 
-  pgp-pub-key-validator
+  pgp-pubkey-validator
+  class="form-control"
   name="_pubKeyInp"  
   data-ng-attr-placeholder="{{'Copy and paste the PGP public key here'}}" 
-  ng-model="localModel">
+  ng-model="localModel"
+  >
 </textarea>
-<div>
-  <label data-translate>Details of the PGP key:</label>
-  <div>
-    <p>
-      <span data-translate>The fingerprint is: </span>
-      <b>
-        {{ key_details.fingerprint.slice(0,25) }}
-        &nbsp
-        {{ key_details.fingerprint.slice(25) }}
-      </b>
-    </p>
-    <code>
-      <p ng-repeat="uid in key_details.user_info">
-          {{ uid }}
-      </p>
-    </code>
-    <p> <span data-translate>Date created: </span><span>{{ key_details.created | date:"dd/MM/yyyy" }}</span></p>
-    <p> <span data-translate>Expiration date: </span><span>{{ key_details.expiration | date:"dd/MM/yyyy" }}</span></p>
-  </div>
+<br/>
+<div class="alert alert-danger"
+  ng-show="keyForm._pubKeyInp.$error.pgpPubKeyValidator && keyForm.$dirty">
+  <p class="has-error"
+  data-translate>
+  The PGP public key you input is invalid!
+  </p>
 </div>
-<div class="preformatted">{{preferences.pgp_key_info}}</div>
-
-<div class="wrap">
-  <code ng-show="{{ key_details === undefined }}">{{ key_details }}</code>
+<div class="alert alert-success"
+  ng-show="keyForm._pubKeyInp.$valid && keyForm.$dirty">
+  <p data-translate>
+  The PGP public key you input is valid!
+  </p>
 </div>
-<p>This sits below</p>
+<div ng-show="keyForm._pubKeyInp.$valid && keyForm._pubKeyInp.$dirty">
+  <pgp-pubkey-display key-str="localModel">
+</div>
