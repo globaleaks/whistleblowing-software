@@ -68,7 +68,7 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
     _handler = files.Download
 
     @inlineCallbacks
-    def test_post(self):
+    def test_get(self):
         yield self.perform_full_submission_actions()
         yield DeliverySchedule().operation()
 
@@ -77,4 +77,4 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
             rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
             for rfile_desc in rfiles_desc:
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-                yield handler.post(rtip_desc['id'], rfile_desc['id'])
+                yield handler.get(rtip_desc['id'], rfile_desc['id'])
