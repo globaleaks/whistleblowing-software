@@ -5,16 +5,37 @@ angular.module('GLBrowserCrypto', [])
     email: "nskelsey@gmail.com",
   }; 
   $http({ method: 'GET', url: '/sandbox/giovanni.pub'}).then(function(res) {
-    rec.pgp_key_public = res.data;
+    //rec.pgp_key_public = res.data;
   });
   $scope.receiver = rec;
 }])
+// pgpPubKeyDisplay displays the important details from a public key.
+.directive('pgpPubkeyDisplay', function() {
+  
+  // Create object that displays relevant key details to the user. This function
+  // returns fingerprint, key id, creation date, and expiration date. If the parse
+  // fails the function returns undefined.
+  function pgpKeyDetails(armoredText) {
+    var res = openpgp.key.readArmored(armoredText);
 
-// pgpPubkeyInput is an element directive that can display validated pgp
-// public keys. The attached-model attribute will be bound to the input of the
-// text area.
-.directive('pgpPubkeyInput', function() {
-
+    if (angular.isDefined(res.err)) {
+      // There were errors. Bail out. 
+      return;
+    }
+    var key = res.keys[0];
+    
+    var niceprint = makeNiceFingerPrint(key.primaryKey.fingerprint);
+    var uids = extractAllUids(key);
+    var created = key.primaryKey.created;
+    
+    return {
+      user_info: uids,
+      fingerprint: niceprint,
+      created: created,
+      expiration: key.getExpirationTime(),
+    };
+  }
+ 
   // makeNiceFingerPrint produces the full key fingerprint in the standard
   // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
   function makeNiceFingerPrint(print) {
@@ -46,28 +67,27 @@ angular.module('GLBrowserCrypto', [])
     return uids;
   }
 
-  // Create object that displays relevant key details to the user. This function
-  // returns fingerprint, key id, creation date, and expiration date.
-  function pgpKeyDetails(armoredText) {
-    var res = openpgp.key.readArmored(armoredText);
+  return {
+    restrict: 'E',
+    templateUrl: '/sandbox/pubkey_display.html',
+    scope: {
+      keyStr: '=keyStr',
 
-    if (angular.isDefined(res.err)) {
-      console.log(res.err);
-    }
-    console.log(res.keys);
-    var key = res.keys[0];
-    
-    var niceprint = makeNiceFingerPrint(key.primaryKey.fingerprint);
-    var uids = extractAllUids(key);
-    var created = key.primaryKey.created;
-    
-    return {
-      user_info: uids,
-      fingerprint: niceprint,
-      created: created,
-      expiration: key.getExpirationTime(),
-    };
-  }
+    },
+    controller: ['$scope', function($scope) {
+      $scope.$watch('keyStr', function(newVal, oldVal) {
+        if (newVal === "") {
+          return;
+        }
+        $scope.key_details = pgpKeyDetails(newVal);
+      });
+  }]};
+})
+
+// pgpPubkeyInput is an element directive that can display validated pgp
+// public keys. The attached-model attribute will be bound to the input of the
+// text area.
+.directive('pgpPubkeyInput', function() {
 
   return {
     restrict: 'E',
@@ -77,6 +97,7 @@ angular.module('GLBrowserCrypto', [])
       keyForm: '=attachedForm',
     },
     controller: ['$scope', function($scope) {
+      
       // The key point of the controller occurs when the keyForm._pubKeyInp input 
       // becomes valid. When that happens the public key attached via localModel
       // is now both ready for use elsewhere in the application and for display
@@ -88,22 +109,22 @@ angular.module('GLBrowserCrypto', [])
 
         // The PGP Key is valid. Extract its details.
         if (newVal) {
-          var keyTxt = $scope.keyForm._pubKeyInp.$modelValue;
-          $scope.key_details = pgpKeyDetails(keyTxt);
+          $scope.keyStr = $scope.keyForm._pubKeyInp.$modelValue;
         } else {
           // If the key has changed due to new input, dereference old key_details.
-          $scope.key_details = undefined;
+          $scope.keyStr = undefined;
         }
       });
     }],
   };
 })
 
-// pgpPubKeyValidator binds to text-areas to provide input validation on user
+// pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input GPG public keys. Note that the directive attaches itself to the 
 // containing form's ngModelController NOT the ngModel bound to the value of the 
 // text-area itself.
-.directive('pgpPubKeyValidator', function() {
+.directive('pgpPubkeyValidator', function() {
+  
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
     // Check for obvious problems.
