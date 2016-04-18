@@ -8,7 +8,7 @@ angular.module('GLBrowserCrypto', [])
   // fails the function returns undefined.
   function pgpKeyDetails(armoredText) {
     // Catch the obivous errors and save time!
-    if (!startsWith('---')) {
+    if (typeof armoredText !== 'string' || !armoredText.startsWith('---')) {
       return;
     }
     var res = openpgp.key.readArmored(armoredText);
@@ -123,6 +123,9 @@ angular.module('GLBrowserCrypto', [])
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
     // Check for obvious problems.
+    if (typeof textInput !== 'string') {
+      return false; 
+    }
     var s = textInput.trim();
     if (!s.startsWith('-----')) {
       return false;
