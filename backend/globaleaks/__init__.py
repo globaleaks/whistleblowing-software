@@ -11,8 +11,8 @@ __email__ = u'info@globaleaks.org'
 __version__ = u'2.61.4'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 31
-FIRST_DATABASE_VERSION_SUPPORTED = 15
+DATABASE_VERSION = 32
+FIRST_DATABASE_VERSION_SUPPORTED = 16
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt updateTranslations'

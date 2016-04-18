@@ -32,4 +32,13 @@ angular.module('GLFilters', []).
 
         return anomaly in anomalies ? anomalies[anomaly] : '';
     };
-});
+}).
+  filter('tipFileName', ['$filter', function($filter) {
+    return function(tip) {
+      if (angular.isDefined(tip)) {
+        var d = $filter('date')(tip.creation_date, 'yyyyMMdd');
+        return d + '-' + tip.progressive;
+      } 
+    };
+  }])
+;

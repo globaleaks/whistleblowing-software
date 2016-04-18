@@ -38,7 +38,7 @@ exports.config = {
   baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: true,
-  directConnect: true,
+  directConnect: false,
 
   params: {
     'testFileDownload': true,

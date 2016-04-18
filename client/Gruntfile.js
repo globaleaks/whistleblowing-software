@@ -230,36 +230,6 @@ module.exports = function(grunt) {
       },
       pass3: {
         files: {
-          'tmp/js/crypto/openpgp.worker.min.js': 'tmp/js/crypto/openpgp.worker.min.js'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: 'openpgp.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/js/crypto/openpgp.min.js');
-              }
-            }
-          ]
-        }
-      },
-      pass4: {
-        files: {
-          'tmp/js/crypto/proof-of-work.worker.js': 'tmp/js/crypto/proof-of-work.worker.js'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: 'openpgp.worker.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/js/crypto/openpgp.worker.min.js');
-              }
-            }
-          ]
-        }
-      },
-      pass5: {
-        files: {
           'tmp/js/crypto/scrypt-async.worker.js': 'tmp/js/crypto/scrypt-async.worker.js'
         },
         options: {

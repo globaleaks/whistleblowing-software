@@ -207,9 +207,9 @@ angular.module('GLServices', ['ngResource']).
               'arguments': response.data.arguments
             };
 
-            /* 30: Not Authenticated / 24: Wrong Authentication */
-            if (error.code === 30 || error.code === 24) {
-              $rootScope.loginRedirect(error.code === 30);
+            /* 30: Not Authenticated */
+            if (error.code === 30) {
+              $rootScope.loginRedirect(true);
             }
 
             $rootScope.errors.push(error);
@@ -411,6 +411,31 @@ angular.module('GLServices', ['ngResource']).
 }]).
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
+}]).
+ factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+    return function(tip, file) {
+      $http({
+        method: 'GET',
+        url: '/rtip/' + tip.id + '/download/' + file.id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, file.name);
+      });
+    };
+}]).
+  factory('RTipExport', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+    return function(tip) {
+      $http({
+        method: 'GET',
+        url: '/rtip/' + tip.id + '/export',
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        var filename = $filter('tipFileName')(tip) + '.zip';
+        FileSaver.saveAs(blob, filename);
+      });
+    };
 }]).
   factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
           function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {

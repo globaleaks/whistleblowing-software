@@ -9,8 +9,7 @@
       <span class="glyphicon glyphicon-th-list"></span>
     </a>
 
-    <form id="TipExportForm" method="POST" action="{{'/rtip/' + tip.id + '/export'}}" novalidate>
-      <input type="hidden" name="session" value="{{session.id}}">
+    <a id="TipExport" ng-click="exportTip(tip)">
       <button id="tip-action-export"
               uib-popover="{{'Export' | translate}}"
               popover-placement="top"
@@ -18,7 +17,7 @@
               class="btn btn-default">
         <i class="glyphicon glyphicon-save"></i>
       </button>
-    </form>
+    </a>
 
     <span id="tip-action-postpone"
           data-ng-if="preferences.can_postpone_expiration"

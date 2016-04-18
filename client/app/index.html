@@ -174,12 +174,9 @@
     </div>
 
     <!-- build:js js/scripts.js -->
-    <script src="components/js-polyfills/typedarray.js"></script>
-    <script src="components/es6-promise/promise.min.js"></script>
     <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
     <script src="components/scrypt-async/scrypt-async.min.js"></script>
     <script src="components/openpgp/dist/openpgp.min.js"></script>
-    <script src="components/jquery/dist/jquery.min.js"></script>
     <script src="components/angular/angular.min.js"></script>
     <script src="components/angular-aria/angular-aria.min.js"></script>
     <script src="components/angular-filter/dist/angular-filter.min.js"></script>
@@ -190,9 +187,9 @@
     <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
     <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
     <script src="components/d3/d3.min.js"></script>
+    <script src="components/file-saver.js/FileSaver.js"></script>
+    <script src="components/angular-file-saver/dist/angular-file-saver.min.js"></script>
     <script src="components/flow.js/dist/flow.min.js"></script>
-    <script src="components/fusty-flow.js/src/fusty-flow.js"></script>
-    <script src="components/fusty-flow.js/src/fusty-flow-factory.js"></script>
     <script src="components/ng-flow/dist/ng-flow.min.js"></script>
     <script src="components/zxcvbn/dist/zxcvbn.js"></script>
     <script src="components/angular-zxcvbn/dist/angular-zxcvbn.js"></script>
@@ -201,6 +198,7 @@
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/templates.js"></script>
+    <script src="js/crypto/module.js"></script>
     <script src="js/controllers/main.js"></script>
     <script src="js/controllers/preferences.js"></script>
     <script src="js/controllers/fileupload.js"></script>
@@ -225,15 +223,8 @@
     <script src="js/controllers/user.js"></script>
     <!-- endbuild -->
 
-    <script src="components/bowser/bowser.min.js"></script>
-
     <script type="text/javascript">
       var isBrowserCompatible = function() {
-        // Make IE pass if >= 9
-        if (bowser.msie && bowser.version >= 9) {
-          return true;
-        }
-
         if (typeof window === 'undefined') {
           return false;
         }

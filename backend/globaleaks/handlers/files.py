@@ -255,7 +255,7 @@ class Download(BaseHandler):
     @BaseHandler.authenticated('receiver')
     @asynchronous
     @inlineCallbacks
-    def post(self, rtip_id, rfile_id):
+    def get(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
 
         filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
