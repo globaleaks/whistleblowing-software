@@ -186,3 +186,7 @@
 .cc-text-2 {
   font-size: 1.25em;
 }
+
+#creditCard {
+  width: 20em;
+}
