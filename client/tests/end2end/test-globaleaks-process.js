@@ -1,8 +1,10 @@
 var utils = require('./utils.js');
 
 var path = require('path');
+var remote = require('protractor/node_modules/selenium-webdriver/remote');
 
 var fileToUpload = path.resolve(__filename);
+browser.setFileDetector(new remote.FileDetector);
 
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
