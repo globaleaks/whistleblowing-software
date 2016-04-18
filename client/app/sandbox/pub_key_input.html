@@ -1,16 +1,14 @@
 <p>Public Key Directive
-<span ng-show="keyForm.txt.$error.pgpPubKeyValidator && keyForm.$dirty"
+<span ng-show="keyForm._pubKeyInp.$error.pgpPubKeyValidator && keyForm.$dirty"
   class="has-error">
   The PGP Public key you provided is invalid!</span>
 </p>
-<form name="keyForm" >
-  <textarea 
-    pgp-pub-key-validator
-    name="txt"  
-    data-ng-attr-placeholder="{{'Copy and paste the PGP public key here'}}" 
-    ng-model="localModel">
-  </textarea>
-</form>
+<textarea 
+  pgp-pub-key-validator
+  name="_pubKeyInp"  
+  data-ng-attr-placeholder="{{'Copy and paste the PGP public key here'}}" 
+  ng-model="localModel">
+</textarea>
 <div>
   <label data-translate>Details of the PGP key:</label>
   <div>

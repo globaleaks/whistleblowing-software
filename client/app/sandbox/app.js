@@ -10,10 +10,10 @@ angular.module('GLBrowserCrypto', [])
   $scope.receiver = rec;
 }])
 
-// pgppubkeyinput is an element directive that can display validated pgp
+// pgpPubkeyInput is an element directive that can display validated pgp
 // public keys. The attached-model attribute will be bound to the input of the
 // text area.
-.directive('pgppubkeyinput', function() {
+.directive('pgpPubkeyInput', function() {
 
   // makeNiceFingerPrint produces the full key fingerprint in the standard
   // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
@@ -74,12 +74,13 @@ angular.module('GLBrowserCrypto', [])
     templateUrl: '/sandbox/pub_key_input.html',
     scope: {
       localModel: '=attachedModel',
+      keyForm: '=attachedForm',
     },
     controller: ['$scope', function($scope) {
-      // The key point of the controller occurs when the keyForm.txt input 
+      // The key point of the controller occurs when the keyForm._pubKeyInp input 
       // becomes valid. When that happens the public key attached via localModel
       // is now both ready for use elsewhere in the application and for display
-      $scope.$watch('keyForm.txt.$valid', function(newVal, oldVal) {
+      $scope.$watch('keyForm._pubKeyInp.$valid', function(newVal, oldVal) {
         // When the watch is init this case fires.
         if (oldVal === newVal) {
           return;
@@ -87,7 +88,7 @@ angular.module('GLBrowserCrypto', [])
 
         // The PGP Key is valid. Extract its details.
         if (newVal) {
-          var keyTxt = $scope.keyForm.txt.$modelValue;
+          var keyTxt = $scope.keyForm._pubKeyInp.$modelValue;
           $scope.key_details = pgpKeyDetails(keyTxt);
         } else {
           // If the key has changed due to new input, dereference old key_details.
