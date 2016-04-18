@@ -1,14 +1,5 @@
 angular.module('GLBrowserCrypto', [])
-.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
-  rec = { 
-    pgp_key_public: "",
-    email: "nskelsey@gmail.com",
-  }; 
-  $http({ method: 'GET', url: '/sandbox/giovanni.pub'}).then(function(res) {
-    //rec.pgp_key_public = res.data;
-  });
-  $scope.receiver = rec;
-}])
+
 // pgpPubKeyDisplay displays the important details from a public key.
 .directive('pgpPubkeyDisplay', function() {
   
@@ -16,6 +7,10 @@ angular.module('GLBrowserCrypto', [])
   // returns fingerprint, key id, creation date, and expiration date. If the parse
   // fails the function returns undefined.
   function pgpKeyDetails(armoredText) {
+    // Catch the obivous errors and save time!
+    if (!startsWith('---')) {
+      return;
+    }
     var res = openpgp.key.readArmored(armoredText);
 
     if (angular.isDefined(res.err)) {
@@ -24,7 +19,7 @@ angular.module('GLBrowserCrypto', [])
     }
     var key = res.keys[0];
     
-    var niceprint = makeNiceFingerPrint(key.primaryKey.fingerprint);
+    var niceprint = niceFingerPrint(key.primaryKey.fingerprint);
     var uids = extractAllUids(key);
     var created = key.primaryKey.created;
     
@@ -36,9 +31,9 @@ angular.module('GLBrowserCrypto', [])
     };
   }
  
-  // makeNiceFingerPrint produces the full key fingerprint in the standard
+  // niceFingerPrint produces the full key fingerprint in the standard
   // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
-  function makeNiceFingerPrint(print) {
+  function niceFingerPrint(print) {
     if (typeof print !== 'string' && print.length !== 40) {
       // Do nothing, the passed params are strange.
       return print;
@@ -69,7 +64,7 @@ angular.module('GLBrowserCrypto', [])
 
   return {
     restrict: 'E',
-    templateUrl: '/sandbox/pubkey_display.html',
+    templateUrl: '/views/partials/pgp/pubkey_display.html',
     scope: {
       keyStr: '=keyStr',
 
@@ -91,7 +86,7 @@ angular.module('GLBrowserCrypto', [])
 
   return {
     restrict: 'E',
-    templateUrl: '/sandbox/pub_key_input.html',
+    templateUrl: '/views/partials/pgp/pubkey_input.html',
     scope: {
       localModel: '=attachedModel',
       keyForm: '=attachedForm',
