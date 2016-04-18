@@ -7,6 +7,6 @@
     {{ key_details.fingerprint.slice(25) }}
   </b>
 </p>
-<p ng-repeat="uid in key_details.user_info"><code>{{ uid }}</code></p>
+<p data-ng-repeat="uid in key_details.user_info"><code>{{ uid }}</code></p>
 <p><span data-translate>Date created:</span> {{ key_details.created | date:"dd/MM/yyyy" }}</p>
 <p><span data-translate>Expiration date:</span> {{ key_details.expiration | date:"dd/MM/yyyy" }}</p>
