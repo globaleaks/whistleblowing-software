@@ -3,23 +3,23 @@
   class="form-control"
   name="_pubKeyInp"  
   data-ng-attr-placeholder="{{'Copy and paste the PGP public key here'}}" 
-  ng-model="localModel"
+  data-ng-model="localModel"
   >
 </textarea>
 <br/>
 <div class="alert alert-danger"
-  ng-show="keyForm._pubKeyInp.$error.pgpPubKeyValidator && keyForm.$dirty">
+  data-ng-show="keyForm._pubKeyInp.$error.pgpPubKeyValidator && keyForm._pubKeyInp.$modelValue.$dirty">
   <p class="has-error"
   data-translate>
   The PGP public key you input is invalid!
   </p>
 </div>
 <div class="alert alert-success"
-  ng-show="keyForm._pubKeyInp.$valid && keyForm.$dirty">
+  data-ng-show="keyForm._pubKeyInp.$valid && keyForm.$dirty">
   <p data-translate>
   The PGP public key you input is valid!
   </p>
 </div>
-<div ng-show="keyForm._pubKeyInp.$valid && keyForm._pubKeyInp.$dirty">
+<div data-ng-show="keyForm._pubKeyInp.$valid && keyForm._pubKeyInp.$dirty">
   <pgp-pubkey-display key-str="localModel">
 </div>
