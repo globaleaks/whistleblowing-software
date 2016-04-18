@@ -1,4 +1,4 @@
-angular.module('GLClient', [])
+angular.module('GLBrowserCrypto', [])
 .controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
   rec = { 
     pgp_key_public: "",
@@ -18,7 +18,7 @@ angular.module('GLClient', [])
   // makeNiceFingerPrint produces the full key fingerprint in the standard
   // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
   function makeNiceFingerPrint(print) {
-    if (print.length !== 40) {
+    if (typeof print !== 'string' && print.length !== 40) {
       // Do nothing, the passed params are strange.
       return print;
     }
@@ -37,7 +37,7 @@ angular.module('GLClient', [])
     return nice;
   }
 
-  // Returns all of the userId's found in the list of uids attached to the key
+  // Returns all of the userId's found in the list of uids attached to the key.
   function extractAllUids(key) {
     var uids = [];
     key.users.forEach(function(user) {
@@ -80,7 +80,6 @@ angular.module('GLClient', [])
       // becomes valid. When that happens the public key attached via localModel
       // is now both ready for use elsewhere in the application and for display
       $scope.$watch('keyForm.txt.$valid', function(newVal, oldVal) {
-        console.log("into digest", newVal, oldVal);
         // When the watch is init this case fires.
         if (oldVal === newVal) {
           return;
@@ -106,13 +105,13 @@ angular.module('GLClient', [])
 .directive('pgpPubKeyValidator', function() {
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
-    // Check for obvious problems
+    // Check for obvious problems.
     var s = textInput.trim();
     if (!s.startsWith('-----')) {
       return false;
     }
 
-    // Try to parse the key
+    // Try to parse the key.
     var result;
     try {
       result = openpgp.key.readArmored(s);
@@ -121,19 +120,22 @@ angular.module('GLClient', [])
       return false;
     }
     
-    // Assert that the parse created no errors
+    // Assert that the parse created no errors.
     if (angular.isDefined(result.err)) {
       return false;
     }
 
-    // Assert that there is only one key in the input
+    // Assert that there is only one key in the input.
     if (result.keys.length !== 1) {
       return false;
     }
     
     var key = result.keys[0];
-    // Assert that the key is a not a private key and is a public key
+    // Assert that the key type is not private and the public flag is set.
     if (key.isPrivate() || !key.isPublic()) {
+      // Woops, the user just pasted a private key
+      delete key;
+      delete result;
       return false;
     }
     
