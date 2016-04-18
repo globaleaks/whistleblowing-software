@@ -37,13 +37,15 @@
                 <span>{{::file.name}}</span>
               </td>
               <td data-ng-show="file.status != 'unavailable'">
-                <form id="fileDownload" method="POST" action="{{::file.href}}" novalidate>
-                  <input type="hidden" name="session" value="{{session.id}}">
-                  <button class="btn btn-xs btn-default">
-                    <i class="glyphicon glyphicon-download"></i>
-                    <span data-translate>download</span>
-                  </button>
-                </form>
+                <button class="tip-action-download-file"
+                        uib-popover="{{'Export' | translate}}"
+                        popover-placement="top"
+                        popover-trigger="mouseenter"
+                        class="btn btn-default"
+                        data-ng-click="downloadFile(tip, file)">
+                  <i class="glyphicon glyphicon-download"></i>
+                  <span data-translate>download</span>
+                </button>
               </td>
               <td data-ng-show="file.status == 'unavailable'">
                 <div class="label label-warning" uib-popover="{{'The file is unavailable due to an internal error.' | translate}}" popover-placement="bottom" popover-trigger="mouseenter" data-translate>file unavailable</div>
