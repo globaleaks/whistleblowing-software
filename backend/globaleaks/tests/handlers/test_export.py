@@ -35,4 +35,4 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
 
             handler.flush = flush_mock
 
-            yield handler.post(rtip_desc['id'])
+            yield handler.get(rtip_desc['id'])
