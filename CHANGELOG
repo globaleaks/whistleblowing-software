@@ -1,3 +1,9 @@
+Changes in version 2.61.4 - 2016-04-18
+    Fix streaming encryption of PGP files (#1643)
+
+    The following is the comprehensive list of closed tickets:
+    o https://github.com/globaleaks/GlobaLeaks/issues/1643
+
 Changes in version 2.61.3 - 2016-04-13
     Fix regression on Context/Users deletion (#1633)
     Fix issues: #1637, #1639
