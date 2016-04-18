@@ -439,6 +439,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
+ factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+    return function(tip, file) {
+      $http({
+        method: 'GET',
+        url: '/rtip/' + tip.id + '/download/' + file.id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, file.name);
+      });
+    };
+}]).
   factory('RTipExport', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
     return function(tip) {
       $http({
