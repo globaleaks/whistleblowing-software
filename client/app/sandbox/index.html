@@ -28,7 +28,9 @@
     </style>
     
     <div>
-    <pgppubkeyinput attached-model="receiver.pgp_key_public" ></pgppubkeyinput>
+      <form name="prefForm">
+        <pgp-pubkey-input attached-model="receiver.pgp_key_public" attached-form="prefForm" ></pgp-pubkey-input>
+      </form>
     </div>
 
     <script src="/components/js-polyfills/typedarray.js"></script>
