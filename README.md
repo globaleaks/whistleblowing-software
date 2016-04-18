@@ -6,11 +6,6 @@ GlobaLeaks is a project aimed at creating an opensource and free software whistl
 
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-## GlobaLeaks is hiring!
-[EN] GlobaLeaks Project is hiring talented developers! [Apply here](http://logioshermes.org/open-call-for-globaleaks-developers/)
-
-[IT] Il Progetto GlobaLeaks sta cercando sviluppatori! [Fai application qui!](http://logioshermes.org/cerchiamo-sviluppatori-per-software-libero-globaleaks/)
-
 ## Community and support
 If you need help with the software write your inquiry to the GlobaLeaks [Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk): globaleaks-talk@lists.globaleaks.org
 
@@ -18,7 +13,7 @@ If instead you need to contact us privately to get feedback on a specific whistl
 
 Other resources:
 * [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
-* Join [#globaleaks](https://kiwiirc.com/client/irc.oftc.net/?nick=Im_patient|?#globaleaks), our IRC chat channel on the irc.oftc.net server.
+* Join [#globaleaks](https://kiwiirc.com/client/irc.oftc.net/?nick=gl-?#globaleaks), our IRC chat channel on the irc.oftc.net server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
