@@ -19,7 +19,9 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
+
         yield handler.get()
+
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
         self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminNotificationDesc)
 
