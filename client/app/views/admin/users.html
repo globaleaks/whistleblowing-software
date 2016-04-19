@@ -173,7 +173,7 @@
                     </div>
                     <div>
                       <label data-translate>Set up encryption by providing a PGP public key</label>
-                      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public"></textarea>
+                      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
                     </div>
                   </div>
                 </div>

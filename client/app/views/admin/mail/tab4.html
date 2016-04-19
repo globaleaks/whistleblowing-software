@@ -13,18 +13,9 @@
         <span data-translate>Encryption is enabled!</span>
       </div>
 
-      <p>
-        <span data-translate>PGP key details</span>
-        <br />
-        <span data-translate>The fingerprint is:</span>
-        <b>{{admin.notification.exception_email_pgp_key_fingerprint}}</b>
-      </p>
+      <div pgp-pubkey-display key-str="admin.notification.exception_email_pgp_key_public"></div>
 
-      <div>
-        <pre>{{admin.notification.exception_email_pgp_key_info}}</pre>
-      </div>
-
-      <div class="form-group" data-ng-show="admin.notification.exception_email_pgp_key_fingerprint">
+    <div class="form-group" data-ng-show="admin.notification.exception_email_pgp_key_fingerprint">
         <input data-ng-model="admin.notification.exception_email_pgp_key_remove" type="checkbox">
         <label data-translate>Remove the PGP key</label>
       </div>
@@ -39,7 +30,7 @@
 
     <div class="form-group" data-ng-hide="admin.notification.exception_email_pgp_key_fingerprint">
       <label data-translate>Set up encryption by providing a PGP public key</label>
-      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="admin.notification.exception_email_pgp_key_public"></textarea>
+      <textarea pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="admin.notification.exception_email_pgp_key_public"></textarea>
     </div>
   </div>
 </div>
