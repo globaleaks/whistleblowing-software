@@ -7,12 +7,12 @@
         <div class="form-group" data-ng-if="!node.simplified_login">
           <label data-translate>Username</label>
           <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
-          <div class="text-red" data-ng-show="newUser.username.$error.required" data-translate>This field is mandatory</div>
+          <div class="text-danger" data-ng-show="newUser.username.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Name</label>
           <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
-          <div class="text-red" data-ng-show="newUser.name.$error.required" data-translate>This field is mandatory</div>
+          <div class="text-danger" data-ng-show="newUser.name.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Role</label>
@@ -21,13 +21,13 @@
             <option value="receiver" data-translate>Recipient</option>
             <option value="custodian" data-translate>Custodian</option>
           </select>
-          <div class="text-red" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
+          <div class="text-danger" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Email address</label>
           <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
-          <div class="text-red" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
-          <div class="text-red" data-ng-show="newUser.email.$error.required" data-translate>This field is mandatory</div>
+          <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
+          <div class="text-danger" data-ng-show="newUser.email.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Password</label>
@@ -99,18 +99,18 @@
                   <div class="form-group" data-ng-if="!node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
                     <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.name" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Email address</label>
                     <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
-                    <div class="text-red" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
-                    <div class="text-red" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
+                    <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Password</label>

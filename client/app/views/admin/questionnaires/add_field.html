@@ -3,7 +3,7 @@
     <div class="form-group">
       <label data-translate>Label</label>
       <input name="label" class="form-control" data-ng-model="new_field.label" maxlength="{{node.maximum_namesize}}" type="text" required>
-      <div class="text-red" data-ng-show="newField.label.$error.required">
+      <div class="text-danger" data-ng-show="newField.label.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>
     </div>
@@ -20,7 +20,7 @@
         <option value="date" data-translate>Date</option>
         <option value="fieldgroup" data-translate>Group of questions</option>
       </select>
-      <div class="text-red" data-ng-show="newField.type.$error.required">
+      <div class="text-danger" data-ng-show="newField.type.$error.required">
         <span data-translate>This field is mandatory</span>
       </div>
     </div>
