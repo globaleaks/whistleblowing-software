@@ -55,38 +55,37 @@
                 <span>{{user.name}}</span>
                 <span class="label label-primary label-as-badge">
                   <span data-translate>Role</span><span>:</span>
-                    <span data-ng-switch="user.role">
-                      <span data-ng-switch-when="admin" data-translate>Admin</span>
-                      <span data-ng-switch-when="receiver" data-translate>Recipient</span>
-                      <span data-ng-switch-when="custodian" data-translate>Custodian</span>
-                    </span>
+                  <span data-ng-switch="user.role">
+                    <span data-ng-switch-when="admin" data-translate>Admin</span>
+                    <span data-ng-switch-when="receiver" data-translate>Recipient</span>
+                    <span data-ng-switch-when="custodian" data-translate>Custodian</span>
                   </span>
                 </span>
               </span>
-              <span class="col-md-5">
-                <span class="pull-right">
-                  <button class="actionButton actionButtonEdit btn btn-xs btn-default"
-                    data-ng-show="!editing"
-                    data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Edit</span>
-                  </button>
-                  <button class="actionButton actionButtonSave btn btn-xs btn-success"
-                    data-ng-show="editing"
-                    data-ng-click="save_user(user)">
-                    <span data-translate>Save</span>
-                  </button>
-                  <button 
-                    class="actionButton actionButtonCancel btn btn-xs btn-default"
-                    data-ng-show="editing"
-                    data-ng-click="toggleEditing(); $event.stopPropagation();">
-                    <span data-translate>Cancel</span>
-                  </button>
-                  <button class="actionButton actionButtonDelete btn btn-xs btn-danger"
-                    data-ng-show="user.deletable"
-                    data-ng-click="userDeleteDialog(user); $event.stopPropagation();">
-                    <span data-translate>Delete</span>
-                  </button>
-                </span>
+            </span>
+            <span class="col-md-5">
+              <span class="pull-right">
+                <button class="actionButton actionButtonEdit btn btn-xs btn-default"
+                  data-ng-show="!editing"
+                  data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Edit</span>
+                </button>
+                <button class="actionButton actionButtonSave btn btn-xs btn-success"
+                  data-ng-show="editing"
+                  data-ng-click="save_user(user)">
+                  <span data-translate>Save</span>
+                </button>
+                <button 
+                  class="actionButton actionButtonCancel btn btn-xs btn-default"
+                  data-ng-show="editing"
+                  data-ng-click="toggleEditing(); $event.stopPropagation();">
+                  <span data-translate>Cancel</span>
+                </button>
+                <button class="actionButton actionButtonDelete btn btn-xs btn-danger"
+                  data-ng-show="user.deletable"
+                  data-ng-click="userDeleteDialog(user); $event.stopPropagation();">
+                  <span data-translate>Delete</span>
+                </button>
               </span>
             </div>
             <div class="editor" data-ng-if="editing">
@@ -136,52 +135,56 @@
                       <option value="enabled" data-translate>Enabled</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label data-translate>Language</label>
-                    <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Timezone</label>
-                    <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
-                  </div>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Description</label>
+                  <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Status</label>
+                  <select class="form-control" data-ng-model="user.state">
+                    <option value="disabled" data-translate>Disabled</option>
+                    <option value="enabled" data-translate>Enabled</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Language</label>
+                  <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Timezone</label>
+                  <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group" data-ng-show="user.pgp_key_status === 'enabled'">
-                    <div class="alert alert-success">
-                      <div data-translate>Encryption is enabled!</div>
-                      <div data-translate>Email notifications will be encrypted.</div>
-                    </div>
-                    <div>
-                      <div data-translate>Details of the PGP key:</div>
-                      <div>
-                        <span data-translate>The fingerprint is:</span>
-                        <b>{{user.pgp_key_fingerprint}}</b>
-                      </div>
-                    </div>
-                    <div class="preformatted">{{user.pgp_key_info}}</div>
-                    <div class="form-group">
-                      <input data-ng-model="user.pgp_key_remove" type="checkbox" />
-                      <label data-translate>Remove the PGP key</label>
-                    </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group" data-ng-show="user.pgp_key_status === 'enabled'">
+                  <div class="alert alert-success">
+                    <div data-translate>Encryption is enabled!</div>
+                    <div data-translate>Email notifications will be encrypted.</div>
                   </div>
-                  <div class="form-group" data-ng-hide="user.pgp_key_status === 'enabled'">
-                    <div class="alert alert-danger">
-                      <div data-translate>Encryption is not enabled!</div>
-                      <div data-translate>Email notifications won't be encrypted.</div>
-                    </div>
-                    <div>
-                      <label data-translate>Set up encryption by providing a PGP public key</label>
-                      <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public"></textarea>
-                    </div>
+                  <div data-pgp-pubkey-details data-key-str="user.pgp_key_fingerprint"></div>
+                  <div class="form-group">
+                    <input data-ng-model="user.pgp_key_remove" type="checkbox" />
+                    <label data-translate>Remove the PGP key</label>
+                  </div>
+                </div>
+                <div class="form-group" data-ng-hide="user.pgp_key_status === 'enabled'">
+                  <div class="alert alert-danger">
+                    <div data-translate>Encryption is not enabled!</div>
+                    <div data-translate>Email notifications won't be encrypted.</div>
+                  </div>
+                  <div>
+                    <label data-translate>Set up encryption by providing a PGP public key</label>
+                    <textarea class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

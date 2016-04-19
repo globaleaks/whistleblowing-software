@@ -19,7 +19,7 @@
     </div>
     <div>
       <label data-translate>Set a PGP public key for encryption of email notifications</label>
-      <div pgp-pubkey-input attached-model="preferences.pgp_key_public" attached-form="pgpkeyForm"></div>
+    <textarea data-pgp-pubkey-validator="canBeEmpty" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="preferences.pgp_key_public"></textarea>
     </div>
   </div>
   <div class="form-group">
