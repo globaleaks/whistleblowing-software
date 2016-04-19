@@ -30,6 +30,7 @@ from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField
 from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
 from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
+from globaleaks.db.migrations.update_32 import User_v_31, Notification_v_31
 
 
 migration_mapping = OrderedDict([
@@ -52,7 +53,7 @@ migration_mapping = OrderedDict([
     ('Mail', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_19, 0, 0, 0, models.Message, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Node', [Node_v_16, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, models.Node, 0]),
-    ('Notification', [Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, models.Notification, 0]),
+    ('Notification', [Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_31, models.Notification]),
     ('Questionnaire', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Questionnaire, 0, 0]),
     ('Receiver', [Receiver_v_16, Receiver_v_19, 0, 0, Receiver_v_20, Receiver_v_23, 0, 0, models.Receiver, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverContext', [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
@@ -63,7 +64,7 @@ migration_mapping = OrderedDict([
     ('StepField', [StepField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1]),
     ('SecureFileDelete', [-1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Stats', [Stats_v_16, models.Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('User', [User_v_20, 0, 0, 0, 0, User_v_23, 0, 0, User_v_24, User_v_30, 0, 0, 0, 0, 0, models.User, 0]),
+    ('User', [User_v_20, 0, 0, 0, 0, User_v_23, 0, 0, User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, models.User]),
     ('WhistleblowerTip', [models.WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 ])
 
