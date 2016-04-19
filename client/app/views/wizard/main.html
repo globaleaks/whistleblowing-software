@@ -28,7 +28,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Project name</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.node_name.$error.required}">
             <input name="node_name" class="form-control" data-ng-model="admin.node.name" data-ng-attr-placeholder="{{'Enter the name for your whistleblowing project' | translate}}" maxlength="{{node.maximum_namesize}}" type="text" required>
@@ -37,7 +37,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Project description</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8"  data-ng-class="{'has-error': wizardForm.node_description.$error.required}">
             <textarea name="node_description" class="form-control" data-ng-model="admin.node.description" data-ng-attr-placeholder="{{'Give a concise description of your project' | translate}}" maxlength="{{node.maximum_textsize}}" required></textarea>
@@ -56,11 +56,11 @@
          <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Email address</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.admin_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="admin_email" class="form-control" data-ng-model="admin_mail_address" data-ng-attr-placeholder="{{'Enter an email address for the administrator' | translate}}" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
-            <div class="text-red" data-ng-show="wizardForm.admin_email.$error.pattern">
+            <div class="text-danger" data-ng-show="wizardForm.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -68,7 +68,7 @@
          <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Password</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" zxcvbn="passwordStrength" zx-min-score="3" required />
@@ -78,11 +78,11 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Confirm password</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" required />
-            <div class="text-red" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)">
+            <div class="text-danger" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)">
               <span data-translate>The two passwords do not match</span>
             </div>
           </div>
@@ -100,7 +100,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Name</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_name.$error.required}">
             <input name="receiver_name" class="form-control" data-ng-model="receiver.name" maxlength="{{node.maximum_namesize}}" type="text" data-ng-attr-placeholder="{{'Enter the name of the recipient' | translate}}" required>
@@ -109,11 +109,11 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Email address</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
-            <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.pattern">
+            <div class="text-danger" data-ng-show="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -121,7 +121,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Password</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8">
             <div>
@@ -133,7 +133,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>PGP key</span>
-            <span class="text-red" data-ng-show="!admin.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" data-ng-show="!admin.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
             <textarea name="pgpkey" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="receiver.pgp_key_public" data-ng-required="!admin.node.allow_unencrypted"></textarea>
@@ -165,7 +165,7 @@
         <div class="form-group col-md-12">
           <label class="col-md-4">
             <span data-translate>Name</span>
-            <span class="text-red" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.context_name.$error.required}">
             <input name="context_name" class="form-control" data-ng-model="context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}" required>

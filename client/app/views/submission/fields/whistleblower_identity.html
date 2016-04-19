@@ -8,7 +8,7 @@
     <div data-ng-if="submission._submission.identity_provided === false && vars.confirmation_upon_negative_answer === unspecified" class="alert alert-warning" data-ng-class="{'has-error': f['whistleblower_identity_radio_2'].$error.required}">
       <div>
         <span class="fieldLabel">{{field.attrs.title_of_confirmation_question_upon_negative_answer.value}}</span>
-        <span class="text-red"
+        <span class="text-danger"
               uib-popover="{{'This field is mandatory' | translate}}"
               popover-placement="right"
               popover-trigger="mouseenter">*</span>
