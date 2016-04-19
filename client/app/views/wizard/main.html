@@ -82,16 +82,12 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" required />
-            <div class="text-danger" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)">
-              <span data-translate>The two passwords do not match</span>
-            </div>
+            <div class="text-danger" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
         </div>
       </div>
       <div class="col-md-6">
-        <p class="wizard-help-hint">
-          <span data-translate>The username for accessing the server as the administrator will be 'admin'.</span>
-        </p>
+        <div class="wizard-help-hint" data-translate>The username for accessing the server as the administrator will be 'admin'.</div>
       </div>
     </div>
     <div class="row wizard-block">
@@ -148,15 +144,10 @@
         </div>
       </div>
       <div class="col-md-6">
-        <p class="wizard-help-hint">
-          <span data-translate>Recipients are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</span>
-        </p>
+        <div class="wizard-help-hint" data-translate>Recipients are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</div>
       </div>
       <div class="col-md-6">
-        <p class="wizard-help-hint">
-          <span data-translate>In order to deliver encrypted emails and files each recipient needs an associated PGP key. Cut and paste the key of the recipient or mark the checkbox:</span>
-          <span data-translate>Enable insecure configuration without PGP encryption.</span>
-        </p>
+        <div class="wizard-help-hint" data-translate>In order to deliver encrypted emails and files each recipient needs an associated PGP key.<div>
       </div>
     </div>
     <div class="row wizard-block">
@@ -173,9 +164,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <p class="wizard-help-hint">
-          <span data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your project.</span>
-        </p>
+        <div class="wizard-help-hint" data-translate>Contexts are the categories to be selected by whistleblowers, when they perform their submission. Make sure to make them pertinent to your project.</div>
       </div>
     </div>
     <div class="pager pull-right">
@@ -197,9 +186,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonNext3" class="btn btn-success btn-large" data-ng-click="finish()" type="submit">
-        <span data-translate>Go to admin interface</span>
-      </button>
+      <button id="ButtonNext3" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
     </div>
   </div>
 </form>
