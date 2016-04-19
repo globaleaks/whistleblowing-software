@@ -23,6 +23,9 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get()
 
+        self.assertTrue('pgp_key_info' not in self.responses[0])
+
+
     @inlineCallbacks
     def test_put_data_obtained_with_get(self):
         handler = self.request(user_id = self.rcvr_id, role='receiver')
@@ -80,7 +83,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[2]['pgp_key_status'], u'disabled')
         self.assertIsNone(self.responses[2]['pgp_key_fingerprint'])
         self.assertIsNone(self.responses[2]['pgp_key_public'])
-        self.assertIsNone(self.responses[2]['pgp_key_info'])
         self.assertEqual(self.responses[2]['pgp_key_expiration'], '1970-01-01T00:00:00Z')
 
     @inlineCallbacks
