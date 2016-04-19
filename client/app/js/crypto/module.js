@@ -83,52 +83,14 @@ angular.module('GLBrowserCrypto', [])
   }]};
 })
 
-// pgpPubkeyInput is an element directive that can display validated pgp
-// public keys. The attached-model attribute will be bound to the input of the
-// text area.
-.directive('pgpPubkeyInput', function() {
-  return {
-    restrict: 'A',
-    templateUrl: '/views/partials/pgp/pubkey_input.html',
-    scope: {
-      localModel: '=attachedModel',
-      keyForm: '=attachedForm',
-      required: '&attachedRequired',
-    },
-    controller: ['$scope', function($scope) {
-      // The key point of the controller occurs when the keyForm.pgpkey input
-      // becomes valid. When that happens the public key attached via localModel
-      // is now both ready for use elsewhere in the application and for display
-      $scope.$watch('keyForm.pgpkey.$valid', function(newVal, oldVal) {
-        // When the watch is init this case fires.
-        if (oldVal === newVal) {
-          return;
-        }
-
-        // The PGP Key is valid. Extract its details.
-        if (newVal) {
-          $scope.keyStr = $scope.keyForm.pgpkey.$modelValue;
-        } else {
-          // If the key has changed due to new input, dereference old key_details.
-          $scope.keyStr = undefined;
-        }
-      });
-    }],
-  };
-})
-
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input GPG public keys. Note that the directive attaches itself to the 
 // containing form's ngModelController NOT the ngModel bound to the value of the 
-// text-area itself.
+// text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
+// when the textarea's input is empty.
 .directive('pgpPubkeyValidator', function() {
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
-    // Check for obvious problems.
-    if (typeof textInput !== 'string') {
-      return false; 
-    }
-
     var s = textInput.trim();
 
     if (!s.startsWith('-----')) {
@@ -173,14 +135,35 @@ angular.module('GLBrowserCrypto', [])
   // attrs is the list of directives on the element
   // ngModel is the model controller attached to the form
   function link(scope, elem, attrs, ngModel){
+
+    scope.canBeEmpty = false;
+    if (scope.pgpPubkeyValidator === 'canBeEmpty') {
+      scope.canBeEmpty = true;
+    } 
+
     // modelValue is the models value, viewVal is displayed on the page.
     ngModel.$validators.pgpPubKeyValidator = function(modelVal, viewVal) {
+
+      // Check for obvious problems.
+      if (typeof modelVal !== 'string') {
+        modelVal = '';
+      }
+
+      if (scope.canBeEmpty && modelVal === '') {
+        return true;
+      }
+
       return validatePubKey(modelVal);
     };
   }
   // Return a Directive Definition Object for angular to compile
   return {
+    restrict: 'A',
     require: 'ngModel',
     link: link,
+    scope: {
+      // The string passed to the directive is used to assign special key word behavior.
+      pgpPubkeyValidator: '@', 
+    }
   };
 });
