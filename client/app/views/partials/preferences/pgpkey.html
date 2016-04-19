@@ -1,30 +1,31 @@
-<div data-ng-show="preferences.pgp_key_status === 'enabled'">
-  <div class="alert alert-success">
-    <span data-translate>Encryption is enabled!</span>
-    <span data-translate>Email notifications will be encrypted.</span>
+<div data-ng-form="pgpkeyForm">
+  <div data-ng-show="preferences.pgp_key_status === 'enabled'">
+    <div class="alert alert-success">
+      <span data-translate>Encryption is enabled!</span>
+      <span data-translate>Email notifications will be encrypted.</span>
+    </div>
+
+    <div pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
+    <div class="form-group">
+      <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
+      <label data-translate>Remove the PGP key</label>
+    </div>
   </div>
 
-  <pgp-pubkey-display key-str="preferences.pgp_key_public"></pgp-pubkey-display>
+  <div class="form-group" data-ng-hide="preferences.pgp_key_status === 'enabled'" data-ng-class="{'has-error': !pgpkeyForm.$valid}">
+    <div class="alert alert-danger">
+      <div data-translate>Encryption has not been enabled!</div>
+      <div data-translate>Email notifications won't be encrypted.</div>
+    </div>
+    <div>
+      <label data-translate>Set a PGP public key for encryption of email notifications</label>
+      <div pgp-pubkey-input attached-model="preferences.pgp_key_public" attached-form="pgpkeyForm"></div>
+    </div>
+  </div>
   <div class="form-group">
-    <input data-ng-model="preferences.pgp_key_remove" type="checkbox">
-    <label data-translate>Remove the PGP key</label>
+    <button type="submit" class="btn btn-success" data-ng-click="pref_save()" data-ng-disabled="pgpkeyForm.$invalid">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span data-translate>Update notification and encryption settings</span>
+    </button>
   </div>
-</div>
-
-<div class="form-group" data-ng-hide="preferences.pgp_key_status === 'enabled'">
-  <div class="alert alert-danger">
-    <div data-translate>Encryption has not been enabled!</div>
-    <div data-translate>Email notifications won't be encrypted.</div>
-  </div>
-  <div>
-    <label data-translate>Set a PGP public key for encryption of email notifications</label>
-    <pgp-pubkey-input attached-model="preferences.pgp_key_public" attached-form="preferencesForm" ></pgp-pubkey-input>
-  </div>
-</div>
-
-<div class="form-group">
-  <button type="submit" class="btn btn-success" data-ng-click="pref_save()">
-    <i class="glyphicon glyphicon-ok"></i>
-    <span data-translate>Update notification and encryption settings</span>
-  </button>
 </div>
