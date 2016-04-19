@@ -13,10 +13,10 @@
         </button>
       </div>
       <div class="row" data-ng-show="!node.tor2web_whistleblower && !anonymous">
-        <p class="text-red" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
+        <p class="text-danger" data-translate>You are connecting to the server without anonymity and this server supports only anonymous submissions</p>
       </div>
       <div class="row" data-ng-show="!node.accept_submissions">
-        <p class="text-red">
+        <p class="text-danger">
           <span data-translate>Server temporarly unusable due to resource exhaustion; advise the Admin if you can.</span>
         </p>
       </div>
