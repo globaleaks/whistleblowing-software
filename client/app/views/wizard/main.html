@@ -132,9 +132,9 @@
             <span class="text-danger" data-ng-show="!admin.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required || (receiver.pgp_key_public !== '' && wizardForm.pgpkey.$invalid)}">{{wizardForm.pgpkey.$invalid}}
-            <div class="form-group" pgp-pubkey-input attached-model="receiver.pgp_key_public" attached-form="wizardForm" attached-required="!admin.node.allow_unencrypted"></div>
+            <div class="form-group" data-ng-if="!admin.node.allow_unencrypted" pgp-pubkey-input attached-model="receiver.pgp_key_public" attached-form="wizardForm" attached-required="!admin.node.allow_unencrypted"></div>
             <div>
-              <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="receiver.pgp_key_public = admin.node.allow_unencrypted ? '' : receiver.pgp_key_public">
+              <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="receiver.pgp_key_public = admin.node.allow_unencrypted ? '' : receiver.pgp_key_public; ">
               <span data-translate>Enable insecure configuration without PGP encryption.</span>
               <div data-ng-show="admin.node.allow_unencrypted">
                 <span class="label label-danger" data-translate>Danger</span>

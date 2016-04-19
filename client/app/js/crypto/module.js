@@ -131,10 +131,6 @@ angular.module('GLBrowserCrypto', [])
 
     var s = textInput.trim();
 
-    if (s === '') {
-      return true;
-    }
-
     if (!s.startsWith('-----')) {
       return false;
     }
