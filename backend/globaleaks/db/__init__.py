@@ -89,7 +89,6 @@ def init_db(store):
         'password_change_needed': False,
         'pgp_key_remove': False,
         'pgp_key_status': 'disabled',
-        'pgp_key_info': '',
         'pgp_key_fingerprint': '',
         'pgp_key_public': '',
         'pgp_key_expiration': datetime_null()
@@ -253,7 +252,6 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.notif_source_email = notif.source_email
 
     GLSettings.memory_copy.exception_email_address = notif.exception_email_address
-    GLSettings.memory_copy.exception_email_pgp_key_info = notif.exception_email_pgp_key_info
     GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
     GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
     GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration

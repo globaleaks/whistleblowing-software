@@ -18,8 +18,11 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
+
         yield handler.get()
+
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
+        self.assertTrue('exception_email_pgp_key_info' not in self.responses[0])
 
     @inlineCallbacks
     def test_put(self):
