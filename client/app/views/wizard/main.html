@@ -113,7 +113,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
-            <div class="text-red" data-ng-show="wizardForm.receiver_email.$error.pattern">
+            <div class="text-danger" data-ng-show="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -135,14 +135,16 @@
             <span data-translate>PGP key</span>
             <span class="text-red" data-ng-show="!admin.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
-            <textarea name="pgpkey" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="receiver.pgp_key_public" data-ng-required="!admin.node.allow_unencrypted"></textarea>
-            <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="receiver.pgp_key_public = admin.node.allow_unencrypted ? '' : receiver.pgp_key_public">
-            <span data-translate>Enable insecure configuration without PGP encryption.</span>
-            <div data-ng-show="admin.node.allow_unencrypted">
-              <span class="label label-danger" data-translate>Danger</span>
-              <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
-              <span data-translate>This happens whenever encryption is unavailable.</span>
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required || (receiver.pgp_key_public !== '' && wizardForm.pgpkey.$invalid)}">{{wizardForm.pgpkey.$invalid}}
+            <div class="form-group" pgp-pubkey-input attached-model="receiver.pgp_key_public" attached-form="wizardForm" attached-required="!admin.node.allow_unencrypted"></div>
+            <div>
+              <input data-ng-model="admin.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="receiver.pgp_key_public = admin.node.allow_unencrypted ? '' : receiver.pgp_key_public">
+              <span data-translate>Enable insecure configuration without PGP encryption.</span>
+              <div data-ng-show="admin.node.allow_unencrypted">
+                <span class="label label-danger" data-translate>Danger</span>
+                <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
+                <span data-translate>This happens whenever encryption is unavailable.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -154,7 +156,7 @@
       </div>
       <div class="col-md-6">
         <p class="wizard-help-hint">
-          <span data-translate>In order to deliver encrypted emails and files each recipient needs an associated PGP key. Cut and paste the key of the recipient or mark the checkbox:</span>
+          <span data-translate>In order to deliver encrypted emails and files each recipient needs an associated PGP key.</span>
           <span data-translate>Enable insecure configuration without PGP encryption.</span>
         </p>
       </div>
