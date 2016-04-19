@@ -2,7 +2,6 @@ angular.module('GLBrowserCrypto', [])
 
 // pgpPubKeyDisplay displays the important details from a public key.
 .directive('pgpPubkeyDisplay', function() {
-  
   // Create object that displays relevant key details to the user. This function
   // returns fingerprint, key id, creation date, and expiration date. If the parse
   // fails the function returns undefined.
@@ -11,12 +10,14 @@ angular.module('GLBrowserCrypto', [])
     if (typeof armoredText !== 'string' || !armoredText.startsWith('---')) {
       return;
     }
+
     var res = openpgp.key.readArmored(armoredText);
 
     if (angular.isDefined(res.err)) {
       // There were errors. Bail out. 
       return;
     }
+
     var key = res.keys[0];
     
     var niceprint = niceFingerPrint(key.primaryKey.fingerprint);
@@ -38,7 +39,9 @@ angular.module('GLBrowserCrypto', [])
       // Do nothing, the passed params are strange.
       return print;
     }
+
     print = print.toUpperCase();
+
     var nice = print[0];
     for (var i = 1; i < 40; i++) {
       // Insert a space every 4th octet
@@ -50,6 +53,7 @@ angular.module('GLBrowserCrypto', [])
       }
       nice += print[i];
     }
+
     return nice;
   }
 
@@ -63,7 +67,7 @@ angular.module('GLBrowserCrypto', [])
   }
 
   return {
-    restrict: 'E',
+    restrict: 'A',
     templateUrl: '/views/partials/pgp/pubkey_display.html',
     scope: {
       keyStr: '=keyStr',
@@ -83,20 +87,19 @@ angular.module('GLBrowserCrypto', [])
 // public keys. The attached-model attribute will be bound to the input of the
 // text area.
 .directive('pgpPubkeyInput', function() {
-
   return {
-    restrict: 'E',
+    restrict: 'A',
     templateUrl: '/views/partials/pgp/pubkey_input.html',
     scope: {
       localModel: '=attachedModel',
       keyForm: '=attachedForm',
+      required: '&attachedRequired',
     },
     controller: ['$scope', function($scope) {
-      
-      // The key point of the controller occurs when the keyForm._pubKeyInp input 
+      // The key point of the controller occurs when the keyForm.pgpkey input
       // becomes valid. When that happens the public key attached via localModel
       // is now both ready for use elsewhere in the application and for display
-      $scope.$watch('keyForm._pubKeyInp.$valid', function(newVal, oldVal) {
+      $scope.$watch('keyForm.pgpkey.$valid', function(newVal, oldVal) {
         // When the watch is init this case fires.
         if (oldVal === newVal) {
           return;
@@ -104,7 +107,7 @@ angular.module('GLBrowserCrypto', [])
 
         // The PGP Key is valid. Extract its details.
         if (newVal) {
-          $scope.keyStr = $scope.keyForm._pubKeyInp.$modelValue;
+          $scope.keyStr = $scope.keyForm.pgpkey.$modelValue;
         } else {
           // If the key has changed due to new input, dereference old key_details.
           $scope.keyStr = undefined;
@@ -119,20 +122,26 @@ angular.module('GLBrowserCrypto', [])
 // containing form's ngModelController NOT the ngModel bound to the value of the 
 // text-area itself.
 .directive('pgpPubkeyValidator', function() {
-  
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
     // Check for obvious problems.
     if (typeof textInput !== 'string') {
       return false; 
     }
+
     var s = textInput.trim();
+
+    if (s === '') {
+      return true;
+    }
+
     if (!s.startsWith('-----')) {
       return false;
     }
 
     // Try to parse the key.
     var result;
+
     try {
       result = openpgp.key.readArmored(s);
     } catch (err) {
@@ -151,6 +160,7 @@ angular.module('GLBrowserCrypto', [])
     }
     
     var key = result.keys[0];
+
     // Assert that the key type is not private and the public flag is set.
     if (key.isPrivate() || !key.isPublic()) {
       // Woops, the user just pasted a private key
