@@ -83,6 +83,40 @@ angular.module('GLBrowserCrypto', [])
   }]};
 })
 
+// pgpPubkeyInput is an element directive that can display validated pgp
+// public keys. The attached-model attribute will be bound to the input of the
+// text area.
+.directive('pgpPubkeyInput', function() {
+  return {
+    restrict: 'A',
+    templateUrl: '/views/partials/pgp/pubkey_input.html',
+    scope: {
+      localModel: '=attachedModel',
+      keyForm: '=attachedForm',
+      required: '&attachedRequired',
+    },
+    controller: ['$scope', function($scope) {
+      // The key point of the controller occurs when the keyForm.pgpkey input
+      // becomes valid. When that happens the public key attached via localModel
+      // is now both ready for use elsewhere in the application and for display
+      $scope.$watch('keyForm.pgpkey.$valid', function(newVal, oldVal) {
+        // When the watch is init this case fires.
+        if (oldVal === newVal) {
+          return;
+        }
+
+        // The PGP Key is valid. Extract its details.
+        if (newVal) {
+          $scope.keyStr = $scope.keyForm.pgpkey.$modelValue;
+        } else {
+          // If the key has changed due to new input, dereference old key_details.
+          $scope.keyStr = undefined;
+        }
+      });
+    }],
+  };
+})
+
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
 // input GPG public keys. Note that the directive attaches itself to the 
 // containing form's ngModelController NOT the ngModel bound to the value of the 
@@ -91,8 +125,11 @@ angular.module('GLBrowserCrypto', [])
 .directive('pgpPubkeyValidator', function() {
   // Checks to see if passed text is an ascii armored GPG public key.
   function validatePubKey(textInput) {
-    var s = textInput.trim();
+    if (typeof textInput !== 'string') {
+      return false; 
+    }
 
+    var s = textInput.trim();
     if (!s.startsWith('-----')) {
       return false;
     }
