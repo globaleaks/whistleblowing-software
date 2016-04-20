@@ -51,7 +51,7 @@ angular.module('GLBrowserCrypto', [])
         - authentication secrete derivation from user password
         - pgp passphrase derivation from user password
         - pgp key creation passphrase protected with the passphrase derived by
-      GLBrowserCrypto.derivate_user_password("antani", "salt").then(function(result) {
+      GLBrowserCrypto.derive_user_password("antani", "salt").then(function(result) {
         GLBrowserCrypto.generate_e2e_key(result.passphrase).then(function(result) {
           console.log(result);
         });
@@ -107,24 +107,24 @@ angular.module('GLBrowserCrypto', [])
         return defer.promise;
       },
 
-      derivate_authentication: function(user_password, salt) {
+      derive_authentication: function(user_password, salt) {
         return this.scrypt(user_password, salt, M);
       },
 
-      derivate_passphrase: function(user_password, salt) {
+      derive_passphrase: function(user_password, salt) {
         return this.scrypt(user_password, salt, N);
       },
 
-      derivate_user_password: function (user_password, salt) {
+      derive_user_password: function (user_password, salt) {
         var defer1 = $q.defer();
         var defer2 = $q.defer();
         var result = $q.defer();
 
-        this.derivate_passphrase(user_password, salt).then(function(passphrase) {
+        this.derive_passphrase(user_password, salt).then(function(passphrase) {
           defer1.resolve(passphrase.stretched);
         });
 
-        this.derivate_authentication(user_password, salt).then(function(authentication) {
+        this.derive_authentication(user_password, salt).then(function(authentication) {
           defer2.resolve(authentication.stretched);
         });
 
