@@ -25,12 +25,8 @@ def parse_pgp_options(notification, request):
     new_pgp_key = request.get('exception_email_pgp_key_public', None)
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
-    # the default
-    notification.exception_email_pgp_key_status = u'disabled'
-
     if remove_key:
         # In all the cases below, the key is marked disabled as request
-        notification.exception_email_pgp_key_status = u'disabled'
         notification.exception_email_pgp_key_public = None
         notification.exception_email_pgp_key_fingerprint = None
         notification.exception_email_pgp_key_expiration = None
@@ -43,7 +39,6 @@ def parse_pgp_options(notification, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            notification.exception_email_pgp_key_status = u'enabled'
             notification.exception_email_pgp_key_public = new_pgp_key
             notification.exception_email_pgp_key_fingerprint = result['fingerprint']
             notification.exception_email_pgp_key_expiration = result['expiration']
@@ -79,7 +74,6 @@ def admin_serialize_notification(notif, language):
         'exception_email_pgp_key_fingerprint': notif.exception_email_pgp_key_fingerprint,
         'exception_email_pgp_key_public': notif.exception_email_pgp_key_public,
         'exception_email_pgp_key_expiration': datetime_to_ISO8601(notif.exception_email_pgp_key_expiration),
-        'exception_email_pgp_key_status': notif.exception_email_pgp_key_status,
         'exception_email_pgp_key_remove': False
     }
 

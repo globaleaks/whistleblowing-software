@@ -68,7 +68,7 @@ angular.module('GLBrowserCrypto', [])
 
   return {
     restrict: 'A',
-    templateUrl: '/views/partials/pgp/pubkey_display.html',
+    templateUrl: 'views/partials/pgp/pubkey_display.html',
     scope: {
       keyStr: '=keyStr',
 
@@ -139,7 +139,7 @@ angular.module('GLBrowserCrypto', [])
     scope.canBeEmpty = false;
     if (scope.pgpPubkeyValidator === 'canBeEmpty') {
       scope.canBeEmpty = true;
-    } 
+    }
 
     // modelValue is the models value, viewVal is displayed on the page.
     ngModel.$validators.pgpPubKeyValidator = function(modelVal, viewVal) {
@@ -163,7 +163,7 @@ angular.module('GLBrowserCrypto', [])
     link: link,
     scope: {
       // The string passed to the directive is used to assign special key word behavior.
-      pgpPubkeyValidator: '@', 
+      pgpPubkeyValidator: '@',
     }
   };
 });

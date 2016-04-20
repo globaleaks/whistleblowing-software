@@ -323,13 +323,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             if (receivers_ids.length) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
-                if ((receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) ||
+                if ((receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) ||
                     receiver.configuration !== 'unselectable') {
                   self.receivers_selected[receiver.id] = true;
                 }
               }
             } else {
-              if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+              if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
                 if (receiver.configuration === 'default') {
                   self.receivers_selected[receiver.id] = self.context.select_all_receivers;
                 } else if (receiver.configuration === 'forcefully_selected') {
@@ -349,7 +349,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           if (self.count_selected_receivers() === 0 && !self.context.select_all_receivers) {
             angular.forEach($rootScope.receivers, function(receiver) {
               if (self.context.receivers.indexOf(receiver.id) !== -1) {
-                if (receiver.pgp_key_status === 'enabled' || $rootScope.node.allow_unencrypted) {
+                if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
                   if (receiver.configuration !== 'unselectable') {
                     self.receivers_selected[receiver.id] = true;
                   }
@@ -663,7 +663,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           context.recipients_clarification = '';
           context.status_page_message = '';
           context.questionnaire_id = '';
-          context.custodians = [];
           context.receivers = [];
           return context;
         };
@@ -778,12 +777,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           user.name = '';
           user.description = '';
           user.mail_address = '';
-          user.pgp_key_info = '';
           user.pgp_key_fingerprint = '';
           user.pgp_key_remove = false;
           user.pgp_key_public = '';
           user.pgp_key_expiration = '';
-          user.pgp_key_status = 'ignored';
           user.language = 'en';
           user.timezone = 0;
           return user;

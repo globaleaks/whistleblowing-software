@@ -67,10 +67,9 @@ class PGPCheckSchedule(GLJob):
             if user.pgp_key_public and user.pgp_key_expiration != datetime_null():
                 if user.pgp_key_expiration < datetime_now():
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
-                    user.pgp_key_status = u'disabled'
-                    user.pgp_key_public = None
-                    user.pgp_key_fingerprint = None
-                    user.pgp_key_expiration = None
+                    user.pgp_key_public = u''
+                    user.pgp_key_fingerprint = u''
+                    user.pgp_key_expiration = datetime_null()
                 elif user.pgp_key_expiration < datetime_now() - timedelta(days=15):
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
 
