@@ -1,5 +1,5 @@
 <div data-ng-form="pgpkeyForm">
-  <div data-ng-show="preferences.pgp_key_status === 'enabled'">
+  <div data-ng-show="preferences.pgp_key_public !== ''">
     <div class="alert alert-success">
       <span data-translate>Encryption is enabled!</span>
       <span data-translate>Email notifications will be encrypted.</span>
@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <div class="form-group" data-ng-hide="preferences.pgp_key_status === 'enabled'" data-ng-class="{'has-error': !pgpkeyForm.$valid}">
+  <div class="form-group" data-ng-hide="preferences.pgp_key_public !== ''" data-ng-class="{'has-error': !pgpkeyForm.$valid}">
     <div class="alert alert-danger">
       <div data-translate>Encryption has not been enabled!</div>
       <div data-translate>Email notifications won't be encrypted.</div>

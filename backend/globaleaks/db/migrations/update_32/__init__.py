@@ -5,6 +5,7 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import Model
 
+
 class User_v_31(Model):
     __storm_table__ = 'user'
     creation_date = DateTime()
@@ -26,8 +27,9 @@ class User_v_31(Model):
     pgp_key_fingerprint = Unicode()
     pgp_key_public = Unicode()
     pgp_key_expiration = DateTime()
-    pgp_key_status = Unicode()
+    pgp_key_status = Unicode() # Dropped in v_32
     img_id = Unicode()
+
 
 class Notification_v_31(Model):
     __storm_table__ = 'notification'
@@ -87,6 +89,6 @@ class Notification_v_31(Model):
     exception_email_pgp_key_expiration = DateTime()
     exception_email_pgp_key_status = Unicode()
 
-class MigrationScript(MigrationBase):
-  pass
 
+class MigrationScript(MigrationBase):
+    pass
