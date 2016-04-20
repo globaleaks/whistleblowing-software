@@ -146,7 +146,7 @@ def process_files(receiverfiles_maps):
 
         receiverfiles_map['plaintext_file_needed'] = False
         for rcounter, rfileinfo in enumerate(receiverfiles_map['rfiles']):
-            if rfileinfo['receiver']['pgp_key_status'] == u'enabled':
+            if len(rfileinfo['receiver']['pgp_key_public']):
                 try:
                     new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
 

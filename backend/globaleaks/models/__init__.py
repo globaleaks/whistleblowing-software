@@ -188,7 +188,6 @@ class User(Model):
     pgp_key_fingerprint = Unicode(default=u'')
     pgp_key_public = Unicode(default=u'')
     pgp_key_expiration = DateTime(default_factory=datetime_null)
-    pgp_key_status = Unicode(default=u'disabled') # 'disabled', 'enabled'
     # END of PGP key fields
 
     img_id = Unicode()
@@ -671,7 +670,6 @@ class Notification(Model):
     exception_email_pgp_key_fingerprint = Unicode(default=u'')
     exception_email_pgp_key_public = Unicode(default=u'')
     exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
-    exception_email_pgp_key_status = Unicode(default=u'disabled')
 
     unicode_keys = [
         'server',

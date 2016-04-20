@@ -99,18 +99,18 @@
                   <div class="form-group" data-ng-if="!node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Name</label>
                     <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.name" type="text" required />
-                    <div class="text-red" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Email address</label>
                     <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
-                    <div class="text-red" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
-                    <div class="text-red" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
+                    <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>
+                    <div class="text-danger" data-ng-show="editUser.email.$error.pattern" data-translate>Invalid email address</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Password</label>
@@ -148,7 +148,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <div class="form-group" data-ng-show="user.pgp_key_status === 'enabled'">
+                  <div class="form-group" data-ng-show="user.pgp_key_public !== ''">
                     <div class="alert alert-success">
                       <div data-translate>Encryption is enabled!</div>
                       <div data-translate>Email notifications will be encrypted.</div>
@@ -166,7 +166,7 @@
                       <label data-translate>Remove the PGP key</label>
                     </div>
                   </div>
-                  <div class="form-group" data-ng-hide="user.pgp_key_status === 'enabled'">
+                  <div class="form-group" data-ng-hide="user.pgp_key_public === ''">
                     <div class="alert alert-danger">
                       <div data-translate>Encryption is not enabled!</div>
                       <div data-translate>Email notifications won't be encrypted.</div>

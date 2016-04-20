@@ -7,13 +7,13 @@
   </div>
   <div id="ReceiverSelectionBox">
     <div data-ng-repeat="receiver in submission.receivers | filter:filterReceivers | orderBy:receiversOrderPredicate" id="receiver-{{$index}}" data-ng-class="{'col-md-6': !submission.context.show_small_receiver_cards, 'col-md-3': submission.context.show_small_receiver_cards}" data-ng-click="switch_selection(receiver)">
-      <div class="receiverCard" data-ng-class="{'selected': submission.receivers_selected[receiver.id] && receiver.configuration !== 'forcefully_selected', 'forcefullySelected': receiver.configuration === 'forcefully_selected', 'disabled': receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_status === 'disabled')}">
+      <div class="receiverCard" data-ng-class="{'selected': submission.receivers_selected[receiver.id] && receiver.configuration !== 'forcefully_selected', 'forcefullySelected': receiver.configuration === 'forcefully_selected', 'disabled': receiver.configuration === 'unselectable' || (!node.allow_unencrypted && receiver.pgp_key_public === '')}">
         <div class="receiverCardTitle row">
           <div class="col-md-10">
             <label>
-              <span data-ng-if="!node.disable_encryption_warnings && receiver.configuration !== 'unselectable'" data-ng-switch="receiver.pgp_key_status">
-                <i data-ng-switch-when="enabled" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-                <i data-ng-switch-when="disabled" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipent has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+              <span data-ng-if="!node.disable_encryption_warnings && receiver.configuration !== 'unselectable'">
+                <i data-ng-if="receiver.pgp_key_public !== ''" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                <i data-ng-if="receiver.pgp_key_public === ''" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipent has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </span>
               <span data-ng-if="receiver.configuration === 'unselectable'">
                 <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
@@ -21,7 +21,7 @@
               <span>&nbsp;{{::receiver.name}}</span>
             </label>
           </div>
-          <div class="col-md-1" data-ng-if="receiver.pgp_key_status === 'enabled' || node.allow_unencrypted">
+          <div class="col-md-1" data-ng-if="receiver.pgp_key_public !== '' || node.allow_unencrypted">
             <div data-ng-if="submission.receivers_selected[receiver.id]">
               <div data-ng-if="receiver.configuration === 'default'">
                 <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this receiver' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>

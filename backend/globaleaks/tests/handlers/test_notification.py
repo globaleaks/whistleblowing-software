@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import json
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db.appdata import load_appdata
@@ -22,7 +24,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
-        self.assertTrue('exception_email_pgp_key_info' not in self.responses[0])
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminNotificationDesc)
 
     @inlineCallbacks
     def test_put(self):

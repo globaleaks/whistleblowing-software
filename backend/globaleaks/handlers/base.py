@@ -385,7 +385,7 @@ class BaseHandler(RequestHandler):
                     # in case more values are presenct because it's normal that the
                     # client will send automatically more data.
                     #
-                    # e.g. the client will always send 'creation_date' attributs of
+                    # e.g. the client will always send 'creation_date' attribute of
                     #      objects and attributes like this are present generally only
                     #      from the second request on.
                     #

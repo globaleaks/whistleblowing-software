@@ -88,7 +88,6 @@ def init_db(store):
         'timezone': node.default_timezone,
         'password_change_needed': False,
         'pgp_key_remove': False,
-        'pgp_key_status': 'disabled',
         'pgp_key_fingerprint': '',
         'pgp_key_public': '',
         'pgp_key_expiration': datetime_null()
@@ -255,7 +254,6 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
     GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
     GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration
-    GLSettings.memory_copy.exception_email_pgp_key_status = notif.exception_email_pgp_key_status
 
     if GLSettings.disable_mail_notification:
         GLSettings.memory_copy.disable_admin_notification_emails = True
