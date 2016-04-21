@@ -1,11 +1,11 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
   $scope.disabled = false;
 
-  $scope.onFileAdded = function($event, $file) {
-    if ($file.size > $scope.node.maximum_filesize * 1024 * 1024) {
-      $file.error = true;
-      $file.error_msg = "This file exceeds the maximum upload size for this server.";
-      $event.preventDefault();
+  $scope.$on('flow::fileAdded', function (event, flow, file) {
+    if (file.size > $scope.node.maximum_filesize * 1024 * 1024) {
+      file.error = true;
+      file.error_msg = "This file exceeds the maximum upload size for this server.";
+      event.preventDefault();
     } else {
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
         // if the field allows to load only one file disable the button
@@ -13,7 +13,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
         $scope.disabled = true;
       }
     }
-  };
+  });
 }]).
 controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $http) {
   $scope.get_auth_headers = $scope.$parent.get_auth_headers;
