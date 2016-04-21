@@ -1,4 +1,4 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', function($scope, $q)  {
+GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', function($scope, $q, $timeout)  {
   $scope.disabled = false;
 
   // createFileArray uses a promise to convert a File into a Uint8Array
@@ -45,10 +45,15 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', function($scope, $q)  {
       }
     }
 
-    encryptedFileRead($file.file).then(function(outputFile) {
-      $flow.files[$flow.files.indexOf($file)] = new Flow.FlowFile($flow, outputFile);
-      $file.cancel();
-    });
+    if ($file.file.encrypted === undefined) {
+      event.preventDefault();
+      encryptedFileRead($file.file).then(function(outputFile) {
+        outputFile.encrypted = true;
+        $timeout(function() {
+          $flow.addFile(outputFile);
+        }, 0);
+      });
+    }
   });
 }])
 .controller('ImageUploadCtrl', ['$scope', '$http', function($scope, $http) {
