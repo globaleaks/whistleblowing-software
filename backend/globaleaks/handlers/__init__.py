@@ -15,7 +15,6 @@
 
 __all__ = ['admin',
            'base',
-           'css',
            'files',
            'node',
            'receiver',
