@@ -24,7 +24,7 @@ GLClient.controller('TipCtrl',
     };
 
     $scope.extractSpecialTipFields = function(tip) {
-      for (var i=0; i < tip.questionnaire.length; i++) {
+      for (var i=tip.questionnaire.length - 1; i>=0; i--) {
         var step = tip.questionnaire[i];
         var j = step.children.length;
         while (j--) {
@@ -35,14 +35,39 @@ GLClient.controller('TipCtrl',
             $scope.rows = fieldUtilities.splitRows($scope.fields);
             $scope.field = $scope.whistleblower_identity_field;
 
-            for (var x = 0; x < $scope.field.children; x++) {
-              var child = $scope.field.children[x];
+            for (var k1 = 0; k1 < $scope.field.children.length; k1++) {
+              var child = $scope.field.children[k1];
               $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
             }
-
-            return;
           }
         }
+
+        if ($scope.node.enable_experimental_features) {
+          var filterNotTriggeredField = function(field, answers) {
+            for(var k2=field.children.length - 1; k2>=0; k2--) {
+              var f = field.children[k2];
+              if (!fieldUtilities.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
+                field.children.splice(k2, 1);
+              } else {
+                for (var k3=0; k2<answers[f.id].length; k3++) {
+                  filterNotTriggeredField(f, answers[f.id]);
+                }
+              }
+            }
+          }
+
+          if (!fieldUtilities.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
+            tip.questionnaire.splice(i, 1);
+          } else {
+            for (var k4=0; k4<step.children.length; k4++) {
+              var field = step.children[k4];
+              for (var k5=0; k5<$scope.tip.answers[field.id].length; k5++) {
+                filterNotTriggeredField(field, $scope.tip.answers[field.id][k5]);
+              }
+            }
+          }
+        }
+
       }
     };
 
@@ -74,9 +99,8 @@ GLClient.controller('TipCtrl',
       $scope.fileupload_url = $scope.getUploadUrl('wbtip/upload');
 
       new WBTip(function(tip) {
-        $scope.extractSpecialTipFields(tip);
-
         $scope.tip = tip;
+        $scope.extractSpecialTipFields(tip);
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
         $scope.submission = tip;
@@ -114,9 +138,8 @@ GLClient.controller('TipCtrl',
       $scope.preferences = ReceiverPreferences.get();
     
       new RTip({id: $scope.tip_id}, function(tip) {
-        $scope.extractSpecialTipFields(tip);
-
         $scope.tip = tip;
+        $scope.extractSpecialTipFields(tip);
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 

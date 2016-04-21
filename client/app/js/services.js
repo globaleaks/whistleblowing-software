@@ -826,10 +826,46 @@ angular.module('GLServices', ['ngResource']).
         return field.answer_structure;
       };
 
+      var isStepTriggered = function(step, answers, score) {
+        if (step.triggered_by_score > score) {
+          return false;
+        }
+
+        if (step.triggered_by_options.length === 0) {
+          return true;
+        }
+
+        for (var i=0; i<step.triggered_by_options.length; i++) {
+          if (step.triggered_by_options[i].option === answers[step.triggered_by_options[i].field][0]['value']) {
+            return true;
+          }
+        }
+
+        return false;
+      };
+
+      var isFieldTriggered = function(field, answers, score) {
+        if (field.triggered_by_score > score) {
+          return false;
+        }
+
+        if (field.triggered_by_options.length === 0) {
+          return true;
+        }
+
+        for (var i=0; i<field.triggered_by_options.length; i++) {
+          if (field.triggered_by_options[i].option === answers[field.triggered_by_options[i].field][0]['value']) {
+            return true;
+          }
+        }
+      };
+
       return {
         getValidator: getValidator,
         splitRows: splitRows,
         prepare_field_answers_structure: prepare_field_answers_structure,
+        isStepTriggered: isStepTriggered,
+        isFieldTriggered: isFieldTriggered
       };
 }]).
   constant('CONSTANTS', {

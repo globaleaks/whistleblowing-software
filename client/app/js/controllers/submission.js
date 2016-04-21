@@ -7,6 +7,10 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemToBeSolved = false;
   $scope.problemModal = undefined;
 
+  $scope.total_score = 0;
+  $scope.isStepTriggered = fieldUtilities.isStepTriggered;
+  $scope.isFieldTriggered = fieldUtilities.isFieldTriggered;
+
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;
     $scope.submission._token.$update(function(token) {
@@ -112,7 +116,7 @@ GLClient.controller('SubmissionCtrl',
     var last_enabled = 0;
 
     for (var i = 0; i < $scope.selected_context.questionnaire.steps.length; i++) {
-      if ($scope.stepIsTriggered($scope.selected_context.questionnaire.steps[i])) {
+      if (fieldUtilities.isStepTriggered($scope.selected_context.questionnaire.steps[i]), $scope.answers, $scope.total_score) {
         last_enabled = i;
       }
     }
@@ -120,7 +124,7 @@ GLClient.controller('SubmissionCtrl',
     return last_enabled;
   };
 
-  $scope.hasNextStep = function(){
+  $scope.hasNextStep = function() {
     if ($scope.selected_context === undefined) {
       return false;
     }
@@ -128,7 +132,7 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection < $scope.lastStepIndex();
   };
 
-  $scope.hasPreviousStep = function(){
+  $scope.hasPreviousStep = function() {
     if ($scope.selected_context === undefined) {
       return false;
     }
@@ -159,7 +163,7 @@ GLClient.controller('SubmissionCtrl',
 
     if ($scope.hasNextStep()) {
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        if ($scope.stepIsTriggered($scope.submission.context.questionnaire.steps[i])) {
+        if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
@@ -171,7 +175,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || $scope.stepIsTriggered($scope.submission.context.questionnaire.steps[i])) {
+        if (i === -1 || fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
@@ -248,8 +252,9 @@ GLClient.controller('SubmissionCtrl',
       });
     });
 
-    $scope.$watch('answers', function(){
-      $scope.submission._submission.total_score = $scope.calculateScore();
+    $scope.$watch('answers', function() {
+      $scope.total_score = $scope.calculateScore();
+      $scope.submission._submission.total_score = $scope.total_score;
     }, true);
 
     $scope.submission.create(context.id, receivers_ids, function () {
@@ -311,50 +316,6 @@ GLClient.controller('SubmissionCtrl',
   $scope.completeSubmission = function() {
     $scope.submission._submission.answers = $scope.answers;
     $scope.submission.submit();
-  };
-
-  $scope.stepIsTriggered = function(step) {
-    if (!$scope.node.enable_experimental_features) {
-      return true;
-    }
-
-    if (step.triggered_by_score > $scope.submission._submission.total_score) {
-      return false;
-    }
-
-    if (step.triggered_by_options.length === 0) {
-      return true;
-    }
-
-    for (var i=0; i<step.triggered_by_options.length; i++) {
-      if (step.triggered_by_options[i].option === $scope.answers[step.triggered_by_options[i].field][0]['value']) {
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  $scope.fieldIsTriggered = function(field) {
-    if (!$scope.node.enable_experimental_features) {
-      return true;
-    }
-
-    if (field.triggered_by_score > $scope.submission._submission.total_score) {
-      return false;
-    }
-
-    if (field.triggered_by_options.length === 0) {
-      return true;
-    }
-
-    for (var i=0; i<field.triggered_by_options.length; i++) {
-      if (field.triggered_by_options[i].option === $scope.answers[field.triggered_by_options[i].field][0]['value']) {
-        return true;
-      }
-    }
-
-    return false;
   };
 
   new Submission(function(submission) {

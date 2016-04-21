@@ -265,6 +265,7 @@ def serialize_usertip(store, usertip, language):
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
     ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
     ret['access_counter'] = usertip.access_counter
+    ret['total_score'] = usertip.internaltip.total_score
 
     return ret
 
