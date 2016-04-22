@@ -143,7 +143,7 @@ GLClient.controller('TipCtrl',
 
         $scope.tip_unencrypted = false;
         angular.forEach(tip.receivers, function(receiver){
-          if (receiver.pgp_key_status === '' && receiver.receiver_id !== tip.receiver_id) {
+          if (receiver.pgp_key_fingerpint === '' && receiver.receiver_id !== tip.receiver_id) {
             $scope.tip_unencrypted = true;
           }
         });
