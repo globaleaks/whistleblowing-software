@@ -406,7 +406,7 @@ def db_create_submission(store, token_id, request, t2w, language):
             new_file.size = filedesc['body_len']
             new_file.internaltip_id = submission.id
             new_file.submission = filedesc['submission']
-            new_file.file_path = filedesc['encrypted_path']
+            new_file.file_path = filedesc['body_filepath']
             store.add(new_file)
             log.debug("=> file associated %s|%s (%d bytes)" % (
                 new_file.name, new_file.content_type, new_file.size))

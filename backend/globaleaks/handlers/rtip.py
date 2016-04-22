@@ -29,36 +29,16 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     and the Receiver-dependent, and for the client sake receivertip_id is
     required to create the download link
     """
-    if receiverfile.status != 'unavailable':
-
-        ret_dict = {
-            'id': receiverfile.id,
-            'internalfile_id': internalfile.id,
-            'status': receiverfile.status,
-            'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
-            # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
-            'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
-            'content_type': internalfile.content_type,
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-            'size': receiverfile.size,
-            'downloads': receiverfile.downloads
-        }
-
-    else:  # == 'unavailable' in this case internal file metadata is returned.
-
-        ret_dict = {
-            'id': receiverfile.id,
-            'internalfile_id': internalfile.id,
-            'status': 'unavailable',
-            'href': "",
-            'name': internalfile.name,  # original filename
-            'content_type': internalfile.content_type,  # original content size
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),  # original creation_date
-            'size': int(internalfile.size),  # original filesize
-            'downloads': unicode(receiverfile.downloads)  # this counter is always valid
-        }
-
-    return ret_dict
+    return {
+        'id': receiverfile.id,
+        'internalfile_id': internalfile.id,
+        'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
+        'name': internalfile.name,
+        'content_type': internalfile.content_type,
+        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
+        'size': receiverfile.size,
+        'downloads': receiverfile.downloads
+    }
 
 
 def serialize_comment(comment):

@@ -28,8 +28,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     files_created = 6
 
     counters_check = {
-        'encrypted': 6,
-        'reference': 0
+        'reference': 6
     }
 
     @inlineCallbacks
@@ -71,20 +70,6 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), self.files_created)
 
-        counters = {
-            'encrypted': 0,
-            'reference': 0
-        }
-
-        for i in range(0, self.files_created):
-            if self.rfi[i]['status'] not in counters:
-                counters[self.rfi[i]['status']] = 1
-            else:
-                counters[self.rfi[i]['status']] += 1
-
-        for key in self.counters_check.keys():
-            self.assertEqual(counters[key], self.counters_check[key])
-
     @inlineCallbacks
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
@@ -97,46 +82,3 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
         self.assertTrue('answers' in wbtip_desc)
-
-
-class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
-
-    files_created = 3
-
-    counters_check = {
-        'encrypted': 3,
-        'reference': 0
-    }
-
-
-class TestSubmissionEncryptedScenarioOneKeyMissing(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_MISSING'
-
-    files_created = 3
-
-    counters_check = {
-        'encrypted': 3,
-        'reference': 0
-    }
-
-
-class TestSubmissionMixedScenario(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'MIXED'
-
-    files_created = 6
-
-    counters_check = {
-        'encrypted': 3,
-        'reference': 3
-    }
-
-class TestSubmissionPlaintextScenario(TestSubmissionEncryptedScenario):
-    encryption_scenario = 'PLAINTEXT'
-
-    files_created = 6
-
-    counters_check = {
-        'encrypted': 0,
-        'reference': 6
-    }

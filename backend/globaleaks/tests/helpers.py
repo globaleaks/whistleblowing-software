@@ -479,7 +479,7 @@ class TestGL(unittest.TestCase):
 
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
 
-        return [serialize_internalfile(ifil) for ifil in ifiles]
+        return [serialize_internalfile(ifile) for ifile in ifiles]
 
 
     @transact_ro
