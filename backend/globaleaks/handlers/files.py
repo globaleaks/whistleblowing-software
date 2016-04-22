@@ -40,7 +40,7 @@ def serialize_receiver_file(receiverfile):
     return {
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'content_type': internalfile.content_type,
-        'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
+        'name': internalfile.name,
         'size': receiverfile.size,
         'downloads': receiverfile.downloads,
         'path': receiverfile.file_path,
@@ -72,44 +72,33 @@ def register_file_db(store, uploaded_file, internaltip_id):
 
     internaltip.update_date = datetime_now()
 
-    new_file = InternalFile()
-    new_file.name = uploaded_file['filename']
-    new_file.content_type = uploaded_file['content_type']
-    new_file.size = uploaded_file['body_len']
-    new_file.internaltip_id = internaltip_id
-    new_file.submission = uploaded_file['submission']
-    new_file.file_path = uploaded_file['encrypted_path']
+    ifile = InternalFile()
+    ifile.name = uploaded_file['filename']
+    ifile.content_type = uploaded_file['content_type']
+    ifile.size = uploaded_file['body_len']
+    ifile.internaltip_id = internaltip_id
+    ifile.submission = uploaded_file['submission']
+    ifile.file_path = uploaded_file['body_filepath']
 
-    store.add(new_file)
+    store.add(ifile)
 
     log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
 
-    return serialize_file(new_file)
+    return serialize_file(ifile)
 
 
 def dump_file_fs(uploaded_file):
     """
     @param uploaded_file: the uploaded_file data struct
-    @return: the uploaded_file dict, removed the old path (is moved) and updated
-            with the key 'encrypted_path', pointing to the AES encrypted file
+    @return: the uploaded_file dict updated with the final path of the ifile
     """
-    encrypted_destination = os.path.join(GLSettings.submission_path,
-                                         os.path.basename(uploaded_file['body_filepath']))
+    destination = os.path.join(GLSettings.submission_path,
+                               os.path.basename(uploaded_file['body_filepath']))
 
-    log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
-        (uploaded_file['body_len'],
-         uploaded_file['filename'],
-         uploaded_file['body_filepath'],
-         encrypted_destination)
-    )
+    shutil.move(uploaded_file['body_filepath'], destination)
 
-    shutil.move(uploaded_file['body_filepath'], encrypted_destination)
+    uploaded_file['body_filepath'] = destination
 
-    # body_filepath is the tmp file path, is removed to avoid mistakes
-    uploaded_file.pop('body_filepath')
-
-    # update the uploaded_file dictionary to keep track of the info
-    uploaded_file['encrypted_path'] = encrypted_destination
     return uploaded_file
 
 

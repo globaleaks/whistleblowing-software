@@ -30,7 +30,7 @@ class TokenListClass(TempDict):
     def expireCallback(self, item):
         for f in item.uploaded_files:
             try:
-                os.remove(f['encrypted_path'])
+                os.remove(f['body_filepath'])
             except Exception:
                 pass
 
