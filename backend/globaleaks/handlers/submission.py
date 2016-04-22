@@ -250,8 +250,7 @@ def serialize_receiverfile(rfile):
         'file_path': rfile.file_path,
         'size': rfile.size,
         'downloads': rfile.downloads,
-        'last_access': rfile.last_access,
-        'status': rfile.status,
+        'last_access': rfile.last_access
     }
 
     return rfile_dict

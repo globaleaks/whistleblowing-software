@@ -27,10 +27,6 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 
     files_created = 6
 
-    counters_check = {
-        'reference': 6
-    }
-
     @inlineCallbacks
     def create_submission(self, request):
         token = Token('submission')
