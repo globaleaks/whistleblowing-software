@@ -1,7 +1,36 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', function($scope, $q, $timeout)  {
+GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'gbcCipherLib', function($scope, $q, $timeout, gbcCipherLib)  {
   $scope.disabled = false;
+ 
+  // handleFileEncryption encrypts the passed file with the keys of the 
+  // current scope's receivers and returns a new encrypted file with '.pgp'
+  // added as the extension.
+  // { File -> File }
+  function handleFileEncryption(file) {
+    var deferred = $q.defer();
 
-  // createFileArray uses a promise to convert a File into a Uint8Array
+    createFileArray(file).then(function(fileArr) {
+      // Get the public keys for each receiver
+      var pubKeyStrs = $scope.receivers.map(function(rec) { return rec.pgp_key_public; });
+      var pubKeys;
+      try {
+        pubKeys = gbcCipherLib.loadPublicKeys(pubKeyStrs);
+      } catch(err) {
+        deferred.reject(err);
+        return;
+      }
+      return gbcCipherLib.encryptArray(fileArr, pubKeys);
+    }).then(function(cipherTextArr) {
+      var cipherBlob = new Blob([cipherTextArr.buffer]);
+      var encFile = new File([cipherBlob], file.name+'.pgp');
+      deferred.resolve(encFile);
+    });
+    
+    // TODO delete the file buffer's as soon as possible
+    return deferred.promise;
+  }
+
+  // createFileArray returns a promise for an array of the bytes in the passed file.
+  // { File -> { Promise -> Uint8Array } }
   function createFileArray(file) {
     var deferred = $q.defer();
     var fileReader = new FileReader();
@@ -14,21 +43,6 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', function($s
     return deferred.promise;
   }
 
-  function encryptedFileRead(file) {
-    var deferred = $q.defer();
-    createFileArray(file).then(function(fileArr) {
-      //var receiverPubKeys = $scope.receivers.map(function(r) { return r.pgp_key_public; } );
-      //return encryptFile(fileArr, receiverPubKeys);
-      return new Uint8Array([37,35,92,85,59]);
-    }).then(function(cipherTxtArr) {
-      var cipherTxtBlob = new Blob([cipherTxtArr.buffer]);
-      var encFile = new File([cipherTxtBlob], 'upload.blob.pgp');
-      // Change related file settings in flowObj
-      deferred.resolve(encFile);
-    });
-    // TODO delete the file buffer's as soon as possible
-    return deferred.promise;
-  }
 
   $scope.$on('flow::fileAdded', function (event, flow, file) {
     if (file.size > $scope.node.maximum_filesize * 1024 * 1024) {
@@ -43,13 +57,16 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', function($s
       }
     }
 
-    if ($file.file.encrypted === undefined) {
+    if (file.file.encrypted === undefined) {
       event.preventDefault();
-      encryptedFileRead($file.file).then(function(outputFile) {
+      handleFileEncryption(file.file).then(function(outputFile) {
         outputFile.encrypted = true;
         $timeout(function() {
-          $flow.addFile(outputFile);
+          flow.addFile(outputFile);
         }, 0);
+      }, function(err) {
+        console.log("Encountered fatal error encrypting file.", err);
+        throw err;
       });
     }
   });
