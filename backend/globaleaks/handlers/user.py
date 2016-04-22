@@ -82,6 +82,8 @@ def user_serialize_user(user, language):
         'pgp_key_public': user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
         'pgp_key_remove': False,
+        'ccrypto_key_public': user.ccrypto_key_public,
+        'ccrypto_key_private': user.ccrypto_key_private,
         'picture': user.picture.data if user.picture is not None else ''
     }
 

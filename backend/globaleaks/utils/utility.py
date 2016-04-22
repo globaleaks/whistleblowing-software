@@ -473,3 +473,8 @@ def disable_swap():
     log.debug("Using mlockall() system call to disable process swap")
     if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
         log.err("mlockall failure: %s" % os.strerror(ctypes.get_errno()))
+
+
+def read_file(filepath):
+    with open(filepath) as f:
+        return unicode(f.read())

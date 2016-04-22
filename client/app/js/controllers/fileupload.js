@@ -10,7 +10,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'gbcCipherL
 
     createFileArray(file).then(function(fileArr) {
       // Get the public keys for each receiver
-      var pubKeyStrs = $scope.receivers.map(function(rec) { return rec.pgp_key_public; });
+      var pubKeyStrs = $scope.receivers.map(function(rec) { return rec.ccrypto_key_public; });
       var pubKeys;
       try {
         pubKeys = gbcCipherLib.loadPublicKeys(pubKeyStrs);
