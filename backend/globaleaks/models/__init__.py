@@ -190,6 +190,9 @@ class User(Model):
     pgp_key_expiration = DateTime(default_factory=datetime_null)
     # END of PGP key fields
 
+    ccrypto_key_public = Unicode(default=u'')
+    ccrypto_key_private = Unicode(default=u'')
+
     img_id = Unicode()
 
     unicode_keys = ['username', 'role', 'state',

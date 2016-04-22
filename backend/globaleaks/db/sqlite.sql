@@ -21,6 +21,8 @@ CREATE TABLE user (
     pgp_key_fingerprint TEXT,
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
+    ccrypto_key_public TEXT NOT NULL,
+    ccrypto_key_private TEXT NOT NULL,
     img_id TEXT,
     UNIQUE (username),
     FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,

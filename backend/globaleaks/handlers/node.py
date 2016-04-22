@@ -289,6 +289,7 @@ def serialize_receiver(receiver, language):
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
+        'ccrypto_key_public': receiver.user.ccrypto_key_public,
         'contexts': [c.id for c in receiver.contexts],
         'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
     }
