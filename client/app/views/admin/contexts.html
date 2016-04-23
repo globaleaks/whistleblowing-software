@@ -37,6 +37,7 @@
                   <button
                     class="actionButton actionButtonSave btn btn-xs btn-success"
                     data-ng-show="editing"
+                    data-ng-disabled="editContext.$invalid"
                     data-ng-click="save_context(context)">
                     <span data-translate>Save</span>
                   </button>
