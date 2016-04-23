@@ -441,6 +441,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
  factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
     return function(tip, file) {
+      
       $http({
         method: 'GET',
         url: '/rtip/' + tip.id + '/download/' + file.id,
@@ -575,8 +576,36 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('ReceiverPreferences', ['GLResource', function(GLResource) {
-    return new GLResource('receiver/preferences');
+  factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
+
+    // Extend the default get request to include initialization of the receiver's 
+    // private key.
+    var extendedGet = {
+      method: "GET",
+      transformResponse: function(data) {
+        var prefs = angular.fromJson(data);
+        var fakefp = "ecaf2235e78e71cd95365843c7b190543caa7585";
+        var initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, fakefp);
+        delete prefs.cc_private_key;
+        if (initRes) {
+          return prefs;
+        } else {
+          // Throws an error into the globalInterceptor in the format it expects
+          var m = "Error initializing recipient's private key";
+          var err = new Error(m);
+          err.data = {
+            'error_message': m,
+            'error_code' : 424, // HTTP 424: Failed dependency
+            'arguments': [],
+          };
+          throw err;
+        }
+      },
+    };
+
+    
+    // Create a GlResource with empty params and an extended get action
+    return new GLResource('receiver/preferences', {}, {get: extendedGet});
 }]).
   factory('ReceiverTips', ['GLResource', function(GLResource) {
     return new GLResource('receiver/tips');

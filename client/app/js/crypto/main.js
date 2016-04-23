@@ -54,7 +54,7 @@ angular.module('GLBrowserCrypto', [])
     }
   };
 }]).
-  factory('gbcKeyLib', ['$q', function($q) {
+.factory('glbcKeyLib', ['$q', function($q) {
     /*
       The code below could be tested with:
 
@@ -188,7 +188,7 @@ angular.module('GLBrowserCrypto', [])
         if (typeof textInput !== 'string') {
           return false;
         }
-        var result = openpgp.readArmored(textInput);
+        var result = openpgp.key.readArmored(textInput);
         if (angular.isDefined(result.err) || result.keys.length !== 1) {
           return false;
         }
@@ -251,7 +251,7 @@ angular.module('GLBrowserCrypto', [])
 
     };
 }])
-.factory('gbcCipherLib', ['$q', 'gbcKeyLib', function($q, gbcKeyLib){
+.factory('glbcCipherLib', ['$q', 'glbcKeyLib', function($q, glbcKeyLib){
   return {
     
     // loadPublicKeys parses the passed public keys and returns a list of openpgpjs Keys
@@ -262,7 +262,7 @@ angular.module('GLBrowserCrypto', [])
       var pgpPubKeys = [];
       armoredKeys.forEach(function(keyStr) {
         // If there is any problem with validating the keys generate an error.
-        if (!gbcKeyLib.validPublicKey(keyStr)) {
+        if (!glbcKeyLib.validPublicKey(keyStr)) {
           throw new Error("Attempted to load invalid public key");
         }
 
@@ -281,7 +281,7 @@ angular.module('GLBrowserCrypto', [])
     // encryptArray encrypts the byte array with the list of public passed to it.
     // { (Uint8Array, [ openpgpjs.Key... ]) --> Uint8Array }
     encryptArray: function(uintArr, pgpPubKeys) {
-      // Assert that all pubkeys are actually there.
+      // TODO assert that all pubkeys are actually there.
       var deferred = $q.defer();
       var options = {
         data: uintArr,
@@ -292,6 +292,7 @@ angular.module('GLBrowserCrypto', [])
       openpgp.encrypt(options).then(function(ciphertext) {
         deferred.resolve(ciphertext.message.packets.write()); 
       });
+      // TODO catch expired keys, formatting errors, etc etc.
       return deferred.promise;
     },
     
@@ -316,131 +317,38 @@ angular.module('GLBrowserCrypto', [])
 
   };
 }])
+// glbcKeyRing holds the private key material of authenticated users. It handles
+// all of the cryptographic operations internally so that the rest of the UI does 
+// not.
+.factory('glbcKeyRing', ['glbcKeyLib', function(glbcKeyLib) {
+    // keyring is kept private.
+    var keyring = {
+      privateKey: null,
+    };
 
-// pgpPubKeyDisplay displays the important details from a public key.
-.directive('pgpPubkeyDisplay', function() {
-  // Create object that displays relevant key details to the user. This function
-  // returns fingerprint, key id, creation date, and expiration date. If the parse
-  // fails the function returns undefined.
-  function pgpKeyDetails(armoredText) {
-    // Catch the obivous errors and save time!
-    if (typeof armoredText !== 'string' || !armoredText.startsWith('---')) {
-      return;
-    }
-
-    var res = openpgp.key.readArmored(armoredText);
-
-    if (angular.isDefined(res.err)) {
-      // There were errors. Bail out. 
-      return;
-    }
-
-    var key = res.keys[0];
-    
-    var niceprint = niceFingerPrint(key.primaryKey.fingerprint);
-    var uids = extractAllUids(key);
-    var created = key.primaryKey.created;
-    
     return {
-      user_info: uids,
-      fingerprint: niceprint,
-      created: created,
-      expiration: key.getExpirationTime(),
-    };
-  }
- 
-  // niceFingerPrint produces the full key fingerprint in the standard
-  // 160 bit format. See: https://tools.ietf.org/html/rfc4880#section-12.2
-  function niceFingerPrint(print) {
-    if (typeof print !== 'string' && print.length !== 40) {
-      // Do nothing, the passed params are strange.
-      return print;
-    }
-
-    print = print.toUpperCase();
-
-    var nice = print[0];
-    for (var i = 1; i < 40; i++) {
-      // Insert a space every 4th octet
-      if (i % 4 === 0) {
-        nice += " ";
-      }
-      if (i % 20 === 0) {
-        nice += " ";
-      }
-      nice += print[i];
-    }
-
-    return nice;
-  }
-
-  // Returns all of the userId's found in the list of uids attached to the key.
-  function extractAllUids(key) {
-    var uids = [];
-    key.users.forEach(function(user) {
-      uids.push(user.userId.userid);
-    });
-    return uids;
-  }
-
-  return {
-    restrict: 'A',
-    templateUrl: '/views/partials/pgp/pubkey_display.html',
-    scope: {
-      keyStr: '=keyStr',
-
-    },
-    controller: ['$scope', function($scope) {
-      $scope.$watch('keyStr', function(newVal, oldVal) {
-        if (newVal === "") {
-          return;
+      // intialize validates the passed privateKey and places it in the keyring.
+      // The validates the key and checks to see if the key's fingerprint equals
+      // the fingerprint passed to it.
+      // { string -> bool }
+      initialize: function(armoredPrivKey, fingerprint) {
+        if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
+          return false; 
         }
-        $scope.key_details = pgpKeyDetails(newVal);
-      });
-  }]};
-})
 
-// pgpPubkeyValidator binds to text-areas to provide input validation on user
-// input GPG public keys. Note that the directive attaches itself to the 
-// containing form's ngModelController NOT the ngModel bound to the value of the 
-// text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
-// when the textarea's input is empty.
-.directive('pgpPubkeyValidator', ['gbcKeyLib', function(gbcKeyLib) {
-  
-  // scope is the directives scope
-  // elem is a jqlite reference to the bound element
-  // attrs is the list of directives on the element
-  // ngModel is the model controller attached to the form
-  function link(scope, elem, attrs, ngModel){
+        // Parsing the private key here should produce no errors. Once it is no 
+        // longer needed we will explicity remove references to this key.
+        var tmpKeyRef = openpgp.key.readArmored(armoredPrivKey).keys[0];
 
-    scope.canBeEmpty = false;
-    if (scope.pgpPubkeyValidator === 'canBeEmpty') {
-      scope.canBeEmpty = true;
-    } 
-
-    // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$validators.pgpPubKeyValidator = function(modelVal, viewVal) {
-
-      // Check for obvious problems.
-      if (typeof modelVal !== 'string') {
-        modelVal = '';
-      }
-
-      if (scope.canBeEmpty && modelVal === '') {
+        if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
+          tmpKeyRef = null;
+          return false; 
+        }
+        
+        keyring.privateKey = tmpKeyRef; 
+        tmpKeyRef = null;
         return true;
-      }
+      },
 
-      return gbcKeyLib.validPublicKey(modelVal);
     };
-  }
-  // Return a Directive Definition Object for angular to compile
-  return {
-    restrict: 'A',
-    require: 'ngModel',
-    link: link,
-    scope: {
-      // The string passed to the directive is used to assign special key word behavior.
-      pgpPubkeyValidator: '@', 
-    }
-  };
 }]);
