@@ -94,7 +94,6 @@ angular.module('GLBrowserCrypto', [])
     var M = N + 1;
 
     return {
-
       scrypt: function(data, salt, logN) {
         var defer = $q.defer();
 
@@ -215,7 +214,6 @@ angular.module('GLBrowserCrypto', [])
         try {
           result = openpgp.key.readArmored(s);
         } catch (err) {
-          console.log(err);
           return false;
         }
 
@@ -252,7 +250,53 @@ angular.module('GLBrowserCrypto', [])
     };
 }])
 
-.factory('glbcCipherLib', ['$q', 'glbcKeyLib', function($q, glbcKeyLib){
+.factory('glbcProofOfWork', ['$q', function($q) {
+  // proofOfWork return the answer to the proof of work
+  // { [challenge string] -> [ answer index] }
+  var str2Uint8Array = function(str) {
+    var result = new Uint8Array(str.length);
+    for (var i = 0; i < str.length; i++) {
+      result[i] = str.charCodeAt(i);
+    }
+    return result;
+  };
+
+  var getWebCrypto = function() {
+    if (typeof window !== 'undefined') {
+      if (window.crypto) {
+        return window.crypto.subtle || window.crypto.webkitSubtle;
+      }
+      if (window.msCrypto) {
+        return window.msCrypto.subtle;
+      }
+    }
+  };
+
+  return {
+    proofOfWork: function(str) {
+      console.log(str);
+      var deferred = $q.defer();
+
+      var work = function(i) {
+        var hashme = str2Uint8Array(str + i);
+        getWebCrypto().digest({name: "SHA-256"}, hashme).then(function (hash) {
+          hash = new Uint8Array(hash);
+          if (hash[31] === 0) {
+            deferred.resolve(i);
+          } else {
+            work(i + 1);
+          }
+        });
+      }
+
+      work(0);
+
+      return deferred.promise;
+    }
+  };
+}])
+
+.factory('glbcCipherLib', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
   return {
     // loadPublicKeys parses the passed public keys and returns a list of openpgpjs Keys
     // Note that if there is a problem when parsing a key the function throws an error.
@@ -329,8 +373,7 @@ angular.module('GLBrowserCrypto', [])
       };
       fileReader.readAsArrayBuffer(blob);
       return deferred.promise;
-    },
-
+    }
  };
 }])
 
