@@ -461,9 +461,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         // Decrypt the file
         glbcKeyRing.performDecrypt(ciphertext).then(function(plaintext) {
-          
+
           glbcKeyRing.lockKeyRing("fakepassphrase");
-          
+
           var outBlob = new Blob([plaintext.buffer]);
 
           // Before save clean up the filename
@@ -473,7 +473,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           FileSaver.saveAs(outBlob, filename);
         }, function() {
           // Decryption failed. Lock the keyRing.
-          glbcKeyRing.lockKeyRing("fakepassphrase"); 
+          glbcKeyRing.lockKeyRing("fakepassphrase");
         });
 
 
@@ -607,7 +607,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
 
-    // Extend the default get request to include initialization of the receiver's 
+    // Extend the default get request to include initialization of the receiver's
     // private key.
     var extendedGet = {
       method: "GET",
@@ -634,7 +634,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       },
     };
 
-    
     // Create a GlResource with empty params and an extended get action
     return new GLResource('receiver/preferences', {}, {get: extendedGet});
 }]).

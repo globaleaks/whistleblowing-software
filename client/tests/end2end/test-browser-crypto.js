@@ -1,8 +1,6 @@
 
 describe('GLBrowserCrypto module', function() {
-
-  it('should be able to generate a key pair', function(done) {
-      
+  it('should be able to generate a key pair', function() {
     // Generate a pgp key pair here.
     var receipt = gbcKeyFunc.generate_keycode();
     console.log("The WB's receipt:", receipt);
@@ -40,8 +38,6 @@ describe('GLBrowserCrypto module', function() {
         // TODO delete the file buffer's as soon as possible
         return deferred.promise;
       }
-
-
+    });
   });
-
 });

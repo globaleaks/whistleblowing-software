@@ -1,7 +1,7 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipherLib', function($scope, $q, $timeout, glbcCipherLib)  {
   $scope.disabled = false;
- 
-  // handleFileEncryption encrypts the passed file with the keys of the 
+
+  // handleFileEncryption encrypts the passed file with the keys of the
   // current scope's receivers and returns a new encrypted file with '.pgp'
   // added as the extension.
   // { File -> File }
@@ -26,7 +26,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipher
       var encFile = new File([cipherBlob], file.name+'.pgp');
       deferred.resolve(encFile);
     });
-    
+
     return deferred.promise;
   }
 
@@ -52,7 +52,6 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipher
           flow.addFile(outputFile);
         }, 0);
       }, function(err) {
-        console.log("Encountered fatal error encrypting file.", err);
         throw err;
       });
     }

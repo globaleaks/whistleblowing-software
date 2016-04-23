@@ -208,7 +208,7 @@ directive('pgpPubkeyDisplay', ['glbcKeyLib', function(glbcKeyLib) {
 
   return {
     restrict: 'A',
-    templateUrl: '/views/partials/pgp/pubkey_display.html',
+    templateUrl: 'views/partials/pubkey_display.html',
     scope: {
       keyStr: '=keyStr',
 
@@ -232,7 +232,6 @@ directive('pgpPubkeyDisplay', ['glbcKeyLib', function(glbcKeyLib) {
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
 directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
-  
   // scope is the directives scope
   // elem is a jqlite reference to the bound element
   // attrs is the list of directives on the element
