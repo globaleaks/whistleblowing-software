@@ -141,7 +141,7 @@ directive('imageUpload', function () {
 }).
 
 // pgpPubKeyDisplay displays the important details from a public key.
-directive('pgpPubkeyDisplay', ['gbcKeyLib', function(gbcKeyLib) {
+directive('pgpPubkeyDisplay', ['glbcKeyLib', function(glbcKeyLib) {
   // Create object that displays relevant key details to the user. This function
   // returns fingerprint, key id, creation date, and expiration date. If the parse
   // fails the function returns undefined.
@@ -218,7 +218,7 @@ directive('pgpPubkeyDisplay', ['gbcKeyLib', function(gbcKeyLib) {
         if (newVal === "") {
           return;
         }
-        $scope.is_valid_key = gbcKeyLib.validPublicKey(newVal);
+        $scope.is_valid_key = glbcKeyLib.validPublicKey(newVal);
         if ($scope.is_valid_key) {
           $scope.key_details = pgpKeyDetails(newVal);
         }
@@ -231,7 +231,7 @@ directive('pgpPubkeyDisplay', ['gbcKeyLib', function(gbcKeyLib) {
 // containing form's ngModelController NOT the ngModel bound to the value of the 
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
-directive('pgpPubkeyValidator', ['gbcKeyLib', function(gbcKeyLib) {
+directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
   
   // scope is the directives scope
   // elem is a jqlite reference to the bound element
@@ -256,7 +256,7 @@ directive('pgpPubkeyValidator', ['gbcKeyLib', function(gbcKeyLib) {
         return true;
       }
 
-      return gbcKeyLib.validPublicKey(modelVal);
+      return glbcKeyLib.validPublicKey(modelVal);
     };
   }
   // Return a Directive Definition Object for angular to compile
