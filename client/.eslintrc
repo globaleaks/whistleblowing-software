@@ -12,6 +12,7 @@ globals:
   d3: true
   GLClient: true
   importScripts: true
+  openpgp: true
   onmessage: true
   saveAs: true
   StackTrace: true

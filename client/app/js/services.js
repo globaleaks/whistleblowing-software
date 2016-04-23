@@ -439,9 +439,9 @@ angular.module('GLServices', ['ngResource']).
 
         // Decrypt the file
         glbcKeyRing.performDecrypt(ciphertext).then(function(plaintext) {
-          
+
           glbcKeyRing.lockKeyRing("fakepassphrase");
-          
+
           var outBlob = new Blob([plaintext.buffer]);
 
           // Before save clean up the filename
@@ -451,7 +451,7 @@ angular.module('GLServices', ['ngResource']).
           FileSaver.saveAs(outBlob, filename);
         }, function() {
           // Decryption failed. Lock the keyRing.
-          glbcKeyRing.lockKeyRing("fakepassphrase"); 
+          glbcKeyRing.lockKeyRing("fakepassphrase");
         });
 
 
@@ -605,7 +605,7 @@ angular.module('GLServices', ['ngResource']).
 }]).
   factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
 
-    // Extend the default get request to include initialization of the receiver's 
+    // Extend the default get request to include initialization of the receiver's
     // private key.
     var extendedGet = {
       method: "GET",
@@ -632,7 +632,6 @@ angular.module('GLServices', ['ngResource']).
       },
     };
 
-    
     // Create a GlResource with empty params and an extended get action
     return new GLResource('receiver/preferences', {}, {get: extendedGet});
 }]).
