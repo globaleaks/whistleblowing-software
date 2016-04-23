@@ -1,4 +1,4 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'gbcCipherLib', function($scope, $q, $timeout, gbcCipherLib)  {
+GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipherLib', function($scope, $q, $timeout, glbcCipherLib)  {
   $scope.disabled = false;
  
   // handleFileEncryption encrypts the passed file with the keys of the 
@@ -8,38 +8,25 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'gbcCipherL
   function handleFileEncryption(file) {
     var deferred = $q.defer();
 
-    createFileArray(file).then(function(fileArr) {
+    glbcCipherLib.createArrayFromBlob(file).then(function(fileArr) {
       // Get the public keys for each receiver
+      // TODO TODO TODO Remove temp public key
       var pubKeyStrs = $scope.receivers.map(function(rec) { return rec.ccrypto_key_public; });
+      // TODO TODO TODO
       var pubKeys;
       try {
-        pubKeys = gbcCipherLib.loadPublicKeys(pubKeyStrs);
+        pubKeys = glbcCipherLib.loadPublicKeys(pubKeyStrs);
       } catch(err) {
         deferred.reject(err);
         return;
       }
-      return gbcCipherLib.encryptArray(fileArr, pubKeys);
+      return glbcCipherLib.encryptArray(fileArr, pubKeys);
     }).then(function(cipherTextArr) {
       var cipherBlob = new Blob([cipherTextArr.buffer]);
       var encFile = new File([cipherBlob], file.name+'.pgp');
       deferred.resolve(encFile);
     });
     
-    // TODO delete the file buffer's as soon as possible
-    return deferred.promise;
-  }
-
-  // createFileArray returns a promise for an array of the bytes in the passed file.
-  // { File -> { Promise -> Uint8Array } }
-  function createFileArray(file) {
-    var deferred = $q.defer();
-    var fileReader = new FileReader();
-    fileReader.onload = function() {
-      var arrayBufferNew = this.result;
-      var uintFileArray = new Uint8Array(arrayBufferNew);
-      deferred.resolve(uintFileArray);
-    };
-    fileReader.readAsArrayBuffer(file);
     return deferred.promise;
   }
 

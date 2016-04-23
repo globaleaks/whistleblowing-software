@@ -186,6 +186,12 @@ angular.module('GLBrowserCrypto', [])
         if (!key.isPrivate() || key.isPublic()) {
           return false;
         }
+
+        // Verify expiration, revocation, and self sigs.
+        if (key.verifyPrimaryKey() !== openpgp.enums.keyStatus.valid) {
+          return false;
+        }
+
         // TODO check if key secret packets are encrypted.
 
         return true;
@@ -232,6 +238,11 @@ angular.module('GLBrowserCrypto', [])
           // TODO scrub private key material with acid
           key = null;
           result = null;
+          return false;
+        }
+
+        // Verify expiration, revocation, and self sigs.
+        if (key.verifyPrimaryKey() !== openpgp.enums.keyStatus.valid) {
           return false;
         }
 
@@ -287,7 +298,7 @@ angular.module('GLBrowserCrypto', [])
     
     // decryptArray uses the passed privKey to decrypt the byte array. Note that 
     // the privKey's secret material must be decrypted before usage here.
-    // { ( Uint8Array, openpgp.Key, string ) -> { Promise -> Uint8Array } }
+    // { ( Uint8Array, openpgp.Key ) -> { Promise -> Uint8Array } }
     decryptArray: function(ciphertextArr, privKey) {
 
       var deferred = $q.defer();
@@ -298,46 +309,93 @@ angular.module('GLBrowserCrypto', [])
         format: 'binary',
       };
       openpgp.decrypt(options).then(function(plaintext) {
+        // TODO The plaintext data returned has leading and trailing packets attached.
         deferred.resolve(plaintext.data);
       });
 
       return deferred.promise;
     },
 
-  };
+    // createArrayFromBlob returns a promise for an array of the bytes in the passed 
+    // file. It functions on both Blobs and Files, which are blobs.
+    // { Blob -> { Promise -> Uint8Array } }
+    createArrayFromBlob: function(blob) {
+      var deferred = $q.defer();
+      var fileReader = new FileReader();
+      fileReader.onload = function() {
+        var arrayBufferNew = this.result;
+        var uintArray = new Uint8Array(arrayBufferNew);
+        deferred.resolve(uintArray);
+      };
+      fileReader.readAsArrayBuffer(blob);
+      return deferred.promise;
+    },
+
+ };
 }])
 // glbcKeyRing holds the private key material of authenticated users. It handles
 // all of the cryptographic operations internally so that the rest of the UI does 
 // not.
-.factory('glbcKeyRing', ['glbcKeyLib', function(glbcKeyLib) {
-    // keyring is kept private.
-    var keyring = {
-      privateKey: null,
-    };
+.factory('glbcKeyRing', ['glbcCipherLib', 'glbcKeyLib', function(glbcCipherLib, glbcKeyLib) {
+  
+  // keyRing is kept private.
+  var keyRing = {
+    privateKey: null,
+  };
 
-    return {
-      // intialize validates the passed privateKey and places it in the keyring.
-      // The validates the key and checks to see if the key's fingerprint equals
-      // the fingerprint passed to it.
-      // { string -> bool }
-      initialize: function(armoredPrivKey, fingerprint) {
-        if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
-          return false; 
-        }
+  return {
+    // intialize validates the passed privateKey and places it in the keyRing.
+    // The validates the key and checks to see if the key's fingerprint equals
+    // the fingerprint passed to it.
+    // { string -> bool }
+    initialize: function(armoredPrivKey, fingerprint) {
+      if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
+        return false; 
+      }
 
-        // Parsing the private key here should produce no errors. Once it is no 
-        // longer needed we will explicity remove references to this key.
-        var tmpKeyRef = openpgp.key.readArmored(armoredPrivKey).keys[0];
+      // Parsing the private key here should produce no errors. Once it is no 
+      // longer needed we will explicity remove references to this key.
+      var tmpKeyRef = openpgp.key.readArmored(armoredPrivKey).keys[0];
 
-        if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
-          tmpKeyRef = null;
-          return false; 
-        }
-        
-        keyring.privateKey = tmpKeyRef; 
+      if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
         tmpKeyRef = null;
-        return true;
-      },
+        return false; 
+      }
+      
+      keyRing.privateKey = tmpKeyRef; 
+      tmpKeyRef = null;
+      return true;
+    },
 
-    };
+    // lockKeyRing encrypts the private key material of the key using the passed
+    // password. The primary key and all subkeys are encrypted with the password.
+    // { string -> bool }
+    lockKeyRing: function(password) {
+      var w = true;
+      // TODO create issue on GH openpgp js so the library will support:
+      // Key.encrypt(passphrase) because it ain't there. TODO
+      w = w && keyRing.privateKey.primaryKey.encrypt(password);
+      keyRing.privateKey.subKeys.forEach(function(sk) {
+        w = w && sk.subKey.encrypt(password);
+      });
+      return w;
+    },
+
+    // unlockKeyRing decrypts the private key's encrypted key material with the 
+    // passed password. Returns true if succesful.
+    // { string -> bool }
+    unlockKeyRing: function(password) {
+      keyRing.privateKey.decrypt(password);
+    },
+  
+    // preformDecrypt uses the private key to decrypt the passed array, which 
+    // should represent the raw bytes of an openpgp Message.
+    // { Uint8Array -> { Promise: Uint8Array } }
+    performDecrypt: function(ciphertext) {
+      if (keyRing.privateKey === null) {
+        throw new Error("Keyring not initialized!");
+      }
+      return glbcCipherLib.decryptArray(ciphertext, keyRing.privateKey);
+    },
+  };
 }]);

@@ -417,18 +417,47 @@ angular.module('GLServices', ['ngResource']).
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
-    return function(tip, file) {
-      
-      $http({
-        method: 'GET',
-        url: '/rtip/' + tip.id + '/download/' + file.id,
-        responseType: 'blob',
-      }).then(function (response) {
-        var blob = response.data;
-        FileSaver.saveAs(blob, file.name);
+// RTipDownloadFile first makes an authenticated get request for the encrypted
+// file data. Then it takes that data converts it into an Uint8array, unlocks
+// the recipeint's privateKey, decrypts the file and saves it to disk.
+ factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcCipherLib', 'glbcKeyRing', function($http, $filter, FileSaver, glbcCipherLib, glbcKeyRing) {
+  return function(tip, file) {
+    $http({
+      method: 'GET',
+      url: '/rtip/' + tip.id + '/download/' + file.id,
+      responseType: 'blob',
+    }).then(function (response) {
+      var inputBlob = response.data;
+      glbcCipherLib.createArrayFromBlob(inputBlob).then(function(ciphertext) {
+
+        // TODO DELETE ME
+        glbcKeyRing.lockKeyRing("fakepassphrase");
+        // TODO TODO TODO
+
+        // TODO Get the passphrase from the user or the rootScope!
+        glbcKeyRing.unlockKeyRing("fakepassphrase");
+
+        // Decrypt the file
+        glbcKeyRing.performDecrypt(ciphertext).then(function(plaintext) {
+          
+          glbcKeyRing.lockKeyRing("fakepassphrase");
+          
+          var outBlob = new Blob([plaintext.buffer]);
+
+          // Before save clean up the filename
+          var filename = file.name.slice(0, file.name.length - 4);
+
+          // Save the decrypted file.
+          FileSaver.saveAs(outBlob, filename);
+        }, function() {
+          // Decryption failed. Lock the keyRing.
+          glbcKeyRing.lockKeyRing("fakepassphrase"); 
+        });
+
+
       });
-    };
+    });
+  };
 }]).
   factory('RTipExport', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
     return function(tip) {
@@ -582,9 +611,11 @@ angular.module('GLServices', ['ngResource']).
       method: "GET",
       transformResponse: function(data) {
         var prefs = angular.fromJson(data);
+        // TODO Temp private key TODO
         var fakefp = "ecaf2235e78e71cd95365843c7b190543caa7585";
         var initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, fakefp);
         delete prefs.cc_private_key;
+        // TODO TODO TODO
         if (initRes) {
           return prefs;
         } else {
