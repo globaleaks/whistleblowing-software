@@ -13,7 +13,6 @@ import os
 import re
 import sys
 import time
-import types
 
 from StringIO import StringIO
 
@@ -21,7 +20,7 @@ from twisted.internet import fdesc, reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
-from cyclone import escape, httputil, web
+from cyclone import httputil, web
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
@@ -490,7 +489,7 @@ class BaseHandler(RequestHandler):
             else:
                 f.close()
                 self.finish()
-        except:
+        except Exception:
             f.close()
             self.finish()
 
@@ -505,7 +504,7 @@ class BaseHandler(RequestHandler):
 
         try:
             reactor.callLater(0, self.write_chunk, f)
-        except:
+        except Exception:
             if f is not None:
                 f.close()
 

@@ -119,9 +119,7 @@ def fsops_pgp_encrypt(fpath, recipient_pgp):
 
         with open(filepath) as f:
             encrypted_file_path = os.path.join(os.path.abspath(GLSettings.submission_path), "pgp_encrypted-%s" % generateRandomKey(16))
-
-            encrypted_file_object, encrypted_file_size = \
-                gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
+            _, encrypted_file_size = gpoj.encrypt_file(recipient_pgp['pgp_key_fingerprint'], f, encrypted_file_path)
 
     except:
         raise
