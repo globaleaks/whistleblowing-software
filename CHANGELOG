@@ -1,3 +1,6 @@
+Changes in version 2.61.6 - 2016-04-24
+    o Fix exception scattering while configuring contexts
+
 Changes in version 2.61.5 - 2016-04-23
     o Implement feature (#1426)
 
