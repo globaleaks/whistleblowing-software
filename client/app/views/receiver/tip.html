@@ -9,15 +9,14 @@
       <span class="glyphicon glyphicon-th-list"></span>
     </a>
 
-    <a id="TipExport" ng-click="exportTip(tip)">
-      <button id="tip-action-export"
-              uib-popover="{{'Export' | translate}}"
-              popover-placement="top"
-              popover-trigger="mouseenter"
-              class="btn btn-default">
-        <i class="glyphicon glyphicon-save"></i>
-      </button>
-    </a>
+    <span id="tip-action-export"
+          data-ng-click="tip_export()"
+          uib-popover="{{'Export' | translate}}"
+          popover-placement="top"
+          popover-trigger="mouseenter"
+          class="btn btn-default">
+      <i class="glyphicon glyphicon-save"></i>
+    </span>
 
     <span id="tip-action-postpone"
           data-ng-if="preferences.can_postpone_expiration"

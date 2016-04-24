@@ -1,4 +1,0 @@
-From: Whistleblower
-Date: %EventTime%
-
-%Content%

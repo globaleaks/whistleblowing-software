@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'RTipExport', 'fieldUtilities',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, RTipExport, fieldUtilities) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -14,6 +14,10 @@ GLClient.controller('TipCtrl',
       $scope.loginRedirect(true);
       return;
     }
+
+    $scope.tip_export = function () {
+      window.print();
+    };
 
     $scope.getAnswersEntries = function(entry) {
       if (entry === undefined) {
@@ -133,7 +137,6 @@ GLClient.controller('TipCtrl',
         $scope.tip = tip;
         $scope.extractSpecialTipFields(tip);
 
-        $scope.exportTip = RTipExport;
         $scope.downloadFile = RTipDownloadFile;
 
         $scope.showEditLabelInput = $scope.tip.label === '';

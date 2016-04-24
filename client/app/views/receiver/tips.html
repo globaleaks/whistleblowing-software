@@ -185,14 +185,6 @@
                 <i class="glyphicon glyphicon-unchecked"></i>
               </span>
             </span>
-            <span name="TipExport" class="pull-right"
-                data-ng-click="exportTip(tip); $event.stopPropagation()"
-                uib-popover="{{'Export' | translate}}" popover-placement="top" popover-trigger="mouseenter"
-                novalidate>
-              <button id="tip-action-export" class="btn btn-xs btn-default">
-                <i class="glyphicon glyphicon-save"></i>
-              </button>
-            </span>
           </td>
           <td class="tipFileName">{{ tip | tipFileName }}</td>
           <td data-ng-if="contexts.length > 1">{{::tip.context_name}}</td>

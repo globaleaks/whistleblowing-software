@@ -459,19 +459,6 @@ angular.module('GLServices', ['ngResource']).
     });
   };
 }]).
-  factory('RTipExport', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
-    return function(tip) {
-      $http({
-        method: 'GET',
-        url: '/rtip/' + tip.id + '/export',
-        responseType: 'blob',
-      }).then(function (response) {
-        var blob = response.data;
-        var filename = $filter('tipFileName')(tip) + '.zip';
-        FileSaver.saveAs(blob, filename);
-      });
-    };
-}]).
   factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
           function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
     return function(tipID, fn) {
