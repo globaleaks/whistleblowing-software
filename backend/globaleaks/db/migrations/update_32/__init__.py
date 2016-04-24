@@ -23,11 +23,11 @@ class User_v_31(Model):
     timezone = Int()
     password_change_needed = Bool()
     password_change_date = DateTime()
-    pgp_key_info = Unicode() # Dropped in v_32
+    pgp_key_info = Unicode()  # dropped in v_32
     pgp_key_fingerprint = Unicode()
     pgp_key_public = Unicode()
     pgp_key_expiration = DateTime()
-    pgp_key_status = Unicode() # Dropped in v_32
+    pgp_key_status = Unicode()  # dropped in v_32
     img_id = Unicode()
 
 
@@ -64,9 +64,9 @@ class Notification_v_31(Model):
     pgp_alert_mail_template = JSON()
     receiver_notification_limit_reached_mail_template = JSON()
     receiver_notification_limit_reached_mail_title = JSON()
-    export_template = JSON()
-    export_message_recipient = JSON()
-    export_message_whistleblower = JSON()
+    export_template = JSON()  # dropped in v_32
+    export_message_recipient = JSON()  # dropped in v_32
+    export_message_whistleblower = JSON()  # dropped in v_32
     identity_access_authorized_mail_template = JSON()
     identity_access_authorized_mail_title = JSON()
     identity_access_denied_mail_template = JSON()
@@ -91,4 +91,14 @@ class Notification_v_31(Model):
 
 
 class MigrationScript(MigrationBase):
-    pass
+    def migrate_User(self):
+        old_objs = self.store_old.find(self.model_from['User'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['User']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'ccrypto_key_public' or v.name == 'ccrypto_key_private':
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
