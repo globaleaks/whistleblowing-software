@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+import json
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db.appdata import load_appdata
-from globaleaks.tests import helpers
 from globaleaks.handlers import admin
+from globaleaks.rest import requests
+from globaleaks.tests import helpers
 
 # special guest:
 
@@ -18,6 +21,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='admin')
         yield handler.get()
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminNotificationDesc)
 
     @inlineCallbacks
     def test_put(self):
