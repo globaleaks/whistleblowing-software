@@ -168,7 +168,6 @@ class UserInstance(BaseHandler):
 
         self.write(user_status)
 
-
     @BaseHandler.authenticated('*')
     @inlineCallbacks
     def put(self):
