@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                export, langfiles, wizard, \
+                                langfiles, wizard, \
                                 base, user, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
@@ -75,7 +75,6 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + r'/download/' + uuid_regexp, files.Download),
-    (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),

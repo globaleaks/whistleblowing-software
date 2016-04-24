@@ -1,4 +1,0 @@
-From: %RecipientName%
-Date: %EventTime%
-
-%Content%
