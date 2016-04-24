@@ -18,12 +18,12 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
     ISO8601_to_datetime, datetime_now, bytes_to_pretty_str
 
+
 node_keywords = [
     '%NodeName%',
     '%HiddenService%',
     '%PublicSite%',
 ]
-
 
 tip_keywords = [
     '%TipID%',
@@ -47,16 +47,6 @@ file_keywords = [
     '%FileType%'
 ]
 
-export_template_keywords = [
-    '%QuestionnaireAnswers%',
-    '%Comments%',
-    '%Messages%'
-]
-
-export_message_keywords = [
-    '%Content%'
-]
-
 admin_pgp_alert_keywords = [
     '%PGPKeyInfoList%'
 ]
@@ -74,86 +64,6 @@ admin_anomaly_keywords = [
     '%FreeMemory%',
     '%TotalMemory%'
 ]
-
-
-def indent(n=1):
-    return '  ' * n
-
-
-def indent_text(text, n=1):
-    """
-    Add n * 2 space as indentation to each of the non empty lines of the provided text
-    """
-    return '\n'.join([('  ' * n if not l.isspace() else '') + l for l in text.splitlines()])
-
-
-def dump_field_entry(output, field, entry, indent_n):
-    field_type = field['type']
-    if field_type == 'checkbox':
-        for k, v in entry.iteritems():
-            for option in field['options']:
-                if k == option.get('id', '') and v == 'True':
-                    output += indent(indent_n) + option['label'] + '\n'
-    elif field_type in ['selectbox', 'multichoice']:
-        for option in field['options']:
-            if entry.get('value', '') == option['id']:
-                output += indent(indent_n) + option['label'] + '\n'
-    elif field_type == 'date':
-        output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value', '')) + '\n'
-    elif field_type == 'tos':
-        answer = '☑' if entry.get('value', '') == 'True' else '☐'
-        output += indent(indent_n) + answer + '\n'
-    elif field_type == 'fieldgroup':
-        output = dump_fields(output, field['children'], entry, indent_n)
-    else:
-        output += indent_text(entry.get('value', ''), indent_n) + '\n'
-
-    return output + '\n'
-
-
-def dump_fields(output, fields, answers, indent_n):
-    rows = {}
-    for f in fields:
-        y = f['y']
-        if y not in rows:
-            rows[y] = []
-        rows[y].append(f)
-
-    rows = collections.OrderedDict(sorted(rows.items()))
-
-    for r in rows:
-        rows[r] = sorted(rows[r], key=lambda k: k['x'])
-
-    for index_x, row in rows.iteritems():
-        for field in row:
-            if field['type'] != 'fileupload' and field['id'] in answers:
-                output += indent(indent_n) + field['label'] + '\n'
-                entries = answers[field['id']]
-                if len(entries) == 1:
-                    output = dump_field_entry(output, field, entries[0], indent_n + 1)
-                else:
-                    i = 1
-                    for entry in entries:
-                        output += indent(indent_n) + '#' + str(i) + '\n'
-                        output = dump_field_entry(output, field, entry, indent_n + 2)
-                        i += 1
-
-    return output
-
-
-def dump_questionnaire_answers(questionnaire, answers):
-    output = ''
-
-    try:
-        questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
-    except:
-        pass
-
-    for step in questionnaire:
-        output += step['label'] + '\n'
-        output = dump_fields(output, step['children'], answers, 1) +'\n'
-
-    return output
 
 
 class Keyword(object):
@@ -275,50 +185,6 @@ class FileKeyword(TipKeyword):
         return self.data['file']['content_type']
 
 
-class ExportKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + export_template_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comments', 'messages', 'files']
-
-    def dump_messages(self, messages):
-        ret = ''
-        for message in messages:
-            data = copy.deepcopy(self.data)
-            data['type'] = 'export_message'
-            data['message'] = copy.deepcopy(message)
-            template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
-            ret += indent_text('-' * 40) + '\n'
-            ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
-
-        return ret
-
-    def QuestionnaireAnswers(self):
-        return dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
-
-    def Comments(self):
-        if len(self.data['comments']) == 0:
-            return '%Blank%'
-
-        ret = self.data['node']['widget_comments_title'] + ':\n'
-        ret += self.dump_messages(self.data['comments']) + '\n'
-        return ret + '\n'
-
-    def Messages(self):
-        if len(self.data['messages']) == 0:
-            return '%Blank%'
-
-        ret = self.data['node']['widget_messages_title'] + ':\n'
-        ret += self.dump_messages(self.data['messages'])
-        return ret + '\n'
-
-
-class ExportMessageKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + export_template_keywords + export_message_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
-
-    def Content(self):
-        return self.data['message']['content']
-
-
 class AdminPGPAlertKeyword(Keyword):
     keyword_list = Keyword.keyword_list + admin_pgp_alert_keywords
     data_keys =  ['node', 'notification', 'users']
@@ -398,8 +264,6 @@ supported_template_types = {
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
-    u'export_template': ExportKeyword,
-    u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword
 }
 
@@ -435,10 +299,7 @@ class Templating(object):
         return raw_template
 
     def get_mail_subject_and_body(self, data):
-        if data['type'] == 'export_template':
-            # this is currently the only template not used for mail notifications
-            pass
-        elif data['type'] in supported_template_types:
+        if data['type'] in supported_template_types:
             subject_template = data['notification'][data['type'] + '_mail_title']
             body_template = data['notification'][data['type'] + '_mail_template']
         else:
