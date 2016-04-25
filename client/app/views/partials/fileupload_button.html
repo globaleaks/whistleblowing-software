@@ -1,15 +1,19 @@
-<div data-ng-controller="WBFileUploadCtrl" data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
-  <div flow-init="{target: fileupload_url, headers: get_auth_headers}" flow-files-submitted="$flow.upload()" flow-name="uploads[fileinput]">
-    <span data-ng-if="field === undefined || field.multi_entry">
+<div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
+  <div data-ng-controller="WBFileUploadCtrl" flow-init="{target: fileupload_url, headers: get_auth_headers}" flow-files-submitted="$flow.upload()" flow-name="uploads[fileinput]">
+    <div data-ng-if="field === undefined || field.multi_entry">
       <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
         <i class="glyphicon glyphicon-paperclip"></i>
         <span data-translate>Add file</span>
       </button>
-    </span>
-    <span data-ng-if="field !== undefined && !field.multi_entry">
+    </div>
+    <div data-ng-if="field !== undefined && !field.multi_entry">
       <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn flow-single-file>
         <i class="glyphicon glyphicon-paperclip"></i>
         <span data-translate>Add file</span>
       </button>
-    </span>
+    </div>
+    <div data-ng-if="error_msg" class="file-upload-error text-danger">
+      <span data-translate="Error:"></span> <span data-translate>{{error_msg}}</span>
+    </div>
   </div>
+</div>
