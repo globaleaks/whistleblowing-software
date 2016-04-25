@@ -46,7 +46,7 @@ GLClient.controller('TipCtrl',
           var filterNotTriggeredField = function(field, answers) {
             for(var k2=field.children.length - 1; k2>=0; k2--) {
               var f = field.children[k2];
-              if (!fieldUtilities.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
+              if (!$scope.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
                 field.children.splice(k2, 1);
               } else {
                 for (var k3=0; k2<answers[f.id].length; k3++) {
@@ -56,7 +56,7 @@ GLClient.controller('TipCtrl',
             }
           }
 
-          if (!fieldUtilities.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
+          if (!$scope.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
             tip.questionnaire.splice(i, 1);
           } else {
             for (var k4=0; k4<step.children.length; k4++) {

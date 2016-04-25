@@ -1,5 +1,5 @@
-GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'GLCache',
-  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, GLCache) {
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'fieldUtilities', 'GLCache',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, fieldUtilities, GLCache) {
     $rootScope.started = false;
     $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
@@ -12,6 +12,10 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
     $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
 
     $rootScope.get_auth_headers = Authentication.get_auth_headers;
+
+    $scope.dumb_function = function() {
+      return true;
+    }
 
     $scope.iframeCheck = function() {
       try {
@@ -315,6 +319,14 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         };
 
         set_language($rootScope.language);
+
+        if ($scope.node.enable_experimental_features) {
+          $scope.isStepTriggered = fieldUtilities.isStepTriggered;
+          $scope.isFieldTriggered = fieldUtilities.isFieldTriggered;
+        } else {
+          $scope.isStepTriggered = $scope.dumb_function;
+          $scope.isFieldTriggered = $scope.dumb_function;
+        }
 
         var q1 = Contexts.query(function (contexts) {
           $rootScope.contexts = contexts;
