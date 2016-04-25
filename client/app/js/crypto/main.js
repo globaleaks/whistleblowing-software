@@ -353,7 +353,6 @@ angular.module('GLBrowserCrypto', [])
         format: 'binary',
       };
       openpgp.decrypt(options).then(function(plaintext) {
-        // TODO The plaintext data returned has leading and trailing packets attached.
         deferred.resolve(plaintext.data);
       });
 

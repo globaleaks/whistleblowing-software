@@ -22,7 +22,10 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipher
       }
       return glbcCipherLib.encryptArray(fileArr, pubKeys);
     }).then(function(cipherTextArr) {
-      var cipherBlob = new Blob([cipherTextArr.buffer]);
+
+      // Note application/octet-stream must be explicitly set or the new File
+      // will append leading and trailing bytes to the upload.
+      var cipherBlob = new Blob([cipherTextArr.buffer], {type:'application/octet-stream'});
       var encFile = new File([cipherBlob], file.name+'.pgp');
       deferred.resolve(encFile);
     });
