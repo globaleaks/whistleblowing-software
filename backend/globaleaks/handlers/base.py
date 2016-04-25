@@ -137,6 +137,8 @@ class BaseHandler(RequestHandler):
         self.request.request_type = None
         if 'import' in self.request.arguments:
             self.request.request_type = 'import'
+        elif 'export' in self.request.arguments:
+            self.request.request_type = 'export'
 
         language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
         if language not in GLSettings.memory_copy.languages_enabled:
