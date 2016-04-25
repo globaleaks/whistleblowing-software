@@ -395,3 +395,7 @@ th {
   opacity: 1;
   transition: opacity 2s linear;
 }
+
+.file-upload-error {
+  margin-top: 10px;
+}
