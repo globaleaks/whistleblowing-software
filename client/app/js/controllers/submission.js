@@ -8,8 +8,6 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemModal = undefined;
 
   $scope.total_score = 0;
-  $scope.isStepTriggered = fieldUtilities.isStepTriggered;
-  $scope.isFieldTriggered = fieldUtilities.isFieldTriggered;
 
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;
@@ -116,7 +114,7 @@ GLClient.controller('SubmissionCtrl',
     var last_enabled = 0;
 
     for (var i = 0; i < $scope.selected_context.questionnaire.steps.length; i++) {
-      if (fieldUtilities.isStepTriggered($scope.selected_context.questionnaire.steps[i]), $scope.answers, $scope.total_score) {
+      if ($scope.isStepTriggered($scope.selected_context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
         last_enabled = i;
       }
     }
@@ -163,7 +161,7 @@ GLClient.controller('SubmissionCtrl',
 
     if ($scope.hasNextStep()) {
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
-        if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if ($scope.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
@@ -175,7 +173,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (i === -1 || $scope.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
