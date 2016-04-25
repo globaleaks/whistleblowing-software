@@ -594,8 +594,7 @@ class BaseHandler(RequestHandler):
                 'body': f
             }
 
-            upload_time = time.time() - f.creation_date
-
+            self.request._start_time = f.creation_date
             track_handler(self)
 
             return uploaded_file

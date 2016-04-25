@@ -94,17 +94,18 @@ events_monitored = [
         'name': 'files',
         'handler_check': file_upload_check,
         'method': 'POST',
-        'status_check': created_status_check
+        'status_check': ok_status_check
     }
 ]
 
 
 def track_handler(handler):
+    request_time = handler.request.request_time()
     for event in events_monitored:
         if event['handler_check'](handler.request.uri) and \
                         event['method'] == handler.request.method and \
                 event['status_check'](handler._status_code):
-            EventTrack(event, handler.request.request_time())
+            EventTrack(event, request_time)
             break
 
 
