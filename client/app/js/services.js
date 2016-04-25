@@ -464,7 +464,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
           glbcKeyRing.lockKeyRing("fakepassphrase");
 
-          var outBlob = new Blob([plaintext.buffer]);
+          var outBlob = new Blob([plaintext], {type: 'application/octet-stream'});
 
           // Before save clean up the filename
           var filename = file.name.slice(0, file.name.length - 4);
