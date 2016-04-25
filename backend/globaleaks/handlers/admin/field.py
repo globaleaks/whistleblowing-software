@@ -341,7 +341,7 @@ def get_field(store, field_id, language, request_type=None):
     if not field:
         raise errors.FieldIdNotFound
 
-    return serialize_field(store, field, language if request_type != 'export' else None)
+    return serialize_field(store, field, language)
 
 
 @transact
@@ -402,7 +402,7 @@ def get_fieldtemplate_list(store, language, request_type=None):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    language  = language if request_type != 'export' else None
+    language  = language
 
     ret = []
     for f in store.find(models.Field, models.Field.instance == u'template'):
