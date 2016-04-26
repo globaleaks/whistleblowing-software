@@ -21,22 +21,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       }
     };
 
-    $scope.requireLegacyUploadSupport = function() {
-      // Implement the same check implemented but not exported by flowjs
-      // https://github.com/flowjs/flow.js/blob/master/src/flow.js#L42
-      var support = (
-          typeof File !== 'undefined' &&
-          typeof Blob !== 'undefined' &&
-          typeof FileList !== 'undefined' &&
-          (
-            !!Blob.prototype.slice || !!Blob.prototype.webkitSlice || !!Blob.prototype.mozSlice ||
-            false
-          ) // slicing files support
-      );
-
-      return !support;
-    };
-
     $scope.browserNotCompatible = function() {
       document.getElementById("BrowserSupported").style.display = "none";
       document.getElementById("BrowserNotSupported").style.display = "block";
@@ -218,18 +202,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       list.splice(index, 1);
     };
 
-    $rootScope.getUploadUrl = function(url) {
-      if ($scope.requireLegacyUploadSupport()) {
-        url += '?session=' + $scope.session;
-      }
-
-      return url;
-    };
-
     $rootScope.getUploadUrl_lang = function(lang) {
-      return function() {
-        return $scope.getUploadUrl('admin/l10n/' + lang + '.json');
-      };
+      return 'admin/l10n/' + lang + '.json';
     };
 
     $scope.init = function () {
