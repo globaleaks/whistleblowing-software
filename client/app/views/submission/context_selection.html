@@ -15,10 +15,12 @@
       <div id="contextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</div>
       <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" data-ng-class="{'col-md-6': !node.show_small_context_cards, 'col-md-3': node.show_small_context_cards}" data-ng-click="selectContext(context)">
         <div class="contextCard">
-          <div class="contextCardTitle">{{::context.name}}</div>
+          <div class="contextCardTitle row">
+            <div class="col-md-12">{{::context.name}}</div>
+          </div>
           <div class="contextCardContent row">
-            <div class="contextCardImg" data-ng-class="{'col-md-3': !node.small_context_cards, 'col-md-12': node.show_small_context_cards}">
-              <img class="imageContext" data-ng-src="{{::imgDataUri(context.picture)}}">
+            <div class="contextCardImgFrame" data-ng-class="{'col-md-3': !node.small_context_cards, 'col-md-12': node.show_small_context_cards}">
+              <span class="verticalAlignHelper"></span><img class="contextCardImg" data-ng-src="{{::imgDataUri(context.picture)}}" />
             </div>
             <div data-ng-if="!node.show_small_context_cards" class="contextCardDescription col-md-7">{{::context.description}}</div>
           </div>
