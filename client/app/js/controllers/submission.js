@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
 
@@ -8,6 +8,9 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemModal = undefined;
 
   $scope.total_score = 0;
+
+  // TODO place set locale in a sane place, that responds to admin configuration
+  tmhDynamicLocale.set('fr'); 
 
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;

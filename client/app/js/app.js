@@ -49,6 +49,7 @@ var GLClient = angular.module('GLClient', [
     'ngAria',
     'ngRoute',
     'ui.bootstrap',
+    'tmh.dynamicLocale',
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
@@ -57,8 +58,14 @@ var GLClient = angular.module('GLClient', [
     'GLFilters',
     'GLBrowserCrypto'
   ]).
-  config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$translateProvider', '$uibTooltipProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider) {
+  config(['$compileProvider',
+          '$httpProvider',
+          '$routeProvider',
+          '$rootScopeProvider',
+          '$translateProvider',
+          '$uibTooltipProvider',
+          'tmhDynamicLocaleProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 
@@ -260,6 +267,11 @@ var GLClient = angular.module('GLClient', [
       $translateProvider.useSanitizeValueStrategy('escape');
 
       $uibTooltipProvider.options({appendToBody: true});
+
+      // tmhDynamicLocaleProvider gives us the ability to dynamically change the
+      // $locale. 
+      // TODO package the locale js files for production use.
+      tmhDynamicLocaleProvider.localeLocationPattern('components/angular-i18n/angular-locale_{{locale}}.js');
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {

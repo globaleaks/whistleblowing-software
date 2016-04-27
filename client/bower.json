@@ -29,7 +29,9 @@
   "dependencies": {
     "angular": "1.5.5",
     "angular-aria": "1.5.5",
+    "angular-dynamic-locale": "0.1.32",
     "angular-filter": "0.5.8",
+    "angular-i18n": "1.5.5",
     "angular-resource": "1.5.5",
     "angular-route": "1.5.5",
     "angular-translate": "2.11.0",
