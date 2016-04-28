@@ -264,6 +264,7 @@ class Context(Model):
       'enable_attachments'
     ]
 
+
 class InternalTip(Model):
     """
     This is the internal representation of a Tip that has been submitted to the
@@ -277,9 +278,14 @@ class InternalTip(Model):
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
 
+    encrypted = Bool(default=True)
+
     context_id = Unicode()
 
     questionnaire_hash = Unicode()
+
+    encrypted_answers = Unicode()
+
     preview = JSON()
     progressive = Int(default=0)
     tor2web = Bool(default=False)
