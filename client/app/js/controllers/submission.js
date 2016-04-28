@@ -9,9 +9,6 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.total_score = 0;
 
-  // TODO place set locale in a sane place, that responds to admin configuration
-  tmhDynamicLocale.set('fr'); 
-
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;
     $scope.submission._token.$update(function(token) {

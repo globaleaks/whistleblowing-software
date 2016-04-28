@@ -1,13 +1,9 @@
-GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'fieldUtilities', 'GLCache',
-  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, fieldUtilities, GLCache) {
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'fieldUtilities', 'GLCache', 'GLTranslate',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, fieldUtilities, GLCache, GLTranslate) {
     $rootScope.started = false;
     $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
-
-    $scope.rtl = false;
-
-    $rootScope.language = $location.search().lang;
 
     $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
 
@@ -15,7 +11,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.dumb_function = function() {
       return true;
-    }
+    };
 
     $scope.iframeCheck = function() {
       try {
@@ -280,6 +276,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         }
 
+        GLTranslate.AddDefaultLang(node.default_language);
+
         $scope.route_check();
 
         $scope.languages_supported = {};
@@ -302,23 +300,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
 
         $scope.set_title();
-
-        var set_language = function(language) {
-          if (language === undefined || $rootScope.node.languages_enabled.indexOf(language) === -1) {
-            language = node.default_language;
-            $rootScope.default_language = node.default_language;
-          }
-
-          $rootScope.language = language;
-
-          $scope.rtl = ["ar", "he", "ur"].indexOf(language) !== -1;
-
-          document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
-
-          $translate.use($rootScope.language);
-        };
-
-        set_language($rootScope.language);
 
         if ($scope.node.enable_experimental_features) {
           $scope.isStepTriggered = fieldUtilities.isStepTriggered;
@@ -514,12 +495,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.session = Authentication.session;
     });
 
-    $rootScope.$watch('language', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal && oldVal !== undefined) {
-        $scope.$emit("REFRESH");
-      }
-    });
-
     $rootScope.keypress = function(e) {
        if (((e.which || e.keyCode) === 116) || /* F5 */
            ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
@@ -549,7 +524,7 @@ controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($sc
       $uibModalInstance.close(true);
     };
 }]).
-controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
+controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'GLTranslate', function ($scope, $rootScope, $uibModalInstance, GLTranslate) {
   var steps = 3;
 
   var first_step = 0;
@@ -576,15 +551,7 @@ controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function (
     $uibModalInstance.close();
   };
 
-  $scope.data = {
-    'language': $scope.language
-  };
-
-  $scope.$watch("data.language", function (newVal, oldVal) {
-    if (newVal && newVal !== oldVal) {
-      $rootScope.language = $scope.data.language;
-    }
-  });
+  $scope.GLTranslate = GLTranslate;
 }]).
 controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', function($scope, $uibModalInstance, arg) {
   $scope.arg = arg;

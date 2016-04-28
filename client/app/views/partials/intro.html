@@ -16,7 +16,7 @@
             <span class="LanguagePreselectorBoxElem" data-ng-class="{LanguageSelected: data.language == lang_key}">
               <div class="LanguagePreselectorBoxElemText">
                 <span>
-                  <input data-ng-model="data.language" type="radio" name="language" value="{{lang_key}}"><br />
+                  <input data-ng-model="GLTranslate.indirect.appLanguage" ng-click="GLTranslate.SetLang();" type="radio" name="language" value="{{lang_key}}"><br />
                   <span>{{lang_name}}</span>
                 </span>
               </div>
@@ -24,7 +24,7 @@
           </span>
         </div>
         <div data-ng-show="languages_enabled_length > 3">
-          <select data-ng-model="data.language" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
+          <select data-ng-model="GLTranslate.indirect.appLanguage" ng-change="GLTranslate.SetLang();" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
         </div>
       </div>
     </div>

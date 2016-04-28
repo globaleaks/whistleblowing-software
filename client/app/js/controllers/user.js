@@ -1,12 +1,8 @@
 GLClient.controller('UserCtrl',
-  ['$scope', '$rootScope', '$location', 'WhistleblowerTip',
-  function($scope, $rootScope, $location, WhistleblowerTip) {
+  ['$scope', '$rootScope', '$location', 'GLTranslate', 'WhistleblowerTip', 
+  function($scope, $rootScope, $location, GLTranslate, WhistleblowerTip) {
 
-  $scope.$watch("language", function (newVal, oldVal) {
-    if (newVal && newVal !== oldVal) {
-      $rootScope.language = $scope.language;
-    }
-  });
+  $scope.GLTranslate = GLTranslate;
 
   $scope.view_tip = function(keycode) {
     keycode = keycode.replace(/\D/g,'');
