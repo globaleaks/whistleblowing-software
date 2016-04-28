@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, UserPreferences, ReceiverPreferences) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -36,21 +36,26 @@ angular.module('GLServices', ['ngResource']).
               'auth_landing_page': ''
             };
 
+            function initPreferences(prefs) {
+              $rootScope.preferences = prefs;
+              GLTranslate.AddUserPreference(prefs.language);
+            }
+
             if (self.session.role === 'admin') {
               self.session.homepage = '#/admin/landing';
               self.session.auth_landing_page = '/admin/landing';
               self.session.preferencespage = '#/user/preferences';
-              $rootScope.preferences = UserPreferences.get();
+              UserPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'custodian') {
               self.session.homepage = '#/custodian/identityaccessrequests';
               self.session.auth_landing_page = '/custodian/identityaccessrequests';
               self.session.preferencespage = '#/user/preferences';
-              $rootScope.preferences = UserPreferences.get();
+              UserPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'receiver') {
               self.session.homepage = '#/receiver/tips';
               self.session.auth_landing_page = '/receiver/tips';
               self.session.preferencespage = '#/receiver/preferences';
-              $rootScope.preferences = ReceiverPreferences.get();
+              ReceiverPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'whistleblower') {
               self.session.auth_landing_page = '/status';
             }
@@ -159,9 +164,8 @@ angular.module('GLServices', ['ngResource']).
             h['X-Session'] = self.session.id;
           }
 
-          if ($rootScope.language) {
-            h['GL-Language'] = $rootScope.language;
-          }
+          // TODO wrap returned languge in whitelist
+          h['GL-Language'] = GLTranslate.indirect.appLanguage;
 
           return h;
         };
@@ -914,4 +918,121 @@ angular.module('GLServices', ['ngResource']).
 }).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('globalInterceptor');
+}]).
+  factory('GLTranslate', ['$translate', '$location', '$rootScope', 'tmhDynamicLocale', 
+  function($translate, $location, $rootScope, tmhDynamicLocale) {
+
+  // facts are (un)defined in order of importance to the factory.
+  var facts = {
+    userChoice: undefined,
+    urlParam: undefined,
+    userPreference: undefined,
+    browserSniff: undefined,
+    nodeDefault: undefined,
+  };
+    
+  var indirect = {
+    appLanguage: undefined,
+  };
+        
+  initializeStartLanguage();
+ 
+  function initializeStartLanguage() {
+    var queryLang = $location.search().lang;
+    if (angular.isDefined(queryLang) && validLang(queryLang)) {
+      facts.urlParam = queryLang;
+    } 
+    
+    // TODO use browser preferences to detect user language.
+    // facts.browserSniff = "en";
+    determineLanguage();
+  }
+
+  function validLang(inp) {
+    // TODO check input is in list of known good languages.
+    return typeof inp === 'string';
+  }
+
+  function updateTranslationServices(lang) {
+
+    console.log('Changing App Language: ', lang);
+    // Set text direction
+    useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
+    document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
+
+    // Update the $translate module to use the new language
+    $translate.use(lang);
+
+    // Set angular's $locale object to the new langauge 
+    // TODO handle mapping appLanguage to angular Locale names
+    tmhDynamicLocale.set(lang); 
+  }
+
+
+  // SetLang either uses the current indirect.appLanguage or the passed value
+  // to set the language for the entire application.
+  function SetLang(choice) {
+    console.log("SETTING LANG");
+    if (angular.isUndefined(choice)) {
+      choice = indirect.appLanguage;
+    }
+
+    if (validLang(choice)) {
+      facts.userChoice = choice;
+      determineLanguage();
+    }
+  }
+
+  // bestLanguage returns the best language for the application to use given
+  // all of the state the GLTranslate service has collected in facts. It picks
+  // the language in the order that the properties of the 'facts' object is
+  // defined.
+  // { object -> string }
+  function bestLanguage(facts) {
+
+    if (angular.isDefined(facts.userChoice)) {
+      return facts.userChoice;
+    } else if (angular.isDefined(facts.urlParam)) {
+      console.log("Url Param set!");
+      return facts.urlParam;
+    } else if (angular.isDefined(facts.userPreference)) {
+      console.log("Using user choice");
+      return facts.userPreference;
+    } else if (angular.isDefined(facts.browserSniff)) {
+      console.log("Sniffing browser lang");
+      return facts.browserSniff;
+    } else if (angular.isDefined(facts.nodeDefault)) {
+      console.log("Using node default");
+      return facts.nodeDefault;
+    } else {
+      console.log("falling back to en");
+      return 'en';
+    }
+  }
+
+  // determineLanguage contains all of the scope creeping ugliness of the 
+  // factory. It finds the best language to use, changes the appLanguage 
+  // pointer, and notifies the dependent services of the change.
+  function determineLanguage() {
+    indirect.appLanguage = bestLanguage(facts);
+    updateTranslationServices(indirect.appLanguage);
+  }
+
+  return {
+    // Use indirect object to preserve the reference to appLanguage across scopes
+    indirect: indirect,
+
+    SetLang: SetLang,
+
+    AddDefaultLang: function(lang) {
+      facts.nodeDefault = lang;
+      determineLanguage();
+    },
+
+    AddUserPreference: function(lang) {
+      facts.userPreference = lang;
+      determineLanguage();
+    },
+
+  };
 }]);
