@@ -58,16 +58,19 @@ var GLClient = angular.module('GLClient', [
     'GLFilters',
     'GLBrowserCrypto'
   ]).
-  config(['$compileProvider',
+  config(['$locationProvider',
+          '$compileProvider',
           '$httpProvider',
           '$routeProvider',
           '$rootScopeProvider',
           '$translateProvider',
           '$uibTooltipProvider',
           'tmhDynamicLocaleProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
+    function($locationProvider, $compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
+
+    $locationProvider.html5Mode({enabled: true});
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
@@ -255,10 +258,13 @@ var GLClient = angular.module('GLClient', [
         redirectTo: '/'
       });
 
+      $uibTooltipProvider.options({appendToBody: true});
+
       // Raise the default digest loop limit to 30 because of the template recursion used by fields:
       // https://github.com/angular/angular.js/issues/6440
       $rootScopeProvider.digestTtl(30);
 
+      // Configure translation and language providers.
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
         suffix: '.json'
@@ -266,12 +272,10 @@ var GLClient = angular.module('GLClient', [
 
       $translateProvider.useSanitizeValueStrategy('escape');
 
-      $uibTooltipProvider.options({appendToBody: true});
-
-      // tmhDynamicLocaleProvider gives us the ability to dynamically change the
-      // $locale. 
-      // TODO package the locale js files for production use.
+      // tmhDynamicLocaleProvider dynamically changes the $locale. 
       tmhDynamicLocaleProvider.localeLocationPattern('components/angular-i18n/angular-locale_{{locale}}.js');
+
+
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {
