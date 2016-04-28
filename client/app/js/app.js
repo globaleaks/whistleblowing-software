@@ -58,19 +58,16 @@ var GLClient = angular.module('GLClient', [
     'GLFilters',
     'GLBrowserCrypto'
   ]).
-  config(['$locationProvider',
-          '$compileProvider',
+  config(['$compileProvider',
           '$httpProvider',
           '$routeProvider',
           '$rootScopeProvider',
           '$translateProvider',
           '$uibTooltipProvider',
           'tmhDynamicLocaleProvider',
-    function($locationProvider, $compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
+    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
-
-    $locationProvider.html5Mode({enabled: true});
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
