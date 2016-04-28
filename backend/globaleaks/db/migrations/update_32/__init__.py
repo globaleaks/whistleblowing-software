@@ -90,6 +90,27 @@ class Notification_v_31(Model):
     exception_email_pgp_key_status = Unicode()
 
 
+class InternalTip_v_31(Model):
+    __storm_table__ = 'internaltip'
+    creation_date = DateTime()
+    update_date = DateTime()
+    encrypted = Bool()
+    context_id = Unicode()
+    questionnaire_hash = Unicode()
+    preview = JSON()
+    progressive = Int()
+    tor2web = Bool()
+    total_score = Int()
+    expiration_date = DateTime()
+    identity_provided = Bool()
+    identity_provided_date = DateTime()
+    enable_two_way_comments = Bool()
+    enable_two_way_messages = Bool()
+    enable_attachments = Bool()
+    enable_whistleblower_identity = Bool()
+    new = Int()
+
+
 class MigrationScript(MigrationBase):
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
@@ -97,6 +118,23 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'ccrypto_key_public' or v.name == 'ccrypto_key_private':
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_InternalTip(self):
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['InternalTip']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'encrypted':
+                    old_obj.encrypted = False
+                    continue
+
+                if v.name == 'encrypted_answers':
+                    old_obj.encrypted_answers = ''
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
