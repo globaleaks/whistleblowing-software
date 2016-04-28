@@ -531,18 +531,21 @@ module.exports = function(grunt) {
       total_languages, supported_languages = {};
 
     listLanguages(function(result){
-      result.available_languages = result.available_languages.filter(function( language ) {
-        /*
-            we skip en_US that is used internaly only as feedback in order
-            to keep track of corrections suggestions
-        */
-        return language.code !== 'en_US';
+      result.available_languages = result.available_languages.sort(function(a, b) {
+        if (a.code > b.code) {
+          return 1;
+        }
+
+        if (a.code < b.code) {
+          return -1;
+        }
+
+        return 0;
       });
 
       total_languages = result.available_languages.length;
 
-      result.available_languages.forEach(function(language){
-
+      var fetchLanguage = function(language) {
         fetchTxTranslationsForLanguage(language.code, function(content){
           if (content) {
             var potFile = "pot/" + language.code + ".po";
@@ -565,10 +568,13 @@ module.exports = function(grunt) {
             }
 
             cb(supported_languages);
+          } else {
+            fetchLanguage(result.available_languages[fetched_languages]);
           }
         });
+      };
 
-      });
+      fetchLanguage(result.available_languages[fetched_languages]);
     });
   }
 
@@ -844,7 +850,7 @@ module.exports = function(grunt) {
   // Run this task to push translations on transifex
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
-  // Run this task to fetch translations from transifex and create appliccation files
+  // Run this task to fetch translations from transifex and create application files
   grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
