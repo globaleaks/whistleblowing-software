@@ -945,10 +945,36 @@ angular.module('GLServices', ['ngResource']).
     
     // TODO use browser preferences to detect user language.
     // facts.browserSniff = "en";
+    if (window.navigator.isDefined('language')) {
+      var s = normalizeLang(window.navigator.language);
+      if (validLang(s)) {
+        facts.browserSniff = s; 
+      }
+    }
     determineLanguage();
   }
 
+  // normalizeLang attempts to map input language strings to the transifex format.
+  function normalizeLang(string) {
+    var l = string.length;
+    var out = string.toLowerCase();
+    if (l === 2) {
+      return out;
+    }
+    if (l !== 5) {
+      return string; // Definitely not in the right format so do nothing.
+    }
+    out = out.replace(/-/, /_/);
+    out = out.split(0,2) + out.split(3).toUpperCase();
+    return out;
+  }
+
   function validLang(inp) {
+    if (!inp.test(/^([a-z]{2})(_[A-Z]{2})?$/)) {
+      return false;
+    }
+    // TODO check if lang is in the list of supported langs
+    var langMap = {};
     // TODO check input is in list of known good languages.
     return typeof inp === 'string';
   }
