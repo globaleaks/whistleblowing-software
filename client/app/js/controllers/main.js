@@ -261,7 +261,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         }
 
-        GLTranslate.AddDefaultLang(node.default_language);
+        GLTranslate.AddNodeFacts(node.default_language, node.languages_supported);
 
         $scope.route_check();
 

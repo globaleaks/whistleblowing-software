@@ -930,7 +930,20 @@ angular.module('GLServices', ['ngResource']).
     browserSniff: undefined,
     nodeDefault: undefined,
   };
-    
+
+  
+  // This is a value set by the node.
+  var supportedLanguages = [];
+  
+  // Country codes with multiple languages or an '_XX' extension
+  var problemLangs = {
+    'zh': ['CN', 'TW'], 
+    'pt': ['BR', 'PT'],
+    'nb': 'NO',
+    'hr': 'HR',
+    'hu': 'HU',
+  };
+
   var indirect = {
     appLanguage: undefined,
   };
@@ -943,55 +956,77 @@ angular.module('GLServices', ['ngResource']).
       facts.urlParam = queryLang;
     } 
     
-    // TODO use browser preferences to detect user language.
-    // facts.browserSniff = "en";
-    if (window.navigator.isDefined('language')) {
-      var s = normalizeLang(window.navigator.language);
-      if (validLang(s)) {
-        facts.browserSniff = s; 
-      }
+    var s = normalizeLang(window.navigator.language);
+    console.log("sniffed browser lang", s);
+    if (validLang(s)) {
+      console.log('valid lang!:', s);
+      facts.browserSniff = s; 
     }
+
     determineLanguage();
   }
 
   // normalizeLang attempts to map input language strings to the transifex format.
-  function normalizeLang(string) {
-    var l = string.length;
-    var out = string.toLowerCase();
-    if (l === 2) {
-      return out;
+  function normalizeLang(s) {
+    if (typeof s !== 'string') {
+      return '';
     }
-    if (l !== 5) {
-      return string; // Definitely not in the right format so do nothing.
+
+    if (s.length !== 2 && s.length !== 5) {
+      // The string is not in a format we are expecting so just return it.
+      return s; 
     }
-    out = out.replace(/-/, /_/);
-    out = out.split(0,2) + out.split(3).toUpperCase();
-    return out;
+
+    // The string is probably a valid ISO 639-1 language.
+    var iso_lang = s.slice(0,2).toLowerCase();
+    
+    if (problemLangs.hasOwnProperty(iso_lang)) {
+
+      var t = problemLangs[iso_lang]; 
+      if (t instanceof Array) {
+        // We do not know which extension to use, so just use the most popular one.
+        return iso_lang + '_' + t[0];
+      }
+      return iso_lang + '_' + t;
+
+    } else {
+      return iso_lang;
+    }
   }
 
   function validLang(inp) {
-    if (!inp.test(/^([a-z]{2})(_[A-Z]{2})?$/)) {
+    // Check for valid looking ISOish language string.
+    if (typeof inp !== 'string' || !/^([a-z]{2})(_[A-Z]{2})?$/.test(inp)) {
       return false;
     }
-    // TODO check if lang is in the list of supported langs
-    var langMap = {};
-    // TODO check input is in list of known good languages.
-    return typeof inp === 'string';
+    
+    // Check if lang is in the list of supported langs if we have supportedLangs
+    if (supportedLanguages.length > 0) {
+      return supportedLanguages.indexOf(inp) > -1;
+    }
+
+    return true;
   }
 
   function updateTranslationServices(lang) {
 
     console.log('Changing App Language: ', lang);
-    // Set text direction
-    useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
+    
+    // Set text direction for languages that read from right to left.
+    var useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
 
-    // Update the $translate module to use the new language
+    // Update the $translate module to use the new language.
     $translate.use(lang);
 
-    // Set angular's $locale object to the new langauge 
-    // TODO handle mapping appLanguage to angular Locale names
-    tmhDynamicLocale.set(lang); 
+    // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
+    // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
+    var t = lang;
+    if (lang.length === 5) {
+      // Angulars-i18n's format is typically 'zh-tw'
+      t = lang.replace('_', '-').toLowerCase();
+    }
+    tmhDynamicLocale.set(t); 
   }
 
 
@@ -1031,8 +1066,8 @@ angular.module('GLServices', ['ngResource']).
       console.log("Using node default");
       return facts.nodeDefault;
     } else {
-      console.log("falling back to en");
-      return 'en';
+      console.log("falling back to fr");
+      return 'fr';
     }
   }
 
@@ -1050,8 +1085,11 @@ angular.module('GLServices', ['ngResource']).
 
     SetLang: SetLang,
 
-    AddDefaultLang: function(lang) {
-      facts.nodeDefault = lang;
+    AddNodeFacts: function(defaultLang, languages_supported) {
+      facts.nodeDefault = defaultLang;
+      supportedLanguages = languages_supported.map(function(lang) {
+        return lang.code;
+      });
       determineLanguage();
     },
 
