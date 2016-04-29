@@ -109,21 +109,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return $scope.header_subtitle !== '';
     };
 
-    $scope.open_intro = function () {
-      if ($scope.intro_opened) {
-        return;
-      } else {
-        $scope.intro_opened = true;
-      }
-
-      $uibModal.open({
-        templateUrl: 'views/partials/intro.html',
-        controller: 'IntroCtrl',
-        size: 'lg',
-        scope: $scope
-      });
-    };
-
     $scope.set_title = function () {
       if ($rootScope.node) {
         var path = $location.path();
@@ -523,35 +508,6 @@ controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($sc
     $scope.ok = function() {
       $uibModalInstance.close(true);
     };
-}]).
-controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', 'GLTranslate', function ($scope, $rootScope, $uibModalInstance, GLTranslate) {
-  var steps = 3;
-
-  var first_step = 0;
-
-  if ($scope.languages_enabled_length <= 1) {
-     first_step = 1;
-  }
-
-  $scope.step = first_step;
-
-  $scope.proceed = function () {
-    if ($scope.step < steps) {
-      $scope.step += 1;
-    }
-  };
-
-  $scope.back = function () {
-    if ($scope.step > first_step) {
-      $scope.step -= 1;
-    }
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.close();
-  };
-
-  $scope.GLTranslate = GLTranslate;
 }]).
 controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', function($scope, $uibModalInstance, arg) {
   $scope.arg = arg;
