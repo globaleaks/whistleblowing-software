@@ -22,18 +22,22 @@ FIRST_DATABASE_VERSION_SUPPORTED = 15
 # 
 # NOTE that the cmd requires Babel is installed via pip and `code` is defined.
 LANGUAGES_SUPPORTED = [
-  {'code': 'ar', 'name': 'Arabic',
+  {
+   'code': 'ar',
+   'name': 'Arabic',
    'native': u'\u0627\u0644\u0639\u0631\u0628\u064a\u0629'
   },
   {'code': 'bs', 'name': 'Bosnian', 'native': u'bosanski'},
   {'code': 'de', 'name': 'German', 'native': u'Deutsch'},
-  {'code': 'el',
+  {
+    'code': 'el',
     'name': 'Greek',
     'native': u'\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac'
   },
   {'code': 'en', 'name': 'English', 'native': u'English'},
   {'code': 'es', 'name': 'Spanish', 'native': u'espa\xf1ol'},
-  {'code': 'fa',
+  {
+    'code': 'fa',
     'name': 'Persian',
     'native': u'\u0641\u0627\u0631\u0633\u06cc'
   },
@@ -45,41 +49,54 @@ LANGUAGES_SUPPORTED = [
   },
   {'code': 'it', 'name': 'Italian', 'native': u'italiano'},
   {'code': 'ja', 'name': 'Japanese', 'native': u'\u65e5\u672c\u8a9e'},
-  {'code': 'ka', 'name': 'Georgian',
+  {
+    'code': 'ka', 
+    'name': 'Georgian',
     'native': u'\u10e5\u10d0\u10e0\u10d7\u10e3\u10da\u10d8'
   },
   {'code': 'ko', 'name': 'Korean', 'native': u'\ud55c\uad6d\uc5b4'},
-  {'code': 'nb_NO',
+  {
+    'code': 'nb_NO',
     'name': 'Norwegian Bokm\xc3\xa5l (Norway)',
     'native': u'norsk bokm\xe5l (Norge)'
   },
   {'code': 'nl', 'name': 'Dutch', 'native': u'Nederlands'},
-  {'code': 'pt_BR',
+  {
+    'code': 'pt_BR',
     'name': 'Portuguese (Brazil)',
     'native': u'portugu\xeas (Brasil)'
   },
-  {'code': 'pt_PT',
+  {
+    'code': 'pt_PT',
     'name': 'Portuguese (Portugal)',
-    'native': u'portugu\xeas (Portugal)'},
+    'native': u'portugu\xeas (Portugal)'
+  },
   {'code': 'ro', 'name': 'Romanian', 'native': u'rom\xe2n\u0103'},
-  {'code': 'ru',
+  {
+    'code': 'ru',
     'name': 'Russian',
-    'native': u'\u0440\u0443\u0441\u0441\u043a\u0438\u0439'},
+    'native': u'\u0440\u0443\u0441\u0441\u043a\u0438\u0439'
+  },
   {'code': 'sq', 'name': 'Albanian', 'native': u'shqip'},
   {'code': 'sv', 'name': 'Swedish', 'native': u'svenska'},
   {'code': 'ta', 'name': 'Tamil', 'native': u'\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
   {'code': 'th', 'name': 'Thai', 'native': u'\u0e44\u0e17\u0e22'},
   {'code': 'tr', 'name': 'Turkish', 'native': u'T\xfcrk\xe7e'},
-  {'code': 'uk',
+  {
+    'code': 'uk',
     'name': 'Ukrainian',
     'native': u'\u0443\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430'
   },
   {'code': 'ur', 'name': 'Urdu', 'native': u'\u0627\u0631\u062f\u0648'},
   {'code': 'vi', 'name': 'Vietnamese', 'native': u'Ti\u1ebfng Vi\u1ec7t'},
-  {'code': 'zh_CN', 'name': 'Chinese (China)',
+  {
+    'code': 'zh_CN', 
+    'name': 'Chinese (China)',
     'native': u'\u4e2d\u6587 (\u7b80\u4f53, \u4e2d\u56fd)'
   },
-  {'code': 'zh_TW', 'name': 'Chinese (Taiwan)',
+  {
+    'code': 'zh_TW',
+    'name': 'Chinese (Taiwan)',
     'native': u'\u4e2d\u6587 (\u7e41\u9ad4, \u53f0\u7063)'
   }
 ]
