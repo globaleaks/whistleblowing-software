@@ -270,7 +270,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.languages_enabled_selector = [];
         angular.forEach(node.languages_supported, function (lang) {
           var code = lang.code;
-          var name = lang.name;
+          var name = lang.native;
           $scope.languages_supported[code] = name;
           if (node.languages_enabled.indexOf(code) !== -1) {
             $scope.languages_enabled[code] = name;
