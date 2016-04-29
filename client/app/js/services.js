@@ -919,8 +919,8 @@ angular.module('GLServices', ['ngResource']).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('globalInterceptor');
 }]).
-  factory('GLTranslate', ['$translate', '$location', '$rootScope', 'tmhDynamicLocale', 
-  function($translate, $location, $rootScope, tmhDynamicLocale) {
+  factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
+  function($translate, $location, tmhDynamicLocale) {
 
   // facts are (un)defined in order of importance to the factory.
   var facts = {
@@ -1008,6 +1008,7 @@ angular.module('GLServices', ['ngResource']).
     return true;
   }
 
+  // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
 
     console.log('Changing App Language: ', lang);
@@ -1017,7 +1018,9 @@ angular.module('GLServices', ['ngResource']).
     document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
 
     // Update the $translate module to use the new language.
-    $translate.use(lang);
+    $translate.use(lang).then(function() {
+      // TODO reload the new translations returned by node.
+    });
 
     // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
     // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
