@@ -54,7 +54,8 @@ var GLClient = angular.module('GLClient', [
     'zxcvbn',
     'GLServices',
     'GLDirectives',
-    'GLFilters'
+    'GLFilters',
+    'GLBrowserCrypto'
   ]).
   config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$translateProvider', '$uibTooltipProvider',
     function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider) {

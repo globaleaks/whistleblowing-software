@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission', 'fieldUtilities',
-      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission, fieldUtilities) {
+    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, Submission, glbcProofOfWork, fieldUtilities) {
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
 
@@ -261,28 +261,13 @@ GLClient.controller('SubmissionCtrl',
       $scope.problemToBeSolved = $scope.submission._token.human_captcha !== false;
 
       if ($scope.node.enable_proof_of_work) {
-        if (typeof window.Worker === 'undefined') {
-          $scope.browserNotCompatible();
-          return;
-        }
-
-        var worker = new Worker('js/crypto/proof-of-work.worker.js');
-
-        worker.onmessage = function(e) {
-          $scope.submission._token.proof_of_work_answer = e.data;
+        glbcProofOfWork.proofOfWork($scope.submission._token.proof_of_work).then(function(result) {
+          $scope.submission._token.proof_of_work_answer = result;
           $scope.submission._token.$update(function(token) {
             $scope.submission._token = token;
             $scope.submission.pow = true;
           });
-
-          worker.terminate();
-        };
-
-        worker.postMessage({
-          pow: $scope.submission._token.proof_of_work
         });
-      } else {
-        $scope.submission.pow = true;
       }
 
       if ($scope.problemToBeSolved) {

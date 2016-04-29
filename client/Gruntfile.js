@@ -38,7 +38,6 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'app/js/**/*.js',
         '!app/js/crypto/*.js',
-        'app/js/crypto/proof-of-work.worker.js',
         'tests/**/*.js'
       ]
     },
@@ -354,7 +353,6 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
     grunt.file.mkdir('build/js/crypto/');
-    grunt.file.copy('tmp/js/crypto/proof-of-work.worker.js', 'build/js/crypto/proof-of-work.worker.js');
     grunt.file.copy('tmp/js/crypto/scrypt-async.worker.js', 'build/js/crypto/scrypt-async.worker.js');
 
     var copy_fun = function(absdir, rootdir, subdir, filename) {
