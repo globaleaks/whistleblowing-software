@@ -13,7 +13,7 @@
             <label>
               <span data-ng-if="!node.disable_encryption_warnings && receiver.configuration !== 'unselectable'" data-ng-switch="receiver.pgp_key_status">
                 <i data-ng-switch-when="enabled" class="glyphicon glyphicon-certificate" uib-popover="{{'This recipient has configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
-                <i data-ng-switch-when="disabled" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipent has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                <i data-ng-switch-when="disabled" class="glyphicon glyphicon-warning-sign" uib-popover="{{'This recipient has not configured the encryption key.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </span>
               <span data-ng-if="receiver.configuration === 'unselectable'">
                 <i class="glyphicon glyphicon-ban-circle" uib-popover="{{'This recipient cannot be selected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
@@ -27,7 +27,7 @@
                 <i class="glyphicon glyphicon-check" uib-popover="{{'Unselect this recipient.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
               <div data-ng-if="receiver.configuration === 'forcefully_selected'">
-                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipent cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
+                <i class="glyphicon glyphicon-check" uib-popover="{{'This recipient cannot be deselected.' | translate}}" popover-placement="right" popover-trigger="mouseenter"></i>
               </div>
             </div>
             <div data-ng-if="!submission.receivers_selected[receiver.id]">
