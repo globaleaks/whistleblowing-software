@@ -44,7 +44,9 @@ LANGUAGES_SUPPORTED = [
   {'code': 'fr', 'name': 'French', 'native': u'fran\xe7ais'},
   {'code': 'he', 'name': 'Hebrew', 'native': u'\u05e2\u05d1\u05e8\u05d9\u05ea'},
   {'code': 'hr_HR', 'name': 'Croatian (Croatia)', 'native': u'hrvatski (Hrvatska)'},
-  {'code': 'hu_HU', 'name': 'Hungarian (Hungary)',
+  {
+    'code': 'hu_HU', 
+    'name': 'Hungarian (Hungary)',
     'native': u'magyar (Magyarorsz\xe1g)'
   },
   {'code': 'it', 'name': 'Italian', 'native': u'italiano'},
