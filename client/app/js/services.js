@@ -957,9 +957,7 @@ angular.module('GLServices', ['ngResource']).
     } 
     
     var s = normalizeLang(window.navigator.language);
-    console.log("sniffed browser lang", s);
     if (validLang(s)) {
-      console.log('valid lang!:', s);
       facts.browserSniff = s; 
     }
 
@@ -1011,8 +1009,6 @@ angular.module('GLServices', ['ngResource']).
   // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
 
-    console.log('Changing App Language: ', lang);
-    
     // Set text direction for languages that read from right to left.
     var useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
@@ -1036,7 +1032,6 @@ angular.module('GLServices', ['ngResource']).
   // SetLang either uses the current indirect.appLanguage or the passed value
   // to set the language for the entire application.
   function SetLang(choice) {
-    console.log("SETTING LANG");
     if (angular.isUndefined(choice)) {
       choice = indirect.appLanguage;
     }
@@ -1053,24 +1048,19 @@ angular.module('GLServices', ['ngResource']).
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-
     if (angular.isDefined(facts.userChoice)) {
       return facts.userChoice;
     } else if (angular.isDefined(facts.urlParam)) {
-      console.log("Url Param set!");
       return facts.urlParam;
     } else if (angular.isDefined(facts.userPreference)) {
-      console.log("Using user choice");
       return facts.userPreference;
     } else if (angular.isDefined(facts.browserSniff)) {
-      console.log("Sniffing browser lang");
       return facts.browserSniff;
     } else if (angular.isDefined(facts.nodeDefault)) {
-      console.log("Using node default");
       return facts.nodeDefault;
     } else {
-      console.log("falling back to fr");
-      return 'fr';
+      // Fall back to english if we can't find a suitable language...
+      return 'en';
     }
   }
 
@@ -1083,7 +1073,7 @@ angular.module('GLServices', ['ngResource']).
   }
 
   return {
-    // Use indirect object to preserve the reference to appLanguage across scopes
+    // Use indirect object to preserve the reference to appLanguage across scopes.
     indirect: indirect,
 
     SetLang: SetLang,
