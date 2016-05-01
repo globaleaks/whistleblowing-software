@@ -278,7 +278,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         });
 
-        $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+        $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
         $scope.languages_enabled_length = Object.keys(node.languages_enabled).length;
 

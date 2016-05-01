@@ -29,7 +29,7 @@ GLClient.controller('AdminCtrl',
       }
     });
 
-    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
     $scope.$watch('languages_enabled', function() {
       if ($scope.languages_enabled) {

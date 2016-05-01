@@ -1022,16 +1022,17 @@ angular.module('GLServices', ['ngResource']).
     // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
     var t = lang;
     if (lang.length === 5) {
-      // Angulars-i18n's format is typically 'zh-tw'
+      // Angular-i18n's format is typically 'zh-tw'
       t = lang.replace('_', '-').toLowerCase();
     }
+
     tmhDynamicLocale.set(t); 
   }
 
 
-  // SetLang either uses the current indirect.appLanguage or the passed value
+  // setLang either uses the current indirect.appLanguage or the passed value
   // to set the language for the entire application.
-  function SetLang(choice) {
+  function setLang(choice) {
     if (angular.isUndefined(choice)) {
       choice = indirect.appLanguage;
     }
@@ -1076,7 +1077,7 @@ angular.module('GLServices', ['ngResource']).
     // Use indirect object to preserve the reference to appLanguage across scopes.
     indirect: indirect,
 
-    SetLang: SetLang,
+    setLang: setLang,
 
     AddNodeFacts: function(defaultLang, languages_supported) {
       facts.nodeDefault = defaultLang;
