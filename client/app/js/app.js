@@ -50,6 +50,7 @@ var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
     'tmh.dynamicLocale',
+    'tmh.dynamicLocalePreload',
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
@@ -270,7 +271,7 @@ var GLClient = angular.module('GLClient', [
       $translateProvider.useSanitizeValueStrategy('escape');
 
       // tmhDynamicLocaleProvider dynamically changes the $locale. 
-      tmhDynamicLocaleProvider.localeLocationPattern('components/angular-i18n/angular-locale_{{locale}}.js');
+      //tmhDynamicLocaleProvider.localeLocationPattern('components/angular-i18n/angular-locale_{{locale}}.js');
 
 
 }]).

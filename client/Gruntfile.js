@@ -204,6 +204,12 @@ module.exports = function(grunt) {
               }
             },
             {
+              pattern: /components\/angular-i18n\/([^\'\"\)]+)*/g,
+              replacement: function (match) {
+                return fileToDataURI('tmp/' + match);
+              }
+            },
+            {
               pattern: /inlinefiles\/([^\'\"\)]+)*/g,
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
