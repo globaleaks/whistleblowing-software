@@ -271,8 +271,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource',
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource) {
+  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcCipherLib',
+      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcCipherLib) {
 
     return function(fn) {
       /**
@@ -374,6 +374,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           receivers: [],
           identity_provided: false,
           answers: {},
+          encrypted_answers: "",
           human_captcha_answer: 0,
           proof_of_work_answer: 0,
           graph_captcha_answer: "",
@@ -406,17 +407,34 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self.done = true;
 
         self._submission.receivers = [];
-        angular.forEach(self.receivers_selected, function(selected, id){
+        angular.forEach(self.receivers_selected, function(selected, id) {
           if (selected) {
             self._submission.receivers.push(id);
           }
         });
 
-        self._submission.$update(function(result){
-          if (result) {
-            Authentication.keycode = self._submission.receipt;
-            $location.url("/receipt");
-          }
+        // TODO prevent _submission.answers from being filled out at all.
+        // Convert _submission.answers to a binary array in a reasonable way.
+        var jsonAnswers = JSON.stringify(self._submission.answers);
+
+        // Attach receiver public keys along with WB public key
+        var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) { 
+          return self._submission.receivers.indexOf(rec.id) > -1;
+        }).map(function (rec) {
+          return rec.ccrypto_key_public;
+        }));
+        
+        // Encrypt the payload then Call submission update.
+        glbcCipherLib.encryptMsg(jsonAnswers, pubKeys)
+        .then(function(ciphertext) {
+          self._submission.encrypted_answers = ciphertext.armor();
+          // TODO delete answers.
+          self._submission.$update(function(result) {
+            if (result) {
+              Authentication.keycode = self._submission.receipt;
+              $location.url("/receipt");
+            }
+          });
         });
 
       };
@@ -466,7 +484,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
           var outBlob = new Blob([plaintext], {type: 'application/octet-stream'});
 
-          // Before save clean up the filename
+          // Before saving clean up the filename
           var filename = file.name.slice(0, file.name.length - 4);
 
           // Save the decrypted file.

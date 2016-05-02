@@ -261,7 +261,8 @@ def serialize_usertip(store, usertip, language):
 
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
-    ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+    #ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+    ret['encrypted_answers'] = internaltip.encrypted_answers
     ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
     ret['access_counter'] = usertip.access_counter
     ret['total_score'] = usertip.internaltip.total_score
@@ -349,6 +350,9 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission = models.InternalTip()
 
+    # TODO validate if the reponse is a valid openpgp message.
+    submission.encrypted_answers = request['encrypted_answers']
+
     submission.progressive = db_assign_submission_progressive(store)
 
     submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
@@ -429,7 +433,7 @@ def create_submission(store, token_id, request, t2w, language):
 
 class SubmissionInstance(BaseHandler):
     """
-    This is the interface for create, populate and complete a submission.
+    This is the interface to create, populate and complete a submission.
     """
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.unauthenticated
