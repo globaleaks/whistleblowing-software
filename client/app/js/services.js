@@ -164,8 +164,9 @@ angular.module('GLServices', ['ngResource']).
             h['X-Session'] = self.session.id;
           }
 
-          // TODO wrap returned languge in whitelist
-          h['GL-Language'] = GLTranslate.indirect.appLanguage;
+          if (GLTranslate.indirect.appLanguage != null) {
+            h['GL-Language'] = GLTranslate.indirect.appLanguage;
+          }
 
           return h;
         };
@@ -928,12 +929,11 @@ angular.module('GLServices', ['ngResource']).
     urlParam: undefined,
     userPreference: undefined,
     browserSniff: undefined,
-    nodeDefault: undefined,
+    nodeDefault: undefined
   };
 
-  
   // This is a value set by the node.
-  var supportedLanguages = [];
+  var enabledLanguages = [];
   
   // Country codes with multiple languages or an '_XX' extension
   var problemLangs = {
@@ -945,7 +945,7 @@ angular.module('GLServices', ['ngResource']).
   };
 
   var indirect = {
-    appLanguage: undefined,
+    appLanguage: null,
   };
         
   initializeStartLanguage();
@@ -998,9 +998,9 @@ angular.module('GLServices', ['ngResource']).
       return false;
     }
     
-    // Check if lang is in the list of supported langs if we have supportedLangs
-    if (supportedLanguages.length > 0) {
-      return supportedLanguages.indexOf(inp) > -1;
+    // Check if lang is in the list of enabled langs if we have enabledLangs
+    if (enabledLanguages.length > 0) {
+      return enabledLanguages.indexOf(inp) > -1;
     }
 
     return true;
@@ -1055,13 +1055,13 @@ angular.module('GLServices', ['ngResource']).
       return facts.urlParam;
     } else if (angular.isDefined(facts.userPreference)) {
       return facts.userPreference;
-    } else if (angular.isDefined(facts.browserSniff)) {
+    } else if (angular.isDefined(facts.browserSniff) &&
+               enabledLanguages.indexOf(facts.browserSniff) !== -1) {
       return facts.browserSniff;
     } else if (angular.isDefined(facts.nodeDefault)) {
       return facts.nodeDefault;
     } else {
-      // Fall back to english if we can't find a suitable language...
-      return 'en';
+      return null;
     }
   }
 
@@ -1070,7 +1070,9 @@ angular.module('GLServices', ['ngResource']).
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     indirect.appLanguage = bestLanguage(facts);
-    updateTranslationServices(indirect.appLanguage);
+    if (indirect.appLanguage) {
+      updateTranslationServices(indirect.appLanguage);
+    }
   }
 
   return {
@@ -1079,11 +1081,11 @@ angular.module('GLServices', ['ngResource']).
 
     setLang: setLang,
 
-    AddNodeFacts: function(defaultLang, languages_supported) {
+    AddNodeFacts: function(defaultLang, languages_enabled) {
       facts.nodeDefault = defaultLang;
-      supportedLanguages = languages_supported.map(function(lang) {
-        return lang.code;
-      });
+
+      enabledLanguages = languages_enabled;
+
       determineLanguage();
     },
 
