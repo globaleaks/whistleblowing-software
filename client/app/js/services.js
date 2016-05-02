@@ -6,7 +6,7 @@ angular.module('GLServices', ['ngResource']).
     return function(url, params, actions) {
       var defaults = {
         get:    {method: 'get'},
-        query:  {method: 'get', isArray:true},
+        query:  {method: 'get', isArray: true},
         update: {method: 'put'}
       };
 
