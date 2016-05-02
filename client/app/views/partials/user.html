@@ -26,7 +26,7 @@
       </span>
     </div>
     <div data-ng-if="showLoginForm() && !session" class="pull-right">
-      <div data-translate>{{::node.whistleblowing_receipt_prompt}}</div>
+      <div>{{::node.whistleblowing_receipt_prompt}}</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">
         <div class="col-md-12">
