@@ -140,7 +140,13 @@ class BaseHandler(RequestHandler):
         elif 'export' in self.request.arguments:
             self.request.request_type = 'export'
 
-        self.request.language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
+        language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
+        if language not in GLSettings.memory_copy.languages_enabled:
+            # Expect the unexpected: https://www.youtube.com/watch?v=zeBL6D9WFp8
+            language = GLSettings.memory_copy.default_language
+
+        self.request.language = language
+        self.set_header("Content-Language", language)
 
     @staticmethod
     def authenticated(role):
