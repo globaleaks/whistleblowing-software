@@ -164,7 +164,7 @@ angular.module('GLServices', ['ngResource']).
             h['X-Session'] = self.session.id;
           }
 
-          if (GLTranslate.indirect.appLanguage != null) {
+          if (GLTranslate.indirect.appLanguage !== null) {
             h['GL-Language'] = GLTranslate.indirect.appLanguage;
           }
 
@@ -1070,7 +1070,7 @@ angular.module('GLServices', ['ngResource']).
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     indirect.appLanguage = bestLanguage(facts);
-    if (indirect.appLanguage) {
+    if (indirect.appLanguage !== null) {
       updateTranslationServices(indirect.appLanguage);
     }
   }
