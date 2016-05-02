@@ -4,7 +4,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
         {
-          title: "General preferences",
+          title: "Preferences",
           template: "views/receiver/preferences/tab1.html"
         },
         {
@@ -23,7 +23,7 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
     } else {
       $scope.tabs = [
         {
-          title: "General preferences",
+          title: "Preferences",
           template: "views/user/preferences/tab1.html"
         },
         {
