@@ -35,7 +35,7 @@ angular.module('GLBrowserCrypto', [])
             work(i + 1);
           }
         });
-      }
+      };
 
       work(0);
 
@@ -86,7 +86,7 @@ angular.module('GLBrowserCrypto', [])
       });
 
       return defer.promise;
-    }
+    };
 
     var e2e_key_bits = 4096;
 
@@ -145,7 +145,7 @@ angular.module('GLBrowserCrypto', [])
           userIds: [{ name:'Random User', email:'randomuser@globaleaks.org' }],
           passphrase: passphrase,
           numBits: e2e_key_bits
-        }
+        };
 
         openpgp.generateKey(key_options).then(function(keyPair) {
           defer.resolve({
@@ -298,8 +298,9 @@ angular.module('GLBrowserCrypto', [])
 
 .factory('glbcCipherLib', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
   return {
-    // loadPublicKeys parses the passed public keys and returns a list of openpgpjs Keys
-    // Note that if there is a problem when parsing a key the function throws an error.
+    // loadPublicKeys parses the passed public keys and returns a list of 
+    // openpgpjs Keys. Note that if there is a problem when parsing a key the 
+    // function throws an error.
     // { [ string... ] -> [ openpgp.Key ] }
     loadPublicKeys: function(armoredKeys) {
 
@@ -322,27 +323,57 @@ angular.module('GLBrowserCrypto', [])
       return pgpPubKeys;
     },
 
-    // encryptArray encrypts the byte array with the list of public passed to it.
-    // { (Uint8Array, [ openpgpjs.Key... ]) --> Uint8Array }
-    encryptArray: function(uintArr, pgpPubKeys) {
-      // TODO assert that all pubkeys are actually there.
+    // encryptMsg
+    // { Uint8Array | string, [ openpgpjs.Key... ] -> { Promise -> openpgpjs.Message } }
+    encryptMsg: function(data, pgpPubKeys) {
       var deferred = $q.defer();
       var options = {
-        data: uintArr,
+        data: data,
         publicKeys: pgpPubKeys,
         armor: false,
         format: 'binary',
       };
-      openpgp.encrypt(options).then(function(ciphertext) {
-        deferred.resolve(ciphertext.message.packets.write());
+      openpgp.encrypt(options).then(function(cipherMsg) {
+        deferred.resolve(cipherMsg.message);
       });
       // TODO catch expired keys, formatting errors, etc etc.
       return deferred.promise;
     },
 
+    // encryptArray encrypts the byte array with the list of public passed to 
+    // it.
+    // { Uint8Array, [ openpgpjs.Key... ] -> { Promise -> Uint8Array } }
+    encryptArray: function(uintArr, pgpPubKeys) {
+        var deferred = $q.defer();
+        
+        // TODO fix me fix me!
+        self.encryptMsg(uintArr, pgpPubKeys).then(function(cipherMsg) {
+          deferred.resolve(cipherMsg.packets.write());
+        });
+
+        return deferred.promise;
+    },
+
+    // decryptMsg 
+    // { openpgp.Message, openpgp.Key -> { Promise -> string } }
+    decryptMsg: function(m, privKey) {
+      var deferred = $q.defer();
+
+      var options = {
+        message: m,
+        privateKey: privKey,
+        format: 'utf8',
+      };
+      openpgp.decrypt(options).then(function(plaintext) {
+        deferred.resolve(plaintext.data);
+      });
+
+      return deferred.promise;
+    },
+
     // decryptArray uses the passed privKey to decrypt the byte array. Note that
     // the privKey's secret material must be decrypted before usage here.
-    // { ( Uint8Array, openpgp.Key ) -> { Promise -> Uint8Array } }
+    // {  Uint8Array, openpgp.Key -> { Promise -> Uint8Array } }
     decryptArray: function(ciphertextArr, privKey) {
 
       var deferred = $q.defer();
@@ -359,8 +390,8 @@ angular.module('GLBrowserCrypto', [])
       return deferred.promise;
     },
 
-    // createArrayFromBlob returns a promise for an array of the bytes in the passed
-    // file. It functions on both Blobs and Files, which are blobs.
+    // createArrayFromBlob returns a promise for an array of the bytes in the 
+    // passed file. It functions on both Blobs and Files, which are blobs.
     // { Blob -> { Promise -> Uint8Array } }
     createArrayFromBlob: function(blob) {
       var deferred = $q.defer();
@@ -377,8 +408,8 @@ angular.module('GLBrowserCrypto', [])
 }])
 
 // glbcKeyRing holds the private key material of authenticated users. It handles
-// all of the cryptographic operations internally so that the rest of the UI does
-// not.
+// all of the cryptographic operations internally so that the rest of the UI 
+// does not.
 .factory('glbcKeyRing', ['glbcCipherLib', 'glbcKeyLib', function(glbcCipherLib, glbcKeyLib) {
   // keyRing is kept private.
   var keyRing = {
@@ -437,7 +468,7 @@ angular.module('GLBrowserCrypto', [])
       if (keyRing.privateKey === null) {
         throw new Error("Keyring not initialized!");
       }
-      return glbcCipherLib.decryptArray(ciphertext, keyRing.privateKey);
+      return glbcCipherLib.decryptMsg(ciphertext, keyRing.privateKey);
     },
   };
 }]);

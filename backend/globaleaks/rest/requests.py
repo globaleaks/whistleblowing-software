@@ -99,6 +99,7 @@ SubmissionDesc = {
     'receivers': [uuid_regexp],
     'identity_provided': bool,
     'answers': dict,
+    'encrypted_answers': unicode,
     'total_score': int
 }
 

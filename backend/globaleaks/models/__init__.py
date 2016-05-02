@@ -306,8 +306,8 @@ class InternalTip(Model):
 class ReceiverTip(Model):
     """
     This is the table keeping track of ALL the receivers activities and
-    date in a Tip, Tip core data are stored in StoredTip. The data here
-    provide accountability of Receiver accesses, operations, options.
+    date in a Tip, Tip core data is stored in InternalTip. This data and meta 
+    provides accountability to Receiver accesses, operations, options.
     """
     internaltip_id = Unicode()
     receiver_id = Unicode()

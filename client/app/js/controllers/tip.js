@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'glbcKeyRing',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, glbcKeyRing) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -134,26 +134,39 @@ GLClient.controller('TipCtrl',
       $scope.preferences = ReceiverPreferences.get();
     
       new RTip({id: $scope.tip_id}, function(tip) {
-        $scope.tip = tip;
-        $scope.extractSpecialTipFields(tip);
 
-        $scope.downloadFile = RTipDownloadFile;
+        // Convert the encrypted answers into an openpgpjs message.
+        var c = openpgp.message.readArmored(tip.encrypted_answers);
 
-        $scope.showEditLabelInput = $scope.tip.label === '';
+        // TODO glbcKeyRing.unlockKeyRing(passphrase);
 
-        $scope.tip_unencrypted = false;
-        angular.forEach(tip.receivers, function(receiver){
-          if (receiver.pgp_key_fingerpint === '' && receiver.receiver_id !== tip.receiver_id) {
-            $scope.tip_unencrypted = true;
-          }
+        glbcKeyRing.performDecrypt(c).then(function(plaintext) {
+          
+          tip.answers = JSON.parse(plaintext);
+          // TODO glbcKeyRing.lockKeyRing(passphrase);
+
+          // TODO move decrypt into a separate interface
+          $scope.tip = tip;
+          $scope.extractSpecialTipFields(tip);
+
+          $scope.downloadFile = RTipDownloadFile;
+
+          $scope.showEditLabelInput = $scope.tip.label === '';
+
+          $scope.tip_unencrypted = false;
+          angular.forEach(tip.receivers, function(receiver){
+            if (receiver.pgp_key_fingerpint === '' && receiver.receiver_id !== tip.receiver_id) {
+              $scope.tip_unencrypted = true;
+            }
+          });
+
+          angular.forEach($scope.contexts, function(context){
+            if (context.id === $scope.tip.context_id) {
+              $scope.current_context = context;
+            }
+          });
+
         });
-
-        angular.forEach($scope.contexts, function(context){
-          if (context.id === $scope.tip.context_id) {
-            $scope.current_context = context;
-          }
-        });
-
       });
     } else {
       if($location.path() === '/status') {
