@@ -130,9 +130,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
             $rootScope.node.tor2web_whistleblower === false) {
           $location.path("/");
         }
-
-        /* Feature implemented for amnesty and currently disabled */
-        //$scope.open_intro();
       }
     };
 
