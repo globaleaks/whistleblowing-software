@@ -140,9 +140,8 @@ GLClient.controller('TipCtrl',
 
         // TODO glbcKeyRing.unlockKeyRing(passphrase);
 
-        glbcKeyRing.performDecrypt(c).then(function(plaintext) {
-          
-          tip.answers = JSON.parse(plaintext);
+        glbcKeyRing.performDecrypt(c, 'utf8').then(function(plaintext) {
+          tip.answers = JSON.parse(plaintext.data);
           // TODO glbcKeyRing.lockKeyRing(passphrase);
 
           // TODO move decrypt into a separate interface

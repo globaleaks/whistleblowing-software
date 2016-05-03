@@ -377,7 +377,7 @@ angular.module('GLServices', ['ngResource']).
        * currently selected and setting up the submission fields entered by the
        * whistleblower.
        */
-      self.submit = function() {
+      self.submit = function(answers) {
         if (!self._submission || !self.receivers_selected) {
           return;
         }
@@ -391,9 +391,11 @@ angular.module('GLServices', ['ngResource']).
           }
         });
 
-        // TODO prevent _submission.answers from being filled out at all.
+        // TODO redact information from answers before submission
+        self._submission.answers = answers;
+        
         // Convert _submission.answers to a binary array in a reasonable way.
-        var jsonAnswers = JSON.stringify(self._submission.answers);
+        var jsonAnswers = JSON.stringify(answers);
 
         // Attach receiver public keys along with WB public key
         var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) {
@@ -456,11 +458,11 @@ angular.module('GLServices', ['ngResource']).
         glbcKeyRing.unlockKeyRing("fakepassphrase");
 
         // Decrypt the file
-        glbcKeyRing.performDecrypt(ciphertext).then(function(plaintext) {
+        glbcKeyRing.performDecrypt(ciphertext, 'binary').then(function(plaintext) {
 
           glbcKeyRing.lockKeyRing("fakepassphrase");
 
-          var outBlob = new Blob([plaintext], {type: 'application/octet-stream'});
+          var outBlob = new Blob([plaintext.data], {type: 'application/octet-stream'});
 
           // Before saving clean up the filename
           var filename = file.name.slice(0, file.name.length - 4);
