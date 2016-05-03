@@ -396,12 +396,12 @@ angular.module('GLServices', ['ngResource']).
         var jsonAnswers = JSON.stringify(self._submission.answers);
 
         // Attach receiver public keys along with WB public key
-        var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) { 
+        var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) {
           return self._submission.receivers.indexOf(rec.id) > -1;
         }).map(function (rec) {
           return rec.ccrypto_key_public;
         }));
-        
+
         // Encrypt the payload then Call submission update.
         glbcCipherLib.encryptMsg(jsonAnswers, pubKeys)
         .then(function(ciphertext) {
