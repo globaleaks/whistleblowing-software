@@ -61,14 +61,14 @@ angular.module('GLBrowserCrypto', [])
         - authentication secrete derivation from user password
         - pgp passphrase derivation from user password
         - pgp key creation passphrase protected with the passphrase derived by
-      GLBrowserCrypto.derive_user_password("antani", "salt").then(function(result) {
-        GLBrowserCrypto.generate_e2e_key(result.passphrase).then(function(result) {
+      glbcKeyLib.deriveUserPassword("antani", "salt").then(function(result) {
+        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
           console.log(result);
         });
       });
 
       The following code is the PoC for the clientside keycode generation:
-      var keycode = GLBrowserCrypto.generate_keycode();
+      var keycode = glbcKeyLib.generateKeycode();
 
       The keycode could be used in place of the "antani" above.
     */
@@ -98,7 +98,7 @@ angular.module('GLBrowserCrypto', [])
       return defer.promise;
     };
 
-    var e2e_key_bits = 4096;
+    var ccrypto_key_bits = 4096;
 
     var N = 13;
     var M = N + 1;
@@ -117,24 +117,24 @@ angular.module('GLBrowserCrypto', [])
         return defer.promise;
       },
 
-      derive_authentication: function(user_password, salt) {
+      deriveAuthentication: function(user_password, salt) {
         return this.scrypt(user_password, salt, M);
       },
 
-      derive_passphrase: function(user_password, salt) {
+      derivePassphrase: function(user_password, salt) {
         return this.scrypt(user_password, salt, N);
       },
 
-      derive_user_password: function (user_password, salt) {
+      deriveUserPassword: function (user_password, salt) {
         var defer1 = $q.defer();
         var defer2 = $q.defer();
         var result = $q.defer();
 
-        this.derive_passphrase(user_password, salt).then(function(passphrase) {
+        this.derivePassphrase(user_password, salt).then(function(passphrase) {
           defer1.resolve(passphrase.stretched);
         });
 
-        this.derive_authentication(user_password, salt).then(function(authentication) {
+        this.deriveAuthentication(user_password, salt).then(function(authentication) {
           defer2.resolve(authentication.stretched);
         });
 
@@ -148,19 +148,19 @@ angular.module('GLBrowserCrypto', [])
         return result.promise;
       },
 
-      generate_e2e_key: function (passphrase) {
+      generateCCryptoKey: function (passphrase) {
         var defer = $q.defer();
 
         var key_options = {
           userIds: [{ name:'Random User', email:'randomuser@globaleaks.org' }],
           passphrase: passphrase,
-          numBits: e2e_key_bits
+          numBits: ccrypto_key_bits
         };
 
         pgp.generateKey(key_options).then(function(keyPair) {
           defer.resolve({
-            e2e_key_pub: keyPair.key.toPublic(),
-            e2e_key_prv: keyPair.key,
+            ccrypto_key_public: keyPair.key.toPublic(),
+            ccrypto_key_private: keyPair.key,
           });
         });
 
@@ -171,7 +171,7 @@ angular.module('GLBrowserCrypto', [])
        * @return {String} the 16 digit keycode used by whistleblowers in the 
        * frontend.
        */
-      generate_keycode: function() {
+      generateKeycode: function() {
         var keycode = '';
         for (var i=0; i<16; i++) {
           keycode += pgp.crypto.random.getSecureRandom(0, 9);
@@ -263,7 +263,6 @@ angular.module('GLBrowserCrypto', [])
 
         return true;
       },
-
     };
 }])
 .factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {

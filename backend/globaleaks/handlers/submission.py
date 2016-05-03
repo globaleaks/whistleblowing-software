@@ -20,7 +20,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.utils.token import TokenList
 from globaleaks.rest import errors, requests
-from globaleaks.security import hash_password, sha256, generateRandomReceipt
+from globaleaks.security import hash_password, sha256
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
@@ -286,39 +286,6 @@ def db_create_receivertip(store, receiver, internaltip):
 
     return receivertip.id
 
-def db_create_whistleblower_tip(store, internaltip):
-    """
-    The plaintext receipt is returned only now, and then is
-    stored hashed in the WBtip table
-    """
-    wbtip = models.WhistleblowerTip()
-
-    receipt = unicode(generateRandomReceipt())
-
-    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
-    wbtip.internaltip_id = internaltip.id
-
-    prv_key = os.path.join(os.path.dirname(__file__), '../tests/keys/VALID_PGP_KEY1_PRV')
-    pub_key = os.path.join(os.path.dirname(__file__), '../tests/keys/VALID_PGP_KEY1_PUB')
-    internaltip.ccrypto_key_private = read_file(prv_key)
-    internaltip.ccrypto_key_public = read_file(pub_key)
-
-    store.add(wbtip)
-
-    created_rtips = [db_create_receivertip(store, receiver, internaltip) for receiver in internaltip.receivers]
-
-    internaltip.new = False
-
-    if len(created_rtips):
-        log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
-
-    return receipt, wbtip
-
-
-@transact
-def create_whistleblower_tip(*args):
-    return db_create_whistleblower_tip(*args)[0] # here is exported only the receipt
-
 
 def import_receivers(store, submission, receiver_id_list):
     context = submission.context
@@ -424,11 +391,24 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Submission create: unable to create db entry for files: %s" % excep)
         raise excep
 
-    receipt, wbtip = db_create_whistleblower_tip(store, submission)
+    wbtip = models.WhistleblowerTip()
+
+    wbtip.receipt_hash = request['receipt_hash']
+    wbtip.internaltip_id = submission.id
+
+    submission.ccrypto_key_private = request['ccrypto_key_private']
+    submission.ccrypto_key_public = request['ccrypto_key_public']
+
+    store.add(wbtip)
+
+    created_rtips = [db_create_receivertip(store, receiver, submission) for receiver in submission.receivers]
+
+    submission.new = False
+
+    if len(created_rtips):
+        log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
 
     submission_dict = serialize_usertip(store, wbtip, language)
-
-    submission_dict.update({'receipt': receipt})
 
     return submission_dict
 

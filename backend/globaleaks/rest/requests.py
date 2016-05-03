@@ -80,7 +80,7 @@ AuthDesc = {
 }
 
 ReceiptAuthDesc = {
-    'receipt': unicode
+    'receipt_hash': unicode
 }
 
 
@@ -100,6 +100,9 @@ SubmissionDesc = {
     'identity_provided': bool,
     'answers': dict,
     'encrypted_answers': unicode,
+    'receipt_hash': unicode,
+    'ccrypto_key_private': unicode,
+    'ccrypto_key_public': unicode,
     'total_score': int
 }
 

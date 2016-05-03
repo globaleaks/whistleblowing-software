@@ -48,13 +48,12 @@ def random_login_delay():
 
 
 @transact_ro  # read only transact; manual commit on success needed
-def login_whistleblower(store, receipt, using_tor2web):
+def login_whistleblower(store, receipt_hash, using_tor2web):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
-    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wbtip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+                        WhistleblowerTip.receipt_hash == receipt_hash).one()
 
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
@@ -174,7 +173,7 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         request = self.validate_message(self.request.body, requests.ReceiptAuthDesc)
 
-        receipt = request['receipt']
+        receipt_hash = request['receipt_hash']
 
         delay = random_login_delay()
         if delay:
@@ -182,7 +181,7 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         using_tor2web = self.check_tor2web()
 
-        user_id = yield login_whistleblower(receipt, using_tor2web)
+        user_id = yield login_whistleblower(receipt_hash, using_tor2web)
 
         yield self.uniform_answers_delay()
 

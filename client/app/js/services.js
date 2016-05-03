@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences, glbcKeyLib) {
       function Session(){
         var self = this;
 
@@ -82,13 +82,16 @@ angular.module('GLServices', ['ngResource']).
           };
 
           if (username === 'whistleblower') {
-            return $http.post('receiptauth', {'receipt': password}).
-            success(success_fn).
-            error(function() {
-              $rootScope.loginInProgress = false;
+            return glbcKeyLib.deriveUserPassword(password, "salt").then(function(result) {
+              var password_hash = result.authentication;
+              $http.post('receiptauth', {'receipt_hash': password_hash}).
+                success(success_fn).
+                error(function() {
+                  $rootScope.loginInProgress = false;
+                });
             });
           } else {
-            return $http.post('authentication', {'username': username, 'password': password}).
+            return $http.post('authentication', {'username': username, 'password': password_hash}).
             success(success_fn).
             error(function() {
               $rootScope.loginInProgress = false;
@@ -170,7 +173,6 @@ angular.module('GLServices', ['ngResource']).
 
           return h;
         };
-
       }
 
       return new Session();
@@ -249,8 +251,8 @@ angular.module('GLServices', ['ngResource']).
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcWhistleblower', 'glbcCipherLib',
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcWhistleblower, glbcCipherLib) {
+  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcKeyLib', 'glbcWhistleblower','glbcCipherLib',
+      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcKeyLib, glbcWhistleblower, glbcCipherLib) {
 
     return function(fn) {
       /**
@@ -318,7 +320,7 @@ angular.module('GLServices', ['ngResource']).
           }
         });
 
-        // temporary fix for contitions in which receiver selection step is disabled but
+        // temporary fix for conditions in which receiver selection step is disabled but
         // select_all_receivers is marked false and the admin has forgotten to mark at least
         // one receiver to automtically selected nor the user is coming from a link with
         // explicit receivers selection.
@@ -365,6 +367,16 @@ angular.module('GLServices', ['ngResource']).
           if (cb) {
             cb();
           }
+        });
+
+        Authentication.keycode = glbcKeyLib.generateKeycode();
+
+        glbcKeyLib.deriveUserPassword(Authentication.keycode, "salt").then(function(result) {
+          self._submission.receipt_hash = result.authentication;
+          glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
+            self._submission.ccrypto_key_private = result.ccrypto_key_private.armor();
+            self._submission.ccrypto_key_public = result.ccrypto_key_public.armor();
+          });
         });
       };
 
@@ -428,7 +440,6 @@ angular.module('GLServices', ['ngResource']).
           self._submission.encrypted_answers = ciphertext;
           self._submission.$update(function(result) {
             if (result) {
-              Authentication.keycode = self._submission.receipt;
               $location.url("/receipt");
             }
           });
@@ -610,7 +621,6 @@ angular.module('GLServices', ['ngResource']).
     };
 }]).
   factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
-
     // Extend the default get request to include initialization of the receiver's
     // private key.
     var extendedGet = {
@@ -1180,6 +1190,5 @@ angular.module('GLServices', ['ngResource']).
       facts.userPreference = lang;
       determineLanguage();
     },
-
   };
 }]);
