@@ -120,6 +120,8 @@ CREATE TABLE internaltip (
     update_date TEXT NOT NULL,
     expiration_date TEXT NOT NULL,
     encrypted INTEGER NOT NULL,
+    ccrypto_key_public TEXT NOT NULL,
+    ccrypto_key_private TEXT NOT NULL,
     questionnaire_hash TEXT NOT NULL,
     encrypted_answers TEXT NOT NULL,
     preview BLOB NOT NULL,

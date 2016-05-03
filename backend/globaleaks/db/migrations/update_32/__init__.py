@@ -130,11 +130,14 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['InternalTip']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'encrypted':
-                    old_obj.encrypted = False
+                    new_obj.encrypted = False
                     continue
 
                 if v.name == 'encrypted_answers':
                     old_obj.encrypted_answers = ''
+                    continue
+
+                if v.name == 'ccrypto_key_public' or v.name == 'ccrypto_key_private':
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

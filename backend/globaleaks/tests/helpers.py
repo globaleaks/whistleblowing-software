@@ -358,7 +358,8 @@ class TestGL(unittest.TestCase):
             'proof_of_work_answer': 0,
             'identity_provided': False,
             'total_score': 0,
-            'answers': (yield self.fill_random_answers(context_id))
+            'answers': (yield self.fill_random_answers(context_id)),
+            'encrypted_answers': ''
         })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
@@ -560,6 +561,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['receivers'] = self.dummyContext['receivers']
         self.dummySubmission['identity_provided'] = False
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
+        self.dummySubmission['encrypted_answers'] = ''
         self.dummySubmission['total_score'] = 0
 
         self.dummySubmission = yield create_submission(self.dummyToken.id,

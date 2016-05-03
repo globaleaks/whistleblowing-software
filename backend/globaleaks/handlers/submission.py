@@ -7,8 +7,8 @@
 #   by an HTTP client in /submission URI
 
 import copy
-
 import json
+import os
 
 from storm.expr import And, In
 
@@ -23,7 +23,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601, ISO8601_to_datetime
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
+    datetime_to_ISO8601, ISO8601_to_datetime, read_file
 
 
 def get_submission_sequence_number(itip):
@@ -261,8 +262,9 @@ def serialize_usertip(store, usertip, language):
 
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
-    #ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+    ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
     ret['encrypted_answers'] = internaltip.encrypted_answers
+    ret['ccrypto_key_public'] = internaltip.ccrypto_key_public
     ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
     ret['access_counter'] = usertip.access_counter
     ret['total_score'] = usertip.internaltip.total_score
@@ -295,6 +297,11 @@ def db_create_whistleblower_tip(store, internaltip):
 
     wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
     wbtip.internaltip_id = internaltip.id
+
+    prv_key = os.path.join(os.path.dirname(__file__), '../tests/keys/VALID_PGP_KEY1_PRV')
+    pub_key = os.path.join(os.path.dirname(__file__), '../tests/keys/VALID_PGP_KEY1_PUB')
+    internaltip.ccrypto_key_private = read_file(prv_key)
+    internaltip.ccrypto_key_public = read_file(pub_key)
 
     store.add(wbtip)
 
