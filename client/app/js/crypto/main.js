@@ -53,7 +53,7 @@ angular.module('GLBrowserCrypto', [])
       return deferred.promise;
     }
   };
-}]).
+}])
 .factory('glbcKeyLib', ['$q', function($q) {
     /*
       The code below could be tested with:
@@ -334,15 +334,14 @@ angular.module('GLBrowserCrypto', [])
       return pgpPubKeys;
     },
 
-    // encryptMsg
-    // { Uint8Array | string, [ openpgpjs.Key... ] -> { Promise -> openpgpjs.Message } }
-    encryptMsg: function(data, pgpPubKeys) {
+    // { Uint8Array | string, [ openpgpjs.Key... ], 'binary' | 'utf8' -> { Promise -> Object } }
+    encryptMsg: function(data, pgpPubKeys, format) {
       var deferred = $q.defer();
       var options = {
         data: data,
         publicKeys: pgpPubKeys,
         armor: false,
-        format: 'binary',
+        format: format,
       };
       openpgp.encrypt(options).then(function(cipherMsg) {
         deferred.resolve(cipherMsg.message);
@@ -350,57 +349,23 @@ angular.module('GLBrowserCrypto', [])
       // TODO catch expired keys, formatting errors, etc etc.
       return deferred.promise;
     },
-
-    // encryptArray encrypts the byte array with the list of public passed to 
-    // it.
-    // { Uint8Array, [ openpgpjs.Key... ] -> { Promise -> Uint8Array } }
-    encryptArray: function(uintArr, pgpPubKeys) {
-        var deferred = $q.defer();
-        
-        // TODO fix me fix me!
-        self.encryptMsg(uintArr, pgpPubKeys).then(function(cipherMsg) {
-          deferred.resolve(cipherMsg.packets.write());
-        });
-
-        return deferred.promise;
-    },
-
-    // decryptMsg 
-    // { openpgp.Message, openpgp.Key -> { Promise -> string } }
-    decryptMsg: function(m, privKey) {
+    
+    // { openpgp.Message, openpgp.Key, 'utf8' | 'binary' -> { Promise -> Object } }
+    decryptMsg: function(m, privKey, format) {
       var deferred = $q.defer();
 
       var options = {
         message: m,
         privateKey: privKey,
-        format: 'utf8',
+        format: format,
       };
       openpgp.decrypt(options).then(function(plaintext) {
-        deferred.resolve(plaintext.data);
+        deferred.resolve(plaintext);
       });
 
       return deferred.promise;
     },
-
-    // decryptArray uses the passed privKey to decrypt the byte array. Note that
-    // the privKey's secret material must be decrypted before usage here.
-    // {  Uint8Array, openpgp.Key -> { Promise -> Uint8Array } }
-    decryptArray: function(ciphertextArr, privKey) {
-
-      var deferred = $q.defer();
-
-      var options = {
-        message: openpgp.message.read(ciphertextArr),
-        privateKey: privKey,
-        format: 'binary',
-      };
-      openpgp.decrypt(options).then(function(plaintext) {
-        deferred.resolve(plaintext.data);
-      });
-
-      return deferred.promise;
-    },
-
+    
     // createArrayFromBlob returns a promise for an array of the bytes in the 
     // passed file. It functions on both Blobs and Files, which are blobs.
     // { Blob -> { Promise -> Uint8Array } }
@@ -474,12 +439,15 @@ angular.module('GLBrowserCrypto', [])
 
     // preformDecrypt uses the private key to decrypt the passed array, which
     // should represent the raw bytes of an openpgp Message.
-    // { Uint8Array -> { Promise: Uint8Array } }
-    performDecrypt: function(ciphertext) {
+    // { Uint8Array, 'binary' | 'utf8' -> { Promise: Uint8Array } }
+    performDecrypt: function(ciphertext, format) {
       if (keyRing.privateKey === null) {
         throw new Error("Keyring not initialized!");
       }
-      return glbcCipherLib.decryptMsg(ciphertext, keyRing.privateKey);
+      if (format !== 'binary' && format !== 'utf8') {
+        throw new Error("Supplied wrong decrypt format!");
+      }
+      return glbcCipherLib.decryptMsg(ciphertext, keyRing.privateKey, format);
     },
   };
 }]);

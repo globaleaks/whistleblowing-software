@@ -20,8 +20,10 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipher
         deferred.reject(err);
         return;
       }
-      return glbcCipherLib.encryptArray(fileArr, pubKeys);
-    }).then(function(cipherTextArr) {
+      return glbcCipherLib.encryptMsg(fileArr, pubKeys, 'binary');
+    }).then(function(cipherMsg) {
+
+      var cipherTextArr = cipherMsg.packets.write();
 
       // Note application/octet-stream must be explicitly set or the new File
       // will append leading and trailing bytes to the upload.
