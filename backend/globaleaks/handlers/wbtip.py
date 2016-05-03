@@ -81,6 +81,7 @@ def serialize_wbtip(store, wbtip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
+    ret['ccrypto_key_private'] = wbtip.internaltip.ccrypto_key_private
     ret['files'] = db_get_file_list(store, wbtip.id)
 
     return ret

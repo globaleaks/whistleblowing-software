@@ -267,18 +267,14 @@ class Context(Model):
 
 class InternalTip(Model):
     """
-    This is the internal representation of a Tip that has been submitted to the
-    GlobaLeaks node.
-
-    It has a not associated map for keep track of Receivers, Tips,
-    Comments and WhistleblowerTip.
-    All of those element has a Storm Reference with the InternalTip.id,
-    never vice-versa
+    This is the internal representation of a Tip
     """
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
 
     encrypted = Bool(default=True)
+    ccrypto_key_public = Unicode(default=u'')
+    ccrypto_key_private = Unicode(default=u'')
 
     context_id = Unicode()
 
@@ -305,9 +301,8 @@ class InternalTip(Model):
 
 class ReceiverTip(Model):
     """
-    This is the table keeping track of ALL the receivers activities and
-    date in a Tip, Tip core data is stored in InternalTip. This data and meta 
-    provides accountability to Receiver accesses, operations, options.
+    This is the table keeping track of settings of a Tip
+    in relation to a specific Receiver.
     """
     internaltip_id = Unicode()
     receiver_id = Unicode()
@@ -319,9 +314,9 @@ class ReceiverTip(Model):
 
     can_access_whistleblower_identity = Bool(default=False)
 
-    new = Int(default=True)
-
     enable_notifications = Bool(default=True)
+
+    new = Int(default=True)
 
     unicode_keys = ['label']
 
