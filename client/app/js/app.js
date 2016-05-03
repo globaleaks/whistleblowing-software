@@ -50,7 +50,6 @@ var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
     'tmh.dynamicLocale',
-    'tmh.dynamicLocalePreload',
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
