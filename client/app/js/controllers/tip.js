@@ -71,14 +71,6 @@ GLClient.controller('TipCtrl',
       }
     };
 
-    $scope.getFields = function(field) {
-      if (field === undefined) {
-        return $scope.tip.fields;
-      } else {
-        return field.children;
-      }
-    };
-
     $scope.hasMultipleEntries = function(field_answer) {
       if (field_answer !== undefined) {
         return field_answer.length > 1;
