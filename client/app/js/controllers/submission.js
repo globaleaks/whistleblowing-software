@@ -244,9 +244,9 @@ GLClient.controller('SubmissionCtrl',
     // iterations over steps require the steps array to be ordered
     context.questionnaire.steps = $filter('orderBy')(context.questionnaire.steps, 'presentation_order');
 
-    angular.forEach(context.questionnaire.steps, function(field) {
-      angular.forEach(field.children, function(child) {
-        $scope.answers[child.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(child))];
+    angular.forEach(context.questionnaire.steps, function(step) {
+      angular.forEach(step.children, function(field) {
+        $scope.answers[field.id] = [angular.copy(fieldUtilities.prepare_field_answers_structure(field))];
       });
     });
 

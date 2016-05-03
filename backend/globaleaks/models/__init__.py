@@ -783,7 +783,7 @@ class Receiver(Model):
 class Field(Model):
     x = Int(default=0)
     y = Int(default=0)
-    width = Int(default = 0)
+    width = Int(default=0)
 
     key = Unicode(default=u'')
 
