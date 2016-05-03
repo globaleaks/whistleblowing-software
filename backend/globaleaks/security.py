@@ -42,13 +42,6 @@ def sha512(data):
     return binascii.b2a_hex(h.finalize())
 
 
-def generateRandomReceipt():
-    """
-    Return a random receipt of 16 digits
-    """
-    return ''.join(random.SystemRandom().choice(string.digits) for _ in range(16)).encode('utf-8')
-
-
 def generateRandomKey(N):
     """
     Return a random key of N characters in a-zA-Z0-9
