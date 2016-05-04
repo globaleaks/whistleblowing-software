@@ -167,9 +167,10 @@ angular.module('GLBrowserCrypto', [])
         return defer.promise;
       },
 
-      // generate_keycode generates the 16 digit keycode used by whistleblowers
-      // in the frontend.
-      // { () -> string }
+      /**
+       * @return {String} the 16 digit keycode used by whistleblowers in the 
+       * frontend.
+       */
       generate_keycode: function() {
         var keycode = '';
         for (var i=0; i<16; i++) {
@@ -178,10 +179,13 @@ angular.module('GLBrowserCrypto', [])
         return keycode;
       },
 
-      // validatePrivateKey ensures that the passed textInput is a valid ascii
-      // armored privateKey. It additionally asserts that the key is passphrase
-      // protected.
-      // { string -> bool }
+      /**
+       * @description ensures that the passed textInput is a valid ascii 
+       * armored privateKey. It additionally asserts that the key is passphrase
+       * protected.
+       * @param {String} textInput
+       * @return {Bool}
+       */
       validPrivateKey: function(textInput) {
         if (typeof textInput !== 'string') {
           return false;
@@ -206,9 +210,12 @@ angular.module('GLBrowserCrypto', [])
         return true;
       },
 
-      // validPublicKey checks to see if passed text is an ascii armored GPG
-      // public key. If so, the fnc returns true.
-      // { string -> bool }
+      /**
+       * @decription checks to see if passed text is an ascii armored GPG 
+       * public key. If so, the fnc returns true.
+       * @param {String} textInput
+       * @return {Bool}
+       */
       validPublicKey: function(textInput) {
         if (typeof textInput !== 'string') {
           return false;
@@ -261,10 +268,13 @@ angular.module('GLBrowserCrypto', [])
 }])
 .factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
   return {
-    // loadPublicKeys parses the passed public keys and returns a list of 
-    // openpgpjs Keys. Note that if there is a problem when parsing a key the 
-    // function throws an error.
-    // { [ string... ] -> [ openpgp.Key ] }
+    /**
+     * @description parses the passed public keys and returns a list of 
+     * openpgpjs Keys. Note that if there is a problem when parsing a key the 
+     * function throws an error.
+     * @param {Array<String>} armoredKeys
+     * @return {Array<pgp.Key>} 
+     */
     loadPublicKeys: function(armoredKeys) {
 
       var pgpPubKeys = [];
@@ -287,48 +297,10 @@ angular.module('GLBrowserCrypto', [])
     },
   
     /**
-     * encrypt and sign a message TODO 
-     *
-     * { Uint8Array | string, [ openpgpjs.Key... ], 'binary' | 'utf8' -> { Promise -> Object } }
-     *
-     * @return {Promise<Object>}
+     * @param {Blob|File} blob
+     * @return {Promise<Uint8Array>} a promise for an array of the bytes in the
+     * passed file.
      */
-    encryptMsg: function(data, pgpPubKeys, format) {
-      var deferred = $q.defer();
-
-      var options = {
-        data: data,
-        publicKeys: pgpPubKeys,
-     // privateKeys: privKeys,
-        armor: false,
-        format: format,
-      };
-      pgp.encrypt(options).then(function(cipherMsg) {
-        deferred.resolve(cipherMsg.message);
-      });
-      // TODO catch expired keys, formatting errors, etc etc.
-      return deferred.promise;
-    },
-    
-    // { openpgp.Message, openpgp.Key, 'utf8' | 'binary' -> { Promise -> Object } }
-    decryptMsg: function(m, privKey, format) {
-      var deferred = $q.defer();
-
-      var options = {
-        message: m,
-        privateKey: privKey,
-        format: format,
-      };
-      pgp.decrypt(options).then(function(plaintext) {
-        deferred.resolve(plaintext);
-      });
-
-      return deferred.promise;
-    },
-    
-    // createArrayFromBlob returns a promise for an array of the bytes in the 
-    // passed file. It functions on both Blobs and Files, which are blobs.
-    // { Blob -> { Promise -> Uint8Array } }
     createArrayFromBlob: function(blob) {
       var deferred = $q.defer();
       var fileReader = new FileReader();
@@ -353,12 +325,16 @@ angular.module('GLBrowserCrypto', [])
   };
 
   return {
-    privateKey: keyRing.privateKey,
+    getKey: function() { return keyRing.privateKey; },
     
-    // intialize validates the passed privateKey and places it in the keyRing.
-    // The validates the key and checks to see if the key's fingerprint equals
-    // the fingerprint passed to it.
-    // { string, string -> bool }
+    /**
+     * @description intialize validates the passed privateKey and places it in the keyRing.
+     * The validates the key and checks to see if the key's fingerprint equals
+     * the fingerprint passed to it.
+     * @param {String} armoredPrivKey
+     * @param {String} fingerprint
+     * @return {Bool}
+     */
     initialize: function(armoredPrivKey, fingerprint) {
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         return false;
@@ -369,7 +345,6 @@ angular.module('GLBrowserCrypto', [])
       var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
 
       if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
-        console.log('fp dontmatch');
         tmpKeyRef = null;
         return false;
       }
@@ -380,7 +355,7 @@ angular.module('GLBrowserCrypto', [])
     },
 
     /**
-     * lockKeyRing encrypts the private key material of the key using the passed
+     * @description encrypts the private key material of the key using the passed
      * password. The primary key and all subkeys are encrypted with the password.
      * @param {String} password
      * @return {Bool}
@@ -390,7 +365,7 @@ angular.module('GLBrowserCrypto', [])
     },
 
     /**
-     * unlockKeyRing decrypts the private key's encrypted key material with the
+     * @description decrypts the private key's encrypted key material with the
      * passed password. Returns true if successful.
      * @param {String} password
      * @return {Bool}

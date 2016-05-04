@@ -458,7 +458,7 @@ angular.module('GLServices', ['ngResource']).
 // RTipDownloadFile first makes an authenticated get request for the encrypted
 // file data. Then it takes that data converts it into an Uint8array, unlocks
 // the recipeint's privateKey, decrypts the file and saves it to disk.
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcCipherLib', 'glbcKeyRing', function($http, $filter, FileSaver, glbcCipherLib, glbcKeyRing) {
+ factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcReceiver', 'glbcCipherLib', function($http, $filter, FileSaver, glbcReceiver, glbcCipherLib) {
   return function(tip, file) {
     $http({
       method: 'GET',
@@ -466,33 +466,14 @@ angular.module('GLServices', ['ngResource']).
       responseType: 'blob',
     }).then(function (response) {
       var inputBlob = response.data;
-      glbcCipherLib.createArrayFromBlob(inputBlob).then(function(ciphertext) {
+      var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
 
-        // TODO DELETE ME
-        glbcKeyRing.lockKeyRing("fakepassphrase");
-        // TODO TODO TODO
+      glbcReceiver.decryptAndVerifyFile(inputBlob, wbPubKey).then(function(outputBlob) {
+        // Before saving clean up the filename
+        var filename = file.name.slice(0, file.name.length - 4);
 
-        // TODO Get the passphrase from the user or the rootScope!
-        glbcKeyRing.unlockKeyRing("fakepassphrase");
-
-        // Decrypt the file
-        glbcKeyRing.performDecrypt(ciphertext, 'binary').then(function(plaintext) {
-
-          glbcKeyRing.lockKeyRing("fakepassphrase");
-
-          var outBlob = new Blob([plaintext.data], {type: 'application/octet-stream'});
-
-          // Before saving clean up the filename
-          var filename = file.name.slice(0, file.name.length - 4);
-
-          // Save the decrypted file.
-          FileSaver.saveAs(outBlob, filename);
-        }, function() {
-          // Decryption failed. Lock the keyRing.
-          glbcKeyRing.lockKeyRing("fakepassphrase");
-        });
-
-
+        // Save the decrypted file.
+        FileSaver.saveAs(outputBlob, filename);
       });
     });
   };

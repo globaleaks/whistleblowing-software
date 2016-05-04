@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcWhistleblower', 'glbcKeyRing',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcWhistleblower, glbcKeyRing) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 'glbcWhistleblower', 'glbcReceiver',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib, glbcWhistleblower, glbcReceiver) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -146,13 +146,12 @@ GLClient.controller('TipCtrl',
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
-        // TODO glbcKeyRing.unlockKeyRing(passphrase);
-
-        glbcKeyRing.performDecrypt(c, 'utf8').then(function(plaintext) {
+        // TODO process the whistleblower's key earlier in the scope
+        var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
+        
+        glbcReceiver.decryptAndVerifyAnswers(c, wbPubKey).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
-          // TODO glbcKeyRing.lockKeyRing(passphrase);
 
-          // TODO move decrypt into a separate interface
           $scope.tip = tip;
           $scope.extractSpecialTipFields(tip);
 
