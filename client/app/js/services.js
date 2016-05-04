@@ -249,8 +249,8 @@ angular.module('GLServices', ['ngResource']).
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcCipherLib',
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcCipherLib) {
+  factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcWhistleblower', 'glbcCipherLib',
+      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcWhistleblower, glbcCipherLib) {
 
     return function(fn) {
       /**
@@ -342,8 +342,7 @@ angular.module('GLServices', ['ngResource']).
        * @name Submission.create
        * @description
        * Create a new submission based on the currently selected context.
-       *
-       * */
+       **/
       self.create = function(context_id, receivers_ids, cb) {
         setCurrentContextReceivers(context_id, receivers_ids);
 
@@ -378,7 +377,7 @@ angular.module('GLServices', ['ngResource']).
        * receivers, includes all 'stats_enabled' fields in the answers object, 
        * encrypts all the other responses in 'encrypted_answers', and submits 
        * the payload to the backend.
-       **/
+       */
       self.submit = function(steps, answers) {
         if (!self._submission || !self.receivers_selected) {
           return;
@@ -415,17 +414,18 @@ angular.module('GLServices', ['ngResource']).
         // Convert _submission.answers to a binary array in a reasonable way.
         var jsonAnswers = JSON.stringify(answers);
 
-        // Attach receiver public keys along with WB public key
+
+        // Attach receiver public keys along with the WB public key.
         var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) {
           return self._submission.receivers.indexOf(rec.id) > -1;
         }).map(function (rec) {
           return rec.ccrypto_key_public;
         }));
 
-        // Encrypt the payload then Call submission update.
-        glbcCipherLib.encryptMsg(jsonAnswers, pubKeys)
+        // Encrypt the payload then call submission update to send the xhr request.
+        glbcWhistleblower.prepareAnswers(jsonAnswers, pubKeys)
         .then(function(ciphertext) {
-          self._submission.encrypted_answers = ciphertext.armor();
+          self._submission.encrypted_answers = ciphertext;
           self._submission.$update(function(result) {
             if (result) {
               Authentication.keycode = self._submission.receipt;
@@ -433,6 +433,7 @@ angular.module('GLServices', ['ngResource']).
             }
           });
         });
+        // TODO handle encryption failure.
 
       };
 

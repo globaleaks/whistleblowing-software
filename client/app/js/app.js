@@ -329,5 +329,14 @@ var GLClient = angular.module('GLClient', [
        return config;
      }
    };
+}])
+.run(['glbcKeyRing', '$http', function(glbcKeyRing, $http) {
+
+  $http({method: 'GET', url:'js/crypto/leakd.prv'})
+  .then(function(response) {
+    var fp = "ecaf2235e78e71cd95365843c7b190543caa7585";
+    console.log("Result:", glbcKeyRing.initialize(response.data, fp)); 
+  });
+
 }]).
   config(exceptionConfig);

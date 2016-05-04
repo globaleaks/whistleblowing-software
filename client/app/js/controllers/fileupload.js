@@ -1,40 +1,5 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipherLib', function($scope, $q, $timeout, glbcCipherLib)  {
+GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistleblower', function($scope, $q, $timeout, glbcWhistleblower)  {
   $scope.disabled = false;
-
-  // handleFileEncryption encrypts the passed file with the keys of the
-  // current scope's receivers and returns a new encrypted file with '.pgp'
-  // added as the extension.
-  // { File -> File }
-  function handleFileEncryption(file) {
-    var deferred = $q.defer();
-
-    glbcCipherLib.createArrayFromBlob(file).then(function(fileArr) {
-      // Get the public keys for each receiver
-      // TODO TODO TODO Remove temp public key
-      var pubKeyStrs = $scope.receivers.map(function(rec) { return rec.ccrypto_key_public; });
-      // TODO TODO TODO
-      var pubKeys;
-      try {
-        pubKeys = glbcCipherLib.loadPublicKeys(pubKeyStrs);
-      } catch(err) {
-        deferred.reject(err);
-        return;
-      }
-      return glbcCipherLib.encryptMsg(fileArr, pubKeys, 'binary');
-    }).then(function(cipherMsg) {
-
-      var cipherTextArr = cipherMsg.packets.write();
-
-      // Note application/octet-stream must be explicitly set or the new File
-      // will append leading and trailing bytes to the upload.
-      var cipherBlob = new Blob([cipherTextArr.buffer], {type:'application/octet-stream'});
-      var encFile = new File([cipherBlob], file.name+'.pgp');
-      deferred.resolve(encFile);
-    });
-
-    return deferred.promise;
-  }
-
 
   $scope.$on('flow::fileAdded', function (event, flow, file) {
     if (file.size > $scope.node.maximum_filesize * 1024 * 1024) {
@@ -51,7 +16,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcCipher
 
     if (file.file.encrypted === undefined) {
       event.preventDefault();
-      handleFileEncryption(file.file).then(function(outputFile) {
+      glbcWhistleblower.handleFileEncryption(file.file, $scope.receivers).then(function(outputFile) {
         outputFile.encrypted = true;
         $timeout(function() {
           flow.addFile(outputFile);

@@ -44,7 +44,7 @@
     "d3": "3.5.16",
     "flow.js": "2.10.1",
     "ng-flow": "2.7.1",
-    "openpgp": "2.2.2",
+    "openpgp": "2.3.0",
     "scrypt-async": "1.2.0",
     "stacktrace-js": "1.1.1",
     "zxcvbn": "4.3.0"

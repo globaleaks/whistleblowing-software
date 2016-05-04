@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'glbcKeyRing',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, glbcKeyRing) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcWhistleblower', 'glbcKeyRing',
+  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcWhistleblower, glbcKeyRing) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -95,39 +95,47 @@ GLClient.controller('TipCtrl',
       $scope.fileupload_url = 'wbtip/upload';
 
       new WBTip(function(tip) {
-        $scope.tip = tip;
-        $scope.extractSpecialTipFields(tip);
 
-        // FIXME: remove this variable that is now needed only to map wb_identity_field
-        $scope.submission = tip;
+        // Convert the encrypted answers into an openpgpjs message.
+        var c = pgp.message.readArmored(tip.encrypted_answers);
 
-        $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-          return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
-                            {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
-              success(function(){
-                $route.reload();
-              });
-        };
+        glbcWhistleblower.decryptAndVerifyAnswers(c).then(function(plaintext) {
+          tip.answers = JSON.parse(plaintext.data);
 
-        angular.forEach($scope.contexts, function(context){
-          if (context.id === tip.context_id) {
-            $scope.current_context = context;
-          }
-        });
+          $scope.tip = tip;
+          $scope.extractSpecialTipFields(tip);
 
-        if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
-          tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
-        }
+          // FIXME: remove this variable that is now needed only to map wb_identity_field
+          $scope.submission = tip;
 
-        tip.updateMessages();
+          $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
+            return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
+                              {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
+                success(function(){
+                  $route.reload();
+                });
+          };
 
-        $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
-          if (newVal && newVal !== oldVal) {
-            if ($scope.tip) {
-              $scope.tip.updateMessages();
+          angular.forEach($scope.contexts, function(context){
+            if (context.id === tip.context_id) {
+              $scope.current_context = context;
             }
+          });
+
+          if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
+            tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
           }
-        }, false);
+
+          tip.updateMessages();
+
+          $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
+              if ($scope.tip) {
+                $scope.tip.updateMessages();
+              }
+            }
+          }, false);
+        });
       });
 
     } else if ($scope.session.role === 'receiver') {
@@ -136,7 +144,7 @@ GLClient.controller('TipCtrl',
       new RTip({id: $scope.tip_id}, function(tip) {
 
         // Convert the encrypted answers into an openpgpjs message.
-        var c = openpgp.message.readArmored(tip.encrypted_answers);
+        var c = pgp.message.readArmored(tip.encrypted_answers);
 
         // TODO glbcKeyRing.unlockKeyRing(passphrase);
 
