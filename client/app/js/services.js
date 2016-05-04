@@ -393,13 +393,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       /**
        * @name Submission.submit
+       * @params steps: The steps of fields the whistleblower was prompted with.
+       *         answers: The whistleblower's responses to the each field
        * @description
-       * Submit the currently configured submission.
-       * This involves setting the receivers of the submission object to those
-       * currently selected and setting up the submission fields entered by the
-       * whistleblower.
-       */
-      self.submit = function(answers) {
+       * Submit prepares the answers object for delivery to the selected 
+       * receivers, includes all 'stats_enabled' fields in the answers object, 
+       * encrypts all the other responses in 'encrypted_answers', and submits 
+       * the payload to the backend.
+       **/
+      self.submit = function(steps, answers) {
         if (!self._submission || !self.receivers_selected) {
           return;
         }
@@ -413,9 +415,25 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        // TODO redact information from answers before submission
-        self._submission.answers = answers;
-        
+        redactedAnswers = {};
+
+        function fillAndRecurse(parentObj, field) {
+          if (field.stats_enabled) {
+            parentObj[field.id] = answers[field.id];
+          }
+          angular.forEach(field.children, function(child) {
+            fillAndRecurse(field, child);
+          });
+        }
+
+        angular.forEach(steps, function(step) {
+          angular.forEach(step.children, function(child) {
+            fillAndRecurse(redactedAnswers, child);
+          });
+        });
+
+        self._submission.answers = redactedAnswers;
+      
         // Convert _submission.answers to a binary array in a reasonable way.
         var jsonAnswers = JSON.stringify(answers);
 
@@ -430,7 +448,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         glbcCipherLib.encryptMsg(jsonAnswers, pubKeys)
         .then(function(ciphertext) {
           self._submission.encrypted_answers = ciphertext.armor();
-          // TODO delete answers.
           self._submission.$update(function(result) {
             if (result) {
               Authentication.keycode = self._submission.receipt;
