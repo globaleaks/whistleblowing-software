@@ -1,4 +1,22 @@
 angular.module('GLBrowserCrypto', [])
+// pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend. This 
+// factory handles the proper initialization of a Web Worker for asynchronous
+// operations.
+.factory('pgp', function() {
+
+  if (window.openpgp === undefined) {
+    throw new Error("OpenPGP.js is not loaded!");
+  }
+
+ if (window.crypto.getRandomValues === undefined) {
+    throw new Error('Browser does not support safe random generators!');
+  }
+
+  // TODO handle packaging more intelligently, this kicks off yet another xhr request.
+  window.openpgp.initWorker({ path:'components/openpgp/dist/openpgp.worker.js' });
+  
+  return window.openpgp;
+})
 .factory('glbcProofOfWork', ['$q', function($q) {
   // proofOfWork return the answer to the proof of work
   // { [challenge string] -> [ answer index] }
@@ -54,7 +72,7 @@ angular.module('GLBrowserCrypto', [])
     }
   };
 }])
-.factory('glbcKeyLib', ['$q', function($q) {
+.factory('glbcKeyLib', ['$q', 'pgp', function($q, pgp) {
     /*
       The code below could be tested with:
 
@@ -158,7 +176,7 @@ angular.module('GLBrowserCrypto', [])
           numBits: e2e_key_bits
         };
 
-        openpgp.generateKey(key_options).then(function(keyPair) {
+        pgp.generateKey(key_options).then(function(keyPair) {
           defer.resolve({
             e2e_key_pub: keyPair.key.toPublic(),
             e2e_key_prv: keyPair.key,
@@ -174,7 +192,7 @@ angular.module('GLBrowserCrypto', [])
       generate_keycode: function() {
         var keycode = '';
         for (var i=0; i<16; i++) {
-          keycode += openpgp.crypto.random.getSecureRandom(0, 9);
+          keycode += pgp.crypto.random.getSecureRandom(0, 9);
         }
         return keycode;
       },
@@ -187,7 +205,7 @@ angular.module('GLBrowserCrypto', [])
         if (typeof textInput !== 'string') {
           return false;
         }
-        var result = openpgp.key.readArmored(textInput);
+        var result = pgp.key.readArmored(textInput);
         if (angular.isDefined(result.err) || result.keys.length !== 1) {
           return false;
         }
@@ -198,7 +216,7 @@ angular.module('GLBrowserCrypto', [])
         }
 
         // Verify expiration, revocation, and self sigs.
-        if (key.verifyPrimaryKey() !== openpgp.enums.keyStatus.valid) {
+        if (key.verifyPrimaryKey() !== pgp.enums.keyStatus.valid) {
           return false;
         }
 
@@ -223,7 +241,7 @@ angular.module('GLBrowserCrypto', [])
         // Try to parse the key.
         var result;
         try {
-          result = openpgp.key.readArmored(s);
+          result = pgp.key.readArmored(s);
         } catch (err) {
           return false;
         }
@@ -251,7 +269,7 @@ angular.module('GLBrowserCrypto', [])
         }
 
         // Verify expiration, revocation, and self sigs.
-        if (key.verifyPrimaryKey() !== openpgp.enums.keyStatus.valid) {
+        if (key.verifyPrimaryKey() !== pgp.enums.keyStatus.valid) {
           return false;
         }
 
@@ -260,54 +278,7 @@ angular.module('GLBrowserCrypto', [])
 
     };
 }])
-
-.factory('glbcProofOfWork', ['$q', function($q) {
-  // proofOfWork return the answer to the proof of work
-  // { [challenge string] -> [ answer index] }
-  var str2Uint8Array = function(str) {
-    var result = new Uint8Array(str.length);
-    for (var i = 0; i < str.length; i++) {
-      result[i] = str.charCodeAt(i);
-    }
-    return result;
-  };
-
-  var getWebCrypto = function() {
-    if (typeof window !== 'undefined') {
-      if (window.crypto) {
-        return window.crypto.subtle || window.crypto.webkitSubtle;
-      }
-      if (window.msCrypto) {
-        return window.msCrypto.subtle;
-      }
-    }
-  };
-
-  return {
-    proofOfWork: function(str) {
-      console.log(str);
-      var deferred = $q.defer();
-
-      var work = function(i) {
-        var hashme = str2Uint8Array(str + i);
-        getWebCrypto().digest({name: "SHA-256"}, hashme).then(function (hash) {
-          hash = new Uint8Array(hash);
-          if (hash[31] === 0) {
-            deferred.resolve(i);
-          } else {
-            work(i + 1);
-          }
-        });
-      }
-
-      work(0);
-
-      return deferred.promise;
-    }
-  };
-}])
-
-.factory('glbcCipherLib', ['$q', 'glbcKeyLib', function($q, glbcKeyLib) {
+.factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
   return {
     // loadPublicKeys parses the passed public keys and returns a list of 
     // openpgpjs Keys. Note that if there is a problem when parsing a key the 
@@ -322,7 +293,7 @@ angular.module('GLBrowserCrypto', [])
           throw new Error("Attempted to load invalid public key");
         }
 
-        res = openpgp.key.readArmored(keyStr);
+        res = pgp.key.readArmored(keyStr);
         if (angular.isDefined(res.err)) {
           // Note only the first error is thrown
           throw res.err[0];
@@ -343,7 +314,7 @@ angular.module('GLBrowserCrypto', [])
         armor: false,
         format: format,
       };
-      openpgp.encrypt(options).then(function(cipherMsg) {
+      pgp.encrypt(options).then(function(cipherMsg) {
         deferred.resolve(cipherMsg.message);
       });
       // TODO catch expired keys, formatting errors, etc etc.
@@ -359,7 +330,7 @@ angular.module('GLBrowserCrypto', [])
         privateKey: privKey,
         format: format,
       };
-      openpgp.decrypt(options).then(function(plaintext) {
+      pgp.decrypt(options).then(function(plaintext) {
         deferred.resolve(plaintext);
       });
 
@@ -404,7 +375,7 @@ angular.module('GLBrowserCrypto', [])
 
       // Parsing the private key here should produce no errors. Once it is no
       // longer needed we will explicity remove references to this key.
-      var tmpKeyRef = openpgp.key.readArmored(armoredPrivKey).keys[0];
+      var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
 
       if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
         tmpKeyRef = null;
