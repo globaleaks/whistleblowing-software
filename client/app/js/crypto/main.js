@@ -3,18 +3,10 @@ angular.module('GLBrowserCrypto', [])
 // factory handles the proper initialization of a Web Worker for asynchronous
 // operations.
 .factory('pgp', function() {
-
-  if (window.openpgp === undefined) {
-    throw new Error("OpenPGP.js is not loaded!");
-  }
-
- if (window.crypto.getRandomValues === undefined) {
-    throw new Error('Browser does not support safe random generators!');
-  }
-
+  
   // TODO handle packaging more intelligently, this kicks off yet another xhr request.
   window.openpgp.initWorker({ path:'components/openpgp/dist/openpgp.worker.js' });
-  
+
   return window.openpgp;
 })
 .factory('glbcProofOfWork', ['$q', function($q) {
@@ -304,13 +296,21 @@ angular.module('GLBrowserCrypto', [])
 
       return pgpPubKeys;
     },
-
-    // { Uint8Array | string, [ openpgpjs.Key... ], 'binary' | 'utf8' -> { Promise -> Object } }
+  
+    /**
+     * encrypt and sign a message TODO 
+     *
+     * { Uint8Array | string, [ openpgpjs.Key... ], 'binary' | 'utf8' -> { Promise -> Object } }
+     *
+     * @return {Promise<Object>}
+     */
     encryptMsg: function(data, pgpPubKeys, format) {
       var deferred = $q.defer();
+
       var options = {
         data: data,
         publicKeys: pgpPubKeys,
+     // privateKeys: privKeys,
         armor: false,
         format: format,
       };
@@ -357,17 +357,19 @@ angular.module('GLBrowserCrypto', [])
 // glbcKeyRing holds the private key material of authenticated users. It handles
 // all of the cryptographic operations internally so that the rest of the UI 
 // does not.
-.factory('glbcKeyRing', ['glbcCipherLib', 'glbcKeyLib', function(glbcCipherLib, glbcKeyLib) {
+.factory('glbcKeyRing', ['$q', 'pgp', 'glbcCipherLib', 'glbcKeyLib', function($q, pgp, glbcCipherLib, glbcKeyLib) {
   // keyRing is kept private.
   var keyRing = {
     privateKey: null,
   };
 
   return {
+    privateKey: keyRing.privateKey,
+    
     // intialize validates the passed privateKey and places it in the keyRing.
     // The validates the key and checks to see if the key's fingerprint equals
     // the fingerprint passed to it.
-    // { string -> bool }
+    // { string, string -> bool }
     initialize: function(armoredPrivKey, fingerprint) {
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         return false;
@@ -378,6 +380,7 @@ angular.module('GLBrowserCrypto', [])
       var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
 
       if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
+        console.log('fp dontmatch');
         tmpKeyRef = null;
         return false;
       }
@@ -387,38 +390,46 @@ angular.module('GLBrowserCrypto', [])
       return true;
     },
 
-    // lockKeyRing encrypts the private key material of the key using the passed
-    // password. The primary key and all subkeys are encrypted with the password.
-    // { string -> bool }
+    /**
+     * lockKeyRing encrypts the private key material of the key using the passed
+     * password. The primary key and all subkeys are encrypted with the password.
+     * @param {String} password
+     * @return {Bool}
+     */
     lockKeyRing: function(password) {
-      var w = true;
-      // TODO create issue on GH openpgp js so the library will support:
-      // Key.encrypt(passphrase) because it ain't there. TODO
-      w = w && keyRing.privateKey.primaryKey.encrypt(password);
-      keyRing.privateKey.subKeys.forEach(function(sk) {
-        w = w && sk.subKey.encrypt(password);
-      });
-      return w;
+       return keyRing.privateKey.encrypt(password);
     },
 
-    // unlockKeyRing decrypts the private key's encrypted key material with the
-    // passed password. Returns true if succesful.
-    // { string -> bool }
+    /**
+     * unlockKeyRing decrypts the private key's encrypted key material with the
+     * passed password. Returns true if successful.
+     * @param {String} password
+     * @return {Bool}
+     */
     unlockKeyRing: function(password) {
-      keyRing.privateKey.decrypt(password);
+      return keyRing.privateKey.decrypt(password);
     },
 
-    // preformDecrypt uses the private key to decrypt the passed array, which
-    // should represent the raw bytes of an openpgp Message.
-    // { Uint8Array, 'binary' | 'utf8' -> { Promise: Uint8Array } }
-    performDecrypt: function(ciphertext, format) {
+
+    /**
+     * @param {pgp.Message} message
+     * @param {String} format
+     * @return {Promise<pgp.Message>}
+     */
+    performDecrypt: function(message, format) {
       if (keyRing.privateKey === null) {
         throw new Error("Keyring not initialized!");
       }
       if (format !== 'binary' && format !== 'utf8') {
         throw new Error("Supplied wrong decrypt format!");
       }
-      return glbcCipherLib.decryptMsg(ciphertext, keyRing.privateKey, format);
+      var options = {
+        message: message,
+        format: format,
+        privateKey: keyRing.privateKey,
+        publicKeys: keyRing.privateKey.toPublic(),
+      };
+      return pgp.decrypt(options);
     },
   };
 }]);
