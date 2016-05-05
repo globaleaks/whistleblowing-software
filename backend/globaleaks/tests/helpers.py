@@ -34,11 +34,11 @@ from globaleaks.handlers.admin.field import create_field, db_create_field
 from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
-from globaleaks.handlers.submission import create_submission, serialize_usertip, \
-    serialize_internalfile, serialize_receiverfile
+from globaleaks.handlers.submission import create_submission, \
+    serialize_internalfile, serialize_receiverfile, \
+    serialize_receiver_tip, serialize_whistleblower_tip
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
 from globaleaks.utils import mailutils, tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
@@ -54,6 +54,8 @@ VALID_SALT2 = security.generateRandomSalt()
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
+
+RECEIPT_HASH = security.hash_password('0123456789012345', 'salt')
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
@@ -198,7 +200,6 @@ class TestGL(unittest.TestCase):
         dummyStuff = MockDict()
 
         self.dummyContext = dummyStuff.dummyContext
-        self.dummySubmission = dummyStuff.dummySubmission
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
         self.dummyAdminUser['deletable'] = False
         self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
@@ -227,6 +228,7 @@ class TestGL(unittest.TestCase):
 
         self.assertEqual(os.listdir(GLSettings.submission_path), [])
         self.assertEqual(os.listdir(GLSettings.tmp_upload_path), [])
+
 
     def localization_set(self, dict_l, dict_c, language):
         ret = dict(dict_l)
@@ -359,7 +361,10 @@ class TestGL(unittest.TestCase):
             'identity_provided': False,
             'total_score': 0,
             'answers': (yield self.fill_random_answers(context_id)),
-            'encrypted_answers': ''
+            'encrypted_answers': '',
+            'ccrypto_key_private': '',
+            'ccrypto_key_public': '',
+            'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
         })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
@@ -372,7 +377,7 @@ class TestGL(unittest.TestCase):
         if content is None:
             content = ''.join(unichr(x) for x in range(0x400, 0x40A))
 
-        temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+        temporary_file = security.GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
         temporary_file.write(content)
         temporary_file.avoid_delete()
@@ -454,7 +459,7 @@ class TestGL(unittest.TestCase):
     def get_rtips(self, store):
         ret = []
         for tip in store.find(models.ReceiverTip):
-            x = rtip.serialize_rtip(store, tip, 'en')
+            x = serialize_receiver_tip(store, tip, 'en')
             x['receiver_id'] = tip.receiver.id
             ret.append(x)
 
@@ -467,29 +472,18 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_wbtips(self, store):
         ret = []
-        for tip in store.find(models.WhistleblowerTip):
-            x = wbtip.serialize_wbtip(store, tip, 'en')
-            x['receivers_ids'] = [rcvr.id for rcvr in tip.internaltip.receivers]
+        for tip in store.find(models.InternalTip):
+            x = serialize_whistleblower_tip(store, tip, 'en')
+            x['receivers_ids'] = [rcvr.id for rcvr in tip.receivers]
             ret.append(x)
 
         return ret
 
     @transact_ro
-    def get_internalfiles_by_wbtip(self, store, wbtip_id):
-        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
-
-        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
+    def get_internalfiles_by_itip(self, store, itip_id):
+        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == itip_id)
 
         return [serialize_internalfile(ifile) for ifile in ifiles]
-
-
-    @transact_ro
-    def get_receiverfiles_by_wbtip(self, store, wbtip_id):
-        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
-
-        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.internaltip_id == unicode(wbtip.internaltip_id))
-
-        return [serialize_receiverfile(rfile) for rfile in rfiles]
 
 
 class TestGLWithPopulatedDB(TestGL):
@@ -537,6 +531,8 @@ class TestGLWithPopulatedDB(TestGL):
         if self.complex_field_population:
             yield self.add_whistleblower_identity_field_to_step(self.dummyQuestionnaire['steps'][1]['id'])
 
+        self.dummySubmission = yield self.get_dummy_submission(self.dummyContext['id'])
+
     @transact
     def add_whistleblower_identity_field_to_step(self, store, step_id):
         wbf = store.find(models.Field, models.Field.key == u'whistleblower_identity').one()
@@ -557,16 +553,11 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_submission_actions(self):
-        self.dummySubmission['context_id'] = self.dummyContext['id']
-        self.dummySubmission['receivers'] = self.dummyContext['receivers']
-        self.dummySubmission['identity_provided'] = False
-        self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
-        self.dummySubmission['encrypted_answers'] = ''
-        self.dummySubmission['total_score'] = 0
+        ret = (yield create_submission(self.dummyToken.id,
+                                self.dummySubmission,
+                                True, 'en'))
 
-        self.dummySubmission = yield create_submission(self.dummyToken.id,
-                                                       self.dummySubmission, 
-                                                       True, 'en')
+        self.dummySubmission['id'] = ret['id']
 
     @inlineCallbacks
     def perform_post_submission_actions(self):
@@ -790,13 +781,6 @@ class MockDict():
             'enable_attachments': True,
             'show_receivers_in_alphabetical_order': False,
             'status_page_message': ''
-        }
-
-        self.dummySubmission = {
-            'context_id': '',
-            'answers': {},
-            'receivers': [],
-            'files': []
         }
 
         self.dummyNode = {

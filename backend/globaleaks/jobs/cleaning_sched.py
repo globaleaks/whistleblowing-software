@@ -16,7 +16,8 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
-from globaleaks.handlers.rtip import db_delete_itips, serialize_rtip
+from globaleaks.handlers.rtip import db_delete_itips
+from globaleaks.handlers.submission import serialize_receiver_tip
 from globaleaks.jobs.base import GLJob
 from globaleaks.security import overwrite_and_remove
 from globaleaks.settings import GLSettings

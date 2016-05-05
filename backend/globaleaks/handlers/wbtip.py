@@ -11,93 +11,57 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
     serialize_comment, serialize_message
-from globaleaks.handlers.submission import serialize_usertip, \
+from globaleaks.handlers.submission import serialize_whistleblower_tip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
-from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
+from globaleaks.models import Comment, Message, ReceiverTip, InternalTip
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
-def wb_serialize_file(internalfile):
-    return {
-        'id': internalfile.id,
-        'name': internalfile.name,
-        'content_type': internalfile.content_type,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'size': internalfile.size
-    }
+def db_get_itip(store, itip_id):
+    itip = store.find(InternalTip, InternalTip.id == itip_id).one()
 
-
-def db_access_wbtip(store, wbtip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == wbtip_id).one()
-
-    if not wbtip:
+    if not itip:
         raise errors.TipReceiptNotFound
 
-    return wbtip
-
-
-def db_get_file_list(store, wbtip_id):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
-    return [wb_serialize_file(internalfile) for internalfile in wbtip.internaltip.internalfiles]
-
-
-def db_get_wbtip(store, wbtip_id, language):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
-    wbtip.access_counter += 1
-
-    tip_desc = serialize_wbtip(store, wbtip, language)
-
-    return tip_desc
+    return itip
 
 
 @transact
 def get_wbtip(store, wbtip_id, language):
-    return db_get_wbtip(store, wbtip_id, language)
+    wbtip = db_get_itip(store, wbtip_id)
+
+    wbtip.access_counter += 1
+
+    return serialize_whistleblower_tip(store, wbtip, language)
 
 
 @transact_ro
 def get_receiver_list(store, wbtip_id, language):
-    wbtip = db_access_wbtip(store, wbtip_id)
+    wbtip = db_get_itip(store, wbtip_id)
 
-    return db_get_itip_receiver_list(store, wbtip.internaltip, language)
+    return db_get_itip_receiver_list(store, wbtip, language)
 
 
 @transact_ro
 def get_comment_list(store, wbtip_id):
-    wbtip = db_access_wbtip(store, wbtip_id)
+    wbtip = db_get_itip(store, wbtip_id)
 
-    return [serialize_comment(comment) for comment in wbtip.internaltip.comments]
+    return [serialize_comment(comment) for comment in wbtip.comments]
 
-
-def serialize_wbtip(store, wbtip, language):
-    ret = serialize_usertip(store, wbtip, language)
-
-    # filter submission progressive
-    # to prevent a fake whistleblower to assess every day how many
-    # submissions are received by the platform.
-    del ret['progressive']
-
-    ret['id'] = wbtip.id
-    ret['ccrypto_key_private'] = wbtip.internaltip.ccrypto_key_private
-    ret['files'] = db_get_file_list(store, wbtip.id)
-
-    return ret
 
 @transact
 def create_comment(store, wbtip_id, request):
-    wbtip = db_access_wbtip(store, wbtip_id)
-    wbtip.internaltip.update_date = datetime_now()
+    wbtip = db_get_itip(store, wbtip_id)
+    wbtip.update_date = datetime_now()
 
     comment = Comment()
     comment.content = request['content']
-    comment.internaltip_id = wbtip.internaltip_id
+    comment.internaltip_id = wbtip.id
     comment.author = u'whistleblower'
     comment.type = u'whistleblower'
 
-    wbtip.internaltip.comments.add(comment)
+    wbtip.comments.add(comment)
 
     return serialize_comment(comment)
 
@@ -108,9 +72,9 @@ def get_message_list(store, wbtip_id, receiver_id):
     Get the messages content and mark all the unread
     messages as "read"
     """
-    wbtip = db_access_wbtip(store, wbtip_id)
+    wbtip = db_get_itip(store, wbtip_id)
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
@@ -121,10 +85,10 @@ def get_message_list(store, wbtip_id, receiver_id):
 
 @transact
 def create_message(store, wbtip_id, receiver_id, request):
-    wbtip = db_access_wbtip(store, wbtip_id)
-    wbtip.internaltip.update_date = datetime_now()
+    wbtip = db_get_itip(store, wbtip_id)
+    wbtip.update_date = datetime_now()
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
@@ -265,8 +229,7 @@ class WBTipIdentityHandler(BaseHandler):
 
         @transact
         def update_identity_information(store, identity_field_id, identity_field_answers, language):
-            wbtip = db_access_wbtip(store, tip_id)
-            internaltip = wbtip.internaltip
+            internaltip = db_get_itip(store, tip_id)
             identity_provided = internaltip.identity_provided
 
             if not identity_provided:

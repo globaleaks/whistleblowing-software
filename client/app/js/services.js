@@ -91,7 +91,7 @@ angular.module('GLServices', ['ngResource']).
                 });
             });
           } else {
-            return $http.post('authentication', {'username': username, 'password': password_hash}).
+            return $http.post('authentication', {'username': username, 'password': password}).
             success(success_fn).
             error(function() {
               self.loginInProgress = false;

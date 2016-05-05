@@ -273,6 +273,8 @@ class InternalTip(Model):
     update_date = DateTime(default_factory=datetime_now)
 
     encrypted = Bool(default=True)
+    receipt_hash = Unicode()
+
     ccrypto_key_public = Unicode(default=u'')
     ccrypto_key_private = Unicode(default=u'')
 
@@ -295,6 +297,9 @@ class InternalTip(Model):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
+
+    last_access = DateTime(default_factory=datetime_now)
+    access_counter = Int(default=0)
 
     new = Int(default=True)
 
@@ -321,20 +326,6 @@ class ReceiverTip(Model):
     unicode_keys = ['label']
 
     bool_keys = ['enable_notifications']
-
-
-class WhistleblowerTip(Model):
-    """
-    WhisteleblowerTip is intended, to provide a whistleblower access to the
-    Tip. It has some differencies from the ReceiverTips: It has a secret
-    authentication receipt and different capabilities, like: cannot not
-    download.
-    """
-    internaltip_id = Unicode()
-    receipt_hash = Unicode()
-
-    last_access = DateTime(default_factory=datetime_null)
-    access_counter = Int(default=0)
 
 
 class IdentityAccessRequest(Model):
@@ -377,12 +368,9 @@ class ReceiverFile(Model):
     """
     This model keeps track of files destinated to a specific receiver
     """
-    internaltip_id = Unicode()
     internalfile_id = Unicode()
-    receiver_id = Unicode()
     receivertip_id = Unicode()
     file_path = Unicode()
-    size = Int()
     downloads = Int(default=0)
     last_access = DateTime(default_factory=datetime_null)
 
@@ -1091,24 +1079,9 @@ ReceiverFile.internalfile = Reference(
     InternalFile.id
 )
 
-ReceiverFile.receiver = Reference(
-    ReceiverFile.receiver_id,
-    Receiver.id
-)
-
-ReceiverFile.internaltip = Reference(
-    ReceiverFile.internaltip_id,
-    InternalTip.id
-)
-
 ReceiverFile.receivertip = Reference(
     ReceiverFile.receivertip_id,
     ReceiverTip.id
-)
-
-WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.internaltip_id,
-    InternalTip.id
 )
 
 InternalFile.internaltip = Reference(
@@ -1156,7 +1129,7 @@ model_list = [
     Context, ReceiverContext,
     Questionnaire, Step, Field, FieldOption, FieldAttr,
     FieldAnswer, FieldAnswerGroup,
-    InternalTip, ReceiverTip, WhistleblowerTip,
+    InternalTip, ReceiverTip,
     Comment, Message,
     InternalFile, ReceiverFile,
     Notification, Mail,

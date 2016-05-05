@@ -4,7 +4,6 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 # override GLSettings
 from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
-from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.admin.context import get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
@@ -24,8 +23,6 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True
 
     encryption_scenario = 'ENCRYPTED'
-
-    files_created = 6
 
     @inlineCallbacks
     def create_submission(self, request):
@@ -56,24 +53,19 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        yield delivery_sched.DeliverySchedule().operation()
-
-        self.fil = yield self.get_internalfiles_by_wbtip(self.submission_desc['id'])
+        self.fil = yield self.get_internalfiles_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
         self.assertEqual(len(self.fil), 3)
-
-        self.rfi = yield self.get_receiverfiles_by_wbtip(self.submission_desc['id'])
-        self.assertTrue(isinstance(self.rfi, list))
-        self.assertEqual(len(self.rfi), self.files_created)
 
     @inlineCallbacks
     def test_update_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        yield self.create_submission(self.submission_desc)
+
+        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt_hash'], False)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 

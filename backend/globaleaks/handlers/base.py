@@ -755,8 +755,6 @@ class TimingStatsHandler(BaseHandler):
             category = 'submission'
         elif method == 'POST' and uri == '/wbtip/comments':
             category = 'comment'
-        elif method == 'JOB' and uri == 'Delivery':
-            category = 'delivery'
         else:
             category = 'uncategorized'
 

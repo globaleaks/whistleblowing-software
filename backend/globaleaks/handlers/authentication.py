@@ -12,7 +12,7 @@ from globaleaks import security
 from globaleaks.orm import transact_ro
 from globaleaks.models import User
 from globaleaks.settings import GLSettings
-from globaleaks.models import WhistleblowerTip
+from globaleaks.models import InternalTip
 from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, randint
@@ -50,10 +50,10 @@ def random_login_delay():
 @transact_ro  # read only transact; manual commit on success needed
 def login_whistleblower(store, receipt_hash, using_tor2web):
     """
-    login_whistleblower returns the WhistleblowerTip.id
+    login_whistleblower returns the InternalTip.id
     """
-    wbtip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.receipt_hash == receipt_hash).one()
+    wbtip = store.find(InternalTip,
+                       InternalTip.receipt_hash == receipt_hash).one()
 
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")

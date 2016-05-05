@@ -13,8 +13,8 @@ from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
-from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
-from globaleaks.handlers.submission import serialize_internalfile
+from globaleaks.handlers.rtip import serialize_message, serialize_comment
+from globaleaks.handlers.submission import serialize_internalfile, serialize_receiver_tip
 from globaleaks.jobs.base import GLJob
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -46,7 +46,7 @@ def serialize_content(store, cache, key, obj, language):
 
     if cache_key not in cache:
         if key == 'tip':
-             cache_obj = serialize_rtip(store, obj, language)
+             cache_obj = serialize_receiver_tip(store, obj, language)
         elif key == 'context':
              cache_obj = admin_serialize_context(store, obj, language)
         elif key == 'receiver':
@@ -110,11 +110,11 @@ class MailGenerator(object):
         if rfile.internalfile.submission:
             return
 
-        language = rfile.receiver.user.language
+        language = rfile.receivertip.receiver.user.language
 
         data['tip'] = serialize_content(store, self.cache, 'tip', rfile.receivertip, language)
         data['context'] = serialize_content(store, self.cache, 'context', rfile.internalfile.internaltip.context, language)
-        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receiver, language)
+        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receivertip.receiver, language)
         data['file'] = serialize_content(store, self.cache, 'file', rfile.internalfile, language)
 
         self.process_mail_creation(store, data)

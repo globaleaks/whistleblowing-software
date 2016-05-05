@@ -13,32 +13,15 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.submission import serialize_usertip
+from globaleaks.handlers.submission import serialize_receiver_tip, db_get_rtip, \
+    get_rtip
 from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
-    SecureFileDelete, IdentityAccessRequest
+    SecureFileDelete, IdentityAccessRequest, ReceiverTip
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
-
-
-def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
-    """
-    ReceiverFile is the mixing between the metadata present in InternalFile
-    and the Receiver-dependent, and for the client sake receivertip_id is
-    required to create the download link
-    """
-    return {
-        'id': receiverfile.id,
-        'internalfile_id': internalfile.id,
-        'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
-        'name': internalfile.name,
-        'content_type': internalfile.content_type,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'size': receiverfile.size,
-        'downloads': receiverfile.downloads
-    }
 
 
 def serialize_comment(comment):
@@ -61,64 +44,9 @@ def serialize_message(msg):
     }
 
 
-def serialize_rtip(store, rtip, language):
-    user_id = rtip.receiver.user.id
-
-    ret = serialize_usertip(store, rtip, language)
-
-    ret['id'] = rtip.id
-    ret['receiver_id'] = user_id
-    ret['label'] = rtip.label
-    ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
-    ret['enable_notifications'] = bool(rtip.enable_notifications)
-
-    return ret
-
-
-def db_access_rtip(store, user_id, rtip_id):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(rtip_id),
-                      ReceiverTip.receiver_id == user_id).one()
-
-    if not rtip:
-        raise errors.TipIdNotFound
-
-    return rtip
-
-
-def db_get_files_receiver(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    receiver_files = store.find(ReceiverFile,
-                                (ReceiverFile.internaltip_id == rtip.internaltip_id,
-                                 ReceiverFile.receiver_id == rtip.receiver_id))
-
-    return [receiver_serialize_file(receiverfile.internalfile, receiverfile, rtip_id)
-            for receiverfile in receiver_files]
-
-
 @transact_ro
-def get_files_receiver(store, user_id, rtip_id):
-    return db_get_files_receiver(store, user_id, rtip_id)
-
-
-def db_get_rtip(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    db_increment_receiver_access_count(store, user_id, rtip_id)
-
-    return serialize_rtip(store, rtip, language)
-
-
-def db_increment_receiver_access_count(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    rtip.access_counter += 1
-    rtip.last_access = datetime_now()
-
-    log.debug("Tip %s access granted to user %s (%d)" %
-              (rtip.id, rtip.receiver.user.name, rtip.access_counter))
-
-    return rtip.access_counter
+def get_rtip_files(store, user_id, rtip_id):
+    return db_get_rtip_files(store, user_id, rtip_id)
 
 
 def db_mark_file_for_secure_deletion(store, relpath):
@@ -185,7 +113,7 @@ def db_get_itip_receiver_list(store, itip, language):
 
 @transact_ro
 def get_receiver_list(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     return db_get_itip_receiver_list(store, rtip.internaltip, language)
 
@@ -196,7 +124,7 @@ def delete_rtip(store, user_id, rtip_id):
     Delete internalTip is possible only to Receiver with
     the dedicated property.
     """
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_delete_submission or
                 rtip.receiver.can_delete_submission):
@@ -207,7 +135,7 @@ def delete_rtip(store, user_id, rtip_id):
 
 @transact
 def postpone_expiration_date(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_postpone_expiration or
                 rtip.receiver.can_postpone_expiration):
@@ -229,7 +157,7 @@ def postpone_expiration_date(store, user_id, rtip_id):
 
 @transact
 def set_internaltip_variable(store, user_id, rtip_id, key, value):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     if not (GLSettings.memory_copy.can_grant_permissions or
             rtip.receiver.can_grant_permissions):
@@ -240,13 +168,8 @@ def set_internaltip_variable(store, user_id, rtip_id, key, value):
 
 @transact
 def set_receivertip_variable(store, user_id, rtip_id, key, value):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
     setattr(rtip, key, value)
-
-
-@transact
-def get_rtip(store, user_id, rtip_id, language):
-    return db_get_rtip(store, user_id, rtip_id, language)
 
 
 def db_get_comment_list(rtip):
@@ -255,14 +178,14 @@ def db_get_comment_list(rtip):
 
 @transact_ro
 def get_comment_list(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     return db_get_comment_list(rtip)
 
 
 @transact
 def create_identityaccessrequest(store, user_id, rtip_id, request, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     iar = IdentityAccessRequest()
     iar.request_motivation = request['request_motivation']
@@ -274,7 +197,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request, language):
 
 @transact
 def create_comment(store, user_id, rtip_id, request):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
     rtip.internaltip.update_date = datetime_now()
 
     comment = Comment()
@@ -294,14 +217,14 @@ def db_get_message_list(rtip):
 
 @transact_ro
 def get_message_list(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     return db_get_message_list(rtip)
 
 
 @transact
 def create_message(store, user_id, rtip_id, request):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
     rtip.internaltip.update_date = datetime_now()
 
     msg = Message()
@@ -318,7 +241,7 @@ def create_message(store, user_id, rtip_id, request):
 
 @transact_ro
 def get_identityaccessrequest_list(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
 

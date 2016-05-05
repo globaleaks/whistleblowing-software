@@ -18,13 +18,11 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
     def test_postpone_survive_cleaning(self, store):
         self.assertEqual(store.find(models.InternalTip).count(), 1)
         self.assertEqual(store.find(models.ReceiverTip).count(), 2)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 1)
 
     @transact
     def test_cleaning(self, store):
         self.assertEqual(store.find(models.InternalTip).count(), 0)
         self.assertEqual(store.find(models.ReceiverTip).count(), 0)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
         self.assertEqual(store.find(models.InternalFile).count(), 0)
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), 0)
