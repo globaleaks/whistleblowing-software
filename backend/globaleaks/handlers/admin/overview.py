@@ -6,6 +6,7 @@
 
 import os
 
+from storm.expr import In
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -61,16 +62,6 @@ def collect_tip_overview(store, language):
                 'lifetime': datetime_to_ISO8601(comment.creation_date),
             })
 
-        # whistleblower tip has not a reference from itip, then:
-        wbtip = store.find(models.WhistleblowerTip,
-                           models.WhistleblowerTip.internaltip_id == itip.id).one()
-
-        if wbtip is not None:
-            tip_description.update({
-                'wb_access_counter': wbtip.access_counter,
-                'wb_last_access': datetime_to_ISO8601(wbtip.last_access)
-            })
-
         tip_description_list.append(tip_description)
 
     return tip_description_list
@@ -90,7 +81,17 @@ def collect_users_overview(store):
             'receivertips': []
         }
 
-        rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id)
+        rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id)
+        for rtip in rcvr_tips:
+            user_description['receivertips'].append({
+                'receivertip.id': rtip.id,
+                'last_access': datetime_to_ISO8601(rtip.last_access),
+                'access_counter': rtip.access_counter
+            })
+
+        rtips_ids = [rtip.id for rtip in rcvr_tips]
+
+        rcvr_files = store.find(models.ReceiverFile, In(models.ReceiverFile.receivertip_id, rtips_ids))
         for rfile in rcvr_files:
 
             if not rfile.internalfile:
@@ -102,14 +103,6 @@ def collect_users_overview(store):
                 'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
                 'last_access': datetime_to_ISO8601(rfile.last_access),
-            })
-
-        rcvr_tips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == receiver.id)
-        for rtip in rcvr_tips:
-            user_description['receivertips'].append({
-                'internaltip_id': rtip.id,
-                'last_access': datetime_to_ISO8601(rtip.last_access),
-                'access_counter': rtip.access_counter
             })
 
         users_description_list.append(user_description)
@@ -163,8 +156,8 @@ def collect_files_overview(store):
             'id': rfile.internalfile.id,
             'name': rfile.internalfile.name,
             'content_type': rfile.internalfile.content_type,
-            'size': rfile.size,
-            'itip': rfile.internaltip_id,
+            'size': rfile.internalfile.size,
+            'itip': rfile.internalfile.internaltip_id,
             'creation_date': datetime_to_ISO8601(rfile.internalfile.creation_date),
             'rfiles': 1,
             'stored': False,

@@ -30,7 +30,7 @@ from globaleaks.db.migrations.update_28 import Field_v_27, Step_v_27, FieldField
 from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
 from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
-from globaleaks.db.migrations.update_32 import User_v_31, Notification_v_31, InternalTip_v_31
+from globaleaks.db.migrations.update_32 import User_v_31, Notification_v_31, InternalTip_v_31, WhistleblowerTip_v_31
 
 
 migration_mapping = OrderedDict([
@@ -65,7 +65,7 @@ migration_mapping = OrderedDict([
     ('SecureFileDelete', [-1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Stats', [Stats_v_16, models.Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_20, 0, 0, 0, 0, User_v_23, 0, 0, User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, models.User]),
-    ('WhistleblowerTip', [models.WhistleblowerTip, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    ('WhistleblowerTip', [WhistleblowerTip_v_31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1])
 ])
 
 

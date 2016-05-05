@@ -21,7 +21,7 @@ var contexts = [];
 var contexts_ids = [];
 var submissions = [];
 var submission_tokens = [];
-var wb_keycodes  = [];
+var wb_receipt_hashes  = [];
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
@@ -43,13 +43,13 @@ var validate_mandatory_headers = function(headers) {
 
 var valid_login = function(i) {
   return {
-    'receipt': wb_keycodes[i]
+    'receipt_hash': wb_receipt_hashes[i]
   };
 };
 
 var invalid_login = function() {
   return {
-    'receipt': 'antani'
+    'receipt_hash': 'antani'
   };
 };
 
@@ -199,7 +199,12 @@ for (i=0; i<submission_population_order; i++) {
         new_submission.receivers = receivers_ids;
         new_submission.identity_provided = false;
         new_submission.answers = fill_answers(contexts[0].steps);
+        new_submission.encrypted_answers = 'encrypted_answers';
         new_submission.total_score = 0;
+        new_submission.ccrypto_key_private = '';
+        new_submission.ccrypto_key_public = '';
+        new_submission.receipt_hash = "HASH" + i;
+        wb_receipt_hashes.push("HASH" + i);
 
         app
           .put('/submission/' + submission_tokens[i].id)
@@ -213,8 +218,6 @@ for (i=0; i<submission_population_order; i++) {
               validate_mandatory_headers(res.headers);
 
               submissions.push(res.body);
-
-              wb_keycodes.push(res.body.receipt);
 
               done();
             }

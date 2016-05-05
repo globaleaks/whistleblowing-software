@@ -12,13 +12,15 @@ import shutil
 import os
 
 from cyclone.web import asynchronous
+from storm.expr import And
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
-from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.handlers.rtip import db_get_rtip
+from globaleaks.handlers.submission import serialize_receiver_tip
+from globaleaks.models import ReceiverFile, InternalTip, InternalFile
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
@@ -41,7 +43,7 @@ def serialize_receiver_file(receiverfile):
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
         'content_type': internalfile.content_type,
         'name': internalfile.name,
-        'size': receiverfile.size,
+        'size': internalfile.size,
         'downloads': receiverfile.downloads,
         'path': receiverfile.file_path,
     }
@@ -102,17 +104,6 @@ def dump_file_fs(uploaded_file):
     return uploaded_file
 
 
-@transact_ro
-def get_itip_id_by_wbtip_id(store, wbtip_id):
-    wbtip = store.find(WhistleblowerTip,
-                       WhistleblowerTip.id == wbtip_id).one()
-
-    if not wbtip:
-        raise errors.InvalidAuthentication
-
-    return wbtip.internaltip.id
-
-
 # This is different from FileInstance, just because there are a different authentication requirements
 class FileAdd(BaseHandler):
     """
@@ -161,9 +152,7 @@ class FileAdd(BaseHandler):
         because is an operation tip-established, and they can be
         rate-limited in a different way.
         """
-        itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
-
-        yield self.handle_file_append(itip_id)
+        yield self.handle_file_append(self.current_user.user_id)
 
         self.set_status(201)  # Created
 
@@ -221,16 +210,17 @@ def download_file(store, user_id, rtip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
-    db_access_rtip(store, user_id, rtip_id)
+    rtip = db_get_rtip(store, user_id, rtip_id)
 
     rfile = store.find(ReceiverFile,
-                       ReceiverFile.id == unicode(file_id)).one()
+                       And(ReceiverFile.id == file_id,
+                           ReceiverFile.receivertip_id == rtip_id)).one()
 
-    if not rfile or rfile.receiver_id != user_id:
+    if not rfile:
         raise errors.FileIdNotFound
 
     log.debug("Download of file %s by receiver %s (%d)" %
-              (rfile.internalfile.id, rfile.receiver.id, rfile.downloads))
+              (rfile.internalfile.id, rtip.receiver.id, rfile.downloads))
 
     rfile.downloads += 1
 

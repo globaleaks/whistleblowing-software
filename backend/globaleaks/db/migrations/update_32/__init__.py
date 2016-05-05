@@ -94,7 +94,6 @@ class InternalTip_v_31(Model):
     __storm_table__ = 'internaltip'
     creation_date = DateTime()
     update_date = DateTime()
-    encrypted = Bool()
     context_id = Unicode()
     questionnaire_hash = Unicode()
     preview = JSON()
@@ -109,6 +108,14 @@ class InternalTip_v_31(Model):
     enable_attachments = Bool()
     enable_whistleblower_identity = Bool()
     new = Int()
+
+
+class WhistleblowerTip_v_31(Model):
+    __storm_table__ = 'whistleblowertip'
+    internaltip_id = Unicode()
+    receipt_hash = Unicode()
+    last_access = DateTime()
+    access_counter = Int()
 
 
 class MigrationScript(MigrationBase):
@@ -128,13 +135,31 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
+            old_wbtip_model = self.model_from['WhistleblowerTip']
+            old_wbtip = self.store_old.find(old_wbtip_model, old_wbtip_model.internaltip_id == old_obj.id).one()
+            if old_wbtip is None:
+                self.entries_count['InternalTip'] -= 1
+                continue
+
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'encrypted':
                     new_obj.encrypted = False
                     continue
 
+                if v.name == 'receipt_hash':
+                    new_obj.receipt_hash = ''
+                    continue
+
+                if v.name == 'last_access':
+                    new_obj.last_access = old_wbtip.last_access
+                    continue
+
+                if v.name == 'access_counter':
+                    new_obj.access_counter = old_wbtip.access_counter
+                    continue
+
                 if v.name == 'encrypted_answers':
-                    old_obj.encrypted_answers = ''
+                    new_obj.encrypted_answers = ''
                     continue
 
                 if v.name == 'ccrypto_key_public' or v.name == 'ccrypto_key_private':

@@ -3,7 +3,6 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.handlers import files
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -70,7 +69,6 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
 
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:

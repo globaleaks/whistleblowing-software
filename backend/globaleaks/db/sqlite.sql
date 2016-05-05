@@ -99,17 +99,12 @@ CREATE TABLE internalfile (
 CREATE TABLE receiverfile (
     id TEXT NOT NULL,
     file_path TEXT,
-    size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
     last_access TEXT,
     internalfile_id TEXT NOT NULL,
-    receiver_id TEXT NOT NULL,
-    internaltip_id TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
     new INTEGER  NOT NULL,
     FOREIGN KEY (internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
-    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -120,6 +115,7 @@ CREATE TABLE internaltip (
     update_date TEXT NOT NULL,
     expiration_date TEXT NOT NULL,
     encrypted INTEGER NOT NULL,
+    receipt_hash TEXT NOT NULL,
     ccrypto_key_public TEXT NOT NULL,
     ccrypto_key_private TEXT NOT NULL,
     questionnaire_hash TEXT NOT NULL,
@@ -135,6 +131,8 @@ CREATE TABLE internaltip (
     enable_whistleblower_identity INTEGER NOT NULL,
     identity_provided INTEGER NOT NULL,
     identity_provided_date TEXT NOT NULL,
+    last_access TEXT NOT NULL,
+    access_counter INTEGER NOT NULL,
     new INTEGER NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
@@ -340,16 +338,6 @@ CREATE TABLE receivertip (
     new INTEGER NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE whistleblowertip (
-    id TEXT NOT NULL,
-    internaltip_id TEXT NOT NULL,
-    last_access TEXT,
-    access_counter INTEGER NOT NULL,
-    receipt_hash TEXT NOT NULL,
-    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

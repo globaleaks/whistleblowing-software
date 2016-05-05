@@ -15,7 +15,7 @@ from storm.expr import And, In
 from twisted.internet import defer
 
 from globaleaks import models
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.utils.token import TokenList
@@ -116,8 +116,11 @@ def db_serialize_questionnaire_answers_recursively(answers):
     return ret
 
 
-def db_serialize_questionnaire_answers(store, usertip):
-    internaltip = usertip.internaltip
+def db_serialize_questionnaire_answers(store, tip):
+    if isinstance(tip, models.InternalTip):
+        internaltip = tip
+    else:
+        internaltip = tip.internaltip
 
     questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
@@ -126,9 +129,9 @@ def db_serialize_questionnaire_answers(store, usertip):
     for s in questionnaire:
         for f in s['children']:
             if 'key' in f and f['key'] == 'whistleblower_identity':
-                if isinstance(usertip, models.WhistleblowerTip) or \
+                if isinstance(tip, models.InternalTip) or \
                    f['attrs']['visibility_subject_to_authorization']['value'] == False or \
-                   (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
+                   (isinstance(tip, models.ReceiverTip) and tip.can_access_whistleblower_identity):
                     answers_ids.append(f['id'])
                 else:
                     filtered_answers_ids.append(f['id'])
@@ -240,36 +243,101 @@ def serialize_internalfile(ifile):
 
     return ifile_dict
 
-def serialize_receiverfile(rfile):
-    rfile_dict = {
-        'id' : rfile.id,
-        'creation_date': datetime_to_ISO8601(rfile.internaltip.creation_date),
-        'internaltip_id': rfile.internaltip_id,
-        'internalfile_id': rfile.internalfile_id,
-        'receiver_id': rfile.receiver_id,
-        'receivertip_id': rfile.receivertip_id,
-        'file_path': rfile.file_path,
-        'size': rfile.size,
-        'downloads': rfile.downloads,
-        'last_access': rfile.last_access
+def serialize_internalfile(ifile):
+    return {
+        'id': ifile.id,
+        'name': ifile.name,
+        'content_type': ifile.content_type,
+        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'size': ifile.size
     }
 
-    return rfile_dict
 
+def serialize_receiverfile(rfile):
+    return {
+        'id' : rfile.id,
+        'creation_date': datetime_to_ISO8601(rfile.internalfile.creation_date),
+        'internaltip_id': rfile.internalfile.internaltip_id,
+        'internalfile_id': rfile.internalfile_id,
+        'receivertip_id': rfile.receivertip_id,
+        'name': rfile.internalfile.name,
+        'file_path': rfile.file_path,
+        'content_type': rfile.internalfile.content_type,
+        'size': rfile.internalfile.size,
+        'downloads': rfile.downloads,
+        'last_access': rfile.last_access,
+        'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id
+    }
 
-def serialize_usertip(store, usertip, language):
-    internaltip = usertip.internaltip
-
+def serialize_whistleblower_tip(store, internaltip, language):
     ret = serialize_itip(store, internaltip, language)
-    ret['id'] = usertip.id
-    ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
+
+    ret['answers'] = db_serialize_questionnaire_answers(store, internaltip)
     ret['encrypted_answers'] = internaltip.encrypted_answers
     ret['ccrypto_key_public'] = internaltip.ccrypto_key_public
-    ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
-    ret['access_counter'] = usertip.access_counter
-    ret['total_score'] = usertip.internaltip.total_score
+    ret['last_access'] = datetime_to_ISO8601(internaltip.last_access)
+    ret['access_counter'] = internaltip.access_counter
+    ret['total_score'] = internaltip.total_score
+    ret['files'] = [serialize_internalfile(internalfile) for internalfile in internaltip.internalfiles]
 
     return ret
+
+
+def serialize_receiver_tip(store, rtip, language):
+    internaltip = rtip.internaltip
+
+    ret = serialize_itip(store, internaltip, language)
+
+    ret['id'] = rtip.id
+    ret['label'] = rtip.label
+    ret['answers'] = db_serialize_questionnaire_answers(store, rtip)
+    ret['encrypted_answers'] = internaltip.encrypted_answers
+    ret['last_access'] = datetime_to_ISO8601(rtip.last_access)
+    ret['access_counter'] = rtip.access_counter
+    ret['total_score'] = internaltip.total_score
+    ret['files'] = db_get_rtip_files(store, rtip.receiver.user.id, rtip.id)
+    ret['enable_notifications'] = bool(rtip.enable_notifications)
+
+    return ret
+
+
+def db_get_rtip(store, user_id, rtip_id):
+    rtip = store.find(models.ReceiverTip, models.ReceiverTip.id == unicode(rtip_id),
+                      models.ReceiverTip.receiver_id == user_id).one()
+
+    if not rtip:
+        raise errors.TipIdNotFound
+
+    return rtip
+
+
+@transact
+def get_rtip(store, user_id, rtip_id, language):
+    rtip = db_get_rtip(store, user_id, rtip_id)
+
+    # increment receiver access count
+    rtip.access_counter += 1
+    rtip.last_access = datetime_now()
+
+    log.debug("Tip %s access granted to user %s (%d)" %
+              (rtip.id, rtip.receiver.user.name, rtip.access_counter))
+
+    return serialize_receiver_tip(store, rtip, language)
+
+
+def db_get_rtip_files(store, user_id, rtip_id):
+    rtip = db_get_rtip(store, user_id, rtip_id)
+
+    receiver_files = store.find(models.ReceiverFile,
+                                models.ReceiverFile.receivertip_id == rtip.id)
+
+    return [serialize_receiverfile(receiverfile)
+            for receiverfile in receiver_files]
+
+
+@transact_ro
+def get_rtip_files(store, user_id, rtip_id):
+    return db_get_rtip_files(store, user_id, rtip_id)
 
 
 def db_create_receivertip(store, receiver, internaltip):
@@ -284,7 +352,7 @@ def db_create_receivertip(store, receiver, internaltip):
 
     store.add(receivertip)
 
-    return receivertip.id
+    return receivertip
 
 
 def import_receivers(store, submission, receiver_id_list):
@@ -310,6 +378,27 @@ def import_receivers(store, submission, receiver_id_list):
         raise errors.SubmissionValidationFailure("needed almost one receiver")
 
 
+def db_create_receiverfile(store, rtip, ifile):
+    """
+    This function roll over the InternalFile uploaded, extract a path, id and
+    receivers associated, one entry for each combination. representing the
+    ReceiverFile that need to be created.
+    """
+    receiverfile = models.ReceiverFile()
+    receiverfile.internalfile_id = ifile.id
+    receiverfile.receivertip_id = rtip.id
+    receiverfile.file_path = ifile.file_path
+
+    # https://github.com/globaleaks/GlobaLeaks/issues/444
+    # avoid to mark the receiverfile as new if it is part of a submission
+    # this way we avoid to send unuseful messages
+    receiverfile.new = False if ifile.submission else True
+
+    store.add(receiverfile)
+
+    return receiverfile
+
+
 def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
@@ -323,6 +412,8 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise errors.ContextIdNotFound
 
     submission = models.InternalTip()
+
+    submission.receipt_hash = request['receipt_hash']
 
     # TODO validate if the reponse is a valid openpgp message.
     submission.encrypted_answers = request['encrypted_answers']
@@ -340,6 +431,9 @@ def db_create_submission(store, token_id, request, t2w, language):
     # The use of Tor2Web is detected by the basehandler and the status forwared  here;
     # The status is used to keep track of the security level adopted by the whistleblower
     submission.tor2web = t2w
+
+    submission.ccrypto_key_private = request['ccrypto_key_private']
+    submission.ccrypto_key_public = request['ccrypto_key_public']
 
     submission.context_id = context.id
 
@@ -374,43 +468,35 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
 
-    try:
-        for filedesc in token.uploaded_files:
-            new_file = models.InternalFile()
-            new_file.name = filedesc['filename']
-            new_file.description = ""
-            new_file.content_type = filedesc['content_type']
-            new_file.size = filedesc['body_len']
-            new_file.internaltip_id = submission.id
-            new_file.submission = filedesc['submission']
-            new_file.file_path = filedesc['body_filepath']
-            store.add(new_file)
-            log.debug("=> file associated %s|%s (%d bytes)" % (
-                new_file.name, new_file.content_type, new_file.size))
-    except Exception as excep:
-        log.err("Submission create: unable to create db entry for files: %s" % excep)
-        raise excep
+    ifiles = []
+    for filedesc in token.uploaded_files:
+        new_file = models.InternalFile()
+        new_file.name = filedesc['filename']
+        new_file.description = ""
+        new_file.content_type = filedesc['content_type']
+        new_file.size = filedesc['body_len']
+        new_file.internaltip_id = submission.id
+        new_file.submission = filedesc['submission']
+        new_file.file_path = filedesc['body_filepath']
+        store.add(new_file)
+        ifiles.append(new_file)
 
-    wbtip = models.WhistleblowerTip()
+        log.debug("=> file associated %s|%s (%d bytes)" %
+                  (new_file.name, new_file.content_type, new_file.size))
 
-    wbtip.receipt_hash = request['receipt_hash']
-    wbtip.internaltip_id = submission.id
+    created_rtips = 0
+    created_rfiles = 0
+    for receiver in submission.receivers:
+        rtip = db_create_receivertip(store, receiver, submission)
+        for ifile in ifiles:
+            db_create_receiverfile(store, rtip, ifile)
+            created_rfiles += 1
+        created_rtips += 1
 
-    submission.ccrypto_key_private = request['ccrypto_key_private']
-    submission.ccrypto_key_public = request['ccrypto_key_public']
+    log.debug("The finalized submissions had created %d ReceiverTip(s) and %d ReceiverFiles" %
+              (created_rtips, created_rfiles))
 
-    store.add(wbtip)
-
-    created_rtips = [db_create_receivertip(store, receiver, submission) for receiver in submission.receivers]
-
-    submission.new = False
-
-    if len(created_rtips):
-        log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
-
-    submission_dict = serialize_usertip(store, wbtip, language)
-
-    return submission_dict
+    return serialize_whistleblower_tip(store, submission, language)
 
 
 @transact
