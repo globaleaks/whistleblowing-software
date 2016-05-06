@@ -230,6 +230,7 @@ def serialize_itip(store, internaltip, language):
         'status_page_message': mo.dump_localized_key('status_page_message', language)
     }
 
+
 def serialize_internalfile(ifile):
     ifile_dict = {
         'id': ifile.id,
@@ -242,15 +243,6 @@ def serialize_internalfile(ifile):
     }
 
     return ifile_dict
-
-def serialize_internalfile(ifile):
-    return {
-        'id': ifile.id,
-        'name': ifile.name,
-        'content_type': ifile.content_type,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
-        'size': ifile.size
-    }
 
 
 def serialize_receiverfile(rfile):
@@ -268,6 +260,7 @@ def serialize_receiverfile(rfile):
         'last_access': rfile.last_access,
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id
     }
+
 
 def serialize_whistleblower_tip(store, internaltip, language):
     ret = serialize_itip(store, internaltip, language)
