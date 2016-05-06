@@ -44,11 +44,6 @@ def serialize_message(msg):
     }
 
 
-@transact_ro
-def get_rtip_files(store, user_id, rtip_id):
-    return db_get_rtip_files(store, user_id, rtip_id)
-
-
 def db_mark_file_for_secure_deletion(store, relpath):
     abspath = os.path.join(GLSettings.submission_path, relpath)
     if os.path.isfile(abspath):

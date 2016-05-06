@@ -373,9 +373,8 @@ def import_receivers(store, submission, receiver_id_list):
 
 def db_create_receiverfile(store, rtip, ifile):
     """
-    This function roll over the InternalFile uploaded, extract a path, id and
-    receivers associated, one entry for each combination. representing the
-    ReceiverFile that need to be created.
+    This function roll takes a ReceiverTip and an InternalFile and creates
+    the correspondent ReceiverFile.
     """
     receiverfile = models.ReceiverFile()
     receiverfile.internalfile_id = ifile.id
