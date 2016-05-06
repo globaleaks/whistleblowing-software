@@ -72,6 +72,7 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
+                $rootScope.forcedLocation = '/forcedpasswordchange';
                 $location.path('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
@@ -123,6 +124,8 @@ angular.module('GLServices', ['ngResource']).
         self.keycode = '';
 
         $rootScope.logout = function() {
+          delete $rootScope.forcedLocation;
+
           if (self.session.role === 'whistleblower') {
             $http.delete('receiptauth').then($rootScope.logoutPerformed,
                                              $rootScope.logoutPerformed);
