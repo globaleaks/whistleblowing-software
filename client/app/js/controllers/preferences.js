@@ -43,6 +43,8 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.pass_save = function () {
+      delete $rootScope.forcedLocation;
+
       if ($scope.preferences.pgp_key_remove === undefined) {
         $scope.preferences.pgp_key_remove = false;
       }
@@ -56,6 +58,8 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
     };
 
     $scope.pref_save = function() {
+      delete $rootScope.forcedLocation;
+
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
