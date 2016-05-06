@@ -123,15 +123,12 @@ angular.module('GLServices', ['ngResource']).
         self.keycode = '';
 
         $rootScope.logout = function() {
-          // we use $http['delete'] in place of $http.delete due to
-          // the magical IE7/IE8 that do not allow delete as identifier
-          // https://github.com/globaleaks/GlobaLeaks/issues/943
           if (self.session.role === 'whistleblower') {
-            $http['delete']('receiptauth').then($rootScope.logoutPerformed,
-                                                $rootScope.logoutPerformed);
+            $http.delete('receiptauth').then($rootScope.logoutPerformed,
+                                             $rootScope.logoutPerformed);
           } else {
-            $http['delete']('authentication').then($rootScope.logoutPerformed,
-                                                   $rootScope.logoutPerformed);
+            $http.delete('authentication').then($rootScope.logoutPerformed,
+                                                $rootScope.logoutPerformed);
           }
         };
 
