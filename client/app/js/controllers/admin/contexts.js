@@ -9,7 +9,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.perform_delete = function(context) {
-    AdminContextResource['delete']({
+    AdminContextResource.delete({
       id: context.id
     }, function(){
       var idx = $scope.admin.contexts.indexOf(context);
@@ -61,7 +61,7 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.delStep = function(step) {
-    AdminStepResource['delete']({
+    AdminStepResource.delete({
       id: step.id
     }, function() {
       $scope.context.steps.splice($scope.context.steps.indexOf(step), 1);

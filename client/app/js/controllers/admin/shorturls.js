@@ -24,7 +24,7 @@ GLClient.controller('AdminShorturlAddCtrl', ['$scope', 'CONSTANTS', function($sc
 controller('AdminShorturlEditCtrl', ['$scope', 'AdminShorturlResource',
   function($scope, AdminShorturlResource) {
     $scope.delete_shorturl = function(shorturl) {
-      AdminShorturlResource['delete']({
+      AdminShorturlResource.delete({
         id: shorturl.id
       }, function(){
         var idx = $scope.admin.shorturls.indexOf(shorturl);

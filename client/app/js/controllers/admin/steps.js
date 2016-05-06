@@ -34,7 +34,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.delField = function(fields, field) {
-      AdminFieldResource['delete']({
+      AdminFieldResource.delete({
         id: field.id
       }, function() {
         $scope.deleteFromList(fields, field);

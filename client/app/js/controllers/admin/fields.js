@@ -9,7 +9,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.delField = function(fields, field) {
-      AdminFieldTemplateResource['delete']({
+      AdminFieldTemplateResource.delete({
         id: field.id
       }, function() {
         $scope.deleteFromList(fields, field);
