@@ -19,34 +19,13 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_rtip
-from globaleaks.handlers.submission import serialize_receiver_tip
+from globaleaks.handlers.submission import serialize_receiver_tip, \
+    serialize_internalfile, serialize_receiverfile
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
-
-
-def serialize_file(internalfile):
-    return {
-        'size': internalfile.size,
-        'content_type': internalfile.content_type,
-        'name': internalfile.name,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'id': internalfile.id
-    }
-
-def serialize_receiver_file(receiverfile):
-    internalfile = receiverfile.internalfile
-
-    return {
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'content_type': internalfile.content_type,
-        'name': internalfile.name,
-        'size': internalfile.size,
-        'downloads': receiverfile.downloads,
-        'path': receiverfile.file_path,
-    }
 
 
 def serialize_memory_file(uploaded_file):
@@ -86,7 +65,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
 
     log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
 
-    return serialize_file(ifile)
+    return serialize_internalfile(ifile)
 
 
 def dump_file_fs(uploaded_file):
@@ -224,7 +203,7 @@ def download_file(store, user_id, rtip_id, file_id):
 
     rfile.downloads += 1
 
-    return serialize_receiver_file(rfile)
+    return serialize_receiverfile(rfile)
 
 
 class Download(BaseHandler):
@@ -237,7 +216,7 @@ class Download(BaseHandler):
     def get(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
 
-        filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
+        filelocation = os.path.join(GLSettings.submission_path, rfile['file_path'])
 
         if os.path.exists(filelocation):
             self.set_header('X-Download-Options', 'noopen')
