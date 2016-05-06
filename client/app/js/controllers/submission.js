@@ -239,8 +239,6 @@ GLClient.controller('SubmissionCtrl',
     return score;
   };
 
-// ====================== TODO Submission handling code ==================================
-
   // prepareSubmission uses the passed context and receiver_ids to build out the
   // $scope.answers tree, kick off the PoW computation, and create a navigation
   // bar for display.

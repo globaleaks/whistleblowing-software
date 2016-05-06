@@ -109,7 +109,7 @@ angular.module('GLBrowserCrypto', [])
       return defer.promise;
     };
 
-    var ccrypto_key_bits = 4096;
+    var ccrypto_key_bits = 512;
 
     var N = 13;
     var M = N + 1;
@@ -339,13 +339,10 @@ angular.module('GLBrowserCrypto', [])
     
     /**
      * @description intialize validates the passed privateKey and places it in the keyRing.
-     * The validates the key and checks to see if the key's fingerprint equals
-     * the fingerprint passed to it.
      * @param {String} armoredPrivKey
-     * @param {String} fingerprint
      * @return {Bool}
      */
-    initialize: function(armoredPrivKey, fingerprint) {
+    initialize: function(armoredPrivKey) {
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         return false;
       }
@@ -353,11 +350,6 @@ angular.module('GLBrowserCrypto', [])
       // Parsing the private key here should produce no errors. Once it is no
       // longer needed we will explicity remove references to this key.
       var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
-
-      if (fingerprint !== tmpKeyRef.primaryKey.fingerprint) {
-        tmpKeyRef = null;
-        return false;
-      }
 
       keyRing.privateKey = tmpKeyRef;
       tmpKeyRef = null;
