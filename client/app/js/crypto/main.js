@@ -276,7 +276,7 @@ angular.module('GLBrowserCrypto', [])
       },
     };
 }])
-.factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
+.factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', 'glbcKeyRing', function($q, pgp, glbcKeyLib, glbcKeyRing) {
   return {
     /**
      * @description parses the passed public keys and returns a list of 
@@ -321,28 +321,124 @@ angular.module('GLBrowserCrypto', [])
       };
       fileReader.readAsArrayBuffer(blob);
       return deferred.promise;
-    }
+    },
+
+    /**
+     * @param {String} m the message to encrypt
+     * @param {String} uuid of the the intended recipient.
+     * @return {Promise<String>} a promise for an ASCII armored encrypted message.
+     */
+    encryptAndSignMessage: function(m, uuid) {
+
+      var pubKeys = [glbcKeyRing.getPubKey(uuid), 
+                     glbcKeyRing.getPubKey('private')];
+
+      var options = {
+        data: m,
+        format: 'utf8',
+        privateKey: glbcKeyRing.getKey(),
+        publicKeys: pubKeys,
+        armored: true,
+      };
+      return pgp.encrypt(options).then(function(result) {
+        return result.data;
+      });
+    },
+
+    /*
+     * @param {Array<Object>} msgs a list of {content: 'a', id: 'a23a-' } objs
+     * @return {Promise<Array<String>>} the list of the decrypted msg contents
+     */
+    decryptAndVerifyMessages: function(msgs) {
+
+      var decPromises = [];
+      for (var i = 0; i < msgs.length; i++) {
+        var c = pgp.message.readArmored(msgs[i].content);
+        // TODO use receiver.id not msg.id..........
+        //var pubKey = glbcKeyRing.getPubKey(msgs[i].id);
+
+        var options = {
+          message: c,
+          privateKey: glbcKeyRing.getKey(),
+          // publicKeys: pubKey,
+          format: 'utf8', 
+        };
+        var promise = pgp.decrypt(options).then(function(result) {
+          return result.data; 
+        });
+        decPromises.push(promise);
+      }
+      
+      return $q.all(decPromises);
+    },
+
+    /**
+     * @param {pgp.Message} message
+     * @param {String} wb_uuid of the Whistleblower
+     * @return {Promise<pgp.Message>}
+     */
+    decryptAndVerifyAnswers: function(message, wb_uuid) {
+      // TODO glbcKeyRing.unlockKeyRing(passphrase);
+      var wbPubKey = glbcKeyRing.getPubKey(wb_uuid);
+
+      var options = {
+        message: message,
+        format: 'utf8',
+        privateKey: glbcKeyRing.getKey(),
+        publicKeys: wbPubKey,
+      };
+      // TODO glbcKeyRing.lockKeyRing(passphrase);
+      return pgp.decrypt(options);
+    },
  };
 }])
 
 // glbcKeyRing holds the private key material of authenticated users. It handles
 // all of the cryptographic operations internally so that the rest of the UI 
 // does not.
-.factory('glbcKeyRing', ['$q', 'pgp', 'glbcCipherLib', 'glbcKeyLib', function($q, pgp, glbcCipherLib, glbcKeyLib) {
+.factory('glbcKeyRing', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
   // keyRing is kept private.
   var keyRing = {
     privateKey: null,
+    // publicKeys is a map of uuids to pgp.Key objects.
+    publicKeys: {
+    
+    },
+    _pubKey: null,
   };
 
   return {
     getKey: function() { return keyRing.privateKey; },
+
+    getPubKey: function(s) { 
+      if (s === 'private') {
+        return keyRing._pubKey;
+      }
+      if (keyRing.publicKeys.hasOwnProperty(s)) {
+        return keyRing.publicKeys[s];
+      }
+      console.log(keyRing, s);
+      throw new Error('Key not found in keyring. ' + s);
+    },
     
+    /**
+     * @param {String} uuid 
+     * @param {String} armored
+     */
+    addPubKey: function(uuid, armored) {
+      if (glbcKeyLib.validPublicKey(armored)) {
+        var key = pgp.key.readArmored(armored).keys[0]; 
+        keyRing.publicKeys[uuid] = key;
+      }
+    },
+
     /**
      * @description intialize validates the passed privateKey and places it in the keyRing.
      * @param {String} armoredPrivKey
+     * @param {String} uuid of the receiver, undefined if the session is a whistleblower
      * @return {Bool}
      */
-    initialize: function(armoredPrivKey) {
+    initialize: function(armoredPrivKey, uuid) {
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         return false;
       }
@@ -352,7 +448,13 @@ angular.module('GLBrowserCrypto', [])
       var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
 
       keyRing.privateKey = tmpKeyRef;
+      keyRing._pubKey = tmpKeyRef.toPublic();
       tmpKeyRef = null;
+
+      if (typeof uuid === 'string') {
+        keyRing.publicKeys[uuid] = keyRing._pubKey;
+      }
+
       return true;
     },
 
@@ -376,26 +478,5 @@ angular.module('GLBrowserCrypto', [])
       return keyRing.privateKey.decrypt(password);
     },
 
-
-    /**
-     * @param {pgp.Message} message
-     * @param {String} format
-     * @return {Promise<pgp.Message>}
-     */
-    performDecrypt: function(message, format) {
-      if (keyRing.privateKey === null) {
-        throw new Error("Keyring not initialized!");
-      }
-      if (format !== 'binary' && format !== 'utf8') {
-        throw new Error("Supplied wrong decrypt format!");
-      }
-      var options = {
-        message: message,
-        format: format,
-        privateKey: keyRing.privateKey,
-        publicKeys: keyRing.privateKey.toPublic(),
-      };
-      return pgp.decrypt(options);
-    },
   };
 }]);

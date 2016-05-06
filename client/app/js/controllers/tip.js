@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 'glbcWhistleblower', 'glbcReceiver',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib, glbcWhistleblower, glbcReceiver) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 'glbcWhistleblower', 'glbcReceiver', 'glbcKeyRing',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib, glbcWhistleblower, glbcReceiver, glbcKeyRing) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -96,10 +96,12 @@ GLClient.controller('TipCtrl',
 
       new WBTip(function(tip) {
 
+        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
+           
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
-        glbcWhistleblower.decryptAndVerifyAnswers(c).then(function(plaintext) {
+        glbcCipherLib.decryptAndVerifyAnswers(c, tip.id).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
 
           $scope.tip = tip;
@@ -143,13 +145,12 @@ GLClient.controller('TipCtrl',
     
       new RTip({id: $scope.tip_id}, function(tip) {
 
+        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
+
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
-        // TODO process the whistleblower's key earlier in the scope
-        var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
-        
-        glbcReceiver.decryptAndVerifyAnswers(c, wbPubKey).then(function(plaintext) {
+        glbcCipherLib.decryptAndVerifyAnswers(c, tip.id).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
 
           $scope.tip = tip;

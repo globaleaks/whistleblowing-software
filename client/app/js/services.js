@@ -272,8 +272,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }])
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  .factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcKeyLib', 'glbcWhistleblower','glbcCipherLib',
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcKeyLib, glbcWhistleblower, glbcCipherLib) {
+  .factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcKeyLib', 'glbcWhistleblower','glbcCipherLib', 'glbcKeyRing',
+      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcKeyLib, glbcWhistleblower, glbcCipherLib, glbcKeyRing) {
 
     return function(fn) {
       /**
@@ -400,6 +400,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         glbcKeyLib.deriveUserPassword(Authentication.keycode, "salt").then(function(result) {
           self._submission.receipt_hash = result.authentication;
           glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
+
+            glbcKeyRing.initialize(result.ccrypto_key_private);
+
             self._submission.ccrypto_key_private = result.ccrypto_key_private.armor();
             self._submission.ccrypto_key_public = result.ccrypto_key_public.armor();
           });
@@ -453,15 +456,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         var jsonAnswers = JSON.stringify(answers);
 
 
-        // Attach receiver public keys along with the WB public key.
-        var pubKeys = glbcCipherLib.loadPublicKeys(self.receivers.filter(function (rec) {
-          return self._submission.receivers.indexOf(rec.id) > -1;
-        }).map(function (rec) {
-          return rec.ccrypto_key_public;
-        }));
+        self.receivers.forEach(function(rec) {
+          glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
+        });
 
         // Encrypt the payload then call submission update to send the xhr request.
-        glbcWhistleblower.encryptAndSignAnswers(jsonAnswers, pubKeys)
+        glbcWhistleblower.encryptAndSignAnswers(jsonAnswers, self._submission.receivers)
         .then(function(ciphertext) {
           self._submission.encrypted_answers = ciphertext;
           self._submission.$update(function(result) {
@@ -469,8 +469,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               $location.url("/receipt");
             }
           });
+        }, function(e) {
+          throw e; 
         });
-        // TODO handle encryption failure.
 
       };
 
@@ -511,12 +512,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         // Save the decrypted file.
         FileSaver.saveAs(outputBlob, filename);
+      }, function(e) {
+        throw e; 
       });
     });
   };
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'glbcReceiver',
-          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, glbcReceiver) {
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib',
+          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, glbcReceiver, glbcKeyRing, glbcCipherLib) {
     return function(tipID, fn) {
       var self = this;
 
@@ -525,27 +528,36 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.comments = tip.enable_comments ? RTipCommentResource.query(tipID) : [];
 
         tip.messages = tip.enable_messages ? RTipMessageResource.query(tipID) : [];
-        
-        if (tip.enable_messages) {
-          RTipMessageResource.query(tipID).$promise.then(function(messages) {
-            var t = messages.map(function(m) { return m.content; }); 
-            glbcReceiver.decryptAndVerifyMessages(t, tip.ccrypto_key_public)
-            .then(function(decMsgs) {
-              for (var i = 0; i < decMsgs.length; i++) {
-                tip.messages[i].content = decMsgs[i];
-              }
-            }, function(e) {
-              throw e; 
-            });
-          });
-        }
 
+        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
         
+               
         tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
+
+          glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
+          angular.forEach(tip.receivers, function(receiver) {
+            // TODO use receiver Pub key
+            glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
+          });
+
+          if (tip.enable_messages) {
+              var msgs = [];
+              angular.forEach(tip.messages, function(m) {
+                msgs.push(m);
+              });
+
+              glbcCipherLib.decryptAndVerifyMessages(msgs).then(function(decMsgs) {
+                for (var i = 0; i < decMsgs.length; i++) {
+                  tip.messages[i].content = decMsgs[i];
+                }
+              }, function(e) {
+                throw e; 
+              });
+          }
 
           tip.newComment = function(content) {
             // TODO override save and get.
@@ -557,13 +569,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               tip.comments.unshift(newComment);
             });
           };
+          
+          // TODO move initialization of the key ring into promise.
+          tip.receivers.forEach(function(receiver) {
+            // TODO get receiver's generated pub key.
+            glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
+          });
+          glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
+
 
           tip.newMessage = function(content) {
             var m = new RTipMessageResource(tipID);
 
-            var wbPubKey = tip.ccrypto_key_public;
-
-            glbcReceiver.encryptAndSignMessage(content, wbPubKey).then(function(ciphertext) {
+            glbcCipherLib.encryptAndSignMessage(content, tip.id).then(function(ciphertext) {
               m.content = ciphertext;
               m.$save(function(newMessage) {
                 newMessage.content = content; // Display original text
@@ -611,8 +629,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
-  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource', 'glbcWhistleblower',
-      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource, glbcWhistleblower) {
+  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource', 'glbcWhistleblower', 'glbcCipherLib',
+      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource, glbcWhistleblower, glbcCipherLib) {
     return function(fn) {
       var self = this;
 
@@ -648,10 +666,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           tip.newMessage = function(content) {
             var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
 
-            // TODO get real public keys.
-            var recArmoredPubKey = tip.ccrypto_key_public;
-            
-            glbcWhistleblower.encryptAndSignMessage(content, recArmoredPubKey).then(function(ciphertext) {
+            glbcCipherLib.encryptAndSignMessage(content, tip.msg_receiver_selected)
+            .then(function(ciphertext) {
               m.content = ciphertext;
               m.$save(function(newMessage) {
                 // Display the decrypted version of the message.
@@ -665,16 +681,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             if (tip.msg_receiver_selected) {
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 
-                // TODO get the public key of each sender.
-                var recPubKeys = messageCollection.map(function() { return tip.ccrypto_key_public; });
-                var msgs = messageCollection.map(function(m) { return m.content; });
-
                 // Show the encrypted messages in the UI before they are decrypted.
                 tip.messages = messageCollection;
 
-                glbcWhistleblower.decryptAndVerifyMessages(msgs, recPubKeys).then(function(decryptedMsgs) {
+                // Convert the message collection to a simple array, to avoid 
+                // problems with object properities
+                var msgs = [];
+                angular.forEach(messageCollection, function (m) {
+                  msgs.push(m);
+                });
+
+                glbcCipherLib.decryptAndVerifyMessages(msgs)
+                .then(function(decryptedMsgs) {
                   for (var i = 0; i < decryptedMsgs.length; i++){
-                    messageCollection[i].content = decryptedMsgs[i];
+                    tip.messages[i].content = decryptedMsgs[i];
                   }
                 }, function(e) {
                   throw e;
@@ -698,7 +718,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       transformResponse: function(data) {
         var prefs = angular.fromJson(data);
         // TODO Temp private key TODO
-        var initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private);
+        var initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
         delete prefs.cc_private_key;
         // TODO TODO TODO
         if (initRes) {
