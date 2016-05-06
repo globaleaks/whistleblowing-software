@@ -49,15 +49,23 @@ var GLClient = angular.module('GLClient', [
     'ngAria',
     'ngRoute',
     'ui.bootstrap',
+    'tmh.dynamicLocale',
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
     'GLServices',
     'GLDirectives',
-    'GLFilters'
+    'GLFilters',
+    'GLBrowserCrypto'
   ]).
-  config(['$compileProvider', '$httpProvider', '$routeProvider', '$rootScopeProvider', '$translateProvider', '$uibTooltipProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider) {
+  config(['$compileProvider',
+          '$httpProvider',
+          '$routeProvider',
+          '$rootScopeProvider',
+          '$translateProvider',
+          '$uibTooltipProvider',
+          'tmhDynamicLocaleProvider',
+    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 
@@ -247,10 +255,13 @@ var GLClient = angular.module('GLClient', [
         redirectTo: '/'
       });
 
+      $uibTooltipProvider.options({appendToBody: true});
+
       // Raise the default digest loop limit to 30 because of the template recursion used by fields:
       // https://github.com/angular/angular.js/issues/6440
       $rootScopeProvider.digestTtl(30);
 
+      // Configure translation and language providers.
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
         suffix: '.json'
@@ -258,10 +269,43 @@ var GLClient = angular.module('GLClient', [
 
       $translateProvider.useSanitizeValueStrategy('escape');
 
-      $uibTooltipProvider.options({appendToBody: true});
+      tmhDynamicLocaleProvider.localeLocationPattern('{{base64Locales[locale]}}');
+      tmhDynamicLocaleProvider.addLocalePatternValue('base64Locales',
+        {
+         "ar": 'components/angular-i18n/angular-locale_ar.js',
+         "bs": 'components/angular-i18n/angular-locale_bs.js',
+         "de": 'components/angular-i18n/angular-locale_de.js',
+         "el": 'components/angular-i18n/angular-locale_el.js',
+         "en": 'components/angular-i18n/angular-locale_en.js',
+         "es": 'components/angular-i18n/angular-locale_es.js',
+         "fa": 'components/angular-i18n/angular-locale_fa.js',
+         "fr": 'components/angular-i18n/angular-locale_fr.js',
+         "he": 'components/angular-i18n/angular-locale_he.js',
+         "hr-hr": 'components/angular-i18n/angular-locale_hr-hr.js',
+         "hr-hu": 'components/angular-i18n/angular-locale_hr-hu.js',
+         "it": 'components/angular-i18n/angular-locale_it.js',
+         "ja": 'components/angular-i18n/angular-locale_ja.js',
+         "ka": 'components/angular-i18n/angular-locale_ka.js',
+         "ko": 'components/angular-i18n/angular-locale_ko.js',
+         "nb-no": 'components/angular-i18n/angular-locale_nb_no.js',
+         "nl": 'components/angular-i18n/angular-locale_nl.js',
+         "pt-br": 'components/angular-i18n/angular-locale_pt-br.js',
+         "pt-pt": 'components/angular-i18n/angular-locale_pt-pt.js',
+         "ro": 'components/angular-i18n/angular-locale_ro.js',
+         "ru": 'components/angular-i18n/angular-locale_ru.js',
+         "sq": 'components/angular-i18n/angular-locale_sq.js',
+         "sv": 'components/angular-i18n/angular-locale_sv.js',
+         "ta": 'components/angular-i18n/angular-locale_ta.js',
+         "th": 'components/angular-i18n/angular-locale_th.js',
+         "tr": 'components/angular-i18n/angular-locale_tr.js',
+         "uk": 'components/angular-i18n/angular-locale_uk.js',
+         "vi": 'components/angular-i18n/angular-locale_vi.js',
+         "zn-cn": 'components/angular-i18n/angular-locale_zh-cn.js',
+         "zh-tw": 'components/angular-i18n/angular-locale_zh-tw.js'
+        }
+      );
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
-    flowFactoryProvider.factory = fustyFlowFactory;
     flowFactoryProvider.defaults = {
         chunkSize: 1024 * 1024,
         forceChunkSize: true,

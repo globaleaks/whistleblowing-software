@@ -17,7 +17,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
   };
 
   $scope.perform_delete = function(user) {
-    AdminUserResource['delete']({
+    AdminUserResource.delete({
       id: user.id
     }, function(){
       var idx = $scope.admin.users.indexOf(user);

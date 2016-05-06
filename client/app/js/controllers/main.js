@@ -1,13 +1,9 @@
-GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'fieldUtilities', 'GLCache',
-  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, fieldUtilities, GLCache) {
+GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'Node', 'Contexts', 'Receivers', 'WhistleblowerTip', 'fieldUtilities', 'GLCache', 'GLTranslate',
+  function($q, $scope, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, Node, Contexts, Receivers, WhistleblowerTip, fieldUtilities, GLCache, GLTranslate) {
     $rootScope.started = false;
     $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
-
-    $scope.rtl = false;
-
-    $rootScope.language = $location.search().lang;
 
     $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
 
@@ -15,7 +11,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     $scope.dumb_function = function() {
       return true;
-    }
+    };
 
     $scope.iframeCheck = function() {
       try {
@@ -23,22 +19,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       } catch (e) {
         return true;
       }
-    };
-
-    $scope.requireLegacyUploadSupport = function() {
-      // Implement the same check implemented but not exported by flowjs
-      // https://github.com/flowjs/flow.js/blob/master/src/flow.js#L42
-      var support = (
-          typeof File !== 'undefined' &&
-          typeof Blob !== 'undefined' &&
-          typeof FileList !== 'undefined' &&
-          (
-            !!Blob.prototype.slice || !!Blob.prototype.webkitSlice || !!Blob.prototype.mozSlice ||
-            false
-          ) // slicing files support
-      );
-
-      return !support;
     };
 
     $scope.browserNotCompatible = function() {
@@ -113,21 +93,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       return $scope.header_subtitle !== '';
     };
 
-    $scope.open_intro = function () {
-      if ($scope.intro_opened) {
-        return;
-      } else {
-        $scope.intro_opened = true;
-      }
-
-      $uibModal.open({
-        templateUrl: 'views/partials/intro.html',
-        controller: 'IntroCtrl',
-        size: 'lg',
-        scope: $scope
-      });
-    };
-
     $scope.set_title = function () {
       if ($rootScope.node) {
         var path = $location.path();
@@ -165,9 +130,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
             $rootScope.node.tor2web_whistleblower === false) {
           $location.path("/");
         }
-
-        /* Feature implemented for amnesty and currently disabled */
-        //$scope.open_intro();
       }
     };
 
@@ -237,18 +199,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       list.splice(index, 1);
     };
 
-    $rootScope.getUploadUrl = function(url) {
-      if ($scope.requireLegacyUploadSupport()) {
-        url += '?session=' + $scope.session;
-      }
-
-      return url;
-    };
-
     $rootScope.getUploadUrl_lang = function(lang) {
-      return function() {
-        return $scope.getUploadUrl('admin/l10n/' + lang + '.json');
-      };
+      return 'admin/l10n/' + lang + '.json';
     };
 
     $scope.init = function () {
@@ -280,6 +232,8 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         }
 
+        GLTranslate.AddNodeFacts(node.default_language, node.languages_enabled);
+
         $scope.route_check();
 
         $scope.languages_supported = {};
@@ -287,7 +241,7 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
         $scope.languages_enabled_selector = [];
         angular.forEach(node.languages_supported, function (lang) {
           var code = lang.code;
-          var name = lang.name;
+          var name = lang.native;
           $scope.languages_supported[code] = name;
           if (node.languages_enabled.indexOf(code) !== -1) {
             $scope.languages_enabled[code] = name;
@@ -295,30 +249,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
           }
         });
 
-        $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+        $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
         $scope.languages_enabled_length = Object.keys(node.languages_enabled).length;
 
         $scope.show_language_selector = ($scope.languages_enabled_length > 1);
 
         $scope.set_title();
-
-        var set_language = function(language) {
-          if (language === undefined || $rootScope.node.languages_enabled.indexOf(language) === -1) {
-            language = node.default_language;
-            $rootScope.default_language = node.default_language;
-          }
-
-          $rootScope.language = language;
-
-          $scope.rtl = ["ar", "he", "ur"].indexOf(language) !== -1;
-
-          document.getElementsByTagName("html")[0].setAttribute('dir', $scope.rtl ? 'rtl' : 'ltr');
-
-          $translate.use($rootScope.language);
-        };
-
-        set_language($rootScope.language);
 
         if ($scope.node.enable_experimental_features) {
           $scope.isStepTriggered = fieldUtilities.isStepTriggered;
@@ -472,6 +409,13 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     //////////////////////////////////////////////////////////////////
 
+    $scope.$on("$locationChangeStart", function(event, next) {
+      next = next.substring($location.absUrl().length - $location.url().length);
+      if ($rootScope.forcedLocation && next !== $rootScope.forcedLocation) {
+        event.preventDefault();
+      }
+    });
+
     /* eslint-disable no-unused-vars */
     $scope.$on("$routeChangeStart", function(event, next) {
     /* eslint-enable no-unused-vars */
@@ -514,12 +458,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
       $scope.session = Authentication.session;
     });
 
-    $rootScope.$watch('language', function (newVal, oldVal) {
-      if (newVal && newVal !== oldVal && oldVal !== undefined) {
-        $scope.$emit("REFRESH");
-      }
-    });
-
     $rootScope.keypress = function(e) {
        if (((e.which || e.keyCode) === 116) || /* F5 */
            ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
@@ -548,43 +486,6 @@ controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($sc
     $scope.ok = function() {
       $uibModalInstance.close(true);
     };
-}]).
-controller('IntroCtrl', ['$scope', '$rootScope', '$uibModalInstance', function ($scope, $rootScope, $uibModalInstance) {
-  var steps = 3;
-
-  var first_step = 0;
-
-  if ($scope.languages_enabled_length <= 1) {
-     first_step = 1;
-  }
-
-  $scope.step = first_step;
-
-  $scope.proceed = function () {
-    if ($scope.step < steps) {
-      $scope.step += 1;
-    }
-  };
-
-  $scope.back = function () {
-    if ($scope.step > first_step) {
-      $scope.step -= 1;
-    }
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.close();
-  };
-
-  $scope.data = {
-    'language': $scope.language
-  };
-
-  $scope.$watch("data.language", function (newVal, oldVal) {
-    if (newVal && newVal !== oldVal) {
-      $rootScope.language = $scope.data.language;
-    }
-  });
 }]).
 controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', function($scope, $uibModalInstance, arg) {
   $scope.arg = arg;

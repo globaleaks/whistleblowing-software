@@ -38,7 +38,6 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         'app/js/**/*.js',
         '!app/js/crypto/*.js',
-        'app/js/crypto/proof-of-work.worker.js',
         'tests/**/*.js'
       ]
     },
@@ -205,6 +204,12 @@ module.exports = function(grunt) {
               }
             },
             {
+              pattern: /components\/angular-i18n\/([^\'\"\)]+)*/g,
+              replacement: function (match) {
+                return fileToDataURI('tmp/' + match);
+              }
+            },
+            {
               pattern: /inlinefiles\/([^\'\"\)]+)*/g,
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
@@ -229,36 +234,6 @@ module.exports = function(grunt) {
         }
       },
       pass3: {
-        files: {
-          'tmp/js/crypto/openpgp.worker.min.js': 'tmp/js/crypto/openpgp.worker.min.js'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: 'openpgp.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/js/crypto/openpgp.min.js');
-              }
-            }
-          ]
-        }
-      },
-      pass4: {
-        files: {
-          'tmp/js/crypto/proof-of-work.worker.js': 'tmp/js/crypto/proof-of-work.worker.js'
-        },
-        options: {
-          replacements: [
-            {
-              pattern: 'openpgp.worker.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/js/crypto/openpgp.worker.min.js');
-              }
-            }
-          ]
-        }
-      },
-      pass5: {
         files: {
           'tmp/js/crypto/scrypt-async.worker.js': 'tmp/js/crypto/scrypt-async.worker.js'
         },
@@ -384,7 +359,6 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
     grunt.file.mkdir('build/js/crypto/');
-    grunt.file.copy('tmp/js/crypto/proof-of-work.worker.js', 'build/js/crypto/proof-of-work.worker.js');
     grunt.file.copy('tmp/js/crypto/scrypt-async.worker.js', 'build/js/crypto/scrypt-async.worker.js');
 
     var copy_fun = function(absdir, rootdir, subdir, filename) {
@@ -531,18 +505,21 @@ module.exports = function(grunt) {
       total_languages, supported_languages = {};
 
     listLanguages(function(result){
-      result.available_languages = result.available_languages.filter(function( language ) {
-        /*
-            we skip en_US that is used internaly only as feedback in order
-            to keep track of corrections suggestions
-        */
-        return language.code !== 'en_US';
+      result.available_languages = result.available_languages.sort(function(a, b) {
+        if (a.code > b.code) {
+          return 1;
+        }
+
+        if (a.code < b.code) {
+          return -1;
+        }
+
+        return 0;
       });
 
       total_languages = result.available_languages.length;
 
-      result.available_languages.forEach(function(language){
-
+      var fetchLanguage = function(language) {
         fetchTxTranslationsForLanguage(language.code, function(content){
           if (content) {
             var potFile = "pot/" + language.code + ".po";
@@ -565,10 +542,13 @@ module.exports = function(grunt) {
             }
 
             cb(supported_languages);
+          } else {
+            fetchLanguage(result.available_languages[fetched_languages]);
           }
         });
+      };
 
-      });
+      fetchLanguage(result.available_languages[fetched_languages]);
     });
   }
 
@@ -844,7 +824,7 @@ module.exports = function(grunt) {
   // Run this task to push translations on transifex
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
-  // Run this task to fetch translations from transifex and create appliccation files
+  // Run this task to fetch translations from transifex and create application files
   grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData']);
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.

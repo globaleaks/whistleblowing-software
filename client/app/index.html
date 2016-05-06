@@ -1,14 +1,14 @@
 <!doctype html>
 <html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
   <head>
-    <title data-ng-bind="node.name">GlobaLeaks</title>
+    <title data-ng-bind="node.name"></title>
     <meta charset="utf-8" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <meta name="referrer" content="never" />
 
-    <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 9 -->
-    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11,10,9" />
+    <!-- Ticket #1480 : Specify the ordered IE support starting from EDGE and ending with 11 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE,11" />
 
     <link rel="icon" href="inlinefiles/favicon.ico" type="image/x-icon">
 
@@ -174,8 +174,6 @@
     </div>
 
     <!-- build:js js/scripts.js -->
-    <script src="components/js-polyfills/typedarray.js"></script>
-    <script src="components/es6-promise/promise.min.js"></script>
     <script src="components/stacktrace-js/dist/stacktrace.min.js"></script>
     <script src="components/scrypt-async/scrypt-async.min.js"></script>
     <script src="components/openpgp/dist/openpgp.min.js"></script>
@@ -190,16 +188,16 @@
     <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
     <script src="components/d3/d3.min.js"></script>
     <script src="components/flow.js/dist/flow.min.js"></script>
-    <script src="components/fusty-flow.js/src/fusty-flow.js"></script>
-    <script src="components/fusty-flow.js/src/fusty-flow-factory.js"></script>
     <script src="components/ng-flow/dist/ng-flow.min.js"></script>
     <script src="components/zxcvbn/dist/zxcvbn.js"></script>
     <script src="components/angular-zxcvbn/dist/angular-zxcvbn.js"></script>
+    <script src="components/angular-dynamic-locale/tmhDynamicLocale.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/templates.js"></script>
+    <script src="js/crypto/main.js"></script>
     <script src="js/controllers/main.js"></script>
     <script src="js/controllers/preferences.js"></script>
     <script src="js/controllers/fileupload.js"></script>
@@ -224,15 +222,8 @@
     <script src="js/controllers/user.js"></script>
     <!-- endbuild -->
 
-    <script src="components/bowser/bowser.min.js"></script>
-
     <script type="text/javascript">
       var isBrowserCompatible = function() {
-        // Make IE pass if >= 9
-        if (bowser.msie && bowser.version >= 9) {
-          return true;
-        }
-
         if (typeof window === 'undefined') {
           return false;
         }

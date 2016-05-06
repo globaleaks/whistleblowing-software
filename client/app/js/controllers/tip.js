@@ -71,14 +71,6 @@ GLClient.controller('TipCtrl',
       }
     };
 
-    $scope.getFields = function(field) {
-      if (field === undefined) {
-        return $scope.tip.fields;
-      } else {
-        return field.children;
-      }
-    };
-
     $scope.hasMultipleEntries = function(field_answer) {
       if (field_answer !== undefined) {
         return field_answer.length > 1;
@@ -96,7 +88,7 @@ GLClient.controller('TipCtrl',
     };
 
     if ($scope.session.role === 'whistleblower') {
-      $scope.fileupload_url = $scope.getUploadUrl('wbtip/upload');
+      $scope.fileupload_url = 'wbtip/upload';
 
       new WBTip(function(tip) {
         $scope.tip = tip;

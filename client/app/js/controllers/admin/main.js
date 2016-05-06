@@ -29,7 +29,7 @@ GLClient.controller('AdminCtrl',
       }
     });
 
-    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'name');
+    $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
     $scope.$watch('languages_enabled', function() {
       if ($scope.languages_enabled) {
@@ -199,7 +199,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   };
 
   $scope.delete_resource = function (url, refresh) {
-    return $http['delete'](url).success(function () {
+    return $http.delete(url).success(function () {
       if (refresh) {
         $scope.$emit("REFRESH");
       }
@@ -207,7 +207,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   };
 
   $scope.delete_file = function (url) {
-    $http['delete'](url).success(function () {
+    $http.delete(url).success(function () {
       $scope.update_static_files();
     });
   };

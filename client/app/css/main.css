@@ -165,15 +165,14 @@ th {
   white-space: pre-wrap;
 }
 
-.imageUpload, .imageReceiver, .imageContext {
+.imageUpload {
   position: relative;
   width: 10em;
   height: 10em;
-  min-width: 1em;
-  min-height: 10em;
   border: 1px solid #DDD;
   border-radius: 5px;
   z-index: 0;
+  text-align: center;
 }
 
 .imageUpload .changePicture {
@@ -197,7 +196,20 @@ th {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+}
+
+.imageUploadThumbnail, .contextCardImgFrame, .receiverCardImgFrame {
+  height: 10em;
+  width: 10em;
+}
+
+.imageUploadThumbnailContent, .contextCardImg, .receiverCardImg {
+  background-color: #FFF;
+  max-width: 95%;
+  max-height: 95%;
+  height: auto;
+  vertical-align: middle;
+  text-align: center;
   z-index: 1;
 }
 
@@ -398,4 +410,10 @@ th {
 
 .file-upload-error {
   margin-top: 10px;
+}
+
+.verticalAlignHelper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }

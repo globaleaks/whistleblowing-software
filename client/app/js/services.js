@@ -6,7 +6,7 @@ angular.module('GLServices', ['ngResource']).
     return function(url, params, actions) {
       var defaults = {
         get:    {method: 'get'},
-        query:  {method: 'get', isArray:true},
+        query:  {method: 'get', isArray: true},
         update: {method: 'put'}
       };
 
@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'UserPreferences', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, UserPreferences, ReceiverPreferences) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -36,21 +36,26 @@ angular.module('GLServices', ['ngResource']).
               'auth_landing_page': ''
             };
 
+            function initPreferences(prefs) {
+              $rootScope.preferences = prefs;
+              GLTranslate.AddUserPreference(prefs.language);
+            }
+
             if (self.session.role === 'admin') {
               self.session.homepage = '#/admin/landing';
               self.session.auth_landing_page = '/admin/landing';
               self.session.preferencespage = '#/user/preferences';
-              $rootScope.preferences = UserPreferences.get();
+              UserPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'custodian') {
               self.session.homepage = '#/custodian/identityaccessrequests';
               self.session.auth_landing_page = '/custodian/identityaccessrequests';
               self.session.preferencespage = '#/user/preferences';
-              $rootScope.preferences = UserPreferences.get();
+              UserPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'receiver') {
               self.session.homepage = '#/receiver/tips';
               self.session.auth_landing_page = '/receiver/tips';
               self.session.preferencespage = '#/receiver/preferences';
-              $rootScope.preferences = ReceiverPreferences.get();
+              ReceiverPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'whistleblower') {
               self.session.auth_landing_page = '/status';
             }
@@ -67,6 +72,7 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
+                $rootScope.forcedLocation = '/forcedpasswordchange';
                 $location.path('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
@@ -118,15 +124,14 @@ angular.module('GLServices', ['ngResource']).
         self.keycode = '';
 
         $rootScope.logout = function() {
-          // we use $http['delete'] in place of $http.delete due to
-          // the magical IE7/IE8 that do not allow delete as identifier
-          // https://github.com/globaleaks/GlobaLeaks/issues/943
+          delete $rootScope.forcedLocation;
+
           if (self.session.role === 'whistleblower') {
-            $http['delete']('receiptauth').then($rootScope.logoutPerformed,
-                                                $rootScope.logoutPerformed);
+            $http.delete('receiptauth').then($rootScope.logoutPerformed,
+                                             $rootScope.logoutPerformed);
           } else {
-            $http['delete']('authentication').then($rootScope.logoutPerformed,
-                                                   $rootScope.logoutPerformed);
+            $http.delete('authentication').then($rootScope.logoutPerformed,
+                                                $rootScope.logoutPerformed);
           }
         };
 
@@ -159,8 +164,8 @@ angular.module('GLServices', ['ngResource']).
             h['X-Session'] = self.session.id;
           }
 
-          if ($rootScope.language) {
-            h['GL-Language'] = $rootScope.language;
+          if (GLTranslate.indirect.appLanguage !== null) {
+            h['GL-Language'] = GLTranslate.indirect.appLanguage;
           }
 
           return h;
@@ -914,4 +919,180 @@ angular.module('GLServices', ['ngResource']).
 }).
   config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('globalInterceptor');
+}]).
+  factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
+  function($translate, $location, tmhDynamicLocale) {
+
+  // facts are (un)defined in order of importance to the factory.
+  var facts = {
+    userChoice: undefined,
+    urlParam: undefined,
+    userPreference: undefined,
+    browserSniff: undefined,
+    nodeDefault: undefined
+  };
+
+  // This is a value set by the node.
+  var enabledLanguages = [];
+  
+  // Country codes with multiple languages or an '_XX' extension
+  var problemLangs = {
+    'zh': ['CN', 'TW'], 
+    'pt': ['BR', 'PT'],
+    'nb': 'NO',
+    'hr': 'HR',
+    'hu': 'HU',
+  };
+
+  var indirect = {
+    appLanguage: null,
+  };
+        
+  initializeStartLanguage();
+ 
+  function initializeStartLanguage() {
+    var queryLang = $location.search().lang;
+    if (angular.isDefined(queryLang) && validLang(queryLang)) {
+      facts.urlParam = queryLang;
+    } 
+    
+    var s = normalizeLang(window.navigator.language);
+    if (validLang(s)) {
+      facts.browserSniff = s; 
+    }
+
+    determineLanguage();
+  }
+
+  // normalizeLang attempts to map input language strings to the transifex format.
+  function normalizeLang(s) {
+    if (typeof s !== 'string') {
+      return '';
+    }
+
+    if (s.length !== 2 && s.length !== 5) {
+      // The string is not in a format we are expecting so just return it.
+      return s; 
+    }
+
+    // The string is probably a valid ISO 639-1 language.
+    var iso_lang = s.slice(0,2).toLowerCase();
+    
+    if (problemLangs.hasOwnProperty(iso_lang)) {
+
+      var t = problemLangs[iso_lang]; 
+      if (t instanceof Array) {
+        // We do not know which extension to use, so just use the most popular one.
+        return iso_lang + '_' + t[0];
+      }
+      return iso_lang + '_' + t;
+
+    } else {
+      return iso_lang;
+    }
+  }
+
+  function validLang(inp) {
+    // Check for valid looking ISOish language string.
+    if (typeof inp !== 'string' || !/^([a-z]{2})(_[A-Z]{2})?$/.test(inp)) {
+      return false;
+    }
+    
+    // Check if lang is in the list of enabled langs if we have enabledLangs
+    if (enabledLanguages.length > 0) {
+      return enabledLanguages.indexOf(inp) > -1;
+    }
+
+    return true;
+  }
+
+  // TODO updateTranslationServices should return a promise.
+  function updateTranslationServices(lang) {
+
+    // Set text direction for languages that read from right to left.
+    var useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
+    document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
+
+    // Update the $translate module to use the new language.
+    $translate.use(lang).then(function() {
+      // TODO reload the new translations returned by node.
+    });
+
+    // For languages that are of the form 'zh_TW', handle the mapping of 'lang'
+    // to angular-i18n locale name as best we can. For example: 'zh_TW' becomes 'zh-tw'
+    var t = lang;
+    if (lang.length === 5) {
+      // Angular-i18n's format is typically 'zh-tw'
+      t = lang.replace('_', '-').toLowerCase();
+    }
+
+    tmhDynamicLocale.set(t); 
+  }
+
+
+  // setLang either uses the current indirect.appLanguage or the passed value
+  // to set the language for the entire application.
+  function setLang(choice) {
+    if (angular.isUndefined(choice)) {
+      choice = indirect.appLanguage;
+    }
+
+    if (validLang(choice)) {
+      facts.userChoice = choice;
+      determineLanguage();
+    }
+  }
+
+  // bestLanguage returns the best language for the application to use given
+  // all of the state the GLTranslate service has collected in facts. It picks
+  // the language in the order that the properties of the 'facts' object is
+  // defined.
+  // { object -> string }
+  function bestLanguage(facts) {
+    if (angular.isDefined(facts.userChoice)) {
+      return facts.userChoice;
+    } else if (angular.isDefined(facts.urlParam)) {
+      return facts.urlParam;
+    } else if (angular.isDefined(facts.userPreference)) {
+      return facts.userPreference;
+    } else if (angular.isDefined(facts.browserSniff) &&
+               enabledLanguages.indexOf(facts.browserSniff) !== -1) {
+      return facts.browserSniff;
+    } else if (angular.isDefined(facts.nodeDefault)) {
+      return facts.nodeDefault;
+    } else {
+      return null;
+    }
+  }
+
+  // determineLanguage contains all of the scope creeping ugliness of the 
+  // factory. It finds the best language to use, changes the appLanguage 
+  // pointer, and notifies the dependent services of the change.
+  function determineLanguage() {
+    indirect.appLanguage = bestLanguage(facts);
+    if (indirect.appLanguage !== null) {
+      updateTranslationServices(indirect.appLanguage);
+    }
+  }
+
+  return {
+    // Use indirect object to preserve the reference to appLanguage across scopes.
+    indirect: indirect,
+
+    setLang: setLang,
+
+    AddNodeFacts: function(defaultLang, languages_enabled) {
+      facts.nodeDefault = defaultLang;
+
+      enabledLanguages = languages_enabled;
+
+      determineLanguage();
+    },
+
+    AddUserPreference: function(lang) {
+      facts.userPreference = lang;
+      determineLanguage();
+    },
+
+  };
 }]);
