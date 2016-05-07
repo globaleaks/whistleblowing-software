@@ -1,6 +1,6 @@
-GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'Admin',
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin',
                     'DefaultAppdata', 'GLTranslate', 'CONSTANTS',
-                    function($scope, $rootScope, $location, $route, $http, $uibModal, Admin,
+                    function($scope, $location, $route, $http, $uibModal, Authentication, Admin,
                              DefaultAppdata, GLTranslate, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
@@ -51,7 +51,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');
     } else {
-      $scope.login('admin', 'globaleaks', function(){
+      Authentication.login('admin', 'globaleaks', function(){
         $scope.admin = new Admin(function() {
           $scope.receiver = new $scope.admin.new_user();
           $scope.receiver.username = 'receiver';

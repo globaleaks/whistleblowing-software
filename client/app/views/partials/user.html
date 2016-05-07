@@ -4,7 +4,7 @@
       <select class="form-control" data-ng-model="GLTranslate.indirect.appLanguage" ng-change="GLTranslate.setLang(); reload();" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
     </div>
   </div>
-  <div id="LoginStatusBox" class="row" data-ng-if="showLoginForm() || session">
+  <div id="LoginStatusBox" class="row" data-ng-if="Utils.showLoginForm() || session">
     <div data-ng-show="session" class="pull-right">
       <span id="LoginRoleText">
         <label>
@@ -21,11 +21,11 @@
       <span id="LogoutLinkBox">
         <span class="text-separator">|</span>
         <span>
-          <a id="LogoutLink" href="" data-ng-click="logout()" data-translate>Logout</a>
+          <a id="LogoutLink" href="" data-ng-click="Authentication.logout()" data-translate>Logout</a>
         </span>
       </span>
     </div>
-    <div data-ng-if="showLoginForm() && !session" class="pull-right">
+    <div data-ng-if="Utils.showLoginForm() && !session" class="pull-right">
       <div>{{::node.whistleblowing_receipt_prompt}}</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">

@@ -12,7 +12,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.node import serialize_step
+from globaleaks.handlers.public import serialize_step
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys

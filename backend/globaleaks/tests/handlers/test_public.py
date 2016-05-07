@@ -4,22 +4,11 @@ import json
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import node, admin
-
-
-class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.NodeInstance
-
-    @inlineCallbacks
-    def test_get(self):
-        handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.NodeDesc)
+from globaleaks.handlers import admin, public
 
 
 class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.AhmiaDescriptionHandler
+    _handler = public.AhmiaDescriptionHandler
 
     @inlineCallbacks
     def test_get_ahmia_disabled(self):
@@ -46,7 +35,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
 
 
 class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.RobotstxtHandler
+    _handler = public.RobotstxtHandler
 
     @inlineCallbacks
     def test_get_with_indexing_disabled(self):
@@ -74,30 +63,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[0], "User-agent: *\nAllow: /")
 
 
-class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.ContextsCollection
-
-    @inlineCallbacks
-    def test_get(self):
-        handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.ContextCollectionDesc)
-
-
-class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.ReceiversCollection
-
-    @inlineCallbacks
-    def test_get(self):
-        handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.ReceiverCollectionDesc)
-
-
-class TestPublicResources(helpers.TestHandlerWithPopulatedDB):
-    _handler = node.PublicResources
+class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
+    _handler = public.PublicResource
 
     @inlineCallbacks
     def test_get(self):

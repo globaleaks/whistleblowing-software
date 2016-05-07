@@ -5,7 +5,7 @@ GLClient.controller('AdminContextsCtrl',
   $scope.save_context = function (context, cb) {
     var updated_context = new AdminContextResource(context);
 
-    return $scope.update(updated_context, cb);
+    return $scope.Utils.update(updated_context, cb);
   };
 
   $scope.perform_delete = function(context) {
@@ -18,7 +18,7 @@ GLClient.controller('AdminContextsCtrl',
   };
 
   $scope.contextDeleteDialog = function(context){
-    var modalInstance = $scope.openConfirmableModalDialog('views/partials/context_delete.html', context);
+    var modalInstance = $scope.Utils.openConfirmableModalDialog('views/partials/context_delete.html', context);
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },
@@ -26,13 +26,13 @@ GLClient.controller('AdminContextsCtrl',
     );
   };
 
-  $scope.moveUpAndSave = function(elem) {
-    $scope.moveUp(elem);
+  $scope.Utils.moveUpAndSave = function(elem) {
+    $scope.Utils.moveUp(elem);
     $scope.save_context(elem);
   };
 
-  $scope.moveDownAndSave = function(elem) {
-    $scope.moveDown(elem);
+  $scope.Utils.moveDownAndSave = function(elem) {
+    $scope.Utils.moveDown(elem);
     $scope.save_context(elem);
   };
 }]).
@@ -75,7 +75,7 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.updateContextImgUrl = function() {
-    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.randomFluff();
+    $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.Utils.randomFluff();
   };
 
   $scope.updateContextImgUrl();

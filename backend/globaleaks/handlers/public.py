@@ -327,40 +327,26 @@ def get_public_receiver_list(store, language):
     return receiver_list
 
 
-@inlineCallbacks
-def get_node(request):
-    ret = yield GLApiCache.get('node', request.language,
-                               serialize_node, request.language)
-    returnValue(ret)
-
-
-@inlineCallbacks
-def get_contexts(request):
-    ret = yield GLApiCache.get('contexts', request.language,
-                               get_public_context_list, request.language)
-    returnValue(ret)
-
-
-@inlineCallbacks
-def get_receivers(request):
-    ret = yield GLApiCache.get('receivers', request.language,
-                               get_public_receiver_list, request.language)
-    returnValue(ret)
-
-
-@inlineCallbacks
-def get_public_resources(request):
+class PublicResource(BaseHandler):
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
     @inlineCallbacks
-    def _get_public_resources(request):
-        returnValue({
-          'node': (yield get_node(self.request)),
-          'contexts': (yield get_contexts(self.request)),
-          'receivers': (yield get_receivers(self.request))
-        })
+    def get(self):
+        """
+        Get all the public resources.
+        """
+        @inlineCallbacks
+        def _get_public_resources(language):
+            returnValue({
+              'node': (yield serialize_node(language)),
+              'contexts': (yield get_public_context_list(language)),
+              'receivers': (yield get_public_receiver_list(language))
+            })
 
-    ret = yield GLApiCache.get('public', request.language,
-                               _get_public_resources, request.language)
-    returnValue(ret)
+        ret = yield GLApiCache.get('public', self.request.language,
+                                   _get_public_resources, self.request.language)
+        self.write(ret)
+
 
 class AhmiaDescriptionHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
@@ -399,54 +385,3 @@ class RobotstxtHandler(BaseHandler):
             self.write("User-agent: *\nAllow: /")
         else:
             self.write("User-agent: *\nDisallow: /")
-
-
-class NodeInstance(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Get the node infos.
-        """
-        ret = yield get_node(self.request)
-        self.write(ret)
-
-
-class ContextsCollection(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Get all the contexts.
-        """
-        ret = yield get_contexts(self.request)
-        self.write(ret)
-
-
-class ReceiversCollection(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Get all the receivers.
-        """
-        ret = yield get_receivers(self.request)
-        self.write(ret)
-
-
-class PublicResources(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
-    def get(self):
-        """
-        Get all the public resources.
-        """
-        self.write({
-          'node': (yield get_node(self.request)),
-          'contexts': (yield get_contexts(self.request)),
-          'receivers': (yield get_receivers(self.request))
-        })

@@ -1,5 +1,5 @@
-GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'Node', 'StatsCollection',
-  function($scope, $filter, Node, StatsCollection) {
+GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'StatsCollection',
+  function($scope, $filter, StatsCollection) {
     $scope.week_delta = 0;
     $scope.blob = {};
 
