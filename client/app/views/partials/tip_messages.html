@@ -24,23 +24,23 @@
       </div>
       <div class="col-md-12">
         <span class="pull-left">
-          <a id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'whistleblower' && !tip.msg_receiver_selected)">
+          <button id="message-action-send" class="btn btn-success" data-ng-click="newMessage()" data-ng-disabled="!tip.newMessageContent || (session.role === 'whistleblower' && !tip.msg_receiver_selected)">
             <i class="glyphicon glyphicon-envelope"></i>
             <span data-translate>Send</span>
-          </a>
+          </button>
         </span>
         <span data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_two_way_messages" class="pull-right">
           <span data-ng-switch-when="false">
-            <a id="button-enable-whistleblower-messages" class="btn btn-primary" data-ng-click="allowWhistleblowerToMessage()">
+            <button id="button-enable-whistleblower-messages" class="btn btn-primary" data-ng-click="allowWhistleblowerToMessage()">
               <i class="glyphicon glyphicon-ok-circle"></i>
               <span>Allow the whistleblower to send messages</span>
-            </a>
+            </button>
           </span>
           <span data-ng-switch-when="true">
-            <a id="button-enable-whistleblower-messages" class="btn btn-danger" data-ng-click="denyWhistleblowerToMessage()">
+            <button id="button-enable-whistleblower-messages" class="btn btn-danger" data-ng-click="denyWhistleblowerToMessage()">
               <i class="glyphicon glyphicon-ban-circle"></i>
               <span>Deny the whistleblower to send messages</span>
-            </a>
+            </button>
           </span>
         </span>
       </div>
