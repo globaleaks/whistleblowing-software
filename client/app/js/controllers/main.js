@@ -409,13 +409,6 @@ GLClient.controller('MainCtrl', ['$q', '$scope', '$rootScope', '$http', '$route'
 
     //////////////////////////////////////////////////////////////////
 
-    $scope.$on("$locationChangeStart", function(event, next) {
-      next = next.substring($location.absUrl().length - $location.url().length);
-      if ($rootScope.forcedLocation && next !== $rootScope.forcedLocation) {
-        event.preventDefault();
-      }
-    });
-
     /* eslint-disable no-unused-vars */
     $scope.$on("$routeChangeStart", function(event, next) {
     /* eslint-enable no-unused-vars */
