@@ -11,10 +11,12 @@ GLClient.controller('UserCtrl',
     });
   };
 }]).
-controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
-  function($scope, $rootScope, $location) {
+controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', 'locationForce',
+  function($scope, $rootScope, $location, locationForce) {
 
     $scope.pass_save = function () {
+      locationForce.clear();
+
       // avoid changing any PGP setting
       $scope.preferences.pgp_key_remove = false;
       $scope.preferences.pgp_key_public = '';
@@ -23,4 +25,30 @@ controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
         $location.path($scope.session.auth_landing_page);
       });
     };
+}])
+.factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
+
+  var forcedLocation = null;
+  var deregister = function() {};
+
+  return {
+    set: function(path) {
+      forcedLocation = path;
+
+      deregister = $rootScope.$on("$locationChangeStart", function(event, next) {
+        next = next.substring($location.absUrl().length - $location.url().length);
+        if (forcedLocation !== null && next !== forcedLocation) {
+          event.preventDefault();
+        }
+      }); 
+
+      $location.path(path);
+    },
+    
+    clear: function() {
+      forcedLocation = null;
+      deregister();
+    },
+
+  };
 }]);
