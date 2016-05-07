@@ -12,16 +12,16 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiver
 
     var updated_receiver = new AdminReceiverResource(receiver);
 
-    return $scope.update(updated_receiver, cb);
+    return $scope.Utils.update(updated_receiver, cb);
   };
 
-  $scope.moveUpAndSave = function(elem) {
-    $scope.moveUp(elem);
+  $scope.Utils.moveUpAndSave = function(elem) {
+    $scope.Utils.moveUp(elem);
     $scope.save_receiver(elem);
   };
 
-  $scope.moveDownAndSave = function(elem) {
-    $scope.moveDown(elem);
+  $scope.Utils.moveDownAndSave = function(elem) {
+    $scope.Utils.moveDown(elem);
     $scope.save_receiver(elem);
   };
 }]).

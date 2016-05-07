@@ -5,7 +5,7 @@
   <button class="changePicture actionButton btn btn-xs btn-primary" data-translate>Change picture</button>
   <div class="imageUploadThumbnail">
     <span class="verticalAlignHelper"></span>
-    <img data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
+    <img data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
     <img data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />
   </div>
   <button class="deletePicture actionButton btn btn-xs btn-danger"

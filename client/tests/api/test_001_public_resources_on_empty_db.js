@@ -26,21 +26,6 @@ var public_resources = [
     'status': 200
   },
   {
-    'url': '/node',
-    'type': 'application/json',
-    'status': 200
-  },
-  {
-    'url': '/contexts',
-    'type': 'application/json',
-    'status': 200
-  },
-  {
-    'url': '/receivers',
-    'type': 'application/json',
-    'status': 200
-  },
-  {
     'url': '/unexistent',
     'type': 'text/html; charset=UTF-8',
     'status': 404

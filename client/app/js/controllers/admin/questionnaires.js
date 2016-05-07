@@ -17,7 +17,7 @@ controller('AdminQuestionnairesCtrl',
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 
-    return $scope.update(updated_questionnaire, cb);
+    return $scope.Utils.update(updated_questionnaire, cb);
   };
 
   $scope.delete_questionnaire = function(questionnaire) {

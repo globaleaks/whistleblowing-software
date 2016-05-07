@@ -26,7 +26,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
 
     $scope.save_step = function(step) {
       var updated_step = new AdminStepResource(step);
-      return $scope.update(updated_step);
+      return $scope.Utils.update(updated_step);
     };
 
     $scope.addField = function(field) {
@@ -37,7 +37,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       AdminFieldResource.delete({
         id: field.id
       }, function() {
-        $scope.deleteFromList(fields, field);
+        $scope.Utils.deleteFromList(fields, field);
       });
     };
 
@@ -69,23 +69,23 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       });
     };
 
-    $scope.moveUpAndSave = function(elem) {
-      $scope.moveUp(elem);
+    $scope.Utils.moveUpAndSave = function(elem) {
+      $scope.Utils.moveUp(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveDownAndSave = function(elem) {
-      $scope.moveDown(elem);
+    $scope.Utils.moveDownAndSave = function(elem) {
+      $scope.Utils.moveDown(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveLeftAndSave = function(elem) {
-      $scope.moveLeft(elem);
+    $scope.Utils.moveLeftAndSave = function(elem) {
+      $scope.Utils.moveLeft(elem);
       $scope.save_step(elem);
     };
 
-    $scope.moveRightAndSave = function(elem) {
-      $scope.moveRight(elem);
+    $scope.Utils.moveRightAndSave = function(elem) {
+      $scope.Utils.moveRight(elem);
       $scope.save_step(elem);
     };
   }

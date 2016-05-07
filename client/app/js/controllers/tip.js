@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldUtilities',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldUtilities) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'fieldUtilities',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -8,12 +8,6 @@ GLClient.controller('TipCtrl',
     $scope.uploads = {};
 
     $scope.showEditLabelInput = false;
-
-    if (!$scope.session) {
-      // FIXME: handle this applicationwide with somekind of state
-      $scope.loginRedirect(true);
-      return;
-    }
 
     $scope.getAnswersEntries = function(entry) {
       if (entry === undefined) {
@@ -165,7 +159,7 @@ GLClient.controller('TipCtrl',
       $scope.showEditLabelInput = true;
     };
 
-    $scope.updateLabel = function(label) {
+    $scope.Utils.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
     };

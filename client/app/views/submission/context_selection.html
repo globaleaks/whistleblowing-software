@@ -20,7 +20,7 @@
           </div>
           <div class="contextCardContent row">
             <div class="contextCardImgFrame" data-ng-class="{'col-md-3': !node.small_context_cards, 'col-md-12': node.show_small_context_cards}">
-              <span class="verticalAlignHelper"></span><img class="contextCardImg" data-ng-src="{{::imgDataUri(context.picture)}}" />
+              <span class="verticalAlignHelper"></span><img class="contextCardImg" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" />
             </div>
             <div data-ng-if="!node.show_small_context_cards" class="contextCardDescription col-md-7">{{::context.description}}</div>
           </div>

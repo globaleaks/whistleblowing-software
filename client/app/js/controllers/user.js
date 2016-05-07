@@ -1,18 +1,13 @@
 GLClient.controller('UserCtrl',
-  ['$scope', '$rootScope', '$location', 'GLTranslate', 'WhistleblowerTip', 
-  function($scope, $rootScope, $location, GLTranslate, WhistleblowerTip) {
+  ['$scope', '$location', 'Authentication', 'GLTranslate',
+  function($scope, $location, Authentication, GLTranslate, Utils) {
 
   $scope.GLTranslate = GLTranslate;
-
-  $scope.view_tip = function(keycode) {
-    keycode = keycode.replace(/\D/g,'');
-    new WhistleblowerTip(keycode, function() {
-      $location.path('/status');
-    });
-  };
+  $scope.Authentication = Authentication;
+  $scope.Utils = Utils
 }]).
-controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location',
-  function($scope, $rootScope, $location) {
+controller('ForcedPasswordChangeCtrl', ['$scope', '$location',
+  function($scope, $location) {
 
     $scope.pass_save = function () {
       // avoid changing any PGP setting
