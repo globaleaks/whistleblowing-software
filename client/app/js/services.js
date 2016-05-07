@@ -16,8 +16,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences) {
       function Session(){
         var self = this;
 
@@ -72,8 +72,7 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
-                $rootScope.forcedLocation = '/forcedpasswordchange';
-                $location.path('/forcedpasswordchange');
+                locationForce.set('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
               }
@@ -124,7 +123,7 @@ angular.module('GLServices', ['ngResource']).
         self.keycode = '';
 
         $rootScope.logout = function() {
-          delete $rootScope.forcedLocation;
+          locationForce.clear();
 
           if (self.session.role === 'whistleblower') {
             $http.delete('receiptauth').then($rootScope.logoutPerformed,
@@ -1092,6 +1091,29 @@ angular.module('GLServices', ['ngResource']).
     AddUserPreference: function(lang) {
       facts.userPreference = lang;
       determineLanguage();
+    },
+
+  };
+}])
+.factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
+
+  var forcedLocation = null;
+  
+  $rootScope.$on("$locationChangeStart", function(event, next) {
+    next = next.substring($location.absUrl().length - $location.url().length);
+    if (forcedLocation && next !== forcedLocation) {
+      event.preventDefault();
+    }
+  }); 
+
+  return {
+    set: function(path) {
+      forcedLocation = path;
+      $location.path(path);
+    },
+    
+    clear: function() {
+      forcredLocation = null;
     },
 
   };
