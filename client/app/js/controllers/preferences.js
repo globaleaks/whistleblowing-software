@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'locationForce', 'CONSTANTS',
-  function($scope, $rootScope, locationForce, CONSTANTS) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
+  function($scope, $rootScope, CONSTANTS) {
     if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
@@ -43,7 +43,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'locationForce',
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.pass_save = function () {
-      locationForce.clear(); 
 
       if ($scope.preferences.pgp_key_remove === undefined) {
         $scope.preferences.pgp_key_remove = false;
@@ -58,7 +57,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'locationForce',
     };
 
     $scope.pref_save = function() {
-      locationForce.clear();
 
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';

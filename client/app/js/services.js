@@ -72,6 +72,7 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
+                // Pushes ui to the ForcedPasswordChangeCtrl
                 locationForce.set('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
@@ -1091,29 +1092,6 @@ angular.module('GLServices', ['ngResource']).
     AddUserPreference: function(lang) {
       facts.userPreference = lang;
       determineLanguage();
-    },
-
-  };
-}])
-.factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
-
-  var forcedLocation = null;
-  
-  $rootScope.$on("$locationChangeStart", function(event, next) {
-    next = next.substring($location.absUrl().length - $location.url().length);
-    if (forcedLocation && next !== forcedLocation) {
-      event.preventDefault();
-    }
-  }); 
-
-  return {
-    set: function(path) {
-      forcedLocation = path;
-      $location.path(path);
-    },
-    
-    clear: function() {
-      forcredLocation = null;
     },
 
   };
