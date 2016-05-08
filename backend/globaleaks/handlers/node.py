@@ -6,7 +6,7 @@
 # exposed API.
 import os
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import BaseHandler
@@ -26,7 +26,7 @@ def serialize_ahmia(store, language):
     mo = Rosetta(node.localized_keys)
     mo.acquire_storm_object(node)
 
-    ret_dict = {
+    return {
         'title': node.name,
         'description': mo.dump_localized_key('description', language),
         'keywords': '%s (GlobaLeaks instance)' % node.name,
@@ -35,8 +35,6 @@ def serialize_ahmia(store, language):
         'contactInformation': u'',
         'type': 'GlobaLeaks'
     }
-
-    return ret_dict
 
 
 @transact_ro
@@ -96,7 +94,9 @@ def serialize_node(store, language):
         'enable_proof_of_work': node.enable_proof_of_work,
         'enable_experimental_features': node.enable_experimental_features,
         'logo': node.logo.data if node.logo is not None else '',
-        'css': node.css.data if node.css is not None else ''
+        'css': node.css.data if node.css is not None else '',
+        'custom_homepage': os.path.isfile(os.path.join(GLSettings.static_path,
+                                                       "custom_homepage.html"))
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)
@@ -327,22 +327,40 @@ def get_public_receiver_list(store, language):
     return receiver_list
 
 
-class NodeInstance(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
+@inlineCallbacks
+def get_node(request):
+    ret = yield GLApiCache.get('node', request.language,
+                               serialize_node, request.language)
+    returnValue(ret)
+
+
+@inlineCallbacks
+def get_contexts(request):
+    ret = yield GLApiCache.get('contexts', request.language,
+                               get_public_context_list, request.language)
+    returnValue(ret)
+
+
+@inlineCallbacks
+def get_receivers(request):
+    ret = yield GLApiCache.get('receivers', request.language,
+                               get_public_receiver_list, request.language)
+    returnValue(ret)
+
+
+@inlineCallbacks
+def get_public_resources(request):
     @inlineCallbacks
-    def get(self):
-        """
-        Get the node infos.
-        """
-        ret = yield GLApiCache.get('node', self.request.language,
-                                   serialize_node, self.request.language)
+    def _get_public_resources(request):
+        returnValue({
+          'node': (yield get_node(self.request)),
+          'contexts': (yield get_contexts(self.request)),
+          'receivers': (yield get_receivers(self.request))
+        })
 
-        ret['custom_homepage'] = os.path.isfile(os.path.join(GLSettings.static_path,
-                                                             "custom_homepage.html"))
-
-        self.write(ret)
-
+    ret = yield GLApiCache.get('public', request.language,
+                               _get_public_resources, request.language)
+    returnValue(ret)
 
 class AhmiaDescriptionHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
@@ -383,6 +401,18 @@ class RobotstxtHandler(BaseHandler):
             self.write("User-agent: *\nDisallow: /")
 
 
+class NodeInstance(BaseHandler):
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Get the node infos.
+        """
+        ret = yield get_node(self.request)
+        self.write(ret)
+
+
 class ContextsCollection(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
@@ -391,8 +421,7 @@ class ContextsCollection(BaseHandler):
         """
         Get all the contexts.
         """
-        ret = yield GLApiCache.get('contexts', self.request.language,
-                                   get_public_context_list, self.request.language)
+        ret = yield get_contexts(self.request)
         self.write(ret)
 
 
@@ -404,6 +433,20 @@ class ReceiversCollection(BaseHandler):
         """
         Get all the receivers.
         """
-        ret = yield GLApiCache.get('receivers', self.request.language,
-                                   get_public_receiver_list, self.request.language)
+        ret = yield get_receivers(self.request)
         self.write(ret)
+
+
+class PublicResources(BaseHandler):
+    @BaseHandler.transport_security_check("unauth")
+    @BaseHandler.unauthenticated
+    @inlineCallbacks
+    def get(self):
+        """
+        Get all the public resources.
+        """
+        self.write({
+          'node': (yield get_node(self.request)),
+          'contexts': (yield get_contexts(self.request)),
+          'receivers': (yield get_receivers(self.request))
+        })

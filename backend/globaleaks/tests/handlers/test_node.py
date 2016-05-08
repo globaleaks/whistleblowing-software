@@ -15,8 +15,6 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.get()
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.NodeDesc)
 
 
@@ -33,8 +31,6 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         yield admin.node.update_node(nodedict, True, 'en')
 
         yield handler.get()
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 0)
 
     @inlineCallbacks
     def test_get_ahmia_enabled(self):
@@ -45,8 +41,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         yield admin.node.update_node(nodedict, True, 'en')
 
         yield handler.get()
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
+
         self._handler.validate_message(json.dumps(self.responses[0]), requests.AhmiaDesc)
 
 
@@ -63,8 +58,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
         yield admin.node.update_node(nodedict, True, 'en')
 
         yield handler.get()
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
+
         self.assertEqual(self.responses[0], "User-agent: *\nDisallow: /")
 
     @inlineCallbacks
@@ -76,8 +70,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
         yield admin.node.update_node(nodedict, True, 'en')
 
         yield handler.get()
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
+
         self.assertEqual(self.responses[0], "User-agent: *\nAllow: /")
 
 
@@ -89,8 +82,6 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.get()
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.ContextCollectionDesc)
 
 
@@ -102,6 +93,15 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.get()
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
         self._handler.validate_message(json.dumps(self.responses[0]), requests.ReceiverCollectionDesc)
+
+
+class TestPublicResources(helpers.TestHandlerWithPopulatedDB):
+    _handler = node.PublicResources
+
+    @inlineCallbacks
+    def test_get(self):
+        handler = self.request({}, role='admin')
+        yield handler.get()
+
+        self._handler.validate_message(json.dumps(self.responses[0]), requests.PublicResourcesDesc)

@@ -21,6 +21,11 @@ var public_resources = [
     'status': 200
   },
   {
+    'url': '/public',
+    'type': 'application/json',
+    'status': 200
+  },
+  {
     'url': '/node',
     'type': 'application/json',
     'status': 200

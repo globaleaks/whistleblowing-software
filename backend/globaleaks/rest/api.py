@@ -49,6 +49,7 @@ spec = [
     (r'/receiptauth', authentication.ReceiptAuthHandler),
 
     ## Main Public Handlers ##
+    (r'/public', node.PublicResources),
     (r'/node', node.NodeInstance),
     (r'/contexts', node.ContextsCollection),
     (r'/receivers' , node.ReceiversCollection),
