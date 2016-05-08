@@ -93,10 +93,11 @@ describe('receiver first login', function() {
   it('should be able to navigate through receiver preferences', function(done) {
     element(by.id('PreferencesLink')).click().then(function() {
       utils.waitForUrl('/receiver/preferences');
-      element(by.cssContainingText("a", "General preferences")).click();
-      element(by.cssContainingText("a", "Password configuration")).click();
-      element(by.cssContainingText("a", "Notification settings")).click();
-      element(by.cssContainingText("a", "Encryption settings")).click();
+      var preferencesForm = element(by.id("preferencesForm"));
+      preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
+      preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
+      preferencesForm.element(by.cssContainingText("a", "Notification settings")).click();
+      preferencesForm.element(by.cssContainingText("a", "Encryption settings")).click();
       done();
     });
   });
