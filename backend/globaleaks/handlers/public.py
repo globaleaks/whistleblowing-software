@@ -37,8 +37,7 @@ def serialize_ahmia(store, language):
     }
 
 
-@transact_ro
-def serialize_node(store, language):
+def db_serialize_node(store, language):
     """
     Serialize node infos.
     """
@@ -100,6 +99,11 @@ def serialize_node(store, language):
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)
+
+
+@transact_ro
+def serialize_node(store, language):
+    return db_serialize_node(store, language)
 
 
 def serialize_context(store, context, language):
@@ -300,8 +304,7 @@ def serialize_receiver(receiver, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
-@transact_ro
-def get_public_context_list(store, language):
+def db_get_public_context_list(store, language):
     context_list = []
 
     for context in store.find(models.Context):
@@ -312,7 +315,11 @@ def get_public_context_list(store, language):
 
 
 @transact_ro
-def get_public_receiver_list(store, language):
+def get_public_context_list(store, language):
+    return db_get_public_context_list(store, language)
+
+
+def db_get_public_receiver_list(store, language):
     receiver_list = []
 
     for receiver in store.find(models.Receiver):
@@ -327,6 +334,11 @@ def get_public_receiver_list(store, language):
     return receiver_list
 
 
+@transact_ro
+def get_public_receiver_list(store, language):
+    return db_get_public_receiver_list(store, language)
+
+
 class PublicResource(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
@@ -335,12 +347,12 @@ class PublicResource(BaseHandler):
         """
         Get all the public resources.
         """
-        @inlineCallbacks
-        def _get_public_resources(language):
+        @transact_ro
+        def _get_public_resources(store, language):
             returnValue({
-              'node': (yield serialize_node(language)),
-              'contexts': (yield get_public_context_list(language)),
-              'receivers': (yield get_public_receiver_list(language))
+              'node': db_serialize_node(store, language),
+              'contexts': db_get_public_context_list(store, language),
+              'receivers': db_get_public_receiver_list(store, language)
             })
 
         ret = yield GLApiCache.get('public', self.request.language,
