@@ -15,9 +15,8 @@ var comments_population_order = 10;
 
 var authentication;
 
-var receivers = [];
+var publicapi = [];
 var receivers_ids = [];
-var contexts = [];
 var contexts_ids = [];
 var submissions = [];
 var submission_tokens = [];
@@ -71,10 +70,10 @@ var fill_answers = function(steps) {
   return answers;
 };
 
-describe('GET /contexts', function(){
-  it('responds with ' + population_order + ' contexts associated to ' + population_order + ' receivers', function(done){
+describe('GET /public', function(){
+  it('responds 200', function(done){
     app
-      .get('/contexts')
+      .get('/public')
       .expect('Content-Type', 'application/json')
       .expect(200)
       .end(function(err, res) {
@@ -83,50 +82,15 @@ describe('GET /contexts', function(){
         } else {
           validate_mandatory_headers(res.headers);
 
-          if (res.body.length !== population_order) {
-            throw '/contexts didn\'t return ' + population_order + ' contexts';
-          }
-
-          contexts = res.body;
+          publicapi = res.body;
 
           for (var i=0; i<population_order; i++) {
-            contexts_ids.push(contexts[i].id);
-
-            if(contexts[i].receivers.length !== population_order) {
-              throw '/contexts didn\'t return ' + population_order + ' receivers associated to each context';
-            }
+            contexts_ids.push(publicapi['contexts'][i].id);
           }
 
-          done();
-        }
-      });
-  });
-});
-
-describe('GET /receivers', function(){
-  it('responds with ' + population_order + ' receivers associated to ' + population_order + ' contexts', function(done){
-    app
-      .get('/receivers')
-      .expect('Content-Type', 'application/json')
-      .expect(200)
-      .end(function(err, res) {
-        if (err) {
-          return done(err);
-        } else {
-          validate_mandatory_headers(res.headers);
-
-          if (res.body.length !== population_order) {
-            throw '/receivers didn\'t return ' + population_order + ' receivers';
-          }
-
-          receivers = res.body;
 
           for (var i=0; i<population_order; i++) {
-            receivers_ids.push(receivers[i].id);
-
-            if(receivers[i].contexts.length !== population_order) {
-              throw '/receivers didn\'t return ' + population_order + ' contexts associated to each receiver';
-            }
+            receivers_ids.push(publicapi['receivers'][i].id);
           }
 
           done();
@@ -198,7 +162,7 @@ for (i=0; i<submission_population_order; i++) {
         new_submission.context_id = contexts_ids[0];
         new_submission.receivers = receivers_ids;
         new_submission.identity_provided = false;
-        new_submission.answers = fill_answers(contexts[0].steps);
+        new_submission.answers = fill_answers(publicapi['contexts'][0].steps);
         new_submission.total_score = 0;
 
         app
