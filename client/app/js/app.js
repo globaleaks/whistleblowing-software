@@ -425,6 +425,10 @@ var GLClient = angular.module('GLClient', [
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
 
+    $rootScope.closeAlert = function (list, index) {
+      list.splice(index, 1);
+    };
+
     var route_check = function () {
       if ($rootScope.node.wizard_done === false) {
         $location.path('/wizard');

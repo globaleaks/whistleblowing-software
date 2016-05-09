@@ -15,15 +15,16 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
     }
   });
 }]).
-controller('ImageUploadCtrl', ['$scope', '$http', 'Authentication', function($scope, $http, Authentication) {
-  $scope.get_auth_headers = Authentication.get_auth_headers;
+controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
   $scope.imageUploadObj = {};
+  $scope.Authentication = $rootScope.Authentication;
+  $scope.Utils = $rootScope.Utils;
 
   $scope.deletePicture = function() {
     $http({
       method: 'DELETE',
       url: $scope.imageUploadUrl,
-      headers: $scope.get_auth_headers()
+      headers: $scope.Authentication.get_auth_headers()
     }).then(function successCallback() {
       $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
       $scope.imageUploadObj.flow.files = [];
