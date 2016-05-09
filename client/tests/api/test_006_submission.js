@@ -84,12 +84,14 @@ describe('GET /public', function(){
 
           publicapi = res.body;
 
-          for (var i=0; i<population_order; i++) {
+          var i;
+
+          for (i=0; i<population_order; i++) {
             contexts_ids.push(publicapi['contexts'][i].id);
           }
 
 
-          for (var i=0; i<population_order; i++) {
+          for (i=0; i<population_order; i++) {
             receivers_ids.push(publicapi['receivers'][i].id);
           }
 
