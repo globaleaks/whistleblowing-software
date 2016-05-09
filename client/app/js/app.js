@@ -370,7 +370,6 @@ var GLClient = angular.module('GLClient', [
         $rootScope.node = result.node;
         $rootScope.contexts = result.contexts;
         $rootScope.receivers = result.receivers;
-        console.log(result);
 
         // Tor detection and enforcing of usage of HS if users are using Tor
         if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
@@ -438,7 +437,7 @@ var GLClient = angular.module('GLClient', [
 
     //////////////////////////////////////////////////////////////////
 
-    $rootScope.$on("$routeChangeStart", function(event) {
+    $rootScope.$on("$routeChangeStart", function() {
       if ($rootScope.node) {
         route_check();
       }

@@ -173,7 +173,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
-        if (i === -1 || fiefieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
+        if (i === -1 || fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
           $anchorScroll('top');
           break;
