@@ -555,21 +555,12 @@ var GLClient = angular.module('GLClient', [
       }
     });
 
-    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
-      if (rejection === Access.FORBIDDEN) {
-        var err = {
-          message: 'Auth failure to: ' + $location.url(),
-          code: 29, // Authentication Error
-        };
-        $rootScope.errors.push(err);
-      }
-      
+    $rootScope.$on('$routeChangeError', function(event, current, previous) {
       if (angular.isDefined(previous)) {
           $location.path(previous.$$route.originalPath);
       } else {
           $location.path('/');
       }
-
     });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current) {
