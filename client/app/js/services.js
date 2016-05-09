@@ -175,6 +175,32 @@ angular.module('GLServices', ['ngResource']).
 
       return new Session();
 }]).
+factory("Access", ["$q", "Authentication", function ($q, Authentication) {
+  var Access = {
+    OK: 200,
+
+    FORBIDDEN: 403,
+
+    isUnauth: function () {
+      if (Authentication.session === undefined) {
+        return Access.OK;
+      } else {
+        return $q.reject(Access.FORBIDDEN);
+      }
+    },
+
+    isAuthenticated: function (role) {
+      if (Authentication.session && (role === '*' || Authentication.session.role === role)) {
+        return Access.OK;
+      } else {
+        return $q.reject(Access.FORBIDDEN);
+      }
+    }
+  };
+
+  return Access;
+
+}]).
   factory('globalInterceptor', ['$q', '$injector', '$rootScope',
   function($q, $injector, $rootScope) {
     /* This interceptor is responsible for keeping track of the HTTP requests

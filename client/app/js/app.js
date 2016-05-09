@@ -70,185 +70,283 @@ var GLClient = angular.module('GLClient', [
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
+    function requireAuth(role) {
+      return ['Access', function(Access) { return Access.isAuthenticated(role); }];
+    }
+
+    function noAuth() {
+      return ['Access', function(Access) { return Access.isUnauth(); }];
+    }
+
     $routeProvider.
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'Platform wizard',
-        header_subtitle: 'Step-by-step setup'
+        header_subtitle: 'Step-by-step setup',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/receipt', {
         templateUrl: 'views/receipt.html',
         controller: 'ReceiptController',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
       }).
       when('/status', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('whistleblower'),
+        }
       }).
       when('/forcedpasswordchange', {
         templateUrl: 'views/forced_password_change.html',
         controller: 'ForcedPasswordChangeCtrl',
         header_title: 'Change your password',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('*'),
+        }
       }).
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'Preferences'
+        header_subtitle: 'Preferences',
+        resolve: {
+          access: requireAuth('*'),
+        }
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'List of submissions'
+        header_subtitle: 'List of submissions',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Landing page'
+        header_subtitle: 'Landing page',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'General settings'
+        header_subtitle: 'General settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Context configuration'
+        header_subtitle: 'Context configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/questionnaires', {
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Questionnaire configuration'
+        header_subtitle: 'Questionnaire configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User management'
+        header_subtitle: 'User management',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recipient configuration'
+        header_subtitle: 'Recipient configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Notification settings'
+        header_subtitle: 'Notification settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/url_shortener', {
         templateUrl: 'views/admin/url_shortener.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'URL shortener'
+        header_subtitle: 'URL shortener',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Advanced settings'
+        header_subtitle: 'Advanced settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/user/preferences', {
         templateUrl: 'views/user/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'User preferences',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User overview'
+        header_subtitle: 'User overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Submission overview'
+        header_subtitle: 'Submission overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'File overview'
+        header_subtitle: 'File overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
         controller: 'AnomaliesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Anomalies'
+        header_subtitle: 'Anomalies',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/stats', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'System stats'
+        header_subtitle: 'System stats',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/activities', {
         templateUrl: 'views/admin/activities.html',
         controller: 'ActivitiesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recent activities'
+        header_subtitle: 'Recent activities',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/custodian', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
         header_title: 'Custodian of the identities',
-        header_subtitle: "List of access requests to whistleblowers' identities"
+        header_subtitle: "List of access requests to whistleblowers' identities",
+        resolve: {
+          access: requireAuth('custodian'),
+        }
       }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/autologin', {
         templateUrl: 'views/autologin.html',
         controller: 'AutoLoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       otherwise({
         redirectTo: '/'
@@ -315,8 +413,8 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'Access', 'GLTranslate',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, Access, GLTranslate) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.Utils = Utils;
@@ -454,6 +552,14 @@ var GLClient = angular.module('GLClient', [
         } else {
           $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
         }
+      }
+    });
+
+    $rootScope.$on('$routeChangeError', function(event, current, previous) {
+      if (angular.isDefined(previous)) {
+          $location.path(previous.$$route.originalPath);
+      } else {
+          $location.path('/');
       }
     });
 
