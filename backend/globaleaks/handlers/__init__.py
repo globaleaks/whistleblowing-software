@@ -16,7 +16,7 @@
 __all__ = ['admin',
            'base',
            'files',
-           'node',
+           'public',
            'receiver',
            'rtip',
            'submission',
