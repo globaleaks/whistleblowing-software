@@ -38,7 +38,7 @@
 </div>
 <div id="ReceiptInputBox" data-ng-if="!formatted_keycode">
   <div data-ng-if="!embedded">
-    <label data-translate>{{::node.whistleblowing_receipt_prompt}}</label>
+    <label>{{::node.whistleblowing_receipt_prompt}}</label>
   </div>
   <div data-ng-include="'views/partials/wb_login.html'"></div>
   <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
