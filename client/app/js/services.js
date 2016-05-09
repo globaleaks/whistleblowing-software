@@ -189,7 +189,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       }
     },
 
-    isAuthenticatedUser: function (role) {
+    isAuthenticated: function (role) {
       if (Authentication.session && (role === '*' || Authentication.session.role === role)) {
         return Access.OK;
       } else {

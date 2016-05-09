@@ -70,6 +70,14 @@ var GLClient = angular.module('GLClient', [
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
+    function requireAuth(role) {
+      return ['Access', function(Access) { return Access.isAuthenticated(role); }];
+    }
+
+    function noAuth() {
+      return ['Access', function(Access) { return Access.isUnauth(); }];
+    }
+
     $routeProvider.
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
@@ -77,7 +85,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Platform wizard',
         header_subtitle: 'Step-by-step setup',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/submission', {
@@ -86,7 +94,7 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/receipt', {
@@ -95,7 +103,7 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/status/:tip_id', {
@@ -104,7 +112,7 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('receiver'); }]
+          access: requireAuth('receiver'),
         }
       }).
       when('/status', {
@@ -113,7 +121,7 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('whistleblower'); }]
+          access: requireAuth('whistleblower'),
         }
       }).
       when('/forcedpasswordchange', {
@@ -122,7 +130,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Change your password',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('*'); }]
+          access: requireAuth('*'),
         }
       }).
       when('/receiver/preferences', {
@@ -131,7 +139,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Recipient interface',
         header_subtitle: 'Preferences',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('*'); }]
+          access: requireAuth('*'),
         }
       }).
       when('/receiver/tips', {
@@ -140,7 +148,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Recipient interface',
         header_subtitle: 'List of submissions',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('receiver'); }]
+          access: requireAuth('receiver'),
         }
       }).
       when('/admin/landing', {
@@ -149,7 +157,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Landing page',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/content', {
@@ -158,7 +166,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'General settings',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/contexts', {
@@ -167,7 +175,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Context configuration',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/questionnaires', {
@@ -176,7 +184,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Questionnaire configuration',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/users', {
@@ -185,7 +193,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'User management',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/receivers', {
@@ -194,7 +202,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Recipient configuration',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/mail', {
@@ -203,7 +211,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Notification settings',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/url_shortener', {
@@ -212,7 +220,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'URL shortener',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/advanced_settings', {
@@ -221,7 +229,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Advanced settings',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/user/preferences', {
@@ -230,7 +238,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'User preferences',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/overview/users', {
@@ -239,7 +247,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'User overview',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/overview/tips', {
@@ -248,7 +256,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Submission overview',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/overview/files', {
@@ -257,7 +265,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'File overview',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/anomalies', {
@@ -266,7 +274,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Anomalies',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/stats', {
@@ -275,7 +283,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'System stats',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin/activities', {
@@ -284,7 +292,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Recent activities',
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+          access: requireAuth('admin'),
         }
       }).
       when('/admin', {
@@ -293,7 +301,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/custodian', {
@@ -302,15 +310,15 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
         header_title: 'Custodian of the identities',
-        header_subtitle: "List of access requests to whistleblowers' identities"
+        header_subtitle: "List of access requests to whistleblowers' identities",
         resolve: {
-          access: ["Access", function (Access) { return Access.isAuthenticatedUser('custodian'); }]
+          access: requireAuth('custodian'),
         }
       }).
       when('/login', {
@@ -319,7 +327,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/autologin', {
@@ -328,7 +336,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Login',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       when('/', {
@@ -337,7 +345,7 @@ var GLClient = angular.module('GLClient', [
         header_title: '',
         header_subtitle: '',
         resolve: {
-          access: ["Access", function (Access) { return Access.isUnauth(); }]
+          access: noAuth(),
         }
       }).
       otherwise({
@@ -405,8 +413,8 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'Access', 'GLTranslate',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, Access, GLTranslate) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.Utils = Utils;
@@ -545,6 +553,23 @@ var GLClient = angular.module('GLClient', [
           $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
         }
       }
+    });
+
+    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
+      if (rejection === Access.FORBIDDEN) {
+        var err = {
+          message: 'Auth failure to: ' + $location.url(),
+          code: 29, // Authentication Error
+        };
+        $rootScope.errors.push(err);
+      }
+      
+      if (angular.isDefined(previous)) {
+          $location.path(previous.$$route.originalPath);
+      } else {
+          $location.path('/');
+      }
+
     });
 
     $rootScope.$on('$routeChangeSuccess', function (event, current) {
