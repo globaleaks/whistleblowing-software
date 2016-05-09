@@ -27,14 +27,22 @@ angular.module('GLBrowserCrypto', [])
 
       var work = function(i) {
         var hashme = str2Uint8Array(str + i);
-        getWebCrypto().digest({name: "SHA-256"}, hashme).then(function (hash) {
+        var damnIE = getWebCrypto().digest({name: "SHA-256"}, hashme);
+
+        var xxx = function (hash) {
           hash = new Uint8Array(hash);
           if (hash[31] === 0) {
             deferred.resolve(i);
           } else {
             work(i + 1);
           }
-        });
+        }
+
+        if (damnIE.then !== undefined) {
+          damnIE.then(xxx);
+        } else {
+          damnIE.oncomplete = function(r) { xxx(r.target.result); };
+        }
       }
 
       work(0);
