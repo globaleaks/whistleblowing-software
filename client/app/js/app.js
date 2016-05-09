@@ -75,180 +75,270 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'Platform wizard',
-        header_subtitle: 'Step-by-step setup'
+        header_subtitle: 'Step-by-step setup',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/receipt', {
         templateUrl: 'views/receipt.html',
         controller: 'ReceiptController',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('receiver'); }]
+        }
       }).
       when('/status', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('whistleblower'); }]
+        }
       }).
       when('/forcedpasswordchange', {
         templateUrl: 'views/forced_password_change.html',
         controller: 'ForcedPasswordChangeCtrl',
         header_title: 'Change your password',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('*'); }]
+        }
       }).
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'Preferences'
+        header_subtitle: 'Preferences',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('*'); }]
+        }
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'List of submissions'
+        header_subtitle: 'List of submissions',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('receiver'); }]
+        }
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Landing page'
+        header_subtitle: 'Landing page',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'General settings'
+        header_subtitle: 'General settings',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Context configuration'
+        header_subtitle: 'Context configuration',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/questionnaires', {
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Questionnaire configuration'
+        header_subtitle: 'Questionnaire configuration',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User management'
+        header_subtitle: 'User management',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recipient configuration'
+        header_subtitle: 'Recipient configuration',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Notification settings'
+        header_subtitle: 'Notification settings',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/url_shortener', {
         templateUrl: 'views/admin/url_shortener.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'URL shortener'
+        header_subtitle: 'URL shortener',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Advanced settings'
+        header_subtitle: 'Advanced settings',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/user/preferences', {
         templateUrl: 'views/user/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'User preferences',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User overview'
+        header_subtitle: 'User overview',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Submission overview'
+        header_subtitle: 'Submission overview',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'File overview'
+        header_subtitle: 'File overview',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
         controller: 'AnomaliesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Anomalies'
+        header_subtitle: 'Anomalies',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/stats', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'System stats'
+        header_subtitle: 'System stats',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin/activities', {
         templateUrl: 'views/admin/activities.html',
         controller: 'ActivitiesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recent activities'
+        header_subtitle: 'Recent activities',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('admin'); }]
+        }
       }).
       when('/admin', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/custodian', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
         header_title: 'Custodian of the identities',
         header_subtitle: "List of access requests to whistleblowers' identities"
+        resolve: {
+          access: ["Access", function (Access) { return Access.isAuthenticatedUser('custodian'); }]
+        }
       }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/autologin', {
         templateUrl: 'views/autologin.html',
         controller: 'AutoLoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: ["Access", function (Access) { return Access.isUnauth(); }]
+        }
       }).
       otherwise({
         redirectTo: '/'
