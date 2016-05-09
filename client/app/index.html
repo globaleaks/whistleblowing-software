@@ -228,6 +228,17 @@
           return false;
         }
 
+        if (!(window.File && window.FileList && window.FileReader)) {
+          console.log("GlobaLeaks startup failure: missing support for File API");
+          return false;
+        }
+
+        if (typeof Blob === 'undefined' ||
+            (!Blob.prototype.slice && !Blob.prototype.webkitSlice && !!Blob.prototype.mozSlice)) {
+          console.log("GlobaLeaks startup failure: missing support for Blob API");
+          return false;
+        }
+
         // Checks related to Webworker compatibility
         if (typeof window.Worker === 'undefined') {
           console.log("GlobaLeaks startup failure: missing Webworker support");
