@@ -2,7 +2,6 @@
 
 function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
     return function(exception, cause) {
-
         var $rootScope = $injector.get('$rootScope');
 
         if ($rootScope.exceptions_count === undefined) {
@@ -72,185 +71,287 @@ var GLClient = angular.module('GLClient', [
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
+    function requireAuth(role) {
+      return ['Access', function(Access) { return Access.isAuthenticated(role); }];
+    }
+
+    function noAuth() {
+      return ['Access', function(Access) { return Access.isUnauth(); }];
+    }
+
+    function allKinds() {
+      return ['Access', function(Access) { return Access.OK; }];
+    }
+
     $routeProvider.
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
         controller: 'WizardCtrl',
         header_title: 'Platform wizard',
-        header_subtitle: 'Step-by-step setup'
+        header_subtitle: 'Step-by-step setup',
+        resolve: {
+          access: allKinds(),
+        }
       }).
       when('/submission', {
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/receipt', {
         templateUrl: 'views/receipt.html',
         controller: 'ReceiptController',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/status/:tip_id', {
         templateUrl: 'views/receiver/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
       }).
       when('/status', {
         templateUrl: 'views/whistleblower/tip.html',
         controller: 'TipCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('whistleblower'),
+        }
       }).
       when('/forcedpasswordchange', {
         templateUrl: 'views/forced_password_change.html',
         controller: 'ForcedPasswordChangeCtrl',
         header_title: 'Change your password',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('*'),
+        }
       }).
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'Preferences'
+        header_subtitle: 'Preferences',
+        resolve: {
+          access: requireAuth('*'),
+        }
       }).
       when('/receiver/tips', {
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl',
         header_title: 'Recipient interface',
-        header_subtitle: 'List of submissions'
+        header_subtitle: 'List of submissions',
+        resolve: {
+          access: requireAuth('receiver'),
+        }
       }).
       when('/admin/landing', {
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Landing page'
+        header_subtitle: 'Landing page',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'General settings'
+        header_subtitle: 'General settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/contexts', {
         templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Context configuration'
+        header_subtitle: 'Context configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/questionnaires', {
         templateUrl: 'views/admin/questionnaires.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Questionnaire configuration'
+        header_subtitle: 'Questionnaire configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/users', {
         templateUrl: 'views/admin/users.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User management'
+        header_subtitle: 'User management',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/receivers', {
         templateUrl: 'views/admin/receivers.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recipient configuration'
+        header_subtitle: 'Recipient configuration',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/mail', {
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Notification settings'
+        header_subtitle: 'Notification settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/url_shortener', {
         templateUrl: 'views/admin/url_shortener.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'URL shortener'
+        header_subtitle: 'URL shortener',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Advanced settings'
+        header_subtitle: 'Advanced settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/user/preferences', {
         templateUrl: 'views/user/preferences.html',
         controller: 'PreferencesCtrl',
         header_title: 'User preferences',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/users', {
         templateUrl: 'views/admin/users_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User overview'
+        header_subtitle: 'User overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Submission overview'
+        header_subtitle: 'Submission overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/overview/files', {
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'File overview'
+        header_subtitle: 'File overview',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/anomalies', {
         templateUrl: 'views/admin/anomalies.html',
         controller: 'AnomaliesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Anomalies'
+        header_subtitle: 'Anomalies',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/stats', {
         templateUrl: 'views/admin/stats.html',
         controller: 'StatisticsCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'System stats'
+        header_subtitle: 'System stats',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin/activities', {
         templateUrl: 'views/admin/activities.html',
         controller: 'ActivitiesCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Recent activities'
+        header_subtitle: 'Recent activities',
+        resolve: {
+          access: requireAuth('admin'),
+        }
       }).
       when('/admin', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/custodian', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/custodian/identityaccessrequests', {
         templateUrl: 'views/custodian/identity_access_requests.html',
         header_title: 'Custodian of the identities',
-        header_subtitle: 'List of access requests to whistleblowers\' identities'
+        header_subtitle: "List of access requests to whistleblowers' identities",
+        resolve: {
+          access: requireAuth('custodian'),
+        }
       }).
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/autologin', {
         templateUrl: 'views/autologin.html',
         controller: 'AutoLoginCtrl',
         header_title: 'Login',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         header_title: '',
-        header_subtitle: ''
+        header_subtitle: '',
+        resolve: {
+          access: noAuth(),
+        }
       }).
       otherwise({
         redirectTo: '/'
@@ -317,15 +418,217 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'Access', 'GLTranslate',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, Access, GLTranslate) {
+
+    $rootScope.Authentication = Authentication;
+    $rootScope.Utils = Utils;
+
+    $rootScope.started = false;
+    $rootScope.showLoadingPanel = false;
+    $rootScope.successes = [];
+    $rootScope.errors = [];
+    $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
+
+    $rootScope.closeAlert = function (list, index) {
+      list.splice(index, 1);
+    };
+
+    var route_check = function () {
+      if ($rootScope.node.wizard_done === false) {
+        $location.path('/wizard');
+      }
+
+      if (($location.path() === '/') && ($rootScope.node.landing_page === 'submissionpage')) {
+        $location.path('/submission');
+      }
+
+      if ($location.path() === '/submission' &&
+          $rootScope.anonymous === false &&
+          $rootScope.node.tor2web_whistleblower === false) {
+        $location.path("/");
+      }
+    };
+
+    var set_title = function () {
+      var path = $location.path();
+      var statuspage = '/status';
+      if (path === '/') {
+        $rootScope.ht = $rootScope.node.header_title_homepage;
+      } else if (path === '/submission') {
+        $rootScope.ht = $rootScope.node.header_title_submissionpage;
+      } else if (path === '/receipt') {
+        if (Authentication.keycode) {
+          $rootScope.ht = $rootScope.node.header_title_receiptpage;
+        } else {
+          $rootScope.ht = $filter('translate')("Login");
+        }
+      } else if (path.substr(0, statuspage.length) === statuspage) {
+        $rootScope.ht = $rootScope.node.header_title_tippage;
+      } else {
+        $rootScope.ht = $filter('translate')($rootScope.header_title);
+      }
+    };
+
+    $rootScope.init = function () {
+      var deferred = $q.defer();
+
+      PublicResource.get(function(result, getResponseHeaders) {
+        $rootScope.node = result.node;
+        $rootScope.contexts = result.contexts;
+        $rootScope.receivers = result.receivers;
+
+        // Tor detection and enforcing of usage of HS if users are using Tor
+        if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
+          // A better check on this situation would be
+          // to fetch https://check.torproject.org/api/ip
+          $rootScope.anonymous = true;
+        } else {
+          if (window.location.protocol === 'https:') {
+            var headers = getResponseHeaders();
+            if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
+              $rootScope.anonymous = true;
+              if ($rootScope.node.hidden_service && !Utils.iframeCheck()) {
+                // the check on the iframe is in order to avoid redirects
+                // when the application is included inside iframes in order to not
+                // mix HTTPS resources with HTTP resources.
+                window.location.href = $rootScope.node.hidden_service + '/#' + $location.url();
+              }
+            } else {
+              $rootScope.anonymous = false;
+            }
+          } else {
+            $rootScope.anonymous = false;
+          }
+        }
+
+        GLTranslate.AddNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
+
+        route_check();
+
+        $rootScope.languages_supported = {};
+        $rootScope.languages_enabled = {};
+        $rootScope.languages_enabled_selector = [];
+        angular.forEach($rootScope.node.languages_supported, function (lang) {
+          var code = lang.code;
+          var name = lang.native;
+          $rootScope.languages_supported[code] = name;
+          if ($rootScope.node.languages_enabled.indexOf(code) !== -1) {
+            $rootScope.languages_enabled[code] = name;
+            $rootScope.languages_enabled_selector.push({"name": name, "code": code});
+          }
+        });
+
+        $rootScope.languages_enabled_selector = $filter('orderBy')($rootScope.languages_enabled_selector, 'code');
+
+        $rootScope.languages_enabled_length = Object.keys($rootScope.node.languages_enabled).length;
+
+        $rootScope.show_language_selector = ($rootScope.languages_enabled_length > 1);
+
+        set_title();
+
+        if ($rootScope.node.enable_experimental_features) {
+          $rootScope.isStepTriggered = fieldUtilities.isStepTriggered;
+          $rootScope.isFieldTriggered = fieldUtilities.isFieldTriggered;
+        } else {
+          $rootScope.isStepTriggered = $rootScope.dumb_function;
+          $rootScope.isFieldTriggered = $rootScope.dumb_function;
+        }
+
+        $rootScope.started = true;
+        deferred.resolve();
+      });
+
+      return deferred.promise;
+    };
+
+    //////////////////////////////////////////////////////////////////
+
+    $rootScope.$on("$routeChangeStart", function() {
+      if ($rootScope.node) {
+        route_check();
+      }
+
+      var path = $location.path();
+      var embedded = '/embedded/';
+
+      if ($location.path().substr(0, embedded.length) === embedded) {
+        $rootScope.embedded = true;
+        var search = $location.search();
+        if (Object.keys(search).length === 0) {
+          $location.path(path.replace("/embedded/", "/"));
+          $location.search("embedded=true");
+        } else {
+          $location.url($location.url().replace("/embedded/", "/") + "&embedded=true");
+        }
+      }
+    });
+
+    $rootScope.$on('$routeChangeError', function(event, current, previous) {
+      if (angular.isDefined(previous)) {
+          $location.path(previous.$$route.originalPath);
+      } else {
+          $location.path('/');
+      }
+    });
+
+    $rootScope.$on('$routeChangeSuccess', function (event, current) {
+      if (current.$$route) {
+        $rootScope.successes = [];
+        $rootScope.errors = [];
+        $rootScope.header_title = current.$$route.header_title;
+        $rootScope.header_subtitle = current.$$route.header_subtitle;
+
+        if ($rootScope.node) {
+          set_title();
+        }
+      }
+    });
+
+    $rootScope.$on("REFRESH", function() {
+      $rootScope.reload();
+    });
+
+    $rootScope.$watch(function () {
+      return Authentication.session;
+    }, function () {
+      $rootScope.session = Authentication.session;
+    });
+
+    $rootScope.keypress = function(e) {
+       if (((e.which || e.keyCode) === 116) || /* F5 */
+           ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
+         e.preventDefault();
+         $rootScope.$emit("REFRESH");
+       }
+    };
+
+    $rootScope.init();
+
+    $rootScope.reload = function(new_path) {
+      $rootScope.started = false;
+      $rootScope.successes = [];
+      $rootScope.errors = [];
+      $rootScope.init().then(function() {
+        $route.reload();
+
+        if (new_path) {
+          $location.path(new_path).replace();
+        }
+      });
+    };
+}]).
   factory("stacktraceService", function() {
     return({
       fromError: StackTrace.fromError
     });
 }).
-  factory('globaleaksRequestInterceptor', ['$rootScope', function($rootScope) {
+  factory('globaleaksRequestInterceptor', ['$injector', function($injector) {
     return {
      'request': function(config) {
-       angular.extend(config.headers, $rootScope.get_auth_headers());
+        var Authentication = $injector.get('Authentication');
+
+       angular.extend(config.headers, Authentication.get_auth_headers());
        return config;
      }
    };

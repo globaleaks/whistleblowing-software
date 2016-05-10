@@ -23,7 +23,7 @@ describe('globaLeaks process', function() {
       browser.get('/#/');
 
       element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
-        element(by.css('[data-ng-click="view_tip(formatted_keycode)"]')).click().then(function() {
+        element(by.id('ReceiptButton')).click().then(function() {
           utils.waitForUrl('/status');
           deferred.fulfill();
         });

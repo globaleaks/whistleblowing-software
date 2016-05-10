@@ -95,7 +95,7 @@ GLClient.controller('AdminCtrl',
       $scope.$emit("REFRESH");
     };
 
-    $scope.update(node, cb);
+    $scope.Utils.update(node, cb);
   };
 
   $scope.newItemOrder = function(objects, key) {
@@ -195,11 +195,11 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   };
 
   $scope.uploadfinished = function () {
-    $scope.update_static_files();
+    $scope.Utils.update_static_files();
   };
 
   $scope.delete_resource = function (url, refresh) {
-    return $http['delete'](url).success(function () {
+    return $http.delete(url).success(function () {
       if (refresh) {
         $scope.$emit("REFRESH");
       }
@@ -207,7 +207,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
   };
 
   $scope.delete_file = function (url) {
-    $http['delete'](url).success(function () {
+    $http.delete(url).success(function () {
       $scope.update_static_files();
     });
   };

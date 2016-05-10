@@ -13,7 +13,7 @@
         </div>
         <div data-ng-show="!isCollapsed">
           <div class="well well-large uploadfile">
-            <span flow-init="{target: getUploadUrl_lang(language.code), headers: get_auth_headers()}"
+            <span flow-init="{target: Utils.getUploadUrl_lang(language.code), headers: Authentication.get_auth_headers()}"
                 flow-files-submitted="$flow.upload()"
                 flow-file-success="updateReceiverImgReloadUrl()"
                 flow-name="flowObj">
@@ -28,7 +28,7 @@
               <span class="glyphicon glyphicon-download"></span>
               <span data-translate>Download</span>
             </a>
-            <a class="btn btn-danger" data-ng-click="delete_file('admin/l10n/{{language.code}}.json')">
+            <a class="btn btn-danger" data-ng-click="delete_file('admin/l10n/' + language.code + '.json')">
               <span class="glyphicon glyphicon-trash"></span>
               <span data-translate>Reset</span>
             </a>

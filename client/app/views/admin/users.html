@@ -4,7 +4,16 @@
     <div class="adminConfigSection row" data-ng-controller="AdminUserAddCtrl">
       <form name="newUser" class="addUser col-md-6" novalidate>
         <div class="editorTitle" data-translate>Add new user</div>
-        <div class="form-group" data-ng-if="!node.simplified_login">
+        <div class="form-group">
+          <label data-translate>Role</label>
+          <select name="role" class="form-control" data-ng-model="new_user.role" required>
+            <option value="admin" data-translate>Admin</option>
+            <option value="receiver" data-translate>Recipient</option>
+            <option value="custodian" data-ng-if="admin.node.enable_experimental_features" data-translate>Custodian</option>
+          </select>
+          <div class="text-danger" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
+        </div>
+        <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
           <label data-translate>Username</label>
           <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
           <div class="text-danger" data-ng-show="newUser.username.$error.required" data-translate>This field is mandatory</div>
@@ -13,15 +22,6 @@
           <label data-translate>Name</label>
           <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
           <div class="text-danger" data-ng-show="newUser.name.$error.required" data-translate>This field is mandatory</div>
-        </div>
-        <div class="form-group">
-          <label data-translate>Role</label>
-          <select name="role" class="form-control" data-ng-model="new_user.role" required>
-            <option value="admin" data-translate>Admin</option>
-            <option value="receiver" data-translate>Recipient</option>
-            <option value="custodian" data-translate>Custodian</option>
-          </select>
-          <div class="text-danger" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Email address</label>
@@ -97,7 +97,7 @@
                   <div class="form-group">
                     <div image-upload image-upload-model="user" image-upload-model-attr="picture" image-upload-url="{{'admin/users/' + user.id + '/img'}}"></div>
                   </div>
-                  <div class="form-group" data-ng-if="!node.simplified_login">
+                  <div class="form-group" data-ng-if="user.role !== 'receiver' || !node.simplified_login">
                     <label data-translate>Username</label>
                     <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="user.username" type="text" required />
                     <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
@@ -137,14 +137,25 @@
                       <option value="enabled" data-translate>Enabled</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label data-translate>Language</label>
-                    <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
-                  </div>
-                  <div class="form-group">
-                    <label data-translate>Timezone</label>
-                    <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
-                  </div>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Description</label>
+                  <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Status</label>
+                  <select class="form-control" data-ng-model="user.state">
+                    <option value="disabled" data-translate>Disabled</option>
+                    <option value="enabled" data-translate>Enabled</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Language</label>
+                  <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+                </div>
+                <div class="form-group">
+                  <label data-translate>Timezone</label>
+                  <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
                 </div>
               </div>
               <div class="row">

@@ -21,17 +21,7 @@ var public_resources = [
     'status': 200
   },
   {
-    'url': '/node',
-    'type': 'application/json',
-    'status': 200
-  },
-  {
-    'url': '/contexts',
-    'type': 'application/json',
-    'status': 200
-  },
-  {
-    'url': '/receivers',
+    'url': '/public',
     'type': 'application/json',
     'status': 200
   },

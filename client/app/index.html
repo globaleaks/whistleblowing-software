@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-ng-app="GLClient" data-ng-controller="MainCtrl" data-ng-keydown="keypress($event)" data-ng-strict-di>
+<html data-ng-app="GLClient" data-ng-keydown="keypress($event)" data-ng-strict-di>
   <head>
     <title data-ng-bind="node.name"></title>
     <meta charset="utf-8" />
@@ -229,6 +229,17 @@
     <script type="text/javascript">
       var isBrowserCompatible = function() {
         if (typeof window === 'undefined') {
+          return false;
+        }
+
+        if (!(window.File && window.FileList && window.FileReader)) {
+          console.log("GlobaLeaks startup failure: missing support for File API");
+          return false;
+        }
+
+        if (typeof Blob === 'undefined' ||
+            (!Blob.prototype.slice && !Blob.prototype.webkitSlice && !!Blob.prototype.mozSlice)) {
+          console.log("GlobaLeaks startup failure: missing support for Blob API");
           return false;
         }
 

@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 'glbcWhistleblower', 'glbcReceiver', 'glbcKeyRing',
-  function($scope, $rootScope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib, glbcWhistleblower, glbcReceiver, glbcKeyRing) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 'glbcWhistleblower', 'glbcReceiver', 'glbcKeyRing',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib, glbcWhistleblower, glbcReceiver, glbcKeyRing) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -191,7 +191,7 @@ GLClient.controller('TipCtrl',
       $scope.showEditLabelInput = true;
     };
 
-    $scope.updateLabel = function(label) {
+    $scope.Utils.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
     };

@@ -43,11 +43,11 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     def test_post_file_finalized_submission(self):
         yield self.perform_full_submission_actions()
         handler = self.request(body=self.get_dummy_file())
-        self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
+        yield self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
 
     def test_post_file_on_unexistent_submission(self):
         handler = self.request(body=self.get_dummy_file())
-        self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
+        yield self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
 
 class TestFileAdd(helpers.TestHandlerWithPopulatedDB):

@@ -545,6 +545,12 @@ ContextDesc = {
 
 ContextCollectionDesc = [ContextDesc]
 
+PublicResourcesDesc = {
+    'node': NodeDesc,
+    'contexts': [ContextDesc],
+    'receivers': [ReceiverDesc]
+}
+
 AhmiaDesc = {
     'description': unicode,
     'language': unicode,

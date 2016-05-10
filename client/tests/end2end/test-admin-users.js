@@ -40,6 +40,11 @@ describe('admin add, configure, and delete users', function() {
     var make_account = function(user) {
       element(by.model('new_user.name')).sendKeys(user.name);
       element(by.model('new_user.email')).sendKeys(user.address);
+
+      if (user.role !== 'Recipient') {
+        element(by.model('new_user.username')).sendKeys(user.address);
+      }
+
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
       element(by.css('[data-ng-click="add_user()"]')).click();
       utils.waitUntilReady(element(by.xpath(".//*[text()='" + user.name + "']")));

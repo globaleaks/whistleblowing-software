@@ -170,7 +170,6 @@ class ReceiptAuthHandler(AuthenticationHandler):
         """
         Receipt login handler used by whistleblowers
         """
-
         request = self.validate_message(self.request.body, requests.ReceiptAuthDesc)
 
         receipt_hash = request['receipt_hash']

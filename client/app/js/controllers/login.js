@@ -1,4 +1,7 @@
-GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $location) {
+GLClient.controller('LoginCtrl', ['$scope', '$location', 'Authentication',
+    function($scope, $location, Authentication) {
+  $scope.Authentication = Authentication;
+
   // If already logged in, just go to the landing page.
   // If no longer authenticated on the server (server session expired or some form of malicious hack),
   // the API call will fail, clearing the client session and comming back to this controller without a landing page.
@@ -12,11 +15,10 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', function($scope, $locat
   $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
 }]);
 
-GLClient.controller('AutoLoginCtrl', ['$scope', function($scope) {
+GLClient.controller('AutoLoginCtrl', ['Authentication', function(Authentication) {
   function receiveMessage(event) {
     window.removeEventListener('message', this, false);
-    var receipt = event.data.replace(/\s+/g, '');
-    $scope.login('whistleblower', receipt);
+    Authentication.login('whistleblower', event.data);
   }
 
   window.addEventListener("message", receiveMessage, false);

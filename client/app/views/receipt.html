@@ -19,7 +19,7 @@
         <p data-translate>Use the 16 digit key code to log in. It will allow you to view any messages we sent you, and also to add extra info.</p>
       </div>
       <div>
-        <a id="ReceiptButton" class="btn btn-default pull-right" data-ng-click="view_tip(keycode)" data-translate>View your submission</a>
+        <button id="ReceiptButton" class="btn btn-default pull-right" data-ng-click="Authentication.login('whistleblower', keycode)" data-translate>View your submission</button>
       </div>
     </div>
     <div class="col-md-6" data-ng-if="!node.disable_key_code_hint">
@@ -38,7 +38,7 @@
 </div>
 <div id="ReceiptInputBox" data-ng-if="!formatted_keycode">
   <div data-ng-if="!embedded">
-    <label data-translate>Have you already filed a submission? Enter your key code.</label>
+    <label>{{::node.whistleblowing_receipt_prompt}}</label>
   </div>
   <div data-ng-include="'views/partials/wb_login.html'"></div>
   <div class="LoginErrorBoxHomepage row" data-ng-show="errors[0].code == 29">
@@ -48,7 +48,6 @@
           <span data-translate>Cannot log in</span>:
           <span data-translate>The key code is either invalid or the submission has expired.</span>
         </div>
-        <div data-translate>Please check your key code and try again or make a new submission.</div>
       </div>
     </div>
   </div>

@@ -9,10 +9,10 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.delField = function(fields, field) {
-      AdminFieldTemplateResource['delete']({
+      AdminFieldTemplateResource.delete({
         id: field.id
       }, function() {
-        $scope.deleteFromList(fields, field);
+        $scope.Utils.deleteFromList(fields, field);
       });
     };
 
@@ -24,13 +24,13 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
 
     $scope.exportQuestionTemplates = function() {
       AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
-        $scope.exportJSON(fields, 'question-templates.json');
+        $scope.Utils.exportJSON(fields, 'question-templates.json');
       });
     };
 
     $scope.exportQuestion = function(id) {
       AdminFieldTemplateResource.get({export: true, id: id}).$promise.then(function(field) {
-        $scope.exportJSON(field, 'question-' + id + '.json');
+        $scope.Utils.exportJSON(field, 'question-' + id + '.json');
       });
     };
 
@@ -145,7 +145,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.save_field = function(field) {
       var updated_field;
 
-      $scope.assignUniqueOrderIndex(field.options);
+      $scope.Utils.assignUniqueOrderIndex(field.options);
 
       if (field.instance === 'template') {
         updated_field = new AdminFieldTemplateResource(field);
@@ -153,26 +153,26 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
         updated_field = new AdminFieldResource(field);
       }
 
-      $scope.update(updated_field);
+      $scope.Utils.update(updated_field);
     };
 
-    $scope.moveUpAndSave = function(elem) {
-      $scope.moveUp(elem);
+    $scope.Utils.moveUpAndSave = function(elem) {
+      $scope.Utils.moveUp(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveDownAndSave = function(elem) {
-      $scope.moveDown(elem);
+    $scope.Utils.moveDownAndSave = function(elem) {
+      $scope.Utils.moveDown(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveLeftAndSave = function(elem) {
-      $scope.moveLeft(elem);
+    $scope.Utils.moveLeftAndSave = function(elem) {
+      $scope.Utils.moveLeft(elem);
       $scope.save_field(elem);
     };
 
-    $scope.moveRightAndSave = function(elem) {
-      $scope.moveRight(elem);
+    $scope.Utils.moveRightAndSave = function(elem) {
+      $scope.Utils.moveRight(elem);
       $scope.save_field(elem);
     };
 
@@ -215,15 +215,15 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     $scope.fieldIsMarkableSubjectToPreview = $scope.isMarkableSubjectToPreview($scope.field);
 
     $scope.triggerFieldDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_field.html', option, $scope);
     };
 
     $scope.triggerStepDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/trigger_step.html', option, $scope);
     };
 
     $scope.assignScorePointsDialog = function(option) {
-      return $scope.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
+      return $scope.Utils.openConfirmableModalDialog('views/partials/assign_score_points.html', option, $scope);
     };
   }
 ]).

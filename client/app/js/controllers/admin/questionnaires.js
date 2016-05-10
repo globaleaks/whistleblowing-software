@@ -17,11 +17,11 @@ controller('AdminQuestionnairesCtrl',
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 
-    return $scope.update(updated_questionnaire, cb);
+    return $scope.Utils.update(updated_questionnaire, cb);
   };
 
   $scope.delete_questionnaire = function(questionnaire) {
-    AdminQuestionnaireResource['delete']({
+    AdminQuestionnaireResource.delete({
       id: questionnaire.id
     }, function(){
       var idx = $scope.admin.questionnaires.indexOf(questionnaire);
@@ -39,7 +39,7 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.delStep = function(step) {
-    AdminStepResource['delete']({
+    AdminStepResource.delete({
       id: step.id
     }, function() {
       $scope.questionnaire.steps.splice($scope.questionnaire.steps.indexOf(step), 1);

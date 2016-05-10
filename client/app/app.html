@@ -1,5 +1,5 @@
-<div id="BodyDefault" data-ng-if="!isHomepage() || !node.custom_homepage">
-  <div id="PrivacyBadgeBox" data-ng-if="showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
+<div id="BodyDefault" data-ng-if="!Utils.isHomepage() || !node.custom_homepage">
+  <div id="PrivacyBadgeBox" data-ng-if="Utils.showPrivacyBadge()" data-ng-include="'views/partials/privacybadge.html'"></div>
   <div id="HeaderBox" data-ng-if="!embedded" data-ng-include="'views/partials/header.html'"></div>
   <div id="MessagesConsoleBox" data-ng-include="'views/partials/messageconsole.html'"></div>
 
@@ -11,6 +11,6 @@
   <div id="FooterBox" data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
 </div>
 
-<div id="BodyCustom" data-ng-if="isHomepage() && node.custom_homepage" data-ng-controller="HomeCtrl">
+<div id="BodyCustom" data-ng-if="Utils.isHomepage() && node.custom_homepage" data-ng-controller="HomeCtrl">
   <div data-ng-include="'static/custom_homepage.html'"></div>
 </div>

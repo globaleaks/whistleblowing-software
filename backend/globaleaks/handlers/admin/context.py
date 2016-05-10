@@ -11,7 +11,7 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.handlers.node import serialize_step
+from globaleaks.handlers.public import serialize_step
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings

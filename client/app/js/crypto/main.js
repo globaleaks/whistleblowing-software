@@ -35,19 +35,30 @@ angular.module('GLBrowserCrypto', [])
     proofOfWork: function(str) {
       var deferred = $q.defer();
 
-      var work = function(i) {
-        var hashme = str2Uint8Array(str + i);
-        getWebCrypto().digest({name: "SHA-256"}, hashme).then(function (hash) {
-          hash = new Uint8Array(hash);
-          if (hash[31] === 0) {
-            deferred.resolve(i);
-          } else {
-            work(i + 1);
-          }
-        });
-      };
+      var i = 0;
 
-      work(0);
+      var xxx = function (hash) {
+        hash = new Uint8Array(hash);
+        if (hash[31] === 0) {
+          deferred.resolve(i);
+        } else {
+          i += 1;
+          work();
+        }
+      }
+
+      var work = function() {
+        var hashme = str2Uint8Array(str + i);
+        var damnIE = getWebCrypto().digest({name: "SHA-256"}, hashme);
+
+        if (damnIE.then !== undefined) {
+          damnIE.then(xxx);
+        } else {
+          damnIE.oncomplete = function(r) { xxx(r.target.result); };
+        }
+      }
+
+      work();
 
       return deferred.promise;
     }

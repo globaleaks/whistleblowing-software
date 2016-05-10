@@ -33,10 +33,10 @@ var validate_mandatory_headers = function(headers) {
   }
 };
 
-describe('GET /receivers', function () {
-  it('responds 200 on GET /receivers', function (done) {
+describe('GET /public', function () {
+  it('responds 200', function (done) {
     app
-      .get('/receivers')
+      .get('/public')
       .expect(200)
       .end(function (err, res) {
         if (err) {
@@ -45,7 +45,7 @@ describe('GET /receivers', function () {
 
         validate_mandatory_headers(res.headers);
 
-        var receiver_username = JSON.parse(JSON.stringify(res.body))[0]['username'];
+        var receiver_username = JSON.parse(JSON.stringify(res.body))['receivers'][0]['username'];
 
         valid_login = {
           'username': receiver_username,

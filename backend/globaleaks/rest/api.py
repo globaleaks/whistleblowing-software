@@ -9,8 +9,8 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
-                                node, \
                                 admin, receiver, custodian, \
+                                public, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
@@ -48,13 +48,11 @@ spec = [
     (r'/authentication', authentication.AuthenticationHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
 
-    ## Main Public Handlers ##
-    (r'/node', node.NodeInstance),
-    (r'/contexts', node.ContextsCollection),
-    (r'/receivers' , node.ReceiversCollection),
+    ## Public API ##
+    (r'/public', public.PublicResource),
 
     # Fake file hosting the Ahmia.fi descriptor
-    (r'/description.json', node.AhmiaDescriptionHandler),
+    (r'/description.json', public.AhmiaDescriptionHandler),
 
     # User Preferences Handler
     (r'/preferences', user.UserInstance),
@@ -132,7 +130,7 @@ spec = [
 
     ## Special Files Handlers##
     (r'/(favicon.ico)', base.BaseStaticFileHandler),
-    (r'/robots.txt', node.RobotstxtHandler),
+    (r'/robots.txt', public.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',

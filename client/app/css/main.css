@@ -170,7 +170,6 @@ th {
   width: 10em;
   height: 10em;
   border: 1px solid #DDD;
-  border-radius: 5px;
   z-index: 0;
   text-align: center;
 }
@@ -198,15 +197,24 @@ th {
   left: 0;
 }
 
-.imageUploadThumbnail, .contextCardImgFrame, .receiverCardImgFrame {
+.imageUploadThumbnail, .contextCardFrame, .receiverCardFrame {
   height: 10em;
-  width: 10em;
 }
 
-.imageUploadThumbnailContent, .contextCardImg, .receiverCardImg {
+.contextListContent {
+  height: 5em;
+}
+
+.contextListContent div, .contextListContent span,
+.contextFrame div, .contextFrame span,
+.receiverFrame div, .receiverFrame span {
+  padding: 0.5em;
+}
+
+.imageUploadThumbnailContent, .contextImg, .receiverImg {
   background-color: #FFF;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   vertical-align: middle;
   text-align: center;

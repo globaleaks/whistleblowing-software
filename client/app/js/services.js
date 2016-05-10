@@ -1,7 +1,4 @@
 angular.module('GLServices', ['ngResource']).
-  factory('GLCache', ['$cacheFactory', function ($cacheFactory) {
-    return $cacheFactory('GLCache');
-  }]).
   factory('GLResource', ['$resource', function($resource) {
     return function(url, params, actions) {
       var defaults = {
@@ -16,13 +13,15 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, UserPreferences, ReceiverPreferences, glbcKeyLib) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib) {
       function Session(){
         var self = this;
 
-        $rootScope.login = function(username, password, cb) {
-          $rootScope.loginInProgress = true;
+        self.loginInProgress = false;
+
+        self.login = function(username, password, cb) {
+          self.loginInProgress = true;
 
           var success_fn = function(response) {
             self.session = {
@@ -61,7 +60,7 @@ angular.module('GLServices', ['ngResource']).
             }
 
             // reset login state before returning
-            $rootScope.loginInProgress = false;
+            self.loginInProgress = false;
 
             if (cb){
               return cb(response);
@@ -72,7 +71,8 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
-                $location.path('/forcedpasswordchange');
+                // Pushes ui to the ForcedPasswordChangeCtrl
+                locationForce.set('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
               }
@@ -94,7 +94,7 @@ angular.module('GLServices', ['ngResource']).
             return $http.post('authentication', {'username': username, 'password': password}).
             success(success_fn).
             error(function() {
-              $rootScope.loginInProgress = false;
+              self.loginInProgress = false;
             });
           }
         };
@@ -125,20 +125,23 @@ angular.module('GLServices', ['ngResource']).
 
         self.keycode = '';
 
-        $rootScope.logout = function() {
-          // we use $http['delete'] in place of $http.delete due to
-          // the magical IE7/IE8 that do not allow delete as identifier
-          // https://github.com/globaleaks/GlobaLeaks/issues/943
+        self.logout = function() {
+          locationForce.clear();
+
+          var logoutPerformed = function() {
+            self.loginRedirect(false);
+          };
+
           if (self.session.role === 'whistleblower') {
-            $http['delete']('receiptauth').then($rootScope.logoutPerformed,
-                                                $rootScope.logoutPerformed);
+            $http.delete('receiptauth').then(logoutPerformed,
+                                             logoutPerformed);
           } else {
-            $http['delete']('authentication').then($rootScope.logoutPerformed,
-                                                   $rootScope.logoutPerformed);
+            $http.delete('authentication').then(logoutPerformed,
+                                                logoutPerformed);
           }
         };
 
-        $rootScope.loginRedirect = function(sessionExpired) {
+        self.loginRedirect = function(sessionExpired) {
           var role = self.session === undefined ? undefined : self.session.role;
 
           self.session = undefined;
@@ -154,10 +157,6 @@ angular.module('GLServices', ['ngResource']).
               $location.search('src=' + source_path);
             }
           }
-        };
-
-        $rootScope.logoutPerformed = function() {
-          $rootScope.loginRedirect(false);
         };
 
         self.get_auth_headers = function() {
@@ -177,10 +176,37 @@ angular.module('GLServices', ['ngResource']).
 
       return new Session();
 }]).
+factory("Access", ["$q", "Authentication", function ($q, Authentication) {
+  var Access = {
+    OK: 200,
+
+    FORBIDDEN: 403,
+
+    isUnauth: function () {
+      if (Authentication.session === undefined) {
+        return Access.OK;
+      } else {
+        return $q.reject(Access.FORBIDDEN);
+      }
+    },
+
+    isAuthenticated: function (role) {
+      if (Authentication.session && (role === '*' || Authentication.session.role === role)) {
+        return Access.OK;
+      } else {
+        return $q.reject(Access.FORBIDDEN);
+      }
+    }
+  };
+
+  return Access;
+
+}]).
   factory('globalInterceptor', ['$q', '$injector', '$rootScope',
   function($q, $injector, $rootScope) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
+
     return {
       request: function(config) {
         // A new request should display the loader overlay
@@ -205,6 +231,7 @@ angular.module('GLServices', ['ngResource']).
            errors array the error message.
         */
         var $http = $injector.get('$http');
+        var Authentication = $injector.get('Authentication');
 
         try {
           if (response.data !== null) {
@@ -216,7 +243,7 @@ angular.module('GLServices', ['ngResource']).
 
             /* 30: Not Authenticated */
             if (error.code === 30) {
-              $rootScope.loginRedirect(true);
+              Authentication.loginRedirect(true);
             }
 
             $rootScope.errors.push(error);
@@ -231,14 +258,8 @@ angular.module('GLServices', ['ngResource']).
       }
     };
 }]).
-  factory('Node', ['GLResource', function(GLResource) {
-    return new GLResource('node');
-}]).
-  factory('Contexts', ['GLResource', function(GLResource) {
-    return new GLResource('contexts');
-}]).
-  factory('Receivers', ['GLResource', function(GLResource) {
-    return new GLResource('receivers');
+  factory('PublicResource', ['GLResource', function(GLResource) {
+    return new GLResource('public');
 }]).
   factory('TokenResource', ['GLResource', function(GLResource) {
     return new GLResource('token/:id', {id: '@id'});
@@ -689,13 +710,6 @@ angular.module('GLServices', ['ngResource']).
       });
     };
 }]).
-  factory('WhistleblowerTip', ['$rootScope', function($rootScope){
-    return function(keycode, fn) {
-      $rootScope.login('whistleblower', keycode).then(function() {
-        fn();
-      });
-    };
-}]).
   factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
     // Extend the default get request to include initialization of the receiver's
     // private key.
@@ -965,6 +979,245 @@ angular.module('GLServices', ['ngResource']).
 }]).
   factory('DefaultAppdata', ['GLResource', function(GLResource) {
     return new GLResource('data/appdata_l10n.json', {});
+}]).
+  factory('Utils', ['$rootScope', '$location', '$filter', '$uibModal', function($rootScope, $location, $filter, $uibModal) {
+    var isHomepage = function () {
+      return $location.path() === '/';
+    };
+
+    var isLoginPage = function () {
+      var path = $location.path();
+      return (path === '/login' ||
+              path === '/admin' ||
+              path === '/receipt');
+    };
+
+    var isAWhistleblowerPage = function() {
+      var path = $location.path();
+      return (path === '/' ||
+              path === '/start' ||
+              path === '/submission' ||
+              path === '/receipt' ||
+              path === '/status');
+    };
+
+    var getXOrderProperty = function() {
+      return 'x';
+    };
+
+    var getYOrderProperty = function(elem) {
+      var key = 'presentation_order';
+      if (elem[key] === undefined) {
+        key = 'y';
+      }
+      return key;
+    };
+
+    var getUploadStatus = function(uploads) {
+      var error = false;
+
+      for (var key in uploads) {
+        if (uploads.hasOwnProperty(key)) {
+          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+            return 'uploading';
+          }
+
+          for (var i=0; i<uploads[key].files.length; i++) {
+            if (uploads[key].files[i].error) {
+              error = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if (error) {
+        return 'error';
+      } else {
+        return 'finished';
+      }
+    };
+
+    return {
+      dumb_function: function() {
+        return true;
+      },
+
+      iframeCheck: function() {
+        try {
+          return window.self !== window.top;
+        } catch (e) {
+          return true;
+        }
+      },
+
+      update: function (model, cb, errcb) {
+        var success = {};
+        model.$update(function() {
+          $rootScope.successes.push(success);
+        }).then(
+          function() { if (cb !== undefined){ cb(); } },
+          function() { if (errcb !== undefined){ errcb(); } }
+        );
+      },
+
+      go: function (hash) {
+        $location.path(hash);
+      },
+
+      randomFluff: function () {
+        return Math.random() * 1000000 + 1000000;
+      },
+
+      imgDataUri: function(data) {
+        if (data === '') {
+          data = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=';
+        }
+
+        return 'data:image/png;base64,' + data;
+      },
+
+      isWizardPage: function () {
+        return $location.path() === '/wizard';
+      },
+
+      showLoginForm: function () {
+        return (!isHomepage() &&
+                !isLoginPage());
+      },
+
+      showPrivacyBadge: function() {
+        return (!$rootScope.embedded &&
+                !$rootScope.node.disable_privacy_badge &&
+                isAWhistleblowerPage());
+      },
+
+      showFilePreview: function(content_type) {
+        var content_types = [
+          'image/gif',
+          'image/jpeg',
+          'image/png',
+          'image/bmp'
+        ];
+
+        return content_types.indexOf(content_type) > -1;
+      },
+
+      moveUp: function(elem) {
+        elem[getYOrderProperty(elem)] -= 1;
+      },
+
+      moveDown: function(elem) {
+        elem[getYOrderProperty(elem)] += 1;
+      },
+
+      moveLeft: function(elem) {
+        elem[getXOrderProperty(elem)] -= 1;
+      },
+
+      moveRight: function(elem) {
+        elem[getXOrderProperty(elem)] += 1;
+      },
+
+      deleteFromList: function(list, elem) {
+        var idx = list.indexOf(elem);
+        if (idx !== -1) {
+          list.splice(idx, 1);
+        }
+      },
+
+      assignUniqueOrderIndex: function(elements) {
+        if (elements.length <= 0) {
+          return;
+        }
+
+        var key = getYOrderProperty(elements[0]);
+        if (elements.length) {
+          var i = 0;
+          elements = $filter('orderBy')(elements, key);
+          angular.forEach(elements, function (element) {
+            element[key] = i;
+            i += 1;
+          });
+        }
+      },
+
+      getUploadUrl_lang: function(lang) {
+        return 'admin/l10n/' + lang + '.json';
+      },
+
+      exportJSON: function(data, filename) {
+        var json = angular.toJson(data, 2);
+        var blob = new Blob([json], {type: "application/json"});
+        filename = filename === undefined ? 'data.json' : filename;
+        saveAs(blob, filename);
+      },
+
+      uploadedFiles: function(uploads) {
+        var sum = 0;
+
+        angular.forEach(uploads, function(flow) {
+          if (flow !== undefined) {
+            sum += flow.files.length;
+          }
+        });
+
+        return sum;
+      },
+
+      getUploadStatus: getUploadStatus,
+
+      isUploading: function(uploads) {
+        return getUploadStatus(uploads) === 'uploading';
+      },
+
+      remainingUploadTime: function(uploads) {
+        var sum = 0;
+
+        angular.forEach(uploads, function(flow) {
+          var x = flow.timeRemaining();
+          if (x === 'Infinity') {
+            return 'Infinity';
+          }
+          sum += x;
+        });
+
+        return sum;
+      },
+
+      uploadProgress: function(uploads) {
+        var sum = 0;
+        var n = 0;
+
+        angular.forEach(uploads, function(flow) {
+          sum += flow.progress();
+          n += 1;
+        });
+
+        if (n === 0 || sum === 0) {
+          return 1;
+        }
+
+        return sum / n;
+      },
+
+      openConfirmableModalDialog: function(template, arg, scope) {
+        scope = scope === undefined ? $rootScope : scope;
+
+        return $uibModal.open({
+          templateUrl: template,
+          controller: 'ConfirmableDialogCtrl',
+          backdrop: 'static',
+          keyboard: false,
+          scope: scope,
+          resolve: {
+            arg: function () {
+              return arg;
+            }
+          }
+        });
+      }
+    }
 }]).
   factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
       var getValidator = function(field) {

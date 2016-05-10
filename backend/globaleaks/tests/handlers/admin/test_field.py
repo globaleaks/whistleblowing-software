@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import admin
-from globaleaks.handlers.node import serialize_field
+from globaleaks.handlers.public import serialize_field
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.rest import errors
@@ -115,7 +115,7 @@ class TestFieldInstance(helpers.TestHandler):
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
-            self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
+            yield self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
 
         @inlineCallbacks
         def test_delete(self):
@@ -132,7 +132,7 @@ class TestFieldInstance(helpers.TestHandler):
             yield handler.delete(field['id'])
             self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
-            self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
+            yield self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
@@ -183,7 +183,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             wrong_sample_field = self.get_dummy_field()
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
-            self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
+            yield self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
 
         @inlineCallbacks
         def test_delete(self):
@@ -198,7 +198,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.delete(field['id'])
             self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
-            self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
+            yield self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
 
 class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):

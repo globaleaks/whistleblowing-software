@@ -13,11 +13,11 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
 
     var updated_user = new AdminUserResource(user);
 
-    return $scope.update(updated_user, cb);
+    return $scope.Utils.update(updated_user, cb);
   };
 
   $scope.perform_delete = function(user) {
-    AdminUserResource['delete']({
+    AdminUserResource.delete({
       id: user.id
     }, function(){
       var idx = $scope.admin.users.indexOf(user);
@@ -26,7 +26,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
   };
 
   $scope.userDeleteDialog = function(user) {
-    var modalInstance = $scope.openConfirmableModalDialog('views/partials/user_delete.html', user);
+    var modalInstance = $scope.Utils.openConfirmableModalDialog('views/partials/user_delete.html', user);
 
     modalInstance.result.then(
        function(result) { $scope.perform_delete(result); },
@@ -50,7 +50,7 @@ controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
     $scope.timezones = CONSTANTS.timezones;
 
     $scope.updateUserImgUrl = function() {
-      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.randomFluff();
+      $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.Utils.randomFluff();
     };
 
     $scope.updateUserImgUrl();

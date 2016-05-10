@@ -41,7 +41,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': 'globaleaks'
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = False
-        self.assertFailure(handler.post(), errors.TorNetworkRequired)
+        yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
     def test_successful_logout(self):
@@ -133,7 +133,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
             'receipt_hash': helpers.RECEIPT_HASH
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = False
-        self.assertFailure(handler.post(), errors.TorNetworkRequired)
+        yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):

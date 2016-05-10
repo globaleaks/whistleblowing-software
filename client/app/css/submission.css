@@ -21,11 +21,11 @@
 }
 
 .contextCard, .contextList, .receiverCard {
-  margin: 5px;
-  padding: 2em;
+  margin: 0.5em;
+  padding: 1em;
   background-color: white;
   border: 1px solid #DDD;
-  border-radius: 0.8em;
+  border-radius: 1em;
   word-wrap: break-word;
 }
 
@@ -132,10 +132,6 @@
 
 #Receipt {
   padding-bottom: 1.25em;
-}
-
-#ReceiptButton {
-  font-size: 1em;
 }
 
 #KeyCode {

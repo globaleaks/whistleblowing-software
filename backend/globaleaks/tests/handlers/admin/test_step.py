@@ -80,4 +80,4 @@ class TestStepInstance(helpers.TestHandler):
             yield handler.delete(step['id'])
             self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
-            self.assertFailure(handler.delete(step['id']), errors.StepIdNotFound)
+            yield self.assertFailure(handler.delete(step['id']), errors.StepIdNotFound)
