@@ -25,7 +25,7 @@ angular.module('GLBrowserCrypto', [])
     proofOfWork: function(str) {
       var deferred = $q.defer();
 
-      var i;
+      var i = 0;
 
       var xxx = function (hash) {
         hash = new Uint8Array(hash);
