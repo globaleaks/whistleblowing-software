@@ -106,7 +106,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Safari\", \"version\":\"9\", \"platform\":\"OS X 10.11\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Android\", \"version\": \"4.4\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\"}'."
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Android\", \"version\": \"5.1\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"7.1\", \"deviceName\": \"iPad Simulator\", \"deviceOrientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"8.0\", \"deviceName\": \"iPad Simulator\", \"deviceOrientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"iPhone\", \"version\": \"9.2\", \"deviceName\": \"iPad Simulator\", \"deviceOrientation\": \"portrait\", \"platform\":\"OS X 10.10\"}'"
   )
 
