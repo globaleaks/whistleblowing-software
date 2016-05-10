@@ -103,7 +103,7 @@ matrix:
     - env: GLTEST='end2end-2' BROWSER='firefox 45'
     - env: GLTEST='end2end-3' BROWSER='firefox beta'
     - env: GLTEST='end2end-4' BROWSER='chrome 37'
-    - env: GLTEST='end2end-5' BROWSER='chrome 49'
+    - env: GLTEST='end2end-5' BROWSER='chrome 48'
     - env: GLTEST='end2end-6' BROWSER='chrome beta'
     - env: GLTEST='end2end-7' BROWSER='safari 8'
     - env: GLTEST='end2end-8' BROWSER='safari 9'
