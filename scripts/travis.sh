@@ -45,6 +45,11 @@ if [ "$GLTEST" = "test" ]; then
   grunt mochaTest
 
   if [ "$GLREQUIREMENTS" = "trusty" ]; then
+    echo "Extracting firefox and setting PATH variable..."
+    tar -xjf /tmp/firefox-latest.tar.bz2 --directory /tmp
+    export PATH="/tmp/firefox:$PATH"
+    echo "Using firefox version `firefox --version`"
+
     echo "Running BrowserTesting locally collecting code coverage"
     cd $TRAVIS_BUILD_DIR/client
 
