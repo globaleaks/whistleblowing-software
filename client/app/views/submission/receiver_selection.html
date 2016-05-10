@@ -41,8 +41,8 @@
           </div>
         </div>
         <div class="receiverCardContent row">
-          <div class="receiverCardImgFrame" data-ng-class="{'col-md-3': !submission.context.show_small_receiver_cards, 'col-md-12': submission.context.show_small_receiver_cards}">
-            <span class="verticalAlignHelper"></span><img class="receiverCardImg" data-ng-src="{{::Utils.imgDataUri(receiver.picture)}}" />
+          <div class="receiverCardFrame" data-ng-class="{'col-md-3': !submission.context.show_small_receiver_cards, 'col-md-12': submission.context.show_small_receiver_cards}">
+            <span class="verticalAlignHelper"></span><img class="receiverImg" data-ng-if="receiver.picture !== ''" data-ng-src="{{::Utils.imgDataUri(receiver.picture)}}" />
           </div>
           <div data-ng-if="!submission.context.show_small_receiver_cards" class="receiverDescription col-md-7">{{::receiver.description}}</div>
         </div>
