@@ -266,19 +266,17 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to export the submission', function(done) {
-      login_receiver(receiver_username, receiver_password);
-      element(by.id('tip-0')).click();
-      element(by.id('tipFileName')).getText().then(function(t) {
-        expect(t).toEqual(jasmine.any(String));
-        element(by.id('tip-action-export')).click();
-        if (utils.testFileDownload()) {
-          // TODO: Verify the zips content
+      if (utils.testFileDownload()) {
+        login_receiver(receiver_username, receiver_password);
+        element(by.id('tip-0')).click();
+        element(by.id('tipFileName')).getText().then(function(t) {
+          expect(t).toEqual(jasmine.any(String));
           utils.waitForFile(t + '.zip', 30000);
           done();
-        } else {
-          done();
-        }
-      });
+        });
+      } else {
+        done();
+      }
   });
 
   it('Recipient should be able to disable and renable email notifications', function(done) {
