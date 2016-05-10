@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('adming configure node', function() {
   it('should configure node', function(done) {
     browser.setLocation('admin/advanced_settings');
