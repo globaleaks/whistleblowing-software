@@ -78,6 +78,10 @@ var GLClient = angular.module('GLClient', [
       return ['Access', function(Access) { return Access.isUnauth(); }];
     }
 
+    function allKinds() {
+      return ['Access', function(Access) { return Access.OK; }];
+    }
+
     $routeProvider.
       when('/wizard', {
         templateUrl: 'views/wizard/main.html',
@@ -85,7 +89,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Platform wizard',
         header_subtitle: 'Step-by-step setup',
         resolve: {
-          access: noAuth(),
+          access: allKinds(),
         }
       }).
       when('/submission', {
