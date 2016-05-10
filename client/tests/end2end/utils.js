@@ -27,12 +27,6 @@ browser.getCapabilities().then(function(capabilities) {
     var platform = capabilities.get('platform').toLowerCase();
     return ((['firefox', 'chrome'].indexOf(browserName) !== -1) && platform === 'linux');
   };
-
-  exports.isOldIE = function() {
-    var browserName = capabilities.get('browserName').toLowerCase();
-    var browserVersion = capabilities.get('version');
-    return (browserName === 'internet explorer' && browserVersion < 11);
-  };
 });
 
 exports.waitForUrl = function (url) {
