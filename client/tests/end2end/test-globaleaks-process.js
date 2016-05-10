@@ -297,19 +297,6 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to export first submission from the tips page', function(done) {
-    if (utils.testFileDownload()) {
-      login_receiver(receiver_username, receiver_password);
-
-      var first_tip_export = element(by.id('tip-0')).element(by.id('tip-action-export'));
-      first_tip_export.click();
-      // TODO tests if the file has been downloaded and is valid
-      done();
-    } else {
-      done();
-    }
-  });
-
   it('Recipient should be able to postpone all tips', function(done) {
     login_receiver(receiver_username, receiver_password);
 
