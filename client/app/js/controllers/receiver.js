@@ -3,9 +3,10 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   $scope.active = {};
   $scope.active[current_menu] = "active";
 }]).
-controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'ReceiverTips',
-  function($scope, $http, $route, $location, $uibModal, ReceiverTips) {
+controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$location', '$uibModal', 'RTipExport', 'ReceiverTips',
+  function($scope, $http, $route, $location, $uibModal, RTipExport, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
+  $scope.exportTip = RTipExport;
 
   $scope.selected_tips = [];
 
