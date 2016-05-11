@@ -1,3 +1,6 @@
+Changes in version 2.61.9 - 2016-05-11
+    o Fix init script in relation to feature #1663
+
 Changes in version 2.61.8 - 2016-05-11
     o Implement internationalization of the language selector
     o Implement internationalization of the datepicker interface
