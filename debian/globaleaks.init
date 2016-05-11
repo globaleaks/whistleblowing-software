@@ -231,6 +231,10 @@ do_start()
         GLBACKEND_ARGS+=" --disable-swap"
     fi
 
+    if [ "${API_PREFIX}" != "" ]; then
+        GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
+    fi
+
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
     read_pid
@@ -246,10 +250,6 @@ do_start()
             log_end_msg 0 "GlobaLeaks already running at pid ${GLBACKEND_PID}"
             exit 0
         fi
-    fi
-
-    if [ "${API_PREFIX}" -ne "" ]; then
-        GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
     fi
 
     if [ "${NETWORK_SANDBOXING}" -eq "1" ]; then
