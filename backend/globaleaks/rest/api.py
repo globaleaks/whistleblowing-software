@@ -162,14 +162,6 @@ def get_api_factory():
                     gzip=True)
 
     GLAPIFactory = Application(spec, **settings)
-
-
-def get_api_factory():
-    settings = dict(cookie_secret=randbits(128),
-                    debug=GLSettings.log_requests_responses,
-                    gzip=True)
-
-    GLAPIFactory = Application(spec, **settings)
     GLAPIFactory.protocol = base.GLHTTPConnection
 
     return GLAPIFactory
