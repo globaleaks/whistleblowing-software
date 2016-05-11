@@ -271,7 +271,9 @@ describe('globaLeaks process', function() {
         element(by.id('tip-0')).click();
         element(by.id('tipFileName')).getText().then(function(t) {
           expect(t).toEqual(jasmine.any(String));
-          utils.waitForFile(t + '.zip', 30000);
+          if (utils.verifyFileDownload()) {
+            utils.waitForFile(t + '.zip', 30000);
+          }
           done();
         });
       } else {
