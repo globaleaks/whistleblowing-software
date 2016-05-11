@@ -181,6 +181,10 @@ GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard", default=False)
 
+GLSettings.parser.add_option("-A", "--api-prefix", type='string',
+    help="specify an API prefix",
+    dest="api_prefix", default='')
+
 GLSettings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
