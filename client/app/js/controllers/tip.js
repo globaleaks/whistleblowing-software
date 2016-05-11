@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadFile', 'fieldUtilities',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadFile, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 

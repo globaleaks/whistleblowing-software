@@ -18,7 +18,8 @@ exports.config = {
   capabilities: browser_capabilities,
 
   params: {
-    'testFileDownload': false
+    'testFileDownload': false,
+    'verifyFileDownload': false
   },
 
   specs: specs,
