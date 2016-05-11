@@ -1,3 +1,26 @@
+Changes in version 2.61.8 - 2016-05-11
+    o Implement internationalization of the language selector
+    o Implement internationalization of the datepicker interface
+    o Reduce the round trips needed for the application bootstrap
+      by implementing a unified API including all the required
+      resources.
+    o Deprecate the unsafe IE9 and IE10 and force support for
+      browsers that support webcrypto API.
+    o Remove a large number of dependencies no more needed:
+      blob polyfill
+      jquery
+      zipsteam
+    o Reimplement the proof of woork mechanism in order to use
+      the webcrypto API.
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1641
+    - https://github.com/globaleaks/GlobaLeaks/issues/1644
+    - https://github.com/globaleaks/GlobaLeaks/issues/1660
+    - https://github.com/globaleaks/GlobaLeaks/issues/1641
+    - https://github.com/globaleaks/GlobaLeaks/issues/1656
+    - https://github.com/globaleaks/GlobaLeaks/issues/1663
+
 Changes in version 2.61.7 - 2016-04-25
     o Fix regression #1655
 
