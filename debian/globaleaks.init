@@ -248,6 +248,10 @@ do_start()
         fi
     fi
 
+    if [ "${API_PREFIX}" -ne "" ]; then
+        GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
+    fi
+
     if [ "${NETWORK_SANDBOXING}" -eq "1" ]; then
         network_sandboxing_start
     fi
