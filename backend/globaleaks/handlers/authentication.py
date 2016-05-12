@@ -134,9 +134,10 @@ class AuthenticationHandler(BaseHandler):
 
         using_tor2web = self.check_tor2web()
 
-        user_id, status, role, pcn = yield login(username, password, using_tor2web)
-
-        yield self.uniform_answers_delay()
+        try:
+            user_id, status, role, pcn = yield login(username, password, using_tor2web)
+        finally:
+            yield self.uniform_answers_delay()
 
         session = GLSession(user_id, role, status)
 
@@ -180,9 +181,10 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         using_tor2web = self.check_tor2web()
 
-        user_id = yield login_whistleblower(receipt_hash, using_tor2web)
-
-        yield self.uniform_answers_delay()
+        try:
+            user_id = yield login_whistleblower(receipt_hash, using_tor2web)
+        finally:
+            yield self.uniform_answers_delay()
 
         session = GLSession(user_id, 'whistleblower', 'Enabled')
 
