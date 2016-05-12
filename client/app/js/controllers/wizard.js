@@ -1,7 +1,7 @@
 GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin',
-                    'DefaultAppdata', 'GLTranslate', 'CONSTANTS',
+                    'DefaultAppdata', 'CONSTANTS',
                     function($scope, $location, $route, $http, $uibModal, Authentication, Admin,
-                             DefaultAppdata, GLTranslate, CONSTANTS) {
+                             DefaultAppdata, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -44,8 +44,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
         });
       }
     };
-
-    $scope.GLTranslate = GLTranslate;
     
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */

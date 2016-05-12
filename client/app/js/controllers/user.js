@@ -1,12 +1,5 @@
-GLClient.controller('UserCtrl',
-  ['$scope', '$location', 'Authentication', 'GLTranslate',
-  function($scope, $location, Authentication, GLTranslate, Utils) {
-
-  $scope.GLTranslate = GLTranslate;
-  $scope.Authentication = Authentication;
-  $scope.Utils = Utils;
-}]).
-controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce',
+GLClient
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce',
   function($scope, $location, locationForce) {
 
     $scope.pass_save = function () {
