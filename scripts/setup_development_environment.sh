@@ -70,7 +70,7 @@ echo "Step 2/9: update"
 sudo apt-get update
 
 echo "Step 3/9: apt-get install"
-sudo apt-get install build-essential git python-pip libssl-dev libffi-dev python-virtualenv python-dev 
+sudo apt-get install build-essential curl git python-pip libssl-dev libffi-dev python-virtualenv python-dev
 
 echo "Step 4/9: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
