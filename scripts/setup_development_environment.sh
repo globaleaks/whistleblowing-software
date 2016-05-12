@@ -70,10 +70,10 @@ echo "Step 2/9: update"
 sudo apt-get update
 
 echo "Step 3/9: apt-get install"
-sudo apt-get install build-essential git python-pip libssl-dev libffi-dev python-virtualenv python-dev 
+sudo apt-get install build-essential curl git python-pip libssl-dev libffi-dev python-virtualenv python-dev
 
 echo "Step 4/9: git clone"
-git clone git@github.com:globaleaks/GlobaLeaks.git
+git clone https://github.com/globaleaks/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
@@ -83,7 +83,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Step 6/9: install grunt and bower"
-sudo npm install -g grunt grunt-cli bower
+sudo npm install -g grunt-cli bower
 
 echo "Step 7/9: setup client dependencies"
 cd GlobaLeaks/client

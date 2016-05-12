@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                langfiles, wizard, \
+                                export, langfiles, wizard, \
                                 base, user, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
@@ -75,6 +75,7 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
     (r'/rtip/' + uuid_regexp + r'/download/' + uuid_regexp, files.Download),
+    (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
@@ -142,12 +143,26 @@ spec = [
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
 ]
 
+
+class Application(web.Application):
+    """
+    This class simply overrides the web.Application.__class_ in order to
+    allow to allow adding a prefix to the API urls.
+    """
+    def __call__(self, request):
+        prefix = GLSettings.api_prefix
+        if prefix != '' and request.path.startswith(prefix):
+            request.path = request.path[len(prefix):]
+
+        return web.Application.__call__(self, request)
+
+
 def get_api_factory():
     settings = dict(cookie_secret=randbits(128),
                     debug=GLSettings.log_requests_responses,
                     gzip=True)
 
-    GLAPIFactory = web.Application(spec, **settings)
+    GLAPIFactory = Application(spec, **settings)
     GLAPIFactory.protocol = base.GLHTTPConnection
 
     return GLAPIFactory

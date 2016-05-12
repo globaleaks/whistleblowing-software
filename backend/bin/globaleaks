@@ -181,6 +181,10 @@ GLSettings.parser.add_option("-W", "--skip-wizard", action='store_true',
     help="skip globaleaks installation wizard' [default: False]",
     dest="skip_wizard", default=False)
 
+GLSettings.parser.add_option("-A", "--api-prefix", type='string',
+    help="specify an API prefix",
+    dest="api_prefix", default='')
+
 GLSettings.parser.add_option("-C", "--client-path", type='string',
     help="specify client path",
     dest="client_path", default=None)
@@ -267,15 +271,17 @@ def run_backend():
 
     print("GlobaLeaks is now running and accessible at the following urls:")
 
+    path = GLSettings.api_prefix
+
     for ip in GLSettings.bind_addresses:
-        print("- http://%s:%d" % (ip, GLSettings.bind_port))
+        print("- http://%s:%d%s" % (ip, GLSettings.bind_port, path))
 
     for host in GLSettings.accepted_hosts:
         if host not in GLSettings.bind_addresses:
-            print("- http://%s:%d" % (host, GLSettings.bind_port))
+            print("- http://%s:%d%s" % (host, GLSettings.bind_port, path))
 
     if GLSettings.tor_address is not None:
-        print("- http://%s" % (GLSettings.tor_address))
+        print("- http://%s%s" % (GLSettings.tor_address, path))
 
     log.start_logging()
 

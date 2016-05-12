@@ -1,0 +1,8 @@
+ID: %TipNum%
+Date: %SubmissionDate%
+Label: %TipLabel%
+Context: %ContextName%
+
+%QuestionnaireAnswers%
+%Comments%
+%Messages%

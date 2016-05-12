@@ -231,6 +231,10 @@ do_start()
         GLBACKEND_ARGS+=" --disable-swap"
     fi
 
+    if [ "${API_PREFIX}" != "" ]; then
+        GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
+    fi
+
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
     read_pid

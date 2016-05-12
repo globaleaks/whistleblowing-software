@@ -9,16 +9,6 @@ GLClient.controller('TipCtrl',
 
     $scope.showEditLabelInput = false;
 
-    if (!$scope.session) {
-      // FIXME: handle this applicationwide with somekind of state
-      $scope.loginRedirect(true);
-      return;
-    }
-
-    $scope.tip_export = function () {
-      window.print();
-    };
-
     $scope.getAnswersEntries = function(entry) {
       if (entry === undefined) {
         return $scope.answers[$scope.field.id];
@@ -144,6 +134,9 @@ GLClient.controller('TipCtrl',
       $scope.preferences = ReceiverPreferences.get();
     
       new RTip({id: $scope.tip_id}, function(tip) {
+
+        $scope.exportTip = RTipExport;
+        $scope.downloadFile = RTipDownloadFile;
 
         glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
 

@@ -627,6 +627,10 @@ class Notification(Model):
     receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
     receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
 
+    export_template = JSON(validator=longlocal_v)
+    export_message_recipient = JSON(validator=longlocal_v)
+    export_message_whistleblower = JSON(validator=longlocal_v)
+
     # Whistleblower Identity
     identity_access_authorized_mail_template = JSON(validator=longlocal_v)
     identity_access_authorized_mail_title = JSON(validator=longlocal_v)
@@ -694,6 +698,9 @@ class Notification(Model):
         'identity_access_request_mail_title',
         'identity_provided_mail_template',
         'identity_provided_mail_title',
+        'export_template',
+        'export_message_whistleblower',
+        'export_message_recipient'
     ]
 
     int_keys = [
@@ -706,7 +713,7 @@ class Notification(Model):
     bool_keys = [
         'disable_admin_notification_emails',
         'disable_receiver_notification_emails',
-        'send_email_for_every_event',
+        'send_email_for_every_event'
     ]
 
 

@@ -16,8 +16,8 @@
     "layout_orientation": {"type": "unicode", "value": "vertical"}
   },
   "tos": {
-    "clause": {"type": "unicode", "value": ""},
-    "agreement_statement": {"type": "unicode", "value": ""}
+    "clause": {"type": "localized", "value": ""},
+    "agreement_statement": {"type": "localized", "value": ""}
   },
   "date": {
     "min_date": {"type": "unicode", "value": ""},

@@ -392,6 +392,8 @@ class GLSettingsClass(object):
 
         self.skip_wizard = self.cmdline_options.skip_wizard
 
+        self.api_prefix = self.cmdline_options.api_prefix
+
         if self.cmdline_options.client_path:
             self.set_client_path(self.cmdline_options.client_path)
 
