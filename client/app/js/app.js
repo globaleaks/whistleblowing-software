@@ -422,6 +422,7 @@ var GLClient = angular.module('GLClient', [
       function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, Access, GLTranslate) {
 
     $rootScope.Authentication = Authentication;
+    $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
 
     $rootScope.started = false;
