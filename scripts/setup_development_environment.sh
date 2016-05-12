@@ -73,7 +73,7 @@ echo "Step 3/9: apt-get install"
 sudo apt-get install build-essential git python-pip libssl-dev libffi-dev python-virtualenv python-dev 
 
 echo "Step 4/9: git clone"
-git clone git@github.com:globaleaks/GlobaLeaks.git
+git clone https://github.com/globaleaks/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
