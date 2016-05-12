@@ -1,7 +1,34 @@
 angular.module('GLBrowserCrypto')
-.factory('glbcWhistleblower', ['$q', 'pgp', 'glbcCipherLib', 'glbcKeyRing', function($q, pgp, glbcCipherLib, glbcKeyRing) {
+.factory('glbcWhistleblower', ['$q', 'pgp', 'glbcCipherLib', 'glbcKeyLib', 'glbcKeyRing', function($q, pgp, glbcCipherLib, glbcKeyLib, glbcKeyRing) {
+
+  var variables = {
+    keyDerived: false,
+  };
 
   return {
+    variables: variables,
+
+    /**
+     * @param {string} keycode
+     * @param {string} salt
+     * @param {Submission} submission
+     * @return {Promise}
+     **/
+    deriveKey: function(keycode, salt, submission) {
+    
+      return glbcKeyLib.deriveUserPassword(keycode, salt).then(function(result) {
+        submission.receipt_hash = result.authentication;
+        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
+
+          glbcKeyRing.initialize(result.ccrypto_key_private);
+
+          submission.ccrypto_key_private = result.ccrypto_key_private.armor();
+          submission.ccrypto_key_public = result.ccrypto_key_public.armor();
+
+          variables.keyDerived = true;
+        });
+      });
+    },
 
     /** 
     * encrypts the passed file with the keys of the receivers and returns a 

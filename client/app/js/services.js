@@ -291,12 +291,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.receivers = [];
       self.receivers_selected = {};
       self.done = false;
+      self.keyDerived = false;
 
       self.isDisabled = function() {
         res = (self.count_selected_receivers() === 0 ||
-                self.wait || 
+                self.wait ||
                 !self.pow ||
-                self.done);
+                self.done ||
+                !glbcWhistleblower.variables.keyDerived
+                );
+        console.log(self.count_selected_receivers() === 0, self.wait, !self.pow, self.done, self.keyDerived);
         console.log('running isDisabled', res);
         return res;
       };
@@ -392,21 +396,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        Authentication.keycode = glbcKeyLib.generateKeycode();
+        var keycode = glbcKeyLib.generateKeycode();
+        Authentication.keycode = keycode;
 
-        self._submission.ccrypto_key_private = '';
-        self._submission.ccrypto_key_public = '';
+        glbcWhistleblower.deriveKey(keycode, 'NaCL', self._submission);
 
-        glbcKeyLib.deriveUserPassword(Authentication.keycode, "salt").then(function(result) {
-          self._submission.receipt_hash = result.authentication;
-          glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
-
-            glbcKeyRing.initialize(result.ccrypto_key_private);
-
-            self._submission.ccrypto_key_private = result.ccrypto_key_private.armor();
-            self._submission.ccrypto_key_public = result.ccrypto_key_public.armor();
-          });
-        });
       };
 
       /**

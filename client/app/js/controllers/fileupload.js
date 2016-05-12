@@ -1,5 +1,8 @@
 GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistleblower', function($scope, $q, $timeout, glbcWhistleblower)  {
-  $scope.disabled = false;
+  var disabled = false;
+  $scope.isDisabled = function() {
+    return disabled || !glbcWhistleblower.variables.keyDerived;
+  };
 
   $scope.$on('flow::fileAdded', function (event, flow, file) {
     if (file.size > $scope.node.maximum_filesize * 1024 * 1024) {
@@ -10,7 +13,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistl
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
         // if the field allows to load only one file disable the button
         // as soon as a file is loaded.
-        $scope.disabled = true;
+       disabled = true;
       }
     }
 
