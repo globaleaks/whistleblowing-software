@@ -294,15 +294,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.keyDerived = false;
 
       self.isDisabled = function() {
-        res = (self.count_selected_receivers() === 0 ||
-                self.wait ||
-                !self.pow ||
-                self.done ||
-                !glbcWhistleblower.variables.keyDerived
-                );
-        console.log(self.count_selected_receivers() === 0, self.wait, !self.pow, self.done, self.keyDerived);
-        console.log('running isDisabled', res);
-        return res;
+        return (
+          self.count_selected_receivers() === 0 ||
+          self.wait ||
+          !self.pow ||
+          self.done ||
+          !glbcWhistleblower.variables.keyDerived
+        );
       };
 
       self.count_selected_receivers = function () {
@@ -399,7 +397,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         var keycode = glbcKeyLib.generateKeycode();
         Authentication.keycode = keycode;
 
-        glbcWhistleblower.deriveKey(keycode, 'NaCL', self._submission);
+        // TODO get server salt
+        glbcWhistleblower.deriveKey(keycode, 'salt', self._submission);
 
       };
 
