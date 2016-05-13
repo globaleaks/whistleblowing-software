@@ -74,8 +74,6 @@ def db_serialize_node(store, language):
         'disable_encryption_warnings': node.disable_encryption_warnings,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'configured': configured,
-        'password': u'',
-        'old_password': u'',
         'disable_submissions': node.disable_submissions,
         'disable_privacy_badge': node.disable_privacy_badge,
         'disable_security_awareness_badge': node.disable_security_awareness_badge,
