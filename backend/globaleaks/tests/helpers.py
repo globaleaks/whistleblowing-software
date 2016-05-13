@@ -814,10 +814,7 @@ class MockDict():
             'email': u"email@dummy.net",
             'languages_supported': [],  # ignored
             'languages_enabled': ["it", "en"],
-            'password': '',
-            'old_password': '',
-            'salt': 'OMG!, the Rains of Castamere ;( ;(',
-            'salt_receipt': '<<the Lannisters send their regards>>',
+            'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
             'maximum_namesize': 120,
             'maximum_textsize': 4096,
