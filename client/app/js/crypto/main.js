@@ -328,6 +328,7 @@ angular.module('GLBrowserCrypto', [])
      */
     encryptAndSignMessage: function(m, uuid) {
 
+
       var pubKeys = [glbcKeyRing.getPubKey(uuid), 
                      glbcKeyRing.getPubKey('private')];
 
@@ -345,20 +346,29 @@ angular.module('GLBrowserCrypto', [])
 
     /*
      * @param {Array<Object>} msgs a list of {content: 'a', id: 'a23a-' } objs
+     * @param {Array<Object>} receivers who have access to the tip.
      * @return {Promise<Array<String>>} the list of the decrypted msg contents
      */
-    decryptAndVerifyMessages: function(msgs) {
+    decryptAndVerifyMessages: function(msgs, receivers) {
+
+      var author_map = {'whistleblower': 'whistleblower'};
+      angular.forEach(receivers, function(rec) {
+        author_map[rec.name] = rec.id;
+      });
+
+      angular.forEach(msgs, function(m) {
+        m.author_id = author_map[m.author];
+      });
 
       var decPromises = [];
       for (var i = 0; i < msgs.length; i++) {
         var c = pgp.message.readArmored(msgs[i].content);
-        // TODO use receiver.id not msg.id..........
-        //var pubKey = glbcKeyRing.getPubKey(msgs[i].id);
+        var pubKey = glbcKeyRing.getPubKey(msgs[i].author_id);
 
         var options = {
           message: c,
           privateKey: glbcKeyRing.getKey(),
-          // publicKeys: pubKey,
+          publicKeys: pubKey,
           format: 'utf8', 
         };
         var promise = pgp.decrypt(options).then(function(result) {
@@ -432,7 +442,7 @@ angular.module('GLBrowserCrypto', [])
     /**
      * @description intialize validates the passed privateKey and places it in the keyRing.
      * @param {String} armoredPrivKey
-     * @param {String} uuid of the receiver, undefined if the session is a whistleblower
+     * @param {String} uuid of the receiver or 'whistleblower' if used by the WB
      * @return {Bool}
      */
     initialize: function(armoredPrivKey, uuid) {
@@ -448,9 +458,7 @@ angular.module('GLBrowserCrypto', [])
       keyRing._pubKey = tmpKeyRef.toPublic();
       tmpKeyRef = null;
 
-      if (typeof uuid === 'string') {
-        keyRing.publicKeys[uuid] = keyRing._pubKey;
-      }
+      keyRing.publicKeys[uuid] = keyRing._pubKey;
 
       return true;
     },

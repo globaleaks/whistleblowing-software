@@ -17,12 +17,17 @@ angular.module('GLBrowserCrypto')
     deriveKey: function(keycode, salt, submission) {
       return glbcKeyLib.deriveUserPassword(keycode, salt, 13).then(function(result) {
         submission.receipt_hash = result.authentication;
-        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
+        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
+          var armored_priv_key = keys.ccrypto_key_private.armor();
+          var success = glbcKeyRing.initialize(armored_priv_key, 'whistleblower');
+          if (!success) {
+            throw new Error('Key Derivation failed!');
+          }
+          // TODO remove unlock
+          glbcKeyRing.unlockKeyRing(result.passphrase);
 
-          glbcKeyRing.initialize(result.ccrypto_key_private);
-
-          submission.ccrypto_key_private = result.ccrypto_key_private.armor();
-          submission.ccrypto_key_public = result.ccrypto_key_public.armor();
+          submission.ccrypto_key_private = armored_priv_key;
+          submission.ccrypto_key_public = keys.ccrypto_key_public.armor();
 
           variables.keyDerived = true;
         });
@@ -80,16 +85,14 @@ angular.module('GLBrowserCrypto')
      * @return {Promise<String>} the armored pgp message
      */
     encryptAndSignAnswers: function(jsonAnswers, receiverIds) {
-      var deferred = $q.defer();
 
       var pubKeys = receiverIds.map(function(id) {
         return glbcKeyRing.getPubKey(id); 
       });
-      pubKeys.push(glbcKeyRing.getPubKey('private'));
+      pubKeys.push(glbcKeyRing.getPubKey('whistleblower'));
 
       var options = {
         data: jsonAnswers,
-        // TODO change access pattern
         privateKey: glbcKeyRing.getKey(),
         publicKeys: pubKeys,
         format: 'utf8',
@@ -97,12 +100,9 @@ angular.module('GLBrowserCrypto')
       };
 
       // TODO unlock keyring
-      pgp.encrypt(options).then(function(cipherMsg) {
-        deferred.resolve(cipherMsg.data);
-      }, function() {
-        // TODO lock keyring 
+      return pgp.encrypt(options).then(function(cipherMsg) {
+        return cipherMsg.data;
       });
-      return deferred.promise;
     },
 
     /*

@@ -434,7 +434,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
-        redactedAnswers = {};
+        var redactedAnswers = {};
 
         function fillAndRecurse(parentObj, field) {
           if (field.stats_enabled) {
@@ -541,9 +541,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.receivers = RTipReceiverResource.query(tipID);
         tip.comments = tip.enable_comments ? RTipCommentResource.query(tipID) : [];
 
-        tip.messages = tip.enable_messages ? RTipMessageResource.query(tipID) : [];
+        tip.messages = [];
 
-        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
+        glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
         
                
         tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
@@ -560,11 +560,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
           if (tip.enable_messages) {
               var msgs = [];
-              angular.forEach(tip.messages, function(m) {
-                msgs.push(m);
-              });
-
-              glbcCipherLib.decryptAndVerifyMessages(msgs).then(function(decMsgs) {
+              glbcCipherLib.decryptAndVerifyMessages(msgs, tip.receivers).then(function(decMsgs) {
                 for (var i = 0; i < decMsgs.length; i++) {
                   tip.messages[i].content = decMsgs[i];
                 }
@@ -584,14 +580,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             });
           };
           
-          // TODO move initialization of the key ring into promise.
-          tip.receivers.forEach(function(receiver) {
-            // TODO get receiver's generated pub key.
-            glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
-          });
-          glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
-
-
           tip.newMessage = function(content) {
             var m = new RTipMessageResource(tipID);
 
@@ -653,6 +641,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.comments = tip.enable_comments ? WBTipCommentResource.query() : [];
         tip.messages = [];
 
+        // TODO add keyRing initialize promise here
+
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
           tip.msg_receiver_selected = null;
           tip.msg_receivers_selector = [];
@@ -699,13 +689,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 tip.messages = messageCollection;
 
                 // Convert the message collection to a simple array, to avoid 
-                // problems with object properities
+                // problems with object properties
                 var msgs = [];
-                angular.forEach(messageCollection, function (m) {
-                  msgs.push(m);
-                });
 
-                glbcCipherLib.decryptAndVerifyMessages(msgs)
+                glbcCipherLib.decryptAndVerifyMessages(msgs, tip.receivers)
                 .then(function(decryptedMsgs) {
                   for (var i = 0; i < decryptedMsgs.length; i++){
                     tip.messages[i].content = decryptedMsgs[i];
