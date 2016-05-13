@@ -72,7 +72,7 @@ angular.module('GLBrowserCrypto', [])
         - authentication secrete derivation from user password
         - pgp passphrase derivation from user password
         - pgp key creation passphrase protected with the passphrase derived by
-      glbcKeyLib.deriveUserPassword("antani", "salt").then(function(result) {
+      glbcKeyLib.deriveUserPassword("antani", "salt", 24).then(function(result) {
         glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
           console.log(result);
         });
@@ -87,6 +87,7 @@ angular.module('GLBrowserCrypto', [])
     var scrypt = function(password,
                           salt,
                           logN,
+                          dkLen,
                           encoding) {
       var defer = $q.defer();
 
@@ -102,23 +103,20 @@ angular.module('GLBrowserCrypto', [])
         salt: salt,
         logN: logN,
         r: 8,
-        dkLen: 256,
+        dkLen: dkLen,
         encoding: encoding
       });
 
       return defer.promise;
     };
 
-    var ccrypto_key_bits = 2048;
-
-    var N = 13;
-    var M = N + 1;
+    var ccrypto_key_bits = 4096;
 
     return {
-      scrypt: function(data, salt, logN) {
+      scrypt: function(data, salt, logN, dkLen) {
         var defer = $q.defer();
 
-        scrypt(data, salt, logN, 'hex').then(function(stretched) {
+        scrypt(data, salt, logN, dkLen, 'hex').then(function(stretched) {
           defer.resolve({
             value: data,
             stretched: stretched
@@ -128,24 +126,24 @@ angular.module('GLBrowserCrypto', [])
         return defer.promise;
       },
 
-      deriveAuthentication: function(user_password, salt) {
-        return this.scrypt(user_password, salt, M);
+      deriveAuthentication: function(user_password, salt, M) {
+        return this.scrypt(user_password, salt, M, 64);
       },
 
-      derivePassphrase: function(user_password, salt) {
-        return this.scrypt(user_password, salt, N);
+      derivePassphrase: function(user_password, salt, N) {
+        return this.scrypt(user_password, salt, N, 256);
       },
 
-      deriveUserPassword: function (user_password, salt) {
+      deriveUserPassword: function (user_password, salt, N) {
         var defer1 = $q.defer();
         var defer2 = $q.defer();
         var result = $q.defer();
 
-        this.derivePassphrase(user_password, salt).then(function(passphrase) {
+        this.derivePassphrase(user_password, salt, N).then(function(passphrase) {
           defer1.resolve(passphrase.stretched);
         });
 
-        this.deriveAuthentication(user_password, salt).then(function(authentication) {
+        this.deriveAuthentication(user_password, salt, N+1).then(function(authentication) {
           defer2.resolve(authentication.stretched);
         });
 
@@ -417,7 +415,6 @@ angular.module('GLBrowserCrypto', [])
       if (keyRing.publicKeys.hasOwnProperty(s)) {
         return keyRing.publicKeys[s];
       }
-      console.log(keyRing, s);
       throw new Error('Key not found in keyring. ' + s);
     },
     

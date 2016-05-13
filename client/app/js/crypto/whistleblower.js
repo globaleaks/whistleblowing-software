@@ -15,8 +15,7 @@ angular.module('GLBrowserCrypto')
      * @return {Promise}
      **/
     deriveKey: function(keycode, salt, submission) {
-    
-      return glbcKeyLib.deriveUserPassword(keycode, salt).then(function(result) {
+      return glbcKeyLib.deriveUserPassword(keycode, salt, 13).then(function(result) {
         submission.receipt_hash = result.authentication;
         glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
 

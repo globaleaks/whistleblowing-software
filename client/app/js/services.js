@@ -82,7 +82,8 @@ angular.module('GLServices', ['ngResource']).
           };
 
           if (username === 'whistleblower') {
-            return glbcKeyLib.deriveUserPassword(password, "salt").then(function(result) {
+            password = password.replace(/\D/g,'');
+            return glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt, 13).then(function(result) {
               var password_hash = result.authentication;
               $http.post('receiptauth', {'receipt_hash': password_hash}).
                 success(success_fn).
@@ -91,11 +92,20 @@ angular.module('GLServices', ['ngResource']).
                 });
             });
           } else {
-            return $http.post('authentication', {'username': username, 'password': password}).
-            success(success_fn).
-            error(function() {
-              self.loginInProgress = false;
-            });
+            return $http.post('authentication', {'step': 1, 'username': username, 'password_hash': ''}).
+              success(function success(response) {
+                return glbcKeyLib.deriveUserPassword(password, response.salt, 13).then(function(result) {
+                  var password_hash = result.authentication;
+                  $http.post('authentication', {'step': 2, 'username': username, 'password_hash': password_hash}).
+                    success(success_fn).
+                    error(function() {
+                      $rootScope.loginInProgress = false;
+                    });
+                  });
+              }).
+              error(function() {
+                self.loginInProgress = false;
+              });
           }
         };
 
@@ -397,9 +407,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         var keycode = glbcKeyLib.generateKeycode();
         Authentication.keycode = keycode;
 
-        // TODO get server salt
-        glbcWhistleblower.deriveKey(keycode, 'salt', self._submission);
-
+        glbcWhistleblower.deriveKey(keycode, $rootScope.node.receipt_salt, self._submission);
       };
 
       /**

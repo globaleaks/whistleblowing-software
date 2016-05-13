@@ -64,6 +64,7 @@ def db_serialize_node(store, language):
         'tor2web_unauth': node.tor2web_unauth,
         'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
         'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
+        'receipt_salt': node.receipt_salt,
         'ahmia': node.ahmia,
         'allow_indexing': node.allow_indexing,
         'can_postpone_expiration': node.can_postpone_expiration,

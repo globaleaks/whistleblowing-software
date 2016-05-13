@@ -75,8 +75,9 @@ FileDesc = {
 }
 
 AuthDesc = {
+    'step': int,
     'username': unicode,
-    'password': unicode,
+    'password_hash': unicode,
 }
 
 ReceiptAuthDesc = {
