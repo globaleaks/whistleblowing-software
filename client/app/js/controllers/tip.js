@@ -96,8 +96,6 @@ GLClient.controller('TipCtrl',
 
       new WBTip(function(tip) {
 
-        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
-           
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
@@ -147,12 +145,10 @@ GLClient.controller('TipCtrl',
 
         $scope.downloadFile = RTipDownloadFile;
 
-        glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
-
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
-        glbcCipherLib.decryptAndVerifyAnswers(c, tip.id).then(function(plaintext) {
+        glbcCipherLib.decryptAndVerifyAnswers(c).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
 
           $scope.tip = tip;

@@ -382,12 +382,11 @@ angular.module('GLBrowserCrypto', [])
 
     /**
      * @param {pgp.Message} message
-     * @param {String} wb_uuid of the Whistleblower
      * @return {Promise<pgp.Message>}
      */
-    decryptAndVerifyAnswers: function(message, wb_uuid) {
+    decryptAndVerifyAnswers: function(message) {
       // TODO glbcKeyRing.unlockKeyRing(passphrase);
-      var wbPubKey = glbcKeyRing.getPubKey(wb_uuid);
+      var wbPubKey = glbcKeyRing.getPubKey('whistleblower');
 
       var options = {
         message: message,
@@ -436,6 +435,8 @@ angular.module('GLBrowserCrypto', [])
       if (glbcKeyLib.validPublicKey(armored)) {
         var key = pgp.key.readArmored(armored).keys[0]; 
         keyRing.publicKeys[uuid] = key;
+      } else {
+        throw new Error('Could not add pubkey to key ring!');
       }
     },
 
@@ -447,7 +448,7 @@ angular.module('GLBrowserCrypto', [])
      */
     initialize: function(armoredPrivKey, uuid) {
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
-        return false;
+        throw new Error('Failed to parse private key!');
       }
 
       // Parsing the private key here should produce no errors. Once it is no

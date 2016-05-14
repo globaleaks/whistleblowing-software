@@ -13,8 +13,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib', 'glbcWhistleblower',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib, glbcWhistleblower) {
       function Session(){
         var self = this;
 
@@ -23,7 +23,9 @@ angular.module('GLServices', ['ngResource']).
         self.login = function(username, password, cb) {
           self.loginInProgress = true;
 
-          var success_fn = function(response) {
+          var success_fn = function(httpResponse) {
+            var response = httpResponse.data;
+
             self.session = {
               'id': response.session_id,
               'user_id': response.user_id,
@@ -81,31 +83,33 @@ angular.module('GLServices', ['ngResource']).
             $location.search('');
           };
 
+          function error_fn(e) {
+            $rootScope.loginInProgress = false;
+            console.log(e);
+            return e;
+          }
+
           if (username === 'whistleblower') {
             password = password.replace(/\D/g,'');
             return glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt, 13).then(function(result) {
               var password_hash = result.authentication;
-              $http.post('receiptauth', {'receipt_hash': password_hash}).
-                success(success_fn).
-                error(function() {
-                  $rootScope.loginInProgress = false;
-                });
+              glbcWhistleblower.storePassphrase(result.passphrase);
+
+              $http.post('receiptauth', {'receipt_hash': password_hash})
+                .then(success_fn, error_fn);
             });
           } else {
-            return $http.post('authentication', {'step': 1, 'username': username, 'password_hash': ''}).
-              success(function success(response) {
-                return glbcKeyLib.deriveUserPassword(password, response.salt, 13).then(function(result) {
+            return $http.post('authentication', {'step': 1, 'username': username, 'password_hash': ''})
+              .then(function(response) {
+
+                return glbcKeyLib.deriveUserPassword(password, response.data.salt, 13).then(function(result) {
                   var password_hash = result.authentication;
-                  $http.post('authentication', {'step': 2, 'username': username, 'password_hash': password_hash}).
-                    success(success_fn).
-                    error(function() {
-                      $rootScope.loginInProgress = false;
-                    });
+                  $http.post('authentication', 
+                                    {'step': 2, 'username': username, 'password_hash': password_hash})
+                    .then(success_fn, error_fn);
                   });
-              }).
-              error(function() {
-                self.loginInProgress = false;
-              });
+
+              }, error_fn);
           }
         };
 
@@ -552,7 +556,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
-          glbcKeyRing.addPubKey(tip.id, tip.ccrypto_key_public);
           angular.forEach(tip.receivers, function(receiver) {
             // TODO use receiver Pub key
             glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
@@ -642,6 +645,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.messages = [];
 
         // TODO add keyRing initialize promise here
+        glbcWhistleblower.initializeKey(tip.ccrypto_key_private);
 
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
           tip.msg_receiver_selected = null;

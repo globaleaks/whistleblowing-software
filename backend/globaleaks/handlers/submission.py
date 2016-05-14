@@ -215,6 +215,7 @@ def serialize_itip(store, internaltip, language):
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
+        'ccrypto_key_public': internaltip.ccrypto_key_public,
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
@@ -257,7 +258,7 @@ def serialize_receiverfile(rfile):
         'content_type': rfile.internalfile.content_type,
         'size': rfile.internalfile.size,
         'downloads': rfile.downloads,
-        'last_access': rfile.last_access,
+        'last_access': datetime_to_ISO8601(rfile.last_access),
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id
     }
 
@@ -267,11 +268,11 @@ def serialize_whistleblower_tip(store, internaltip, language):
 
     ret['answers'] = db_serialize_questionnaire_answers(store, internaltip)
     ret['encrypted_answers'] = internaltip.encrypted_answers
-    ret['ccrypto_key_public'] = internaltip.ccrypto_key_public
     ret['last_access'] = datetime_to_ISO8601(internaltip.last_access)
     ret['access_counter'] = internaltip.access_counter
     ret['total_score'] = internaltip.total_score
     ret['files'] = [serialize_internalfile(internalfile) for internalfile in internaltip.internalfiles]
+    ret['ccrypto_key_private'] = internaltip.ccrypto_key_private
 
     return ret
 

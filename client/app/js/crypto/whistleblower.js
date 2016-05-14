@@ -3,10 +3,26 @@ angular.module('GLBrowserCrypto')
 
   var variables = {
     keyDerived: false,
+    passphrase: null,
   };
 
   return {
     variables: variables,
+
+    storePassphrase: function(passphrase) {
+      if (variables.passphrase !== null) {
+        throw new Error('Overwriting a WBs passphrase');
+      }
+      variables.passphrase = passphrase;
+    },
+
+    initializeKey: function(armoredPrivateKey) {
+      glbcKeyRing.initialize(armoredPrivateKey, 'whistleblower');
+      if (variables.passphrase === null) {
+        throw new Error('WB key passphrase is null');
+      }
+      return glbcKeyRing.unlockKeyRing(variables.passphrase);
+    },
 
     /**
      * @param {string} keycode
