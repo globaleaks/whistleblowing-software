@@ -59,8 +59,6 @@ def db_admin_serialize_node(store, language):
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,
         'configured': configured,
-        'password': u'',
-        'old_password': u'',
         'custom_homepage': custom_homepage,
         'disable_submissions': node.disable_submissions,
         'disable_privacy_badge': node.disable_privacy_badge,
