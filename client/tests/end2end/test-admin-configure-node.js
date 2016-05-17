@@ -12,10 +12,6 @@ describe('adming configure node', function() {
     // enable experimental featuress that by default are disabled
     element(by.model('admin.node.enable_experimental_features')).click();
 
-    // grant tor2web permissions
-    element(by.cssContainingText("a", "HTTPS settings")).click();
-    element(by.model('admin.node.tor2web_whistleblower')).click();
-
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       done();
