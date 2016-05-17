@@ -35,6 +35,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSessions.keys()), 1)
 
+    @inlineCallbacks
     def test_deny_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
