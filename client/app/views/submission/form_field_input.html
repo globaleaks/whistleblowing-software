@@ -98,7 +98,7 @@
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
-      <div data-ng-switch-default data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">{{validator}}
+      <div data-ng-switch-default data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
         <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
@@ -111,6 +111,19 @@
                data-ng-attr-placeholder="{{field.placeholder}}"
                type="text" />
         <div>
+          <div data-ng-if="f['input-' + entryIndex].$error.pattern && field.attrs.input_validation.value !== 'custom'">
+            <span class="text-danger" data-translate>The specified input is not valid:</span>
+            <span data-ng-switch="field.attrs.input_validation.value">
+              <span data-ng-when="email">
+                <span class="text-danger" data-translate>please insert a valid email address.</span>
+              </span>
+              <span data-ng-when="number">
+                <span class="text-danger" data-translate>please insert only numbers.</span>
+              </span>
+              <span data-ng-when="phonenumber">
+                <span class="text-danger" data-translate>please insert only numbers.</span>
+              </span>
+          </div>
           <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
                data-translate-values="{available_characters_count: maxlength - entry['value'].length}"
                data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
