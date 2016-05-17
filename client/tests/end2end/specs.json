@@ -6,6 +6,7 @@
   "test-admin-configure-node.js",
   "test-admin-configure-mail.js",
   "test-admin-configure-shorturls.js",
+  "test-admin-configure-advanced.js",
   "test-admin-users.js",
   "test-admin-contexts.js",
   "test-receiver-first-login.js",
