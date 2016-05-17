@@ -53,3 +53,8 @@ exports.waitForFile = function (filename, timeout) {
     }    
   }, t);    
 };
+
+exports.emulateUserRefresh = function () {
+  browser.actions().sendKeys(protractor.Key.CONTROL, 'r', protractor.Key.NULL).perform();
+  browser.waitForAngular();
+};
