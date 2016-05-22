@@ -447,7 +447,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
-        FileSaver.saveAs(blob, file.name);
+                                          // Disable BOM address #1672
+        FileSaver.saveAs(blob, file.name, true);
       });
     };
 }]).
