@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "coveralls": "2.11.9",
-    "eslint": "2.9.0",
-    "firefox-profile": "0.3.13",
+    "eslint": "2.10.2",
+    "firefox-profile": "0.4.0",
     "grunt": "0.4.5",
     "grunt-angular-templates": "1.0.3",
     "grunt-confirm": "1.0.5",
