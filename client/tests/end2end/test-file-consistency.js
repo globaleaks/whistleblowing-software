@@ -19,7 +19,7 @@ describe('test file consistency', function() {
   var testFileDir = './tests/end2end/files/';
 
   var filenames = fs.readdirSync(testFileDir);
-  dirs = filenames.map(function(files) { 
+  var dirs = filenames.map(function(files) { 
     return path.resolve(path.join(testFileDir, files));
   });
 

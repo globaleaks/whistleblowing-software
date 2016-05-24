@@ -13,29 +13,18 @@ exports.adminLoginPage = function() {
     loginUser.sendKeys(uname);
     loginPass.sendKeys(pass);
     element(by.xpath('//button[contains(., "Log in")]')).click();
-      utils.waitForUrl('/admin/landing');
+    utils.waitForUrl('/admin/landing');
   };
 };
 
 exports.receiver = function() {
 
   this.login = function(username, password) {
-    return protractor.promise.controlFlow().execute(function() {
-      var deferred = protractor.promise.defer();
-
-      browser.get('/#/login');
-
-      element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
-        element(by.model('loginPassword')).sendKeys(password).then(function() {
-          element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-            utils.waitForUrl('/receiver/tips');
-            deferred.fulfill();
-          });
-        });
-      });
-
-      return deferred.promise;
-    });
+    browser.get('/#/login');
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
+    element(by.model('loginPassword')).sendKeys(password);
+    element(by.xpath('//button[contains(., "Log in")]')).click();
+    return utils.waitForUrl('/receiver/tips');
   };
 
   this.viewMostRecentSubmission = function() {
@@ -106,7 +95,6 @@ exports.whistleblower = function() {
   };
 
   this.logout = function() {
-    console.log('logging out the wb');
     element(by.id('LogoutLink')).click();
     return utils.waitForUrl('/');
   };
