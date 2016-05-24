@@ -63,20 +63,6 @@ class StepField_v_27(BaseModel):
 
 
 class MigrationScript(MigrationBase):
-    def migrate_Notification(self):
-        # an other time fix templates by reloading updated translations
-        old_notification = self.store_old.find(self.model_from['Notification']).one()
-        new_notification = self.model_to['Notification']()
-
-        for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification,
-                                                    v.name,
-                                                    self.appdata['templates'].keys(),
-                                                    self.appdata['templates']):
-                continue
-
-        self.store_new.add(new_notification)
-
     def migrate_Step(self):
         old_objs = self.store_old.find(self.model_from['Step'])
         for old_obj in old_objs:

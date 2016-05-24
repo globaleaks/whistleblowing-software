@@ -81,7 +81,6 @@ class MigrationScript(MigrationBase):
         for old_receiver in old_receivers:
             new_receiver = self.model_to['Receiver']()
             for _, v in new_receiver._storm_columns.iteritems():
-
                 if v.name == 'configuration':
                     if old_receiver.configuration == 'hidden':
                         new_receiver.configuration = 'forcefully_selected'
