@@ -1,5 +1,4 @@
 var fs = require('fs');
-var path = require('path');
 
 exports.waitUntilReady = function (elm, timeout) {
   var t = timeout === undefined ? 1000 : timeout;
@@ -25,12 +24,12 @@ browser.getCapabilities().then(function(capabilities) {
   };
 
   exports.verifyFileDownload = function() {
-    return !browser.params.verifyFileDownload
+    return !browser.params.verifyFileDownload;
   };
 });
 
 exports.waitForUrl = function (url) {
-  browser.wait(function() {
+  return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
       return (current_url.indexOf(url) !== -1);
     });
@@ -47,7 +46,6 @@ exports.waitForFile = function (filename, timeout) {
       }   
     } catch(err) {   
       // no-op
-      console.log(err);
       return false;
     } 
   }, t);    
