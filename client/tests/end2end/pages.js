@@ -13,6 +13,102 @@ exports.adminLoginPage = function() {
     loginUser.sendKeys(uname);
     loginPass.sendKeys(pass);
     element(by.xpath('//button[contains(., "Log in")]')).click();
-    utils.waitForUrl('/admin/landing');
+      utils.waitForUrl('/admin/landing');
   };
+};
+
+exports.receiver = function() {
+
+  this.login = function(username, password) {
+    return protractor.promise.controlFlow().execute(function() {
+      var deferred = protractor.promise.defer();
+
+      browser.get('/#/login');
+
+      element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
+        element(by.model('loginPassword')).sendKeys(password).then(function() {
+          element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
+            utils.waitForUrl('/receiver/tips');
+            deferred.fulfill();
+          });
+        });
+      });
+
+      return deferred.promise;
+    });
+  };
+
+  this.viewMostRecentSubmission = function() {
+    return element(by.id('tip-0')).click(); 
+  };
+
+};
+
+exports.whistleblower = function() {
+
+  this.login = function(receipt) {
+    return protractor.promise.controlFlow().execute(function() {
+      var deferred = protractor.promise.defer();
+
+      browser.get('/#/');
+
+      element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
+        element(by.id('ReceiptButton')).click().then(function() {
+          utils.waitForUrl('/status');
+          deferred.fulfill();
+        });
+      });
+
+      return deferred.promise;
+    });
+  };
+
+  this.performSubmission = function(title) {
+    browser.get('/#/submission');
+
+    browser.wait(function(){
+      // Wait until the proof of work is resolved;
+      return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
+        return submission.pow === true;
+      });
+    });
+
+    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
+    element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
+    element(by.id('NextStepButton')).click();
+    element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(title);
+
+    var submit_button = element(by.id('SubmitButton'));
+    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+    browser.wait(isClickable);
+    submit_button.click();
+    utils.waitForUrl('/receipt');
+    return element(by.id('KeyCode')).getText();
+  };
+
+  this.viewReceipt = function(receipt) {
+
+    browser.get('/#/');
+
+    return element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
+      element(by.id('ReceiptButton')).click().then(function() {
+        utils.waitForUrl('/status');
+      });
+    });
+
+  };
+
+  this.submitFile = function(fname) {
+    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
+      return browser.waitForAngular();
+    });
+  };
+
+  this.logout = function() {
+    console.log('logging out the wb');
+    element(by.id('LogoutLink')).click();
+    return utils.waitForUrl('/');
+  };
+
 };

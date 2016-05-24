@@ -25,9 +25,7 @@ browser.getCapabilities().then(function(capabilities) {
   };
 
   exports.verifyFileDownload = function() {
-    if (!browser.params.verifyFileDownload) {
-      return false;
-    }
+    return !browser.params.verifyFileDownload
   };
 });
 
@@ -41,16 +39,17 @@ exports.waitForUrl = function (url) {
 
 exports.waitForFile = function (filename, timeout) {    
   var t = timeout === undefined ? 1000 : timeout;    
-  var fp = path.resolve(browser.params.tmpDir, filename);   
-  browser.wait(function() {    
+  return browser.wait(function() {    
     try {   
-      var buf = fs.readFileSync(fp);   
-      if (buf.length > 1000) {    
-        return true;   
+      var buf = fs.readFileSync(filename);   
+      if (buf.length > 5) {    
+        return true;
       }   
     } catch(err) {   
-      return false;   
-    }    
+      // no-op
+      console.log(err);
+      return false;
+    } 
   }, t);    
 };
 
