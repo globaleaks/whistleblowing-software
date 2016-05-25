@@ -125,6 +125,9 @@ module.exports = function(grunt) {
       test: {
         configFile: "tests/end2end/protractor.config.js"
       },
+      firefox: {
+        configFile: "tests/end2end/protractor-coverage.config.js",
+      },
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {

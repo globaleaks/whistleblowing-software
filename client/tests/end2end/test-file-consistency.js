@@ -13,7 +13,7 @@ function checksum(input) {
 
 // File types left to test:
 // docx, doc, ppt, mp4, mp3, wav, html, zip
-describe('test file consistency', function() {
+describe('Submission file process', function() {
 
   var r_username = "Recipient 1";
   var r_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#";
@@ -32,6 +32,19 @@ describe('test file consistency', function() {
     var c = checksum(s);
     chksums[filenames[i]] = c;
   }
+
+  beforeEach(function() {
+    var tmpfiles = fs.readdirSync(browser.params.tmpDir);
+    tmpfiles.forEach(function(t) {
+      try {
+        fs.unlinkSync(path.join(browser.params.tmpDir, t));
+      } catch (e) {
+        /* eslint-disable no-console */
+        console.error(e);
+        /* eslint-enable no-console */
+      }
+    });
+  });
 
   function uploadAndDownloadTest() {
     var wb = new pages.whistleblower();
@@ -73,7 +86,7 @@ describe('test file consistency', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
     
-    opts = { encoding: 'utf8', flag: 'r' };
+    var opts = { encoding: 'utf8', flag: 'r' };
     var priv_key = fs.readFileSync(path.join(testFileDir, 'e2e_key.pem'), opts);
     var pub_key = fs.readFileSync(path.join(testFileDir, 'e2e_key.pub'), opts);
 
@@ -102,9 +115,9 @@ describe('test file consistency', function() {
         browser.waitForAngular();
 
         var name = filenames[i];
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, name));
+        var fullpath = path.resolve(path.join(browser.params.tmpDir, name+'.pgp'));
         utils.waitForFile(fullpath, 2000).then(function() {
-          var data = fs.readFileSync(fullpath);
+          var data = fs.readFileSync(fullpath, opts);
 
           var options = {
             message: openpgp.message.readArmored(data),
@@ -115,6 +128,7 @@ describe('test file consistency', function() {
           openpgp.decrypt(options).then(function(result) {
             expect(result.valid).toBeTrue();
 
+            // check the files to see if they match
             var test = checksum(result.data);
             expect(test).toEqual(chksums[name]);
 
@@ -123,20 +137,16 @@ describe('test file consistency', function() {
         });
       });
 
-      // check the files to see if they match
-
       // cleanup the receiver's account
-
       rec.removePublicKey();
-      browser.debugger();
     });
 
   }
 
 
   if (browser.params.verifyFileDownload) {
-    it('Uploaded and downloaded files should match', uploadAndDownloadTest);
-    it('Uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
+    it('uploaded and downloaded plaintext files should match', uploadAndDownloadTest);
+    fit('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
   }
 
   

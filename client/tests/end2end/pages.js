@@ -34,8 +34,7 @@ exports.receiver = function() {
   this.addPublicKey = function(pub_pgp_key) {
     browser.setLocation('receiver/preferences');
     element(by.cssContainingText("a", "Encryption settings")).click();
-    //var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
-    var pgpTxtArea = element(by.id('pgpKeyUpload'));
+    var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
     
     return pgpTxtArea.isDisplayed().then(function(displayed) {
       if (!displayed) {
