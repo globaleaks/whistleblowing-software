@@ -17,14 +17,18 @@ browser.getCapabilities().then(function(capabilities) {
   };
 
   exports.testFileDownload = function() {
+    if (browser.params.testFileDownload) {
+      return true;
+    }
+
     // The only browser that does not ask for user interaction is chrome
     var browserName = capabilities.get('browserName').toLowerCase();
     var platform = capabilities.get('platform').toLowerCase();
-    return ((['firefox', 'chrome'].indexOf(browserName) !== -1) && platform === 'linux');
+    return ((['chrome'].indexOf(browserName) !== -1) && platform === 'linux');
   };
 
   exports.verifyFileDownload = function() {
-    return !browser.params.verifyFileDownload;
+    return browser.params.verifyFileDownload;
   };
 });
 
