@@ -119,9 +119,8 @@ module.exports = function(grunt) {
 
     protractor: {
       options: {
-        keepAlive: true,
-        noColor: false,
-        singleRun: true
+        keepAlive: false,
+        noColor: false
       },
       test: {
         configFile: "tests/end2end/protractor.config.js"
