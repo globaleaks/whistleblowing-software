@@ -31,6 +31,38 @@ exports.receiver = function() {
     return element(by.id('tip-0')).click(); 
   };
 
+  this.addPublicKey = function(pub_pgp_key) {
+    browser.setLocation('receiver/preferences');
+    element(by.cssContainingText("a", "Encryption settings")).click();
+    //var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
+    var pgpTxtArea = element(by.id('pgpKeyUpload'));
+    
+    return pgpTxtArea.isDisplayed().then(function(displayed) {
+      if (!displayed) {
+        clickDelPubKey();
+      }
+
+    pgpTxtArea.clear();
+    pgpTxtArea.sendKeys(pub_pgp_key);
+    return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+    });
+  };
+
+  function clickDelPubKey() {
+    element(by.model('preferences.pgp_key_remove')).click();
+    return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+  }
+
+  this.removePublicKey = function() {
+    browser.setLocation('receiver/preferences');
+    element(by.cssContainingText('a', 'Encryption settings')).click();
+    return clickDelPubKey();
+  };
+
+  this.logout = function() {
+    return element(by.id('LogoutLink')).click();
+  };
+
 };
 
 exports.whistleblower = function() {

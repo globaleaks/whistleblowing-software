@@ -11,5 +11,5 @@
   "test-admin-contexts.js",
   "test-receiver-first-login.js",
   "test-globaleaks-process.js",
-  "test-file-consistency"
+  "test-file-consistency.js"
 ]
