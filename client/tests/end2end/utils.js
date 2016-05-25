@@ -56,6 +56,10 @@ exports.waitForFile = function (filename, timeout) {
 };
 
 exports.emulateUserRefresh = function () {
-  browser.actions().sendKeys(protractor.Key.CONTROL, 'r', protractor.Key.NULL).perform();
-  browser.waitForAngular();
+  return browser.getCurrentUrl().then(function(current_url) {
+    current_url = current_url.split('#')[1];
+    return browser.setLocation('').then(function() {
+      return browser.setLocation(current_url);
+    });
+  });
 }
