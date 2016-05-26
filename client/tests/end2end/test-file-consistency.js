@@ -14,10 +14,6 @@ function checksum(input) {
 // File types left to test:
 // docx, doc, ppt, mp4, mp3, wav, html, zip
 describe('Submission file process', function() {
-
-  var r_username = "Recipient 1";
-  var r_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#";
-
   var testFileDir = './tests/end2end/files/';
 
   var filenames = fs.readdirSync(testFileDir);
@@ -34,8 +30,7 @@ describe('Submission file process', function() {
   }
 
   beforeEach(function() {
-    var tmpfiles = fs.readdirSync(browser.params.tmpDir);
-    tmpfiles.forEach(function(t) {
+    filenames.forEach(function(t) {
       try {
         fs.unlinkSync(path.join(browser.params.tmpDir, t));
       } catch (e) {
@@ -51,7 +46,6 @@ describe('Submission file process', function() {
     var rec = new pages.receiver();
     
     wb.performSubmission('Test file consistency').then(function(receipt) {
-
       wb.viewReceipt(receipt);
       
       // Add each file as an attachment.
@@ -62,7 +56,7 @@ describe('Submission file process', function() {
       wb.logout();
       
       // Login as the receiver
-      rec.login(r_username, r_password);
+      rec.login('Recipient 2', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
       // Download each file
@@ -87,17 +81,10 @@ describe('Submission file process', function() {
     var rec = new pages.receiver();
     
     var opts = { encoding: 'utf8', flag: 'r' };
-    var priv_key = fs.readFileSync(path.join(testFileDir, 'e2e_key.pem'), opts);
-    var pub_key = fs.readFileSync(path.join(testFileDir, 'e2e_key.pub'), opts);
+    var priv_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PRV', opts);
+    var pub_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
 
-    // configure receiver with public key
-    rec.login(r_username, r_password);
-    rec.addPublicKey(pub_key);
-    rec.logout();
-    
     wb.performSubmission('Test file openpgp consistency').then(function(receipt) {
-      
-      
       // attach files to submission
       wb.viewReceipt(receipt);
       
@@ -107,7 +94,7 @@ describe('Submission file process', function() {
 
       wb.logout();
       
-      rec.login(r_username, r_password);
+      rec.login('Recipient 1', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
@@ -115,7 +102,7 @@ describe('Submission file process', function() {
         browser.waitForAngular();
 
         var name = filenames[i];
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, name+'.pgp'));
+        var fullpath = path.resolve(path.join(browser.params.tmpDir, name + '.pgp'));
         utils.waitForFile(fullpath, 2000).then(function() {
           var data = fs.readFileSync(fullpath, opts);
 
@@ -131,24 +118,14 @@ describe('Submission file process', function() {
             // check the files to see if they match
             var test = checksum(result.data);
             expect(test).toEqual(chksums[name]);
-
           });
- 
         });
       });
-
-      // cleanup the receiver's account
-      rec.removePublicKey();
     });
-
   }
-
 
   if (browser.params.verifyFileDownload) {
     it('uploaded and downloaded plaintext files should match', uploadAndDownloadTest);
-    fit('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
+    it('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
   }
-
-  
-
 });

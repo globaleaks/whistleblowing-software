@@ -1,10 +1,11 @@
 var pages = require('./pages.js');
+var utils = require('./utils.js');
 
 describe('admin configure, add, and delete contexts', function() {
   var adminLog = new pages.adminLoginPage();
 
   beforeAll(function() {
-    adminLog.login('admin', 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
+    adminLog.login('admin', utils.vars['user_password']);
     browser.setLocation('admin/contexts');
   });
 

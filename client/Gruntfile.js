@@ -125,9 +125,6 @@ module.exports = function(grunt) {
       test: {
         configFile: "tests/end2end/protractor.config.js"
       },
-      firefox: {
-        configFile: "tests/end2end/protractor-coverage.config.js",
-      },
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
@@ -883,6 +880,11 @@ module.exports = function(grunt) {
   grunt.registerTask('end2end-coverage-run', [
     'protractor_coverage:local',
     'makeReport',
-    'generateCoverallsJson',
+    'generateCoverallsJson'
+  ]);
+
+  grunt.registerTask('end2end-coverage', [
+    'end2end-coverage-instrument',
+    'end2end-coverage-run'
   ]);
 };

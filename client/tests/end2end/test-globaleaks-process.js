@@ -1,10 +1,8 @@
 var utils = require('./utils.js');
 
 var path = require('path');
-var remote = require('protractor/node_modules/selenium-webdriver/remote');
 
 var fileToUpload = path.resolve(__filename);
-browser.setFileDetector(new remote.FileDetector);
 
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
@@ -14,7 +12,7 @@ describe('globaLeaks process', function() {
   var message = 'message';
   var message_reply = 'message reply';
   var receiver_username = "Recipient 1";
-  var receiver_password = "ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#";
+  var receiver_password = utils.vars['user_password'];
 
   var login_whistleblower = function(receipt) {
     return protractor.promise.controlFlow().execute(function() {
@@ -272,9 +270,13 @@ describe('globaLeaks process', function() {
         element(by.id('tipFileName')).getText().then(function(t) {
           expect(t).toEqual(jasmine.any(String));
           if (utils.verifyFileDownload()) {
-            utils.waitForFile(t + '.zip', 30000);
+            var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
+            utils.waitForFile(fullpath + '.zip', 30000).then(function() {
+              done();
+            });
+          } else {
+            done();
           }
-          done();
         });
       } else {
         done();

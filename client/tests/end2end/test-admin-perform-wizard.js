@@ -11,8 +11,8 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('admin.node.name')).sendKeys('E2E Test Instance');
     element(by.model('admin.node.description')).sendKeys('This instance is for E2E testing');
     element(by.model('admin_mail_address')).sendKeys('globaleaks-admin@mailinator.com');
-    element(by.model('admin_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
-    element(by.model('admin_check_password')).sendKeys('ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
+    element(by.model('admin_password')).sendKeys(utils.vars['user_password']);
+    element(by.model('admin_check_password')).sendKeys(utils.vars['user_password']);
 
     element(by.model('receiver.name')).sendKeys('Recipient 1');
     element(by.model('receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
