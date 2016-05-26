@@ -215,6 +215,17 @@ class MigrationBase(object):
 
         return generateCreateQuery(model_obj)
 
+    def migrate_model_key(self, old_obj, new_obj, key, old_key = None):
+        """
+        Migrate an existing model key allowing key name change
+        """
+        if old_key is None:
+            old_key = key
+
+        old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
+        if old_key in old_keys:
+            setattr(new_obj, key, getattr(old_obj, old_key))
+
     def update_model_with_new_templates(self, model_obj, var_name, template_list, templates_dict):
         if var_name in template_list:
             # check needed to preserve funtionality if templates will be altered in the future
@@ -235,23 +246,21 @@ class MigrationBase(object):
             new_obj = self.model_to[model_name]()
 
             for _, v in new_obj._storm_columns.iteritems():
-                old_value = getattr(old_obj, v.name, None)
+                self.migrate_model_key(old_obj, new_obj, v.name)
 
-                if old_value is not None:
-                    setattr(new_obj, v.name, old_value)
-
-            if self.last_migration:
-                if model_name == 'Notification':
-                    self.migration_fix_Notification(old_obj, new_obj)
+            if model_name == 'Notification':
+                self.migration_fix_Notification(old_obj, new_obj)
 
             self.store_new.add(new_obj)
 
     def migration_fix_Notification(self, old_obj, new_obj):
         if self.appdata is not None:
-            new_keys = [item for item in self.appdata['templates'].keys() if item not in old_obj._storm_columns]
-
-            for new_key in new_keys:
-                setattr(new_obj, new_key, self.appdata['templates'][new_key])
+            for key in self.appdata['templates'].keys():
+                old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
+                new_keys = [v.name for _, v in new_obj._storm_columns.iteritems()]
+                if key in new_keys and key not in old_keys:
+                    # write the new keys
+                    setattr(new_obj, key, self.appdata['templates'][key])
 
     def migrate_model(self, model_name):
         objs_count = self.store_old.find(self.model_from[model_name]).count()
