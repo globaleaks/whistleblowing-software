@@ -30,7 +30,7 @@ var makeFirefoxProfile = function(preferenceMap) {
 };
 
 // The test directory for downloaded files
-var tmpDir = '/tmp/';
+var tmpDir = '/tmp/globaleaks-downloads';
 
 exports.config = {
   framework: 'jasmine',
