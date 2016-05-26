@@ -148,7 +148,7 @@ def perform_version_update(version):
             GLSettings.print_msg("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            store_verify = Store(create_database('sqlite:' + new_db_file))
+            store_verify = Store(create_database('sqlite:' + new_db_file + '?foreign_keys=ON'))
 
             for model_name, _ in migration_mapping.iteritems():
                 if model_name == 'ApplicationData':

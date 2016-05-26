@@ -18,7 +18,7 @@ from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
 
 
-# XXX. MONKEYPATCH TO SUPPORT STORM 0.19
+# XXX. MONKEYPATCH OF STORM IN ORDER TO ENABLE VARIOUS SQLITE CAPABILITIES
 import storm.databases.sqlite
 
 
@@ -37,7 +37,6 @@ class SQLite(storm.databases.sqlite.Database):
         self.raw_connect().execute("VACUUM")
 
     def raw_connect(self):
-        # See the story at the end to understand why we set isolation_level.
         raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
                                         isolation_level=None)
 
@@ -52,6 +51,8 @@ class SQLite(storm.databases.sqlite.Database):
         if self._foreign_keys is not None:
             raw_connection.execute("PRAGMA foreign_keys = %s" %
                                    (self._foreign_keys,))
+
+        raw_connection.execute("PRAGMA secure_delete = ON") # = 1
 
         return raw_connection
 

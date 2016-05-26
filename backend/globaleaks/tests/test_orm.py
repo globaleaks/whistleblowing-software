@@ -8,15 +8,19 @@ from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 
 
-class TestTransaction(helpers.TestGL):
+class TestORM(helpers.TestGL):
+    initialize_test_database_using_archived_db = False
+
     @transact
     def _transaction_with_exception(self, store):
         raise Exception
 
     @transact
-    def _transaction_ok(self, store):
-        self.assertTrue(getattr(store, 'find'))
-        return
+    def _transaction_pragmas(self, store):
+        # Verify setting enabled in the sqlite db
+        self.assertEqual(store.execute("PRAGMA foreign_keys").get_one()[0], 1)  # ON
+        self.assertEqual(store.execute("PRAGMA secure_delete").get_one()[0], 1) # ON
+        self.assertEqual(store.execute("PRAGMA auto_vacuum").get_one()[0], 1)   # FULL
 
     @transact
     def _transaction_with_commit_close(self, store):
@@ -84,8 +88,8 @@ class TestTransaction(helpers.TestGL):
     def test_transaction_with_exception(self):
         yield self.assertFailure(self._transaction_with_exception(), Exception)
 
-    def test_transaction_ok(self):
-        return self._transaction_ok()
+    def test_transaction_pragmas(self):
+        return self._transaction_pragmas()
 
     def test_transaction_with_commit_close(self):
         return self._transaction_with_commit_close()
