@@ -124,6 +124,7 @@ class AuthenticationHandler(BaseHandler):
 
         using_tor2web = self.check_tor2web()
 
+        #
         user = store.find(User, And(User.username == username,
                                     User.state != u'disabled')).one()
 

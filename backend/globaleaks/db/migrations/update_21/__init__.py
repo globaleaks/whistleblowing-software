@@ -4,35 +4,6 @@ from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, Referenc
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import BaseModel, Model, ReceiverContext
 
-template_list = [
-    'admin_anomaly_activities',
-    'admin_anomaly_disk_high',
-    'admin_anomaly_disk_low',
-    'admin_anomaly_disk_medium',
-    'admin_anomaly_mail_template',
-    'admin_anomaly_mail_title',
-    'admin_pgp_alert_mail_title',
-    'admin_pgp_alert_mail_template',
-    'tip_mail_template',
-    'tip_mail_title',
-    'file_mail_template',
-    'file_mail_title',
-    'comment_mail_template',
-    'comment_mail_title',
-    'message_mail_template',
-    'message_mail_title',
-    'pgp_alert_mail_title',
-    'pgp_alert_mail_template',
-    'receiver_notification_limit_reached_mail_template',
-    'receiver_notification_limit_reached_mail_title',
-    'ping_mail_template',
-    'ping_mail_title',
-    'notification_digest_mail_title',
-    'tip_expiration_mail_title',
-    'tip_expiration_mail_template',
-    'zip_description'
-]
-
 
 class Node_v_20(Model):
     __storm_table__ = 'node'
@@ -279,9 +250,6 @@ class MigrationScript(MigrationBase):
         new_notification = self.model_to['Notification']()
 
         for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification, v.name, template_list, self.appdata['node']):
-                continue
-
             if v.name == 'notification_threshold_per_hour':
                 setattr(new_notification, v.name, 20)
                 continue
@@ -294,7 +262,9 @@ class MigrationScript(MigrationBase):
                 setattr(new_notification, v.name, 72)
                 continue
 
-            setattr(new_notification, v.name, getattr(old_notification, v.name))
+            old_value = getattr(old_notification, v.name, None)
+            if old_value is not None:
+                setattr(new_notification, v.name, old_value)
 
         self.store_new.add(new_notification)
 

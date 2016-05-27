@@ -148,26 +148,6 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-
-    def migrate_Notification(self):
-        old_notification = self.store_old.find(self.model_from['Notification']).one()
-        new_notification = self.model_to['Notification']()
-
-        new_templates = [
-            'admin_pgp_alert_mail_template',
-            'admin_pgp_alert_mail_title',
-            'pgp_alert_mail_template',
-            'pgp_alert_mail_title',
-        ]
-
-        for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification, v.name, new_templates, self.appdata['templates']):
-                continue
-
-            setattr(new_notification, v.name, getattr(old_notification, v.name))
-
-        self.store_new.add(new_notification)
-
     def migrate_Receiver(self):
         gpgobj = GLBPGP()
 

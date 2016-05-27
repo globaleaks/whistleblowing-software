@@ -1,5 +1,17 @@
+Changes in version 2.61.12 - 2016-05-23
+    o Fix issue #1675
+    o Fix issue #1678
+    o Implement unit testing for encrypted pgp files
+
+Changes in version 2.61.12 - 2016-05-23
+    o Fix issue #1672
+
+Changes in version 2.61.11 - 2016-05-12
+    o Minor UI fixes
+    o Update translations
+
 Changes in version 2.61.10 - 2016-05-11
-    o Read back TipExport until it will be completely
+    o Add back TipExport until it will be completely
       reimplemented using browsercrypto.
 
 Changes in version 2.61.9 - 2016-05-11

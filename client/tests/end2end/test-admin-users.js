@@ -32,7 +32,7 @@ describe('admin add, configure, and delete users', function() {
   ];
 
   beforeAll(function() {
-    adminLog.login('admin', 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#');
+    adminLog.login('admin', utils.vars['user_password']);
     browser.setLocation('admin/users');
   });
 
@@ -54,7 +54,7 @@ describe('admin add, configure, and delete users', function() {
   });
 
   it('should configure an existing user', function() {
-    var user = { name: 'Recipient 1' };
+    var user = { name: 'Recipient 2' };
     var path = '//form[contains(.,"' + user.name + '")]';
 
     // Find Recipient 1, click edit, flip some toggles, and save.
@@ -68,9 +68,12 @@ describe('admin add, configure, and delete users', function() {
     
     // Add a description 
     var descriptBox = editUsrForm.element(by.model('user.description'));
-    var words = "Description of recipient 1";
+    var words = "Description of recipient 2";
     descriptBox.clear();
     descriptBox.sendKeys(words);
+
+    element(by.model('user.password')).sendKeys(utils.vars['user_password']);
+    element(by.model('user.password_change_needed')).click();
     
     // Click Save and check the fields
     editUsrForm.element(by.css('.actionButtonSave')).click();

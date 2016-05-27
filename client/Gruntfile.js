@@ -119,9 +119,8 @@ module.exports = function(grunt) {
 
     protractor: {
       options: {
-        keepAlive: true,
-        noColor: false,
-        singleRun: true
+        keepAlive: false,
+        noColor: false
       },
       test: {
         configFile: "tests/end2end/protractor.config.js"
@@ -881,6 +880,11 @@ module.exports = function(grunt) {
   grunt.registerTask('end2end-coverage-run', [
     'protractor_coverage:local',
     'makeReport',
-    'generateCoverallsJson',
+    'generateCoverallsJson'
+  ]);
+
+  grunt.registerTask('end2end-coverage', [
+    'end2end-coverage-instrument',
+    'end2end-coverage-run'
   ]);
 };

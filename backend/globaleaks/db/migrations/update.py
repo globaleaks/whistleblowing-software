@@ -121,6 +121,7 @@ class MigrationBase(object):
 
         self.migration_mapping = migration_mapping
         self.start_version = start_version
+        self.last_migration = start_version + 1 == DATABASE_VERSION
 
         self.store_old = store_old
         self.store_new = store_new
@@ -144,7 +145,7 @@ class MigrationBase(object):
             if self.model_from[model_name] is not None and self.model_to[model_name] is not None:
                 self.entries_count[model_name] = self.store_old.find(self.model_from[model_name]).count()
 
-        if self.start_version + 1 == DATABASE_VERSION:
+        if self.last_migration:
             # we are there!
             if not os.access(GLSettings.db_schema, os.R_OK):
                 GLSettings.print_msg("Unable to access %s ' % GLSettings.db_schema")
@@ -154,7 +155,7 @@ class MigrationBase(object):
                 for query in queries:
                     self.execute_query(query)
 
-        else: # manage the migrantion here
+        else: # manage the migration here
             for k, _ in self.migration_mapping.iteritems():
                 query = self.get_right_sql_version(k, self.start_version + 1)
                 if not query:
@@ -214,6 +215,17 @@ class MigrationBase(object):
 
         return generateCreateQuery(model_obj)
 
+    def migrate_model_key(self, old_obj, new_obj, key, old_key = None):
+        """
+        Migrate an existing model key allowing key name change
+        """
+        if old_key is None:
+            old_key = key
+
+        old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
+        if old_key in old_keys:
+            setattr(new_obj, key, getattr(old_obj, old_key))
+
     def update_model_with_new_templates(self, model_obj, var_name, template_list, templates_dict):
         if var_name in template_list:
             # check needed to preserve funtionality if templates will be altered in the future
@@ -233,13 +245,22 @@ class MigrationBase(object):
         for old_obj in old_objects:
             new_obj = self.model_to[model_name]()
 
-            # Storm internals simply reversed
             for _, v in new_obj._storm_columns.iteritems():
-                old_value = getattr(old_obj, v.name)
-                if old_value is not None:
-                    setattr(new_obj, v.name, old_value)
+                self.migrate_model_key(old_obj, new_obj, v.name)
+
+            if model_name == 'Notification':
+                self.migration_fix_Notification(old_obj, new_obj)
 
             self.store_new.add(new_obj)
+
+    def migration_fix_Notification(self, old_obj, new_obj):
+        if self.appdata is not None:
+            for key in self.appdata['templates'].keys():
+                old_keys = [v.name for _, v in old_obj._storm_columns.iteritems()]
+                new_keys = [v.name for _, v in new_obj._storm_columns.iteritems()]
+                if key in new_keys and key not in old_keys:
+                    # write the new keys
+                    setattr(new_obj, key, self.appdata['templates'][key])
 
     def migrate_model(self, model_name):
         objs_count = self.store_old.find(self.model_from[model_name]).count()

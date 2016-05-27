@@ -170,7 +170,6 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-
     def migrate_Context(self):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
@@ -187,16 +186,3 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
-
-    def migrate_Notification(self):
-        old_notification = self.store_old.find(self.model_from['Notification']).one()
-        new_notification = self.model_to['Notification']()
-
-        for _, v in new_notification._storm_columns.iteritems():
-            if self.update_model_with_new_templates(new_notification,
-                                                    v.name,
-                                                    self.appdata['templates'].keys(),
-                                                    self.appdata['templates']):
-                continue
-
-        self.store_new.add(new_notification)

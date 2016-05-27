@@ -1,5 +1,9 @@
 var fs = require('fs');
-var path = require('path');
+
+exports.vars = {
+  'default_password': 'globaleaks',
+  'user_password': '"ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
+}
 
 exports.waitUntilReady = function (elm, timeout) {
   var t = timeout === undefined ? 1000 : timeout;
@@ -18,21 +22,23 @@ browser.getCapabilities().then(function(capabilities) {
   };
 
   exports.testFileDownload = function() {
+    if (browser.params.testFileDownload) {
+      return true;
+    }
+
     // The only browser that does not ask for user interaction is chrome
     var browserName = capabilities.get('browserName').toLowerCase();
     var platform = capabilities.get('platform').toLowerCase();
-    return ((['firefox', 'chrome'].indexOf(browserName) !== -1) && platform === 'linux');
+    return ((['chrome'].indexOf(browserName) !== -1) && platform === 'linux');
   };
 
   exports.verifyFileDownload = function() {
-    if (!browser.params.verifyFileDownload) {
-      return false;
-    }
+    return browser.params.verifyFileDownload;
   };
 });
 
 exports.waitForUrl = function (url) {
-  browser.wait(function() {
+  return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
       return (current_url.indexOf(url) !== -1);
     });
@@ -41,20 +47,24 @@ exports.waitForUrl = function (url) {
 
 exports.waitForFile = function (filename, timeout) {    
   var t = timeout === undefined ? 1000 : timeout;    
-  var fp = path.resolve(browser.params.tmpDir, filename);   
-  browser.wait(function() {    
+  return browser.wait(function() {    
     try {   
-      var buf = fs.readFileSync(fp);   
-      if (buf.length > 1000) {    
-        return true;   
+      var buf = fs.readFileSync(filename);   
+      if (buf.length > 5) {    
+        return true;
       }   
     } catch(err) {   
-      return false;   
-    }    
+      // no-op
+      return false;
+    } 
   }, t);    
 };
 
 exports.emulateUserRefresh = function () {
-  browser.actions().sendKeys(protractor.Key.CONTROL, 'r', protractor.Key.NULL).perform();
-  browser.waitForAngular();
+  return browser.getCurrentUrl().then(function(current_url) {
+    current_url = current_url.split('#')[1];
+    return browser.setLocation('').then(function() {
+      return browser.setLocation(current_url);
+    });
+  });
 };
