@@ -1,4 +1,9 @@
 Changes in version 2.61.12 - 2016-05-23
+    o Fix issue #1675
+    o Fix issue #1678
+    o Implement unit testing for encrypted pgp files
+
+Changes in version 2.61.12 - 2016-05-23
     o Fix issue #1672
 
 Changes in version 2.61.11 - 2016-05-12
