@@ -153,8 +153,10 @@ describe('globaLeaks process', function() {
     expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
     element(by.model('tip.label')).sendKeys(label_1);
     element(by.id('assignLabelButton')).click();
-    element(by.id('link-reload')).click();
+
     browser.waitForAngular();
+
+    utils.emulateUserRefresh();
 
     // Check presence of label_1
     expect(element(by.id('assignLabelButton')).isPresent()).toBe(false);
