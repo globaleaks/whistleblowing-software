@@ -11,12 +11,12 @@ from storm import exceptions
 
 from twisted.internet.defer import succeed, inlineCallbacks
 
-from globaleaks import models,  __version__, DATABASE_VERSION
+from globaleaks import models, security, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
-from globaleaks.security import generateRandomSalt
+from globaleaks.security import generateRandomSalt, sha512
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
@@ -74,10 +74,15 @@ def init_db(store):
     store.add(node)
     store.add(notification)
 
+    salt = security.generateRandomSalt()
+    log.debug('deriving admin pw %s %s' % (GLSettings.default_password, salt))
+    auth_tok_hash = security.derive_auth_hash(GLSettings.default_password, salt)
     admin_dict = {
         'username': u'admin',
-        'password': u'globaleaks',
-        'deeletable': False,
+        'password': 'globaleaks',
+        'salt': salt,
+        'auth_token_hash': auth_tok_hash,
+        'deletable': False,
         'role': u'admin',
         'state': u'enabled',
         'deletable': False,

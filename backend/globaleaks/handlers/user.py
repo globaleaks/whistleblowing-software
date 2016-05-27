@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
-from globaleaks.security import change_password, GLBPGP
+from globaleaks.security
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
@@ -34,7 +34,7 @@ def parse_pgp_options(user, request):
         user.pgp_key_expiration = datetime_null()
 
     elif pgp_key_public != '':
-        gnob = GLBPGP()
+        gnob = security.GLBPGP()
 
         try:
             result = gnob.load_key(pgp_key_public)
@@ -64,9 +64,6 @@ def user_serialize_user(user, language):
     ret_dict = {
         'id': user.id,
         'username': user.username,
-        'password': '',
-        'old_password': u'',
-        'salt': '',
         'role': user.role,
         'deletable': user.deletable,
         'state': user.state,
@@ -119,19 +116,10 @@ def db_user_update_user(store, user_id, request, language):
     user.language = request.get('language', GLSettings.memory_copy.default_language)
     user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
-    new_password = request['password']
-    old_password = request['old_password']
-
-    if len(new_password) and len(old_password):
-        user.password = change_password(user.password,
-                                        old_password,
-                                        new_password,
-                                        user.salt)
-
-        if user.password_change_needed:
-            user.password_change_needed = False
-
-        user.password_change_date = datetime_now()
+    auth_token_hash = request['auth_token_hash']
+    old_auth_token_hash = request['old_auth_token_hash']
+  
+    security.check_and_change_auth_token(user, auth_token_hash, old_auth_token_hash)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

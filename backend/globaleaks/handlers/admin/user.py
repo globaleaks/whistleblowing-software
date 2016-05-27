@@ -92,6 +92,8 @@ def db_create_user(store, request, language):
 
     user = models.User({
         'username': request['username'],
+        'salt': request['salt'],
+        'auth_token_hash': request['auth_token_hash'],
         'role': request['role'],
         'state': u'enabled',
         'deletable': request['deletable'],
@@ -105,15 +107,6 @@ def db_create_user(store, request, language):
 
     if request['username'] == '':
         user.username = user.id
-
-    password = request['password']
-    if len(password) and password != GLSettings.default_password:
-        security.check_password_format(password)
-    else:
-        password = GLSettings.default_password
-
-    user.salt = security.generateRandomSalt()
-    user.password = security.hash_password(password, user.salt)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -140,12 +133,6 @@ def db_admin_update_user(store, user_id, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user.update(request)
-
-    password = request['password']
-    if len(password):
-        security.check_password_format(password)
-        user.password = security.hash_password(password, user.salt)
-        user.password_change_date = datetime_now()
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

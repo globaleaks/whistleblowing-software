@@ -39,14 +39,11 @@ def wizard(store, request, language):
 
         admin.mail_address = request['admin']['mail_address']
 
-        password = request['admin']['password']
-        old_password = request['admin']['old_password']
+        auth_token_hash = request['admin']['auth_token_hash']
+        old_auth_token_hash = request['admin']['old_auth_token_hash']
 
-        if password and old_password and len(password) and len(old_password):
-            admin.password = security.change_password(admin.password,
-                                                      old_password,
-                                                      password,
-                                                      admin.salt)
+        security.check_and_change_auth_token(admin, auth_token_hash, old_auth_token_hash)
+
     except Exception as excep:
         log.err("Failed wizard initialization %s" % excep)
         raise excep

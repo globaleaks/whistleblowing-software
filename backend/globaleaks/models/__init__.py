@@ -164,7 +164,7 @@ class User(Model):
 
     username = Unicode(validator=shorttext_v)
 
-    password = Unicode()
+    auth_token_hash = Unicode()
     salt = Unicode()
 
     deletable = Bool(default=True)
@@ -195,7 +195,7 @@ class User(Model):
 
     img_id = Unicode()
 
-    unicode_keys = ['username', 'role', 'state',
+    unicode_keys = ['username', 'role', 'state', 'auth_token_hash', 'salt',
                     'language', 'mail_address', 'name']
 
     localized_keys = ['description']

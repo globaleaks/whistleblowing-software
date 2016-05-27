@@ -6,58 +6,62 @@ from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils import utility
+from globaleaks.security import derive_auth_hash
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.AuthenticationHandler
 
-    # since all logins for roles admin, receiver and custodian happen
-    # in the same way, the following tests are performed on the admin user.
+    # Since all logins for roles admin, receiver and custodian work the 
+    # same way, the following tests are performed on the admin user.
 
     @inlineCallbacks
-    def test_successful_login(self):
+    def _test_successful_login(self, headers={}):
         handler = self.request({
             'username': 'admin',
-            'password': 'globaleaks',
-        })
+            'step': 1,
+            'auth_token_hash': 'a'*128,
+        }, headers=headers)
+        yield handler.post()
+
+        salt = self.responses[0]['salt']
+
+        password = GLSettings.default_password
+        digest = derive_auth_hash(password, salt)
+
+        handler = self.request({
+            'auth_token_hash': digest,
+            'username': 'admin',
+            'step': 2,
+        }, headers=headers)
+
         success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
+
+        self.assertTrue('session_id' in self.responses[1])
+          
         self.assertEqual(len(GLSessions.keys()), 1)
+
+    def test_successful_login(self, headers={}):
+      self._test_successful_login()
 
     @inlineCallbacks
     def test_accept_login_in_tor2web(self):
-        handler = self.request({
-            'username': 'admin',
-            'password': 'globaleaks'
-        }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = True
-        success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSessions.keys()), 1)
+        yield self._test_successful_login({'X-Tor2Web': 'whatever'})
 
     @inlineCallbacks
     def test_deny_login_in_tor2web(self):
-        handler = self.request({
-            'username': 'admin',
-            'password': 'globaleaks'
-        }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = False
-        yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
+        yield self.assertFailure(self._test_successful_login({'X-Tor2Web': 'whatever'}), 
+                                 errors.TorNetworkRequired)
 
     @inlineCallbacks
     def test_successful_logout(self):
         # Login
-        handler = self.request({
-            'username': 'admin',
-            'password': 'globaleaks'
-        })
-        yield handler.post()
-        self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSessions.keys()), 1)
+        yield self._test_successful_login()
 
         # Logout
-        session_id = self.responses[0]['session_id']
+        session_id = self.responses[1]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
@@ -72,10 +76,11 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSessions.keys()), 0)
 
     @inlineCallbacks
-    def test_invalid_login_wrong_password(self):
+    def test_invalid_login_wrong_token(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'auth_token_hash': helpers.INVALID_AUTH_TOK_HASH,
+            'step': 2,
         })
 
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
@@ -84,7 +89,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_failed_login_counter(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'INVALIDPASSWORD'
+            'auth_token_hash': helpers.INVALID_AUTH_TOK_HASH,
+            'step': 2,
         })
 
         failed_login = 5

@@ -63,6 +63,22 @@ def generateRandomPassword():
     return generateRandomKey(10)
 
 
+def check_and_change_auth_token(user, auth_token_hash, old_auth_token_hash):
+  current_token = user.auth_token_hash
+
+  if len(auth_token_hash) and len(old_auth_token_hash) and 
+      # TODO use safe comparision
+      current_token == old_auth_token_hash:
+
+      # TODO handle log. See ticket #???
+      user.auth_token_hash = auth_token_hash
+
+      if user.password_change_needed:
+         user.password_change_needed = False
+
+      user.password_change_date = datetime_now()
+
+
 def _overwrite(absolutefpath, pattern):
     filesize = os.path.getsize(absolutefpath)
     bytecnt = 0
@@ -311,50 +327,22 @@ def hash_password(password, salt):
     @param salt: a password salt
 
     @return:
-        the salted scrypt hash of the provided password
+        the scrypt hash of the provided password
     """
     password = password.encode('utf-8')
     salt = salt.encode('utf-8')
 
-    return scrypt.hash(password, salt).encode('hex')
+    return scrypt.encrypt(password, salt).encode('hex')
 
 
-def check_password_format(password):
-    """
-    @param password:
-        a password to be validated
-
-    # A password strength checker need to be implemented in the client;
-    # here is implemented a simple validation.
-    """
-    m1 = re.match(r'.{8,}', password)
-    m2 = re.match(r'.*\d.*', password)
-    m3 = re.match(r'.*[A-Za-z].*', password)
-    if m1 is None or m2 is None or m3 is None:
-        raise errors.InvalidInputFormat("password requirements unmet")
+def derive_auth_hash(password, salt):
+    pw, s = password.encode('utf8'), salt.encode('utf8')
+    digest = scrypt_password(pw, s) 
+    return sha512(digest)
 
 
-def check_password(guessed_password, salt, password_hash):
-    return hash_password(guessed_password, salt) == password_hash
-
-
-def change_password(old_password_hash, old_password, new_password, salt):
-    """
-    @param old_password_hash: the stored password hash.
-    @param old_password: The user provided old password for password change protection.
-    @param new_password: The user provided new password.
-    @param salt: The salt to be used for password hashing.
-
-    @return:
-        the scrypt hash in base64 of the new password
-    """
-    if not check_password(old_password, salt, old_password_hash):
-        log.err("change_password(): Error - provided invalid old_password")
-        raise errors.InvalidOldPassword
-
-    check_password_format(new_password)
-
-    return hash_password(new_password, salt)
+def scrypt_password(password, salt):
+    return scrypt.hash(password, salt, N=1 << 14, r=8).encode('hex')
 
 
 class GLBPGP(object):

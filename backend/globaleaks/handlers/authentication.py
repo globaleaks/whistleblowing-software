@@ -71,7 +71,6 @@ def login_whistleblower(store, receipt_hash, using_tor2web):
     store.commit()  # the transact was read only! on success we apply the commit()
     return wbtip.id
 
-
 class AuthenticationHandler(BaseHandler):
     """
     Login handler for admins and recipents and custodians
@@ -120,15 +119,15 @@ class AuthenticationHandler(BaseHandler):
     @transact
     def step2(self, store, request):
         username = request['username']
-        password_hash = request['password_hash']
+        auth_tok_hash = request['auth_token_hash']
 
         using_tor2web = self.check_tor2web()
 
-        #
         user = store.find(User, And(User.username == username,
+                                    User.auth_token_hash == auth_tok_hash,
                                     User.state != u'disabled')).one()
 
-        if not user or password_hash != user.password:
+        if not user:
             log.debug("Login: Invalid credentials")
             GLSettings.failed_login_attempts += 1
             raise errors.InvalidAuthentication

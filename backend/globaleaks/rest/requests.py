@@ -57,6 +57,9 @@ identityaccessreply_regexp        = (r'^('
                                      'authorized|'
                                      'denied)$')
 
+sha512_regexp                     = r'^[a-f0-9]{128}$'
+salt_regexp                       = r'.{24}$'
+
 class SkipSpecificValidation: pass
 
 DateType = r'(.*)'
@@ -77,13 +80,12 @@ FileDesc = {
 AuthDesc = {
     'step': int,
     'username': unicode,
-    'password_hash': unicode,
+    'auth_token_hash': sha512_regexp,
 }
 
 ReceiptAuthDesc = {
     'receipt_hash': unicode
 }
-
 
 TokenReqDesc = {
     'type': token_type_regexp
@@ -112,8 +114,9 @@ UserUserDesc = {
     'name': unicode,
     'description': unicode,
     'role': user_roles_regexp,
-    'password': unicode,
-    'old_password': unicode,
+    'salt': salt_regexp,
+    'auth_token_hash': sha512_regexp,
+    'old_auth_token_hash': sha512_regexp,
     'password_change_needed': bool,
     'deletable': bool,
     'state': user_states_regexp,
@@ -133,8 +136,9 @@ ReceiverReceiverDesc = {
     'name': unicode,
     'description': unicode,
     'role': user_roles_regexp,
-    'password': unicode,
-    'old_password': unicode,
+    'salt': salt_regexp,
+    'auth_token_hash': sha512_regexp,
+    'old_auth_token_hash': sha512_regexp,
     'password_change_needed': bool,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
@@ -582,8 +586,9 @@ InternalTipDesc = {
 }
 
 WizardAdminDesc = {
-    'password': unicode,
-    'old_password': unicode,
+    'salt': salt_regexp,
+    'auth_token_hash': sha512_regexp,
+    'old_auth_token_hash': sha512_regexp,
     'mail_address': unicode
 }
 

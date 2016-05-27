@@ -5,7 +5,7 @@ CREATE TABLE user (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
     username TEXT NOT NULL,
-    password TEXT NOT NULL,
+    auth_token_hash TEXT NOT NULL,
     salt TEXT NOT NULL,
     deletable INTEGER NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('admin', 'receiver', 'custodian')),

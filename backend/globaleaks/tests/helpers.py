@@ -55,6 +55,9 @@ VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
+VALID_AUTH_TOK_HASH1 = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
+INVALID_AUTH_TOK_HASH = 'a'*128
+
 RECEIPT_HASH = security.hash_password('0123456789012345', 'salt')
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
@@ -202,6 +205,8 @@ class TestGL(unittest.TestCase):
         self.dummyContext = dummyStuff.dummyContext
         self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
         self.dummyAdminUser['deletable'] = False
+
+
         self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
         self.dummyReceiverUser_1 = self.get_dummy_user('receiver', 'receiver1')
         self.dummyReceiverUser_2 = self.get_dummy_user('receiver', 'receiver2')
@@ -245,7 +250,8 @@ class TestGL(unittest.TestCase):
         new_u['username'] = new_u['name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_u['description'] = u""
-        new_u['password'] = VALID_PASSWORD1
+        new_u['salt'] = VALID_SALT1
+        new_u['auth_token_hash'] = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
 
