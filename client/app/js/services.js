@@ -99,13 +99,14 @@ angular.module('GLServices', ['ngResource']).
                 .then(success_fn, error_fn);
             });
           } else {
-            return $http.post('authentication', {'step': 1, 'username': username, 'password_hash': ''})
+            var d = Array(129).join('f');
+            return $http.post('authentication', {'step': 1, 'username': username, 'auth_token_hash': d})
               .then(function(response) {
 
-                return glbcKeyLib.deriveUserPassword(password, response.data.salt, 13).then(function(result) {
-                  var password_hash = result.authentication;
+                return glbcKeyLib.deriveUserPassword(password, response.data.salt, 14).then(function(result) {
+                  var auth_token_hash = result.authentication;
                   $http.post('authentication', 
-                                    {'step': 2, 'username': username, 'password_hash': password_hash})
+                                    {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
                     .then(success_fn, error_fn);
                   });
 

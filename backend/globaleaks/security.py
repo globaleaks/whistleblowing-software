@@ -66,9 +66,9 @@ def generateRandomPassword():
 def check_and_change_auth_token(user, auth_token_hash, old_auth_token_hash):
   current_token = user.auth_token_hash
 
-  if len(auth_token_hash) and len(old_auth_token_hash) and 
+  if (len(auth_token_hash) and len(old_auth_token_hash) and 
       # TODO use safe comparision
-      current_token == old_auth_token_hash:
+      current_token == old_auth_token_hash):
 
       # TODO handle log. See ticket #???
       user.auth_token_hash = auth_token_hash
@@ -321,20 +321,6 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
         raise errors.DirectoryTraversalError
 
 
-def hash_password(password, salt):
-    """
-    @param password: a password
-    @param salt: a password salt
-
-    @return:
-        the scrypt hash of the provided password
-    """
-    password = password.encode('utf-8')
-    salt = salt.encode('utf-8')
-
-    return scrypt.encrypt(password, salt).encode('hex')
-
-
 def derive_auth_hash(password, salt):
     pw, s = password.encode('utf8'), salt.encode('utf8')
     digest = scrypt_password(pw, s) 
@@ -342,8 +328,7 @@ def derive_auth_hash(password, salt):
 
 
 def scrypt_password(password, salt):
-    return scrypt.hash(password, salt, N=1 << 14, r=8).encode('hex')
-
+    return scrypt.hash(password, salt, buflen=256)
 
 class GLBPGP(object):
     """

@@ -20,7 +20,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
 from globaleaks.utils.token import TokenList
 from globaleaks.rest import errors, requests
-from globaleaks.security import hash_password, sha256
+from globaleaks.security import sha256
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \

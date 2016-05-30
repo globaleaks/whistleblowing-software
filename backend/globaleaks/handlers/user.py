@@ -6,11 +6,10 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
+from globaleaks import models, security
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
-from globaleaks.security
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null

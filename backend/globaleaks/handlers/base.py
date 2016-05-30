@@ -28,7 +28,7 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, R
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_password
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep, randint

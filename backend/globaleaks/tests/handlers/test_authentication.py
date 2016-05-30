@@ -42,7 +42,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(len(GLSessions.keys()), 1)
 
     def test_successful_login(self, headers={}):
-      self._test_successful_login()
+      self._test_successful_login(headers)
 
     @inlineCallbacks
     def test_accept_login_in_tor2web(self):

@@ -9,16 +9,41 @@ angular.module('GLBrowserCrypto', [])
 
   return window.openpgp;
 })
-.factory('glbcProofOfWork', ['$q', function($q) {
-  // proofOfWork return the answer to the proof of work
-  // { [challenge string] -> [ answer index] }
-  var str2Uint8Array = function(str) {
-    var result = new Uint8Array(str.length);
-    for (var i = 0; i < str.length; i++) {
-      result[i] = str.charCodeAt(i);
-    }
-    return result;
+
+.factory('glbcUtil', function() {
+  return {
+
+    /**
+     * @param {Uint8Array} bin
+     * @return {String} The hex string of the passed array.
+     **/
+    bin2hex: function(bin) {
+      var s = '';
+      for (var i = 0; i < bin.length; i++) {
+        var out = bin[i].toString(16);
+        s += out.length === 2 ? out : '0' + out;
+      }
+      return s;
+    },
+
+    /**
+     * @param {String} str
+     * @return {Uint8Array} the int representing each 'character'
+     **/
+    str2Uint8Array: function(str) {
+      var result = new Uint8Array(str.length);
+      for (var i = 0; i < str.length; i++) {
+        result[i] = str.charCodeAt(i);
+      }
+      return result;
+    },
+
   };
+})
+
+.factory('glbcProofOfWork', ['$q', 'glbcUtil', function($q, glbcUtil) {
+  // proofOfWork returns the answer to the proof of work
+  // { [challenge string] -> [ answer index] }
 
   var getWebCrypto = function() {
     if (typeof window !== 'undefined') {
@@ -48,7 +73,7 @@ angular.module('GLBrowserCrypto', [])
       }
 
       var work = function() {
-        var hashme = str2Uint8Array(str + i);
+        var hashme = glbcUtil.str2Uint8Array(str + i);
         var damnIE = getWebCrypto().digest({name: "SHA-256"}, hashme);
 
         if (damnIE.then !== undefined) {
@@ -64,7 +89,7 @@ angular.module('GLBrowserCrypto', [])
     }
   };
 }])
-.factory('glbcKeyLib', ['$q', 'pgp', function($q, pgp) {
+.factory('glbcKeyLib', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
     /*
       The code below could be tested with:
 
@@ -116,7 +141,7 @@ angular.module('GLBrowserCrypto', [])
       scrypt: function(data, salt, logN, dkLen) {
         var defer = $q.defer();
 
-        scrypt(data, salt, logN, dkLen, 'hex').then(function(stretched) {
+        scrypt(data, salt, logN, dkLen, 'utf-8').then(function(stretched) {
           defer.resolve({
             value: data,
             stretched: stretched
@@ -127,7 +152,8 @@ angular.module('GLBrowserCrypto', [])
       },
 
       deriveAuthentication: function(user_password, salt, M) {
-        return this.scrypt(user_password, salt, M, 64);
+        var h = pgp.crypto.hash.sha512(this.scrypt(user_password, salt, M, 8));
+        return pgp.binb2hex(h);
       },
 
       derivePassphrase: function(user_password, salt, N) {
@@ -139,12 +165,13 @@ angular.module('GLBrowserCrypto', [])
         var defer2 = $q.defer();
         var result = $q.defer();
 
+        console.log('pass, salt', user_password, salt);
         this.derivePassphrase(user_password, salt, N).then(function(passphrase) {
           defer1.resolve(passphrase.stretched);
-        });
-
-        this.deriveAuthentication(user_password, salt, N+1).then(function(authentication) {
-          defer2.resolve(authentication.stretched);
+          console.log('hex: scrypt(pass)', glbcUtil.bin2hex(passphrase.stretched));
+          var res = pgp.crypto.hash.sha512(passphrase.stretched);
+          console.log('hex: sha(result)', glbcUtil.bin2hex(res));
+          defer2.resolve(glbcUtil.bin2hex(res));
         });
 
         $q.all([defer1.promise, defer2.promise]).then(function(values) {

@@ -6,7 +6,7 @@ import sys
 import sqlite3
 
 from globaleaks import models
-from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
+from globaleaks.security import derive_auth_hash, generateRandomPassword, generateRandomSalt
 from globaleaks import DATABASE_VERSION
 
 def reset_password(dbfile, username=None, password=None):
@@ -15,9 +15,9 @@ def reset_password(dbfile, username=None, password=None):
     if password is None:
         password = generateRandomPassword()
 
-    hashed_password = hash_password(password, salt)
+    hashed_password = derive_auth_hash(password, salt)
 
-    QUERY = 'UPDATE user SET salt="%s", password="%s"' % (salt, hashed_password)
+    QUERY = 'UPDATE user SET salt="%s", auth_token_hash="%s"' % (salt, hashed_password)
     QUERY += ' WHERE username = "%s";' % (username)
 
     conn = sqlite3.connect(dbfile)
