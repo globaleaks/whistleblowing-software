@@ -326,21 +326,6 @@ def hash_password(password, salt):
     return scrypt.hash(password, salt).encode('hex')
 
 
-def check_password_format(password):
-    """
-    @param password:
-        a password to be validated
-
-    # A password strength checker need to be implemented in the client;
-    # here is implemented a simple validation.
-    """
-    m1 = re.match(r'.{8,}', password)
-    m2 = re.match(r'.*\d.*', password)
-    m3 = re.match(r'.*[A-Za-z].*', password)
-    if m1 is None or m2 is None or m3 is None:
-        raise errors.InvalidInputFormat("password requirements unmet")
-
-
 def check_password(guessed_password, salt, password_hash):
     return hash_password(guessed_password, salt) == password_hash
 
@@ -358,8 +343,6 @@ def change_password(old_password_hash, old_password, new_password, salt):
     if not check_password(old_password, salt, old_password_hash):
         log.err("change_password(): Error - provided invalid old_password")
         raise errors.InvalidOldPassword
-
-    check_password_format(new_password)
 
     return hash_password(new_password, salt)
 
