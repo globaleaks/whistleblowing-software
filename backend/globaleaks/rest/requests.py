@@ -83,6 +83,12 @@ AuthDesc = {
     'auth_token_hash': sha512_regexp,
 }
 
+PasswordChangeDesc = {
+  'new_auth_token_hash': sha512_regexp,
+  'old_auth_token_hash': sha512_regexp,
+  'ccrypto_key_private': unicode,
+}
+
 ReceiptAuthDesc = {
     'receipt_hash': unicode
 }
@@ -114,9 +120,6 @@ UserUserDesc = {
     'name': unicode,
     'description': unicode,
     'role': user_roles_regexp,
-    'salt': salt_regexp,
-    'auth_token_hash': sha512_regexp,
-    'old_auth_token_hash': sha512_regexp,
     'password_change_needed': bool,
     'deletable': bool,
     'state': user_states_regexp,
@@ -136,9 +139,6 @@ ReceiverReceiverDesc = {
     'name': unicode,
     'description': unicode,
     'role': user_roles_regexp,
-    'salt': salt_regexp,
-    'auth_token_hash': sha512_regexp,
-    'old_auth_token_hash': sha512_regexp,
     'password_change_needed': bool,
     'mail_address': email_regexp,
     'pgp_key_remove': bool,
@@ -586,9 +586,6 @@ InternalTipDesc = {
 }
 
 WizardAdminDesc = {
-    'salt': salt_regexp,
-    'auth_token_hash': sha512_regexp,
-    'old_auth_token_hash': sha512_regexp,
     'mail_address': unicode
 }
 

@@ -17,22 +17,23 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def _test_successful_login(self, headers={}):
+        uname = 'receiver1@receiver1.xxx'
         handler = self.request({
-            'username': 'admin',
             'step': 1,
-            'auth_token_hash': 'a'*128,
+            'username': uname,
+            'auth_token_hash': 'f'*128,
         }, headers=headers)
         yield handler.post()
 
         salt = self.responses[0]['salt']
 
-        password = GLSettings.default_password
+        password = helpers.VALID_PASSWORD1
         digest = derive_auth_hash(password, salt)
 
         handler = self.request({
-            'auth_token_hash': digest,
-            'username': 'admin',
             'step': 2,
+            'username': uname,
+            'auth_token_hash': helpers.VALID_AUTH_TOK_HASH1,
         }, headers=headers)
 
         success = yield handler.post()
@@ -41,8 +42,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
           
         self.assertEqual(len(GLSessions.keys()), 1)
 
-    def test_successful_login(self, headers={}):
-      self._test_successful_login(headers)
+    @inlineCallbacks
+    def test_successful_login(self):
+      yield self._test_successful_login()
 
     @inlineCallbacks
     def test_accept_login_in_tor2web(self):

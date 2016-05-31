@@ -19,11 +19,6 @@ from twisted.internet.defer import inlineCallbacks
 @transact
 def wizard(store, request, language):
     try:
-        auth_token_hash = request['admin']['auth_token_hash']
-        old_auth_token_hash = request['admin']['old_auth_token_hash']
-
-        security.check_and_change_auth_token(admin, auth_token_hash, old_auth_token_hash)
-
         request['node']['default_language'] = language
         request['node']['languages_enabled'] = [language]
 

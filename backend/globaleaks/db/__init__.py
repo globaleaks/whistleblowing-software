@@ -74,14 +74,8 @@ def init_db(store):
     store.add(node)
     store.add(notification)
 
-    salt = security.generateRandomSalt()
-    log.debug('deriving admin pw %s %s' % (GLSettings.default_password, salt))
-    auth_tok_hash = security.derive_auth_hash(GLSettings.default_password, salt)
     admin_dict = {
         'username': u'admin',
-        'password': 'globaleaks',
-        'salt': salt,
-        'auth_token_hash': auth_tok_hash,
         'deletable': False,
         'role': u'admin',
         'state': u'enabled',

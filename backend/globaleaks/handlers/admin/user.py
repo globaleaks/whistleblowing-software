@@ -92,8 +92,6 @@ def db_create_user(store, request, language):
 
     user = models.User({
         'username': request['username'],
-        'salt': request['salt'],
-        'auth_token_hash': request['auth_token_hash'],
         'role': request['role'],
         'state': u'enabled',
         'deletable': request['deletable'],
@@ -107,6 +105,10 @@ def db_create_user(store, request, language):
 
     if request['username'] == '':
         user.username = user.id
+
+    # TODO use dynamic defaults
+    user.salt = security.generateRandomSalt();
+    user.auth_token_hash = security.derive_auth_hash(GLSettings.default_password, user.salt)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

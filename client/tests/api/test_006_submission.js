@@ -164,11 +164,7 @@ for (i=0; i<submission_population_order; i++) {
         new_submission.context_id = contexts_ids[0];
         new_submission.receivers = receivers_ids;
         new_submission.identity_provided = false;
-<<<<<<< HEAD
-        new_submission.answers = fill_answers(contexts[0].steps);
-=======
         new_submission.answers = fill_answers(publicapi['contexts'][0].steps);
->>>>>>> feature/browsercrypto
         new_submission.encrypted_answers = 'encrypted_answers';
         new_submission.total_score = 0;
         new_submission.ccrypto_key_private = '';

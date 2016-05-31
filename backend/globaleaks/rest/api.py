@@ -47,6 +47,7 @@ spec = [
     ## Authentication Handlers ##
     (r'/authentication', authentication.AuthenticationHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
+    (r'/user/passwordchange', authentication.PasswordChangeHandler),
 
     ## Public API ##
     (r'/public', public.PublicResource),

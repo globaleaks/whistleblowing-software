@@ -34,7 +34,8 @@ angular.module('GLServices', ['ngResource']).
               'state': response.state,
               'password_change_needed': response.password_change_needed,
               'homepage': '',
-              'auth_landing_page': ''
+              'auth_landing_page': '',
+              'user_salt': '',
             };
 
             function initPreferences(prefs) {
@@ -73,7 +74,7 @@ angular.module('GLServices', ['ngResource']).
             } else {
               // Override the auth_landing_page if a password change is needed
               if (self.session.password_change_needed) {
-                // Pushes ui to the ForcedPasswordChangeCtrl
+                // Pushes UI to the ForcedPasswordChangeCtrl
                 locationForce.set('/forcedpasswordchange');
               } else {
                 $location.path(self.session.auth_landing_page);
@@ -91,7 +92,7 @@ angular.module('GLServices', ['ngResource']).
 
           if (username === 'whistleblower') {
             password = password.replace(/\D/g,'');
-            return glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt, 13).then(function(result) {
+            return glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt).then(function(result) {
               var password_hash = result.authentication;
               glbcWhistleblower.storePassphrase(result.passphrase);
 
@@ -99,14 +100,16 @@ angular.module('GLServices', ['ngResource']).
                 .then(success_fn, error_fn);
             });
           } else {
-            var d = Array(129).join('f');
-            return $http.post('authentication', {'step': 1, 'username': username, 'auth_token_hash': d})
+            var f = Array(129).join('f');
+            return $http.post('authentication', {'step': 1, 'username': username, 'auth_token_hash': f})
               .then(function(response) {
 
-                return glbcKeyLib.deriveUserPassword(password, response.data.salt, 14).then(function(result) {
+                self.user_salt = response.data.salt;
+
+                return glbcKeyLib.deriveUserPassword(password, response.data.salt).then(function(result) {
                   var auth_token_hash = result.authentication;
                   $http.post('authentication', 
-                                    {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
+                             {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
                     .then(success_fn, error_fn);
                   });
 
@@ -938,8 +941,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           user.role = 'receiver';
           user.state = 'enable';
           user.deletable = 'true';
-          user.password = 'globaleaks';
-          user.old_password = '';
           user.password_change_needed = true;
           user.state = 'enabled';
           user.name = '';

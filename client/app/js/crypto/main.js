@@ -11,7 +11,71 @@ angular.module('GLBrowserCrypto', [])
 })
 
 .factory('glbcUtil', function() {
+  var b64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
   return {
+
+    /**
+    * Convert binary array to radix-64. Shamelessly lifted from OpenPGPjs
+    * @param {Uint8Array} t Uint8Array to convert
+    * @returns {string} radix-64 version of input string
+    * @static
+    */
+    bin2base64: function(t, o) {
+      // TODO check btoa alternative
+      var a, c, n;
+      var r = o ? o : [],
+      l = 0,
+      s = 0;
+      var tl = t.length;
+
+      for (n = 0; n < tl; n++) {
+        c = t[n];
+        if (s === 0) {
+          r.push(b64s.charAt((c >> 2) & 63));
+          a = (c & 3) << 4;
+        } else if (s === 1) {
+          r.push(b64s.charAt((a | (c >> 4) & 15)));
+          a = (c & 15) << 2;
+        } else if (s === 2) {
+          r.push(b64s.charAt(a | ((c >> 6) & 3)));
+          l += 1;
+          if ((l % 60) === 0) {
+            r.push("\n");
+          }
+          r.push(b64s.charAt(c & 63));
+        }
+        l += 1;
+        if ((l % 60) === 0) {
+          r.push("\n");
+        }
+
+        s += 1;
+        if (s === 3) {
+          s = 0;
+        }
+      }
+      if (s > 0) {
+        r.push(b64s.charAt(a));
+        l += 1;
+        if ((l % 60) === 0) {
+          r.push("\n");
+        }
+        r.push('=');
+        l += 1;
+      }
+      if (s === 1) {
+        if ((l % 60) === 0) {
+          r.push("\n");
+        }
+        r.push('=');
+      }
+      if (o)
+      {
+        return;
+      }
+      return r.join('');
+    },
 
     /**
      * @param {Uint8Array} bin
@@ -90,26 +154,8 @@ angular.module('GLBrowserCrypto', [])
   };
 }])
 .factory('glbcKeyLib', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
-    /*
-      The code below could be tested with:
 
-      To following code is the PoC for:
-        - authentication secrete derivation from user password
-        - pgp passphrase derivation from user password
-        - pgp key creation passphrase protected with the passphrase derived by
-      glbcKeyLib.deriveUserPassword("antani", "salt", 24).then(function(result) {
-        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(result) {
-          console.log(result);
-        });
-      });
-
-      The following code is the PoC for the clientside keycode generation:
-      var keycode = glbcKeyLib.generateKeycode();
-
-      The keycode could be used in place of the "antani" above.
-    */
-
-    var scrypt = function(password,
+      var scrypt = function(password,
                           salt,
                           logN,
                           dkLen,
@@ -144,63 +190,55 @@ angular.module('GLBrowserCrypto', [])
         scrypt(data, salt, logN, dkLen, 'utf-8').then(function(stretched) {
           defer.resolve({
             value: data,
-            stretched: stretched
+            stretched: glbcUtil.bin2hex(stretched),
           });
         });
 
         return defer.promise;
       },
 
-      deriveAuthentication: function(user_password, salt, M) {
-        var h = pgp.crypto.hash.sha512(this.scrypt(user_password, salt, M, 8));
-        return pgp.binb2hex(h);
+      deriveAuthentication: function(user_password, salt) {
+        var h = pgp.crypto.hash.sha512(this.scrypt(user_password, salt, 14, 8));
+        return glbcUtil.bin2hex(h);
       },
 
-      derivePassphrase: function(user_password, salt, N) {
-        return this.scrypt(user_password, salt, N, 256);
-      },
-
-      deriveUserPassword: function (user_password, salt, N) {
-        var defer1 = $q.defer();
-        var defer2 = $q.defer();
-        var result = $q.defer();
-
+      /*
+       * @param {String} user_password
+       * @param {String} salt a 16 byte base64 encoded random salt.
+       **/
+      deriveUserPassword: function (user_password, salt) {
         console.log('pass, salt', user_password, salt);
-        this.derivePassphrase(user_password, salt, N).then(function(passphrase) {
-          defer1.resolve(passphrase.stretched);
-          console.log('hex: scrypt(pass)', glbcUtil.bin2hex(passphrase.stretched));
-          var res = pgp.crypto.hash.sha512(passphrase.stretched);
-          console.log('hex: sha(result)', glbcUtil.bin2hex(res));
-          defer2.resolve(glbcUtil.bin2hex(res));
+
+        var promise = this.scrypt(user_password, salt, 14, 256)
+        .then(function(passphrase) {
+          console.log('hex: scrypt(pass)', passphrase.stretched);
+          var token_hash =  pgp.crypto.hash.sha512(passphrase.stretched);
+          console.log('hex: sha(result)', glbcUtil.bin2hex(token_hash));
+          return {
+            passphrase: passphrase.stretched,
+            authentication: glbcUtil.bin2hex(token_hash),
+          };
+
         });
 
-        $q.all([defer1.promise, defer2.promise]).then(function(values) {
-          result.resolve({
-            passphrase: values[0],
-            authentication: values[1]
-          });
-        });
-
-        return result.promise;
+        return promise;
       },
 
       generateCCryptoKey: function (passphrase) {
-        var defer = $q.defer();
-
         var key_options = {
           userIds: [{ name:'Random User', email:'randomuser@globaleaks.org' }],
           passphrase: passphrase,
           numBits: ccrypto_key_bits
         };
 
-        pgp.generateKey(key_options).then(function(keyPair) {
-          defer.resolve({
+        var promise = pgp.generateKey(key_options).then(function(keyPair) {
+          return {
             ccrypto_key_public: keyPair.key.toPublic(),
             ccrypto_key_private: keyPair.key,
-          });
+          };
         });
 
-        return defer.promise;
+        return promise;
       },
 
       /**
@@ -443,6 +481,12 @@ angular.module('GLBrowserCrypto', [])
 
   return {
     getKey: function() { return keyRing.privateKey; },
+    exportPrivKey: function() {
+      if (keyRing.privateKey.isDecrypted) {
+        throw new Error("Attempted to export decrypted privateKey");
+      }
+      return this.getKey().armor();
+    },
 
     getPubKey: function(s) { 
       if (s === 'private') {
@@ -495,7 +539,6 @@ angular.module('GLBrowserCrypto', [])
      * @description encrypts the private key material of the key using the passed
      * password. The primary key and all subkeys are encrypted with the password.
      * @param {String} password
-     * @return {Bool}
      */
     lockKeyRing: function(password) {
        return keyRing.privateKey.encrypt(password);
@@ -505,10 +548,14 @@ angular.module('GLBrowserCrypto', [])
      * @description decrypts the private key's encrypted key material with the
      * passed password. Returns true if successful.
      * @param {String} password
-     * @return {Bool}
      */
     unlockKeyRing: function(password) {
       return keyRing.privateKey.decrypt(password);
+    },
+
+    changePassphrase: function(old_pw, new_pw) {
+      this.unlockKeyRing(old_pw);
+      this.lockKeyRing(new_pw);
     },
 
   };

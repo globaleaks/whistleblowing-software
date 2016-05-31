@@ -50,15 +50,12 @@ from . import TEST_DIR
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
 VALID_SALT1 = security.generateRandomSalt()
-VALID_SALT2 = security.generateRandomSalt()
-VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
-VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
 VALID_AUTH_TOK_HASH1 = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
 INVALID_AUTH_TOK_HASH = 'a'*128
 
-RECEIPT_HASH = security.hash_password('0123456789012345', 'salt')
+#RECEIPT_HASH = security.hash_password('0123456789012345', 'salt')
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
@@ -250,8 +247,6 @@ class TestGL(unittest.TestCase):
         new_u['username'] = new_u['name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_u['description'] = u""
-        new_u['salt'] = VALID_SALT1
-        new_u['auth_token_hash'] = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
 
@@ -370,7 +365,7 @@ class TestGL(unittest.TestCase):
             'encrypted_answers': '',
             'ccrypto_key_private': '',
             'ccrypto_key_public': '',
-            'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
+            #'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
         })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
@@ -739,6 +734,7 @@ class MockDict():
             'password': VALID_PASSWORD1,
             'old_password': '',
             'salt': VALID_SALT1,
+            'auth_token_hash': VALID_AUTH_TOK_HASH1,
             'role': u'receiver',
             'state': u'enabled',
             'name': u'Generic User',

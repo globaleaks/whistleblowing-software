@@ -24,9 +24,10 @@ from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, datetime_to_day_str
+from globaleaks.utils.utility import log, datetime_to_day_str, datetime_now
 from globaleaks.settings import GLSettings
-
+from globaleaks.orm import transact
+from globaleaks.models import User
 
 crypto_backend = default_backend()
 
@@ -62,21 +63,33 @@ def generateRandomPassword():
     """
     return generateRandomKey(10)
 
+@transact
+def check_and_change_auth_token(store, user_id, request):
+  new_auth_token_hash = request['new_auth_token_hash']
+  old_auth_token_hash = request['old_auth_token_hash']
 
-def check_and_change_auth_token(user, auth_token_hash, old_auth_token_hash):
+  user = store.find(User, User.id == user_id).one()
   current_token = user.auth_token_hash
 
-  if (len(auth_token_hash) and len(old_auth_token_hash) and 
+  log.debug('Trying to change pw!')
+  if (len(new_auth_token_hash) and len(old_auth_token_hash) and 
       # TODO use safe comparision
       current_token == old_auth_token_hash):
 
       # TODO handle log. See ticket #???
-      user.auth_token_hash = auth_token_hash
+      user.auth_token_hash = new_auth_token_hash
 
-      if user.password_change_needed:
-         user.password_change_needed = False
-
+      user.password_change_needed = False
       user.password_change_date = datetime_now()
+
+      user.salt = request['salt']
+      user.ccrypto_key_private = request['ccrypto_key_private']
+
+      log.debug('about to commit!')
+      user.update()
+      log.debug('commit')
+  else:
+    log.debug('auth on pw change failed!! %s, %s' % (old_auth_token_hash, current_token))
 
 
 def _overwrite(absolutefpath, pattern):

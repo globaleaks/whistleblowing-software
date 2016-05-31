@@ -122,10 +122,14 @@ class AuthenticationHandler(BaseHandler):
         auth_tok_hash = request['auth_token_hash']
 
         using_tor2web = self.check_tor2web()
+        
 
+        # TODO use something other than passed username.
         user = store.find(User, And(User.username == username,
                                     User.auth_token_hash == auth_tok_hash,
                                     User.state != u'disabled')).one()
+
+        #from IPython import embed; embed()
 
         if not user:
             log.debug("Login: Invalid credentials")
@@ -186,6 +190,30 @@ class AuthenticationHandler(BaseHandler):
                 del GLSessions[self.current_user.id]
             except KeyError:
                 raise errors.NotAuthenticated
+
+
+class PasswordChangeHandler(BaseHandler):
+
+  # TODO author mocha test against the handler
+  @BaseHandler.transport_security_check('receiver')
+  @BaseHandler.authenticated('receiver')
+  @inlineCallbacks
+  def post(self):
+    """
+    Handles changing the password for all roles except the whistleblower.
+    """
+    request = self.validate_message(self.request.body, requests.PasswordChangeDesc)
+
+    user_id = self.current_user.user_id
+    log.debug('reterieving user_id: %s' % user_id)
+    
+    log.debug('running check auth')
+    yield security.check_and_change_auth_token(user_id, 
+                                               request['new_auth_token_hash'],
+                                               request['old_auth_token_hash'])
+
+    #del GLSessions[user_id]
+    self.write({'salt': 'la pinata!'})
 
 
 class ReceiptAuthHandler(AuthenticationHandler):
