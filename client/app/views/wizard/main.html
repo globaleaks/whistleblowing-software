@@ -73,6 +73,7 @@
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" zxcvbn="passwordStrength" zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
+            <p class="text-danger" data-ng-show="wizardForm.password.$error.passwordStrength" data-translate>Choose a stronger password. This one is too weak!</p>
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -159,7 +160,7 @@
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.context_name.$error.required}">
-            <input name="context_name" class="form-control" data-ng-model="context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}" required>
+            <input name="context_name" class="form-control" data-ng-model="context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}"  maxlength="{{node.maximum_namesize}}" required>
           </div>
         </div>
       </div>
