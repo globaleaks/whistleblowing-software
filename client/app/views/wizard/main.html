@@ -73,7 +73,9 @@
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" zxcvbn="passwordStrength" zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
-            <p class="text-danger" data-ng-show="wizardForm.password.$error.passwordStrength" data-translate>Choose a stronger password. This one is too weak!</p>
+            <div class="text-danger" data-ng-show="!wizardForm.password.$error.required && wizardForm.password.$error.passwordStrength">
+              <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
+            </div>
           </div>
         </div>
         <div class="form-group col-md-12">
@@ -83,7 +85,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" required />
-            <div class="text-danger" data-ng-show="admin_password !== '' && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
+            <div class="text-danger" data-ng-show="!wizardForm.password.$error.passwordStrength && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
         </div>
       </div>
