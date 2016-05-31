@@ -99,15 +99,13 @@ angular.module('GLServices', ['ngResource']).
 
         self.getLoginUri = function (role, path) {
           var loginUri = "/login";
+
           if (role === undefined ) {
             if (path === '/status') {
-              // If we are whistleblowers on the status page, redirect to homepage
               loginUri = '/';
             } else if (path.indexOf('/admin') === 0) {
-              // If we are admins on the /admin(/*) pages, redirect to /admin
               loginUri = '/admin';
             } else if (path.indexOf('/custodian') === 0) {
-              // If we are custodians on the /custodian(/*) pages, redirect to /custodian
               loginUri = '/custodian';
             }
           } else if (role === 'whistleblower') {
