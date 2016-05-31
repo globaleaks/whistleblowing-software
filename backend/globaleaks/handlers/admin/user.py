@@ -106,7 +106,7 @@ def db_create_user(store, request, language):
         user.username = user.id
 
     password = request['password']
-    if not len(password):
+    if len(password) == 0:
         password = GLSettings.default_password
 
     user.salt = security.generateRandomSalt()
@@ -134,7 +134,7 @@ def db_admin_update_user(store, user_id, request, language):
     user.update(request)
 
     password = request['password']
-    if len(password):
+    if len(password) > 0:
         user.password = security.hash_password(password, user.salt)
         user.password_change_date = datetime_now()
 

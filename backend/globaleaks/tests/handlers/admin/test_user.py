@@ -70,14 +70,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(self.responses[0]['name'], self.dummyAdminUser['name'])
 
     @inlineCallbacks
-    def test_put_change_invalid_password(self):
-        self.dummyAdminUser['name'] = u'trick to verify the update is accepted'
-        self.dummyAdminUser['password'] = u'toosimplepassword'
-
-        handler = self.request(self.dummyAdminUser, role='admin')
-        yield self.assertFailure(handler.put(self.dummyAdminUser['id']), InvalidInputFormat)
-
-    @inlineCallbacks
     def test_delete_first_admin_user_should_fail(self):
         handler = self.request(role='admin')
         yield self.assertFailure(handler.delete(self.dummyAdminUser['id']),
