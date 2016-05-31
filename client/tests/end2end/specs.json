@@ -1,6 +1,7 @@
 [
   "test-init.js",
   "test-admin-perform-wizard.js",
+  "test-authentication-redirects.js",
   "test-admin-login.js",
   "test-admin-navigate-sections.js",
   "test-admin-configure-node.js",
