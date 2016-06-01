@@ -129,8 +129,6 @@ class AuthenticationHandler(BaseHandler):
                                     User.auth_token_hash == auth_tok_hash,
                                     User.state != u'disabled')).one()
 
-        #from IPython import embed; embed()
-
         if not user:
             log.debug("Login: Invalid credentials")
             GLSettings.failed_login_attempts += 1

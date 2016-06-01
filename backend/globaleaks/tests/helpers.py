@@ -5,7 +5,7 @@ Utilities and basic TestCases.
 """
 
 import sys
-reload(sys)
+reload(sys) # TODO explain presence or delete 
 sys.setdefaultencoding('utf8')
 
 import copy
@@ -49,7 +49,7 @@ from . import TEST_DIR
 ## constants
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
-VALID_SALT1 = security.generateRandomSalt()
+VALID_SALT1 = u'5V+ywKbMyhlH9HCjQbxacQ=='
 INVALID_PASSWORD = u'antani'
 
 VALID_AUTH_TOK_HASH1 = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
@@ -152,6 +152,7 @@ def change_field_type(field, field_type):
 
 def get_file_upload(self):
     return self.request.body
+
 
 BaseHandler.get_file_upload = get_file_upload
 
@@ -365,7 +366,7 @@ class TestGL(unittest.TestCase):
             'encrypted_answers': '',
             'ccrypto_key_private': '',
             'ccrypto_key_public': '',
-            #'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
+            'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
         })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
@@ -725,14 +726,12 @@ class TestHandlerWithPopulatedDB(TestHandler):
 
 class MockDict():
     """
-    This class just create all the shit we need for emulate a GLNode
+    This class just creates all the things we need to emulate a GLNode
     """
     def __init__(self):
         self.dummyUser = {
             'id': '',
             'username': u'maker@iz.cool.yeah',
-            'password': VALID_PASSWORD1,
-            'old_password': '',
             'salt': VALID_SALT1,
             'auth_token_hash': VALID_AUTH_TOK_HASH1,
             'role': u'receiver',
