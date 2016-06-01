@@ -270,6 +270,8 @@ GLClient.controller('SubmissionCtrl',
             $scope.submission.pow = true;
           });
         });
+      } else {
+        $scope.submission.pow = true;
       }
 
       if ($scope.problemToBeSolved) {
