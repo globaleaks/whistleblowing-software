@@ -3,7 +3,7 @@ var fs = require('fs');
 exports.vars = {
   'default_password': 'globaleaks',
   'user_password': '"ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
-}
+};
 
 exports.waitUntilReady = function (elm, timeout) {
   var t = timeout === undefined ? 1000 : timeout;

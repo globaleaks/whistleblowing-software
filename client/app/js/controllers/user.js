@@ -13,6 +13,7 @@ GLClient
       var new_pw = $scope.preferences.password;
       var uname = $scope.preferences.name;
 
+      // TODO remove receiver (or extend) specific logic in first promise
       glbcUser.changePassword(uname, new_pw, old_pw, old_salt)
       .then(glbcReceiver.updatePrivateKey)
       .then(function() {
