@@ -4,9 +4,11 @@ describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function(done) {
     browser.get('/#/wizard');
 
+    var next1 = element(by.id('ButtonNext1'));
+    utils.waitUntilReady(next1);
     // Go to step 2
-    element(by.id('ButtonNext1')).click();
-      
+    next1.click();
+
     // Fill out the form
     element(by.model('admin.node.name')).sendKeys('E2E Test Instance');
     element(by.model('admin.node.description')).sendKeys('This instance is for E2E testing');

@@ -55,7 +55,7 @@ INVALID_PASSWORD = u'antani'
 VALID_AUTH_TOK_HASH1 = security.derive_auth_hash(VALID_PASSWORD1, VALID_SALT1)
 INVALID_AUTH_TOK_HASH = 'a'*128
 
-#RECEIPT_HASH = security.hash_password('0123456789012345', 'salt')
+RECEIPT_HASH = security.derive_auth_hash('0123456789012345', 'salt')
 
 FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
 
@@ -366,7 +366,7 @@ class TestGL(unittest.TestCase):
             'encrypted_answers': '',
             'ccrypto_key_private': '',
             'ccrypto_key_public': '',
-            'receipt_hash': unicode(security.hash_password('0123456789012345', 'salt'))
+            'receipt_hash': RECEIPT_HASH, # TODO Notice me sempai!!
         })
 
     def get_dummy_file(self, filename=None, content_type=None, content=None):
