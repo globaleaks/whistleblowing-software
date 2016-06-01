@@ -88,6 +88,7 @@ spec = [
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
+    (r'/receiver/privkey', receiver.KeyUpdate),
     (r'/rtip/operations', receiver.TipsOperations),
 
     (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),

@@ -115,11 +115,6 @@ def db_user_update_user(store, user_id, request, language):
     user.language = request.get('language', GLSettings.memory_copy.default_language)
     user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
-    auth_token_hash = request['auth_token_hash']
-    old_auth_token_hash = request['old_auth_token_hash']
-  
-    security.check_and_change_auth_token(user, auth_token_hash, old_auth_token_hash)
-
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 

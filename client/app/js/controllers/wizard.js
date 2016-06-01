@@ -36,7 +36,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
         };
 
         $http.post('admin/wizard', $scope.wizard).then(function() {
-          return glbcUser.changePassword('admin', $scope.password, 'globaleaks');
+          return glbcUser.changePassword('admin', $scope.admin_password, 'globaleaks');
         }).then(function() {
           $scope.reload("/admin/landing");
         });

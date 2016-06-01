@@ -16,6 +16,7 @@ import scrypt
 import string
 import time
 
+from twisted.internet.defer import inlineCallbacks
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
@@ -26,7 +27,7 @@ from tempfile import _TemporaryFileWrapper
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, datetime_to_day_str, datetime_now
 from globaleaks.settings import GLSettings
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_ro
 from globaleaks.models import User
 
 crypto_backend = default_backend()
@@ -63,33 +64,38 @@ def generateRandomPassword():
     """
     return generateRandomKey(10)
 
-@transact
-def check_and_change_auth_token(store, user_id, request):
-  new_auth_token_hash = request['new_auth_token_hash']
-  old_auth_token_hash = request['old_auth_token_hash']
 
+@transact_ro
+def validate_token_hash(store, user_id, foreign_auth_token):
+  return _validate_token_hash
+
+
+def _validate_token_hash(store, user_id, foreign_auth_token):
   user = store.find(User, User.id == user_id).one()
   current_token = user.auth_token_hash
 
-  log.debug('Trying to change pw!')
-  if (len(new_auth_token_hash) and len(old_auth_token_hash) and 
-      # TODO use safe comparision
-      current_token == old_auth_token_hash):
+  log.debug("Testing auth tokens (foreign, current) (%s, %s)" % (foreign_auth_token, current_token))
 
+  # TODO use safe comparision
+  if current_token == foreign_auth_token:
+    return user
+  return None
+
+
+@transact
+def check_and_change_auth_token(store, user_id, request):
+  user = _validate_token_hash(store, user_id, request['old_auth_token_hash'])
+  if user is not None:
       # TODO handle log. See ticket #???
-      user.auth_token_hash = new_auth_token_hash
+      user.auth_token_hash = request['new_auth_token_hash']
 
       user.password_change_needed = False
       user.password_change_date = datetime_now()
 
-      user.salt = request['salt']
-      user.ccrypto_key_private = request['ccrypto_key_private']
-
-      log.debug('about to commit!')
       user.update()
-      log.debug('commit')
+      log.debug('Set user (%s) auth token: %s' % (user.username, request['new_auth_token_hash']))
   else:
-    log.debug('auth on pw change failed!! %s, %s' % (old_auth_token_hash, current_token))
+    raise 'Failed to update token auth on pw change failed: %s, %s' % (old_auth_token_hash, current_token)
 
 
 def _overwrite(absolutefpath, pattern):

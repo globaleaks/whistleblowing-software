@@ -84,9 +84,13 @@ AuthDesc = {
 }
 
 PasswordChangeDesc = {
-  'new_auth_token_hash': sha512_regexp,
-  'old_auth_token_hash': sha512_regexp,
-  'ccrypto_key_private': unicode,
+    'new_auth_token_hash': sha512_regexp,
+    'old_auth_token_hash': sha512_regexp,
+}
+
+KeyUpdateDesc = {
+    'auth_token_hash': sha512_regexp,
+    'ccrypto_key_private': unicode,
 }
 
 ReceiptAuthDesc = {
@@ -620,3 +624,4 @@ ExceptionDesc = {
     'stackTrace': list,
     'agent': unicode
 }
+

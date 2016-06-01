@@ -134,7 +134,7 @@ angular.module('GLBrowserCrypto', [])
           i += 1;
           work();
         }
-      }
+      };
 
       var work = function() {
         var hashme = glbcUtil.str2Uint8Array(str + i);
@@ -145,7 +145,7 @@ angular.module('GLBrowserCrypto', [])
         } else {
           damnIE.oncomplete = function(r) { xxx(r.target.result); };
         }
-      }
+      };
 
       work();
 
@@ -190,7 +190,7 @@ angular.module('GLBrowserCrypto', [])
         scrypt(data, salt, logN, dkLen, 'utf-8').then(function(stretched) {
           defer.resolve({
             value: data,
-            stretched: glbcUtil.bin2hex(stretched),
+            stretched: stretched,
           });
         });
 
@@ -205,6 +205,7 @@ angular.module('GLBrowserCrypto', [])
       /*
        * @param {String} user_password
        * @param {String} salt a 16 byte base64 encoded random salt.
+       * @returns {Object} hex passphrase and hex authentication token.
        **/
       deriveUserPassword: function (user_password, salt) {
         console.log('pass, salt', user_password, salt);
@@ -215,7 +216,7 @@ angular.module('GLBrowserCrypto', [])
           var token_hash =  pgp.crypto.hash.sha512(passphrase.stretched);
           console.log('hex: sha(result)', glbcUtil.bin2hex(token_hash));
           return {
-            passphrase: passphrase.stretched,
+            passphrase: glbcUtil.bin2hex(passphrase.stretched),
             authentication: glbcUtil.bin2hex(token_hash),
           };
 
@@ -553,7 +554,7 @@ angular.module('GLBrowserCrypto', [])
       return keyRing.privateKey.decrypt(password);
     },
 
-    changePassphrase: function(old_pw, new_pw) {
+    changeKeyPassphrase: function(old_pw, new_pw) {
       this.unlockKeyRing(old_pw);
       this.lockKeyRing(new_pw);
     },

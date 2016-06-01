@@ -1,6 +1,6 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser',
-  function($scope, $location, locationForce, glbcUser) {
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver',
+  function($scope, $location, locationForce, glbcUser, glbcReceiver) {
 
     $scope.pass_save = function () {
       locationForce.clear();
@@ -13,9 +13,10 @@ GLClient
       var new_pw = $scope.preferences.password;
       var uname = $scope.preferences.name;
 
-      glbcUser.changePassword(uname, new_pw, old_pw, old_salt).then(function() {
-        //$location.path($scope.session.auth_landing_page);
-        console.log("pw change success");
+      glbcUser.changePassword(uname, new_pw, old_pw, old_salt)
+      .then(glbcReceiver.updatePrivateKey)
+      .then(function() {
+        $location.path($scope.session.auth_landing_page);
       });
 
     };

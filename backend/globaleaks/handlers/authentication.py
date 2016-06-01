@@ -5,7 +5,7 @@
 #
 # Files collection handlers and utils
 
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 from storm.expr import And
 
 from globaleaks import security
@@ -193,8 +193,8 @@ class AuthenticationHandler(BaseHandler):
 class PasswordChangeHandler(BaseHandler):
 
   # TODO author mocha test against the handler
-  @BaseHandler.transport_security_check('receiver')
-  @BaseHandler.authenticated('receiver')
+  #@BaseHandler.transport_security_check('*')
+  @BaseHandler.authenticated('*')
   @inlineCallbacks
   def post(self):
     """
@@ -203,12 +203,10 @@ class PasswordChangeHandler(BaseHandler):
     request = self.validate_message(self.request.body, requests.PasswordChangeDesc)
 
     user_id = self.current_user.user_id
-    log.debug('reterieving user_id: %s' % user_id)
+    log.debug('retreiving user_id: %s' % user_id)
     
     log.debug('running check auth')
-    yield security.check_and_change_auth_token(user_id, 
-                                               request['new_auth_token_hash'],
-                                               request['old_auth_token_hash'])
+    yield security.check_and_change_auth_token(user_id, request)
 
     #del GLSessions[user_id]
     self.write({'salt': 'la pinata!'})

@@ -61,7 +61,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_successful_logout(self):
         # Login
         yield self._test_successful_login()
-        return
 
         # Logout
         session_id = self.responses[1]['session_id']
