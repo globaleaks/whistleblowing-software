@@ -9,7 +9,7 @@ from datetime import datetime
 from twisted.trial import unittest
 from globaleaks.tests import helpers
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
-    check_password_format, directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
+    directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
     crypto_backend, GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
@@ -66,12 +66,6 @@ class TestPasswordManagement(unittest.TestCase):
         # now emulate the change unsing the globaleaks.security module
         self.assertRaises(errors.InvalidOldPassword, change_password, hashed1, "invalid_old_pass", second_pass,
                           dummy_salt_input)
-
-    def test_check_password_format(self):
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "123abc")  # less than 8 chars
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "withnonumbers")  # withnonumbers
-        self.assertRaises(errors.InvalidInputFormat, check_password_format, "12345678")  # onlynumbers
-        check_password_format("abcde12345")
 
 
 class TestFilesystemAccess(helpers.TestGL):

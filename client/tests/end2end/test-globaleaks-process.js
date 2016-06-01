@@ -141,19 +141,31 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to access the first submission', function(done) {
-    login_receiver(receiver_username, receiver_password);
-    element(by.id('tip-0')).click().then(function() {
-      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-      done();
-    });
-  });
+  it('Recipient should be able to access and label the first submission', function() {
+    var label_1 = 'seems interesting.';
+    var label_2 = 'it\'s a trap!';
 
-  it('Recipient should be able to refresh tip page', function(done) {
-    element(by.id('link-reload')).click().then(function () {
-      browser.waitForAngular();
-      done();
-    });
+    login_receiver(receiver_username, receiver_password);
+
+    element(by.id('tip-0')).click();
+
+    // Configure label_1
+    expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+    element(by.model('tip.label')).sendKeys(label_1);
+    element(by.id('assignLabelButton')).click();
+
+    browser.waitForAngular();
+
+    utils.emulateUserRefresh();
+
+    // Check presence of label_1
+    expect(element(by.id('assignLabelButton')).isPresent()).toBe(false);
+    expect(element(by.id('Label')).getText()).toEqual(label_1);
+
+    // Configure label_2
+    element(by.id('Label')).click();
+    element(by.model('tip.label')).sendKeys(label_2);
+    element(by.id('assignLabelButton')).click();
   });
 
   it('Recipient should be able to see files and download them', function(done) {

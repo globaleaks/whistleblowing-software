@@ -3,7 +3,7 @@
     <div>
       <span data-translate>Submission</span><span data-ng-if="::session.role == 'receiver'">:</span>
       <span data-ng-if="::session.role == 'receiver'">
-        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
+        <span id="Label" data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
               uib-popover="{{'Label the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
           <span>{{::tip.label}}</span>
           <i class="glyphicon glyphicon-tag"></i>
@@ -12,8 +12,8 @@
         <span data-ng-if="showEditLabelInput" class="form-inline">
           <div class="form-group">
             <span id="AssignLabelInput" class="input-group">
-              <input type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
-              <span class="input-group-addon" data-ng-click="updateLabel(tip.label); $event.stopPropagation();"
+              <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
+              <span id="assignLabelButton" class="input-group-addon" data-ng-click="updateLabel(tip.label); $event.stopPropagation();"
                    uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="mouseenter">
                 <i class="glyphicon glyphicon-tag"></i>
               </span>

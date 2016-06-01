@@ -189,7 +189,7 @@ GLClient.controller('TipCtrl',
       $scope.showEditLabelInput = true;
     };
 
-    $scope.Utils.updateLabel = function(label) {
+    $scope.updateLabel = function(label) {
       $scope.tip.updateLabel(label);
       $scope.showEditLabelInput = false;
     };

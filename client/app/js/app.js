@@ -418,8 +418,8 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'Access', 'GLTranslate',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, Access, GLTranslate) {
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
@@ -567,9 +567,9 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.$on('$routeChangeError', function(event, current, previous) {
       if (angular.isDefined(previous)) {
-          $location.path(previous.$$route.originalPath);
+        $location.path(previous.$$route.originalPath);
       } else {
-          $location.path('/');
+        $rootScope.Authentication.loginRedirect(false);
       }
     });
 
