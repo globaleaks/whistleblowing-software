@@ -1,7 +1,7 @@
 var utils = require('./utils.js');
 
 describe('adming configure advanced settings', function() {
-  it('should perform main configuration', function(done) {
+  it('should perform main configuration', function() {
     browser.setLocation('admin/advanced_settings');
     element(by.cssContainingText("a", "Main configuration")).click();
 
@@ -13,13 +13,12 @@ describe('adming configure advanced settings', function() {
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       utils.emulateUserRefresh();
       expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('1337');
-      done();
     });
   });
 });
 
 describe('adming configure advanced settings', function() {
-  it('should configure HTTPS settings', function(done) {
+  it('should configure HTTPS settings', function() {
     browser.setLocation('admin/advanced_settings');
     element(by.cssContainingText("a", "HTTPS settings")).click();
 
@@ -32,13 +31,12 @@ describe('adming configure advanced settings', function() {
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       utils.emulateUserRefresh();
       expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeTruthy();
-      done();
     });
   });
 });
 
 describe('adming configure advanced settings - Anomaly detection thresholds', function() {
-  it('should configure advanced settings', function(done) {
+  it('should configure advanced settings', function() {
     browser.setLocation('admin/advanced_settings');
     element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
 
@@ -50,7 +48,6 @@ describe('adming configure advanced settings - Anomaly detection thresholds', fu
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       utils.emulateUserRefresh();
       expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
-      done();
     });
   });
 });
