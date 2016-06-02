@@ -2,7 +2,7 @@ describe('verify navigation of admin sections', function() {
   // Even if not performing real checks this test at least verify to be able to perform the
   // navigation of the admin section without triggering any exception
 
-  it('should should navigate through admin sections', function(done) {
+  it('should should navigate through admin sections', function() {
     element(by.cssContainingText("a", "General settings")).click().then(function() {
       element(by.cssContainingText("a", "Main configuration")).click();
       element(by.cssContainingText("a", "Theme customization")).click();
@@ -35,7 +35,5 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "User overview")).click();
     element(by.cssContainingText("a", "Submission overview")).click();
     element(by.cssContainingText("a", "File overview")).click();
-
-    done();
   });
 });

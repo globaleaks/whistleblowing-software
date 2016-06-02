@@ -5,16 +5,6 @@ exports.vars = {
   'user_password': 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
 }
 
-exports.waitUntilReady = function (elm, timeout) {
-  var t = timeout === undefined ? 1000 : timeout;
-  browser.wait(function () {
-    return elm.isPresent();
-  }, t);
-  browser.wait(function () {
-    return elm.isDisplayed();
-  }, t);
-};
-
 browser.getCapabilities().then(function(capabilities) {
   exports.testFileUpload = function() {
     var browserName = capabilities.get('browserName').toLowerCase();
@@ -37,10 +27,21 @@ browser.getCapabilities().then(function(capabilities) {
   };
 });
 
+exports.waitUntilReady = function (elm, timeout) {
+  var t = timeout === undefined ? 1000 : timeout;
+  browser.wait(function () {
+    return elm.isPresent();
+  }, t);
+  browser.wait(function () {
+    return elm.isDisplayed();
+  }, t);
+};
+
 exports.waitForUrl = function (url) {
   return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
-      return (current_url.indexOf(url) !== -1);
+      current_url = current_url.split('#')[1];
+      return (current_url === url);
     });
   });
 };
@@ -66,5 +67,52 @@ exports.emulateUserRefresh = function () {
     return browser.setLocation('').then(function() {
       return browser.setLocation(current_url);
     });
+  });
+}
+
+exports.login_whistleblower = function(receipt) {
+  return protractor.promise.controlFlow().execute(function() {
+    var deferred = protractor.promise.defer();
+
+    browser.get('/#/');
+
+    element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
+      element(by.id('ReceiptButton')).click().then(function() {
+        exports.waitForUrl('/status');
+        deferred.fulfill();
+      });
+    });
+
+    return deferred.promise;
+  });
+}
+
+exports.login_receiver = function(username, password, url) {
+  url = url === undefined ? '/#/login' : url;
+
+  return protractor.promise.controlFlow().execute(function() {
+    var deferred = protractor.promise.defer();
+
+    browser.get(url);
+
+    element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
+      element(by.model('loginPassword')).sendKeys(password).then(function() {
+        element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
+          url = url.split('#')[1];
+          exports.waitForUrl(url === '/login' ? '/receiver/tips' : url);
+          deferred.fulfill();
+        });
+      });
+    });
+
+    return deferred.promise;
+  });
+};
+
+exports.logout = function(redirect_url) {
+  redirect_url = redirect_url === undefined ? '/' : redirect_url;
+
+  element(by.id('LogoutLink')).click().then(function() {
+    exports.waitForUrl(redirect_url);
   });
 }

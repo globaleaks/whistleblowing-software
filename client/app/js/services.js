@@ -125,7 +125,7 @@ angular.module('GLServices', ['ngResource']).
           locationForce.clear();
 
           var logoutPerformed = function() {
-            self.loginRedirect(false);
+            self.loginRedirect(true);
           };
 
           if (self.session.role === 'whistleblower') {
@@ -137,7 +137,7 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
-        self.loginRedirect = function(sessionExpired) {
+        self.loginRedirect = function(isLogout) {
           var role = self.session === undefined ? undefined : self.session.role;
 
           self.session = undefined;
@@ -149,7 +149,7 @@ angular.module('GLServices', ['ngResource']).
           // Only redirect if we are not already on the login page
           if (source_path !== redirect_path) {
             $location.path(redirect_path);
-            if (sessionExpired) {
+            if (!isLogout) {
               $location.search('src=' + source_path);
             }
           }
@@ -240,7 +240,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             /* 30: Not Authenticated */
             if (error.code === 30) {
-              Authentication.loginRedirect(true);
+              Authentication.loginRedirect(false);
             }
 
             $rootScope.errors.push(error);

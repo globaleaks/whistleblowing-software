@@ -53,7 +53,7 @@ describe('Submission file process', function() {
         wb.submitFile(name); 
       });
 
-      wb.logout();
+      utils.logout();
       
       // Login as the receiver
       rec.login('Recipient 2', utils.vars['user_password']);
@@ -92,7 +92,7 @@ describe('Submission file process', function() {
         wb.submitFile(name); 
       });
 
-      wb.logout();
+      utils.logout();
       
       rec.login('Recipient 1', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
