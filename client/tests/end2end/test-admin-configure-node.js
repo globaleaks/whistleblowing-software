@@ -1,5 +1,5 @@
 describe('adming configure node', function() {
-  it('should configure node', function(done) {
+  it('should configure node', function() {
     browser.setLocation('admin/advanced_settings');
 
     // simplify the configuration in order to simplfy initial tests
@@ -13,8 +13,6 @@ describe('adming configure node', function() {
     element(by.model('admin.node.enable_experimental_features')).click();
 
     // save settings
-    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      done();
-    });
+    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click();
   });
 });

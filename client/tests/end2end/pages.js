@@ -57,11 +57,6 @@ exports.receiver = function() {
     element(by.cssContainingText('a', 'Encryption settings')).click();
     return clickDelPubKey();
   };
-
-  this.logout = function() {
-    return element(by.id('LogoutLink')).click();
-  };
-
 };
 
 exports.whistleblower = function() {
@@ -124,10 +119,4 @@ exports.whistleblower = function() {
       return browser.waitForAngular();
     });
   };
-
-  this.logout = function() {
-    element(by.id('LogoutLink')).click();
-    return utils.waitForUrl('/');
-  };
-
 };
