@@ -464,8 +464,8 @@ angular.module('GLBrowserCrypto', [])
         privateKey: glbcKeyRing.getKey(),
         publicKeys: wbPubKey,
       };
-      // TODO glbcKeyRing.lockKeyRing(passphrase);
       return pgp.decrypt(options);
+      // TODO glbcKeyRing.lockKeyRing(passphrase);
     },
  };
 }])
@@ -535,9 +535,19 @@ angular.module('GLBrowserCrypto', [])
       keyRing._pubKey = tmpKeyRef.toPublic();
       tmpKeyRef = null;
 
+      if (anuglar.isUndefined(uuid)) {
+        uuid = 'empty';
+      }
       keyRing.publicKeys[uuid] = keyRing._pubKey;
 
       return true;
+    },
+
+    createNewCCryptoKey: function(new_passphrase) {
+      return glbcKeyLib.generateCCryptoKey(new_passphrase).then(function(pair) {
+        this.initialize(pair.ccrypto_key_private);
+        return pair;
+      });
     },
 
     /**

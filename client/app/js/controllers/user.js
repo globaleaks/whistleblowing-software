@@ -1,13 +1,12 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver', 'glbcKeyLib', 'Authentication',
-  function($scope, $location, locationForce, glbcUser, glbcReceiver, glbcKeyLib, Authentication) {
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver', 'glbcKeyRing',
+  function($scope, $location, locationForce, glbcUser, glbcReceiver, glbcKeyRing) {
     $scope.key_gen = false;
     $scope.key_gen_msgs = [];
 
     $scope.pass_save = function () {
       locationForce.clear();
 
-      // avoid changing any PGP setting
       $scope.preferences.pgp_key_remove = false;
 
       var old_pw = $scope.preferences.old_password;
@@ -15,32 +14,30 @@ GLClient
       var new_pw = $scope.preferences.password;
       var uname = $scope.preferences.name;
 
-      if (true) { //(Authentication.role === 'receiver') {
-        glbcUser.changePassword(uname, new_pw, old_pw, old_salt).then(function(res) {
-          var p;
+      glbcUser.changePassword(uname, new_pw, old_pw, old_salt).then(function(res) {
+        var p;
 
-          if ($scope.preferences.ccrypto_key_public === '') {
-            $scope.key_gen = true;
-            p = glbcKeyLib.generateCCryptoKey(res.new_passphrase).then(
-              function(pair) {
-                $scope.key_gen_msgs.push('Posting key pair to server. . .');
-                return glbcReceiver.postKeyPair(pair, res.auth_token_hash);
-              },
-              function(err) { return err;},
-              function(msg) { 
-                $scope.key_gen_msgs.push(msg);
-              }
-            );
-          } else {
-            p = glbcReceiver.updatePrivateKey(res);
-          }
+        if ($scope.preferences.ccrypto_key_public === '') {
+          $scope.key_gen = true;
+          p = glbcKeyRing.createNewCCryptoKey(res.new_passphrase).then(
+            function() {
+              $scope.key_gen_msgs.push('Posting new key pair to server. . .');
+              return glbcUser.submitNewKeyPair(res.auth_token_hash);
+            },
+            function(err) { return err; },
+            function(msg) { 
+              $scope.key_gen_msgs.push(msg);
+            }
+          );
+        } else {
+          p = glbcReceiver.updatePrivateKey(res);
+        }
 
-          return p.then(function() {
-            $scope.key_gen_msgs.push('Key gen finished! Redirecting!');
-            //$location.path($scope.session.auth_landing_page);
-          });
+        return p.then(function() {
+          $scope.key_gen_msgs.push('Key gen finished! Redirecting!');
+          $location.path($scope.session.auth_landing_page);
         });
-      }
+      });
 
     };
 }])

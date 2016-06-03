@@ -86,6 +86,7 @@ AuthDesc = {
 PasswordChangeDesc = {
     'new_auth_token_hash': sha512_regexp,
     'old_auth_token_hash': sha512_regexp,
+    'salt': salt_regexp,
 }
 
 KeyUpdateDesc = {

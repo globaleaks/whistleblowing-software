@@ -88,6 +88,7 @@ def check_and_change_auth_token(store, user_id, request):
   if user is not None:
       # TODO handle log. See ticket #???
       user.auth_token_hash = request['new_auth_token_hash']
+      user.salt = request['salt']
 
       user.password_change_needed = False
       user.password_change_date = datetime_now()

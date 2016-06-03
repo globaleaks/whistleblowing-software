@@ -18,7 +18,6 @@ from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import validate_token_hash
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
@@ -206,41 +205,3 @@ class TipsOperations(BaseHandler):
 
         yield perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])
 
-class KeyUpdate(BaseHandler):
-    """
-    This handler exposes the receiver's private key used for client-side encryption
-    for post only updates.
-    """
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    def post(self):
-      """
-      Parameters: KeyUpdateDesc
-      """
-      request = self.validate_message(self.request.body, requests.KeyUpdateDesc)
-
-      yield validate_token_hash(self.current_user.user_id, request['auth_token_hash'])
-
-      # TODO perform validation on the passed pgp private key to assert
-      # correspondence with pub key.
-      if request['ccrypto_key_public'] != '':
-          yield update_public_key(self.current_user.user_id, request['ccrypto_key_public'])
-      yield update_private_key(self.current_user.user_id, request['ccrypto_key_private'])
-
-@transact
-def update_public_key(store, user_id, new_pub_key):
-    user = store.find(Receiver, Receiver.id == user_id).one()
-    assert user is not None 
-
-    user.ccrypto_key_public = new_pub_key
-    user.update()
-
-@transact
-def update_private_key(store, user_id, new_priv_key):
-    user = store.find(Receiver, Receiver.id == user_id).one()
-    assert user is not None 
-
-    user.ccrypto_key_private = new_priv_key
-    user.update()

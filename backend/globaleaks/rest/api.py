@@ -48,6 +48,7 @@ spec = [
     (r'/authentication', authentication.AuthenticationHandler),
     (r'/receiptauth', authentication.ReceiptAuthHandler),
     (r'/user/passwordchange', authentication.PasswordChangeHandler),
+    (r'/user/privkey', user.KeyUpdateHandler),
 
     ## Public API ##
     (r'/public', public.PublicResource),
@@ -88,7 +89,6 @@ spec = [
     ## Receiver Handlers ##
     (r'/receiver/preferences', receiver.ReceiverInstance),
     (r'/receiver/tips', receiver.TipsCollection),
-    (r'/receiver/privkey', receiver.KeyUpdate),
     (r'/rtip/operations', receiver.TipsOperations),
 
     (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),

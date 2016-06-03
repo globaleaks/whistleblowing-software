@@ -10,6 +10,7 @@ from globaleaks import models, security
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
+from globaleaks.security import validate_token_hash
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
@@ -165,3 +166,42 @@ class UserInstance(BaseHandler):
                                                  request, self.request.language)
 
         self.write(user_status)
+
+class KeyUpdateHandler(BaseHandler):
+    """
+    This handler exposes the receiver's private key used for client-side encryption
+    for post only updates.
+    """
+
+    @BaseHandler.transport_security_check('*')
+    @BaseHandler.authenticated('*')
+    @inlineCallbacks
+    def post(self):
+      """
+      Parameters: KeyUpdateDesc
+      """
+      request = self.validate_message(self.request.body, requests.KeyUpdateDesc)
+
+      yield validate_token_hash(self.current_user.user_id, request['auth_token_hash'])
+
+      # TODO perform validation on the passed pgp private key to assert
+      # correspondence with pub key.
+      if request['ccrypto_key_public'] != '':
+          yield update_public_key(self.current_user.user_id, request['ccrypto_key_public'])
+      yield update_private_key(self.current_user.user_id, request['ccrypto_key_private'])
+
+@transact
+def update_public_key(store, user_id, new_pub_key):
+    user = store.find(Receiver, Receiver.id == user_id).one()
+    assert user is not None
+
+    user.ccrypto_key_public = new_pub_key
+    user.update()
+
+@transact
+def update_private_key(store, user_id, new_priv_key):
+    user = store.find(Receiver, Receiver.id == user_id).one()
+    assert user is not None
+
+    user.ccrypto_key_private = new_priv_key
+    user.update()

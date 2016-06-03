@@ -209,7 +209,6 @@ class PasswordChangeHandler(BaseHandler):
     yield security.check_and_change_auth_token(user_id, request)
 
     #del GLSessions[user_id]
-    self.write({'salt': 'la pinata!'})
 
 
 class ReceiptAuthHandler(AuthenticationHandler):
