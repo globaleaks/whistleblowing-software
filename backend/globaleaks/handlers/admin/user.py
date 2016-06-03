@@ -113,10 +113,10 @@ def db_create_user(store, request, language):
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
 
-    prv_key = os.path.join(os.path.dirname(__file__), '../../tests/keys/VALID_PGP_KEY1_PRV')
-    pub_key = os.path.join(os.path.dirname(__file__), '../../tests/keys/VALID_PGP_KEY1_PUB')
-    user.ccrypto_key_private = read_file(prv_key)
-    user.ccrypto_key_public = read_file(pub_key)
+    #prv_key = os.path.join(os.path.dirname(__file__), '../../tests/keys/VALID_PGP_KEY1_PRV')
+    #pub_key = os.path.join(os.path.dirname(__file__), '../../tests/keys/VALID_PGP_KEY1_PUB')
+    #user.ccrypto_key_private = read_file(prv_key)
+    #user.ccrypto_key_public = read_file(pub_key)
 
     store.add(user)
 

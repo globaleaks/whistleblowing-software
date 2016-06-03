@@ -1,6 +1,8 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver',
-  function($scope, $location, locationForce, glbcUser, glbcReceiver) {
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver', 'glbcKeyLib', 'Authentication',
+  function($scope, $location, locationForce, glbcUser, glbcReceiver, glbcKeyLib, Authentication) {
+    $scope.key_gen = false;
+    $scope.key_gen_msgs = [];
 
     $scope.pass_save = function () {
       locationForce.clear();
@@ -13,12 +15,32 @@ GLClient
       var new_pw = $scope.preferences.password;
       var uname = $scope.preferences.name;
 
-      // TODO remove receiver (or extend) specific logic in first promise
-      glbcUser.changePassword(uname, new_pw, old_pw, old_salt)
-      .then(glbcReceiver.updatePrivateKey)
-      .then(function() {
-        $location.path($scope.session.auth_landing_page);
-      });
+      if (true) { //(Authentication.role === 'receiver') {
+        glbcUser.changePassword(uname, new_pw, old_pw, old_salt).then(function(res) {
+          var p;
+
+          if ($scope.preferences.ccrypto_key_public === '') {
+            $scope.key_gen = true;
+            p = glbcKeyLib.generateCCryptoKey(res.new_passphrase).then(
+              function(pair) {
+                $scope.key_gen_msgs.push('Posting key pair to server. . .');
+                return glbcReceiver.postKeyPair(pair, res.auth_token_hash);
+              },
+              function(err) { return err;},
+              function(msg) { 
+                $scope.key_gen_msgs.push(msg);
+              }
+            );
+          } else {
+            p = glbcReceiver.updatePrivateKey(res);
+          }
+
+          return p.then(function() {
+            $scope.key_gen_msgs.push('Key gen finished! Redirecting!');
+            //$location.path($scope.session.auth_landing_page);
+          });
+        });
+      }
 
     };
 }])

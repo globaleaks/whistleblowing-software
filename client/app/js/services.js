@@ -725,8 +725,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       transformResponse: function(data) {
         var prefs = angular.fromJson(data);
         // TODO Temp private key TODO
-        var initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
-        delete prefs.cc_private_key;
+        var initRes = true;
+        try {
+          initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
+          delete prefs.ccrypto_private_key;
+        } catch (e) {
+          
+        }
         // TODO TODO TODO
         if (initRes) {
           return prefs;

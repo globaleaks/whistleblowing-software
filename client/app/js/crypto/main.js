@@ -226,20 +226,24 @@ angular.module('GLBrowserCrypto', [])
       },
 
       generateCCryptoKey: function (passphrase) {
+        var deferred = $q.defer();
+
         var key_options = {
           userIds: [{ name:'Random User', email:'randomuser@globaleaks.org' }],
           passphrase: passphrase,
           numBits: ccrypto_key_bits
         };
 
-        var promise = pgp.generateKey(key_options).then(function(keyPair) {
-          return {
+        deferred.notify("Handed key gen to PGP. . .");
+        pgp.generateKey(key_options).then(function(keyPair) {
+          deferred.notify("Key gen returned. . .");
+          deferred.resolve({
             ccrypto_key_public: keyPair.key.toPublic(),
             ccrypto_key_private: keyPair.key,
-          };
+          });
         });
 
-        return promise;
+        return deferred.promise;
       },
 
       /**

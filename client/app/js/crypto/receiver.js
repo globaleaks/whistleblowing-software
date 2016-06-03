@@ -31,12 +31,20 @@ angular.module('GLBrowserCrypto')
      * @return {Promise}
      **/
     updatePrivateKey: function(params) {
-        glbcKeyRing.changeKeyPassphrase(params.old_passphrase, params.new_passphrase);
-        return $http.post('receiver/privkey', {
-          'ccrypto_key_private': glbcKeyRing.exportPrivKey(),
-          'auth_token_hash': params.auth_token_hash,
-        });
+      glbcKeyRing.changeKeyPassphrase(params.old_passphrase, params.new_passphrase);
+      return $http.post('/receiver/privkey', {
+        'ccrypto_key_private': glbcKeyRing.exportPrivateKey(),
+        'ccrypto_key_public': '',
+        'auth_token_hash': params.auth_token_hash,
+      });
     },
 
+    postKeyPair: function(pair, auth_token_hash) {
+      return $http.post('/receiver/privkey', {
+        'ccrypto_key_private': pair.ccrypto_key_private.armor(),
+        'ccrypto_key_public': pair.ccrypto_key_public.armor(),
+        'auth_token_hash': auth_token_hash,
+      });
+    }
   };
 }]);

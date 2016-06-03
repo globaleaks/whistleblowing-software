@@ -224,13 +224,22 @@ class KeyUpdate(BaseHandler):
       yield validate_token_hash(self.current_user.user_id, request['auth_token_hash'])
 
       # TODO perform validation on the passed pgp private key to assert
-      # correspondence with stored pub key.
+      # correspondence with pub key.
+      if request['ccrypto_key_public'] != '':
+          yield update_public_key(self.current_user.user_id, request['ccrypto_key_public'])
       yield update_private_key(self.current_user.user_id, request['ccrypto_key_private'])
+
+@transact
+def update_public_key(store, user_id, new_pub_key):
+    user = store.find(Receiver, Receiver.id == user_id).one()
+    assert user is not None 
+
+    user.ccrypto_key_public = new_pub_key
+    user.update()
 
 @transact
 def update_private_key(store, user_id, new_priv_key):
     user = store.find(Receiver, Receiver.id == user_id).one()
-
     assert user is not None 
 
     user.ccrypto_key_private = new_priv_key
