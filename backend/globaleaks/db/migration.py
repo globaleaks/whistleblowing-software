@@ -44,7 +44,7 @@ migration_mapping = OrderedDict([
     ('FieldAnswerGroup', [-1, -1, -1, -1, -1, -1, -1, -1, FieldAnswerGroup_v_29, 0, 0, 0, 0, 0, 0, models.FieldAnswerGroup, 0]),
     ('FieldAnswerGroupFieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, FieldAnswerGroupFieldAnswer_v_29, 0, 0, 0, 0, 0, 0, -1, -1]),
     ('FieldAttr', [-1, -1, -1, -1, -1, -1, -1, -1, models.FieldAttr, 0, 0, 0, 0, 0, 0, 0, 0]),
-    ('FieldField', [FieldField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, 1]),
+    ('FieldField', [FieldField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1]),
     ('FieldOption', [FieldOption_v_20, 0, 0, 0, 0, 0, FieldOption_v_22, 0, FieldOption_v_27, 0, 0, 0, 0, models.FieldOption, 0, 0, 0]),
     ('File', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.File]),
     ('IdentityAccessRequest', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest, 0, 0, 0, 0, 0, 0, 0]),

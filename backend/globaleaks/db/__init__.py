@@ -77,7 +77,6 @@ def init_db(store):
     admin_dict = {
         'username': u'admin',
         'password': u'globaleaks',
-        'deeletable': False,
         'role': u'admin',
         'state': u'enabled',
         'deletable': False,
