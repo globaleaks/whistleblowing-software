@@ -47,8 +47,8 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
 from . import TEST_DIR
 
 ## constants
-VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
-VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
+VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
+VALID_PASSWORD2 = VALID_PASSWORD1
 VALID_SALT1 = security.generateRandomSalt()
 VALID_SALT2 = security.generateRandomSalt()
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
@@ -199,7 +199,7 @@ class TestGL(unittest.TestCase):
 
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
-        self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
+        self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
         self.dummyAdminUser['deletable'] = False
         self.dummyCustodianUser = self.get_dummy_user('custodian', 'custodian1')
         self.dummyReceiverUser_1 = self.get_dummy_user('receiver', 'receiver1')
@@ -237,11 +237,12 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    def get_dummy_user(self, role, descpattern):
+    def get_dummy_user(self, role, username):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
-        new_u['username'] = new_u['name'] = new_u['mail_address'] = \
-            unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_u['username'] = username
+        new_u['name'] = new_u['mail_address'] = \
+            unicode("%s@%s.xxx" % (username, username))
         new_u['description'] = u""
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
@@ -249,8 +250,8 @@ class TestGL(unittest.TestCase):
 
         return new_u
 
-    def get_dummy_receiver(self, descpattern):
-        new_u = self.get_dummy_user('receiver', descpattern)
+    def get_dummy_receiver(self, username):
+        new_u = self.get_dummy_user('receiver', username)
         new_r = dict(MockDict().dummyReceiver)
 
         return sum_dicts(new_r, new_u)

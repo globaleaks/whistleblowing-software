@@ -60,7 +60,7 @@ controller('AdminUserAddCtrl', ['$scope',
     $scope.new_user = {};
 
     $scope.add_user = function() {
-      var user = new $scope.admin.new_user();
+      var user = new $scope.admin_utils.new_user();
 
       user.username = $scope.new_user.username !== undefined ? $scope.new_user.username : '';
       user.role = $scope.new_user.role;

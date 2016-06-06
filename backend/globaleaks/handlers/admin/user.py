@@ -98,7 +98,7 @@ def db_create_user(store, request, language):
         'description': request['description'],
         'language': u'en',
         'timezone': 0,
-        'password_change_needed': True,
+        'password_change_needed': request['password_change_needed'],
         'mail_address': request['mail_address']
     })
 
