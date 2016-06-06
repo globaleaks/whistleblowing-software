@@ -1,7 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin',
-                    'DefaultAppdata', 'CONSTANTS',
-                    function($scope, $location, $route, $http, $uibModal, Authentication, Admin,
-                             DefaultAppdata, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS',
+                    function($scope, $location, $route, $http, $uibModal, Authentication, Admin, AdminUtils, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -9,7 +7,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
     var finished = false;
 
     $scope.open_modal_allow_unencrypted = function() {
-      if (!$scope.admin.node.allow_unencrypted) {
+      if (!$scope.wizard.node.allow_unencrypted) {
         return;
       }
 
@@ -19,28 +17,18 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
       });
 
       modalInstance.result.then(function(result){
-        $scope.admin.node.allow_unencrypted = result;
+        $scope.wizard.node.allow_unencrypted = result;
       });
     };
 
 
     $scope.finish = function() {
       if (!finished) {
-        var admin = {
-          'mail_address': $scope.admin_mail_address,
-          'old_password': 'globaleaks',
-          'password': $scope.admin_password
-        };
-
-        $scope.wizard = {
-          'node': $scope.admin.node,
-          'admin': admin,
-          'receiver': $scope.receiver,
-          'context': $scope.context
-        };
-
-        $http.post('admin/wizard', $scope.wizard).success(function() {
-          $scope.reload("/admin/landing");
+        $http.post('wizard', $scope.wizard).success(function() {
+          alert($scope.wizard.admin.password);
+          Authentication.login('admin', $scope.wizard.admin.password, function() {
+            $scope.reload("/admin/landing");
+          });
         });
       }
     };
@@ -49,16 +37,23 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');
     } else {
-      Authentication.login('admin', 'globaleaks', function(){
-        $scope.admin = new Admin(function() {
-          $scope.receiver = new $scope.admin.new_user();
-          $scope.receiver.username = 'receiver';
-          $scope.receiver.password = ''; // this causes the system to set the default password
-                                         // the system will then force the user to change the password
-                                         // at first login
-          $scope.context = $scope.admin.new_context();
-        });
-      });
+      var receiver = AdminUtils.new_user();
+      receiver.username = 'receiver';
+      receiver.password = ''; // this causes the system to set the default password
+                              // the system will then force the user to change the password
+                              // at first login
+
+      var context = AdminUtils.new_context();
+
+      $scope.wizard = {
+        'node': {},
+        'admin': {
+          'mail_address': '',
+          'password': ''
+        },
+        'receiver': receiver,
+        'context': context
+      };
     }
   }
 ]);

@@ -52,8 +52,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource', 'FieldAttrs',
+  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource, FieldAttrs) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -156,31 +156,42 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
       $scope.Utils.update(updated_field);
     };
 
-    $scope.Utils.moveUpAndSave = function(elem) {
+    FieldAttrs.get().$promise.then(function(field_attrs) {
+      $scope.field_attrs = field_attrs;
+      $scope.get_field_attrs = function(type) {
+        if (type in self.field_attrs) {
+          return self.field_attrs[type];
+        } else {
+          return {};
+        }
+      };
+    });
+
+    $scope.moveUpAndSave = function(elem) {
       $scope.Utils.moveUp(elem);
       $scope.save_field(elem);
     };
 
-    $scope.Utils.moveDownAndSave = function(elem) {
+    $scope.moveDownAndSave = function(elem) {
       $scope.Utils.moveDown(elem);
       $scope.save_field(elem);
     };
 
-    $scope.Utils.moveLeftAndSave = function(elem) {
+    $scope.moveLeftAndSave = function(elem) {
       $scope.Utils.moveLeft(elem);
       $scope.save_field(elem);
     };
 
-    $scope.Utils.moveRightAndSave = function(elem) {
+    $scope.moveRightAndSave = function(elem) {
       $scope.Utils.moveRight(elem);
       $scope.save_field(elem);
     };
 
     $scope.add_field = function() {
-      var field = $scope.admin.new_field('', $scope.field.id);
+      var field = $scope.admin_utils.new_field('', $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.attrs = $scope.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.field.children, 'y');
 
       field.instance = $scope.field.instance;
@@ -196,7 +207,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     };
 
     $scope.add_field_from_template = function(template_id) {
-      var field = $scope.admin.new_field_from_template(template_id, '', $scope.field.id);
+      var field = $scope.admin_utils.new_field_from_template(template_id, '', $scope.field.id);
 
       if ($scope.$parent.field) {
         field.y = $scope.newItemOrder($scope.$parent.field.children, 'y');
@@ -232,11 +243,11 @@ controller('AdminFieldTemplatesAddCtrl', ['$scope',
     $scope.new_field = {};
 
     $scope.add_field = function() {
-      var field = $scope.admin.new_field_template($scope.field ? $scope.field.id : '');
+      var field = $scope.admin_utils.new_field_template($scope.field ? $scope.field.id : '');
       field.instance = 'template';
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.attrs = $scope.get_field_attrs(field.type);
 
       field.$save(function(new_field){
         $scope.addField(new_field);

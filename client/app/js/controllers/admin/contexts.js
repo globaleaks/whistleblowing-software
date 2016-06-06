@@ -84,7 +84,7 @@ controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};
 
   $scope.add_context = function() {
-    var context = new $scope.admin.new_context();
+    var context = new $scope.admin_utils.new_context();
 
     context.name = $scope.new_context.name;
     context.presentation_order = $scope.newItemOrder($scope.admin.contexts, 'presentation_order');

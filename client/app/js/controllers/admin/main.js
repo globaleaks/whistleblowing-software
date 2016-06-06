@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'Admin', 'CONSTANTS',
-    function($scope, $route, $location, $filter, Admin, CONSTANTS) {
+    ['$scope', '$route', '$location', '$filter', 'Admin', 'AdminUtils', 'CONSTANTS',
+    function($scope, $route, $location, $filter, Admin, AdminUtils, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.tor_regexp = CONSTANTS.tor_regexp;
@@ -11,6 +11,8 @@ GLClient.controller('AdminCtrl',
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
+
+  $scope.admin_utils = AdminUtils;
 
   $scope.admin = new Admin(function() {
     $scope.languages_enabled_edit = {};

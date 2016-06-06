@@ -628,6 +628,154 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');
 }]).
+  factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
+    function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
+  return {
+    new_context: function() {
+      var context = new AdminContextResource();
+      context.id = '';
+      context.name = '';
+      context.description = '';
+      context.presentation_order = 0;
+      context.tip_timetolive = 15;
+      context.show_context = true;
+      context.show_recipients_details = false;
+      context.allow_recipients_selection = false;
+      context.show_receivers_in_alphabetical_order = true;
+      context.select_all_receivers = false;
+      context.maximum_selectable_receivers = 0;
+      context.show_small_receiver_cards = false;
+      context.enable_comments = true;
+      context.enable_messages = false;
+      context.enable_two_way_comments = true;
+      context.enable_two_way_messages = true;
+      context.enable_attachments = true;
+      context.recipients_clarification = '';
+      context.status_page_message = '';
+      context.questionnaire_id = '';
+      context.custodians = [];
+      context.receivers = [];
+      return context;
+    },
+
+    new_questionnaire: function() {
+      var questionnaire = new AdminQuestionnaireResource();
+      questionnaire.id = '';
+      questionnaire.key = '';
+      questionnaire.name = '';
+      questionnaire.show_steps_navigation_bar = true;
+      questionnaire.steps_navigation_requires_completion = true;
+      questionnaire.steps = [];
+      questionnaire.editable = true;
+      return questionnaire;
+    },
+
+    new_step: function(questionnaire_id) {
+      var step = new AdminStepResource();
+      step.id = '';
+      step.label = '';
+      step.description = '';
+      step.presentation_order = 0;
+      step.children = [];
+      step.questionnaire_id = questionnaire_id;
+      step.triggered_by_score = 0;
+      return step;
+    },
+
+    new_field: function(step_id, fieldgroup_id) {
+      var field = new AdminFieldResource();
+      field.id = '';
+      field.key = '';
+      field.instance = 'instance';
+      field.editable = true;
+      field.descriptor_id = '';
+      field.label = '';
+      field.type = 'inputbox';
+      field.description = '';
+      field.hint = '';
+      field.multi_entry = false;
+      field.multi_entry_hint = '';
+      field.required = false;
+      field.preview = false;
+      field.stats_enabled = false;
+      field.attrs = {};
+      field.options = [];
+      field.x = 0;
+      field.y = 0;
+      field.width = 0;
+      field.children = [];
+      field.fieldgroup_id = fieldgroup_id;
+      field.step_id = step_id;
+      field.template_id = '';
+      field.triggered_by_score = 0;
+      return field;
+    },
+
+    new_field_from_template: function(template_id, step_id, fieldgroup_id) {
+      var field = self.new_field(step_id, fieldgroup_id);
+      field.template_id = template_id;
+      field.instance = 'reference';
+      return field;
+    },
+
+    new_field_template: function (fieldgroup_id) {
+      var field = new AdminFieldTemplateResource();
+      field.id = '';
+      field.key = '';
+      field.instance = 'template';
+      field.editable = true;
+      field.label = '';
+      field.type = 'inputbox';
+      field.description = '';
+      field.hint = '';
+      field.multi_entry = false;
+      field.multi_entry_hint = '';
+      field.required = false;
+      field.preview = false;
+      field.stats_enabled = false;
+      field.attrs = {};
+      field.options = [];
+      field.x = 0;
+      field.y = 0;
+      field.width = 0;
+      field.children = [];
+      field.fieldgroup_id = fieldgroup_id;
+      field.step_id = '';
+      field.template_id = '';
+      field.triggered_by_score = 0;
+      return field;
+    },
+
+    new_user: function () {
+      var user = new AdminUserResource();
+      user.id = '';
+      user.username = '';
+      user.role = 'receiver';
+      user.state = 'enable';
+      user.deletable = 'true';
+      user.password = 'globaleaks';
+      user.old_password = '';
+      user.password_change_needed = true;
+      user.state = 'enabled';
+      user.name = '';
+      user.description = '';
+      user.mail_address = '';
+      user.pgp_key_info = '';
+      user.pgp_key_fingerprint = '';
+      user.pgp_key_remove = false;
+      user.pgp_key_public = '';
+      user.pgp_key_expiration = '';
+      user.pgp_key_status = 'ignored';
+      user.language = 'en';
+      user.timezone = 0;
+      return user;
+    },
+
+    new_shorturl: function () {
+      return new AdminShorturlResource();
+    }
+  };
+}]).
   factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs',
     function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs) {
   return function(fn) {
@@ -637,7 +785,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.contexts = AdminContextResource.query();
       self.questionnaires = AdminQuestionnaireResource.query();
       self.fieldtemplates = AdminFieldTemplateResource.query();
-      self.field_attrs = FieldAttrs.get();
       self.users = AdminUserResource.query();
       self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
@@ -647,163 +794,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               self.contexts.$promise,
               self.questionnaires.$promise,
               self.fieldtemplates.$promise,
-              self.field_attrs.$promise,
               self.receivers.$promise,
               self.notification.$promise,
               self.shorturls.$promise]).then(function() {
-
-        self.new_context = function() {
-          var context = new AdminContextResource();
-          context.id = '';
-          context.name = '';
-          context.description = '';
-          context.presentation_order = 0;
-          context.tip_timetolive = 15;
-          context.show_context = true;
-          context.show_recipients_details = false;
-          context.allow_recipients_selection = false;
-          context.show_receivers_in_alphabetical_order = true;
-          context.select_all_receivers = false;
-          context.maximum_selectable_receivers = 0;
-          context.show_small_receiver_cards = false;
-          context.enable_comments = true;
-          context.enable_messages = false;
-          context.enable_two_way_comments = true;
-          context.enable_two_way_messages = true;
-          context.enable_attachments = true;
-          context.recipients_clarification = '';
-          context.status_page_message = '';
-          context.questionnaire_id = '';
-          context.custodians = [];
-          context.receivers = [];
-          return context;
-        };
-
-        self.new_questionnaire = function() {
-          var questionnaire = new AdminQuestionnaireResource();
-          questionnaire.id = '';
-          questionnaire.key = '';
-          questionnaire.name = '';
-          questionnaire.show_steps_navigation_bar = true;
-          questionnaire.steps_navigation_requires_completion = true;
-          questionnaire.steps = [];
-          questionnaire.editable = true;
-          return questionnaire;
-        };
-
-        self.new_step = function(questionnaire_id) {
-          var step = new AdminStepResource();
-          step.id = '';
-          step.label = '';
-          step.description = '';
-          step.presentation_order = 0;
-          step.children = [];
-          step.questionnaire_id = questionnaire_id;
-          step.triggered_by_score = 0;
-          return step;
-        };
-
-        self.get_field_attrs = function(type) {
-          if (type in self.field_attrs) {
-            return self.field_attrs[type];
-          } else {
-            return {};
-          }
-        };
-
-        self.new_field = function(step_id, fieldgroup_id) {
-          var field = new AdminFieldResource();
-          field.id = '';
-          field.key = '';
-          field.instance = 'instance';
-          field.editable = true;
-          field.descriptor_id = '';
-          field.label = '';
-          field.type = 'inputbox';
-          field.description = '';
-          field.hint = '';
-          field.multi_entry = false;
-          field.multi_entry_hint = '';
-          field.required = false;
-          field.preview = false;
-          field.stats_enabled = false;
-          field.attrs = {};
-          field.options = [];
-          field.x = 0;
-          field.y = 0;
-          field.width = 0;
-          field.children = [];
-          field.fieldgroup_id = fieldgroup_id;
-          field.step_id = step_id;
-          field.template_id = '';
-          field.triggered_by_score = 0;
-          return field;
-        };
-
-        self.new_field_from_template = function(template_id, step_id, fieldgroup_id) {
-          var field = self.new_field(step_id, fieldgroup_id);
-          field.template_id = template_id;
-          field.instance = 'reference';
-          return field;
-        };
-
-        self.new_field_template = function (fieldgroup_id) {
-          var field = new AdminFieldTemplateResource();
-          field.id = '';
-          field.key = '';
-          field.instance = 'template';
-          field.editable = true;
-          field.label = '';
-          field.type = 'inputbox';
-          field.description = '';
-          field.hint = '';
-          field.multi_entry = false;
-          field.multi_entry_hint = '';
-          field.required = false;
-          field.preview = false;
-          field.stats_enabled = false;
-          field.attrs = {};
-          field.options = [];
-          field.x = 0;
-          field.y = 0;
-          field.width = 0;
-          field.children = [];
-          field.fieldgroup_id = fieldgroup_id;
-          field.step_id = '';
-          field.template_id = '';
-          field.triggered_by_score = 0;
-          return field;
-        };
-
-        self.new_user = function () {
-          var user = new AdminUserResource();
-          user.id = '';
-          user.username = '';
-          user.role = 'receiver';
-          user.state = 'enable';
-          user.deletable = 'true';
-          user.password = 'globaleaks';
-          user.old_password = '';
-          user.password_change_needed = true;
-          user.state = 'enabled';
-          user.name = '';
-          user.description = '';
-          user.mail_address = '';
-          user.pgp_key_info = '';
-          user.pgp_key_fingerprint = '';
-          user.pgp_key_remove = false;
-          user.pgp_key_public = '';
-          user.pgp_key_expiration = '';
-          user.pgp_key_status = 'ignored';
-          user.language = 'en';
-          user.timezone = 0;
-          return user;
-        };
-
-        self.new_shorturl = function () {
-          return new AdminShorturlResource();
-        };
-
         fn(this);
       });
     };
