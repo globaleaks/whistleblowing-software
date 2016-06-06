@@ -189,28 +189,6 @@ class AuthenticationHandler(BaseHandler):
             except KeyError:
                 raise errors.NotAuthenticated
 
-
-class PasswordChangeHandler(BaseHandler):
-
-  # TODO author mocha test against the handler
-  #@BaseHandler.transport_security_check('*')
-  @BaseHandler.authenticated('*')
-  @inlineCallbacks
-  def post(self):
-    """
-    Handles changing the password for all roles except the whistleblower.
-    """
-    request = self.validate_message(self.request.body, requests.PasswordChangeDesc)
-
-    user_id = self.current_user.user_id
-    log.debug('retreiving user_id: %s' % user_id)
-    
-    log.debug('running check auth')
-    yield security.check_and_change_auth_token(user_id, request)
-
-    #del GLSessions[user_id]
-
-
 class ReceiptAuthHandler(AuthenticationHandler):
     handler_exec_time_threshold = 60
 

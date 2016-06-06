@@ -27,8 +27,6 @@ from tempfile import _TemporaryFileWrapper
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, datetime_to_day_str, datetime_now
 from globaleaks.settings import GLSettings
-from globaleaks.orm import transact, transact_ro
-from globaleaks.models import User
 
 crypto_backend = default_backend()
 
@@ -63,40 +61,6 @@ def generateRandomPassword():
     Return a random password of 10 characters in a-zA-Z0-9
     """
     return generateRandomKey(10)
-
-
-@transact_ro
-def validate_token_hash(store, user_id, foreign_auth_token):
-  return _validate_token_hash
-
-
-def _validate_token_hash(store, user_id, foreign_auth_token):
-  user = store.find(User, User.id == user_id).one()
-  current_token = user.auth_token_hash
-
-  log.debug("Testing auth tokens (foreign, current) (%s, %s)" % (foreign_auth_token, current_token))
-
-  # TODO use safe comparision
-  if current_token == foreign_auth_token:
-    return user
-  return None
-
-
-@transact
-def check_and_change_auth_token(store, user_id, request):
-  user = _validate_token_hash(store, user_id, request['old_auth_token_hash'])
-  if user is not None:
-      # TODO handle log. See ticket #???
-      user.auth_token_hash = request['new_auth_token_hash']
-      user.salt = request['salt']
-
-      user.password_change_needed = False
-      user.password_change_date = datetime_now()
-
-      user.update()
-      log.debug('Set user (%s) auth token: %s' % (user.username, request['new_auth_token_hash']))
-  else:
-    raise 'Failed to update token auth on pw change failed: %s, %s' % (old_auth_token_hash, current_token)
 
 
 def _overwrite(absolutefpath, pattern):

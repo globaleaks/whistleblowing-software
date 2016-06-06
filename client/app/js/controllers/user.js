@@ -1,42 +1,33 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce', 'glbcUser', 'glbcReceiver', 'glbcKeyRing',
-  function($scope, $location, locationForce, glbcUser, glbcReceiver, glbcKeyRing) {
-    $scope.key_gen = false;
-    $scope.key_gen_msgs = [];
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', '$uibModal', 'locationForce', 'glbcUserKeyGen',
+  function($scope, $location, $uibModal, locationForce, glbcUserKeyGen) {
+    glbcUserKeyGen.startKeyGen();
 
     $scope.pass_save = function () {
+
       locationForce.clear();
 
       $scope.preferences.pgp_key_remove = false;
 
       var old_pw = $scope.preferences.old_password;
-      var old_salt = $scope.preferences.salt;
       var new_pw = $scope.preferences.password;
       var uname = $scope.preferences.name;
 
-      glbcUser.changePassword(uname, new_pw, old_pw, old_salt).then(function(res) {
-        var p;
+      glbcUserKeyGen.addPassphrase(uname, new_pw, old_pw);
 
-        if ($scope.preferences.ccrypto_key_public === '') {
-          $scope.key_gen = true;
-          p = glbcKeyRing.createNewCCryptoKey(res.new_passphrase).then(
-            function() {
-              $scope.key_gen_msgs.push('Posting new key pair to server. . .');
-              return glbcUser.submitNewKeyPair(res.auth_token_hash);
-            },
-            function(err) { return err; },
-            function(msg) { 
-              $scope.key_gen_msgs.push(msg);
-            }
-          );
-        } else {
-          p = glbcReceiver.updatePrivateKey(res);
-        }
-
-        return p.then(function() {
-          $scope.key_gen_msgs.push('Key gen finished! Redirecting!');
-          $location.path($scope.session.auth_landing_page);
-        });
+      $uibModal.open({
+        templateUrl: 'views/partials/client_key_gen.html',
+        controller: ['$scope', 'glbcUserKeyGen', function($scope, glbcUserKeyGen) {
+          console.log('enc modal ctrl', glbcUserKeyGen);
+          glbcUserKeyGen.vars.promises.ready.then(function() {
+            console.log('made it to ready state');
+            $scope.close_on = true;
+            // TODO redirect here using lochandler
+          });
+          $scope.msgs = glbcUserKeyGen.vars.msgQueue;
+        }],
+        resolve: { glbcUserKeyGen: glbcUserKeyGen },
+        size: 'md',
       });
 
     };

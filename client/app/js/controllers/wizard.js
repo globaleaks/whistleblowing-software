@@ -1,4 +1,4 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin', 'DefaultAppdata', 'glbcUser', 'CONSTANTS', function($scope, $location, $route, $http, $uibModal, Authentication, Admin, DefaultAppdata, glbcUser, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin', 'DefaultAppdata', 'CONSTANTS', function($scope, $location, $route, $http, $uibModal, Authentication, Admin, DefaultAppdata, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -36,8 +36,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
         };
 
         $http.post('admin/wizard', $scope.wizard).then(function() {
-          return glbcUser.changePassword('admin', $scope.admin_password, 'globaleaks');
-        }).then(function() {
           $scope.reload("/admin/landing");
         });
       }

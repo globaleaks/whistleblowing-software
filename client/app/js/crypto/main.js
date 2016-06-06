@@ -486,6 +486,7 @@ angular.module('GLBrowserCrypto', [])
 
   return {
     getKey: function() { return keyRing.privateKey; },
+
     exportPrivKey: function() {
       if (keyRing.privateKey.isDecrypted) {
         throw new Error("Attempted to export decrypted privateKey");
@@ -535,17 +536,18 @@ angular.module('GLBrowserCrypto', [])
       keyRing._pubKey = tmpKeyRef.toPublic();
       tmpKeyRef = null;
 
-      if (anuglar.isUndefined(uuid)) {
-        uuid = 'empty';
+      if (angular.isUndefined(uuid)) {
+        uuid = 'public';
       }
       keyRing.publicKeys[uuid] = keyRing._pubKey;
 
       return true;
     },
 
-    createNewCCryptoKey: function(new_passphrase) {
-      return glbcKeyLib.generateCCryptoKey(new_passphrase).then(function(pair) {
-        this.initialize(pair.ccrypto_key_private);
+    createNewCCryptoKey: function() {
+      var self = this;
+      return glbcKeyLib.generateCCryptoKey().then(function(pair) {
+        self.initialize(pair.ccrypto_key_private.armor());
         return pair;
       });
     },
@@ -555,8 +557,8 @@ angular.module('GLBrowserCrypto', [])
      * password. The primary key and all subkeys are encrypted with the password.
      * @param {String} password
      */
-    lockKeyRing: function(password) {
-       return keyRing.privateKey.encrypt(password);
+    lockKeyRing: function(scrypt_passphrase) {
+       return keyRing.privateKey.encrypt(scrypt_passphrase);
     },
 
     /**
@@ -564,8 +566,8 @@ angular.module('GLBrowserCrypto', [])
      * passed password. Returns true if successful.
      * @param {String} password
      */
-    unlockKeyRing: function(password) {
-      return keyRing.privateKey.decrypt(password);
+    unlockKeyRing: function(scrypt_passphrase) {
+      return keyRing.privateKey.decrypt(scrypt_passphrase);
     },
 
     changeKeyPassphrase: function(old_pw, new_pw) {

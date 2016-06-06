@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# user
+# User
 # ********
 #
 # Implement the classes handling the requests performed to /user/* URI PATH
@@ -9,8 +9,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models, security
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import User
 from globaleaks.rest import requests, errors
-from globaleaks.security import validate_token_hash
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
@@ -167,7 +167,8 @@ class UserInstance(BaseHandler):
 
         self.write(user_status)
 
-class KeyUpdateHandler(BaseHandler):
+
+class PassKeyUpdateHandler(BaseHandler):
     """
     This handler exposes the receiver's private key used for client-side encryption
     for post only updates.
@@ -177,31 +178,40 @@ class KeyUpdateHandler(BaseHandler):
     @BaseHandler.authenticated('*')
     @inlineCallbacks
     def post(self):
-      """
-      Parameters: KeyUpdateDesc
-      """
-      request = self.validate_message(self.request.body, requests.KeyUpdateDesc)
+        """
+        Parameters: KeyUpdateDesc
+        """
+        request = self.validate_message(self.request.body, requests.PassKeyUpdateDesc)
+        yield self.handle_update_session(request)
+        
+    @transact
+    def handle_update_session(self, store, request):
+        user_id = self.current_user.user_id
+        user = store.find(User, User.id == user_id).one()
 
-      yield validate_token_hash(self.current_user.user_id, request['auth_token_hash'])
+        log.debug('Found User %s' % user.username)
+        # TODO use safe comparision
+        assert user is not None
+        assert user.auth_token_hash == request['old_auth_token_hash']
+ 
+        if user.ccrypto_key_public == "":
+            assert request['ccrypto_key_public'] != "" 
+        # Past this point all assertions have passed and the user will be modified
+            log.debug('setting public key')
+            user.ccrypto_key_public = request['ccrypto_key_public']
 
-      # TODO perform validation on the passed pgp private key to assert
-      # correspondence with pub key.
-      if request['ccrypto_key_public'] != '':
-          yield update_public_key(self.current_user.user_id, request['ccrypto_key_public'])
-      yield update_private_key(self.current_user.user_id, request['ccrypto_key_private'])
+        # TODO investigate why new auth no longer works
+        user.auth_token_hash = request['new_auth_token_hash']
+        log.debug('Set user (%s) auth token: %s' % (user.username, request['new_auth_token_hash']))
+        user.salt = request['salt']
 
-@transact
-def update_public_key(store, user_id, new_pub_key):
-    user = store.find(Receiver, Receiver.id == user_id).one()
-    assert user is not None
+        user.password_change_needed = False
+        user.password_change_date = datetime_now()
 
-    user.ccrypto_key_public = new_pub_key
-    user.update()
+        log.debug('setting private key')
+        # TODO perform validation on the passed pgp private key to assert
+        # correspondence with pub key.
+        user.ccrypto_key_private = request['ccrypto_key_private']
+ 
+        user.update()
 
-@transact
-def update_private_key(store, user_id, new_priv_key):
-    user = store.find(Receiver, Receiver.id == user_id).one()
-    assert user is not None
-
-    user.ccrypto_key_private = new_priv_key
-    user.update()

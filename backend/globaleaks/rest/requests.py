@@ -83,14 +83,10 @@ AuthDesc = {
     'auth_token_hash': sha512_regexp,
 }
 
-PasswordChangeDesc = {
+PassKeyUpdateDesc = {
     'new_auth_token_hash': sha512_regexp,
     'old_auth_token_hash': sha512_regexp,
     'salt': salt_regexp,
-}
-
-KeyUpdateDesc = {
-    'auth_token_hash': sha512_regexp,
     'ccrypto_key_private': unicode,
     'ccrypto_key_public': unicode,
 }
