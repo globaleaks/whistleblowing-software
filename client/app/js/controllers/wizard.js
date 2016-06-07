@@ -25,7 +25,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
     $scope.finish = function() {
       if (!finished) {
         $http.post('wizard', $scope.wizard).success(function() {
-          alert($scope.wizard.admin.password);
           Authentication.login('admin', $scope.wizard.admin.password, function() {
             $scope.reload("/admin/landing");
           });
