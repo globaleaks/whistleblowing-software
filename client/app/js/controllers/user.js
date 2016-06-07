@@ -1,39 +1,23 @@
 GLClient
 .controller('ForcedPasswordChangeCtrl', ['$scope', '$location', '$uibModal', 'locationForce', 'Authentication', 'glbcUserKeyGen',
   function($scope, $location, $uibModal, locationForce, Authentication, glbcUserKeyGen) {
+    $scope.showKeyChange = false;
     glbcUserKeyGen.startKeyGen();
 
-    $scope.pass_save = function () {
+    $scope.inp = {
+      old_password: "",
+      new_password: "",
+    };
+
+    $scope.pass_next = function () {
 
       locationForce.clear();
 
       $scope.preferences.pgp_key_remove = false;
 
-      var old_pw = $scope.preferences.old_password;
-      var new_pw = $scope.preferences.password;
-      var uname = $scope.preferences.name;
-
-      glbcUserKeyGen.addPassphrase(uname, new_pw, old_pw);
-
-      $uibModal.open({
-        templateUrl: 'views/partials/client_key_gen.html',
-        controller: ['$scope', 'glbcUserKeyGen', function($scope, glbcUserKeyGen) {
-          console.log('enc modal ctrl', glbcUserKeyGen);
-          $scope.close_on = false;
-          glbcUserKeyGen.vars.promises.ready.then(function() {
-            $scope.close_on = true;
-            // TODO redirect here using lochandler
-          });
-          $scope.finishStep = function() {
-            $scope.$close();
-            $location.path(Authentication.session.auth_landing_page);
-          };
-          $scope.msgs = glbcUserKeyGen.vars.msgQueue;
-        }],
-        resolve: { glbcUserKeyGen: glbcUserKeyGen },
-        size: 'md',
-      });
-
+      debugger;
+      glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
+      $scope.showKeyChange = true;
     };
 }])
 .factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {

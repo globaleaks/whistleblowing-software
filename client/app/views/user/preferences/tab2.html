@@ -1,3 +1,4 @@
-<div class="col-md-8">
+<div ng-hide="showKeyGen" class="col-md-4">
   <div data-ng-include="'views/partials/preferences/password.html'"></div>
 </div>
+<div ng-show="showKeyGen" class="col-md-6" glbc-key-change-elem></div>

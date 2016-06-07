@@ -1,11 +1,6 @@
-<div style="padding: 15px; min-height: 250px;">
-    <h4>Key Generation Progress</h4>
-    <div class="well"><code><p ng-repeat="msg in msgs">{{ msg }}</p>
-      </code>
+<div>
+  <h4>Key Generation Progress <span class="glyphicon glyphicon-cog gly-spin"></span></h4>
+    <div class="well">
+      <code><p ng-repeat="msg in msgs">{{ msg }}</p></code>
     </div>
-    <button type="button" class="btn btn-success pull-right" ng-disabled="!close_on" data-ng-click="finishStep()" data-ng-translate>
-      <span ng-hide="!close_on" class="glyphicon glyphicon-ok"> </span>
-      <span ng-hide="close_on" class="glyphicon glyphicon-cog gly-spin"> </span>
-       Finish</button>
-     <br/><br />
 </div>

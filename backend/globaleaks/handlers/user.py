@@ -210,7 +210,7 @@ class PassKeyUpdateHandler(BaseHandler):
 
         log.debug('setting private key')
         # TODO perform validation on the passed pgp private key to assert
-        # correspondence with pub key.
+        # correspondence with the pub key.
         user.ccrypto_key_private = request['ccrypto_key_private']
  
         user.update()

@@ -1,15 +1,15 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
-  function($scope, $rootScope, CONSTANTS) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS', 'glbcUserKeyGen',
+  function($scope, $rootScope, CONSTANTS, glbcUserKeyGen) {
     if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
         {
           title: "Preferences",
-          template: "views/receiver/preferences/tab1.html"
+          template: "views/user/preferences/tab1.html"
         },
         {
           title: "Password configuration",
-          template: "views/receiver/preferences/tab2.html"
+          template: "views/user/preferences/tab2.html"
         },
         {
           title: "Notification settings",
@@ -42,22 +42,19 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
     $scope.timezones = CONSTANTS.timezones;
     $scope.email_regexp = CONSTANTS.email_regexp;
 
-    $scope.pass_save = function () {
-      if ($scope.preferences.pgp_key_remove === undefined) {
-        $scope.preferences.pgp_key_remove = false;
-      }
-      if ($scope.preferences.pgp_key_public === undefined) {
-        $scope.preferences.pgp_key_public = '';
-      }
+    $scope.inp = {
+      old_password: "",
+      new_password: "",
+    };
+    $scope.showKeyGen = false;
 
-      $scope.preferences.$update(function () {
-        $rootScope.successes.push({message: 'Updated your password!'});
-      });
+    $scope.pass_next = function() {
+      $scope.showKeyGen = true;
+      glbcUserKeyGen.noKeyGen();
+      glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
     };
 
     $scope.pref_save = function() {
-      $scope.preferences.password = '';
-      $scope.preferences.old_password = '';
 
       if ($scope.preferences.pgp_key_remove === true) {
         $scope.preferences.pgp_key_public = '';

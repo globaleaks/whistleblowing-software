@@ -517,6 +517,10 @@ angular.module('GLBrowserCrypto', [])
       }
     },
 
+    isInitialized: function() {
+      return keyRing.privateKey !== null;
+    },
+
     /**
      * @description intialize validates the passed privateKey and places it in the keyRing.
      * @param {String} armoredPrivKey
