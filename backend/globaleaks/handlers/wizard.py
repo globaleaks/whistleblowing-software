@@ -7,7 +7,6 @@ from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
-from globaleaks.handlers.admin.node import db_update_node, db_admin_serialize_node
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
 from globaleaks.rest import requests
@@ -21,23 +20,17 @@ from twisted.internet.defer import inlineCallbacks
 @transact
 def wizard(store, request, language):
     try:
-        node = db_admin_serialize_node(store, language)
-        node['default_language'] = language
-        node['languages_enabled'] = [language]
-
-        # Header title of the homepage and the node presentation is
-        # initially set with the node title
-        node['header_title_homepage'] = node['name']
-        node['presentation'] = node['name']
-
-        db_update_node(store, node, True, language)
+        node = store.find(models.Node).one()
+        node.default_language = language
+        node.languages_enabled = [language]
+        node.header_title_homepage[language] = request['node']['name']
+        node.presentation[language] = request['node']['name']
+        node.wizard_done = True
 
         context = db_create_context(store, request['context'], language)
 
-        # associate the new context to the receiver
         request['receiver']['contexts'] = [context.id]
         request['receiver']['language'] = language
-
         db_create_receiver(store, request['receiver'], language)
 
         admin_dict = {
@@ -50,7 +43,7 @@ def wizard(store, request, language):
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,
-            'timezone': node['default_timezone'],
+            'timezone': node.default_timezone,
             'password_change_needed': False,
             'pgp_key_remove': False,
             'pgp_key_status': 'disabled',

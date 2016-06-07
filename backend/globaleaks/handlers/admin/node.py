@@ -94,7 +94,7 @@ def admin_serialize_node(store, language):
     return db_admin_serialize_node(store, language)
 
 
-def db_update_node(store, request, wizard_done, language):
+def db_update_node(store, request, language):
     """
     Update and serialize the node infos
 
@@ -136,9 +136,6 @@ def db_update_node(store, request, wizard_done, language):
     else:
         node.basic_auth = False
 
-    if wizard_done:
-        node.wizard_done = True
-
     node.update(request)
 
     db_refresh_memory_variables(store)
@@ -179,7 +176,7 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.AdminNodeDesc)
 
-        node_description = yield update_node(request, True, self.request.language)
+        node_description = yield update_node(request, self.request.language)
         GLApiCache.invalidate()
 
         self.set_status(202) # Updated
