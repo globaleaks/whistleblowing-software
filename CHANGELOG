@@ -1,4 +1,4 @@
-Changes in version 2.61.13 - 2016-06-07
+Changes in version 2.61.14 - 2016-06-07
     o Fix issue #1681
     o Fix issue #1687
     o Fix issue #1688
@@ -10,7 +10,7 @@ Changes in version 2.61.13 - 2016-06-07
     - https://github.com/globaleaks/GlobaLeaks/issues/1688
     - https://github.com/globaleaks/GlobaLeaks/issues/1689
 
-Changes in version 2.61.12 - 2016-05-23
+Changes in version 2.61.13 - 2016-05-23
     o Fix issue #1675
     o Fix issue #1678
     o Implement unit testing for encrypted pgp files
