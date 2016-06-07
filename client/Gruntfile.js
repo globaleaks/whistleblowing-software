@@ -161,12 +161,6 @@ module.exports = function(grunt) {
               replacement: 'start_globaleaks();'
             },
             {
-              pattern: 'components/bowser/bowser.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bowser/bowser.min.js')
-              }
-            },
-            {
               pattern: '../fonts/glyphicons-halflings-regular.eot',
               replacement: function () {
                 return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
