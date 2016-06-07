@@ -191,6 +191,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.enable_captcha = node.enable_captcha
     GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
 
+    GLSettings.memory_copy.default_password = node.default_password
     GLSettings.memory_copy.default_language = node.default_language
     GLSettings.memory_copy.default_timezone = node.default_timezone
     GLSettings.memory_copy.languages_enabled  = node.languages_enabled

@@ -107,7 +107,7 @@ def db_create_user(store, request, language):
 
     password = request['password']
     if len(password) == 0:
-        password = GLSettings.default_password
+        password = GLSettings.memory_copy.default_password
 
     user.salt = security.generateRandomSalt()
     user.password = security.hash_password(password, user.salt)

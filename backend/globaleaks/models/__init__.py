@@ -450,6 +450,7 @@ class Node(Model):
     languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
     default_language = Unicode(validator=shorttext_v, default=u'en')
     default_timezone = Int(default=0)
+    default_password = Unicode(validator=longtext_v, default=u'globaleaks')
 
     description = JSON(validator=longlocal_v, default=empty_localization)
     presentation = JSON(validator=longlocal_v, default=empty_localization)
@@ -537,6 +538,7 @@ class Node(Model):
         'public_site',
         'hidden_service',
         'default_language',
+        'default_password',
         'landing_page',
         'context_selector_type'
     ]

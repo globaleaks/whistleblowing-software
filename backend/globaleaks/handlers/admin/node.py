@@ -39,6 +39,7 @@ def db_admin_serialize_node(store, language):
         'languages_enabled': node.languages_enabled,
         'default_language': node.default_language,
         'default_timezone': node.default_timezone,
+        'default_password': node.default_password,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,

@@ -842,6 +842,7 @@ class MockDict():
             'disable_donation_panel': False,
             'default_timezone': 0,
             'default_language': u'en',
+            'default_password': u'globaleaks',
             'admin_timezone': 0,
             'admin_language': u'en',
             'simplified_login': False,
