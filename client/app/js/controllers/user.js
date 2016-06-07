@@ -1,6 +1,6 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', '$uibModal', 'locationForce', 'glbcUserKeyGen',
-  function($scope, $location, $uibModal, locationForce, glbcUserKeyGen) {
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$location', '$uibModal', 'locationForce', 'Authentication', 'glbcUserKeyGen',
+  function($scope, $location, $uibModal, locationForce, Authentication, glbcUserKeyGen) {
     glbcUserKeyGen.startKeyGen();
 
     $scope.pass_save = function () {
@@ -19,11 +19,15 @@ GLClient
         templateUrl: 'views/partials/client_key_gen.html',
         controller: ['$scope', 'glbcUserKeyGen', function($scope, glbcUserKeyGen) {
           console.log('enc modal ctrl', glbcUserKeyGen);
+          $scope.close_on = false;
           glbcUserKeyGen.vars.promises.ready.then(function() {
-            console.log('made it to ready state');
             $scope.close_on = true;
             // TODO redirect here using lochandler
           });
+          $scope.finishStep = function() {
+            $scope.$close();
+            $location.path(Authentication.session.auth_landing_page);
+          };
           $scope.msgs = glbcUserKeyGen.vars.msgQueue;
         }],
         resolve: { glbcUserKeyGen: glbcUserKeyGen },
