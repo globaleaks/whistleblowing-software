@@ -17,7 +17,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         nodedict = helpers.MockDict().dummyNode
         nodedict['ahmia'] = False
 
-        yield admin.node.update_node(nodedict, True, 'en')
+        yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
@@ -27,7 +27,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
 
         nodedict = helpers.MockDict().dummyNode
         nodedict['ahmia'] = True
-        yield admin.node.update_node(nodedict, True, 'en')
+        yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
@@ -44,7 +44,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
         nodedict = helpers.MockDict().dummyNode
         nodedict['allow_indexing'] = False
 
-        yield admin.node.update_node(nodedict, True, 'en')
+        yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
@@ -56,7 +56,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
 
         nodedict = helpers.MockDict().dummyNode
         nodedict['allow_indexing'] = True
-        yield admin.node.update_node(nodedict, True, 'en')
+        yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
