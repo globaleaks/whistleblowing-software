@@ -168,6 +168,7 @@ CREATE TABLE node (
     languages_enabled BLOB NOT NULL,
     default_language TEXT NOT NULL,
     default_timezone INTEGER,
+    default_password TEXT NOT NULL,
     name TEXT NOT NULL,
     receipt_salt TEXT NOT NULL,
     public_site TEXT NOT NULL,

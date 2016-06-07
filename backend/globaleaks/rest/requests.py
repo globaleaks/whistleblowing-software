@@ -180,6 +180,7 @@ AdminNodeDesc = {
     'languages_supported': list,
     'default_language': unicode,
     'default_timezone': int,
+    'default_password': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
