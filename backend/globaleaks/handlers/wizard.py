@@ -23,6 +23,8 @@ def wizard(store, request, language):
         node = store.find(models.Node).one()
         node.default_language = language
         node.languages_enabled = [language]
+        node.name = request['node']['name']
+        node.description[language] = request['node']['name']
         node.header_title_homepage[language] = request['node']['name']
         node.presentation[language] = request['node']['name']
         node.wizard_done = True
