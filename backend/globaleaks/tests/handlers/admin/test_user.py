@@ -19,7 +19,7 @@ class TestUsersCollection(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='admin')
         yield handler.get()
 
-        self.assertEqual(len(self.responses[0]), 5)
+        self.assertEqual(len(self.responses[0]), 4)
 
     @inlineCallbacks
     def test_post_new_admin(self):

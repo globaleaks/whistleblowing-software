@@ -587,33 +587,16 @@ InternalTipDesc = {
     'identity_provided': bool
 }
 
-WizardAdminDesc = {
-    'password': unicode,
-    'old_password': unicode,
-    'mail_address': unicode
-}
-
-WizardStepDesc = {
-    'label': dict,
-    'hint': dict,
-    'description': dict,
-    'children': list
-}
-
-WizardNodeDesc = {
-    'presentation': dict,
-    'footer': dict
-}
-
-WizardAppdataDesc = {
-    'version': int,
-    'fields': [WizardStepDesc],
-    'node': WizardNodeDesc
-}
-
-WizardFirstSetupDesc = {
-    'node': AdminNodeDesc,
-    'admin': WizardAdminDesc,
+WizardDesc = {
+    'node': {
+      'name': unicode,
+      'description': unicode,
+      'allow_unencrypted': bool
+    },
+    'admin': {
+      'password': unicode,
+      'mail_address': unicode
+    },
     'receiver': AdminUserDesc,
     'context': AdminContextDesc
 }

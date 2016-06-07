@@ -3,7 +3,7 @@ GLClient.controller('AdminStepAddCtrl', ['$scope',
     $scope.new_step = {};
 
     $scope.add_step = function() {
-      var step = new $scope.admin.new_step($scope.questionnaire.id);
+      var step = new $scope.admin_utils.new_step($scope.questionnaire.id);
       step.label = $scope.new_step.label;
       step.presentation_order = $scope.newItemOrder($scope.questionnaire.steps, 'presentation_order');
 
@@ -48,10 +48,10 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.add_field = function() {
-      var field = $scope.admin.new_field($scope.step.id, '');
+      var field = $scope.admin_utils.new_field($scope.step.id, '');
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.admin.get_field_attrs(field.type);
+      field.attrs = $scope.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.step.children, 'y');
 
       field.$save(function(new_field){
@@ -61,7 +61,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.add_field_from_template = function(template_id) {
-      var field = $scope.admin.new_field_from_template(template_id, $scope.step.id, '');
+      var field = $scope.admin_utils.new_field_from_template(template_id, $scope.step.id, '');
       field.y = $scope.newItemOrder($scope.step.children, 'y');
 
       field.$save(function(new_field) {

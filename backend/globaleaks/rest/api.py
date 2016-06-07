@@ -127,7 +127,7 @@ spec = [
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/users', admin_overview.Users),
     (r'/admin/overview/files', admin_overview.Files),
-    (r'/admin/wizard', wizard.FirstSetup),
+    (r'/wizard', wizard.Wizard),
 
     ## Special Files Handlers##
     (r'/(favicon.ico)', base.BaseStaticFileHandler),

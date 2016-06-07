@@ -56,7 +56,7 @@ controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
   $scope.new_questionnaire = {};
 
   $scope.add_questionnaire = function() {
-    var questionnaire = new $scope.admin.new_questionnaire();
+    var questionnaire = new $scope.admin_utils.new_questionnaire();
 
     questionnaire.name = $scope.new_questionnaire.name;
 

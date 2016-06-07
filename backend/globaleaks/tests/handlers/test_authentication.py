@@ -18,7 +18,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_successful_login(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'globaleaks',
+            'password': helpers.VALID_PASSWORD1
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -28,7 +28,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_accept_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'globaleaks'
+            'password': helpers.VALID_PASSWORD1
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = True
         success = yield handler.post()
@@ -39,7 +39,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
     def test_deny_login_in_tor2web(self):
         handler = self.request({
             'username': 'admin',
-            'password': 'globaleaks'
+            'password': helpers.VALID_PASSWORD1
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -49,7 +49,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # Login
         handler = self.request({
             'username': 'admin',
-            'password': 'globaleaks'
+            'password': helpers.VALID_PASSWORD1
         })
         yield handler.post()
         self.assertTrue(handler.current_user is None)
