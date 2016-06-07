@@ -5,8 +5,8 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import wizard
 
 
-class TestFirstSetup(helpers.TestHandler):
-    _handler = wizard.FirstSetup
+class TestWizard(helpers.TestHandler):
+    _handler = wizard.Wizard
 
     @inlineCallbacks
     def test_post(self):

@@ -10,7 +10,7 @@ GLClient.controller('AdminShorturlAddCtrl', ['$scope', 'CONSTANTS', function($sc
   $scope.new_shorturl = angular.copy($scope.dummy_new_shorturl);
 
   $scope.add_shorturl = function() {
-    var shorturl = new $scope.admin.new_shorturl();
+    var shorturl = new $scope.admin_utils.new_shorturl();
 
     shorturl.shorturl = $scope.new_shorturl.shorturl;
     shorturl.longurl = $scope.new_shorturl.longurl;

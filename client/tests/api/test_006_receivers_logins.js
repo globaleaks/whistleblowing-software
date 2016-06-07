@@ -9,28 +9,12 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
+var utils = require('./utils.js');
+
 var valid_login;
 var invalid_login = {
   'username': 'invalid',
   'password': 'login'
-};
-
-var validate_mandatory_headers = function(headers) {
-  var mandatory_headers = {
-    'X-XSS-Protection': '1; mode=block',
-    'X-Robots-Tag': 'noindex',
-    'X-Content-Type-Options': 'nosniff',
-    'Expires': '-1',
-    'Server': 'globaleaks',
-    'Pragma':  'no-cache',
-    'Cache-control': 'no-cache, no-store, must-revalidate'
-  };
-
-  for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
-      throw key + ' != ' + mandatory_headers[key];
-    }
-  }
 };
 
 describe('GET /public', function () {
@@ -43,7 +27,7 @@ describe('GET /public', function () {
           return done(err);
         }
 
-        validate_mandatory_headers(res.headers);
+        utils.validate_mandatory_headers(res.headers);
 
         var receiver_username = JSON.parse(JSON.stringify(res.body))['receivers'][0]['username'];
 
@@ -68,7 +52,7 @@ describe('POST /authentication', function () {
           return done(err);
         }
 
-        validate_mandatory_headers(res.headers);
+        utils.validate_mandatory_headers(res.headers);
 
         done();
       });
@@ -86,7 +70,7 @@ describe('POST /authentication', function () {
           return done(err);
         }
 
-        validate_mandatory_headers(res.headers);
+        utils.validate_mandatory_headers(res.headers);
 
         done();
       });
