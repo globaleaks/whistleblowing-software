@@ -182,7 +182,11 @@ class PassKeyUpdateHandler(BaseHandler):
         Parameters: KeyUpdateDesc
         """
         request = self.validate_message(self.request.body, requests.PassKeyUpdateDesc)
+        #try:
         yield self.handle_update_session(request)
+        #except Exception as err:
+        #  log.debug('Update session threw %s' % err)
+        #  raise errors.UserIdNotFound
         
     @transact
     def handle_update_session(self, store, request):

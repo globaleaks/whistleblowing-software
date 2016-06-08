@@ -108,7 +108,7 @@ angular.module('GLServices', ['ngResource']).
 
                 return glbcKeyLib.deriveUserPassword(password, response.data.salt).then(function(result) {
                   var auth_token_hash = result.authentication;
-                  return $http.post('authentication',
+                  return $http.post('authentication', 
                              {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
                     .then(success_fn, error_fn);
                   });
@@ -147,7 +147,8 @@ angular.module('GLServices', ['ngResource']).
           var logoutPerformed = function() {
             self.loginRedirect(true);
           };
-
+          
+          // TODO redirect the home page. Clear memory and refresh the window.
           if (self.session.role === 'whistleblower') {
             $http.delete('receiptauth').then(logoutPerformed,
                                              logoutPerformed);
@@ -730,7 +731,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
           delete prefs.ccrypto_private_key;
         } catch (e) {
-          
+          console.log(e); 
         }
         // TODO TODO TODO
         if (initRes) {
