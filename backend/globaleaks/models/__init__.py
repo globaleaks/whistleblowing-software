@@ -403,7 +403,7 @@ class Comment(Model):
 
     internaltip_id = Unicode()
 
-    author = Unicode()
+    author_id = Unicode()
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
@@ -420,7 +420,6 @@ class Message(Model):
     creation_date = DateTime(default_factory=datetime_now)
 
     receivertip_id = Unicode()
-    author = Unicode()
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
@@ -1002,6 +1001,16 @@ class File(Model):
     data = Unicode()
 
 
+class CustomTexts(Model):
+    """
+    Class used to implement custom texts
+    """
+    lang = Unicode(validator=shorttext_v)
+    texts = Unicode(validator=shorttext_v)
+
+    unicode_keys = ['lang', 'texts']
+
+
 Node.logo = Reference(Node.logo_id, File.id)
 Node.css = Reference(Node.css_id, File.id)
 Context.picture = Reference(Context.img_id, File.id)
@@ -1140,6 +1149,7 @@ ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
+Comment.author = Reference(Comment.author_id, User.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 
