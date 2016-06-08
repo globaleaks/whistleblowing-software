@@ -7,16 +7,16 @@
 </div>
 <div class="row">
   <div class="col-md-4">
-    <form name="loginForm" novalidate>
+    <form name="loginForm" autocomplete="off" novalidate>
       <div data-ng-if="::!simplifiedLogin">
         <div class="form-group">
           <label data-translate>Username</label>
-          <input class="form-control" name="username" data-ng-model="loginUsername" type="text" autocomplete="off" required />
+          <input class="form-control" name="username" data-ng-model="loginUsername" type="text" required />
         </div>
 
         <div class="form-group">
           <label data-translate>Password</label>
-          <input class="form-control" name="password" data-ng-model="loginPassword" type="password" autocomplete="off" required />
+          <input class="form-control" name="password" data-ng-model="loginPassword" type="password" required />
         </div>
 
         <button class="btn btn-success" data-ng-disabled="Authentication.loginInProgress || loginForm.$invalid" data-ng-click="Authentication.login(loginUsername, loginPassword)" type="submit">
