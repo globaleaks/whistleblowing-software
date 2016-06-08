@@ -162,7 +162,7 @@
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.context_name.$error.required}">
-            <input name="context_name" class="form-control" data-ng-model="wizard.contextname" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}"  maxlength="{{node.maximum_namesize}}" required>
+            <input name="context_name" class="form-control" data-ng-model="wizard.context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}"  maxlength="{{node.maximum_namesize}}" required>
           </div>
         </div>
       </div>
