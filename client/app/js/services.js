@@ -85,7 +85,7 @@ angular.module('GLServices', ['ngResource']).
           };
 
           function error_fn(e) {
-            $rootScope.loginInProgress = false;
+            self.loginInProgress = false;
             console.log(e);
             return e;
           }
@@ -96,7 +96,7 @@ angular.module('GLServices', ['ngResource']).
               var password_hash = result.authentication;
               glbcWhistleblower.storePassphrase(result.passphrase);
 
-              $http.post('receiptauth', {'receipt_hash': password_hash})
+              return $http.post('receiptauth', {'receipt_hash': password_hash})
                 .then(success_fn, error_fn);
             });
           } else {
@@ -108,7 +108,7 @@ angular.module('GLServices', ['ngResource']).
 
                 return glbcKeyLib.deriveUserPassword(password, response.data.salt).then(function(result) {
                   var auth_token_hash = result.authentication;
-                  $http.post('authentication', 
+                  return $http.post('authentication',
                              {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
                     .then(success_fn, error_fn);
                   });
