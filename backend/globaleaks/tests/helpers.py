@@ -193,7 +193,6 @@ class TestGL(unittest.TestCase):
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
-
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
@@ -614,6 +613,10 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_submission_uploads()
         yield self.perform_submission_actions()
         yield self.perform_post_submission_actions()
+
+    @transact
+    def check_emails_number(self, store, number):
+        self.assertEqual(store.find(models.Mail).count(), number)
 
 
 class TestHandler(TestGLWithPopulatedDB):
