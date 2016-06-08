@@ -60,11 +60,18 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
     return ret_dict
 
-
 def serialize_comment(comment):
+    if comment.type == 'whistleblower':
+        author = 'Whistleblower'
+    else:
+        if comment.author is not None:
+            author = comment.author.name
+        else:
+            author = 'Recipient'
+
     return {
         'id': comment.id,
-        'author': comment.author,
+        'author': author,
         'type': comment.type,
         'creation_date': datetime_to_ISO8601(comment.creation_date),
         'content': comment.content
@@ -74,7 +81,7 @@ def serialize_comment(comment):
 def serialize_message(msg):
     return {
         'id': msg.id,
-        'author': msg.author,
+        'author': msg.receivertip.receiver.user.name,
         'type': msg.type,
         'creation_date': datetime_to_ISO8601(msg.creation_date),
         'content': msg.content
@@ -300,8 +307,8 @@ def create_comment(store, user_id, rtip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = rtip.receiver.user.name
     comment.type = u'receiver'
+    comment.author = rtip.receiver.user.id
 
     rtip.internaltip.comments.add(comment)
 
@@ -327,8 +334,6 @@ def create_message(store, user_id, rtip_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = rtip.receiver.user.name
-    msg.visualized = False
     msg.type = u'receiver'
 
     store.add(msg)

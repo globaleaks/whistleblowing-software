@@ -84,5 +84,48 @@ class Node_v_31(Model):
     css_id = Unicode()
 
 
+class Comment_v_31(Model):
+    __storm_table__ = 'comment'
+    creation_date = DateTime(default_factory=datetime_now)
+    internaltip_id = Unicode()
+    author = Unicode()
+    content = Unicode(validator=longtext_v)
+    type = Unicode()
+    new = Int(default=True)
+
+
+class Message_v_31(Model):
+    __storm_table__ = 'message'
+    creation_date = DateTime(default_factory=datetime_now)
+    receivertip_id = Unicode()
+    author = Unicode()
+    content = Unicode(validator=longtext_v)
+    type = Unicode()
+    new = Int(default=True)
+
+
 class MigrationScript(MigrationBase):
-    pass
+    def migrate_Comment(self):
+        old_objs = self.store_old.find(self.model_from['Comment'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Comment']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'author_id':
+                    if old_obj.type == 'whistleblower':
+                        continue
+
+                    old_rtip_model = self.model_from['ReceiverTip']
+                    old_rtips = self.store_old.find(old_rtip_model, old_rtip_model.internaltip_id == old_obj.internaltip_id)
+                    if old_rtips.count() == 1:
+                        new_obj.author_id = old_rtips.one().receiver.user.id
+                    else:
+                        old_user_model = self.model_from['User']
+                        old_user = self.store_old.find(old_user_model, old_user_model.name == old_obj.author).one()
+                        if old_user is not None:
+                            new_obj.author_id = old_user.id
+
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
