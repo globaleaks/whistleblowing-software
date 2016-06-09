@@ -7,6 +7,11 @@ var tmpDir = '/tmp/globaleaks-download';
 exports.config = {
   framework: 'jasmine',
 
+  onPrepare: function() {
+    var failFast = require('jasmine-fail-fast');
+    jasmine.getEnv().addReporter(failFast.init());
+  },
+
   baseUrl: 'http://127.0.0.1:8082/',
 
   troubleshoot: true,
@@ -35,6 +40,6 @@ exports.config = {
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
-    defaultTimeoutInterval: 60000
+    defaultTimeoutInterval: 60000,
   }
 };

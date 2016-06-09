@@ -15,11 +15,11 @@ describe('receiver first login', function() {
   });
 
   it('should be able to change password from the default one', function() {
-    element(by.model('preferences.old_password')).sendKeys(utils.vars['default_password']);
-    element(by.model('preferences.password')).sendKeys(utils.vars['user_password']);
-    element(by.model('preferences.check_password')).sendKeys(utils.vars['user_password']);
-    element(by.css('[data-ng-click="pass_save()"]')).click();
-    utils.waitForUrl('/receiver/tips');
+    element(by.model('inp.old_password')).sendKeys(utils.vars['default_password']);
+    element(by.model('inp.new_password')).sendKeys(utils.vars['user_password']);
+    element(by.model('inp.check_password')).sendKeys(utils.vars['user_password']);
+    element(by.css('[data-ng-click="pass_next()"]')).click();
+    utils.waitForUrl('/receiver/tips', 20000);
   });
 
   it('should be able to login with the new password', function() {
@@ -27,6 +27,7 @@ describe('receiver first login', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
     element(by.model('loginPassword')).sendKeys(utils.vars['user_password']);
     element(by.xpath('//button[contains(., "Log in")]')).click();
+    utils.waitForUrl('/receiver/tips', 2000);
     expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
   });
 
