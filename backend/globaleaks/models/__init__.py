@@ -1006,7 +1006,7 @@ class CustomTexts(Model):
     Class used to implement custom texts
     """
     lang = Unicode(validator=shorttext_v)
-    texts = Unicode(validator=shorttext_v)
+    texts = JSON()
 
     unicode_keys = ['lang', 'texts']
 
