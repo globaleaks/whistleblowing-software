@@ -1,4 +1,4 @@
-<div data-ng-show="preferences.pgp_key_status === 'enabled'">
+<div data-ng-if="!node.disable_encryption_warning && preferences.pgp_key_status === 'enabled'">
   <div class="alert alert-success">
     <span data-translate>Encryption is enabled!</span>
     <span data-translate>Email notifications will be encrypted.</span>
