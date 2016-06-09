@@ -13,12 +13,11 @@ from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, security, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata
-from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
 from globaleaks.security import generateRandomSalt, sha512
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_null
+from globaleaks.utils.utility import log
 
 
 def init_models():
@@ -73,28 +72,6 @@ def init_db(store):
 
     store.add(node)
     store.add(notification)
-
-    admin_dict = {
-        'username': u'admin',
-        'deletable': False,
-        'role': u'admin',
-        'state': u'enabled',
-        'deletable': False,
-        'name': u'Admin',
-        'description': u'',
-        'mail_address': u'',
-        'language': node.default_language,
-        'timezone': node.default_timezone,
-        'password_change_needed': False,
-        'pgp_key_remove': False,
-        'pgp_key_fingerprint': '',
-        'pgp_key_public': '',
-        'pgp_key_expiration': datetime_null()
-    }
-
-    admin = db_create_admin_user(store, admin_dict, node.default_language)
-    admin.password_change_needed = False
-
 
 def check_db_files():
     """
@@ -213,6 +190,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.enable_captcha = node.enable_captcha
     GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
 
+    GLSettings.memory_copy.default_password = node.default_password
     GLSettings.memory_copy.default_language = node.default_language
     GLSettings.memory_copy.default_timezone = node.default_timezone
     GLSettings.memory_copy.languages_enabled  = node.languages_enabled

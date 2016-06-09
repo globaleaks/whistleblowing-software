@@ -41,7 +41,7 @@ class CleaningSchedule(GLJob):
 
     @transact
     def check_for_expiring_submissions(self, store):
-        threshold = datetime_now() - timedelta(GLSettings.memory_copy.tip_expiration_threshold)
+        threshold = datetime_now() + timedelta(GLSettings.memory_copy.tip_expiration_threshold)
         for itip in store.find(models.InternalTip, models.InternalTip.expiration_date < threshold):
             for rtip in itip.receivertips:
                 user = rtip.receiver.user

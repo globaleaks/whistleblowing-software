@@ -77,9 +77,13 @@ class TipCleaning(TestCleaning):
 
         yield self.postpone_tip_expiration()
 
+        yield self.check_emails_number(2)
+
         yield cleaning_sched.CleaningSchedule().operation()
 
         yield self.test_postpone_survive_cleaning()
+
+        yield self.check_emails_number(4)
 
     @inlineCallbacks
     def test_itip_life_and_expire_with_files(self):

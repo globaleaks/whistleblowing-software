@@ -8,11 +8,11 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __copyright__ = u'2011-2016 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
 __email__ = u'info@globaleaks.org'
-__version__ = u'2.61.13'
+__version__ = u'2.61.14'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 32
-FIRST_DATABASE_VERSION_SUPPORTED = 16
+DATABASE_VERSION = 33
+FIRST_DATABASE_VERSION_SUPPORTED = 15
 
 # Add new languages as they are supported here! To do this retrieve the name of
 # the language and its code from transifex. Then use the following command to 

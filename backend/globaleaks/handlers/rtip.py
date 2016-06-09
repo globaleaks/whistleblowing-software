@@ -23,11 +23,55 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
+def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
+    """
+    ReceiverFile is the mixing between the metadata present in InternalFile
+    and the Receiver-dependent, and for the client sake receivertip_id is
+    required to create the download link
+    """
+    if receiverfile.status != 'unavailable':
+
+        ret_dict = {
+            'id': receiverfile.id,
+            'internalfile_id': internalfile.id,
+            'status': receiverfile.status,
+            'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
+            # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
+            'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
+            'content_type': internalfile.content_type,
+            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
+            'size': receiverfile.size,
+            'downloads': receiverfile.downloads
+        }
+
+    else:  # == 'unavailable' in this case internal file metadata is returned.
+
+        ret_dict = {
+            'id': receiverfile.id,
+            'internalfile_id': internalfile.id,
+            'status': 'unavailable',
+            'href': "",
+            'name': internalfile.name,  # original filename
+            'content_type': internalfile.content_type,  # original content size
+            'creation_date': datetime_to_ISO8601(internalfile.creation_date),  # original creation_date
+            'size': int(internalfile.size),  # original filesize
+            'downloads': unicode(receiverfile.downloads)  # this counter is always valid
+        }
+
+    return ret_dict
 
 def serialize_comment(comment):
+    if comment.type == 'whistleblower':
+        author = 'Whistleblower'
+    else:
+        if comment.author is not None:
+            author = comment.author.name
+        else:
+            author = 'Recipient'
+
     return {
         'id': comment.id,
-        'author': comment.author,
+        'author': author,
         'type': comment.type,
         'creation_date': datetime_to_ISO8601(comment.creation_date),
         'content': comment.content
@@ -37,7 +81,7 @@ def serialize_comment(comment):
 def serialize_message(msg):
     return {
         'id': msg.id,
-        'author': msg.author,
+        'author': msg.receivertip.receiver.user.name,
         'type': msg.type,
         'creation_date': datetime_to_ISO8601(msg.creation_date),
         'content': msg.content
@@ -198,8 +242,8 @@ def create_comment(store, user_id, rtip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
-    comment.author = rtip.receiver.user.name
     comment.type = u'receiver'
+    comment.author = rtip.receiver.user.id
 
     rtip.internaltip.comments.add(comment)
 
@@ -225,8 +269,6 @@ def create_message(store, user_id, rtip_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = rtip.receiver.user.name
-    msg.visualized = False
     msg.type = u'receiver'
 
     store.add(msg)

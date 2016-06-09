@@ -10,14 +10,10 @@ module.exports = function(grunt) {
     try {
       var mimeMap = {
         'css': 'text/css',
-        'eot': 'application/vnd.ms-fontobject',
         'ico': 'image/x-icon',
         'js': 'application/javascript',
         'png': 'image/png',
-        'svg': 'application/svg+xml',
-        'ttf': 'application/x-font-ttf',
-        'woff': 'application/woff',
-        'woff2': 'application/woff2'
+        'woff': 'application/woff'
       }
 
       var ext = filepath.split('.').pop();
@@ -161,45 +157,13 @@ module.exports = function(grunt) {
               replacement: 'start_globaleaks();'
             },
             {
-              pattern: 'components/bowser/bowser.min.js',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bowser/bowser.min.js')
-              }
+              pattern: "src: url('../fonts/glyphicons-halflings-regular.eot');",
+              replacement: ''
             },
             {
-              pattern: '../fonts/glyphicons-halflings-regular.eot',
+              pattern: "src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');",
               replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
-              }
-            },
-            {
-              pattern: '../fonts/glyphicons-halflings-regular.eot?#iefix',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.eot');
-              }
-            },
-            {
-              pattern: '../fonts/glyphicons-halflings-regular.woff2',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff2');
-              }
-            },
-            {
-              pattern: '../fonts/glyphicons-halflings-regular.woff',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff');
-              }
-            },
-            {
-              pattern: '../fonts/glyphicons-halflings-regular.ttf',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.ttf');
-              }
-            },
-            {
-              pattern: '../fonts/glyphicons-halflings-regular.svg',
-              replacement: function () {
-                return fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.svg');
+                return "src: url('" + fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff') + "') format('woff');";
               }
             },
             {

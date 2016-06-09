@@ -101,8 +101,6 @@ class GLSettingsClass(object):
 
         self.set_ramdisk_path()
 
-        self.default_password = 'globaleaks'
-
         self.authentication_lifetime = 3600
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}

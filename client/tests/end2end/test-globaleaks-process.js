@@ -301,11 +301,11 @@ describe('globaLeaks process', function() {
     });
   });
 
-  it('Recipient should be able to delete first submission from its tip page', function() {
+  it('Recipient should be able to delete third submission from its tip page', function() {
     utils.login_receiver(receiver_username, receiver_password);
 
     // Find the uuid of the first tip.
-    element(by.id('tip-0')).click();
+    element(by.id('tip-2')).click();
     element(by.id('tipFileName')).evaluate('tip.id').then(function(tip_uuid) {
       element(by.id('tip-action-delete')).click();
       element(by.id('modal-action-ok')).click();

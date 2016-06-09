@@ -9,6 +9,8 @@ var host = 'http://127.0.0.1:8082';
 
 var app = request(host);
 
+var utils = require('./utils.js');
+
 var population_order = 4;
 var submission_population_order = 10;
 var comments_population_order = 10;
@@ -21,24 +23,6 @@ var contexts_ids = [];
 var submissions = [];
 var submission_tokens = [];
 var wb_receipt_hashes  = [];
-
-var validate_mandatory_headers = function(headers) {
-  var mandatory_headers = {
-    'X-XSS-Protection': '1; mode=block',
-    'X-Robots-Tag': 'noindex',
-    'X-Content-Type-Options': 'nosniff',
-    'Expires': '-1',
-    'Server': 'globaleaks',
-    'Pragma':  'no-cache',
-    'Cache-control': 'no-cache, no-store, must-revalidate'
-  };
-
-  for (var key in mandatory_headers) {
-    if (headers[key.toLowerCase()] !== mandatory_headers[key]) {
-      throw key + ' != ' + mandatory_headers[key];
-    }
-  }
-};
 
 var valid_login = function(i) {
   return {
@@ -80,7 +64,7 @@ describe('GET /public', function(){
         if (err) {
           return done(err);
         } else {
-          validate_mandatory_headers(res.headers);
+          utils.validate_mandatory_headers(res.headers);
 
           publicapi = res.body;
 
@@ -116,7 +100,7 @@ for (i=0; i<submission_population_order; i++) {
               return done(err);
             } else {
 
-              validate_mandatory_headers(res.headers);
+              utils.validate_mandatory_headers(res.headers);
               submission_tokens.push(res.body);
 
               done();
@@ -141,7 +125,7 @@ for (i=0; i<submission_population_order; i++) {
               if (err) {
                 return done(err);
               } else {
-                validate_mandatory_headers(res.headers);
+                utils.validate_mandatory_headers(res.headers);
                 submission_tokens[i] = res.body;
 
                 done();
@@ -181,7 +165,7 @@ for (i=0; i<submission_population_order; i++) {
             if (err) {
               return done(err);
             } else {
-              validate_mandatory_headers(res.headers);
+              utils.validate_mandatory_headers(res.headers);
 
               submissions.push(res.body);
 
@@ -204,7 +188,7 @@ describe('POST /receiptauth', function () {
         if (err) {
           return done(err);
         }
-        validate_mandatory_headers(res.headers);
+        utils.validate_mandatory_headers(res.headers);
         authentication = res.body;
         done();
       });
@@ -222,7 +206,7 @@ describe('POST /receiptauth', function () {
         if (err) {
           return done(err);
         }
-        validate_mandatory_headers(res.headers);
+        utils.validate_mandatory_headers(res.headers);
         authentication = res.body;
         done();
       });
@@ -242,7 +226,7 @@ for (var i=1; i<comments_population_order; i++) {
             if (err) {
               return done(err);
             }
-            validate_mandatory_headers(res.headers);
+            utils.validate_mandatory_headers(res.headers);
             done();
           });
       });

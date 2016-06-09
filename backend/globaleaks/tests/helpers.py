@@ -196,12 +196,11 @@ class TestGL(unittest.TestCase):
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
-
     def setUp_dummy(self):
         dummyStuff = MockDict()
 
         self.dummyContext = dummyStuff.dummyContext
-        self.dummyAdminUser = self.get_dummy_user('admin', 'admin1')
+        self.dummyAdminUser = self.get_dummy_user('admin', 'admin')
         self.dummyAdminUser['deletable'] = False
 
 
@@ -242,19 +241,23 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    def get_dummy_user(self, role, descpattern):
+    def get_dummy_user(self, role, username):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
-        new_u['username'] = new_u['name'] = new_u['mail_address'] = \
-            unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_u['username'] = username
+        new_u['name'] = new_u['mail_address'] = \
+            unicode("%s@%s.xxx" % (username, username))
         new_u['description'] = u""
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
+        new_u['password'] = VALID_PASSWORD1
+        new_u['salt'] = VALID_SALT1
+        new_u['auth_token_hash'] = VALID_AUTH_TOK_HASH1
 
         return new_u
 
-    def get_dummy_receiver(self, descpattern):
-        new_u = self.get_dummy_user('receiver', descpattern)
+    def get_dummy_receiver(self, username):
+        new_u = self.get_dummy_user('receiver', username)
         new_r = dict(MockDict().dummyReceiver)
 
         return sum_dicts(new_r, new_u)
@@ -609,6 +612,10 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_submission_actions()
         yield self.perform_post_submission_actions()
 
+    @transact
+    def check_emails_number(self, store, number):
+        self.assertEqual(store.find(models.Mail).count(), number)
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
@@ -826,6 +833,7 @@ class MockDict():
             'disable_donation_panel': False,
             'default_timezone': 0,
             'default_language': u'en',
+            'default_password': u'globaleaks',
             'admin_timezone': 0,
             'admin_language': u'en',
             'simplified_login': False,

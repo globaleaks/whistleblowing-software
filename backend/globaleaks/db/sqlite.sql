@@ -32,7 +32,6 @@ CREATE TABLE user (
 CREATE TABLE message (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
-    author TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content TEXT NOT NULL,
@@ -44,11 +43,12 @@ CREATE TABLE message (
 CREATE TABLE comment (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
-    author TEXT NOT NULL,
+    author_id TEXT,
     internaltip_id TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('receiver', 'whistleblower')),
     content TEXT NOT NULL,
     new INTEGER NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES user(id) ON DELETE SET NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -169,6 +169,7 @@ CREATE TABLE node (
     languages_enabled BLOB NOT NULL,
     default_language TEXT NOT NULL,
     default_timezone INTEGER,
+    default_password TEXT NOT NULL,
     name TEXT NOT NULL,
     receipt_salt TEXT NOT NULL,
     public_site TEXT NOT NULL,
@@ -512,6 +513,11 @@ CREATE TABLE file (
     id TEXT NOT NULL,
     data TEXT NOT NULL,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE custom_texts (
+    lang TEXT NOT NULL,
+    texts BLOB NOT NULL
 );
 
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);

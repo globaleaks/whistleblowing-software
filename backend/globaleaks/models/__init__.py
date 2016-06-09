@@ -384,7 +384,7 @@ class Comment(Model):
 
     internaltip_id = Unicode()
 
-    author = Unicode()
+    author_id = Unicode()
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
@@ -401,7 +401,6 @@ class Message(Model):
     creation_date = DateTime(default_factory=datetime_now)
 
     receivertip_id = Unicode()
-    author = Unicode()
     content = Unicode(validator=longtext_v)
 
     type = Unicode()
@@ -431,6 +430,7 @@ class Node(Model):
     languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
     default_language = Unicode(validator=shorttext_v, default=u'en')
     default_timezone = Int(default=0)
+    default_password = Unicode(validator=longtext_v, default=u'globaleaks')
 
     description = JSON(validator=longlocal_v, default=empty_localization)
     presentation = JSON(validator=longlocal_v, default=empty_localization)
@@ -518,6 +518,7 @@ class Node(Model):
         'public_site',
         'hidden_service',
         'default_language',
+        'default_password',
         'landing_page',
         'context_selector_type'
     ]
@@ -972,6 +973,16 @@ class File(Model):
     data = Unicode()
 
 
+class CustomTexts(Model):
+    """
+    Class used to implement custom texts
+    """
+    lang = Unicode(validator=shorttext_v)
+    texts = Unicode(validator=shorttext_v)
+
+    unicode_keys = ['lang', 'texts']
+
+
 Node.logo = Reference(Node.logo_id, File.id)
 Node.css = Reference(Node.css_id, File.id)
 Context.picture = Reference(Context.img_id, File.id)
@@ -1095,6 +1106,7 @@ ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
+Comment.author = Reference(Comment.author_id, User.id)
 
 Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
 

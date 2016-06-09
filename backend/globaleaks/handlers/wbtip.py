@@ -58,7 +58,6 @@ def create_comment(store, wbtip_id, request):
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = wbtip.id
-    comment.author = u'whistleblower'
     comment.type = u'whistleblower'
 
     wbtip.comments.add(comment)
@@ -97,7 +96,6 @@ def create_message(store, wbtip_id, receiver_id, request):
     msg = Message()
     msg.content = request['content']
     msg.receivertip_id = rtip.id
-    msg.author = u'whistleblower'
     msg.type = u'whistleblower'
 
     store.add(msg)

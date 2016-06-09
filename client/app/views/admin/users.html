@@ -115,7 +115,7 @@
                   </div>
                   <div class="form-group" data-ng-form="userPasswordForm" data-isolate-form data-ng-class="{'has-error': passwordStrength.score > 0 && !userPassword.password.$valid}">
                     <label data-translate>Password</label>
-                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" zxcvbn="passwordStrength" zx-min-score="3" />
+                    <input name="password" class="form-control" data-ng-model="user.password" maxlength="{{node.maximum_namesize}}" type="password" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" />
                     <zx-password-meter value="passwordStrength"></zx-password-meter>
                     <div class="text-danger" data-ng-show="user.password != '' && editUser.password.$error.passwordStrength">
                       <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>

@@ -27,7 +27,6 @@ describe('receiver first login', function() {
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
     element(by.model('loginPassword')).sendKeys(utils.vars['user_password']);
     element(by.xpath('//button[contains(., "Log in")]')).click();
-    utils.waitForUrl('/receiver/tips', 2000);
     expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
   });
 

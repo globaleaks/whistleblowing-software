@@ -187,6 +187,7 @@ AdminNodeDesc = {
     'languages_supported': list,
     'default_language': unicode,
     'default_timezone': int,
+    'default_password': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
@@ -587,31 +588,16 @@ InternalTipDesc = {
     'identity_provided': bool
 }
 
-WizardAdminDesc = {
-    'mail_address': unicode
-}
-
-WizardStepDesc = {
-    'label': dict,
-    'hint': dict,
-    'description': dict,
-    'children': list
-}
-
-WizardNodeDesc = {
-    'presentation': dict,
-    'footer': dict
-}
-
-WizardAppdataDesc = {
-    'version': int,
-    'fields': [WizardStepDesc],
-    'node': WizardNodeDesc
-}
-
-WizardFirstSetupDesc = {
-    'node': AdminNodeDesc,
-    'admin': WizardAdminDesc,
+WizardDesc = {
+    'node': {
+      'name': unicode,
+      'description': unicode,
+      'allow_unencrypted': bool
+    },
+    'admin': {
+      'password': unicode,
+      'mail_address': unicode
+    },
     'receiver': AdminUserDesc,
     'context': AdminContextDesc
 }
