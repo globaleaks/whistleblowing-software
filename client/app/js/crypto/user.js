@@ -18,7 +18,7 @@ angular.module('GLBrowserCrypto')
 
   };
 }])
-.factory('glbcUserKeyGen', ['$q', '$http', '$timeout', 'Authentication', 'glbcKeyLib', 'glbcKeyRing', function($q, $http, $timeout, Authentication, glbcKeyLib, glbcKeyRing) { 
+.factory('glbcUserKeyGen', ['$q', '$http', '$timeout', 'Authentication', 'glbcUtil', 'glbcKeyLib', 'glbcKeyRing', function($q, $http, $timeout, Authentication, glbcUtil, glbcKeyLib, glbcKeyRing) { 
   var vars = {};
 
   function showMsg(msg) {
@@ -98,8 +98,7 @@ angular.module('GLBrowserCrypto')
     addPassphrase: function(old_password, new_password) {
       showMsg('Starting passphrase derivation. . .');
       var old_salt = Authentication.user_salt;
-      // TODO generate a real salt
-      var salt = '========================';
+      var salt = glbcUtil.generateRandomSalt();
       Authentication.user_salt = salt;
       showMsg('Adding salt. . . ');
 

@@ -10,7 +10,7 @@ angular.module('GLBrowserCrypto', [])
   return window.openpgp;
 })
 
-.factory('glbcUtil', function() {
+.factory('glbcUtil', ['pgp', function(pgp) {
   var b64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
   return {
@@ -102,9 +102,13 @@ angular.module('GLBrowserCrypto', [])
       return result;
     },
 
-  };
-})
+    generateRandomSalt: function() {
+      var salt = pgp.crypto.random.getRandomBytes(16);
+      return this.bin2base64(salt);
+    },
 
+  };
+}])
 .factory('glbcProofOfWork', ['$q', 'glbcUtil', function($q, glbcUtil) {
   // proofOfWork returns the answer to the proof of work
   // { [challenge string] -> [ answer index] }
