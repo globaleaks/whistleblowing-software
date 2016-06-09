@@ -529,7 +529,7 @@ CREATE TABLE file (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE custom_texts (
+CREATE TABLE customtexts (
     lang TEXT NOT NULL,
     texts BLOB NOT NULL
 );
