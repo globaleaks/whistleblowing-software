@@ -6,33 +6,6 @@
         <div>
           <input data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
           <label>{{language.name}} [{{language.code}}]</label>
-          <a data-ng-init="isCollapsed = true" data-ng-click="isCollapsed = !isCollapsed">
-            <i class="glyphicon glyphicon-plus-sign" data-ng-show="isCollapsed"></i>
-            <i class="glyphicon glyphicon-minus-sign" data-ng-show="!isCollapsed"></i>
-          </a>
-        </div>
-        <div data-ng-show="!isCollapsed">
-          <div class="well well-large uploadfile">
-            <span flow-init="{target: Utils.getUploadUrl_lang(language.code), headers: Authentication.get_auth_headers()}"
-                flow-files-submitted="$flow.upload()"
-                flow-file-success="updateReceiverImgReloadUrl()"
-                flow-name="flowObj">
-              <div class="btn btn-success fileinput-button">
-                <span class="uploadfile" flow-btn>
-                  <span class="glyphicon glyphicon-plus"></span>
-                  <span data-translate>Upload</span>
-                </span>
-              </div>
-            </span>
-            <a class="btn btn-primary" data-ng-href="l10n/{{language.code}}.json" download="{{language.code}}.json">
-              <span class="glyphicon glyphicon-download"></span>
-              <span data-translate>Download</span>
-            </a>
-            <a class="btn btn-danger" data-ng-click="delete_file('admin/l10n/' + language.code + '.json')">
-              <span class="glyphicon glyphicon-trash"></span>
-              <span data-translate>Reset</span>
-            </a>
-          </div>
         </div>
       </div>
     </div>
