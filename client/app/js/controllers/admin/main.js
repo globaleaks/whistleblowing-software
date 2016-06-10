@@ -31,6 +31,7 @@ GLClient.controller('AdminCtrl',
       }
     });
 
+    $scope.vars = {};
     $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
     $scope.$watch('languages_enabled', function() {
@@ -162,8 +163,8 @@ controller('AdminImgUploadCtrl', ['$scope', function($scope){
       }
     });
 }]).
-controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
-  function($scope, $http, StaticFiles){
+controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'AdminL10NResource', 'DefaultL10NResource',
+  function($scope, $http, StaticFiles, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -174,10 +175,25 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
       template: "views/admin/content/tab2.html"
     },
     {
-      title: "Translation customization",
+      title: "Languages",
       template: "views/admin/content/tab3.html"
+    },
+    {
+      title: "Texts customization",
+      template: "views/admin/content/tab4.html"
     }
   ];
+
+  $scope.vars = {
+    'language_to_customize': $scope.node.default_language
+  }
+
+  $scope.get_l10n = function(lang) {
+    $scope.custom_texts = AdminL10NResource.get({'lang': lang});
+    $scope.default_texts = DefaultL10NResource.get({'lang': lang});
+  }
+
+  $scope.get_l10n($scope.vars.language_to_customize);
 
   $scope.staticfiles = [];
 

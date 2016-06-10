@@ -1010,7 +1010,8 @@ class CustomTexts(BaseModel):
     lang = Unicode(validator=shorttext_v)
     texts = JSON()
 
-    unicode_keys = ['lang', 'texts']
+    unicode_keys = ['lang']
+    json_keys = ['texts']
 
 
 Node.logo = Reference(Node.logo_id, File.id)

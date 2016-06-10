@@ -628,6 +628,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');
 }]).
+  factory('AdminL10NResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/l10n/:lang', {lang: '@lang'});
+}]).
   factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return {
@@ -822,8 +825,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('StaticFiles', ['GLResource', function(GLResource) {
     return new GLResource('admin/staticfiles');
 }]).
-  factory('DefaultAppdata', ['GLResource', function(GLResource) {
-    return new GLResource('data/appdata_l10n.json', {});
+  factory('DefaultL10NResource', ['GLResource', function(GLResource) {
+    return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
   factory('Utils', ['$rootScope', '$location', '$filter', '$uibModal', function($rootScope, $location, $filter, $uibModal) {
     var isHomepage = function () {
@@ -971,6 +974,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
       },
 
+      deleteFromDict: function(dict, key) {
+          delete dict[key];
+      },
+
       assignUniqueOrderIndex: function(elements) {
         if (elements.length <= 0) {
           return;
@@ -985,10 +992,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             i += 1;
           });
         }
-      },
-
-      getUploadUrl_lang: function(lang) {
-        return 'admin/l10n/' + lang + '.json';
       },
 
       exportJSON: function(data, filename) {

@@ -366,7 +366,7 @@ var GLClient = angular.module('GLClient', [
       // Configure translation and language providers.
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
-        suffix: '.json'
+        suffix: ''
       });
 
       $translateProvider.useSanitizeValueStrategy('escape');

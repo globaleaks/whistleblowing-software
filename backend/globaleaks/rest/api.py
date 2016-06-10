@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                export, langfiles, wizard, \
+                                export, l10n, wizard, \
                                 base, user, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
@@ -24,7 +24,7 @@ from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import field as admin_field
-from globaleaks.handlers.admin import langfiles as admin_langfiles
+from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import shorturl as admin_shorturl
@@ -121,8 +121,7 @@ spec = [
     (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
     (r'/admin/anomalies', admin_statistics.AnomalyCollection),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
-    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            admin_langfiles.AdminLanguageFileHandler),
+    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/users', admin_overview.Users),
@@ -134,8 +133,7 @@ spec = [
     (r'/robots.txt', public.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
-    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'/x/timingstats', base.TimingStatsHandler),
 
