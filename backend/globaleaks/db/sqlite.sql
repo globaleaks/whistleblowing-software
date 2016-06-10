@@ -531,7 +531,8 @@ CREATE TABLE file (
 
 CREATE TABLE customtexts (
     lang TEXT NOT NULL,
-    texts BLOB NOT NULL
+    texts BLOB NOT NULL,
+    PRIMARY KEY (lang)
 );
 
 CREATE INDEX fieldattr__field_id_index ON fieldattr(field_id);

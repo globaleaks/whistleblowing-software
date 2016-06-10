@@ -1001,10 +1001,12 @@ class File(Model):
     data = Unicode()
 
 
-class CustomTexts(Model):
+class CustomTexts(BaseModel):
     """
     Class used to implement custom texts
     """
+    __storm_primary__ = 'lang'
+
     lang = Unicode(validator=shorttext_v)
     texts = JSON()
 
