@@ -17,22 +17,23 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def _test_successful_login(self, headers={}):
-        uname = 'receiver1@receiver1.xxx'
+        # TODO get real name
+        user = self.dummyReceiver_1
         handler = self.request({
             'step': 1,
-            'username': uname,
+            'username': user['username'],
             'auth_token_hash': 'f'*128,
         }, headers=headers)
         yield handler.post()
 
         salt = self.responses[0]['salt']
 
-        password = GLSettings.default_password
+        password = self.dummyNode['default_password']
         digest = derive_auth_hash(password, salt)
 
         handler = self.request({
             'step': 2,
-            'username': uname,
+            'username': user['username'],
             'auth_token_hash': digest,
         }, headers=headers)
 

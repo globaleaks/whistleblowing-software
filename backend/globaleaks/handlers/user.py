@@ -182,21 +182,22 @@ class PassKeyUpdateHandler(BaseHandler):
         Parameters: KeyUpdateDesc
         """
         request = self.validate_message(self.request.body, requests.PassKeyUpdateDesc)
-        #try:
-        yield self.handle_update_session(request)
-        #except Exception as err:
-        #  log.debug('Update session threw %s' % err)
-        #  raise errors.UserIdNotFound
+        try:
+          yield self.handle_update_session(request)
+        except Exception as err:
+          log.debug('Update session threw %s' % err)
+          raise errors.UserIdNotFound
         
     @transact
     def handle_update_session(self, store, request):
         user_id = self.current_user.user_id
         user = store.find(User, User.id == user_id).one()
 
-        log.debug('Found User %s' % user.username)
-        # TODO use safe comparision
         assert user is not None
+        log.debug('Found User %s' % user.username)
+        # TODO use safe comparisions
         assert user.auth_token_hash == request['old_auth_token_hash']
+        assert request['old_auth_token_hash'] != request['new_auth_token_hash']
  
         if user.ccrypto_key_public == "":
             assert request['ccrypto_key_public'] != "" 

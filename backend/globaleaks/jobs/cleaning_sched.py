@@ -50,7 +50,7 @@ class CleaningSchedule(GLJob):
                 notification_desc = db_get_notification(store, language)
                 context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
                 receiver_desc = admin_serialize_receiver(rtip.receiver, language)
-                tip_desc = serialize_rtip(store, rtip, user.language)
+                tip_desc = serialize_receiver_tip(store, rtip, user.language)
 
                 data = {
                    'type': u'tip_expiration',

@@ -13,7 +13,7 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
-# and here, our protagonist character:
+# and lo, our heroic protagonist:
 from globaleaks.handlers.submission import create_submission
 
 
@@ -65,7 +65,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 
         yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt_hash'], False)
+        wbtip_id = yield authentication.login_whistleblower(unicode(self.submission_desc['receipt_hash']), False)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 

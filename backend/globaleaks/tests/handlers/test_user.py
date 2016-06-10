@@ -3,6 +3,8 @@ import unittest
 import random
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import security
+
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin, user
 from globaleaks.rest import errors
@@ -92,3 +94,70 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.responses[0]['pgp_key_remove'] = False
         handler = self.request(self.responses[0], user_id=self.rcvr_id, role='receiver')
         yield self.assertFailure(handler.put(), errors.PGPKeyInvalid)
+
+
+class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
+    _handler = user.PassKeyUpdateHandler
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        
+        self.user = self.dummyReceiverUser_1
+
+        new_salt = security.generateRandomSalt()
+        new_token = security.derive_auth_hash('focaccino', new_salt)
+        # In the setup req_body is incorrect
+        self.req_body = {
+            'old_auth_token_hash': self.user['auth_token_hash'],
+            'new_auth_token_hash': new_token,
+            'salt': new_salt,
+            'ccrypto_key_public':  helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
+            'ccrypto_key_private': helpers.PGPKEYS['VALID_PGP_KEY1_PRV'],
+        }
+
+    @inlineCallbacks
+    def test_valid_passkey(self):
+
+        handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
+        yield handler.post()
+        # TODO assert new pgp_key, passchange not needed. etc etc
+
+        # TODO authenticate with new token and salt
+
+    @inlineCallbacks
+    def test_invalid_auth_tok(self):
+
+        self.req_body['old_auth_token_hash'] = helpers.INVALID_AUTH_TOK_HASH
+        handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
+
+        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+
+        req_body['old_auth_token_hash'] = user['auth_token_hash']
+        req_body['new_auth_token_hash'] = 'wrongformat'
+        handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
+
+        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+
+        req_body['new_auth_token_hash'] = req_body['old_auth_token_hash']
+        handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
+
+        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+
+
+
+    @inlineCallbacks
+    def test_invalid_privkey(self):
+        user = self.dummyReceiverUser_1
+        # TODO
+
+
+    @inlineCallbacks
+    def test_invalid_pubkey(self):
+        user = self.dummyReceiverUser_1
+        # TODO
+
+    @inlineCallbacks
+    def test_invalide_new_pubkey(self):
+        user = self.dummyReceiverUser_1
+        # TODO

@@ -10,7 +10,7 @@ from twisted.trial import unittest
 from globaleaks.tests import helpers
 from globaleaks.security import generateRandomSalt, derive_auth_hash, \
     directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
-    crypto_backend, GLBPGP
+    crypto_backend, GLBPGP, sha512, scrypt_password
 from globaleaks.settings import GLSettings
 from globaleaks.rest import errors
 
@@ -21,52 +21,20 @@ class TestPasswordManagement(unittest.TestCase):
 
         dummy_salt = generateRandomSalt()
 
-        sure_bin = scrypt.hash(dummy_password, dummy_salt)
-        sure = binascii.b2a_hex(sure_bin)
-        not_sure = derive_auth_hash(dummy_password, dummy_salt)
-        self.assertEqual(sure, not_sure)
+        hash_a = sha512(scrypt_password(dummy_password, dummy_salt))
+        hash_b = derive_auth_hash(dummy_password, dummy_salt)
+        self.assertEqual(hash_a, hash_b)
 
     def test_valid_password(self):
         dummy_password = dummy_salt_input = \
             "http://blog.transparency.org/wp-content/uploads/2010/05/A2_Whistelblower_poster.jpg"
         dummy_salt = generateRandomSalt()
 
-        hashed_once = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
-        hashed_twice = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
-        self.assertTrue(hashed_once, hashed_twice)
-
-        #self.assertTrue(check_password(dummy_password, dummy_salt, hashed_once))
-
-    def test_change_password(self):
-        first_pass = helpers.VALID_PASSWORD1
-        second_pass = helpers.VALID_PASSWORD2
-        dummy_salt = generateRandomSalt()
-
-        # as first we hash a "first_password" like has to be:
-        hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
-
-        # now emulate the change unsing the globaleaks.security module
-        #hashed2 = change_password(hashed1, first_pass, second_pass, dummy_salt)
-
-        # verify that second stored pass is the same
-        #self.assertEqual(
-        #    hashed2,
-        #    binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt))
-        #)
-
-    def test_change_password_fail_with_invalid_old_password(self):
-        dummy_salt_input = "xxxxxxxx"
-        first_pass = helpers.VALID_PASSWORD1
-        second_pass = helpers.VALID_PASSWORD2
-        dummy_salt = generateRandomSalt()
-
-        # as first we hash a "first_password" like has to be:
-        hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
-
-        # now emulate the change unsing the globaleaks.security module
-        #self.assertRaises(errors.InvalidOldPassword, change_password, hashed1, "invalid_old_pass", second_pass,
-                          #dummy_salt_input)
-
+        hash_a = derive_auth_hash(dummy_password, dummy_salt)
+        hash_b = derive_auth_hash(dummy_password, dummy_salt)
+        hash_c = derive_auth_hash('Derpderpderp', dummy_salt)
+        self.assertEqual(hash_a, hash_b)
+        self.assertTrue(hash_a != hash_c)
 
 class TestFilesystemAccess(helpers.TestGL):
     def test_directory_traversal_failure_on_relative_trusted_path_must_fail(self):
