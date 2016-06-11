@@ -16,12 +16,13 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
-from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.utils.utility import log
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import directory_traversal_check
+from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import log
 
 
 @transact_ro
@@ -41,13 +42,14 @@ def update_custom_texts(store, lang, texts):
     custom_texts.texts = texts
 
 
-class AdminL10NHandler(BaseHandler):
-    @transact
-    def delete_custom_texts(self, store, lang):
-        custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
-        if custom_texts is not None:
-            store.remove(custom_texts)
+@transact
+def delete_custom_texts(store, lang):
+    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
+    if custom_texts is not None:
+        store.remove(custom_texts)
 
+
+class AdminL10NHandler(BaseHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
@@ -64,10 +66,12 @@ class AdminL10NHandler(BaseHandler):
 
         yield update_custom_texts(lang, request)
 
+        GLApiCache.invalidate('l10n')
+
         self.set_status(202)  # Updated
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, lang):
-        yield self.delete_custom_texts(lang)
+        yield delete_custom_texts(lang)
