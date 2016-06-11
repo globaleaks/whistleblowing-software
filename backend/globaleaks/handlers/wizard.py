@@ -43,6 +43,7 @@ def wizard(store, request, language):
             'state': u'enabled',
             'deletable': False,
             'name': u'Admin',
+            'public_name': u'Admin',
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,

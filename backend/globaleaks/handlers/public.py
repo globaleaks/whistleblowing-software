@@ -286,7 +286,7 @@ def serialize_receiver(receiver, language):
     """
     ret_dict = {
         'id': receiver.user.id,
-        'name': receiver.user.name,
+        'name': receiver.user.public_name,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
         'state': receiver.user.state,
         'configuration': receiver.configuration,

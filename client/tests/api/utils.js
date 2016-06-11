@@ -34,6 +34,7 @@ exports.get_user = function() {
     role: 'receiver',
     username: '',
     name: '',
+    public_name: '',
     timezone: 0,
     language: 'en',
     description: '',

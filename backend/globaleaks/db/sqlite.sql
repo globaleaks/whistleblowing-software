@@ -12,6 +12,7 @@ CREATE TABLE user (
     state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
     name TEXT NOT NULL,
     description BLOB NOT NULL,
+    public_name TEXT NOT NULL,
     last_login TEXT NOT NULL,
     mail_address TEXT NOT NULL,
     language TEXT NOT NULL,

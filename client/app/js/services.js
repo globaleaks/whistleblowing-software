@@ -762,6 +762,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       user.state = 'enabled';
       user.name = '';
       user.description = '';
+      user.public_name = '';
       user.mail_address = '';
       user.pgp_key_info = '';
       user.pgp_key_fingerprint = '';

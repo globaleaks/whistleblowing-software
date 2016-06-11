@@ -240,7 +240,7 @@ class TestGL(unittest.TestCase):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
         new_u['username'] = username
-        new_u['name'] = new_u['mail_address'] = \
+        new_u['name'] = new_u['public_name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (username, username))
         new_u['description'] = u""
         new_u['password'] = VALID_PASSWORD1
@@ -747,7 +747,8 @@ class MockDict():
             'role': u'receiver',
             'state': u'enabled',
             'name': u'Generic User',
-            'description': u'King MockDummy Generic User',
+            'description': u'King MockDummy',
+            'public_name': u'Charlie Brown',
             'last_login': u'1970-01-01 00:00:00.000000',
             'timezone': 0,
             'language': u'en',
