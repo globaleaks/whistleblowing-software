@@ -48,7 +48,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get()
 
-        self.assertEqual(self.responses[0], "User-agent: *\nDisallow: /")
+        self.assertEqual(self.responses[0], "User-agent: *\n")
+        self.assertEqual(self.responses[1], "Disallow: /")
 
     @inlineCallbacks
     def test_get_with_indexing_enabled(self):
@@ -60,7 +61,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
 
         yield handler.get()
 
-        self.assertEqual(self.responses[0], "User-agent: *\nAllow: /")
+        self.assertEqual(self.responses[0], "User-agent: *\n")
+        self.assertEqual(self.responses[1], "Allow: /")
 
 
 class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
