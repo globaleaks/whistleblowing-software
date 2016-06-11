@@ -107,6 +107,11 @@
                     <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
+                    <label data-translate>Name shown on public interfaces</label>
+                    <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.public_name" type="text" required />
+                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                  </div>
+                  <div class="form-group">
                     <label data-translate>Email address</label>
                     <input class="form-control" name="email" data-ng-model="user.mail_address" type="text" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" required />
                     <div class="text-danger" data-ng-show="editUser.email.$error.required" data-translate>This field is mandatory</div>

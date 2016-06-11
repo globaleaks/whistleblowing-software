@@ -172,6 +172,8 @@ class User(Model):
     name = Unicode(validator=shorttext_v)
     description = JSON(validator=longlocal_v)
 
+    public_name = Unicode(validator=shorttext_v)
+
     role = Unicode()
     state = Unicode()
     last_login = DateTime(default_factory=datetime_null)
@@ -195,7 +197,8 @@ class User(Model):
     img_id = Unicode()
 
     unicode_keys = ['username', 'role', 'state',
-                    'language', 'mail_address', 'name']
+                    'language', 'mail_address', 'name',
+                    'public_name']
 
     localized_keys = ['description']
 

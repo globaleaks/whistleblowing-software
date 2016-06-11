@@ -76,6 +76,7 @@ def user_serialize_user(user, language):
         'state': user.state,
         'last_login': datetime_to_ISO8601(user.last_login),
         'name': user.name,
+        'public_name': user.public_name,
         'description': user.description,
         'mail_address': user.mail_address,
         'language': user.language,

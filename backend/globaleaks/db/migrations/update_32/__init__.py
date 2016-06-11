@@ -84,6 +84,31 @@ class Node_v_31(Model):
     css_id = Unicode()
 
 
+class User_v_31(Model):
+    __storm_table__ = 'user'
+    creation_date = DateTime(default_factory=datetime_now)
+    username = Unicode(validator=shorttext_v)
+    password = Unicode()
+    salt = Unicode()
+    deletable = Bool(default=True)
+    name = Unicode(validator=shorttext_v)
+    description = JSON(validator=longlocal_v)
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime(default_factory=datetime_null)
+    mail_address = Unicode()
+    language = Unicode()
+    timezone = Int()
+    password_change_needed = Bool(default=True)
+    password_change_date = DateTime(default_factory=datetime_null)
+    pgp_key_info = Unicode(default=u'')
+    pgp_key_fingerprint = Unicode(default=u'')
+    pgp_key_public = Unicode(default=u'')
+    pgp_key_expiration = DateTime(default_factory=datetime_null)
+    pgp_key_status = Unicode(default=u'disabled') # 'disabled', 'enabled'
+    img_id = Unicode()
+
+
 class Comment_v_31(Model):
     __storm_table__ = 'comment'
     creation_date = DateTime(default_factory=datetime_now)
@@ -124,6 +149,19 @@ class MigrationScript(MigrationBase):
                         if old_user is not None:
                             new_obj.author_id = old_user.id
 
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_User(self):
+        old_objs = self.store_old.find(self.model_from['User'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['User']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'public_name':
+                    new_obj.public_name = old_obj.name
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
