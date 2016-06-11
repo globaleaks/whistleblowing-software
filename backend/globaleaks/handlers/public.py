@@ -391,7 +391,5 @@ class RobotstxtHandler(BaseHandler):
 
         self.set_header('Content-Type', 'text/plain')
 
-        if node_info['allow_indexing']:
-            self.write("User-agent: *\nAllow: /")
-        else:
-            self.write("User-agent: *\nDisallow: /")
+        self.write("User-agent: *\n")
+        self.write("Allow: /" if node_info['allow_indexing'] else "Disallow: /")
