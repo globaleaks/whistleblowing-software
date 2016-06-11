@@ -11,8 +11,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact_ro
-from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 
 

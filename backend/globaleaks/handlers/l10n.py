@@ -11,14 +11,31 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin import l10n as admin_l10n
+from globaleaks.orm import transact_ro
+from globaleaks.rest.apicache import GLApiCache
+from globaleaks.settings import GLSettings
 from globaleaks.security import directory_traversal_check
 
 
 def langfile_path(lang):
     return os.path.abspath(os.path.join(GLSettings.client_path, 'l10n', '%s.json' % lang))
+
+
+@transact_ro
+def get_l10n(store, lang):
+    path = langfile_path(lang)
+    directory_traversal_check(GLSettings.client_path, path)
+
+    with open(path, 'rb') as f:
+        texts = json.loads(f.read())
+
+    custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == lang).one()
+    custom_texts = custom_texts.texts if custom_texts is not None else {}
+
+    texts.update(custom_texts)
+
+    return texts
 
 
 class L10NHandler(BaseHandler):
@@ -32,14 +49,7 @@ class L10NHandler(BaseHandler):
     def get(self, lang):
         self.set_header('Content-Type', 'application/json')
 
-        path = langfile_path(lang)
-        directory_traversal_check(GLSettings.client_path, path)
-        self.root = os.path.abspath(os.path.join(GLSettings.client_path, 'l10n'))
+        l10n = yield GLApiCache.get('l10n', self.request.language,
+                                    get_l10n, self.request.language)
 
-        with open(path, 'rb') as f:
-            texts = json.loads(f.read())
-
-        custom_texts = yield admin_l10n.get_custom_texts(lang)
-
-        texts.update(custom_texts)
-        self.write(texts)
+        self.write(l10n)
