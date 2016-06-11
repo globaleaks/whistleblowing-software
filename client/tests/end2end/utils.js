@@ -68,51 +68,35 @@ exports.emulateUserRefresh = function () {
       return browser.setLocation(current_url);
     });
   });
-}
+};
+
+exports.login_admin = function() {
+  browser.get('/#/admin');
+  element(by.model('loginUsername')).sendKeys('admin');
+  element(by.model('loginPassword')).sendKeys(exports.vars['user_password']);
+  element(by.xpath('//button[contains(., "Log in")]')).click();
+  exports.waitForUrl('/admin/landing');
+};
 
 exports.login_whistleblower = function(receipt) {
-  return protractor.promise.controlFlow().execute(function() {
-    var deferred = protractor.promise.defer();
-
-    browser.get('/#/');
-
-    element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
-      element(by.id('ReceiptButton')).click().then(function() {
-        exports.waitForUrl('/status');
-        deferred.fulfill();
-      });
-    });
-
-    return deferred.promise;
-  });
+  browser.get('/#/');
+  element(by.model('formatted_keycode')).sendKeys(receipt);
+  element(by.id('ReceiptButton')).click();
+  exports.waitForUrl('/status');
 }
 
 exports.login_receiver = function(username, password, url) {
   url = url === undefined ? '/#/login' : url;
-
-  return protractor.promise.controlFlow().execute(function() {
-    var deferred = protractor.promise.defer();
-
-    browser.get(url);
-
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click().then(function() {
-      element(by.model('loginPassword')).sendKeys(password).then(function() {
-        element(by.xpath('//button[contains(., "Log in")]')).click().then(function() {
-          url = url.split('#')[1];
-          exports.waitForUrl(url === '/login' ? '/receiver/tips' : url);
-          deferred.fulfill();
-        });
-      });
-    });
-
-    return deferred.promise;
-  });
+  browser.get(url);
+  element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
+  element(by.model('loginPassword')).sendKeys(password);
+  element(by.xpath('//button[contains(., "Log in")]')).click();
+  url = url.split('#')[1];
+  exports.waitForUrl(url === '/login' ? '/receiver/tips' : url);
 };
 
 exports.logout = function(redirect_url) {
   redirect_url = redirect_url === undefined ? '/' : redirect_url;
-
-  element(by.id('LogoutLink')).click().then(function() {
-    exports.waitForUrl(redirect_url);
-  });
+  element(by.id('LogoutLink')).click();
+  exports.waitForUrl(redirect_url);
 }
