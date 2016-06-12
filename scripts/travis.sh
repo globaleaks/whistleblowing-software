@@ -8,7 +8,7 @@ fi
 
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
-  npm install -g grunt grunt-cli bower
+  npm install -g grunt grunt-cli bower istanbul
   npm install -d
   bower update
   grunt copy:sources
@@ -62,7 +62,8 @@ if [ "$GLTEST" = "test" ]; then
     grunt end2end-coverage-run
 
     cd $TRAVIS_BUILD_DIR/backend
-    coveralls --merge=../client/coverage/coveralls.json || true
+
+    coveralls --merge=../client/coverage/coveralls.json
   fi
 
 elif [ "$GLTEST" = "lint" ]; then
