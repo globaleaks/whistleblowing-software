@@ -121,6 +121,9 @@ module.exports = function(grunt) {
       test: {
         configFile: "tests/end2end/protractor.config.js"
       },
+      coverage: {
+        configFile: "tests/end2end/protractor-coverage.config.js"
+      },
       saucelabs: {
         configFile: "tests/end2end/protractor-sauce.config.js",
         options: {
@@ -234,21 +237,8 @@ module.exports = function(grunt) {
       }
     },
 
-    protractor_coverage: {
-      options: {
-        keepAlive: true,
-        noColor: false,
-        coverageDir: 'coverage'
-      },
-      local: {
-        options: {
-          configFile: 'tests/end2end/protractor-coverage.config.js'
-        }
-      }
-    },
-
     makeReport: {
-      src: 'coverage/coverage*.json',
+      src: 'coverage/*.json',
       options: {
         type: 'lcov',
         dir: 'coverage',
@@ -268,7 +258,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
@@ -842,13 +831,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('end2end-coverage-run', [
-    'protractor_coverage:local',
+    'protractor:coverage',
     'makeReport',
     'generateCoverallsJson'
-  ]);
-
-  grunt.registerTask('end2end-coverage', [
-    'end2end-coverage-instrument',
-    'end2end-coverage-run'
   ]);
 };
