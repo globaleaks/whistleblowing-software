@@ -715,7 +715,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
 
     new_field_from_template: function(template_id, step_id, fieldgroup_id) {
-      var field = self.new_field(step_id, fieldgroup_id);
+      var field = this.new_field(step_id, fieldgroup_id);
       field.template_id = template_id;
       field.instance = 'reference';
       return field;
