@@ -6,14 +6,14 @@ describe('adming configure custom texts', function() {
     element(by.cssContainingText("a", "Texts customization")).click();
 
     expect(element(by.model('vars.language_to_customize')).sendKeys('English'));
-    element(by.cssContainingText('option', 'Whistleblowing disabled')).click();
-    expect(element(by.model('vars.custom_text')).clear().sendKeys('Submissions disabled'));
+    element(by.cssContainingText('option', 'Submissions disabled')).click();
+    expect(element(by.model('vars.custom_text')).clear().sendKeys('Whistleblowing disabled'));
 
     // save settings
     element(by.id('addCustomTextButton')).click().then(function() {
       browser.get('/');
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
+      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
+      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
     });
 
     utils.login_admin();
@@ -24,8 +24,8 @@ describe('adming configure custom texts', function() {
     // save settings
     element(by.css('.deleteCustomTextButton')).click().then(function() {
       browser.get('/');
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
+      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
+      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
     });
   });
 });
