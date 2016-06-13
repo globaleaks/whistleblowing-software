@@ -89,6 +89,16 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
     @inlineCallbacks
+    def test_invalid_step(self):
+        handler = self.request({
+            'username': 'admin',
+            'auth_token_hash': helpers.INVALID_AUTH_TOK_HASH,
+            'step': 5,
+        })
+
+        yield self.assertFailure(handler.post(), errors.InvalidInputFormat)
+
+    @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
             'username': 'admin',

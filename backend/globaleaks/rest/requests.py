@@ -78,7 +78,7 @@ FileDesc = {
 }
 
 AuthDesc = {
-    'step': int,
+    'step': '^1|2$',
     'username': unicode,
     'auth_token_hash': sha512_regexp,
 }

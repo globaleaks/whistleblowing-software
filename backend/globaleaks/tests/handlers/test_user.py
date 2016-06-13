@@ -137,20 +137,22 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
         self.req_body['new_auth_token_hash'] = 'wrongformat'
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
-        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+        yield self.assertFailure(handler.post(), errors.InvalidInputFormat)
 
-        self.req_body['new_auth_token_hash'] = req_body['old_auth_token_hash']
+        self.req_body['new_auth_token_hash'] = self.req_body['old_auth_token_hash']
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
 
 
-    def test_invalid_privkey(self):
-        user = self.dummyReceiverUser_1
-        # TODO
-
-
     def test_invalid_pubkey(self):
+        self.req_body['ccrypto_key_public'] = ""
+        handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
+        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+        # TODO pass broken public key
+
+
+    def test_invalid_privkey(self):
         user = self.dummyReceiverUser_1
         # TODO
 

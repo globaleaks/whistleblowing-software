@@ -168,6 +168,7 @@ class AuthenticationHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
+        ret = dict()
         try:
             if step == 1:
                 ret = yield self.step1(request)

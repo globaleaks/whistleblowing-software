@@ -5,6 +5,7 @@
 # Implement the classes handling the requests performed to /user/* URI PATH
 
 from twisted.internet.defer import inlineCallbacks
+from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 
 from globaleaks import models, security
 from globaleaks.orm import transact, transact_ro
@@ -182,43 +183,45 @@ class PassKeyUpdateHandler(BaseHandler):
         Parameters: KeyUpdateDesc
         """
         request = self.validate_message(self.request.body, requests.PassKeyUpdateDesc)
+        success = False 
         try:
-          yield self.handle_update_session(request)
+          success = yield self.handle_update_session(request)
         except Exception as err:
-          log.debug('Update session threw %s' % err)
-          #raise errors.UserIdNotFound
+          log.warn('Update session threw %s' % err)
         finally:
           yield self.uniform_answers_delay()
+          if not success:
+            raise errors.UserIdNotFound
+
         
     @transact
     def handle_update_session(self, store, request):
         user_id = self.current_user.user_id
         user = store.find(User, User.id == user_id).one()
 
-        assert user is not None
+        # TODO use side channel safe comparisions
+        if (user is None or user.auth_token_hash != request['old_auth_token_hash']
+            or request['old_auth_token_hash'] == request['new_auth_token_hash']):
+            return False
         log.debug('Found User %s' % user.username)
-        # TODO use safe comparisions
-        assert user.auth_token_hash == request['old_auth_token_hash']
-        assert request['old_auth_token_hash'] != request['new_auth_token_hash']
  
-        if user.ccrypto_key_public == "":
-            assert request['ccrypto_key_public'] != "" 
-        # Past this point all assertions have passed and the user will be modified
-            log.debug('setting public key')
+        if user.ccrypto_key_public == "" and user.password_change_needed:
+            if request['ccrypto_key_public'] == "": # and TODO invalid public key
+                return False
+            log.debug('Setting users public key')
             user.ccrypto_key_public = request['ccrypto_key_public']
 
-        # TODO investigate why new auth no longer works
         user.auth_token_hash = request['new_auth_token_hash']
-        log.debug('Set user (%s) auth token: %s' % (user.username, request['new_auth_token_hash']))
         user.salt = request['salt']
 
         user.password_change_needed = False
         user.password_change_date = datetime_now()
 
-        log.debug('setting private key')
+        log.debug('Setting private key')
         # TODO perform validation on the passed pgp private key to assert
         # correspondence with the pub key.
         user.ccrypto_key_private = request['ccrypto_key_private']
  
         user.update()
+        return True
 
