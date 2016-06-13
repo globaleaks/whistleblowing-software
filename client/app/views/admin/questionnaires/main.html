@@ -18,11 +18,11 @@
   <div class="adminConfigSection col-md-12" data-ng-show="admin.questionnaires.length > 0">
     <div class="editorTitle" data-translate>Configured questionnaires:</div>
     <div data-ng-repeat="questionnaire in admin.questionnaires | orderBy:'presentation_order'">
-      <form id="questionnaire-{{$index}}" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
-        <div class="configItem" data-ng-disabled="!questionnaire.editable">
-          <div class="editorHeader row" data-ng-click="toggleEditing(); $event.stopPropagation();">
+      <form id="questionnaire-{{$index}}" class="configItem" name="editQuestionnaire" data-ng-controller="AdminQuestionnaireEditorCtrl" novalidate>
+        <div>
+          <div class="editorHeader row" data-ng-click="questionnaire.editable && toggleEditing(); $event.stopPropagation();">
             <span class="col-md-7 editorHeaderTitle">{{questionnaire.name}}</span>
-            <span class="col-md-5">
+            <span class="col-md-5" data-ng-if="questionnaire.editable">
               <span class="pull-right">
                 <button
                   class="actionButton actionButtonEdit btn btn-xs btn-default"
