@@ -27,17 +27,17 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label data-translate>Custom translations</label>
+      <label data-translate>Custom texts</label>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th class="col-md-3" data-translate>Source Text</th>
+            <th class="col-md-3" data-translate>Original text</th>
             <th class="col-md-3" data-translate>Original translation</th>
             <th class="col-md-3" data-translate>Custom translation</th>
           </tr>
         </thead>
         <tbody>
-          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" uib-popover="{{!default_texts[key] ? 'This custom translation is no longer displayed on the platform. The original key has either changed or been removed.' : '' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+          <tr data-ng-repeat="(key, value) in custom_texts" data-ng-class="{danger: !default_texts[key]}" uib-popover="{{!default_texts[key] ? 'This custom text is no longer displayed on the platform. The original text has either changed or been removed.' : '' | translate }}" popover-placement="top" popover-trigger="mouseenter">
             <td class="preformatted">{{key}}</td>
             <td class="preformatted">{{default_texts[key]}}</td>
             <td>
