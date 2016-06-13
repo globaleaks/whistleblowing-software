@@ -186,7 +186,9 @@ class PassKeyUpdateHandler(BaseHandler):
           yield self.handle_update_session(request)
         except Exception as err:
           log.debug('Update session threw %s' % err)
-          raise errors.UserIdNotFound
+          #raise errors.UserIdNotFound
+        finally:
+          yield self.uniform_answers_delay()
         
     @transact
     def handle_update_session(self, store, request):

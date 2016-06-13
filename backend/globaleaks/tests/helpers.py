@@ -33,7 +33,7 @@ from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.admin.field import create_field, db_create_field
 from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
-from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
+from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, db_create_receiver
 from globaleaks.handlers.submission import create_submission, \
     serialize_internalfile, serialize_receiverfile, \
     serialize_receiver_tip, serialize_whistleblower_tip
@@ -251,8 +251,6 @@ class TestGL(unittest.TestCase):
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
         new_u['password'] = VALID_PASSWORD1
-        new_u['salt'] = VALID_SALT1
-        new_u['auth_token_hash'] = VALID_AUTH_TOK_HASH1
 
         return new_u
 
@@ -517,6 +515,8 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
+        self.dummyReceiverUser_1['salt'] = self.dummyReceiver_1['salt']
+
         self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
@@ -739,8 +739,6 @@ class MockDict():
         self.dummyUser = {
             'id': '',
             'username': u'maker@iz.cool.yeah',
-            'salt': VALID_SALT1,
-            'auth_token_hash': VALID_AUTH_TOK_HASH1,
             'role': u'receiver',
             'state': u'enabled',
             'name': u'Generic User',

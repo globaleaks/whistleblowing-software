@@ -107,7 +107,6 @@ def db_create_user(store, request, language):
         user.username = user.id
 
     user.salt = security.generateRandomSalt();
-    # TODO Require password change
     node = store.find(models.Node).one()
     user.auth_token_hash = security.derive_auth_hash(node.default_password, user.salt)
 

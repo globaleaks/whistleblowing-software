@@ -105,11 +105,13 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
         
         self.user = self.dummyReceiverUser_1
 
+        self.user_old_token = security.derive_auth_hash('globaleaks', self.user['salt'])
+
         new_salt = security.generateRandomSalt()
         new_token = security.derive_auth_hash('focaccino', new_salt)
         # In the setup req_body is incorrect
         self.req_body = {
-            'old_auth_token_hash': self.user['auth_token_hash'],
+            'old_auth_token_hash': self.user_old_token,
             'new_auth_token_hash': new_token,
             'salt': new_salt,
             'ccrypto_key_public':  helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
@@ -118,7 +120,6 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_valid_passkey(self):
-
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
         yield handler.post()
         # TODO assert new pgp_key, passchange not needed. etc etc
@@ -127,37 +128,32 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_invalid_auth_tok(self):
-
         self.req_body['old_auth_token_hash'] = helpers.INVALID_AUTH_TOK_HASH
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
 
-        req_body['old_auth_token_hash'] = user['auth_token_hash']
-        req_body['new_auth_token_hash'] = 'wrongformat'
+        self.req_body['old_auth_token_hash'] = self.user_old_token
+        self.req_body['new_auth_token_hash'] = 'wrongformat'
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
 
-        req_body['new_auth_token_hash'] = req_body['old_auth_token_hash']
+        self.req_body['new_auth_token_hash'] = req_body['old_auth_token_hash']
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
 
 
-
-    @inlineCallbacks
     def test_invalid_privkey(self):
         user = self.dummyReceiverUser_1
         # TODO
 
 
-    @inlineCallbacks
     def test_invalid_pubkey(self):
         user = self.dummyReceiverUser_1
         # TODO
 
-    @inlineCallbacks
     def test_invalide_new_pubkey(self):
         user = self.dummyReceiverUser_1
         # TODO

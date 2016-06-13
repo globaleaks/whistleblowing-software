@@ -35,7 +35,8 @@ def admin_serialize_receiver(receiver, language):
         'configuration': receiver.configuration,
         'contexts': [c.id for c in receiver.contexts],
         'tip_notification': receiver.tip_notification,
-        'presentation_order': receiver.presentation_order
+        'presentation_order': receiver.presentation_order,
+        'salt': receiver.user.salt
     })
 
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
