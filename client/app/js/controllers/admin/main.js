@@ -179,7 +179,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'Admin
       template: "views/admin/content/tab3.html"
     },
     {
-      title: "Texts customization",
+      title: "Text customization",
       template: "views/admin/content/tab4.html"
     }
   ];
