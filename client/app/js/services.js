@@ -830,64 +830,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
   factory('Utils', ['$rootScope', '$location', '$filter', '$uibModal', function($rootScope, $location, $filter, $uibModal) {
-    var isHomepage = function () {
-      return $location.path() === '/';
-    };
-
-    var isLoginPage = function () {
-      var path = $location.path();
-      return (path === '/login' ||
-              path === '/admin' ||
-              path === '/receipt');
-    };
-
-    var isAWhistleblowerPage = function() {
-      var path = $location.path();
-      return (path === '/' ||
-              path === '/start' ||
-              path === '/submission' ||
-              path === '/receipt' ||
-              path === '/status');
-    };
-
-    var getXOrderProperty = function() {
-      return 'x';
-    }
-
-    var getYOrderProperty = function(elem) {
-      var key = 'presentation_order';
-      if (elem[key] === undefined) {
-        key = 'y';
-      }
-      return key;
-    };
-
-    var getUploadStatus = function(uploads) {
-      var error = false;
-
-      for (var key in uploads) {
-        if (uploads.hasOwnProperty(key)) {
-          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
-            return 'uploading';
-          }
-
-          for (var i=0; i<uploads[key].files.length; i++) {
-            if (uploads[key].files[i].error) {
-              error = true;
-              break;
-            }
-          }
-        }
-      }
-
-      if (error) {
-        return 'error';
-      } else {
-        return 'finished';
-      }
-    };
-
     return {
+      getXOrderProperty: function() {
+        return 'x';
+      },
+
+      getYOrderProperty: function(elem) {
+        var key = 'presentation_order';
+        if (elem[key] === undefined) {
+          key = 'y';
+        }
+        return key;
+      },
+
       dumb_function: function() {
         return true;
       },
@@ -926,19 +881,39 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return 'data:image/png;base64,' + data;
       },
 
+      isHomepage: function () {
+        return $location.path() === '/';
+      },
+
       isWizardPage: function () {
         return $location.path() === '/wizard';
       },
 
+      isLoginPage: function () {
+        var path = $location.path();
+        return (path === '/login' ||
+                path === '/admin' ||
+                path === '/receipt');
+      },
+
+      isAWhistleblowerPage: function() {
+        var path = $location.path();
+        return (path === '/' ||
+                path === '/start' ||
+                path === '/submission' ||
+                path === '/receipt' ||
+                path === '/status');
+      },
+
       showLoginForm: function () {
-        return (!isHomepage() &&
-                !isLoginPage());
+        return (!this.isHomepage() &&
+                !this.isLoginPage());
       },
 
       showPrivacyBadge: function() {
         return (!$rootScope.embedded &&
                 !$rootScope.node.disable_privacy_badge &&
-                isAWhistleblowerPage());
+                this.isAWhistleblowerPage());
       },
 
       showFilePreview: function(content_type) {
@@ -953,19 +928,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       },
 
       moveUp: function(elem) {
-        elem[getYOrderProperty(elem)] -= 1;
+        elem[this.getYOrderProperty(elem)] -= 1;
       },
 
       moveDown: function(elem) {
-        elem[getYOrderProperty(elem)] += 1;
+        elem[this.getYOrderProperty(elem)] += 1;
       },
 
       moveLeft: function(elem) {
-        elem[getXOrderProperty(elem)] -= 1;
+        elem[this.getXOrderProperty(elem)] -= 1;
       },
 
       moveRight: function(elem) {
-        elem[getXOrderProperty(elem)] += 1;
+        elem[this.getXOrderProperty(elem)] += 1;
       },
 
       deleteFromList: function(list, elem) {
@@ -984,7 +959,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           return;
         }
 
-        var key = getYOrderProperty(elements[0]);
+        var key = this.getYOrderProperty(elements[0]);
         if (elements.length) {
           var i = 0;
           elements = $filter('orderBy')(elements, key);
@@ -1014,10 +989,33 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return sum;
       },
 
-      getUploadStatus: getUploadStatus,
+      getUploadStatus: function(uploads) {
+        var error = false;
+
+        for (var key in uploads) {
+          if (uploads.hasOwnProperty(key)) {
+            if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+              return 'uploading';
+            }
+
+            for (var i=0; i<uploads[key].files.length; i++) {
+              if (uploads[key].files[i].error) {
+                error = true;
+                break;
+              }
+            }
+          }
+        }
+
+        if (error) {
+          return 'error';
+        } else {
+          return 'finished';
+        }
+      },
 
       isUploading: function(uploads) {
-        return getUploadStatus(uploads) === 'uploading';
+        return this.getUploadStatus(uploads) === 'uploading';
       },
 
       remainingUploadTime: function(uploads) {
