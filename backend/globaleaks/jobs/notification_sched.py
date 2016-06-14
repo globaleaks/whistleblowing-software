@@ -150,7 +150,7 @@ class MailGenerator(object):
         data['notification'] = db_get_notification(store, data['receiver']['language'])
         data['node'] = db_admin_serialize_node(store, data['receiver']['language'])
 
-        if not data['node']['allow_unencrypted'] and not len(data['receiver']['pgp_key_public']):
+        if data['node']['enforce_notification_encryption'] and not len(data['receiver']['pgp_key_public']):
             return
 
         subject, body = Templating().get_mail_subject_and_body(data)

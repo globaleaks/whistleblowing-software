@@ -71,7 +71,7 @@ def db_serialize_node(store, language):
         'can_delete_submission': node.can_delete_submission,
         'can_grant_permissions': node.can_grant_permissions,
         'wizard_done': node.wizard_done,
-        'allow_unencrypted': node.allow_unencrypted,
+        'enforce_notification_encryption': node.enforce_notification_encryption,
         'disable_encryption_warnings': node.disable_encryption_warnings,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'configured': configured,
@@ -113,6 +113,8 @@ def serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
+    context_receivers = [r.id for r in context.receivers if r.ccrypto_key_public == ""]
+
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
@@ -130,7 +132,7 @@ def serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire': serialize_questionnaire(store, context.questionnaire, language), 
-        'receivers': [r.id for r in context.receivers],
+        'receivers': context_receivers,
         'picture': context.picture.data if context.picture is not None else ''
     }
 

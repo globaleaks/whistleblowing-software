@@ -54,7 +54,7 @@ def db_admin_serialize_node(store, language):
         'can_grant_permissions': node.can_grant_permissions,
         'ahmia': node.ahmia,
         'allow_indexing': node.allow_indexing,
-        'allow_unencrypted': node.allow_unencrypted,
+        'enforce_notification_encryption': node.enforce_notification_encryption,
         'disable_encryption_warnings': node.disable_encryption_warnings,
         'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'wizard_done': node.wizard_done,

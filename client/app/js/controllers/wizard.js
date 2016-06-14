@@ -6,21 +6,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
 
     var finished = false;
 
-    $scope.open_modal_allow_unencrypted = function() {
-      if (!$scope.wizard.node.allow_unencrypted) {
-        return;
-      }
-
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/partials/disable_encryption.html',
-        controller: 'DisableEncryptionCtrl'
-      });
-
-      modalInstance.result.then(function(result){
-        $scope.wizard.node.allow_unencrypted = result;
-      });
-    };
-
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');

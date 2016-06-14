@@ -31,9 +31,9 @@ class TestORM(helpers.TestGL):
     def _transact_with_stuff(self, store):
         r = self.localization_set(self.dummyReceiver_1, Receiver, 'en')
         receiver_user = User(self.dummyReceiverUser_1)
-        receiver_user.password = self.dummyReceiverUser_1['password']
-        receiver_user.salt = self.dummyReceiverUser_1['salt']
         receiver_user.last_login = self.dummyReceiverUser_1['last_login']
+        receiver_user.auth_token_hash = helpers.VALID_AUTH_TOK_HASH1
+        receiver_user.salt = helpers.VALID_SALT1
         receiver_user.password_change_needed = self.dummyReceiverUser_1['password_change_needed']
         receiver_user.password_change_date = datetime_null()
         receiver_user.mail_address = self.dummyReceiverUser_1['mail_address']

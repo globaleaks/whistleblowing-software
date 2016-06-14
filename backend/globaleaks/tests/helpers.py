@@ -140,8 +140,8 @@ def import_fixture(store, fixture):
 
 
 @transact
-def update_node_encryption_setting(store, allow_unencrypted):
-    store.find(models.Node).one().allow_unencrypted = allow_unencrypted
+def update_node_encryption_setting(store, enforce_notification_encryption):
+    store.find(models.Node).one().enforce_notification_encryption = enforce_notification_encryption
 
 
 def change_field_type(field, field_type):
@@ -514,11 +514,14 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
+        from IPython import embed; embed()
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
         self.dummyReceiverUser_1['salt'] = self.dummyReceiver_1['salt']
 
         self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
         self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
+        self.dummyReceiverUser_2['salt'] = self.dummyReceiver_2['salt']
+
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
         # fill_data/create_context
@@ -817,7 +820,7 @@ class MockDict():
             'can_grant_permissions': False,
             'ahmia': False,
             'allow_indexing': False,
-            'allow_unencrypted': True,
+            'enforce_notification_encryption': False,
             'disable_encryption_warnings': False,
             'allow_iframes_inclusion': False,
             'send_email_for_every_event': True,

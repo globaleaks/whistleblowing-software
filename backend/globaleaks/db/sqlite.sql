@@ -189,7 +189,7 @@ CREATE TABLE node (
     ahmia INTEGER NOT NULL,
     allow_indexing INTEGER NOT NULL,
     wizard_done INTEGER NOT NULL,
-    allow_unencrypted INTEGER NOT NULL,
+    enforce_notification_encryption INTEGER NOT NULL,
     disable_encryption_warnings INTEGER NOT NULL,
     allow_iframes_inclusion INTEGER NOT NULL,
     disable_submissions INTEGER NOT NULL,

@@ -10,7 +10,7 @@ describe('receiver first login', function() {
     browser.get('/#/login');
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
     element(by.model('loginPassword')).sendKeys('globaleaks');
-    element(by.xpath('//button[contains(., "Log in")]')).click();
+    element(by.css('form[name=loginForm] button')).click();
     utils.waitForUrl('/forcedpasswordchange');
   });
 
@@ -26,7 +26,8 @@ describe('receiver first login', function() {
     browser.get('/#/login');
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
     element(by.model('loginPassword')).sendKeys(utils.vars['user_password']);
-    element(by.xpath('//button[contains(., "Log in")]')).click();
+    element(by.css('form[name=loginForm] button')).click();
+    utils.waitForUrl('/receiver/tips');
     expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
   });
 

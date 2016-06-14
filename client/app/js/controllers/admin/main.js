@@ -233,20 +233,6 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     }
   ];
 
-  $scope.open_modal_allow_unencrypted = function() {
-    if (!$scope.admin.node.allow_unencrypted) {
-      return;
-    }
-
-    var modalInstance = $uibModal.open({
-      templateUrl: 'views/partials/disable_encryption.html',
-      controller: 'DisableEncryptionCtrl'
-    });
-
-    modalInstance.result.then(function(result){
-      $scope.admin.node.allow_unencrypted = result;
-    });
-  };
 }]).
 controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource', 
   function($scope, $http, Admin, AdminNotificationResource){

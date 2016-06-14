@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS', 'glbcUserKeyGen',
-  function($scope, $rootScope, CONSTANTS, glbcUserKeyGen) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CONSTANTS', 'glbcUserKeyGen',
+  function($scope, $rootScope, $location, CONSTANTS, glbcUserKeyGen) {
     if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [
@@ -54,6 +54,9 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS', 'gl
 
       glbcUserKeyGen.noKeyGen();
       glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
+      glbcUserKeyGen.vars.promises.ready.then(function() {
+        $location.path(Authentication.session.auth_landing_page);
+      });
     };
 
     $scope.pref_save = function() {

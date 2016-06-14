@@ -17,6 +17,10 @@ GLClient
       $scope.preferences.pgp_key_remove = false;
 
       glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
+      glbcUserKeyGen.vars.promises.ready.then(function() {
+        $location.path(Authentication.session.auth_landing_page);
+      });
+
       $scope.showKeyChange = true;
     };
 }])

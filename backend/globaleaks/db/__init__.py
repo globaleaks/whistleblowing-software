@@ -184,7 +184,7 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
 
     GLSettings.memory_copy.allow_indexing = node.allow_indexing
-    GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
+    GLSettings.memory_copy.enforce_notification_encryption = node.enforce_notification_encryption
     GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
 
     GLSettings.memory_copy.enable_captcha = node.enable_captcha

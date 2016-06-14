@@ -360,7 +360,7 @@ def import_receivers(store, submission, receiver_id_list):
         if context not in receiver.contexts:
             continue
 
-        if not len(receiver.user.pgp_key_public) and not GLSettings.memory_copy.allow_unencrypted:
+        if receiver.user.ccrypto_key_public == "":
             continue
 
         submission.receivers.add(receiver)

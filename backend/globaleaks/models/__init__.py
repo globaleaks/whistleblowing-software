@@ -447,7 +447,7 @@ class Node(Model):
     tor2web_whistleblower = Bool(default=False)
     tor2web_receiver = Bool(default=True)
     tor2web_unauth = Bool(default=True)
-    allow_unencrypted = Bool(default=False)
+    enforce_notification_encryption = Bool(default=False)
     disable_encryption_warnings = Bool(default=False)
     allow_iframes_inclusion = Bool(default=False)
     submission_minimum_delay = Int(default=10)
@@ -542,7 +542,7 @@ class Node(Model):
                  'tor2web_custodian', 'tor2web_unauth',
                  'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
                  'ahmia', 'allow_indexing',
-                 'allow_unencrypted',
+                 'enforce_notification_encryption',
                  'disable_encryption_warnings',
                  'simplified_login',
                  'show_contexts_in_alphabetical_order',

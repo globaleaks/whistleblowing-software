@@ -592,7 +592,6 @@ WizardDesc = {
     'node': {
       'name': unicode,
       'description': unicode,
-      'allow_unencrypted': bool
     },
     'admin': {
       'mail_address': unicode

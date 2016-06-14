@@ -129,26 +129,6 @@
             </div>
           </div>
         </div>
-        <div class="form-group col-md-12">
-          <label class="col-md-4">
-            <span data-translate>PGP key</span>
-            <span class="text-danger" data-ng-show="!wizard.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
-          </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$invalid || wizardForm.pgpkey.$error.required}">
-            <textarea name="pgpkey" class="form-control"
-              data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}"
-              data-ng-model="wizard.receiver.pgp_key_public" data-ng-required="!wizard.node.allow_unencrypted"
-              data-pgp-pubkey-validator="canBeEmpty" data-ng-disabled="wizard.node.allow_unencrypted">
-            </textarea>
-            <input data-ng-model="wizard.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="wizard.receiver.pgp_key_public = wizard.node.allow_unencrypted ? '' : wizard.receiver.pgp_key_public">
-            <span data-translate>Enable insecure configuration without PGP encryption.</span>
-            <div data-ng-show="wizard.node.allow_unencrypted">
-              <span class="label label-danger" data-translate>Danger</span>
-              <span data-translate>By enabling this option, the system will be storing the submitted files unencrypted on your server.</span>
-              <span data-translate>This happens whenever encryption is unavailable.</span>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="col-md-6">
         <div class="wizard-help-hint" data-translate>Recipients are very important for a whistleblowing project. They are the people responsible for receiving the whistleblowers' submissions, verifying their authenticity and for taking action too. Choose them wisely.</div>
@@ -179,7 +159,7 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="fireStep3()" data-ng-disabled="wizardForm.$invalid || (!wizard.node.allow_unencrypted && !wizard.receiver.pgp_key_public) || (admin_password !== admin_check_password)">
+      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="fireStep3()" data-ng-disabled="wizardForm.$invalid || admin_password !== admin_check_password">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
