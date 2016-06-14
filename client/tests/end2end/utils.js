@@ -27,6 +27,14 @@ browser.getCapabilities().then(function(capabilities) {
   };
 });
 
+exports.waitUntilEnabled = function (elm, timeout) {
+  var t = timeout === undefined ? 1000 : timeout;
+  browser.wait(function () {
+    return elm.isEnabled();
+  }, t);
+};
+
+
 exports.waitUntilReady = function (elm, timeout) {
   var t = timeout === undefined ? 1000 : timeout;
   browser.wait(function () {

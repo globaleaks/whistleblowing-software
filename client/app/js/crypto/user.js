@@ -6,11 +6,9 @@ angular.module('GLBrowserCrypto')
     templateUrl: 'views/partials/client_key_gen.html',
     controller: ['$scope', '$rootScope', function($scope, $rootScope) {
       glbcUserKeyGen.vars.promises.ready.then(function() {
-        $location.path(Authentication.session.auth_landing_page);
-        $rootScope.success.push("Key change succeeded!");
+        $rootScope.successes.push("Key change succeeded!");
       }, function(failure) {
         console.log(failure);
-        $location.path(Authentication.session.auth_landing_page);
         $rootScope.errors.push("Key change failed with " + failure);
       });
       $scope.msgs = glbcUserKeyGen.vars.msgQueue;
@@ -69,7 +67,7 @@ angular.module('GLBrowserCrypto')
           'ccrypto_key_private': glbcKeyRing.exportPrivKey(),
         });
       }).then(function() {
-        showMsg('Success! Redirecting home. . .');
+        showMsg('Success! Key generation complete!');
         return vars.msgP.then(function() {
           return $timeout(function(){}, 2500);
         });
@@ -80,7 +78,7 @@ angular.module('GLBrowserCrypto')
     startKeyGen: function() {
       $timeout(function() {
         vars.promises.speedLimit.resolve(); 
-      }, 7500);
+      }, 10000);
 
       showMsg('Starting key generation. . . this may take a while. . .');
       glbcKeyRing.createNewCCryptoKey().then(function(r) {

@@ -92,28 +92,30 @@ angular.module('GLServices', ['ngResource']).
 
           if (username === 'whistleblower') {
             password = password.replace(/\D/g,'');
-            return glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt).then(function(result) {
+            var p = glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt)
+            .then(function(result) {
               var password_hash = result.authentication;
               glbcWhistleblower.storePassphrase(result.passphrase);
-
-              return $http.post('receiptauth', {'receipt_hash': password_hash})
-                .then(success_fn, error_fn);
-            });
+              return $http.post('receiptauth', {'receipt_hash': password_hash});
+            })
+            .then(success_fn, error_fn);
+            return p;
           } else {
             var f = Array(129).join('f');
-            return $http.post('authentication', {'step': 1, 'username': username, 'auth_token_hash': f})
-              .then(function(response) {
+            var p = $http.post('authentication', 
+                               {'step': 1, 'username': username, 'auth_token_hash': f})
+            .then(function(response) {
 
-                self.user_salt = response.data.salt;
-
-                return glbcKeyLib.deriveUserPassword(password, response.data.salt).then(function(result) {
-                  var auth_token_hash = result.authentication;
-                  return $http.post('authentication', 
-                             {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash})
-                    .then(success_fn, error_fn);
-                  });
-
-              }, error_fn);
+              self.user_salt = response.data.salt;
+              return glbcKeyLib.deriveUserPassword(password, response.data.salt);
+            })
+            .then(function(result) {
+              var auth_token_hash = result.authentication;
+              return $http.post('authentication', 
+                                {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
+            })
+            .then(success_fn, error_fn);
+            return p;
           }
         };
 

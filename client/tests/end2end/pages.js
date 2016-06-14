@@ -12,7 +12,7 @@ exports.adminLoginPage = function() {
     this.get();
     loginUser.sendKeys(uname);
     loginPass.sendKeys(pass);
-    element(by.xpath('//button[contains(., "Log in")]')).click();
+    element(by.xpath('form[name=loginForm] button')).click();
     utils.waitForUrl('/admin/landing');
   };
 };

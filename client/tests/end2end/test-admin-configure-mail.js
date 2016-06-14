@@ -8,11 +8,9 @@ describe('admin configure mail', function() {
 
     // save settings
 
-    element(by.css('[data-ng-click="Utils.update(admin.notification)"]')).click().then(function() {
-      browser.setLocation('admin/landing');
-      browser.setLocation('admin/mail');
-      expect(element(by.model('admin.notification.tip_expiration_threshold')).getAttribute('value')).toEqual('24');
-      done();
-    });
+    element(by.css('[data-ng-click="Utils.update(admin.notification)"]')).click();
+    browser.setLocation('admin/landing');
+    browser.setLocation('admin/mail');
+    expect(element(by.model('admin.notification.tip_expiration_threshold')).getAttribute('value')).toEqual('24');
   });
 });

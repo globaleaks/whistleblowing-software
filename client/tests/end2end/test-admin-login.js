@@ -7,7 +7,7 @@ describe('admin login', function() {
     element(by.model('loginUsername')).sendKeys('admin');
     element(by.model('loginPassword')).sendKeys(utils.vars['user_password']);
 
-    element(by.xpath('//button[contains(., "Log in")]')).click();
+    element(by.css('form[name=loginForm] button')).click();
     utils.waitForUrl('/admin/landing');
   });
 });

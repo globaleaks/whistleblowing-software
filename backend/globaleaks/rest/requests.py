@@ -595,7 +595,6 @@ WizardDesc = {
       'allow_unencrypted': bool
     },
     'admin': {
-      'password': unicode,
       'mail_address': unicode
     },
     'receiver': AdminUserDesc,

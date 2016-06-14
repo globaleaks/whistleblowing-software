@@ -38,7 +38,6 @@ def wizard(store, request, language):
 
         admin_dict = {
             'username': u'admin',
-            'password': request['admin']['password'],
             'role': u'admin',
             'state': u'enabled',
             'deletable': False,

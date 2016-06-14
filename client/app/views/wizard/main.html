@@ -71,7 +71,7 @@
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
-            <input name="password" class="form-control" data-ng-model="wizard.admin.password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" required />
+            <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
             <div class="text-danger" data-ng-show="!wizardForm.password.$error.required && wizardForm.password.$error.passwordStrength">
               <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
@@ -83,9 +83,9 @@
             <span data-translate>Confirm password</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || wizard.admin.password !== admin_check_password}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" autocomplete="off" required />
-            <div class="text-danger" data-ng-show="!wizardForm.password.$error.passwordStrength && (wizard.admin.password !== admin_check_password)" data-translate>The two passwords do not match</div>
+            <div class="text-danger" data-ng-show="!wizardForm.password.$error.passwordStrength && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
         </div>
       </div>
@@ -137,8 +137,8 @@
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$invalid || wizardForm.pgpkey.$error.required}">
             <textarea name="pgpkey" class="form-control"
               data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}"
-              data-ng-model="wizard.receiver.pgp_key_public" data-ng-required="!admin.node.allow_unencrypted"
-              data-pgp-pubkey-validator="canBeEmpty" data-ng-disabled="admin.node.allow_unencrypted">
+              data-ng-model="wizard.receiver.pgp_key_public" data-ng-required="!wizard.node.allow_unencrypted"
+              data-pgp-pubkey-validator="canBeEmpty" data-ng-disabled="wizard.node.allow_unencrypted">
             </textarea>
             <input data-ng-model="wizard.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="wizard.receiver.pgp_key_public = wizard.node.allow_unencrypted ? '' : wizard.receiver.pgp_key_public">
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
@@ -179,13 +179,20 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardForm.$invalid || (!wizard.node.allow_unencrypted && !wizard.receiver.pgp_key_public) || (wizard.admin.password !== admin_check_password)">
+      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="fireStep3()" data-ng-disabled="wizardForm.$invalid || (!wizard.node.allow_unencrypted && !wizard.receiver.pgp_key_public) || (admin_password !== admin_check_password)">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep3" class="row" data-ng-show="step == 3">
+  <div id="WizardStep3"  data-ng-show="step == 3">
+    <div class="row"><div class="col-md-8" glbc-key-change-elem></div></div>
+    <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-disabled="!keyGenFin" data-ng-click="step=step+1">
+      <i class="glyphicon glyphicon-circle-arrow-right"></i>
+      <span data-translate>next step</span>
+    </button>
+  </div>
+  <div id="WizardStep4" class="row" data-ng-show="step == 4">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>
@@ -193,7 +200,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonNext3" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
+      <button id="ButtonNext4" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
     </div>
   </div>
 </form>

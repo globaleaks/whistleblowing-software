@@ -1,5 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS',
-                    function($scope, $location, $route, $http, $uibModal, Authentication, Admin, AdminUtils, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'locationForce', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS', 'glbcUserKeyGen',
+                    function($scope, $location, $route, $http, $uibModal, locationForce, Authentication, Admin, AdminUtils, CONSTANTS, glbcUserKeyGen) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -21,18 +21,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
       });
     };
 
-
-    $scope.finish = function() {
-      if (!finished) {
-        $http.post('wizard', $scope.wizard).success(function() {
-          // TODO post merge. Needs check.
-          Authentication.login('admin', $scope.wizard.admin.password, function() {
-            $scope.reload("/admin/landing");
-          });
-        });
-      }
-    };
-    
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');
@@ -45,14 +33,45 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
 
       var context = AdminUtils.new_context();
 
+      $scope.admin_password = "";
       $scope.wizard = {
         'node': {},
         'admin': {
           'mail_address': '',
-          'password': ''
         },
         'receiver': receiver,
         'context': context
       };
     }
+
+    var default_user_pass = "globaleaks";
+    $scope.keyGenFin = false;
+    glbcUserKeyGen.setup();
+
+    $scope.fireStep3 = function() {
+      $scope.step = 3;
+
+      glbcUserKeyGen.startKeyGen();
+      if (!finished) {
+        $http.post('wizard', $scope.wizard).success(function() {
+          // TODO post merge. Needs check.
+          // TODO remove default password
+        }).then(function() {
+          return Authentication.login('admin', default_user_pass);
+        }).then(function() {
+          glbcUserKeyGen.addPassphrase(default_user_pass, $scope.admin_password);
+          return glbcUserKeyGen.vars.promises.ready;
+        })
+        .then(function() {
+          $scope.keyGenFin = true;
+        });
+      }
+    };
+
+    $scope.finish = function() {
+      $location.path(Authentication.session.auth_landing_page);
+      $scope.reload("/admin/landing");
+      locationForce.clear();
+    };
+
 }]);

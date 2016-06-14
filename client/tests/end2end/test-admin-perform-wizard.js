@@ -13,7 +13,7 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('wizard.node.name')).sendKeys('E2E Test Instance');
     element(by.model('wizard.node.description')).sendKeys('This instance is for E2E testing');
     element(by.model('wizard.admin.mail_address')).sendKeys('globaleaks-admin@mailinator.com');
-    element(by.model('wizard.admin.password')).sendKeys(utils.vars['user_password']);
+    element(by.model('admin_password')).sendKeys(utils.vars['user_password']);
     element(by.model('admin_check_password')).sendKeys(utils.vars['user_password']);
 
     element(by.model('wizard.receiver.name')).sendKeys('Recipient 1');
@@ -28,12 +28,16 @@ describe('globaLeaks setup wizard', function() {
     // Complete the form
     element.all(by.id('ButtonNext2')).click();
 
+    var button3 = element(by.id('ButtonNext3'));
+    // Wait 20 seconds for the PGP key to generate
+    utils.waitUntilEnabled(button3, 20000);
+    button3.click();
+
     expect(element(by.css('.congratulations')).isPresent()).toBe(true);
 
     // Go to admin interface
-    element(by.id('ButtonNext3')).click().then(function() {
-      utils.waitForUrl('/admin/landing');
-      utils.logout('/admin');
-    });
+    element(by.id('ButtonNext4')).click();
+    utils.waitForUrl('/admin/landing');
+    utils.logout('/admin');
   });
 });
