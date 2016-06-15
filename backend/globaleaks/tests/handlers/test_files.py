@@ -18,7 +18,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyToken = token.Token(token_kind='submission')
         self.dummyToken.proof_of_work = False
 
-        handler = self.request(body=self.get_dummy_file())
+        handler = self.request()
         yield handler.post(self.dummyToken.id)
 
     @inlineCallbacks
@@ -27,7 +27,7 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyToken.proof_of_work = False
 
         for i in range(0, 3):
-            handler = self.request(body=self.get_dummy_file())
+            handler = self.request()
             yield handler.post(self.dummyToken.id)
 
         token.TokenList.reactor.pump([1] * (token.TokenList.get_timeout() - 1))
@@ -43,12 +43,12 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_post_file_finalized_submission(self):
         yield self.perform_full_submission_actions()
-        handler = self.request(body=self.get_dummy_file())
+        handler = self.request()
         yield self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
 
     @inlineCallbacks
     def test_post_file_on_unexistent_submission(self):
-        handler = self.request(body=self.get_dummy_file())
+        handler = self.request()
         yield self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
 
 
@@ -61,7 +61,7 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
 
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'], body=self.get_dummy_file())
+            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
             yield handler.post()
 
 

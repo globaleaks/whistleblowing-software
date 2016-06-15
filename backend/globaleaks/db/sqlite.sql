@@ -222,13 +222,9 @@ CREATE TABLE node (
     threshold_free_disk_percentage_medium INTEGER NOT NULL,
     threshold_free_disk_percentage_low INTEGER NOT NULL,
     context_selector_type TEXT NOT NULL,
-    logo_id TEXT,
-    css_id TEXT,
     basic_auth INTEGER NOT NULL,
     basic_auth_username TEXT NOT NULL,
     basic_auth_password TEXT NOT NULL,
-    FOREIGN KEY (logo_id) REFERENCES file(id) ON DELETE SET NULL,
-    FOREIGN KEY (css_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
 

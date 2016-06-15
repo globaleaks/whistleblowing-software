@@ -148,8 +148,30 @@ def change_field_type(field, field_type):
         change_field_type(f, field_type)
 
 
+def get_dummy_file(filename=None, content_type=None, content=None):
+    filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
+
+    content_type = 'application/octet'
+
+    content = ''.join(unichr(x) for x in range(0x400, 0x40A))
+
+    temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+
+    temporary_file.write(content)
+    temporary_file.avoid_delete()
+
+    return {
+        'body': temporary_file,
+        'body_len': len(content),
+        'body_filepath': temporary_file.filepath,
+        'filename': filename,
+        'content_type': content_type,
+        'submission': False
+    }
+
+
 def get_file_upload(self):
-    return self.request.body
+    return get_dummy_file()
 
 BaseHandler.get_file_upload = get_file_upload
 
@@ -361,29 +383,8 @@ class TestGL(unittest.TestCase):
             'answers': (yield self.fill_random_answers(context_id))
         })
 
-    def get_dummy_file(self, filename=None, content_type=None, content=None):
-        if filename is None:
-            filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
-
-        if content_type is None:
-            content_type = 'application/octet'
-
-        if content is None:
-            content = ''.join(unichr(x) for x in range(0x400, 0x40A))
-
-        temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
-
-        temporary_file.write(content)
-        temporary_file.avoid_delete()
-
-        return {
-            'body': temporary_file,
-            'body_len': len(content),
-            'body_filepath': temporary_file.filepath,
-            'filename': filename,
-            'content_type': content_type,
-            'submission': False
-        }
+    def get_dummy_file(self):
+        return get_dummy_file(filename)
 
     def get_dummy_shorturl(self, x = ''):
         return {

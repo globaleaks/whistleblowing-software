@@ -532,9 +532,6 @@ class Node(Model):
 
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
-    logo_id = Unicode()
-    css_id = Unicode()
-
     unicode_keys = [
         'name',
         'public_site',
@@ -999,9 +996,11 @@ class ShortURL(Model):
 
 class File(Model):
     """
-    Class used for storing PNG pictures of context/users
+    Class used for storing files
     """
     data = Unicode()
+
+    unicode_keys = ['data']
 
 
 class CustomTexts(BaseModel):
@@ -1017,8 +1016,6 @@ class CustomTexts(BaseModel):
     json_keys = ['texts']
 
 
-Node.logo = Reference(Node.logo_id, File.id)
-Node.css = Reference(Node.css_id, File.id)
 Context.picture = Reference(Context.img_id, File.id)
 User.picture = Reference(User.img_id, File.id)
 

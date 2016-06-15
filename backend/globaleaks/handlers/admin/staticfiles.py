@@ -71,36 +71,55 @@ def dump_static_file(uploaded_file, filelocation):
     return get_file_info(uploaded_file, filelocation)
 
 
-@transact
-def add_node_logo(store, data):
-    node = store.find(models.Node).one()
-    if node.logo is None:
-        node.logo = models.File()
+def db_add_file(store, data, key = None):
+    file_obj = None
+    if key != None:
+        file_obj = store.find(models.File, models.File.id == key).one()
 
-    node.logo.data = data
+    if file_obj is None:
+        file_obj = models.File()
+        if key != None:
+            file_obj.id = key
+        store.add(file_obj)
 
-
-@transact
-def del_node_logo(store):
-    node = store.find(models.Node).one()
-    if node.logo is not None:
-        store.remove(node.logo)
+    file_obj.data = base64.b64encode(data)
 
 
 @transact
-def add_node_css(store, data):
-    node = store.find(models.Node).one()
-    if node.css is None:
-        node.css = models.File()
+def add_file(store, data, key = None):
+    return db_add_file(store, data, key)
 
-    node.css.data = data
+
+def db_get_file(store, key):
+    file_obj = store.find(models.File, models.File.id == key).one()
+
+    if file_obj is None:
+        return ''
+
+    return file_obj.data
+
+
+@transact_ro
+def get_file(store, key):
+    return db_get_file(store, key)
 
 
 @transact
-def del_node_css(store):
-    node = store.find(models.Node).one()
-    if node.css is not None:
-        store.remove(node.css)
+def del_file(store, key):
+    file_obj = store.find(models.File, models.File.id == key).one()
+    if file_obj is not None:
+        store.remove(file_obj)
+
+
+def db_get_model_img(store, model, obj_id):
+    picture = store.find(model, model.id == obj_id).one().picture
+    return picture.data if picture is not None else ''
+
+
+@transact_ro
+def get_model_img(store, model, obj_id):
+    return db_get_model_img(store, model, obj_id)
+
 
 
 @transact
@@ -122,7 +141,7 @@ def del_model_img(store, model, obj_id):
 
 class StaticFileInstance(BaseHandler):
     """
-    Complete CRUD implementation using the filename instead of UUIDs
+    Handler for files stored on the filesystem
     """
     handler_exec_time_threshold = 3600
     filehandler = True
@@ -150,6 +169,8 @@ class StaticFileInstance(BaseHandler):
         except Exception as excpd:
             log.err('Error while creating static file %s: %s' % (path, excpd))
             raise errors.InternalServerError(excpd.message)
+        finally:
+            uploaded_file['body'].close()
 
         log.debug('Admin uploaded new static file: %s' % dumped_file['filename'])
         self.set_status(201)
@@ -179,19 +200,23 @@ class StaticFileList(BaseHandler):
         self.write(get_stored_files())
 
 
-class NodeLogoInstance(StaticFileInstance):
+class FileInstance(BaseHandler):
+    key = None
+
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
+        if self.key is None:
+            return
+
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             self.set_status(201)
             return
 
         try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_node_logo(data)
+            yield add_file(uploaded_file['body'].read(), self.key)
         except:
             pass
         finally:
@@ -205,44 +230,24 @@ class NodeLogoInstance(StaticFileInstance):
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self):
-        yield del_node_logo()
-
-        GLApiCache.invalidate()
-
-
-class NodeCSSInstance(NodeLogoInstance):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
+        if self.key is None:
             return
 
-        try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_node_css(data)
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self):
-        yield del_node_css()
+        yield del_file(self.key)
 
         GLApiCache.invalidate()
 
 
-class UserImgInstance(StaticFileInstance):
-    model = models.User
+class NodeLogoInstance(FileInstance):
+    key = u'logo'
+
+
+class NodeCSSInstance(FileInstance):
+    key = u'custom_stylesheet'
+
+
+class ModelImgInstance(BaseHandler):
+    model = None
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -254,8 +259,7 @@ class UserImgInstance(StaticFileInstance):
             return
 
         try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_model_img(self.model, obj_id, data)
+            yield add_model_img(self.model, obj_id, uploaded_file['body'].read())
         except:
             pass
         finally:
@@ -274,5 +278,9 @@ class UserImgInstance(StaticFileInstance):
         GLApiCache.invalidate()
 
 
-class ContextImgInstance(UserImgInstance):
+class UserImgInstance(ModelImgInstance):
+    model = models.User
+
+
+class ContextImgInstance(ModelImgInstance):
     model = models.Context
