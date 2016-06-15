@@ -203,8 +203,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The last action is kept track because the internal status
         need to track them. read below read()
         """
-        assert (self.last_action != 'read'), "you can write after read!"
-
         self.last_action = 'write'
         try:
             if isinstance(data, unicode):
@@ -245,7 +243,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
             self.seek(0, 0)  # this is a trick just to misc write and read
             self.initialize_cipher()
-            log.debug("First seek on %s" % self.filepath)
+            log.err("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
         data = None
