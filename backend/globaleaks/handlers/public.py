@@ -113,7 +113,7 @@ def serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    context_receivers = [r.id for r in context.receivers if r.ccrypto_key_public == ""]
+    context_receivers = [r.id for r in context.receivers if r.user.ccrypto_key_public == ""]
 
     ret_dict = {
         'id': context.id,

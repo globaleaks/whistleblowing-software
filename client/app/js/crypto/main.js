@@ -535,6 +535,7 @@ angular.module('GLBrowserCrypto', [])
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         throw new Error('Failed to parse private key!');
       }
+      console.log('Initializing public key');
 
       // Parsing the private key here should produce no errors. Once it is no
       // longer needed we will explicity remove references to this key.

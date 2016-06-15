@@ -19,10 +19,6 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('wizard.receiver.name')).sendKeys('Recipient 1');
     element(by.model('wizard.receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
       
-    // Disable encryption for receiver
-    element(by.model('wizard.node.allow_unencrypted')).click();
-    element(by.css('[data-ng-click="ok()"]')).click();
- 
     element(by.model('wizard.context.name')).sendKeys('Context 1');
       
     // Complete the form

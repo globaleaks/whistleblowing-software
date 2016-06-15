@@ -1,4 +1,5 @@
 var utils = require('./utils.js');
+var pages = require('./pages.js');
 
 var fs = require('fs');
 
@@ -46,5 +47,37 @@ describe('receiver first login', function() {
     element(by.cssContainingText("a", "Encryption settings")).click();
     element(by.model('preferences.pgp_key_public')).sendKeys(pgp_key);
     element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+  });
+});
+
+describe('Recipient 2 first login', function() {
+  var receiver2 = new pages.receiver();
+  var tmp_pass = utils.vars['user_password'] + 'widdlyskuds';
+
+  it('should be able to change password', function() {
+    receiver2.login('Recipient 2', utils.vars['default_password']);
+    utils.waitForUrl('/forcedpasswordchange');
+
+    receiver2.changePassword(utils.vars['default_password'], tmp_pass);
+    utils.waitForUrl('/receiver/tips', 20000);
+
+    utils.logout();
+
+    receiver2.login('Recipient 2', tmp_pass);
+    utils.waitForUrl('/receiver/tips');
+  });
+
+  it('should be able to change password in preferences', function() {
+
+    var preferencesForm = element(by.id("preferencesForm"));
+    preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
+    preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
+    receiver2.changePassword(tmp_pass, utils.vars['user_password']);
+    utils.waitForUrl('/receiver/tips');
+
+    utils.logout();
+
+    receiver2.login('Recipient 2', utils.vars['user_password']);
+    utils.waitForUrl('/receiver/tips');
   });
 });

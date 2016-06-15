@@ -32,13 +32,14 @@ angular.module('GLBrowserCrypto')
   return {
     vars: vars,
 
-    // TODO document usage: setup -> noKeyGen -> AddPassPhrase; catch ready
+    // TODO document usage: setup -> startProcessing -> AddPassPhrase; catch ready
     setup: function() {
       vars = {
         msgQueue: [],
         msgP: $q(function(resolve) {
           resolve();
         }),
+        keyGen: false,
         promises: {
           keyGen: $q.defer(),
           authDerived: $q.defer(),
@@ -59,15 +60,22 @@ angular.module('GLBrowserCrypto')
       }).then(function(results) {
         showMsg('Saving private key on the platform. . . ');
         var authDeriv = results[1];
-        return $http.post('/user/passprivkey', {
+        var body = {
           'old_auth_token_hash': authDeriv.old_res.authentication,
           'new_auth_token_hash': authDeriv.new_res.authentication,
           'salt': authDeriv.salt,
-          'ccrypto_key_public': glbcKeyRing.getPubKey('private').armor(),
+          'ccrypto_key_public': '',
           'ccrypto_key_private': glbcKeyRing.exportPrivKey(),
-        });
+        };
+
+        if (vars.keyGen) {
+          showMsg('Passing the public key to the backend');
+          body.ccrypto_key_public = glbcKeyRing.getPubKey('private').armor();
+        }
+
+        return $http.post('/user/passprivkey', body);
       }).then(function() {
-        showMsg('Success! Key generation complete!');
+        showMsg('Success!');
         return vars.msgP.then(function() {
           return $timeout(function(){}, 2500);
         });
@@ -75,7 +83,16 @@ angular.module('GLBrowserCrypto')
 
     },
 
+    startProcessing: function() {
+      if (glbcKeyRing.isInitialized()) {
+        this.noKeyGen();
+      } else {
+        this.startKeyGen();
+      }
+    },
+
     startKeyGen: function() {
+      vars.keyGen = true;
       $timeout(function() {
         vars.promises.speedLimit.resolve(); 
       }, 10000);
@@ -98,7 +115,7 @@ angular.module('GLBrowserCrypto')
       var old_salt = Authentication.user_salt;
       var salt = glbcUtil.generateRandomSalt();
       Authentication.user_salt = salt;
-      showMsg('Adding salt. . . ');
+      showMsg('Adding salt. . .');
 
       var p1 = glbcKeyLib.deriveUserPassword(new_password, salt);
       var p2 = glbcKeyLib.deriveUserPassword(old_password, old_salt);

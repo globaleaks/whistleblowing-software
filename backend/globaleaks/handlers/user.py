@@ -205,11 +205,14 @@ class PassKeyUpdateHandler(BaseHandler):
             return False
         log.debug('Found User %s' % user.username)
  
-        if user.ccrypto_key_public == "" and user.password_change_needed:
-            if request['ccrypto_key_public'] == "": # and TODO invalid public key
+        # This is the first time a user has ever logged in.
+        if (user.ccrypto_key_public == "" and user.password_change_date == datetime_null()):
+            if request['ccrypto_key_public'] == "": # TODO and invalid public key
                 return False
-            log.debug('Setting users public key')
+            log.debug("Setting user's public CC key")
             user.ccrypto_key_public = request['ccrypto_key_public']
+        else:
+            log.debug("Only updating a user's private key")
 
         user.auth_token_hash = request['new_auth_token_hash']
         user.salt = request['salt']

@@ -23,8 +23,16 @@ exports.receiver = function() {
     browser.get('/#/login');
     element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
     element(by.model('loginPassword')).sendKeys(password);
-    element(by.xpath('//button[contains(., "Log in")]')).click();
-    return utils.waitForUrl('/receiver/tips');
+    element(by.css('form[name=loginForm] button')).click();
+    //return utils.waitForUrl('/receiver/tips');
+  };
+
+  this.changePassword = function(old_pw, new_pw) {
+    expect(browser.getLocationAbsUrl()).toContain('/forcedpasswordchange');
+    element(by.model('inp.old_password')).sendKeys(old_pw);
+    element(by.model('inp.new_password')).sendKeys(new_pw);
+    element(by.model('inp.check_password')).sendKeys(new_pw);
+    element(by.css('[data-ng-click="pass_next()"]')).click();
   };
 
   this.viewMostRecentSubmission = function() {

@@ -1,5 +1,5 @@
-GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CONSTANTS', 'glbcUserKeyGen',
-  function($scope, $rootScope, $location, CONSTANTS, glbcUserKeyGen) {
+GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CONSTANTS', 'glbcUserKeyGen', 'Authentication',
+  function($scope, $rootScope, $location, CONSTANTS, glbcUserKeyGen, Authentication) {
     if ($scope.session.role === 'receiver') {
       // Receivers currently are the only user that benefit of specialized preferences.
       $scope.tabs = [

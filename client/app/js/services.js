@@ -13,8 +13,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib', 'glbcWhistleblower',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib, glbcWhistleblower) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib', 'glbcWhistleblower', 'glbcKeyRing',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib, glbcWhistleblower, glbcKeyRing) {
       function Session(){
         var self = this;
 
@@ -39,8 +39,18 @@ angular.module('GLServices', ['ngResource']).
             };
 
             function initPreferences(prefs) {
-              $rootScope.preferences = prefs;
               GLTranslate.AddUserPreference(prefs.language);
+              // TODO Test thoroughly with acid
+              if (prefs.ccrypto_key_public !== "") {
+                glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
+              } else {
+                locationForce.set('/forcedpasswordchange');
+              }
+              // TODO Best way to memory protect this variable. 
+              // TODO Better GC options wanted
+              //delete prefs.ccrypto_private_key;
+
+              $rootScope.preferences = prefs;
             }
 
             if (self.session.role === 'admin') {
@@ -102,7 +112,7 @@ angular.module('GLServices', ['ngResource']).
             return p;
           } else {
             var f = Array(129).join('f');
-            var p = $http.post('authentication', 
+            var p = $http.post('authentication',
                                {'step': 1, 'username': username, 'auth_token_hash': f})
             .then(function(response) {
 
@@ -111,7 +121,7 @@ angular.module('GLServices', ['ngResource']).
             })
             .then(function(result) {
               var auth_token_hash = result.authentication;
-              return $http.post('authentication', 
+              return $http.post('authentication',
                                 {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
             })
             .then(success_fn, error_fn);
@@ -715,40 +725,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('ReceiverPreferences', ['$q', 'GLResource', 'glbcKeyRing', function($q, GLResource, glbcKeyRing) {
-    // Extend the default get request to include initialization of the receiver's
-    // private key.
-    var extendedGet = {
-      method: "GET",
-      transformResponse: function(data) {
-        var prefs = angular.fromJson(data);
-        // TODO Temp private key TODO
-        var initRes = true;
-        try {
-          initRes = glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
-          delete prefs.ccrypto_private_key;
-        } catch (e) {
-          console.log(e); 
-        }
-        // TODO TODO TODO
-        if (initRes) {
-          return prefs;
-        } else {
-          // Throws an error into the globalInterceptor in the format it expects
-          var m = "Error initializing recipient's private key";
-          var err = new Error(m);
-          err.data = {
-            'error_message': m,
-            'error_code' : 424, // HTTP 424: Failed dependency
-            'arguments': [],
-          };
-          throw err;
-        }
-      },
-    };
-
-    // Create a GlResource with empty params and an extended get action
-    return new GLResource('receiver/preferences', {}, {get: extendedGet});
+  factory('ReceiverPreferences', ['GLResource', function(GLResource) {
+    return new GLResource('receiver/preferences');
 }]).
   factory('ReceiverTips', ['GLResource', function(GLResource) {
     return new GLResource('receiver/tips');

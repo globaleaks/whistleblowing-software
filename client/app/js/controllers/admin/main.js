@@ -78,8 +78,8 @@ GLClient.controller('AdminCtrl',
     }, true);
   });
 
-  // We need to have a special function for updating the node since we need to add old_password and password attribute
-  // if they are not present
+  // We need to have a special function for updating the node since we need to 
+  // add old_password and password attribute if they are not present.
   $scope.updateNode = function(node) {
     if (node.password === undefined) {
       node.password = "";
