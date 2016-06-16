@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.staticfiles import db_get_file
+from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -92,9 +92,9 @@ def db_serialize_node(store, language):
         'enable_proof_of_work': node.enable_proof_of_work,
         'enable_experimental_features': node.enable_experimental_features,
         'logo': db_get_file(store, u'logo'),
-        'custom_css': db_get_file(store, u'css'),
-        'custom_script': db_get_file(store, u'custom_script'),
-        'custom_homepage': db_get_file(store, u'custom_homepage')
+        'css': db_get_file(store, u'css'),
+        'homepage': db_get_file(store, u'homepage'),
+        'script': db_get_file(store, u'script')
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)

@@ -5,10 +5,7 @@
       <div image-upload image-upload-model="node" image-upload-model-attr="logo" image-upload-url="{{'admin/node/logo'}}"></div>
     </div>
     <div class="form-group">
-      <label>
-        <span data-translate>Graphics customization</span>
-        (<span data-translate>CSS</span>)
-      </label>
+      <label data-translate>Custom CSS</label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
         <span flow-init="{target: 'admin/node/css', headers: Authentication.get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
@@ -31,12 +28,9 @@
           </a>
         </span>
       </div>
-      <label>
-        <span data-translate>Graphics customization</span>
-        (<span data-translate>Home Page</span>)
-      </label>
+      <label data-translate>Custom home page</label>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: 'admin/staticfiles/custom_homepage.html', headers: Authentication.get_auth_headers()}"
+        <span flow-init="{target: 'admin/files/homepage', headers: Authentication.get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
@@ -46,12 +40,36 @@
             </span>
           </div>
         </span>
-        <span data-ng-show="fileExists('custom_homepage.html')">
-          <a class="btn btn-primary" href="s/custom_homepage.html" download="custom_homepage.html">
+        <span>
+          <a class="btn btn-primary" href="admin/files/homepage" download="custom_homepage.html">
             <span class="glyphicon glyphicon-download"></span>
             <span data-translate>Download</span>
           </a>
-          <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/custom_homepage.html')">
+          <a class="btn btn-danger" data-ng-click="delete_file('admin/files/homepage')">
+            <span class="glyphicon glyphicon-trash"></span>
+            <span data-translate>Delete</span>
+          </a>
+        </span>
+      </div>
+     <label data-translate>Custom Javascript</label>
+      </label>
+      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
+        <span flow-init="{target: 'admin/files/script', headers: Authentication.get_auth_headers()}"
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()">
+          <div class="btn btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </div>
+        </span>
+        <span>
+          <a class="btn btn-primary" href="admin/files/script" download="custom_script.js">
+            <span class="glyphicon glyphicon-download"></span>
+            <span data-translate>Download</span>
+          </a>
+          <a class="btn btn-danger" data-ng-click="delete_file('admin/files/script')">
             <span class="glyphicon glyphicon-trash"></span>
             <span data-translate>Delete</span>
           </a>

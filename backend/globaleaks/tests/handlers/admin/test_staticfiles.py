@@ -22,7 +22,7 @@ class TestStaticFileInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete_on_existent_file(self):
-        self.fakeFile = self.get_dummy_file(filename='img.png', content_type='image/png')
+        self.fakeFile = self.get_dummy_file()
         realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
         dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue('filelocation' in dumped_file)
@@ -57,69 +57,3 @@ class TestStaticFileList(helpers.TestHandler):
                 break
 
         self.assertTrue(found)
-
-
-class TestNodeLogoInstance(helpers.TestHandler):
-    key = u'logo'
-    _handler = staticfiles.NodeLogoInstance
-
-    @inlineCallbacks
-    def test_post(self):
-        handler = self.request({}, role='admin')
-
-        yield handler.post()
-
-    @inlineCallbacks
-    def test_delete(self):
-        handler = self.request({}, role='admin')
-        yield handler.delete()
-
-        img = yield staticfiles.get_file(self.key)
-        self.assertEqual(img, '')
-
-
-class TestNodeCSSInstance(TestNodeLogoInstance):
-    key = u'custom_stylesheet'
-    _handler = staticfiles.NodeCSSInstance
-
-
-class TestUserImgInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = staticfiles.UserImgInstance
-
-    @inlineCallbacks
-    def test_post(self):
-        handler = self.request({}, role='admin')
-
-        yield handler.post(self.dummyReceiverUser_1['id'])
-
-        img = yield staticfiles.get_model_img(models.User, self.dummyReceiverUser_1['id'])
-        self.assertNotEqual(img, '')
-
-    @inlineCallbacks
-    def test_delete(self):
-        handler = self.request({}, role='admin')
-        yield handler.delete(self.dummyReceiverUser_1['id'])
-
-        img = yield staticfiles.get_model_img(models.User, self.dummyReceiverUser_1['id'])
-        self.assertEqual(img, '')
-
-
-class TestContextImgInstance(helpers.TestHandlerWithPopulatedDB):
-    _handler = staticfiles.ContextImgInstance
-
-    @inlineCallbacks
-    def test_post(self):
-        handler = self.request({}, role='admin')
-
-        yield handler.post(self.dummyContext['id'])
-
-        img = yield staticfiles.get_model_img(models.Context, self.dummyContext['id'])
-        self.assertNotEqual(img, '')
-
-    @inlineCallbacks
-    def test_delete(self):
-        handler = self.request({}, role='admin')
-        yield handler.delete(self.dummyContext['id'])
-
-        img = yield staticfiles.get_model_img(models.Context, self.dummyContext['id'])
-        self.assertEqual(img, '')
