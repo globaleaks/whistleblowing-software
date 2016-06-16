@@ -1,6 +1,10 @@
-from __future__ import with_statement
-import base64
-import re
+# -*- coding: utf-8 -*-
+#
+# /admin/files
+#  *****
+#
+# API handling static files upload/download/delete
+
 from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
@@ -11,7 +15,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.rest.requests import receiver_img_regexp
 from globaleaks.security import directory_traversal_check
 
 def get_description_by_stat(statstruct, name):
@@ -69,74 +72,6 @@ def dump_static_file(uploaded_file, filelocation):
         uploaded_file['body'].close()
 
     return get_file_info(uploaded_file, filelocation)
-
-
-def db_add_file(store, data, key = None):
-    file_obj = None
-    if key != None:
-        file_obj = store.find(models.File, models.File.id == key).one()
-
-    if file_obj is None:
-        file_obj = models.File()
-        if key != None:
-            file_obj.id = key
-        store.add(file_obj)
-
-    file_obj.data = base64.b64encode(data)
-
-
-@transact
-def add_file(store, data, key = None):
-    return db_add_file(store, data, key)
-
-
-def db_get_file(store, key):
-    file_obj = store.find(models.File, models.File.id == key).one()
-
-    if file_obj is None:
-        return ''
-
-    return file_obj.data
-
-
-@transact_ro
-def get_file(store, key):
-    return db_get_file(store, key)
-
-
-@transact
-def del_file(store, key):
-    file_obj = store.find(models.File, models.File.id == key).one()
-    if file_obj is not None:
-        store.remove(file_obj)
-
-
-def db_get_model_img(store, model, obj_id):
-    picture = store.find(model, model.id == obj_id).one().picture
-    return picture.data if picture is not None else ''
-
-
-@transact_ro
-def get_model_img(store, model, obj_id):
-    return db_get_model_img(store, model, obj_id)
-
-
-
-@transact
-def add_model_img(store, model, obj_id, data):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj:
-        if obj.picture is None:
-            obj.picture = models.File()
-
-        obj.picture.data = data
-
-
-@transact
-def del_model_img(store, model, obj_id):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj is not None and obj.picture is not None:
-        store.remove(obj.picture)
 
 
 class StaticFileInstance(BaseHandler):
@@ -198,89 +133,3 @@ class StaticFileList(BaseHandler):
         Return the list of static files, with few filesystem info
         """
         self.write(get_stored_files())
-
-
-class FileInstance(BaseHandler):
-    key = None
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self):
-        if self.key is None:
-            return
-
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
-            return
-
-        try:
-            yield add_file(uploaded_file['body'].read(), self.key)
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self):
-        if self.key is None:
-            return
-
-        yield del_file(self.key)
-
-        GLApiCache.invalidate()
-
-
-class NodeLogoInstance(FileInstance):
-    key = u'logo'
-
-
-class NodeCSSInstance(FileInstance):
-    key = u'custom_stylesheet'
-
-
-class ModelImgInstance(BaseHandler):
-    model = None
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self, obj_id):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
-            return
-
-        try:
-            yield add_model_img(self.model, obj_id, uploaded_file['body'].read())
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self, obj_id):
-        yield del_model_img(self.model, obj_id)
-
-        GLApiCache.invalidate()
-
-
-class UserImgInstance(ModelImgInstance):
-    model = models.User
-
-
-class ContextImgInstance(ModelImgInstance):
-    model = models.Context

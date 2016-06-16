@@ -13,7 +13,7 @@ from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models,  __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata
-from globaleaks.handlers.admin import staticfiles
+from globaleaks.handlers.admin import files
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
 from globaleaks.security import generateRandomSalt
@@ -70,8 +70,8 @@ def init_db(store):
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo_data = logo_file.read()
 
-    staticfiles.db_add_file(store, logo_data, u'logo')
-    staticfiles.db_add_file(store, '', u'custom_stylesheet')
+    files.db_add_file(store, logo_data, u'logo')
+    files.db_add_file(store, '', u'custom_stylesheet')
 
 
 def check_db_files():
