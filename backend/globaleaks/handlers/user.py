@@ -185,7 +185,7 @@ class PassKeyUpdateHandler(BaseHandler):
         request = self.validate_message(self.request.body, requests.PassKeyUpdateDesc)
         success = False 
         try:
-          success = yield self.handle_update_session(request)
+          success = yield update_passkey(request, self.current_user.user_id)
         except Exception as err:
           log.warn('Update session threw %s' % err)
         finally:
@@ -193,38 +193,36 @@ class PassKeyUpdateHandler(BaseHandler):
           if not success:
             raise errors.UserIdNotFound
 
-        
-    @transact
-    def handle_update_session(self, store, request):
-        user_id = self.current_user.user_id
-        user = store.find(User, User.id == user_id).one()
+@transact
+def update_passkey(store, request, current_session_id):
+    user = store.find(User, User.id == current_session_id).one()
 
-        # TODO use side channel safe comparisions
-        if (user is None or user.auth_token_hash != request['old_auth_token_hash']
-            or request['old_auth_token_hash'] == request['new_auth_token_hash']):
+    # TODO use side channel safe comparisions
+    if (user is None or user.auth_token_hash != request['old_auth_token_hash']
+        or request['old_auth_token_hash'] == request['new_auth_token_hash']):
+        return False
+    log.debug('Found User %s' % user.username)
+
+    # This is the first time a user has ever logged in.
+    if (user.ccrypto_key_public == "" and user.password_change_date == datetime_null()):
+        if request['ccrypto_key_public'] == "": # TODO and invalid public key
             return False
-        log.debug('Found User %s' % user.username)
- 
-        # This is the first time a user has ever logged in.
-        if (user.ccrypto_key_public == "" and user.password_change_date == datetime_null()):
-            if request['ccrypto_key_public'] == "": # TODO and invalid public key
-                return False
-            log.debug("Setting user's public CC key")
-            user.ccrypto_key_public = request['ccrypto_key_public']
-        else:
-            log.debug("Only updating a user's private key")
+        log.debug("Setting user's public CC key")
+        user.ccrypto_key_public = request['ccrypto_key_public']
+    else:
+        log.debug("Only updating a user's private key")
 
-        user.auth_token_hash = request['new_auth_token_hash']
-        user.salt = request['salt']
+    user.auth_token_hash = request['new_auth_token_hash']
+    user.salt = request['salt']
 
-        user.password_change_needed = False
-        user.password_change_date = datetime_now()
+    user.password_change_needed = False
+    user.password_change_date = datetime_now()
 
-        log.debug('Setting private key')
-        # TODO perform validation on the passed pgp private key to assert
-        # correspondence with the pub key.
-        user.ccrypto_key_private = request['ccrypto_key_private']
- 
-        user.update()
-        return True
+    log.debug('Setting private key')
+    # TODO perform validation on the passed pgp private key to assert
+    # correspondence with the pub key.
+    user.ccrypto_key_private = request['ccrypto_key_private']
+
+    user.update()
+    return True
 

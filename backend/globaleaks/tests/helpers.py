@@ -26,6 +26,7 @@ from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.handlers.user import update_passkey
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
 from globaleaks.handlers.admin.context import create_context, \
     get_context, update_context, db_get_context_steps
@@ -504,6 +505,30 @@ class TestGLWithPopulatedDB(TestGL):
     def context_assertions(self, source_c, created_c):
         self.assertEqual(source_c['show_small_receiver_cards'], created_c['show_small_receiver_cards'])
 
+
+    @inlineCallbacks
+    def configure_receiver(self, dummyRecExten): 
+        recDictName = 'dummyReceiver_' + dummyRecExten
+        recDict = yield create_receiver(copy.deepcopy(getattr(self, recDictName)), 'en')
+
+        recUserName = 'dummyReceiverUser_' + dummyRecExten
+        setattr(self, recDictName, recDict)
+        recUser = getattr(self, recUserName)
+        recUser['id'] = recDict['id']
+        recUser['salt'] = recDict['salt']
+        recUser['auth_token_hash'] = VALID_AUTH_TOK_HASH1
+
+        mockUpdate = {
+          'old_auth_token_hash': security.derive_auth_hash(self.dummyNode['default_password'], recDict['salt']),
+          'new_auth_token_hash': VALID_AUTH_TOK_HASH1,
+          'salt': VALID_SALT1,
+          'ccrypto_key_public': PGPKEYS['VALID_PGP_KEY1_PUB'],
+          'ccrypto_key_private': PGPKEYS['VALID_PGP_KEY1_PRV'],
+        }
+
+
+        yield update_passkey(mockUpdate, recDict['id'])
+
     @inlineCallbacks
     def fill_data(self):
         # fill_data/create_admin
@@ -512,14 +537,8 @@ class TestGLWithPopulatedDB(TestGL):
         # fill_data/create_custodian
         self.dummyCustodianUser = yield create_custodian_user(copy.deepcopy(self.dummyCustodianUser), 'en')
 
-        # fill_data/create_receiver
-        self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
-        self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
-        self.dummyReceiverUser_1['salt'] = self.dummyReceiver_1['salt']
-
-        self.dummyReceiver_2 = yield create_receiver(copy.deepcopy(self.dummyReceiver_2), 'en')
-        self.dummyReceiverUser_2['id'] = self.dummyReceiver_2['id']
-        self.dummyReceiverUser_2['salt'] = self.dummyReceiver_2['salt']
+        yield self.configure_receiver('1')
+        yield self.configure_receiver('2')
 
         receivers_ids = [self.dummyReceiver_1['id'], self.dummyReceiver_2['id']]
 
@@ -750,6 +769,7 @@ class MockDict():
             'language': u'en',
             'password_change_needed': True,
             'password_change_date': u'1970-01-01 00:00:00.000000',
+            'pgp_key_fingerprint': u'',
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
             'pgp_key_remove': False

@@ -2,6 +2,7 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import overview

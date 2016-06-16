@@ -80,13 +80,13 @@ class TestModels(helpers.TestGL):
     def create_context_with_receivers(self, store):
         u1 = self.localization_set(self.dummyReceiverUser_1, models.User, 'en')
         receiver_user1 = models.User(u1)
-        receiver_user1.password = self.dummyReceiverUser_1['password']
-        receiver_user1.salt = self.dummyReceiverUser_1['salt']
+        receiver_user1.auth_token_hash = helpers.VALID_AUTH_TOK_HASH1
+        receiver_user1.salt = helpers.VALID_SALT1
 
         u2 = self.localization_set(self.dummyReceiverUser_2, models.User, 'en')
         receiver_user2 = models.User(u2)
-        receiver_user2.password = self.dummyReceiverUser_2['password']
-        receiver_user2.salt = self.dummyReceiverUser_2['salt']
+        receiver_user2.auth_token_hash = helpers.VALID_AUTH_TOK_HASH1
+        receiver_user2.salt = helpers.VALID_SALT1
 
         store.add(receiver_user1)
         store.add(receiver_user2)

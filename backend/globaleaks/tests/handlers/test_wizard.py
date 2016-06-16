@@ -15,8 +15,6 @@ class TestWizard(helpers.TestHandler):
         self.dummyContext['steps'] = []
 
         admin = {
-            'old_password': 'globaleaks',
-            'password': 'P4ssword',  # <- hackingteam password! :)
             'mail_address': 'evilaliv3@globaleaks.org'
         }
 

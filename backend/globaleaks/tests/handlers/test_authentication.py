@@ -28,13 +28,10 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         salt = self.responses[0]['salt']
 
-        password = self.dummyNode['default_password']
-        digest = derive_auth_hash(password, salt)
-
         handler = self.request({
             'step': 2,
             'username': user['username'],
-            'auth_token_hash': digest,
+            'auth_token_hash': helpers.VALID_AUTH_TOK_HASH1,
         }, headers=headers)
 
         success = yield handler.post()

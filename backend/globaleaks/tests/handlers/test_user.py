@@ -105,13 +105,13 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
         
         self.user = self.dummyReceiverUser_1
 
-        self.user_old_token = security.derive_auth_hash('globaleaks', self.user['salt'])
+        self.user_old_token = security.derive_auth_hash(self.dummyNode['default_password'], self.user['salt'])
 
         new_salt = security.generateRandomSalt()
         new_token = security.derive_auth_hash('focaccino', new_salt)
         # In the setup req_body is incorrect
         self.req_body = {
-            'old_auth_token_hash': self.user_old_token,
+            'old_auth_token_hash': self.user['auth_token_hash'],
             'new_auth_token_hash': new_token,
             'salt': new_salt,
             'ccrypto_key_public':  helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
