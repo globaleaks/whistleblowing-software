@@ -45,7 +45,8 @@ class TestModels(helpers.TestGL):
         receiver_user.username = str(
             self.receiver_inc) + self.dummyReceiver_1['mail_address']
         receiver_user.password = self.dummyReceiverUser_1['password']
-        receiver_user.salt = self.dummyReceiverUser_1['salt']
+        receiver_user.salt = helpers.VALID_SALT1
+        receiver_user.auth_token_hash = helpers.VALID_AUTH_TOK_HASH1
         store.add(receiver_user)
 
         r = self.localization_set(self.dummyReceiver_1, models.Receiver, 'en')
@@ -134,8 +135,8 @@ class TestModels(helpers.TestGL):
         receiver_user = models.User(u)
         # Avoid receivers with the same username!
         receiver_user.username = u'xxx'
-        receiver_user.password = self.dummyReceiverUser_1['password']
-        receiver_user.salt = self.dummyReceiverUser_1['salt']
+        receiver_user.salt = helpers.VALID_SALT1
+        receiver_user.auth_token_hash = helpers.VALID_AUTH_TOK_HASH1
         store.add(receiver_user)
 
         receiver = models.Receiver(r)
