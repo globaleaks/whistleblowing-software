@@ -52,22 +52,25 @@ describe('receiver first login', function() {
 
 describe('Recipient 2 first login', function() {
   var receiver2 = new pages.receiver();
-  var tmp_pass = utils.vars['user_password'] + 'widdlyskuds';
+  var tmp_pass = utils.vars['user_password'] + 'D';
 
   it('should be able to change password', function() {
+    browser.get('/#/login');
     receiver2.login('Recipient 2', utils.vars['default_password']);
     utils.waitForUrl('/forcedpasswordchange');
 
     receiver2.changePassword(utils.vars['default_password'], tmp_pass);
     utils.waitForUrl('/receiver/tips', 20000);
 
-    utils.logout();
-
-    receiver2.login('Recipient 2', tmp_pass);
-    utils.waitForUrl('/receiver/tips');
   });
 
   it('should be able to change password in preferences', function() {
+    browser.get('/#/login');
+    receiver2.login('Recipient 2', tmp_pass);
+    utils.waitForUrl('/receiver/tips');
+
+    element(by.id('PreferencesLink')).click();
+    utils.waitForUrl('/receiver/preferences');
 
     var preferencesForm = element(by.id("preferencesForm"));
     preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
@@ -75,8 +78,7 @@ describe('Recipient 2 first login', function() {
     receiver2.changePassword(tmp_pass, utils.vars['user_password']);
     utils.waitForUrl('/receiver/tips');
 
-    utils.logout();
-
+    browser.get('/#/login');
     receiver2.login('Recipient 2', utils.vars['user_password']);
     utils.waitForUrl('/receiver/tips');
   });
