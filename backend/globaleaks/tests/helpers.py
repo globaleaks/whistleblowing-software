@@ -514,7 +514,6 @@ class TestGLWithPopulatedDB(TestGL):
 
         # fill_data/create_receiver
         self.dummyReceiver_1 = yield create_receiver(copy.deepcopy(self.dummyReceiver_1), 'en')
-        from IPython import embed; embed()
         self.dummyReceiverUser_1['id'] = self.dummyReceiver_1['id']
         self.dummyReceiverUser_1['salt'] = self.dummyReceiver_1['salt']
 

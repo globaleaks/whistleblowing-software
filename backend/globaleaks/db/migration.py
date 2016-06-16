@@ -32,7 +32,7 @@ from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
 from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
 from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, Message_v_31
-from globaleaks.db.migrations.update_33 import User_v_32, Notification_v_32, InternalTip_v_32, WhistleblowerTip_v_32
+from globaleaks.db.migrations.update_33 import User_v_32, Notification_v_32, InternalTip_v_32, WhistleblowerTip_v_32, Node_v_32
 
 
 migration_mapping = OrderedDict([
@@ -55,7 +55,7 @@ migration_mapping = OrderedDict([
     ('InternalTip', [InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, models.InternalTip]),
     ('Mail', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail, 0, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_19, 0, 0, 0, 0, Message_v_31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0]),
-    ('Node', [Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, models.Node, 0]),
+    ('Node', [Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, models.Node]),
     ('Notification', [Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_32, 0, models.Notification]),
     ('Questionnaire', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Questionnaire, 0, 0, 0]),
     ('Receiver', [Receiver_v_15, Receiver_v_16, Receiver_v_19, 0, 0, Receiver_v_20, Receiver_v_23, 0, 0, models.Receiver, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
