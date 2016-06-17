@@ -3,7 +3,7 @@ var utils = require('./utils.js');
 describe('adming configure custom texts', function() {
   it('should perform custom texts configuration', function() {
     browser.setLocation('admin/content');
-    element(by.cssContainingText("a", "Texts customization")).click();
+    element(by.cssContainingText("a", "Text customization")).click();
 
     expect(element(by.model('vars.language_to_customize')).sendKeys('English'));
     element(by.cssContainingText('option', 'Submissions disabled')).click();
@@ -19,7 +19,7 @@ describe('adming configure custom texts', function() {
     utils.login_admin();
 
     browser.setLocation('admin/content');
-    element(by.cssContainingText("a", "Texts customization")).click();
+    element(by.cssContainingText("a", "Text customization")).click();
 
     // save settings
     element(by.css('.deleteCustomTextButton')).click().then(function() {
