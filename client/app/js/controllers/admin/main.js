@@ -184,6 +184,24 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'Admin
     }
   ];
 
+  $scope.admin_files = [
+      {
+        'title': 'Custom CSS',
+        'varname': 'css',
+        'filename': 'custom_stylesheet.css'
+      },
+      {
+        'title': 'Custom Javascript',
+        'varname': 'script',
+        'filename': 'custom_script.js'
+      },
+      {
+        'title': 'Custom homepage',
+        'varname': 'homepage',
+        'filename': 'custom_homepage.html'
+      }
+  ];
+
   $scope.vars = {
     'language_to_customize': $scope.node.default_language
   }

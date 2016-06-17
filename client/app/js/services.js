@@ -829,7 +829,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$location', '$filter', '$uibModal', function($rootScope, $location, $filter, $uibModal) {
+  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal',
+  function($rootScope, $location, $filter, $sce, $uibModal) {
     return {
       getXOrderProperty: function() {
         return 'x';
@@ -853,6 +854,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         } catch (e) {
           return true;
         }
+      },
+
+      base64ToTrustedScriptUrl: function(base64_data) {
+        return $sce.trustAsResourceUrl('data:application/javascript;base64,' + base64_data);
       },
 
       update: function (model, cb, errcb) {

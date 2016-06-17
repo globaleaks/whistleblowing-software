@@ -35,7 +35,7 @@ from globaleaks.handlers.admin import notification as admin_notification
 
 from globaleaks.utils.utility import randbits
 
-uuid_regexp      = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
 spec = [
     (r'/exception', exception.ExceptionHandler),
