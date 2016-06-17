@@ -1,9 +1,6 @@
 {
   "version": 1,
   "node": {
-    "footer": {
-      "en": "proudly powered by GlobaLeaks, copyright by Hermes Center for Transparency and Digital Human Rights"
-    },
     "context_clarification": {
       "en": "Select the context of your submission:"
     },
