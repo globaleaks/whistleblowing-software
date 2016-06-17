@@ -39,17 +39,7 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 [Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
 
 ## License
-Copyright (C) 2011-2016 Hermes No Profit Association - GlobaLeaks Project
+This software is released under the AGPLv3 license. See LICENSE file for more information.
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU Affero General Public License as published by the Free
-Software Foundation, either version 3 of the License, or (at your option) any
-later version.
+Copyright (c) 2011-2016 - Hermes Center for Transparency and Digital Human Rights
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
-details.
-
-You should have received a copy of the GNU Affero General Public License along
-with this program. If not, see http://www.gnu.org/licenses/.

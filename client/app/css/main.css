@@ -26,6 +26,10 @@ body {
   padding-bottom: 2em;
 }
 
+#AttributionClause {
+  margin-top: 0.5em;
+}
+
 a, a:hover, a:active, a:focus {
   outline: 0;
 }
