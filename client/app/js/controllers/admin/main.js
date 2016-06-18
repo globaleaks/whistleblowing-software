@@ -48,7 +48,7 @@ GLClient.controller('AdminCtrl',
         var languages_enabled_selector = [];
         var change_default = false;
         var language_selected = $scope.admin.node.default_language;
-        if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
+        if (!$scope.languages_enabled_edit[$scope.admin.node.default_language]) {
           change_default = true;
         }
 

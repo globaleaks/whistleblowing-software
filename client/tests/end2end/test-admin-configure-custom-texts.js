@@ -10,11 +10,10 @@ describe('adming configure custom texts', function() {
     expect(element(by.model('vars.custom_text')).clear().sendKeys('Whistleblowing disabled'));
 
     // save settings
-    element(by.id('addCustomTextButton')).click().then(function() {
-      browser.get('/');
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
-    });
+    element(by.id('addCustomTextButton')).click();
+    browser.get('/');
+    expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(false);
+    expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(true);
 
     utils.login_admin();
 
@@ -22,10 +21,11 @@ describe('adming configure custom texts', function() {
     element(by.cssContainingText("a", "Text customization")).click();
 
     // save settings
-    element(by.css('.deleteCustomTextButton')).click().then(function() {
-      browser.get('/');
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
-      expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
-    });
+    element(by.css('.deleteCustomTextButton')).click();
+    browser.get('/');
+    expect(browser.isElementPresent(element(by.cssContainingText("button", "Whistleblowing disabled")))).toBe(false);
+    expect(browser.isElementPresent(element(by.cssContainingText("button", "Submissions disabled")))).toBe(true);
+
+    utils.login_admin();
   });
 });

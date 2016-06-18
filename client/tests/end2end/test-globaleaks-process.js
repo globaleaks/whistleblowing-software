@@ -98,17 +98,13 @@ describe('globaLeaks process', function() {
      element(by.model('tip.label')).sendKeys(label_1);
      element(by.id('assignLabelButton')).click();
 
-     browser.waitForAngular();
-
-     utils.emulateUserRefresh();
-
      // Check presence of label_1
      expect(element(by.id('assignLabelButton')).isPresent()).toBe(false);
      expect(element(by.id('Label')).getText()).toEqual(label_1);
 
      // Configure label_2
      element(by.id('Label')).click();
-     element(by.model('tip.label')).sendKeys(label_2);
+     element(by.model('tip.label')).clear().sendKeys(label_2);
      element(by.id('assignLabelButton')).click();
     });
   });
