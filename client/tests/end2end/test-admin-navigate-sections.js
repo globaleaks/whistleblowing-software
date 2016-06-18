@@ -7,7 +7,7 @@ describe('verify navigation of admin sections', function() {
       element(by.cssContainingText("a", "Main configuration")).click();
       element(by.cssContainingText("a", "Theme customization")).click();
       element(by.cssContainingText("a", "Language")).click();
-      element(by.cssContainingText("a", "Texts customization")).click();
+      element(by.cssContainingText("a", "Text customization")).click();
     });
 
     element(by.cssContainingText("a", "User management")).click();
