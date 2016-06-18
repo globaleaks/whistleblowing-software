@@ -4,7 +4,7 @@
       <label data-translate>Language configuration</label>
       <div data-ng-repeat="language in admin.node.languages_supported | orderBy:'name'">
         <div>
-          <input data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
+          <input id="language-enabler-{{language.code}}" data-ng-model="languages_enabled_edit[language.code]" type="checkbox">
           <label>{{language.name}} [{{language.code}}]</label>
         </div>
       </div>
