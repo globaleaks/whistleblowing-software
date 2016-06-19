@@ -31,7 +31,7 @@ def get_model_img(store, model, obj_id):
 @transact
 def add_model_img(store, model, obj_id, data):
     obj = store.find(model, model.id == obj_id).one()
-    if obj:
+    if obj is not None:
         if obj.picture is None:
             obj.picture = models.File()
 
@@ -57,8 +57,6 @@ class ModelImgInstance(BaseHandler):
 
         try:
             yield add_model_img(model_map[obj_key], obj_id, uploaded_file['body'].read())
-        except:
-            pass
         finally:
             uploaded_file['body'].close()
 

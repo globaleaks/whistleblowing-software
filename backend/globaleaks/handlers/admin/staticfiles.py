@@ -67,7 +67,6 @@ def dump_static_file(uploaded_file, filelocation):
             while data != '':
                 os.write(fd.fileno(), data)
                 data = uploaded_file['body'].read(4000)
-
     finally:
         uploaded_file['body'].close()
 
@@ -101,9 +100,6 @@ class StaticFileInstance(BaseHandler):
 
         try:
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
-        except Exception as excpd:
-            log.err('Error while creating static file %s: %s' % (path, excpd))
-            raise errors.InternalServerError(excpd.message)
         finally:
             uploaded_file['body'].close()
 
