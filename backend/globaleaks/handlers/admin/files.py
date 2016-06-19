@@ -69,8 +69,6 @@ class FileInstance(BaseHandler):
 
         try:
             yield add_file(uploaded_file['body'].read(), key)
-        except:
-            pass
         finally:
             uploaded_file['body'].close()
 
