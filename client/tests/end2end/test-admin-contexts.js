@@ -1,15 +1,9 @@
-var pages = require('./pages.js');
 var utils = require('./utils.js');
 
 describe('admin configure, add, and delete contexts', function() {
-  var adminLog = new pages.adminLoginPage();
-
-  beforeAll(function() {
-    adminLog.login('admin', utils.vars['user_password']);
-    browser.setLocation('admin/contexts');
-  });
-
   it('should configure an existing context', function() {
+    browser.setLocation('admin/contexts');
+
     element(by.id('context-0')).element(by.css('.actionButtonEdit')).click();
     // Add users and flip switches
     element(by.cssContainingText("span", "Recipient 2")).click();
@@ -23,9 +17,10 @@ describe('admin configure, add, and delete contexts', function() {
   });
 
   it('should add new contexts', function() {
-    var add_context = function(context) {
-      element(by.model('new_context.name')).sendKeys(context);
-      return element(by.css('[data-ng-click="add_context()"]')).click();
+    var add_context = function(context_name) {
+      element(by.model('new_context.name')).sendKeys(context_name);
+      element(by.css('[data-ng-click="add_context()"]')).click();
+      utils.waitUntilReady(element(by.xpath(".//*[text()='" + context_name + "']")));
     };
 
     add_context('Context 2');
