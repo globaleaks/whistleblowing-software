@@ -2,7 +2,18 @@ var fs = require('fs');
 
 exports.vars = {
   'default_password': 'globaleaks',
-  'user_password': 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
+  'user_password': 'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#',
+  'field_types': [
+    'Single-line text input',
+    'Multi-line text input',
+    'Multiple choice input',
+    'Selection box',
+    'Checkbox',
+    'Attachment',
+    'Terms of service',
+    'Date',
+    'Group of questions'
+  ]
 }
 
 browser.getCapabilities().then(function(capabilities) {
