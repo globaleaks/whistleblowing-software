@@ -1,4 +1,6 @@
-GLClient.controller('AdminQuestionnaireCtrl', ['$scope', function($scope){
+GLClient.controller('AdminQuestionnaireCtrl',
+  ['$scope', 'AdminQuestionnaireResource',
+  function($scope, AdminQuestionnaireResource){
   $scope.tabs = [
     {
       title:"Questionnaire configuration",
@@ -9,10 +11,6 @@ GLClient.controller('AdminQuestionnaireCtrl', ['$scope', function($scope){
       template:"views/admin/questionnaires/questions.html"
     }
   ];
-}]).
-controller('AdminQuestionnairesCtrl',
-  ['$scope', 'AdminQuestionnaireResource',
-  function($scope, AdminQuestionnaireResource) {
 
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
