@@ -11,16 +11,27 @@ angular.module('GLBrowserCrypto')
 
     storePassphrase: function(passphrase) {
       if (variables.passphrase !== null) {
-        throw new Error('Overwriting a WBs passphrase');
+        // TODO handle the no-op...
+        //throw new Error('Overwriting a WBs passphrase');
       }
       variables.passphrase = passphrase;
     },
 
-    initializeKey: function(armoredPrivateKey) {
+    initialize: function(armoredPrivateKey, receivers) {
       glbcKeyRing.initialize(armoredPrivateKey, 'whistleblower');
       if (variables.passphrase === null) {
         throw new Error('WB key passphrase is null');
       }
+
+      receivers = receivers.filter(function(rec) {
+        return rec.ccrypto_key_public !== "";
+      });
+      receivers.forEach(function(rec) {
+        glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
+      });
+
+      variables.keyDerived = true; 
+
       return glbcKeyRing.unlockKeyRing(variables.passphrase);
     },
 
@@ -50,13 +61,13 @@ angular.module('GLBrowserCrypto')
       });
     },
 
-    /** 
+   /** 
     * encrypts the passed file with the keys of the receivers and returns a 
     * new encrypted file with '.pgp' added as the extension.
     * @param {File} file 
     * @param {Array<Object>} receivers 
     * @return {Promise<File>}
-    */
+    **/
     handleFileEncryption: function(file, receivers) {
       var deferred = $q.defer();
 

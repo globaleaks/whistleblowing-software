@@ -43,10 +43,11 @@ angular.module('GLServices', ['ngResource']).
               // TODO Test thoroughly with acid
               if (prefs.ccrypto_key_public !== "") {
                 glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
+                glbcKeyRing._unlock();
               } else {
                 locationForce.set('/forcedpasswordchange');
               }
-              // TODO Best way to memory protect this variable. 
+              // TODO Best way to memory protect this variable.
               // TODO Better GC options wanted
               //delete prefs.ccrypto_private_key;
 
@@ -121,6 +122,7 @@ angular.module('GLServices', ['ngResource']).
             })
             .then(function(result) {
               var auth_token_hash = result.authentication;
+              glbcKeyRing._storePassphrase(result.passphrase);
               return $http.post('authentication',
                                 {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
             })
@@ -159,8 +161,9 @@ angular.module('GLServices', ['ngResource']).
           var logoutPerformed = function() {
             self.loginRedirect(true);
           };
-          
+
           // TODO redirect the home page. Clear memory and refresh the window.
+          glbcKeyRing.clear();
           if (self.session.role === 'whistleblower') {
             $http.delete('receiptauth').then(logoutPerformed,
                                              logoutPerformed);
@@ -429,9 +432,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
        * @params steps: The steps of fields the whistleblower was prompted with.
        *         answers: The whistleblower's responses to the each field
        * @description
-       * Submit prepares the answers object for delivery to the selected 
-       * receivers, includes all 'stats_enabled' fields in the answers object, 
-       * encrypts all the other responses in 'encrypted_answers', and submits 
+       * Submit prepares the answers object for delivery to the selected
+       * receivers, includes all 'stats_enabled' fields in the answers object,
+       * encrypts all the other responses in 'encrypted_answers', and submit
        * the payload to the backend.
        */
       self.submit = function(steps, answers) {
@@ -466,10 +469,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         });
 
         self._submission.answers = redactedAnswers;
-      
+
         // Convert _submission.answers to a binary array in a reasonable way.
         var jsonAnswers = JSON.stringify(answers);
-
 
         self.receivers.forEach(function(rec) {
           glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
@@ -485,7 +487,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           });
         }, function(e) {
-          throw e; 
+          throw e;
         });
 
       };
@@ -519,8 +521,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       responseType: 'blob',
     }).then(function (response) {
       var inputBlob = response.data;
+      // TODO use key from keyRing instead
       var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
 
+      FileSaver.saveAs(inputBlob, file.name+'.orig');
       glbcReceiver.decryptAndVerifyFile(inputBlob, wbPubKey).then(function(outputBlob) {
         // Before saving clean up the filename
         var filename = file.name.slice(0, file.name.length - 4);
@@ -528,7 +532,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         // Save the decrypted file.
         FileSaver.saveAs(outputBlob, filename);
       }, function(e) {
-        throw e; 
+        throw e;
       });
     });
   };
@@ -553,16 +557,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       self.tip = RTipResource.get(tipID, function (tip) {
         tip.receivers = RTipReceiverResource.query(tipID);
-        tip.comments = tip.enable_comments ? RTipCommentResource.query(tipID) : [];
+
+        tip.comments = [];
+        comments = tip.enable_comments ? RTipCommentResource.query(tipID) : {$promise: false};
 
         tip.messages = [];
+        messages = tip.enable_messages ? RTipMessageResource.query(tipID) : {$promise: false};
 
         glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
-        
-               
+
         tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
 
-        $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
+        $q.all([tip.receivers.$promise, comments.$promise, messages.$promise, tip.iars.$promise]).then(function() {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
@@ -571,15 +577,26 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
           });
 
-          if (tip.enable_messages) {
-              var msgs = [];
-              glbcCipherLib.decryptAndVerifyMessages(msgs, tip.receivers).then(function(decMsgs) {
-                for (var i = 0; i < decMsgs.length; i++) {
-                  tip.messages[i].content = decMsgs[i];
-                }
-              }, function(e) {
-                throw e; 
-              });
+          if (tip.enable_comments && comments.length > 0) {
+            glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers).then(function(decCmnts) {
+              tip.comments = comments;
+              for (var i = 0; i < decCmnts.length; i++) {
+                tip.comments[i].content = decCmnts[i];
+              }
+            }, function(e) {
+              throw e;
+            });
+          }
+
+          if (tip.enable_messages && messages.length > 0) {
+            glbcCipherLib.decryptAndVerifyMessages(messages, tip.receivers).then(function(decMsgs) {
+              tip.messages = messages;
+              for (var i = 0; i < decMsgs.length; i++) {
+                tip.messages[i].content = decMsgs[i];
+              }
+            }, function(e) {
+            throw e;
+            });
           }
 
           tip.newComment = function(content) {
@@ -587,23 +604,27 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             // Perform encrypt to WB on save
             // Perform decrypt with key on get
             var c = new RTipCommentResource(tipID);
-            c.content = content;
-            c.$save(function(newComment) {
-              tip.comments.unshift(newComment);
+
+            glbcCipherLib.encryptAndSignComment(content, tip.receivers).then(function(ciphertext) {
+              c.content = ciphertext;
+              c.$save(function(newComment) {
+                newComment.content = content; // Display original text
+                tip.comments.unshift(newComment);
+              });
             });
           };
-          
+
           tip.newMessage = function(content) {
             var m = new RTipMessageResource(tipID);
 
-            glbcCipherLib.encryptAndSignMessage(content, tip.id).then(function(ciphertext) {
+            glbcCipherLib.encryptAndSignMessage(content, 'whistleblower').then(function(ciphertext) {
               m.content = ciphertext;
               m.$save(function(newMessage) {
                 newMessage.content = content; // Display original text
                 tip.messages.unshift(newMessage);
               });
             }, function(e){
-              throw e; 
+              throw e;
             });
           };
 
@@ -651,13 +672,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       self.tip = WBTipResource.get(function (tip) {
         tip.receivers = WBTipReceiverResource.query();
-        tip.comments = tip.enable_comments ? WBTipCommentResource.query() : [];
+
+        tip.comments = [];
+        comments = tip.enable_comments ? WBTipCommentResource.query() : {$promise: false};
+
         tip.messages = [];
 
-        // TODO add keyRing initialize promise here
-        glbcWhistleblower.initializeKey(tip.ccrypto_key_private);
+        function throwUp(e) { throw e; }
 
-        $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
+        $q.all([tip.receivers.$promise, comments.$promise, tip.messages.$promise]).then(function() {
+
+          glbcWhistleblower.initialize(tip.ccrypto_key_private, tip.receivers);
+
           tip.msg_receiver_selected = null;
           tip.msg_receivers_selector = [];
 
@@ -670,15 +696,29 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 });
               }
             });
+
+            if (tip.enable_comments) {
+              glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
+              .then(function(decCmnts) {
+                tip.comments = comments;
+                for (var i = 0; i < decCmnts.length; i++) {
+                  tip.comments[i].content = decCmnts[i];
+                }
+              }, throwUp);
+            }
           });
 
           tip.newComment = function(content) {
             // TODO split functionality based on tip state
-            var c = new WBTipCommentResource();
-            c.content = content;
-            c.$save(function(newComment) {
-              tip.comments.unshift(newComment);
-            });
+            glbcCipherLib.encryptAndSignComment(content, tip.receivers)
+            .then(function(ciphertext) {
+              var c = new WBTipCommentResource();
+              c.content = ciphertext;
+              c.$save(function(newComment) {
+                newComment.content = content;
+                tip.comments.unshift(newComment);
+              });
+            }, throwUp);
           };
 
           tip.newMessage = function(content) {
@@ -692,28 +732,22 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 newMessage.content = content;
                 tip.messages.unshift(newMessage);
               });
-            });
+            }, throwUp);
           };
 
           tip.updateMessages = function () {
             if (tip.msg_receiver_selected) {
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
-                
+
                 // Show the encrypted messages in the UI before they are decrypted.
                 tip.messages = messageCollection;
 
-                // Convert the message collection to a simple array, to avoid 
-                // problems with object properties
-                var msgs = [];
-
-                glbcCipherLib.decryptAndVerifyMessages(msgs, tip.receivers)
+                glbcCipherLib.decryptAndVerifyMessages(tip.messages, tip.receivers)
                 .then(function(decryptedMsgs) {
                   for (var i = 0; i < decryptedMsgs.length; i++){
                     tip.messages[i].content = decryptedMsgs[i];
                   }
-                }, function(e) {
-                  throw e;
-                });
+                }, throwUp);
               });
             }
           };
@@ -1343,10 +1377,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   // This is a value set by the node.
   var enabledLanguages = [];
-  
+
   // Country codes with multiple languages or an '_XX' extension
   var problemLangs = {
-    'zh': ['CN', 'TW'], 
+    'zh': ['CN', 'TW'],
     'pt': ['BR', 'PT'],
     'nb': 'NO',
     'hr': 'HR',
@@ -1356,18 +1390,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   var indirect = {
     appLanguage: null,
   };
-        
+
   initializeStartLanguage();
- 
+
   function initializeStartLanguage() {
     var queryLang = $location.search().lang;
     if (angular.isDefined(queryLang) && validLang(queryLang)) {
       facts.urlParam = queryLang;
-    } 
-    
+    }
+
     var s = normalizeLang(window.navigator.language);
     if (validLang(s)) {
-      facts.browserSniff = s; 
+      facts.browserSniff = s;
     }
 
     determineLanguage();
@@ -1381,15 +1415,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     if (s.length !== 2 && s.length !== 5) {
       // The string is not in a format we are expecting so just return it.
-      return s; 
+      return s;
     }
 
     // The string is probably a valid ISO 639-1 language.
     var iso_lang = s.slice(0,2).toLowerCase();
-    
+
     if (problemLangs.hasOwnProperty(iso_lang)) {
 
-      var t = problemLangs[iso_lang]; 
+      var t = problemLangs[iso_lang];
       if (t instanceof Array) {
         // We do not know which extension to use, so just use the most popular one.
         return iso_lang + '_' + t[0];
@@ -1406,7 +1440,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     if (typeof inp !== 'string' || !/^([a-z]{2})(_[A-Z]{2})?$/.test(inp)) {
       return false;
     }
-    
+
     // Check if lang is in the list of enabled langs if we have enabledLangs
     if (enabledLanguages.length > 0) {
       return enabledLanguages.indexOf(inp) > -1;
@@ -1435,7 +1469,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       t = lang.replace('_', '-').toLowerCase();
     }
 
-    tmhDynamicLocale.set(t); 
+    tmhDynamicLocale.set(t);
   }
 
 
@@ -1474,8 +1508,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   }
 
-  // determineLanguage contains all of the scope creeping ugliness of the 
-  // factory. It finds the best language to use, changes the appLanguage 
+  // determineLanguage contains all of the scope creeping ugliness of the
+  // factory. It finds the best language to use, changes the appLanguage
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     indirect.appLanguage = bestLanguage(facts);

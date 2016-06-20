@@ -136,7 +136,7 @@ class GLSettingsClass(object):
         # initialized with the content Node table.
         self.memory_copy = OD({
             'maximum_namesize': 128,
-            'maximum_textsize': 4096,
+            'maximum_textsize': 16384,
             'maximum_filesize': 30,
             'allow_iframes_inclusion': False,
             'accept_tor2web_access': {

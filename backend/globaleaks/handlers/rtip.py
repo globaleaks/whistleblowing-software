@@ -147,6 +147,7 @@ def db_get_itip_receiver_list(store, itip, language):
         "name": rtip.receiver.user.name,
         "last_access": datetime_to_ISO8601(rtip.last_access),
         "access_counter": rtip.access_counter,
+        "ccrypto_key_public": rtip.receiver.user.ccrypto_key_public,
     } for rtip in itip.receivertips]
 
 

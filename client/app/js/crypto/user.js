@@ -121,7 +121,7 @@ angular.module('GLBrowserCrypto')
       var p2 = glbcKeyLib.deriveUserPassword(old_password, old_salt);
 
       $q.all([p1, p2]).then(function(results) {
-        showMsg('Derived both passphrases');
+        showMsg('Derived both passphrases. . .');
         vars.promises.authDerived.resolve({
           'new_res': results[0],
           'old_res': results[1],

@@ -19,8 +19,9 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistl
 
     if (file.file.encrypted === undefined) {
       event.preventDefault();
-      glbcWhistleblower.handleFileEncryption(file.file, $scope.receivers).then(function(outputFile) {
+      glbcWhistleblower.handleFileEncryption(file.file, $scope.submission.receivers).then(function(outputFile) {
         outputFile.encrypted = true;
+        console.log(openpgp.message.read(outputFile))
         $timeout(function() {
           flow.addFile(outputFile);
         }, 0);

@@ -1,9 +1,9 @@
 angular.module('GLBrowserCrypto', [])
-// pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend. This 
+// pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend. This
 // factory handles the proper initialization of a Web Worker for asynchronous
 // operations.
 .factory('pgp', function() {
-  
+
   // TODO handle packaging more intelligently, this kicks off yet another xhr request.
   window.openpgp.initWorker({ path:'components/openpgp/dist/openpgp.worker.js' });
 
@@ -251,7 +251,7 @@ angular.module('GLBrowserCrypto', [])
       },
 
       /**
-       * @return {String} the 16 digit keycode used by whistleblowers in the 
+       * @return {String} the 16 digit keycode used by whistleblowers in the
        * frontend.
        */
       generateKeycode: function() {
@@ -263,7 +263,7 @@ angular.module('GLBrowserCrypto', [])
       },
 
       /**
-       * @description ensures that the passed textInput is a valid ascii 
+       * @description ensures that the passed textInput is a valid ascii
        * armored privateKey. It additionally asserts that the key is passphrase
        * protected.
        * @param {String} textInput
@@ -294,7 +294,7 @@ angular.module('GLBrowserCrypto', [])
       },
 
       /**
-       * @decription checks to see if passed text is an ascii armored GPG 
+       * @decription checks to see if passed text is an ascii armored GPG
        * public key. If so, the fnc returns true.
        * @param {String} textInput
        * @return {Bool}
@@ -351,11 +351,11 @@ angular.module('GLBrowserCrypto', [])
 .factory('glbcCipherLib', ['$q', 'pgp', 'glbcKeyLib', 'glbcKeyRing', function($q, pgp, glbcKeyLib, glbcKeyRing) {
   return {
     /**
-     * @description parses the passed public keys and returns a list of 
-     * openpgpjs Keys. Note that if there is a problem when parsing a key the 
+     * @description parses the passed public keys and returns a list of
+     * openpgpjs Keys. Note that if there is a problem when parsing a key the
      * function throws an error.
      * @param {Array<String>} armoredKeys
-     * @return {Array<pgp.Key>} 
+     * @return {Array<pgp.Key>}
      */
     loadPublicKeys: function(armoredKeys) {
 
@@ -377,7 +377,7 @@ angular.module('GLBrowserCrypto', [])
 
       return pgpPubKeys;
     },
-  
+
     /**
      * @param {Blob|File} blob
      * @return {Promise<Uint8Array>} a promise for an array of the bytes in the
@@ -402,8 +402,7 @@ angular.module('GLBrowserCrypto', [])
      */
     encryptAndSignMessage: function(m, uuid) {
 
-
-      var pubKeys = [glbcKeyRing.getPubKey(uuid), 
+      var pubKeys = [glbcKeyRing.getPubKey(uuid),
                      glbcKeyRing.getPubKey('private')];
 
       var options = {
@@ -443,16 +442,38 @@ angular.module('GLBrowserCrypto', [])
           message: c,
           privateKey: glbcKeyRing.getKey(),
           publicKeys: pubKey,
-          format: 'utf8', 
+          format: 'utf8',
         };
         var promise = pgp.decrypt(options).then(function(result) {
-          return result.data; 
+          return result.data;
         });
         decPromises.push(promise);
       }
-      
+
       return $q.all(decPromises);
     },
+
+    encryptAndSignComment: function(msg, receivers) {
+
+      var pubKeys = receivers.map(function(rec) {
+        return glbcKeyRing.getPubKey(rec.id);
+      });
+
+      // TODO notice that the public key is passed twice.
+      pubKeys.push(glbcKeyRing.getPubKey('private'));
+
+      var options = {
+        data: msg,
+        format: 'utf8',
+        privateKey: glbcKeyRing.getKey(),
+        publicKeys: pubKeys,
+        armored: true,
+      };
+      return pgp.encrypt(options).then(function(result) {
+        return result.data;
+      });
+    },
+
 
     /**
      * @param {pgp.Message} message
@@ -475,7 +496,7 @@ angular.module('GLBrowserCrypto', [])
 }])
 
 // glbcKeyRing holds the private key material of authenticated users. It handles
-// all of the cryptographic operations internally so that the rest of the UI 
+// all of the cryptographic operations internally so that the rest of the UI
 // does not.
 .factory('glbcKeyRing', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
   // keyRing is kept private.
@@ -483,9 +504,10 @@ angular.module('GLBrowserCrypto', [])
     privateKey: null,
     // publicKeys is a map of uuids to pgp.Key objects.
     publicKeys: {
-    
+
     },
     _pubKey: null,
+    _passphrase: null,
   };
 
   return {
@@ -498,7 +520,7 @@ angular.module('GLBrowserCrypto', [])
       return this.getKey().armor();
     },
 
-    getPubKey: function(s) { 
+    getPubKey: function(s) {
       if (s === 'private') {
         return keyRing._pubKey;
       }
@@ -507,14 +529,14 @@ angular.module('GLBrowserCrypto', [])
       }
       throw new Error('Key not found in keyring. ' + s);
     },
-    
+
     /**
-     * @param {String} uuid 
+     * @param {String} uuid
      * @param {String} armored
      */
     addPubKey: function(uuid, armored) {
       if (glbcKeyLib.validPublicKey(armored)) {
-        var key = pgp.key.readArmored(armored).keys[0]; 
+        var key = pgp.key.readArmored(armored).keys[0];
         keyRing.publicKeys[uuid] = key;
       } else {
         throw new Error('Could not add pubkey to key ring!');
@@ -540,6 +562,8 @@ angular.module('GLBrowserCrypto', [])
       // Parsing the private key here should produce no errors. Once it is no
       // longer needed we will explicity remove references to this key.
       var tmpKeyRef = pgp.key.readArmored(armoredPrivKey).keys[0];
+
+      // TODO assert that the pgp key is locked
 
       keyRing.privateKey = tmpKeyRef;
       keyRing._pubKey = tmpKeyRef.toPublic();
@@ -578,11 +602,23 @@ angular.module('GLBrowserCrypto', [])
     unlockKeyRing: function(scrypt_passphrase) {
       return keyRing.privateKey.decrypt(scrypt_passphrase);
     },
+    _unlock: function() {
+      return this.unlockKeyRing(keyRing._passphrase);
+    },
 
     changeKeyPassphrase: function(old_pw, new_pw) {
       this.unlockKeyRing(old_pw);
       this.lockKeyRing(new_pw);
     },
 
+    // TODO remove me
+    _storePassphrase: function(passphrase) {
+      keyRing._passphrase = passphrase;
+    },
+
+    // TODO needs scrutiny
+    clear: function() {
+      keyRing = {};
+    }
   };
 }]);
