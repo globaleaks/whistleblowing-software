@@ -191,7 +191,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'Admin
         'filename': 'custom_stylesheet.css'
       },
       {
-        'title': 'Custom Javascript',
+        'title': 'Custom JavaScript',
         'varname': 'script',
         'filename': 'custom_script.js'
       },
