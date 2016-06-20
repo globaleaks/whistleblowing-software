@@ -51,7 +51,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       var field = $scope.admin_utils.new_field($scope.step.id, '');
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.get_field_attrs(field.type);
+      field.attrs = $scope.admin.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.step.children, 'y');
 
       field.$save(function(new_field){
