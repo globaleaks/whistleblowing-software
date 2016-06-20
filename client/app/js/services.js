@@ -780,8 +780,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs) {
   return function(fn) {
       var self = this;
 
@@ -794,8 +794,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.notification = AdminNotificationResource.get();
       self.shorturls = AdminShorturlResource.query();
 
+      self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
+        self.field_attrs = field_attrs;
+        self.get_field_attrs = function(type) {
+          if (type in self.field_attrs) {
+            return self.field_attrs[type];
+          } else {
+            return {};
+          }
+        };
+      });
+
       $q.all([self.node.$promise,
               self.contexts.$promise,
+              self.field_attrs.$promise,
               self.questionnaires.$promise,
               self.fieldtemplates.$promise,
               self.receivers.$promise,

@@ -52,8 +52,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource', 'FieldAttrs',
-  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource, FieldAttrs) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -156,17 +156,6 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
       $scope.Utils.update(updated_field);
     };
 
-    FieldAttrs.get().$promise.then(function(field_attrs) {
-      $scope.field_attrs = field_attrs;
-      $scope.get_field_attrs = function(type) {
-        if (type in self.field_attrs) {
-          return self.field_attrs[type];
-        } else {
-          return {};
-        }
-      };
-    });
-
     $scope.moveUpAndSave = function(elem) {
       $scope.Utils.moveUp(elem);
       $scope.save_field(elem);
@@ -191,7 +180,7 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
       var field = $scope.admin_utils.new_field('', $scope.field.id);
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.get_field_attrs(field.type);
+      field.attrs = $scope.admin.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.field.children, 'y');
 
       field.instance = $scope.field.instance;
@@ -247,7 +236,7 @@ controller('AdminFieldTemplatesAddCtrl', ['$scope',
       field.instance = 'template';
       field.label = $scope.new_field.label;
       field.type = $scope.new_field.type;
-      field.attrs = $scope.get_field_attrs(field.type);
+      field.attrs = $scope.admin.get_field_attrs(field.type);
 
       field.$save(function(new_field){
         $scope.addField(new_field);
