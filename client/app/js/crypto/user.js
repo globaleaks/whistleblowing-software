@@ -5,10 +5,12 @@ angular.module('GLBrowserCrypto')
     restrict: 'A',
     templateUrl: 'views/partials/client_key_gen.html',
     controller: ['$scope', '$rootScope', function($scope, $rootScope) {
+      $scope.showSpin = true;
       glbcUserKeyGen.vars.promises.ready.then(function() {
         $rootScope.successes.push("Key change succeeded!");
+        $scope.showSpin = false;
       }, function(failure) {
-        console.log(failure);
+        $scope.showSpin = false;
         $rootScope.errors.push("Key change failed with " + failure);
       });
       $scope.msgs = glbcUserKeyGen.vars.msgQueue;
