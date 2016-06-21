@@ -23,7 +23,7 @@ angular.module('GLBrowserCrypto')
     },
 
     clear: function() {
-      passphrase = "xxxxxxxxxxx";
+      passphrase = null;
       glbcKeyRing.clear();
     },
 

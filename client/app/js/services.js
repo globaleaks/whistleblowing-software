@@ -43,13 +43,12 @@ angular.module('GLServices', ['ngResource']).
               // TODO Test thoroughly with acid
               if (prefs.ccrypto_key_public !== "") {
                 glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
-                glbcKeyRing._unlock();
               } else {
                 locationForce.set('/forcedpasswordchange');
               }
               // TODO Best way to memory protect this variable.
               // TODO Better GC options wanted
-              //delete prefs.ccrypto_private_key;
+              delete prefs.ccrypto_private_key;
 
               $rootScope.preferences = prefs;
             }
@@ -120,7 +119,6 @@ angular.module('GLServices', ['ngResource']).
             .then(function(result) {
               var auth_token_hash = result.authentication;
               glbcReceiver.storePassphrase(result.passphrase);
-              glbcReceiver.unlock();
               return $http.post('authentication',
                                 {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
             })
@@ -559,7 +557,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.messages = [];
         var messages = tip.enable_messages ? RTipMessageResource.query(tipID) : {$promise: false};
 
-        glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
 
         tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
 
@@ -567,10 +564,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
+          glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
           angular.forEach(tip.receivers, function(receiver) {
             // TODO use receiver Pub key
             glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
           });
+
+          glbcReceiver.unlock();
 
           if (tip.enable_comments && comments.length > 0) {
             glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers).then(function(decCmnts) {

@@ -499,17 +499,22 @@ angular.module('GLBrowserCrypto', [])
 // all of the cryptographic operations internally so that the rest of the UI
 // does not.
 .factory('glbcKeyRing', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
+
+  function newRing() {
+    return {
+      privateKey: null,
+      // publicKeys is a map of uuids to pgp.Key objects.
+      publicKeys: {
+
+      },
+      _pubKey: null,
+      _passphrase: null,
+    };
+  }
+
   // keyRing is kept private.
-  var keyRing = {
-    privateKey: null,
-    // publicKeys is a map of uuids to pgp.Key objects.
-    publicKeys: {
-
-    },
-    _pubKey: null,
-    _passphrase: null,
-  };
-
+  var keyRing = newRing();
+  
   return {
     getKey: function() { return keyRing.privateKey; },
 
@@ -608,7 +613,7 @@ angular.module('GLBrowserCrypto', [])
     },
 
     clear: function() {
-      keyRing = {};
+      keyRing = newRing();
     }
   };
 }]);
