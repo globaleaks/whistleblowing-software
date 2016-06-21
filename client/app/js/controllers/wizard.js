@@ -38,10 +38,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
 
       glbcUserKeyGen.startKeyGen();
       if (!finished) {
-        $http.post('wizard', $scope.wizard).success(function() {
-          // TODO post merge. Needs check.
-          // TODO remove default password
-        }).then(function() {
+        $http.post('wizard', $scope.wizard).then(function() {
           return Authentication.login('admin', default_user_pass);
         }).then(function() {
           glbcUserKeyGen.addPassphrase(default_user_pass, $scope.admin_password);

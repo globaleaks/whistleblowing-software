@@ -13,8 +13,8 @@ angular.module('GLServices', ['ngResource']).
     };
   }]).
   factory('Authentication',
-    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib', 'glbcWhistleblower', 'glbcKeyRing',
-    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib, glbcWhistleblower, glbcKeyRing) {
+    ['$http', '$location', '$routeParams', '$rootScope', '$timeout', 'GLTranslate', 'locationForce', 'UserPreferences', 'ReceiverPreferences', 'glbcKeyLib', 'glbcWhistleblower', 'glbcReceiver', 'glbcKeyRing',
+    function($http, $location, $routeParams, $rootScope, $timeout, GLTranslate, locationForce, UserPreferences, ReceiverPreferences, glbcKeyLib, glbcWhistleblower, glbcReceiver, glbcKeyRing) {
       function Session(){
         var self = this;
 
@@ -119,7 +119,8 @@ angular.module('GLServices', ['ngResource']).
             })
             .then(function(result) {
               var auth_token_hash = result.authentication;
-              glbcKeyRing._storePassphrase(result.passphrase);
+              glbcReceiver.storePassphrase(result.passphrase);
+              glbcReceiver.unlock();
               return $http.post('authentication',
                                 {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
             })
@@ -153,14 +154,15 @@ angular.module('GLServices', ['ngResource']).
         self.keycode = '';
 
         self.logout = function() {
+          glbcWhistleblower.clear();
+          glbcReceiver.clear();
           locationForce.clear();
 
           var logoutPerformed = function() {
             self.loginRedirect(true);
           };
 
-          // TODO redirect the home page. Clear memory and refresh the window.
-          glbcKeyRing.clear();
+          // TODO redirect to the home page and clear session state
           if (self.session.role === 'whistleblower') {
             $http.delete('receiptauth').then(logoutPerformed,
                                              logoutPerformed);
@@ -483,8 +485,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               $location.url("/receipt");
             }
           });
-        }, function(e) {
-          throw e;
         });
 
       };
@@ -528,8 +528,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         // Save the decrypted file.
         FileSaver.saveAs(outputBlob, filename);
-      }, function(e) {
-        throw e;
       });
     });
   };
@@ -580,8 +578,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               for (var i = 0; i < decCmnts.length; i++) {
                 tip.comments[i].content = decCmnts[i];
               }
-            }, function(e) {
-              throw e;
             });
           }
 
@@ -591,8 +587,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               for (var i = 0; i < decMsgs.length; i++) {
                 tip.messages[i].content = decMsgs[i];
               }
-            }, function(e) {
-            throw e;
             });
           }
 
@@ -620,8 +614,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 newMessage.content = content; // Display original text
                 tip.messages.unshift(newMessage);
               });
-            }, function(e){
-              throw e;
             });
           };
 
@@ -675,11 +667,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.messages = [];
 
-        function throwUp(e) { throw e; }
-
         $q.all([tip.receivers.$promise, comments.$promise, tip.messages.$promise]).then(function() {
 
           glbcWhistleblower.initialize(tip.ccrypto_key_private, tip.receivers);
+          glbcWhistleblower.unlock();
 
           tip.msg_receiver_selected = null;
           tip.msg_receivers_selector = [];
@@ -701,7 +692,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 for (var i = 0; i < decCmnts.length; i++) {
                   tip.comments[i].content = decCmnts[i];
                 }
-              }, throwUp);
+              });
             }
           });
 
@@ -715,7 +706,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 newComment.content = content;
                 tip.comments.unshift(newComment);
               });
-            }, throwUp);
+            });
           };
 
           tip.newMessage = function(content) {
@@ -729,7 +720,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 newMessage.content = content;
                 tip.messages.unshift(newMessage);
               });
-            }, throwUp);
+            });
           };
 
           tip.updateMessages = function () {
@@ -744,7 +735,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                   for (var i = 0; i < decryptedMsgs.length; i++){
                     tip.messages[i].content = decryptedMsgs[i];
                   }
-                }, throwUp);
+                });
               });
             }
           };
@@ -1231,8 +1222,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           }
         });
-      }
-    }
+      },
+    };
 }]).
   factory('fieldUtilities', ['$filter', 'CONSTANTS', function($filter, CONSTANTS) {
       var getValidator = function(field) {

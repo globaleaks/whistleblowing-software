@@ -602,21 +602,11 @@ angular.module('GLBrowserCrypto', [])
     unlockKeyRing: function(scrypt_passphrase) {
       return keyRing.privateKey.decrypt(scrypt_passphrase);
     },
-    _unlock: function() {
-      return this.unlockKeyRing(keyRing._passphrase);
-    },
-
     changeKeyPassphrase: function(old_pw, new_pw) {
       this.unlockKeyRing(old_pw);
       this.lockKeyRing(new_pw);
     },
 
-    // TODO remove me
-    _storePassphrase: function(passphrase) {
-      keyRing._passphrase = passphrase;
-    },
-
-    // TODO needs scrutiny
     clear: function() {
       keyRing = {};
     }

@@ -19,13 +19,12 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistl
 
     if (file.file.encrypted === undefined) {
       event.preventDefault();
-      glbcWhistleblower.handleFileEncryption(file.file, $scope.submission.receivers).then(function(outputFile) {
+      glbcWhistleblower.handleFileEncryption(file.file, $scope.submission.receivers)
+      .then(function(outputFile) {
         outputFile.encrypted = true;
         $timeout(function() {
           flow.addFile(outputFile);
         }, 0);
-      }, function(err) {
-        throw err;
       });
     }
   });

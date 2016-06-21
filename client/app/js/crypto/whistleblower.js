@@ -1,25 +1,35 @@
 angular.module('GLBrowserCrypto')
 .factory('glbcWhistleblower', ['$q', 'pgp', 'glbcCipherLib', 'glbcKeyLib', 'glbcKeyRing', function($q, pgp, glbcCipherLib, glbcKeyLib, glbcKeyRing) {
 
+  var passphrase = null;
+
   var variables = {
     keyDerived: false,
-    passphrase: null,
   };
 
   return {
     variables: variables,
 
-    storePassphrase: function(passphrase) {
-      if (variables.passphrase !== null) {
-        // TODO handle the no-op...
-        //throw new Error('Overwriting a WBs passphrase');
-      }
-      variables.passphrase = passphrase;
+    unlock: function() {
+      return glbcKeyRing.unlockKeyRing(passphrase);
+    },
+
+    lock: function() {
+      return glbcKeyRing.lockKeyRing(passphrase);
+    },
+
+    storePassphrase: function(pass) {
+      passphrase = pass;
+    },
+
+    clear: function() {
+      passphrase = "xxxxxxxxxxx";
+      glbcKeyRing.clear();
     },
 
     initialize: function(armoredPrivateKey, receivers) {
       glbcKeyRing.initialize(armoredPrivateKey, 'whistleblower');
-      if (variables.passphrase === null) {
+      if (passphrase === null) {
         throw new Error('WB key passphrase is null');
       }
 
@@ -31,8 +41,6 @@ angular.module('GLBrowserCrypto')
       });
 
       variables.keyDerived = true; 
-
-      return glbcKeyRing.unlockKeyRing(variables.passphrase);
     },
 
     /**
@@ -42,7 +50,8 @@ angular.module('GLBrowserCrypto')
      * @return {Promise}
      **/
     deriveKey: function(keycode, salt, submission) {
-      return glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
+      var self = this;
+      var p = glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
         submission.receipt_hash = result.authentication;
         glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
           var armored_priv_key = keys.ccrypto_key_private.armor();
@@ -50,8 +59,9 @@ angular.module('GLBrowserCrypto')
           if (!success) {
             throw new Error('Key Derivation failed!');
           }
-          // TODO remove unlock
-          glbcKeyRing.unlockKeyRing(result.passphrase);
+
+          self.storePassphrase(result.passphrase);
+          self.unlock();
 
           submission.ccrypto_key_private = armored_priv_key;
           submission.ccrypto_key_public = keys.ccrypto_key_public.armor();
@@ -59,6 +69,7 @@ angular.module('GLBrowserCrypto')
           variables.keyDerived = true;
         });
       });
+      return p;
     },
 
    /** 
@@ -72,17 +83,10 @@ angular.module('GLBrowserCrypto')
       var deferred = $q.defer();
 
       glbcCipherLib.createArrayFromBlob(file).then(function(fileArr) {
-        // Get the public keys for each receiver
-        // TODO TODO TODO Remove temp public key
-        var pubKeyStrs = receivers.map(function(rec) { return rec.ccrypto_key_public; });
-        // TODO TODO TODO
-        var pubKeys;
-        try {
-          pubKeys = glbcCipherLib.loadPublicKeys(pubKeyStrs);
-        } catch(err) {
-          deferred.reject(err);
-          return;
-        }
+
+        var pubKeys = receivers.map(function(rec) {
+          return glbcKeyRing.getPubKey(rec.id);
+        });
         
         var options = {
           data: fileArr,
