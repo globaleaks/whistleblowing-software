@@ -15,6 +15,7 @@ import shutil
 
 from cyclone import httpserver
 from cyclone.web import Application
+from storm.expr import In
 from storm.twisted.testing import FakeThreadPool
 from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
@@ -488,6 +489,14 @@ class TestGL(unittest.TestCase):
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == itip_id)
 
         return [serialize_internalfile(ifile) for ifile in ifiles]
+
+    @transact_ro
+    def get_receiverfiles_by_itip(self, store, itip_id):
+        internalfiles_ids = [ifile.id for ifile in store.find(models.InternalFile, models.InternalFile.internaltip_id == itip_id)]
+
+        rfiles = store.find(models.ReceiverFile, In(models.ReceiverFile.internalfile_id, internalfiles_ids))
+
+        return [serialize_receiverfile(rfile) for rfile in rfiles]
 
 
 class TestGLWithPopulatedDB(TestGL):

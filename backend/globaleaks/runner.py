@@ -15,7 +15,7 @@ from globaleaks.db import init_db, clean_untracked_files, \
 from globaleaks.db.appdata import update_appdata
 
 from globaleaks.jobs import session_management_sched, statistics_sched, \
-    notification_sched, cleaning_sched, pgp_check_sched
+    notification_sched, delivery_sched, cleaning_sched, pgp_check_sched
 
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now, disable_swap
@@ -36,6 +36,10 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         """
         if test_reactor:
             self._reactor = test_reactor
+
+        # Scheduling the Delivery schedule to be executed every 2 seconds
+        delivery = delivery_sched.DeliverySchedule()
+        self._reactor.callLater(1, delivery.start, 2)
 
         # Scheduling the Anomalies Check schedule to be executed every 30 seconds
         anomaly = statistics_sched.AnomaliesSchedule()

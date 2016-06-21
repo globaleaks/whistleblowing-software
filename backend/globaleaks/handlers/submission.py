@@ -259,6 +259,7 @@ def serialize_receiverfile(rfile):
         'size': rfile.internalfile.size,
         'downloads': rfile.downloads,
         'last_access': datetime_to_ISO8601(rfile.last_access),
+        'status': rfile.status,
         'href': "/rtip/" + rfile.receivertip_id + "/download/" + rfile.id
     }
 
@@ -372,26 +373,6 @@ def import_receivers(store, submission, receiver_id_list):
         raise errors.SubmissionValidationFailure("needed almost one receiver")
 
 
-def db_create_receiverfile(store, rtip, ifile):
-    """
-    This function roll takes a ReceiverTip and an InternalFile and creates
-    the correspondent ReceiverFile.
-    """
-    receiverfile = models.ReceiverFile()
-    receiverfile.internalfile_id = ifile.id
-    receiverfile.receivertip_id = rtip.id
-    receiverfile.file_path = ifile.file_path
-
-    # https://github.com/globaleaks/GlobaLeaks/issues/444
-    # avoid to mark the receiverfile as new if it is part of a submission
-    # this way we avoid to send unuseful messages
-    receiverfile.new = False if ifile.submission else True
-
-    store.add(receiverfile)
-
-    return receiverfile
-
-
 def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
@@ -477,17 +458,10 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.debug("=> file associated %s|%s (%d bytes)" %
                   (new_file.name, new_file.content_type, new_file.size))
 
-    created_rtips = 0
-    created_rfiles = 0
     for receiver in submission.receivers:
-        rtip = db_create_receivertip(store, receiver, submission)
-        for ifile in ifiles:
-            db_create_receiverfile(store, rtip, ifile)
-            created_rfiles += 1
-        created_rtips += 1
+        db_create_receivertip(store, receiver, submission)
 
-    log.debug("The finalized submissions had created %d ReceiverTip(s) and %d ReceiverFiles" %
-              (created_rtips, created_rfiles))
+    log.debug("Finalized submission creating %d ReceiverTip(s)" % submission.receivers.count())
 
     return serialize_whistleblower_tip(store, submission, language)
 

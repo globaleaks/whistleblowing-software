@@ -23,6 +23,7 @@ from globaleaks.handlers.submission import serialize_receiver_tip, \
     serialize_internalfile, serialize_receiverfile
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile
 from globaleaks.rest import errors
+from globaleaks.security import GLSecureFile
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
@@ -63,7 +64,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
 
     store.add(ifile)
 
-    log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
+    log.debug("InternalFile registered on the db")
 
     return serialize_internalfile(ifile)
 

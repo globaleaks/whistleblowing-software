@@ -252,6 +252,20 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         else:
             return self.decryptor.finalize()
 
+    @staticmethod
+    def remove(file_path):
+        # Remove the AES file
+        try:
+            os.remove(file_path)
+        except OSError as ose:
+            log.err("Unable to remove %s: %s" % (file_path, ose.message))
+
+        # Remove the AES file key
+        try:
+            file_name = os.path.basename(file_path).split('.')[0]
+            os.remove(os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, file_name))))
+        except OSError as ose:
+            log.err("Unable to remove keyfile associated with %s: %s" % (file_path, ose.message))
 
 class GLSecureFile(GLSecureTemporaryFile):
     def __init__(self, filepath):

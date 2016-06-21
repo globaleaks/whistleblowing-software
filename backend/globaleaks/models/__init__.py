@@ -375,6 +375,14 @@ class ReceiverFile(Model):
 
     new = Int(default=True)
 
+    status = Unicode()
+    # statuses: 'reference', 'encrypted', 'unavailable', 'nokey', 'bcrypto'
+    # reference = receiverfile.file_path reference internalfile.file_path
+    # encrypted = receiverfile.file_path is an encrypted file for
+    #                                    the specific receiver
+    # unavailable = the file was supposed to be available but something goes
+    # wrong and now is lost
+
 
 class Comment(Model):
     """

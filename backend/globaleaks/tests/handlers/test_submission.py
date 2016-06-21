@@ -8,6 +8,7 @@ from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.admin.context import get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.submission import SubmissionInstance
+from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.models import InternalTip
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -23,6 +24,14 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True
 
     encryption_scenario = 'ENCRYPTED'
+
+    files_created = 6
+
+    counters_check = {
+        'encrypted': 0,
+        'reference': 0,
+        'bcrypto': 6
+    }
 
     @inlineCallbacks
     def create_submission(self, request):
@@ -56,6 +65,33 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.fil = yield self.get_internalfiles_by_itip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
         self.assertEqual(len(self.fil), 3)
+
+        self.rfi = yield self.get_receiverfiles_by_itip(self.submission_desc['id'])
+        self.assertTrue(isinstance(self.rfi, list))
+        self.assertEqual(len(self.rfi), 0)
+
+        delivery_schedule = DeliverySchedule()
+        delivery_schedule.skip_sleep = True
+        yield delivery_schedule.operation()
+
+        self.rfi = yield self.get_receiverfiles_by_itip(self.submission_desc['id'])
+        self.assertTrue(isinstance(self.rfi, list))
+        self.assertEqual(len(self.rfi), 6)
+
+        counters = {
+            'encrypted': 0,
+            'reference': 0,
+            'bcrypto': 6
+        }
+
+        for i in range(0, self.files_created):
+            if self.rfi[i]['status'] not in counters:
+                counters[self.rfi[i]['status']] = 1
+            else:
+                counters[self.rfi[i]['status']] += 1
+
+        for key in self.counters_check.keys():
+            self.assertEqual(counters[key], self.counters_check[key])
 
     @inlineCallbacks
     def test_update_submission(self):

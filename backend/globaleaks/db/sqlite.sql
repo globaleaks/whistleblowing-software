@@ -103,6 +103,7 @@ CREATE TABLE receiverfile (
     last_access TEXT,
     internalfile_id TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
+    status TEXT NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey', 'bcrypto')),
     new INTEGER  NOT NULL,
     FOREIGN KEY (internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
