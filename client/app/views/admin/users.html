@@ -6,28 +6,36 @@
         <div class="editorTitle" data-translate>Add new user</div>
         <div class="form-group">
           <label data-translate>Role</label>
-          <select name="role" class="form-control" data-ng-model="new_user.role" required>
-            <option value="admin" data-translate>Admin</option>
-            <option value="receiver" data-translate>Recipient</option>
-            <option value="custodian" data-ng-if="admin.node.enable_experimental_features" data-translate>Custodian</option>
-          </select>
-          <div class="text-danger" data-ng-show="newUser.role.$error.required" data-translate>This field is mandatory</div>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+          <div data-ng-class="{'has-error': newUser.role.$error.required}">
+            <select name="role" class="form-control" data-ng-model="new_user.role" required>
+              <option value="admin" data-translate>Admin</option>
+              <option value="receiver" data-translate>Recipient</option>
+              <option value="custodian" data-ng-if="admin.node.enable_experimental_features" data-translate>Custodian</option>
+            </select>
+          </div>
         </div>
         <div class="form-group" data-ng-if="new_user.role !== 'receiver' || !node.simplified_login">
           <label data-translate>Username</label>
-          <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
-          <div class="text-danger" data-ng-show="newUser.username.$error.required" data-translate>This field is mandatory</div>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+          <div data-ng-class="{'has-error': newUser.username.$error.required}">
+            <input class="form-control" name="username" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.username" type="text" required />
+          </div>
         </div>
         <div class="form-group">
           <label data-translate>Name</label>
-          <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
-          <div class="text-danger" data-ng-show="newUser.name.$error.required" data-translate>This field is mandatory</div>
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+          <div data-ng-class="{'has-error': newUser.name.$error.required}">
+            <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="new_user.name" type="text" required />
+          </div>
         </div>
         <div class="form-group">
           <label data-translate>Email address</label>
-          <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+          <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+          <div data-ng-class="{'has-error': newUser.email.$error}">
+            <input class="form-control" name="email" data-ng-model="new_user.email" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required />
+          </div>
           <div class="text-danger" data-ng-show="newUser.email.$error.pattern" data-translate>Invalid email address</div>
-          <div class="text-danger" data-ng-show="newUser.email.$error.required" data-translate>This field is mandatory</div>
         </div>
         <div class="form-group">
           <label data-translate>Password</label>
@@ -108,8 +116,8 @@
                   </div>
                   <div class="form-group">
                     <label data-translate>Public pseudonym</label>
-                    <input class="form-control" name="name" maxlength="{{node.maximum_namesize}}" data-ng-model="user.public_name" type="text" required />
-                    <div class="text-danger" data-ng-show="editUser.name.$error.required" data-translate>This field is mandatory</div>
+                    <input class="form-control" name="pseudonym" maxlength="{{node.maximum_namesize}}" data-ng-model="user.public_name" type="text" required />
+                    <div class="text-danger" data-ng-show="editUser.pseudonym.$error.required" data-translate>This field is mandatory</div>
                   </div>
                   <div class="form-group">
                     <label data-translate>Email address</label>
