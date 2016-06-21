@@ -1,8 +1,9 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib', 
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
+  ['$rootScope', '$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
+  function($rootScope, $scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
+    $rootScope.showTipLoadingPanel = true;
 
     $scope.answers = {};
     $scope.uploads = {};
@@ -135,6 +136,8 @@ GLClient.controller('TipCtrl',
               }
             }
           }, false);
+
+          $rootScope.showTipLoadingPanel = false;
         });
       });
 
@@ -171,6 +174,7 @@ GLClient.controller('TipCtrl',
             }
           });
 
+          $rootScope.showTipLoadingPanel = false;
         });
       });
     } else {

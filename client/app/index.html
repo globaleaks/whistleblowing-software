@@ -26,7 +26,8 @@
 
   <body>
     <style type="text/css">
-      #LoadingOverlay {
+      #LoadingOverlay,
+      .LoadingOverlay {
         position: fixed;
         width: 100%;
         height:100%;
@@ -37,7 +38,8 @@
         text-align: center;
       }
 
-      #LoaderBox {
+      #LoaderBox,
+      .LoaderBox {
         position: relative;
         margin: 0 auto;
         width: 30%;
@@ -52,7 +54,8 @@
         -webkit-border-radius: 10px 10px 10px 10px;
       }
 
-      #LoaderBoxContent {
+      #LoaderBoxContent,
+      .LoaderBoxContent {
         margin: 0 auto;
         font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
         font-size: 48px;
@@ -165,6 +168,14 @@
           <div id="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>
             <div data-translate>Loading…</div>
+          </div>
+        </div>
+      </div>
+      <div class="LoadingOverlay"  data-ng-show="showTipLoadingPanel">
+        <div class="LoaderBox" class="ng-cloak">
+          <div class="LoaderBoxContent">
+            <div class="glyphicon glyphicon-asterisk gly-spin"></div>
+            <div data-translate>Decrypting…</div>
           </div>
         </div>
       </div>
