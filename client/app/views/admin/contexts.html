@@ -5,10 +5,12 @@
       <form name="newContext" class="addContext col-md-6" novalidate>
         <div class="editorTitle" data-translate>Add new context</div>
         <div class="form-group">
-          <label data-translate>Name</label>
-          <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
-          <div class="text-danger" data-ng-show="newContext.name.$error.required">
-            <span data-translate>This field is mandatory</span>
+          <label>
+            <span data-translate>Name</span>
+            <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
+          </label>
+          <div data-ng-class="{'has-error': newContext.name.$error.required}">
+            <input name="name" class="form-control" data-ng-model="new_context.name" maxlength="{{node.maximum_namesize}}" type="text" required />
           </div>
         </div>
         <div class="form-group">
