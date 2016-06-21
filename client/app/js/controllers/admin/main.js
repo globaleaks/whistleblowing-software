@@ -216,8 +216,8 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles',
 
   $scope.update_static_files();
 }]).
-controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
-  function($scope, $uibModal){
+controller('AdminAdvancedCtrl', ['$scope',
+  function($scope){
   $scope.tabs = [
     {
       title:"Main configuration",

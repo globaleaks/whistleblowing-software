@@ -97,26 +97,23 @@ angular.module('GLServices', ['ngResource']).
 
           function error_fn(e) {
             self.loginInProgress = false;
-            console.log(e);
             return e;
           }
 
+          var p;
           if (username === 'whistleblower') {
             password = password.replace(/\D/g,'');
-            var p = glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt)
+            p = glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt)
             .then(function(result) {
               var password_hash = result.authentication;
               glbcWhistleblower.storePassphrase(result.passphrase);
               return $http.post('receiptauth', {'receipt_hash': password_hash});
             })
             .then(success_fn, error_fn);
-            return p;
           } else {
             var f = Array(129).join('f');
-            var p = $http.post('authentication',
-                               {'step': 1, 'username': username, 'auth_token_hash': f})
+            p = $http.post('authentication', {'step': 1, 'username': username, 'auth_token_hash': f})
             .then(function(response) {
-
               self.user_salt = response.data.salt;
               return glbcKeyLib.deriveUserPassword(password, response.data.salt);
             })
@@ -127,8 +124,8 @@ angular.module('GLServices', ['ngResource']).
                                 {'step': 2, 'username': username, 'auth_token_hash': auth_token_hash});
             })
             .then(success_fn, error_fn);
-            return p;
           }
+          return p;
         };
 
         self.getLoginUri = function (role, path) {
@@ -559,10 +556,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.receivers = RTipReceiverResource.query(tipID);
 
         tip.comments = [];
-        comments = tip.enable_comments ? RTipCommentResource.query(tipID) : {$promise: false};
+        var comments = tip.enable_comments ? RTipCommentResource.query(tipID) : {$promise: false};
 
         tip.messages = [];
-        messages = tip.enable_messages ? RTipMessageResource.query(tipID) : {$promise: false};
+        var messages = tip.enable_messages ? RTipMessageResource.query(tipID) : {$promise: false};
 
         glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
 
@@ -674,7 +671,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         tip.receivers = WBTipReceiverResource.query();
 
         tip.comments = [];
-        comments = tip.enable_comments ? WBTipCommentResource.query() : {$promise: false};
+        var comments = tip.enable_comments ? WBTipCommentResource.query() : {$promise: false};
 
         tip.messages = [];
 
