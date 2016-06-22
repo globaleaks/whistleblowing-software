@@ -1,6 +1,5 @@
 /*
-  This set of UT validate request/responses
-  against public resources.
+  This set of UT validate request/response against public resources.
 */
 
 var request = require('supertest');
@@ -71,7 +70,7 @@ public_resources.forEach(function(req){
             // https://npmjs.org/package/jsonschema
           }
           done();
-        } 
+        }
       });
     });
   });
@@ -82,6 +81,29 @@ public_resources.forEach(function(req){
     it('responds with 405', function(done){
       app
       .post(req['url'])
+      .expect(405)
+      .end(function(err, res) {
+        if (err) {
+          return done(err);
+        } else {
+          validate_mandatory_headers(res.headers);
+
+          if (req['type'] === 'application/json') {
+            // TODO JSON FORMAT VALIDATION
+            // https://npmjs.org/package/jsonschema
+          }
+          done();
+        }
+      });
+    });
+  });
+});
+
+public_resources.forEach(function(req){
+  describe('PUT ' + req['url'], function(){
+    it('responds with 405', function(done){
+      app
+      .put(req['url'])
       .expect(405)
       .end(function(err, res) {
         if (err) {

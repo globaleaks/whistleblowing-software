@@ -138,7 +138,7 @@ module.exports = function(grunt) {
           timeout: 30000, 
           reporter: 'list',
         },
-        src: ['tests/api/test_*.js'],
+        src: ['tests/api/test.js'],
       },
     },
 
