@@ -82,7 +82,7 @@ def db_import_fields(store, step, fieldgroup, fields):
         for option in f_options:
             f.options.add(models.db_forge_obj(store, models.FieldOption, option))
 
-        if (step):
+        if step:
             step.children.add(f)
         else:
             fieldgroup.children.add(f)

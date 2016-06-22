@@ -56,7 +56,6 @@ class GLClientContextFactory(ClientContextFactory):
     #     use options: SSL_OP_NO_SSLv2 and SSL_OP_NO_SSLv3
     #
     #     This trick make openssl consider valid all TLS methods.
-
     method = SSL.SSLv23_METHOD
 
     _contextFactory = SSL.Context
@@ -222,7 +221,7 @@ def mail_exception_handler(etype, value, tback):
 
 
 def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
-    if (GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit):
+    if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
         return
 
     if isinstance(mail_body, str) or isinstance(mail_body, unicode):
