@@ -51,7 +51,6 @@ def receiverfile_planning(store):
             log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)" %
                     (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
 
-        
         if ifile.processing_attempts:
             log.debug("Starting handling receiverfiles creation for ifile %s retry %d/%d" %
                   (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
