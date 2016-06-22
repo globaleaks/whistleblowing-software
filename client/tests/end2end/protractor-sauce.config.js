@@ -11,6 +11,7 @@ exports.config = {
 
   baseUrl: 'http://localhost:9000/',
 
+  troubleshoot: false,
   directConnect: false,
 
   sauceUser: process.env.SAUCE_USERNAME,
@@ -27,7 +28,6 @@ exports.config = {
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
-    showColors: true,
     defaultTimeoutInterval: 360000
   }
 };
