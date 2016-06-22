@@ -19,7 +19,7 @@ describe('admin configure, add, and delete contexts', function() {
   it('should add new contexts', function() {
     var add_context = function(context_name) {
       element(by.model('new_context.name')).sendKeys(context_name);
-      element(by.css('[data-ng-click="add_context()"]')).click();
+      element(by.id('add-button')).click();
       utils.waitUntilReady(element(by.xpath(".//*[text()='" + context_name + "']")));
     };
 
