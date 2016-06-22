@@ -734,7 +734,7 @@ class TestHandlerWithPopulatedDB(TestHandler):
         self.initialization()
 
 
-class MockDict():
+class MockDict:
     """
     This class just create all the shit we need for emulate a GLNode
     """
