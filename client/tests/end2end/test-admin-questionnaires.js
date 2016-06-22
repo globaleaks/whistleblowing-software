@@ -2,20 +2,23 @@ var utils = require('./utils.js');
 
 describe('admin add, configure and delete questionnaires', function() {
   var add_questionnaires = function(questionnaire_name) {
+    var add_button = element(by.css('[data-ng-click="add_questionnaire()"]'));
     element(by.model('new_questionnaire.name')).sendKeys(questionnaire_name);
-    element(by.css('[data-ng-click="add_questionnaire()"]')).click();
+    browser.actions().mouseMove(add_button).click().perform();
     utils.waitUntilReady(element(by.xpath(".//*[text()='" + questionnaire_name + "']")));
   };
 
   var add_question = function(question_type) {
+    var add_button = element.all(by.css('[data-ng-click="add_field()"]')).first();
     element.all(by.model('new_field.label')).first().sendKeys(question_type);
     element.all(by.model('new_field.type')).first().element(by.xpath(".//*[text()='" + question_type + "']")).click();
-    element.all(by.css('[data-ng-click="add_field()"]')).first().click();
+    browser.actions().mouseMove(add_button).click().perform();
   };
 
   var add_step = function(step_label) {
+    var add_button = element(by.css('[data-ng-click="add_step()"]'));
     element(by.model('new_step.label')).sendKeys(step_label);
-    element(by.css('[data-ng-click="add_step()"]')).click();
+    browser.actions().mouseMove(add_button).click().perform();
     utils.waitUntilReady(element(by.xpath(".//*[text()='" + step_label + "']")));
   };
 
