@@ -103,7 +103,7 @@ angular.module('GLBrowserCrypto')
         // Note application/octet-stream must be explicitly set or the new File
         // will append leading and trailing bytes to the upload.
         var cipherBlob = new Blob([cipherTextArr.buffer], {type:'application/octet-stream'});
-        var encFile = new File([cipherBlob], file.name+'.pgp');
+        var encFile = new File([cipherBlob], file.name);
         deferred.resolve(encFile);
       });
       return deferred.promise;

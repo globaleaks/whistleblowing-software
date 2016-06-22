@@ -1,9 +1,9 @@
 GLClient.controller('TipCtrl',
-  ['$rootScope', '$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
-  function($rootScope, $scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
-    $rootScope.showTipLoadingPanel = true;
+    $scope.showTipLoadingPanel = true;
 
     $scope.answers = {};
     $scope.uploads = {};
@@ -127,6 +127,8 @@ GLClient.controller('TipCtrl',
             tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
           }
 
+          $scope.showTipLoadingPanel = false;
+
           tip.updateMessages();
 
           $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
@@ -136,8 +138,6 @@ GLClient.controller('TipCtrl',
               }
             }
           }, false);
-
-          $rootScope.showTipLoadingPanel = false;
         });
       });
 
@@ -153,6 +153,7 @@ GLClient.controller('TipCtrl',
 
         glbcCipherLib.decryptAndVerifyAnswers(c).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
+          $scope.showTipLoadingPanel = false;
 
           $scope.tip = tip;
           $scope.extractSpecialTipFields(tip);
@@ -174,7 +175,6 @@ GLClient.controller('TipCtrl',
             }
           });
 
-          $rootScope.showTipLoadingPanel = false;
         });
       });
     } else {

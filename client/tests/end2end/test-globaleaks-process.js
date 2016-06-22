@@ -48,6 +48,7 @@ describe('globaLeaks process', function() {
                 receipts.unshift(txt);
                 element(by.id('ReceiptButton')).click().then(function() {
                   utils.waitForUrl('/status');
+                  utils.waitUntilHidden($('.LoadingOverlay'), 5000);
                   utils.logout();
                 });
               });
@@ -90,26 +91,28 @@ describe('globaLeaks process', function() {
     utils.login_receiver(receiver_username, receiver_password);
 
     element(by.id('tip-0')).evaluate('tip.id').then(function(id) {
-     utils.logout('/login');
-     utils.login_receiver(receiver_username, receiver_password, '/#/status/' + id);
+      utils.logout('/login');
+      utils.login_receiver(receiver_username, receiver_password, '/#/status/' + id);
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
 
-     // Configure label_1
-     expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
-     element(by.model('tip.label')).sendKeys(label_1);
-     element(by.id('assignLabelButton')).click();
+      // Configure label_1
+      expect(element(by.xpath("//*[contains(text(),'" + tip_text + "')]")).getText()).toEqual(tip_text);
+      element(by.model('tip.label')).sendKeys(label_1);
+      element(by.id('assignLabelButton')).click();
 
-     browser.waitForAngular();
+      browser.waitForAngular();
 
-     utils.emulateUserRefresh();
+      utils.emulateUserRefresh();
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
 
-     // Check presence of label_1
-     expect(element(by.id('assignLabelButton')).isPresent()).toBe(false);
-     expect(element(by.id('Label')).getText()).toEqual(label_1);
+      // Check presence of label_1
+      expect(element(by.id('assignLabelButton')).isPresent()).toBe(false);
+      expect(element(by.id('Label')).getText()).toEqual(label_1);
 
-     // Configure label_2
-     element(by.id('Label')).click();
-     element(by.model('tip.label')).sendKeys(label_2);
-     element(by.id('assignLabelButton')).click();
+      // Configure label_2
+      element(by.id('Label')).click();
+      element(by.model('tip.label')).sendKeys(label_2);
+      element(by.id('assignLabelButton')).click();
     });
   });
 
@@ -133,9 +136,10 @@ describe('globaLeaks process', function() {
     utils.login_receiver(receiver_username, receiver_password);
 
     element(by.id('tip-0')).click().then(function() {
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
       element(by.model('tip.newCommentContent')).sendKeys(comment);
       element(by.id('comment-action-send')).click().then(function() {
-        browser.waitForAngular();
+        utils.waitUntilReady($('#comment-0'));
         element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
           expect(c).toContain(comment);
           utils.logout('/login');
@@ -151,7 +155,7 @@ describe('globaLeaks process', function() {
       expect(c).toEqual(comment);
       element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
       element(by.id('comment-action-send')).click().then(function() {
-        browser.waitForAngular();
+        utils.waitUntilReady($('#comment-1'));
         element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
           expect(c).toContain(comment_reply);
         });
@@ -181,8 +185,10 @@ describe('globaLeaks process', function() {
     utils.login_receiver(receiver_username, receiver_password);
 
     element(by.id('tip-0')).click().then(function() {
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
       element(by.model('tip.newMessageContent')).sendKeys(message);
       element(by.id('message-action-send')).click().then(function() {
+        utils.waitUntilReady($('#message-0'));
         browser.waitForAngular();
         element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
           expect(m).toContain(message);
@@ -196,11 +202,15 @@ describe('globaLeaks process', function() {
     utils.login_whistleblower(receipts[0]);
 
     element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
+
+      utils.waitUntilReady($('#message-0'), 5000);
       element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message1) {
+
         expect(message1).toEqual(message);
         element(by.model('tip.newMessageContent')).sendKeys(message_reply);
         element(by.id('message-action-send')).click().then(function() {
-          browser.waitForAngular();
+
+          utils.waitUntilReady($('#message-1'));
           element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message2) {
             expect(message2).toContain(message_reply);
           });
@@ -216,6 +226,7 @@ describe('globaLeaks process', function() {
 
       utils.login_receiver(receiver_username, receiver_password);
       element(by.id('tip-0')).click();
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
       element(by.id('tipFileName')).getText().then(function(t) {
         expect(t).toEqual(jasmine.any(String));
         if (!utils.verifyFileDownload()) {
@@ -231,6 +242,8 @@ describe('globaLeaks process', function() {
     utils.login_receiver(receiver_username, receiver_password);
 
     element(by.id('tip-0')).click();
+    utils.waitUntilHidden($('.LoadingOverlay'), 6000);
+
     var silence = element(by.id('tip-action-silence'));
     silence.click();
     var notif = element(by.id('tip-action-notify'));
@@ -286,12 +299,14 @@ describe('globaLeaks process', function() {
     utils.login_receiver(receiver_username, receiver_password);
     
     element(by.id('tip-0')).click();
+    utils.waitUntilHidden($('.LoadingOverlay'), 5000);
     // Get the tip's original expiration date.
     element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
       expect(d).toEqual(jasmine.any(String));
       var startExpiration = new Date(d);
       element(by.id('tip-action-postpone')).click();
       element(by.id('modal-action-ok')).click();
+      utils.waitUntilHidden($('.LoadingOverlay'), 5000);
 
       element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
         expect(d).toEqual(jasmine.any(String));
@@ -306,6 +321,8 @@ describe('globaLeaks process', function() {
 
     // Find the uuid of the first tip.
     element(by.id('tip-2')).click();
+    utils.waitUntilHidden($('.LoadingOverlay'), 5000);
+
     element(by.id('tipFileName')).evaluate('tip.id').then(function(tip_uuid) {
       element(by.id('tip-action-delete')).click();
       element(by.id('modal-action-ok')).click();

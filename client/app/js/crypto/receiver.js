@@ -22,7 +22,6 @@ angular.module('GLBrowserCrypto')
 
     /**
      * @param {Blob} inputBlob the raw encrypted file returned from an http request
-     * @param {pgp.Key} wbPubKey the Whistleblower's public key
      * @return {Promise<Blob>} the decrypted contents of the file.
      */
     decryptAndVerifyFile: function(inputBlob, verify) {
@@ -35,7 +34,7 @@ angular.module('GLBrowserCrypto')
         };
 
         if (verify) {
-          options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower')
+          options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower');
         }
 
         pgp.decrypt(options).then(function(plaintext) {
@@ -45,5 +44,5 @@ angular.module('GLBrowserCrypto')
       });
       return deferred.promise;
     },
-  }
+  };
 }]);

@@ -3,6 +3,9 @@ var utils = require('./utils.js');
 describe('globaLeaks setup wizard', function() {
   it('should allow the user to setup the wizard', function() {
     browser.get('/#/wizard');
+    // Pick english
+    element(by.model('GLTranslate.indirect.appLanguage'))
+      .element(by.xpath(".//*[text()='English']")).click();
 
     var next1 = element(by.id('ButtonNext1'));
     utils.waitUntilReady(next1);
@@ -26,7 +29,7 @@ describe('globaLeaks setup wizard', function() {
 
     var button3 = element(by.id('ButtonNext3'));
     // Wait 20 seconds for the PGP key to generate
-    utils.waitUntilEnabled(button3, 20000);
+    utils.waitUntilClickable(button3, 30000);
     button3.click();
 
     expect(element(by.css('.congratulations')).isPresent()).toBe(true);

@@ -7,12 +7,12 @@ describe('adming configure advanced settings', function() {
 
     expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('4096');
 
-    element(by.model('admin.node.maximum_textsize')).clear().sendKeys('1337');
+    element(by.model('admin.node.maximum_textsize')).clear().sendKeys('9000');
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       utils.emulateUserRefresh();
-      expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('1337');
+      expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('9000');
     });
   });
 });

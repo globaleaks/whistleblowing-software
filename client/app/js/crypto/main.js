@@ -414,11 +414,15 @@ angular.module('GLBrowserCrypto', [])
       };
 
       if (sign) {
-        options['privateKey'] = glbcKeyRing.getKey()
+        options['privateKey'] = glbcKeyRing.getKey();
       }
 
-      return pgp.encrypt(options).then(function(result) {
-        return result.data;
+      return $q(function(resolve, reject) {
+        pgp.encrypt(options).then(function(result) {
+          resolve(result.data);
+        }, function(err) {
+          reject(err);
+        });
       });
     },
 
@@ -428,7 +432,8 @@ angular.module('GLBrowserCrypto', [])
      * @return {Promise<Array<String>>} the list of the decrypted msg contents
      */
     decryptAndVerifyMessages: function(msgs, receivers, verify) {
-      var author_map = {'whistleblower': 'whistleblower'};
+      // TODO replace with something more reliable this is shit.
+      var author_map = {'Whistleblower': 'whistleblower'};
 
       angular.forEach(receivers, function(rec) {
         author_map[rec.name] = rec.id;
@@ -469,7 +474,6 @@ angular.module('GLBrowserCrypto', [])
         return glbcKeyRing.getPubKey(rec.id);
       });
 
-      // TODO notice that the public key is passed twice.
       pubKeys.push(glbcKeyRing.getPubKey('private'));
 
       var options = {
@@ -480,11 +484,15 @@ angular.module('GLBrowserCrypto', [])
       };
 
       if (sign) {
-        options['privateKey'] = glbcKeyRing.getKey()
+        options['privateKey'] = glbcKeyRing.getKey();
       }
 
-      return pgp.encrypt(options).then(function(result) {
-        return result.data;
+      return $q(function(resolve, reject) {
+        pgp.encrypt(options).then(function(result) {
+          resolve(result.data);
+        }, function(err) {
+          reject(err);
+        });
       });
     },
 
@@ -501,10 +509,16 @@ angular.module('GLBrowserCrypto', [])
       };
 
       if (verify) {
-        options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower')
+        options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower');
       }
 
-      return pgp.decrypt(options);
+      return $q(function(resolve, reject) {
+        pgp.decrypt(options).then(function(res) {
+          resolve(res);   
+        }, function(e) {
+          reject(e);
+        });
+      });
     },
  };
 }])

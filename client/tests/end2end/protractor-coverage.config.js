@@ -61,6 +61,7 @@ exports.config = {
     ]);
   },
 
+  allScriptsTimeout: 30000,
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,

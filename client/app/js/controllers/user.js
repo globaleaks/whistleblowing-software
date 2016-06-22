@@ -2,9 +2,7 @@ GLClient
 .controller('ForcedPasswordChangeCtrl', ['$scope', '$location', '$uibModal', 'locationForce', 'Authentication', 'glbcUserKeyGen',
   function($scope, $location, $uibModal, locationForce, Authentication, glbcUserKeyGen) {
     $scope.showKeyChange = false;
-
     glbcUserKeyGen.setup();
-    glbcUserKeyGen.startProcessing();
 
     $scope.inp = {
       old_password: "",
@@ -12,6 +10,7 @@ GLClient
     };
 
     $scope.pass_next = function () {
+      glbcUserKeyGen.startProcessing();
 
       locationForce.clear();
 

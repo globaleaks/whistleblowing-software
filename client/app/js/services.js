@@ -509,7 +509,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 // RTipDownloadFile first makes an authenticated get request for the encrypted
 // file data. Then it takes that data converts it into an Uint8array, unlocks
 // the recipeint's privateKey, decrypts the file and saves it to disk.
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcReceiver', 'glbcCipherLib', function($http, $filter, FileSaver, glbcReceiver, glbcCipherLib) {
+ factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcReceiver', function($http, $filter, FileSaver, glbcReceiver) {
   return function(tip, file) {
     $http({
       method: 'GET',
@@ -517,15 +517,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       responseType: 'blob',
     }).then(function (response) {
       var inputBlob = response.data;
-      // TODO use key from keyRing instead
-      var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
 
       glbcReceiver.decryptAndVerifyFile(inputBlob).then(function(outputBlob) {
-        // Before saving clean up the filename
-        var filename = file.name.slice(0, file.name.length - 4);
-
         // Save the decrypted file.
-        FileSaver.saveAs(outputBlob, filename);
+        FileSaver.saveAs(outputBlob, file.name);
       });
     });
   };
@@ -543,8 +538,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib',
-          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, glbcReceiver, glbcKeyRing, glbcCipherLib) {
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'Authentication', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib',
+          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, Authentication, glbcReceiver, glbcKeyRing, glbcCipherLib) {
     return function(tipID, fn) {
       var self = this;
 
@@ -596,7 +591,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             // Perform decrypt with key on get
             var c = new RTipCommentResource(tipID);
 
-            glbcCipherLib.encryptAndSignComment(content, tip.receivers).then(function(ciphertext) {
+            var recs = tip.receivers.filter(function(r) {
+              return r.id !== Authentication.session.user_id;
+            });
+            glbcCipherLib.encryptAndSignComment(content, recs).then(function(ciphertext) {
               c.content = ciphertext;
               c.$save(function(newComment) {
                 newComment.content = content; // Display original text
@@ -688,10 +686,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             if (tip.enable_comments) {
               glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
               .then(function(decCmnts) {
-                tip.comments = comments;
                 for (var i = 0; i < decCmnts.length; i++) {
-                  tip.comments[i].content = decCmnts[i];
+                  comments[i].content = decCmnts[i];
                 }
+                tip.comments = comments;
               });
             }
           });
@@ -727,13 +725,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             if (tip.msg_receiver_selected) {
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
 
-                // Show the encrypted messages in the UI before they are decrypted.
-                tip.messages = messageCollection;
-
-                glbcCipherLib.decryptAndVerifyMessages(tip.messages, tip.receivers)
+                glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
                 .then(function(decryptedMsgs) {
                   for (var i = 0; i < decryptedMsgs.length; i++){
-                    tip.messages[i].content = decryptedMsgs[i];
+                    messageCollection[i].content = decryptedMsgs[i];
+                    tip.messages = messageCollection;
                   }
                 });
               });

@@ -28,7 +28,6 @@ exports.receiver = function() {
   };
 
   this.changePassword = function(old_pw, new_pw) {
-    expect(browser.getLocationAbsUrl()).toContain('/forcedpasswordchange');
     element(by.model('inp.old_password')).sendKeys(old_pw);
     element(by.model('inp.new_password')).sendKeys(new_pw);
     element(by.model('inp.check_password')).sendKeys(new_pw);

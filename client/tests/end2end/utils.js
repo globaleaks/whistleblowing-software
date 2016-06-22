@@ -27,13 +27,26 @@ browser.getCapabilities().then(function(capabilities) {
   };
 });
 
-exports.waitUntilEnabled = function (elm, timeout) {
+function genericWait(waitFn, timeout) {
   var t = timeout === undefined ? 1000 : timeout;
-  browser.wait(function () {
+  return browser.wait(waitFn, t);
+}
+
+exports.waitUntilEnabled = function (elm, timeout) {
+  genericWait(function() {
     return elm.isEnabled();
-  }, t);
+  }, timeout);
 };
 
+exports.waitUntilClickable = function (elm, timeout) {
+  var EC = protractor.ExpectedConditions;
+  genericWait(EC.elementToBeClickable(elm), timeout);
+};
+
+exports.waitUntilHidden = function(elem, timeout) {
+  var EC = protractor.ExpectedConditions;
+  genericWait(EC.invisibilityOf(elem), timeout);
+};
 
 exports.waitUntilReady = function (elm, timeout) {
   var t = timeout === undefined ? 1000 : timeout;
@@ -70,11 +83,11 @@ exports.waitForFile = function (filename, timeout) {
 };
 
 exports.emulateUserRefresh = function () {
-  return browser.getCurrentUrl().then(function(current_url) {
+  browser.getCurrentUrl().then(function(current_url) {
     current_url = current_url.split('#')[1];
-    return browser.setLocation('').then(function() {
-      return browser.setLocation(current_url);
-    });
+    browser.setLocation('');
+    browser.setLocation(current_url);
+    //utils.waitUntilHidden($('.LoadingOverlay'), 5000);
   });
 };
 
@@ -84,9 +97,11 @@ exports.login_whistleblower = function(receipt) {
 
     browser.get('/#/');
 
+
     element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
         exports.waitForUrl('/status');
+        exports.waitUntilHidden($('.LoadingOverlay'), 5000);
         deferred.fulfill();
       });
     });
