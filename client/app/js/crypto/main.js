@@ -158,7 +158,6 @@ angular.module('GLBrowserCrypto', [])
   };
 }])
 .factory('glbcKeyLib', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
-
       var scrypt = function(password,
                           salt,
                           logN,
@@ -358,8 +357,8 @@ angular.module('GLBrowserCrypto', [])
      * @return {Array<pgp.Key>}
      */
     loadPublicKeys: function(armoredKeys) {
-
       var pgpPubKeys = [];
+
       armoredKeys.forEach(function(keyStr) {
         // If there is any problem with validating the keys generate an error.
         if (!glbcKeyLib.validPublicKey(keyStr)) {
@@ -386,12 +385,15 @@ angular.module('GLBrowserCrypto', [])
     createArrayFromBlob: function(blob) {
       var deferred = $q.defer();
       var fileReader = new FileReader();
+
       fileReader.onload = function() {
         var arrayBufferNew = this.result;
         var uintArray = new Uint8Array(arrayBufferNew);
         deferred.resolve(uintArray);
       };
+
       fileReader.readAsArrayBuffer(blob);
+
       return deferred.promise;
     },
 
@@ -400,18 +402,21 @@ angular.module('GLBrowserCrypto', [])
      * @param {String} uuid of the the intended recipient.
      * @return {Promise<String>} a promise for an ASCII armored encrypted message.
      */
-    encryptAndSignMessage: function(m, uuid) {
-
+    encryptAndSignMessage: function(m, uuid, sign) {
       var pubKeys = [glbcKeyRing.getPubKey(uuid),
                      glbcKeyRing.getPubKey('private')];
 
       var options = {
         data: m,
         format: 'utf8',
-        privateKey: glbcKeyRing.getKey(),
         publicKeys: pubKeys,
         armored: true,
       };
+
+      if (sign) {
+        options['privateKey'] = glbcKeyRing.getKey()
+      }
+
       return pgp.encrypt(options).then(function(result) {
         return result.data;
       });
@@ -422,9 +427,9 @@ angular.module('GLBrowserCrypto', [])
      * @param {Array<Object>} receivers who have access to the tip.
      * @return {Promise<Array<String>>} the list of the decrypted msg contents
      */
-    decryptAndVerifyMessages: function(msgs, receivers) {
-
+    decryptAndVerifyMessages: function(msgs, receivers, verify) {
       var author_map = {'whistleblower': 'whistleblower'};
+
       angular.forEach(receivers, function(rec) {
         author_map[rec.name] = rec.id;
       });
@@ -434,6 +439,7 @@ angular.module('GLBrowserCrypto', [])
       });
 
       var decPromises = [];
+
       for (var i = 0; i < msgs.length; i++) {
         var c = pgp.message.readArmored(msgs[i].content);
         var pubKey = glbcKeyRing.getPubKey(msgs[i].author_id);
@@ -441,20 +447,24 @@ angular.module('GLBrowserCrypto', [])
         var options = {
           message: c,
           privateKey: glbcKeyRing.getKey(),
-          publicKeys: pubKey,
           format: 'utf8',
         };
+
+        if (verify) {
+          options['publicKeys'] = pubKey;
+        }
+
         var promise = pgp.decrypt(options).then(function(result) {
           return result.data;
         });
+
         decPromises.push(promise);
       }
 
       return $q.all(decPromises);
     },
 
-    encryptAndSignComment: function(msg, receivers) {
-
+    encryptAndSignComment: function(msg, receivers, sign) {
       var pubKeys = receivers.map(function(rec) {
         return glbcKeyRing.getPubKey(rec.id);
       });
@@ -465,10 +475,14 @@ angular.module('GLBrowserCrypto', [])
       var options = {
         data: msg,
         format: 'utf8',
-        privateKey: glbcKeyRing.getKey(),
         publicKeys: pubKeys,
         armored: true,
       };
+
+      if (sign) {
+        options['privateKey'] = glbcKeyRing.getKey()
+      }
+
       return pgp.encrypt(options).then(function(result) {
         return result.data;
       });
@@ -479,18 +493,18 @@ angular.module('GLBrowserCrypto', [])
      * @param {pgp.Message} message
      * @return {Promise<pgp.Message>}
      */
-    decryptAndVerifyAnswers: function(message) {
-      // TODO glbcKeyRing.unlockKeyRing(passphrase);
-      var wbPubKey = glbcKeyRing.getPubKey('whistleblower');
-
+    decryptAndVerifyAnswers: function(message, verify) {
       var options = {
         message: message,
         format: 'utf8',
         privateKey: glbcKeyRing.getKey(),
-        publicKeys: wbPubKey,
       };
+
+      if (verify) {
+        options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower')
+      }
+
       return pgp.decrypt(options);
-      // TODO glbcKeyRing.lockKeyRing(passphrase);
     },
  };
 }])
@@ -499,14 +513,10 @@ angular.module('GLBrowserCrypto', [])
 // all of the cryptographic operations internally so that the rest of the UI
 // does not.
 .factory('glbcKeyRing', ['$q', 'pgp', 'glbcKeyLib', function($q, pgp, glbcKeyLib) {
-
   function newRing() {
     return {
       privateKey: null,
-      // publicKeys is a map of uuids to pgp.Key objects.
-      publicKeys: {
-
-      },
+      publicKeys: {}, // map of uuids to pgp.Key objects
       _pubKey: null,
       _passphrase: null,
     };
@@ -577,6 +587,7 @@ angular.module('GLBrowserCrypto', [])
       if (angular.isUndefined(uuid)) {
         uuid = 'public';
       }
+
       keyRing.publicKeys[uuid] = keyRing._pubKey;
 
       return true;
@@ -607,6 +618,7 @@ angular.module('GLBrowserCrypto', [])
     unlockKeyRing: function(scrypt_passphrase) {
       return keyRing.privateKey.decrypt(scrypt_passphrase);
     },
+
     changeKeyPassphrase: function(old_pw, new_pw) {
       this.unlockKeyRing(old_pw);
       this.lockKeyRing(new_pw);

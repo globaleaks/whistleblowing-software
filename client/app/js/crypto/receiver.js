@@ -3,7 +3,6 @@ angular.module('GLBrowserCrypto')
   passphrase = null;
 
   return {
-
     storePassphrase: function(pass) {
       passphrase = pass;
     },
@@ -26,16 +25,19 @@ angular.module('GLBrowserCrypto')
      * @param {pgp.Key} wbPubKey the Whistleblower's public key
      * @return {Promise<Blob>} the decrypted contents of the file.
      */
-    decryptAndVerifyFile: function(inputBlob){
+    decryptAndVerifyFile: function(inputBlob, verify) {
       var deferred = $q.defer();
       glbcCipherLib.createArrayFromBlob(inputBlob).then(function(ciphertext) {
-        
         var options = {
           message: pgp.message.read(ciphertext),
           privateKey: glbcKeyRing.getKey(),
-          publicKeys: glbcKeyRing.getPubKey('whistleblower'),
           format: 'binary',
         };
+
+        if (verify) {
+          options['publicKeys'] = glbcKeyRing.getPubKey('whistleblower')
+        }
+
         pgp.decrypt(options).then(function(plaintext) {
           var outputBlob = new Blob([plaintext.data], {type: 'application/octet-stream'});
           deferred.resolve(outputBlob);

@@ -519,8 +519,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       // TODO use key from keyRing instead
       var wbPubKey = glbcCipherLib.loadPublicKeys([tip.ccrypto_key_public])[0];
 
-      FileSaver.saveAs(inputBlob, file.name+'.orig');
-      glbcReceiver.decryptAndVerifyFile(inputBlob, wbPubKey).then(function(outputBlob) {
+      glbcReceiver.decryptAndVerifyFile(inputBlob).then(function(outputBlob) {
         // Before saving clean up the filename
         var filename = file.name.slice(0, file.name.length - 4);
 
