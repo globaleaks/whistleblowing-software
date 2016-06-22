@@ -228,7 +228,7 @@
                   </div>
                   <div class="row" data-ng-disabled="!editable" data-ng-init="open_max_date = false">
                     <div uib-datepicker-popup
-                         ng-model="field.attrs.max_date.value"
+                         data-ng-model="field.attrs.max_date.value"
                          is-open="open_max_date"
                          show-button-bar="false"
                          data-ng-click="open_max_date = !open_max_date">
