@@ -3,19 +3,19 @@ var utils = require('./utils.js');
 describe('admin add, configure and delete questionnaires', function() {
   var add_questionnaires = function(questionnaire_name) {
     element(by.model('new_questionnaire.name')).sendKeys(questionnaire_name);
-    element(by.css('[data-ng-click="add_questionnaire()"]')).click();
+    element(by.id('add-questionnaire-button')).click();
     utils.waitUntilReady(element(by.xpath(".//*[text()='" + questionnaire_name + "']")));
   };
 
   var add_question = function(question_type) {
     element.all(by.model('new_field.label')).first().sendKeys(question_type);
     element.all(by.model('new_field.type')).first().element(by.xpath(".//*[text()='" + question_type + "']")).click();
-    element.all(by.css('[data-ng-click="add_field()"]')).first().click();
+    element.all(by.id('add-field-button')).first().click();
   };
 
   var add_step = function(step_label) {
     element(by.model('new_step.label')).sendKeys(step_label);
-    element(by.css('[data-ng-click="add_step()"]')).click();
+    element(by.id('add-step-button')).click();
     utils.waitUntilReady(element(by.xpath(".//*[text()='" + step_label + "']")));
   };
 

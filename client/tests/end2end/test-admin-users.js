@@ -41,7 +41,7 @@ describe('admin add, configure, and delete users', function() {
       }
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
-      element(by.css('[data-ng-click="add_user()"]')).click();
+      element(by.id('add-button')).click();
       utils.waitUntilReady(element(by.xpath(".//*[text()='" + user.name + "']")));
     };
 
