@@ -418,6 +418,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         });
 
+        self.receivers.forEach(function(rec) {
+          glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
+        });
+
         var keycode = glbcKeyLib.generateKeycode();
         Authentication.keycode = keycode;
 
@@ -470,9 +474,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         // Convert _submission.answers to a binary array in a reasonable way.
         var jsonAnswers = JSON.stringify(answers);
 
-        self.receivers.forEach(function(rec) {
-          glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
-        });
 
         // Encrypt the payload then call submission update to send the xhr request.
         glbcWhistleblower.encryptAndSignAnswers(jsonAnswers, self._submission.receivers)
