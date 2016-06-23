@@ -1,7 +1,9 @@
 var utils = require('./utils.js');
 
-var fs = require('fs');
+var pages = require('./pages.js');
+var receiver = new pages.receiver();
 
+var fs = require('fs');
 var opts = { encoding: 'utf8', flag: 'r' };
 var pgp_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
 
@@ -33,9 +35,6 @@ describe('receiver first login', function() {
   });
 
   it('should be able to load his/her public PGP key', function() {
-    browser.setLocation('receiver/preferences');
-    element(by.cssContainingText("a", "Encryption settings")).click();
-    element(by.model('preferences.pgp_key_public')).sendKeys(pgp_key);
-    element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+    receiver.addPublicKey(pgp_key);
   });
 });

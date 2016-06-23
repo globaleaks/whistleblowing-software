@@ -1,7 +1,5 @@
 var utils = require('./utils.js');
 
-var fs = require('fs');
-
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
     utils.login_custodian('Custodian1', utils.vars['default_password'], '/#/custodian', true);
