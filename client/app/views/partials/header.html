@@ -2,7 +2,7 @@
   <div class="row">
     <div id="HeaderBoxContentLeft" class="col-md-8">
       <div id="LogoBox" class="pull-left">
-        <a href="#/"><img data-ng-src="{{Utils.imgDataUri(node.logo)}}" /></a>
+        <a href="/#{{ session ? session.auth_landing_page : '/' }}"><img data-ng-src="{{Utils.imgDataUri(node.logo)}}" /></a>
       </div>
       <div id="TitleBox" class="pull-left">
         <div id="PageTitle">{{ht}}</div><div id="PageSubtitle" data-ng-if="header_subtitle !== ''"><span id="PageSubtitleSeparator"> -</span> {{header_subtitle | translate}}</div>
