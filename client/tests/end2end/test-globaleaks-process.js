@@ -11,7 +11,7 @@ describe('globaLeaks process', function() {
   var comment_reply = 'comment reply';
   var message = 'message';
   var message_reply = 'message reply';
-  var receiver_username = "Recipient 1";
+  var receiver_username = "Recipient1";
   var receiver_password = utils.vars['user_password'];
 
   var perform_submission = function() {
@@ -87,7 +87,7 @@ describe('globaLeaks process', function() {
     var label_1 = 'seems interesting.';
     var label_2 = 'it\'s a trap!';
 
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     element(by.id('tip-0')).evaluate('tip.id').then(function(id) {
      utils.logout('/login');
@@ -126,7 +126,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to leave a comment to the whistleblower', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     element(by.id('tip-0')).click().then(function() {
       element(by.model('tip.newCommentContent')).sendKeys(comment);
@@ -174,7 +174,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to start a private discussion with the whistleblower', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     element(by.id('tip-0')).click().then(function() {
       element(by.model('tip.newMessageContent')).sendKeys(message);
@@ -210,7 +210,7 @@ describe('globaLeaks process', function() {
         return;
       }
 
-      utils.login_receiver(receiver_username, receiver_password);
+      utils.login_receiver();
       element(by.id('tip-0')).click();
       element(by.id('tipFileName')).getText().then(function(t) {
         expect(t).toEqual(jasmine.any(String));
@@ -224,7 +224,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to disable and renable email notifications', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     element(by.id('tip-0')).click();
     var silence = element(by.id('tip-action-silence'));
@@ -241,7 +241,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to postpone all tips', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     function make_dates(strings) {
       return strings.map(function(s) {
@@ -279,7 +279,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to postpone first submission from its tip page', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
     
     element(by.id('tip-0')).click();
     // Get the tip's original expiration date.
@@ -298,7 +298,7 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to delete third submission from its tip page', function() {
-    utils.login_receiver(receiver_username, receiver_password);
+    utils.login_receiver();
 
     // Find the uuid of the first tip.
     element(by.id('tip-2')).click();
