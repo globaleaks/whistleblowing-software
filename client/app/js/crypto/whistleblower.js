@@ -113,9 +113,10 @@ angular.module('GLBrowserCrypto')
     /**
      * @param {String} jsonAnswers a stringified JSON object containing the msg.
      * @param {Array<String>} receiverIds 
+     * @param {boolean} sign
      * @return {Promise<String>} the armored pgp message
      */
-    encryptAndSignAnswers: function(jsonAnswers, receiverIds) {
+    encryptAndSignAnswers: function(jsonAnswers, receiverIds, sign) {
 
       var pubKeys = receiverIds.map(function(id) {
         return glbcKeyRing.getPubKey(id);
@@ -124,11 +125,14 @@ angular.module('GLBrowserCrypto')
 
       var options = {
         data: jsonAnswers,
-        privateKey: glbcKeyRing.getKey(),
         publicKeys: pubKeys,
         format: 'utf8',
         armor: true,
       };
+
+      if (sign) {
+        options.privateKey = glbcKeyRing.getKey();
+      }
 
       // TODO unlock keyring
       return pgp.encrypt(options).then(function(cipherMsg) {
@@ -139,9 +143,10 @@ angular.module('GLBrowserCrypto')
     /*
      * @param {Array<String>} msgs a list of ASCII armored openpgp messages
      * @param {Array<pgp.Key>} pubKeys a corresponding list of public keys of the signer
+     * @param {boolean} verify
      * @return {Promise<Array<String>>} the list of the decrypted msgs
      */
-    decryptAndVerifyMessages: function(msgs, pubKeys) {
+    decryptAndVerifyMessages: function(msgs, pubKeys, verify) {
       var deferred = $q.defer();
 
       if (msgs.length !== pubKeys.length) {
@@ -151,13 +156,17 @@ angular.module('GLBrowserCrypto')
       var decPromises = [];
       for (var i = 0; i < msgs.length; i++) {
         var msg = pgp.message.readArmored(msgs[i]);
-        var pubKey = pgp.key.readArmored(pubKeys[i]).keys[0];
         var options = {
           message: msg,
           privateKey: glbcKeyRing.getKey(),
-          publicKeys: pubKey,
           format: 'utf8',
         };
+
+        if (verify) {
+          var pubKey = pgp.key.readArmored(pubKeys[i]).keys[0];
+          options.publicKeys = pubKey;
+        }
+
         var promise = pgp.decrypt(options).then(function(result) {
           return result.data;
         });

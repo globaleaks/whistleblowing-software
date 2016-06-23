@@ -391,6 +391,7 @@ angular.module('GLBrowserCrypto', [])
     /**
      * @param {String} m the message to encrypt
      * @param {String} uuid of the the intended recipient.
+     * @param {boolean} sign
      * @return {Promise<String>} a promise for an ASCII armored encrypted message.
      */
     encryptAndSignMessage: function(m, uuid, sign) {
@@ -420,6 +421,7 @@ angular.module('GLBrowserCrypto', [])
     /*
      * @param {Array<Object>} msgs a list of {content: 'a', id: 'a23a-' } objs
      * @param {Array<Object>} receivers who have access to the tip.
+     * @param {boolean} verify
      * @return {Promise<Array<String>>} the list of the decrypted msg contents
      */
     decryptAndVerifyMessages: function(msgs, receivers, verify) {
@@ -460,6 +462,12 @@ angular.module('GLBrowserCrypto', [])
       return $q.all(decPromises);
     },
 
+    /**
+     * @param {String} msg
+     * @param {[<Receivers>]} the intended recipients
+     * @param {boolean} sign
+     * @return {Promise<String>}
+     **/
     encryptAndSignComment: function(msg, receivers, sign) {
       var pubKeys = receivers.map(function(rec) {
         return glbcKeyRing.getPubKey(rec.id);
@@ -490,6 +498,7 @@ angular.module('GLBrowserCrypto', [])
 
     /**
      * @param {pgp.Message} message
+     * @param {boolean} verify
      * @return {Promise<pgp.Message>}
      */
     decryptAndVerifyAnswers: function(message, verify) {

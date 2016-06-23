@@ -22,6 +22,7 @@ angular.module('GLBrowserCrypto')
 
     /**
      * @param {Blob} inputBlob the raw encrypted file returned from an http request
+     * @param {boolean} verify
      * @return {Promise<Blob>} the decrypted contents of the file.
      */
     decryptAndVerifyFile: function(inputBlob, verify) {
