@@ -1,17 +1,10 @@
 /* global Uint8Array */
 
 angular.module('GLBrowserCrypto', [])
-// pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend. This
-// factory handles the proper initialization of a Web Worker for asynchronous
-// operations.
+// pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend.
 .factory('pgp', function() {
-
-  // TODO handle packaging more intelligently, this kicks off yet another xhr request.
-  window.openpgp.initWorker({ path:'components/openpgp/dist/openpgp.worker.js' });
-
   return window.openpgp;
 })
-
 .factory('glbcUtil', ['pgp', function(pgp) {
   var b64s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 

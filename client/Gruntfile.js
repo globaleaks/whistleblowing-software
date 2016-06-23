@@ -48,7 +48,6 @@ module.exports = function(grunt) {
       sources: {
         files: [
           { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
           { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
         ]
       },
