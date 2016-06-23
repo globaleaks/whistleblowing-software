@@ -146,16 +146,6 @@ GLClient.controller('TipCtrl',
         });
 
       });
-    } else {
-      if($location.path() === '/status') {
-        // whistleblower
-        $location.path('/');
-      } else {
-        // receiver
-        var search = 'src=' + $location.path();
-        $location.path('/login');
-        $location.search(search);
-      }
     }
 
     $scope.editLabel = function() {
