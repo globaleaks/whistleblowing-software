@@ -25,23 +25,3 @@ describe('perform rediects on authenticated pages', function() {
     utils.waitForUrl('/custodian?src=%2Fcustodian%2Fidentityaccessrequests');
   });
 });
-
-// TODO
-describe('Click on the GL as a role,', function() {
-
-  it('No auth should redirect home', function() {
-    browser.get('/#/login');
-
-    $('#LogoBox a').click();
-
-    utils.waitForUrl('/#/'); 
-  });
-
-
-  it('Receiver after clicking on a tip should be brought home', function() {
-    // login_receiver
-
-  });
-
-});
-
