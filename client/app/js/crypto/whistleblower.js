@@ -40,7 +40,7 @@ angular.module('GLBrowserCrypto')
         glbcKeyRing.addPubKey(rec.id, rec.ccrypto_key_public);
       });
 
-      variables.keyDerived = true; 
+      variables.keyDerived = true;
     },
 
     /**
@@ -53,7 +53,7 @@ angular.module('GLBrowserCrypto')
       var self = this;
       var p = glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
         submission.receipt_hash = result.authentication;
-        glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
+        return glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
           var armored_priv_key = keys.ccrypto_key_private.armor();
           var success = glbcKeyRing.initialize(armored_priv_key, 'whistleblower');
           if (!success) {
@@ -72,8 +72,8 @@ angular.module('GLBrowserCrypto')
       return p;
     },
 
-   /** 
-    * encrypts the passed file with the keys of the receivers and returns a 
+   /**
+    * encrypts the passed file with the keys of the receivers and returns a
     * new encrypted file with '.pgp' added as the extension.
     * @param {File} file 
     * @param {Array<Object>} receivers 
@@ -87,7 +87,7 @@ angular.module('GLBrowserCrypto')
         var pubKeys = receivers.map(function(rec) {
           return glbcKeyRing.getPubKey(rec.id);
         });
-        
+
         var options = {
           data: fileArr,
           publicKeys: pubKeys,
@@ -118,7 +118,7 @@ angular.module('GLBrowserCrypto')
     encryptAndSignAnswers: function(jsonAnswers, receiverIds) {
 
       var pubKeys = receiverIds.map(function(id) {
-        return glbcKeyRing.getPubKey(id); 
+        return glbcKeyRing.getPubKey(id);
       });
       pubKeys.push(glbcKeyRing.getPubKey('whistleblower'));
 
@@ -156,14 +156,14 @@ angular.module('GLBrowserCrypto')
           message: msg,
           privateKey: glbcKeyRing.getKey(),
           publicKeys: pubKey,
-          format: 'utf8', 
+          format: 'utf8',
         };
         var promise = pgp.decrypt(options).then(function(result) {
-          return result.data; 
+          return result.data;
         });
         decPromises.push(promise);
       }
-      
+
       return $q.all(decPromises);
     },
 

@@ -1,3 +1,5 @@
+/* global Uint8Array */
+
 angular.module('GLBrowserCrypto', [])
 // pgp is a factory for OpenPGP.js for the entire GlobaLeaks frontend. This
 // factory handles the proper initialization of a Web Worker for asynchronous
@@ -211,13 +213,9 @@ angular.module('GLBrowserCrypto', [])
        * @returns {Object} hex passphrase and hex authentication token.
        **/
       deriveUserPassword: function (user_password, salt) {
-        console.log('pass, salt', user_password, salt);
-
         var promise = this.scrypt(user_password, salt, 14, 256)
         .then(function(passphrase) {
-          console.log('hex: scrypt(pass)', passphrase.stretched);
           var token_hash =  pgp.crypto.hash.sha512(passphrase.stretched);
-          console.log('hex: sha(result)', glbcUtil.bin2hex(token_hash));
           return {
             passphrase: glbcUtil.bin2hex(passphrase.stretched),
             authentication: glbcUtil.bin2hex(token_hash),
@@ -365,7 +363,7 @@ angular.module('GLBrowserCrypto', [])
           throw new Error("Attempted to load invalid public key");
         }
 
-        res = pgp.key.readArmored(keyStr);
+        var res = pgp.key.readArmored(keyStr);
         if (angular.isDefined(res.err)) {
           // Note only the first error is thrown
           throw res.err[0];
@@ -586,7 +584,6 @@ angular.module('GLBrowserCrypto', [])
       if (!glbcKeyLib.validPrivateKey(armoredPrivKey)) {
         throw new Error('Failed to parse private key!');
       }
-      console.log('Initializing public key');
 
       // Parsing the private key here should produce no errors. Once it is no
       // longer needed we will explicity remove references to this key.

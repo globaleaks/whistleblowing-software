@@ -25,7 +25,6 @@ angular.module('GLBrowserCrypto')
   var vars = {};
 
   function showMsg(msg) {
-    console.log(msg);
     vars.msgP = vars.msgP.then(function() {
       return $timeout(function() {
         vars.msgQueue.push(msg);

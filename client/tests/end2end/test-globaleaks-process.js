@@ -18,9 +18,9 @@ describe('globaLeaks process', function() {
     browser.get('/#/submission');
 
     browser.wait(function(){
-      // Wait until the proof of work is resolved;
+      // Wait until the proof of work is resolved and the key is derived;
       return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
-        return submission.pow === true;
+        return submission.pow === true && submission.keyDerived;
       });
     });
 

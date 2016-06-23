@@ -33,7 +33,9 @@ module.exports = function(grunt) {
       src: [
         'Gruntfile.js',
         'app/js/**/*.js',
-        '!app/js/crypto/*.js',
+        'app/js/crypto/*.js',
+        '!app/js/crypto/*.min.js',
+        '!app/js/crypto/scrypt-async.worker.js',
         'tests/**/*.js'
       ]
     },

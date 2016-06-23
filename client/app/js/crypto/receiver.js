@@ -1,6 +1,6 @@
 angular.module('GLBrowserCrypto')
 .factory('glbcReceiver', ['$q', '$http', 'pgp', 'glbcKeyRing', 'glbcCipherLib', function($q, $http, pgp, glbcKeyRing, glbcCipherLib) {
-  passphrase = null;
+  var passphrase = null;
 
   return {
     storePassphrase: function(pass) {

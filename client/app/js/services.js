@@ -320,7 +320,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.receivers = [];
       self.receivers_selected = {};
       self.done = false;
-      self.keyDerived = false;
+      self.keyDerived = glbcWhistleblower.variables.keyDerived;
 
       self.isDisabled = function() {
         return (
@@ -328,7 +328,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           self.wait ||
           !self.pow ||
           self.done ||
-          !glbcWhistleblower.variables.keyDerived
+          !self.keyDerived
         );
       };
 
@@ -425,7 +425,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         var keycode = glbcKeyLib.generateKeycode();
         Authentication.keycode = keycode;
 
-        glbcWhistleblower.deriveKey(keycode, $rootScope.node.receipt_salt, self._submission);
+        glbcWhistleblower.deriveKey(keycode, $rootScope.node.receipt_salt, self._submission)
+        .then(function() {
+          self.keyDerived = true;
+        });
       };
 
       /**
@@ -723,6 +726,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
           tip.updateMessages = function () {
             if (tip.msg_receiver_selected) {
+              tip.messages = [];
+
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
 
                 glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
