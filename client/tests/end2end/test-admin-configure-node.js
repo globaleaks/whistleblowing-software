@@ -9,10 +9,6 @@ describe('adming configure node', function() {
     element(by.model('admin.node.can_postpone_expiration')).click();
     element(by.model('admin.node.can_delete_submission')).click();
 
-    // enable experimental featuress that by default are disabled
-    element(by.model('admin.node.enable_experimental_features')).click();
-
-    // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click();
   });
 });

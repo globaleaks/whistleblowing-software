@@ -85,7 +85,7 @@ exports.login_admin = function() {
   browser.get('/#/admin');
   element(by.model('loginUsername')).sendKeys('admin');
   element(by.model('loginPassword')).sendKeys(exports.vars['user_password']);
-  element(by.xpath('//button[contains(., "Log in")]')).click();
+  element(by.id('login-button')).click();
   exports.waitForUrl('/admin/landing');
 };
 
@@ -96,14 +96,44 @@ exports.login_whistleblower = function(receipt) {
   exports.waitForUrl('/status');
 }
 
-exports.login_receiver = function(username, password, url) {
+exports.login_receiver = function(username, password, url, firstlogin) {
+  username = username === undefined ? 'Recipient1' : username;
+  password = password === undefined ? exports.vars['user_password'] : password;
   url = url === undefined ? '/#/login' : url;
+
   browser.get(url);
   element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
   element(by.model('loginPassword')).sendKeys(password);
-  element(by.xpath('//button[contains(., "Log in")]')).click();
-  url = url.split('#')[1];
-  exports.waitForUrl(url === '/login' ? '/receiver/tips' : url);
+  element(by.id('login-button')).click();
+
+  if (firstlogin) {
+    url = '/forcedpasswordchange';
+  } else {
+    url = url.split('#')[1];
+    url = url === '/login' ? '/receiver/tips' : url;
+  }
+
+  exports.waitForUrl(url);
+};
+
+exports.login_custodian = function(username, password, url, firstlogin) {
+  username = username === undefined ? 'Custodian1' : username;
+  password = password === undefined ? exports.vars['user_password'] : password;
+  url = url === undefined ? '/#/custodian' : url;
+
+  browser.get(url);
+  element(by.model('loginUsername')).sendKeys(username);
+  element(by.model('loginPassword')).sendKeys(password);
+  element(by.id('login-button')).click();
+
+  if (firstlogin) {
+    url = '/forcedpasswordchange';
+  } else {
+    url = url.split('#')[1];
+    url = url === '/custodian' ? '/custodian/identityaccessrequests' : url;
+  }
+
+  exports.waitForUrl(url);
 };
 
 exports.logout = function(redirect_url) {

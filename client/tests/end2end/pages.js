@@ -1,32 +1,6 @@
 var utils = require('./utils.js');
 
-exports.adminLoginPage = function() {
-  var loginUser = element(by.model('loginUsername'));
-  var loginPass = element(by.model('loginPassword'));
-
-  this.get = function() {
-    browser.get('/#/admin');
-  };
-
-  this.login = function(uname, pass) {
-    this.get();
-    loginUser.sendKeys(uname);
-    loginPass.sendKeys(pass);
-    element(by.xpath('//button[contains(., "Log in")]')).click();
-    utils.waitForUrl('/admin/landing');
-  };
-};
-
 exports.receiver = function() {
-
-  this.login = function(username, password) {
-    browser.get('/#/login');
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='" + username + "']")).click();
-    element(by.model('loginPassword')).sendKeys(password);
-    element(by.xpath('//button[contains(., "Log in")]')).click();
-    return utils.waitForUrl('/receiver/tips');
-  };
-
   this.viewMostRecentSubmission = function() {
     return element(by.id('tip-0')).click(); 
   };
@@ -60,24 +34,6 @@ exports.receiver = function() {
 };
 
 exports.whistleblower = function() {
-
-  this.login = function(receipt) {
-    return protractor.promise.controlFlow().execute(function() {
-      var deferred = protractor.promise.defer();
-
-      browser.get('/#/');
-
-      element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
-        element(by.id('ReceiptButton')).click().then(function() {
-          utils.waitForUrl('/status');
-          deferred.fulfill();
-        });
-      });
-
-      return deferred.promise;
-    });
-  };
-
   this.performSubmission = function(title) {
     browser.get('/#/submission');
 
@@ -102,7 +58,6 @@ exports.whistleblower = function() {
   };
 
   this.viewReceipt = function(receipt) {
-
     browser.get('/#/');
 
     return element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {

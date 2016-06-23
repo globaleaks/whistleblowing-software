@@ -4,28 +4,28 @@ describe('admin add, configure, and delete users', function() {
   var new_users = [
     {
       role: "Recipient",
-      name: "Recipient 2", 
+      name: "Recipient2",
       address: "globaleaks-receiver2@mailinator.com",
     },
     {
       role: "Recipient",
-      name: "Recipient 3", 
+      name: "Recipient3",
       address: "globaleaks-receiver3@mailinator.com",
     },
     {
       role: "Recipient",
-      name: "Recipient 4",
+      name: "Recipient4",
       address: "globaleaks-receiver4@mailinator.com",
     },
     {
       role: "Recipient",
-      name: "Recipient 5",
+      name: "Recipient5",
       address: "globaleaks-receiver5@mailinator.com",
     },
     {
       role: "Custodian",
-      name: "Custodian 1", 
-      address: "globaleaks-custodian1@mailinator.com",
+      name: "Custodian1",
+      address: "globaleaks-custodian@mailinator.com",
     },
   ];
 
@@ -37,7 +37,7 @@ describe('admin add, configure, and delete users', function() {
       element(by.model('new_user.email')).sendKeys(user.address);
 
       if (user.role !== 'Recipient') {
-        element(by.model('new_user.username')).sendKeys(user.address);
+        element(by.model('new_user.username')).sendKeys(user.name);
       }
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
@@ -49,10 +49,10 @@ describe('admin add, configure, and delete users', function() {
   });
 
   it('should configure an existing user', function() {
-    var user = { name: 'Recipient 2' };
+    var user = { name: 'Recipient2' };
     var path = '//form[contains(.,"' + user.name + '")]';
 
-    // Find Recipient 1, click edit, flip some toggles, and save.
+    // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
     editUsrForm.element(by.css('.actionButtonEdit')).click();
     

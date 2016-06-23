@@ -6,8 +6,8 @@ describe('admin configure, add, and delete contexts', function() {
 
     element(by.id('context-0')).element(by.css('.actionButtonEdit')).click();
     // Add users and flip switches
-    element(by.cssContainingText("span", "Recipient 2")).click();
-    element(by.cssContainingText("span", "Recipient 3")).click();
+    element(by.cssContainingText("span", "Recipient2")).click();
+    element(by.cssContainingText("span", "Recipient3")).click();
     element(by.id('context-0')).element(by.css('.actionButtonAdvanced')).click();
     element(by.id('context-0')).element(by.model('context.allow_recipients_selection')).click();
     element(by.id('context-0')).element(by.model('context.enable_messages')).click();
