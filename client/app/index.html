@@ -194,6 +194,7 @@
     <script src="components/angular-filter/dist/angular-filter.min.js"></script>
     <script src="components/angular-resource/angular-resource.min.js"></script>
     <script src="components/angular-route/angular-route.min.js"></script>
+    <script src="components/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="components/angular-translate/angular-translate.min.js"></script>
     <script src="components/angular-translate-loader-url/angular-translate-loader-url.min.js"></script>
     <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
@@ -292,5 +293,6 @@
       <!-- start_globaleaks(); -->
     </script>
 
+    <script data-ng-if="node.script" data-ng-src="{{Utils.base64ToTrustedScriptUrl(node.script)}}"></script>
   </body>
 </html>

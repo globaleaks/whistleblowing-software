@@ -152,8 +152,30 @@ def change_field_type(field, field_type):
         change_field_type(f, field_type)
 
 
+def get_dummy_file(filename=None, content_type=None, content=None):
+    filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
+
+    content_type = 'application/octet'
+
+    content = ''.join(unichr(x) for x in range(0x400, 0x40A))
+
+    temporary_file = security.GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+
+    temporary_file.write(content)
+    temporary_file.avoid_delete()
+
+    return {
+        'body': temporary_file,
+        'body_len': len(content),
+        'body_filepath': temporary_file.filepath,
+        'filename': filename,
+        'content_type': content_type,
+        'submission': False
+    }
+
+
 def get_file_upload(self):
-    return self.request.body
+    return get_dummy_file()
 
 
 BaseHandler.get_file_upload = get_file_upload
@@ -247,7 +269,7 @@ class TestGL(unittest.TestCase):
         new_u = dict(MockDict().dummyUser)
         new_u['role'] = role
         new_u['username'] = username
-        new_u['name'] = new_u['mail_address'] = \
+        new_u['name'] = new_u['public_name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (username, username))
         new_u['description'] = u""
         new_u['state'] = u'enabled'
@@ -372,29 +394,8 @@ class TestGL(unittest.TestCase):
             'receipt_hash': RECEIPT_HASH, # TODO Notice me sempai!!
         })
 
-    def get_dummy_file(self, filename=None, content_type=None, content=None):
-        if filename is None:
-            filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
-
-        if content_type is None:
-            content_type = 'application/octet'
-
-        if content is None:
-            content = ''.join(unichr(x) for x in range(0x400, 0x40A))
-
-        temporary_file = security.GLSecureTemporaryFile(GLSettings.tmp_upload_path)
-
-        temporary_file.write(content)
-        temporary_file.avoid_delete()
-
-        return {
-            'body': temporary_file,
-            'body_len': len(content),
-            'body_filepath': temporary_file.filepath,
-            'filename': filename,
-            'content_type': content_type,
-            'submission': False
-        }
+    def get_dummy_file(self):
+        return get_dummy_file(filename)
 
     def get_dummy_shorturl(self, x = ''):
         return {
@@ -761,7 +762,7 @@ class TestHandlerWithPopulatedDB(TestHandler):
         self.initialization()
 
 
-class MockDict():
+class MockDict:
     """
     This class just creates all the things we need to emulate a GLNode
     """
@@ -773,6 +774,7 @@ class MockDict():
             'state': u'enabled',
             'name': u'Generic User',
             'description': u'King MockDummy The Most Generic of Users',
+            'public_name': u'Charlie Brown',
             'last_login': u'1970-01-01 00:00:00.000000',
             'timezone': 0,
             'language': u'en',

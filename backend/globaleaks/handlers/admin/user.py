@@ -97,6 +97,7 @@ def db_create_user(store, request, language):
         'deletable': request['deletable'],
         'name': request['name'],
         'description': request['description'],
+        'public_name': request['public_name'] if request['public_name'] != '' else request['name'],
         'language': u'en',
         'timezone': 0,
         'password_change_needed': True,

@@ -10,9 +10,10 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
-from globaleaks.settings import GLSettings
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 
 
@@ -91,10 +92,10 @@ def db_serialize_node(store, language):
         'enable_captcha': node.enable_captcha,
         'enable_proof_of_work': node.enable_proof_of_work,
         'enable_experimental_features': node.enable_experimental_features,
-        'logo': node.logo.data if node.logo is not None else '',
-        'css': node.css.data if node.css is not None else '',
-        'custom_homepage': os.path.isfile(os.path.join(GLSettings.static_path,
-                                                       "custom_homepage.html"))
+        'logo': db_get_file(store, u'logo'),
+        'css': db_get_file(store, u'css'),
+        'homepage': db_get_file(store, u'homepage'),
+        'script': db_get_file(store, u'script')
     }
 
     return get_localized_values(ret_dict, node, node.localized_keys, language)
@@ -289,7 +290,7 @@ def serialize_receiver(receiver, language):
     """
     ret_dict = {
         'id': receiver.user.id,
-        'name': receiver.user.name,
+        'name': receiver.user.public_name,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
         'state': receiver.user.state,
         'configuration': receiver.configuration,
@@ -394,7 +395,5 @@ class RobotstxtHandler(BaseHandler):
 
         self.set_header('Content-Type', 'text/plain')
 
-        if node_info['allow_indexing']:
-            self.write("User-agent: *\nAllow: /")
-        else:
-            self.write("User-agent: *\nDisallow: /")
+        self.write("User-agent: *\n")
+        self.write("Allow: /" if node_info['allow_indexing'] else "Disallow: /")

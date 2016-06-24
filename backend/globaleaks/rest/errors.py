@@ -252,19 +252,7 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
-class InternalServerError(GLException):
-    """
-    Error in interaction with the OS
-    """
-    error_code = 31
-    status_code = 500
-
-    def __init__(self, details):
-        self.reason = "Internal Server Error (%s)" % details
-        self.arguments = [details]
-
-
-# UNUSED ERROR CODE 32 33 HERE!
+# UNUSED ERROR CODE 31 32 33 HERE!
 
 
 class InvalidOldPassword(GLException):

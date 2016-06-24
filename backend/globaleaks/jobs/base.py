@@ -39,9 +39,9 @@ class JobMonitor(task.LoopingCall):
 
         self.elapsed_time = self.monitor_time * self.run
 
-        if (self.elapsed_time < 60):
+        if self.elapsed_time < 60:
             error = "Warning: [%s] is taking more than %d seconds to execute" % (self.job.name, self.elapsed_time)
-        elif (self.elapsed_time < 3600):
+        elif self.elapsed_time < 3600:
             minutes = int(self.elapsed_time / 60)
             error = "Warning: [%s] is taking more than %d minutes to execute" % (self.job.name, minutes)
         else:

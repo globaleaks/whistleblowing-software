@@ -6,7 +6,7 @@
           <span data-translate>Add new step</span>
         </span>
       </div>
-      <div data-ng-form="" name="newStep">
+      <div data-ng-form="newStep">
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <button class="pull-left btn btn-primary" data-ng-disabled="newStep.$invalid" data-ng-click="add_step()">
+              <button id="add-step-button" class="pull-left btn btn-primary" data-ng-disabled="newStep.$invalid" data-ng-click="add_step()">
                 <i class="glyphicon glyphicon-plus-sign"></i>
                 <span data-translate>Add</span>
               </button>
@@ -96,7 +96,7 @@
               </span>
             </span>
           </div>
-          <div data-ng-form="" name="editStep" data-ng-show="editing">
+          <div data-ng-form="editStep" data-ng-show="editing">
             <hr />
             <div class="row">
               <div class="form-group">

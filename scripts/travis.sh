@@ -8,7 +8,7 @@ fi
 
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
-  npm install -g grunt grunt-cli bower
+  npm install -g grunt grunt-cli bower istanbul
   npm install -d
   bower update
   grunt copy:sources
@@ -46,7 +46,7 @@ if [ "$GLTEST" = "test" ]; then
 
   if [ "$GLREQUIREMENTS" = "trusty" ]; then
     echo "Extracting firefox and setting PATH variable..."
-    tar -xjf /tmp/firefox-latest.tar.bz2 --directory /tmp
+    tar -xjf /tmp/firefox-latest-esr.tar.bz2 --directory /tmp
     export PATH="/tmp/firefox:$PATH"
     echo "Using firefox version `firefox --version`"
 
@@ -62,7 +62,8 @@ if [ "$GLTEST" = "test" ]; then
     grunt end2end-coverage-run
 
     cd $TRAVIS_BUILD_DIR/backend
-    coveralls --merge=../client/coverage/coveralls.json || true
+
+    coveralls --merge=../client/coverage/coveralls.json
   fi
 
 elif [ "$GLTEST" = "lint" ]; then
@@ -103,10 +104,8 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Internet Explorer\", \"version\":\"11\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Firefox\", \"version\":\"34\", \"platform\":\"Linux\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Firefox\", \"version\":\"45\", \"platform\":\"Linux\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Firefox\", \"version\":\"beta\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"version\":\"37\", \"platform\":\"Linux\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"version\":\"48\", \"platform\":\"Linux\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"version\":\"beta\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Safari\", \"version\":\"8\", \"platform\":\"OS X 10.10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Safari\", \"version\":\"9\", \"platform\":\"OS X 10.11\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Android\", \"version\": \"4.4\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\"}'."

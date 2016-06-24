@@ -14,7 +14,7 @@ matrix:
     - env: GLTEST='test' GLREQUIREMENTS='trusty'
       python: "2.7"
       addons:
-        firefox: "latest"
+        firefox: "latest-esr"
 
     - env: GLTEST='lint'
       python: "2.7"
@@ -34,52 +34,42 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-3' BROWSER='firefox beta'
+    - env: GLTEST='end2end-3' BROWSER='chrome 37'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-4' BROWSER='chrome 37'
+    - env: GLTEST='end2end-4' BROWSER='chrome 48'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='chrome 48'
+    - env: GLTEST='end2end-5' BROWSER='safari 8'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='chrome beta'
+    - env: GLTEST='end2end-6' BROWSER='safari 9'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-7' BROWSER='safari 8'
+    - env: GLTEST='end2end-7' BROWSER='android 4.4'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-8' BROWSER='safari 9'
+    - env: GLTEST='end2end-8' BROWSER='android 5.1'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-9' BROWSER='android 4.4'
+    - env: GLTEST='end2end-9' BROWSER='iphone 8.0'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-10' BROWSER='android 5.1'
-      python: "2.7"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-11' BROWSER='iphone 8.0'
-      python: "2.7"
-      addons:
-        sauce_connect: true
-
-    - env: GLTEST='end2end-12' BROWSER='iphone 9.2'
+    - env: GLTEST='end2end-10' BROWSER='iphone 9.2'
       python: "2.7"
       addons:
         sauce_connect: true
@@ -103,16 +93,14 @@ matrix:
     - env: GLTEST='end2end-0' BROWSER='ie 11'
     - env: GLTEST='end2end-1' BROWSER='firefox 34'
     - env: GLTEST='end2end-2' BROWSER='firefox 45'
-    - env: GLTEST='end2end-3' BROWSER='firefox beta'
-    - env: GLTEST='end2end-4' BROWSER='chrome 37'
-    - env: GLTEST='end2end-5' BROWSER='chrome 48'
-    - env: GLTEST='end2end-6' BROWSER='chrome beta'
-    - env: GLTEST='end2end-7' BROWSER='safari 8'
-    - env: GLTEST='end2end-8' BROWSER='safari 9'
-    - env: GLTEST='end2end-9' BROWSER='android 4.4'
-    - env: GLTEST='end2end-10' BROWSER='android 5.1'
-    - env: GLTEST='end2end-11' BROWSER='iphone 8.0'
-    - env: GLTEST='end2end-12' BROWSER='iphone 9.2'
+    - env: GLTEST='end2end-3' BROWSER='chrome 37'
+    - env: GLTEST='end2end-4' BROWSER='chrome 48'
+    - env: GLTEST='end2end-5' BROWSER='safari 8'
+    - env: GLTEST='end2end-6' BROWSER='safari 9'
+    - env: GLTEST='end2end-7' BROWSER='android 4.4'
+    - env: GLTEST='end2end-8' BROWSER='android 5.1'
+    - env: GLTEST='end2end-9' BROWSER='iphone 8.0'
+    - env: GLTEST='end2end-10' BROWSER='iphone 9.2'
     - env: GLTEST='test' GLREQUIREMENTS='precise'
     - env: GLTEST='test' GLREQUIREMENTS='xenial'
     - env: GLTEST='test' GLREQUIREMENTS='wheezy'
@@ -122,10 +110,8 @@ matrix:
 before_install:
   - nvm install 4.2
   - nvm use 4.2
-install: true
-before_script:
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
+  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+install: true
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh

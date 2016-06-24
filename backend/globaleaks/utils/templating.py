@@ -273,7 +273,7 @@ class Templating(object):
         keyword_converter = supported_template_types[data['type']](data)
         iterations = 3
         stop = False
-        while (stop is False and iterations > 0):
+        while stop is False and iterations > 0:
             iterations -= 1
             count = 0
 

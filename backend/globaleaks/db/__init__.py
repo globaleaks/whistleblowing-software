@@ -13,6 +13,7 @@ from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, security, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata
+from globaleaks.handlers.admin import files
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
 from globaleaks.security import generateRandomSalt, sha512
@@ -55,6 +56,7 @@ def init_db(store):
     node = models.Node()
     node.wizard_done = GLSettings.skip_wizard
     node.receipt_salt = generateRandomSalt()
+    store.add(node)
 
     for k in appdata_dict['node']:
         setattr(node, k, appdata_dict['node'][k])
@@ -62,16 +64,14 @@ def init_db(store):
     notification = models.Notification()
     for k in appdata_dict['templates']:
         setattr(notification, k, appdata_dict['templates'][k])
-
-    logo = ''
-    with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
-        logo = logo_file.read()
-
-    node.logo = models.File()
-    node.logo.data = base64.b64encode(logo)
-
-    store.add(node)
     store.add(notification)
+
+    logo_data = ''
+    with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
+        logo_data = logo_file.read()
+
+    files.db_add_file(store, logo_data, u'logo')
+    files.db_add_file(store, '', u'custom_stylesheet')
 
 def check_db_files():
     """

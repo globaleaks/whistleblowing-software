@@ -1,13 +1,6 @@
 var fs = require('fs');
 var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
 
-var tmp = [];
-for (var i=0; i<specs.length; i++) {
-  tmp.push('tests/end2end/' + specs[i]);
-}
-
-specs = tmp;
-
 var q = require("q");
 var FirefoxProfile = require("firefox-profile");
 
@@ -37,8 +30,8 @@ exports.config = {
 
   baseUrl: 'http://127.0.0.1:8082/',
 
-  troubleshoot: true,
-  directConnect: false,
+  troubleshoot: false,
+  directConnect: true,
 
   params: {
     'testFileDownload': true,
@@ -66,5 +59,9 @@ exports.config = {
     isVerbose: true,
     includeStackTrace: true,
     defaultTimeoutInterval: 180000
-  }
+  },
+
+  plugins : [{
+    path: '../../node_modules/protractor-istanbul-plugin'
+  }]
 };

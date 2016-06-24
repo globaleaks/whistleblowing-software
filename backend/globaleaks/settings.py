@@ -228,7 +228,6 @@ class GLSettingsClass(object):
         self.submission_path = os.path.abspath(os.path.join(self.files_path, 'submission'))
         self.tmp_upload_path = os.path.abspath(os.path.join(self.files_path, 'tmp'))
         self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
-        self.static_path_l10n = os.path.abspath(os.path.join(self.files_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
 
@@ -443,8 +442,7 @@ class GLSettingsClass(object):
                         self.torhs_path,
                         self.log_path,
                         self.ramdisk_path,
-                        self.static_path,
-                        self.static_path_l10n]:
+                        self.static_path]:
             self.create_directory(dirpath)
 
     def check_directories(self):

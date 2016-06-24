@@ -97,10 +97,6 @@ class Node_v_32(Model):
 
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
-    logo_id = Unicode()
-    css_id = Unicode()
-
-
 
 class User_v_32(Model):
     __storm_table__ = 'user'
@@ -111,6 +107,7 @@ class User_v_32(Model):
     deletable = Bool()
     name = Unicode()
     description = JSON()
+    public_name = Unicode()
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
@@ -161,7 +158,6 @@ class Notification_v_32(Model):
     receiver_notification_limit_reached_mail_template = JSON()
     receiver_notification_limit_reached_mail_title = JSON()
     export_template = JSON()  # dropped in v_33
-    export_message_recipient = JSON()  # dropped in v_33
     export_message_whistleblower = JSON()  # dropped in v_33
     identity_access_authorized_mail_template = JSON()
     identity_access_authorized_mail_title = JSON()

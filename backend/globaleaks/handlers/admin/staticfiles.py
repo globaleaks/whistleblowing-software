@@ -1,6 +1,10 @@
-from __future__ import with_statement
-import base64
-import re
+# -*- coding: utf-8 -*-
+#
+# /admin/files
+#  *****
+#
+# API handling static files upload/download/delete
+
 from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
@@ -11,7 +15,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.rest.requests import receiver_img_regexp
 from globaleaks.security import directory_traversal_check
 
 def get_description_by_stat(statstruct, name):
@@ -64,65 +67,15 @@ def dump_static_file(uploaded_file, filelocation):
             while data != '':
                 os.write(fd.fileno(), data)
                 data = uploaded_file['body'].read(4000)
-
     finally:
         uploaded_file['body'].close()
 
     return get_file_info(uploaded_file, filelocation)
 
 
-@transact
-def add_node_logo(store, data):
-    node = store.find(models.Node).one()
-    if node.logo is None:
-        node.logo = models.File()
-
-    node.logo.data = data
-
-
-@transact
-def del_node_logo(store):
-    node = store.find(models.Node).one()
-    if node.logo is not None:
-        store.remove(node.logo)
-
-
-@transact
-def add_node_css(store, data):
-    node = store.find(models.Node).one()
-    if node.css is None:
-        node.css = models.File()
-
-    node.css.data = data
-
-
-@transact
-def del_node_css(store):
-    node = store.find(models.Node).one()
-    if node.css is not None:
-        store.remove(node.css)
-
-
-@transact
-def add_model_img(store, model, obj_id, data):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj:
-        if obj.picture is None:
-            obj.picture = models.File()
-
-        obj.picture.data = data
-
-
-@transact
-def del_model_img(store, model, obj_id):
-    obj = store.find(model, model.id == obj_id).one()
-    if obj is not None and obj.picture is not None:
-        store.remove(obj.picture)
-
-
 class StaticFileInstance(BaseHandler):
     """
-    Complete CRUD implementation using the filename instead of UUIDs
+    Handler for files stored on the filesystem
     """
     handler_exec_time_threshold = 3600
     filehandler = True
@@ -147,9 +100,8 @@ class StaticFileInstance(BaseHandler):
 
         try:
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
-        except Exception as excpd:
-            log.err('Error while creating static file %s: %s' % (path, excpd))
-            raise errors.InternalServerError(excpd.message)
+        finally:
+            uploaded_file['body'].close()
 
         log.debug('Admin uploaded new static file: %s' % dumped_file['filename'])
         self.set_status(201)
@@ -177,102 +129,3 @@ class StaticFileList(BaseHandler):
         Return the list of static files, with few filesystem info
         """
         self.write(get_stored_files())
-
-
-class NodeLogoInstance(StaticFileInstance):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
-            return
-
-        try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_node_logo(data)
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self):
-        yield del_node_logo()
-
-        GLApiCache.invalidate()
-
-
-class NodeCSSInstance(NodeLogoInstance):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
-            return
-
-        try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_node_css(data)
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self):
-        yield del_node_css()
-
-        GLApiCache.invalidate()
-
-
-class UserImgInstance(StaticFileInstance):
-    model = models.User
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def post(self, obj_id):
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            self.set_status(201)
-            return
-
-        try:
-            data = base64.b64encode(uploaded_file['body'].read())
-            yield add_model_img(self.model, obj_id, data)
-        except:
-            pass
-        finally:
-            uploaded_file['body'].close()
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self, obj_id):
-        yield del_model_img(self.model, obj_id)
-
-        GLApiCache.invalidate()
-
-
-class ContextImgInstance(UserImgInstance):
-    model = models.Context

@@ -26,13 +26,13 @@
           <span data-ng-switch-when="false">
             <button id="button-enable-whistleblower-comments" class="btn btn-primary" data-ng-click="allowWhistleblowerToComment()">
               <i class="glyphicon glyphicon-ok-circle"></i>
-              <span>Allow the whistleblower to comment</span>
+              <span data-translate>Allow the whistleblower to write comments</span>
             </button>
           </span>
           <span data-ng-switch-when="true">
             <button id="button-enable-whistleblower-comments" class="btn btn-danger" data-ng-click="denyWhistleblowerToComment()">
               <i class="glyphicon glyphicon-ban-circle"></i>
-              <span>Deny the whistleblower to comment</span>
+              <span data-translate>Deny the whistleblower to write comments</span>
             </button>
           </span>
         </span>
@@ -46,7 +46,7 @@
         <div data-ng-switch-when="whistleblower" class="alert alert-info">
           <div class="row">
             <div class="col-md-6">
-              <div data-translate class="WbNameInMessages">Whistleblower</div>
+              <div class="WbNameInMessages" data-translate>Whistleblower</div>
             </div>
             <div class="pull-right" style="margin-right:20px">
               <div>{{::comment.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>

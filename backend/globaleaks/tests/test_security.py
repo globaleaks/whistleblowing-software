@@ -63,7 +63,7 @@ class TestGLSecureFiles(helpers.TestGL):
         antani = "0123456789" * 10000
         a.write(antani)
         self.assertTrue(antani == a.read())
-        self.assertRaises(AssertionError, a.write, antani)
+        self.assertRaises(Exception, a.write, antani)
         a.close()
 
     def test_temporary_file_avoid_delete(self):

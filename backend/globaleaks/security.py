@@ -196,7 +196,8 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         The last action is kept track because the internal status
         need to track them. read below read()
         """
-        assert (self.last_action != 'read'), "you can write after read!"
+        if self.last_action == 'read':
+            raise Exception("Error: Write call performed after read")
 
         self.last_action = 'write'
         try:

@@ -3,6 +3,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import admin, rtip, submission
+from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.tests import helpers
 from globaleaks.utils.templating import Templating, supported_template_types, \
     TipKeyword, CommentKeyword, MessageKeyword, FileKeyword
@@ -12,6 +13,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_keywords_conversion(self):
         yield self.perform_full_submission_actions()
+        yield DeliverySchedule().operation()
 
         data = {}
         data['type'] = 'tip'

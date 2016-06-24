@@ -171,6 +171,8 @@ class User(Model):
     name = Unicode(validator=shorttext_v)
     description = JSON(validator=longlocal_v)
 
+    public_name = Unicode(validator=shorttext_v)
+
     role = Unicode()
     state = Unicode()
     last_login = DateTime(default_factory=datetime_null)
@@ -195,7 +197,7 @@ class User(Model):
     img_id = Unicode()
 
     unicode_keys = ['username', 'role', 'state', 'auth_token_hash', 'salt',
-                    'language', 'mail_address', 'name']
+                    'language', 'mail_address', 'name', 'public_name']
 
     localized_keys = ['description']
 
@@ -517,9 +519,6 @@ class Node(Model):
     threshold_free_disk_percentage_low = Int(default=10)
 
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
-
-    logo_id = Unicode()
-    css_id = Unicode()
 
     unicode_keys = [
         'name',
@@ -976,9 +975,11 @@ class ShortURL(Model):
 
 class File(Model):
     """
-    Class used for storing PNG pictures of context/users
+    Class used for storing files
     """
     data = Unicode()
+
+    unicode_keys = ['data']
 
 
 class CustomTexts(BaseModel):
@@ -990,11 +991,10 @@ class CustomTexts(BaseModel):
     lang = Unicode(validator=shorttext_v)
     texts = JSON()
 
-    unicode_keys = ['lang', 'texts']
+    unicode_keys = ['lang']
+    json_keys = ['texts']
 
 
-Node.logo = Reference(Node.logo_id, File.id)
-Node.css = Reference(Node.css_id, File.id)
 Context.picture = Reference(Context.img_id, File.id)
 User.picture = Reference(User.img_id, File.id)
 

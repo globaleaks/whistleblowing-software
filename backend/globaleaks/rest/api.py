@@ -14,7 +14,7 @@ from globaleaks.handlers import exception, \
                                 submission, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
-                                langfiles, wizard, \
+                                l10n, wizard, \
                                 base, user, shorturl
 
 from globaleaks.handlers.admin import node as admin_node
@@ -24,7 +24,9 @@ from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import questionnaire as admin_questionnaire
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import field as admin_field
-from globaleaks.handlers.admin import langfiles as admin_langfiles
+from globaleaks.handlers.admin import l10n as admin_l10n
+from globaleaks.handlers.admin import modelimgs as admin_modelimgs
+from globaleaks.handlers.admin import files as admin_files
 from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import overview as admin_overview
 from globaleaks.handlers.admin import shorturl as admin_shorturl
@@ -33,7 +35,7 @@ from globaleaks.handlers.admin import notification as admin_notification
 
 from globaleaks.utils.utility import randbits
 
-uuid_regexp      = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
 spec = [
     (r'/exception', exception.ExceptionHandler),
@@ -95,14 +97,11 @@ spec = [
 
     ## Admin Handlers ##
     (r'/admin/node', admin_node.NodeInstance),
-    (r'/admin/node/logo', admin_staticfiles.NodeLogoInstance),
-    (r'/admin/node/css', admin_staticfiles.NodeCSSInstance),
     (r'/admin/users', admin_user.UsersCollection),
     (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
-    (r'/admin/users/' + uuid_regexp  + r'/img', admin_staticfiles.UserImgInstance),
     (r'/admin/contexts', admin_context.ContextsCollection),
     (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
-    (r'/admin/contexts/' + uuid_regexp  + r'/img', admin_staticfiles.ContextImgInstance),
+    (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
     (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
     (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
     (r'/admin/receivers', admin_receiver.ReceiversCollection),
@@ -120,9 +119,9 @@ spec = [
     (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
     (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
     (r'/admin/anomalies', admin_statistics.AnomalyCollection),
+    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
+    (r'/admin/files/(logo|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
-    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            admin_langfiles.AdminLanguageFileHandler),
     (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/users', admin_overview.Users),
@@ -134,8 +133,7 @@ spec = [
     (r'/robots.txt', public.RobotstxtHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
-    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json',
-            langfiles.LanguageFileHandler, {'path': GLSettings.client_path}),
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'/x/timingstats', base.TimingStatsHandler),
 

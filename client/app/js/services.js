@@ -783,6 +783,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');
 }]).
+  factory('AdminL10NResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/l10n/:lang', {lang: '@lang'});
+}]).
   factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return {
@@ -867,7 +870,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
 
     new_field_from_template: function(template_id, step_id, fieldgroup_id) {
-      var field = self.new_field(step_id, fieldgroup_id);
+      var field = this.new_field(step_id, fieldgroup_id);
       field.template_id = template_id;
       field.instance = 'reference';
       return field;
@@ -914,6 +917,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       user.state = 'enabled';
       user.name = '';
       user.description = '';
+      user.public_name = '';
       user.mail_address = '';
       user.pgp_key_info = '';
       user.pgp_key_fingerprint = '';
@@ -931,8 +935,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs) {
   return function(fn) {
       var self = this;
 
@@ -945,8 +949,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.notification = AdminNotificationResource.get();
       self.shorturls = AdminShorturlResource.query();
 
+      self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
+        self.field_attrs = field_attrs;
+        self.get_field_attrs = function(type) {
+          if (type in self.field_attrs) {
+            return self.field_attrs[type];
+          } else {
+            return {};
+          }
+        };
+      });
+
       $q.all([self.node.$promise,
               self.contexts.$promise,
+              self.field_attrs.$promise,
               self.questionnaires.$promise,
               self.fieldtemplates.$promise,
               self.receivers.$promise,
@@ -977,68 +993,24 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('StaticFiles', ['GLResource', function(GLResource) {
     return new GLResource('admin/staticfiles');
 }]).
-  factory('DefaultAppdata', ['GLResource', function(GLResource) {
-    return new GLResource('data/appdata_l10n.json', {});
+  factory('DefaultL10NResource', ['GLResource', function(GLResource) {
+    return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$location', '$filter', '$uibModal', function($rootScope, $location, $filter, $uibModal) {
-    var isHomepage = function () {
-      return $location.path() === '/';
-    };
-
-    var isLoginPage = function () {
-      var path = $location.path();
-      return (path === '/login' ||
-              path === '/admin' ||
-              path === '/receipt');
-    };
-
-    var isAWhistleblowerPage = function() {
-      var path = $location.path();
-      return (path === '/' ||
-              path === '/start' ||
-              path === '/submission' ||
-              path === '/receipt' ||
-              path === '/status');
-    };
-
-    var getXOrderProperty = function() {
-      return 'x';
-    };
-
-    var getYOrderProperty = function(elem) {
-      var key = 'presentation_order';
-      if (elem[key] === undefined) {
-        key = 'y';
-      }
-      return key;
-    };
-
-    var getUploadStatus = function(uploads) {
-      var error = false;
-
-      for (var key in uploads) {
-        if (uploads.hasOwnProperty(key)) {
-          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
-            return 'uploading';
-          }
-
-          for (var i=0; i<uploads[key].files.length; i++) {
-            if (uploads[key].files[i].error) {
-              error = true;
-              break;
-            }
-          }
-        }
-      }
-
-      if (error) {
-        return 'error';
-      } else {
-        return 'finished';
-      }
-    };
-
+  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal',
+  function($rootScope, $location, $filter, $sce, $uibModal) {
     return {
+      getXOrderProperty: function() {
+        return 'x';
+      },
+
+      getYOrderProperty: function(elem) {
+        var key = 'presentation_order';
+        if (elem[key] === undefined) {
+          key = 'y';
+        }
+        return key;
+      },
+
       dumb_function: function() {
         return true;
       },
@@ -1049,6 +1021,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         } catch (e) {
           return true;
         }
+      },
+
+      base64ToTrustedScriptUrl: function(base64_data) {
+        return $sce.trustAsResourceUrl('data:application/javascript;base64,' + base64_data);
       },
 
       update: function (model, cb, errcb) {
@@ -1077,19 +1053,39 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return 'data:image/png;base64,' + data;
       },
 
+      isHomepage: function () {
+        return $location.path() === '/';
+      },
+
       isWizardPage: function () {
         return $location.path() === '/wizard';
       },
 
+      isLoginPage: function () {
+        var path = $location.path();
+        return (path === '/login' ||
+                path === '/admin' ||
+                path === '/receipt');
+      },
+
+      isAWhistleblowerPage: function() {
+        var path = $location.path();
+        return (path === '/' ||
+                path === '/start' ||
+                path === '/submission' ||
+                path === '/receipt' ||
+                path === '/status');
+      },
+
       showLoginForm: function () {
-        return (!isHomepage() &&
-                !isLoginPage());
+        return (!this.isHomepage() &&
+                !this.isLoginPage());
       },
 
       showPrivacyBadge: function() {
         return (!$rootScope.embedded &&
                 !$rootScope.node.disable_privacy_badge &&
-                isAWhistleblowerPage());
+                this.isAWhistleblowerPage());
       },
 
       showFilePreview: function(content_type) {
@@ -1104,19 +1100,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       },
 
       moveUp: function(elem) {
-        elem[getYOrderProperty(elem)] -= 1;
+        elem[this.getYOrderProperty(elem)] -= 1;
       },
 
       moveDown: function(elem) {
-        elem[getYOrderProperty(elem)] += 1;
+        elem[this.getYOrderProperty(elem)] += 1;
       },
 
       moveLeft: function(elem) {
-        elem[getXOrderProperty(elem)] -= 1;
+        elem[this.getXOrderProperty(elem)] -= 1;
       },
 
       moveRight: function(elem) {
-        elem[getXOrderProperty(elem)] += 1;
+        elem[this.getXOrderProperty(elem)] += 1;
       },
 
       deleteFromList: function(list, elem) {
@@ -1126,12 +1122,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
       },
 
+      deleteFromDict: function(dict, key) {
+          delete dict[key];
+      },
+
       assignUniqueOrderIndex: function(elements) {
         if (elements.length <= 0) {
           return;
         }
 
-        var key = getYOrderProperty(elements[0]);
+        var key = this.getYOrderProperty(elements[0]);
         if (elements.length) {
           var i = 0;
           elements = $filter('orderBy')(elements, key);
@@ -1140,10 +1140,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             i += 1;
           });
         }
-      },
-
-      getUploadUrl_lang: function(lang) {
-        return 'admin/l10n/' + lang + '.json';
       },
 
       exportJSON: function(data, filename) {
@@ -1165,10 +1161,33 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return sum;
       },
 
-      getUploadStatus: getUploadStatus,
+      getUploadStatus: function(uploads) {
+        var error = false;
+
+        for (var key in uploads) {
+          if (uploads.hasOwnProperty(key)) {
+            if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+              return 'uploading';
+            }
+
+            for (var i=0; i<uploads[key].files.length; i++) {
+              if (uploads[key].files[i].error) {
+                error = true;
+                break;
+              }
+            }
+          }
+        }
+
+        if (error) {
+          return 'error';
+        } else {
+          return 'finished';
+        }
+      },
 
       isUploading: function(uploads) {
-        return getUploadStatus(uploads) === 'uploading';
+        return this.getUploadStatus(uploads) === 'uploading';
       },
 
       remainingUploadTime: function(uploads) {

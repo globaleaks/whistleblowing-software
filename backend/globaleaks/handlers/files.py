@@ -3,10 +3,7 @@
 # files
 #  *****
 #
-# Backend supports for jQuery File Uploader, and implementation of the
-# classes executed when an HTTP client contact /files/* URI
-
-from __future__ import with_statement
+# API handling submissions file uploads and subsequent submissions attachments
 import shutil
 
 import os

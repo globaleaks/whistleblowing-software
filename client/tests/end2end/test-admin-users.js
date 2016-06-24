@@ -1,8 +1,6 @@
 var utils = require('./utils.js');
-var pages = require('./pages.js');
 
 describe('admin add, configure, and delete users', function() {
-  var adminLog = new pages.adminLoginPage();
   var new_users = [
     {
       role: "Recipient",
@@ -31,12 +29,9 @@ describe('admin add, configure, and delete users', function() {
     },
   ];
 
-  beforeAll(function() {
-    adminLog.login('admin', utils.vars['user_password']);
-    browser.setLocation('admin/users');
-  });
-
   it('should add new users', function() {
+    browser.setLocation('admin/users');
+
     var make_account = function(user) {
       element(by.model('new_user.name')).sendKeys(user.name);
       element(by.model('new_user.email')).sendKeys(user.address);
@@ -46,7 +41,7 @@ describe('admin add, configure, and delete users', function() {
       }
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
-      element(by.css('[data-ng-click="add_user()"]')).click();
+      element(by.id('add-button')).click();
       utils.waitUntilReady(element(by.xpath(".//*[text()='" + user.name + "']")));
     };
 

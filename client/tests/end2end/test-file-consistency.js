@@ -126,6 +126,6 @@ describe('Submission file process', function() {
 
   if (browser.params.verifyFileDownload) {
     it('uploaded and downloaded plaintext files should match', uploadAndDownloadTest);
-    it('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
+    fit('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
   }
 });

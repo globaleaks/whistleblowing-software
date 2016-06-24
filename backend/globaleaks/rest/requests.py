@@ -14,7 +14,6 @@ uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
 user_roles_regexp                 = r'^(admin|custodian|receiver)$'
 user_states_regexp                = r'^(enabled|disabled)$'
-receiver_img_regexp               = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png$'
 email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
 hidden_service_regexp             = r'^http(s?)://[0-9a-z]{16}\.onion$'
@@ -121,6 +120,7 @@ UserUserDesc = {
     'username': unicode,
     'name': unicode,
     'description': unicode,
+    'public_name': unicode,
     'role': user_roles_regexp,
     'password_change_needed': bool,
     'deletable': bool,
@@ -140,6 +140,7 @@ ReceiverReceiverDesc = {
     'username': unicode,
     'name': unicode,
     'description': unicode,
+    'public_name': unicode,
     'role': user_roles_regexp,
     'password_change_needed': bool,
     'mail_address': email_regexp,

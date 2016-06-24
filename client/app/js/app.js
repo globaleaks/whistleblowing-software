@@ -52,6 +52,7 @@ var GLClient = angular.module('GLClient', [
     'flow',
     'pascalprecht.translate',
     'zxcvbn',
+    'ngSanitize',
     'ngFileSaver',
     'GLServices',
     'GLDirectives',
@@ -366,7 +367,7 @@ var GLClient = angular.module('GLClient', [
       // Configure translation and language providers.
       $translateProvider.useStaticFilesLoader({
         prefix: 'l10n/',
-        suffix: '.json'
+        suffix: ''
       });
 
       $translateProvider.useSanitizeValueStrategy('escape');
@@ -476,6 +477,7 @@ var GLClient = angular.module('GLClient', [
 
       PublicResource.get(function(result, getResponseHeaders) {
         $rootScope.node = result.node;
+
         $rootScope.contexts = result.contexts;
         $rootScope.receivers = result.receivers;
 
