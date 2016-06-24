@@ -40,22 +40,21 @@ describe('receiver first login', function() {
 });
 
 describe('Recipient 2 first login', function() {
-  var receiver2 = new pages.receiver();
   var tmp_pass = utils.vars['user_password'] + 'D';
 
   it('should be able to change password', function() {
     browser.get('/#/login');
-    receiver2.login('Recipient 2', utils.vars['default_password']);
+    receiver.login('Recipient 2', utils.vars['default_password']);
     utils.waitForUrl('/forcedpasswordchange');
 
-    receiver2.changePassword(utils.vars['default_password'], tmp_pass);
+    receiver.changePassword(utils.vars['default_password'], tmp_pass);
     utils.waitForUrl('/receiver/tips', 20000);
 
   });
 
   it('should be able to change password in preferences', function() {
     browser.get('/#/login');
-    receiver2.login('Recipient 2', tmp_pass);
+    receiver.login('Recipient 2', tmp_pass);
     utils.waitForUrl('/receiver/tips');
 
     element(by.id('PreferencesLink')).click();
@@ -64,11 +63,11 @@ describe('Recipient 2 first login', function() {
     var preferencesForm = element(by.id("preferencesForm"));
     preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
     preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
-    receiver2.changePassword(tmp_pass, utils.vars['user_password']);
+    receiver.changePassword(tmp_pass, utils.vars['user_password']);
     utils.waitForUrl('/receiver/tips');
 
     browser.get('/#/login');
-    receiver2.login('Recipient 2', utils.vars['user_password']);
+    receiver.login('Recipient 2', utils.vars['user_password']);
     utils.waitForUrl('/receiver/tips');
   });
 });
