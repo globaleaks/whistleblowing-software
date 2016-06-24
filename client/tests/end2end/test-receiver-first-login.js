@@ -1,5 +1,4 @@
 var utils = require('./utils.js');
-var pages = require('./pages.js');
 
 var pages = require('./pages.js');
 var receiver = new pages.receiver();
