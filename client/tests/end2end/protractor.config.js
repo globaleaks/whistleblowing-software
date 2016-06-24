@@ -10,7 +10,7 @@ exports.config = {
 
   onPrepare: function() {
     var failFast = require('jasmine-fail-fast');
-    //jasmine.getEnv().addReporter(failFast.init());
+    jasmine.getEnv().addReporter(failFast.init());
   },
 
   baseUrl: 'http://127.0.0.1:8082/',
