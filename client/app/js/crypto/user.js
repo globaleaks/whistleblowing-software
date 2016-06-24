@@ -56,10 +56,8 @@ angular.module('GLBrowserCrypto')
         vars.promises.authDerived.promise,
         vars.promises.speedLimit.promise,
       ]).then(function(results) {
-        showMsg('Encrypting private key with the new passphrase. . .');
         glbcKeyRing.lockKeyRing(results[1].new_res.passphrase);
 
-        showMsg('Saving the private key on the platform. . .');
         var authDeriv = results[1];
         var body = {
           'old_auth_token_hash': authDeriv.old_res.authentication,
@@ -70,8 +68,10 @@ angular.module('GLBrowserCrypto')
         };
 
         if (vars.keyGen) {
-          showMsg('Saving the public key on the platform. . .');
+          showMsg('Saving the encryption keys on the platform');
           body.ccrypto_key_public = glbcKeyRing.getPubKey('private').armor();
+        } else {
+          showMsg('Updating the encryption key on the platform');
         }
 
         // TODO NOTE keyRing is only locked for the export
@@ -101,7 +101,7 @@ angular.module('GLBrowserCrypto')
         vars.promises.speedLimit.resolve();
       }, 10000);
 
-      showMsg('Starting key generation. . . this may take a while. . .');
+      showMsg('Generating encryption keys');
       glbcKeyRing.createNewCCryptoKey().then(function(r) {
         vars.promises.keyGen.resolve(r);
       });
@@ -115,7 +115,6 @@ angular.module('GLBrowserCrypto')
     },
 
     addPassphrase: function(old_password, new_password) {
-      showMsg('Starting passphrase derivation. . .');
       var old_salt = Authentication.user_salt;
       var salt = glbcUtil.generateRandomSalt();
       Authentication.user_salt = salt;
