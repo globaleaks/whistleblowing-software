@@ -1522,8 +1522,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }])
 .factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) { 
   $rootScope.showLoadingModal = false;
-  
   var cnt = 0;
+
+  $rootScope.range = function range() {
+    return new Array(cnt);
+  };
+
   function tryHideModal() {
     if (cnt === 0) {
       $rootScope.showLoadingModal = false;
