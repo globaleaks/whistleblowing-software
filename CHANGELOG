@@ -1,3 +1,17 @@
+Changes in version 2.62.0 - 2016-06-24
+    o Reimplement the wizard as an atomi operation (#1692)
+    o Reduce the type of fonts served by the application to 1 (woff)
+    o Set autocomplete=off on relevant forms
+    o Reimplement internationalization API allowing to override every
+      text via the admin interface
+    o Add possibility to configure a pseudonym in place of
+      the real user name
+
+    The following is the comprehensive list of closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1692
+    - https://github.com/globaleaks/GlobaLeaks/issues/1696
+    - https://github.com/globaleaks/GlobaLeaks/issues/1642
+
 Changes in version 2.61.14 - 2016-06-07
     o Fix issue #1681
     o Fix issue #1687
