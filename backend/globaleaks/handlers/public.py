@@ -116,7 +116,7 @@ def serialize_context(store, context, language):
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
-        'tip_timetolive': context.tip_timetolive,
+        'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
