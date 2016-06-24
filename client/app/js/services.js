@@ -231,26 +231,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$rootScope',
-  function($q, $injector, $rootScope) {
+  factory('globalInterceptor', ['$q', '$injector', '$rootScope', 'loadingModal',
+  function($q, $injector, $rootScope, loadingModal) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
 
     return {
       request: function(config) {
         // A new request should display the loader overlay
-        $rootScope.showLoadingPanel = true;
+        loadingModal.show();
         return config;
       },
 
       response: function(response) {
-        var $http = $injector.get('$http');
-
-        // the last response should hide the loader overlay
-        if ($http.pendingRequests.length < 1) {
-          $rootScope.showLoadingPanel = false;
-        }
-
+        loadingModal.hide();
         return response;
       },
 
@@ -259,7 +253,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
            When the response has failed write the rootScope
            errors array the error message.
         */
-        var $http = $injector.get('$http');
         var Authentication = $injector.get('Authentication');
 
         try {
@@ -278,9 +271,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             $rootScope.errors.push(error);
           }
         } finally {
-          if ($http.pendingRequests.length < 1) {
-            $rootScope.showLoadingPanel = false;
-          }
+          loadingModal.hide();
         }
 
         return $q.reject(response);
@@ -301,8 +292,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }])
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  .factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcKeyLib', 'glbcWhistleblower','glbcCipherLib', 'glbcKeyRing',
-      function($q, GLResource, $filter, $location, $rootScope, Authentication, TokenResource, SubmissionResource, glbcKeyLib, glbcWhistleblower, glbcCipherLib, glbcKeyRing) {
+  .factory('Submission', ['$q', 'GLResource', '$filter', '$location', '$rootScope', 'loadingModal', 'Authentication', 'TokenResource', 'SubmissionResource', 'glbcKeyLib', 'glbcWhistleblower','glbcCipherLib', 'glbcKeyRing',
+      function($q, GLResource, $filter, $location, $rootScope, loadingModal, Authentication, TokenResource, SubmissionResource, glbcKeyLib, glbcWhistleblower, glbcCipherLib, glbcKeyRing) {
 
     return function(fn) {
       /**
@@ -321,6 +312,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.receivers_selected = {};
       self.done = false;
       self.keyDerived = glbcWhistleblower.variables.keyDerived;
+      loadingModal.show();
 
       self.isDisabled = function() {
         return (
@@ -428,6 +420,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         glbcWhistleblower.deriveKey(keycode, $rootScope.node.receipt_salt, self._submission)
         .then(function() {
           self.keyDerived = true;
+          loadingModal.hide();
         });
       };
 
@@ -1524,6 +1517,32 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     AddUserPreference: function(lang) {
       facts.userPreference = lang;
       determineLanguage();
+    },
+  };
+}])
+.factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) { 
+  $rootScope.showLoadingModal = false;
+  
+  var cnt = 0;
+  function tryHideModal() {
+    if (cnt === 0) {
+      $rootScope.showLoadingModal = false;
+    }
+  }
+
+  return {
+    show: function() {
+      $rootScope.showLoadingModal = true;
+      cnt += 2;
+    },
+
+    hide: function() {
+      cnt -= 1;
+      $timeout(function() {
+        cnt -= 1;
+        tryHideModal();
+      }, 200);
+
     },
   };
 }]);

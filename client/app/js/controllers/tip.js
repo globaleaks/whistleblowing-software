@@ -1,9 +1,8 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
+  ['$rootScope', '$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'loadingModal', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
+  function($rootScope, $scope, $location, $route, $routeParams, $uibModal, $http, loadingModal, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
-    $scope.showTipLoadingPanel = true;
 
     $scope.answers = {};
     $scope.uploads = {};
@@ -92,6 +91,12 @@ GLClient.controller('TipCtrl',
       return receiver.configuration !== 'hidden';
     };
 
+    function failAndHideModal(err) {
+      loadingModal.hide();
+      $rootScope.errors.push(err);
+      throw err;
+    }
+
     if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = 'wbtip/upload';
 
@@ -100,8 +105,10 @@ GLClient.controller('TipCtrl',
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
+        loadingModal.show();
         glbcCipherLib.decryptAndVerifyAnswers(c, tip.id).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
+          loadingModal.hide();
 
           $scope.tip = tip;
           $scope.extractSpecialTipFields(tip);
@@ -127,7 +134,6 @@ GLClient.controller('TipCtrl',
             tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
           }
 
-          $scope.showTipLoadingPanel = false;
 
           tip.updateMessages();
 
@@ -138,7 +144,7 @@ GLClient.controller('TipCtrl',
               }
             }
           }, false);
-        });
+        }, failAndHideModal);
       });
 
     } else if ($scope.session.role === 'receiver') {
@@ -151,9 +157,10 @@ GLClient.controller('TipCtrl',
         // Convert the encrypted answers into an openpgpjs message.
         var c = pgp.message.readArmored(tip.encrypted_answers);
 
+        loadingModal.show();
         glbcCipherLib.decryptAndVerifyAnswers(c).then(function(plaintext) {
           tip.answers = JSON.parse(plaintext.data);
-          $scope.showTipLoadingPanel = false;
+          loadingModal.hide();
 
           $scope.tip = tip;
           $scope.extractSpecialTipFields(tip);
@@ -175,7 +182,7 @@ GLClient.controller('TipCtrl',
             }
           });
 
-        });
+        }, failAndHideModal);
       });
     } else {
       if($location.path() === '/status') {

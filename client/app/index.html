@@ -163,7 +163,7 @@
     </div>
 
     <div id="BrowserSupported">
-      <div id="LoadingOverlay" data-ng-hide="started && !showLoadingPanel">
+      <div id="LoadingOverlay" data-ng-hide="started">
         <div id="LoaderBox" class="ng-cloak">
           <div id="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>
@@ -173,6 +173,7 @@
       </div>
 
       <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
+      <div data-ng-if="showLoadingModal" class="ng-cloack" data-ng-include="'views/load_modal.html'"></div>
       <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
     </div>
 
