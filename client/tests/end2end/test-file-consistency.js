@@ -56,7 +56,7 @@ describe('Submission file process', function() {
       utils.logout();
       
       // Login as the receiver
-      rec.login('Recipient 2', utils.vars['user_password']);
+      utils.login_receiver('Recipient2', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
       // Download each file
@@ -94,7 +94,7 @@ describe('Submission file process', function() {
 
       utils.logout();
       
-      rec.login('Recipient 1', utils.vars['user_password']);
+      utils.login_receiver('Recipient1', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {

@@ -1,18 +1,16 @@
 var utils = require('./utils.js');
 var pages = require('./pages.js');
 
-var fs = require('fs');
+var pages = require('./pages.js');
+var receiver = new pages.receiver();
 
+var fs = require('fs');
 var opts = { encoding: 'utf8', flag: 'r' };
 var pgp_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
-    browser.get('/#/login');
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
-    element(by.model('loginPassword')).sendKeys('globaleaks');
-    element(by.css('form[name=loginForm] button')).click();
-    utils.waitForUrl('/forcedpasswordchange');
+    utils.login_receiver('Recipient1', utils.vars['default_password'], '/login', true);
   });
 
   it('should be able to change password from the default one', function() {
@@ -24,12 +22,7 @@ describe('receiver first login', function() {
   });
 
   it('should be able to login with the new password', function() {
-    browser.get('/#/login');
-    element(by.model('loginUsername')).element(by.xpath(".//*[text()='Recipient 1']")).click();
-    element(by.model('loginPassword')).sendKeys(utils.vars['user_password']);
-    element(by.css('form[name=loginForm] button')).click();
-    utils.waitForUrl('/receiver/tips');
-    expect(browser.getLocationAbsUrl()).toContain('/receiver/tips');
+    utils.login_receiver();
   });
 
   it('should be able to navigate through receiver preferences', function() {
@@ -43,10 +36,7 @@ describe('receiver first login', function() {
   });
 
   it('should be able to load his/her public PGP key', function() {
-    browser.setLocation('receiver/preferences');
-    element(by.cssContainingText("a", "Encryption settings")).click();
-    element(by.model('preferences.pgp_key_public')).sendKeys(pgp_key);
-    element(by.cssContainingText("span", "Update notification and encryption settings")).click();
+    receiver.addPublicKey(pgp_key);
   });
 });
 

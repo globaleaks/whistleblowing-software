@@ -1065,6 +1065,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         var path = $location.path();
         return (path === '/login' ||
                 path === '/admin' ||
+                path === '/custodian' ||
                 path === '/receipt');
       },
 

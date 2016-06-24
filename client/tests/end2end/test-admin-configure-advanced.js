@@ -9,6 +9,9 @@ describe('adming configure advanced settings', function() {
 
     element(by.model('admin.node.maximum_textsize')).clear().sendKeys('9000');
 
+    // enable experimental featuress that by default are disabled
+    element(by.model('admin.node.enable_experimental_features')).click();
+
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
       utils.emulateUserRefresh();

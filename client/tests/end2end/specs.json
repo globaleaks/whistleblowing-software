@@ -13,6 +13,7 @@
   "test-admin-contexts.js",
   "test-admin-questionnaires.js",
   "test-receiver-first-login.js",
+  "test-custodian-first-login.js",
   "test-globaleaks-process.js",
   "test-authentication-redirects.js",
   "test-file-consistency.js"

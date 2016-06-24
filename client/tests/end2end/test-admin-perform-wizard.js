@@ -24,7 +24,7 @@ describe('globaLeaks setup wizard', function() {
     element(by.model('admin_password')).sendKeys(utils.vars['user_password']);
     element(by.model('admin_check_password')).sendKeys(utils.vars['user_password']);
 
-    element(by.model('wizard.receiver.name')).sendKeys('Recipient 1');
+    element(by.model('wizard.receiver.name')).sendKeys('Recipient1');
     element(by.model('wizard.receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
       
     element(by.model('wizard.context.name')).sendKeys('Context 1');
