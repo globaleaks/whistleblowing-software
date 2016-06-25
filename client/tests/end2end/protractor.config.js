@@ -8,10 +8,10 @@ exports.config = {
   framework: 'jasmine',
   allScriptsTimeout: 30000,
 
-  onPrepare: function() {
+  /*onPrepare: function() {
     var failFast = require('jasmine-fail-fast');
     jasmine.getEnv().addReporter(failFast.init());
-  },
+  },*/
 
   baseUrl: 'http://127.0.0.1:8082/',
 
