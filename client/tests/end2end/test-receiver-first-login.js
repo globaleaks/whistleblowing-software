@@ -39,17 +39,14 @@ describe('receiver first login', function() {
   });
 });
 
-describe('Recipient 2 first login', function() {
+fdescribe('Recipient 2 first login', function() {
   var tmp_pass = utils.vars['user_password'] + 'D';
 
   it('should be able to change password', function() {
     browser.get('/#/login');
-    utils.login_receiver('Recipient2', utils.vars['default_password']);
-    utils.waitForUrl('/forcedpasswordchange');
+    utils.login_receiver('Recipient2', utils.vars['default_password'], '/#/login', true);
 
     receiver.changePassword(utils.vars['default_password'], tmp_pass);
-    utils.waitForUrl('/receiver/tips', 20000);
-
   });
 
   it('should be able to change password in preferences', function() {
@@ -64,10 +61,8 @@ describe('Recipient 2 first login', function() {
     preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
     preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
     receiver.changePassword(tmp_pass, utils.vars['user_password']);
-    utils.waitForUrl('/receiver/tips');
 
     browser.get('/#/login');
     utils.login_receiver('Recipient2', utils.vars['user_password']);
-    utils.waitForUrl('/receiver/tips');
   });
 });

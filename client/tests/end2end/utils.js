@@ -55,8 +55,12 @@ exports.waitUntilClickable = function (elm, timeout) {
 };
 
 exports.waitUntilHidden = function(elem, timeout) {
-  var EC = protractor.ExpectedConditions;
-  genericWait(EC.invisibilityOf(elem), timeout);
+  if (elem.isPresent()) {
+    var EC = protractor.ExpectedConditions;
+    genericWait(EC.invisibilityOf(elem), timeout);
+  } else {
+    return; // The element is not on the page.
+  }
 };
 
 exports.waitUntilReady = function (elm, timeout) {
@@ -75,7 +79,7 @@ exports.waitForUrl = function (url) {
       current_url = current_url.split('#')[1];
       return (current_url === url);
     });
-  });
+  }, 10000);
 };
 
 exports.waitForFile = function (filename, timeout) {    
@@ -98,7 +102,6 @@ exports.emulateUserRefresh = function () {
     current_url = current_url.split('#')[1];
     browser.setLocation('');
     browser.setLocation(current_url);
-    //utils.waitUntilHidden($('.LoadingOverlay'), 5000);
   });
 };
 
