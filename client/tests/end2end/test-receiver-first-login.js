@@ -44,7 +44,7 @@ describe('Recipient 2 first login', function() {
 
   it('should be able to change password', function() {
     browser.get('/#/login');
-    utils.login_reciever('Recipient 2', utils.vars['default_password']);
+    utils.login_receiver('Recipient 2', utils.vars['default_password']);
     utils.waitForUrl('/forcedpasswordchange');
 
     receiver.changePassword(utils.vars['default_password'], tmp_pass);
@@ -54,7 +54,7 @@ describe('Recipient 2 first login', function() {
 
   it('should be able to change password in preferences', function() {
     browser.get('/#/login');
-    utils.login_reciever('Recipient 2', tmp_pass);
+    utils.login_receiver('Recipient 2', tmp_pass);
     utils.waitForUrl('/receiver/tips');
 
     element(by.id('PreferencesLink')).click();
@@ -67,7 +67,7 @@ describe('Recipient 2 first login', function() {
     utils.waitForUrl('/receiver/tips');
 
     browser.get('/#/login');
-    utils.login_reciever('Recipient 2', utils.vars['user_password']);
+    utils.login_receiver('Recipient 2', utils.vars['user_password']);
     utils.waitForUrl('/receiver/tips');
   });
 });
