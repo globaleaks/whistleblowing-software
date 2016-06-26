@@ -31,6 +31,15 @@ exports.receiver = function() {
     element(by.cssContainingText('a', 'Encryption settings')).click();
     return clickDelPubKey();
   };
+
+  this.changePassword = function(cur_pass, new_pass) {
+    element(by.model('inp.old_password')).sendKeys(cur_pass);
+    element(by.model('inp.new_password')).sendKeys(new_pass);
+    element(by.model('inp.check_password')).sendKeys(new_pass);
+    element(by.css('[data-ng-click="pass_next()"]')).click();
+    utils.waitForUrl('/receiver/tips', 20000);
+
+  };
 };
 
 exports.whistleblower = function() {
