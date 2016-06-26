@@ -199,8 +199,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$rootScope',
-  function($q, $injector, $rootScope) {
+  factory('globalInterceptor', ['$q', '$injector', '$window', '$rootScope',
+  function($q, $injector, $window, $rootScope) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
 
@@ -229,6 +229,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         */
         var $http = $injector.get('$http');
         var Authentication = $injector.get('Authentication');
+
+        if (response.status === 405) {
+          var errorData = angular.toJson({
+              errorUrl: $window.location.href,
+              errorMessage: response.statusText,
+              stackTrace: [{
+                'url': response.config.url,
+                'method': response.config.method
+              }],
+              agent: navigator.userAgent
+            });
+
+          $http.post('exception', errorData);
+        }
 
         try {
           if (response.data !== null) {
