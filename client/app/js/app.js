@@ -19,11 +19,10 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
 
         $delegate(exception, cause);
 
-        var errorMessage = exception.toString();
         stacktraceService.fromError(exception).then(function(result) {
           var errorData = angular.toJson({
             errorUrl: $window.location.href,
-            errorMessage: errorMessage,
+            errorMessage: exception.toString();
             stackTrace: result,
             agent: navigator.userAgent
           });
