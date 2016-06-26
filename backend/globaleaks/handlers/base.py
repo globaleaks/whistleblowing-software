@@ -20,7 +20,7 @@ from twisted.internet import fdesc, reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
 
-from cyclone import httputil, web
+from cyclone import httputil, web, template
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
@@ -609,6 +609,8 @@ class BaseHandler(RequestHandler):
             return None
 
     def _handle_request_exception(self, e):
+        ret = RequestHandler._handle_request_exception(self, e)
+
         if isinstance(e, Failure):
             exc_type = e.type
             exc_value = e.value
@@ -617,23 +619,11 @@ class BaseHandler(RequestHandler):
         else:
             exc_type, exc_value, exc_tb = sys.exc_info()
 
-        if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
-            if GLSettings.log_requests_responses and e.log_message:
-                string_format = "%d %s: " + e.log_message
-                args = [e.status_code, self._request_summary()] + list(e.args)
-                msg = lambda *args: string_format % args
-                log.msg(msg(*args))
-            if e.status_code not in httplib.responses:
-                log.msg("Bad HTTP status code: %d" % e.status_code)
-                return self.send_error(500, exception=e)
-            else:
-                return self.send_error(e.status_code, exception=e)
-        else:
-            log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb))
-            if GLSettings.log_requests_responses:
-                log.msg(e)
+        if not isinstance(e, (template.TemplateError,
+                              HTTPError, HTTPAuthenticationRequired)):
             mail_exception_handler(exc_type, exc_value, exc_tb)
-            return self.send_error(500, exception=e)
+
+        return ret
 
     def handler_time_analysis_begin(self):
         self.start_time = time.time()
