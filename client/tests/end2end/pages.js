@@ -32,13 +32,16 @@ exports.receiver = function() {
     return clickDelPubKey();
   };
 
-  this.changePassword = function(cur_pass, new_pass) {
+  this.changePassword = function(cur_pass, new_pass, url) {
+    cur_pass = cur_pass === undefined ? utils.vars['default_password'] : cur_pass;
+    new_pass = new_pass === undefined ? utils.vars['user_password'] : new_pass;
+    url = url === undefined ? '/#/receiver/tips' : url;
+
     element(by.model('inp.old_password')).sendKeys(cur_pass);
     element(by.model('inp.new_password')).sendKeys(new_pass);
     element(by.model('inp.check_password')).sendKeys(new_pass);
     element(by.css('[data-ng-click="pass_next()"]')).click();
-    utils.waitForUrl('/receiver/tips', 20000);
-
+    utils.waitForUrl(url, 25000);
   };
 };
 

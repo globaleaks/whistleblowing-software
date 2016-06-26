@@ -1,16 +1,18 @@
 var utils = require('./utils.js');
 
-describe('receiver first login', function() {
+var pages = require('./pages.js');
+
+describe('custodian first login', function() {
+  var custodian = new pages.receiver();
   it('should redirect to /firstlogin upon successful authentication', function() {
     utils.login_custodian('Custodian1', utils.vars['default_password'], '/#/custodian', true);
   });
 
   it('should be able to change password from the default one', function() {
-    element(by.model('preferences.old_password')).sendKeys(utils.vars['default_password']);
-    element(by.model('preferences.password')).sendKeys(utils.vars['user_password']);
-    element(by.model('preferences.check_password')).sendKeys(utils.vars['user_password']);
-    element(by.css('[data-ng-click="pass_save()"]')).click();
-    utils.waitForUrl('/custodian/identityaccessrequests');
+    var waitUrl = '/custodian/identityaccessrequests';
+    custodian.changePassword(utils.vars['default_password'],
+                             utils.vars['user_password'],
+                             waitUrl);
   });
 
   it('should be able to login with the new password', function() {
