@@ -79,7 +79,7 @@ exports.waitForUrl = function (url) {
       current_url = current_url.split('#')[1];
       return (current_url === url);
     });
-  }, 10000);
+  }, 20000);
 };
 
 exports.waitForFile = function (filename, timeout) {    

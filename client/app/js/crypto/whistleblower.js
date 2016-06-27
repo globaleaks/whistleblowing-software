@@ -117,7 +117,6 @@ angular.module('GLBrowserCrypto')
      * @return {Promise<String>} the armored pgp message
      */
     encryptAndSignAnswers: function(jsonAnswers, receiverIds, sign) {
-
       var pubKeys = receiverIds.map(function(id) {
         return glbcKeyRing.getPubKey(id);
       });
@@ -139,42 +138,5 @@ angular.module('GLBrowserCrypto')
         return cipherMsg.data;
       });
     },
-
-    /*
-     * @param {Array<String>} msgs a list of ASCII armored openpgp messages
-     * @param {Array<pgp.Key>} pubKeys a corresponding list of public keys of the signer
-     * @param {boolean} verify
-     * @return {Promise<Array<String>>} the list of the decrypted msgs
-     */
-    decryptAndVerifyMessages: function(msgs, pubKeys, verify) {
-      var deferred = $q.defer();
-
-      if (msgs.length !== pubKeys.length) {
-        deferred.reject(new Error('mismatched msgs and pubkeys'));
-      }
-
-      var decPromises = [];
-      for (var i = 0; i < msgs.length; i++) {
-        var msg = pgp.message.readArmored(msgs[i]);
-        var options = {
-          message: msg,
-          privateKey: glbcKeyRing.getKey(),
-          format: 'utf8',
-        };
-
-        if (verify) {
-          var pubKey = pgp.key.readArmored(pubKeys[i]).keys[0];
-          options.publicKeys = pubKey;
-        }
-
-        var promise = pgp.decrypt(options).then(function(result) {
-          return result.data;
-        });
-        decPromises.push(promise);
-      }
-
-      return $q.all(decPromises);
-    },
-
   };
 }]);
