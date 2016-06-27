@@ -1,3 +1,6 @@
+changes in version 2.62.1 - 2016-06-26
+    o Fix loading of logo image in relation to API change
+
 Changes in version 2.62.0 - 2016-06-24
     o Reimplement the wizard as an atomi operation (#1692)
     o Reduce the type of fonts served by the application to 1 (woff)
