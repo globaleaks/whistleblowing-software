@@ -9,7 +9,7 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
-from globaleaks.rest import requests
+from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
@@ -19,8 +19,12 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
+    node = store.find(models.Node).one()
+    if node.wizard_done:
+      # TODO report as anomoly
+      log.err("DANGER: Wizard already initialized!")
+      raise errors.ForbiddenOperation
     try:
-        node = store.find(models.Node).one()
         node.default_language = language
         node.languages_enabled = [language]
         node.name = request['node']['name']
@@ -74,8 +78,8 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.WizardDesc)
 
+        # Wizard will raise exceptions if their any errors with the request
         yield wizard(request, self.request.language)
-
         # cache must be updated in particular to set wizard_done = True
         public_node_desc = yield serialize_node(self.request.language)
         GLApiCache.invalidate()
