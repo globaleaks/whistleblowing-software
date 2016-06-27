@@ -317,11 +317,7 @@ module.exports = function(grunt) {
       grunt.file.copy(absdir, path.join('build/' + dirs[x], subdir || '', filename || ''));
     };
 
-    for (x in dirs) {
-      grunt.file.recurse('tmp/' + dirs[x], copy_fun);
-    }
-
-    dirs = ['l10n', 'data'];
+    dirs = ['js/crypto/lib', 'l10n', 'data'];
     for (x in dirs) {
       grunt.file.recurse('tmp/' + dirs[x], copy_fun);
     }
