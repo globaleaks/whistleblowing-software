@@ -236,8 +236,7 @@ class DeliverySchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         """
-        Goal of this function is to process/validate files, compute their checksums and
-        apply the configured delivery method.
+        Goal of this function is to create receiver files
         """
         receiverfiles_maps = yield receiverfile_planning()
 
