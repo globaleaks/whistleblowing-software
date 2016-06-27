@@ -39,7 +39,7 @@ describe('receiver first login', function() {
   });
 });
 
-fdescribe('Recipient 2 first login', function() {
+describe('Recipient 2 first login', function() {
   var tmp_pass = utils.vars['user_password'] + 'D';
 
   it('should be able to change password', function() {
