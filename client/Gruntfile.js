@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       src: [
         'Gruntfile.js',
         'app/js/**/*.js',
-        '!app/js/crypto/*.js',
+        '!app/js/crypto/lib/*.js',
         'tests/**/*.js'
       ]
     },
@@ -45,9 +45,9 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/', cwd: 'app/', src: ['components/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
+          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
         ]
       },
       build: {
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
             src: [
               '**',
               '!js/**/*.js', // Don't copy scripts that will be instrumented.
-              'js/crypto/**/*.js' // Copy scripts that should not be instrumented.
+              'js/crypto/lib/*.js' // Copy scripts that should not be instrumented.
             ],
             expand: true
           }]
