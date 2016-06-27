@@ -1,4 +1,4 @@
-importScripts("scrypt-async.min.js");
+importScripts("lib/scrypt-async.min.js");
 
 onmessage = function(e) {
   options = e.data;
