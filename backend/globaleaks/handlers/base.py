@@ -612,9 +612,7 @@ class BaseHandler(RequestHandler):
         ret = RequestHandler._handle_request_exception(self, e)
 
         if isinstance(e, Failure):
-            exc_type = e.type
-            exc_value = e.value
-            exc_tb = e.getTracebackObject()
+            exc_type, exc_value, exc_tb = [e.type, e.value, e.getTracebackObject()]
             e = e.value
         else:
             exc_type, exc_value, exc_tb = sys.exc_info()
