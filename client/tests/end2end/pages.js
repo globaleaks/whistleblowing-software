@@ -49,11 +49,10 @@ exports.whistleblower = function() {
   this.performSubmission = function(title) {
     browser.get('/#/submission');
 
-    utils.waitUntilHidden($('.LoadingOverlay'), 5000);
     browser.wait(function(){
       // Wait until the proof of work is resolved;
       return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
-        return submission.pow === true;
+        return submission.pow === true && submission.keyDerived;
       });
     });
 
