@@ -4,7 +4,7 @@ var pages = require('./pages.js');
 
 describe('custodian first login', function() {
   var custodian = new pages.receiver();
-  it('should redirect to /firstlogin upon successful authentication', function() {
+  it('should redirect to /forcepass... upon successful authentication', function() {
     utils.login_custodian('Custodian1', utils.vars['default_password'], '/#/custodian', true);
   });
 
