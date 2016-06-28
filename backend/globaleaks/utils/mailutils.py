@@ -7,6 +7,7 @@
 
 import logging
 import re
+import sys
 import traceback
 import StringIO
 from datetime import datetime
@@ -220,18 +221,27 @@ def mail_exception_handler(etype, value, tback):
     send_exception_email(mail_body)
 
 
-def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
+def extract_exception_traceback_and_send_email(e):
+    if isinstance(e, Failure):
+        exc_type = [e.type, e.value, e.getTracebackObject()]
+    else:
+        exc_type, exc_value, exc_tb = sys.exc_info()
+
+    mail_exception_handler(exc_type, exc_value, exc_tb)
+
+
+def send_exception_email(mail_body):
+    if not hasattr(GLSettings.memory_copy, 'exception_email_address'):
+        log.err("Error: Cannot send mail exception before complete initialization.")
+        return
+
+    if not isinstance(mail_body, str) and not isinstance(mail_body, unicode):
+        return
+
     if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
         return
 
-    if isinstance(mail_body, str) or isinstance(mail_body, unicode):
-        mail_body = bytes(mail_body)
-
-    if not hasattr(GLSettings.memory_copy, 'notif_source_name') or \
-        not hasattr(GLSettings.memory_copy, 'notif_source_email') or \
-        not hasattr(GLSettings.memory_copy, 'exception_email_address'):
-        log.err("Error: Cannot send mail exception before complete initialization.")
-        return
+    mail_body = bytes("GlobaLeaks version: %s\n\nException:\nmail_body" % __version__)
 
     sha256_hash = sha256(mail_body)
 
@@ -247,7 +257,7 @@ def send_exception_email(mail_body, mail_reason="GlobaLeaks Exception"):
     GLSettings.exceptions_email_count += 1
 
     try:
-        mail_subject = "%s %s" % (mail_reason, __version__)
+        mail_subject = "GlobaLeaks Exception"
         if GLSettings.devel_mode:
             mail_subject +=  " [%s]" % GLSettings.developer_name
 
