@@ -1,9 +1,11 @@
+/* global scrypt, Promise */
+
 importScripts("lib/scrypt-async.min.js");
 
 onmessage = function(e) {
-  options = e.data;
+  var options = e.data;
 
-  return new Promise(function(resolve, reject) {
+  return new Promise(function() {
     var callback = function(result) {
       postMessage(result);
     };
