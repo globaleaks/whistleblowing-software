@@ -21,7 +21,7 @@ from twisted.internet.defer import inlineCallbacks
 def wizard(store, request, language):
     node = store.find(models.Node).one()
     if node.wizard_done:
-      # TODO report as anomoly
+      # TODO report as anomaly
       log.err("DANGER: Wizard already initialized!")
       raise errors.ForbiddenOperation
     try:
@@ -78,10 +78,10 @@ class Wizard(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.WizardDesc)
 
-        # Wizard will raise exceptions if their any errors with the request
+        # Wizard will raise exceptions if there are any errors with the request
         yield wizard(request, self.request.language)
-        # cache must be updated in particular to set wizard_done = True
-        public_node_desc = yield serialize_node(self.request.language)
+        # cache must be updated in order to set wizard_done = True
+        yield serialize_node(self.request.language)
         GLApiCache.invalidate()
 
         self.set_status(201)  # Created
