@@ -39,6 +39,6 @@ class TestWizard(helpers.TestHandler):
 
         handler = self.request(self.wizard_blob, role='admin')
         yield handler.post()
-        
+
         handler = self.request(self.wizard_blob, role='admin')
         yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
