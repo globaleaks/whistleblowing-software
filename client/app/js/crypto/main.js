@@ -1,3 +1,5 @@
+/* global Uint8Array */
+
 angular.module('GLBrowserCrypto', [])
 .factory('glbcProofOfWork', ['$q', function($q) {
   // proofOfWork return the answer to the proof of work
