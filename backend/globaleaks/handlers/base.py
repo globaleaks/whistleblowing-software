@@ -635,11 +635,11 @@ class BaseHandler(RequestHandler):
         current_run_time = time.time() - self.start_time
 
         if current_run_time > self.handler_exec_time_threshold:
-            error = "Handler [%s] exceeded exec threshold (of %d secs) with an execution time of %.2f seconds" % \
+            error = "Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds" % \
                     (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
 
-            send_exception_email(error, mail_reason="Handler Time Exceeded")
+            send_exception_email(error)
 
         if GLSettings.log_timing_stats:
             TimingStatsHandler.log_measured_timing(self.request.method, self.request.uri, self.start_time, current_run_time)
