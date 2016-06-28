@@ -61,6 +61,11 @@ describe('Recipient 2 first login', function() {
     var preferencesForm = element(by.id("preferencesForm"));
     preferencesForm.element(by.cssContainingText("a", "Preferences")).click();
     preferencesForm.element(by.cssContainingText("a", "Password configuration")).click();
+
+    // Try to input an incorrect password -- the ui should handle the problem
+    receiver.changePassword('mcafee', '#An0deTo0gr3s', '/receiver/preferences');
+    expect(element(by.model('inp.new_password')).isPresent()).toBe(true);
+
     receiver.changePassword(tmp_pass, utils.vars['user_password']);
 
     browser.get('/#/login');

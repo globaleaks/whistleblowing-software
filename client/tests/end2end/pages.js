@@ -38,8 +38,12 @@ exports.receiver = function() {
     url = url === undefined ? '/receiver/tips' : url;
 
     element(by.model('inp.old_password')).sendKeys(cur_pass);
-    element(by.model('inp.new_password')).sendKeys(new_pass);
-    element(by.model('inp.check_password')).sendKeys(new_pass);
+    var new_elem = element(by.model('inp.new_password'));
+    new_elem.clear();
+    new_elem.sendKeys(new_pass);
+    var check_elem = element(by.model('inp.check_password'));
+    check_elem.clear();
+    check_elem.sendKeys(new_pass);
     element(by.css('[data-ng-click="pass_next()"]')).click();
     utils.waitForUrl(url);
   };

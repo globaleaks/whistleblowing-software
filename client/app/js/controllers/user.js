@@ -11,17 +11,18 @@ GLClient
 
     $scope.pass_next = function () {
       glbcUserKeyGen.startProcessing();
-
-      locationForce.clear();
+      $scope.showKeyChange = true;
 
       $scope.preferences.pgp_key_remove = false;
 
       glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
       glbcUserKeyGen.vars.promises.ready.then(function() {
+        locationForce.clear();
         $location.path(Authentication.session.auth_landing_page);
+      }, function() {
+        $scope.inp.old_password = "";
+        $scope.showKeyChange = false;
       });
-
-      $scope.showKeyChange = true;
     };
 }])
 .factory('locationForce', ['$location', '$rootScope', function($location,  $rootScope) {
@@ -47,6 +48,5 @@ GLClient
       forcedLocation = null;
       deregister();
     },
-
   };
 }]);
