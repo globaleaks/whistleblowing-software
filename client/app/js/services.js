@@ -232,7 +232,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
 }]).
   factory('globalInterceptor', ['$q', '$injector', '$window', '$rootScope', 'loadingModal',
-  function($q, $http, $window, $rootScope, loadingModal) {
+  function($q, $injector, $window, $rootScope, loadingModal) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
 
