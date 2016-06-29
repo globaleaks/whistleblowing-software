@@ -241,7 +241,7 @@ def send_exception_email(mail_body):
     if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
         return
 
-    mail_body = bytes("GlobaLeaks version: %s\n\nException:\nmail_body" % __version__)
+    mail_body = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, mail_body))
 
     sha256_hash = sha256(mail_body)
 
