@@ -231,8 +231,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$window', '$rootScope', 'loadingModal',
-  function($q, $injector, $window, $rootScope, loadingModal) {
+  factory('globalInterceptor', ['$q', '$http', '$injector', '$window', '$rootScope', 'loadingModal',
+  function($q, $http, $injector, $window, $rootScope, loadingModal) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
 
