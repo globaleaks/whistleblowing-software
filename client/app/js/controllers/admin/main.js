@@ -31,7 +31,6 @@ GLClient.controller('AdminCtrl',
       }
     });
 
-    $scope.vars = {};
     $scope.languages_enabled_selector = $filter('orderBy')($scope.languages_enabled_selector, 'code');
 
     $scope.$watch('languages_enabled', function() {
@@ -207,6 +206,10 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'Admin
   }
 
   $scope.get_l10n = function(lang) {
+    if (!lang) {
+      return;
+    }
+
     $scope.custom_texts = AdminL10NResource.get({'lang': lang});
     $scope.default_texts = DefaultL10NResource.get({'lang': lang});
   }
