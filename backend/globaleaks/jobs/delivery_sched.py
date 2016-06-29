@@ -152,7 +152,7 @@ class DeliverySchedule(GLJob):
     @inlineCallbacks
     def operation(self):
         """
-        Goal of this function is to create receiver files
+        This function creates receiver files
         """
         receiverfiles_maps = yield receiverfile_planning()
 

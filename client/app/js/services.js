@@ -231,8 +231,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$rootScope', 'loadingModal',
-  function($q, $injector, $rootScope, loadingModal) {
+  factory('globalInterceptor', ['$q', '$injector', '$window', '$rootScope', 'loadingModal',
+  function($q, $injector, $window, $rootScope, loadingModal) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
 
@@ -254,6 +254,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
            errors array the error message.
         */
         var Authentication = $injector.get('Authentication');
+
+        if (response.status === 405) {
+          var errorData = angular.toJson({
+              errorUrl: $window.location.href,
+              errorMessage: response.statusText,
+              stackTrace: [{
+                'url': response.config.url,
+                'method': response.config.method
+              }],
+              agent: navigator.userAgent
+            });
+
+          $http.post('exception', errorData);
+        }
 
         try {
           if (response.data !== null) {

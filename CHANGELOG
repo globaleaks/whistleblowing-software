@@ -1,4 +1,16 @@
-changes in version 2.62.1 - 2016-06-26
+Changes in version 2.62.3 - 2016-06-29
+    o Fix generation of content of exception emails.
+
+Changes in version 2.62.2 - 2016-06-28
+    o Improve schedulers implementing resiliency checks and
+      notification of failures
+    o Fix possibility for wizard reset
+    o Improve clientside detection of API failures
+    o Remove grunt-line-remover, dependency no more used
+    o Bump grunt to stable version 1.0.1
+    o Update translations
+
+Changes in version 2.62.1 - 2016-06-26
     o Fix loading of logo image in relation to API change
 
 Changes in version 2.62.0 - 2016-06-24

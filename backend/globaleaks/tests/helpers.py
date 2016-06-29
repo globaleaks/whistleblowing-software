@@ -70,14 +70,17 @@ for filename in os.listdir(KEYS_PATH):
 
 transact.tp = FakeThreadPool()
 
+
 def deferred_sleep_mock(seconds):
     return
 
 utility.deferred_sleep = deferred_sleep_mock
 
+
 def load_json_file(file_path):
     with open(file_path) as f:
       return json.loads(f.read())
+
 
 class UTlog:
     @staticmethod
