@@ -1353,11 +1353,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    if (angular.isDefined(facts.userChoice)) {
+    if (angular.isDefined(facts.userChoice) &&
+        enabledLanguages.indexOf(facts.userChoice) !== -1) {
       return facts.userChoice;
-    } else if (angular.isDefined(facts.urlParam)) {
+    } else if (angular.isDefined(facts.urlParam) &&
+               enabledLanguages.indexOf(facts.urlParam) !== -1) {
       return facts.urlParam;
-    } else if (angular.isDefined(facts.userPreference)) {
+    } else if (angular.isDefined(facts.userPreference) &&
+               enabledLanguages.indexOf(facts.userPreference) !== -1) {
       return facts.userPreference;
     } else if (angular.isDefined(facts.browserSniff) &&
                enabledLanguages.indexOf(facts.browserSniff) !== -1) {
