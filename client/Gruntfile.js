@@ -206,9 +206,9 @@ module.exports = function(grunt) {
         options: {
           replacements: [
             {
-              pattern: 'scrypt-async.min.js',
+              pattern: 'lib/scrypt-async.min.js',
               replacement: function () {
-                return fileToDataURI('tmp/js/crypto/scrypt-async.min.js');
+                return fileToDataURI('tmp/js/crypto/lib/scrypt-async.min.js');
               }
             }
           ]
