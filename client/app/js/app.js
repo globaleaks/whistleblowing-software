@@ -504,7 +504,7 @@ var GLClient = angular.module('GLClient', [
           }
         }
 
-        GLTranslate.AddNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
+        GLTranslate.addNodeFacts($rootScope.node.default_language, $rootScope.node.languages_enabled);
 
         route_check();
 

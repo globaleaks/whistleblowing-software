@@ -37,7 +37,7 @@ angular.module('GLServices', ['ngResource']).
 
             function initPreferences(prefs) {
               $rootScope.preferences = prefs;
-              GLTranslate.AddUserPreference(prefs.language);
+              GLTranslate.addUserPreference(prefs.language);
             }
 
             if (self.session.role === 'admin') {
@@ -1312,7 +1312,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
-
     // Set text direction for languages that read from right to left.
     var useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
@@ -1388,7 +1387,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     setLang: setLang,
 
-    AddNodeFacts: function(defaultLang, languages_enabled) {
+    addNodeFacts: function(defaultLang, languages_enabled) {
       facts.nodeDefault = defaultLang;
 
       enabledLanguages = languages_enabled;
@@ -1396,10 +1395,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       determineLanguage();
     },
 
-    AddUserPreference: function(lang) {
+    addUserPreference: function(lang) {
       facts.userPreference = lang;
       determineLanguage();
     },
-
   };
 }]);
