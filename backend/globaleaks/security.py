@@ -342,7 +342,7 @@ def change_password(old_password_hash, old_password, new_password, salt):
         the scrypt hash in base64 of the new password
     """
     if not check_password(old_password, salt, old_password_hash):
-        log.err("change_password(): Error - provided invalid old_password")
+        log.debug("change_password(): Error - provided invalid old_password")
         raise errors.InvalidOldPassword
 
     return hash_password(new_password, salt)
