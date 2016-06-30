@@ -6,7 +6,6 @@ var tmpDir = '/tmp/globaleaks-download';
 
 exports.config = {
   framework: 'jasmine',
-  allScriptsTimeout: 30000,
 
   /*onPrepare: function() {
     var failFast = require('jasmine-fail-fast');
