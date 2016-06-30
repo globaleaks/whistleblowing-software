@@ -24,10 +24,10 @@ angular.module('GLBrowserCrypto')
 
   function showMsg(msg) {
     vars.msgP = vars.msgP.then(function() {
-      return $timeout(function() {
-        vars.msgQueue.push(msg);
-      }, 1000);
+      vars.msgQueue.push(msg);
+      return $timeout(function() {}, 1000);
     });
+    return vars.msgP;
   }
 
   return {
@@ -81,17 +81,10 @@ angular.module('GLBrowserCrypto')
         return $http.post('/user/passprivkey', body);
       }).then(function() {
         Authentication.user_salt = vars.user_salt;
-        showMsg('Success!');
-        return vars.msgP.then(function() {
-          return $timeout(function(){}, 2500);
-        });
+        return showMsg('Success!');
       }, function(err) {
-        showMsg('Failed');
-        // Add a timeout to show failures before rejecting promise
-        return vars.msgP.then(function() {
-          return $timeout(function(){
-            return $q.reject(err);
-          }, 2500);
+        return showMsg('Failed').then(function() {
+          return $q.reject(err);
         });
       });
     },
