@@ -131,7 +131,7 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
         self.req_body['old_auth_token_hash'] = helpers.INVALID_AUTH_TOK_HASH
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
-        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+        yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
 
         self.req_body['old_auth_token_hash'] = self.user_old_token
         self.req_body['new_auth_token_hash'] = 'wrongformat'
@@ -142,14 +142,17 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
         self.req_body['new_auth_token_hash'] = self.req_body['old_auth_token_hash']
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
 
-        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
+        yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
 
     @inlineCallbacks
     def test_invalid_pubkey(self):
-        self.req_body['ccrypto_key_public'] = ""
+        self.req_body['ccrypto_key_public'] = "aaa"
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
-        yield self.assertFailure(handler.post(), errors.UserIdNotFound)
-        # TODO pass broken public key
+
+        handler.post()
+
+        self.req_body['ccrypto_key_public'] = "adfasdf"
+        yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
 
     def test_invalid_privkey(self):
         user = self.dummyReceiverUser_1

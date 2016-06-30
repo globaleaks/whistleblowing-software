@@ -192,7 +192,7 @@ class PassKeyUpdateHandler(BaseHandler):
         finally:
           yield self.uniform_answers_delay()
           if not success:
-            raise errors.UserIdNotFound
+            raise errors.ForbiddenOperation
 
 @transact
 def update_passkey(store, request, current_session_id):

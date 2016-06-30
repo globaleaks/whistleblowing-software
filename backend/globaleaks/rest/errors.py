@@ -205,7 +205,7 @@ class FieldNotEditable(GLException):
 
 class ForbiddenOperation(GLException):
     """
-    Receiver or Whistleblower has tried one operation not permitted by their privileges
+    A client has tried an operation not permitted by its privileges
     """
     reason = "Operation Forbidden"
     error_code = 25
