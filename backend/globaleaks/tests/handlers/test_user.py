@@ -144,13 +144,12 @@ class PassKeyUpdateInstance(helpers.TestHandlerWithPopulatedDB):
 
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
 
-
+    @inlineCallbacks
     def test_invalid_pubkey(self):
         self.req_body['ccrypto_key_public'] = ""
         handler = self.request(self.req_body, user_id=self.user['id'], role='receiver')
         yield self.assertFailure(handler.post(), errors.UserIdNotFound)
         # TODO pass broken public key
-
 
     def test_invalid_privkey(self):
         user = self.dummyReceiverUser_1
