@@ -6,17 +6,6 @@
   </div>
 </div>
 
-<div class="row" data-ng-if="!node.disable_encryption_warning && tip_unencrypted">
-  <div class="col-md-12">
-    <div class="alert alert-warning">
-      <i class="glyphicon glyphicon-warning-sign"></i>
-      <strong><span data-translate>Warning</span></strong>
-      <span data-translate>One or more of the recipients of this submission has not configured a PGP key.</span>
-      <span data-translate>This means that the submitted files will be stored in plaintext on the server.</span>
-    </div>
-  </div>
-</div>
-
 <div class="row">
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_info.html'"></div>
