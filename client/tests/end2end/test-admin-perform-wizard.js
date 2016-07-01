@@ -26,9 +26,9 @@ describe('globaLeaks setup wizard', function() {
 
     element(by.model('wizard.receiver.name')).sendKeys('Recipient1');
     element(by.model('wizard.receiver.mail_address')).sendKeys('globaleaks-receiver1@mailinator.com');
-      
+
     element(by.model('wizard.context.name')).sendKeys('Context 1');
-      
+
     // Complete the form
     element.all(by.id('ButtonNext2')).click();
 

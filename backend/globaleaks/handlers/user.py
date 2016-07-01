@@ -214,7 +214,6 @@ def update_passkey(store, request, current_session_id):
         log.debug("Only updating a user's private key")
 
     user.auth_token_hash = request['new_auth_token_hash']
-    user.salt = request['salt']
 
     user.password_change_needed = False
     user.password_change_date = datetime_now()

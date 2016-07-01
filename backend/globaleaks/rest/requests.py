@@ -57,7 +57,6 @@ identityaccessreply_regexp        = (r'^('
                                      'denied)$')
 
 sha512_regexp                     = r'^[a-f0-9]{128}$'
-salt_regexp                       = r'.{24}$'
 
 class SkipSpecificValidation: pass
 
@@ -85,7 +84,6 @@ AuthDesc = {
 PassKeyUpdateDesc = {
     'new_auth_token_hash': sha512_regexp,
     'old_auth_token_hash': sha512_regexp,
-    'salt': salt_regexp,
     'ccrypto_key_private': unicode,
     'ccrypto_key_public': unicode,
 }

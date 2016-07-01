@@ -63,7 +63,6 @@ angular.module('GLBrowserCrypto')
         var body = {
           'old_auth_token_hash': authDeriv.old_res.authentication,
           'new_auth_token_hash': authDeriv.new_res.authentication,
-          'salt': authDeriv.salt,
           'ccrypto_key_public': '',
           'ccrypto_key_private': glbcKeyRing.exportPrivKey(),
         };
@@ -80,7 +79,6 @@ angular.module('GLBrowserCrypto')
 
         return $http.post('/user/passprivkey', body);
       }).then(function() {
-        Authentication.user_salt = vars.user_salt;
         return showMsg('Success!');
       }, function(err) {
         return showMsg('Failed').then(function() {
@@ -117,11 +115,8 @@ angular.module('GLBrowserCrypto')
     },
 
     addPassphrase: function(old_password, new_password) {
-      var old_salt = Authentication.user_salt;
-      vars.user_salt = glbcUtil.generateRandomSalt();
-
-      var p1 = glbcKeyLib.deriveUserPassword(new_password, vars.user_salt);
-      var p2 = glbcKeyLib.deriveUserPassword(old_password, old_salt);
+      var p1 = glbcKeyLib.deriveUserPassword(new_password, Authentication.user_salt);
+      var p2 = glbcKeyLib.deriveUserPassword(old_password, Authentication.user_salt);
 
       $q.all([p1, p2]).then(function(results) {
         vars.promises.authDerived.resolve({
