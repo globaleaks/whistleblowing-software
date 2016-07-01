@@ -1,5 +1,5 @@
 angular.module('GLBrowserCrypto')
-.directive('glbcKeyChangeElem', ['$location', 'Authentication', 'glbcUserKeyGen', function($location, Authentication, glbcUserKeyGen) {
+.directive('glbcKeyChangeElem', ['glbcUserKeyGen', function(glbcUserKeyGen) {
   return {
     restrict: 'A',
     templateUrl: 'views/partials/client_key_gen.html',
