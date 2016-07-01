@@ -13,6 +13,9 @@ angular.module('GLBrowserCrypto')
       });
       $scope.msgs = glbcUserKeyGen.vars.msgQueue;
     }],
+    scope: {
+     glbcKeyChangeElemTitle: '@'
+    },
   };
 }])
 // This factory is a state machine it must be instructed to proceed through the
