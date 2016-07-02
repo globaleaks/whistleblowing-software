@@ -238,7 +238,7 @@ def download_file(store, user_id, rtip_id, file_id):
         raise errors.FileIdNotFound
 
     log.debug("Download of file %s by receiver %s (%d)" %
-              (rfile.internalfile.id, rfile.receiver.id, rfile.downloads))
+              (rfile.internalfile_id, rfile.receiver_id, rfile.downloads))
 
     rfile.downloads += 1
 

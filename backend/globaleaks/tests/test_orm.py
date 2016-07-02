@@ -48,7 +48,7 @@ class TestORM(helpers.TestGL):
         receiver.pgp_key_status = u'disabled'
         store.add(receiver)
 
-        # Set receiver.id = receiver.user.username = receiver.user.id
+        # Set receiver.id = receiver.user.username = receiver_user.id
         receiver.id = receiver_user.username = receiver_user.id
 
         return receiver.id

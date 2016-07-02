@@ -458,7 +458,7 @@ class TestGL(unittest.TestCase):
         ret = []
         for tip in store.find(models.ReceiverTip):
             x = rtip.serialize_rtip(store, tip, 'en')
-            x['receiver_id'] = tip.receiver.id
+            x['receiver_id'] = tip.receiver_id
             ret.append(x)
 
         return ret
