@@ -52,7 +52,7 @@ angular.module('GLBrowserCrypto')
     deriveKey: function(keycode, salt, submission) {
       var self = this;
       var p = glbcKeyLib.deriveUserPassword(keycode, salt, 14).then(function(result) {
-        submission.receipt_hash = result.authentication;
+        submission.auth_token_hash = result.authentication;
         return glbcKeyLib.generateCCryptoKey(result.passphrase).then(function(keys) {
           var armored_priv_key = keys.ccrypto_key_private.armor();
           var success = glbcKeyRing.initialize(armored_priv_key, 'whistleblower');

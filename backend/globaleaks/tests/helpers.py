@@ -394,7 +394,7 @@ class TestGL(unittest.TestCase):
             'encrypted_answers': '',
             'ccrypto_key_private': '',
             'ccrypto_key_public': '',
-            'receipt_hash': RECEIPT_HASH, # TODO Notice me sempai!!
+            'auth_token_hash': RECEIPT_HASH, # TODO Notice me sempai!!
         })
 
     def get_dummy_file(self):

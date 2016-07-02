@@ -89,7 +89,7 @@ PassKeyUpdateDesc = {
 }
 
 ReceiptAuthDesc = {
-    'receipt_hash': unicode
+    'auth_token_hash': unicode
 }
 
 TokenReqDesc = {
@@ -108,7 +108,7 @@ SubmissionDesc = {
     'identity_provided': bool,
     'answers': dict,
     'encrypted_answers': unicode,
-    'receipt_hash': unicode,
+    'auth_token_hash': unicode,
     'ccrypto_key_private': unicode,
     'ccrypto_key_public': unicode,
     'total_score': int

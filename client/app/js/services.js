@@ -104,9 +104,8 @@ angular.module('GLServices', ['ngResource']).
             password = password.replace(/\D/g,'');
             p = glbcKeyLib.deriveUserPassword(password, $rootScope.node.receipt_salt)
             .then(function(result) {
-              var password_hash = result.authentication;
               glbcWhistleblower.storePassphrase(result.passphrase);
-              return $http.post('receiptauth', {'receipt_hash': password_hash});
+              return $http.post('receiptauth', {'auth_token_hash': result.authentication});
             })
             .then(success_fn, error_fn);
           } else {

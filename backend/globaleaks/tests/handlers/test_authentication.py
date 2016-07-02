@@ -117,7 +117,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_invalid_whistleblower_login(self):
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         })
 
         yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
@@ -126,7 +126,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_whistleblower_login(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         })
         yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -136,7 +136,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_accept_whistleblower_login_in_tor2web(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = True
         success = yield handler.post()
@@ -147,7 +147,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_deny_whistleblower_login_in_tor2web(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
@@ -156,7 +156,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_whistleblower_logout(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         })
         yield handler.post()
         self.assertTrue(handler.current_user is None)
@@ -182,7 +182,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     def test_successful_whistleblower_logout(self):
         yield self.perform_full_submission_actions()
         handler = self.request({
-            'receipt_hash': helpers.RECEIPT_HASH
+            'auth_token_hash': helpers.RECEIPT_HASH
         })
         yield handler.post()
         self.assertTrue(handler.current_user is None)

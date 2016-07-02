@@ -274,10 +274,6 @@ class InternalTip(Model):
     update_date = DateTime(default_factory=datetime_now)
 
     encrypted = Bool(default=True)
-    receipt_hash = Unicode()
-
-    ccrypto_key_public = Unicode(default=u'')
-    ccrypto_key_private = Unicode(default=u'')
 
     context_id = Unicode()
 
@@ -299,16 +295,18 @@ class InternalTip(Model):
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
-    last_access = DateTime(default_factory=datetime_now)
-    access_counter = Int(default=0)
+    wb_auth_token_hash = Unicode(default=u'')
+    wb_ccrypto_key_public = Unicode(default=u'')
+    wb_ccrypto_key_private = Unicode(default=u'')
+    wb_last_access = DateTime(default_factory=datetime_null)
+    wb_access_counter = Int(default=0)
 
     new = Int(default=True)
 
 
 class ReceiverTip(Model):
     """
-    This is the table keeping track of settings of a Tip
-    in relation to a specific Receiver.
+    Receiver interface to submissions.
     """
     internaltip_id = Unicode()
     receiver_id = Unicode()

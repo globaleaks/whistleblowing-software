@@ -101,7 +101,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 
         yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(unicode(self.submission_desc['receipt_hash']), False)
+        wbtip_id = yield authentication.login_whistleblower(unicode(self.submission_desc['auth_token_hash']), False)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 

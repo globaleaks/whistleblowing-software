@@ -215,7 +215,6 @@ def serialize_itip(store, internaltip, language):
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
-        'ccrypto_key_public': internaltip.ccrypto_key_public,
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
@@ -228,7 +227,13 @@ def serialize_itip(store, internaltip, language):
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'show_recipients_details': context.show_recipients_details,
-        'status_page_message': mo.dump_localized_key('status_page_message', language)
+        'status_page_message': mo.dump_localized_key('status_page_message', language),
+        'total_score': internaltip.total_score,
+        'answers': db_serialize_questionnaire_answers(store, internaltip),
+        'encrypted_answers': internaltip.encrypted_answers,
+        'wb_ccrypto_key_public': internaltip.wb_ccrypto_key_public,
+        'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
+        'wb_access_counter': internaltip.wb_access_counter
     }
 
 
@@ -264,34 +269,24 @@ def serialize_receiverfile(rfile):
     }
 
 
-def serialize_whistleblower_tip(store, internaltip, language):
-    ret = serialize_itip(store, internaltip, language)
+def serialize_whistleblower_tip(store, itip, language):
+    ret = serialize_itip(store, itip, language)
 
-    ret['answers'] = db_serialize_questionnaire_answers(store, internaltip)
-    ret['encrypted_answers'] = internaltip.encrypted_answers
-    ret['last_access'] = datetime_to_ISO8601(internaltip.last_access)
-    ret['access_counter'] = internaltip.access_counter
-    ret['total_score'] = internaltip.total_score
-    ret['files'] = [serialize_internalfile(internalfile) for internalfile in internaltip.internalfiles]
-    ret['ccrypto_key_private'] = internaltip.ccrypto_key_private
+    ret['files'] = [serialize_internalfile(internalfile) for internalfile in itip.internalfiles]
 
     return ret
 
 
 def serialize_receiver_tip(store, rtip, language):
-    internaltip = rtip.internaltip
+    ret = serialize_itip(store, rtip.internaltip, language)
 
-    ret = serialize_itip(store, internaltip, language)
+    ret['files'] = db_get_rtip_files(store, rtip.receiver.user.id, rtip.id)
 
     ret['id'] = rtip.id
     ret['label'] = rtip.label
-    ret['answers'] = db_serialize_questionnaire_answers(store, rtip)
-    ret['encrypted_answers'] = internaltip.encrypted_answers
     ret['last_access'] = datetime_to_ISO8601(rtip.last_access)
     ret['access_counter'] = rtip.access_counter
-    ret['total_score'] = internaltip.total_score
-    ret['files'] = db_get_rtip_files(store, rtip.receiver.user.id, rtip.id)
-    ret['enable_notifications'] = bool(rtip.enable_notifications)
+    ret['enable_notifications'] = rtip.enable_notifications
 
     return ret
 
@@ -387,8 +382,6 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission = models.InternalTip()
 
-    submission.receipt_hash = request['receipt_hash']
-
     # TODO validate if the reponse is a valid openpgp message.
     submission.encrypted_answers = request['encrypted_answers']
 
@@ -406,10 +399,11 @@ def db_create_submission(store, token_id, request, t2w, language):
     # The status is used to keep track of the security level adopted by the whistleblower
     submission.tor2web = t2w
 
-    submission.ccrypto_key_private = request['ccrypto_key_private']
-    submission.ccrypto_key_public = request['ccrypto_key_public']
-
     submission.context_id = context.id
+
+    submission.wb_auth_token_hash = request['auth_token_hash']
+    submission.wb_ccrypto_key_public = request['ccrypto_key_public']
+    submission.wb_ccrypto_key_private = request['ccrypto_key_private']
 
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
@@ -442,7 +436,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Submission create: receivers import fail: %s" % excep)
         raise excep
 
-    ifiles = []
     for filedesc in token.uploaded_files:
         new_file = models.InternalFile()
         new_file.name = filedesc['filename']
@@ -453,7 +446,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         new_file.submission = filedesc['submission']
         new_file.file_path = filedesc['body_filepath']
         store.add(new_file)
-        ifiles.append(new_file)
 
         log.debug("=> file associated %s|%s (%d bytes)" %
                   (new_file.name, new_file.content_type, new_file.size))

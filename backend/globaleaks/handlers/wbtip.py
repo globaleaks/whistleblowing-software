@@ -29,22 +29,22 @@ def db_get_itip(store, itip_id):
 
 @transact
 def get_wbtip(store, wbtip_id, language):
-    wbtip = db_get_itip(store, wbtip_id)
+    itip = db_get_itip(store, wbtip_id)
 
-    wbtip.access_counter += 1
-    wbtip.last_access = datetime_now()
+    itip.access_counter += 1
+    itip.last_access = datetime_now()
 
     log.debug("Tip %s access granted to whistleblower (%d)" %
               (wbtip.id, wbtip.access_counter))
 
-    return serialize_whistleblower_tip(store, wbtip, language)
+    return serialize_whistleblower_tip(store, itip, language)
 
 
 @transact_ro
-def get_receiver_list(store, wbtip_id, language):
-    wbtip = db_get_itip(store, wbtip_id)
+def get_receiver_list(store, itip_id, language):
+    itip = db_get_itip(store, itip_id)
 
-    return db_get_itip_receiver_list(store, wbtip, language)
+    return db_get_itip_receiver_list(store, itip, language)
 
 
 @transact_ro
