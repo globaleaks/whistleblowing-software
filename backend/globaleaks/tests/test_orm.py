@@ -47,7 +47,7 @@ class TestORM(helpers.TestGL):
         receiver.user_id = receiver_user.id
         store.add(receiver)
 
-        # Set receiver.id = receiver.user.username = receiver.user.id
+        # Set receiver.id = receiver.user.username = receiver_user.id
         receiver.id = receiver_user.username = receiver_user.id
 
         return receiver.id

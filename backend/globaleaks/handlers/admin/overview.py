@@ -43,7 +43,7 @@ def collect_tip_overview(store, language):
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
-                'receiver_id': rtip.receiver.id,
+                'receiver_id': rtip.receiver_id,
                 'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.user.name,
                 # last_access censored willingly
@@ -153,7 +153,7 @@ def collect_files_overview(store):
     # remaining files are checked for rfile presence
     for rfile in stored_rfiles:
         file_desc = {
-            'id': rfile.internalfile.id,
+            'id': rfile.internalfile_id,
             'name': rfile.internalfile.name,
             'content_type': rfile.internalfile.content_type,
             'size': rfile.internalfile.size,
