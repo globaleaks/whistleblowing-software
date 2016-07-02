@@ -131,22 +131,13 @@ def get_files_receiver(store, user_id, rtip_id):
 def db_get_rtip(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
-    db_increment_receiver_access_count(store, user_id, rtip_id)
-
-    return serialize_rtip(store, rtip, language)
-
-
-def db_increment_receiver_access_count(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
 
     log.debug("Tip %s access granted to user %s (%d)" %
-              (rtip.id, rtip.receiver.user.name, rtip.access_counter))
+              (rtip.internaltip_id, rtip.receiver.user.name, rtip.access_counter))
 
-    return rtip.access_counter
-
+    return serialize_rtip(store, rtip, language)
 
 def db_mark_file_for_secure_deletion(store, relpath):
     abspath = os.path.join(GLSettings.submission_path, relpath)
@@ -370,7 +361,6 @@ class RTipInstance(BaseHandler):
         This method is decorated as @BaseHandler.unauthenticated because in the handler
         the various cases are managed differently.
         """
-
         answer = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
         self.write(answer)

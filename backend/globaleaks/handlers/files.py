@@ -118,7 +118,7 @@ def get_itip_id_by_wbtip_id(store, wbtip_id):
     if not wbtip:
         raise errors.InvalidAuthentication
 
-    return wbtip.internaltip.id
+    return wbtip.internaltip_id
 
 
 # This is different from FileInstance, just because there are a different authentication requirements
