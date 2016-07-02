@@ -220,8 +220,8 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if v.name == 'auth_token_hash':
-                    old_pass = old_obj.password.decode('hex')
-                    new_obj.auth_token_hash = security.sha512(old_pass)
+                    pass_hash = old_obj.password.decode('hex')
+                    new_obj.auth_token_hash = security.sha512(pass_hash)
                     continue
 
                 if v.name == 'password_change_needed':
@@ -247,8 +247,9 @@ class MigrationScript(MigrationBase):
                     new_obj.encrypted = False
                     continue
 
-                if v.name == 'receipt_hash':
-                    new_obj.receipt_hash = ''
+                if v.name == 'auth_token_hash':
+                    wb_auth_token_hash = old_wbtip.receipt_hash.decode('hex')
+                    new_obj.auth_token_hash = security.sha512(wb_auth_token_hash)
                     continue
 
                 if v.name == 'last_access':
