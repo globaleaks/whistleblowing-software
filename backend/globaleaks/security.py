@@ -325,7 +325,6 @@ def derive_auth_hash(password, salt):
     digest = scrypt_password(pw, s) 
     return sha512(digest)
 
-
 def scrypt_password(password, salt):
     return scrypt.hash(password, salt, buflen=256)
 

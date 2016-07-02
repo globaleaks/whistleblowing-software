@@ -306,7 +306,6 @@ class RTipInstance(BaseHandler):
         This method is decorated as @BaseHandler.unauthenticated because in the handler
         the various cases are managed differently.
         """
-
         answer = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
         self.write(answer)

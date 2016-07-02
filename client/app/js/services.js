@@ -1468,7 +1468,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   // TODO updateTranslationServices should return a promise.
   function updateTranslationServices(lang) {
-
     // Set text direction for languages that read from right to left.
     var useRightToLeft = ["ar", "he", "ur"].indexOf(lang) !== -1;
     document.getElementsByTagName("html")[0].setAttribute('dir', useRightToLeft ? 'rtl' : 'ltr');
@@ -1509,11 +1508,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    if (angular.isDefined(facts.userChoice)) {
+    if (angular.isDefined(facts.userChoice) &&
+        enabledLanguages.indexOf(facts.userChoice) !== -1) {
       return facts.userChoice;
-    } else if (angular.isDefined(facts.urlParam)) {
+    } else if (angular.isDefined(facts.urlParam) &&
+               enabledLanguages.indexOf(facts.urlParam) !== -1) {
       return facts.urlParam;
-    } else if (angular.isDefined(facts.userPreference)) {
+    } else if (angular.isDefined(facts.userPreference) &&
+               enabledLanguages.indexOf(facts.userPreference) !== -1) {
       return facts.userPreference;
     } else if (angular.isDefined(facts.browserSniff) &&
                enabledLanguages.indexOf(facts.browserSniff) !== -1) {
@@ -1541,7 +1543,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     setLang: setLang,
 
-    AddNodeFacts: function(defaultLang, languages_enabled) {
+    addNodeFacts: function(defaultLang, languages_enabled) {
       facts.nodeDefault = defaultLang;
 
       enabledLanguages = languages_enabled;
@@ -1549,10 +1551,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       determineLanguage();
     },
 
-    AddUserPreference: function(lang) {
+    addUserPreference: function(lang) {
       facts.userPreference = lang;
       determineLanguage();
     },
+<<<<<<< HEAD
   };
 }])
 .factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) { 
@@ -1583,5 +1586,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       }, 200);
 
     },
+=======
+>>>>>>> origin/devel
   };
 }]);

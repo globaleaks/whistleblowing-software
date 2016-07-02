@@ -32,6 +32,10 @@ def get_wbtip(store, wbtip_id, language):
     wbtip = db_get_itip(store, wbtip_id)
 
     wbtip.access_counter += 1
+    wbtip.last_access = datetime_now()
+
+    log.debug("Tip %s access granted to whistleblower (%d)" %
+              (wbtip.id, wbtip.access_counter))
 
     return serialize_whistleblower_tip(store, wbtip, language)
 
