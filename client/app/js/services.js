@@ -520,8 +520,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 // RTipDownloadFile first makes an authenticated get request for the encrypted
 // file data. Then it takes that data converts it into an Uint8array, unlocks
 // the recipeint's privateKey, decrypts the file and saves it to disk.
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', 'glbcReceiver', function($http, $filter, FileSaver, glbcReceiver) {
+ factory('RTipDownloadFile', ['$http', '$filter', 'loadingModal', 'handleRejectOp', 'FileSaver', 'glbcReceiver', function($http, $filter, loadingModal, handleRejectOp, FileSaver, glbcReceiver) {
   return function(tip, file) {
+    loadingModal.show();
     $http({
       method: 'GET',
       url: '/rtip/' + tip.id + '/download/' + file.id,
@@ -529,10 +530,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }).then(function (response) {
       var inputBlob = response.data;
 
-      glbcReceiver.decryptAndVerifyFile(inputBlob).then(function(outputBlob) {
+      return glbcReceiver.decryptAndVerifyFile(inputBlob).then(function(outputBlob) {
         // Save the decrypted file.
         FileSaver.saveAs(outputBlob, file.name);
+        loadingModal.hide();
       });
+    }).catch(function(err) {
+      loadingModal.hide();
+      handleRejectOp.show('fileDownload', err);
     });
   };
 }]).
@@ -1555,7 +1560,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       facts.userPreference = lang;
       determineLanguage();
     },
-<<<<<<< HEAD
   };
 }])
 .factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) { 
@@ -1586,7 +1590,21 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       }, 200);
 
     },
-=======
->>>>>>> origin/devel
+  };
+}])
+.factory('handleRejectOp', ['$uibModal', function($uibModal) {
+  return {
+    show: function(type, err) {
+      $uibModal.open({
+        templateUrl: 'views/partials/handle_reject_modal.html',
+        animation: false,
+        controller: ['$scope', '$uibModalInstance', function($scope) {
+          $scope.type = type;
+          $scope.msg = String(err);
+        }],
+      });
+      // Use the global exception interceptor to handle the caught error.
+      throw err;
+    },
   };
 }]);

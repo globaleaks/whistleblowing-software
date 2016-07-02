@@ -80,9 +80,7 @@ angular.module('GLBrowserCrypto')
     * @return {Promise<File>}
     **/
     handleFileEncryption: function(file, receivers) {
-      var deferred = $q.defer();
-
-      glbcCipherLib.createArrayFromBlob(file).then(function(fileArr) {
+      return glbcCipherLib.createArrayFromBlob(file).then(function(fileArr) {
 
         var pubKeys = receivers.map(function(rec) {
           return glbcKeyRing.getPubKey(rec.id);
@@ -104,9 +102,8 @@ angular.module('GLBrowserCrypto')
         // will append leading and trailing bytes to the upload.
         var cipherBlob = new Blob([cipherTextArr.buffer], {type:'application/octet-stream'});
         var encFile = new File([cipherBlob], file.name);
-        deferred.resolve(encFile);
+        return encFile;
       });
-      return deferred.promise;
     },
 
 

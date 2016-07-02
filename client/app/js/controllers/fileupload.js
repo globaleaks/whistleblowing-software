@@ -1,4 +1,4 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistleblower', function($scope, $q, $timeout, glbcWhistleblower)  {
+GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'loadingModal', 'handleRejectOp', 'glbcWhistleblower', function($scope, $q, $timeout, loadingModal, handleRejectOp, glbcWhistleblower)  {
   var disabled = false;
   $scope.isDisabled = function() {
     return disabled || !glbcWhistleblower.variables.keyDerived;
@@ -8,6 +8,8 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistl
     if (file.size > $scope.node.maximum_filesize * 1024 * 1024) {
       file.error = true;
       file.error_msg = "This file exceeds the maximum upload size for this server.";
+      // TODO debug file.error_msg it is misbehaving
+      handleRejectOp.show("fileUpload", file.error_msg);
       event.preventDefault();
     } else {
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
@@ -19,12 +21,17 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'glbcWhistl
 
     if (file.file.encrypted === undefined) {
       event.preventDefault();
+      loadingModal.show();
       glbcWhistleblower.handleFileEncryption(file.file, $scope.submission.receivers)
       .then(function(outputFile) {
         outputFile.encrypted = true;
         $timeout(function() {
           flow.addFile(outputFile);
         }, 0);
+      }, function(err) {
+        handleRejectOp.show("fileUpload", err);
+      }).finally(function() {
+        loadingModal.hide();
       });
     }
   });

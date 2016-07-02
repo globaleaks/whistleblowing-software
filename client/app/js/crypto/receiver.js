@@ -41,6 +41,8 @@ angular.module('GLBrowserCrypto')
         pgp.decrypt(options).then(function(plaintext) {
           var outputBlob = new Blob([plaintext.data], {type: 'application/octet-stream'});
           deferred.resolve(outputBlob);
+        }, function(err) {
+          deferred.reject(err);
         });
       });
       return deferred.promise;
