@@ -933,6 +933,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       user.password = 'globaleaks';
       user.old_password = '';
       user.password_change_needed = true;
+      user.reinitialize = true;
       user.state = 'enabled';
       user.name = '';
       user.description = '';

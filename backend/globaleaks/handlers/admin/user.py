@@ -15,7 +15,17 @@ from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys
-from globaleaks.utils.utility import log, datetime_now, read_file
+from globaleaks.utils.utility import log, datetime_now, datetime_null, read_file
+
+
+def db_initialize_user(store, user):
+    node = store.find(models.Node).one()
+    user.salt = security.generateRandomSalt();
+    user.auth_token_hash = security.derive_auth_hash(node.default_password, user.salt)
+    user.password_change_needed = True
+    user.password_change_date = datetime_null()
+    user.ccrypto_key_public = ''
+    user.ccrypto_key_private = ''
 
 
 def db_create_admin_user(store, request, language):
@@ -100,16 +110,13 @@ def db_create_user(store, request, language):
         'public_name': request['public_name'] if request['public_name'] != '' else request['name'],
         'language': u'en',
         'timezone': 0,
-        'password_change_needed': True,
         'mail_address': request['mail_address']
     })
 
     if request['username'] == '':
         user.username = user.id
 
-    user.salt = security.generateRandomSalt();
-    node = store.find(models.Node).one()
-    user.auth_token_hash = security.derive_auth_hash(node.default_password, user.salt)
+    db_initialize_user(store, user)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
@@ -131,6 +138,9 @@ def db_admin_update_user(store, user_id, request, language):
     fill_localized_keys(request, models.User.localized_keys, language)
 
     user.update(request)
+
+    if request['reinitialize']:
+        db_initialize_user(store, user)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

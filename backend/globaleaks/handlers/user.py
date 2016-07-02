@@ -77,6 +77,7 @@ def user_serialize_user(user, language):
         'timezone': user.timezone,
         'password_change_needed': user.password_change_needed,
         'password_change_date': datetime_to_ISO8601(user.password_change_date),
+        'reinitialize': False,
         'pgp_key_fingerprint': user.pgp_key_fingerprint,
         'pgp_key_public': user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),

@@ -783,6 +783,7 @@ class MockDict:
             'language': u'en',
             'password_change_needed': True,
             'password_change_date': u'1970-01-01 00:00:00.000000',
+            'reinitialize': False,
             'pgp_key_fingerprint': u'',
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',

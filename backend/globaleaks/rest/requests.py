@@ -121,6 +121,7 @@ UserUserDesc = {
     'public_name': unicode,
     'role': user_roles_regexp,
     'password_change_needed': bool,
+    'reinitialize': bool,
     'deletable': bool,
     'state': user_states_regexp,
     'mail_address': email_regexp,

@@ -203,7 +203,7 @@ class User(Model):
 
     int_keys = ['timezone']
 
-    bool_keys = ['deletable', 'password_change_needed']
+    bool_keys = ['deletable']
 
 
 class Context(Model):
