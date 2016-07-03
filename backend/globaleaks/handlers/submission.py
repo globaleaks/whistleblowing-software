@@ -201,7 +201,7 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
         store.add(aqsp)
 
 
-def serialize_itip(store, internaltip, language):
+def serialize_internaltip(store, internaltip, language):
     context = internaltip.context
     mo = Rosetta(context.localized_keys)
     mo.acquire_storm_object(context)
@@ -269,16 +269,16 @@ def serialize_receiverfile(rfile):
     }
 
 
-def serialize_whistleblower_tip(store, itip, language):
-    ret = serialize_itip(store, itip, language)
+def serialize_whisleblowertip(store, itip, language):
+    ret = serialize_internaltip(store, itip, language)
 
     ret['files'] = [serialize_internalfile(internalfile) for internalfile in itip.internalfiles]
 
     return ret
 
 
-def serialize_receiver_tip(store, rtip, language):
-    ret = serialize_itip(store, rtip.internaltip, language)
+def serialize_receivertip(store, rtip, language):
+    ret = serialize_internaltip(store, rtip.internaltip, language)
 
     ret['files'] = db_get_rtip_files(store, rtip.receiver.user.id, rtip.id)
 
@@ -312,7 +312,7 @@ def get_rtip(store, user_id, rtip_id, language):
     log.debug("Tip %s access granted to user %s (%d)" %
               (rtip.id, rtip.receiver.user.name, rtip.access_counter))
 
-    return serialize_receiver_tip(store, rtip, language)
+    return serialize_receivertip(store, rtip, language)
 
 
 def db_get_rtip_files(store, user_id, rtip_id):
@@ -455,7 +455,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     log.debug("Finalized submission creating %d ReceiverTip(s)" % submission.receivers.count())
 
-    return serialize_whistleblower_tip(store, submission, language)
+    return serialize_whisleblowertip(store, submission, language)
 
 
 @transact

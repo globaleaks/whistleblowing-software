@@ -14,7 +14,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_message, serialize_comment
-from globaleaks.handlers.submission import serialize_internalfile, serialize_receiver_tip
+from globaleaks.handlers.submission import serialize_internalfile, serialize_receivertip
 from globaleaks.jobs.base import GLJob
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -46,7 +46,7 @@ def serialize_content(store, cache, key, obj, language):
 
     if cache_key not in cache:
         if key == 'tip':
-             cache_obj = serialize_receiver_tip(store, obj, language)
+             cache_obj = serialize_receivertip(store, obj, language)
         elif key == 'context':
              cache_obj = admin_serialize_context(store, obj, language)
         elif key == 'receiver':

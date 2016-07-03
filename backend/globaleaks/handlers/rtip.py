@@ -13,7 +13,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
-from globaleaks.handlers.submission import serialize_receiver_tip, db_get_rtip, \
+from globaleaks.handlers.submission import serialize_receivertip, db_get_rtip, \
     get_rtip
 from globaleaks.models import Notification, Comment, Message, \
     ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \

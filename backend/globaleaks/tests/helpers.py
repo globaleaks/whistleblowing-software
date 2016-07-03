@@ -38,7 +38,7 @@ from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, db_create_receiver
 from globaleaks.handlers.submission import create_submission, \
     serialize_internalfile, serialize_receiverfile, \
-    serialize_receiver_tip, serialize_whistleblower_tip
+    serialize_receivertip, serialize_whisleblowertip
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils import mailutils, tempdict, token, utility
@@ -468,7 +468,7 @@ class TestGL(unittest.TestCase):
     def get_rtips(self, store):
         ret = []
         for tip in store.find(models.ReceiverTip):
-            x = serialize_receiver_tip(store, tip, 'en')
+            x = serialize_receivertip(store, tip, 'en')
             x['receiver_id'] = tip.receiver_id
             ret.append(x)
 
@@ -482,7 +482,7 @@ class TestGL(unittest.TestCase):
     def get_wbtips(self, store):
         ret = []
         for tip in store.find(models.InternalTip):
-            x = serialize_whistleblower_tip(store, tip, 'en')
+            x = serialize_whisleblowertip(store, tip, 'en')
             x['receivers_ids'] = [rcvr.id for rcvr in tip.receivers]
             ret.append(x)
 

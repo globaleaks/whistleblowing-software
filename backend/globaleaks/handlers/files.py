@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_rtip
-from globaleaks.handlers.submission import serialize_receiver_tip, \
+from globaleaks.handlers.submission import serialize_receivertip, \
     serialize_internalfile, serialize_receiverfile
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile
 from globaleaks.rest import errors

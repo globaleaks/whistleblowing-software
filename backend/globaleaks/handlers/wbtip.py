@@ -11,7 +11,7 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
     serialize_comment, serialize_message
-from globaleaks.handlers.submission import serialize_whistleblower_tip, \
+from globaleaks.handlers.submission import serialize_whisleblowertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import Comment, Message, ReceiverTip, InternalTip
 from globaleaks.rest import errors, requests
@@ -37,7 +37,7 @@ def get_wbtip(store, wbtip_id, language):
     log.debug("Tip %s access granted to whistleblower (%d)" %
               (wbtip.id, wbtip.access_counter))
 
-    return serialize_whistleblower_tip(store, itip, language)
+    return serialize_whisleblowertip(store, itip, language)
 
 
 @transact_ro
