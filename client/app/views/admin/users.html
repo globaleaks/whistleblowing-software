@@ -63,13 +63,13 @@
                 <span>{{user.name}}</span>
                 <span class="label label-primary label-as-badge">
                   <span data-translate>Role</span><span>:</span>
-                    <span data-ng-switch="user.role">
-                      <span data-ng-switch-when="admin" data-translate>Admin</span>
-                      <span data-ng-switch-when="receiver" data-translate>Recipient</span>
-                      <span data-ng-switch-when="custodian" data-translate>Custodian</span>
-                    </span>
+                  <span data-ng-switch="user.role">
+                    <span data-ng-switch-when="admin" data-translate>Admin</span>
+                    <span data-ng-switch-when="receiver" data-translate>Recipient</span>
+                    <span data-ng-switch-when="custodian" data-translate>Custodian</span>
                   </span>
                 </span>
+              </span>
               <span class="col-md-5">
                 <span class="pull-right">
                   <button class="actionButton actionButtonEdit btn btn-xs btn-default"
@@ -137,7 +137,7 @@
                     <input data-ng-model="user.password_change_needed" type="checkbox" />
                     <label data-translate>Force password change</label>
                     <div data-ng-show="user.password_change_needed">
-                     <span class="label label-info" data-translate>Enabled</span>
+                      <span class="label label-info" data-translate>Enabled</span>
                       <span data-translate>The user will be forced to change its password on next login.</span>
                     </div>
                   </div>
@@ -145,7 +145,7 @@
                     <input data-ng-model="user.reinitialize" type="checkbox" />
                     <label data-translate>Reinitialize the user account</label>
                     <div data-ng-show="user.reinitialize">
-                     <span class="label label-danger" data-translate>Danger</span>
+                      <span class="label label-danger" data-translate>Danger</span>
                       <span data-translate>Reinitializing the user account all data associate to the user permanently lost.</span>
                     </div>
                   </div>
@@ -160,48 +160,48 @@
                       <option value="enabled" data-translate>Enabled</option>
                     </select>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label data-translate>Description</label>
-                  <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
-                </div>
-                <div class="form-group">
-                  <label data-translate>Status</label>
-                  <select class="form-control" data-ng-model="user.state">
-                    <option value="disabled" data-translate>Disabled</option>
-                    <option value="enabled" data-translate>Enabled</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label data-translate>Language</label>
-                  <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
-                </div>
-                <div class="form-group">
-                  <label data-translate>Timezone</label>
-                  <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group" data-ng-show="user.pgp_key_fingerprint !== ''">
-                    <div class="alert alert-success">
-                      <div data-translate>Encryption is enabled!</div>
-                      <div data-translate>Email notifications will be encrypted.</div>
-                    </div>
-                    <div pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
-                    <div class="form-group">
-                      <input data-ng-model="user.pgp_key_remove" type="checkbox" />
-                      <label data-translate>Remove the PGP key</label>
-                    </div>
+                  <div class="form-group">
+                    <label data-translate>Description</label>
+                    <textarea name="description" class="form-control" data-ng-model="user.description" maxlength="{{node.maximum_textsize}}"></textarea>
                   </div>
-                  <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''" data-ng-class="{'has-error': !editUser.pgp_key.$valid}">
-                    <div class="alert alert-danger">
-                      <div data-translate>Encryption is not enabled!</div>
-                      <div data-translate>Email notifications won't be encrypted.</div>
-                    </div>
-                    <div>
-                      <label data-translate>Set up encryption by providing a PGP public key</label>
-                      <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
+                  <div class="form-group">
+                    <label data-translate>Status</label>
+                    <select class="form-control" data-ng-model="user.state">
+                      <option value="disabled" data-translate>Disabled</option>
+                      <option value="enabled" data-translate>Enabled</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Language</label>
+                    <select class="form-control" data-ng-model="user.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
+                  </div>
+                  <div class="form-group">
+                    <label data-translate>Timezone</label>
+                    <select class="form-control" data-ng-model="user.timezone" data-ng-options="item.timezone as item.label for item in timezones"></select>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group" data-ng-show="user.pgp_key_fingerprint !== ''">
+                        <div class="alert alert-success">
+                          <div data-translate>Encryption is enabled!</div>
+                          <div data-translate>Email notifications will be encrypted.</div>
+                        </div>
+                        <div pgp-pubkey-display key-str="preferences.pgp_key_public"></div>
+                        <div class="form-group">
+                          <input data-ng-model="user.pgp_key_remove" type="checkbox" />
+                          <label data-translate>Remove the PGP key</label>
+                        </div>
+                      </div>
+                      <div class="form-group" data-ng-show="user.pgp_key_fingerprint === ''" data-ng-class="{'has-error': !editUser.pgp_key.$valid}">
+                        <div class="alert alert-danger">
+                          <div data-translate>Encryption is not enabled!</div>
+                          <div data-translate>Email notifications won't be encrypted.</div>
+                        </div>
+                        <div>
+                          <label data-translate>Set up encryption by providing a PGP public key</label>
+                          <textarea class="form-control" name="pgp_key" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="user.pgp_key_public" data-pgp-pubkey-validator="canBeEmpty"></textarea>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
