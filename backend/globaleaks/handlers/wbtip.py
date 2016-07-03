@@ -28,14 +28,14 @@ def db_get_itip(store, itip_id):
 
 
 @transact
-def get_wbtip(store, wbtip_id, language):
-    itip = db_get_itip(store, wbtip_id)
+def get_wbtip(store, itip_id, language):
+    itip = db_get_itip(store, itip_id)
 
-    itip.access_counter += 1
-    itip.last_access = datetime_now()
+    itip.wb_access_counter += 1
+    itip.wb_last_access = datetime_now()
 
     log.debug("Tip %s access granted to whistleblower (%d)" %
-              (wbtip.id, wbtip.access_counter))
+              (itip.id, itip.wb_access_counter))
 
     return serialize_whisleblowertip(store, itip, language)
 
@@ -48,15 +48,15 @@ def get_receiver_list(store, itip_id, language):
 
 
 @transact_ro
-def get_comment_list(store, wbtip_id):
-    wbtip = db_get_itip(store, wbtip_id)
+def get_comment_list(store, itip_id):
+    wbtip = db_get_itip(store, itip_id)
 
     return [serialize_comment(comment) for comment in wbtip.comments]
 
 
 @transact
-def create_comment(store, wbtip_id, request):
-    wbtip = db_get_itip(store, wbtip_id)
+def create_comment(store, itip_id, request):
+    wbtip = db_get_itip(store, itip_id)
     wbtip.update_date = datetime_now()
 
     comment = Comment()
@@ -70,12 +70,12 @@ def create_comment(store, wbtip_id, request):
 
 
 @transact_ro
-def get_message_list(store, wbtip_id, receiver_id):
+def get_message_list(store, itip_id, receiver_id):
     """
     Get the messages content and mark all the unread
     messages as "read"
     """
-    wbtip = db_get_itip(store, wbtip_id)
+    wbtip = db_get_itip(store, itip_id)
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
                       ReceiverTip.receiver_id == receiver_id).one()
@@ -87,8 +87,8 @@ def get_message_list(store, wbtip_id, receiver_id):
 
 
 @transact
-def create_message(store, wbtip_id, receiver_id, request):
-    wbtip = db_get_itip(store, wbtip_id)
+def create_message(store, itip_id, receiver_id, request):
+    wbtip = db_get_itip(store, itip_id)
     wbtip.update_date = datetime_now()
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,

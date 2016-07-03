@@ -274,6 +274,8 @@ def serialize_whisleblowertip(store, itip, language):
 
     ret['files'] = [serialize_internalfile(internalfile) for internalfile in itip.internalfiles]
 
+    ret['wb_ccrypto_key_private'] = itip.wb_ccrypto_key_private
+
     return ret
 
 
