@@ -12,7 +12,7 @@ from globaleaks import security
 from globaleaks.orm import transact, transact_ro
 from globaleaks.models import User
 from globaleaks.settings import GLSettings
-from globaleaks.models import InternalTip
+from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, randint
@@ -52,8 +52,8 @@ def login_whistleblower(store, auth_token_hash, using_tor2web):
     """
     login_whistleblower returns the InternalTip.id
     """
-    wbtip = store.find(InternalTip,
-                       InternalTip.wb_auth_token_hash == auth_token_hash).one()
+    wbtip = store.find(WhistleblowerTip,
+                       WhistleblowerTip.auth_token_hash == auth_token_hash).one()
 
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")

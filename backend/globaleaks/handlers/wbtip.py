@@ -13,7 +13,8 @@ from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
     serialize_comment, serialize_message
 from globaleaks.handlers.submission import serialize_whisleblowertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
-from globaleaks.models import Comment, Message, ReceiverTip, InternalTip
+from globaleaks.models import Comment, Message, ReceiverTip, InternalTip, \
+    WhistleblowerTip
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
@@ -22,14 +23,25 @@ def db_get_itip(store, itip_id):
     itip = store.find(InternalTip, InternalTip.id == itip_id).one()
 
     if not itip:
-        raise errors.TipReceiptNotFound
+         raise errors.TipReceiptNotFound
 
     return itip
 
 
+def db_get_wbtip(store, wbtip_id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == wbtip_id).one()
+
+    if not wbtip:
+        raise errors.TipReceiptNotFound
+
+    return wbtip
+
+
 @transact
-def get_wbtip(store, itip_id, language):
-    itip = db_get_itip(store, itip_id)
+def get_wbtip(store, wbtip_id, language):
+    wbtip = db_get_wbtip(store, wbtip_id)
+
+    itip = wbtip.internaltip
 
     itip.wb_access_counter += 1
     itip.wb_last_access = datetime_now()
@@ -37,7 +49,7 @@ def get_wbtip(store, itip_id, language):
     log.debug("Tip %s access granted to whistleblower (%d)" %
               (itip.id, itip.wb_access_counter))
 
-    return serialize_whisleblowertip(store, itip, language)
+    return serialize_whisleblowertip(store, wbtip, language)
 
 
 @transact_ro

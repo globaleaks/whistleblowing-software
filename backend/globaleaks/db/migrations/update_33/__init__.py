@@ -202,7 +202,7 @@ class InternalTip_v_32(Model):
     new = Int()
 
 
-class WhistleblowerTip_v_32(Model): # Whole table dropped in v_33
+class WhistleblowerTip_v_32(Model):
     __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
@@ -236,6 +236,7 @@ class MigrationScript(MigrationBase):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
         for old_obj in old_objs:
             new_obj = self.model_to['InternalTip']()
+
             old_wbtip_model = self.model_from['WhistleblowerTip']
             old_wbtip = self.store_old.find(old_wbtip_model, old_wbtip_model.internaltip_id == old_obj.id).one()
             if old_wbtip is None:
@@ -252,19 +253,19 @@ class MigrationScript(MigrationBase):
                     new_obj.auth_token_hash = security.sha512(wb_auth_token_hash)
                     continue
 
-                if v.name == 'last_access':
-                    new_obj.last_access = old_wbtip.last_access
+                if v.name == 'wb_last_access':
+                    new_obj.wb_last_access = old_wbtip.last_access
                     continue
 
-                if v.name == 'access_counter':
-                    new_obj.access_counter = old_wbtip.access_counter
+                if v.name == 'wb_access_counter':
+                    new_obj.wb_access_counter = old_wbtip.access_counter
                     continue
 
                 if v.name == 'encrypted_answers':
                     new_obj.encrypted_answers = ''
                     continue
 
-                if v.name == 'ccrypto_key_public' or v.name == 'ccrypto_key_private':
+                if v.name == 'wb_ccrypto_key_public':
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
@@ -272,8 +273,26 @@ class MigrationScript(MigrationBase):
             self.store_new.add(new_obj)
 
     def migrate_WhistleblowerTip(self):
-        # TODO test me :)
-        pass
+        old_objs = self.store_old.find(self.model_from['WhistleblowerTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['WhistleblowerTip']()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'id':
+                    new_obj.id = old_obj.internaltip_id
+                    continue
+
+                if v.name == 'auth_token_hash':
+                    wb_auth_token_hash = old_obj.receipt_hash.decode('hex')
+                    new_obj.wb_auth_token_hash = security.sha512(wb_auth_token_hash)
+                    continue
+
+                if v.name == 'wb_ccrypto_key_private':
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
 
     def migrate_Node(self):
         # TODO test me :P

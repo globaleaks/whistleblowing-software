@@ -109,8 +109,8 @@ SubmissionDesc = {
     'answers': dict,
     'encrypted_answers': unicode,
     'auth_token_hash': unicode,
-    'ccrypto_key_private': unicode,
-    'ccrypto_key_public': unicode,
+    'wb_ccrypto_key_private': unicode,
+    'wb_ccrypto_key_public': unicode,
     'total_score': int
 }
 

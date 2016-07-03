@@ -295,13 +295,19 @@ class InternalTip(Model):
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
-    wb_auth_token_hash = Unicode(default=u'')
     wb_ccrypto_key_public = Unicode(default=u'')
-    wb_ccrypto_key_private = Unicode(default=u'')
     wb_last_access = DateTime(default_factory=datetime_null)
     wb_access_counter = Int(default=0)
 
     new = Int(default=True)
+
+
+class WhistleblowerTip(Model):
+    """
+    Whistleblower interface to submissions.
+    """
+    auth_token_hash = Unicode(default=u'')
+    wb_ccrypto_key_private = Unicode(default=u'')
 
 
 class ReceiverTip(Model):
@@ -1060,7 +1066,7 @@ InternalTip.comments = ReferenceSet(
 
 InternalTip.receivertips = ReferenceSet(
     InternalTip.id,
-    ReceiverTip.internaltip_id
+    ReceiverTip.id
 )
 
 ReceiverTip.messages = ReferenceSet(
@@ -1093,7 +1099,12 @@ InternalFile.internaltip = Reference(
     InternalTip.id
 )
 
-ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+WhistleblowerTip.internaltip = Reference(
+    WhistleblowerTip.id,
+    InternalTip.id
+)
+
+ReceiverTip.internaltip = Reference(ReceiverTip.id, InternalTip.id)
 
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 

@@ -392,8 +392,8 @@ class TestGL(unittest.TestCase):
             'total_score': 0,
             'answers': (yield self.fill_random_answers(context_id)),
             'encrypted_answers': '',
-            'ccrypto_key_private': '',
-            'ccrypto_key_public': '',
+            'wb_ccrypto_key_private': '',
+            'wb_ccrypto_key_public': '',
             'auth_token_hash': RECEIPT_HASH, # TODO Notice me sempai!!
         })
 
@@ -486,9 +486,9 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_wbtips(self, store):
         ret = []
-        for tip in store.find(models.InternalTip):
-            x = serialize_whisleblowertip(store, tip, 'en')
-            x['receivers_ids'] = [rcvr.id for rcvr in tip.receivers]
+        for wbtip in store.find(models.WhistleblowerTip):
+            x = serialize_whisleblowertip(store, wbtip, 'en')
+            x['receivers_ids'] = [rcvr.id for rcvr in wbtip.internaltip.receivers]
             ret.append(x)
 
         return ret

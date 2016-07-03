@@ -269,12 +269,15 @@ def serialize_receiverfile(rfile):
     }
 
 
-def serialize_whisleblowertip(store, itip, language):
+def serialize_whisleblowertip(store, wbtip, language):
+    itip = wbtip.internaltip
+
     ret = serialize_internaltip(store, itip, language)
 
     ret['files'] = [serialize_internalfile(internalfile) for internalfile in itip.internalfiles]
 
-    ret['wb_ccrypto_key_private'] = itip.wb_ccrypto_key_private
+    ret['auth_token_hash'] = wbtip.auth_token_hash
+    ret['wb_ccrypto_key_private'] = wbtip.wb_ccrypto_key_private
 
     return ret
 
@@ -403,9 +406,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.context_id = context.id
 
-    submission.wb_auth_token_hash = request['auth_token_hash']
-    submission.wb_ccrypto_key_public = request['ccrypto_key_public']
-    submission.wb_ccrypto_key_private = request['ccrypto_key_private']
+    submission.wb_ccrypto_key_public = request['wb_ccrypto_key_public']
 
     submission.enable_two_way_comments = context.enable_two_way_comments
     submission.enable_two_way_messages = context.enable_two_way_messages
@@ -452,12 +453,18 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.debug("=> file associated %s|%s (%d bytes)" %
                   (new_file.name, new_file.content_type, new_file.size))
 
+    wbtip = models.WhistleblowerTip()
+    wbtip.id = submission.id
+    wbtip.wb_auth_token_hash = request['auth_token_hash']
+    wbtip.wb_ccrypto_key_public = request['wb_ccrypto_key_public']
+    store.add(wbtip)
+
     for receiver in submission.receivers:
         db_create_receivertip(store, receiver, submission)
 
     log.debug("Finalized submission creating %d ReceiverTip(s)" % submission.receivers.count())
 
-    return serialize_whisleblowertip(store, submission, language)
+    return serialize_whisleblowertip(store, wbtip, language)
 
 
 @transact
