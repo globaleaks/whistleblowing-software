@@ -26,15 +26,23 @@
 
   <body>
     <style type="text/css">
-      #LoadingOverlay {
+      .block-user-input {
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+
+      .PageOverlay {
         position: fixed;
         width: 100%;
-        height:100%;
+        height: 100%;
+        top: 0;
         display: flex;
         align-items: center;
-        top: 0;
-        z-index: 2147483647;
         text-align: center;
+        z-index: 2147483647;
       }
 
       #LoaderBox {
@@ -45,6 +53,9 @@
         display: flex;
         align-items: center;
         font-size: 48px;
+        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
+        font-size: 48px;
+        color: #555;
         background-color: #FFF;
         border: 1px solid #DDD;
         border-radius: 10px 10px 10px 10px;
@@ -54,10 +65,6 @@
 
       #LoaderBoxContent {
         margin: 0 auto;
-        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
-        font-size: 48px;
-        color: #555;
-        background-color: #FFF;
       }
 
       .gly-spin {
@@ -91,6 +98,10 @@
         display: none !important;
       }
 
+      #BrowserNotSupported {
+        display: none;
+      }
+
       .preload_error {
         margin: 0 auto;
         padding: 30px;
@@ -115,7 +126,7 @@
       </div>
     </noscript>
 
-    <div id="BrowserNotSupported" class="preload_error" style="display: none">
+    <div id="BrowserNotSupported" class="preload_error block-user-input">
       <div>
         <h1>[EN] Warning! :(</h1><br /><br />
         <div>
@@ -159,18 +170,17 @@
       </div>
     </div>
 
-    <div id="BrowserSupported">
-      <div id="LoadingOverlay"  data-ng-hide="started && !showLoadingPanel">
-        <div id="LoaderBox" class="ng-cloak">
+    <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingModal}">
+      <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
+
+      <div data-ng-hide="started" class="PageOverlay block-user-input">
+        <div id="LoaderBox">
           <div id="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>
-            <div data-translate>Loading…</div>
+            <div data-translate>Loading</div>
           </div>
         </div>
       </div>
-
-      <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
-      <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
     </div>
 
     <!-- build:js js/scripts.js -->
