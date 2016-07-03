@@ -39,7 +39,7 @@ angular.module('GLServices', ['ngResource']).
             };
 
             function initPreferences(prefs) {
-              GLTranslate.AddUserPreference(prefs.language);
+              GLTranslate.addUserPreference(prefs.language);
               // TODO Test thoroughly with acid
               if (prefs.ccrypto_key_public !== "") {
                 glbcKeyRing.initialize(prefs.ccrypto_key_private, prefs.id);
@@ -574,10 +574,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
-          glbcKeyRing.addPubKey('whistleblower', tip.ccrypto_key_public);
+          glbcKeyRing.addPubKey('whistleblower', tip.wb_ccrypto_key_public);
           angular.forEach(tip.receivers, function(receiver) {
             // TODO use receiver Pub key
-            glbcKeyRing.addPubKey(receiver.id, tip.ccrypto_key_public);
+            glbcKeyRing.addPubKey(receiver.id, tip.wb_ccrypto_key_public);
           });
 
           glbcReceiver.unlock();
@@ -682,7 +682,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         $q.all([tip.receivers.$promise, comments.$promise, tip.messages.$promise]).then(function() {
 
-          glbcWhistleblower.initialize(tip.ccrypto_key_private, tip.receivers);
+          glbcWhistleblower.initialize(tip.wb_ccrypto_key_private, tip.receivers);
           glbcWhistleblower.unlock();
 
           tip.msg_receiver_selected = null;
@@ -1562,13 +1562,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
   };
 }])
-.factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) { 
+.factory('loadingModal', ['$rootScope', '$timeout', function($rootScope, $timeout) {
   $rootScope.showLoadingModal = false;
   var cnt = 0;
-
-  $rootScope.range = function range() {
-    return new Array(cnt);
-  };
 
   function tryHideModal() {
     if (cnt === 0) {
@@ -1588,7 +1584,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         cnt -= 1;
         tryHideModal();
       }, 200);
-
     },
   };
 }])

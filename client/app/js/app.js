@@ -420,13 +420,12 @@ var GLClient = angular.module('GLClient', [
 }]).
   run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
       function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
-
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
 
     $rootScope.started = false;
-    $rootScope.showLoadingPanel = false;
+    $rootScope.blockUserInput = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === 'true' ? true : false;

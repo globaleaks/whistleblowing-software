@@ -26,19 +26,25 @@
 
   <body>
     <style type="text/css">
-      #LoadingOverlay,
-      .LoadingOverlay {
-        position: fixed;
-        width: 100%;
-        height:100%;
-        display: flex;
-        align-items: center;
-        top: 0;
-        z-index: 2147483647;
-        text-align: center;
+      .block-user-input {
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
       }
 
-      #LoaderBox,
+      .PageOverlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        z-index: 2147483647;
+      }
+
       .LoaderBox {
         position: relative;
         margin: 0 auto;
@@ -47,6 +53,9 @@
         display: flex;
         align-items: center;
         font-size: 48px;
+        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
+        font-size: 48px;
+        color: #555;
         background-color: #FFF;
         border: 1px solid #DDD;
         border-radius: 10px 10px 10px 10px;
@@ -54,21 +63,8 @@
         -webkit-border-radius: 10px 10px 10px 10px;
       }
 
-      #LoaderBoxContent,
       .LoaderBoxContent {
         margin: 0 auto;
-        font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
-        font-size: 48px;
-        color: #555;
-        background-color: #FFF;
-      }
-
-      .LoaderPegs {
-        font-family: sans-serif;
-        font-size: 0.6em;
-        color: #EAEAEA;
-        text-align: left;
-        height: 15px;
       }
 
       .gly-spin {
@@ -102,6 +98,10 @@
         display: none !important;
       }
 
+      #BrowserNotSupported {
+        display: none;
+      }
+
       .preload_error {
         margin: 0 auto;
         padding: 30px;
@@ -126,7 +126,7 @@
       </div>
     </noscript>
 
-    <div id="BrowserNotSupported" class="preload_error" style="display: none">
+    <div id="BrowserNotSupported" class="preload_error block-user-input">
       <div>
         <h1>[EN] Warning! :(</h1><br /><br />
         <div>
@@ -170,19 +170,19 @@
       </div>
     </div>
 
-    <div id="BrowserSupported">
-      <div id="LoadingOverlay" data-ng-hide="started">
-        <div id="LoaderBox" class="ng-cloak">
-          <div id="LoaderBoxContent">
+    <div id="BrowserSupported" class="ng-cloak" data-ng-class="{'block-user-input': blockUserInput || showLoadingModal}">
+      <div data-ng-hide="started && !showLoadingModal" class="PageOverlay block-user-input">
+        <div class="LoaderBox">
+          <div class="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>
             <div data-translate>Loading…</div>
           </div>
         </div>
       </div>
 
-      <!-- this is resolved by angular-js only at the end of the startup (js loading) -->
-      <div data-ng-if="showLoadingModal" class="ng-cloack" data-ng-include="'views/load_modal.html'"></div>
-      <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
+      <div data-ng-if="started">
+        <div data-ng-include="'app.html'"></div>
+      </div>
     </div>
 
     <!-- build:js js/scripts.js -->

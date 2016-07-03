@@ -1,5 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'locationForce', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS', 'glbcUserKeyGen',
-                    function($scope, $location, $route, $http, $uibModal, locationForce, Authentication, Admin, AdminUtils, CONSTANTS, glbcUserKeyGen) {
+GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', '$uibModal', 'locationForce', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS', 'glbcUserKeyGen',
+                    function($scope, $rootScope, $location, $route, $http, $uibModal, locationForce, Authentication, Admin, AdminUtils, CONSTANTS, glbcUserKeyGen) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
@@ -36,6 +36,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
     $scope.fireStep3 = function() {
       $scope.step = 3;
 
+      $rootScope.blockUserInput = true;
       glbcUserKeyGen.startKeyGen();
       if (!finished) {
         $http.post('wizard', $scope.wizard).then(function() {
@@ -46,6 +47,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$u
         })
         .then(function() {
           $scope.keyGenFin = true;
+          $rootScope.blockUserInput = false;
         });
       }
     };

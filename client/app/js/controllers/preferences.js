@@ -50,13 +50,15 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', '$location', 'CO
     glbcUserKeyGen.setup();
 
     $scope.pass_next = function() {
+      $rootScope.blockUserInput = true;
       $scope.showKeyGen = true;
-
       glbcUserKeyGen.noKeyGen();
       glbcUserKeyGen.addPassphrase($scope.inp.old_password, $scope.inp.new_password);
       glbcUserKeyGen.vars.promises.ready.then(function() {
+      $rootScope.blockUserInput = false;
         $location.path(Authentication.session.auth_landing_page);
       }, function() {
+        $rootScope.blockUserInput = false;
         $scope.showKeyGen = false;
         $scope.inp.old_password = "";
         glbcUserKeyGen.setup();
