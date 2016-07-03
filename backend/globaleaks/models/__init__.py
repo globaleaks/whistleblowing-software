@@ -1023,13 +1023,6 @@ FieldAnswerGroup.fieldanswers = ReferenceSet(
     FieldAnswer.fieldanswergroup_id
 )
 
-Receiver.internaltips = ReferenceSet(
-    Receiver.id,
-    ReceiverInternalTip.receiver_id,
-    ReceiverInternalTip.internaltip_id,
-    InternalTip.id
-)
-
 Step.children = ReferenceSet(
     Step.id,
     Field.step_id
@@ -1042,13 +1035,6 @@ Questionnaire.steps = ReferenceSet(Questionnaire.id, Step.questionnaire_id)
 Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
 
 Receiver.user = Reference(Receiver.id, User.id)
-
-Receiver.internaltips = ReferenceSet(
-    Receiver.id,
-    ReceiverInternalTip.receiver_id,
-    ReceiverInternalTip.internaltip_id,
-    InternalTip.id
-)
 
 InternalTip.receivers = ReferenceSet(
     InternalTip.id,
