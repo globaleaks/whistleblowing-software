@@ -75,9 +75,76 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.delete(self.dummyAdminUser['id']),
                                  errors.UserNotDeletable)
 
+
+class TestUserReset(helpers.TestHandlerWithPopulatedDB):
+    _handler = user.UserInstance
+
     @inlineCallbacks
-    def test_delete_receiver_should_succeed(self):
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+
+    @inlineCallbacks
+    def test_put_reinitialize(self):
+        itips_desc = yield self.get_itips()
+        self.assertEqual(len(itips_desc), 1)
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 2)
+
+        self.dummyReceiverUser_1['reinitialize'] = True
+
+        handler = self.request(self.dummyReceiverUser_1, role='admin')
+        yield handler.put(self.dummyReceiverUser_1['id'])
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 1)
+        self.assertEqual(rtips_desc[0]['receiver_id'], self.dummyReceiverUser_2['id'])
+
+        self.dummyReceiverUser_2['reinitialize'] = True
+
+        handler = self.request(self.dummyReceiverUser_2, role='admin')
+        yield handler.put(self.dummyReceiverUser_2['id'])
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 0)
+
+        itips_desc = yield self.get_itips()
+        self.assertEqual(len(itips_desc), 0)
+
+
+class TestUserDelete(helpers.TestHandlerWithPopulatedDB):
+    _handler = user.UserInstance
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
+        yield self.perform_full_submission_actions()
+
+    @inlineCallbacks
+    def test_delete_receiver(self):
+        itips_desc = yield self.get_itips()
+        self.assertEqual(len(itips_desc), 1)
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 2)
+
         handler = self.request(role='admin')
         yield handler.delete(self.dummyReceiverUser_1['id'])
         yield self.assertFailure(handler.get(self.dummyReceiverUser_1['id']),
                                  errors.UserIdNotFound)
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 1)
+        self.assertEqual(rtips_desc[0]['receiver_id'], self.dummyReceiverUser_2['id'])
+
+        handler = self.request(role='admin')
+        yield handler.delete(self.dummyReceiverUser_2['id'])
+        yield self.assertFailure(handler.get(self.dummyReceiverUser_2['id']),
+                                 errors.UserIdNotFound)
+
+        rtips_desc = yield self.get_rtips()
+        self.assertEqual(len(rtips_desc), 0)
+
+        itips_desc = yield self.get_itips()
+        self.assertEqual(len(itips_desc), 1)

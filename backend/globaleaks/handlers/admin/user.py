@@ -28,6 +28,20 @@ def db_initialize_user(store, user):
     user.ccrypto_key_private = ''
 
 
+def db_reinitialize_user(store, user):
+    db_initialize_user(store, user)
+
+    if user.role != 'receiver':
+        return
+
+    rtips = store.find(models.ReceiverTip, models.ReceiverTip.receiver_id == user.id)
+    for rtip in rtips:
+        if rtip.internaltip.receivertips.count() == 1:
+            store.remove(rtip.internaltip)
+        else:
+            store.remove(rtip)
+
+
 def db_create_admin_user(store, request, language):
     """
     Creates a new admin
@@ -39,6 +53,7 @@ def db_create_admin_user(store, request, language):
     log.debug("Created new admin")
 
     return user
+
 
 @transact
 def create_admin_user(store, request, language):
@@ -140,7 +155,7 @@ def db_admin_update_user(store, user_id, request, language):
     user.update(request)
 
     if request['reinitialize']:
-        db_initialize_user(store, user)
+        db_reinitialize_user(store, user)
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)

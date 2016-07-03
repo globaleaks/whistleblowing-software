@@ -37,8 +37,8 @@ from globaleaks.handlers.admin.step import create_step, update_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user, db_create_receiver
 from globaleaks.handlers.submission import create_submission, \
-    serialize_internalfile, serialize_receiverfile, \
-    serialize_receivertip, serialize_whisleblowertip
+    serialize_internaltip, serialize_receivertip, serialize_whisleblowertip, \
+    serialize_internalfile, serialize_receiverfile
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils import mailutils, tempdict, token, utility
@@ -463,6 +463,11 @@ class TestGL(unittest.TestCase):
     @transact_ro
     def get_submissions_ids(self, store):
         return [s.id for s in store.find(models.InternalTip)]
+
+    @transact_ro
+    def get_itips(self, store):
+        itips = store.find(models.InternalTip)
+        return [serialize_internaltip(store, itip, 'en') for itip in itips]
 
     @transact_ro
     def get_rtips(self, store):
