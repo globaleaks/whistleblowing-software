@@ -109,6 +109,7 @@ angular.module('GLBrowserCrypto', [])
           decRes[i].showAnyway = false;
           tip[field][i] = decRes[i];
         }
+        return decRes;
       };
     },
 
@@ -122,6 +123,16 @@ angular.module('GLBrowserCrypto', [])
       };
     },
 
+    handleDecMsgFailure: function(tip) {
+      return function(decRes) {
+        // If there were errors encountered in the decrypt step ^^Throw Up^^
+        decRes.forEach(function(res) {
+          if (angular.isDefined(res.error) ){ //&& tip.encrypted) {
+            throw res.error;
+          }
+        });
+      };
+    },
   };
 }])
 .factory('glbcProofOfWork', ['$q', 'glbcUtil', function($q, glbcUtil) {
@@ -458,39 +469,47 @@ angular.module('GLBrowserCrypto', [])
 
       var decPromises = [];
 
-      msgs.forEach(function(msg, i) {
-        var c = pgp.message.readArmored(msg.content);
-        var pubKey = glbcKeyRing.getPubKey(msg.author_id);
+      msgs.forEach(function(msg) {
+        var promise;
+        try {
+          var c = pgp.message.readArmored("asdf");//msg.content);
+          var pubKey = glbcKeyRing.getPubKey(msg.author_id);
 
-        var options = {
-          message: c,
-          privateKey: glbcKeyRing.getKey(),
-          format: 'womp-womp',
-        };
+          var options = {
+            message: c,
+            privateKey: glbcKeyRing.getKey(),
+            format: 'utf8',
+          };
 
-        if (verify) {
-          options['publicKeys'] = pubKey;
-        }
+          if (verify) {
+            options['publicKeys'] = pubKey;
+          }
 
-        var promise = $q(function(resolve) {
-          pgp.decrypt(options).then(function(result) {
-            console.log(i);
-            msg.content = result.data;
-            resolve({
-              success: true,
-              msg: msg,
-            });
-          }, function(err) {
-            console.log(i);
-            resolve({
-              success: false,
-              msg: msg,
-              error: err,
+          promise = $q(function(resolve) {
+            pgp.decrypt(options).then(function(result) {
+              msg.content = result.data;
+              resolve({
+                success: true,
+                msg: msg,
+              });
+            }, function(err) {
+              resolve({
+                success: false,
+                msg: msg,
+                error: err,
+              }); 
             });
           });
-        });
 
-        decPromises.push(promise);
+        } catch (err) {
+          promise  = {
+            success: false,
+            msg: msg,
+            error: err,
+          };
+        } finally {
+          decPromises.push(promise);
+        }
       });
 
       return $q.all(decPromises);

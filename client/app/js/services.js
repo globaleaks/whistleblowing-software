@@ -583,12 +583,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
           if (tip.enable_comments && comments.length > 0) {
             glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
-              .then(glbcUtil.plugDecryptResult(tip, 'comments'));
+              .then(glbcUtil.plugDecryptResult(tip, 'comments'))
+              .then(glbcUtil.handleMsgFailure(tip));
           }
 
           if (tip.enable_messages && messages.length > 0) {
             glbcCipherLib.decryptAndVerifyMessages(messages, tip.receivers)
-              .then(glbcUtil.plugDecryptResult(tip, 'messages'));
+              .then(glbcUtil.plugDecryptResult(tip, 'messages'))
+              .then(glbcUtil.handleMsgFailure(tip));
           }
 
           tip.newComment = function(content) {
@@ -679,7 +681,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             if (tip.enable_comments) {
               glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
-                .then(glbcUtil.plugDecryptResult(tip, 'comments'));
+                .then(glbcUtil.plugDecryptResult(tip, 'comments'))
+                .then(glbcUtil.handleMsgFailure(tip));
             }
           });
 
@@ -703,7 +706,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               // TODO use a real promise for the query
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
-                  .then(glbcUtil.plugDecryptResult(tip, 'messages'));
+                  .then(glbcUtil.plugDecryptResult(tip, 'messages'))
+                  .then(handleMsgFailure(tip));
               });
             }
           };
