@@ -944,17 +944,6 @@ class ReceiverContext(BaseModel):
     receiver_id = Unicode()
 
 
-class ReceiverInternalTip(BaseModel):
-    """
-    Class used to implement references between Receivers and IntInternalTips
-    """
-    __storm_table__ = 'receiver_internaltip'
-    __storm_primary__ = 'receiver_id', 'internaltip_id'
-
-    receiver_id = Unicode()
-    internaltip_id = Unicode()
-
-
 class Counter(Model):
     """
     Class used to implement unique counters
@@ -1042,13 +1031,6 @@ Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
 
 Receiver.user = Reference(Receiver.id, User.id)
 
-InternalTip.receivers = ReferenceSet(
-    InternalTip.id,
-    ReceiverInternalTip.internaltip_id,
-    ReceiverInternalTip.receiver_id,
-    Receiver.id
-)
-
 InternalTip.context = Reference(
     InternalTip.context_id,
     Context.id
@@ -1066,7 +1048,7 @@ InternalTip.comments = ReferenceSet(
 
 InternalTip.receivertips = ReferenceSet(
     InternalTip.id,
-    ReceiverTip.id
+    ReceiverTip.internaltip_id
 )
 
 ReceiverTip.messages = ReferenceSet(
@@ -1104,7 +1086,7 @@ WhistleblowerTip.internaltip = Reference(
     InternalTip.id
 )
 
-ReceiverTip.internaltip = Reference(ReceiverTip.id, InternalTip.id)
+ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 

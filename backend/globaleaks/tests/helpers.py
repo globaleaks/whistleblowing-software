@@ -488,7 +488,7 @@ class TestGL(unittest.TestCase):
         ret = []
         for wbtip in store.find(models.WhistleblowerTip):
             x = serialize_whisleblowertip(store, wbtip, 'en')
-            x['receivers_ids'] = [rcvr.id for rcvr in wbtip.internaltip.receivers]
+            x['receivers_ids'] = [rtip.receiver_id for rtip in wbtip.internaltip.receivertips]
             ret.append(x)
 
         return ret

@@ -285,7 +285,7 @@ def serialize_whisleblowertip(store, wbtip, language):
 def serialize_receivertip(store, rtip, language):
     ret = serialize_internaltip(store, rtip.internaltip, language)
 
-    ret['files'] = db_get_rtip_files(store, rtip.receiver.user.id, rtip.id)
+    ret['files'] = db_get_rtip_files(store, rtip.receiver_id, rtip.id)
 
     ret['id'] = rtip.id
     ret['label'] = rtip.label
@@ -350,12 +350,14 @@ def db_create_receivertip(store, receiver, internaltip):
     return receivertip
 
 
-def import_receivers(store, submission, receiver_id_list):
+def create_receivertips(store, submission, receiver_id_list):
+    rtips_count = 0
+
     context = submission.context
 
     if context.maximum_selectable_receivers and \
                     len(receiver_id_list) > context.maximum_selectable_receivers:
-        raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
+        raise errors.SubmissionValidationFailure("Submission failure: provided an invalid number of receivers")
 
     for receiver in store.find(models.Receiver, In(models.Receiver.id, receiver_id_list)):
         if context not in receiver.contexts:
@@ -364,13 +366,17 @@ def import_receivers(store, submission, receiver_id_list):
         if receiver.user.ccrypto_key_public == "":
             continue
 
-        submission.receivers.add(receiver)
+        rtip = db_create_receivertip(store, receiver, submission)
 
-        log.debug("+receiver [%s] In tip (%s) #%d" % \
-                  (receiver.user.name, submission.id, submission.receivers.count()))
+        log.debug("Created ReceiverTip %s for tip %s" % \
+                  (rtip.id, submission.id))
 
-    if submission.receivers.count() == 0:
-        raise errors.SubmissionValidationFailure("needed almost one receiver")
+        rtips_count += 1
+
+    if rtips_count == 0:
+        raise errors.SubmissionValidationFailure("Submission failure: required at least one receiver")
+
+    return rtips_count
 
 
 def db_create_submission(store, token_id, request, t2w, language):
@@ -433,12 +439,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Submission create: fields validation fail: %s" % excep)
         raise excep
 
-    try:
-        import_receivers(store, submission, request['receivers'])
-    except Exception as excep:
-        log.err("Submission create: receivers import fail: %s" % excep)
-        raise excep
-
     for filedesc in token.uploaded_files:
         new_file = models.InternalFile()
         new_file.name = filedesc['filename']
@@ -459,10 +459,9 @@ def db_create_submission(store, token_id, request, t2w, language):
     wbtip.wb_ccrypto_key_public = request['wb_ccrypto_key_public']
     store.add(wbtip)
 
-    for receiver in submission.receivers:
-        db_create_receivertip(store, receiver, submission)
+    rtips_count = create_receivertips(store, submission, request['receivers'])
 
-    log.debug("Finalized submission creating %d ReceiverTip(s)" % submission.receivers.count())
+    log.debug("Finalized submission creating %d ReceiverTip(s)" % rtips_count)
 
     return serialize_whisleblowertip(store, wbtip, language)
 
