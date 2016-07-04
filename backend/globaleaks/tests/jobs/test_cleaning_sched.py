@@ -13,14 +13,14 @@ from globaleaks.utils.utility import is_expired, datetime_null
 from globaleaks.settings import GLSettings
 
 
-class TestCleaning(helpers.TestGLWithPopulatedDB):
+class TestCleaningSched(helpers.TestGLWithPopulatedDB):
     @transact
-    def test_postpone_survive_cleaning(self, store):
+    def check_postpone_survive_cleaning(self, store):
         self.assertEqual(store.find(models.InternalTip).count(), 1)
         self.assertEqual(store.find(models.ReceiverTip).count(), 2)
 
     @transact
-    def test_cleaning(self, store):
+    def check_cleaning(self, store):
         self.assertEqual(store.find(models.InternalTip).count(), 0)
         self.assertEqual(store.find(models.ReceiverTip).count(), 0)
         self.assertEqual(store.find(models.InternalFile).count(), 0)
@@ -37,11 +37,6 @@ class TestCleaning(helpers.TestGLWithPopulatedDB):
         for tip in store.find(models.InternalTip):
             tip.expiration_date = datetime_null()
 
-    # -------------------------------------------
-    # Those the two class implements the sequence
-    # -------------------------------------------
-
-class TipCleaning(TestCleaning):
     @inlineCallbacks
     def postpone_tip_expiration(self):
         recv_desc = yield admin.receiver.get_receiver_list('en')
@@ -66,7 +61,7 @@ class TipCleaning(TestCleaning):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        yield self.test_cleaning()
+        yield self.check_cleaning()
 
     @inlineCallbacks
     def test_tip_life_postpone(self):
@@ -81,7 +76,7 @@ class TipCleaning(TestCleaning):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        yield self.test_postpone_survive_cleaning()
+        yield self.check_postpone_survive_cleaning()
 
         yield self.check_emails_number(4)
 

@@ -29,7 +29,7 @@ def admin_serialize_context(store, context, language):
     """
     ret_dict = {
         'id': context.id,
-        'tip_timetolive': context.tip_timetolive / (60 * 60 * 24),
+        'tip_timetolive': context.tip_timetolive,
         'select_all_receivers': context.select_all_receivers,
         'maximum_selectable_receivers': context.maximum_selectable_receivers,
         'show_context': context.show_context,
@@ -62,13 +62,6 @@ def get_context_list(store, language):
     """
     return [admin_serialize_context(store, context, language)
         for context in store.find(models.Context)]
-
-
-def acquire_context_timetolive(timetolive):
-    if timetolive <= 0:
-        raise errors.InvalidTipTimeToLive()
-
-    return timetolive * (24 * 60 * 60)
 
 
 def db_associate_context_receivers(store, context, receivers_ids):
@@ -118,7 +111,7 @@ def get_context_steps(*args):
 def fill_context_request(request, language):
     fill_localized_keys(request, models.Context.localized_keys, language)
 
-    request['tip_timetolive'] = acquire_context_timetolive(int(request['tip_timetolive']))
+    request['tip_timetolive'] = int(request['tip_timetolive'])
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:

@@ -310,20 +310,7 @@ class PGPKeyInvalid(GLException):
     status_code = 406
 
 
-# UNUSED ERROR CODE 41 42 43 44 45 HERE!
-
-
-class InvalidTipTimeToLive(GLException):
-    """
-    The provided tip_timetolive contains weird values
-    """
-    reason = "Invalid timerange provided for Tip time to live"
-    error_code = 46
-    status_code = 406
-
-
-# UNUSED ERROR CODE 47 48 49 HERE!
-
+# UNUSED ERROR CODE 41-49 HERE!
 
 class ExtendTipLifeNotEnabled(GLException):
     """

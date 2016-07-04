@@ -210,6 +210,30 @@ class WhistleblowerTip_v_32(Model):
     access_counter = Int()
 
 
+class Context_v_32(Model):
+    __storm_table__ = 'context'
+    show_small_receiver_cards = Bool(default=False)
+    show_context = Bool(default=True)
+    show_recipients_details = Bool(default=False)
+    allow_recipients_selection = Bool(default=False)
+    maximum_selectable_receivers = Int(default=0)
+    select_all_receivers = Bool(default=False)
+    enable_comments = Bool(default=True)
+    enable_messages = Bool(default=False)
+    enable_two_way_comments = Bool(default=True)
+    enable_two_way_messages = Bool(default=True)
+    enable_attachments = Bool(default=True)
+    tip_timetolive = Int(default=15 * 3600 * 24)
+    name = JSON(validator=shortlocal_v)
+    description = JSON(validator=longlocal_v)
+    recipients_clarification = JSON(validator=longlocal_v)
+    status_page_message = JSON(validator=longlocal_v)
+    show_receivers_in_alphabetical_order = Bool(default=False)
+    presentation_order = Int(default=0)
+    questionnaire_id = Unicode()
+    img_id = Unicode()
+
+
 class MigrationScript(MigrationBase):
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
@@ -227,6 +251,19 @@ class MigrationScript(MigrationBase):
                 if v.name == 'password_change_needed':
                   new_obj.password_change_needed = True
                   continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_Context(self):
+        old_objs = self.store_old.find(self.model_from['Context'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['Context']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'tip_timetolive':
+                    new_obj.tip_timetolive /= (3600 * 24)
+                    continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
@@ -302,6 +339,10 @@ class MigrationScript(MigrationBase):
         for _, v in new_node._storm_columns.iteritems():
             if v.name == 'enforce_notification_encryption':
                 new_node.enforce_notification_encryption = not old_node.allow_unencrypted
+                continue
+
+            if v.name == 'wbtip_timetolive':
+                new_node.wbtip_timetolive = 90
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

@@ -398,7 +398,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.progressive = db_assign_submission_progressive(store)
 
-    submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
+    submission.expiration_date = utc_future_date(days=context.tip_timetolive)
 
     # this is get from the client as it the only possibility possible
     # that would fit with the end to end submission.

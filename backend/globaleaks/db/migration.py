@@ -32,7 +32,7 @@ from globaleaks.db.migrations.update_29 import Context_v_28, Node_v_28
 from globaleaks.db.migrations.update_30 import Node_v_29, Context_v_29, Step_v_29, FieldAnswer_v_29, FieldAnswerGroup_v_29, FieldAnswerGroupFieldAnswer_v_29
 from globaleaks.db.migrations.update_31 import Node_v_30, Context_v_30, User_v_30, ReceiverTip_v_30, Notification_v_30
 from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, Message_v_31, User_v_31
-from globaleaks.db.migrations.update_33 import User_v_32, Notification_v_32, InternalTip_v_32, WhistleblowerTip_v_32, Node_v_32
+from globaleaks.db.migrations.update_33 import User_v_32, Notification_v_32, InternalTip_v_32, WhistleblowerTip_v_32, Node_v_32, Context_v_32
 
 
 migration_mapping = OrderedDict([
@@ -40,7 +40,7 @@ migration_mapping = OrderedDict([
     ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, Comment_v_31, 0, 0, 0, 0, 0, 0, 0, 0, models.Comment, 0]),
-    ('Context', [Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, models.Context, 0, 0]),
+    ('Context', [Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_32, 0, models.Context]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustomTexts, 0]),
     ('Field', [Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, Field_v_27, 0, 0, 0, models.Field, 0, 0, 0, 0, 0]),
     ('FieldAnswer', [-1, -1, -1, -1, -1, -1, -1, -1, FieldAnswer_v_29, 0, 0, 0, 0, 0, 0, models.FieldAnswer, 0, 0, 0]),

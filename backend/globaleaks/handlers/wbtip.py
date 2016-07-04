@@ -139,7 +139,6 @@ class WBTipInstance(BaseHandler):
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
         """
-
         answer = yield get_wbtip(self.current_user.user_id, self.request.language)
 
         self.write(answer)

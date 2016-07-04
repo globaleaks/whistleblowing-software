@@ -223,7 +223,7 @@ class Context(Model):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
 
-    tip_timetolive = Int()
+    tip_timetolive = Int(default=15)
 
     # localized strings
     name = JSON(validator=shortlocal_v)
@@ -296,7 +296,7 @@ class InternalTip(Model):
     enable_whistleblower_identity = Bool(default=False)
 
     wb_ccrypto_key_public = Unicode(default=u'')
-    wb_last_access = DateTime(default_factory=datetime_null)
+    wb_last_access = DateTime(default_factory=datetime_now)
     wb_access_counter = Int(default=0)
 
     new = Int(default=True)
@@ -514,6 +514,8 @@ class Node(Model):
     show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 
+    wbtip_timetolive = Int(default=90)
+
     threshold_free_disk_megabytes_high = Int(default=200)
     threshold_free_disk_megabytes_medium = Int(default=500)
     threshold_free_disk_megabytes_low = Int(default=1000)
@@ -546,7 +548,8 @@ class Node(Model):
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_medium',
-        'threshold_free_disk_percentage_low'
+        'threshold_free_disk_percentage_low',
+        'wbtip_timetolive'
     ]
 
     bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
@@ -1079,6 +1082,11 @@ ReceiverFile.receivertip = Reference(
 InternalFile.internaltip = Reference(
     InternalFile.internaltip_id,
     InternalTip.id
+)
+
+InternalTip.whistleblowertip = Reference(
+    InternalTip.id,
+    WhistleblowerTip.id
 )
 
 WhistleblowerTip.internaltip = Reference(
