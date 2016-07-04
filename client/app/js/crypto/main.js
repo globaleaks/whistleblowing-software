@@ -102,6 +102,26 @@ angular.module('GLBrowserCrypto', [])
       return this.bin2base64(salt);
     },
 
+    plugDecryptResult: function(tip, field) {
+      return function(decRes) {
+        tip[field] = new Array(decRes.length);
+        for (var i = 0; i < decRes.length; i++) {
+          decRes[i].showAnyway = false;
+          tip[field][i] = decRes[i];
+        }
+      };
+    },
+
+    plugNewEncMsg: function(msg, tip, field, origContent) {
+      return function(ciphertext) {
+        msg.content = ciphertext;
+        msg.$save(function(newMsg) {
+          newMsg.content = origContent; // Display original text
+          tip[field].unshift({msg: newMsg, success: true});
+        });
+      };
+    },
+
   };
 }])
 .factory('glbcProofOfWork', ['$q', 'glbcUtil', function($q, glbcUtil) {
@@ -422,7 +442,7 @@ angular.module('GLBrowserCrypto', [])
      * @param {Array<Object>} msgs a list of {content: 'a', id: 'a23a-' } objs
      * @param {Array<Object>} receivers who have access to the tip.
      * @param {boolean} verify
-     * @return {Promise<Array<String>>} the list of the decrypted msg contents
+     * @return {Promise<Array<Object>>} a list of {success: Bool, msg: Object, [error: Object]}
      */
     decryptAndVerifyMessages: function(msgs, receivers, verify) {
       // TODO replace with something more reliable this is shit.
@@ -438,26 +458,40 @@ angular.module('GLBrowserCrypto', [])
 
       var decPromises = [];
 
-      for (var i = 0; i < msgs.length; i++) {
-        var c = pgp.message.readArmored(msgs[i].content);
-        var pubKey = glbcKeyRing.getPubKey(msgs[i].author_id);
+      msgs.forEach(function(msg, i) {
+        var c = pgp.message.readArmored(msg.content);
+        var pubKey = glbcKeyRing.getPubKey(msg.author_id);
 
         var options = {
           message: c,
           privateKey: glbcKeyRing.getKey(),
-          format: 'utf8',
+          format: 'womp-womp',
         };
 
         if (verify) {
           options['publicKeys'] = pubKey;
         }
 
-        var promise = pgp.decrypt(options).then(function(result) {
-          return result.data;
+        var promise = $q(function(resolve) {
+          pgp.decrypt(options).then(function(result) {
+            console.log(i);
+            msg.content = result.data;
+            resolve({
+              success: true,
+              msg: msg,
+            });
+          }, function(err) {
+            console.log(i);
+            resolve({
+              success: false,
+              msg: msg,
+              error: err,
+            });
+          });
         });
 
         decPromises.push(promise);
-      }
+      });
 
       return $q.all(decPromises);
     },

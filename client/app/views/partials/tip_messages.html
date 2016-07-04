@@ -20,7 +20,7 @@
         <br />
         <textarea id="TipCommunicationMessagesInput" data-ng-model="tip.newMessageContent" maxlength="{{::node.maximum_textsize}}" class="form-control" autocomplete="off"></textarea>
         <div data-translate-values="{available_characters_count: node.maximum_textsize - tip.newMessageContent.length}"
-             data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
+          data-translate>FIELD_INPUT_AVAILABLE_CHARS</div>
       </div>
       <div class="col-md-12">
         <span class="pull-left">
@@ -48,29 +48,53 @@
     <div data-ng-if="session.role === 'whistleblower' && !tip.enable_two_way_messages">
       <span data-translate>You are not allowed to send messages.</span>
     </div>
-    <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="message in tip.messages | orderBy:'creation_date':true">
-      <div id="message-{{$index}}" data-ng-switch="" on="message.type">
-         <div data-ng-switch-when="whistleblower" class="alert alert-info">
+    <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="msgRes in tip.messages | orderBy:'creation_date':true">
+      <div id="message-{{$index}}">
+        <div data-ng-show="!msgRes.success && !msgRes.showAnyway" class="alert-warning alert">
           <div class="row">
             <div class="col-md-6">
-              <div class="WbNameInMessages" data-translate>Whistleblower</div>
+              <div class="ReceiverNameInMessages" data-translate>{{::msgRes.msg.author }}</div>
             </div>
             <div class="pull-right" style="margin-right:20px">
-              <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
+              <div>
+                <i class="glyphicon glyphicon-exclamation-sign" data-ng-click="msgRes.showAnyway=true;"></i>
+                {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
             </div>
           </div>
-          <div class="preformatted">{{message.content}}</div>
+          <div class="preformatted" data-translate>This message failed to decrypt.</div>
         </div>
-        <div data-ng-switch-when="receiver" class="alert alert-success">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="WbNameInMessages">{{::message.author}}</div>
+      </div>
+      <div data-ng-show="msgRes.success || msgRes.showAnyway">
+        <div data-ng-switch="" on="msgRes.msg.type">
+          <div data-ng-switch-when="whistleblower" class="alert alert-info" data-ng-class="{'alert-warning': msgRes.success}">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="WbNameInMessages" data-translate>Whistleblower</div>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <div>
+                  <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
+                  {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                </div>
+              </div>
             </div>
-            <div class="pull-right" style="margin-right:20px">
-              <div>{{::message.creation_date | date:'dd-MM-yyyy HH:mm'}}</div>
-            </div>
+            <div class="preformatted">{{::msgRes.msg.content}}</div>
           </div>
-          <div class="preformatted">{{message.content}}</div>
+          <div data-ng-switch-when="receiver" class="alert alert-success" data-ng-class="{'alert-warning': msgRes.success}">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="WbNameInMessages">{{::msgRes.msg.author}}</div>
+              </div>
+
+              <div class="pull-right" style="margin-right:20px">
+                <div>
+                  <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
+                  {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                </div>
+              </div>
+            </div>
+            <div class="preformatted">{{::msgRes.msg.content}}</div>
+          </div>
         </div>
       </div>
     </div>

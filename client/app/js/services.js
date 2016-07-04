@@ -553,8 +553,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'Authentication', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib',
-          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, Authentication, glbcReceiver, glbcKeyRing, glbcCipherLib) {
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'Authentication', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib', 'glbcUtil',
+          function($http, $q, $filter, Utils, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, Authentication, glbcReceiver, glbcKeyRing, glbcCipherLib, glbcUtil) {
     return function(tipID, fn) {
       var self = this;
 
@@ -566,7 +566,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         tip.messages = [];
         var messages = tip.enable_messages ? RTipMessageResource.query(tipID) : {$promise: false};
-
 
         tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
 
@@ -583,51 +582,31 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           glbcReceiver.unlock();
 
           if (tip.enable_comments && comments.length > 0) {
-            glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers).then(function(decCmnts) {
-              tip.comments = comments;
-              for (var i = 0; i < decCmnts.length; i++) {
-                tip.comments[i].content = decCmnts[i];
-              }
-            });
+            glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
+              .then(glbcUtil.plugDecryptResult(tip, 'comments'));
           }
 
           if (tip.enable_messages && messages.length > 0) {
-            glbcCipherLib.decryptAndVerifyMessages(messages, tip.receivers).then(function(decMsgs) {
-              tip.messages = messages;
-              for (var i = 0; i < decMsgs.length; i++) {
-                tip.messages[i].content = decMsgs[i];
-              }
-            });
+            glbcCipherLib.decryptAndVerifyMessages(messages, tip.receivers)
+              .then(glbcUtil.plugDecryptResult(tip, 'messages'));
           }
 
           tip.newComment = function(content) {
-            // TODO override save and get.
-            // Perform encrypt to WB on save
-            // Perform decrypt with key on get
             var c = new RTipCommentResource(tipID);
 
             var recs = tip.receivers.filter(function(r) {
               return r.id !== Authentication.session.user_id;
             });
-            glbcCipherLib.encryptAndSignComment(content, recs).then(function(ciphertext) {
-              c.content = ciphertext;
-              c.$save(function(newComment) {
-                newComment.content = content; // Display original text
-                tip.comments.unshift(newComment);
-              });
-            });
+
+            glbcCipherLib.encryptAndSignComment(content, recs)
+              .then(glbcUtil.plugNewEncMsg(c, tip, 'comments', content));
           };
 
           tip.newMessage = function(content) {
             var m = new RTipMessageResource(tipID);
 
-            glbcCipherLib.encryptAndSignMessage(content, 'whistleblower').then(function(ciphertext) {
-              m.content = ciphertext;
-              m.$save(function(newMessage) {
-                newMessage.content = content; // Display original text
-                tip.messages.unshift(newMessage);
-              });
-            });
+            glbcCipherLib.encryptAndSignMessage(content, 'whistleblower')
+              .then(glbcUtil.plugNewEncMsg(m, tip, 'messages', content));
           };
 
           tip.setVar = function(var_name, var_value) {
@@ -667,8 +646,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
-  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource', 'glbcWhistleblower', 'glbcCipherLib',
-      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource, glbcWhistleblower, glbcCipherLib) {
+  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource', 'glbcWhistleblower', 'glbcCipherLib', 'glbcUtil',
+      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource, glbcWhistleblower, glbcCipherLib, glbcUtil) {
     return function(fn) {
       var self = this;
 
@@ -700,55 +679,31 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
             if (tip.enable_comments) {
               glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
-              .then(function(decCmnts) {
-                for (var i = 0; i < decCmnts.length; i++) {
-                  comments[i].content = decCmnts[i];
-                }
-                tip.comments = comments;
-              });
+                .then(glbcUtil.plugDecryptResult(tip, 'comments'));
             }
           });
 
           tip.newComment = function(content) {
-            // TODO split functionality based on tip state
+            var c = new WBTipCommentResource();
             glbcCipherLib.encryptAndSignComment(content, tip.receivers)
-            .then(function(ciphertext) {
-              var c = new WBTipCommentResource();
-              c.content = ciphertext;
-              c.$save(function(newComment) {
-                newComment.content = content;
-                tip.comments.unshift(newComment);
-              });
-            });
+              .then(glbcUtil.plugNewEncMsg(c, tip, 'comments', content));
           };
 
           tip.newMessage = function(content) {
             var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
 
             glbcCipherLib.encryptAndSignMessage(content, tip.msg_receiver_selected)
-            .then(function(ciphertext) {
-              m.content = ciphertext;
-              m.$save(function(newMessage) {
-                // Display the decrypted version of the message.
-                newMessage.content = content;
-                tip.messages.unshift(newMessage);
-              });
-            });
+              .then(glbcUtil.plugNewEncMsg(m, tip, 'messages', content));
           };
 
           tip.updateMessages = function () {
             if (tip.msg_receiver_selected) {
               tip.messages = [];
 
+              // TODO use a real promise for the query
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
-
                 glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
-                .then(function(decryptedMsgs) {
-                  for (var i = 0; i < decryptedMsgs.length; i++){
-                    messageCollection[i].content = decryptedMsgs[i];
-                    tip.messages = messageCollection;
-                  }
-                });
+                  .then(glbcUtil.plugDecryptResult(tip, 'messages'));
               });
             }
           };
