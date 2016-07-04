@@ -456,7 +456,7 @@ def db_create_submission(store, token_id, request, t2w, language):
     wbtip = models.WhistleblowerTip()
     wbtip.id = submission.id
     wbtip.auth_token_hash = request['auth_token_hash']
-    wbtip.wb_ccrypto_key_public = request['wb_ccrypto_key_public']
+    wbtip.wb_ccrypto_key_private = request['wb_ccrypto_key_private']
     store.add(wbtip)
 
     rtips_count = create_receivertips(store, submission, request['receivers'])
