@@ -472,7 +472,7 @@ angular.module('GLBrowserCrypto', [])
       msgs.forEach(function(msg) {
         var promise;
         try {
-          var c = pgp.message.readArmored("asdf");//msg.content);
+          var c = pgp.message.readArmored(msg.content);
           var pubKey = glbcKeyRing.getPubKey(msg.author_id);
 
           var options = {

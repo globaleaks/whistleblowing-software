@@ -1,5 +1,6 @@
 var utils = require('./utils.js');
 exports.receiver = function() {
+  this.login = utils.login_receiver;
 
   this.viewMostRecentSubmission = function() {
     return element(by.id('tip-0')).click(); 
@@ -89,5 +90,25 @@ exports.whistleblower = function() {
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
       return browser.waitForAngular();
     });
+  };
+};
+
+exports.admin = function() {
+  this.login = utils.login_admin;
+
+  this.UserConf = function() {
+    browser.setLocation('admin/users');
+    
+    this.openForm = function(username) {
+      var path = '//form[contains(.,"' + username + '")]';
+      var editUsrForm = element(by.xpath(path));
+      editUsrForm.element(by.css('.actionButtonEdit')).click();
+      return editUsrForm;
+    };
+
+    this.save = function(editUsrForm) {
+      editUsrForm.element(by.css('.actionButtonSave')).click();
+    };
+  
   };
 };
