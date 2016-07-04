@@ -497,7 +497,7 @@ angular.module('GLBrowserCrypto', [])
                 success: false,
                 msg: msg,
                 error: err,
-              }); 
+              });
             });
           });
 

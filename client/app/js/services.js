@@ -554,7 +554,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     };
 }]).
   factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource', 'Authentication', 'glbcReceiver', 'glbcKeyRing', 'glbcCipherLib', 'glbcUtil',
-          function($http, $q, $filter, Utils, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, Authentication, glbcReceiver, glbcKeyRing, glbcCipherLib, glbcUtil) {
+          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource, Authentication, glbcReceiver, glbcKeyRing, glbcCipherLib, glbcUtil) {
     return function(tipID, fn) {
       var self = this;
 
@@ -584,13 +584,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           if (tip.enable_comments && comments.length > 0) {
             glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
               .then(glbcUtil.plugDecryptResult(tip, 'comments'))
-              .then(glbcUtil.handleMsgFailure(tip));
+              .then(glbcUtil.handleDecMsgFailure(tip));
           }
 
           if (tip.enable_messages && messages.length > 0) {
             glbcCipherLib.decryptAndVerifyMessages(messages, tip.receivers)
               .then(glbcUtil.plugDecryptResult(tip, 'messages'))
-              .then(glbcUtil.handleMsgFailure(tip));
+              .then(glbcUtil.handleDecMsgFailure(tip));
           }
 
           tip.newComment = function(content) {
@@ -682,7 +682,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             if (tip.enable_comments) {
               glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
                 .then(glbcUtil.plugDecryptResult(tip, 'comments'))
-                .then(glbcUtil.handleMsgFailure(tip));
+                .then(glbcUtil.handleDecMsgFailure(tip));
             }
           });
 
@@ -707,7 +707,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
                   .then(glbcUtil.plugDecryptResult(tip, 'messages'))
-                  .then(handleMsgFailure(tip));
+                  .then(handleDecMsgFailure(tip));
               });
             }
           };
