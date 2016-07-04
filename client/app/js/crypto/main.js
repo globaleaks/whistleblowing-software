@@ -295,7 +295,7 @@ angular.module('GLBrowserCrypto', [])
         }
 
         var s = textInput.trim();
-        if (!s.startsWith('-----')) {
+        if (s.substr(0, 5) !== '-----') {
           return false;
         }
 
