@@ -72,10 +72,10 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" required />
-            <zx-password-meter value="passwordStrength"></zx-password-meter>
             <div class="text-danger" data-ng-show="!wizardForm.password.$error.required && wizardForm.password.$error.passwordStrength">
               <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
             </div>
+            <zx-password-meter value="passwordStrength"></zx-password-meter>
           </div>
         </div>
         <div class="form-group col-md-12">
