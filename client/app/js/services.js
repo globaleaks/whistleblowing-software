@@ -707,7 +707,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
                 glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
                   .then(glbcUtil.plugDecryptResult(tip, 'messages'))
-                  .then(handleDecMsgFailure(tip));
+                  .then(glbcUtil.handleDecMsgFailure(tip));
               });
             }
           };

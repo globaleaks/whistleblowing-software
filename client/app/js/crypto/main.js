@@ -123,11 +123,12 @@ angular.module('GLBrowserCrypto', [])
       };
     },
 
-    handleDecMsgFailure: function(tip) {
+    handleDecMsgFailure: function() { 
       return function(decRes) {
         // If there were errors encountered in the decrypt step ^^Throw Up^^
         decRes.forEach(function(res) {
-          if (angular.isDefined(res.error) ){ //&& tip.encrypted) {
+          if (angular.isDefined(res.error)) { //&& tip.encrypted) { 
+                                              // TODO use tip field to decide when to throw
             throw res.error;
           }
         });
