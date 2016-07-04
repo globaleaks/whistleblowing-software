@@ -82,6 +82,7 @@ def db_admin_serialize_node(store, language):
         'threshold_free_disk_percentage_high': node.threshold_free_disk_percentage_high,
         'threshold_free_disk_percentage_medium': node.threshold_free_disk_percentage_medium,
         'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low,
+        'wbtip_timetolive': node.wbtip_timetolive,
         'basic_auth': node.basic_auth,
         'basic_auth_username': node.basic_auth_username,
         'basic_auth_password': node.basic_auth_password

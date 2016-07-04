@@ -880,6 +880,7 @@ class MockDict:
             'threshold_free_disk_percentage_high': 3,
             'threshold_free_disk_percentage_medium': 5,
             'threshold_free_disk_percentage_low': 10,
+            'wbtip_timetolive': 90,
             'basic_auth': False,
             'basic_auth_username': '',
             'basic_auth_password': ''
