@@ -215,6 +215,7 @@ CREATE TABLE node (
     landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
     show_contexts_in_alphabetical_order INTEGER NOT NULL,
     show_small_context_cards INTEGER NOT NULL,
+    wbtip_timetolive INTEGER NOT NULL,
     threshold_free_disk_megabytes_high INTEGER NOT NULL,
     threshold_free_disk_megabytes_medium INTEGER NOT NULL,
     threshold_free_disk_megabytes_low INTEGER NOT NULL,

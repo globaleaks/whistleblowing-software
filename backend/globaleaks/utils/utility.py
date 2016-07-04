@@ -269,27 +269,27 @@ def datetime_now():
     return datetime.utcnow()
 
 
-def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
+def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0, days=0):
     """
     @param start_date: a date stored in a db
     seconds/minutes/hours = the amount of future you want
     @return: a datetime object, as base of the sum
     """
-    return start_date + timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+    return start_date + timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
 
 
-def utc_past_date(seconds=0, minutes=0, hours=0):
+def utc_past_date(seconds=0, minutes=0, hours=0, days=0):
     """
     @return a date in the past with the specified delta
     """
-    return utc_dynamic_date(datetime_now()) - timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+    return utc_dynamic_date(datetime_now()) - timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
 
 
-def utc_future_date(seconds=0, minutes=0, hours=0):
+def utc_future_date(seconds=0, minutes=0, hours=0, days=0):
     """
     @return a date in the future with the specified delta
     """
-    return utc_dynamic_date(datetime_now(), seconds, minutes, hours)
+    return utc_dynamic_date(datetime_now(), seconds, minutes, hours, days)
 
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
