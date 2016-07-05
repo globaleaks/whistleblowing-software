@@ -6,6 +6,8 @@ if [ -z "$GLREQUIREMENTS" ]; then
   GLREQUIREMENTS="trusty"
 fi
 
+TRAVIS_USR="travis-`git rev-parse --short HEAD`"
+
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install -g grunt grunt-cli bower istanbul
@@ -39,7 +41,7 @@ if [ "$GLTEST" = "test" ]; then
   coverage run setup.py test
 
   echo "Running API tests"
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --disable-mail-notification
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --disable-mail-notification
   sleep 3
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
@@ -55,7 +57,7 @@ if [ "$GLTEST" = "test" ]; then
 
     grunt end2end-coverage-instrument
 
-    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis -c -k9 --disable-mail-notification
+    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9 --disable-mail-notification
     sleep 3
 
     cd $TRAVIS_BUILD_DIR/client
@@ -122,7 +124,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Testing Configuration: ${testkey}"
   setupDependencies 1
   eval $capability
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z travis --port 9000 --disable-mail-torification
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 9000 --disable-mail-torification
   sleep 3
   cd $TRAVIS_BUILD_DIR/client
   grunt protractor:saucelabs
