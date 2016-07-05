@@ -62,5 +62,5 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        # verify cascade deletion when tips expires
+        # verify cascade deletion when tips expire
         yield self.check0()
