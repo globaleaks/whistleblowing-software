@@ -8,8 +8,12 @@
       </span>
     </div>
   </div>
-  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-repeat="step in tip.questionnaire | orderBy:'presentation_order'">
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed" data-ng-class="{'alert-warning': problemWithAnswers}">
+    <div data-ng-show="problemWithAnswers">
+      <h4 data-translate>Warning</h4>
+      <i><p data-translate>There was a problem decrypting the questionnaire answers. The administrator has been notified of the issue.</p></i>
+    </div>
+    <div data-ng-hide="problemWithAnswers" data-ng-repeat="step in tip.questionnaire | orderBy:'presentation_order'">
       <dt id="step={{$index}}">
         <span data-translate>Step</span>
         <span>{{$index + 1}}: {{::step.label}}</span>

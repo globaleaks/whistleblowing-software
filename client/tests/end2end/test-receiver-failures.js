@@ -1,7 +1,7 @@
 var pages = require('./pages.js');
 var utils = require('./utils.js');
 
-fdescribe('Resetting a user should handle', function() {
+describe('Resetting a user should handle', function() {
 
   it('the admin deleting a users credentials', function() {
     var admin = new pages.admin();

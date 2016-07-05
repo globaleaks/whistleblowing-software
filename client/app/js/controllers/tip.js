@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$rootScope', '$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'loadingModal', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
-  function($rootScope, $scope, $location, $route, $routeParams, $uibModal, $http, loadingModal, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
+  ['$rootScope', '$scope', '$q', '$location', '$route', '$routeParams', '$uibModal', '$http', 'loadingModal', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipDownloadFile', 'fieldUtilities', 'pgp', 'glbcCipherLib',
+  function($rootScope, $scope, $q, $location, $route, $routeParams, $uibModal, $http, loadingModal, Authentication, RTip, WBTip, ReceiverPreferences, RTipDownloadFile, fieldUtilities, pgp, glbcCipherLib) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -91,98 +91,97 @@ GLClient.controller('TipCtrl',
       return receiver.configuration !== 'hidden';
     };
 
-    function failAndHideModal(err) {
-      loadingModal.hide();
-      $rootScope.errors.push(err);
-      throw err;
+    function handleAnswersDecrypt(tip) {
+      var answersProm = $q(function(resolve) {
+          $scope.problemWithAnswers = false;
+          loadingModal.show();
+          resolve();
+        });
+
+      if (true || tip.encrypted) { // TODO
+        answersProm = answersProm.then(function() {
+          // Convert the encrypted answers into an openpgpjs message.
+          var c = pgp.message.readArmored(tip.encrypted_answers);
+          return glbcCipherLib.decryptAndVerifyAnswers(c, tip.id);
+        }).then(function(plaintext) {
+          return JSON.parse(plaintext.data);
+        }).catch(function() {
+          // TODO throw or pass error into exception handler
+          $scope.problemWithAnswers = true;
+          return;
+        });
+      } else {
+        answersProm = answersProm.then(function() {
+          return tip.encrypted_answers;
+        });
+      }
+      answersProm.then(function(cleanAnswers) {
+        loadingModal.hide();
+
+        $scope.tip = tip;
+        if (!$scope.problemWithAnswers) {
+          tip.answers = cleanAnswers;
+          $scope.extractSpecialTipFields(tip);
+        }
+      });
     }
 
     if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = 'wbtip/upload';
 
       new WBTip(function(tip) {
+        handleAnswersDecrypt(tip);
 
-        // Convert the encrypted answers into an openpgpjs message.
-        var c = pgp.message.readArmored(tip.encrypted_answers);
+        // FIXME: remove this variable that is now needed only to map wb_identity_field
+        $scope.submission = tip;
 
-        loadingModal.show();
-        glbcCipherLib.decryptAndVerifyAnswers(c, tip.id).then(function(plaintext) {
-          tip.answers = JSON.parse(plaintext.data);
-          loadingModal.hide();
+        $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
+          return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
+                            {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
+              success(function(){
+                $route.reload();
+              });
+        };
 
-          $scope.tip = tip;
-          $scope.extractSpecialTipFields(tip);
-
-          // FIXME: remove this variable that is now needed only to map wb_identity_field
-          $scope.submission = tip;
-
-          $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
-            return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
-                              {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
-                success(function(){
-                  $route.reload();
-                });
-          };
-
-          angular.forEach($scope.contexts, function(context){
-            if (context.id === tip.context_id) {
-              $scope.current_context = context;
-            }
-          });
-
-          if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
-            tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
+        angular.forEach($scope.contexts, function(context){
+          if (context.id === tip.context_id) {
+            $scope.current_context = context;
           }
+        });
 
+        if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
+          tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
+        }
 
-          tip.updateMessages();
+        tip.updateMessages();
 
-          $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
-            if (newVal && newVal !== oldVal) {
-              if ($scope.tip) {
-                $scope.tip.updateMessages();
-              }
+        $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
+          if (newVal && newVal !== oldVal) {
+            if ($scope.tip) {
+              $scope.tip.updateMessages();
             }
-          }, false);
-        }, failAndHideModal);
+          }
+        });
       });
-
     } else if ($scope.session.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     
       new RTip({id: $scope.tip_id}, function(tip) {
+        handleAnswersDecrypt(tip);
+
+        $scope.downloadFile = RTipDownloadFile;
+        $scope.tip = tip;
+        $scope.extractSpecialTipFields(tip);
 
         $scope.downloadFile = RTipDownloadFile;
 
-        // Convert the encrypted answers into an openpgpjs message.
-        var c = pgp.message.readArmored(tip.encrypted_answers);
+        $scope.showEditLabelInput = $scope.tip.label === '';
 
-        loadingModal.show();
-        glbcCipherLib.decryptAndVerifyAnswers(c).then(function(plaintext) {
-          tip.answers = JSON.parse(plaintext.data);
-          loadingModal.hide();
-
-          $scope.tip = tip;
-          $scope.extractSpecialTipFields(tip);
-
-          $scope.downloadFile = RTipDownloadFile;
-
-          $scope.showEditLabelInput = $scope.tip.label === '';
-
-          $scope.tip_unencrypted = false;
-          angular.forEach(tip.receivers, function(receiver){
-            if (receiver.pgp_key_fingerpint === '' && receiver.receiver_id !== tip.receiver_id) {
-              $scope.tip_unencrypted = true;
-            }
-          });
-
-          angular.forEach($scope.contexts, function(context){
-            if (context.id === $scope.tip.context_id) {
-              $scope.current_context = context;
-            }
-          });
-
-        }, failAndHideModal);
+        angular.forEach($scope.contexts, function(context){
+          if (context.id === $scope.tip.context_id) {
+            $scope.current_context = context;
+          }
+        });
       });
     }
 
