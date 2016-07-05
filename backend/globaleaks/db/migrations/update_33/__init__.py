@@ -7,8 +7,8 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v
-
 from globaleaks.models import Model, empty_localization
+from globaleaks.utils.utility import datetime_null
 
 class Node_v_32(Model):
     __storm_table__ = 'node'
@@ -252,6 +252,10 @@ class MigrationScript(MigrationBase):
                   new_obj.password_change_needed = True
                   continue
 
+                if v.name == 'password_change_date':
+                  new_obj.password_change_date = datetime_null()
+                  continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
@@ -320,8 +324,8 @@ class MigrationScript(MigrationBase):
                     continue
 
                 if v.name == 'auth_token_hash':
-                    wb_auth_token_hash = old_obj.receipt_hash.decode('hex')
-                    new_obj.wb_auth_token_hash = security.sha512(wb_auth_token_hash)
+                    wb_key_passphrase = old_obj.receipt_hash.decode('hex')
+                    new_obj.auth_token_hash = security.sha512(wb_key_passphrase)
                     continue
 
                 if v.name == 'wb_ccrypto_key_private':

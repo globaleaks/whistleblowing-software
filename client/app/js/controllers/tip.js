@@ -98,7 +98,7 @@ GLClient.controller('TipCtrl',
           resolve();
         });
 
-      if (true || tip.encrypted) { // TODO
+      if (tip.encrypted) {
         answersProm = answersProm.then(function() {
           // Convert the encrypted answers into an openpgpjs message.
           var c = pgp.message.readArmored(tip.encrypted_answers);

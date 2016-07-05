@@ -573,11 +573,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
-          glbcKeyRing.addPubKey('whistleblower', tip.wb_ccrypto_key_public);
-          angular.forEach(tip.receivers, function(receiver) {
-            // TODO use receiver Pub key
-            glbcKeyRing.addPubKey(receiver.id, tip.wb_ccrypto_key_public);
-          });
+          //TODO handle tip.encrypted flag all in one.
+          if (tip.encrypted) {
+            glbcKeyRing.addPubKey('whistleblower', tip.wb_ccrypto_key_public);
+            angular.forEach(tip.receivers, function(receiver) {
+              glbcKeyRing.addPubKey(receiver.id, receiver.ccrypto_key_public);
+            });
+          }
 
           glbcReceiver.unlock();
 
@@ -663,8 +665,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         $q.all([tip.receivers.$promise, comments.$promise, tip.messages.$promise]).then(function() {
 
-          glbcWhistleblower.initialize(tip.wb_ccrypto_key_private, tip.receivers);
-          glbcWhistleblower.unlock();
+          if (tip.encrypted) { // TODO delete me
+            glbcWhistleblower.initialize(tip.wb_ccrypto_key_private, tip.receivers);
+            glbcWhistleblower.unlock();
+          }
 
           tip.msg_receiver_selected = null;
           tip.msg_receivers_selector = [];
