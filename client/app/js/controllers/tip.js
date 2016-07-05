@@ -87,10 +87,6 @@ GLClient.controller('TipCtrl',
       return field.type !== 'fileupload';
     };
 
-    $scope.filterReceivers = function(receiver) {
-      return receiver.configuration !== 'hidden';
-    };
-
     function handleAnswersDecrypt(tip) {
       var answersProm = $q(function(resolve) {
           $scope.problemWithAnswers = false;

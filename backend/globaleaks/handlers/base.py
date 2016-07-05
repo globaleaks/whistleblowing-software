@@ -140,13 +140,39 @@ class BaseHandler(RequestHandler):
         elif 'export' in self.request.arguments:
             self.request.request_type = 'export'
 
-        language = self.request.headers.get('GL-Language', GLSettings.memory_copy.default_language)
-        if language not in GLSettings.memory_copy.languages_enabled:
-            # Expect the unexpected: https://www.youtube.com/watch?v=zeBL6D9WFp8
+        language = self.request.headers.get('GL-Language')
+
+        if language is None:
+            for l in self.parse_accept_language_header():
+                if l in GLSettings.memory_copy.languages_enabled:
+                    language = l
+                    break
+
+        if language is None or language not in GLSettings.memory_copy.languages_enabled:
             language = GLSettings.memory_copy.default_language
 
         self.request.language = language
         self.set_header("Content-Language", language)
+
+    def parse_accept_language_header(self):
+        if "Accept-Language" in self.request.headers:
+            languages = self.request.headers["Accept-Language"].split(",")
+            locales = []
+            for language in languages:
+                parts = language.strip().split(";")
+                if len(parts) > 1 and parts[1].startswith("q="):
+                    try:
+                        score = float(parts[1][2:])
+                    except (ValueError, TypeError):
+                        score = 0.0
+                else:
+                    score = 1.0
+                locales.append((parts[0], score))
+            if locales:
+                locales.sort(key=lambda pair: pair[1], reverse=True)
+                return [l[0] for l in locales]
+
+        return GLSettings.memory_copy.default_language
 
     @staticmethod
     def authenticated(role):
