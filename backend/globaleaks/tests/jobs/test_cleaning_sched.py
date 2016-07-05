@@ -6,115 +6,61 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks import models
-from globaleaks.orm import transact
-from globaleaks.handlers import admin, rtip, receiver
+from globaleaks.orm import transact, transact_ro
 from globaleaks.jobs import cleaning_sched
-from globaleaks.utils.utility import is_expired, datetime_null
+from globaleaks.utils.utility import datetime_null
 from globaleaks.settings import GLSettings
 
 
-class TestCleaning(helpers.TestGLWithPopulatedDB):
+class TestCleaningSched(helpers.TestGLWithPopulatedDB):
     @transact
-    def test_postpone_survive_cleaning(self, store):
-        self.assertEqual(store.find(models.InternalTip).count(), 1)
-        self.assertEqual(store.find(models.ReceiverTip).count(), 2)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 1)
+    def force_itip_expiration(self, store):
+        for tip in store.find(models.InternalTip):
+            tip.expiration_date = datetime_null()
 
-    @transact
-    def test_cleaning(self, store):
+    @transact_ro
+    def check0(self, store):
+        self.assertTrue(os.listdir(GLSettings.submission_path) == [])
+        self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
+
         self.assertEqual(store.find(models.InternalTip).count(), 0)
         self.assertEqual(store.find(models.ReceiverTip).count(), 0)
         self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
         self.assertEqual(store.find(models.InternalFile).count(), 0)
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), 0)
+        self.assertEqual(store.find(models.Message).count(), 0)
 
-    @transact
-    def check_tip_not_expired(self, store):
-        for tip in store.find(models.InternalTip):
-            self.assertFalse(is_expired(tip.expiration_date))
-
-    @transact
-    def force_tip_expire(self, store):
-        for tip in store.find(models.InternalTip):
-            tip.expiration_date = datetime_null()
-
-    # -------------------------------------------
-    # Those the two class implements the sequence
-    # -------------------------------------------
-
-class TipCleaning(TestCleaning):
-    @inlineCallbacks
-    def postpone_tip_expiration(self):
-        recv_desc = yield admin.receiver.get_receiver_list('en')
-        self.assertEqual(len(recv_desc), 2)
-        rtip_desc = yield receiver.get_receivertip_list(recv_desc[0]['id'], 'en')
-        self.assertEqual(len(rtip_desc), 1)
-        rtip.postpone_expiration_date(recv_desc[0]['id'], rtip_desc[0]['id'])
-
-        yield cleaning_sched.CleaningSchedule().operation()
-
-    @inlineCallbacks
-    def test_unfinished_submission_life_and_expire(self):
-        yield self.perform_submission_start()
-        yield self.perform_submission_uploads()
-
-    @inlineCallbacks
-    def test_tip_life_and_expire(self):
-        yield self.perform_full_submission_actions()
-        yield self.check_tip_not_expired()
-
-        yield self.force_tip_expire()
-
-        yield cleaning_sched.CleaningSchedule().operation()
-
-        yield self.test_cleaning()
-
-    @inlineCallbacks
-    def test_tip_life_postpone(self):
-        yield self.perform_full_submission_actions()
-        yield self.check_tip_not_expired()
-
-        yield self.force_tip_expire()
-
-        yield self.postpone_tip_expiration()
-
-        yield self.check_emails_number(2)
-
-        yield cleaning_sched.CleaningSchedule().operation()
-
-        yield self.test_postpone_survive_cleaning()
-
-        yield self.check_emails_number(4)
-
-    @inlineCallbacks
-    def test_itip_life_and_expire_with_files(self):
-        # create tip but not rtips
-        self.perform_submission_start()
-        yield self.perform_submission_uploads()
-        yield self.perform_submission_actions()
-
+    @transact_ro
+    def check1(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
-        yield self.check_tip_not_expired()
-        yield self.force_tip_expire()
-
-        yield cleaning_sched.CleaningSchedule().operation()
-
-        self.assertTrue(os.listdir(GLSettings.submission_path) == [])
-        self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
+        self.assertEqual(store.find(models.InternalTip).count(), 1)
+        self.assertEqual(store.find(models.ReceiverTip).count(), 2)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), 1)
+        self.assertEqual(store.find(models.InternalFile).count(), 16)
+        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
+        self.assertEqual(store.find(models.Comment).count(), 3)
+        self.assertEqual(store.find(models.Message).count(), 4)
 
     @inlineCallbacks
-    def test_rtip_life_and_expire_with_files(self):
-        # create itip and rtips
+    def test_submission_life(self):
+        # verify that the system starts clean
+        yield self.check0()
+
         yield self.perform_full_submission_actions()
 
-        self.assertTrue(os.listdir(GLSettings.submission_path) != [])
-
-        yield self.check_tip_not_expired()
-        yield self.force_tip_expire()
+        # verify tip creation
+        yield self.check1()
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        self.assertTrue(os.listdir(GLSettings.submission_path) == [])
-        self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
+        # verify tip survive the scheduler if they are not expired
+        yield self.check1()
+
+        yield self.force_itip_expiration()
+
+        yield cleaning_sched.CleaningSchedule().operation()
+
+        # verify cascade deletion when tips expires
+        yield self.check0()
