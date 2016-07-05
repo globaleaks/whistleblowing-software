@@ -326,7 +326,7 @@ def derive_auth_hash(password, salt):
     return sha512(digest)
 
 def scrypt_password(password, salt):
-    return scrypt.hash(password, salt, buflen=256)
+    return scrypt.hash(password, salt, buflen=64)
 
 class GLBPGP(object):
     """

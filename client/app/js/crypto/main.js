@@ -227,18 +227,13 @@ angular.module('GLBrowserCrypto', [])
         return defer.promise;
       },
 
-      deriveAuthentication: function(user_password, salt) {
-        var h = pgp.crypto.hash.sha512(this.scrypt(user_password, salt, 14, 8));
-        return glbcUtil.bin2hex(h);
-      },
-
-      /*
+      /**
        * @param {String} user_password
        * @param {String} salt a 16 byte base64 encoded random salt.
        * @returns {Object} hex passphrase and hex authentication token.
        **/
       deriveUserPassword: function (user_password, salt) {
-        var promise = this.scrypt(user_password, salt, 14, 256)
+        var promise = this.scrypt(user_password, salt, 14, 64)
         .then(function(passphrase) {
           var token_hash =  pgp.crypto.hash.sha512(passphrase.stretched);
           return {
