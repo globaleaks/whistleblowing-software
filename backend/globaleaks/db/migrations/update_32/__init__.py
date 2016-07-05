@@ -130,6 +130,28 @@ class Message_v_31(Model):
 
 
 class MigrationScript(MigrationBase):
+    def migrate_File(self):
+        old_node = self.store_old.find(self.model_from['Node']).one()
+
+        old_objs = self.store_old.find(self.model_from['File'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['File']()
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'id':
+                    if getattr(old_obj, v.name) == old_node.logo_id:
+                        new_obj.id = 'logo'
+                    elif getattr(old_obj, v.name) == old_node.css_id:
+                        new_obj.id = 'css'
+                    else:
+                        new_obj.id = old_obj.id
+
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
     def migrate_Comment(self):
         old_objs = self.store_old.find(self.model_from['Comment'])
         for old_obj in old_objs:
