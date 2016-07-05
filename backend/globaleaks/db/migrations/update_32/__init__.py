@@ -141,13 +141,10 @@ class MigrationScript(MigrationBase):
 
                     old_rtip_model = self.model_from['ReceiverTip']
                     old_rtips = self.store_old.find(old_rtip_model, old_rtip_model.internaltip_id == old_obj.internaltip_id)
-                    if old_rtips.count() == 1:
-                        new_obj.author_id = old_rtips.one().receiver.user.id
-                    else:
-                        old_user_model = self.model_from['User']
-                        old_user = self.store_old.find(old_user_model, old_user_model.name == old_obj.author).one()
-                        if old_user is not None:
-                            new_obj.author_id = old_user.id
+                    old_user_model = self.model_from['User']
+                    old_user = self.store_old.find(old_user_model, old_user_model.name == old_obj.author).one()
+                    if old_user is not None:
+                        new_obj.author_id = old_user.id
 
                     continue
 
