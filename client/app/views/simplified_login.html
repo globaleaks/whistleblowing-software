@@ -11,7 +11,7 @@
       <form name="loginForm" novalidate>
         <div class="form-group">
           <label data-translate>Please select your account:</label>
-          <select class="form-control" data-ng-model="loginUsername" data-ng-options="item.username as item.name for item in receivers | filter:filterReceivers | orderBy:'name'" required></select>
+          <select class="form-control" data-ng-model="loginUsername" data-ng-options="item.username as item.name for item in receivers | orderBy:'name'" required></select>
         </div>
 
         <div class="form-group" data-ng-show="loginUsername">
