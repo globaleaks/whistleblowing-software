@@ -77,10 +77,6 @@ GLClient.controller('TipCtrl',
       return field.type !== 'fileupload';
     };
 
-    $scope.filterReceivers = function(receiver) {
-      return receiver.configuration !== 'hidden';
-    };
-
     if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = 'wbtip/upload';
 
