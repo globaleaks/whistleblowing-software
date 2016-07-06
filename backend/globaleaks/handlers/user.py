@@ -224,6 +224,5 @@ def update_passkey(store, request, current_session_id):
     # correspondence with the pub key.
     user.ccrypto_key_private = request['ccrypto_key_private']
 
-    user.update()
     return True
 
