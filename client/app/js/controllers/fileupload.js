@@ -25,6 +25,7 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', '$q', '$timeout', 'loadingMod
       glbcWhistleblower.handleFileEncryption(file.file, $scope.submission.receivers)
       .then(function(outputFile) {
         outputFile.encrypted = true;
+        outputFile.name = file.name;
         $timeout(function() {
           flow.addFile(outputFile);
         }, 0);

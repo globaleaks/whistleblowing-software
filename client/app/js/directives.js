@@ -146,7 +146,7 @@ angular.module('GLDirectives', ['GLBrowserCrypto']).
     // fails the function returns undefined.
     function pgpKeyDetails(armoredText) {
       // Catch the obivous errors and save time!
-      if (typeof armoredText !== 'string' || !armoredText.startsWith('---')) {
+      if (typeof armoredText !== 'string' || armoredText.substr(0,3) !== '---') {
         return;
       }
 
