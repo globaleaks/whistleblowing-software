@@ -310,8 +310,10 @@ def db_get_public_context_list(store, language):
     context_list = []
 
     for context in store.find(models.Context):
-        if context.receivers.count():
-            context_list.append(serialize_context(store, context, language))
+        for receiver in context.receivers:
+            if receiver.ready_for_submissions():
+                context_list.append(serialize_context(store, context, language))
+                break
 
     return context_list
 
@@ -329,7 +331,6 @@ def db_get_public_receiver_list(store, language):
             continue
 
         receiver_desc = serialize_receiver(receiver, language)
-        # receiver not yet ready for submission return None
         if receiver_desc:
             receiver_list.append(receiver_desc)
 
@@ -351,10 +352,17 @@ class PublicResource(BaseHandler):
         """
         @transact_ro
         def _get_public_resources(store, language):
+            receivers = db_get_public_receiver_list(store, language)
+            contexts = db_get_public_context_list(store, language)
+            node = db_serialize_node(store, language)
+
+            if len(contexts) == 0:
+                node['configured'] = False;
+
             returnValue({
-              'node': db_serialize_node(store, language),
-              'contexts': db_get_public_context_list(store, language),
-              'receivers': db_get_public_receiver_list(store, language)
+              'node': node,
+              'contexts': contexts,
+              'receivers': receivers
             })
 
         ret = yield GLApiCache.get('public', self.request.language,

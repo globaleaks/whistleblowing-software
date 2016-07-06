@@ -766,6 +766,9 @@ class Receiver(Model):
         'tip_notification',
     ]
 
+    def ready_for_submissions(self):
+        return self.user.ccrypto_key_public != '' and self.user.state != u'disabled'
+
 
 class Field(Model):
     x = Int(default=0)

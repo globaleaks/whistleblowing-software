@@ -2,9 +2,11 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+from globaleaks.models import Receiver
+from globaleaks.handlers import admin, public
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import admin, public
+from globaleaks.orm import transact
 
 
 class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
@@ -74,3 +76,20 @@ class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self._handler.validate_message(json.dumps(self.responses[0]), requests.PublicResourcesDesc)
+
+    @inlineCallbacks
+    def test_receiver_not_ready(self):
+       
+        @transact
+        def disable_receivers(store):
+            recs = [rec for rec in store.find(Receiver)]
+            for r in recs:
+              r.user.state = u"disabled"
+              r.user.ccrypto_key_public = ""
+
+        yield disable_receivers()
+        
+        yield self.request().get()
+        result = self.responses[0]
+
+        self.assertEqual(result['contexts'], [])
