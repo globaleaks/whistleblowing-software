@@ -189,7 +189,7 @@ def db_delete_rtip(store, rtip):
 
 def db_postpone_expiration_date(rtip):
     rtip.internaltip.expiration_date = \
-        utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
+        utc_future_date(days=rtip.internaltip.context.tip_timetolive)
 
 
 def db_get_itip_receiver_list(store, itip, language):
