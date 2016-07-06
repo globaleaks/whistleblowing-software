@@ -1559,7 +1559,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         animation: false,
         controller: ['$scope', '$uibModalInstance', function($scope) {
           $scope.type = type;
-          $scope.msg = String(err);
         }],
       });
       // Use the global exception interceptor to handle the caught error.

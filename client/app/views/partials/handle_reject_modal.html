@@ -1,15 +1,14 @@
 <div class="modal-header">
-  <div class="modal-title" data-translate>A Failure Occured!</div>
+  <div class="modal-title" data-translate>Failure</div>
 </div>
 <div class="modal-body">
   <div data-ng-switch="type">
-    <p ng-switch-when="fileDownload" ng-data-translate>Downloading the selected file failed!</p>
-    <p ng-switch-when="fileUpload" ng-data-translate>Uploading the selected file failed!</p>
+    <p data-ng-switch-when="fileDownload" data-translate>Downloading the selected file failed!</p>
+    <p data-ng-switch-when="fileUpload" data-translate>Uploading the selected file failed!</p>
   </div>
-  <p data-ng-translate>The client caught the following error:</p>
-  <div class="well">
-    <code>{{ msg }}</code>
-  </div>
+  <p data-translate>There was a problem with the last action you performed.
+  The administrator has been notified of the issue.
+  </p>
 </div>
 <div class="modal-footer">
   <span id="modal-action-ok" class="btn btn-danger" data-ng-click="$dismiss()">
