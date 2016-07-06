@@ -50,7 +50,7 @@
     </div>
     <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="msgRes in tip.messages | orderBy:'msg.creation_date':true">
       <div id="message-{{$index}}">
-        <div data-ng-show="!msgRes.success && !msgRes.showAnyway" class="alert-warning alert">
+        <div data-ng-show="!msgRes.success && !msgRes.showAnyway" class="failure alert-warning alert">
           <div class="row">
             <div class="col-md-6">
               <div class="ReceiverNameInMessages" data-translate>{{::msgRes.msg.author }}</div>
@@ -63,37 +63,37 @@
           </div>
           <i><div class="preformatted" data-translate>This message failed to decrypt.</div></i>
         </div>
-      </div>
-      <div data-ng-show="msgRes.success || msgRes.showAnyway">
-        <div data-ng-switch="" on="msgRes.msg.type">
-          <div data-ng-switch-when="whistleblower" class="alert alert-info" data-ng-class="{'alert-warning': !msgRes.success}">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="WbNameInMessages" data-translate>Whistleblower</div>
-              </div>
-              <div class="pull-right" style="margin-right:20px">
-                <div>
-                  <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
-                  {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+        <div data-ng-show="msgRes.success || msgRes.showAnyway" class="normal">
+          <div data-ng-switch="" on="msgRes.msg.type">
+            <div data-ng-switch-when="whistleblower" class="alert alert-info" data-ng-class="{'alert-warning': !msgRes.success}">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="WbNameInMessages" data-translate>Whistleblower</div>
+                </div>
+                <div class="pull-right" style="margin-right:20px">
+                  <div>
+                    <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
+                    {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </div>
                 </div>
               </div>
+              <div class="preformatted">{{::msgRes.msg.content}}</div>
             </div>
-            <div class="preformatted">{{::msgRes.msg.content}}</div>
-          </div>
-          <div data-ng-switch-when="receiver" class="alert alert-success" data-ng-class="{'alert-warning': !msgRes.success}">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="WbNameInMessages">{{::msgRes.msg.author}}</div>
-              </div>
+            <div data-ng-switch-when="receiver" class="alert alert-success" data-ng-class="{'alert-warning': !msgRes.success}">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="WbNameInMessages">{{::msgRes.msg.author}}</div>
+                </div>
 
-              <div class="pull-right" style="margin-right:20px">
-                <div>
-                  <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
-                  {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                <div class="pull-right" style="margin-right:20px">
+                  <div>
+                    <i class="glyphicon glyphicon-exclamation-sign" data-ng-show="msgRes.showAnyway" data-ng-click="msgRes.showAnyway=false;"></i>
+                    {{::msgRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </div>
                 </div>
               </div>
+              <div class="preformatted">{{::msgRes.msg.content}}</div>
             </div>
-            <div class="preformatted">{{::msgRes.msg.content}}</div>
           </div>
         </div>
       </div>

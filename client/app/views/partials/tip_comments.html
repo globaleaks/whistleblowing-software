@@ -43,7 +43,7 @@
     </div>
     <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="cmtRes in tip.comments | orderBy:'msg.creation_date':true">
       <div id="comment-{{$index}}">
-        <div data-ng-show="!cmtRes.success && !cmtRes.showAnyway" class="alert-warning alert">
+        <div data-ng-show="!cmtRes.success && !cmtRes.showAnyway" class="failure alert-warning alert">
           <div class="row">
             <div class="col-md-6">
               <div class="ReceiverNameInMessages" data-translate>{{::cmtRes.msg.author }}</div>
@@ -56,36 +56,36 @@
           </div>
           <i><div class="preformatted" data-translate>This message failed to decrypt.</div></i>
         </div>
-      </div>
-      <div data-ng-show="cmtRes.success || cmtRes.showAnyway">
-        <div data-ng-switch="" on="cmtRes.msg.type">
-          <div data-ng-switch-when="whistleblower" class="alert alert-info" data-ng-class="{'alert-warning': !cmtRes.success}">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="WbNameInMessages" data-translate>Whistleblower</div>
+        <div data-ng-show="cmtRes.success || cmtRes.showAnyway" class="normal">
+          <div data-ng-switch="" on="cmtRes.msg.type">
+            <div data-ng-switch-when="whistleblower" class="alert alert-info" data-ng-class="{'alert-warning': !cmtRes.success}">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="WbNameInMessages" data-translate>Whistleblower</div>
+                </div>
+                <div class="pull-right" style="margin-right:25px">
+                  <div>
+                    <i class="glyphicon glyphicon-remove-circle" data-ng-show="cmtRes.showAnyway" data-ng-click="cmtRes.showAnyway=false;"></i>
+                    {{::cmtRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </div>
+                </div>
               </div>
-              <div class="pull-right" style="margin-right:25px">
-                <div>
+              <div class="preformatted">{{::cmtRes.msg.content}}</div>
+            </div>
+            <div data-ng-switch-when="receiver" class="alert alert-success" data-ng-class="{'alert-warning': !cmtRes.success}">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="ReceiverNameInMessages">{{::cmtRes.msg.author}}</div>
+                </div>
+                <div class="pull-right" style="margin-right:25px">
+                  <div>
                   <i class="glyphicon glyphicon-remove-circle" data-ng-show="cmtRes.showAnyway" data-ng-click="cmtRes.showAnyway=false;"></i>
                   {{::cmtRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </div>
                 </div>
               </div>
+              <div class="preformatted">{{::cmtRes.msg.content}}</div>
             </div>
-            <div class="preformatted">{{::cmtRes.msg.content}}</div>
-          </div>
-          <div data-ng-switch-when="receiver" class="alert alert-success" data-ng-class="{'alert-warning': !cmtRes.success}">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="ReceiverNameInMessages">{{::cmtRes.msg.author}}</div>
-              </div>
-              <div class="pull-right" style="margin-right:25px">
-                <div>
-                <i class="glyphicon glyphicon-remove-circle" data-ng-show="cmtRes.showAnyway" data-ng-click="cmtRes.showAnyway=false;"></i>
-                {{::cmtRes.msg.creation_date | date:'dd-MM-yyyy HH:mm'}}
-                </div>
-              </div>
-            </div>
-            <div class="preformatted">{{::cmtRes.msg.content}}</div>
           </div>
         </div>
       </div>

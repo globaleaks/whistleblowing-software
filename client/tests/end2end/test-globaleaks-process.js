@@ -132,6 +132,8 @@ describe('globaLeaks process', function() {
     });
   });
 
+  var msgBodyCss = by.css('.normal .preformatted');
+
   it('Recipient should be able to leave a comment to the whistleblower', function() {
     utils.login_receiver();
 
@@ -139,8 +141,8 @@ describe('globaLeaks process', function() {
       utils.waitUntilHidden($('.LoadingOverlay'), 5000);
       element(by.model('tip.newCommentContent')).sendKeys(comment);
       element(by.id('comment-action-send')).click().then(function() {
-        utils.waitUntilReady($('#comment-0'));
-        element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+        utils.waitUntilReady(element(by.id('comment-0')));
+        element(by.id('comment-0')).element(msgBodyCss).getText().then(function(c) {
           expect(c).toContain(comment);
           utils.logout('/login');
         });
@@ -151,12 +153,12 @@ describe('globaLeaks process', function() {
   it('Whistleblower should be able to read the comment from the receiver and reply', function() {
     utils.login_whistleblower(receipts[0]);
 
-    element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+    element(by.id('comment-0')).element(msgBodyCss).getText().then(function(c) {
       expect(c).toEqual(comment);
       element(by.model('tip.newCommentContent')).sendKeys(comment_reply);
       element(by.id('comment-action-send')).click().then(function() {
         utils.waitUntilReady($('#comment-1'));
-        element(by.id('comment-0')).element(by.css('.preformatted')).getText().then(function(c) {
+        element(by.id('comment-0')).element(msgBodyCss).getText().then(function(c) {
           expect(c).toContain(comment_reply);
         });
       });
@@ -190,7 +192,7 @@ describe('globaLeaks process', function() {
       element(by.id('message-action-send')).click().then(function() {
         utils.waitUntilReady($('#message-0'));
         browser.waitForAngular();
-        element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(m) {
+        element(by.id('message-0')).element(msgBodyCss).getText().then(function(m) {
           expect(m).toContain(message);
           utils.logout('/login');
         });
@@ -204,14 +206,14 @@ describe('globaLeaks process', function() {
     element.all(by.options("obj.key as obj.value for obj in tip.msg_receivers_selector | orderBy:'value'")).get(1).click().then(function() {
 
       utils.waitUntilReady($('#message-0'), 5000);
-      element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message1) {
+      element(by.id('message-0')).element(msgBodyCss).getText().then(function(message1) {
 
         expect(message1).toEqual(message);
         element(by.model('tip.newMessageContent')).sendKeys(message_reply);
         element(by.id('message-action-send')).click().then(function() {
 
           utils.waitUntilReady($('#message-1'));
-          element(by.id('message-0')).element(by.css('.preformatted')).getText().then(function(message2) {
+          element(by.id('message-0')).element(msgBodyCss).getText().then(function(message2) {
             expect(message2).toContain(message_reply);
           });
         });
