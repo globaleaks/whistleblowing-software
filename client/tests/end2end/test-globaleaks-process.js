@@ -262,18 +262,9 @@ describe('globaLeaks process', function() {
       element.all(by.css('#tipListTableBody tr'))
           .evaluate('tip.expiration_date').then(function(exprs) {
         var final_expirations = make_dates(exprs);
-        
-        // Zip start and final together, then reduce the combined array to a bool
-        var b = final_expirations.map(function(e, i) {
-          return [start_expirations[i], e];
-        }).reduce(function(pv, cv) {
-          var tmp = cv[0] < cv[1];
-          return pv && tmp;
-        }, true);
-
-        // We expect that every final expiration is larger than its corresponding
-        // initial value.
-        expect(b).toEqual(true);
+        for (var i = 0; i < start_expirations.length; i++) {
+          expect(start_expirations[i] < final_expirations[i]).toEqual(true);
+        }
       });
     });
   });
