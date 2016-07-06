@@ -601,6 +601,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             var recs = tip.receivers.filter(function(r) {
               return r.id !== Authentication.session.user_id;
             });
+            recs.push({id: 'whistleblower'});
 
             glbcCipherLib.encryptAndSignComment(content, recs)
               .then(glbcUtil.plugNewEncMsg(c, tip, 'comments', content));

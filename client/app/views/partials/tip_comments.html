@@ -41,7 +41,7 @@
     <div data-ng-if="session.role === 'whistleblower' && !tip.enable_two_way_comments">
       <span data-translate>You are not allowed to write comments.</span>
     </div>
-    <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="cmtRes in tip.comments | orderBy:'creation_date':true">
+    <div id="SubmissionComments" data-ng-if="tip.comments.length > 0" data-ng-repeat="cmtRes in tip.comments | orderBy:'msg.creation_date':true">
       <div id="comment-{{$index}}">
         <div data-ng-show="!cmtRes.success && !cmtRes.showAnyway" class="alert-warning alert">
           <div class="row">

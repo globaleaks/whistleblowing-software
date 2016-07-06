@@ -48,7 +48,7 @@
     <div data-ng-if="session.role === 'whistleblower' && !tip.enable_two_way_messages">
       <span data-translate>You are not allowed to send messages.</span>
     </div>
-    <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="msgRes in tip.messages | orderBy:'creation_date':true">
+    <div id="SubmissionMessages" data-ng-if="tip.messages.length > 0" data-ng-repeat="msgRes in tip.messages | orderBy:'msg.creation_date':true">
       <div id="message-{{$index}}">
         <div data-ng-show="!msgRes.success && !msgRes.showAnyway" class="alert-warning alert">
           <div class="row">
