@@ -270,14 +270,13 @@ def serialize_receiverfile(rfile):
     }
 
 
-def serialize_whisleblowertip(store, wbtip, language):
+def serialize_whistleblowertip(store, wbtip, language):
     itip = wbtip.internaltip
 
     ret = serialize_internaltip(store, itip, language)
 
     ret['files'] = [serialize_internalfile(internalfile) for internalfile in itip.internalfiles]
 
-    ret['auth_token_hash'] = wbtip.auth_token_hash
     ret['wb_ccrypto_key_private'] = wbtip.wb_ccrypto_key_private
 
     return ret
@@ -464,7 +463,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     log.debug("Finalized submission creating %d ReceiverTip(s)" % rtips_count)
 
-    return serialize_whisleblowertip(store, wbtip, language)
+    return serialize_whistleblowertip(store, wbtip, language)
 
 
 @transact

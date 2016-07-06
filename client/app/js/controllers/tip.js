@@ -166,7 +166,6 @@ GLClient.controller('TipCtrl',
           if (!$scope.problemWithAnswers) {
             $scope.extractSpecialTipFields(tip);
           }
-          tip.updateMessages();
 
           $scope.downloadFile = RTipDownloadFile;
 
