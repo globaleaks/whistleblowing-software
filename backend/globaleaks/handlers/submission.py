@@ -231,6 +231,7 @@ def serialize_internaltip(store, internaltip, language):
         'total_score': internaltip.total_score,
         'answers': db_serialize_questionnaire_answers(store, internaltip),
         'encrypted_answers': internaltip.encrypted_answers,
+        'encrypted': internaltip.encrypted,
         'wb_ccrypto_key_public': internaltip.wb_ccrypto_key_public,
         'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
         'wb_access_counter': internaltip.wb_access_counter

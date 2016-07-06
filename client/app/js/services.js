@@ -652,75 +652,76 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource', 'glbcWhistleblower', 'glbcCipherLib', 'glbcUtil',
       function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource, glbcWhistleblower, glbcCipherLib, glbcUtil) {
-    return function(fn) {
-      var self = this;
+    return function() {
+      var tip;
+      var tipResPromise = WBTipResource.get().$promise.then(function (t) {
+        tip = t;
 
-      self.tip = WBTipResource.get(function (tip) {
         tip.receivers = WBTipReceiverResource.query();
 
         tip.comments = [];
-        var comments = tip.enable_comments ? WBTipCommentResource.query() : {$promise: false};
+        var comments = tip.enable_comments ? WBTipCommentResource.query() : {$promise: []};
 
         tip.messages = [];
 
-        $q.all([tip.receivers.$promise, comments.$promise, tip.messages.$promise]).then(function() {
+        return $q.all([tip.receivers.$promise, comments.$promise]);
+      }).then(function(allRes) {
+        var comments = allRes[1]; 
 
-          if (tip.encrypted) { // TODO delete me
-            glbcWhistleblower.initialize(tip.wb_ccrypto_key_private, tip.receivers);
-            glbcWhistleblower.unlock();
-          }
+        if (tip.encrypted) { // TODO delete me
+          glbcWhistleblower.initialize(tip.wb_ccrypto_key_private, tip.receivers);
+          glbcWhistleblower.unlock();
+        }
 
-          tip.msg_receiver_selected = null;
-          tip.msg_receivers_selector = [];
+        tip.msg_receiver_selected = null;
+        tip.msg_receivers_selector = [];
 
-          angular.forEach(tip.receivers, function(r1) {
-            angular.forEach($rootScope.receivers, function(r2) {
-              if (r2.id === r1.id) {
-                tip.msg_receivers_selector.push({
-                  key: r2.id,
-                  value: r2.name
-                });
-              }
-            });
-
-            if (tip.enable_comments) {
-              glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
-                .then(glbcUtil.plugDecryptResult(tip, 'comments'))
-                .then(glbcUtil.handleDecMsgFailure(tip));
+        angular.forEach(tip.receivers, function(r1) {
+          angular.forEach($rootScope.receivers, function(r2) {
+            if (r2.id === r1.id) {
+              tip.msg_receivers_selector.push({
+                key: r2.id,
+                value: r2.name
+              });
             }
           });
 
-          tip.newComment = function(content) {
-            var c = new WBTipCommentResource();
-            glbcCipherLib.encryptAndSignComment(content, tip.receivers)
-              .then(glbcUtil.plugNewEncMsg(c, tip, 'comments', content));
-          };
-
-          tip.newMessage = function(content) {
-            var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
-
-            glbcCipherLib.encryptAndSignMessage(content, tip.msg_receiver_selected)
-              .then(glbcUtil.plugNewEncMsg(m, tip, 'messages', content));
-          };
-
-          tip.updateMessages = function () {
-            if (tip.msg_receiver_selected) {
-              tip.messages = [];
-
-              // TODO use a real promise for the query
-              WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
-                glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
-                  .then(glbcUtil.plugDecryptResult(tip, 'messages'))
-                  .then(glbcUtil.handleDecMsgFailure(tip));
-              });
-            }
-          };
-
-          if (fn) {
-            fn(tip);
+          if (tip.enable_comments) {
+            glbcCipherLib.decryptAndVerifyMessages(comments, tip.receivers)
+              .then(glbcUtil.plugDecryptResult(tip, 'comments'))
+              .then(glbcUtil.handleDecMsgFailure(tip));
           }
         });
+
+        tip.newComment = function(content) {
+          var c = new WBTipCommentResource();
+          glbcCipherLib.encryptAndSignComment(content, tip.receivers)
+            .then(glbcUtil.plugNewEncMsg(c, tip, 'comments', content));
+        };
+
+        tip.newMessage = function(content) {
+          var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
+
+          glbcCipherLib.encryptAndSignMessage(content, tip.msg_receiver_selected)
+            .then(glbcUtil.plugNewEncMsg(m, tip, 'messages', content));
+        };
+
+        tip.updateMessages = function () {
+          if (tip.msg_receiver_selected) {
+            tip.messages = [];
+
+            // TODO use a real promise for the query
+            WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
+              glbcCipherLib.decryptAndVerifyMessages(messageCollection, tip.receivers)
+                .then(glbcUtil.plugDecryptResult(tip, 'messages'))
+                .then(glbcUtil.handleDecMsgFailure(tip));
+            });
+          }
+        };
+        return tip;
       });
+
+      return tipResPromise;
     };
 }]).
   factory('ReceiverPreferences', ['GLResource', function(GLResource) {

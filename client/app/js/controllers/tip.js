@@ -100,35 +100,29 @@ GLClient.controller('TipCtrl',
           var c = pgp.message.readArmored(tip.encrypted_answers);
           return glbcCipherLib.decryptAndVerifyAnswers(c, tip.id);
         }).then(function(plaintext) {
-          return JSON.parse(plaintext.data);
+          tip.answers = JSON.parse(plaintext.data);
         }).catch(function() {
           // TODO throw or pass error into exception handler
           $scope.problemWithAnswers = true;
-          return;
-        });
-      } else {
-        answersProm = answersProm.then(function() {
-          return tip.encrypted_answers;
         });
       }
-      answersProm.then(function(cleanAnswers) {
-        loadingModal.hide();
+     
+      // NOTE that if tip.encrypted === false tip.answers remains the same
 
-        $scope.tip = tip;
-        if (!$scope.problemWithAnswers) {
-          tip.answers = cleanAnswers;
-          $scope.extractSpecialTipFields(tip);
-        }
+      // TODO use a finally that returns the tip
+      var tipPromise = answersProm.then(function() {
+        loadingModal.hide();
+        return tip;
       });
+      return tipPromise;
     }
 
     if ($scope.session.role === 'whistleblower') {
       $scope.fileupload_url = 'wbtip/upload';
 
-      new WBTip(function(tip) {
-        handleAnswersDecrypt(tip);
-
+      WBTip().then(handleAnswersDecrypt).then(function(tip) {
         // FIXME: remove this variable that is now needed only to map wb_identity_field
+        $scope.tip = tip;
         $scope.submission = tip;
 
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
@@ -149,8 +143,11 @@ GLClient.controller('TipCtrl',
           tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
         }
 
-        tip.updateMessages();
 
+        if (!$scope.problemWithAnswers) {
+          $scope.extractSpecialTipFields(tip);
+        }
+        tip.updateMessages();
         $scope.$watch('tip.msg_receiver_selected', function (newVal, oldVal) {
           if (newVal && newVal !== oldVal) {
             if ($scope.tip) {
@@ -161,22 +158,25 @@ GLClient.controller('TipCtrl',
       });
     } else if ($scope.session.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
-    
+
       new RTip({id: $scope.tip_id}, function(tip) {
-        handleAnswersDecrypt(tip);
+        handleAnswersDecrypt(tip).then(function() {
+          $scope.tip = tip;
 
-        $scope.downloadFile = RTipDownloadFile;
-        $scope.tip = tip;
-        $scope.extractSpecialTipFields(tip);
-
-        $scope.downloadFile = RTipDownloadFile;
-
-        $scope.showEditLabelInput = $scope.tip.label === '';
-
-        angular.forEach($scope.contexts, function(context){
-          if (context.id === $scope.tip.context_id) {
-            $scope.current_context = context;
+          if (!$scope.problemWithAnswers) {
+            $scope.extractSpecialTipFields(tip);
           }
+          tip.updateMessages();
+
+          $scope.downloadFile = RTipDownloadFile;
+
+          $scope.showEditLabelInput = $scope.tip.label === '';
+
+          angular.forEach($scope.contexts, function(context){
+            if (context.id === $scope.tip.context_id) {
+              $scope.current_context = context;
+            }
+          });
         });
       });
     }
