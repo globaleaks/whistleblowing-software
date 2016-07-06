@@ -211,7 +211,7 @@ angular.module('GLBrowserCrypto', [])
       return defer.promise;
     };
 
-    var ccrypto_key_bits = 1024; // TODO change me
+    var ccrypto_key_bits = 2048;
 
     return {
       scrypt: function(data, salt, logN, dkLen) {
