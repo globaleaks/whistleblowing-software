@@ -1206,6 +1206,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return sum / n;
       },
 
+      // Computes ~max txt size for pgp messages
+      chop: function(nodeMaxTextSize) {
+        return Math.floor(nodeMaxTextSize * 0.65 - 100);
+      },
+
       openConfirmableModalDialog: function(template, arg, scope) {
         scope = scope === undefined ? $rootScope : scope;
 
