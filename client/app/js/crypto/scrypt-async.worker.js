@@ -1,4 +1,4 @@
-/* global scrypt, Promise */
+/* global scrypt */
 
 importScripts("lib/scrypt-async.min.js");
 
