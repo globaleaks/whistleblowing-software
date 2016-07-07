@@ -33,7 +33,7 @@ describe('globaLeaks setup wizard', function() {
     element.all(by.id('ButtonNext2')).click();
 
     var button3 = element(by.id('ButtonNext3'));
-    utils.waitUntilClickable(button3, 30000);
+    utils.waitUntilClickable(button3);
     button3.click();
 
     expect(element(by.css('.congratulations')).isPresent()).toBe(true);

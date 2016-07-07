@@ -17,7 +17,7 @@ describe('receiver first login', function() {
     element(by.model('inp.new_password')).sendKeys(utils.vars['user_password']);
     element(by.model('inp.check_password')).sendKeys(utils.vars['user_password']);
     element(by.css('[data-ng-click="pass_next()"]')).click();
-    utils.waitForUrl('/receiver/tips', 20000);
+    utils.waitForUrl('/receiver/tips');
   });
 
   it('should be able to login with the new password', function() {

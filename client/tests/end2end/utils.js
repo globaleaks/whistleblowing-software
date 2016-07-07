@@ -36,10 +36,19 @@ browser.getCapabilities().then(function(capabilities) {
   exports.verifyFileDownload = function() {
     return browser.params.verifyFileDownload;
   };
+
+  exports.browserTimeout = function() {
+    var browserName = capabilities.get('browserName').toLowerCase();
+    if (['internet explorer', 'edge'].indexOf(browserName) > -1) {
+      return 60000;
+    }
+    return 30000;
+  };
+
 });
 
 function genericWait(waitFn, timeout) {
-  var t = timeout === undefined ? 1000 : timeout;
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(waitFn, t);
 }
 
@@ -64,7 +73,7 @@ exports.waitUntilHidden = function(elem, timeout) {
 };
 
 exports.waitUntilReady = function (elm, timeout) {
-  var t = timeout === undefined ? 1000 : timeout;
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
   browser.wait(function () {
     return elm.isPresent();
   }, t);
@@ -83,7 +92,7 @@ exports.waitForUrl = function (url) {
 };
 
 exports.waitForFile = function (filename, timeout) {    
-  var t = timeout === undefined ? 1000 : timeout;    
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(function() {    
     try {   
       var buf = fs.readFileSync(filename);   
