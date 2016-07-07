@@ -185,43 +185,29 @@ angular.module('GLBrowserCrypto', [])
   };
 }])
 .factory('glbcKeyLib', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
-      var scrypt = function(password,
-                          salt,
-                          logN,
-                          dkLen,
-                          encoding) {
-      var defer = $q.defer();
-
-      var worker = new Worker('/js/crypto/scrypt-async.worker.js');
-
-      worker.onmessage = function(e) {
-        defer.resolve(e.data);
-        worker.terminate();
-      };
-
-      worker.postMessage({
-        password: password,
-        salt: salt,
-        logN: logN,
-        r: 8,
-        dkLen: dkLen,
-        encoding: encoding
-      });
-
-      return defer.promise;
-    };
-
     var ccrypto_key_bits = 2048;
 
     return {
       scrypt: function(data, salt, logN, dkLen) {
         var defer = $q.defer();
 
-        scrypt(data, salt, logN, dkLen, 'utf-8').then(function(stretched) {
+        var worker = new Worker('/js/crypto/scrypt-async.worker.js');
+
+        worker.onmessage = function(e) {
           defer.resolve({
             value: data,
-            stretched: stretched,
+            stretched: e.data
           });
+          worker.terminate();
+        };
+
+        worker.postMessage({
+          password: data,
+          salt: salt,
+          logN: logN,
+          r: 8,
+          dkLen: dkLen,
+          encoding: 'utf-8'
         });
 
         return defer.promise;
