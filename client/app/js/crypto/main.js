@@ -255,9 +255,7 @@ angular.module('GLBrowserCrypto', [])
           numBits: ccrypto_key_bits
         };
 
-        deferred.notify("Handed key gen to PGP. . .");
         pgp.generateKey(key_options).then(function(keyPair) {
-          deferred.notify("Key gen returned. . .");
           deferred.resolve({
             ccrypto_key_public: keyPair.key.toPublic(),
             ccrypto_key_private: keyPair.key,
