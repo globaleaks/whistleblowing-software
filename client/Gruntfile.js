@@ -363,7 +363,7 @@ module.exports = function(grunt) {
   }
 
   var agent = superagent.agent(),
-    baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
+    baseurl = 'https://www.transifex.com/api/2/project/globaleaks',
     sourceFile = 'pot/en.po';
 
   function updateTxSource(cb){
