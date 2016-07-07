@@ -42,7 +42,8 @@ browser.getCapabilities().then(function(capabilities) {
     if (['internet explorer', 'edge'].indexOf(browserName) > -1) {
       return 60000;
     }
-    return 30000;
+
+    return undefined; /* give IE the usual infinite love it deserves! */
   };
 
 });
