@@ -40,10 +40,10 @@ browser.getCapabilities().then(function(capabilities) {
   exports.browserTimeout = function() {
     var browserName = capabilities.get('browserName').toLowerCase();
     if (['internet explorer', 'edge'].indexOf(browserName) > -1) {
-      return 60000;
+      return undefined; /* give IE the usual infinite love it deserves! */
     }
 
-    return undefined; /* give IE the usual infinite love it deserves! */
+    return 30000;
   };
 
 });
