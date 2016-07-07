@@ -147,7 +147,7 @@ else
     if [ $EXPERIMENTAL -eq 0 ]; then
       echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
     else
-      echo "deb http://deb.globaleaks.org testing/" > /etc/apt/sources.list.d/globaleaks.list
+      echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
     fi
   fi
   DO "apt-get update -y"
