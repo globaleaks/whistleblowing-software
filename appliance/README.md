@@ -18,7 +18,7 @@ Basically thanks to the above solution it would be possible to:
 
 ## GlobaLeaks Packer Script
 
-[Packer](http://www.packer.io/) is a tool for building identical machine images
+[Packer](https://www.packer.io/) is a tool for building identical machine images
 for multiple platforms from a single source configuration.
 
 This can be used for example in order to:
