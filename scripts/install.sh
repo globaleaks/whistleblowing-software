@@ -144,15 +144,13 @@ if [ -d /data/globaleaks/deb ]; then
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
     # we avoid using apt-add-repository as we prefer using /etc/apt/sources.list.d/globaleaks.list
-    echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+    if [ $EXPERIMENTAL -eq 0 ]; then
+      echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+    else
+      echo "deb http://deb.globaleaks.org testing/" > /etc/apt/sources.list.d/globaleaks.list
+    fi
   fi
   DO "apt-get update -y"
-
-  if [ $EXPERIMENTAL -eq 0 ]; then
-    DO "apt-get install globaleaks -y"
-  else
-    DO "apt-get install globaleaks-experimental -y"
-  fi
 fi
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
