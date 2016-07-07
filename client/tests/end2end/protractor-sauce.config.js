@@ -25,7 +25,8 @@ exports.config = {
 
   specs: specs,
 
-  allScriptsTimeout: 50000,
+  allScriptsTimeout: 360000,
+  getPageTimeout: 360000,
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
