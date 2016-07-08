@@ -24,6 +24,7 @@ angular.module('GLBrowserCrypto')
 // resolve.
 .factory('glbcUserKeyGen', ['$q', '$http', '$timeout', 'Authentication', 'glbcUtil', 'glbcKeyLib', 'glbcKeyRing', function($q, $http, $timeout, Authentication, glbcUtil, glbcKeyLib, glbcKeyRing) {
   var vars = {msgQueue: []};
+  var result = {}
 
   function showMsg(msg) {
     vars.msgP = vars.msgP.then(function() {
@@ -36,7 +37,9 @@ angular.module('GLBrowserCrypto')
   return {
     vars: vars,
 
-    setup: function() {
+    setup: function(salt) {
+      var salt = salt === undefined ? Authentication.user_salt : salt;
+
       vars = {
         msgQueue: vars.msgQueue,
         msgP: $q(function(resolve) {
@@ -49,11 +52,14 @@ angular.module('GLBrowserCrypto')
           speedLimit: $q.defer(),
           ready: undefined,
         },
-        user_salt: undefined,
+        user_salt: salt,
       };
+
       // Reset msg array without dropping ref
       while(vars.msgQueue.length > 0) { vars.msgQueue.pop(); }
+
       this.vars = vars;
+      this.result = result;
 
       vars.promises.ready = $q.all([
         vars.promises.keyGen.promise,
@@ -63,7 +69,8 @@ angular.module('GLBrowserCrypto')
         glbcKeyRing.lockKeyRing(results[1].new_res.passphrase);
 
         var authDeriv = results[1];
-        var body = {
+
+        result = {
           'old_auth_token_hash': authDeriv.old_res.authentication,
           'new_auth_token_hash': authDeriv.new_res.authentication,
           'ccrypto_key_public': '',
@@ -72,7 +79,7 @@ angular.module('GLBrowserCrypto')
 
         if (vars.keyGen) {
           showMsg('Saving the encryption keys on the platform');
-          body.ccrypto_key_public = glbcKeyRing.getPubKey('private').armor();
+          result.ccrypto_key_public = glbcKeyRing.getPubKey('private').armor();
         } else {
           showMsg('Updating the encryption key on the platform');
         }
@@ -80,9 +87,15 @@ angular.module('GLBrowserCrypto')
         // TODO NOTE keyRing is only locked for the export
         glbcKeyRing.unlockKeyRing(results[1].new_res.passphrase);
 
-        return $http.post('/user/passprivkey', body);
+        if (vars.autopost) {
+          return $http.post('/user/passprivkey', result);
+        } else {
+          return $q.resolve();
+        }
       }).then(function() {
-        return showMsg('Success!');
+        return showMsg('Success!').then(function() {
+          return $q.resolve(result);
+        });
       }, function(err) {
         return showMsg('Failed').then(function() {
           return $q.reject(err);
@@ -118,8 +131,8 @@ angular.module('GLBrowserCrypto')
     },
 
     addPassphrase: function(old_password, new_password) {
-      var p1 = glbcKeyLib.deriveUserPassword(new_password, Authentication.user_salt);
-      var p2 = glbcKeyLib.deriveUserPassword(old_password, Authentication.user_salt);
+      var p1 = glbcKeyLib.deriveUserPassword(new_password, vars.user_salt);
+      var p2 = glbcKeyLib.deriveUserPassword(old_password, vars.user_salt);
 
       $q.all([p1, p2]).then(function(results) {
         vars.promises.authDerived.resolve({

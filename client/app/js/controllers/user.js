@@ -1,6 +1,6 @@
 GLClient
-.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', '$uibModal', 'locationForce', 'Authentication', 'glbcUserKeyGen',
-  function($scope, $rootScope, $location, $uibModal, locationForce, Authentication, glbcUserKeyGen) {
+.controller('ForcedPasswordChangeCtrl', ['$scope', '$rootScope', '$location', 'locationForce', 'Authentication', 'glbcUserKeyGen',
+  function($scope, $rootScope, $location, locationForce, Authentication, glbcUserKeyGen) {
     $scope.showKeyChange = false;
     glbcUserKeyGen.setup();
 

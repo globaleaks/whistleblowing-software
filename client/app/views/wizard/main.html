@@ -168,7 +168,7 @@
   <div id="WizardStep3"  data-ng-switch-when="3">
     <div class="row">
       <div class="col-md-8" data-glbc-key-change-elem data-glbc-key-change-elem-title="User activation in progress"></div>
-      <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-hide="!keyGenFin" data-ng-click="nextStep()">
+      <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-hide="!wizardComplete" data-ng-click="nextStep()">
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
         <span data-translate>next step</span>
       </button>
@@ -182,7 +182,7 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonNext4" class="btn btn-success btn-large" data-ng-click="finish()" type="submit" data-translate>Go to admin interface</button>
+      <button id="ButtonNext4" class="btn btn-success btn-large" data-ng-click="firstAdminLogin()" type="submit" data-translate>Go to admin interface</button>
     </div>
   </div>
 </form>

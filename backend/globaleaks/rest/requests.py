@@ -595,6 +595,8 @@ WizardDesc = {
       'description': unicode,
     },
     'admin': {
+      'salt': unicode,
+      'auth': PassKeyUpdateDesc,
       'mail_address': unicode
     },
     'receiver': AdminUserDesc,

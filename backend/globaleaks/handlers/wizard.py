@@ -12,7 +12,7 @@ from globaleaks.handlers.public import serialize_node
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_null
+from globaleaks.utils.utility import log, datetime_null, datetime_now
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -59,7 +59,13 @@ def wizard(store, request, language):
             'pgp_key_expiration': datetime_null()
         }
 
-        db_create_admin_user(store, admin_dict, language)
+        admin_user = db_create_admin_user(store, admin_dict, language)
+        admin_user.salt = request['admin']['salt']
+        admin_user.auth_token_hash = request['admin']['auth']['new_auth_token_hash']
+        admin_user.ccrypto_key_public = request['admin']['auth']['ccrypto_key_public']
+        admin_user.ccrypto_key_private = request['admin']['auth']['ccrypto_key_private']
+        admin_user.password_change_needed = False
+        admin_user.password_change_date = datetime_now()
 
     except Exception as excep:
         log.err("Failed wizard initialization %s" % excep)

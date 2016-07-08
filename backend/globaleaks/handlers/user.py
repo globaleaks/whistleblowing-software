@@ -195,6 +195,7 @@ class PassKeyUpdateHandler(BaseHandler):
           if not success:
             raise errors.ForbiddenOperation
 
+
 @transact
 def update_passkey(store, request, current_session_id):
     user = store.find(User, User.id == current_session_id).one()
@@ -225,4 +226,3 @@ def update_passkey(store, request, current_session_id):
     user.ccrypto_key_private = request['ccrypto_key_private']
 
     return True
-
