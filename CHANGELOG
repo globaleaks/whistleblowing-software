@@ -1,3 +1,13 @@
+Changes in version 2.99.0 - 2016-07-08
+    o Integrate OpenPGP.js and scrypt-async-js as core libraries
+    o Integrate dropbox/zxcvbn enforcing password strenght evaluation
+    o Implement clientside encryption/decryption of submission
+      fields for recipients
+    o Implement clientside generation of the whistleblower receipts
+    o Implement clientside encryption/decryption of file uploads/downloads
+    o Implement clientside validation of PGP keys loaded into receiver
+      preferences and used for mail notification.
+
 Changes in version 2.62.4 - 2016-07-05
     o Implement browser language detection
     o Fix migration script 31 causing loss of configured css and logo
