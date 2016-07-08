@@ -6,11 +6,11 @@ if [ ! $(id -u) = 0 ]; then
     exit 1
 fi
 
-EXPERIMENTAL=false
+EXPERIMENTAL=1
 for arg in "$@"; do
   shift
   case "$arg" in
-    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=true; shift ;;
+    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=0; shift ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
