@@ -38,7 +38,7 @@ angular.module('GLBrowserCrypto')
     vars: vars,
 
     setup: function(salt) {
-      var salt = salt === undefined ? Authentication.user_salt : salt;
+      salt = salt === undefined ? Authentication.user_salt : salt;
 
       vars = {
         msgQueue: vars.msgQueue,

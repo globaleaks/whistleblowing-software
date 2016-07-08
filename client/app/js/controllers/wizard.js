@@ -18,7 +18,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     }
 
     $scope.firstAdminLogin = function() {
-      console.log($scope.admin_password);
       return Authentication.login('admin', $scope.admin_password).then(function() {
         $location.path(Authentication.session.auth_landing_page);
         $scope.reload("/admin/landing");
