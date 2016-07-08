@@ -10,6 +10,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       if ($scope.step === 2) {
         $rootScope.blockUserInput = true;
         $scope.keyGenFin = false;
+        glbcUserKeyGen.setup();
         glbcUserKeyGen.startKeyGen();
         $http.post('wizard', $scope.wizard).then(function() {
           return Authentication.login('admin', default_user_pass);
