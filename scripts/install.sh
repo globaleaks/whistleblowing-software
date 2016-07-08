@@ -31,16 +31,10 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
-SUPPORTED_PLATFORM=0
-if [ "$DISTRO_CODENAME" = "precise" ] ||
-   [ "$DISTRO_CODENAME" = "trusty" ]; then
-  SUPPORTED_PLATFORM=1
-fi
-
-if [ $SUPPORTED_PLATFORM -eq 0 ]; then
+if [ $DISTRO_CODENAME != "trusty" ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Supported platform is Ubuntu (precise, trusty)"
+  echo "Supported platform is Ubuntu Trusty (14.04)"
 
   while true; do
     read -p "Do you wish to continue anyhow? [y|n]?" yn
@@ -60,10 +54,10 @@ echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_CODENAME"
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or trusty as fallback.
-if [ "$DISTRO_CODENAME" != "precise" ] &&
-   [ "$DISTRO_CODENAME" != "trusty" ] &&
-   [ "$DISTRO_CODENAME" != "wheezy" ] &&
-   [ "$DISTRO_CODENAME" != "jessie" ]; then
+if [ $DISTRO_CODENAME != "precise" ] &&
+   [ $DISTRO_CODENAME != "trusty" ] &&
+   [ $DISTRO_CODENAME != "wheezy" ] &&
+   [ $DISTRO_CODENAME != "jessie" ]; then
   # In case of unsupported platforms we fallback on Trusty
   echo "Given that the platform is not supported the install script will use trusty repository."
   echo "In case of failure refer to the wiki for manual setup possibilities."
@@ -122,8 +116,8 @@ DO "rm -f $TMPFILE"
 DO "apt-get update -y"
 
 # on Ubuntu python-pip requires universe repository
-if [ $DISTRO == 'Ubuntu' ]; then
-  if [ "$DISTRO_CODENAME" = "precise" ]; then
+if [ $DISTRO == "Ubuntu" ]; then
+  if [ $DISTRO_CODENAME == "precise" ]; then
     echo "Installing python-software-properties"
     DO "apt-get install python-software-properties -y"
   else
@@ -137,7 +131,7 @@ fi
 
 if [ -d /data/globaleaks/deb ]; then
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
-  echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
+  echo "deb file:///data/globaleaks/deb/ /" >> /etc/apt/sources.list
   DO "apt-get update -y"
   DO "apt-get install dpkg-dev -y"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew"
