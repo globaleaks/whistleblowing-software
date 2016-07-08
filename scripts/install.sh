@@ -151,6 +151,7 @@ else
     fi
   fi
   DO "apt-get update -y"
+  DO "apt-get install globaleaks -y"
 fi
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
