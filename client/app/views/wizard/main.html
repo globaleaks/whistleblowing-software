@@ -1,5 +1,5 @@
-<form name="wizardForm" novalidate>
-  <div id="WizardStep1" data-ng-show="step == 1">
+<form name="wizardForm" data-ng-switch="step" novalidate>{{step}}
+  <div id="WizardStep1" data-ng-switch-when="1">
     <div class="row">
       <div class="col-md-12">
         <div class="title1" data-translate>Welcome to GlobaLeaks!</div>
@@ -15,13 +15,13 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="step=step+1">
+      <button id="ButtonNext1" class="btn btn-success btn-large" data-ng-click="nextStep()">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep2" data-ng-show="step == 2">
+  <div id="WizardStep2" data-ng-switch-when="2">
     <div class="row wizard-block">
       <div class="title" data-translate>General</div>
       <div class="col-md-6">
@@ -60,7 +60,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.admin_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="admin_email" class="form-control" data-ng-model="wizard.admin.mail_address" data-ng-attr-placeholder="{{'Enter an email address for the administrator' | translate}}" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
-            <div class="text-danger" data-ng-show="wizardForm.admin_email.$error.pattern">
+            <div class="text-danger" data-ng-if="wizardForm.admin_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -72,7 +72,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.password.$error.required || wizardForm.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="admin_password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" autocomplete="off" zxcvbn="passwordStrength" zx-min-score="3" required />
-            <div class="text-danger" data-ng-show="!wizardForm.password.$error.required && wizardForm.password.$error.passwordStrength">
+            <div class="text-danger" data-ng-if="!wizardForm.password.$error.required && wizardForm.password.$error.passwordStrength">
               <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
             </div>
             <zx-password-meter value="passwordStrength"></zx-password-meter>
@@ -85,7 +85,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.checkpassword.$error.required || admin_password !== admin_check_password}">
             <input name="checkpassword" class="form-control" data-ng-model="admin_check_password" type="password" data-ng-attr-placeholder="{{'Please confirm it' | translate}}" autocomplete="off" required />
-            <div class="text-danger" data-ng-show="!wizardForm.password.$error.passwordStrength && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
+            <div class="text-danger" data-ng-if="!wizardForm.password.$error.passwordStrength && (admin_password !== admin_check_password)" data-translate>The two passwords do not match</div>
           </div>
         </div>
       </div>
@@ -112,7 +112,7 @@
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.receiver_email.$error.required || wizardForm.admin_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
-            <div class="text-danger" data-ng-show="wizardForm.receiver_email.$error.pattern">
+            <div class="text-danger" data-ng-if="wizardForm.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -155,26 +155,26 @@
       </div>
     </div>
     <div class="pager pull-right">
-      <button id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="step=step-1">
+      <button id="ButtonPrevious1" class="btn btn-success btn-large" data-ng-click="previousStep()">
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="fireStep3()" data-ng-disabled="wizardForm.$invalid || admin_password !== admin_check_password">
+      <button id="ButtonNext2" class="btn btn-success btn-large" data-ng-click="nextStep()" data-ng-disabled="wizardForm.$invalid || admin_password !== admin_check_password">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep3"  data-ng-show="step == 3">
+  <div id="WizardStep3"  data-ng-switch-when="3">
     <div class="row">
       <div class="col-md-8" data-glbc-key-change-elem data-glbc-key-change-elem-title="User activation in progress"></div>
-      <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-hide="!keyGenFin" data-ng-click="step=step+1">
+      <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-hide="!keyGenFin" data-ng-click="nextStep()">
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
         <span data-translate>next step</span>
       </button>
     </div>
   </div>
-  <div id="WizardStep4" class="row" data-ng-show="step == 4">
+  <div id="WizardStep4" class="row" data-ng-switch-when="4">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>

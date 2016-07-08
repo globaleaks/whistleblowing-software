@@ -4,7 +4,33 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
     $scope.step = 1;
 
-    var finished = false;
+    var default_user_pass = "globaleaks";
+
+    $scope.nextStep = function() {
+      if ($scope.step === 2) {
+        $rootScope.blockUserInput = true;
+        $scope.keyGenFin = false;
+        glbcUserKeyGen.startKeyGen();
+        $http.post('wizard', $scope.wizard).then(function() {
+          return Authentication.login('admin', default_user_pass);
+        }).then(function() {
+          glbcUserKeyGen.addPassphrase(default_user_pass, $scope.admin_password);
+          return glbcUserKeyGen.vars.promises.ready;
+        })
+        .then(function() {
+          $scope.keyGenFin = true;
+          $rootScope.blockUserInput = false;
+        });
+      }
+
+      $scope.step += 1;
+    }
+
+    $scope.finish = function() {
+      $location.path(Authentication.session.auth_landing_page);
+      $scope.reload("/admin/landing");
+      locationForce.clear();
+    };
 
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */
@@ -28,34 +54,4 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         'context': context
       };
     }
-
-    var default_user_pass = "globaleaks";
-    $scope.keyGenFin = false;
-    glbcUserKeyGen.setup();
-
-    $scope.fireStep3 = function() {
-      $scope.step = 3;
-
-      $rootScope.blockUserInput = true;
-      glbcUserKeyGen.startKeyGen();
-      if (!finished) {
-        $http.post('wizard', $scope.wizard).then(function() {
-          return Authentication.login('admin', default_user_pass);
-        }).then(function() {
-          glbcUserKeyGen.addPassphrase(default_user_pass, $scope.admin_password);
-          return glbcUserKeyGen.vars.promises.ready;
-        })
-        .then(function() {
-          $scope.keyGenFin = true;
-          $rootScope.blockUserInput = false;
-        });
-      }
-    };
-
-    $scope.finish = function() {
-      $location.path(Authentication.session.auth_landing_page);
-      $scope.reload("/admin/landing");
-      locationForce.clear();
-    };
-
 }]);
