@@ -56,6 +56,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
         'mail_address': '',
       },
       'receiver': receiver,
-      'context': context
+      'context': context,
     };
 }]);

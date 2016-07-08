@@ -3,6 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import wizard
 from globaleaks.rest import errors
+from globaleaks.security import generateRandomSalt, derive_auth_hash
 from globaleaks.tests import helpers
 
 
@@ -17,8 +18,17 @@ class TestWizard(helpers.TestHandler):
         # so only valid requests are the one with steps = []
         self.dummyContext['steps'] = []
 
+        salt = 'salt!'
+
         admin = {
-            'mail_address': 'evilaliv3@globaleaks.org'
+            'salt': generateRandomSalt(),
+            'auth': {
+                'old_auth_token_hash': derive_auth_hash('password', salt),
+                'new_auth_token_hash': derive_auth_hash('password', salt),
+                'ccrypto_key_public': '',
+                'ccrypto_key_private': ''
+             },
+            'mail_address': 'evilaliv3@globaleaks.org',
         }
 
         self.wizard_blob = {
