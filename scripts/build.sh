@@ -96,11 +96,10 @@ for TARGET in $TARGETS; do
 
   if [ "$TARGET" != 'unstable' ]; then
     ln -s controlX/control.$TARGET debian/control
+    sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
   else
     ln -s controlX/control.trusty debian/control
   fi
-
-  sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
 
   if [ $NOSIGN -eq 1 ]; then
     debuild -i -us -uc -b
