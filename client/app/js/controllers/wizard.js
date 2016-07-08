@@ -3,7 +3,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     $scope.nextStep = function() {
       if ($scope.step === 2) {
         $rootScope.blockUserInput = true;
-        glbcUserKeyGen.startKeyGen();
+        glbcUserKeyGen.wizardStartKeyGen();
         glbcUserKeyGen.addPassphrase($scope.admin_password, $scope.admin_password);
         glbcUserKeyGen.vars.promises.ready.then(function(body) {
           $scope.wizard.admin.auth = body;
@@ -15,7 +15,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       }
 
       $scope.step += 1;
-    }
+    };
 
     $scope.firstAdminLogin = function() {
       return Authentication.login('admin', $scope.admin_password).then(function() {
@@ -33,10 +33,11 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
-    $scope.admin_salt = glbcUtil.generateRandomSalt();
+    Authentication.user_salt = glbcUtil.generateRandomSalt();
+    $scope.admin_salt = Authentication.user_salt;
     $scope.admin_password = "";
     $scope.wizardComplete = false;
-    glbcUserKeyGen.setup($scope.admin_salt);
+    glbcUserKeyGen.setup();
 
     var receiver = AdminUtils.new_user();
     receiver.username = 'receiver';
@@ -45,8 +46,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
                             // at first login
 
     var context = AdminUtils.new_context();
-
-    $scope.admin
 
     $scope.wizard = {
       'node': {},
