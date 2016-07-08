@@ -11,7 +11,7 @@ usage() {
   echo "Valid options:"
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
-  echo -e " -d distribution (available: precise, trusty, wheezy, jessie)"
+  echo -e " -d distribution (available: precise, trusty, wheezy, jessie, unstable)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
@@ -42,7 +42,7 @@ while getopts "d:t:np:h" opt; do
   esac
 done
 
-if ! [[ $TARGETS =~ $DISTRIBUTION ]] && [[ $DISTRIBUTION != 'all' ]]; then
+if ! [[ $TARGETS =~ $DISTRIBUTION ]] && [[ $DISTRIBUTION != 'unstable' ]] && [[ $DISTRIBUTION != 'all' ]]; then
  usage
  exit 1
 fi
@@ -93,7 +93,13 @@ for TARGET in $TARGETS; do
   cp -r $BUILDSRC $BUILDDIR
   cd $BUILDDIR/GlobaLeaks
   rm debian/control
-  ln -s controlX/control.$TARGET debian/control
+
+  if [ "$TARGET" != 'unstable' ]; then
+    ln -s controlX/control.$TARGET debian/control
+  else
+    ln -s controlX/control.trusty debian/control
+  fi
+
   sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
 
   if [ $NOSIGN -eq 1 ]; then

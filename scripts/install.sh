@@ -6,6 +6,22 @@ if [ ! $(id -u) = 0 ]; then
     exit 1
 fi
 
+EXPERIMENTAL=false
+for arg in "$@"; do
+  shift
+  case "$arg" in
+    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=true; shift ;;
+    -- ) shift; break ;;
+    * ) break ;;
+  esac
+done
+
+if [ $EXPERIMENTAL -eq 0 ]; then
+  echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
+  echo "You requested to install the experimental version."
+  echo "This version is currently under peer review and MUST NOT be used in production."
+fi
+
 LOGFILE="./install.log"
 
 DISTRO="unknown"
@@ -128,10 +144,13 @@ if [ -d /data/globaleaks/deb ]; then
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
     # we avoid using apt-add-repository as we prefer using /etc/apt/sources.list.d/globaleaks.list
-    echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+    if [ $EXPERIMENTAL -eq 0 ]; then
+      echo "deb http://deb.globaleaks.org $DISTRO_CODENAME/" > /etc/apt/sources.list.d/globaleaks.list
+    else
+      echo "deb http://deb.globaleaks.org unstable/" > /etc/apt/sources.list.d/globaleaks.list
+    fi
   fi
   DO "apt-get update -y"
-  DO "apt-get install globaleaks -y"
 fi
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
