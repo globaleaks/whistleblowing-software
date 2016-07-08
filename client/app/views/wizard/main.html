@@ -1,5 +1,5 @@
-<form name="wizardForm" data-ng-switch="step" novalidate>
-  <div id="WizardStep1" data-ng-switch-when="1">
+<form name="wizardForm" novalidate>
+  <div id="WizardStep1" data-ng-show="step==1">
     <div class="row">
       <div class="col-md-12">
         <div class="title1" data-translate>Welcome to GlobaLeaks!</div>
@@ -21,7 +21,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep2" data-ng-switch-when="2">
+  <div id="WizardStep2" data-ng-show="step==2">
     <div class="row wizard-block">
       <div class="title" data-translate>General</div>
       <div class="col-md-6">
@@ -165,7 +165,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep3"  data-ng-switch-when="3">
+  <div id="WizardStep3"  data-ng-show="step==3">
     <div class="row">
       <div class="col-md-8" data-glbc-key-change-elem data-glbc-key-change-elem-title="User activation in progress"></div>
       <button id="ButtonNext3" class="btn btn-success btn-large pull-right" data-ng-hide="!wizardComplete" data-ng-click="nextStep()">
@@ -174,7 +174,7 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep4" class="row" data-ng-switch-when="4">
+  <div id="WizardStep4" class="row" data-ng-show="step==4">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>

@@ -1,19 +1,10 @@
 GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route', '$http', 'locationForce', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS', 'glbcUtil', 'glbcUserKeyGen',
                     function($scope, $rootScope, $location, $route, $http, locationForce, Authentication, Admin, AdminUtils, CONSTANTS, glbcUtil, glbcUserKeyGen) {
-    $scope.email_regexp = CONSTANTS.email_regexp;
-
-    $scope.step = 1;
-
-    var default_user_pass = "globaleaks";
-
-    $scope.wizardComplete = false;
-
     $scope.nextStep = function() {
       if ($scope.step === 2) {
         $rootScope.blockUserInput = true;
-        glbcUserKeyGen.setup($scope.wizard.admin.salt);
         glbcUserKeyGen.startKeyGen();
-        glbcUserKeyGen.addPassphrase(default_user_pass, $scope.admin_password);
+        glbcUserKeyGen.addPassphrase($scope.admin_password, $scope.admin_password);
         glbcUserKeyGen.vars.promises.ready.then(function(body) {
           $scope.wizard.admin.auth = body;
           return $http.post('wizard', $scope.wizard).then(function() {
@@ -27,6 +18,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
     }
 
     $scope.firstAdminLogin = function() {
+      console.log($scope.admin_password);
       return Authentication.login('admin', $scope.admin_password).then(function() {
         $location.path(Authentication.session.auth_landing_page);
         $scope.reload("/admin/landing");
@@ -39,6 +31,14 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
       $location.path('/');
     }
 
+    $scope.email_regexp = CONSTANTS.email_regexp;
+
+    $scope.step = 1;
+    $scope.admin_salt = glbcUtil.generateRandomSalt();
+    $scope.admin_password = "";
+    $scope.wizardComplete = false;
+    glbcUserKeyGen.setup($scope.admin_salt);
+
     var receiver = AdminUtils.new_user();
     receiver.username = 'receiver';
     receiver.password = ''; // this causes the system to set the default password
@@ -47,11 +47,12 @@ GLClient.controller('WizardCtrl', ['$scope', '$rootScope', '$location', '$route'
 
     var context = AdminUtils.new_context();
 
-    $scope.admin_password = "";
+    $scope.admin
+
     $scope.wizard = {
       'node': {},
       'admin': {
-        'salt': glbcUtil.generateRandomSalt(),
+        'salt': $scope.admin_salt,
         'auth': {},
         'mail_address': '',
       },
