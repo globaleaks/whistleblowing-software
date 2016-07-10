@@ -1,3 +1,8 @@
+Changes in version 2.62.5 - 2016-07-10
+    o Refactor build script to enable build of the experimental release
+    o Refactor install script to enable install the experimental release
+    o Update translations adding Catalan (70%)
+
 Changes in version 2.62.4 - 2016-07-05
     o Implement browser language detection
     o Fix migration script 31 causing loss of configured css and logo
