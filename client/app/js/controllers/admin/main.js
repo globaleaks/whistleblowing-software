@@ -162,8 +162,8 @@ controller('AdminImgUploadCtrl', ['$scope', function($scope){
       }
     });
 }]).
-controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'AdminL10NResource', 'DefaultL10NResource',
-  function($scope, $http, StaticFiles, AdminL10NResource, DefaultL10NResource){
+controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFiles', 'AdminL10NResource', 'DefaultL10NResource',
+  function($scope, $filter, $http, StaticFiles, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -211,7 +211,21 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$http', 'StaticFiles', 'Admin
     }
 
     $scope.custom_texts = AdminL10NResource.get({'lang': lang});
-    $scope.default_texts = DefaultL10NResource.get({'lang': lang});
+    DefaultL10NResource.get({'lang': lang}, function(default_texts) {
+      var list = [];
+      for (var key in default_texts) {
+        if (default_texts.hasOwnProperty(key)) {
+          var value = default_texts[key];
+          if (value.length > 150) {
+            value = value.substr(0, 150) + "...";
+          }
+          list.push({'key': key, 'value': value});
+        }
+      }
+
+      $scope.default_texts = default_texts;
+      $scope.custom_texts_selector = $filter('orderBy')(list, 'value');
+    });
   }
 
   $scope.get_l10n($scope.vars.language_to_customize);
