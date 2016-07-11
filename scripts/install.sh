@@ -6,17 +6,17 @@ if [ ! $(id -u) = 0 ]; then
     exit 1
 fi
 
-EXPERIMENTAL=1
+EXPERIMENTAL=0
 for arg in "$@"; do
   shift
   case "$arg" in
-    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=0; shift ;;
+    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift ;;
     -- ) shift; break ;;
     * ) break ;;
   esac
 done
 
-if [ $EXPERIMENTAL -eq 0 ]; then
+if [ $EXPERIMENTAL -eq 1 ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You requested to install the experimental version."
   echo "This version is currently under peer review and MUST NOT be used in production."
