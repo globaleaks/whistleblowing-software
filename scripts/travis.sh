@@ -104,6 +104,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Running Browsertesting on Saucelabs"
 
   declare -a capabilities=(
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"MicrosoftEdge\", \"version\":\"13.10586\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Internet Explorer\", \"version\":\"11\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Firefox\", \"version\":\"34\", \"platform\":\"Linux\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Firefox\", \"version\":\"45\", \"platform\":\"Linux\"}'"

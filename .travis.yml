@@ -19,57 +19,62 @@ matrix:
     - env: GLTEST='lint'
       python: "2.7"
 
-    - env: GLTEST='end2end-0' BROWSER='ie 11'
+    - env: GLTEST='end2end-0' BROWSER='edge 13'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-1' BROWSER='firefox 34'
+    - env: GLTEST='end2end-1' BROWSER='ie 11'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-2' BROWSER='firefox 45'
+    - env: GLTEST='end2end-2' BROWSER='firefox 34'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-3' BROWSER='chrome 37'
+    - env: GLTEST='end2end-3' BROWSER='firefox 45'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-4' BROWSER='chrome 48'
+    - env: GLTEST='end2end-4' BROWSER='chrome 37'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-5' BROWSER='safari 8'
+    - env: GLTEST='end2end-5' BROWSER='chrome 48'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-6' BROWSER='safari 9'
+    - env: GLTEST='end2end-6' BROWSER='safari 8'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-7' BROWSER='android 4.4'
+    - env: GLTEST='end2end-7' BROWSER='safari 9'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-8' BROWSER='android 5.1'
+    - env: GLTEST='end2end-8' BROWSER='android 4.4'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-9' BROWSER='iphone 8.0'
+    - env: GLTEST='end2end-9' BROWSER='android 5.1'
       python: "2.7"
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-10' BROWSER='iphone 9.2'
+    - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
+      python: "2.7"
+      addons:
+        sauce_connect: true
+
+    - env: GLTEST='end2end-11' BROWSER='iphone 9.2'
       python: "2.7"
       addons:
         sauce_connect: true
@@ -90,17 +95,18 @@ matrix:
       python: "2.7"
 
   allow_failures:
-    - env: GLTEST='end2end-0' BROWSER='ie 11'
-    - env: GLTEST='end2end-1' BROWSER='firefox 34'
-    - env: GLTEST='end2end-2' BROWSER='firefox 45'
-    - env: GLTEST='end2end-3' BROWSER='chrome 37'
-    - env: GLTEST='end2end-4' BROWSER='chrome 48'
-    - env: GLTEST='end2end-5' BROWSER='safari 8'
-    - env: GLTEST='end2end-6' BROWSER='safari 9'
-    - env: GLTEST='end2end-7' BROWSER='android 4.4'
-    - env: GLTEST='end2end-8' BROWSER='android 5.1'
-    - env: GLTEST='end2end-9' BROWSER='iphone 8.0'
-    - env: GLTEST='end2end-10' BROWSER='iphone 9.2'
+    - env: GLTEST='end2end-0' BROWSER='edge 13'
+    - env: GLTEST='end2end-1' BROWSER='ie 11'
+    - env: GLTEST='end2end-2' BROWSER='firefox 34'
+    - env: GLTEST='end2end-3' BROWSER='firefox 45'
+    - env: GLTEST='end2end-4' BROWSER='chrome 37'
+    - env: GLTEST='end2end-5' BROWSER='chrome 48'
+    - env: GLTEST='end2end-6' BROWSER='safari 8'
+    - env: GLTEST='end2end-7' BROWSER='safari 9'
+    - env: GLTEST='end2end-8' BROWSER='android 4.4'
+    - env: GLTEST='end2end-9' BROWSER='android 5.1'
+    - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
+    - env: GLTEST='end2end-11' BROWSER='iphone 9.2'
     - env: GLTEST='test' GLREQUIREMENTS='precise'
     - env: GLTEST='test' GLREQUIREMENTS='xenial'
     - env: GLTEST='test' GLREQUIREMENTS='wheezy'
