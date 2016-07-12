@@ -32,23 +32,25 @@ if [ $PIP_NEEDED -eq 1 ]; then
   pip install -r /usr/share/globaleaks/requirements.txt
 fi
 
+# simple check to ensure to run the below commands once at the first install.
 if ! id -u globaleaks >/dev/null 2>&1; then
   useradd globaleaks -b /var/globaleaks/ -s /bin/false
-fi
 
-if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
-  ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
-fi
+  # Create globaleaks and tor hidden service directories with proper permissions.
+  gl-fix-permissions
 
-if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
-  echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
-  echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
-fi
+  if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
+    ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
+  fi
 
-# XXX. This should be handled directly inside GlobaLeaks, in order to have a
-# fair control over errors, conflicting preferences, etc.
-if ! $(grep -q -i globaleaks /etc/tor/torrc); then
-    cat <<EOF >> /etc/tor/torrc
+  # Add rules for allowing tor to access to directory /var/globaleaks/torhs/
+  if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
+    echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
+    echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
+  fi
+
+  # Add Tor HS configuration to file /etc/tor/torrc
+  cat <<EOF >> /etc/tor/torrc
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
 VirtualAddrNetwork 10.23.47.0/10
 AutomapHostsOnResolve 1
@@ -60,19 +62,15 @@ HiddenServiceDir /var/globaleaks/torhs/
 HiddenServicePort 80 127.0.0.1:8082
 # END GlobaLeaks Configuration - DO NOT EDIT!
 EOF
+
+  # restart apparmor service in order to load tor and globaleaks rules
+  service apparmor restart
+
+  # raise havege default water mark to 4096 bits
+  sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
+  service haveged restart
+
+  service tor restart
 fi
-
-# Create globaleaks and tor hidden service directories with proper permissions.
-gl-fix-permissions
-
-# restart apparmor service in order to load tor and globaleaks rules
-service apparmor restart
-
-# raise havege default water mark to 4096 bits
-sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
-service haveged restart
-
-# Restart tor so that it would use the new configuration and generate the hidden service
-service tor restart
 
 #DEBHELPER#
