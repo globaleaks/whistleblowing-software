@@ -4,6 +4,8 @@
 import os
 import sys
 import sqlite3
+import subprocess as sp
+from datetime import datetime
 
 from globaleaks import models
 from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
@@ -17,12 +19,12 @@ def reset_password(dbfile, username=None, password=None):
 
     hashed_password = hash_password(password, salt)
 
-    QUERY = 'UPDATE user SET salt="%s", password="%s"' % (salt, hashed_password)
-    QUERY += ' WHERE username = "%s";' % (username)
-
+    QUERY = '''
+    UPDATE user SET salt=?, password=? WHERE username=?;'
+    '''
     conn = sqlite3.connect(dbfile)
     c = conn.cursor()
-    c.execute(QUERY)
+    c.execute(QUERY, salt, hashed_password, username)
     conn.commit()
     conn.close()
 
@@ -32,36 +34,47 @@ def funny_print(stringz, details):
     block = 40
     print stringz, " " * (block - len(stringz)), details
 
-
 def check_file(isafile):
     print "checking file: %s" % isafile
     if not os.path.isfile(isafile):
         print "Missing file: %s" % isafile
         quit()
 
-if len(sys.argv) == 1:
+def check_dir(d):
+    if not os.path.isdir(d):
+        print "Missing dir: %s" % d
+        quit()
+
+def normal_backup_path():
+    t = datetime.now().strftime("%y_%m_%d")
+    name = "globaleaks_backup_%s.tar.gz" % t
+    return os.path.join("/tmp", name)
+
+a_len = len(sys.argv)
+
+if a_len == 1:
     print "\nGlobaLeaks backend administator interface: Missing command\n"
     funny_print(" resetpass <DBFILE> <USERNAME> [PASSWORD]","(reset user password)")
-    funny_print(" backup <WORKINGDIR> <BACKUPNAME>","(create a zipped backup)")
+    funny_print(" backup <WORKINGDIR> [BACKUPNAME]","(create a zipped backup)")
     funny_print(" restore <WORKINGDIR> <BACKUPNAME>","(restore a backup in workingdir)")
     quit()
 
-if sys.argv[1] == 'safexport' and len(sys.argv) >= 3:
+if sys.argv[1] == 'safexport' and a_len >= 3:
     try:
         check_file(sys.argv[2])
         # if 'print' is present, or something else, just dump to stdout
-        do_safexport(sys.argv[2], True if len(sys.argv) == 4 else None )
+        do_safexport(sys.argv[2], True if a_len == 4 else None )
         # shall be another dedicated option!
     except Exception as excep:
         print "Something is going wrong: %s" % excep
 
-elif sys.argv[1] == 'resetpass' and (len(sys.argv) == 4 or len(sys.argv) == 5):
+elif sys.argv[1] == 'resetpass' and (a_len == 4 or a_len == 5):
     try:
         check_file(sys.argv[2])
 
         username = sys.argv[3]
 
-        if len(sys.argv) == 5:
+        if a_len == 5:
             password = reset_password(sys.argv[2], username, sys.argv[4])
         else:
             password = reset_password(sys.argv[2], username)
@@ -75,13 +88,47 @@ elif sys.argv[1] == 'resetpass' and (len(sys.argv) == 4 or len(sys.argv) == 5):
     except Exception as excep:
         print "Something is going wrong: %s" % excep
 
-elif sys.argv[1] == 'backup' and len(sys.argv) == 4:
-    print "backup not yet implemented"
-    pass
+elif sys.argv[1] == 'backup' and (a_len == 3 or a_len == 4):
+    check_dir(sys.argv[2])
+    workdir = sys.argv[2]
+    bckup = normal_backup_path()
 
-elif sys.argv[1] == 'restore' and len(sys.argv)== 4:
-    print "restore do not yet implemented"
-    pass
+    r = sp.check_call('service globaleaks stop', shell=True)
+    print "Creating an archive backup of the globaleaks setup. . ."
+    if a_len == 4:
+        name = sys.argv[3]
+    sp.check_call(['tar', '-zcf', bckup, workdir])
+    sp.check_call('service globaleaks start', shell=True)
+    print "Success: The archived backup was created at", bckup
+
+elif sys.argv[1] == 'restore' and a_len== 4:
+    check_dir(sys.argv[2])
+    workdir = sys.argv[2]
+
+    check_file(sys.argv[3])
+    bckup = sys.argv[3]
+
+    print "\n", "-"*72
+    print "WARNING this command will DELETE everything currently in %s"% workdir
+    print "-"*72
+    ans = raw_input("Are you sure that you want to continue? [y/n] ")
+    if not ans == 'y':
+        quit()
+    print "-"*72
+    sp.check_call('service globaleaks stop', shell=True)
+    print "Deleting %s . . ." % workdir
+
+    # TODO remove workdir str fmt
+    sp.check_call('find %s -type f -exec shred -vzn 3 {} \;' % workdir, shell=True)
+    sp.check_call(['rm', '-rf', os.path.join(workdir, '*')])
+
+    print "Extracting the archive %s" % bckup
+    # This will probably extract to /var/ ... /var/glo
+    sp.check_call(['tar', '-xf', bckup, '-C', workdir])
+
+    sp.check_call('service globaleaks start', shell=True)
+
+    print "Success! globaleaks has been restored from a backup"
 
 else:
     print "Wrong usage of %s command (missing option or bad keyword)" % sys.argv[0]
