@@ -39,18 +39,19 @@ if ! id -u globaleaks >/dev/null 2>&1; then
   # Create globaleaks and tor hidden service directories with proper permissions.
   gl-fix-permissions
 
-  if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
-    ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
-  fi
+  if [ -f /etc/tor/torrc ]; then
+    if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
+      ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
+    fi
 
-  # Add rules for allowing tor to access to directory /var/globaleaks/torhs/
-  if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
-    echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
-    echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
-  fi
+    # Add rules for allowing tor to access to directory /var/globaleaks/torhs/
+    if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
+      echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
+      echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
+    fi
 
-  # Add Tor HS configuration to file /etc/tor/torrc
-  cat <<EOF >> /etc/tor/torrc
+    # Add Tor HS configuration to file /etc/tor/torrc
+    cat <<EOF >> /etc/tor/torrc
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
 VirtualAddrNetwork 10.23.47.0/10
 AutomapHostsOnResolve 1
@@ -63,14 +64,18 @@ HiddenServicePort 80 127.0.0.1:8082
 # END GlobaLeaks Configuration - DO NOT EDIT!
 EOF
 
-  # restart apparmor service in order to load tor and globaleaks rules
-  service apparmor restart
+    # restart apparmor service in order to load tor rules
+    service apparmor restart
 
-  # raise havege default water mark to 4096 bits
+    # restart our kind friend Tor!
+    service tor restart
+  fi
+
+  # raise havege default water mark to 4067 bits
+  # for the reason for the 4067 bits see:
+  #   - https://github.com/globaleaks/GlobaLeaks/issues/1722
   sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
   service haveged restart
-
-  service tor restart
 fi
 
 #DEBHELPER#
