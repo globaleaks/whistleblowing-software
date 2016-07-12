@@ -39,7 +39,7 @@ test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
 if [ "$EUID" -ne "0" ]; then
    echo "Error: GlobaLeaks init script must be run as root" 1>&2
-   exit 0
+   exit 1
 fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
