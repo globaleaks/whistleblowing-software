@@ -329,7 +329,7 @@ class AlarmClass(object):
                 "False" if old_accept_submissions else "True"))
 
             # Invalidate the cache of node avoiding accesses to the db from here
-            GLApiCache.invalidate('node')
+            GLApiCache.invalidate()
 
 # Alarm is a singleton class exported once
 Alarm = AlarmClass()

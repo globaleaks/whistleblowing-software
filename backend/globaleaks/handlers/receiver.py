@@ -160,7 +160,7 @@ class ReceiverInstance(BaseHandler):
                                                          request,
                                                          self.request.language)
 
-        GLApiCache.invalidate('receivers')
+        GLApiCache.invalidate()
 
         self.write(receiver_status)
 
