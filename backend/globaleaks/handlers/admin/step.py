@@ -133,7 +133,7 @@ class StepCollection(BaseHandler):
 
         response = yield create_step(request, self.request.language)
 
-        GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate()
 
         self.set_status(201)
         self.write(response)
@@ -181,7 +181,7 @@ class StepInstance(BaseHandler):
 
         response = yield update_step(step_id, request, self.request.language)
 
-        GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate()
 
         self.set_status(202) # Updated
         self.write(response)
@@ -200,4 +200,4 @@ class StepInstance(BaseHandler):
         """
         yield delete_step(step_id)
 
-        GLApiCache.invalidate('contexts')
+        GLApiCache.invalidate()
