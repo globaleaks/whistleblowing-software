@@ -163,7 +163,7 @@
   bottom: 0px;
 }
 
-.TOS {
+.tos-clause {
   display: block;
   padding: 9.5px;
   margin: 0 0 0.8em;
@@ -175,6 +175,10 @@
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.tos-agreement {
+  font-weight: bold;
 }
 
 .radio label, .checkbox label {
