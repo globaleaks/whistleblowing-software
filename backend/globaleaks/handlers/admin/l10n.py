@@ -66,7 +66,7 @@ class AdminL10NHandler(BaseHandler):
 
         yield update_custom_texts(lang, request)
 
-        GLApiCache.invalidate('l10n')
+        GLApiCache.invalidate()
 
         self.set_status(202)  # Updated
 
@@ -76,4 +76,4 @@ class AdminL10NHandler(BaseHandler):
     def delete(self, lang):
         yield delete_custom_texts(lang)
 
-        GLApiCache.invalidate('l10n')
+        GLApiCache.invalidate()
