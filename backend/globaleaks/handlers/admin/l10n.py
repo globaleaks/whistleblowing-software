@@ -75,3 +75,5 @@ class AdminL10NHandler(BaseHandler):
     @inlineCallbacks
     def delete(self, lang):
         yield delete_custom_texts(lang)
+
+        GLApiCache.invalidate('l10n')
