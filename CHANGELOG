@@ -1,3 +1,7 @@
+Changes in version 2.62.6 - 2016-07-14
+    o Update translations adding Catalan (80%)
+    o Fix API cache reset upon fields update
+
 Changes in version 2.62.5 - 2016-07-10
     o Refactor build script to enable build of the experimental release
     o Refactor install script to enable install the experimental release
