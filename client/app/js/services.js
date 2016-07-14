@@ -1150,6 +1150,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
 
         for (var i=0; i<step.triggered_by_options.length; i++) {
+          if (answers[step.triggered_by_options[i].field] === undefined) {
+            continue
+          }
+
           if (step.triggered_by_options[i].option === answers[step.triggered_by_options[i].field][0]['value']) {
             return true;
           }
@@ -1168,10 +1172,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }
 
         for (var i=0; i<field.triggered_by_options.length; i++) {
+          if (answers[field.triggered_by_options[i].field] === undefined) {
+            continue;
+          }
+
           if (field.triggered_by_options[i].option === answers[field.triggered_by_options[i].field][0]['value']) {
             return true;
           }
         }
+
+        return false;
       };
 
       return {
