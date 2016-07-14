@@ -930,16 +930,21 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       isAWhistleblowerPage: function() {
         var path = $location.path();
+        return this.isASubmissionPage || path === '/status';
+      },
+
+      isASubmissionPage: function() {
+        var path = $location.path();
         return (path === '/' ||
                 path === '/start' ||
                 path === '/submission' ||
-                path === '/receipt' ||
-                path === '/status');
+                path === '/receipt');
       },
 
       showLoginForm: function () {
         return (!this.isHomepage() &&
-                !this.isLoginPage());
+                !this.isLoginPage() &&
+                !this.isASubmissionPage());
       },
 
       showPrivacyBadge: function() {
