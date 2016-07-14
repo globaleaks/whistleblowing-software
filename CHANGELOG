@@ -1,3 +1,6 @@
+Changes in version 2.62.7 - 2016-07-14
+    o Add missing Catalan json file to the package
+
 Changes in version 2.62.6 - 2016-07-14
     o Update translations adding Catalan (80%)
     o Fix API cache reset upon fields update
