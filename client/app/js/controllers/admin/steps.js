@@ -69,22 +69,22 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       });
     };
 
-    $scope.Utils.moveUpAndSave = function(elem) {
+    $scope.moveUpAndSave = function(elem) {
       $scope.Utils.moveUp(elem);
       $scope.save_step(elem);
     };
 
-    $scope.Utils.moveDownAndSave = function(elem) {
+    $scope.moveDownAndSave = function(elem) {
       $scope.Utils.moveDown(elem);
       $scope.save_step(elem);
     };
 
-    $scope.Utils.moveLeftAndSave = function(elem) {
+    $scope.moveLeftAndSave = function(elem) {
       $scope.Utils.moveLeft(elem);
       $scope.save_step(elem);
     };
 
-    $scope.Utils.moveRightAndSave = function(elem) {
+    $scope.moveRightAndSave = function(elem) {
       $scope.Utils.moveRight(elem);
       $scope.save_step(elem);
     };

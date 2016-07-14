@@ -26,12 +26,12 @@ GLClient.controller('AdminContextsCtrl',
     );
   };
 
-  $scope.Utils.moveUpAndSave = function(elem) {
+  $scope.moveUpAndSave = function(elem) {
     $scope.Utils.moveUp(elem);
     $scope.save_context(elem);
   };
 
-  $scope.Utils.moveDownAndSave = function(elem) {
+  $scope.moveDownAndSave = function(elem) {
     $scope.Utils.moveDown(elem);
     $scope.save_context(elem);
   };
