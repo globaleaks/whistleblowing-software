@@ -12,7 +12,7 @@ from .properties import MetaModel, DateTime
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 
 from globaleaks.models.validators import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v
+    shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
 
 from globaleaks.orm import transact
 from globaleaks.security import hash_password
@@ -224,7 +224,7 @@ class Context(Model):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
 
-    tip_timetolive = Int(default=15)
+    tip_timetolive = Int(validator=natnum_v, default=15)
 
     # localized strings
     name = JSON(validator=shortlocal_v)
@@ -461,9 +461,9 @@ class Node(Model):
     security_awareness_text = JSON(validator=longlocal_v, default=empty_localization)
 
     # Advanced settings
-    maximum_namesize = Int(default=128)
-    maximum_textsize = Int(default=4096)
-    maximum_filesize = Int(default=30)
+    maximum_namesize = Int(validator=natnum_v, default=128)
+    maximum_textsize = Int(validator=natnum_v, default=4096)
+    maximum_filesize = Int(validator=natnum_v, default=30)
     tor2web_admin = Bool(default=True)
     tor2web_custodian = Bool(default=True)
     tor2web_whistleblower = Bool(default=False)
@@ -472,8 +472,8 @@ class Node(Model):
     allow_unencrypted = Bool(default=False)
     disable_encryption_warnings = Bool(default=False)
     allow_iframes_inclusion = Bool(default=False)
-    submission_minimum_delay = Int(default=10)
-    submission_maximum_ttl = Int(default=10800)
+    submission_minimum_delay = Int(validator=natnum_v, default=10)
+    submission_maximum_ttl = Int(validator=natnum_v, default=10800)
 
     # privileges of receivers
     can_postpone_expiration = Bool(default=False)
@@ -522,11 +522,11 @@ class Node(Model):
     show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 
-    wbtip_timetolive = Int(default=90)
+    wbtip_timetolive = Int(validator=natnum_v, default=90)
 
-    threshold_free_disk_megabytes_high = Int(default=200)
-    threshold_free_disk_megabytes_medium = Int(default=500)
-    threshold_free_disk_megabytes_low = Int(default=1000)
+    threshold_free_disk_megabytes_high = Int(validator=natnum_v, default=200)
+    threshold_free_disk_megabytes_medium = Int(validator=natnum_v, default=500)
+    threshold_free_disk_megabytes_low = Int(validator=natnum_v, default=1000)
 
     threshold_free_disk_percentage_high = Int(default=3)
     threshold_free_disk_percentage_medium = Int(default=5)
@@ -668,9 +668,9 @@ class Notification(Model):
     disable_receiver_notification_emails = Bool(default=False)
     send_email_for_every_event = Bool(default=True)
 
-    tip_expiration_threshold = Int(default=72)
-    notification_threshold_per_hour = Int(default=20)
-    notification_suspension_time=Int(default=(2 * 3600))
+    tip_expiration_threshold = Int(validator=natnum_v, default=72)
+    notification_threshold_per_hour = Int(validator=natnum_v, default=20)
+    notification_suspension_time=Int(validator=natnum_v, default=(2 * 3600))
 
     exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
     exception_email_pgp_key_info = Unicode(default=u'')
