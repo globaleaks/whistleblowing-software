@@ -32,15 +32,14 @@ class CleaningSchedule(GLJob):
     @transact
     def clean_expired_wbtips(self, store):
         """
-        This function, checks all the InternalTips and delete
-        expired WhistleblowerTips.
+        This function checks all of the WhistleblowerTips and deletes the ones
+        that exceed the expiration threshold.
         """
         threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
 
-        itips = store.find(models.InternalTip, models.InternalTip.wb_last_access < threshold)
-        for itip in itips:
-            if itip.whistleblowertip is not None:
-                store.remove(itip.whistleblowertip)
+        wbtips = store.find(models.WhistleblowerTip, models.WhistleblowerTip.last_access < threshold)
+        for wb_tip in wbtips:
+            store.remove(wb_tip)
 
     @transact
     def clean_expired_itips(self, store):
