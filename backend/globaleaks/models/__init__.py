@@ -3,6 +3,7 @@
 GlobaLeaks ORM Models definitions.
 """
 from __future__ import absolute_import
+from datetime import timedelta
 
 from storm.expr import And
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
@@ -296,8 +297,17 @@ class InternalTip(Model):
     enable_attachments = Bool(default=True)
     enable_whistleblower_identity = Bool(default=False)
 
+    wb_last_access = DateTime(default_factory=datetime_now)
+
     new = Int(default=True)
 
+    def wb_revoke_access_date(self):
+        revoke_date = self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
+        return revoke_date
+
+    def is_wb_access_revoked(self):
+        # TODO check if wb_tip still exists
+        return self.wb_revoke_access_date() < datetime_now()
 
 class ReceiverTip(Model):
     """
@@ -334,7 +344,6 @@ class WhistleblowerTip(Model):
     internaltip_id = Unicode()
     receipt_hash = Unicode()
 
-    last_access = DateTime(default_factory=datetime_now)
     access_counter = Int(default=0)
 
 

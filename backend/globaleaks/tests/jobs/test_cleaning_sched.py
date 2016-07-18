@@ -15,8 +15,8 @@ from globaleaks.settings import GLSettings
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
     @transact
     def force_wbtip_expiration(self, store):
-        for wbtip in store.find(models.WhistleblowerTip):
-            wbtip.last_access = datetime_null()
+        for itip in store.find(models.InternalTip):
+            itip.wb_last_access = datetime_null()
 
     @transact
     def force_itip_expiration(self, store):
