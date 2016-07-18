@@ -258,7 +258,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-istanbul');
-  grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -826,8 +825,7 @@ module.exports = function(grunt) {
     'instrument'
   ]);
 
-  grunt.registerTask('end2end-coverage-run', [
-    'protractor:coverage',
+  grunt.registerTask('end2end-coverage-report', [
     'makeReport',
     'generateCoverallsJson'
   ]);

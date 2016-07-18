@@ -61,7 +61,8 @@ if [ "$GLTEST" = "test" ]; then
     sleep 3
 
     cd $TRAVIS_BUILD_DIR/client
-    grunt end2end-coverage-run
+    node_modules/protractor/bin/protractor tests/end2end/protractor-coverage.config.js
+    grunt end2end-coverage-report
 
     cd $TRAVIS_BUILD_DIR/backend
 
@@ -96,7 +97,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sleep 3
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
-  grunt protractor:test
+  node_modules/protractor/bin/protractor tests/end2end/protractor.config.js
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
 
@@ -127,6 +128,6 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 9000 --disable-mail-torification
   sleep 3
   cd $TRAVIS_BUILD_DIR/client
-  grunt protractor:saucelabs
+  node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
 
 fi
