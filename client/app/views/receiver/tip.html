@@ -9,7 +9,7 @@
       <span class="glyphicon glyphicon-th-list"></span>
     </a>
 
-    <a id="TipExport" ng-click="exportTip(tip)">
+    <span id="TipExport" ng-click="exportTip(tip)">
       <button id="tip-action-export"
               uib-popover="{{'Export' | translate}}"
               popover-placement="top"
@@ -17,7 +17,7 @@
               class="btn btn-default">
         <i class="glyphicon glyphicon-save"></i>
       </button>
-    </a>
+    </span>
 
     <span id="tip-action-postpone"
           data-ng-if="preferences.can_postpone_expiration"
