@@ -5,7 +5,7 @@ import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
-from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.rest.errors import InvalidInputFormat, InvalidModelInput
 from globaleaks.tests import helpers
 from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import node
@@ -74,3 +74,11 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.dummyNode, role='admin')
 
         yield self.assertFailure(handler.put(), InvalidInputFormat)
+
+    @inlineCallbacks
+    def test_put_update_node_invalid_wbtip_ttl(self):
+        self.dummyNode['wbtip_timetolive'] = -10
+
+        handler = self.request(self.dummyNode, role='admin')
+
+        yield self.assertFailure(handler.put(), InvalidModelInput)

@@ -12,6 +12,15 @@ from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 
 
+def natnum_v(self, attr, value):
+    """
+    Validates that the passed value is a natural number (in Z+)
+    """
+    if not isinstance(value, int) or value < 0:
+        raise errors.InvalidModelInput("natnum_v: expected val to be in Z+ (%s:%d)" % (attr, value))
+    return value
+
+
 def shorttext_v(self, attr, value):
     """
     """
