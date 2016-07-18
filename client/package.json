@@ -12,8 +12,8 @@
     "bower": "*"
   },
   "devDependencies": {
-    "coveralls": "2.11.9",
-    "eslint": "3.0.1",
+    "coveralls": "2.11.11",
+    "eslint": "3.1.0",
     "firefox-profile": "0.4.0",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.0.4",
@@ -33,7 +33,7 @@
     "protractor": "4.0.0",
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
-    "superagent": "2.0.0",
+    "superagent": "2.1.0",
     "supertest": "1.2.0"
   }
 }
