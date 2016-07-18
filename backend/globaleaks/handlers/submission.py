@@ -223,7 +223,9 @@ def serialize_itip(store, internaltip, language):
         'identity_provided': internaltip.identity_provided,
         'identity_provided_date': datetime_to_ISO8601(internaltip.identity_provided_date),
         'show_recipients_details': context.show_recipients_details,
-        'status_page_message': mo.dump_localized_key('status_page_message', language)
+        'status_page_message': mo.dump_localized_key('status_page_message', language),
+        'wb_last_access': datetime_to_ISO8601(internaltip.wb_last_access),
+        'wb_access_revoked': internaltip.is_wb_access_revoked()
     }
 
 def serialize_internalfile(ifile):
@@ -263,7 +265,6 @@ def serialize_usertip(store, usertip, language):
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
-    ret['last_access'] = datetime_to_ISO8601(usertip.last_access)
     ret['access_counter'] = usertip.access_counter
     ret['total_score'] = usertip.internaltip.total_score
 

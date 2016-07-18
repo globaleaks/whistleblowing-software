@@ -94,7 +94,60 @@ class Node_v_32(Model):
 
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
+
+class InternalTip_v_32(Model):
+    creation_date = DateTime(default_factory=datetime_now)
+    update_date = DateTime(default_factory=datetime_now)
+
+    context_id = Unicode()
+
+    questionnaire_hash = Unicode()
+    preview = JSON()
+    progressive = Int(default=0)
+    tor2web = Bool(default=False)
+    total_score = Int(default=0)
+    expiration_date = DateTime()
+
+    identity_provided = Bool(default=False)
+    identity_provided_date = DateTime(default_factory=datetime_null)
+
+    enable_two_way_comments = Bool(default=True)
+    enable_two_way_messages = Bool(default=True)
+    enable_attachments = Bool(default=True)
+    enable_whistleblower_identity = Bool(default=False)
+
+    new = Int(default=True)
+
+
+class WhistleblowerTip_v_32(Model):
+    internaltip_id = Unicode()
+    receipt_hash = Unicode()
+
+    last_access = DateTime(default_factory=datetime_now)
+    access_counter = Int(default=0)
+
+
 class MigrationScript(MigrationBase):
+    def migrate_InternalTip(self):
+        old_objs = self.store_old.find(self.model_from['InternalTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['InternalTip']()
+
+            old_wbtip_model = self.model_from['WhistleblowerTip']
+            old_wbtip = self.store_old.find(old_wbtip_model, old_wbtip_model.internaltip_id == old_obj.id).one()
+            if old_wbtip is None:
+                self.entries_count['InternalTip'] -= 1
+                continue
+
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'wb_last_access':
+                    new_obj.wb_last_access = old_wbtip.last_access
+                    continue
+
+            setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+    #TODO explicitly drop old_wbtip.last_access
+
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()

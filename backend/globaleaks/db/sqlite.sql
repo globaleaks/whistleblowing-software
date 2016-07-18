@@ -134,6 +134,7 @@ CREATE TABLE internaltip (
     identity_provided INTEGER NOT NULL,
     identity_provided_date TEXT NOT NULL,
     new INTEGER NOT NULL,
+    wb_last_access TEXT,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -347,7 +348,6 @@ CREATE TABLE receivertip (
 CREATE TABLE whistleblowertip (
     id TEXT NOT NULL,
     internaltip_id TEXT NOT NULL,
-    last_access TEXT,
     access_counter INTEGER NOT NULL,
     receipt_hash TEXT NOT NULL,
     FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,

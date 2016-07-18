@@ -51,6 +51,11 @@
             <i class="glyphicon glyphicon-hourglass"></i>
             <span data-translate>Expiration date</span>
           </th>
+          <th data-ng-if="::session.role == 'receiver'">
+            <i class="glyphicon glyphicon-hourglass"></i>
+            <span data-ng-if="!tip.wb_access_revoked" data-translate>Access expiration</span>
+            <span data-ng-if="tip.wb_access_revoked" data-translate>Whistleblower access</span>
+          </th>
           <th>
             <i class="glyphicon glyphicon-send"></i>
             <span data-translate>Connection</span>
@@ -68,14 +73,24 @@
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td data-ng-if="::session.role == 'receiver'">
+            <span data-ng-if="!tip.wb_access_revoked"
+              uib-popover="{{'The whistleblowerʼs access will expire at this time if they do not check the submission.' | translate}}"
+              popover-placement="left" popover-trigger="mouseenter">
+              {{tip.wb_last_access | wbAccessRevoked:node.wbtip_timetolive}}
+            </span>
+            <span data-ng-if="tip.wb_access_revoked"
+              class="label label-warning"
+              uib-popover="{{'The whistleblower can no longer access the submission' | translate}}"
+              popover-placement="left" popover-trigger="mouseenter" data-translate>Revoked</span>
           <td>
             <span data-ng-if="tip.tor2web"
                 class="label label-warning"
-                uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                uib-popover="{{'The connection used to send this submission has been secured with HTTPS ensuring confidentiality.' | translate}}" popover-placement="left" popover-trigger="mouseenter"
                 data-translate>HTTPS</span>
             <span data-ng-if="!tip.tor2web"
                 class="label label-success"
-                uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="right" popover-trigger="mouseenter"
+                uib-popover="{{'The connection used to send this submission has been secured with Tor ensuring confidentiality and anonymity.' | translate}}" popover-placement="left" popover-trigger="mouseenter"
                 data-translate>Tor</span>
           </td>
           <td data-ng-if="::session.role == 'receiver' && node.enable_experimental_features">{{::tip.total_score}}</td>
