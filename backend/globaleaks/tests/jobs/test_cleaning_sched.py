@@ -15,8 +15,8 @@ from globaleaks.settings import GLSettings
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
     @transact
     def force_wbtip_expiration(self, store):
-        for wbtip in store.find(models.InternalTip):
-            wbtip.wb_last_access = datetime_null()
+        for wbtip in store.find(models.WhistleblowerTip):
+            wbtip.last_access = datetime_null()
 
     @transact
     def force_itip_expiration(self, store):
@@ -53,7 +53,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
         self.assertEqual(store.find(models.InternalTip).count(), 1)
         self.assertEqual(store.find(models.ReceiverTip).count(), 2)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0) # Note the diff
         self.assertEqual(store.find(models.InternalFile).count(), 16)
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), 3)
@@ -78,7 +78,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
 
         yield cleaning_sched.CleaningSchedule().operation()
 
-        # verify rtips survive the scheduler if the wbtip expire
+        # verify rtips survive the scheduler if the wbtip expires
         yield self.check2()
 
         yield self.force_itip_expiration()

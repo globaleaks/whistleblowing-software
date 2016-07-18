@@ -334,7 +334,7 @@ class WhistleblowerTip(Model):
     internaltip_id = Unicode()
     receipt_hash = Unicode()
 
-    last_access = DateTime(default_factory=datetime_null)
+    last_access = DateTime(default_factory=datetime_now)
     access_counter = Int(default=0)
 
 
@@ -1084,6 +1084,11 @@ InternalTip.comments = ReferenceSet(
     Comment.internaltip_id
 )
 
+InternalTip.whistleblowertip = Reference(
+    InternalTip.id,
+    WhistleblowerTip.internaltip_id
+)
+
 InternalTip.receivertips = ReferenceSet(
     InternalTip.id,
     ReceiverTip.internaltip_id
@@ -1137,11 +1142,6 @@ InternalFile.internaltip = Reference(
 WhistleblowerTip.internaltip = Reference(
     WhistleblowerTip.internaltip_id,
     InternalTip.id
-)
-
-InternalTip.whistleblowertip = Reference(
-    InternalTip.id,
-    WhistleblowerTip.internaltip_id
 )
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
