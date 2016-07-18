@@ -24,17 +24,15 @@
     "grunt-contrib-copy": "1.0.0",
     "grunt-istanbul": "0.7.1",
     "grunt-mocha-test": "0.12.7",
-    "grunt-protractor-runner": "3.2.0",
     "grunt-string-replace": "1.2.1",
     "grunt-usemin": "3.1.1",
     "gruntify-eslint": "2.0.0",
     "mocha": "2.5.3",
     "node-gettext": "0.2.14",
     "openpgp": "2.3.2",
-    "protractor": "3.2.2",
+    "protractor": "4.0.0",
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
-    "selenium-webdriver": "2.53.3",
     "superagent": "2.0.0",
     "supertest": "1.2.0"
   }
