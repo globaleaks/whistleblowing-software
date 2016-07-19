@@ -7,18 +7,23 @@ var FirefoxProfile = require("firefox-profile");
 var makeFirefoxProfile = function(preferenceMap) {
   var deferred = q.defer();
   var firefoxProfile = new FirefoxProfile();
+
   for (var key in preferenceMap) {
     if (preferenceMap.hasOwnProperty(key)) {
       firefoxProfile.setPreference(key, preferenceMap[key]);
     }
   }
+
   firefoxProfile.encoded(function (encodedProfile) {
     var capabilities = {
       browserName: 'firefox',
       firefox_profile: encodedProfile,
     };
-    deferred.resolve(capabilities);
+
+    deferred.resolve([capabilities]);
+
   });
+
   return deferred.promise;
 };
 
@@ -43,13 +48,12 @@ exports.config = {
 
   getMultiCapabilities: function() {
     return makeFirefoxProfile({
-      "intl.accept_language": "en_US",
       "browser.download.folderList": 2,
       // One of these does the job
       "browser.download.dir": tmpDir,
       "browser.download.defaultFolder": tmpDir,
       "browser.download.downloadDir": tmpDir,
-      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream",
+      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream"
     });
   },
 
