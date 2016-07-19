@@ -155,6 +155,14 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
+        self.hasUserRole = function() {
+          if (angular.isUndefined(self.session)) {
+            return false;
+          }
+          var r = self.session.role;
+          return (r === 'admin' || r === 'receiver' || r === 'custodian');
+        };
+
         self.get_headers = function() {
           var h = {};
 
@@ -855,8 +863,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal',
-  function($rootScope, $location, $filter, $sce, $uibModal) {
+  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal', 'Authentication',
+  function($rootScope, $location, $filter, $sce, $uibModal, Authentication) {
     return {
       getXOrderProperty: function() {
         return 'x';
@@ -928,12 +936,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 path === '/receipt');
       },
 
-      isAWhistleblowerPage: function() {
+      isWhistleblowerPage: function() {
         var path = $location.path();
-        return this.isASubmissionPage || path === '/status';
+        return this.isSubmissionPage() || path === '/status';
       },
 
-      isASubmissionPage: function() {
+      isSubmissionPage: function() {
         var path = $location.path();
         return (path === '/' ||
                 path === '/start' ||
@@ -941,16 +949,25 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 path === '/receipt');
       },
 
+      classExtension: function() {
+        return {
+          'ext-public': this.isWhistleblowerPage(),
+          'ext-login': this.isLoginPage(),
+          'ext-auth': Authentication.hasUserRole(),
+          'ext-embedded': $rootScope.embedded,
+        };
+      },
+
       showLoginForm: function () {
         return (!this.isHomepage() &&
                 !this.isLoginPage() &&
-                !this.isASubmissionPage());
+                !this.isSubmissionPage());
       },
 
       showPrivacyBadge: function() {
         return (!$rootScope.embedded &&
                 !$rootScope.node.disable_privacy_badge &&
-                this.isAWhistleblowerPage());
+                this.isWhistleblowerPage());
       },
 
       showFilePreview: function(content_type) {

@@ -17,5 +17,6 @@
   "test-custodian-first-login.js",
   "test-globaleaks-process.js",
   "test-authentication-redirects.js",
-  "test-file-consistency.js"
+  "test-file-consistency.js",
+  "test-css-customization.js"
 ]
