@@ -146,9 +146,9 @@ class MigrationScript(MigrationBase):
                     new_obj.wb_last_access = old_wbtip.last_access
                     continue
 
-            setattr(new_obj, v.name, getattr(old_obj, v.name))
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
 
-    #TODO explicitly drop old_wbtip.last_access
+            self.store_new.add(new_obj)
 
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
