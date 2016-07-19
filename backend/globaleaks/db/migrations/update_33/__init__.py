@@ -96,6 +96,7 @@ class Node_v_32(Model):
 
 
 class InternalTip_v_32(Model):
+    __storm_table__ = 'internaltip'
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
 
@@ -120,6 +121,7 @@ class InternalTip_v_32(Model):
 
 
 class WhistleblowerTip_v_32(Model):
+    __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
 
@@ -153,10 +155,10 @@ class MigrationScript(MigrationBase):
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-
             if v.name == 'wbtip_timetolive':
                 new_node.wbtip_timetolive = 90
                 continue
+
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
