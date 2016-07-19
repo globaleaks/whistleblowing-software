@@ -1,5 +1,5 @@
 describe('adming configure node', function() {
-  it('should configure node en internatization', function() {
+  it('should configure node en internalization', function() {
     browser.setLocation('admin/content');
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='English']")).click();
     expect(element(by.model('admin.node.header_title_homepage')).clear().sendKeys('TEXT1_EN'));
@@ -7,7 +7,7 @@ describe('adming configure node', function() {
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click();
   });
 
-  it('should configure node it internatization', function() {
+  it('should configure node it internalization', function() {
     browser.setLocation('admin/content');
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Italiano']")).click();
     expect(element(by.model('admin.node.header_title_homepage')).clear().sendKeys('TEXT1_IT'));
