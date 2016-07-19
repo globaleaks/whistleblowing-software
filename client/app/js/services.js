@@ -155,7 +155,7 @@ angular.module('GLServices', ['ngResource']).
           }
         };
 
-        self.get_auth_headers = function() {
+        self.get_headers = function() {
           var h = {};
 
           if (self.session) {
@@ -1361,6 +1361,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   }
 
+  function checkEnabledLanguages(language) {
+    return !angular.isDefined(facts.nodeDefault) || enabledLanguages.indexOf(language) !== -1;
+  }
+
   // bestLanguage returns the best language for the application to use given
   // all of the state the GLTranslate service has collected in facts. It picks
   // the language in the order that the properties of the 'facts' object is
@@ -1368,16 +1372,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   // { object -> string }
   function bestLanguage(facts) {
     if (angular.isDefined(facts.userChoice) &&
-        enabledLanguages.indexOf(facts.userChoice) !== -1) {
+        checkEnabledLanguages(facts.browserSniff)) {
       return facts.userChoice;
     } else if (angular.isDefined(facts.urlParam) &&
-               enabledLanguages.indexOf(facts.urlParam) !== -1) {
+               checkEnabledLanguages(facts.browserSniff)) {
       return facts.urlParam;
     } else if (angular.isDefined(facts.userPreference) &&
-               enabledLanguages.indexOf(facts.userPreference) !== -1) {
+               checkEnabledLanguages(facts.browserSniff)) {
       return facts.userPreference;
     } else if (angular.isDefined(facts.browserSniff) &&
-               enabledLanguages.indexOf(facts.browserSniff) !== -1) {
+               checkEnabledLanguages(facts.browserSniff)) {
       return facts.browserSniff;
     } else if (angular.isDefined(facts.nodeDefault)) {
       return facts.nodeDefault;
