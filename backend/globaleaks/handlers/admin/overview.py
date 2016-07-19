@@ -68,7 +68,7 @@ def collect_tip_overview(store, language):
         if wbtip is not None:
             tip_description.update({
                 'wb_access_counter': wbtip.access_counter,
-                'wb_last_access': datetime_to_ISO8601(wbtip.last_access)
+                'wb_last_access': datetime_to_ISO8601(wbtip.internaltip.wb_last_access)
             })
 
         tip_description_list.append(tip_description)
