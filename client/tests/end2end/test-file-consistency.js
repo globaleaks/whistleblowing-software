@@ -59,7 +59,7 @@ describe('Submission file process', function() {
         var fullpath = path.resolve(path.join(browser.params.tmpDir, name));
         utils.waitForFile(fullpath, 2000).then(function() {
           // Check that each downloaded file's checksum matches its original
-          var test = checksum(fs.readFileSync(fullpath));
+          var test = utils.checksum(fs.readFileSync(fullpath));
           expect(test).toEqual(chksums[name]);
         });
       });
@@ -107,7 +107,7 @@ describe('Submission file process', function() {
             expect(result.valid).toBeTrue();
 
             // check the files to see if they match
-            var test = checksum(result.data);
+            var test = utils.checksum(result.data);
             expect(test).toEqual(chksums[name]);
           });
         });
