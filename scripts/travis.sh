@@ -48,7 +48,7 @@ if [ "$GLTEST" = "test" ]; then
 
   if [ "$GLREQUIREMENTS" = "trusty" ]; then
     echo "Extracting firefox and setting PATH variable..."
-    tar -xjf /tmp/firefox-latest-esr.tar.bz2 --directory /tmp
+    tar -xjf /tmp/firefox-45.0.tar.bz2 --directory /tmp
     export PATH="/tmp/firefox:$PATH"
     echo "Using firefox version `firefox --version`"
 
