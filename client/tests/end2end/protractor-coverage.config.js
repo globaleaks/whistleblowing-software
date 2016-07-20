@@ -42,16 +42,15 @@ exports.config = {
   specs: specs,
 
   getMultiCapabilities: function() {
-    return q.all([ 
-      makeFirefoxProfile({
-        "browser.download.folderList": 2,
-        // One of these does the job
-        "browser.download.dir": tmpDir,
-        "browser.download.defaultFolder": tmpDir,
-        "browser.download.downloadDir": tmpDir,
-        "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream"
-      })
-    ]);
+    return makeFirefoxProfile({
+      "intl.accept_language": "en_US",
+      "browser.download.folderList": 2,
+      // One of these does the job
+      "browser.download.dir": tmpDir,
+      "browser.download.defaultFolder": tmpDir,
+      "browser.download.downloadDir": tmpDir,
+      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream",
+    });
   },
 
   jasmineNodeOpts: {
