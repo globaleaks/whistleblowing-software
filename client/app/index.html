@@ -131,19 +131,14 @@
         <h1>[EN] Warning! :(</h1><br /><br />
         <div>
           You are running an unsupported and potentially vulnerable browser.<br /><br />
-          You are strongly advised to download and install the Tor Browser.
-          The Tor Browser includes various privacy and security enhancements not present in other browsers.
-          <br />
-
-          <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer" class="text-center">
-            [ <span data-translate>Download the Tor Browser</span> ]
-          </a>
-
+          You are strongly advised to download and install the Tor Browser.<br/>
+          The Tor Browser includes various privacy and security enhancements not present in other browsers.<br /><br />
+          <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer" class="text-center">[ Download the Tor Browser ]</a><br /><br />
           This is the list of the other supported browsers:<br />
           <ul>
-            <li>Mozilla Firefox &gt;= 21</li>
-            <li>Google Chrome &gt;= 11</li>
-            <li>Safari: &gt;= 6.1</li>
+            <li>Mozilla Firefox &gt;= 34</li>
+            <li>Google Chrome &gt;= 37</li>
+            <li>Safari: &gt;= 7.1</li>
             <li>Edge: &gt;= 12</li>
             <li>Internet Explorer &gt;= 11</li>
           </ul>
@@ -154,20 +149,17 @@
         <h1>[IT] Attenzione! :(</h1><br /><br />
         <div>
           Il browser in uso non è supportato ed è potenzialmente vulnerabile.<br /><br />
-          Si invita caldamente a scaricare ed installare il
-          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>
-          al fine di accedere a questa piattaforma di whistleblowing in modo sicuro ed anonimo.<br />
-
-          La  seguente è  la lista degli altri browser supportati:<br />
+          Si invita caldamente a scaricare ed installare il Tor Browser.<br />
+          The Tor Browser includes various privacy and security enhancements not present in other browsers.<br /><br />
+          <a href="https://www.torproject.org/download/download" target="_blank" rel="noreferrer" class="text-center">[ Download the Tor Browser ]</a><br /><br />
+          La  seguente è la lista degli altri browser supportati:<br />
           <ul>
-            <li>Mozilla Firefox &gt;= 21</li>
-            <li>Google Chrome &gt;= 11</li>
-            <li>Safari: &gt;= 6.1</li>
+            <li>Mozilla Firefox &gt;= 34</li>
+            <li>Google Chrome &gt;= 37</li>
+            <li>Safari: &gt;= 7.1</li>
             <li>Edge: &gt;= 12</li>
             <li>Internet Explorer &gt;= 11</li>
           </ul>
-
-          Si prega di notare che i browser sopra citati, anche se supportati, non beneficiano delle stesse garanzie di anonimato e sicurezza offerte dal Tor Browser.
         </div>
       </div>
     </div>
@@ -280,7 +272,7 @@
       }
  
       function start_globaleaks() {
-        if (isBrowserCompatible()) {
+        if (!isBrowserCompatible()) {
           loadjsfile("js/scripts.js");
         } else {
           document.getElementById("BrowserSupported").style.display = "none";
