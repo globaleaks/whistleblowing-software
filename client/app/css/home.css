@@ -17,14 +17,19 @@
   margin-bottom: 2em;
 }
 
+
+#NodeIntroPresentation,
+#NodeIntroDescription,
+#WhistleblowerLoginPrompt {
+  white-space: pre-wrap;
+}
+
 #NodeIntroPresentation {
   font-size: 1.6em;
-  white-space: pre-wrap;
 }
 
 #NodeIntroDescription {
   font-size: 1.4em;
-  white-space: pre-wrap;
 }
 
 #WhistleblowerSubmitBoxHeader {
