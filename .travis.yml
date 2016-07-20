@@ -14,7 +14,7 @@ matrix:
     - env: GLTEST='test' GLREQUIREMENTS='trusty'
       python: "2.7"
       addons:
-        firefox: "latest-esr"
+        firefox: "45.0"
 
     - env: GLTEST='lint'
       python: "2.7"
