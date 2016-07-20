@@ -48,12 +48,13 @@ exports.config = {
 
   getMultiCapabilities: function() {
     return makeFirefoxProfile({
+      "intl.accept_language": "en_US",
       "browser.download.folderList": 2,
       // One of these does the job
       "browser.download.dir": tmpDir,
       "browser.download.defaultFolder": tmpDir,
       "browser.download.downloadDir": tmpDir,
-      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream"
+      "browser.helperApps.neverAsk.saveToDisk": "application/octet-stream",
     });
   },
 
