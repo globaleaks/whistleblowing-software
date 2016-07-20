@@ -113,25 +113,6 @@ module.exports = function(grunt) {
       }
     },
 
-    protractor: {
-      options: {
-        keepAlive: false,
-        noColor: false
-      },
-      test: {
-        configFile: "tests/end2end/protractor.config.js"
-      },
-      coverage: {
-        configFile: "tests/end2end/protractor-coverage.config.js"
-      },
-      saucelabs: {
-        configFile: "tests/end2end/protractor-sauce.config.js",
-        options: {
-          build: process.env.TRAVIS_BUILD_NUMBER,
-        },
-      },
-    },
-
     mochaTest: {
       test: {
         options: {
