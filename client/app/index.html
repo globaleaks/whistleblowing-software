@@ -272,7 +272,7 @@
       }
  
       function start_globaleaks() {
-        if (!isBrowserCompatible()) {
+        if (isBrowserCompatible()) {
           loadjsfile("js/scripts.js");
         } else {
           document.getElementById("BrowserSupported").style.display = "none";
