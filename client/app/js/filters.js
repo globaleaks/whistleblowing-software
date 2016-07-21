@@ -36,7 +36,7 @@ angular.module('GLFilters', []).
   filter('tipFileName', ['$filter', function($filter) {
     return function(tip) {
       if (angular.isDefined(tip)) {
-        var d = $filter('date')(tip.creation_date, 'yyyyMMdd');
+        var d = $filter('date')(tip.creation_date, 'yyyyMMdd', '0');
         return d + '-' + tip.progressive;
       } 
     };
