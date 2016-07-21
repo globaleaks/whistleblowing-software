@@ -149,4 +149,13 @@ directive('uibDatepickerPopupa', function () {
       });
     }
   }
+}).
+directive('stopccp', function(){
+  return {
+    link:function(scope,element){
+      element.on('cut copy paste', function (event) {
+        event.preventDefault();
+      });
+    }
+  };
 });
