@@ -598,10 +598,19 @@ var GLClient = angular.module('GLClient', [
     });
 
     $rootScope.keypress = function(e) {
+       if ($rootScope.Utils.isWhistleblowerPage()) {
+         if ((e.ctrlKey || e.metaKey) && (((e.which || e.keyCode) === 65) ||   /* (ctrl or meta) + a */
+                                          ((e.which || e.keyCode) === 67))) {  /* (ctrl or meta) + c */
+           e.preventDefault();
+           return;
+         }
+       }
+
        if (((e.which || e.keyCode) === 116) || /* F5 */
            ((e.which || e.keyCode) === 82 && (e.ctrlKey || e.metaKey))) {  /* (ctrl or meta) + r */
          e.preventDefault();
          $rootScope.$emit("REFRESH");
+         return;
        }
     };
 
