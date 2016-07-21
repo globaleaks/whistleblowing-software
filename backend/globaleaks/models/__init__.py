@@ -306,8 +306,7 @@ class InternalTip(Model):
         return revoke_date
 
     def is_wb_access_revoked(self):
-        # TODO check if wb_tip still exists
-        return self.wb_revoke_access_date() < datetime_now()
+        return self.whistleblowertip is None
 
 class ReceiverTip(Model):
     """
