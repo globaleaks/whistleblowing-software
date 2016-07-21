@@ -26,6 +26,17 @@ from globaleaks.utils.utility import log, datetime_now
 
 __all__ = ['CleaningSchedule']
 
+
+def db_clean_expired_wbtips(store):
+    threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
+
+    itips = store.find(models.InternalTip, models.InternalTip.wb_last_access < threshold)
+    for itip in itips:
+        if itip.whistleblowertip is not None:
+            log.info("Disabling WB access to %s" % itip.id)
+            store.remove(itip.whistleblowertip)
+
+
 class CleaningSchedule(GLJob):
     name = "Cleaning"
 
@@ -35,14 +46,7 @@ class CleaningSchedule(GLJob):
         This function checks all the InternalTips and deletes WhistleblowerTips
         that have not been accessed after `threshold`.
         """
-        threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
-
-        itips = store.find(models.InternalTip, models.InternalTip.wb_last_access < threshold)
-        for itip in itips:
-            if itip.whistleblowertip is not None:
-                log.info("Disabling WB access to %s" % itip.id)
-                store.remove(itip.whistleblowertip)
-
+        db_clean_expired_wbtips(store)
 
     @transact
     def clean_expired_itips(self, store):
