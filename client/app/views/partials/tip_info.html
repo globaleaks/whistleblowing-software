@@ -75,7 +75,7 @@
           <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td data-ng-if="::session.role == 'receiver'">
             <span data-ng-if="!tip.wb_access_revoked"
-              uib-popover="{{'The whistleblowerʼs access will expire at this time if they do not check the submission.' | translate}}"
+              uib-popover="{{'Unless the whistleblower checks the submission by this time, their access to it will expire.' | translate}}"
               popover-placement="left" popover-trigger="mouseenter">
               {{tip.wb_last_access | wbAccessRevoked:node.wbtip_timetolive}}
             </span>
