@@ -1,5 +1,5 @@
 <div data-ng-repeat="error in errors" data-ng-show="error.code != 29">
-  <uib-alert type="danger" class="alert" close="closeAlert(errors, $index)" dismiss-on-timeout="3000">
+  <div data-uib-alert class="alert-danger" close="closeAlert(errors, $index)" dismiss-on-timeout="3000">
     <!--
       Currently we skip authentication errors (29) and TipMessagesNotFound Error (60):
         The first has a special handling, the latter need to not be shown as it happens
@@ -84,10 +84,10 @@
         <span data-translate>Session expired</span>
       </div>
     </div>
-  </uib-alert>
+  </div>
 </div>
 <div data-ng-repeat="success in successes">
-  <uib-alert type="success" class="alert" close="closeAlert(successes, $index)" dismiss-on-timeout="3000">
+  <div data-uib-alert class="alert-success" close="closeAlert(successes, $index)" dismiss-on-timeout="3000">
     <div data-translate>Success!</div>
-  </uib-alert>
+  </div>
 </div>
