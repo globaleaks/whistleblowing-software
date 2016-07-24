@@ -135,7 +135,7 @@
             <span class="text-danger" data-ng-show="!wizard.node.allow_unencrypted" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="mouseenter">*</span>
           </label>
           <div class="col-md-8" data-ng-class="{'has-error': wizardForm.pgpkey.$error.required}">
-            <textarea name="pgpkey" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="wizard.receiver.pgp_key_public" data-ng-required="!wizard.node.allow_unencrypted"></textarea>
+            <textarea name="pgpkey" class="form-control" data-ng-attr-placeholder="{{'Copy and paste the PGP public key here' | translate}}" data-ng-model="wizard.receiver.pgp_key_public" data-ng-required="!wizard.node.allow_unencrypted" data-ng-disabled="wizard.node.allow_unencrypted"></textarea>
             <input data-ng-model="wizard.node.allow_unencrypted" data-ng-click="open_modal_allow_unencrypted()" type="checkbox" data-ng-change="wizard.receiver.pgp_key_public = wizard.node.allow_unencrypted ? '' : wizard.receiver.pgp_key_public">
             <span data-translate>Enable insecure configuration without PGP encryption.</span>
             <div data-ng-show="wizard.node.allow_unencrypted">
