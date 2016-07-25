@@ -20,8 +20,7 @@ exports.config = {
 
   params: {
     'testFileDownload': false,
-    'verifyFileDownload': false,
-    'tmpDir': '/tmp/globaleaks-download',
+    'verifyFileDownload': false
   },
 
   specs: specs,

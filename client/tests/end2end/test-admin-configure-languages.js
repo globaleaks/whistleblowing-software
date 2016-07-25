@@ -1,4 +1,4 @@
-describe('admin configure languages', function() {
+describe('adming configure languages', function() {
   it('should configure languages', function() {
     // Enable german and italian and then test the language selector
     browser.setLocation('admin/content');

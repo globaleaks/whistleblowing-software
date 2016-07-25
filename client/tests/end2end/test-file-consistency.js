@@ -1,3 +1,4 @@
+var crypto = require('crypto');
 var fs = require('fs');
 var path = require('path');
 
@@ -6,17 +7,25 @@ var openpgp = require('openpgp');
 var pages = require('./pages.js');
 var utils = require('./utils.js');
 
+function checksum(input) {
+  return crypto.createHash('sha1').update(input, 'utf8').digest('hex');
+}
+
 // File types left to test:
 // docx, doc, ppt, mp4, mp3, wav, html, zip
 describe('Submission file process', function() {
-  var filenames = fs.readdirSync(utils.vars.testFileDir);
-  var dirs = filenames.map(utils.makeTestFilePath);
+  var testFileDir = './tests/end2end/files/';
+
+  var filenames = fs.readdirSync(testFileDir);
+  var dirs = filenames.map(function(name) {
+    return path.resolve(path.join(testFileDir, name));
+  });
 
   var chksums = {};
 
   for (var i = 0; i < dirs.length; i++) {
     var s = fs.readFileSync(dirs[i]);
-    var c = utils.checksum(s);
+    var c = checksum(s);
     chksums[filenames[i]] = c;
   }
 
@@ -59,7 +68,7 @@ describe('Submission file process', function() {
         var fullpath = path.resolve(path.join(browser.params.tmpDir, name));
         utils.waitForFile(fullpath, 2000).then(function() {
           // Check that each downloaded file's checksum matches its original
-          var test = utils.checksum(fs.readFileSync(fullpath));
+          var test = checksum(fs.readFileSync(fullpath));
           expect(test).toEqual(chksums[name]);
         });
       });
@@ -107,7 +116,7 @@ describe('Submission file process', function() {
             expect(result.valid).toBeTrue();
 
             // check the files to see if they match
-            var test = utils.checksum(result.data);
+            var test = checksum(result.data);
             expect(test).toEqual(chksums[name]);
           });
         });

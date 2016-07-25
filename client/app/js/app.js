@@ -630,7 +630,7 @@ var GLClient = angular.module('GLClient', [
      'request': function(config) {
         var Authentication = $injector.get('Authentication');
 
-       angular.extend(config.headers, Authentication.get_headers());
+       angular.extend(config.headers, Authentication.get_auth_headers());
        return config;
      }
    };

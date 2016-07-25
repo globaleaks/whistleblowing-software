@@ -24,7 +24,7 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope,
     $http({
       method: 'DELETE',
       url: $scope.imageUploadUrl,
-      headers: $scope.Authentication.get_headers()
+      headers: $scope.Authentication.get_auth_headers()
     }).then(function successCallback() {
       $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
       $scope.imageUploadObj.flow.files = [];

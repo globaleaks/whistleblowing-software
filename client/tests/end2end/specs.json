@@ -3,9 +3,8 @@
   "test-admin-perform-wizard.js",
   "test-admin-login.js",
   "test-admin-navigate-sections.js",
-  "test-admin-configure-languages.js",
   "test-admin-configure-node.js",
-  "test-internationalization.js",
+  "test-admin-configure-languages.js",
   "test-admin-configure-custom-texts.js",
   "test-admin-configure-mail.js",
   "test-admin-configure-shorturls.js",
@@ -17,6 +16,5 @@
   "test-custodian-first-login.js",
   "test-globaleaks-process.js",
   "test-authentication-redirects.js",
-  "test-file-consistency.js",
-  "test-css-customization.js"
+  "test-file-consistency.js"
 ]

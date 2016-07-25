@@ -10,7 +10,7 @@
       <br />
       <span data-translate>The file will be available at URL: /s/$filename</span>
       <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
-        <span flow-init="{target: 'admin/staticfiles/upload', headers: Authentication.get_headers()}"
+        <span flow-init="{target: 'admin/staticfiles/upload', headers: Authentication.get_auth_headers()}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()">
           <div class="btn btn-success fileinput-button">
