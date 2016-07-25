@@ -1,4 +1,6 @@
 var fs = require('fs');
+var path = require('path');
+var crypto = require('crypto');
 
 exports.vars = {
   'default_password': 'globaleaks',
@@ -13,8 +15,9 @@ exports.vars = {
     'Terms of service',
     'Date',
     'Group of questions'
-  ]
-}
+  ],
+  'testFileDir': './tests/end2end/files'
+};
 
 browser.getCapabilities().then(function(capabilities) {
   exports.testFileUpload = function() {
@@ -140,4 +143,25 @@ exports.logout = function(redirect_url) {
   redirect_url = redirect_url === undefined ? '/' : redirect_url;
   element(by.id('LogoutLink')).click();
   exports.waitForUrl(redirect_url);
-}
+};
+
+
+// Utility Functions for handling File operations
+
+exports.makeTestFilePath = function(name) {
+  return path.resolve(path.join(exports.vars.testFileDir, name));
+};
+
+exports.makeSavedFilePath = function(name) {
+  return path.resolve(path.join(browser.params.tmpDir, name));
+};
+
+exports.checksum = function(input) {
+  return crypto.createHash('sha1').update(input, 'utf8').digest('hex');
+};
+
+exports.TestFileEquality = function(a_path, b_path) {
+  var a_hash = exports.checksum(fs.readFileSync(a_path));
+  var b_hash = exports.checksum(fs.readFileSync(b_path));
+  expect(a_hash).toEqual(b_hash);
+};

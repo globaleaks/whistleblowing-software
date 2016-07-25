@@ -1,7 +1,8 @@
 var utils = require('./utils.js');
 
-describe('adming configure custom texts', function() {
+describe('admin configure custom texts', function() {
   it('should perform custom texts configuration', function() {
+    utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Text customization")).click();
 

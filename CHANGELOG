@@ -1,3 +1,11 @@
+Changes in version 2.62.8 - 2016-07-25
+    o Force language detection to prefer url params
+    o Add CSS extensions for customization
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1725
+    - https://github.com/globaleaks/GlobaLeaks/issues/1731
+
 Changes in version 2.62.8 - 2016-07-14
     o Improve UI following
 
