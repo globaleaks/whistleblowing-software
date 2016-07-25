@@ -14,7 +14,7 @@ describe('Admin upload custom CSS', function() {
     inp.sendKeys(customCSSFile);
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    if (utils.testFileDownload()) {
+    if (utils.testFileDownload() && utils.verifyFileDownload()) {
       element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("span", "Download"))
       .click().then(function() {
         var actualFile = utils.makeSavedFilePath('custom_stylesheet.css');
