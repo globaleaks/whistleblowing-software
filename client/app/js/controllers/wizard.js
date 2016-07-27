@@ -1,26 +1,10 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', '$uibModal', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS',
-                    function($scope, $location, $route, $http, $uibModal, Authentication, Admin, AdminUtils, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS',
+                    function($scope, $location, $route, $http, Authentication, Admin, AdminUtils, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;
 
     var finished = false;
-
-    $scope.open_modal_allow_unencrypted = function() {
-      if (!$scope.wizard.node.allow_unencrypted) {
-        return;
-      }
-
-      var modalInstance = $uibModal.open({
-        templateUrl: 'views/partials/disable_encryption.html',
-        controller: 'DisableEncryptionCtrl'
-      });
-
-      modalInstance.result.then(function(result){
-        $scope.wizard.node.allow_unencrypted = result;
-      });
-    };
-
 
     $scope.finish = function() {
       if (!finished) {
