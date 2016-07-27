@@ -242,6 +242,8 @@ th {
   border: 1px solid #ddd;
   border-radius: 5px 5px 0 0;
   box-shadow: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .wizard-block .title {
