@@ -593,8 +593,7 @@ InternalTipDesc = {
 WizardDesc = {
     'node': {
       'name': unicode,
-      'description': unicode,
-      'allow_unencrypted': bool
+      'description': unicode
     },
     'admin': {
       'password': unicode,
