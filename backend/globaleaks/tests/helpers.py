@@ -55,8 +55,6 @@ VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
-FIXTURES_PATH = os.path.join(TEST_DIR, 'fixtures')
-
 PGPKEYS = {}
 
 KEYS_PATH = os.path.join(TEST_DIR, 'keys')
@@ -123,24 +121,6 @@ def export_fixture(*models):
 
 
 @transact
-def import_fixture(store, fixture):
-    """
-    Import a valid json object holding all informations, and stores them in the database.
-
-    :return: The traditional deferred used for transaction in GlobaLeaks.
-    """
-    data = load_json_file(os.path.join(FIXTURES_PATH, fixture))
-    for mock in data:
-       for k in mock['fields']:
-           if k.endswidh('_id') and mock['fields'][k] == '':
-               del mock['fields'][k]
-
-       mock_class = getattr(models, mock['class'])
-       models.db_forge_obj(store, mock_class, mock['fields'])
-       store.commit()
-
-
-@transact
 def update_node_encryption_setting(store, allow_unencrypted):
     store.find(models.Node).one().allow_unencrypted = allow_unencrypted
 
@@ -203,9 +183,6 @@ class TestGL(unittest.TestCase):
             )
         else:
             yield db.init_db()
-
-        for fixture in getattr(self, 'fixtures', []):
-            yield import_fixture(fixture)
 
         allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
         yield update_node_encryption_setting(allow_encrypted)
