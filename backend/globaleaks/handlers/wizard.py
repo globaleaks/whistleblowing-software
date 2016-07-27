@@ -31,7 +31,6 @@ def wizard(store, request, language):
         node.description[language] = request['node']['name']
         node.header_title_homepage[language] = request['node']['name']
         node.presentation[language] = request['node']['name']
-        node.allow_unencrypted = request['node']['allow_unencrypted']
         node.wizard_done = True
 
         context = db_create_context(store, request['context'], language)
