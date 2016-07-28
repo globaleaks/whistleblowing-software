@@ -1,6 +1,15 @@
 PRAGMA foreign_keys = ON;
 PRAGMA auto_vacuum = FULL;
 
+CREATE TABLE static_l10n (
+    model TEXT NOT NULL,
+    var_name TEXT NOT NULL,
+    lang TEXT NOT NULL,
+    value TEXT NOT NULL,
+    def_val TEXT NOT NULL,
+    PRIMARY KEY (var_name, lang)
+);
+
 CREATE TABLE user (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
