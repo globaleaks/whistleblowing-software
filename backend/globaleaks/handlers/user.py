@@ -13,7 +13,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
 
 
 def parse_pgp_options(user, request):
@@ -29,11 +29,9 @@ def parse_pgp_options(user, request):
 
     if remove_key:
         # In all the cases below, the key is marked disabled as request
-        user.pgp_key_status = u'disabled'
-        user.pgp_key_info = None
-        user.pgp_key_public = None
-        user.pgp_key_fingerprint = None
-        user.pgp_key_expiration = None
+        user.pgp_key_public = ''
+        user.pgp_key_fingerprint = ''
+        user.pgp_key_expiration = datetime_null()
 
     elif pgp_key_public != '':
         gnob = GLBPGP()
@@ -43,8 +41,6 @@ def parse_pgp_options(user, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            user.pgp_key_status = u'enabled'
-            user.pgp_key_info = result['info']
             user.pgp_key_public = pgp_key_public
             user.pgp_key_fingerprint = result['fingerprint']
             user.pgp_key_expiration = result['expiration']
@@ -83,11 +79,9 @@ def user_serialize_user(user, language):
         'timezone': user.timezone,
         'password_change_needed': user.password_change_needed,
         'password_change_date': datetime_to_ISO8601(user.password_change_date),
-        'pgp_key_info': user.pgp_key_info,
         'pgp_key_fingerprint': user.pgp_key_fingerprint,
         'pgp_key_public': user.pgp_key_public,
         'pgp_key_expiration': datetime_to_ISO8601(user.pgp_key_expiration),
-        'pgp_key_status': user.pgp_key_status,
         'pgp_key_remove': False,
         'picture': user.picture.data if user.picture is not None else ''
     }
