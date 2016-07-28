@@ -56,11 +56,6 @@ describe('admin add, configure, and delete users', function() {
     var editUsrForm = element(by.xpath(path));
     editUsrForm.element(by.css('.actionButtonEdit')).click();
     
-    // Pick Alaskan time zone for Giovanni
-    var tz = "(GMT -9:00) Alaska";
-    var tzBox = editUsrForm.element(by.cssContainingText('option', tz));
-    tzBox.click();
-    
     // Add a description 
     var descriptBox = editUsrForm.element(by.model('user.description'));
     var words = "Description of recipient 2";
@@ -73,9 +68,7 @@ describe('admin add, configure, and delete users', function() {
     // Click Save and check the fields
     editUsrForm.element(by.css('.actionButtonSave')).click();
     editUsrForm.element(by.css('.actionButtonEdit')).click();
-    editUsrForm.evaluate('user').then(function(userObj) {
-        expect(userObj.timezone).toEqual(-9);
-    });
+
     descriptBox.getAttribute('value').then(function(savedDescript) {
         expect(savedDescript).toEqual(words);
     });

@@ -123,7 +123,6 @@ class ReceiverInstance(BaseHandler):
     """
     This handler allow receivers to modify some of their fields:
         - language
-        - timezone
         - password
         - notification settings
         - pgp key

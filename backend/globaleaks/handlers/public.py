@@ -54,7 +54,6 @@ def db_serialize_node(store, language):
         'languages_enabled': node.languages_enabled,
         'languages_supported': LANGUAGES_SUPPORTED,
         'default_language': node.default_language,
-        'default_timezone': node.default_timezone,
         'maximum_namesize': node.maximum_namesize,
         'maximum_textsize': node.maximum_textsize,
         'maximum_filesize': node.maximum_filesize,

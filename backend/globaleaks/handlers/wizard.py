@@ -50,7 +50,6 @@ def wizard(store, request, language):
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,
-            'timezone': node.default_timezone,
             'password_change_needed': False,
             'pgp_key_remove': False,
             'pgp_key_fingerprint': '',

@@ -129,6 +129,31 @@ class WhistleblowerTip_v_32(Model):
     access_counter = Int(default=0)
 
 
+class User_v_32(Model):
+    __storm_table__ = 'user'
+    creation_date = DateTime(default_factory=datetime_now)
+    username = Unicode(validator=shorttext_v)
+    password = Unicode()
+    salt = Unicode()
+    deletable = Bool(default=True)
+    name = Unicode(validator=shorttext_v)
+    description = JSON(validator=longlocal_v)
+    public_name = Unicode(validator=shorttext_v)
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime(default_factory=datetime_null)
+    mail_address = Unicode()
+    language = Unicode()
+    timezone = Int()
+    password_change_needed = Bool(default=True)
+    password_change_date = DateTime(default_factory=datetime_null)
+    pgp_key_info = Unicode(default=u'')
+    pgp_key_fingerprint = Unicode(default=u'')
+    pgp_key_public = Unicode(default=u'')
+    pgp_key_expiration = DateTime(default_factory=datetime_null)
+    pgp_key_status = Unicode(default=u'disabled')
+
+
 class MigrationScript(MigrationBase):
     def migrate_InternalTip(self):
         old_objs = self.store_old.find(self.model_from['InternalTip'])
