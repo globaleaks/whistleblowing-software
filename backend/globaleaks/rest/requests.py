@@ -117,8 +117,7 @@ UserUserDesc = {
     'pgp_key_fingerprint': unicode,
     'pgp_key_expiration': unicode,
     'pgp_key_public': unicode,
-    'language': unicode,
-    'timezone': int
+    'language': unicode
 }
 
 AdminUserDesc = UserUserDesc # currently the same
@@ -138,8 +137,7 @@ ReceiverReceiverDesc = {
     'pgp_key_expiration': unicode,
     'pgp_key_public': unicode,
     'tip_notification': bool,
-    'language': unicode,
-    'timezone': int
+    'language': unicode
 }
 
 ReceiverOperationDesc = {
@@ -176,7 +174,6 @@ AdminNodeDesc = {
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
-    'default_timezone': int,
     'default_password': unicode,
     'maximum_namesize': int,
     'maximum_textsize': int,

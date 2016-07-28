@@ -368,7 +368,7 @@ def ISO8601_to_day_str(isodate, tz=0):
                     minute=int(isodate[14:16]),
                     second=int(isodate[17:19]))
 
-    if tz:
+    if tz != 0:
         tz_i, tz_d = divmod(tz, 1)
         tz_d, _  = divmod(tz_d * 100, 1)
         date += timedelta(hours=tz_i, minutes=tz_d)
@@ -390,7 +390,7 @@ def ISO8601_to_pretty_str(isodate, tz=0):
                     minute=int(isodate[14:16]),
                     second=int(isodate[17:19]) )
 
-    if tz:
+    if tz != 0:
         tz_i, tz_d = divmod(tz, 1)
         tz_d, _  = divmod(tz_d * 100, 1)
         date += timedelta(hours=tz_i, minutes=tz_d)

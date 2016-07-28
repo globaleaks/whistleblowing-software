@@ -195,7 +195,6 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy.default_password = node.default_password
     GLSettings.memory_copy.default_language = node.default_language
-    GLSettings.memory_copy.default_timezone = node.default_timezone
     GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
     GLSettings.memory_copy.receipt_salt  = node.receipt_salt

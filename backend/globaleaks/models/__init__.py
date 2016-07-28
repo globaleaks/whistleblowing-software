@@ -180,7 +180,6 @@ class User(Model):
     last_login = DateTime(default_factory=datetime_null)
     mail_address = Unicode()
     language = Unicode()
-    timezone = Int()
     password_change_needed = Bool(default=True)
     password_change_date = DateTime(default_factory=datetime_null)
 
@@ -200,8 +199,6 @@ class User(Model):
                     'public_name']
 
     localized_keys = ['description']
-
-    int_keys = ['timezone']
 
     bool_keys = ['deletable', 'password_change_needed']
 
@@ -457,7 +454,6 @@ class Node(Model):
 
     languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
     default_language = Unicode(validator=shorttext_v, default=u'en')
-    default_timezone = Int(default=0)
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
 
     description = JSON(validator=longlocal_v, default=empty_localization)
@@ -554,7 +550,6 @@ class Node(Model):
         'maximum_namesize',
         'maximum_textsize',
         'maximum_filesize',
-        'default_timezone',
         'submission_minimum_delay',
         'submission_maximum_ttl',
         'threshold_free_disk_megabytes_high',
