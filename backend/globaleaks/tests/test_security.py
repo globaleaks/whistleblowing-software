@@ -128,7 +128,6 @@ class TestPGP(helpers.TestGL):
         fake_receiver_desc = {
             'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PUB'],
             'pgp_key_fingerprint': u'ECAF2235E78E71CD95365843C7B190543CAA7585',
-            'pgp_key_status': u'enabled',
             'username': u'fake@username.net',
         }
 
@@ -148,7 +147,6 @@ class TestPGP(helpers.TestGL):
 
         fake_receiver_desc = {
             'pgp_key_public': helpers.PGPKEYS['VALID_PGP_KEY1_PRV'],
-            'pgp_key_status': u'enabled',
             'pgp_key_fingerprint': u'ECAF2235E78E71CD95365843C7B190543CAA7585',
             'username': u'fake@username.net',
         }

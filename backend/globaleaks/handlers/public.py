@@ -293,7 +293,6 @@ def serialize_receiver(receiver, language):
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
-        'pgp_key_status': receiver.user.pgp_key_status,
         'contexts': [c.id for c in receiver.contexts],
         'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
     }

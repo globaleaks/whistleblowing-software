@@ -393,36 +393,16 @@ class GLBPGP(object):
             log.err("Error in PGP list_keys: %s" % excep)
             raise errors.PGPKeyInvalid
 
-        info = u""
         expiration = datetime.utcfromtimestamp(0)
         for key in all_keys:
             if key['fingerprint'] == fingerprint:
                 if key['expires']:
                     expiration = datetime.utcfromtimestamp(int(key['expires']))
-                    exp_date = datetime_to_day_str(expiration)
-                else:
-                    exp_date = u'Never'
-
-                info += "Key length: %s\n" % key['length']
-                info += "Key expiration: %s\n" % exp_date
-
-                try:
-                    for uid in key['uids']:
-                        info += "\t%s\n" % uid
-                except Exception as excep:
-                    log.err("Error in PGP key format/properties: %s" % excep)
-                    raise errors.PGPKeyInvalid
-
                 break
-
-        if not len(info):
-            log.err("Key apparently imported but unable to reload it")
-            raise errors.PGPKeyInvalid
 
         return {
             'fingerprint': fingerprint,
             'expiration': expiration,
-            'info': info
         }
 
     def encrypt_file(self, key_fingerprint, input_file, output_path):
