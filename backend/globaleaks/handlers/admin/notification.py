@@ -1,15 +1,14 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
+from globaleaks.models.l10n import Notification_L10N
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
 from globaleaks.utils.utility import log, datetime_to_ISO8601
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
 
@@ -59,7 +58,7 @@ def parse_pgp_options(notification, request):
             gnob.destroy_environment()
 
 
-def admin_serialize_notification(notif, language):
+def admin_serialize_notification(store, notif, language):
     ret_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
@@ -86,12 +85,13 @@ def admin_serialize_notification(notif, language):
         'exception_email_pgp_key_remove': False
     }
 
-    return get_localized_values(ret_dict, notif, notif.localized_keys, language)
+    notif_l10n = Notification_L10N(store)
+    return notif_l10n.fill_localized_values(ret_dict, language)
 
 
 def db_get_notification(store, language):
     notif = store.find(Notification).one()
-    return admin_serialize_notification(notif, language)
+    return admin_serialize_notification(store, notif, language)
 
 
 @transact_ro
@@ -103,24 +103,24 @@ def get_notification(store, language):
 def update_notification(store, request, language):
     notif = store.find(Notification).one()
 
-    fill_localized_keys(request, Notification.localized_keys, language)
+    notif_l10n = Notification_L10N(store)
+    log.debug("Updating lang: %s" % language)
+    notif_l10n.update_model(request, language)
 
     if request['reset_templates']:
-        appdata_dict = load_appdata()
-        for k in appdata_dict['templates']:
-            request[k] = appdata_dict['templates'][k]
+        notif_l10n.reset_templates()
 
     if request['password'] == u'':
       log.debug('No password set. Using pw already in the DB.')
       request['password'] = notif.password
 
-    notif.update(request)
+    notif.update(request, static_l10n=True)
 
     parse_pgp_options(notif, request)
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
 
-    return admin_serialize_notification(notif, language)
+    return admin_serialize_notification(store, notif, language)
 
 
 class NotificationInstance(BaseHandler):

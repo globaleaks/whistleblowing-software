@@ -10,6 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.models.l10n import EnabledLanguage, Node_L10N
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -36,7 +37,7 @@ def db_admin_serialize_node(store, language):
         'version': node.version,
         'version_db': node.version_db,
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': node.languages_enabled,
+        'languages_enabled': EnabledLanguage.get_all(store),
         'default_language': node.default_language,
         'default_timezone': node.default_timezone,
         'default_password': node.default_password,
@@ -88,7 +89,8 @@ def db_admin_serialize_node(store, language):
         'basic_auth_password': node.basic_auth_password
     }
 
-    return get_localized_values(ret_dict, node, models.Node.localized_keys, language)
+    node_l10n = Node_L10N(store)
+    return node_l10n.fill_localized_values(ret_dict, language)
 
 
 @transact_ro
@@ -105,30 +107,26 @@ def db_update_node(store, request, language):
     :return: a dictionary representing the serialization of the node
     """
     node = store.find(models.Node).one()
-
-    fill_localized_keys(request, models.Node.localized_keys, language)
-
+    languages_enabled = EnabledLanguage.get_all(store)
     # verify that the languages enabled are valid 'code' in the languages supported
-    node.languages_enabled = []
     for lang_code in request['languages_enabled']:
-        if lang_code in LANGUAGES_SUPPORTED_CODES:
-            node.languages_enabled.append(lang_code)
-        else:
+        if lang_code not in LANGUAGES_SUPPORTED_CODES:
             raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
+        if lang_code not in languages_enabled:
+            store.add(EnabledLanguage(lang_code))
 
-    if not len(node.languages_enabled):
+    if len(request['languages_enabled']) < 1:
         raise errors.InvalidInputFormat("Missing enabled languages")
 
     # enforcing of default_language usage (need to be set, need to be _enabled)
     if request['default_language']:
-        if request['default_language'] not in node.languages_enabled:
+      if request['default_language'] not in languages_enabled:
             raise errors.InvalidInputFormat("Invalid lang code as default")
 
-        node.default_language = request['default_language']
+      node.default_language = request['default_language']
 
-    else:
-        node.default_language = node.languages_enabled[0]
-        log.err("Default language not set!? fallback on %s" % node.default_language)
+    node_l10n = Node_L10N(store)
+    node_l10n.update_model(request, language)
 
     node.basic_auth = request['basic_auth']
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
@@ -138,7 +136,7 @@ def db_update_node(store, request, language):
     else:
         node.basic_auth = False
 
-    node.update(request)
+    node.update(request, static_l10n=True)
 
     db_refresh_memory_variables(store)
 

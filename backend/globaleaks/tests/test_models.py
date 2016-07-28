@@ -4,31 +4,42 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.models.l10n import Node_L10N
+from globaleaks.db.appdata import load_appdata
+from globaleaks.models.l10n import Node_L10N, EnabledLanguage
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
 
 class TestStaticL10N(helpers.TestGL):
-    
-    @transact
-    def run_node_mgr(self, store):
-        node = store.find(models.Node).one()
-        # Initialize the Node manager
-        node_l10n = Node_L10N(store, node)
-
-        # Use the Node manager to insert all the defaults
-        node_l10n.place_defaults() 
-
-        # Make a query with the Node manager
-        ret = [r for r in node_l10n.retrieve_lang('en')]
-        self.assertTrue(len(ret) == 3)
 
     @inlineCallbacks
     def test_static_l10n_init(self):
         yield self.run_node_mgr()
-     
+
+    @transact
+    def run_node_mgr(self, store):
+        node = store.find(models.Node).one()
+        # Initialize the Node manager
+        node_l10n = Node_L10N(store)
+
+        # Make a query with the Node manager
+        ret = node_l10n.retrieve_rows('en')
+        self.assertTrue(len(ret) == 18)
+
+    @inlineCallbacks
+    def test_enabled_langs(self):
+        yield self.enable_langs()
+
+    @transact
+    def enable_langs(self, store):
+        res = EnabledLanguage.get_all(store)
+        print res
+
+        self.assertTrue(u'en' in res)
+        self.assertTrue(u'it' in res)
+        self.assertTrue(len(res) == 2)
+
 
 class TestLocalization(helpers.TestGL):
 
@@ -56,7 +67,7 @@ class TestLocalization(helpers.TestGL):
 
     @inlineCallbacks
     def test_l10n_table(self):
-        yield self.create_user_with_descript()        
+        yield self.create_user_with_descript()
         yield self.find_user_l10n()
 
 
