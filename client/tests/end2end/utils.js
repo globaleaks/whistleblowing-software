@@ -41,13 +41,49 @@ browser.getCapabilities().then(function(capabilities) {
   };
 });
 
-exports.waitUntilReady = function (elm, timeout) {
-  var t = timeout === undefined ? 1000 : timeout;
+function genericWait(waitFn, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  return browser.wait(waitFn, t);
+}
+
+exports.browserTimeout = function() {
+  return 30000;
+};
+
+exports.waitUntilEnabled = function (elem, timeout) {
+  genericWait(function() {
+    return elem.isEnabled();
+  }, timeout);
+};
+
+exports.waitUntilClickable = function (elem, timeout) {
+  var EC = protractor.ExpectedConditions;
+  genericWait(EC.elementToBeClickable(elem), timeout);
+};
+
+exports.waitUntilHidden = function(elem, timeout) {
+  if (elem.isPresent()) {
+    var EC = protractor.ExpectedConditions;
+    genericWait(EC.invisibilityOf(elem), timeout);
+  } else {
+    return; // The element is not on the page.
+  }
+};
+
+exports.waitUntilPresent = function (elem, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
   browser.wait(function () {
-    return elm.isPresent();
+    return elem.isPresent();
   }, t);
   browser.wait(function () {
-    return elm.isDisplayed();
+    return elem.isDisplayed();
+  }, t);
+};
+
+exports.waitUntilNotPresent = function (elem, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  browser.wait(function () {
+    return !elem.isPresent();
   }, t);
 };
 
@@ -57,11 +93,11 @@ exports.waitForUrl = function (url) {
       current_url = current_url.split('#')[1];
       return (current_url === url);
     });
-  });
+  }, 20000);
 };
 
-exports.waitForFile = function (filename, timeout) {    
-  var t = timeout === undefined ? 1000 : timeout;    
+exports.waitForFile = function (filename, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(function() {    
     try {   
       var buf = fs.readFileSync(filename);   
@@ -76,11 +112,10 @@ exports.waitForFile = function (filename, timeout) {
 };
 
 exports.emulateUserRefresh = function () {
-  return browser.getCurrentUrl().then(function(current_url) {
+  browser.getCurrentUrl().then(function(current_url) {
     current_url = current_url.split('#')[1];
-    return browser.setLocation('').then(function() {
-      return browser.setLocation(current_url);
-    });
+    browser.setLocation('');
+    browser.setLocation(current_url);
   });
 };
 

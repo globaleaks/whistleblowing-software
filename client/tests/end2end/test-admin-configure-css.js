@@ -1,8 +1,7 @@
 var utils = require('./utils.js');
 
 describe('Admin upload custom CSS', function() {
-
-  it('is the uploaded and available for download', function() {
+  it('should upload a file and the file should be available for download', function() {
     utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
@@ -10,8 +9,11 @@ describe('Admin upload custom CSS', function() {
     var customCSSFile = utils.makeTestFilePath('application-home.css');
 
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-    var inp = element(by.css("div.uploadfile.file-css")).element(by.css("input"));
-    inp.sendKeys(customCSSFile);
+    element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
+
+    // wait until redirect to the first tab of the admin/content section
+    utils.waitUntilPresent(element(by.cssContainingText("label", "Project name")));
+
     element(by.cssContainingText("a", "Theme customization")).click();
 
     if (utils.testFileDownload() && utils.verifyFileDownload()) {
@@ -44,5 +46,16 @@ describe('Custom CSS classes are attached to the interface', function() {
   it('the login button should be hidden on the embedded login page', function() {
     browser.get('/#/login?embed=true');
     expect(EC.invisibilityOf($('#login-button')));
+  });
+
+  it('should allow deletion of the file', function() {
+    utils.login_admin();
+    browser.setLocation('admin/content');
+    element(by.cssContainingText("a", "Theme customization")).click();
+
+    element(by.cssContainingText("a", "Delete")).click();
+
+    // wait until redirect to the first tab of the admin/content section
+    utils.waitUntilPresent(element(by.cssContainingText("label", "Project name")));
   });
 });
