@@ -7,7 +7,13 @@ CREATE TABLE static_l10n (
     lang TEXT NOT NULL,
     value TEXT NOT NULL,
     def_val TEXT NOT NULL,
-    PRIMARY KEY (var_name, lang)
+    PRIMARY KEY (model, var_name, lang),
+    FOREIGN KEY (lang) REFERENCES enabledlanguage ON DELETE CASCADE
+);
+
+create TABLE enabledlanguage (
+    name TEXT NOT NULL,
+    PRIMARY KEY (name)
 );
 
 CREATE TABLE user (
@@ -176,7 +182,6 @@ CREATE TABLE node (
     whistleblowing_button BLOB NOT NULL,
     whistleblowing_receipt_prompt BLOB NOT NULL,
     hidden_service TEXT NOT NULL,
-    languages_enabled BLOB NOT NULL,
     default_language TEXT NOT NULL,
     default_timezone INTEGER,
     default_password TEXT NOT NULL,

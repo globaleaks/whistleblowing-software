@@ -11,8 +11,9 @@ from storm import exceptions
 
 from twisted.internet.defer import succeed, inlineCallbacks
 
-from globaleaks import models,  __version__, DATABASE_VERSION
+from globaleaks import models, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata
+from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
 from globaleaks.handlers.admin import files
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
@@ -58,13 +59,18 @@ def init_db(store):
     node.receipt_salt = generateRandomSalt()
     store.add(node)
 
-    for k in appdata_dict['node']:
-        setattr(node, k, appdata_dict['node'][k])
-
     notification = models.Notification()
-    for k in appdata_dict['templates']:
-        setattr(notification, k, appdata_dict['templates'][k])
     store.add(notification)
+
+    log.debug("Inserting internationalized strings...")
+
+    EnabledLanguage.create_defaults(store)
+
+    node_l10n = Node_L10N(store)
+    node_l10n.create_defaults(appdata_dict['node'])
+
+    notification_l10n = Notification_L10N(store)
+    notification_l10n.create_defaults(appdata_dict['templates'])
 
     logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
@@ -157,6 +163,7 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
+
     node = store.find(models.Node).one()
 
     GLSettings.memory_copy.nodename = node.name
@@ -193,10 +200,15 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy.wbtip_timetolive = node.wbtip_timetolive
 
+
+    # TODO TODO TODO
+    enabled_langs = models.l10n.EnabledLanguage.get_all(store)
+    GLSettings.memory_copy.languages_enabled = enabled_langs
+    # TODO TODO TODO
+
     GLSettings.memory_copy.default_password = node.default_password
     GLSettings.memory_copy.default_language = node.default_language
     GLSettings.memory_copy.default_timezone = node.default_timezone
-    GLSettings.memory_copy.languages_enabled  = node.languages_enabled
 
     GLSettings.memory_copy.receipt_salt  = node.receipt_salt
 

@@ -9,6 +9,7 @@ import os
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.models import l10n
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
@@ -51,7 +52,7 @@ def db_serialize_node(store, language):
         'name': node.name,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
-        'languages_enabled': node.languages_enabled,
+        'languages_enabled': l10n.EnabledLanguage.get_all(store),
         'languages_supported': LANGUAGES_SUPPORTED,
         'default_language': node.default_language,
         'default_timezone': node.default_timezone,
@@ -98,8 +99,8 @@ def db_serialize_node(store, language):
         'script': db_get_file(store, u'script')
     }
 
-    return get_localized_values(ret_dict, node, node.localized_keys, language)
-
+    node_l10n = l10n.Node_L10N(store)
+    return node_l10n.fill_localized_values(ret_dict, language)
 
 @transact_ro
 def serialize_node(store, language):

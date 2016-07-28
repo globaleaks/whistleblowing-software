@@ -71,7 +71,7 @@ class BaseModel(Storm):
         store.add(obj)
         return obj
 
-    def update(self, values=None):
+    def update(self, values=None, static_l10n=False):
         """
         Updated Models attributes from dict.
         """
@@ -104,16 +104,17 @@ class BaseModel(Storm):
                     value = bool(values[k])
                 setattr(self, k, value)
 
-        for k in getattr(self, 'localized_keys'):
-            if k in values and values[k] is not None:
-                value = values[k]
-                previous = getattr(self, k)
+        if not static_l10n:
+            for k in getattr(self, 'localized_keys'):
+                if k in values and values[k] is not None:
+                    value = values[k]
+                    previous = getattr(self, k)
 
-                if previous and isinstance(previous, dict):
-                    previous.update(value)
-                    setattr(self, k, previous)
-                else:
-                    setattr(self, k, value)
+                    if previous and isinstance(previous, dict):
+                        previous.update(value)
+                        setattr(self, k, previous)
+                    else:
+                        setattr(self, k, value)
 
         for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
@@ -157,15 +158,17 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
 
-class Static_L10N(BaseModel):
+class Static_L10N(Storm):
     __storm_table__ = 'static_l10n'
+    __storm_primary__ = 'model', 'var_name', 'lang'
+
     model = Unicode()
-    var_name = Unicode(primary=True)
+    var_name = Unicode()
     lang = Unicode()
     value = Unicode()
     def_val = Unicode()
 
-    def __init__(self, model, lang, var_name, def_val):
+    def __init__(self, model, lang, var_name, def_val=u''):
       self.model = model
       self.lang = lang
       self.var_name = var_name
@@ -501,7 +504,6 @@ class Node(Model):
 
     receipt_salt = Unicode(validator=shorttext_v)
 
-    languages_enabled = JSON(default=LANGUAGES_SUPPORTED_CODES)
     default_language = Unicode(validator=shorttext_v, default=u'en')
     default_timezone = Int(default=0)
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
