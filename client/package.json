@@ -12,7 +12,7 @@
     "bower": "*"
   },
   "devDependencies": {
-    "coveralls": "2.11.11",
+    "coveralls": "2.11.12",
     "eslint": "3.1.1",
     "firefox-profile": "0.4.0",
     "grunt": "1.0.1",
