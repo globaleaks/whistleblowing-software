@@ -77,8 +77,8 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.responses[1], user_id=self.rcvr_id, role='receiver')
         yield handler.put()
 
-        self.assertIsNone(self.responses[2]['pgp_key_fingerprint'])
-        self.assertIsNone(self.responses[2]['pgp_key_public'])
+        self.assertEqual(self.responses[2]['pgp_key_fingerprint'], '')
+        self.assertEqual(self.responses[2]['pgp_key_public'], '')
         self.assertEqual(self.responses[2]['pgp_key_expiration'], '1970-01-01T00:00:00Z')
 
     @inlineCallbacks
