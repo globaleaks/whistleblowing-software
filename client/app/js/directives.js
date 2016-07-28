@@ -140,7 +140,7 @@ directive('imageUpload', function () {
   };
 }).
 // pgpPubKeyDisplay displays the important details from a public key.
-directive('pgpPubkeyDisplay', ['glbcKeyLib', function(glbcKeyLib) {
+directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
   // Create object that displays relevant key details to the user. This function
   // returns fingerprint, key id, creation date, and expiration date. If the parse
   // fails the function returns undefined.
@@ -158,7 +158,7 @@ directive('pgpPubkeyDisplay', ['glbcKeyLib', function(glbcKeyLib) {
       return;
     }
 
-    var res = openpgp.key.readArmored(armoredText);
+    var res = pgp.key.readArmored(armoredText);
 
     if (angular.isDefined(res.err)) {
       // There were errors. Bail out.

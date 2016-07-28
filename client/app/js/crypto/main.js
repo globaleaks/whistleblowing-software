@@ -4,7 +4,7 @@ angular.module('GLBrowserCrypto', [])
 .factory('pgp', function() {
   return window.openpgp;
 })
-.factory('glbcUtil', ['pgp', function(pgp) {
+.factory('glbcUtil', [function() {
   return {
     str2Uint8Array: function(str) {
       var result = new Uint8Array(str.length);
@@ -62,7 +62,7 @@ angular.module('GLBrowserCrypto', [])
     }
   };
 }])
-.factory('glbcKeyLib', ['$q', 'pgp', 'glbcUtil', function($q, pgp, glbcUtil) {
+.factory('glbcKeyLib', ['$q', 'pgp', function($q, pgp) {
     return {
       /**
        * @decription checks to see if passed text is an ascii armored GPG
