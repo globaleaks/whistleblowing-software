@@ -4,9 +4,60 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.models.l10n import Node_L10N
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
+from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
+
+class TestStaticL10N(helpers.TestGL):
+    
+    @transact
+    def run_node_mgr(self, store):
+        node = store.find(models.Node).one()
+        # Initialize the Node manager
+        node_l10n = Node_L10N(store, node)
+
+        # Use the Node manager to insert all the defaults
+        node_l10n.place_defaults() 
+
+        # Make a query with the Node manager
+        ret = [r for r in node_l10n.retrieve_lang('en')]
+        self.assertTrue(len(ret) == 3)
+
+    @inlineCallbacks
+    def test_static_l10n_init(self):
+        yield self.run_node_mgr()
+     
+
+class TestLocalization(helpers.TestGL):
+
+    @transact
+    def create_user_with_descript(self, store):
+        req = self.get_dummy_user('custodian', 'duke-McMockingHam')
+        user = db_create_user(store, req, 'en')
+
+        d = {'en': 'Lord of Hammington', 'it': 'Un coglione', 'de': 'Deutsch'}
+
+        for k, v in d.iteritems():
+            usr_l10n = models.User_L10N({
+                'id': user.id,
+                'description': v,
+                'lang': k,
+            })
+            store.add(usr_l10n)
+            print usr_l10n
+
+    @transact
+    def find_user_l10n(self, store):
+        res = [x for x in store.find(models.User_L10N)]
+        print res
+        self.assertEqual(len(res), 3)
+
+    @inlineCallbacks
+    def test_l10n_table(self):
+        yield self.create_user_with_descript()        
+        yield self.find_user_l10n()
 
 
 class TestModels(helpers.TestGL):

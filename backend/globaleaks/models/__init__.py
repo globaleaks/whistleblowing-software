@@ -157,6 +157,50 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
 
+class Static_L10N(BaseModel):
+    __storm_table__ = 'static_l10n'
+    model = Unicode()
+    var_name = Unicode(primary=True)
+    lang = Unicode()
+    value = Unicode()
+    def_val = Unicode()
+
+    def __init__(self, model, lang, var_name, def_val):
+      self.model = model
+      self.lang = lang
+      self.var_name = var_name
+      self.value = def_val
+      self.def_val = def_val
+
+    def __repr__(self):
+      return "<Static_L10N %s.%s.%s::'%s'>" % (self.model, self.var_name, 
+                                               self.lang, self.value[:5])
+
+
+
+class User_L10N(Storm):
+    __storm_table__ = 'user_l10n'
+
+    def __setattr__(self, name, value):
+        # face to face
+        if isinstance(value, str):
+            value = unicode(value)
+        return super(Storm, self).__setattr__(name, value)
+
+    def __init__(self, id, lang, values=None):
+        self.id = id
+        self.lang = lang
+        self.update(values)
+
+    def update(self, values):
+        for k, v in values.iteritems():
+            # TODO if k is in localized strs
+            self[k] = v
+
+    id = Unicode(primary=True)
+    lang = Unicode()
+    description = Unicode()
+
 class User(Model):
     """
     This model keeps track of globaleaks users.
