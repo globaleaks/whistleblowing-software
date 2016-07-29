@@ -182,7 +182,7 @@ class TestGL(unittest.TestCase):
                 os.path.join(GLSettings.working_path, 'db', GLSettings.db_file_name)
             )
         else:
-            yield db.init_db()
+            yield db.init_db(use_single_lang=True)
 
         allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
         yield update_node_encryption_setting(allow_encrypted)

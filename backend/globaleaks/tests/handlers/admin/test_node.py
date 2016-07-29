@@ -44,7 +44,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
                                 'version', 'version_db',
-                                'configured', 'wizard_done']:
+                                'configured', 'wizard_done',
+                                'languages_enabled']:
                 continue
 
             self.assertEqual(self.responses[0][response_key],

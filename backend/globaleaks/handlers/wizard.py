@@ -10,6 +10,7 @@ from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models.l10n import EnabledLanguage
+from globaleaks.models import Static_L10N as s_l10n
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -27,19 +28,21 @@ def wizard(store, request, language):
       raise errors.ForbiddenOperation
     try:
         node.default_language = language
-        node.languages_enabled = [language]
-        node.name = request['node']['name']
-        node.description[language] = request['node']['name']
-        node.header_title_homepage[language] = request['node']['name']
-        node.presentation[language] = request['node']['name']
+
+        nn = unicode(request['node']['name'])
+        node.name = nn
+        s_l10n.get_one(store, language, 'node', 'description').value = nn
+        s_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
+        s_l10n.get_one(store, language, 'node', 'presentation').value = nn
+
         node.allow_unencrypted = request['node']['allow_unencrypted']
         node.wizard_done = True
 
         context = db_create_context(store, request['context'], language)
 
-        enabled_languages = EnabledLanguage.get_all(store)
-        enabled_languages.remove(language)
-        for lang_code in enabled_languages:
+        langs_to_drop = EnabledLanguage.get_all(store)
+        langs_to_drop.remove(language)
+        for lang_code in langs_to_drop:
             EnabledLanguage.remove_old_lang(store, lang_code)
 
         request['receiver']['contexts'] = [context.id]

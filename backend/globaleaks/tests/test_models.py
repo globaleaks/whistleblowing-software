@@ -34,11 +34,9 @@ class TestStaticL10N(helpers.TestGL):
     @transact
     def enable_langs(self, store):
         res = EnabledLanguage.get_all(store)
-        print res
 
         self.assertTrue(u'en' in res)
-        self.assertTrue(u'it' in res)
-        self.assertTrue(len(res) == 2)
+        self.assertTrue(len(res) == 1)
 
 
 class TestLocalization(helpers.TestGL):

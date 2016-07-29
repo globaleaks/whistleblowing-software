@@ -48,7 +48,7 @@ def db_create_tables(store):
 
 
 @transact
-def init_db(store):
+def init_db(store, use_single_lang=False):
     db_create_tables(store)
     appdata_dict = db_update_appdata(store)
 
@@ -64,15 +64,17 @@ def init_db(store):
 
     log.debug("Inserting internationalized strings...")
 
-    EnabledLanguage.add_supported_langs(store)
+    if not use_single_lang:
+        EnabledLanguage.add_supported_langs(store)
+        node_l10n = Node_L10N(store)
+        node_l10n.create_defaults(appdata_dict)
 
-    node_l10n = Node_L10N(store)
-    node_l10n.create_defaults(appdata_dict)
+        notification_l10n = Notification_L10N(store)
+        notification_l10n.create_defaults(appdata_dict)
+    else:
+        EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
 
-    notification_l10n = Notification_L10N(store)
-    notification_l10n.create_defaults(appdata_dict)
-
-    logo_data = ''
+        logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo_data = logo_file.read()
 

@@ -32,7 +32,6 @@ def db_admin_serialize_node(store, language):
 
     ret_dict = {
         'name': node.name,
-        'presentation': node.presentation,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
         'version': node.version,
