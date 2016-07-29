@@ -64,13 +64,13 @@ def init_db(store):
 
     log.debug("Inserting internationalized strings...")
 
-    EnabledLanguage.create_defaults(store)
+    EnabledLanguage.add_supported_langs(store)
 
     node_l10n = Node_L10N(store)
-    node_l10n.create_defaults(appdata_dict['node'])
+    node_l10n.create_defaults(appdata_dict)
 
     notification_l10n = Notification_L10N(store)
-    notification_l10n.create_defaults(appdata_dict['templates'])
+    notification_l10n.create_defaults(appdata_dict)
 
     logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:

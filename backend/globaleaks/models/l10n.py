@@ -9,10 +9,6 @@ from globaleaks.utils.utility import log
 from . import BaseModel, Node, Notification, Static_L10N
 
 
-def app_supported_langs():
-    return iter(LANGUAGES_SUPPORTED_CODES)
-
-
 class EnabledLanguage(BaseModel):
     name = Unicode(primary=True)
 
@@ -23,13 +19,26 @@ class EnabledLanguage(BaseModel):
         return self.name
 
     @classmethod
+    def add_new_lang(cls, store, lang_code, app_data):
+        store.add(cls(lang_code))
+
+        Notification_L10N(store).create_default(lang_code, app_data)
+        Node_L10N(store).create_default(lang_code, app_data)
+
+    @classmethod
+    def remove_old_lang(cls, store, lang_code):
+        obj = store.find(cls, cls.name == unicode(lang_code)).one()
+        store.remove(obj)
+
+    @classmethod
     def get_all(cls, store):
         return [str(e) for e in store.find(cls)]
 
     @classmethod
-    def create_defaults(cls, store):
-        store.add(cls("en"))
-        store.add(cls("it"))
+    def add_supported_langs(cls, store):
+        for lang_code in LANGUAGES_SUPPORTED_CODES:
+            store.add(cls(lang_code))
+
 
 class Static_L10N_Map(object):
 
@@ -38,17 +47,19 @@ class Static_L10N_Map(object):
         self.model = model
         self.model_name = unicode(model.__storm_table__)
 
-    def create_defaults(self, app_data):
+    def create_default(self, lang_code, l10n_data_src):
         for key in self.model.localized_keys:
-            for lang in EnabledLanguage.get_all(self.store):
-                if key in app_data:
-                    lang_dict = app_data[key]
-                    val = lang_dict[lang]
-                    entry = Static_L10N(self.model_name, lang, key, val)
-                else:
-                    entry = Static_L10N(self.model_name, lang, key)
-                self.store.add(entry)
-                
+            if key in l10n_data_src and lang_code in l10n_data_src[key]:
+                val = l10n_data_src[key][lang_code]
+                entry = Static_L10N(lang_code, self.model_name, key, val)
+            else:
+                entry = Static_L10N(lang_code, self.model_name, key)
+            self.store.add(entry)
+
+    def create_defaults(self, appdata_dict):
+        for lang_code in EnabledLanguage.get_all(self.store):
+            self.create_default(lang_code, appdata_dict)
+
     def retrieve_rows(self, lang):
         selector = And(Static_L10N.model == self.model_name, Static_L10N.lang == unicode(lang))
         return [r for r in self.store.find(Static_L10N, selector)]
@@ -77,10 +88,19 @@ class Node_L10N(Static_L10N_Map):
     def __init__(self, store):
         Static_L10N_Map.__init__(self, Node, store)
 
+    def create_default(self, lang_code, appdata_dict):
+        l10n_data_src = appdata_dict['node']
+        Static_L10N_Map.create_default(self, lang_code, l10n_data_src)
+        
+
 class Notification_L10N(Static_L10N_Map):
 
     def __init__(self, store):
         Static_L10N_Map.__init__(self, Notification, store)
+
+    def create_default(self, lang_code, appdata_dict):
+        l10n_data_src = appdata_dict['templates']
+        Static_L10N_Map.create_default(self, lang_code, l10n_data_src)
 
     def reset_templates(self):
         selector = And(Static_L10N.model == self.model_name)
