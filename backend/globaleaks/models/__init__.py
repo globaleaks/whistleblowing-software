@@ -162,22 +162,22 @@ class Static_L10N(Storm):
     __storm_table__ = 'static_l10n'
     __storm_primary__ = 'model', 'var_name', 'lang'
 
+    lang = Unicode()
     model = Unicode()
     var_name = Unicode()
-    lang = Unicode()
     value = Unicode()
     def_val = Unicode()
 
-    def __init__(self, model, lang, var_name, def_val=u''):
-      self.model = model
-      self.lang = lang
-      self.var_name = var_name
-      self.value = def_val
-      self.def_val = def_val
+    def __init__(self, lang, model, var_name, def_val=u''):
+      self.lang = unicode(lang)
+      self.model = unicode(model)
+      self.var_name = unicode(var_name)
+      self.value = unicode(def_val)
+      self.def_val = unicode(def_val)
 
     def __repr__(self):
-      return "<Static_L10N %s.%s.%s::'%s'>" % (self.model, self.var_name, 
-                                               self.lang, self.value[:5])
+      return "<Static_L10N %s::%s.%s::'%s'>" % (self.lang, self.model, 
+                                                   self.var_name, self.value[:5])
 
 
 
@@ -508,12 +508,6 @@ class Node(Model):
     default_timezone = Int(default=0)
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
 
-    description = JSON(validator=longlocal_v, default=empty_localization)
-    presentation = JSON(validator=longlocal_v, default=empty_localization)
-    footer = JSON(validator=longlocal_v, default=empty_localization)
-    security_awareness_title = JSON(validator=longlocal_v, default=empty_localization)
-    security_awareness_text = JSON(validator=longlocal_v, default=empty_localization)
-
     # Advanced settings
     maximum_namesize = Int(validator=natnum_v, default=128)
     maximum_textsize = Int(validator=natnum_v, default=4096)
@@ -551,28 +545,12 @@ class Node(Model):
 
     enable_experimental_features = Bool(default=False)
 
-    whistleblowing_question = JSON(validator=longlocal_v, default=empty_localization)
-    whistleblowing_button = JSON(validator=longlocal_v, default=empty_localization)
-    whistleblowing_receipt_prompt = JSON(validator=longlocal_v, default=empty_localization)
-
     simplified_login = Bool(default=True)
 
     enable_custom_privacy_badge = Bool(default=False)
-    custom_privacy_badge_tor = JSON(validator=longlocal_v, default=empty_localization)
-    custom_privacy_badge_none = JSON(validator=longlocal_v, default=empty_localization)
-
-    header_title_homepage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_submissionpage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_receiptpage = JSON(validator=longlocal_v, default=empty_localization)
-    header_title_tippage = JSON(validator=longlocal_v, default=empty_localization)
-
-    widget_comments_title = JSON(validator=shortlocal_v, default=empty_localization)
-    widget_messages_title = JSON(validator=shortlocal_v, default=empty_localization)
-    widget_files_title = JSON(validator=shortlocal_v, default=empty_localization)
 
     landing_page = Unicode(default=u'homepage')
 
-    contexts_clarification = JSON(validator=longlocal_v, default=empty_localization)
     show_small_context_cards = Bool(default=False)
     show_contexts_in_alphabetical_order = Bool(default=False)
 
@@ -674,48 +652,6 @@ class Notification(Model):
 
     security = Unicode(validator=shorttext_v, default=u'TLS')
     # security_types: 'TLS', 'SSL'
-
-    # Admin
-    admin_pgp_alert_mail_title = JSON(validator=longlocal_v)
-    admin_pgp_alert_mail_template = JSON(validator=longlocal_v)
-    admin_anomaly_mail_template = JSON(validator=longlocal_v)
-    admin_anomaly_mail_title = JSON(validator=longlocal_v)
-    admin_anomaly_disk_low = JSON(validator=longlocal_v)
-    admin_anomaly_disk_medium = JSON(validator=longlocal_v)
-    admin_anomaly_disk_high = JSON(validator=longlocal_v)
-    admin_anomaly_activities = JSON(validator=longlocal_v)
-    admin_test_static_mail_template = JSON(validator=longlocal_v)
-    admin_test_static_mail_title = JSON(validator=longlocal_v)
-
-    # Receiver
-    tip_mail_template = JSON(validator=longlocal_v)
-    tip_mail_title = JSON(validator=longlocal_v)
-    file_mail_template = JSON(validator=longlocal_v)
-    file_mail_title = JSON(validator=longlocal_v)
-    comment_mail_template = JSON(validator=longlocal_v)
-    comment_mail_title = JSON(validator=longlocal_v)
-    message_mail_template = JSON(validator=longlocal_v)
-    message_mail_title = JSON(validator=longlocal_v)
-    tip_expiration_mail_template = JSON(validator=longlocal_v)
-    tip_expiration_mail_title = JSON(validator=longlocal_v)
-    pgp_alert_mail_title = JSON(validator=longlocal_v)
-    pgp_alert_mail_template = JSON(validator=longlocal_v)
-    receiver_notification_limit_reached_mail_template = JSON(validator=longlocal_v)
-    receiver_notification_limit_reached_mail_title = JSON(validator=longlocal_v)
-
-    export_template = JSON(validator=longlocal_v)
-    export_message_recipient = JSON(validator=longlocal_v)
-    export_message_whistleblower = JSON(validator=longlocal_v)
-
-    # Whistleblower Identity
-    identity_access_authorized_mail_template = JSON(validator=longlocal_v)
-    identity_access_authorized_mail_title = JSON(validator=longlocal_v)
-    identity_access_denied_mail_template = JSON(validator=longlocal_v)
-    identity_access_denied_mail_title = JSON(validator=longlocal_v)
-    identity_access_request_mail_template = JSON(validator=longlocal_v)
-    identity_access_request_mail_title = JSON(validator=longlocal_v)
-    identity_provided_mail_template = JSON(validator=longlocal_v)
-    identity_provided_mail_title = JSON(validator=longlocal_v)
 
     disable_admin_notification_emails = Bool(default=False)
     disable_custodian_notification_emails = Bool(default=False)

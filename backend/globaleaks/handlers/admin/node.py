@@ -9,6 +9,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
 from globaleaks.orm import transact, transact_ro
@@ -98,6 +99,32 @@ def admin_serialize_node(store, language):
     return db_admin_serialize_node(store, language)
 
 
+def enable_disable_languages(store, request):
+
+    cur_enabled_langs = EnabledLanguage.get_all(store)
+    new_enabled_langs = [unicode(c) for c in request['languages_enabled']]
+
+    if len(new_enabled_langs) < 1:
+        raise errors.InvalidInputFormat("No languages enabled!")
+
+    if request['default_language'] not in new_enabled_langs:
+        raise errors.InvalidInputFormat("Invalid lang code for chosen default_language")
+
+    appdata = None
+    for lang_code in new_enabled_langs:
+        if lang_code not in LANGUAGES_SUPPORTED_CODES:
+            raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
+        if lang_code not in cur_enabled_langs:
+            if appdata is None:
+              appdata = load_appdata()
+            log.debug("Adding a new lang %s" % lang_code)
+            EnabledLanguage.add_new_lang(store, lang_code, appdata)
+
+    for lang_code in cur_enabled_langs:
+        if lang_code not in new_enabled_langs:
+            EnabledLanguage.remove_old_lang(store, lang_code)
+
+
 def db_update_node(store, request, language):
     """
     Update and serialize the node infos
@@ -106,27 +133,11 @@ def db_update_node(store, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = store.find(models.Node).one()
-    languages_enabled = EnabledLanguage.get_all(store)
-    # verify that the languages enabled are valid 'code' in the languages supported
-    for lang_code in request['languages_enabled']:
-        if lang_code not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
-        if lang_code not in languages_enabled:
-            store.add(EnabledLanguage(lang_code))
-
-    if len(request['languages_enabled']) < 1:
-        raise errors.InvalidInputFormat("Missing enabled languages")
-
-    # enforcing of default_language usage (need to be set, need to be _enabled)
-    if request['default_language']:
-      if request['default_language'] not in languages_enabled:
-            raise errors.InvalidInputFormat("Invalid lang code as default")
-
-      node.default_language = request['default_language']
+    enable_disable_languages(store, request)
 
     node_l10n = Node_L10N(store)
     node_l10n.update_model(request, language)
+    node = store.find(models.Node).one()
 
     node.basic_auth = request['basic_auth']
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':

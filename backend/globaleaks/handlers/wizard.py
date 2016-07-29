@@ -9,6 +9,7 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
+from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -35,6 +36,11 @@ def wizard(store, request, language):
         node.wizard_done = True
 
         context = db_create_context(store, request['context'], language)
+
+        enabled_languages = EnabledLanguage.get_all(store)
+        enabled_languages.remove(language)
+        for lang_code in enabled_languages:
+            EnabledLanguage.remove_old_lang(store, lang_code)
 
         request['receiver']['contexts'] = [context.id]
         request['receiver']['language'] = language
