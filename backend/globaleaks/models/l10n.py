@@ -80,7 +80,7 @@ class Static_L10N_Map(object):
 
         for key in self.model.localized_keys:
             stat_obj = stat_map[key]
-            stat_obj.value = request[key]
+            stat_obj.value = unicode(request[key])
 
 
 class Node_L10N(Static_L10N_Map):
