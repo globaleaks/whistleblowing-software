@@ -187,7 +187,16 @@ class ConfigL10N(Storm):
             raise errors.ModelNotFound('ConfigL10N')
         return res
 
-class User(Model):
+
+class Config(Model):
+    __storm_primary__ = 'var_name', 'var_type'
+
+    var_name = Unicode(validator_shorttext_v)
+    var_type = Unicode()
+    var_value Unicode()
+
+
+class User(ModelWithID):
     """
     This model keeps track of globaleaks users.
     """
