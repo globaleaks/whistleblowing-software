@@ -2,10 +2,10 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference, ReferenceSet
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import BaseModel, Model, ReceiverContext
+from globaleaks.models import Model, ModelWithID, ReceiverContext
 
 
-class Node_v_20(Model):
+class Node_v_20(ModelWithID):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -52,7 +52,7 @@ class Node_v_20(Model):
     exception_email = Unicode()
 
 
-class Notification_v_20(Model):
+class Notification_v_20(ModelWithID):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -95,7 +95,7 @@ class Notification_v_20(Model):
     send_email_for_every_event = Bool()
 
 
-class InternalTip_v_20(Model):
+class InternalTip_v_20(ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime()
     context_id = Unicode()
@@ -105,7 +105,7 @@ class InternalTip_v_20(Model):
     new = Int()
 
 
-class User_v_20(Model):
+class User_v_20(ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime()
     username = Unicode()
@@ -120,7 +120,7 @@ class User_v_20(Model):
     password_change_date = DateTime()
 
 
-class Receiver_v_20(Model):
+class Receiver_v_20(ModelWithID):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -144,7 +144,7 @@ class Receiver_v_20(Model):
 Receiver_v_20.user = Reference(Receiver_v_20.user_id, User_v_20.id)
 
 
-class Context_v_20(Model):
+class Context_v_20(ModelWithID):
     __storm_table__ = 'context'
     show_small_cards = Bool()
     show_receivers = Bool()
@@ -170,7 +170,7 @@ Context_v_20.receivers = ReferenceSet(
 )
 
 
-class Step_v_20(Model):
+class Step_v_20(ModelWithID):
     __storm_table__ = 'step'
     context_id = Unicode()
     label = JSON()
@@ -179,7 +179,7 @@ class Step_v_20(Model):
     number = Int()
 
 
-class Field_v_20(Model):
+class Field_v_20(ModelWithID):
     __storm_table__ = 'field'
     label = JSON()
     description = JSON()
@@ -194,14 +194,14 @@ class Field_v_20(Model):
     type = Unicode()
 
 
-class FieldOption_v_20(Model):
+class FieldOption_v_20(ModelWithID):
     __storm_table__ = 'fieldoption'
     field_id = Unicode()
     number = Int()
     attrs = JSON()
 
 
-class StepField_v_20(BaseModel):
+class StepField_v_20(Model):
     __storm_table__ = 'step_field'
     __storm_primary__ = 'step_id', 'field_id'
     step_id = Unicode()

@@ -8,11 +8,11 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.models import Model, BaseModel, Questionnaire, Step, db_forge_obj
+from globaleaks.models import ModelWithID, Model, Questionnaire, Step, db_forge_obj
 from globaleaks.settings import GLSettings
 
 
-class Node_v_29(Model):
+class Node_v_29(ModelWithID):
     __storm_table__ = 'node'
     version = Unicode()
     version_db = Unicode()
@@ -78,7 +78,7 @@ class Node_v_29(Model):
     threshold_free_disk_percentage_low = Int()
 
 
-class Context_v_29(Model):
+class Context_v_29(ModelWithID):
     __storm_table__ = 'context'
     show_small_cards = Bool()
     show_context = Bool()
@@ -103,7 +103,7 @@ class Context_v_29(Model):
     presentation_order = Int()
 
 
-class Step_v_29(Model):
+class Step_v_29(ModelWithID):
     __storm_table__ = 'step'
     context_id = Unicode()
     label = JSON()
@@ -112,7 +112,7 @@ class Step_v_29(Model):
     triggered_by_score = Int()
 
 
-class FieldAnswer_v_29(Model):
+class FieldAnswer_v_29(ModelWithID):
     __storm_table__ = 'fieldanswer'
     internaltip_id = Unicode()
     key = Unicode(default=u'')
@@ -120,13 +120,13 @@ class FieldAnswer_v_29(Model):
     value = Unicode(default=u'')
 
 
-class FieldAnswerGroup_v_29(Model):
+class FieldAnswerGroup_v_29(ModelWithID):
     __storm_table__ = 'fieldanswergroup'
     number = Int(default=0)
     fieldanswer_id = Unicode()
 
 
-class FieldAnswerGroupFieldAnswer_v_29(BaseModel):
+class FieldAnswerGroupFieldAnswer_v_29(Model):
     __storm_table__ = 'fieldanswergroup_fieldanswer'
     __storm_primary__ = 'fieldanswergroup_id', 'fieldanswer_id'
 

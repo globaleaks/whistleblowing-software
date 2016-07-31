@@ -8,7 +8,7 @@ from globaleaks.models import *
 from globaleaks import __version__, DATABASE_VERSION
 
 
-class Node_v_31(Model):
+class Node_v_31(ModelWithID):
     __storm_table__ = 'node'
     version = Unicode(default=unicode(__version__))
     version_db = Unicode(default=unicode(DATABASE_VERSION))
@@ -84,7 +84,7 @@ class Node_v_31(Model):
     css_id = Unicode()
 
 
-class User_v_31(Model):
+class User_v_31(ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime(default_factory=datetime_now)
     username = Unicode(validator=shorttext_v)
@@ -109,7 +109,7 @@ class User_v_31(Model):
     img_id = Unicode()
 
 
-class Comment_v_31(Model):
+class Comment_v_31(ModelWithID):
     __storm_table__ = 'comment'
     creation_date = DateTime(default_factory=datetime_now)
     internaltip_id = Unicode()
@@ -119,7 +119,7 @@ class Comment_v_31(Model):
     new = Int(default=True)
 
 
-class Message_v_31(Model):
+class Message_v_31(ModelWithID):
     __storm_table__ = 'message'
     creation_date = DateTime(default_factory=datetime_now)
     receivertip_id = Unicode()

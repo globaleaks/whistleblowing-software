@@ -37,7 +37,7 @@ def forge_obj(store, mock_class, mock_fields):
     return db_forge_obj(store, mock_class, mock_fields)
 
 
-class BaseModel(Storm):
+class Model(Storm):
     """
     Globaleaks's most basic model.
 
@@ -73,7 +73,7 @@ class BaseModel(Storm):
 
     def update(self, values=None):
         """
-        Updated Models attributes from dict.
+        Updated ModelWithIDs attributes from dict.
         """
         # May raise ValueError and AttributeError
         if values is None:
@@ -128,7 +128,7 @@ class BaseModel(Storm):
         # harder better faster stronger
         if isinstance(value, str):
             value = unicode(value)
-        return super(BaseModel, self).__setattr__(name, value)
+        return super(Model, self).__setattr__(name, value)
 
     def dict(self, *keys):
         """
@@ -145,7 +145,7 @@ class BaseModel(Storm):
             return {key: getattr(self, key) for key in keys & self._public_attrs}
 
 
-class Model(BaseModel):
+class ModelWithID(Model):
     """
     Base class for working the database, already integrating an id.
     """
@@ -157,7 +157,7 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
 
-class User(Model):
+class User(ModelWithID):
     """
     This model keeps track of globaleaks users.
     """
@@ -203,7 +203,7 @@ class User(Model):
     bool_keys = ['deletable', 'password_change_needed']
 
 
-class Context(Model):
+class Context(ModelWithID):
     """
     This model keeps track of contexts settings.
     """
@@ -262,7 +262,7 @@ class Context(Model):
       'enable_attachments'
     ]
 
-class InternalTip(Model):
+class InternalTip(ModelWithID):
     """
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
@@ -303,7 +303,7 @@ class InternalTip(Model):
     def is_wb_access_revoked(self):
         return self.whistleblowertip is None
 
-class ReceiverTip(Model):
+class ReceiverTip(ModelWithID):
     """
     This is the table keeping track of ALL the receivers activities and
     date in a Tip, Tip core data are stored in StoredTip. The data here
@@ -328,7 +328,7 @@ class ReceiverTip(Model):
     bool_keys = ['enable_notifications']
 
 
-class WhistleblowerTip(Model):
+class WhistleblowerTip(ModelWithID):
     """
     WhisteleblowerTip is intended, to provide a whistleblower access to the
     Tip. It has some differencies from the ReceiverTips: It has a secret
@@ -341,7 +341,7 @@ class WhistleblowerTip(Model):
     access_counter = Int(default=0)
 
 
-class IdentityAccessRequest(Model):
+class IdentityAccessRequest(ModelWithID):
     """
     This model keeps track of identity access requests by receivers and
     of the answers by custodians.
@@ -355,7 +355,7 @@ class IdentityAccessRequest(Model):
     reply = Unicode(default=u'pending')
 
 
-class InternalFile(Model):
+class InternalFile(ModelWithID):
     """
     This model keeps track of files before they are packaged
     for specific receivers.
@@ -377,7 +377,7 @@ class InternalFile(Model):
     processing_attempts = Int(default=0)
 
 
-class ReceiverFile(Model):
+class ReceiverFile(ModelWithID):
     """
     This model keeps track of files destinated to a specific receiver
     """
@@ -401,7 +401,7 @@ class ReceiverFile(Model):
     # wrong and now is lost
 
 
-class Comment(Model):
+class Comment(ModelWithID):
     """
     This table handle the comment collection, has an InternalTip referenced
     """
@@ -418,7 +418,7 @@ class Comment(Model):
     new = Int(default=True)
 
 
-class Message(Model):
+class Message(ModelWithID):
     """
     This table handle the direct messages between whistleblower and one
     Receiver.
@@ -434,7 +434,7 @@ class Message(Model):
     new = Int(default=True)
 
 
-class Node(Model):
+class Node(ModelWithID):
     """
     This table represent the System-wide settings
     """
@@ -604,7 +604,7 @@ class Node(Model):
     ]
 
 
-class Notification(Model):
+class Notification(ModelWithID):
     """
     This table has only one instance, and contain all the notification
     information for the node templates are imported in the handler, but
@@ -740,7 +740,7 @@ class Notification(Model):
     ]
 
 
-class Mail(Model):
+class Mail(ModelWithID):
     """
     This model keeps track of emails to be spooled by the system
     """
@@ -755,7 +755,7 @@ class Mail(Model):
     unicode_keys = ['address', 'subject', 'body']
 
 
-class Receiver(Model):
+class Receiver(ModelWithID):
     """
     This model keeps track of receivers settings.
     """
@@ -783,7 +783,7 @@ class Receiver(Model):
     ]
 
 
-class Field(Model):
+class Field(ModelWithID):
     x = Int(default=0)
     y = Int(default=0)
     width = Int(default=0)
@@ -821,7 +821,7 @@ class Field(Model):
     bool_keys = ['editable', 'multi_entry', 'preview', 'required', 'stats_enabled']
 
 
-class FieldAttr(Model):
+class FieldAttr(ModelWithID):
     field_id = Unicode()
     name = Unicode()
     type = Unicode()
@@ -834,7 +834,7 @@ class FieldAttr(Model):
 
     def update(self, values=None):
         """
-        Updated Models attributes from dict.
+        Updated ModelWithIDs attributes from dict.
         """
         # May raise ValueError and AttributeError
         if values is None:
@@ -857,7 +857,7 @@ class FieldAttr(Model):
             setattr(self, 'value', unicode(values['value']))
 
 
-class FieldOption(Model):
+class FieldOption(ModelWithID):
     field_id = Unicode()
     presentation_order = Int(default=0)
     label = JSON()
@@ -870,7 +870,7 @@ class FieldOption(Model):
     localized_keys = ['label']
 
 
-class FieldAnswer(Model):
+class FieldAnswer(ModelWithID):
     internaltip_id = Unicode()
     fieldanswergroup_id = Unicode()
     key = Unicode(default=u'')
@@ -881,7 +881,7 @@ class FieldAnswer(Model):
     bool_keys = ['is_leaf']
 
 
-class FieldAnswerGroup(Model):
+class FieldAnswerGroup(ModelWithID):
     number = Int(default=0)
     fieldanswer_id = Unicode()
 
@@ -889,7 +889,7 @@ class FieldAnswerGroup(Model):
     int_keys = ['number']
 
 
-class Step(Model):
+class Step(ModelWithID):
     questionnaire_id = Unicode()
     label = JSON()
     description = JSON()
@@ -901,7 +901,7 @@ class Step(Model):
     localized_keys = ['label', 'description']
 
 
-class Questionnaire(Model):
+class Questionnaire(ModelWithID):
     key = Unicode(default=u'')
     name = Unicode()
     show_steps_navigation_bar = Bool(default=False)
@@ -920,6 +920,8 @@ class Questionnaire(Model):
 
 
 class ArchivedSchema(Model):
+    __storm_primary__ = 'hash', 'type'
+
     hash = Unicode()
     type = Unicode()
     schema = JSON()
@@ -927,23 +929,23 @@ class ArchivedSchema(Model):
     unicode_keys = ['hash']
 
 
-class Stats(Model):
+class Stats(ModelWithID):
     start = DateTime()
     summary = JSON()
     free_disk_space = Int()
 
 
-class Anomalies(Model):
+class Anomalies(ModelWithID):
     date = DateTime()
     alarm = Int()
     events = JSON()
 
 
-class SecureFileDelete(Model):
+class SecureFileDelete(ModelWithID):
     filepath = Unicode()
 
 
-class ApplicationData(Model):
+class ApplicationData(ModelWithID):
     version = Int()
     default_questionnaire = JSON()
 
@@ -952,7 +954,7 @@ class ApplicationData(Model):
 
 
 # Follow classes used for Many to Many references
-class ReceiverContext(BaseModel):
+class ReceiverContext(Model):
     """
     Class used to implement references between Receivers and Contexts
     """
@@ -963,7 +965,7 @@ class ReceiverContext(BaseModel):
     receiver_id = Unicode()
 
 
-class ReceiverInternalTip(BaseModel):
+class ReceiverInternalTip(Model):
     """
     Class used to implement references between Receivers and IntInternalTips
     """
@@ -978,7 +980,7 @@ class Counter(Model):
     """
     Class used to implement unique counters
     """
-    key = Unicode(validator=shorttext_v)
+    key = Unicode(primary=True, validator=shorttext_v)
     counter = Int(default=1)
     update_date = DateTime(default_factory=datetime_now)
 
@@ -986,7 +988,7 @@ class Counter(Model):
     int_keys = ['number']
 
 
-class ShortURL(Model):
+class ShortURL(ModelWithID):
     """
     Class used to implement url shorteners
     """
@@ -996,7 +998,7 @@ class ShortURL(Model):
     unicode_keys = ['shorturl', 'longurl']
 
 
-class File(Model):
+class File(ModelWithID):
     """
     Class used for storing files
     """
@@ -1005,13 +1007,11 @@ class File(Model):
     unicode_keys = ['data']
 
 
-class CustomTexts(BaseModel):
+class CustomTexts(Model):
     """
     Class used to implement custom texts
     """
-    __storm_primary__ = 'lang'
-
-    lang = Unicode(validator=shorttext_v)
+    lang = Unicode(primary=True, validator=shorttext_v)
     texts = JSON()
 
     unicode_keys = ['lang']

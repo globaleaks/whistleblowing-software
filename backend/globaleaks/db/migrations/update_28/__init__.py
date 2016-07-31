@@ -5,11 +5,11 @@ import shutil
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model, BaseModel
+from globaleaks.models import ModelWithID, Model
 from globaleaks.settings import GLSettings
 
 
-class Field_v_27(Model):
+class Field_v_27(ModelWithID):
     __storm_table__ = 'field'
     x = Int()
     y = Int()
@@ -30,7 +30,7 @@ class Field_v_27(Model):
     editable = Bool()
 
 
-class Step_v_27(Model):
+class Step_v_27(ModelWithID):
     __storm_table__ = 'step'
     context_id = Unicode()
     label = JSON()
@@ -38,7 +38,7 @@ class Step_v_27(Model):
     presentation_order = Int()
 
 
-class FieldOption_v_27(Model):
+class FieldOption_v_27(ModelWithID):
     __storm_table__ = 'fieldoption'
     field_id = Unicode()
     presentation_order = Int()
@@ -46,7 +46,7 @@ class FieldOption_v_27(Model):
     score_points = Int()
 
 
-class FieldField_v_27(BaseModel):
+class FieldField_v_27(Model):
     __storm_table__ = 'field_field'
     __storm_primary__ = 'parent_id', 'child_id'
 
@@ -54,7 +54,7 @@ class FieldField_v_27(BaseModel):
     child_id = Unicode()
 
 
-class StepField_v_27(BaseModel):
+class StepField_v_27(Model):
     __storm_table__ = 'step_field'
     __storm_primary__ = 'step_id', 'field_id'
 

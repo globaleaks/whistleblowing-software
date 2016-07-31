@@ -7,7 +7,7 @@ from globaleaks.models import *
 
 from globaleaks import __version__, DATABASE_VERSION
 
-class Node_v_32(Model):
+class Node_v_32(ModelWithID):
     __storm_table__ = 'node'
     version = Unicode(default=unicode(__version__))
     version_db = Unicode(default=unicode(DATABASE_VERSION))
@@ -95,7 +95,7 @@ class Node_v_32(Model):
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
 
-class InternalTip_v_32(Model):
+class InternalTip_v_32(ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
@@ -120,7 +120,7 @@ class InternalTip_v_32(Model):
     new = Int(default=True)
 
 
-class WhistleblowerTip_v_32(Model):
+class WhistleblowerTip_v_32(ModelWithID):
     __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
@@ -129,7 +129,7 @@ class WhistleblowerTip_v_32(Model):
     access_counter = Int(default=0)
 
 
-class User_v_32(Model):
+class User_v_32(ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime(default_factory=datetime_now)
     username = Unicode(validator=shorttext_v)
