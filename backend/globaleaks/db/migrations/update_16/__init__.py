@@ -19,10 +19,10 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model
+from globaleaks.models import ModelWithID
 
 
-class Receiver_v_15(Model):
+class Receiver_v_15(ModelWithID):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -44,7 +44,7 @@ class Receiver_v_15(Model):
     presentation_order = Int()
 
 
-class Notification_v_15(Model):
+class Notification_v_15(ModelWithID):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()

@@ -2,10 +2,10 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model
+from globaleaks.models import ModelWithID
 
 
-class Context_v_21(Model):
+class Context_v_21(ModelWithID):
     __storm_table__ = 'context'
     show_small_cards = Bool()
     show_receivers = Bool()
@@ -24,7 +24,7 @@ class Context_v_21(Model):
     presentation_order = Int()
 
 
-class InternalTip_v_21(Model):
+class InternalTip_v_21(ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime()
     context_id = Unicode()

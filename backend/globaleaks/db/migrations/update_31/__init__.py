@@ -9,11 +9,11 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.models import Model, BaseModel, Questionnaire, Step, db_forge_obj
+from globaleaks.models import ModelWithID, Model, Questionnaire, Step, db_forge_obj
 from globaleaks.settings import GLSettings
 
 
-class Node_v_30(Model):
+class Node_v_30(ModelWithID):
     __storm_table__ = 'node'
     version = Unicode()
     version_db = Unicode()
@@ -80,7 +80,7 @@ class Node_v_30(Model):
     threshold_free_disk_percentage_low = Int()
 
 
-class User_v_30(Model):
+class User_v_30(ModelWithID):
     __storm_table__ = 'user'
     creation_date = DateTime()
     username = Unicode()
@@ -104,7 +104,7 @@ class User_v_30(Model):
     pgp_key_status = Unicode()
 
 
-class Context_v_30(Model):
+class Context_v_30(ModelWithID):
     __storm_table__ = 'context'
     show_small_cards = Bool()
     show_context = Bool()
@@ -127,7 +127,7 @@ class Context_v_30(Model):
     questionnaire_id = Unicode()
 
 
-class ReceiverTip_v_30(Model):
+class ReceiverTip_v_30(ModelWithID):
     __storm_table__ = 'receivertip'
     internaltip_id = Unicode()
     receiver_id = Unicode()
@@ -138,7 +138,7 @@ class ReceiverTip_v_30(Model):
     new = Int()
 
 
-class Notification_v_30(Model):
+class Notification_v_30(ModelWithID):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()

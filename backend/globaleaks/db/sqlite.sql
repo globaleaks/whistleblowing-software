@@ -483,13 +483,12 @@ CREATE TABLE fieldanswergroup (
 );
 
 CREATE TABLE archivedschema (
-    id TEXT NOT NULL,
     hash TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('questionnaire',
                                        'preview')),
     schema BLOB NOT NULL,
     UNIQUE (hash, type),
-    PRIMARY KEY (id)
+    PRIMARY KEY (hash, type)
 );
 
 CREATE TABLE securefiledelete (
@@ -499,12 +498,10 @@ CREATE TABLE securefiledelete (
 );
 
 CREATE TABLE counter (
-    id TEXT NOT NULL,
     key TEXT NOT NULL,
     counter INTEGER NOT NULL,
     update_date TEXT NOT NULL,
-    UNIQUE (key),
-    PRIMARY KEY (id)
+    PRIMARY KEY (key)
 );
 
 CREATE TABLE shorturl (
