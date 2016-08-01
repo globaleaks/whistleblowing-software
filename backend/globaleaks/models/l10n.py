@@ -6,10 +6,10 @@ from storm.locals import Unicode
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import log
 
-from . import BaseModel, Node, Notification, ConfigL10N
+from . import Model, Node, Notification, ConfigL10N
 
 
-class EnabledLanguage(BaseModel):
+class EnabledLanguage(Model):
     name = Unicode(primary=True)
 
     def __init__(self, name):

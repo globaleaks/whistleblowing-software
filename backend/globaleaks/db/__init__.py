@@ -12,6 +12,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks.models import config
 from globaleaks.db.appdata import db_update_appdata
 from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
 from globaleaks.handlers.admin import files
@@ -69,7 +70,9 @@ def init_db(store, use_single_lang=False):
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
 
-        logo_data = ''
+    config.load_json_config(store)
+
+    logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo_data = logo_file.read()
 

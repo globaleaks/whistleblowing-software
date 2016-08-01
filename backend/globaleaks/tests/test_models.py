@@ -4,13 +4,28 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import ConfigL10N
+from globaleaks.models import ConfigL10N, config
 from globaleaks.db.appdata import load_appdata
 from globaleaks.models.l10n import Node_L10N, EnabledLanguage
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
+from globaleaks.settings import GLSettings
+
+
+class TestSystemConfigModels(helpers.TestGL):
+    @inlineCallbacks
+    def test_config_import(self):
+        yield self._test_config_import()
+
+    @transact
+    def _test_config_import(self, store):
+        config.load_json_config(store)
+        GLSettings.orm_debug = True
+
+        c = store.find(models.Config).count()
+        self.assertEqual(c, 6)
 
 class TestConfigL10N(helpers.TestGL):
 
