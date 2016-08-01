@@ -1,0 +1,12 @@
+{
+    "smtp": [
+        {"name": "server", "type": "str", "val": "demo.globaleaks.org"},
+        {"name": "port", "type": "int", "val": 9267},
+        {"name": "username", "type": "str", "val": "hey_you_should_change_me"},
+        {"name": "password", "type": "str", "val": "yes_you_really_should_change_me"},
+        {"name": "source_name", "type": "str", "val": "GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION"}
+    ],
+    "node": [
+        {"name": "allow_unencrypted", "type": "bool", "val": false}
+    ]
+}
