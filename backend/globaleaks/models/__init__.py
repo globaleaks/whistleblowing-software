@@ -6,7 +6,7 @@ from __future__ import absolute_import
 from datetime import timedelta
 
 from storm.expr import And
-from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
+from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON, Pickle
 
 from .properties import MetaModel, DateTime
 
@@ -169,10 +169,10 @@ class ConfigL10N(Storm):
     value = Unicode()
 
     def __init__(self, lang, group, var_name, value=''):
-      self.lang = unicode(lang)
-      self.var_group = unicode(group)
-      self.var_name = unicode(var_name)
-      self.value = unicode(value)
+        self.lang = unicode(lang)
+        self.var_group = unicode(group)
+        self.var_name = unicode(var_name)
+        self.value = unicode(value)
 
     def __repr__(self):
       return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
@@ -188,12 +188,27 @@ class ConfigL10N(Storm):
         return res
 
 
-class Config(Model):
-    __storm_primary__ = 'var_name', 'var_type'
+class Config(Storm):
+    __storm_table__ = 'config'
+    __storm_primary__ = ('var_group', 'var_name')
 
-    var_name = Unicode(validator_shorttext_v)
+    type_map = {'str': unicode, 'int': int, 'bool': bool}
+
+    var_group = Unicode()
+    var_name = Unicode()
     var_type = Unicode()
-    var_value Unicode()
+    raw_value = Pickle() # TODO use struct pack
+
+    def __init__(self, group, name, var_type, value):
+        self.var_group = group
+        if not var_type in self.type_map:
+            raise TypeError
+        elif not isinstance(value, self.type_map[var_type]):
+            raise TypeError
+        else:
+            self.raw_value = value
+        self.var_name = name
+        self.var_type = var_type
 
 
 class User(ModelWithID):
@@ -876,7 +891,6 @@ class FieldAnswerGroup(Model):
 class Step(Model):
     questionnaire_id = Unicode()
     label = JSON()
-    description = JSON()
     presentation_order = Int(default=0)
     triggered_by_score = Int(default=0)
 
