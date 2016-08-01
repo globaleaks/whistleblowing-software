@@ -73,7 +73,7 @@ class Model(Storm):
 
     def update(self, values=None):
         """
-        Updated ModelWithIDs attributes from dict.
+        Updated Models attributes from dict.
         """
         # May raise ValueError and AttributeError
         if values is None:
