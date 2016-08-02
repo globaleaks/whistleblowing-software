@@ -3,7 +3,8 @@
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
+from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.models import ConfigL10N
 from globaleaks.db.appdata import load_appdata
 from globaleaks.models.l10n import Node_L10N, EnabledLanguage
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
@@ -11,10 +12,10 @@ from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
 
-class TestStaticL10N(helpers.TestGL):
+class TestConfigL10N(helpers.TestGL):
 
     @inlineCallbacks
-    def test_static_l10n_init(self):
+    def test_config_l10n_init(self):
         yield self.run_node_mgr()
 
     @transact
@@ -33,14 +34,33 @@ class TestStaticL10N(helpers.TestGL):
 
     @transact
     def enable_langs(self, store):
-        res = EnabledLanguage.get_all(store)
+        res = [e.name for e in EnabledLanguage.get_all(store)]
 
         self.assertTrue(u'en' in res)
-        self.assertTrue(len(res) > 30)
-        self.assertTrue(len(res) < 50)
+        self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))
+
+        c = store.find(ConfigL10N).count()
+        self.assertTrue(c > 1500 and c < 2300)
+
+    @inlineCallbacks
+    def test_disable_langs(self):
+        yield self.disable_langs()
+
+    @transact
+    def disable_langs(self, store):
+        c = len(EnabledLanguage.get_all(store))
+        i = store.find(ConfigL10N).count()
+        n = i/c
+
+        EnabledLanguage.remove_old_lang(store, 'en')
+
+        c_f = len(EnabledLanguage.get_all(store))
+        i_f = store.find(ConfigL10N).count()
+
+        self.assertTrue(i-i_f == n and c_f == c-1)
 
 
-class TestLocalization(helpers.TestGL):
+class TestUserL10N(helpers.TestGL):
 
     @transact
     def create_user_with_descript(self, store):
@@ -64,8 +84,7 @@ class TestLocalization(helpers.TestGL):
         print res
         self.assertEqual(len(res), 3)
 
-    @inlineCallbacks
-    def test_l10n_table(self):
+    def _test_l10n_table(self):
         #yield self.create_user_with_descript()
         #yield self.find_user_l10n()
         pass

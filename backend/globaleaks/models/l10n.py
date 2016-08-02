@@ -105,8 +105,8 @@ class Notification_L10N(ConfigL10N_Map):
     def reset_templates(self, appdata):
         l10n_data_src = appdata['templates']
         selector = And(ConfigL10N.var_group == self.group_name)
-        for cfg_item in self.store.find(ConfigL10N, selector):
-            new_value = u''
-            if cfg_item.var_name in l10n_data_src:
-                new_value = unicode(l10n_data_src[cfg_item.lang])
-            cfg_item.value = new_value
+        for c in self.store.find(ConfigL10N, selector):
+            new_value = ''
+            if c.var_name in l10n_data_src:
+                new_value = l10n_data_src[c.var_name][c.lang]
+            c.value = unicode(new_value)
