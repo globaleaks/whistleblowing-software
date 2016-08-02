@@ -158,37 +158,32 @@ class Model(BaseModel):
         return store.find(cls, cls.id == obj_id).one()
 
 
-class Static_L10N(Storm):
-    __storm_table__ = 'static_l10n'
-    __storm_primary__ = 'model', 'var_name', 'lang'
+class ConfigL10N(Storm):
+    __storm_table__ = 'config_l10n'
+    __storm_primary__ = ('lang', 'var_group', 'var_name')
 
     lang = Unicode()
-    model = Unicode()
+    var_group = Unicode()
     var_name = Unicode()
     value = Unicode()
-    def_val = Unicode()
 
-    def __init__(self, lang, model, var_name, def_val=u'', value=None):
+    def __init__(self, lang, group, var_name, value=''):
       self.lang = unicode(lang)
-      self.model = unicode(model)
+      self.var_group = unicode(group)
       self.var_name = unicode(var_name)
-      self.def_val = unicode(def_val)
-      if value is None:
-          self.value = unicode(def_val)
-      else:
-          self.value = value
+      self.value = unicode(value)
 
     def __repr__(self):
-      return "<Static_L10N %s::%s.%s::'%s'>" % (self.lang, self.model, 
-                                                   self.var_name, self.value[:5])
+      return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
+                                               self.var_name, self.value[:5])
 
     @classmethod
-    def get_one(cls, store, lang_code, model, var_name):
+    def get_one(cls, store, lang_code, group, var_name):
         res = store.find(cls, And(cls.lang == unicode(lang_code),
-                                  cls.model == unicode(model),
+                                  cls.var_group == unicode(group),
                                   cls.var_name == unicode(var_name))).one()
         if res is None:
-            raise errors.ModelNotFound('Static_L10N')
+            raise errors.ModelNotFound('ConfigL10N')
         return res
 
 class User(Model):

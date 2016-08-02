@@ -9,6 +9,7 @@ from globaleaks.db.appdata import load_archived_appdata
 
 class Node_v_33(Model):
     __storm_table__ = 'node'
+
     version = Unicode()
     version_db = Unicode()
     name = Unicode(validator=shorttext_v, default=u'')
@@ -103,8 +104,10 @@ class Node_v_33(Model):
         'widget_files_title'
     ]
 
+
 class Notification_v_33(Model):
     __storm_table__ = 'notification'
+
     server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
     port = Int(default=9267)
     username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
@@ -203,7 +206,6 @@ class Notification_v_33(Model):
 class MigrationScript(MigrationBase):
     x = ['globaleaks', 'db', 'migrations', 'update_%s' % DATABASE_VERSION, 'appdata_v2_62_8.json']
     path = os.path.join(GLSettings.root_path, *x)
-    appdata = load_archived_appdata(path)
 
 
     def prologue(self):
@@ -225,14 +227,10 @@ class MigrationScript(MigrationBase):
             xx_json_dict = getattr(old_obj, name)
             app_data_langs = obj_appdata.get(name, None)
             for lang in langs_enabled:
-                # if the string for the lang string is not the old_obj, simply use the
-                # default. In the other case use whatever string is their even if it is
-                # the empty string.
                 val = xx_json_dict.get(lang, None)
-                default_value = u''
-                if app_data_langs is not None:
-                  default_value = app_data_langs.get(lang, u'')
-                s = Static_L10N(lang, old_obj.__storm_table__, name, default_value, val)
+                if app_data_langs is not None and val is None:
+                  val = app_data_langs.get(lang, u'')
+                s = ConfigL10N(lang, old_obj.__storm_table__, name, val)
                 self.store_new.add(s)
 
 
