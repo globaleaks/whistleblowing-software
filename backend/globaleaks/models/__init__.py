@@ -19,6 +19,7 @@ from globaleaks.orm import transact
 from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
+from globaleaks.rest import errors
 
 
 empty_localization = {}

@@ -28,7 +28,7 @@ def serialize_ahmia(store, language):
 
     return {
         'title': node.name,
-        'description': ConfigL10N.get_one(store, language, 'node', 'descriptor'),
+        'description': ConfigL10N.get_one(store, language, 'node', 'description').value,
         'keywords': '%s (GlobaLeaks instance)' % node.name,
         'relation': node.public_site,
         'language': node.default_language,
