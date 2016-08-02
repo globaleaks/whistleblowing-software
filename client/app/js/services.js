@@ -1373,13 +1373,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
 
     if (validLang(choice)) {
-      facts.userChoice = choice;
+      facts.userPreference = choice;
       determineLanguage();
     }
   }
 
-  function checkEnabledLanguages(language) {
-    return !angular.isDefined(facts.nodeDefault) || enabledLanguages.indexOf(language) !== -1;
+  function isSelectable(language) {
+    return angular.isDefined(language) && enabledLanguages.indexOf(language) !== -1;
   }
 
   // bestLanguage returns the best language for the application to use given
@@ -1388,19 +1388,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   // defined.
   // { object -> string }
   function bestLanguage(facts) {
-    if (angular.isDefined(facts.userChoice) &&
-        checkEnabledLanguages(facts.browserSniff)) {
+    if (isSelectable(facts.userChoice)) {
       return facts.userChoice;
-    } else if (angular.isDefined(facts.urlParam) &&
-               checkEnabledLanguages(facts.browserSniff)) {
+    } else if (isSelectable(facts.urlParam)) {
       return facts.urlParam;
-    } else if (angular.isDefined(facts.userPreference) &&
-               checkEnabledLanguages(facts.browserSniff)) {
+    } else if (isSelectable(facts.userPreference)) {
       return facts.userPreference;
-    } else if (angular.isDefined(facts.browserSniff) &&
-               checkEnabledLanguages(facts.browserSniff)) {
+    } else if (isSelectable(facts.browserSniff)) {
       return facts.browserSniff;
-    } else if (angular.isDefined(facts.nodeDefault)) {
+    } else if (isSelectable(facts.nodeDefault)) {
       return facts.nodeDefault;
     } else {
       return null;
