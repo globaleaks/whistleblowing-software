@@ -1,8 +1,14 @@
+import os
+
 from globaleaks.db.migrations.update import MigrationBase
+from globaleaks import DATABASE_VERSION
 from globaleaks.models import *
+from globaleaks.models import l10n
+from globaleaks.db.appdata import load_archived_appdata
 
 
 class Node_v_33(Model):
+    __storm_table__ = 'node'
     version = Unicode()
     version_db = Unicode()
     name = Unicode(validator=shorttext_v, default=u'')
@@ -12,6 +18,7 @@ class Node_v_33(Model):
     public_site = Unicode(validator=shorttext_v, default=u'')
     hidden_service = Unicode(validator=shorttext_v, default=u'')
     receipt_salt = Unicode(validator=shorttext_v)
+    languages_enabled = JSON()
     default_language = Unicode(validator=shorttext_v, default=u'en')
     default_timezone = Int(default=0)
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
@@ -75,7 +82,29 @@ class Node_v_33(Model):
     threshold_free_disk_percentage_low = Int(default=10)
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
+    localized_keys = [
+        'description',
+        'presentation',
+        'footer',
+        'security_awareness_title',
+        'security_awareness_text',
+        'whistleblowing_question',
+        'whistleblowing_button',
+        'whistleblowing_receipt_prompt',
+        'custom_privacy_badge_tor',
+        'custom_privacy_badge_none',
+        'header_title_homepage',
+        'header_title_submissionpage',
+        'header_title_receiptpage',
+        'header_title_tippage',
+        'contexts_clarification',
+        'widget_comments_title',
+        'widget_messages_title',
+        'widget_files_title'
+    ]
+
 class Notification_v_33(Model):
+    __storm_table__ = 'notification'
     server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
     port = Int(default=9267)
     username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
@@ -126,22 +155,107 @@ class Notification_v_33(Model):
     notification_threshold_per_hour = Int(validator=natnum_v, default=20)
     notification_suspension_time=Int(validator=natnum_v, default=(2 * 3600))
     exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
+    exception_email_pgp_key_info = Unicode(default=u'')
     exception_email_pgp_key_fingerprint = Unicode(default=u'')
     exception_email_pgp_key_public = Unicode(default=u'')
     exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
+    exception_email_pgp_key_status = Unicode(default=u'disabled')
+
+    localized_keys = [
+        'admin_anomaly_mail_title',
+        'admin_anomaly_mail_template',
+        'admin_anomaly_disk_low',
+        'admin_anomaly_disk_medium',
+        'admin_anomaly_disk_high',
+        'admin_anomaly_activities',
+        'admin_pgp_alert_mail_title',
+        'admin_pgp_alert_mail_template',
+        'admin_test_static_mail_template',
+        'admin_test_static_mail_title',
+        'pgp_alert_mail_title',
+        'pgp_alert_mail_template',
+        'tip_mail_template',
+        'tip_mail_title',
+        'file_mail_template',
+        'file_mail_title',
+        'comment_mail_template',
+        'comment_mail_title',
+        'message_mail_template',
+        'message_mail_title',
+        'tip_expiration_mail_template',
+        'tip_expiration_mail_title',
+        'receiver_notification_limit_reached_mail_template',
+        'receiver_notification_limit_reached_mail_title',
+        'identity_access_authorized_mail_template',
+        'identity_access_authorized_mail_title',
+        'identity_access_denied_mail_template',
+        'identity_access_denied_mail_title',
+        'identity_access_request_mail_template',
+        'identity_access_request_mail_title',
+        'identity_provided_mail_template',
+        'identity_provided_mail_title',
+        'export_template',
+        'export_message_whistleblower',
+        'export_message_recipient'
+    ]
 
 
 class MigrationScript(MigrationBase):
+    x = ['globaleaks', 'db', 'migrations', 'update_%s' % DATABASE_VERSION, 'appdata_v2_62_8.json']
+    path = os.path.join(GLSettings.root_path, *x)
+    appdata = load_archived_appdata(path)
+
+
+    def prologue(self):
+        old_node = self.store_old.find(self.model_from['Node']).one()
+
+        # Fill out enabled langs table
+        for lang in old_node.languages_enabled:
+            self.store_new.add(l10n.EnabledLanguage(lang))
+            #l10n.EnabledLanguage.add_new_lang(self.store_new, lang, self.appdata['node'])
+
+
+    def _migrate_l10n_static_config(self, old_obj, appd_key):
+
+        langs_enabled = l10n.EnabledLanguage.get_all(self.store_new)
+        obj_appdata = self.appdata[appd_key]
+
+        for name in old_obj.localized_keys:
+            
+            xx_json_dict = getattr(old_obj, name)
+            app_data_langs = obj_appdata.get(name, None)
+            for lang in langs_enabled:
+                # if the string for the lang string is not the old_obj, simply use the
+                # default. In the other case use whatever string is their even if it is
+                # the empty string.
+                val = xx_json_dict.get(lang, None)
+                default_value = u''
+                if app_data_langs is not None:
+                  default_value = app_data_langs.get(lang, u'')
+                s = Static_L10N(lang, old_obj.__storm_table__, name, default_value, val)
+                self.store_new.add(s)
+
+
     def migrate_Node(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
-            # TODO for localized keys copy value and initialize with current default.
 
             setattr(new_node, v.name, getattr(old_node, v.name))
 
         self.store_new.add(new_node)
 
-        # TODO def migrate_Notification
+        self._migrate_l10n_static_config(old_node, 'node')
 
+
+    def migrate_Notification(self):
+        old_notif = self.store_old.find(self.model_from['Notification']).one()
+        new_notif = self.model_to['Notification']()
+        for _, v in new_notif._storm_columns.iteritems():
+
+            setattr(new_notif, v.name, getattr(old_notif, v.name))
+
+        self.store_new.add(new_notif)
+
+        self._migrate_l10n_static_config(old_notif, 'templates')

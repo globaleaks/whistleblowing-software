@@ -56,7 +56,7 @@ migration_mapping = OrderedDict([
     ('IdentityAccessRequest', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.IdentityAccessRequest, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalFile', [InternalFile_v_19, 0, 0, 0, 0, InternalFile_v_22, 0, 0, InternalFile_v_25, 0, 0, models.InternalFile, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('InternalTip', [InternalTip_v_19, 0, 0, 0, 0, InternalTip_v_20, InternalTip_v_21, InternalTip_v_22, InternalTip_v_23, InternalTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, models.InternalTip, 0]),
-    ('Mail', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail, 0, 0, 0, 0, 0, 0, 0]),
+    ('Mail', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Mail, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Message', [Message_v_19, 0, 0, 0, 0, Message_v_31, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, models.Message, 0, 0]),
     ('Node', [Node_v_16, 0, Node_v_17, Node_v_18, Node_v_19, Node_v_20, Node_v_23, 0, 0, Node_v_26, 0, 0, Node_v_28, 0, Node_v_29, Node_v_30, Node_v_31, Node_v_32, Node_v_33, models.Node]),
     ('Notification', [Notification_v_15, Notification_v_16, Notification_v_19, 0, 0, Notification_v_20, Notification_v_22, 0, Notification_v_23, Notification_v_26, 0, 0, Notification_v_30, 0, 0, 0, Notification_v_33, 0, 0, models.Notification]),
