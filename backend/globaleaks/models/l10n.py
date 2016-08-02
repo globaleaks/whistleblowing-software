@@ -6,7 +6,7 @@ from storm.locals import Unicode
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import log
 
-from . import BaseModel, Node, Notification, Static_L10N
+from . import BaseModel, Node, Notification, ConfigL10N
 
 
 class EnabledLanguage(BaseModel):
@@ -40,20 +40,20 @@ class EnabledLanguage(BaseModel):
             store.add(cls(lang_code))
 
 
-class Static_L10N_Map(object):
+class ConfigL10N_Map(object):
 
     def __init__(self, model, store):
         self.store = store
         self.model = model
-        self.model_name = unicode(model.__storm_table__)
+        self.group_name = unicode(model.__storm_table__)
 
     def create_default(self, lang_code, l10n_data_src):
         for key in self.model.localized_keys:
             if key in l10n_data_src and lang_code in l10n_data_src[key]:
                 val = l10n_data_src[key][lang_code]
-                entry = Static_L10N(lang_code, self.model_name, key, val)
+                entry = ConfigL10N(lang_code, self.group_name, key, val)
             else:
-                entry = Static_L10N(lang_code, self.model_name, key)
+                entry = ConfigL10N(lang_code, self.group_name, key)
             self.store.add(entry)
 
     def create_defaults(self, appdata_dict):
@@ -61,8 +61,8 @@ class Static_L10N_Map(object):
             self.create_default(lang_code, appdata_dict)
 
     def retrieve_rows(self, lang):
-        selector = And(Static_L10N.model == self.model_name, Static_L10N.lang == unicode(lang))
-        return [r for r in self.store.find(Static_L10N, selector)]
+        selector = And(ConfigL10N.var_group == self.group_name, ConfigL10N.lang == unicode(lang))
+        return [r for r in self.store.find(ConfigL10N, selector)]
 
     def fill_localized_values(self, external_obj, lang):
         rows = self.retrieve_rows(lang)
@@ -83,26 +83,30 @@ class Static_L10N_Map(object):
             stat_obj.value = unicode(request[key])
 
 
-class Node_L10N(Static_L10N_Map):
+class Node_L10N(ConfigL10N_Map):
 
     def __init__(self, store):
-        Static_L10N_Map.__init__(self, Node, store)
+        ConfigL10N_Map.__init__(self, Node, store)
 
     def create_default(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['node']
-        Static_L10N_Map.create_default(self, lang_code, l10n_data_src)
+        ConfigL10N_Map.create_default(self, lang_code, l10n_data_src)
         
 
-class Notification_L10N(Static_L10N_Map):
+class Notification_L10N(ConfigL10N_Map):
 
     def __init__(self, store):
-        Static_L10N_Map.__init__(self, Notification, store)
+        ConfigL10N_Map.__init__(self, Notification, store)
 
     def create_default(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['templates']
-        Static_L10N_Map.create_default(self, lang_code, l10n_data_src)
+        ConfigL10N_Map.create_default(self, lang_code, l10n_data_src)
 
-    def reset_templates(self):
-        selector = And(Static_L10N.model == self.model_name)
-        for stat_objs in self.store.find(Static_L10N, selector):
-            stat_objs.value = stat_objs.def_val
+    def reset_templates(self, appdata):
+        l10n_data_src = appdata['templates']
+        selector = And(ConfigL10N.var_group == self.group_name)
+        for cfg_item in self.store.find(ConfigL10N, selector):
+            new_value = u''
+            if cfg_item.var_name in l10n_data_src:
+                new_value = unicode(l10n_data_src[cfg_item.lang])
+            cfg_item.value = new_value

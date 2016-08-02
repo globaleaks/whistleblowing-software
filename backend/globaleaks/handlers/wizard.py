@@ -10,7 +10,7 @@ from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models.l10n import EnabledLanguage
-from globaleaks.models import Static_L10N as s_l10n
+from globaleaks.models import ConfigL10N as c_l10n
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -31,9 +31,9 @@ def wizard(store, request, language):
 
         nn = unicode(request['node']['name'])
         node.name = nn
-        s_l10n.get_one(store, language, 'node', 'description').value = nn
-        s_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
-        s_l10n.get_one(store, language, 'node', 'presentation').value = nn
+        c_l10n.get_one(store, language, 'node', 'description').value = nn
+        c_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
+        c_l10n.get_one(store, language, 'node', 'presentation').value = nn
 
         node.allow_unencrypted = request['node']['allow_unencrypted']
         node.wizard_done = True

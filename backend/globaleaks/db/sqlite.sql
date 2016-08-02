@@ -1,13 +1,12 @@
 PRAGMA foreign_keys = ON;
 PRAGMA auto_vacuum = FULL;
 
-CREATE TABLE static_l10n (
+CREATE TABLE config_l10n (
     lang TEXT NOT NULL,
-    model TEXT NOT NULL,
+    var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
     value TEXT NOT NULL,
-    def_val TEXT NOT NULL,
-    PRIMARY KEY (model, var_name, lang),
+    PRIMARY KEY (lang, var_group, var_name),
     FOREIGN KEY (lang) REFERENCES enabledlanguage ON DELETE CASCADE
 );
 

@@ -1,6 +1,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
@@ -108,7 +109,8 @@ def update_notification(store, request, language):
     notif_l10n.update_model(request, language)
 
     if request['reset_templates']:
-        notif_l10n.reset_templates()
+        appdata = load_appdata()
+        notif_l10n.reset_templates(appdata)
 
     if request['password'] == u'':
       log.debug('No password set. Using pw already in the DB.')

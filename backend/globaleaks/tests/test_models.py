@@ -37,7 +37,7 @@ class TestStaticL10N(helpers.TestGL):
 
         self.assertTrue(u'en' in res)
         self.assertTrue(len(res) > 30)
-        self.assertTrue(len(res) < 30)
+        self.assertTrue(len(res) < 50)
 
 
 class TestLocalization(helpers.TestGL):
