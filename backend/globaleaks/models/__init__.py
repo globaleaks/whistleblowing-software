@@ -168,12 +168,15 @@ class Static_L10N(Storm):
     value = Unicode()
     def_val = Unicode()
 
-    def __init__(self, lang, model, var_name, def_val=u''):
+    def __init__(self, lang, model, var_name, def_val=u'', value=None):
       self.lang = unicode(lang)
       self.model = unicode(model)
       self.var_name = unicode(var_name)
-      self.value = unicode(def_val)
       self.def_val = unicode(def_val)
+      if value is None:
+          self.value = unicode(def_val)
+      else:
+          self.value = value
 
     def __repr__(self):
       return "<Static_L10N %s::%s.%s::'%s'>" % (self.lang, self.model, 
@@ -636,6 +639,7 @@ class Notification(Model):
 
     security = Unicode(validator=shorttext_v, default=u'TLS')
     # security_types: 'TLS', 'SSL'
+
 
     disable_admin_notification_emails = Bool(default=False)
     disable_custodian_notification_emails = Bool(default=False)

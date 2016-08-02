@@ -14,11 +14,17 @@ from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 
 
-def load_appdata():
-    with file(GLSettings.appdata_file, 'r') as f:
+def read_appdata(p):
+    with file(p, 'r') as f:
         json_string = f.read()
         appdata_dict = json.loads(json_string)
         return appdata_dict
+
+def load_appdata():
+    return read_appdata(GLSettings.appdata_file)
+
+def load_archived_appdata(p):
+    return read_appdata(p)
 
 
 def load_default_questionnaires(store):
