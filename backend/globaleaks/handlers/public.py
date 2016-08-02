@@ -50,7 +50,7 @@ def db_serialize_node(store, language):
         'name': node.name,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
-        'languages_enabled': l10n.EnabledLanguage.get_all(store),
+        'languages_enabled': l10n.EnabledLanguage.get_all_strs(store),
         'languages_supported': LANGUAGES_SUPPORTED,
         'default_language': node.default_language,
         'default_timezone': node.default_timezone,

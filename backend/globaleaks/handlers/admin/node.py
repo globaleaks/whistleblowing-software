@@ -37,7 +37,7 @@ def db_admin_serialize_node(store, language):
         'version': node.version,
         'version_db': node.version_db,
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': EnabledLanguage.get_all(store),
+        'languages_enabled': EnabledLanguage.get_all_strs(store),
         'default_language': node.default_language,
         'default_timezone': node.default_timezone,
         'default_password': node.default_password,
@@ -100,7 +100,7 @@ def admin_serialize_node(store, language):
 
 def enable_disable_languages(store, request):
 
-    cur_enabled_langs = [unicode(x.name) for x in EnabledLanguage.get_all(store)]
+    cur_enabled_langs = EnabledLanguage.get_all_strs(store)
     new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
     if len(new_enabled_langs) < 1:

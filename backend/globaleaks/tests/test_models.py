@@ -34,7 +34,7 @@ class TestConfigL10N(helpers.TestGL):
 
     @transact
     def enable_langs(self, store):
-        res = [e.name for e in EnabledLanguage.get_all(store)]
+        res = EnabledLanguage.get_all_strs(store)
 
         self.assertTrue(u'en' in res)
         self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))

@@ -35,6 +35,10 @@ class EnabledLanguage(BaseModel):
         return [e for e in store.find(cls)]
 
     @classmethod
+    def get_all_strs(cls, store):
+        return [e.name for e in store.find(cls)]
+
+    @classmethod
     def add_all_supported_langs(cls, store, appdata_dict):
         node_l10n = Node_L10N(store)
         notif_l10n = Notification_L10N(store)
