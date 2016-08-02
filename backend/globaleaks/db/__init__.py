@@ -65,12 +65,7 @@ def init_db(store, use_single_lang=False):
     log.debug("Inserting internationalized strings...")
 
     if not use_single_lang:
-        EnabledLanguage.add_supported_langs(store)
-        node_l10n = Node_L10N(store)
-        node_l10n.create_defaults(appdata_dict)
-
-        notification_l10n = Notification_L10N(store)
-        notification_l10n.create_defaults(appdata_dict)
+        EnabledLanguage.add_all_supported_langs(store, appdata_dict)
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
 
@@ -204,7 +199,7 @@ def db_refresh_memory_variables(store):
 
 
     # TODO TODO TODO
-    enabled_langs = models.l10n.EnabledLanguage.get_all(store)
+    enabled_langs = [c.name for c in models.l10n.EnabledLanguage.get_all(store)]
     GLSettings.memory_copy.languages_enabled = enabled_langs
     # TODO TODO TODO
 

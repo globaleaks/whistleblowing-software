@@ -100,8 +100,8 @@ def admin_serialize_node(store, language):
 
 def enable_disable_languages(store, request):
 
-    cur_enabled_langs = EnabledLanguage.get_all(store)
-    new_enabled_langs = [unicode(c) for c in request['languages_enabled']]
+    cur_enabled_langs = [unicode(x.name) for x in EnabledLanguage.get_all(store)]
+    new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
     if len(new_enabled_langs) < 1:
         raise errors.InvalidInputFormat("No languages enabled!")

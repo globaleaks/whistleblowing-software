@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from storm.expr import And 
+from storm.expr import And
 from storm.locals import Unicode
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -15,15 +15,15 @@ class EnabledLanguage(BaseModel):
     def __init__(self, name):
         self.name = name
 
-    def __str__(self):
-        return self.name
+    def __repr__(self):
+        return "<EnabledLang: %s>" % self.name
 
     @classmethod
-    def add_new_lang(cls, store, lang_code, app_data):
+    def add_new_lang(cls, store, lang_code, appdata):
         store.add(cls(lang_code))
 
-        Notification_L10N(store).create_default(lang_code, app_data)
-        Node_L10N(store).create_default(lang_code, app_data)
+        Notification_L10N(store).create_default(lang_code, appdata)
+        Node_L10N(store).create_default(lang_code, appdata)
 
     @classmethod
     def remove_old_lang(cls, store, lang_code):
@@ -32,12 +32,18 @@ class EnabledLanguage(BaseModel):
 
     @classmethod
     def get_all(cls, store):
-        return [str(e) for e in store.find(cls)]
+        return [e for e in store.find(cls)]
 
     @classmethod
-    def add_supported_langs(cls, store):
+    def add_all_supported_langs(cls, store, appdata_dict):
+        node_l10n = Node_L10N(store)
+        notif_l10n = Notification_L10N(store)
+
         for lang_code in LANGUAGES_SUPPORTED_CODES:
             store.add(cls(lang_code))
+            node_l10n.create_default(lang_code, appdata_dict)
+            notif_l10n.create_default(lang_code, appdata_dict)
+
 
 
 class ConfigL10N_Map(object):
@@ -56,31 +62,25 @@ class ConfigL10N_Map(object):
                 entry = ConfigL10N(lang_code, self.group_name, key)
             self.store.add(entry)
 
-    def create_defaults(self, appdata_dict):
-        for lang_code in EnabledLanguage.get_all(self.store):
-            self.create_default(lang_code, appdata_dict)
-
     def retrieve_rows(self, lang):
         selector = And(ConfigL10N.var_group == self.group_name, ConfigL10N.lang == unicode(lang))
         return [r for r in self.store.find(ConfigL10N, selector)]
 
     def fill_localized_values(self, external_obj, lang):
         rows = self.retrieve_rows(lang)
-        loc_dict = {stat.var_name : stat.value for stat in rows} 
-        
+        loc_dict = {c.var_name : c.value for c in rows}
+
         for key in self.model.localized_keys:
-            if key in loc_dict and key in loc_dict:
+            if key in loc_dict:
                 external_obj[key] = loc_dict[key]
-            else:
-                log.debug('key missing: %s'% key)
         return external_obj
 
     def update_model(self, request, lang):
-        stat_map = {stat.var_name : stat for stat in self.retrieve_rows(lang)}
+        c_map = {c.var_name : c for c in self.retrieve_rows(lang)}
 
         for key in self.model.localized_keys:
-            stat_obj = stat_map[key]
-            stat_obj.value = unicode(request[key])
+            c = c_map[key]
+            c.value = unicode(request[key])
 
 
 class Node_L10N(ConfigL10N_Map):
@@ -91,7 +91,7 @@ class Node_L10N(ConfigL10N_Map):
     def create_default(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['node']
         ConfigL10N_Map.create_default(self, lang_code, l10n_data_src)
-        
+
 
 class Notification_L10N(ConfigL10N_Map):
 
