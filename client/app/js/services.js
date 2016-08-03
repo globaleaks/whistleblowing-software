@@ -1373,13 +1373,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
 
     if (validLang(choice)) {
-      facts.userPreference = choice;
+      facts.userChoice = choice;
       determineLanguage();
     }
   }
 
   function isSelectable(language) {
-    return angular.isDefined(language) && enabledLanguages.indexOf(language) !== -1;
+    if (!angular.isDefined(language)) {
+        return false;
+    }
+    if (enabledLanguages.length > 0) {
+        return enabledLanguages.indexOf(language) !== -1;
+    }
+    return true;
   }
 
   // bestLanguage returns the best language for the application to use given
