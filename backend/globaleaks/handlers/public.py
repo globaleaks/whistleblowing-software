@@ -10,13 +10,14 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import ConfigL10N, l10n
+from globaleaks.models import ConfigL10N, l10n, config
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.set import disjoint_union
 
 
 @transact_ro
@@ -39,66 +40,30 @@ def serialize_ahmia(store, language):
 
 def db_serialize_node(store, language):
     """
-    Serialize node infos.
+    Serialize node info.
     """
-    node = store.find(models.Node).one()
-
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
 
-    ret_dict = {
-        'name': node.name,
-        'hidden_service': node.hidden_service,
-        'public_site': node.public_site,
+    cfg_dict = config.get_config_group(store, 'node')
+
+    misc_dict = {
         'languages_enabled': l10n.EnabledLanguage.get_all_strs(store),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'default_language': node.default_language,
-        'default_timezone': node.default_timezone,
-        'maximum_namesize': node.maximum_namesize,
-        'maximum_textsize': node.maximum_textsize,
-        'maximum_filesize': node.maximum_filesize,
-        'tor2web_admin': node.tor2web_admin,
-        'tor2web_custodian': node.tor2web_custodian,
-        'tor2web_whistleblower': node.tor2web_whistleblower,
-        'tor2web_receiver': node.tor2web_receiver,
-        'tor2web_unauth': node.tor2web_unauth,
         'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
         'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
-        'wbtip_timetolive': node.wbtip_timetolive,
-        'ahmia': node.ahmia,
-        'allow_indexing': node.allow_indexing,
-        'can_postpone_expiration': node.can_postpone_expiration,
-        'can_delete_submission': node.can_delete_submission,
-        'can_grant_permissions': node.can_grant_permissions,
-        'wizard_done': node.wizard_done,
-        'allow_unencrypted': node.allow_unencrypted,
-        'disable_encryption_warnings': node.disable_encryption_warnings,
-        'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'configured': configured,
-        'disable_submissions': node.disable_submissions,
-        'disable_privacy_badge': node.disable_privacy_badge,
-        'disable_security_awareness_badge': node.disable_security_awareness_badge,
-        'disable_security_awareness_questions': node.disable_security_awareness_questions,
-        'disable_key_code_hint': node.disable_key_code_hint,
-        'disable_donation_panel': node.disable_donation_panel,
-        'simplified_login': node.simplified_login,
-        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page,
-        'context_selector_type': node.context_selector_type,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'show_small_context_cards': node.show_small_context_cards,
         'accept_submissions': GLSettings.accept_submissions,
-        'enable_captcha': node.enable_captcha,
-        'enable_proof_of_work': node.enable_proof_of_work,
-        'enable_experimental_features': node.enable_experimental_features,
         'logo': db_get_file(store, u'logo'),
         'css': db_get_file(store, u'css'),
         'homepage': db_get_file(store, u'homepage'),
         'script': db_get_file(store, u'script')
     }
 
-    node_l10n = l10n.Node_L10N(store)
-    return node_l10n.fill_localized_values(ret_dict, language)
+    l10n_dict = l10n.Node_L10N(store).build_localized_dict(language)
+    
+    return disjoint_union(cfg_dict, l10n_dict, misc_dict)
+
 
 @transact_ro
 def serialize_node(store, language):

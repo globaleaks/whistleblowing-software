@@ -11,6 +11,7 @@ from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.models import ConfigL10N as c_l10n
+from globaleaks.models.config import ConfigFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -21,22 +22,23 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
-    node = store.find(models.Node).one()
-    if node.wizard_done:
+    cfg_fact = ConfigFactory('node', store)
+    c_wizard_done = cfg_fact.get('wizard_done')
+
+    if c_wizard_done.raw_value:
       # TODO report as anomaly
       log.err("DANGER: Wizard already initialized!")
       raise errors.ForbiddenOperation
     try:
-        node.default_language = language
-
         nn = unicode(request['node']['name'])
-        node.name = nn
+        cfg_fact.get('name').raw_value = nn
+        cfg_fact.get('default_language').raw_value = language
+        cfg_fact.get('allow_unencrypted').raw_value = request['node']['allow_unencrypted']
+        c_wizard_done.raw_value = True
+
         c_l10n.get_one(store, language, 'node', 'description').value = nn
         c_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
         c_l10n.get_one(store, language, 'node', 'presentation').value = nn
-
-        node.allow_unencrypted = request['node']['allow_unencrypted']
-        node.wizard_done = True
 
         context = db_create_context(store, request['context'], language)
 
@@ -60,7 +62,7 @@ def wizard(store, request, language):
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,
-            'timezone': node.default_timezone,
+            'timezone': cfg_fact.get('default_timezone'),
             'password_change_needed': False,
             'pgp_key_remove': False,
             'pgp_key_status': 'disabled',

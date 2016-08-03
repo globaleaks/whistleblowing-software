@@ -19,7 +19,7 @@ CREATE TABLE config_l10n (
     var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
     value TEXT NOT NULL,
-    FOREIGN KEY (lang) REFERENCES enabledlanguage(lang) ON DELETE CASCADE,
+    FOREIGN KEY (lang) REFERENCES enabledlanguage(name) ON DELETE CASCADE,
     PRIMARY KEY (lang, var_group, var_name)
 );
 
@@ -32,6 +32,7 @@ CREATE TABLE user (
     deletable INTEGER NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('admin', 'receiver', 'custodian')),
     state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
+    description TEXT NOT NULL, -- TODO delete me
     name TEXT NOT NULL,
     public_name TEXT NOT NULL,
     last_login TEXT NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE user_l10n (
     obj_id TEXT NOT NULL,
     lang TEXT NOT NULL,
     description TEXT NOT NULL,
-    FOREIGN KEY (lang) REFERENCES enabledlanguage(lang) ON DELETE CASCADE,
+    FOREIGN KEY (lang) REFERENCES enabledlanguage(name) ON DELETE CASCADE,
     FOREIGN KEY (obj_id) REFERENCES user(id) ON DELETE CASCADE,
     PRIMARY KEY (obj_id, lang)
 );
@@ -100,6 +101,12 @@ CREATE TABLE context (
     enable_attachments INTEGER NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
+ -- TODO remove this
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    recipients_clarification TEXT NOT NULL,
+    status_page_message TEXT NOT NULL,
+ -- TODO remove this
     questionnaire_id TEXT,
     img_id TEXT,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,

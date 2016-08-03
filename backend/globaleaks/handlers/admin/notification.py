@@ -9,6 +9,7 @@ from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
+from globaleaks.utils.set import disjoint_union
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
@@ -60,34 +61,16 @@ def parse_pgp_options(notification, request):
 
 
 def admin_serialize_notification(store, notif, language):
-    ret_dict = {
-        'server': notif.server if notif.server else u"",
-        'port': notif.port if notif.port else u"",
-        'username': notif.username if notif.username else u"",
-        # Explicitly do not include password in returned dict. Addresses #1615
-        'password': u"",
-        'security': notif.security if notif.security else u"",
-        'source_name': notif.source_name,
-        'source_email': notif.source_email,
-        'disable_admin_notification_emails': notif.disable_admin_notification_emails,
-        'disable_custodian_notification_emails': notif.disable_custodian_notification_emails,
-        'disable_receiver_notification_emails': notif.disable_receiver_notification_emails,
-        'send_email_for_every_event': notif.send_email_for_every_event,
+    config_dict = config.get_config_group(store, 'notification')
+
+    cmd_flags = {
         'reset_templates': False,
-        'tip_expiration_threshold': notif.tip_expiration_threshold,
-        'notification_threshold_per_hour': notif.notification_threshold_per_hour,
-        'notification_suspension_time': notif.notification_suspension_time,
-        'exception_email_address': notif.exception_email_address,
-        'exception_email_pgp_key_info': notif.exception_email_pgp_key_info,
-        'exception_email_pgp_key_fingerprint': notif.exception_email_pgp_key_fingerprint,
-        'exception_email_pgp_key_public': notif.exception_email_pgp_key_public,
-        'exception_email_pgp_key_expiration': datetime_to_ISO8601(notif.exception_email_pgp_key_expiration),
-        'exception_email_pgp_key_status': notif.exception_email_pgp_key_status,
-        'exception_email_pgp_key_remove': False
+        'exception_email_pgp_key_remove': False,
     }
 
-    notif_l10n = Notification_L10N(store)
-    return notif_l10n.fill_localized_values(ret_dict, language)
+    conf_l10n_dict = Notification_L10N(store).build_localized_values(language)
+
+    return disjoint_union(config_dict, cmd_flags, conf_l10n_dict)
 
 
 def db_get_notification(store, language):
@@ -113,8 +96,8 @@ def update_notification(store, request, language):
         notif_l10n.reset_templates(appdata)
 
     if request['password'] == u'':
-      log.debug('No password set. Using pw already in the DB.')
-      request['password'] = notif.password
+        log.debug('No password set. Using pw already in the DB.')
+        request['password'] = notif.password
 
     notif.update(request, static_l10n=True)
 
