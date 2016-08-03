@@ -23,15 +23,6 @@ CREATE TABLE config_l10n (
     PRIMARY KEY (lang, var_group, var_name)
 );
 
-CREATE TABLE config (
-    var_name TEXT NOT NULL,
-    var_type TEXT NOT NULL CHECK (TYPE IN ('int',
-                                           'bool',
-                                           'unicode')),
-    var_value TEXT NOT NULL,
-    PRIMARY KEY (var_name)
-);
-
 CREATE TABLE user (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
