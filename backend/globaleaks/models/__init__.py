@@ -188,29 +188,6 @@ class ConfigL10N(Storm):
         return res
 
 
-class Config(Storm):
-    __storm_table__ = 'config'
-    __storm_primary__ = ('var_group', 'var_name')
-
-    type_map = {'str': unicode, 'int': int, 'bool': bool}
-
-    var_group = Unicode()
-    var_name = Unicode()
-    var_type = Unicode()
-    raw_value = Pickle() # TODO use struct pack
-
-    def __init__(self, group, name, var_type, value):
-        self.var_group = group
-        if not var_type in self.type_map:
-            raise TypeError
-        elif not isinstance(value, self.type_map[var_type]):
-            raise TypeError
-        else:
-            self.raw_value = value
-        self.var_name = name
-        self.var_type = var_type
-
-
 class User(Model):
     """
     This model keeps track of globaleaks users.

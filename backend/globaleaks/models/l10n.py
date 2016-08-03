@@ -15,7 +15,7 @@ class EnabledLanguage(Storm):
     name = Unicode(primary=True)
 
     def __init__(self, name):
-        self.name = name
+        self.name = unicode(name)
 
     def __repr__(self):
         return "<EnabledLang: %s>" % self.name
@@ -80,6 +80,12 @@ class ConfigL10N_Map(object):
             if key in loc_dict:
                 external_obj[key] = loc_dict[key]
         return external_obj
+
+    def build_localized_dict(self, language):
+        rows = self.retrieve_rows(language)
+        loc_dict = {c.var_name : c.value for c in rows}
+        # TODO assert localized keys and loc_dict corresponsd self.model.localized_keys:
+        return loc_dict
 
     def update_model(self, request, lang):
         c_map = {c.var_name : c for c in self.retrieve_rows(lang)}
