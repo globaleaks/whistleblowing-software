@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from storm.expr import And
-from storm.locals import Unicode
+from storm.locals import Unicode, Storm
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import log
@@ -9,7 +9,9 @@ from globaleaks.utils.utility import log
 from . import Model, Node, Notification, ConfigL10N
 
 
-class EnabledLanguage(Model):
+class EnabledLanguage(Storm):
+    __storm_table__ = 'enabledlanguage'
+
     name = Unicode(primary=True)
 
     def __init__(self, name):

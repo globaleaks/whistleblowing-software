@@ -211,7 +211,7 @@ class Config(Storm):
         self.var_type = var_type
 
 
-class User(ModelWithID):
+class User(Model):
     """
     This model keeps track of globaleaks users.
     """
