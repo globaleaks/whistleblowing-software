@@ -223,12 +223,13 @@ class MigrationScript(MigrationBase):
         obj_appdata = self.appdata[appd_key]
 
         for name in old_obj.localized_keys:
-            
-            xx_json_dict = getattr(old_obj, name)
-            app_data_langs = obj_appdata.get(name, None)
+            xx_json_dict = getattr(old_obj, name, {})
+            app_data_langs = obj_appdata.get(name, {})
             for lang in langs_enabled:
-                val = xx_json_dict.get(lang, None)
-                if app_data_langs is not None and val is None:
+                val = u''
+                if xx_json_dict is not None:
+                  val = xx_json_dict.get(lang, u'')
+                if app_data_langs is not None or val == u'':
                   val = app_data_langs.get(lang, u'')
                 s = ConfigL10N(lang, old_obj.__storm_table__, name, val)
                 self.store_new.add(s)
