@@ -204,27 +204,6 @@ CREATE TABLE node (
 
 CREATE TABLE notification (
     id TEXT NOT NULL,
-    server TEXT,
-    port INTEGER,
-    password TEXT,
-    username TEXT,
-    source_name TEXT NOT NULL,
-    source_email TEXT NOT NULL,
-    security TEXT NOT NULL CHECK (security IN ('TLS', 'SSL')),
-    torify INTEGER,
-    tip_expiration_threshold INTEGER NOT NULL,
-    notification_threshold_per_hour INTEGER NOT NULL,
-    notification_suspension_time INTEGER NOT NULL,
-    disable_admin_notification_emails INTEGER NOT NULL,
-    disable_custodian_notification_emails INTEGER NOT NULL,
-    disable_receiver_notification_emails INTEGER NOT NULL,
-    send_email_for_every_event INTEGER NOT NULL,
-    exception_email_address TEXT NOT NULL,
-    exception_email_pgp_key_status TEXT NOT NULL CHECK (exception_email_pgp_key_status IN ('disabled', 'enabled')) DEFAULT 'disabled',
-    exception_email_pgp_key_info TEXT,
-    exception_email_pgp_key_fingerprint TEXT,
-    exception_email_pgp_key_public TEXT,
-    exception_email_pgp_key_expiration INTEGER,
     PRIMARY KEY (id)
 );
 

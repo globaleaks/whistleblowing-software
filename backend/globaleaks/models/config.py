@@ -70,11 +70,11 @@ class Config(Storm):
         self.var_type = unicode(var_type)
 
 
-def get_config_group(store, var_group):
-    # TODO no check that returned keys are approved.
+def get_config_group(store, var_group, allowed_key_set):
     grp = store.find(Config, Config.var_group == unicode(var_group))
-    return {x.var_name : x.raw_value for x in grp} 
-    
+
+    return {x.var_name : x.raw_value for x in grp if x in allowed_key_set}
+
 
 def validate_input(raw_json):
     if not isinstance(raw_json, dict):

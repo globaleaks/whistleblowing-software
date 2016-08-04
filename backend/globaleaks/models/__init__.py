@@ -541,40 +541,6 @@ class Node(Model):
 
 
 class Notification(Model):
-    """
-    This table has only one instance, and contain all the notification
-    information for the node templates are imported in the handler, but
-    settings are expected all at once.
-    """
-    server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
-    port = Int(default=9267)
-
-    username = Unicode(validator=shorttext_v, default=u'hey_you_should_change_me')
-    password = Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me')
-
-    source_name = Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION')
-    source_email = Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org')
-
-    security = Unicode(validator=shorttext_v, default=u'TLS')
-    # security_types: 'TLS', 'SSL'
-
-
-    disable_admin_notification_emails = Bool(default=False)
-    disable_custodian_notification_emails = Bool(default=False)
-    disable_receiver_notification_emails = Bool(default=False)
-    send_email_for_every_event = Bool(default=True)
-
-    tip_expiration_threshold = Int(validator=natnum_v, default=72)
-    notification_threshold_per_hour = Int(validator=natnum_v, default=20)
-    notification_suspension_time=Int(validator=natnum_v, default=(2 * 3600))
-
-    exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
-    exception_email_pgp_key_info = Unicode(default=u'')
-    exception_email_pgp_key_fingerprint = Unicode(default=u'')
-    exception_email_pgp_key_public = Unicode(default=u'')
-    exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
-    exception_email_pgp_key_status = Unicode(default=u'disabled')
-
     unicode_keys = [
         'server',
         'username',

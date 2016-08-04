@@ -3,6 +3,7 @@
 from globaleaks.models.validators import shorttext_v, longtext_v, \
        shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.security import generateRandomSalt as salt
 
 class Item():
@@ -10,7 +11,7 @@ class Item():
         if 'default' in kwargs:
             self.val = kwargs['default']
         else: #TODO normalize usage
-            self.val = args[0]
+            raise KeyError('No default set! %s, %s' % (args, kwargs))
 
 
 class Str(Item):
@@ -29,13 +30,38 @@ class Bool(Item):
     typ = 'bool'
 
 
+#TODO HANDLE HANDLE HANDLE
+class DateTime(Item):
+    typ = 'str' #TODO HANDLE HANDLE HANDLE
+
+
 GLConfig = {
     'notification': {
-        'server':      Str('demo.globaleaks.org'),
-        'port':        Int(9267),
-        'username':    Str('hey_you_should_change_me'),
-        'password':    Str('yes_you_really_should_change_me'),
-        'source_name': Str('GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
+        'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
+        'port': Int(default=9267),
+
+        'username': Unicode(validator=shorttext_v, default=u'hey_you_should_change_me'),
+        'password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
+
+        'source_name': Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
+        'source_email': Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org'),
+
+        'security': Unicode(validator=shorttext_v, default=u'TLS'),
+        'disable_admin_notification_emails': Bool(default=False),
+        'disable_custodian_notification_emails': Bool(default=False),
+        'disable_receiver_notification_emails': Bool(default=False),
+        'send_email_for_every_event': Bool(default=True),
+
+        'tip_expiration_threshold': Int(validator=natnum_v, default=72),
+        'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
+        'notification_suspension_time': Int(validator=natnum_v, default=(2 * 3600)),
+
+        'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
+        'exception_email_pgp_key_info': Unicode(default=u''),
+        'exception_email_pgp_key_fingerprint': Unicode(default=u''),
+        'exception_email_pgp_key_public': Unicode(default=u''),
+        'exception_email_pgp_key_expiration': DateTime(default=datetime_null), # TODO default used instead of default_factory
+        'exception_email_pgp_key_status': Unicode(default=u'disabled'), # TODO handle states 'enabled', 'disabled'
     },
     'node': {
         'version': Unicode(default=unicode(__version__)),
@@ -114,3 +140,63 @@ GLConfig = {
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
     },
 }
+
+
+class SafeSets(object):
+    public_node = frozenset([
+        'name',
+        'hidden_service',
+        'public_site',
+        'default_language',
+        'default_timezone',
+        'maximum_namesize',
+        'maximum_textsize',
+        'maximum_filesize',
+        'tor2web_admin',
+        'tor2web_custodian',
+        'tor2web_whistleblower',
+        'tor2web_receiver',
+        'tor2web_unauth',
+        'submission_minimum_delay', 
+        'submission_maximum_ttl',
+        'wbtip_timetolive',
+        'ahmia',
+        'allow_indexing',
+        'can_postpone_expiration',
+        'can_delete_submission',
+        'can_grant_permissions',
+        'wizard_done',
+        'allow_unencrypted',
+        'disable_encryption_warnings',
+        'allow_iframes_inclusion',
+        'disable_submissions',
+        'disable_privacy_badge',
+        'disable_security_awareness_badge',
+        'disable_security_awareness_questions',
+        'disable_key_code_hint',
+        'disable_donation_panel',
+        'simplified_login',
+        'enable_custom_privacy_badge',
+        'landing_page',
+        'context_selector_type',
+        'show_contexts_in_alphabetical_order',
+        'show_small_context_cards',
+        'enable_captcha',
+        'enable_proof_of_work',
+        'enable_experimental_features',
+    ])
+
+    admin_node = public_node & frozenset([
+        'version',
+        'version_db',
+        'threshold_free_disk_megabytes_high',
+        'threshold_free_disk_megabytes_medium',
+        'threshold_free_disk_megabytes_low',
+        'threshold_free_disk_percentage_high',
+        'threshold_free_disk_percentage_medium',
+        'threshold_free_disk_percentage_low',
+        'wbtip_timetolive',
+        'basic_auth',
+        'basic_auth_username',
+        'basic_auth_password',
+    ])

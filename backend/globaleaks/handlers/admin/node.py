@@ -13,6 +13,8 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
 from globaleaks.models.config import ConfigFactory
+from globaleaks.models import config
+from globaleaks.models.groups import SafeSets
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -27,61 +29,7 @@ def db_admin_serialize_node(store, language):
     c_node = ConfigFactory('node', store)
     c_node.fill_object_dict()
 
-    ret_dict = {
-        'name': c_node.ro.name,
-        'hidden_service': c_node.ro.hidden_service,
-        'public_site': c_node.ro.public_site,
-        'version': c_node.ro.version,
-        'version_db': c_node.ro.version_db,
-        'default_language': c_node.ro.default_language,
-        'default_timezone': c_node.ro.default_timezone,
-        'default_password': c_node.ro.default_password,
-        'maximum_filesize': c_node.ro.maximum_filesize,
-        'maximum_namesize': c_node.ro.maximum_namesize,
-        'maximum_textsize': c_node.ro.maximum_textsize,
-        'tor2web_admin': c_node.ro.tor2web_admin,
-        'tor2web_custodian': c_node.ro.tor2web_custodian,
-        'tor2web_whistleblower': c_node.ro.tor2web_whistleblower,
-        'tor2web_receiver': c_node.ro.tor2web_receiver,
-        'tor2web_unauth': c_node.ro.tor2web_unauth,
-        'submission_minimum_delay': c_node.ro.submission_minimum_delay,
-        'submission_maximum_ttl': c_node.ro.submission_maximum_ttl,
-        'can_postpone_expiration': c_node.ro.can_postpone_expiration,
-        'can_delete_submission': c_node.ro.can_delete_submission,
-        'can_grant_permissions': c_node.ro.can_grant_permissions,
-        'ahmia': c_node.ro.ahmia,
-        'allow_indexing': c_node.ro.allow_indexing,
-        'allow_unencrypted': c_node.ro.allow_unencrypted,
-        'disable_encryption_warnings': c_node.ro.disable_encryption_warnings,
-        'allow_iframes_inclusion': c_node.ro.allow_iframes_inclusion,
-        'wizard_done': c_node.ro.wizard_done,
-        'disable_submissions': c_node.ro.disable_submissions,
-        'disable_privacy_badge': c_node.ro.disable_privacy_badge,
-        'disable_security_awareness_badge': c_node.ro.disable_security_awareness_badge,
-        'disable_security_awareness_questions': c_node.ro.disable_security_awareness_questions,
-        'disable_key_code_hint': c_node.ro.disable_key_code_hint,
-        'disable_donation_panel': c_node.ro.disable_donation_panel,
-        'simplified_login': c_node.ro.simplified_login,
-        'enable_captcha': c_node.ro.enable_captcha,
-        'enable_proof_of_work': c_node.ro.enable_proof_of_work,
-        'enable_experimental_features': c_node.ro.enable_experimental_features,
-        'enable_custom_privacy_badge': c_node.ro.enable_custom_privacy_badge,
-        'landing_page': c_node.ro.landing_page,
-        'context_selector_type': c_node.ro.context_selector_type,
-        'show_contexts_in_alphabetical_order': c_node.ro.show_contexts_in_alphabetical_order,
-        'show_small_context_cards': c_node.ro.show_small_context_cards,
-        'threshold_free_disk_megabytes_high': c_node.ro.threshold_free_disk_megabytes_high,
-        'threshold_free_disk_megabytes_medium': c_node.ro.threshold_free_disk_megabytes_medium,
-        'threshold_free_disk_megabytes_low': c_node.ro.threshold_free_disk_megabytes_low,
-        'threshold_free_disk_percentage_high': c_node.ro.threshold_free_disk_percentage_high,
-        'threshold_free_disk_percentage_medium': c_node.ro.threshold_free_disk_percentage_medium,
-        'threshold_free_disk_percentage_low': c_node.ro.threshold_free_disk_percentage_low,
-        'wbtip_timetolive': c_node.ro.wbtip_timetolive,
-        'basic_auth': c_node.ro.basic_auth,
-        'basic_auth_username': c_node.ro.basic_auth_username,
-        'basic_auth_password': c_node.ro.basic_auth_password,
-    }
-
+    config.get_config_group(store, 'node', SafeSets.admin_node)
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0

@@ -62,7 +62,8 @@ def parse_pgp_options(notification, request):
 
 
 def admin_serialize_notification(store, notif, language):
-    config_dict = config.get_config_group(store, 'notification')
+    allowed_keys = GLConfig['notification'].keys() # TODO remove redudant.
+    config_dict = config.get_config_group(store, 'notification', allowed_keys)
 
     cmd_flags = {
         'reset_templates': False,
