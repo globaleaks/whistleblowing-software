@@ -11,6 +11,7 @@ from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.models import ConfigL10N, l10n, config
+from globaleaks.models.groups import SafeSets
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
@@ -45,10 +46,9 @@ def db_serialize_node(store, language):
     """
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
- 
-    cfg_dict = config.get_config_group(store, 'node')
- 
-    # TODO handle cleanly
+
+    cfg_dict = config.get_config_group(store, 'node', SafeSets.public_node)
+
     if GLSettings.devel_mode:
         cfg_dict['submission_minimum_delay'] = 0
 
@@ -65,8 +65,7 @@ def db_serialize_node(store, language):
 
     l10n_dict = l10n.Node_L10N(store).build_localized_dict(language)
     
-    res = disjoint_union(cfg_dict, l10n_dict, misc_dict)
-    return res
+    return disjoint_union(cfg_dict, l10n_dict, misc_dict)
 
 
 @transact_ro
