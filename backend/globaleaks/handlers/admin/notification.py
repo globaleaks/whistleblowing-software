@@ -7,9 +7,10 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
+from globaleaks.models import config
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
-from globaleaks.utils.set import disjoint_union
+from globaleaks.utils.sets import disjoint_union
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
@@ -68,7 +69,7 @@ def admin_serialize_notification(store, notif, language):
         'exception_email_pgp_key_remove': False,
     }
 
-    conf_l10n_dict = Notification_L10N(store).build_localized_values(language)
+    conf_l10n_dict = Notification_L10N(store).build_localized_dict(language)
 
     return disjoint_union(config_dict, cmd_flags, conf_l10n_dict)
 

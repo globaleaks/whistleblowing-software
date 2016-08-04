@@ -17,7 +17,7 @@ from globaleaks.orm import transact_ro
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.set import disjoint_union
+from globaleaks.utils.sets import disjoint_union
 
 
 @transact_ro
@@ -25,14 +25,15 @@ def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
-    node = store.find(models.Node).one()
+    c_node = ConfigFactory(store)
+    c_node.fill_object_dict()
 
     return {
-        'title': node.name,
+        'title': c_node.ro.name,
         'description': ConfigL10N.get_one(store, language, 'node', 'description').value,
-        'keywords': '%s (GlobaLeaks instance)' % node.name,
-        'relation': node.public_site,
-        'language': node.default_language,
+        'keywords': '%s (GlobaLeaks instance)' % c_node.ro.name,
+        'relation': c_node.ro.public_site,
+        'language': c_node.ro.default_language,
         'contactInformation': u'',
         'type': 'GlobaLeaks'
     }
@@ -44,14 +45,16 @@ def db_serialize_node(store, language):
     """
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
-
+ 
     cfg_dict = config.get_config_group(store, 'node')
+ 
+    # TODO handle cleanly
+    if GLSettings.devel_mode:
+        cfg_dict['submission_minimum_delay'] = 0
 
     misc_dict = {
         'languages_enabled': l10n.EnabledLanguage.get_all_strs(store),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
-        'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
         'configured': configured,
         'accept_submissions': GLSettings.accept_submissions,
         'logo': db_get_file(store, u'logo'),
@@ -62,7 +65,8 @@ def db_serialize_node(store, language):
 
     l10n_dict = l10n.Node_L10N(store).build_localized_dict(language)
     
-    return disjoint_union(cfg_dict, l10n_dict, misc_dict)
+    res = disjoint_union(cfg_dict, l10n_dict, misc_dict)
+    return res
 
 
 @transact_ro

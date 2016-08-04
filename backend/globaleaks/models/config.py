@@ -3,14 +3,39 @@ import os
 
 from storm.locals import Storm, Unicode, Pickle, And
 
-from globaleaks.settings import GLSettings
 from .groups import GLConfig
+
+
+class ObjectDict(dict):
+    """Makes a dictionary behave like an object."""
+    def __getattr__(self, name):
+        try:
+            return self[name]
+        except KeyError:
+            raise AttributeError(name)
+
+    def __setattr__(self, name, value):
+        self[name] = value
 
 
 class ConfigFactory(object):
     def __init__(self, group, store):
         self.group = unicode(group)
         self.store = store
+
+    def fill_object_dict(self):
+        cur = self.store.find(Config, And(Config.var_group == self.group))
+        rows = [_ for _ in cur]
+        # TODO Assert set equality of rows.var_name and self.group keys
+        self.ro = ObjectDict({c.var_name : c.raw_value for c in rows})
+        self.w = ObjectDict({c.var_name : c for c in rows})
+
+    def update(self, request):
+        # TODO decide if we can trust request sufficiently to use request.keys()
+        keys = set(request.keys()) & set(self.w.keys())
+        for key in keys:
+            # TODO must remove unsettable keys
+            getattr(self.w, key).raw_value = request[key]
 
     def get(self, var_name):
         where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
@@ -48,8 +73,8 @@ class Config(Storm):
 def get_config_group(store, var_group):
     # TODO no check that returned keys are approved.
     grp = store.find(Config, Config.var_group == unicode(var_group))
-    return {x.var_name : x.raw_value for x in grp}
-
+    return {x.var_name : x.raw_value for x in grp} 
+    
 
 def validate_input(raw_json):
     if not isinstance(raw_json, dict):
@@ -65,6 +90,6 @@ def validate_input(raw_json):
 
 def load_json_config(store):
     for gname, group in GLConfig.iteritems():
-        for item_def in group:
-            item = Config(gname, item_def['name'], item_def['type'], item_def['val'])
+        for var_name, item_def in group.iteritems():
+            item = Config(gname, var_name, item_def.typ, item_def.val)
             store.add(item)

@@ -51,13 +51,13 @@ class EnabledLanguage(Storm):
             notif_l10n.create_default(lang_code, appdata_dict)
 
 
-
 class ConfigL10N_Map(object):
-
     def __init__(self, model, store):
         self.store = store
         self.model = model
         self.group_name = unicode(model.__storm_table__)
+        self.d = dict()
+
 
     def create_default(self, lang_code, l10n_data_src):
         for key in self.model.localized_keys:
@@ -96,7 +96,6 @@ class ConfigL10N_Map(object):
 
 
 class Node_L10N(ConfigL10N_Map):
-
     def __init__(self, store):
         ConfigL10N_Map.__init__(self, Node, store)
 
@@ -106,7 +105,6 @@ class Node_L10N(ConfigL10N_Map):
 
 
 class Notification_L10N(ConfigL10N_Map):
-
     def __init__(self, store):
         ConfigL10N_Map.__init__(self, Notification, store)
 
