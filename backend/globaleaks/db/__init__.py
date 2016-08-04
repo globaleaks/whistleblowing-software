@@ -56,8 +56,8 @@ def init_db(store, use_single_lang=False):
     log.debug("Performing database initialization...")
 
     node = models.Node()
+    # TODO this flag does not work
     node.wizard_done = GLSettings.skip_wizard
-    node.receipt_salt = generateRandomSalt()
     store.add(node)
 
     notification = models.Notification()
@@ -165,62 +165,26 @@ def db_refresh_memory_variables(store):
     """
 
     node = store.find(models.Node).one()
+    c_node = config.ConfigFactory('node', store)
 
-    GLSettings.memory_copy.nodename = node.name
+    c_node.fill_object_dict()
 
-    GLSettings.memory_copy.basic_auth = node.basic_auth
-    GLSettings.memory_copy.basic_auth_username = node.basic_auth_username
-    GLSettings.memory_copy.basic_auth_password = node.basic_auth_password
-
-    GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
-    GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
-    GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
+    # TODO define explicit list of memory copied vars.
+    GLSettings.memory_copy = c_node.ro
+    # TODO understand if store is closed properly here after a GC
 
     GLSettings.memory_copy.accept_tor2web_access = {
-        'admin': node.tor2web_admin,
-        'custodian': node.tor2web_custodian,
-        'whistleblower': node.tor2web_whistleblower,
-        'receiver': node.tor2web_receiver,
-        'unauth': node.tor2web_unauth
+        'admin': c_node.ro.tor2web_admin,
+        'custodian': c_node.ro.tor2web_custodian,
+        'whistleblower': c_node.ro.tor2web_whistleblower,
+        'receiver': c_node.ro.tor2web_receiver,
+        'unauth': c_node.ro.tor2web_unauth
     }
-
-    GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
-    GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
-    GLSettings.memory_copy.can_grant_permissions = node.can_grant_permissions
-
-    GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
-    GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
-
-    GLSettings.memory_copy.allow_indexing = node.allow_indexing
-    GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
-    GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
-
-    GLSettings.memory_copy.enable_captcha = node.enable_captcha
-    GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
-
-    GLSettings.memory_copy.wbtip_timetolive = node.wbtip_timetolive
-
 
     # TODO TODO TODO
     enabled_langs = [c.name for c in models.l10n.EnabledLanguage.get_all(store)]
     GLSettings.memory_copy.languages_enabled = enabled_langs
     # TODO TODO TODO
-
-    GLSettings.memory_copy.default_password = node.default_password
-    GLSettings.memory_copy.default_language = node.default_language
-    GLSettings.memory_copy.default_timezone = node.default_timezone
-
-    GLSettings.memory_copy.receipt_salt  = node.receipt_salt
-
-    GLSettings.memory_copy.simplified_login = node.simplified_login
-
-    GLSettings.memory_copy.threshold_free_disk_megabytes_high = node.threshold_free_disk_megabytes_high
-    GLSettings.memory_copy.threshold_free_disk_megabytes_medium = node.threshold_free_disk_megabytes_medium
-    GLSettings.memory_copy.threshold_free_disk_megabytes_low = node.threshold_free_disk_megabytes_low
-
-    GLSettings.memory_copy.threshold_free_disk_percentage_high = node.threshold_free_disk_percentage_high
-    GLSettings.memory_copy.threshold_free_disk_percentage_medium = node.threshold_free_disk_percentage_medium
-    GLSettings.memory_copy.threshold_free_disk_percentage_low = node.threshold_free_disk_percentage_low
 
     notif = store.find(models.Notification).one()
 
@@ -266,6 +230,6 @@ def refresh_memory_variables(*args):
 
 @transact
 def update_version(store):
-    node = store.find(models.Node).one()
-    node.version = unicode(__version__)
-    node.version_db = unicode(DATABASE_VERSION)
+    c_node = config.ConfigFactory('node', store)
+    c_node.get('version').raw_value = unicode(__version__)
+    c_node.get('version_db').raw_value = unicode(DATABASE_VERSION)

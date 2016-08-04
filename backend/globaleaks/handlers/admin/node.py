@@ -8,10 +8,11 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
+from globaleaks.models.config import ConfigFactory
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -23,74 +24,78 @@ from globaleaks.utils.utility import log
 
 
 def db_admin_serialize_node(store, language):
-    node = store.find(models.Node).one()
+    c_node = ConfigFactory('node', store)
+    c_node.fill_object_dict()
+
+    ret_dict = {
+        'name': c_node.ro.name,
+        'hidden_service': c_node.ro.hidden_service,
+        'public_site': c_node.ro.public_site,
+        'version': c_node.ro.version,
+        'version_db': c_node.ro.version_db,
+        'default_language': c_node.ro.default_language,
+        'default_timezone': c_node.ro.default_timezone,
+        'default_password': c_node.ro.default_password,
+        'maximum_filesize': c_node.ro.maximum_filesize,
+        'maximum_namesize': c_node.ro.maximum_namesize,
+        'maximum_textsize': c_node.ro.maximum_textsize,
+        'tor2web_admin': c_node.ro.tor2web_admin,
+        'tor2web_custodian': c_node.ro.tor2web_custodian,
+        'tor2web_whistleblower': c_node.ro.tor2web_whistleblower,
+        'tor2web_receiver': c_node.ro.tor2web_receiver,
+        'tor2web_unauth': c_node.ro.tor2web_unauth,
+        'submission_minimum_delay': c_node.ro.submission_minimum_delay,
+        'submission_maximum_ttl': c_node.ro.submission_maximum_ttl,
+        'can_postpone_expiration': c_node.ro.can_postpone_expiration,
+        'can_delete_submission': c_node.ro.can_delete_submission,
+        'can_grant_permissions': c_node.ro.can_grant_permissions,
+        'ahmia': c_node.ro.ahmia,
+        'allow_indexing': c_node.ro.allow_indexing,
+        'allow_unencrypted': c_node.ro.allow_unencrypted,
+        'disable_encryption_warnings': c_node.ro.disable_encryption_warnings,
+        'allow_iframes_inclusion': c_node.ro.allow_iframes_inclusion,
+        'wizard_done': c_node.ro.wizard_done,
+        'disable_submissions': c_node.ro.disable_submissions,
+        'disable_privacy_badge': c_node.ro.disable_privacy_badge,
+        'disable_security_awareness_badge': c_node.ro.disable_security_awareness_badge,
+        'disable_security_awareness_questions': c_node.ro.disable_security_awareness_questions,
+        'disable_key_code_hint': c_node.ro.disable_key_code_hint,
+        'disable_donation_panel': c_node.ro.disable_donation_panel,
+        'simplified_login': c_node.ro.simplified_login,
+        'enable_captcha': c_node.ro.enable_captcha,
+        'enable_proof_of_work': c_node.ro.enable_proof_of_work,
+        'enable_experimental_features': c_node.ro.enable_experimental_features,
+        'enable_custom_privacy_badge': c_node.ro.enable_custom_privacy_badge,
+        'landing_page': c_node.ro.landing_page,
+        'context_selector_type': c_node.ro.context_selector_type,
+        'show_contexts_in_alphabetical_order': c_node.ro.show_contexts_in_alphabetical_order,
+        'show_small_context_cards': c_node.ro.show_small_context_cards,
+        'threshold_free_disk_megabytes_high': c_node.ro.threshold_free_disk_megabytes_high,
+        'threshold_free_disk_megabytes_medium': c_node.ro.threshold_free_disk_megabytes_medium,
+        'threshold_free_disk_megabytes_low': c_node.ro.threshold_free_disk_megabytes_low,
+        'threshold_free_disk_percentage_high': c_node.ro.threshold_free_disk_percentage_high,
+        'threshold_free_disk_percentage_medium': c_node.ro.threshold_free_disk_percentage_medium,
+        'threshold_free_disk_percentage_low': c_node.ro.threshold_free_disk_percentage_low,
+        'wbtip_timetolive': c_node.ro.wbtip_timetolive,
+        'basic_auth': c_node.ro.basic_auth,
+        'basic_auth_username': c_node.ro.basic_auth_username,
+        'basic_auth_password': c_node.ro.basic_auth_password,
+    }
+
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
-
     custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
 
-    ret_dict = {
-        'name': node.name,
-        'hidden_service': node.hidden_service,
-        'public_site': node.public_site,
-        'version': node.version,
-        'version_db': node.version_db,
+    misc_dict = {
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.get_all_strs(store),
-        'default_language': node.default_language,
-        'default_timezone': node.default_timezone,
-        'default_password': node.default_password,
-        'maximum_filesize': node.maximum_filesize,
-        'maximum_namesize': node.maximum_namesize,
-        'maximum_textsize': node.maximum_textsize,
-        'tor2web_admin': node.tor2web_admin,
-        'tor2web_custodian': node.tor2web_custodian,
-        'tor2web_whistleblower': node.tor2web_whistleblower,
-        'tor2web_receiver': node.tor2web_receiver,
-        'tor2web_unauth': node.tor2web_unauth,
-        'submission_minimum_delay': node.submission_minimum_delay,
-        'submission_maximum_ttl': node.submission_maximum_ttl,
-        'can_postpone_expiration': node.can_postpone_expiration,
-        'can_delete_submission': node.can_delete_submission,
-        'can_grant_permissions': node.can_grant_permissions,
-        'ahmia': node.ahmia,
-        'allow_indexing': node.allow_indexing,
-        'allow_unencrypted': node.allow_unencrypted,
-        'disable_encryption_warnings': node.disable_encryption_warnings,
-        'allow_iframes_inclusion': node.allow_iframes_inclusion,
-        'wizard_done': node.wizard_done,
         'configured': configured,
         'custom_homepage': custom_homepage,
-        'disable_submissions': node.disable_submissions,
-        'disable_privacy_badge': node.disable_privacy_badge,
-        'disable_security_awareness_badge': node.disable_security_awareness_badge,
-        'disable_security_awareness_questions': node.disable_security_awareness_questions,
-        'disable_key_code_hint': node.disable_key_code_hint,
-        'disable_donation_panel': node.disable_donation_panel,
-        'simplified_login': node.simplified_login,
-        'enable_captcha': node.enable_captcha,
-        'enable_proof_of_work': node.enable_proof_of_work,
-        'enable_experimental_features': node.enable_experimental_features,
-        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page,
-        'context_selector_type': node.context_selector_type,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'show_small_context_cards': node.show_small_context_cards,
-        'threshold_free_disk_megabytes_high': node.threshold_free_disk_megabytes_high,
-        'threshold_free_disk_megabytes_medium': node.threshold_free_disk_megabytes_medium,
-        'threshold_free_disk_megabytes_low': node.threshold_free_disk_megabytes_low,
-        'threshold_free_disk_percentage_high': node.threshold_free_disk_percentage_high,
-        'threshold_free_disk_percentage_medium': node.threshold_free_disk_percentage_medium,
-        'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low,
-        'wbtip_timetolive': node.wbtip_timetolive,
-        'basic_auth': node.basic_auth,
-        'basic_auth_username': node.basic_auth_username,
-        'basic_auth_password': node.basic_auth_password
     }
 
-    node_l10n = Node_L10N(store)
-    return node_l10n.fill_localized_values(ret_dict, language)
+    l10n_dict = Node_L10N(store).build_localized_dict(language)
+    return utils.sets.disjoint_union(ret_dict, misc_dict, l10n_dict)
 
 
 @transact_ro
@@ -99,7 +104,6 @@ def admin_serialize_node(store, language):
 
 
 def enable_disable_languages(store, request):
-
     cur_enabled_langs = EnabledLanguage.get_all_strs(store)
     new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
@@ -136,17 +140,19 @@ def db_update_node(store, request, language):
 
     node_l10n = Node_L10N(store)
     node_l10n.update_model(request, language)
-    node = store.find(models.Node).one()
 
-    node.basic_auth = request['basic_auth']
+    c_node = ConfigFactory('node', store)
+    c_node.fill_object_dict()
+
+    c_node.w.basic_auth.raw_value = request['basic_auth']
+    c_node.update(request)
+
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
-        node.basic_auth = True
-        node.basic_auth_username = request['basic_auth_username']
-        node.basic_auth_password = request['basic_auth_password']
+        c_node.w.basic_auth.raw_value = True
+        c_node.w.basic_auth_username.raw_value = request['basic_auth_username']
+        c_node.w.basic_auth_password.raw_value = request['basic_auth_password']
     else:
-        node.basic_auth = False
-
-    node.update(request, static_l10n=True)
+        c_node.w.basic_auth.raw_value = False
 
     db_refresh_memory_variables(store)
 
