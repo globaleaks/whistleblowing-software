@@ -134,8 +134,8 @@ class StatisticsSchedule(GLJob):
         GLSettings.exceptions_email_count = 0
 
         for k, v in GLSettings.mail_counters.iteritems():
-            if v > GLSettings.memory_copy.notification_threshold_per_hour:
-                GLSettings.mail_counters[k] -= GLSettings.memory_copy.notification_threshold_per_hour
+            if v > GLSettings.memory_copy.notif.notification_threshold_per_hour:
+                GLSettings.mail_counters[k] -= GLSettings.memory_copy.notif.notification_threshold_per_hour
             else:
                 GLSettings.mail_counters[k] = 0
         # ------- END Mail thresholds management -----------

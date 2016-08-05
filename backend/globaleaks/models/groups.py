@@ -6,6 +6,7 @@ from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.security import generateRandomSalt as salt
 
+
 class Item():
     def __init__(self, *args, **kwargs):
         if 'default' in kwargs:
@@ -50,11 +51,11 @@ GLConfig = {
         'disable_admin_notification_emails': Bool(default=False),
         'disable_custodian_notification_emails': Bool(default=False),
         'disable_receiver_notification_emails': Bool(default=False),
-        'send_email_for_every_event': Bool(default=True),
+        'send_email_for_every_event': Bool(default=True), # TODO remove me, I am unused
 
         'tip_expiration_threshold': Int(validator=natnum_v, default=72),
         'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
-        'notification_suspension_time': Int(validator=natnum_v, default=(2 * 3600)),
+        'notification_suspension_time': Int(validator=natnum_v, default=(2 * 3600)), #TODO remove unused
 
         'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
         'exception_email_pgp_key_info': Unicode(default=u''),
@@ -143,50 +144,7 @@ GLConfig = {
 
 
 class SafeSets(object):
-    public_node = frozenset([
-        'name',
-        'hidden_service',
-        'public_site',
-        'default_language',
-        'default_timezone',
-        'maximum_namesize',
-        'maximum_textsize',
-        'maximum_filesize',
-        'tor2web_admin',
-        'tor2web_custodian',
-        'tor2web_whistleblower',
-        'tor2web_receiver',
-        'tor2web_unauth',
-        'submission_minimum_delay', 
-        'submission_maximum_ttl',
-        'wbtip_timetolive',
-        'ahmia',
-        'allow_indexing',
-        'can_postpone_expiration',
-        'can_delete_submission',
-        'can_grant_permissions',
-        'wizard_done',
-        'allow_unencrypted',
-        'disable_encryption_warnings',
-        'allow_iframes_inclusion',
-        'disable_submissions',
-        'disable_privacy_badge',
-        'disable_security_awareness_badge',
-        'disable_security_awareness_questions',
-        'disable_key_code_hint',
-        'disable_donation_panel',
-        'simplified_login',
-        'enable_custom_privacy_badge',
-        'landing_page',
-        'context_selector_type',
-        'show_contexts_in_alphabetical_order',
-        'show_small_context_cards',
-        'enable_captcha',
-        'enable_proof_of_work',
-        'enable_experimental_features',
-    ])
-
-    admin_node = public_node & frozenset([
+    node_private_fields = frozenset({
         'version',
         'version_db',
         'threshold_free_disk_megabytes_high',
@@ -199,4 +157,8 @@ class SafeSets(object):
         'basic_auth',
         'basic_auth_username',
         'basic_auth_password',
-    ])
+    })
+
+    admin_node = frozenset(GLConfig['node'].keys())
+
+    public_node = frozenset(GLConfig['node'].keys()) - node_private_fields

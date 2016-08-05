@@ -29,7 +29,7 @@ def db_admin_serialize_node(store, language):
     c_node = ConfigFactory('node', store)
     c_node.fill_object_dict()
 
-    config.get_config_group(store, 'node', SafeSets.admin_node)
+    node_dict = config.get_config_group(store, 'node', SafeSets.admin_node)
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
@@ -43,7 +43,7 @@ def db_admin_serialize_node(store, language):
     }
 
     l10n_dict = Node_L10N(store).build_localized_dict(language)
-    return utils.sets.disjoint_union(ret_dict, misc_dict, l10n_dict)
+    return utils.sets.disjoint_union(node_dict, misc_dict, l10n_dict)
 
 
 @transact_ro
