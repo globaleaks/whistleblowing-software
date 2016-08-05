@@ -82,7 +82,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             self.start_asynchronous_jobs()
 
         except Exception as excep:
-            log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")
+            log.err("ERROR: Cannot start GlobaLeaks; please manually check the error.")
             log.err("EXCEPTION: %s" % excep)
             self._reactor.stop()
 

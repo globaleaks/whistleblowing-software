@@ -8,6 +8,7 @@ from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
 from globaleaks.models import config
+from globaleaks.models.groups import GLConfig
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
 from globaleaks.utils.sets import disjoint_union
@@ -61,8 +62,8 @@ def parse_pgp_options(notification, request):
             gnob.destroy_environment()
 
 
-def admin_serialize_notification(store, notif, language):
-    allowed_keys = GLConfig['notification'].keys() # TODO remove redudant.
+def admin_serialize_notification(store, language):
+    allowed_keys = GLConfig['notification'].keys() # TODO remove redundant expression.
     config_dict = config.get_config_group(store, 'notification', allowed_keys)
 
     cmd_flags = {
@@ -76,8 +77,7 @@ def admin_serialize_notification(store, notif, language):
 
 
 def db_get_notification(store, language):
-    notif = store.find(Notification).one()
-    return admin_serialize_notification(store, notif, language)
+    return admin_serialize_notification(store, language)
 
 
 @transact_ro
@@ -87,11 +87,12 @@ def get_notification(store, language):
 
 @transact
 def update_notification(store, request, language):
-    notif = store.find(Notification).one()
-
     notif_l10n = Notification_L10N(store)
     log.debug("Updating lang: %s" % language)
     notif_l10n.update_model(request, language)
+
+    c_notif = ConfigFactory('notification', store)
+    c_node.fill_config_dict()
 
     if request['reset_templates']:
         appdata = load_appdata()
@@ -99,15 +100,17 @@ def update_notification(store, request, language):
 
     if request['password'] == u'':
         log.debug('No password set. Using pw already in the DB.')
-        request['password'] = notif.password
+        request['password'] = c_notif.ro.password
 
-    notif.update(request, static_l10n=True)
+    c_notif.update(request)
 
-    parse_pgp_options(notif, request)
+    # TODO this fnc call is a no-op because c_notif.ro is passed. 
+    parse_pgp_options(c_notif.ro, request)
+
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)
 
-    return admin_serialize_notification(store, notif, language)
+    return admin_serialize_notification(store, language)
 
 
 class NotificationInstance(BaseHandler):
@@ -158,25 +161,25 @@ class EmailNotifInstance(BaseHandler):
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
-      """
-      Parameters: None
-      Response: None
-      """
-      user = yield get_user_settings(self.current_user.user_id, 
+        """
+        Parameters: None
+        Response: None
+        """
+        user = yield get_user_settings(self.current_user.user_id, 
                                      GLSettings.memory_copy.default_language)
-      notif = yield get_notification(user['language'])
+        notif = yield get_notification(user['language'])
 
-      send_to = user['mail_address']
-      # Get the test emails subject line and body internationalized from notif
-      subject = notif['admin_test_static_mail_title']
-      msg = notif['admin_test_static_mail_template']
-      
-      log.debug("Attempting to send test email to: %s" % send_to)
-      # If sending the email fails the exception mail address will be mailed.
-      # If the failure is due to a bad SMTP config that will fail too, but it 
-      # doesn't hurt to try!
-      try:
-        yield sendmail(send_to, subject, msg)
-      except Exception as e:
-        log.debug("Sending to admin failed. Trying an exception mail")
-        raise e
+        send_to = user['mail_address']
+        # Get the test emails subject line and body internationalized from notif
+        subject = notif['admin_test_static_mail_title']
+        msg = notif['admin_test_static_mail_template']
+
+        log.debug("Attempting to send test email to: %s" % send_to)
+        # If sending the email fails the exception mail address will be mailed.
+        # If the failure is due to a bad SMTP config that will fail too, but it 
+        # doesn't hurt to try!
+        try:
+            yield sendmail(send_to, subject, msg)
+        except Exception as e:
+            log.debug("Sending to admin failed. Trying an exception mail")
+            raise e
