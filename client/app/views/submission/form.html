@@ -5,7 +5,7 @@
         <div class="panel-heading">
           <label>
             <span class="fieldLabel">{{::field.label}}</span>
-            <a href="" data-ng-show="::field.hint" data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <a href="" data-ng-show="::field.hint" data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="'mouseenter'">
               <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </label>
@@ -13,7 +13,7 @@
                 data-ng-if="::field.required"
                 uib-popover="{{'This field is mandatory' | translate}}"
                 popover-placement="right"
-                popover-trigger="mouseenter">*</span>
+                popover-trigger="'mouseenter'">*</span>
         </div>
         <div class="panel-body">
           <div class="fieldDescription">{{::field.description}}</div>
