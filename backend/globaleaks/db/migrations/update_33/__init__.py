@@ -180,8 +180,10 @@ class MigrationScript(MigrationBase):
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'tb_download_link':
+                continue
+
             if v.name == 'wbtip_timetolive':
-                new_node.wbtip_timetolive = 90
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))
