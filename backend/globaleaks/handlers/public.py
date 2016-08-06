@@ -51,6 +51,7 @@ def db_serialize_node(store, language):
         'name': node.name,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
+        'tb_download_link': node.tb_download_link,
         'languages_enabled': node.languages_enabled,
         'languages_supported': LANGUAGES_SUPPORTED,
         'default_language': node.default_language,
