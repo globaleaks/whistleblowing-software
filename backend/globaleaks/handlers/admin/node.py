@@ -33,6 +33,7 @@ def db_admin_serialize_node(store, language):
         'presentation': node.presentation,
         'hidden_service': node.hidden_service,
         'public_site': node.public_site,
+        'tb_download_link': node.tb_download_link,
         'version': node.version,
         'version_db': node.version_db,
         'languages_supported': LANGUAGES_SUPPORTED,

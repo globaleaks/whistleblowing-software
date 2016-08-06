@@ -449,6 +449,7 @@ class Node(ModelWithID):
 
     public_site = Unicode(validator=shorttext_v, default=u'')
     hidden_service = Unicode(validator=shorttext_v, default=u'')
+    tb_download_link = Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download')
 
     receipt_salt = Unicode(validator=shorttext_v)
 
@@ -540,6 +541,7 @@ class Node(ModelWithID):
         'name',
         'public_site',
         'hidden_service',
+        'tb_download_link',
         'default_language',
         'default_password',
         'landing_page',
