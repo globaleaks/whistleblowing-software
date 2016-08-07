@@ -97,22 +97,22 @@ def reset_pass(args):
 
     salt = generateRandomSalt()
 
-    hashed_password = hash_password(password, salt)
+    hashed_password = hash_password(args.password, salt)
 
     QUERY = """
     UPDATE user SET salt=?, password=? WHERE username=?;
     """
     conn = sqlite3.connect(args.dbpath)
     c = conn.cursor()
-    c.execute(QUERY, salt, hashed_password, username)
+    c.execute(QUERY, (salt, hashed_password, args.username))
     conn.commit()
     conn.close()
 
     print "================================="
     print "||  Password reset completed   ||"
     print "================================="
-    print "     Username: %s" % username
-    print "     Password: %s" % password
+    print "     Username: %s" % args.username
+    print "     Password: %s" % args.password
     print "================================="
 
 GLSettings.eval_paths()
@@ -135,8 +135,8 @@ res_p.set_defaults(func=restore)
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
 pw_p.add_argument("--dbpath", help="the path to the globaleaks db", default=normal_db_path())
 pw_p.add_argument("username", help="the username used to login into GL")
-pw_p.add_argument("password", help="if not set a random password is generated",
-                    default=generateRandomPassword())
+pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
+                  default=generateRandomPassword())
 pw_p.set_defaults(func=reset_pass)
 
 if __name__ == '__main__':
