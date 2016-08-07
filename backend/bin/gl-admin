@@ -14,17 +14,20 @@ from globaleaks.security import hash_password, generateRandomPassword, generateR
 from globaleaks import DATABASE_VERSION
 
 
-def check_file(isafile):
-    print "checking file: %s" % isafile
-    if not os.path.isfile(isafile):
-        print "Missing file: %s" % isafile
-        quit()
+def check_file(f):
+    if not os.path.isfile(f):
+        print "Missing file: %s" % f
+    try:
+        open(f, 'r')
+    except IOError as err:
+        print err
+        quit(1)
 
 
 def check_dir(d):
     if not os.path.isdir(d):
         print "Missing dir: %s" % d
-        quit()
+        quit(1)
 
 
 def normal_backup_path():
@@ -33,8 +36,12 @@ def normal_backup_path():
     return os.path.join("/tmp", name)
 
 
+def normal_workdir():
+    return GLSettings.working_path
+
+
 def normal_db_path():
-    return GLSettings.db_path
+    return GLSettings.db_file_path
 
 
 def is_gl_running():
@@ -57,7 +64,11 @@ def backup(args):
 
     if must_stop: sp.check_call("service globaleaks stop", shell=True)
     print "Creating an archive backup of the globaleaks setup. . ."
-    sp.check_call(["tar", "-zcf", args.backuppath, args.workdir])
+    p_head, p_tail = os.path.split(args.workdir)
+
+    # Looks like: > tar -zcf globaleaks_backup_16_08_07.tar.gz -C /var/ globaleaks
+    sp.check_call(["tar", "-zcf", args.backuppath, "-C", p_head, p_tail])
+
     if must_stop: sp.check_call("service globaleaks start", shell=True)
     print "Success: The archived backup was created at:", args.backuppath
 
@@ -79,13 +90,15 @@ def restore(args):
     if must_stop: sp.check_call("service globaleaks stop", shell=True)
     print "Deleting %s . . ." % args.workdir
 
+    p_head, p_tail = os.path.split(args.workdir)
+
     # TODO remove workdir str fmt
     sp.check_call("find %s -type f -exec shred -vzn 3 {} \;" % args.workdir, shell=True)
-    sp.check_call(["rm", "-rf", os.path.join(args.workdir, "*")])
+    sp.check_call(["rm", "-rf", args.workdir])
 
     print "Extracting the archive %s" % args.backuppath
-    # This will probably extract to /var/ ... /var/glo
-    sp.check_call(["tar", "-xf", args.backuppath, "-C", args.workdir])
+    # Looks like: > tar -xf globaleaks_backup_16_08_07.tar.gz -C /var/ globaleaks
+    sp.check_call(["tar", "-xf", args.backuppath, "-C", p_head, p_tail])
 
     if must_stop: sp.check_call("service globaleaks start", shell=True)
 
@@ -105,6 +118,9 @@ def reset_pass(args):
     conn = sqlite3.connect(args.dbpath)
     c = conn.cursor()
     c.execute(QUERY, (salt, hashed_password, args.username))
+    if c.rowcount != 1:
+        print "Failed! The user '%s' does not exist." % args.username
+        quit(1)
     conn.commit()
     conn.close()
 
@@ -123,13 +139,17 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a zipped backup of the gl working dir")
-bck_p.add_argument("workdir", help="the location of dynamic gl content")
-bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup", default=normal_backup_path())
+bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
+                   default=normal_workdir())
+bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
+                   default=normal_backup_path())
 bck_p.set_defaults(func=backup)
 
 res_p = subp.add_parser("restore", help="unpack a zipped backup of globaleaks")
-res_p.add_argument("workdir", help="the location of dynamic gl content")
-res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup", default=normal_backup_path())
+res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
+                   default=normal_workdir())
+res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
+                   default=normal_backup_path())
 res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
