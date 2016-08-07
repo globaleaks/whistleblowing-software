@@ -244,7 +244,7 @@ class TestGL(unittest.TestCase):
         new_u['username'] = username
         new_u['name'] = new_u['public_name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (username, username))
-        new_u['description'] = u""
+        new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
@@ -280,7 +280,7 @@ class TestGL(unittest.TestCase):
             'label': u'antani',
             'type': u'inputbox',
             'preview': False,
-            'description': u"field description",
+            'description': u'field description',
             'hint': u'field hint',
             'multi_entry': False,
             'multi_entry_hint': '',
@@ -783,8 +783,8 @@ class MockDict:
         }
 
         self.dummyNode = {
-            'name': u"Please, set me: name/title",
-            'description': u"Pleæs€, set m€: d€scription",
+            'name': u'Please, set me: name/title',
+            'description': u'Pleæs€, set m€: d€scription',
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'security_awareness_title': u'',
@@ -792,11 +792,12 @@ class MockDict:
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
             'whistleblowing_receipt_prompt': u'',
-            'hidden_service': u"http://1234567890123456.onion",
-            'public_site': u"https://globaleaks.org",
-            'email': u"email@dummy.net",
+            'hidden_service': u'http://1234567890123456.onion',
+            'public_site': u'https://globaleaks.org',
+            'tb_download_link': u'https://www.torproject.org/download/download',
+            'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
-            'languages_enabled': ["it", "en"],
+            'languages_enabled': ['it', 'en'],
             'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
             'maximum_namesize': 120,
