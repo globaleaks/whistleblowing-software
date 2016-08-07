@@ -35,7 +35,7 @@ class Node_v_32(ModelWithID):
     tor2web_whistleblower = Bool(default=False)
     tor2web_receiver = Bool(default=True)
     tor2web_unauth = Bool(default=True)
-    allow_unencrypted = Bool(default=False) # Changed to enforce_notification_encryption in Node_v_32
+    allow_unencrypted = Bool(default=False)
     disable_encryption_warnings = Bool(default=False)
     allow_iframes_inclusion = Bool(default=False)
     submission_minimum_delay = Int(default=10)
