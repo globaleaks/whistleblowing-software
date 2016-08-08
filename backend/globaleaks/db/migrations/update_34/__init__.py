@@ -218,7 +218,6 @@ class MigrationScript(MigrationBase):
 
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-
         langs_enabled = l10n.EnabledLanguage.get_all(self.store_new)
         obj_appdata = self.appdata[appd_key]
 
@@ -227,11 +226,20 @@ class MigrationScript(MigrationBase):
             app_data_langs = obj_appdata.get(name, {})
             for lang in langs_enabled:
                 val = u''
+
                 if xx_json_dict is not None:
                   val = xx_json_dict.get(lang, u'')
+
                 if app_data_langs is not None or val == u'':
                   val = app_data_langs.get(lang, u'')
+
+                # TODO use new._obj__storm_table
                 s = ConfigL10N(lang, old_obj.__storm_table__, name, val)
+
+                if val == u'':
+                    # Using XXX here prevents any customization of fields that are empty
+                    s.def_val = 'XXX-ØØØ'
+
                 self.store_new.add(s)
 
 

@@ -167,12 +167,14 @@ class ConfigL10N(Storm):
     var_group = Unicode()
     var_name = Unicode()
     value = Unicode()
+    def_val = Unicode()
 
     def __init__(self, lang, group, var_name, value=''):
         self.lang = unicode(lang)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
         self.value = unicode(value)
+        self.def_val = unicode(value)
 
     def __repr__(self):
       return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,

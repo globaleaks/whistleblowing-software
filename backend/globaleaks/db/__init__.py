@@ -70,7 +70,7 @@ def init_db(store, use_single_lang=False):
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
 
-    config.load_json_config(store)
+    config.initialize_config(store)
 
     logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:

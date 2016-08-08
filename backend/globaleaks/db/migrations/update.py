@@ -131,6 +131,8 @@ class MigrationBase(object):
         self.entries_count = {}
         self.fail_on_count_mismatch = {}
 
+        # TODO migration_ver > 33 run a func specific to Config_l10n & Config
+
         for model_name, model_history in migration_mapping.iteritems():
             length = DATABASE_VERSION + 1 - FIRST_DATABASE_VERSION_SUPPORTED
             if len(model_history) != length:

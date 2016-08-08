@@ -88,7 +88,7 @@ def validate_input(raw_json):
     return raw_json
 
 
-def load_json_config(store):
+def initialize_config(store):
     for gname, group in GLConfig.iteritems():
         for var_name, item_def in group.iteritems():
             item = Config(gname, var_name, item_def.typ, item_def.val)

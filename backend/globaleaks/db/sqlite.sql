@@ -19,6 +19,7 @@ CREATE TABLE config_l10n (
     var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
     value TEXT NOT NULL,
+    def_val TEXT NOT NULL,
     FOREIGN KEY (lang) REFERENCES enabledlanguage(name) ON DELETE CASCADE,
     PRIMARY KEY (lang, var_group, var_name)
 );
