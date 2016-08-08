@@ -1,3 +1,6 @@
+Changes in version 2.63.1 - 2016-08-08
+    o Fix CSS of the sticky footer in relation to the presence/absence of user footer
+
 Changes in version 2.63.0 - 2016-08-08
     o Subject receipt expiration to a timeout related to last access
     o Update unsupported browser warning to latest supported browsers
