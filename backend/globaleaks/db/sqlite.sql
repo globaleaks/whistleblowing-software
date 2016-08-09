@@ -9,8 +9,7 @@ CREATE TABLE enabledlanguage (
 CREATE TABLE config (
     var_group TEXT NOT NULL,
     var_name TEXT NOT NULL,
-    var_type TEXT NOT NULL CHECK (var_type IN ('int', 'str', 'bool')),
-    raw_value BLOB NOT NULL,
+    value BLOB NOT NULL,
     PRIMARY KEY (var_group, var_name)
 );
 

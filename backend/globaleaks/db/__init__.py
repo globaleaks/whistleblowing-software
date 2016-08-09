@@ -12,7 +12,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.models import config
+from globaleaks.models.config import NodeFactory, NotificationFactory, ObjectDict, initialize_config
 from globaleaks.db.appdata import db_update_appdata
 from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
 from globaleaks.handlers.admin import files
@@ -56,12 +56,15 @@ def init_db(store, use_single_lang=False):
     log.debug("Performing database initialization...")
 
     node = models.Node()
-    # TODO this flag does not work
-    node.wizard_done = GLSettings.skip_wizard
     store.add(node)
 
     notification = models.Notification()
     store.add(notification)
+
+    initialize_config(store)
+
+    if GLSettings.skip_wizard:
+        NodeFactory(store).get('wizard_done').set_val(True)
 
     log.debug("Inserting internationalized strings...")
 
@@ -69,9 +72,6 @@ def init_db(store, use_single_lang=False):
         EnabledLanguage.add_all_supported_langs(store, appdata_dict)
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
-
-    config.initialize_config(store)
-
     logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo_data = logo_file.read()
@@ -163,32 +163,25 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    node = store.find(models.Node).one()
-    c_node = config.ConfigFactory('node', store)
+    node_ro = ObjectDict(NodeFactory(store).admin_export())
 
-    c_node.fill_object_dict()
-
-    # TODO define explicit list of memory copied vars.
-    GLSettings.memory_copy = c_node.ro
     # TODO understand if store is closed properly here after a GC
+    GLSettings.memory_copy = node_ro
 
     GLSettings.memory_copy.accept_tor2web_access = {
-        'admin': c_node.ro.tor2web_admin,
-        'custodian': c_node.ro.tor2web_custodian,
-        'whistleblower': c_node.ro.tor2web_whistleblower,
-        'receiver': c_node.ro.tor2web_receiver,
-        'unauth': c_node.ro.tor2web_unauth
+        'admin': node_ro.tor2web_admin,
+        'custodian': node_ro.tor2web_custodian,
+        'whistleblower': node_ro.tor2web_whistleblower,
+        'receiver': node_ro.tor2web_receiver,
+        'unauth': node_ro.tor2web_unauth
     }
 
-    # TODO TODO TODO
     enabled_langs = [c.name for c in models.l10n.EnabledLanguage.get_all(store)]
     GLSettings.memory_copy.languages_enabled = enabled_langs
-    # TODO TODO TODO
 
-    c_notif = config.ConfigFactory('notification', store)
-    c_notif.fill_object_dict()
+    notif_ro = ObjectDict(NotificationFactory(store).admin_export())
 
-    GLSettings.memory_copy.notif = c_notif.ro
+    GLSettings.memory_copy.notif = notif_ro
 
     if GLSettings.developer_name:
         GLSettings.memory_copy.notif.source_name = GLSettings.developer_name
@@ -206,6 +199,6 @@ def refresh_memory_variables(*args):
 
 @transact
 def update_version(store):
-    c_node = config.ConfigFactory('node', store)
-    c_node.get('version').raw_value = unicode(__version__)
-    c_node.get('version_db').raw_value = unicode(DATABASE_VERSION)
+    node = NodeFactory(store)
+    node.get('version').set_val(unicode(__version__))
+    node.get('version_db').set_val(unicode(DATABASE_VERSION))
