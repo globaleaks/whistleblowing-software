@@ -33,15 +33,29 @@ class ConfigFactory(object):
     def update(self, request):
         self._query_group()
         keys = set(request.keys()) & self._update_set
+
+        # TODO run the validators against user input here
         for key in keys:
             self.res[key].set_val(request[key])
 
     def get(self, var_name):
-        where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
-        r = self.store.find(Config, where).one()
-        if r is None:
-            raise ValueError("No such config item: %s:%s" % (self.group, var_name))
-        return r
+        if self.res is None:
+            where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
+            r = self.store.find(Config, where).one()
+            if r is None:
+                raise ValueError("No such config item: %s:%s" % (self.group, var_name))
+            return r
+        else:
+            return self.res[var_name]
+
+    def get_val(self, var_name):
+        return self.get(var_name).get_val()
+
+    def set_val(self, var_name, value):
+        if self.res is None or not var_name in self.res:
+            raise KeyError("Factory is not initialized with %s" %s)
+        else:
+            self.res[var_name].set_val(value)
 
     def _export_group_dict(self, safe_set):
         self._query_group()
@@ -62,13 +76,13 @@ class NodeFactory(ConfigFactory):
 
 
 class NotificationFactory(ConfigFactory):
-    _update_set = SafeSets.admin_notification
+    _update_set = SafeSets.admin_notification_update
 
     def __init__(self, store):
         ConfigFactory.__init__(self, 'notification', store)
 
     def admin_export(self):
-        return self._export_group_dict(SafeSets.admin_notification)
+        return self._export_group_dict(SafeSets.admin_notification_export)
 
 
 class Config(Storm):

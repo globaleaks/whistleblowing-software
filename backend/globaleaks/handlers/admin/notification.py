@@ -7,7 +7,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
-from globaleaks.models import config
+from globaleaks.models.config import NotificationFactory
 from globaleaks.models.groups import GLConfig
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
@@ -16,7 +16,8 @@ from globaleaks.utils.utility import log, datetime_to_ISO8601
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
 
-def parse_pgp_options(notification, request):
+
+def parse_pgp_options(c_notif, request):
     """
     This is called in a @transact, when an users update their preferences or
     when admins configure keys on their behalf.
@@ -33,13 +34,12 @@ def parse_pgp_options(notification, request):
 
     if remove_key:
         # In all the cases below, the key is marked disabled as request
-        notification.exception_email_pgp_key_status = u'disabled'
-        notification.exception_email_pgp_key_info = None
-        notification.exception_email_pgp_key_public = None
-        notification.exception_email_pgp_key_fingerprint = None
-        notification.exception_email_pgp_key_expiration = None
-
-    elif new_pgp_key:
+        c_notif.set_val('exception_email_pgp_key_status', u'disabled')
+        c_notif.set_val('exception_email_pgp_key_info ', None)
+        c_notif.set_val('exception_email_pgp_key_public ', None)
+        c_notif.set_val('exception_email_pgp_key_fingerprint ', None)
+        c_notif.set_val('exception_email_pgp_key_expiration ', None)
+    elif new_pgp_key is not None:
         gnob = GLBPGP()
 
         try:
@@ -47,14 +47,14 @@ def parse_pgp_options(notification, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            notification.exception_email_pgp_key_status = u'enabled'
-            notification.exception_email_pgp_key_info = result['info']
-            notification.exception_email_pgp_key_public = new_pgp_key
-            notification.exception_email_pgp_key_fingerprint = result['fingerprint']
-            notification.exception_email_pgp_key_expiration = result['expiration']
+            c_notif.set_val('exception_email_pgp_key_status', u'enabled')
+            c_notif.set_val('exception_email_pgp_key_info', result['info'])
+            c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
+            c_notif.set_val('exception_email_pgp_key_fingerprint', result['info'])
+            c_notif.set_val('exception_email_pgp_key_expiration', result['info'])
 
-        except:
-            raise
+        except Exception as e:
+            raise e
 
         finally:
             # the finally statement is always called also if
@@ -63,8 +63,7 @@ def parse_pgp_options(notification, request):
 
 
 def admin_serialize_notification(store, language):
-    allowed_keys = GLConfig['notification'].keys() # TODO remove redundant expression.
-    config_dict = config.get_config_group(store, 'notification', allowed_keys)
+    config_dict = NotificationFactory(store).admin_export()
 
     cmd_flags = {
         'reset_templates': False,
@@ -91,20 +90,17 @@ def update_notification(store, request, language):
     log.debug("Updating lang: %s" % language)
     notif_l10n.update_model(request, language)
 
-    c_notif = ConfigFactory('notification', store)
-    c_node.fill_config_dict()
-
     if request['reset_templates']:
         appdata = load_appdata()
         notif_l10n.reset_templates(appdata)
 
+    c_notif = NotificationFactory(store)
+
     if request['password'] == u'':
-        log.debug('No password set. Using pw already in the DB.')
-        request['password'] = c_notif.ro.password
+        request.pop('password')
 
     c_notif.update(request)
 
-    # TODO this fnc call is a no-op because c_notif.ro is passed. 
     parse_pgp_options(c_notif.ro, request)
 
     # Since the Notification object has been changed refresh the global copy.
