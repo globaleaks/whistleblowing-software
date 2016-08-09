@@ -128,6 +128,10 @@ def check_db_files():
 
         return -1
 
+    # TODO assert that all of the intended system config is present in the db.
+    # TODO ensure that this does not block migrations
+    #GLConfig.assert_integrity()
+
     return db_version
 
 
@@ -165,7 +169,6 @@ def db_refresh_memory_variables(store):
     """
     node_ro = ObjectDict(NodeFactory(store).admin_export())
 
-    # TODO understand if store is closed properly here after a GC
     GLSettings.memory_copy = node_ro
 
     GLSettings.memory_copy.accept_tor2web_access = {

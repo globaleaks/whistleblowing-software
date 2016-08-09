@@ -33,11 +33,6 @@ class Bool(Item):
     typ = 'bool'
 
 
-#TODO HANDLE HANDLE HANDLE
-class DateTime(Item):
-    typ = 'str' #TODO HANDLE HANDLE HANDLE
-
-
 GLConfig = {
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
@@ -63,7 +58,7 @@ GLConfig = {
         'exception_email_pgp_key_info': Unicode(default=u''),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': DateTime(default=iso_strf_time(datetime_null())), # TODO default used instead of default_factory
+        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())), # TODO default used instead of default_factory
         'exception_email_pgp_key_status': Unicode(default=u'disabled'), # TODO handle states 'enabled', 'disabled'
     },
     'node': {
@@ -165,4 +160,6 @@ class SafeSets(object):
 
     public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
 
-    admin_notification = frozenset(GLConfig['notification'].keys())
+    admin_notification_update = frozenset(GLConfig['notification'].keys())
+
+    admin_notification_export = admin_notification_update - frozenset({'password'})

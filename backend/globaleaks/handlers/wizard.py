@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.models import ConfigL10N as c_l10n
-from globaleaks.models.config import ConfigFactory
+from globaleaks.models.config import NodeFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -22,19 +22,20 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
-    cfg_fact = ConfigFactory('node', store)
-    c_wizard_done = cfg_fact.get('wizard_done')
+    node = NodeFactory(store)
 
-    if c_wizard_done.raw_value:
-      # TODO report as anomaly
-      log.err("DANGER: Wizard already initialized!")
-      raise errors.ForbiddenOperation
+    if node.get_val('wizard_done'):
+        # TODO report as anomaly
+        log.err("DANGER: Wizard already initialized!")
+        raise errors.ForbiddenOperation
     try:
+        node._query_group()
+
         nn = unicode(request['node']['name'])
-        cfg_fact.get('name').raw_value = nn
-        cfg_fact.get('default_language').raw_value = language
-        cfg_fact.get('allow_unencrypted').raw_value = request['node']['allow_unencrypted']
-        c_wizard_done.raw_value = True
+        node.set_val('name', nn)
+        node.set_val('default_language', language)
+        node.set_val('allow_unencrypted', request['node']['allow_unencrypted'])
+        node.set_val('wizard_done', True)
 
         c_l10n.get_one(store, language, 'node', 'description').value = nn
         c_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
@@ -62,7 +63,7 @@ def wizard(store, request, language):
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,
-            'timezone': cfg_fact.get('default_timezone'),
+            'timezone': node.get_val('default_timezone'),
             'password_change_needed': False,
             'pgp_key_remove': False,
             'pgp_key_status': 'disabled',

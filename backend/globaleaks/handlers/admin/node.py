@@ -12,7 +12,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
-from globaleaks.models.config import ConfigFactory
+from globaleaks.models.config import NodeFactory
 from globaleaks.models import config
 from globaleaks.models.groups import SafeSets
 from globaleaks.orm import transact, transact_ro
@@ -26,10 +26,7 @@ from globaleaks.utils.utility import log
 
 
 def db_admin_serialize_node(store, language):
-    c_node = ConfigFactory('node', store)
-    c_node.fill_object_dict()
-
-    node_dict = config.get_config_group(store, 'node', SafeSets.admin_node)
+    node_dict = NodeFactory(store).admin_export()
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
@@ -76,6 +73,7 @@ def enable_disable_languages(store, request):
             EnabledLanguage.remove_old_lang(store, lang_code)
 
 
+# TODO This cmd issues at least 3 SQL queries on node config.
 def db_update_node(store, request, language):
     """
     Update and serialize the node infos
@@ -89,21 +87,20 @@ def db_update_node(store, request, language):
     node_l10n = Node_L10N(store)
     node_l10n.update_model(request, language)
 
-    c_node = ConfigFactory('node', store)
-    c_node.fill_object_dict()
+    node = NodeFactory(store)
 
-    c_node.w.basic_auth.raw_value = request['basic_auth']
-    c_node.update(request)
+    node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
-        c_node.w.basic_auth.raw_value = True
-        c_node.w.basic_auth_username.raw_value = request['basic_auth_username']
-        c_node.w.basic_auth_password.raw_value = request['basic_auth_password']
+        node.get('basic_auth').set_val(True)
+        node.get('basic_auth_username').set_val(request['basic_auth_username'])
+        node.get('basic_auth_password').set_val(request['basic_auth_password'])
     else:
-        c_node.w.basic_auth.raw_value = False
+        node.get('basic_auth').set_val(False)
 
     db_refresh_memory_variables(store)
 
+    # TODO pass instance of db_update_node into admin_serialize
     return db_admin_serialize_node(store, language)
 
 

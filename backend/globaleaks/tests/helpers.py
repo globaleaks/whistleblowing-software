@@ -184,6 +184,8 @@ class TestGL(unittest.TestCase):
         else:
             yield db.init_db(use_single_lang=True)
 
+        yield db.refresh_memory_variables()
+
         allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
         #yield update_node_encryption_setting(allow_encrypted)
 
