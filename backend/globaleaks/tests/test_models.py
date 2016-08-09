@@ -21,11 +21,12 @@ class TestSystemConfigModels(helpers.TestGL):
 
     @transact
     def _test_config_import(self, store):
-        config.load_json_config(store)
+        config.initialize_config(store)
         GLSettings.orm_debug = True
 
-        c = store.find(models.Config).count()
-        self.assertEqual(c, 6)
+        c = store.find(config.Config).count()
+        print 'system config', c
+        self.assertEqual(c, 212)
 
 class TestConfigL10N(helpers.TestGL):
 

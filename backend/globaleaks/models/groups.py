@@ -5,9 +5,11 @@ from globaleaks.models.validators import shorttext_v, longtext_v, \
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.security import generateRandomSalt as salt
+from globaleaks.models.properties import iso_strf_time
 
 
 class Item():
+    # TODO run validators on item __init__
     def __init__(self, *args, **kwargs):
         if 'default' in kwargs:
             self.val = kwargs['default']
@@ -61,7 +63,7 @@ GLConfig = {
         'exception_email_pgp_key_info': Unicode(default=u''),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': DateTime(default=datetime_null), # TODO default used instead of default_factory
+        'exception_email_pgp_key_expiration': DateTime(default=iso_strf_time(datetime_null())), # TODO default used instead of default_factory
         'exception_email_pgp_key_status': Unicode(default=u'disabled'), # TODO handle states 'enabled', 'disabled'
     },
     'node': {
@@ -162,3 +164,5 @@ class SafeSets(object):
     admin_node = frozenset(GLConfig['node'].keys())
 
     public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
+
+    admin_notification = frozenset(GLConfig['notification'].keys())

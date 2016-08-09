@@ -1,9 +1,9 @@
 import json
 import os
 
-from storm.locals import Storm, Unicode, Pickle, And
+from storm.locals import Storm, Unicode, And, JSON
 
-from .groups import GLConfig
+from .groups import GLConfig, SafeSets
 
 
 class ObjectDict(dict):
@@ -22,20 +22,19 @@ class ConfigFactory(object):
     def __init__(self, group, store):
         self.group = unicode(group)
         self.store = store
+        self.res = None
 
-    def fill_object_dict(self):
+    def _query_group(self):
+        if not self.res is None:
+            return
         cur = self.store.find(Config, And(Config.var_group == self.group))
-        rows = [_ for _ in cur]
-        # TODO Assert set equality of rows.var_name and self.group keys
-        self.ro = ObjectDict({c.var_name : c.raw_value for c in rows})
-        self.w = ObjectDict({c.var_name : c for c in rows})
+        self.res = {c.var_name : c for c in cur}
 
     def update(self, request):
-        # TODO decide if we can trust request sufficiently to use request.keys()
-        keys = set(request.keys()) & set(self.w.keys())
+        self._query_group()
+        keys = set(request.keys()) & self._update_set
         for key in keys:
-            # TODO must remove unsettable keys
-            getattr(self.w, key).raw_value = request[key]
+            self.res[key].set_val(request[key])
 
     def get(self, var_name):
         where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
@@ -44,52 +43,59 @@ class ConfigFactory(object):
             raise ValueError("No such config item: %s:%s" % (self.group, var_name))
         return r
 
+    def _export_group_dict(self, safe_set):
+        self._query_group()
+        return {k : self.res[k].get_val() for k in safe_set}
+
+
+class NodeFactory(ConfigFactory):
+    _update_set = SafeSets.admin_node
+
+    def __init__(self, store):
+        ConfigFactory.__init__(self, 'node', store)
+
+    def public_export(self):
+        return self._export_group_dict(SafeSets.public_node)
+
+    def admin_export(self):
+        return self._export_group_dict(SafeSets.admin_node)
+
+
+class NotificationFactory(ConfigFactory):
+    _update_set = SafeSets.admin_notification
+
+    def __init__(self, store):
+        ConfigFactory.__init__(self, 'notification', store)
+
+    def admin_export(self):
+        return self._export_group_dict(SafeSets.admin_notification)
+
 
 class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
 
-    type_map = {'str': unicode, 'int': int, 'bool': bool}
-
     var_group = Unicode()
     var_name = Unicode()
-    var_type = Unicode()
-    raw_value = Pickle() # TODO use struct pack
+    value = JSON()
 
-    def __init__(self, group, name, var_type, value):
+    def _get_v(self):
+        return self.value.get('v')
+
+    def set_val(self, val):
+        self.value = {'v': val}
+
+    def get_val(self):
+        return self.value['v']
+
+    def __init__(self, group, name, value):
         self.var_group = unicode(group)
-        if not var_type in self.type_map:
-            raise TypeError('Passed var_type is not in Config type map')
-        if var_type == 'str':
-            value = unicode(value)
-        if not isinstance(value, self.type_map[var_type]):
-            raise ValueError('raw_value has the wrong type!')
-        else:
-            self.raw_value = value
         self.var_name = unicode(name)
-        self.var_type = unicode(var_type)
-
-
-def get_config_group(store, var_group, allowed_key_set):
-    grp = store.find(Config, Config.var_group == unicode(var_group))
-
-    return {x.var_name : x.raw_value for x in grp if x in allowed_key_set}
-
-
-def validate_input(raw_json):
-    if not isinstance(raw_json, dict):
-        raise ValueError
-    #if len(raw_json) != 2:
-    #    raise ValueError
-    for k, val in raw_json.iteritems():
-        if not isinstance(val, list): raise ValueError
-        for item in val:
-          if len(item.keys()) != 3: raise ValueError
-    return raw_json
+        self.set_val(value)
 
 
 def initialize_config(store):
     for gname, group in GLConfig.iteritems():
         for var_name, item_def in group.iteritems():
-            item = Config(gname, var_name, item_def.typ, item_def.val)
+            item = Config(gname, var_name, item_def.val)
             store.add(item)

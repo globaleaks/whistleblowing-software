@@ -12,6 +12,7 @@ from storm.expr import And
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.models import ConfigL10N, l10n, config
 from globaleaks.models.groups import SafeSets
+from globaleaks.models.config import NodeFactory
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
@@ -26,15 +27,14 @@ def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
-    c_node = ConfigFactory(store)
-    c_node.fill_object_dict()
+    ro_node = NodeFactory(store).public_export()
 
     return {
-        'title': c_node.ro.name,
+        'title': ro_node.name,
         'description': ConfigL10N.get_one(store, language, 'node', 'description').value,
-        'keywords': '%s (GlobaLeaks instance)' % c_node.ro.name,
-        'relation': c_node.ro.public_site,
-        'language': c_node.ro.default_language,
+        'keywords': '%s (GlobaLeaks instance)' % ro_node.name,
+        'relation': ro_node.public_site,
+        'language': ro_node.default_language,
         'contactInformation': u'',
         'type': 'GlobaLeaks'
     }
@@ -47,7 +47,7 @@ def db_serialize_node(store, language):
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
 
-    cfg_dict = config.get_config_group(store, 'node', SafeSets.public_node)
+    ro_node = NodeFactory(store).public_export()
 
     if GLSettings.devel_mode:
         cfg_dict['submission_minimum_delay'] = 0
@@ -65,7 +65,7 @@ def db_serialize_node(store, language):
 
     l10n_dict = l10n.Node_L10N(store).build_localized_dict(language)
     
-    return disjoint_union(cfg_dict, l10n_dict, misc_dict)
+    return disjoint_union(ro_node, l10n_dict, misc_dict)
 
 
 @transact_ro
