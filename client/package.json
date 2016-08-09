@@ -30,7 +30,7 @@
     "mocha": "3.0.2",
     "node-gettext": "0.2.14",
     "openpgp": "2.3.2",
-    "protractor": "4.0.2",
+    "protractor": "4.0.3",
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
     "superagent": "2.1.0",
