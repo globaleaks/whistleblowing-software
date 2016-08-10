@@ -122,7 +122,7 @@ def export_fixture(*models):
 
 @transact
 def update_node_encryption_setting(store, allow_unencrypted):
-    store.find(models.Node).one().allow_unencrypted = allow_unencrypted
+    models.config.NodeFactory(store).get('allow_unencrypted').set_val(allow_unencrypted)
 
 
 def change_field_type(field, field_type):
@@ -184,12 +184,11 @@ class TestGL(unittest.TestCase):
         else:
             yield db.init_db(use_single_lang=True)
 
+        allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
+
+        yield update_node_encryption_setting(allow_unencrypted)
+
         yield db.refresh_memory_variables()
-
-        allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
-        #yield update_node_encryption_setting(allow_encrypted)
-
-        #yield db.refresh_memory_variables()
 
         Alarm.reset()
         event.EventTrackQueue.clear()

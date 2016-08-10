@@ -7,7 +7,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
-from globaleaks.models.config import NotificationFactory
+from globaleaks.models.config import NotificationFactory, PrivateFactory
 from globaleaks.models.groups import GLConfig
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
@@ -26,11 +26,11 @@ def parse_pgp_options(c_notif, request):
     @param request: the dictionary containing the pgp infos to be parsed
     @return: None
     """
-    new_pgp_key = request.get('exception_email_pgp_key_public', None)
+    new_pgp_key = request.get('exception_email_pgp_key_public', u'')
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
     # the default
-    notification.exception_email_pgp_key_status = u'disabled'
+    c_notif.set_val('exception_email_pgp_key_status', u'disabled')
 
     if remove_key:
         # In all the cases below, the key is marked disabled as request
@@ -39,7 +39,7 @@ def parse_pgp_options(c_notif, request):
         c_notif.set_val('exception_email_pgp_key_public ', None)
         c_notif.set_val('exception_email_pgp_key_fingerprint ', None)
         c_notif.set_val('exception_email_pgp_key_expiration ', None)
-    elif new_pgp_key is not None:
+    elif new_pgp_key != u'':
         gnob = GLBPGP()
 
         try:
@@ -96,12 +96,14 @@ def update_notification(store, request, language):
 
     c_notif = NotificationFactory(store)
 
-    if request['password'] == u'':
-        request.pop('password')
+    smtp_pw = request.pop('password', u'')
+    if smtp_pw != u'':
+        PrivateFactory(store).get('smtp_password').set_val(smtp_pw)
+
 
     c_notif.update(request)
 
-    parse_pgp_options(c_notif.ro, request)
+    parse_pgp_options(c_notif, request)
 
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)

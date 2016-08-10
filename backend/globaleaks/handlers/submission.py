@@ -334,7 +334,7 @@ def import_receivers(store, submission, receiver_id_list):
                   (receiver.user.name, submission.id, submission.receivers.count()))
 
     if submission.receivers.count() == 0:
-        raise errors.SubmissionValidationFailure("needed almost one receiver")
+        raise errors.SubmissionValidationFailure("need at least one receiver")
 
 
 def db_create_submission(store, token_id, request, t2w, language):

@@ -96,7 +96,7 @@ def sendmail(to_address, subject, body):
             return result_deferred.errback(reason)
 
         authentication_username=GLSettings.memory_copy.notif.username
-        authentication_password=GLSettings.memory_copy.notif.password
+        authentication_password=GLSettings.memory_copy.private.smtp_password
         from_address=GLSettings.memory_copy.notif.source_email
         smtp_host=GLSettings.memory_copy.notif.server
         smtp_port=GLSettings.memory_copy.notif.port

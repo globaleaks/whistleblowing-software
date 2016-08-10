@@ -38,13 +38,14 @@ class Bool(Item):
 GLConfig = {
     'private': {
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
+        'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
         'port': Int(default=9267),
 
         'username': Unicode(validator=shorttext_v, default=u'hey_you_should_change_me'),
-        'password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
+        # See smtp_password in private for password
 
         'source_name': Unicode(validator=shorttext_v, default=u'GlobaLeaks - CHANGE EMAIL ACCOUNT USED FOR NOTIFICATION'),
         'source_email': Unicode(validator=shorttext_v, default=u'notification@demo.globaleaks.org'),
@@ -175,11 +176,4 @@ class SafeSets(object):
 
     public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
 
-    # functions slightly differently than node_hidden_fields
-    notification_hidden_fields = frozenset({
-        'password',
-    })
-
-    admin_notification_update = frozenset(GLConfig['notification'].keys())
-
-    admin_notification_export = admin_notification_update - notification_hidden_fields
+    admin_notification = frozenset(GLConfig['notification'].keys())
