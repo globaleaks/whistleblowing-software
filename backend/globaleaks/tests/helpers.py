@@ -705,6 +705,13 @@ class TestHandler(TestGLWithPopulatedDB):
 
         return handler
 
+    def ss_serial_desc(self, safe_set, request_desc):
+        """
+        Constructs a request_dec parser of a handler that uses a safe_set in its serialization
+        """
+        return {k : v for k, v in request_desc.iteritems() if k in safe_set}
+
+
 
 class TestHandlerWithPopulatedDB(TestHandler):
     @inlineCallbacks

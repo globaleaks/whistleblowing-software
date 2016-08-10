@@ -5,6 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin, public
+from globaleaks.models.groups import SafeSets as ss
 
 
 class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
@@ -73,4 +74,5 @@ class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.get()
 
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.PublicResourcesDesc)
+        resp_desc = self.ss_serial_desc(ss.public_node, requests.PublicResourcesDesc)
+        self._handler.validate_message(json.dumps(self.responses[0]), resp_desc)

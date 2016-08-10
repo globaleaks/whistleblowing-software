@@ -12,24 +12,23 @@ from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.settings import GLSettings
+from globaleaks.models.groups import GLConfig
 
 
 class TestSystemConfigModels(helpers.TestGL):
     @inlineCallbacks
     def test_config_import(self):
+        GLSettings.orm_debug = True
         yield self._test_config_import()
 
     @transact
     def _test_config_import(self, store):
-        config.initialize_config(store)
-        GLSettings.orm_debug = True
-
         c = store.find(config.Config).count()
-        print 'system config', c
-        self.assertEqual(c, 212)
+
+        stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.iteritems()], 0)
+        self.assertEqual(c, stated_conf)
 
 class TestConfigL10N(helpers.TestGL):
-
     @inlineCallbacks
     def test_config_l10n_init(self):
         yield self.run_node_mgr()
