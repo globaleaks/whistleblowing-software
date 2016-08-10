@@ -213,19 +213,15 @@ class User(Model):
     last_login = DateTime(default_factory=datetime_null)
     mail_address = Unicode()
     language = Unicode()
-    timezone = Int()
     password_change_needed = Bool(default=True)
     password_change_date = DateTime(default_factory=datetime_null)
 
     # roles: 'admin', 'receiver', 'custodian'
-    # states: 'disabled', 'enabled'
 
     # BEGIN of PGP key fields
-    pgp_key_info = Unicode(default=u'')
     pgp_key_fingerprint = Unicode(default=u'')
     pgp_key_public = Unicode(default=u'')
     pgp_key_expiration = DateTime(default_factory=datetime_null)
-    pgp_key_status = Unicode(default=u'disabled') # 'disabled', 'enabled'
     # END of PGP key fields
 
     img_id = Unicode()

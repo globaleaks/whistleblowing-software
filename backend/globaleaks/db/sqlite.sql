@@ -41,8 +41,6 @@ CREATE TABLE user (
     timezone INTEGER DEFAULT 0,
     password_change_needed INTEGER NOT NULL DEFAULT 0,
     password_change_date TEXT NOT NULL DEFAULT '1970-01-01 00:00:00.000000',
-    pgp_key_status TEXT NOT NULL CHECK (pgp_key_status IN ('disabled', 'enabled')) DEFAULT 'disabled',
-    pgp_key_info TEXT,
     pgp_key_fingerprint TEXT,
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
@@ -434,13 +432,12 @@ CREATE TABLE fieldanswergroup (
 );
 
 CREATE TABLE archivedschema (
-    id TEXT NOT NULL,
     hash TEXT NOT NULL,
     type TEXT NOT NULL CHECK (type IN ('questionnaire',
                                        'preview')),
     schema BLOB NOT NULL,
     UNIQUE (hash, type),
-    PRIMARY KEY (id)
+    PRIMARY KEY (hash, type)
 );
 
 CREATE TABLE securefiledelete (

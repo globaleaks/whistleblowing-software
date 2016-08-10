@@ -35,6 +35,10 @@ class Bool(Item):
     typ = 'bool'
 
 
+class DateTime(Item):
+    typ = 'str'
+
+
 GLConfig = {
     'private': {
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
@@ -61,11 +65,9 @@ GLConfig = {
         'notification_suspension_time': Int(validator=natnum_v, default=(2 * 3600)), #TODO remove unused
 
         'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
-        'exception_email_pgp_key_info': Unicode(default=u''),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())), # TODO default used instead of default_factory
-        'exception_email_pgp_key_status': Unicode(default=u'disabled'), # TODO handle states 'enabled', 'disabled'
+        'exception_email_pgp_key_expiration': DateTime(default=iso_strf_time(datetime_null())),
     },
     'node': {
         'version': Unicode(default=unicode(__version__)),
@@ -80,7 +82,7 @@ GLConfig = {
         'hidden_service': Unicode(validator=shorttext_v, default=u''),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),
-        'default_timezone': Int(default=0),
+        # TODO verify drop 'default_timezone': Int(default=0),
         'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
 
         # Advanced settings

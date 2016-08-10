@@ -18,7 +18,6 @@ from globaleaks.models.groups import GLConfig
 class TestSystemConfigModels(helpers.TestGL):
     @inlineCallbacks
     def test_config_import(self):
-        GLSettings.orm_debug = True
         yield self._test_config_import()
 
     @transact

@@ -63,11 +63,8 @@ def wizard(store, request, language):
             'description': u'',
             'mail_address': request['admin']['mail_address'],
             'language': language,
-            'timezone': node.get_val('default_timezone'),
             'password_change_needed': False,
             'pgp_key_remove': False,
-            'pgp_key_status': 'disabled',
-            'pgp_key_info': '',
             'pgp_key_fingerprint': '',
             'pgp_key_public': '',
             'pgp_key_expiration': datetime_null()

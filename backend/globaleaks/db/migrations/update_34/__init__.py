@@ -4,7 +4,10 @@ from globaleaks.db.migrations.update import MigrationBase
 from globaleaks import DATABASE_VERSION
 from globaleaks.models import *
 from globaleaks.models import l10n
+from globaleaks.models.groups import GLConfig
+from globaleaks.models.config import Config
 from globaleaks.db.appdata import load_archived_appdata
+from globaleaks.utils.utility import log
 
 
 class Node_v_33(Model):
@@ -21,7 +24,7 @@ class Node_v_33(Model):
     receipt_salt = Unicode(validator=shorttext_v)
     languages_enabled = JSON()
     default_language = Unicode(validator=shorttext_v, default=u'en')
-    default_timezone = Int(default=0)
+    # TODO align with latest DB
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
     description = JSON(validator=longlocal_v, default=empty_localization)
     presentation = JSON(validator=longlocal_v, default=empty_localization)
@@ -158,11 +161,11 @@ class Notification_v_33(Model):
     notification_threshold_per_hour = Int(validator=natnum_v, default=20)
     notification_suspension_time=Int(validator=natnum_v, default=(2 * 3600))
     exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
-    exception_email_pgp_key_info = Unicode(default=u'')
+    # TODO remove exception_email_pgp_key_info = Unicode(default=u'')
     exception_email_pgp_key_fingerprint = Unicode(default=u'')
     exception_email_pgp_key_public = Unicode(default=u'')
     exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
-    exception_email_pgp_key_status = Unicode(default=u'disabled')
+    # TODO remove exception_email_pgp_key_status = Unicode(default=u'disabled')
 
     localized_keys = [
         'admin_anomaly_mail_title',
@@ -210,11 +213,43 @@ class MigrationScript(MigrationBase):
 
     def prologue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
+        old_notif = self.store_old.find(self.model_from['Notification']).one()
 
         # Fill out enabled langs table
         for lang in old_node.languages_enabled:
             self.store_new.add(l10n.EnabledLanguage(lang))
-            #l10n.EnabledLanguage.add_new_lang(self.store_new, lang, self.appdata['node'])
+
+        # # # # # # # # # # # # # # # #
+        # TODO move to separate func! #
+        # # # # # # # # # # # # # # # #
+
+        # Migrate node
+        for var_name, item_def in GLConfig['node'].iteritems():
+            log.debug('migrating: %s' % var_name)
+            old_val = getattr(old_node, var_name)
+
+            # XXX this can throw errors if the validators run
+            item = Config('node', var_name, old_val)
+            self.store_new.add(item)
+
+        # Migrate ntfn_fields
+        for var_name, item_def in GLConfig['notification'].iteritems():
+            log.debug('migrating: %s' % var_name)
+            old_val = getattr(old_notif, var_name)
+
+            # XXX this can throw errors if the validators run
+            item = Config('notification', var_name, old_val)
+            self.store_new.add(item)
+
+        # Migrate private fields
+        self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
+        self.store_new.add(Config('private', 'smtp_password', old_notif.password))
+
+        # TODO update db and version
+
+        # TODO run validate on config.
+
+        self.store_new.commit()
 
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
@@ -238,7 +273,7 @@ class MigrationScript(MigrationBase):
 
                 if val == u'':
                     # Using XXX here prevents any customization of fields that are empty
-                    s.def_val = 'XXX-ØØØ'
+                    s.def_val = unicode('XXX-000')
 
                 self.store_new.add(s)
 
