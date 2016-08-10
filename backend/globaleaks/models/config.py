@@ -34,7 +34,6 @@ class ConfigFactory(object):
         self._query_group()
         keys = set(request.keys()) & self._update_set
 
-        # TODO run the validators against user input here
         for key in keys:
             self.res[key].set_val(request[key])
 
@@ -76,13 +75,13 @@ class NodeFactory(ConfigFactory):
 
 
 class NotificationFactory(ConfigFactory):
-    _update_set = SafeSets.admin_notification_update
+    _update_set = SafeSets.admin_notification
 
     def __init__(self, store):
         ConfigFactory.__init__(self, 'notification', store)
 
     def admin_export(self):
-        return self._export_group_dict(SafeSets.admin_notification_export)
+        return self._export_group_dict(SafeSets.admin_notification)
 
 
 class PrivateFactory(ConfigFactory):
@@ -116,7 +115,6 @@ class Config(Storm):
         if d is None:
             raise ValueError('Descriptor cannot be None')
         self.desc = d
-
 
     def get_val(self):
         return self.value['v']

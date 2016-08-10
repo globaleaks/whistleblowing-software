@@ -23,7 +23,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
 
-        resp_desc = self.ss_serial_desc(ss.admin_notification_export, requests.AdminNotificationDesc)
+        resp_desc = self.ss_serial_desc(ss.admin_notification, requests.AdminNotificationDesc)
         self._handler.validate_message(json.dumps(self.responses[0]), resp_desc)
 
     @inlineCallbacks
@@ -32,7 +32,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.responses[0]['server'] = stuff
-        self.responses[0]['password'] = 'widdlyscuds'
+        self.responses[0]['password'] = u'widdlyscuds'
 
         handler = self.request(self.responses[0], role='admin')
         yield handler.put()
@@ -44,6 +44,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.responses[0]['reset_templates'] = True
+        self.responses[0]['password'] = u'widdlyscuds'
 
         handler = self.request(self.responses[0], role='admin')
         yield handler.put()
