@@ -13,7 +13,7 @@ __all__ = ['MetaModel']
 
 class MetaModel(PropertyPublisherMeta):
     """
-    Globaleaks Models metaclass.
+    Globaleaks ModelWithIDs metaclass.
     - Take care to select public attributes (i.e. columns of the databases
       represented as class public attributes) as this apparently is not available
       in Storm;

@@ -34,7 +34,6 @@ def wizard(store, request, language):
         nn = unicode(request['node']['name'])
         node.set_val('name', nn)
         node.set_val('default_language', language)
-        node.set_val('allow_unencrypted', request['node']['allow_unencrypted'])
         node.set_val('wizard_done', True)
 
         c_l10n.get_one(store, language, 'node', 'description').value = nn

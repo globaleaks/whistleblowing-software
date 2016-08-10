@@ -10,7 +10,7 @@ from globaleaks.db.appdata import load_archived_appdata
 from globaleaks.utils.utility import log
 
 
-class Node_v_33(Model):
+class Node_v_33(ModelWithID):
     __storm_table__ = 'node'
 
     version = Unicode()
@@ -21,6 +21,7 @@ class Node_v_33(Model):
     basic_auth_password = Unicode(default=u'')
     public_site = Unicode(validator=shorttext_v, default=u'')
     hidden_service = Unicode(validator=shorttext_v, default=u'')
+    tb_download_link = Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download')
     receipt_salt = Unicode(validator=shorttext_v)
     languages_enabled = JSON()
     default_language = Unicode(validator=shorttext_v, default=u'en')
@@ -108,7 +109,7 @@ class Node_v_33(Model):
     ]
 
 
-class Notification_v_33(Model):
+class Notification_v_33(ModelWithID):
     __storm_table__ = 'notification'
 
     server = Unicode(validator=shorttext_v, default=u'demo.globaleaks.org')
@@ -161,11 +162,9 @@ class Notification_v_33(Model):
     notification_threshold_per_hour = Int(validator=natnum_v, default=20)
     notification_suspension_time=Int(validator=natnum_v, default=(2 * 3600))
     exception_email_address = Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org')
-    # TODO remove exception_email_pgp_key_info = Unicode(default=u'')
     exception_email_pgp_key_fingerprint = Unicode(default=u'')
     exception_email_pgp_key_public = Unicode(default=u'')
     exception_email_pgp_key_expiration = DateTime(default_factory=datetime_null)
-    # TODO remove exception_email_pgp_key_status = Unicode(default=u'disabled')
 
     localized_keys = [
         'admin_anomaly_mail_title',

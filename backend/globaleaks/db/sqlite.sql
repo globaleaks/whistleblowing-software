@@ -38,9 +38,8 @@ CREATE TABLE user (
     last_login TEXT NOT NULL,
     mail_address TEXT NOT NULL,
     language TEXT NOT NULL,
-    timezone INTEGER DEFAULT 0,
-    password_change_needed INTEGER NOT NULL DEFAULT 0,
-    password_change_date TEXT NOT NULL DEFAULT '1970-01-01 00:00:00.000000',
+    password_change_needed INTEGER DEFAULT 0 NOT NULL,
+    password_change_date TEXT DEFAULT '1970-01-01 00:00:00.000000' NOT NULL,
     pgp_key_fingerprint TEXT,
     pgp_key_public TEXT,
     pgp_key_expiration INTEGER,
@@ -295,18 +294,20 @@ CREATE TABLE field (
     fieldgroup_id TEXT,
     step_id TEXT,
     key TEXT NOT NULL,
+-- TODO DELETE ME
+    label TEXT NOT NULL,
+    description TEXT NOT NULL,
+    hint TEXT DEFAULT '' NOT NULL,
     multi_entry INTEGER DEFAULT 0 NOT NULL,
+    multi_entry_hint BLOB NOT NULL,
+-- TODO DELETE ME
     required INTEGER DEFAULT 0 NOT NULL,
     preview INTEGER NOT NULL,
-    stats_enabled INTEGER NOT NULL DEFAULT 0,
+    stats_enabled INTEGER DEFAULT 0 NOT NULL,
     template_id TEXT,
     triggered_by_score INTEGER DEFAULT 0 NOT NULL,
     x INTEGER DEFAULT 0 NOT NULL,
     y INTEGER DEFAULT 0 NOT NULL,
-    label TEXT NOT NULL, -- TODO remove me
-    description TEXT NOT NULL, -- TODO remove me
-    hint TEXT NOT NULL, -- TODO remove me
-    multi_entry_hint TEXT NOT NULL, -- TODO remove me
     width INTEGER DEFAULT 0 NOT NULL CHECK (width >= 0 AND width <= 12),
     type TEXT NOT NULL CHECK (type IN ('inputbox',
                                        'textarea',
@@ -391,12 +392,12 @@ CREATE TABLE questionnaire (
 CREATE TABLE step (
     id TEXT NOT NULL,
     questionnaire_id TEXT NOT NULL,
-    presentation_order INTEGER NOT NULL,
-    triggered_by_score INTEGER DEFAULT 0 NOT NULL,
  -- TODO remove me
     label TEXT NOT NULL,
     description TEXT NOT NULL,
  -- TODO remove me
+    presentation_order INTEGER NOT NULL,
+    triggered_by_score INTEGER DEFAULT 0 NOT NULL,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -447,12 +448,10 @@ CREATE TABLE securefiledelete (
 );
 
 CREATE TABLE counter (
-    id TEXT NOT NULL,
     key TEXT NOT NULL,
     counter INTEGER NOT NULL,
     update_date TEXT NOT NULL,
-    UNIQUE (key),
-    PRIMARY KEY (id)
+    PRIMARY KEY (key)
 );
 
 CREATE TABLE shorturl (

@@ -117,7 +117,7 @@ UserUserDesc = {
     'pgp_key_fingerprint': unicode,
     'pgp_key_expiration': unicode,
     'pgp_key_public': unicode,
-    'language': unicode,
+    'language': unicode
 }
 
 AdminUserDesc = UserUserDesc # currently the same
@@ -137,7 +137,7 @@ ReceiverReceiverDesc = {
     'pgp_key_expiration': unicode,
     'pgp_key_public': unicode,
     'tip_notification': bool,
-    'language': unicode,
+    'language': unicode
 }
 
 ReceiverOperationDesc = {
@@ -171,6 +171,7 @@ AdminNodeDesc = {
     'whistleblowing_receipt_prompt': unicode,
     'hidden_service': hidden_service_regexp_or_empty,
     'public_site': https_url_regexp_or_empty,
+    'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
@@ -414,6 +415,7 @@ NodeDesc = {
     'security_awareness_text': unicode,
     'hidden_service': hidden_service_regexp_or_empty,
     'public_site': https_url_regexp_or_empty,
+    'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,
     'default_language': unicode,
@@ -465,7 +467,6 @@ TipsOverviewDesc = [TipOverviewDesc]
 UserOverviewDesc = {
     'receivertips': list,
     'receiverfiles': list,
-    'pgp_key_status': unicode,
     'id': uuid_regexp,
     'name': unicode
 }
@@ -517,7 +518,6 @@ ReceiverDesc = {
     'contexts': [uuid_regexp],
     'description': unicode,
     'presentation_order': int,
-    'pgp_key_status': unicode,
     'id': uuid_regexp,
     'state': user_states_regexp
 }
@@ -584,8 +584,7 @@ InternalTipDesc = {
 WizardDesc = {
     'node': {
       'name': unicode,
-      'description': unicode,
-      'allow_unencrypted': bool
+      'description': unicode
     },
     'admin': {
       'password': unicode,

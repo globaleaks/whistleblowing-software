@@ -4,10 +4,10 @@
 from storm.locals import Int, Unicode, DateTime
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model
+from globaleaks.models import ModelWithID
 
 
-class InternalFile_v_25(Model):
+class InternalFile_v_25(ModelWithID):
     __storm_table__ = 'internalfile'
     creation_date = DateTime()
     internaltip_id = Unicode()

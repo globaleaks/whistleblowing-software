@@ -87,8 +87,7 @@ def collect_users_overview(store):
             'id': receiver.id,
             'name': receiver.user.name,
             'receiverfiles': [],
-            'receivertips': [],
-            'pgp_key_status': receiver.user.pgp_key_status,
+            'receivertips': []
         }
 
         rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id)

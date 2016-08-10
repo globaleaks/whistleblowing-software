@@ -51,6 +51,7 @@ class EnabledLanguage(Storm):
             notif_l10n.create_default(lang_code, appdata_dict)
 
 
+# TODO align API with ConfigFactory
 class ConfigL10N_Map(object):
     def __init__(self, model, store):
         self.store = store

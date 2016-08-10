@@ -30,6 +30,7 @@ describe('admin add, configure, and delete users', function() {
   ];
 
   it('should add new users', function() {
+    utils.login_admin();
     browser.setLocation('admin/users');
 
     var make_account = function(user) {
@@ -42,7 +43,7 @@ describe('admin add, configure, and delete users', function() {
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
       element(by.id('add-button')).click();
-      utils.waitUntilReady(element(by.xpath(".//*[text()='" + user.name + "']")));
+      utils.waitUntilPresent(element(by.xpath(".//*[text()='" + user.name + "']")));
     };
 
     new_users.forEach(make_account);
@@ -56,11 +57,6 @@ describe('admin add, configure, and delete users', function() {
     var editUsrForm = element(by.xpath(path));
     editUsrForm.element(by.css('.actionButtonEdit')).click();
     
-    // Pick Alaskan time zone for Giovanni
-    var tz = "(GMT -9:00) Alaska";
-    var tzBox = editUsrForm.element(by.cssContainingText('option', tz));
-    tzBox.click();
-    
     // Add a description 
     var descriptBox = editUsrForm.element(by.model('user.description'));
     var words = "Description of recipient 2";
@@ -73,9 +69,7 @@ describe('admin add, configure, and delete users', function() {
     // Click Save and check the fields
     editUsrForm.element(by.css('.actionButtonSave')).click();
     editUsrForm.element(by.css('.actionButtonEdit')).click();
-    editUsrForm.evaluate('user').then(function(userObj) {
-        expect(userObj.timezone).toEqual(-9);
-    });
+
     descriptBox.getAttribute('value').then(function(savedDescript) {
         expect(savedDescript).toEqual(words);
     });

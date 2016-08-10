@@ -1,0 +1,12 @@
+<label data-translate>Details of the PGP key:</label>
+<p>
+  <span data-translate>Fingerprint</span>:
+  <b>
+    {{ key_details.fingerprint.slice(0,25) }}
+    &nbsp;
+    {{ key_details.fingerprint.slice(25) }}
+  </b>
+</p>
+<p data-ng-repeat="uid in key_details.user_info"><code>{{ uid }}</code></p>
+<p><span data-translate>Creation date</span>: {{ key_details.created | date:"dd/MM/yyyy" }}</p>
+<p><span data-translate>Expiration date</span>: {{ key_details.expiration | date:"dd/MM/yyyy" }}</p>

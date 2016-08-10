@@ -39,7 +39,6 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
 
     $scope.navType = 'pills';
 
-    $scope.timezones = CONSTANTS.timezones;
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.pass_save = function () {

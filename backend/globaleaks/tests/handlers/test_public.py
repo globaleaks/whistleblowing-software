@@ -16,9 +16,9 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
 
         nodedict = helpers.MockDict().dummyNode
-        nodedict['ahmia'] = False
+        yield helpers.update_node_setting('ahmia', False)
 
-        yield admin.node.update_node(nodedict, 'en')
+        #yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
@@ -26,12 +26,13 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_ahmia_enabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['ahmia'] = True
-        yield admin.node.update_node(nodedict, 'en')
+        yield helpers.update_node_setting('ahmia', True)
+
+        #yield admin.node.update_node(nodedict, 'en')
 
         yield handler.get()
 
+        print self.responses
         self._handler.validate_message(json.dumps(self.responses[0]), requests.AhmiaDesc)
 
 

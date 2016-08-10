@@ -7,7 +7,7 @@ from globaleaks.models import *
 
 from globaleaks import __version__, DATABASE_VERSION
 
-class Node_v_32(Model):
+class Node_v_32(ModelWithID):
     __storm_table__ = 'node'
     version = Unicode(default=unicode(__version__))
     version_db = Unicode(default=unicode(DATABASE_VERSION))
@@ -35,7 +35,7 @@ class Node_v_32(Model):
     tor2web_whistleblower = Bool(default=False)
     tor2web_receiver = Bool(default=True)
     tor2web_unauth = Bool(default=True)
-    allow_unencrypted = Bool(default=False) # Changed to enforce_notification_encryption in Node_v_32
+    allow_unencrypted = Bool(default=False)
     disable_encryption_warnings = Bool(default=False)
     allow_iframes_inclusion = Bool(default=False)
     submission_minimum_delay = Int(default=10)
@@ -95,7 +95,7 @@ class Node_v_32(Model):
     context_selector_type = Unicode(validator=shorttext_v, default=u'list')
 
 
-class InternalTip_v_32(Model):
+class InternalTip_v_32(ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime(default_factory=datetime_now)
     update_date = DateTime(default_factory=datetime_now)
@@ -120,13 +120,38 @@ class InternalTip_v_32(Model):
     new = Int(default=True)
 
 
-class WhistleblowerTip_v_32(Model):
+class WhistleblowerTip_v_32(ModelWithID):
     __storm_table__ = 'whistleblowertip'
     internaltip_id = Unicode()
     receipt_hash = Unicode()
 
     last_access = DateTime(default_factory=datetime_now)
     access_counter = Int(default=0)
+
+
+class User_v_32(ModelWithID):
+    __storm_table__ = 'user'
+    creation_date = DateTime(default_factory=datetime_now)
+    username = Unicode(validator=shorttext_v)
+    password = Unicode()
+    salt = Unicode()
+    deletable = Bool(default=True)
+    name = Unicode(validator=shorttext_v)
+    description = JSON(validator=longlocal_v)
+    public_name = Unicode(validator=shorttext_v)
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime(default_factory=datetime_null)
+    mail_address = Unicode()
+    language = Unicode()
+    timezone = Int()
+    password_change_needed = Bool(default=True)
+    password_change_date = DateTime(default_factory=datetime_null)
+    pgp_key_info = Unicode(default=u'')
+    pgp_key_fingerprint = Unicode(default=u'')
+    pgp_key_public = Unicode(default=u'')
+    pgp_key_expiration = DateTime(default_factory=datetime_null)
+    pgp_key_status = Unicode(default=u'disabled')
 
 
 class MigrationScript(MigrationBase):
@@ -155,8 +180,10 @@ class MigrationScript(MigrationBase):
         new_node = self.model_to['Node']()
 
         for _, v in new_node._storm_columns.iteritems():
+            if v.name == 'tb_download_link':
+                continue
+
             if v.name == 'wbtip_timetolive':
-                new_node.wbtip_timetolive = 90
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name))

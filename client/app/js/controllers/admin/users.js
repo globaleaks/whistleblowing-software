@@ -34,8 +34,8 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
     );
   };
 }]).
-controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
-  function($scope, CONSTANTS) {
+controller('AdminUserEditorCtrl', ['$scope',
+  function($scope) {
 
     $scope.editing = false;
 
@@ -46,8 +46,6 @@ controller('AdminUserEditorCtrl', ['$scope', 'CONSTANTS',
     $scope.save = function() {
       $scope.save_user($scope.user, false);
     };
-
-    $scope.timezones = CONSTANTS.timezones;
 
     $scope.updateUserImgUrl = function() {
       $scope.userImgUrl = '/admin/users/' + $scope.user.id + '/img#' + $scope.Utils.randomFluff();

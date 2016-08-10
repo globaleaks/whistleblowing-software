@@ -35,7 +35,7 @@
       "en": "Private messages"
     },
     "widget_files_title": {
-      "en": "Files"
+      "en": "Attachments"
     }
   },
   "default_questionnaire" : {
@@ -92,7 +92,7 @@
             "x": 0
           },
           {
-            "label": { "en": "Files" },
+            "label": { "en": "Attachments" },
             "type": "fileupload",
             "preview": false,
             "hint": {"en": "Attach files relevant to the submission"},

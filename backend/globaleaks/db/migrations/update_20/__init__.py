@@ -12,10 +12,10 @@
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import Model
+from globaleaks.models import ModelWithID
 
 
-class Node_v_19(Model):
+class Node_v_19(ModelWithID):
     __storm_table__ = 'node'
     name = Unicode()
     public_site = Unicode()
@@ -60,7 +60,7 @@ class Node_v_19(Model):
     exception_email = Unicode()
 
 
-class Notification_v_19(Model):
+class Notification_v_19(ModelWithID):
     __storm_table__ = 'notification'
     server = Unicode()
     port = Int()
@@ -97,7 +97,7 @@ class Notification_v_19(Model):
     disable_receivers_notification_emails = Bool()
 
 
-class Message_v_19(Model):
+class Message_v_19(ModelWithID):
     __storm_table__ = 'message'
     creation_date = DateTime()
     receivertip_id = Unicode()
@@ -108,7 +108,7 @@ class Message_v_19(Model):
     mark = Unicode()
 
 
-class Comment_v_19(Model):
+class Comment_v_19(ModelWithID):
     __storm_table__ = 'comment'
     creation_date = DateTime()
     internaltip_id = Unicode()
@@ -119,7 +119,7 @@ class Comment_v_19(Model):
     mark = Unicode()
 
 
-class InternalTip_v_19(Model):
+class InternalTip_v_19(ModelWithID):
     __storm_table__ = 'internaltip'
     creation_date = DateTime()
     context_id = Unicode()
@@ -131,7 +131,7 @@ class InternalTip_v_19(Model):
     mark = Unicode()
 
 
-class ReceiverTip_v_19(Model):
+class ReceiverTip_v_19(ModelWithID):
     __storm_table__ = 'receivertip'
     internaltip_id = Unicode()
     receiver_id = Unicode()
@@ -141,7 +141,7 @@ class ReceiverTip_v_19(Model):
     mark = Unicode()
 
 
-class InternalFile_v_19(Model):
+class InternalFile_v_19(ModelWithID):
     __storm_table__ = 'internalfile'
     creation_date = DateTime()
     internaltip_id = Unicode()
@@ -153,7 +153,7 @@ class InternalFile_v_19(Model):
     mark = Unicode()
 
 
-class ReceiverFile_v_19(Model):
+class ReceiverFile_v_19(ModelWithID):
     __storm_table__ = 'receiverfile'
     internaltip_id = Unicode()
     internalfile_id = Unicode()
@@ -167,7 +167,7 @@ class ReceiverFile_v_19(Model):
     status = Unicode()
 
 
-class Receiver_v_19(Model):
+class Receiver_v_19(ModelWithID):
     __storm_table__ = 'receiver'
     user_id = Unicode()
     name = Unicode()
@@ -191,7 +191,7 @@ class Receiver_v_19(Model):
     presentation_order = Int()
 
 
-class Context_v_19(Model):
+class Context_v_19(ModelWithID):
     __storm_table__ = 'context'
     show_small_cards = Bool()
     show_receivers = Bool()

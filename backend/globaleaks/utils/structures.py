@@ -7,7 +7,7 @@
 # supports extensions (without changing DB format)
 import copy
 
-from globaleaks.models import Model
+from globaleaks.models import ModelWithID
 from globaleaks.settings import GLSettings
 
 
@@ -76,7 +76,7 @@ def get_localized_values(dictionary, obj, keys, language):
 
     if isinstance(obj, dict):
         mo.acquire_multilang_dict(obj)
-    elif isinstance(obj, Model):
+    elif isinstance(obj, ModelWithID):
         mo.acquire_storm_object(obj)
 
     if language is not None:

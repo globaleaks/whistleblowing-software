@@ -275,8 +275,8 @@ class MigrationBase(object):
             GLSettings.print_msg(' * %s [#%d]' % (model_name, objs_count))
             self.generic_migration_function(model_name)
 
-    def generic_config_update:
+    def generic_config_update():
         pass
 
-    def generic_config_l10n_update:
+    def generic_config_l10n_update():
         pass
