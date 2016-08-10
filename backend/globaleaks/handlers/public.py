@@ -27,7 +27,7 @@ def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
-    ret_dict = NodeFactory(store, lang="en").public_export()
+    ret_dict = NodeFactory(store).public_export()
 
     return {
         'title': ret_dict['name'],
@@ -327,6 +327,9 @@ class PublicResource(BaseHandler):
 
 
 class AhmiaDescriptionHandler(BaseHandler):
+    def _empt_gen(self):
+        return None
+
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
     @inlineCallbacks
@@ -334,24 +337,20 @@ class AhmiaDescriptionHandler(BaseHandler):
         """
         Get the ahmia.fi descriptor
         """
-        #from IPython import embed; embed()
         if GLSettings.memory_copy.ahmia:
             ret = yield GLApiCache.get('ahmia', self.request.language,
                                        serialize_ahmia, self.request.language)
 
             self.write(ret)
         else:  # in case of disabled option we return 404
-            ret = yield GLApiCache.get('ahmia', self.request.language,
-                                       serialize_ahmia, self.request.language)
-
-            self.write(ret)
-            #self.set_status(404)
+            yield self._empt_gen() # TODO remove inlineCallbacks from outer get.
+            self.set_status(404)
 
 
 class RobotstxtHandler(BaseHandler):
+
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
-    @inlineCallbacks
     def get(self):
         """
         Get the robots.txt

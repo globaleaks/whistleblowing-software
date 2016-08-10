@@ -3,7 +3,7 @@
 from globaleaks.models.validators import shorttext_v, longtext_v, \
        shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
-from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
+from globaleaks.utils.utility import datetime_null
 from globaleaks.security import generateRandomSalt as salt
 from globaleaks.models.properties import iso_strf_time
 
