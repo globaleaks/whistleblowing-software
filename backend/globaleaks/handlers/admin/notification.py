@@ -41,8 +41,9 @@ def parse_pgp_options(c_notif, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
             c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
-            c_notif.set_val('exception_email_pgp_key_fingerprint', result['info'])
-            c_notif.set_val('exception_email_pgp_key_expiration', result['info'])
+            c_notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
+            # TODO convert me to a string.
+            c_notif.set_val('exception_email_pgp_key_expiration', result['expiration'])
 
         except Exception as e:
             raise e
