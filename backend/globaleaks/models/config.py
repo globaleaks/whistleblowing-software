@@ -1,9 +1,11 @@
 import json
 import os
+from datetime import datetime
 
 from storm.locals import Storm, Unicode, And, JSON
 
 from .groups import GLConfig, SafeSets
+from .properties import iso_strf_time
 
 
 class ObjectDict(dict):
@@ -107,7 +109,8 @@ class Config(Storm):
         self.find_descriptor()
         if self.desc.validator is not None:
             val = self.desc.validator(self, self.var_name, val)
-
+        if self.desc.__class__.__name__ == 'DateTime' and isinstance(val, datetime):
+            val = iso_strf_time(val)
         self.value = {'v': val}
 
     def find_descriptor(self):
@@ -123,6 +126,9 @@ class Config(Storm):
         self.var_group = unicode(group)
         self.var_name = unicode(name)
         self.set_val(value)
+
+    def __repr__(self):
+        return "<Config: %s.%s>" % (self.var_group, self.var_name)
 
 
 def initialize_config(store):

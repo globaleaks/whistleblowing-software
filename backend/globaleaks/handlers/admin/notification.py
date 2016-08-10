@@ -29,13 +29,8 @@ def parse_pgp_options(c_notif, request):
     new_pgp_key = request.get('exception_email_pgp_key_public', u'')
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
-    # the default
-    c_notif.set_val('exception_email_pgp_key_status', u'disabled')
-
     if remove_key:
         # In all the cases below, the key is marked disabled as request
-        c_notif.set_val('exception_email_pgp_key_status', u'disabled')
-        c_notif.set_val('exception_email_pgp_key_info ', None)
         c_notif.set_val('exception_email_pgp_key_public ', None)
         c_notif.set_val('exception_email_pgp_key_fingerprint ', None)
         c_notif.set_val('exception_email_pgp_key_expiration ', None)
@@ -47,8 +42,6 @@ def parse_pgp_options(c_notif, request):
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
 
-            c_notif.set_val('exception_email_pgp_key_status', u'enabled')
-            c_notif.set_val('exception_email_pgp_key_info', result['info'])
             c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
             c_notif.set_val('exception_email_pgp_key_fingerprint', result['info'])
             c_notif.set_val('exception_email_pgp_key_expiration', result['info'])
