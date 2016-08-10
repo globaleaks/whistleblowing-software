@@ -20,11 +20,15 @@ class ObjectDict(dict):
         self[name] = value
 
 
+# TODO inherit from dict and redefine __getattr__ and __setattr__
 class ConfigFactory(object):
     def __init__(self, group, store):
         self.group = unicode(group)
         self.store = store
         self.res = None
+
+    # TODO find var_name with SELECT IN.
+    # def _select_from_set(self, safe_set):
 
     def _query_group(self):
         if not self.res is None:
@@ -44,7 +48,7 @@ class ConfigFactory(object):
             where = And(Config.var_group == self.group, Config.var_name == unicode(var_name))
             r = self.store.find(Config, where).one()
             if r is None:
-                raise ValueError("No such config item: %s:%s" % (self.group, var_name))
+                raise KeyError("No such config item: %s:%s" % (self.group, var_name))
             return r
         else:
             return self.res[var_name]
@@ -93,6 +97,7 @@ class PrivateFactory(ConfigFactory):
     def mem_copy_export(self):
         keys = frozenset(GLConfig['private'].keys())
         return self._export_group_dict(keys)
+
 
 class Config(Storm):
     __storm_table__ = 'config'

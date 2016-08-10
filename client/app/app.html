@@ -8,7 +8,7 @@
     <div data-ng-view=""></div>
   </div>
 
-  <div id="FooterBox" data-ng-show="!embedded" data-ng-include="'views/partials/footer.html'"></div>
+  <div id="FooterBox" data-ng-if="!embedded" data-ng-include="'views/partials/footer.html'"></div>
 </div>
 
 <div id="BodyCustom" data-ng-if="Utils.isHomepage() && node.custom_homepage" data-ng-class="Utils.classExtension()" data-ng-controller="HomeCtrl">

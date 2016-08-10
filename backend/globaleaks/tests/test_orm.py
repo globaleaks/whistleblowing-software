@@ -45,7 +45,6 @@ class TestORM(helpers.TestGL):
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.pgp_key_status = u'disabled'
         store.add(receiver)
 
         # Set receiver.id = receiver.user.username = receiver_user.id
@@ -65,7 +64,6 @@ class TestORM(helpers.TestGL):
 
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
-        receiver.pgp_key_status = u'disabled'
         store.add(receiver)
 
         raise exceptions.DisconnectionError

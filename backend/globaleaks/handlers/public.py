@@ -27,14 +27,14 @@ def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
-    ro_node = NodeFactory(store).public_export()
+    ret_dict = NodeFactory(store, lang="en").public_export()
 
     return {
-        'title': ro_node.name,
+        'title': ret_dict['name'],
         'description': ConfigL10N.get_one(store, language, 'node', 'description').value,
-        'keywords': '%s (GlobaLeaks instance)' % ro_node.name,
-        'relation': ro_node.public_site,
-        'language': ro_node.default_language,
+        'keywords': '%s (GlobaLeaks instance)' % ret_dict['name'],
+        'relation': ret_dict['public_site'],
+        'language': ret_dict['default_language'],
         'contactInformation': u'',
         'type': 'GlobaLeaks'
     }
@@ -329,22 +329,29 @@ class PublicResource(BaseHandler):
 class AhmiaDescriptionHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
+    @inlineCallbacks
     def get(self):
         """
         Get the ahmia.fi descriptor
         """
-        if GLSettings.memory_copy.ahimia:
+        #from IPython import embed; embed()
+        if GLSettings.memory_copy.ahmia:
             ret = yield GLApiCache.get('ahmia', self.request.language,
                                        serialize_ahmia, self.request.language)
 
             self.write(ret)
         else:  # in case of disabled option we return 404
-            self.set_status(404)
+            ret = yield GLApiCache.get('ahmia', self.request.language,
+                                       serialize_ahmia, self.request.language)
+
+            self.write(ret)
+            #self.set_status(404)
 
 
 class RobotstxtHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
+    @inlineCallbacks
     def get(self):
         """
         Get the robots.txt

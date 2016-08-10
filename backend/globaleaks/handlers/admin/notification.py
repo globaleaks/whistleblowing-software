@@ -30,7 +30,6 @@ def parse_pgp_options(c_notif, request):
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
     if remove_key:
-        # In all the cases below, the key is marked disabled as request
         c_notif.set_val('exception_email_pgp_key_public ', None)
         c_notif.set_val('exception_email_pgp_key_fingerprint ', None)
         c_notif.set_val('exception_email_pgp_key_expiration ', None)
@@ -41,7 +40,6 @@ def parse_pgp_options(c_notif, request):
             result = gnob.load_key(new_pgp_key)
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
-
             c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
             c_notif.set_val('exception_email_pgp_key_fingerprint', result['info'])
             c_notif.set_val('exception_email_pgp_key_expiration', result['info'])

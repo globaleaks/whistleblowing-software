@@ -80,9 +80,9 @@ GLConfig = {
 
         'public_site': Unicode(validator=shorttext_v, default=u''),
         'hidden_service': Unicode(validator=shorttext_v, default=u''),
+        'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download'),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),
-        # TODO verify drop 'default_timezone': Int(default=0),
         'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
 
         # Advanced settings
@@ -94,7 +94,7 @@ GLConfig = {
         'tor2web_whistleblower': Bool(default=False),
         'tor2web_receiver': Bool(default=True),
         'tor2web_unauth': Bool(default=True),
-        'allow_unencrypted': Bool(default=False),
+        'allow_unencrypted': Bool(default=True),
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),
         'submission_minimum_delay': Int(validator=natnum_v, default=10),

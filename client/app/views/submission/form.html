@@ -1,19 +1,19 @@
 <div data-ng-repeat="row in rows" data-ng-init="fieldRow=$index" class="row">
   <div data-ng-repeat="field in row | orderBy:'x'" data-ng-init="fieldCol=$index">
     <div data-ng-controller="SubmissionFieldCtrl" data-ng-class="getClass(field, row.length)">
-      <div id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}" class="panel panel-default" data-ng-show="fieldUtilities.isFieldTriggered(field, answers, total_score)">
+      <div id="{{stepId}}-field-{{fieldRow}}-{{fieldCol}}" class="panel panel-default" data-ng-if="fieldUtilities.isFieldTriggered(field, answers, total_score)">
         <div class="panel-heading">
-          <label>
+          <label data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="'mouseenter'">
             <span class="fieldLabel">{{::field.label}}</span>
-            <a href="" data-ng-show="::field.hint" data-content="::field.hint" uib-popover="{{::field.hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <span data-ng-if="::field.hint">
               <i class="glyphicon glyphicon-question-sign"></i>
-            </a>
+            </span>
           </label>
           <span class="text-danger"
                 data-ng-if="::field.required"
                 uib-popover="{{'This field is mandatory' | translate}}"
                 popover-placement="right"
-                popover-trigger="mouseenter">*</span>
+                popover-trigger="'mouseenter'">*</span>
         </div>
         <div class="panel-body">
           <div class="fieldDescription">{{::field.description}}</div>

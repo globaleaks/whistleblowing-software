@@ -21,7 +21,7 @@
             <input type="hidden" name="session" value="{{session.id}}" />
             <button uib-popover="{{'Send a test email from the SMTP account to your email address.' | translate}}"
                     popover-placement="right"
-                    popover-trigger="mouseenter"
+                    popover-trigger="'mouseenter'"
                     ng-click="updateThenTestMail();"
                     class="btn btn-success" data-translate>
               Test Email <i class="glyphicon glyphicon-export"></i>

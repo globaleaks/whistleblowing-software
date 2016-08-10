@@ -121,8 +121,8 @@ def export_fixture(*models):
 
 
 @transact
-def update_node_encryption_setting(store, allow_unencrypted):
-    models.config.NodeFactory(store).get('allow_unencrypted').set_val(allow_unencrypted)
+def update_node_setting(store, var_name, value):
+    models.config.NodeFactory(store).get(var_name).set_val(value)
 
 
 def change_field_type(field, field_type):
@@ -186,8 +186,6 @@ class TestGL(unittest.TestCase):
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
-        yield update_node_encryption_setting(allow_unencrypted)
-
         yield db.refresh_memory_variables()
 
         Alarm.reset()
@@ -245,7 +243,7 @@ class TestGL(unittest.TestCase):
         new_u['username'] = username
         new_u['name'] = new_u['public_name'] = new_u['mail_address'] = \
             unicode("%s@%s.xxx" % (username, username))
-        new_u['description'] = u""
+        new_u['description'] = u''
         new_u['password'] = VALID_PASSWORD1
         new_u['state'] = u'enabled'
         new_u['deletable'] = True
@@ -281,7 +279,7 @@ class TestGL(unittest.TestCase):
             'label': u'antani',
             'type': u'inputbox',
             'preview': False,
-            'description': u"field description",
+            'description': u'field description',
             'hint': u'field hint',
             'multi_entry': False,
             'multi_entry_hint': '',
@@ -739,13 +737,10 @@ class MockDict:
             'description': u'King MockDummy',
             'public_name': u'Charlie Brown',
             'last_login': u'1970-01-01 00:00:00.000000',
-            'timezone': 0,
             'language': u'en',
             'password_change_needed': False,
             'password_change_date': u'1970-01-01 00:00:00.000000',
-            'pgp_key_info': u'',
             'pgp_key_fingerprint': u'',
-            'pgp_key_status': u'disabled',
             'pgp_key_public': u'',
             'pgp_key_expiration': u'1970-01-01 00:00:00.000000',
             'pgp_key_remove': False
@@ -794,8 +789,8 @@ class MockDict:
         }
 
         self.dummyNode = {
-            'name': u"Please, set me: name/title",
-            'description': u"Pleæs€, set m€: d€scription",
+            'name': u'Please, set me: name/title',
+            'description': u'Pleæs€, set m€: d€scription',
             'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'security_awareness_title': u'',
@@ -803,11 +798,12 @@ class MockDict:
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
             'whistleblowing_receipt_prompt': u'',
-            'hidden_service': u"http://1234567890123456.onion",
-            'public_site': u"https://globaleaks.org",
-            'email': u"email@dummy.net",
+            'hidden_service': u'http://1234567890123456.onion',
+            'public_site': u'https://globaleaks.org',
+            'tb_download_link': u'https://www.torproject.org/download/download',
+            'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
-            'languages_enabled': ["it", "en"],
+            'languages_enabled': ['it', 'en'],
             'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
             'maximum_namesize': 120,
@@ -833,10 +829,8 @@ class MockDict:
             'disable_security_awareness_questions': False,
             'disable_key_code_hint': False,
             'disable_donation_panel': False,
-            'default_timezone': 0,
             'default_language': u'en',
             'default_password': u'globaleaks',
-            'admin_timezone': 0,
             'admin_language': u'en',
             'simplified_login': False,
             'enable_captcha': False,

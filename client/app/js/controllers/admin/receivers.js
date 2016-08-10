@@ -25,8 +25,8 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiver
     $scope.save_receiver(elem);
   };
 }]).
-controller('AdminReceiverEditorCtrl', ['$scope', 'CONSTANTS',
-  function($scope, CONSTANTS) {
+controller('AdminReceiverEditorCtrl', ['$scope',
+  function($scope) {
     $scope.editing = false;
 
     $scope.toggleEditing = function () {
@@ -36,8 +36,6 @@ controller('AdminReceiverEditorCtrl', ['$scope', 'CONSTANTS',
     $scope.save = function() {
       $scope.save_receiver($scope.receiver, false);
     };
-
-    $scope.timezones = CONSTANTS.timezones;
 
     $scope.isSelected = function (context) {
       return $scope.receiver.contexts.indexOf(context.id) !== -1;

@@ -43,7 +43,7 @@ GLClient.controller('TipCtrl',
               if (!$scope.isFieldTriggered(f, answers[f.id], $scope.tip.total_score)) {
                 field.children.splice(k2, 1);
               } else {
-                for (var k3=0; k2<answers[f.id].length; k3++) {
+                for (var k3=0; k3<answers[f.id].length; k3++) {
                   filterNotTriggeredField(f, answers[f.id]);
                 }
               }

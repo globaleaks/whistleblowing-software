@@ -223,14 +223,14 @@ class TipKeyword(Keyword):
         return self.data['tip']['label']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['tip']['creation_date'], float(self.data['receiver']['timezone']))
+        return ISO8601_to_pretty_str(self.data['tip']['creation_date'])
 
     def SubmissionDate(self):
         return self.EventTime()
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
-        return ISO8601_to_day_str(self.data['tip']['expiration_date'], float(self.data['receiver']['timezone']))
+        return ISO8601_to_day_str(self.data['tip']['expiration_date'])
 
     def ExpirationWatch(self):
         missing_time = ISO8601_to_datetime(self.data['tip']['expiration_date']) - datetime_now()
@@ -248,14 +248,14 @@ class CommentKeyword(TipKeyword):
     data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comment']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['comment']['creation_date'], float(self.data['receiver']['timezone']))
+        return ISO8601_to_pretty_str(self.data['comment']['creation_date'])
 
 
 class MessageKeyword(TipKeyword):
     data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['message']['creation_date'], float(self.data['receiver']['timezone']))
+        return ISO8601_to_pretty_str(self.data['message']['creation_date'])
 
 
 class FileKeyword(TipKeyword):
@@ -266,7 +266,7 @@ class FileKeyword(TipKeyword):
         return self.data['file']['name']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['file']['creation_date'], float(self.data['receiver']['timezone']))
+        return ISO8601_to_pretty_str(self.data['file']['creation_date'])
 
     def FileSize(self):
         return str(self.data['file']['size'])

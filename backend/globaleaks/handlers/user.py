@@ -13,7 +13,7 @@ from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, GLBPGP
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
+from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
 
 
 def parse_pgp_options(user, request):
@@ -29,9 +29,9 @@ def parse_pgp_options(user, request):
 
     if remove_key:
         # In all the cases below, the key is marked disabled as request
-        user.pgp_key_public = None
-        user.pgp_key_fingerprint = None
-        user.pgp_key_expiration = None
+        user.pgp_key_public = ''
+        user.pgp_key_fingerprint = ''
+        user.pgp_key_expiration = datetime_null()
 
     elif pgp_key_public != '':
         gnob = GLBPGP()
@@ -104,7 +104,6 @@ def db_user_update_user(store, user_id, request, language):
     This version of the function is specific for users that with comparison with
     admins can change only few things:
       - preferred language
-      - preferred timezone
       - the password (with old password check)
       - pgp key
     raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
@@ -115,7 +114,6 @@ def db_user_update_user(store, user_id, request, language):
         raise errors.UserIdNotFound
 
     user.language = request.get('language', GLSettings.memory_copy.default_language)
-    user.timezone = request.get('timezone', GLSettings.memory_copy.default_timezone)
 
     new_password = request['password']
     old_password = request['old_password']
@@ -148,7 +146,6 @@ class UserInstance(BaseHandler):
     """
     This handler allow users to modify some of their fields:
         - language
-        - timezone
         - password
         - notification settings
         - pgp key

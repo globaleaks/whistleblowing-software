@@ -4,7 +4,6 @@ GLClient.controller('AdminCtrl',
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
   $scope.tor_regexp = CONSTANTS.tor_regexp;
-  $scope.timezones = CONSTANTS.timezones;
 
   // XXX convert this to a directive
   // This is used for setting the current menu in the sidebar

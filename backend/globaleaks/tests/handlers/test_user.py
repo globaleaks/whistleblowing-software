@@ -50,7 +50,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         # check that the key is initialized at start
-        self.assertEqual(self.responses[0]['pgp_key_status'], u'enabled')
+        self.assertNotEqual(self.responses[0]['pgp_key_public'], u'')
 
         self.assertEqual(self.responses[0]['pgp_key_fingerprint'],
                          u'ECAF2235E78E71CD95365843C7B190543CAA7585')
@@ -77,10 +77,8 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(self.responses[1], user_id=self.rcvr_id, role='receiver')
         yield handler.put()
 
-        self.assertEqual(self.responses[2]['pgp_key_status'], u'disabled')
-        self.assertIsNone(self.responses[2]['pgp_key_fingerprint'])
-        self.assertIsNone(self.responses[2]['pgp_key_public'])
-        self.assertIsNone(self.responses[2]['pgp_key_info'])
+        self.assertEqual(self.responses[2]['pgp_key_fingerprint'], '')
+        self.assertEqual(self.responses[2]['pgp_key_public'], '')
         self.assertEqual(self.responses[2]['pgp_key_expiration'], '1970-01-01T00:00:00Z')
 
     @inlineCallbacks
@@ -90,7 +88,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
 
         self.responses[0]['pgp_key_public'] = unicode(helpers.PGPKEYS['VALID_PGP_KEY1_PUB']).replace('A', 'B')
-        self.responses[0]['pgp_key_status'] = u'disabled' # Test, this field is ignored and set
         self.responses[0]['pgp_key_remove'] = False
         handler = self.request(self.responses[0], user_id=self.rcvr_id, role='receiver')
         yield self.assertFailure(handler.put(), errors.PGPKeyInvalid)

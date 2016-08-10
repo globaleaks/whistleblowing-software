@@ -1,3 +1,21 @@
+Changes in version 2.63.1 - 2016-08-08
+    o Fix CSS of the sticky footer in relation to the presence/absence of user footer
+
+Changes in version 2.63.0 - 2016-08-08
+    o Subject receipt expiration to a timeout related to last access
+    o Update unsupported browser warning to latest supported browsers
+    o Add client PGP key validatioin by means of OpenPGP.js
+    o Adopt standard sql syntax in compliance with sql-92
+    o Implement no-paste capability on password configurators
+    o Allow configuration of the Tor Browser download link
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1716
+    - https://github.com/globaleaks/GlobaLeaks/issues/1735
+    - https://github.com/globaleaks/GlobaLeaks/issues/1736
+    - https://github.com/globaleaks/GlobaLeaks/issues/1729
+    - https://github.com/globaleaks/GlobaLeaks/issues/1745
+
 Changes in version 2.62.9 - 2016-07-25
     o Force language detection to prefer url params
     o Add CSS extensions for customization
