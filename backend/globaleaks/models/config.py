@@ -85,6 +85,14 @@ class NotificationFactory(ConfigFactory):
         return self._export_group_dict(SafeSets.admin_notification_export)
 
 
+class PrivateFactory(ConfigFactory):
+    def __init__(self, store):
+        ConfigFactory.__init__(self, 'private', store)
+
+    def mem_copy_export(self):
+        keys = frozenset(GLConfig['private'].keys())
+        return self._export_group_dict(keys)
+
 class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
@@ -97,7 +105,18 @@ class Config(Storm):
         return self.value.get('v')
 
     def set_val(self, val):
+        self.find_descriptor()
+        if self.desc.validator is not None:
+            val = self.desc.validator(self, self.var_name, val)
+
         self.value = {'v': val}
+
+    def find_descriptor(self):
+        d = GLConfig.get(self.var_group, {}).get(self.var_name, None)
+        if d is None:
+            raise ValueError('Descriptor cannot be None')
+        self.desc = d
+
 
     def get_val(self):
         return self.value['v']

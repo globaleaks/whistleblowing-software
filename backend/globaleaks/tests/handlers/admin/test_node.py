@@ -45,7 +45,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
             if response_key in ['password', 'languages_supported',
                                 'version', 'version_db',
                                 'configured', 'wizard_done',
-                                'languages_enabled']:
+                                'receipt_salt', 'languages_enabled']:
                 continue
 
             self.assertEqual(self.responses[0][response_key],

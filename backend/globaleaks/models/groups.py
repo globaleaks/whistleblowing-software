@@ -16,6 +16,8 @@ class Item():
         else: #TODO normalize usage
             raise KeyError('No default set! %s, %s' % (args, kwargs))
 
+        self.validator = kwargs.get('validator', None)
+
 
 class Str(Item):
     typ = 'str'
@@ -34,6 +36,9 @@ class Bool(Item):
 
 
 GLConfig = {
+    'private': {
+        'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
+    },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
         'port': Int(default=9267),
@@ -72,8 +77,6 @@ GLConfig = {
 
         'public_site': Unicode(validator=shorttext_v, default=u''),
         'hidden_service': Unicode(validator=shorttext_v, default=u''),
-
-        'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),
         'default_timezone': Int(default=0),
@@ -144,22 +147,39 @@ class SafeSets(object):
     node_private_fields = frozenset({
         'version',
         'version_db',
+
+        'basic_auth',
+        'basic_auth_username',
+        'basic_auth_password',
+        'default_password',
+        'default_timezone',
+
+        'can_postpone_expiration',
+        'can_delete_submission',
+        'can_grant_permissions',
+
+        'ahmia',
+        'allow_indexing',
+
         'threshold_free_disk_megabytes_high',
         'threshold_free_disk_megabytes_medium',
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_medium',
         'threshold_free_disk_percentage_low',
+
         'wbtip_timetolive',
-        'basic_auth',
-        'basic_auth_username',
-        'basic_auth_password',
     })
 
     admin_node = frozenset(GLConfig['node'].keys())
 
     public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
 
+    # functions slightly differently than node_hidden_fields
+    notification_hidden_fields = frozenset({
+        'password',
+    })
+
     admin_notification_update = frozenset(GLConfig['notification'].keys())
 
-    admin_notification_export = admin_notification_update - frozenset({'password'})
+    admin_notification_export = admin_notification_update - notification_hidden_fields

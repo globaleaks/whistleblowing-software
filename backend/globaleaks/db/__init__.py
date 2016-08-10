@@ -12,7 +12,7 @@ from storm import exceptions
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.models.config import NodeFactory, NotificationFactory, ObjectDict, initialize_config
+from globaleaks.models.config import NodeFactory, NotificationFactory, ObjectDict, PrivateFactory, initialize_config
 from globaleaks.db.appdata import db_update_appdata
 from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
 from globaleaks.handlers.admin import files
@@ -193,6 +193,8 @@ def db_refresh_memory_variables(store):
         GLSettings.memory_copy.notif.disable_admin_notification_emails = True
         GLSettings.memory_copy.notif.disable_custodian_notification_emails = True
         GLSettings.memory_copy.notif.disable_receiver_notification_emails = True
+
+    GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
 
 
 @transact_ro

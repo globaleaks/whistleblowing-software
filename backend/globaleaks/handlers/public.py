@@ -330,15 +330,11 @@ class PublicResource(BaseHandler):
 class AhmiaDescriptionHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
-    @inlineCallbacks
     def get(self):
         """
         Get the ahmia.fi descriptor
         """
-        node_info = yield GLApiCache.get('node', self.request.language,
-                                         serialize_node, self.request.language)
-
-        if node_info['ahmia']:
+        if GLSettings.memory_copy.ahimia:
             ret = yield GLApiCache.get('ahmia', self.request.language,
                                        serialize_ahmia, self.request.language)
 
@@ -350,15 +346,11 @@ class AhmiaDescriptionHandler(BaseHandler):
 class RobotstxtHandler(BaseHandler):
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
-    @inlineCallbacks
     def get(self):
         """
         Get the robots.txt
         """
-        node_info = yield GLApiCache.get('node', self.request.language,
-                                         serialize_node, self.request.language)
-
         self.set_header('Content-Type', 'text/plain')
 
         self.write("User-agent: *\n")
-        self.write("Allow: /" if node_info['allow_indexing'] else "Disallow: /")
+        self.write("Allow: /" if GLSettings.memory_copy.allow_indexing else "Disallow: /")
