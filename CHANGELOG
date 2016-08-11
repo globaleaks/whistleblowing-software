@@ -1,3 +1,11 @@
+Changes in version 2.63.0 - 2016-08-11
+    o Fix migration 31 in relation to issue
+    o Implement shrinkwrap of npm dependencies
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1747
+    - https://github.com/globaleaks/GlobaLeaks/issues/1564
+
 Changes in version 2.63.1 - 2016-08-08
     o Fix CSS of the sticky footer in relation to the presence/absence of user footer
 
