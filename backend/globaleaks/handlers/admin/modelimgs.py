@@ -7,6 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
+import base64
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact, transact_ro
@@ -35,7 +36,7 @@ def add_model_img(store, model, obj_id, data):
         if obj.picture is None:
             obj.picture = models.File()
 
-        obj.picture.data = data
+        obj.picture.data = base64.b64encode(data)
 
 
 @transact
