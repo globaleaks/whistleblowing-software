@@ -33,12 +33,12 @@ class TestSystemConfigModels(helpers.TestGL):
 
     @transact
     def _test_missing_config(self, store):
-        config.system_config_stable(store)
+        config.system_cfg_stable(store)
         p = config.Config('private', 'smtp_password', 'XXXX')
         p.var_group = u'outside'
         store.add(p)
 
-        self.assertRaises(IOError, config.system_config_stable, store)
+        self.assertRaises(IOError, config.system_cfg_stable, store)
 
 
         node = config.NodeFactory(store)

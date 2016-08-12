@@ -3,8 +3,8 @@ import os
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks import DATABASE_VERSION
 from globaleaks.models import *
-from globaleaks.models import l10n
-from globaleaks.models.groups import GLConfig
+from globaleaks.models import l10n, properties
+from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.config import Config
 from globaleaks.db.appdata import load_archived_appdata
 from globaleaks.utils.utility import log
@@ -206,10 +206,6 @@ class Notification_v_33(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-    x = ['globaleaks', 'db', 'migrations', 'update_%s' % DATABASE_VERSION, 'appdata_v2_62_8.json']
-    path = os.path.join(GLSettings.root_path, *x)
-
-
     def prologue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
@@ -236,7 +232,10 @@ class MigrationScript(MigrationBase):
             log.debug('migrating: %s' % var_name)
             old_val = getattr(old_notif, var_name)
 
-            # XXX this can throw errors if the validators run
+            if var_name == 'exception_email_pgp_key_expiration':
+                old_val = properties.iso_strf_time(old_val)
+
+            # NOTE this can throw errors if the validators run
             item = Config('notification', var_name, old_val)
             self.store_new.add(item)
 
@@ -244,11 +243,9 @@ class MigrationScript(MigrationBase):
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
 
-        # TODO update db and version
-
-        # TODO run validate on config.
-
         self.store_new.commit()
+
+        config.system_cfg_stable(self.store_new)
 
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):

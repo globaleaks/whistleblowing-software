@@ -37,11 +37,6 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_disabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['allow_indexing'] = False
-
-        yield admin.node.update_node(nodedict, 'en')
-
         yield handler.get()
 
         self.assertEqual(self.responses[0], "User-agent: *\n")
@@ -51,9 +46,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_enabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['allow_indexing'] = True
-        yield admin.node.update_node(nodedict, 'en')
+        yield helpers.update_node_setting('allow_indexing', True)
 
         yield handler.get()
 

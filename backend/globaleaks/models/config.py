@@ -5,8 +5,7 @@ from datetime import datetime
 from storm.locals import Storm, Unicode, And, JSON
 
 import config_desc
-from .groups import GLConfig
-from .properties import iso_strf_time
+from .config_desc import GLConfig
 
 
 class ConfigFactory(object):
@@ -20,7 +19,6 @@ class ConfigFactory(object):
         self.group = unicode(group)
         self.store = store
         self.res = None
-        self.update_set = set()
         if not lazy:
             self._query_group()
 
@@ -108,7 +106,7 @@ class NodeFactory(ConfigFactory):
 
     admin_node = frozenset(GLConfig['node'].keys())
 
-    public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
+    public_node = admin_node - node_private_fields
 
     update_set = admin_node
     group_desc = GLConfig['node']
@@ -165,12 +163,10 @@ class Config(Storm):
         self.find_descriptor()
         if isinstance(self.desc, config_desc.Unicode) and isinstance(val, str):
             val = unicode(val)
-        if isinstance(self.desc, config_desc.DateTime) and isinstance(val, datetime):
-            val = unicode(iso_strf_time(val))
         if not isinstance(val, self.desc._type):
-            raise ValueError("Cannot assign %s with %s" % (self, val))
+            raise ValueError("Cannot assign %s with %s" % (self, type(val)))
         if self.desc.validator is not None:
-            val = self.desc.validator(self, self.var_name, val)
+            self.desc.validator(self, self.var_name, val)
         self.value = {'v': val}
 
     def find_descriptor(self):

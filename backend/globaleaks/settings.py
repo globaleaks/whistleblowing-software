@@ -132,7 +132,20 @@ class GLSettingsClass(object):
         # it is important to keep this variables in memory
         #
         # Initialization is handled by db_refresh_memory_variables
-        self.memory_copy = OD({})
+        self.memory_copy = OD({
+            'maximum_namesize': 128,
+            'maximum_textsize': 4096,
+            'maximum_filesize': 30,
+            'allow_iframes_inclusion': False,
+            'accept_tor2web_access': {
+                'admin': True,
+                'whistleblower': False,
+                'custodian': False,
+                'receiver': False,
+                'unauth': True,
+            },
+        })
+
 
         # Default request time uniform value
         self.side_channels_guard = 0.150
