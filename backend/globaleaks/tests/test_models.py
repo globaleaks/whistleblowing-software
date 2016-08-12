@@ -12,7 +12,7 @@ from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks.settings import GLSettings
-from globaleaks.models.groups import GLConfig
+from globaleaks.models.config_desc import GLConfig
 
 
 class TestSystemConfigModels(helpers.TestGL):
@@ -26,6 +26,43 @@ class TestSystemConfigModels(helpers.TestGL):
 
         stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.iteritems()], 0)
         self.assertEqual(c, stated_conf)
+
+    @inlineCallbacks
+    def test_missing_config(self):
+        yield self._test_missing_config()
+
+    @transact
+    def _test_missing_config(self, store):
+        config.system_config_stable(store)
+        p = config.Config('private', 'smtp_password', 'XXXX')
+        p.var_group = u'outside'
+        store.add(p)
+
+        self.assertRaises(IOError, config.system_config_stable, store)
+
+
+        node = config.NodeFactory(store)
+        c = node.get_cfg('version')
+        store.remove(c)
+        store.commit()
+
+        self.assertRaises(IOError, node.db_corresponds)
+
+        # Delete all of the vars in Private Factory
+        prv = config.PrivateFactory(store)
+
+        store.execute('DELETE FROM config WHERE var_group = "private"')
+
+        self.assertRaises(IOError, prv.db_corresponds)
+
+        ntfn = config.NotificationFactory(store)
+
+        c = config.Config('notification', 'server', 'guarda.giochi.con.occhi')
+        c.var_name = u'anextravar'
+        store.add(c)
+
+        self.assertRaises(IOError, ntfn.db_corresponds)
+
 
 class TestConfigL10N(helpers.TestGL):
     @inlineCallbacks

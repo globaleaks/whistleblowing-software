@@ -122,7 +122,7 @@ def export_fixture(*models):
 
 @transact
 def update_node_setting(store, var_name, value):
-    models.config.NodeFactory(store).get(var_name).set_val(value)
+    models.config.NodeFactory(store).set_val(var_name, value)
     db.db_refresh_memory_variables(store)
 
 

@@ -9,10 +9,12 @@ import traceback
 
 from storm import exceptions
 
+from cyclone.util import ObjectDict
 from twisted.internet.defer import succeed, inlineCallbacks
 
 from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.models.config import NodeFactory, NotificationFactory, ObjectDict, PrivateFactory, initialize_config
+from globaleaks.models import config
+from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.db.appdata import db_update_appdata
 from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
 from globaleaks.handlers.admin import files
@@ -61,10 +63,10 @@ def init_db(store, use_single_lang=False):
     notification = models.Notification()
     store.add(notification)
 
-    initialize_config(store)
+    config.system_cfg_init(store)
 
     if GLSettings.skip_wizard:
-        NodeFactory(store).get('wizard_done').set_val(True)
+        NodeFactory(store).set_val('wizard_done', True)
 
     log.debug("Inserting internationalized strings...")
 
@@ -127,10 +129,6 @@ def check_db_files():
             log.msg("\t%s" % f)
 
         return -1
-
-    # TODO assert that all of the intended system config is present in the db.
-    # TODO ensure that this does not block migrations
-    #GLConfig.assert_integrity()
 
     return db_version
 
@@ -204,6 +202,7 @@ def refresh_memory_variables(*args):
 
 @transact
 def update_version(store):
+    config.system_cfg_stable(store)
     node = NodeFactory(store)
-    node.get('version').set_val(unicode(__version__))
-    node.get('version_db').set_val(unicode(DATABASE_VERSION))
+    node.set_val('version', unicode(__version__))
+    node.set_val('version_db', unicode(DATABASE_VERSION))

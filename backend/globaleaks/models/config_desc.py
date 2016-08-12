@@ -9,34 +9,29 @@ from globaleaks.models.properties import iso_strf_time
 
 
 class Item():
-    # TODO run validators on item __init__
     def __init__(self, *args, **kwargs):
         if 'default' in kwargs:
             self.val = kwargs['default']
-        else: #TODO normalize usage
+        else:
             raise KeyError('No default set! %s, %s' % (args, kwargs))
 
         self.validator = kwargs.get('validator', None)
 
 
-class Str(Item):
-    typ = 'str'
-
-
 class Unicode(Item):
-    typ = 'str'
+    _type = unicode
 
 
 class Int(Item):
-    typ = 'int'
+    _type = int
 
 
 class Bool(Item):
-    typ = 'bool'
+    _type = bool
 
 
 class DateTime(Item):
-    typ = 'str'
+    _type = str
 
 
 GLConfig = {
@@ -144,38 +139,3 @@ GLConfig = {
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
     },
 }
-
-
-class SafeSets(object):
-    node_private_fields = frozenset({
-        'version',
-        'version_db',
-
-        'basic_auth',
-        'basic_auth_username',
-        'basic_auth_password',
-        'default_password',
-        'default_timezone',
-
-        'can_postpone_expiration',
-        'can_delete_submission',
-        'can_grant_permissions',
-
-        'ahmia',
-        'allow_indexing',
-
-        'threshold_free_disk_megabytes_high',
-        'threshold_free_disk_megabytes_medium',
-        'threshold_free_disk_megabytes_low',
-        'threshold_free_disk_percentage_high',
-        'threshold_free_disk_percentage_medium',
-        'threshold_free_disk_percentage_low',
-
-        'wbtip_timetolive',
-    })
-
-    admin_node = frozenset(GLConfig['node'].keys())
-
-    public_node = frozenset(GLConfig['node'].keys()) - node_private_fields
-
-    admin_notification = frozenset(GLConfig['notification'].keys())

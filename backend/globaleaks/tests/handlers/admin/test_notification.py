@@ -4,7 +4,7 @@ import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db.appdata import load_appdata
-from globaleaks.models.groups import SafeSets as ss
+from globaleaks.models import config
 from globaleaks.handlers import admin
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
@@ -23,7 +23,9 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
         self.assertEqual(self.responses[0]['server'], 'demo.globaleaks.org')
 
-        resp_desc = self.ss_serial_desc(ss.admin_notification, requests.AdminNotificationDesc)
+        resp_desc = self.ss_serial_desc(config.NotificationFactory.admin_notification,
+                                        requests.AdminNotificationDesc)
+
         self._handler.validate_message(json.dumps(self.responses[0]), resp_desc)
 
     @inlineCallbacks
