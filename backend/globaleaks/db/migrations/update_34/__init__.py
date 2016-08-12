@@ -232,7 +232,7 @@ class MigrationScript(MigrationBase):
             log.debug('migrating: %s' % var_name)
             old_val = getattr(old_notif, var_name)
 
-            if var_name == 'exception_email_pgp_key_expiration':
+            if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = properties.iso_strf_time(old_val)
 
             # NOTE this can throw errors if the validators run
