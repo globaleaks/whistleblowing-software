@@ -60,6 +60,7 @@ def admin_serialize_notification(store, language):
     cmd_flags = {
         'reset_templates': False,
         'exception_email_pgp_key_remove': False,
+        'smtp_password': '',
     }
 
     conf_l10n_dict = Notification_L10N(store).build_localized_dict(language)
@@ -82,17 +83,15 @@ def update_notification(store, request, language):
     log.debug("Updating lang: %s" % language)
     notif_l10n.update_model(request, language)
 
-    if request['reset_templates']:
+    if request.pop('reset_templates'):
         appdata = load_appdata()
         notif_l10n.reset_templates(appdata)
 
-    c_notif = NotificationFactory(store)
-
-    smtp_pw = request.pop('password', u'')
+    smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
         PrivateFactory(store).get('smtp_password').set_val(smtp_pw)
 
-
+    c_notif = NotificationFactory(store)
     c_notif.update(request)
 
     parse_pgp_options(c_notif, request)
