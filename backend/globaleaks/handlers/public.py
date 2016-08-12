@@ -11,7 +11,6 @@ from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.models import ConfigL10N, l10n, config
-from globaleaks.models.groups import SafeSets
 from globaleaks.models.config import NodeFactory
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file

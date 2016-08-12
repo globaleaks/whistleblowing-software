@@ -89,7 +89,7 @@ def update_notification(store, request, language):
 
     smtp_pw = request.pop('smtp_password', u'')
     if smtp_pw != u'':
-        PrivateFactory(store).get('smtp_password').set_val(smtp_pw)
+        PrivateFactory(store).set_val('smtp_password', smtp_pw)
 
     c_notif = NotificationFactory(store)
     c_notif.update(request)

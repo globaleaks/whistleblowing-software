@@ -14,7 +14,6 @@ from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
 from globaleaks.models.config import NodeFactory
 from globaleaks.models import config
-from globaleaks.models.groups import SafeSets
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -92,11 +91,11 @@ def db_update_node(store, request, language):
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
-        node.get('basic_auth').set_val(True)
-        node.get('basic_auth_username').set_val(request['basic_auth_username'])
-        node.get('basic_auth_password').set_val(request['basic_auth_password'])
+        node.set_val('basic_auth', True)
+        node.set_val('basic_auth_username', request['basic_auth_username'])
+        node.set_val('basic_auth_password', request['basic_auth_password'])
     else:
-        node.get('basic_auth').set_val(False)
+        node.set_val('basic_auth', False)
 
     db_refresh_memory_variables(store)
 
