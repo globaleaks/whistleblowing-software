@@ -123,6 +123,7 @@ def export_fixture(*models):
 @transact
 def update_node_setting(store, var_name, value):
     models.config.NodeFactory(store).get(var_name).set_val(value)
+    db.db_refresh_memory_variables(store)
 
 
 def change_field_type(field, field_type):
@@ -185,6 +186,7 @@ class TestGL(unittest.TestCase):
             yield db.init_db(use_single_lang=True)
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
+        yield update_node_setting('allow_unencrypted', allow_unencrypted)
 
         yield db.refresh_memory_variables()
 
