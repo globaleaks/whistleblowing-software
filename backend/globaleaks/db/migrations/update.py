@@ -250,9 +250,6 @@ class MigrationBase(object):
             for _, v in new_obj._storm_columns.iteritems():
                 self.migrate_model_key(old_obj, new_obj, v.name)
 
-            if model_name == 'Notification':
-                self.migration_fix_Notification(old_obj, new_obj)
-
             self.store_new.add(new_obj)
 
     def migration_fix_Notification(self, old_obj, new_obj):
@@ -274,9 +271,6 @@ class MigrationBase(object):
         else:
             GLSettings.print_msg(' * %s [#%d]' % (model_name, objs_count))
             self.generic_migration_function(model_name)
-
-    def generic_config_update():
-        pass
 
     def generic_config_l10n_update():
         pass

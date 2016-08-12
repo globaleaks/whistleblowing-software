@@ -201,8 +201,13 @@ def refresh_memory_variables(*args):
 
 
 @transact
-def update_version(store):
-    config.system_cfg_stable(store)
-    node = NodeFactory(store)
-    node.set_val('version', unicode(__version__))
-    node.set_val('version_db', unicode(DATABASE_VERSION))
+def handle_stored_version(store):
+    prv = PrivateFactory(store)
+
+    ver = prv.get_val('version')
+    ver_db = prv.get_val('version_db')
+
+    # Only update config if the version has changed
+    if ver != __version__ or ver_db != DATABASE_VERSION:
+        log.info("Updating config version from %s to %s" % (ver, __version__))
+        config.system_analyze_update(store)

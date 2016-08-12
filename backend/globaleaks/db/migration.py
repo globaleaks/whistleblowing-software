@@ -7,7 +7,7 @@ import shutil
 from storm.locals import create_database, Store
 
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.models import l10n
+from globaleaks.models import l10n, config
 from globaleaks.settings import GLSettings
 
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
@@ -65,6 +65,7 @@ migration_mapping = OrderedDict([
     ('ReceiverContext', [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverFile', [ReceiverFile_v_19, 0, 0, 0, 0, models.ReceiverFile, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverTip', [ReceiverTip_v_19, 0, 0, 0, 0, ReceiverTip_v_23, 0, 0, 0, ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, models.ReceiverTip, 0, 0, 0]),
+    ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, config.Config]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.ConfigL10N]),
     ('Step', [Step_v_20, 0, 0, 0, 0, 0, Step_v_23, 0, 0, Step_v_27, 0, 0, 0, Step_v_29, 0, models.Step, 0, 0, 0, 0]),
     ('StepField', [StepField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1]),

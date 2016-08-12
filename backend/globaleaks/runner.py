@@ -10,7 +10,7 @@ from twisted.internet import reactor, defer
 from twisted.python.util import untilConcludes
 
 from globaleaks.db import init_db, clean_untracked_files, \
-    refresh_memory_variables, update_version
+    refresh_memory_variables, handle_stored_version
 
 from globaleaks.db.appdata import update_appdata
 
@@ -73,7 +73,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             if GLSettings.initialize_db:
                 yield init_db()
             else:
-                yield update_version()
+                yield handle_stored_version()
 
             yield clean_untracked_files()
 
