@@ -6,6 +6,7 @@ from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin, public
 from globaleaks.models import config
+from globaleaks.settings import GLSettings
 
 
 class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
@@ -15,7 +16,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_ahmia_disabled(self):
         handler = self.request({}, role='admin')
 
-        yield helpers.update_node_setting('ahmia', False)
+        GLSettings.memory_copy.ahmia = False
 
         yield handler.get()
 
@@ -23,7 +24,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_ahmia_enabled(self):
         handler = self.request({}, role='admin')
 
-        yield helpers.update_node_setting('ahmia', True)
+        GLSettings.memory_copy.ahmia = True
 
         yield handler.get()
 
@@ -37,6 +38,8 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_disabled(self):
         handler = self.request({}, role='admin')
 
+        GLSettings.memory_copy.allow_indexing = False
+
         yield handler.get()
 
         self.assertEqual(self.responses[0], "User-agent: *\n")
@@ -46,7 +49,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_enabled(self):
         handler = self.request({}, role='admin')
 
-        yield helpers.update_node_setting('allow_indexing', True)
+        GLSettings.memory_copy.allow_indexing = True
 
         yield handler.get()
 

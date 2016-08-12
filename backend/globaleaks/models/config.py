@@ -157,10 +157,13 @@ class Config(Storm):
     def __init__(self, group, name, value):
         self.var_group = unicode(group)
         self.var_name = unicode(name)
+
         self.set_v(value)
 
     def set_v(self, val):
         self.find_descriptor()
+        if val is None:
+            val = self.desc._type()
         if isinstance(self.desc, config_desc.Unicode) and isinstance(val, str):
             val = unicode(val)
         if not isinstance(val, self.desc._type):
