@@ -8,7 +8,7 @@ from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
 from globaleaks.models.l10n import Notification_L10N
 from globaleaks.models.config import NotificationFactory, PrivateFactory
-from globaleaks.models.groups import GLConfig
+from globaleaks.models.properties import iso_strf_time
 from globaleaks.rest import requests
 from globaleaks.security import GLBPGP
 from globaleaks.utils.sets import disjoint_union
@@ -30,9 +30,9 @@ def parse_pgp_options(c_notif, request):
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
     if remove_key:
-        c_notif.set_val('exception_email_pgp_key_public ', None)
-        c_notif.set_val('exception_email_pgp_key_fingerprint ', None)
-        c_notif.set_val('exception_email_pgp_key_expiration ', None)
+        c_notif.set_val('exception_email_pgp_key_public ', '')
+        c_notif.set_val('exception_email_pgp_key_fingerprint ', '')
+        c_notif.set_val('exception_email_pgp_key_expiration ', '')
     elif new_pgp_key != u'':
         gnob = GLBPGP()
 
@@ -43,7 +43,7 @@ def parse_pgp_options(c_notif, request):
             c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
             c_notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
             # TODO convert me to a string.
-            c_notif.set_val('exception_email_pgp_key_expiration', result['expiration'])
+            c_notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(result['expiration']))
 
         except Exception as e:
             raise e

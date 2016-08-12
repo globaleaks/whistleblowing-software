@@ -186,9 +186,8 @@ class TestGL(unittest.TestCase):
             yield db.init_db(use_single_lang=True)
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
-        yield update_node_setting('allow_unencrypted', allow_unencrypted)
-
-        yield db.refresh_memory_variables()
+        if not allow_unencrypted:
+            yield update_node_setting('allow_unencrypted', allow_unencrypted)
 
         Alarm.reset()
         event.EventTrackQueue.clear()

@@ -30,10 +30,6 @@ class Bool(Item):
     _type = bool
 
 
-class DateTime(Item):
-    _type = str
-
-
 GLConfig = {
     'private': {
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
@@ -62,7 +58,7 @@ GLConfig = {
         'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': DateTime(default=iso_strf_time(datetime_null())),
+        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),
     },
     'node': {
         'version': Unicode(default=unicode(__version__)),
