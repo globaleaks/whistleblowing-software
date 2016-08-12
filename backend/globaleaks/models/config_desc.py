@@ -11,7 +11,7 @@ from globaleaks.models.properties import iso_strf_time
 class Item():
     def __init__(self, *args, **kwargs):
         if 'default' in kwargs:
-            self.val = kwargs['default']
+            self.default = kwargs['default']
         else:
             raise KeyError('No default set! %s, %s' % (args, kwargs))
 
@@ -34,6 +34,9 @@ GLConfig = {
     'private': {
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
         'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
+
+        'version': Unicode(default=unicode(__version__)),
+        'version_db': Int(default=DATABASE_VERSION),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
@@ -61,8 +64,6 @@ GLConfig = {
         'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())), #TODO remove unused
     },
     'node': {
-        'version': Unicode(default=unicode(__version__)),
-        'version_db': Unicode(default=unicode(DATABASE_VERSION)),
         'name': Unicode(validator=shorttext_v, default=u''),
 
         'basic_auth': Bool(default=False),

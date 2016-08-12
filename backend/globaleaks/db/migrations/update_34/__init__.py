@@ -3,7 +3,7 @@ import os
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks import DATABASE_VERSION
 from globaleaks.models import *
-from globaleaks.models import l10n, properties
+from globaleaks.models import l10n, properties, config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.config import Config
 from globaleaks.db.appdata import load_archived_appdata
@@ -206,17 +206,13 @@ class Notification_v_33(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-    def prologue(self):
+    def epilogue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
 
         # Fill out enabled langs table
         for lang in old_node.languages_enabled:
             self.store_new.add(l10n.EnabledLanguage(lang))
-
-        # # # # # # # # # # # # # # # #
-        # TODO move to separate func! #
-        # # # # # # # # # # # # # # # #
 
         # Migrate node
         for var_name, item_def in GLConfig['node'].iteritems():
@@ -242,10 +238,10 @@ class MigrationScript(MigrationBase):
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
+        # NOTE the system analyze_update below will set the versions
 
-        self.store_new.commit()
-
-        config.system_cfg_stable(self.store_new)
+        # Ensure that no there is no missing or extra config rows
+        config.system_analyze_update(self.store_new)
 
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):

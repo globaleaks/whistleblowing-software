@@ -186,7 +186,6 @@ class TestGL(unittest.TestCase):
 
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
-        # this also updates the memory var
         yield update_node_setting('allow_unencrypted', allow_unencrypted)
 
         yield db.refresh_memory_variables()

@@ -2,7 +2,10 @@ import json
 import os
 from datetime import datetime
 
-from storm.locals import Storm, Unicode, And, JSON
+from storm.locals import Storm, Unicode, And, JSON, Not
+
+from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.utils.utility import log
 
 import config_desc
 from .config_desc import GLConfig
@@ -68,19 +71,43 @@ class ConfigFactory(object):
         try:
             self._query_group()
         except ValueError as e:
-            raise IOError(e.args)
+            return False
 
         k = set(self.res.keys())
         g = set(self.group_desc)
+
         if k != g:
-            raise IOError('Missing config! %s' % (k - g))
+            return False
+
+        return True
+
+    def clean_and_add(self):
+        cur = self.store.find(Config, Config.var_group == self.group)
+        res = {c.var_name : c for c in cur}
+
+        actual = set(self.res.keys())
+        allowed = set(self.group_desc)
+
+        missing = allowed - actual
+
+        for key in missing:
+            desc = self.group_desc[key]
+            c = Config(self.group, key, desc.default)
+            log.info("Adding new config %s" % c)
+            self.store.add(c)
+
+        extra = actual - allowed
+
+        for key in extra:
+            c = res[key]
+            log.info("Removing unused config: %s.%s" % (c.var_group, c.var_name))
+            self.store.remove(c)
+
+        return (len(missing), len(extra))
 
 
 class NodeFactory(ConfigFactory):
     node_private_fields = frozenset({
-        'version',
-        'version_db',
-
         'basic_auth',
         'basic_auth_username',
         'basic_auth_password',
@@ -187,16 +214,45 @@ class Config(Storm):
 
 def system_cfg_init(store):
     for gname, group in GLConfig.iteritems():
-        for var_name, item_def in group.iteritems():
-            item = Config(gname, var_name, item_def.val)
+        for var_name, cfg_desc in group.iteritems():
+            item = Config(gname, var_name, cfg_desc.default)
             store.add(item)
 
 
+def del_cfg_not_in_groups(store):
+    where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
+                Not(Config.var_group == u'private'))
+    cur = store.find(Config, where)
+    for c in cur:
+        log.info("Deleting %s.%s from the config table" % (c.var_group, c.var_name))
+        store.remove(c)
+
+factories = [NodeFactory, NotificationFactory, PrivateFactory]
+
 def system_cfg_stable(store):
-    NodeFactory(store).db_corresponds()
-    NotificationFactory(store).db_corresponds()
-    PrivateFactory(store).db_corresponds()
+    stable = True
+    for fact_model in factories:
+        if not fact_model(store).db_corresponds():
+            stable = False
 
     s = {r.var_group for r in store.find(Config).group_by(Config.var_group)}
     if s != set(GLConfig.keys()):
-        raise IOError('DB is outside of normal system config description')
+        stable = False
+
+    return stable
+
+
+def system_analyze_update(store):
+    prv = PrivateFactory(store)
+
+    if not system_cfg_stable(store):
+        log.info("This update will change system configuration")
+
+        for fact_model in factories:
+            factory = fact_model(store, lazy=False)
+            factory.clean_and_add()
+
+        del_cfg_not_in_groups(store)
+
+    prv.set_val('version', __version__)
+    prv.set_val('version_db', DATABASE_VERSION)

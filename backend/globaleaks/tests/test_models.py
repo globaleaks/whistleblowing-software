@@ -28,32 +28,40 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(c, stated_conf)
 
     @inlineCallbacks
+    def test_system_config_stable(self):
+        yield self._test_stable()
+
+    @transact
+    def _test_stable(self, store):
+        self.assertEqual(True, config.system_cfg_stable(store))
+
+    @inlineCallbacks
     def test_missing_config(self):
         yield self._test_missing_config()
 
     @transact
     def _test_missing_config(self, store):
-        config.system_cfg_stable(store)
+        self.assertEqual(True, config.system_cfg_stable(store))
+
         p = config.Config('private', 'smtp_password', 'XXXX')
         p.var_group = u'outside'
         store.add(p)
 
-        self.assertRaises(IOError, config.system_cfg_stable, store)
-
+        self.assertEqual(False, config.system_cfg_stable(store))
 
         node = config.NodeFactory(store)
-        c = node.get_cfg('version')
+        c = node.get_cfg('public_site')
         store.remove(c)
         store.commit()
 
-        self.assertRaises(IOError, node.db_corresponds)
+        self.assertEqual(False, node.db_corresponds())
 
         # Delete all of the vars in Private Factory
         prv = config.PrivateFactory(store)
 
         store.execute('DELETE FROM config WHERE var_group = "private"')
 
-        self.assertRaises(IOError, prv.db_corresponds)
+        self.assertEqual(False, prv.db_corresponds())
 
         ntfn = config.NotificationFactory(store)
 
@@ -61,7 +69,11 @@ class TestSystemConfigModels(helpers.TestGL):
         c.var_name = u'anextravar'
         store.add(c)
 
-        self.assertRaises(IOError, ntfn.db_corresponds)
+        self.assertEqual(False, ntfn.db_corresponds())
+
+        config.system_analyze_update(store)
+
+        self.assertEqual(True, config.system_cfg_stable(store))
 
 
 class TestConfigL10N(helpers.TestGL):
@@ -132,7 +144,6 @@ class TestUserL10N(helpers.TestGL):
     @transact
     def find_user_l10n(self, store):
         res = [x for x in store.find(models.User_L10N)]
-        print res
         self.assertEqual(len(res), 3)
 
     def _test_l10n_table(self):
