@@ -195,20 +195,6 @@ class Logger(object):
         if GLSettings.loglevel:
             twlog.msg("[ ] %s" % self._str(msg))
 
-    def start_logging(self):
-        """
-        If configured enables logserver
-        """
-        twlog.startLogging(sys.stdout)
-        if GLSettings.logfile:
-            name = os.path.basename(GLSettings.logfile)
-            directory = os.path.dirname(GLSettings.logfile)
-
-            logfile = twlogfile.LogFile(name, directory,
-                                        rotateLength=GLSettings.log_file_size,
-                                        maxRotatedFiles=GLSettings.num_log_files)
-            twlog.addObserver(GLLogObserver(logfile).emit)
-
 
 log = Logger()
 
