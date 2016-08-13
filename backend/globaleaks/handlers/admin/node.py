@@ -12,7 +12,7 @@ from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPO
 from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.models.l10n import EnabledLanguage, Node_L10N
-from globaleaks.models.config import NodeFactory
+from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models import config
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
@@ -32,6 +32,7 @@ def db_admin_serialize_node(store, language):
     custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
 
     misc_dict = {
+        'version': PrivateFactory(store).get_val('version'),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.get_all_strs(store),
         'configured': configured,
