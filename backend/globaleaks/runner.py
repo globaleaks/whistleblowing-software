@@ -85,3 +85,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             log.err("ERROR: Cannot start GlobaLeaks; please manual check the error.")
             log.err("EXCEPTION: %s" % excep)
             self._reactor.stop()
+
+    def postApplication(self):
+        reactor.callLater(0, self.start_globaleaks)
+
+        UnixApplicationRunner.postApplication(self)
