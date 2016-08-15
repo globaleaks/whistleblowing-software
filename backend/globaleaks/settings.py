@@ -115,12 +115,6 @@ class GLSettingsClass(object):
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
 
-        self.reserved_names = OD({
-          'logo': 'logo',
-          'css': 'custom_stylesheet',
-          'html': 'custom_homepage'
-        })
-
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1, localhost"
         self.tor_address = None
