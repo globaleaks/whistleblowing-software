@@ -6,6 +6,7 @@ from globaleaks.models import *
 from globaleaks.models import l10n, properties, config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.config import Config
+from globaleaks.models.l10n import ConfigL10N
 from globaleaks.db.appdata import load_archived_appdata
 from globaleaks.utils.utility import log
 
@@ -210,22 +211,29 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
 
+        #### Create ConfigL10N table and rows ####
+
         # Fill out enabled langs table
         for lang in old_node.languages_enabled:
             self.store_new.add(l10n.EnabledLanguage(lang))
 
-        # Migrate node
+        self._migrate_l10n_static_config(old_node, 'node')
+        self._migrate_l10n_static_config(old_notif, 'templates')
+
+        # TODO assert that localized_keys matches exactly what is stored in the DB
+
+        #### Create Config table and rows ####
+
+        # Migrate Config saved in Node
         for var_name, item_def in GLConfig['node'].iteritems():
-            log.debug('migrating: %s' % var_name)
             old_val = getattr(old_node, var_name)
 
             # XXX this can throw errors if the validators run
             item = Config('node', var_name, old_val)
             self.store_new.add(item)
 
-        # Migrate ntfn_fields
+        # Migrate Config saved in Notification
         for var_name, item_def in GLConfig['notification'].iteritems():
-            log.debug('migrating: %s' % var_name)
             old_val = getattr(old_notif, var_name)
 
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
@@ -244,53 +252,26 @@ class MigrationScript(MigrationBase):
         # Ensure that no there is no missing or extra config rows
         config.system_analyze_update(self.store_new)
 
-
     def _migrate_l10n_static_config(self, old_obj, appd_key):
         langs_enabled = l10n.EnabledLanguage.get_all_strs(self.store_new)
         obj_appdata = self.appdata[appd_key]
 
         for name in old_obj.localized_keys:
             xx_json_dict = getattr(old_obj, name, {})
-            app_data_langs = obj_appdata.get(name, {})
+            if xx_json_dict is None:
+                xx_json_dict = {} # protects against Nones in early db versions
+            app_data_item = obj_appdata.get(name, {})
             for lang in langs_enabled:
-                val = u''
+                val = xx_json_dict.get(lang, None)
+                val_def = app_data_item.get(lang, "")
 
-                if xx_json_dict is not None:
-                  val = xx_json_dict.get(lang, u'')
+                if val is not None:
+                    val_f = val
+                elif val is None and val_def != "":
+                    val_f = val_def
+                else: # val is None and val_def == ""
+                    val_f = ""
 
-                if app_data_langs is not None or val == u'':
-                  val = app_data_langs.get(lang, u'')
-
-                # TODO use new._obj__storm_table
-                s = ConfigL10N(lang, old_obj.__storm_table__, name, val)
-
-                if val == u'':
-                    # Using XXX here prevents any customization of fields that are empty
-                    s.def_val = unicode('XXX-000')
+                s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f, val_def)
 
                 self.store_new.add(s)
-
-
-    def migrate_Node(self):
-        old_node = self.store_old.find(self.model_from['Node']).one()
-        new_node = self.model_to['Node']()
-
-        for _, v in new_node._storm_columns.iteritems():
-
-            setattr(new_node, v.name, getattr(old_node, v.name))
-
-        self.store_new.add(new_node)
-
-        self._migrate_l10n_static_config(old_node, 'node')
-
-
-    def migrate_Notification(self):
-        old_notif = self.store_old.find(self.model_from['Notification']).one()
-        new_notif = self.model_to['Notification']()
-        for _, v in new_notif._storm_columns.iteritems():
-
-            setattr(new_notif, v.name, getattr(old_notif, v.name))
-
-        self.store_new.add(new_notif)
-
-        self._migrate_l10n_static_config(old_notif, 'templates')
