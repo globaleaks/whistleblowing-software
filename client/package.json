@@ -1,7 +1,7 @@
 {
   "name": "GlobaLeaks",
   "description": "GlobaLeaks - the first opensource framework for anonymous whistleblowing",
-  "version": "2.63.1",
+  "version": "2.63.2",
   "license": "AGPL-3.0",
   "author": "Random GlobaLeaks Developers",
   "repository": {
@@ -16,7 +16,7 @@
     "eslint": "3.2.2",
     "firefox-profile": "0.4.0",
     "grunt": "1.0.1",
-    "grunt-angular-templates": "1.0.4",
+    "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.5",
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-concat": "1.0.1",

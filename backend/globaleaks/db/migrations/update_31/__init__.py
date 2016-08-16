@@ -213,38 +213,34 @@ class MigrationScript(MigrationBase):
                 continue
 
             if v.name == 'logo_id':
-                try:
-                    logo_path = os.path.join(GLSettings.static_path, 'logo.png')
-                    if not os.path.exists(logo_path):
-                        continue
+                logo_path = os.path.join(GLSettings.static_path, 'logo.png')
+                if not os.path.exists(logo_path):
+                    continue
 
-                    new_node.logo =  self.model_to['File']()
-                    with open(logo_path, 'r') as logo_file:
-                        logo = logo_file.read()
-                        new_node.logo.data = base64.b64encode(logo)
+                new_file = self.model_to['File']()
+                with open(logo_path, 'r') as logo_file:
+                    new_file.data = base64.b64encode(logo_file.read())
 
-                    os.remove(logo_path)
+                self.store_new.add(new_file)
+                new_node.logo_id = new_file.id
 
-                except:
-                    pass
+                os.remove(logo_path)
 
                 continue
 
             if v.name == 'css_id':
-                try:
-                    css_path = os.path.join(GLSettings.static_path, 'custom_stylesheet.css')
-                    if not os.path.exists(css_path):
-                        continue
+                css_path = os.path.join(GLSettings.static_path, 'custom_stylesheet.css')
+                if not os.path.exists(css_path):
+                    continue
 
-                    new_node.css =  self.model_to['File']()
-                    with open(css_path, 'r') as css_file:
-                        css = css_file.read()
-                        new_node.css.data = base64.b64encode(css)
+                new_file =  self.model_to['File']()
+                with open(css_path, 'r') as css_file:
+                    new_file.data = base64.b64encode(css_file.read())
 
-                    os.remove(css_path)
+                self.store_new.add(new_file)
+                new_node.css_id = new_file.id
 
-                except:
-                    pass
+                os.remove(css_path)
 
                 continue
 
@@ -276,15 +272,14 @@ class MigrationScript(MigrationBase):
 
         self.store_new.add(new_node)
 
-        try:
-            os.remove(os.path.join(GLSettings.static_path, 'default-profile-picture.png'))
-        except:
-            pass
+        p = os.path.join(GLSettings.static_path, 'default-profile-picture.png')
+        if os.path.exists(p):
+            os.remove(p)
 
-        try:
-            os.remove(os.path.join(GLSettings.static_path, 'robots.txt'))
-        except:
-            pass
+        p = os.path.join(GLSettings.static_path, 'robots.txt')
+        if os.path.exists(p):
+            os.remove(p)
+
 
     def migrate_User(self):
         old_objs = self.store_old.find(self.model_from['User'])
@@ -292,20 +287,18 @@ class MigrationScript(MigrationBase):
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'img_id':
-                    try:
-                        img_path = os.path.join(GLSettings.static_path, old_obj.id + ".png")
-                        if not os.path.exists(img_path):
-                            continue
+                    img_path = os.path.join(GLSettings.static_path, old_obj.id + ".png")
+                    if not os.path.exists(img_path):
+                        continue
 
-                        new_obj.picture =  self.model_to['File']()
-                        with open(img_path, 'r') as img_file:
-                            img = img_file.read()
-                            new_obj.picture.data = base64.b64encode(img)
+                    picture =  self.model_to['File']()
+                    with open(img_path, 'r') as img_file:
+                        picture.data = base64.b64encode(img_file.read())
 
-                        os.remove(img_path)
+                    self.store_new.add(picture)
+                    new_obj.picture_id = picture.id
 
-                    except:
-                        pass
+                    os.remove(img_path)
 
                     continue
 
