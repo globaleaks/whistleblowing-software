@@ -69,7 +69,7 @@ class Model(Storm):
         store.add(obj)
         return obj
 
-    def update(self, values=None, static_l10n=False):
+    def update(self, values=None):
         """
         Updated Models attributes from dict.
         """
@@ -102,17 +102,16 @@ class Model(Storm):
                     value = bool(values[k])
                 setattr(self, k, value)
 
-        if not static_l10n:
-            for k in getattr(self, 'localized_keys'):
-                if k in values and values[k] is not None:
-                    value = values[k]
-                    previous = getattr(self, k)
+        for k in getattr(self, 'localized_keys'):
+            if k in values and values[k] is not None:
+                value = values[k]
+                previous = getattr(self, k)
 
-                    if previous and isinstance(previous, dict):
-                        previous.update(value)
-                        setattr(self, k, previous)
-                    else:
-                        setattr(self, k, value)
+                if previous and isinstance(previous, dict):
+                    previous.update(value)
+                    setattr(self, k, previous)
+                else:
+                    setattr(self, k, value)
 
         for k in getattr(self, 'json_keys'):
             if k in values and values[k] is not None:
