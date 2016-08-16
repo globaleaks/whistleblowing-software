@@ -5,7 +5,6 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
-from globaleaks.models import Notification
 from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.config import NotificationFactory, PrivateFactory
 from globaleaks.models.properties import iso_strf_time
@@ -42,7 +41,6 @@ def parse_pgp_options(notif, request):
             log.debug("PGP Key imported: %s" % result['fingerprint'])
             notif.set_val('exception_email_pgp_key_public', new_pgp_key)
             notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
-            # TODO convert me to a string.
             notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(result['expiration']))
 
         except Exception as e:

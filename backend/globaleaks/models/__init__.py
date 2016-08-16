@@ -8,19 +8,16 @@ from datetime import timedelta
 from storm.expr import And
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON, Pickle
 
-from .properties import MetaModel, DateTime
-
 from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
-
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
-
 from globaleaks.orm import transact
 from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.rest import errors
 
+from .properties import MetaModel, DateTime
 
 empty_localization = {}
 
@@ -433,139 +430,6 @@ class Message(ModelWithID):
     # types: 'receiver', whistleblower'
 
     new = Int(default=True)
-
-
-class Node(ModelWithID):
-    unicode_keys = [
-        'name',
-        'public_site',
-        'hidden_service',
-        'tb_download_link',
-        'default_language',
-        'default_password',
-        'landing_page',
-        'context_selector_type'
-    ]
-
-    int_keys = [
-        'maximum_namesize',
-        'maximum_textsize',
-        'maximum_filesize',
-        'submission_minimum_delay',
-        'submission_maximum_ttl',
-        'threshold_free_disk_megabytes_high',
-        'threshold_free_disk_megabytes_medium',
-        'threshold_free_disk_megabytes_low',
-        'threshold_free_disk_percentage_high',
-        'threshold_free_disk_percentage_medium',
-        'threshold_free_disk_percentage_low',
-        'wbtip_timetolive'
-    ]
-
-    bool_keys = ['tor2web_admin', 'tor2web_receiver', 'tor2web_whistleblower',
-                 'tor2web_custodian', 'tor2web_unauth',
-                 'can_postpone_expiration', 'can_delete_submission', 'can_grant_permissions',
-                 'ahmia', 'allow_indexing',
-                 'allow_unencrypted',
-                 'disable_encryption_warnings',
-                 'simplified_login',
-                 'show_contexts_in_alphabetical_order',
-                 'show_small_context_cards',
-                 'allow_iframes_inclusion',
-                 'disable_submissions',
-                 'disable_privacy_badge', 'disable_security_awareness_badge',
-                 'disable_security_awareness_questions', 'enable_custom_privacy_badge',
-                 'disable_key_code_hint',
-                 'disable_donation_panel',
-                 'enable_captcha',
-                 'enable_proof_of_work',
-                 'enable_experimental_features']
-
-    # wizard_done is not checked because it's set by the backend
-
-    localized_keys = [
-        'description',
-        'presentation',
-        'footer',
-        'security_awareness_title',
-        'security_awareness_text',
-        'whistleblowing_question',
-        'whistleblowing_button',
-        'whistleblowing_receipt_prompt',
-        'custom_privacy_badge_tor',
-        'custom_privacy_badge_none',
-        'header_title_homepage',
-        'header_title_submissionpage',
-        'header_title_receiptpage',
-        'header_title_tippage',
-        'contexts_clarification',
-        'widget_comments_title',
-        'widget_messages_title',
-        'widget_files_title'
-    ]
-
-
-class Notification(ModelWithID):
-    unicode_keys = [
-        'server',
-        'username',
-        'password',
-        'source_name',
-        'source_email',
-        'security',
-        'exception_email_address'
-    ]
-
-    localized_keys = [
-        'admin_anomaly_mail_title',
-        'admin_anomaly_mail_template',
-        'admin_anomaly_disk_low',
-        'admin_anomaly_disk_medium',
-        'admin_anomaly_disk_high',
-        'admin_anomaly_activities',
-        'admin_pgp_alert_mail_title',
-        'admin_pgp_alert_mail_template',
-        'admin_test_static_mail_template',
-        'admin_test_static_mail_title',
-        'pgp_alert_mail_title',
-        'pgp_alert_mail_template',
-        'tip_mail_template',
-        'tip_mail_title',
-        'file_mail_template',
-        'file_mail_title',
-        'comment_mail_template',
-        'comment_mail_title',
-        'message_mail_template',
-        'message_mail_title',
-        'tip_expiration_mail_template',
-        'tip_expiration_mail_title',
-        'receiver_notification_limit_reached_mail_template',
-        'receiver_notification_limit_reached_mail_title',
-        'identity_access_authorized_mail_template',
-        'identity_access_authorized_mail_title',
-        'identity_access_denied_mail_template',
-        'identity_access_denied_mail_title',
-        'identity_access_request_mail_template',
-        'identity_access_request_mail_title',
-        'identity_provided_mail_template',
-        'identity_provided_mail_title',
-        'export_template',
-        'export_message_whistleblower',
-        'export_message_recipient'
-    ]
-
-    int_keys = [
-        'port',
-        'tip_expiration_threshold',
-        'notification_threshold_per_hour',
-        'notification_suspension_time',
-    ]
-
-    bool_keys = [
-        'disable_admin_notification_emails',
-        'disable_receiver_notification_emails',
-        'send_email_for_every_event'
-    ]
 
 
 class Mail(ModelWithID):
@@ -1009,15 +873,13 @@ Receiver.contexts = ReferenceSet(
 )
 
 model_list = [
-    Node,
     User, Receiver,
     Context, ReceiverContext,
     Questionnaire, Step, Field, FieldOption, FieldAttr,
     FieldAnswer, FieldAnswerGroup,
     InternalTip, ReceiverTip, WhistleblowerTip,
-    Comment, Message,
+    Comment, Message, Mail,
     InternalFile, ReceiverFile,
-    Notification, Mail,
     Stats, Anomalies,
     SecureFileDelete,
     IdentityAccessRequest,
