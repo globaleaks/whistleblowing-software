@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.models.l10n import EnabledLanguage, Node_L10N
+from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models import config
 from globaleaks.orm import transact, transact_ro
@@ -39,7 +39,8 @@ def db_admin_serialize_node(store, language):
         'custom_homepage': custom_homepage,
     }
 
-    l10n_dict = Node_L10N(store).build_localized_dict(language)
+    l10n_dict = NodeL10NFactory(store).localized_dict(language)
+
     return utils.sets.disjoint_union(node_dict, misc_dict, l10n_dict)
 
 
@@ -84,11 +85,10 @@ def db_update_node(store, request, language):
     """
     enable_disable_languages(store, request)
 
-    node_l10n = Node_L10N(store)
-    node_l10n.update_model(request, language)
+    node_l10n = NodeL10NFactory(store)
+    node_l10n.update(request, language)
 
     node = NodeFactory(store)
-
     node.update(request)
 
     if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':

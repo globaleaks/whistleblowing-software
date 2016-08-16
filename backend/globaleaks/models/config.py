@@ -13,8 +13,8 @@ from .config_desc import GLConfig
 
 class ConfigFactory(object):
     '''
-    This factory depends on the following attributes:
-      updateset     -- keys updated when fact.update(d) is called
+    This factory depends on the following attributes set by the sub class:
+      update_set    -- keys updated when fact.update(d) is called
       group_desc    -- the corresponding dict in GLConfig
     '''
 
@@ -227,7 +227,9 @@ def del_cfg_not_in_groups(store):
         log.info("Deleting %s.%s from the config table" % (c.var_group, c.var_name))
         store.remove(c)
 
+
 factories = [NodeFactory, NotificationFactory, PrivateFactory]
+
 
 def system_cfg_stable(store):
     stable = True
