@@ -87,28 +87,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             self._reactor.stop()
 
     def postApplication(self):
-        """
-        Run the application.
-        """
-        try:
-            self.startApplication(self.application)
-        except Exception as ex:
-            statusPipe = self.config.get("statusPipe", None)
-            if statusPipe is not None:
-                # Limit the total length to the passed string to 100
-                strippedError = str(ex)[:98]
-                untilConcludes(os.write, statusPipe, "1 %s" % (strippedError,))
-                untilConcludes(os.close, statusPipe)
-            self.removePID(self.config['pidfile'])
-            raise
-        else:
-            statusPipe = self.config.get("statusPipe", None)
-            if statusPipe is not None:
-                untilConcludes(os.write, statusPipe, "0")
-                untilConcludes(os.close, statusPipe)
+        reactor.callLater(0, self.start_globaleaks)
 
-        self._reactor.callLater(0, self.start_globaleaks)
-
-        self.startReactor(None, self.oldstdout, self.oldstderr)
-
-        self.removePID(self.config['pidfile'])
+        UnixApplicationRunner.postApplication(self)

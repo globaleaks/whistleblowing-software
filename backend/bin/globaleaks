@@ -254,9 +254,6 @@ if GLSettings.nodaemon:
 
 args +=['--pidfile', GLSettings.pidfile_path]
 
-# we disable twistd logging as we manage only a globaleaks controlled logging
-args +=['--logfile', os.devnull]
-
 sys.argv[1:] = args
 
 def run_backend():
@@ -282,8 +279,6 @@ def run_backend():
 
     if GLSettings.tor_address is not None:
         print("- http://%s%s" % (GLSettings.tor_address, path))
-
-    log.start_logging()
 
     sys.excepthook = mail_exception_handler
 
