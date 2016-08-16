@@ -9,10 +9,9 @@ from globaleaks.rest.errors import InvalidInputFormat, InvalidModelInput
 from globaleaks.tests import helpers
 from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import node
-from globaleaks.models import Node
+from globaleaks.models.l10n import NodeL10NFactory
 
 # special guest:
-
 stuff = u"³²¼½¬¼³²"
 
 
@@ -31,7 +30,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
 
-        for attrname in Node.localized_keys:
+        for attrname in NodeL10NFactory.localized_keys:
             self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')

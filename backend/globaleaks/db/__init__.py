@@ -57,12 +57,6 @@ def init_db(store, use_single_lang=False):
 
     log.debug("Performing database initialization...")
 
-    node = models.Node()
-    store.add(node)
-
-    notification = models.Notification()
-    store.add(notification)
-
     config.system_cfg_init(store)
 
     if GLSettings.skip_wizard:

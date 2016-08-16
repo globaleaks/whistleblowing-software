@@ -4,9 +4,9 @@ from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import ConfigL10N, config
+from globaleaks.models import config
 from globaleaks.db.appdata import load_appdata
-from globaleaks.models.l10n import Node_L10N, EnabledLanguage
+from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
@@ -83,9 +83,8 @@ class TestConfigL10N(helpers.TestGL):
 
     @transact
     def run_node_mgr(self, store):
-        node = store.find(models.Node).one()
         # Initialize the Node manager
-        node_l10n = Node_L10N(store)
+        node_l10n = NodeL10NFactory(store)
 
         # Make a query with the Node manager
         ret = node_l10n.retrieve_rows('en')

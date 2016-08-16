@@ -6,8 +6,6 @@ from storm.locals import Unicode, Storm
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.utils.utility import log
 
-from . import Model, Node, Notification
-
 
 class EnabledLanguage(Storm):
     __storm_table__ = 'enabledlanguage'

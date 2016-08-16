@@ -194,16 +194,6 @@ CREATE TABLE identityaccessrequest (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE node (
-    id TEXT NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE notification (
-    id TEXT NOT NULL,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE mail (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,

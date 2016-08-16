@@ -14,7 +14,7 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
-from globaleaks.models import Notification, Comment, Message, \
+from globaleaks.models import Comment, Message, \
     ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
