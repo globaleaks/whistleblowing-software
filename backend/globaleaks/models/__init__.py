@@ -159,37 +159,6 @@ class ModelWithID(Model):
         return store.find(cls, cls.id == obj_id).one()
 
 
-class ConfigL10N(Storm):
-    __storm_table__ = 'config_l10n'
-    __storm_primary__ = ('lang', 'var_group', 'var_name')
-
-    lang = Unicode()
-    var_group = Unicode()
-    var_name = Unicode()
-    value = Unicode()
-    def_val = Unicode()
-
-    def __init__(self, lang, group, var_name, value=''):
-        self.lang = unicode(lang)
-        self.var_group = unicode(group)
-        self.var_name = unicode(var_name)
-        self.value = unicode(value)
-        self.def_val = unicode(value)
-
-    def __repr__(self):
-      return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
-                                               self.var_name, self.value[:5])
-
-    @classmethod
-    def get_one(cls, store, lang_code, group, var_name):
-        res = store.find(cls, And(cls.lang == unicode(lang_code),
-                                  cls.var_group == unicode(group),
-                                  cls.var_name == unicode(var_name))).one()
-        if res is None:
-            raise errors.ModelNotFound('ConfigL10N')
-        return res
-
-
 class User(ModelWithID):
     """
     This model keeps track of globaleaks users.

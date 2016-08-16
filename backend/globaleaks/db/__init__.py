@@ -16,7 +16,7 @@ from globaleaks import models, __version__, DATABASE_VERSION
 from globaleaks.models import config
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.db.appdata import db_update_appdata
-from globaleaks.models.l10n import Node_L10N, Notification_L10N, EnabledLanguage
+from globaleaks.models.l10n import NodeL10NFactory, NotificationL10NFactory, EnabledLanguage
 from globaleaks.handlers.admin import files
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
@@ -177,7 +177,7 @@ def db_refresh_memory_variables(store):
         'unauth': node_ro.tor2web_unauth
     }
 
-    enabled_langs = [c.name for c in models.l10n.EnabledLanguage.get_all(store)]
+    enabled_langs = models.l10n.EnabledLanguage.get_all_strs(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
 
     notif_ro = ObjectDict(NotificationFactory(store).admin_export())

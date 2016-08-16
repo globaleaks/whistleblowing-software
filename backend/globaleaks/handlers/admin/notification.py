@@ -6,7 +6,7 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models import Notification
-from globaleaks.models.l10n import Notification_L10N
+from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.config import NotificationFactory, PrivateFactory
 from globaleaks.models.properties import iso_strf_time
 from globaleaks.rest import requests
@@ -17,7 +17,7 @@ from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
 
 
-def parse_pgp_options(c_notif, request):
+def parse_pgp_options(notif, request):
     """
     This is called in a @transact, when an users update their preferences or
     when admins configure keys on their behalf.
@@ -30,9 +30,9 @@ def parse_pgp_options(c_notif, request):
     remove_key = request.get('exception_email_pgp_key_remove', False)
 
     if remove_key:
-        c_notif.set_val('exception_email_pgp_key_public ', '')
-        c_notif.set_val('exception_email_pgp_key_fingerprint ', '')
-        c_notif.set_val('exception_email_pgp_key_expiration ', '')
+        notif.set_val('exception_email_pgp_key_public ', '')
+        notif.set_val('exception_email_pgp_key_fingerprint ', '')
+        notif.set_val('exception_email_pgp_key_expiration ', '')
     elif new_pgp_key != u'':
         gnob = GLBPGP()
 
@@ -40,10 +40,10 @@ def parse_pgp_options(c_notif, request):
             result = gnob.load_key(new_pgp_key)
 
             log.debug("PGP Key imported: %s" % result['fingerprint'])
-            c_notif.set_val('exception_email_pgp_key_public', new_pgp_key)
-            c_notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
+            notif.set_val('exception_email_pgp_key_public', new_pgp_key)
+            notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
             # TODO convert me to a string.
-            c_notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(result['expiration']))
+            notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(result['expiration']))
 
         except Exception as e:
             raise e
@@ -63,7 +63,7 @@ def admin_serialize_notification(store, language):
         'smtp_password': '',
     }
 
-    conf_l10n_dict = Notification_L10N(store).build_localized_dict(language)
+    conf_l10n_dict = NotificationL10NFactory(store).localized_dict(language)
 
     return disjoint_union(config_dict, cmd_flags, conf_l10n_dict)
 
@@ -79,9 +79,8 @@ def get_notification(store, language):
 
 @transact
 def update_notification(store, request, language):
-    notif_l10n = Notification_L10N(store)
-    log.debug("Updating lang: %s" % language)
-    notif_l10n.update_model(request, language)
+    notif_l10n = NotificationL10NFactory(store)
+    notif_l10n.update(request, language)
 
     if request.pop('reset_templates'):
         appdata = load_appdata()
@@ -91,10 +90,10 @@ def update_notification(store, request, language):
     if smtp_pw != u'':
         PrivateFactory(store).set_val('smtp_password', smtp_pw)
 
-    c_notif = NotificationFactory(store)
-    c_notif.update(request)
+    notif = NotificationFactory(store)
+    notif.update(request)
 
-    parse_pgp_options(c_notif, request)
+    parse_pgp_options(notif, request)
 
     # Since the Notification object has been changed refresh the global copy.
     db_refresh_memory_variables(store)

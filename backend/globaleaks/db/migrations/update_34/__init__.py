@@ -1,7 +1,7 @@
 import os
 
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks import DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models import *
 from globaleaks.models import l10n, properties, config
 from globaleaks.models.config_desc import GLConfig
@@ -231,21 +231,22 @@ class MigrationScript(MigrationBase):
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = properties.iso_strf_time(old_val)
 
-            # NOTE this can throw errors if the validators run
+            # NOTE this will throw errors if the validators run
             item = Config('notification', var_name, old_val)
             self.store_new.add(item)
 
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
-        # NOTE the system analyze_update below will set the versions
+        self.store_new.add(Config('private', 'version', __version__))
+        self.store_new.add(Config('private', 'version_db', DATABASE_VERSION))
 
         # Ensure that no there is no missing or extra config rows
         config.system_analyze_update(self.store_new)
 
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-        langs_enabled = l10n.EnabledLanguage.get_all(self.store_new)
+        langs_enabled = l10n.EnabledLanguage.get_all_strs(self.store_new)
         obj_appdata = self.appdata[appd_key]
 
         for name in old_obj.localized_keys:

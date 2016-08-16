@@ -9,9 +9,8 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
-from globaleaks.models.l10n import EnabledLanguage
-from globaleaks.models import ConfigL10N as c_l10n
 from globaleaks.models.config import NodeFactory
+from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -36,9 +35,11 @@ def wizard(store, request, language):
         node.set_val('default_language', language)
         node.set_val('wizard_done', True)
 
-        c_l10n.get_one(store, language, 'node', 'description').value = nn
-        c_l10n.get_one(store, language, 'node', 'header_title_homepage').value = nn
-        c_l10n.get_one(store, language, 'node', 'presentation').value = nn
+        node_l10n = NodeL10NFactory(store, lang_code=language)
+
+        node_l10n.set_val('description', nn)
+        node_l10n.set_val('header_title_homepage', nn)
+        node_l10n.set_val('presentation', nn)
 
         context = db_create_context(store, request['context'], language)
 

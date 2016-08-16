@@ -10,8 +10,9 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import ConfigL10N, l10n, config
+from globaleaks.models import config, l10n
 from globaleaks.models.config import NodeFactory
+from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
@@ -30,7 +31,7 @@ def serialize_ahmia(store, language):
 
     return {
         'title': ret_dict['name'],
-        'description': ConfigL10N.get_one(store, language, 'node', 'description').value,
+        'description': NodeL10NFactory(store).get_val(language, 'description'),
         'keywords': '%s (GlobaLeaks instance)' % ret_dict['name'],
         'relation': ret_dict['public_site'],
         'language': ret_dict['default_language'],
@@ -62,7 +63,7 @@ def db_serialize_node(store, language):
         'script': db_get_file(store, u'script')
     }
 
-    l10n_dict = l10n.Node_L10N(store).build_localized_dict(language)
+    l10n_dict = NodeL10NFactory(store).localized_dict(language)
     
     return disjoint_union(ro_node, l10n_dict, misc_dict)
 
