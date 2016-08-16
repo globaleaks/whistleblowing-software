@@ -32,8 +32,8 @@ CREATE TABLE user (
     deletable INTEGER NOT NULL,
     role TEXT NOT NULL CHECK (role IN ('admin', 'receiver', 'custodian')),
     state TEXT NOT NULL CHECK (state IN ('disabled', 'enabled')),
-    description TEXT NOT NULL,
     name TEXT NOT NULL,
+    description BLOB NOT NULL,
     public_name TEXT NOT NULL,
     last_login TEXT NOT NULL,
     mail_address TEXT NOT NULL,
@@ -75,6 +75,9 @@ CREATE TABLE comment (
 
 CREATE TABLE context (
     id TEXT NOT NULL,
+    name BLOB NOT NULL,
+    description BLOB NOT NULL,
+    recipients_clarification BLOB NOT NULL,
     tip_timetolive INTEGER NOT NULL,
     select_all_receivers INTEGER NOT NULL,
     maximum_selectable_receivers INTEGER,
@@ -87,12 +90,9 @@ CREATE TABLE context (
     enable_two_way_comments INTEGER NOT NULL,
     enable_two_way_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
+    status_page_message BLOB NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
-    name TEXT NOT NULL,
-    description TEXT NOT NULL,
-    recipients_clarification TEXT NOT NULL,
-    status_page_message TEXT NOT NULL,
     questionnaire_id TEXT,
     img_id TEXT,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,
@@ -314,11 +314,11 @@ CREATE TABLE fieldattr (
 CREATE TABLE fieldoption (
     id TEXT NOT NULL,
     field_id TEXT NOT NULL,
+    label TEXT NOT NULL,
     presentation_order INTEGER NOT NULL,
     score_points INTEGER NOT NULL CHECK (score_points >= 0 AND score_points <= 1000),
     trigger_field TEXT,
     trigger_step TEXT,
-    label TEXT NOT NULL,
     FOREIGN KEY (field_id) REFERENCES field(id) ON DELETE CASCADE,
     FOREIGN KEY (trigger_field) REFERENCES field(id) ON DELETE CASCADE,
     FOREIGN KEY (trigger_step) REFERENCES step(id) ON DELETE CASCADE,
@@ -417,3 +417,6 @@ CREATE INDEX step__questionnaire_id_index ON step(questionnaire_id);
 CREATE INDEX context_questionnaire_id_index ON context(questionnaire_id);
 CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);
 CREATE INDEX config_group_index ON config(var_group);
+CREATE INDEX config_item_index ON config(var_group, var_name);
+CREATE INDEX config_l10n_group_index ON config_l10n(var_group);
+CREATE INDEX config_l10n_item_index ON config_l10n(lang, var_group, var_name);
