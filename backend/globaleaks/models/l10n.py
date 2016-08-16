@@ -55,12 +55,14 @@ class ConfigL10N(Storm):
     value = Unicode()
     def_val = Unicode()
 
-    def __init__(self, lang_code, group, var_name, value=''):
+    def __init__(self, lang_code, group, var_name, value='', def_val=''):
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
         self.value = unicode(value)
-        self.def_val = unicode(value)
+        if def_val is None:
+            def_val = ''
+        self.def_val = unicode(def_val)
 
     def __repr__(self):
       return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
@@ -79,7 +81,7 @@ class ConfigL10NFactory(object):
         for key in self.localized_keys:
             if key in l10n_data_src and lang_code in l10n_data_src[key]:
                 val = l10n_data_src[key][lang_code]
-                entry = ConfigL10N(lang_code, self.group, key, val)
+                entry = ConfigL10N(lang_code, self.group, key, val, val)
             else:
                 entry = ConfigL10N(lang_code, self.group, key)
             self.store.add(entry)
