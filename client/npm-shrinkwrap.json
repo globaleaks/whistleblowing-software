@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "2.63.2",
+  "version": "2.63.3",
   "dependencies": {
     "bower": {
       "version": "1.7.9",
