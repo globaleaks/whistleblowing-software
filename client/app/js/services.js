@@ -667,7 +667,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       context.show_recipients_details = false;
       context.allow_recipients_selection = false;
       context.show_receivers_in_alphabetical_order = true;
-      context.select_all_receivers = false;
+      context.select_all_receivers = true;
       context.maximum_selectable_receivers = 0;
       context.show_small_receiver_cards = false;
       context.enable_comments = true;
