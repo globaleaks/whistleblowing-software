@@ -212,7 +212,7 @@ class Context(ModelWithID):
     show_recipients_details = Bool(default=False)
     allow_recipients_selection = Bool(default=False)
     maximum_selectable_receivers = Int(default=0)
-    select_all_receivers = Bool(default=False)
+    select_all_receivers = Bool(default=True)
 
     enable_comments = Bool(default=True)
     enable_messages = Bool(default=False)
