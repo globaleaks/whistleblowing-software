@@ -1,4 +1,14 @@
-Changes in version 2.63.0 - 2016-08-11
+Changes in version 2.63.3 - 2016-08-27
+    o Fix initialization of first contexts in relations to recipients selection.
+    o Fix bug not allowing to complete submissions on nodes configured with PGP encryption.
+    o Update npm and bower dependencies to latest stables versions.
+    o Update translations
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1748
+    - https://github.com/globaleaks/GlobaLeaks/issues/1553
+
+Changes in version 2.63.2 - 2016-08-11
     o Fix migration 31 in relation to issue
     o Implement shrinkwrap of npm dependencies
 
