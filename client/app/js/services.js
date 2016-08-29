@@ -786,7 +786,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       user.description = '';
       user.public_name = '';
       user.mail_address = '';
-      user.pgp_key_info = '';
       user.pgp_key_fingerprint = '';
       user.pgp_key_remove = false;
       user.pgp_key_public = '';
