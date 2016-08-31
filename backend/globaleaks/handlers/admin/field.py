@@ -109,29 +109,6 @@ def db_update_fieldattrs(store, field_id, field_attrs, language):
     store.find(models.FieldAttr, And(models.FieldAttr.field_id == field_id, Not(In(models.FieldAttr.id, attrs_ids)))).remove()
 
 
-def field_integrity_check(store, field):
-    """
-    Preliminar validations of field descriptor in relation to:
-    - step_id
-    - fieldgroup_id
-      template_id
-    - instance type
-
-    :param field: the field dict to be validated
-    """
-    template = None
-    step = None
-    fieldgroup = None
-
-    if field['template_id'] != '':
-        template = store.find(models.Field, And(models.Field.id == field['template_id'],
-                                                models.Field.instance == 'template')).one()
-        if not template:
-            raise errors.FieldIdNotFound
-
-    return field['instance'], template, step, fieldgroup
-
-
 def db_create_field(store, field_dict, language):
     """
     Create and add a new field to the store, then return the new serialized object.
@@ -200,32 +177,12 @@ def db_update_field(store, field_id, field_dict, language):
     # if not field.editable:
     #     raise errors.FieldNotEditable
 
-    _, template, step, fieldgroup = field_integrity_check(store, field_dict)
-
     try:
         # make not possible to change field type
         field_dict['type'] = field.type
 
         if field_dict['instance'] != 'reference':
             fill_localized_keys(field_dict, models.Field.localized_keys, language)
-
-            # children handling:
-            #  - old children are cleared
-            #  - new provided childrens are evaluated and added
-            children = field_dict['children']
-            if len(children) and field.type != 'fieldgroup':
-                raise errors.InvalidInputFormat("children can be associated only to fields of type fieldgroup")
-
-            ancestors = set(fieldtree_ancestors(store, field.id))
-
-            field.children.clear()
-            for child in children:
-                if child['id'] == field.id or child['id'] in ancestors:
-                    raise errors.FieldIdNotFound
-
-                c = db_update_field(store, child['id'], child, language)
-
-                field.children.add(c)
 
             db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
             db_update_fieldoptions(store, field.id, field_dict['options'], language)
