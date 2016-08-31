@@ -20,51 +20,6 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 
-def associate_field(store, field, template=None, step=None, fieldgroup=None):
-    """
-    Associate a field to a specified step or fieldgroup
-
-    :param store: the store on which perform queries
-    :param field: the field to be associated
-    :param template: the template to which bind the field
-    :param step: the step to which associate the field
-    :param fieldgroup: the fieldgroup to which associate the field
-    """
-    if template:
-        if field.instance != 'reference':
-             raise errors.InvalidInputFormat("Only fields of kind reference can be binded to a template")
-
-        field.template_id = template.id
-
-    if step:
-        if field.instance == 'template':
-            raise errors.InvalidInputFormat("Cannot associate a field template to a step")
-
-        step.children.add(field)
-
-    if fieldgroup:
-        if field.instance == 'template' and fieldgroup.instance != 'template':
-            raise errors.InvalidInputFormat("Cannot associate field template to a field")
-
-        ancestors = set(fieldtree_ancestors(store, fieldgroup.id))
-
-        if field.id == fieldgroup.id or field.id in ancestors:
-            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
-
-        fieldgroup.children.add(field)
-
-
-def disassociate_field(field):
-    """
-    Disassociate a field from the eventually associated step or fieldgroup
-
-    :param store: the store on which perform queries.
-    :param field: the field to be deassociated.
-    """
-    field.step = None
-    field.fieldgroup = None
-
-
 def db_import_fields(store, step, fieldgroup, fields):
     for field in fields:
         f_attrs = copy.deepcopy(field['attrs'])
@@ -168,25 +123,10 @@ def field_integrity_check(store, field):
     step = None
     fieldgroup = None
 
-    if field['instance'] != 'template' and (field['step_id'] == '' and field['fieldgroup_id'] == ''):
-        raise errors.InvalidInputFormat("Each field should be a template or be associated to a step/fieldgroup")
-
-    if field['instance'] != 'template' and (field['step_id'] != '' and field['fieldgroup_id'] != ''):
-        raise errors.InvalidInputFormat("Cannot associate a field to both a step and a fieldgroup")
-
     if field['template_id'] != '':
-        template = store.find(models.Field, models.Field.id == field['template_id']).one()
+        template = store.find(models.Field, And(models.Field.id == field['template_id'],
+                                                models.Field.instance == 'template')).one()
         if not template:
-            raise errors.FieldIdNotFound
-
-    if field['step_id'] != '':
-        step = store.find(models.Step, models.Step.id == field['step_id']).one()
-        if not step:
-            raise errors.StepIdNotFound
-
-    if field['fieldgroup_id'] != '':
-        fieldgroup = store.find(models.Field, models.Field.id == field['fieldgroup_id']).one()
-        if not fieldgroup:
             raise errors.FieldIdNotFound
 
     return field['instance'], template, step, fieldgroup
@@ -201,13 +141,23 @@ def db_create_field(store, field_dict, language):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    _, template, step, fieldgroup = field_integrity_check(store, field_dict)
-
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
     field = models.Field.new(store, field_dict)
 
-    associate_field(store, field, template, step, fieldgroup)
+    if field_dict['template_id']:
+        field.template_id = field_dict['template_id']
+
+    if field_dict['step_id']:
+        field.step_id = field_dict['step_id']
+
+    if field_dict['fieldgroup_id']:
+        ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
+
+        if field.id == field_dict['fieldgroup_id'] or field.id in ancestors:
+            raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
+
+        field.fieldgroup_id = field_dict['fieldgroup_id']
 
     if field.template:
         # special handling of the whistleblower_identity field
@@ -275,9 +225,6 @@ def db_update_field(store, field_id, field_dict, language):
 
                 c = db_update_field(store, child['id'], child, language)
 
-                # remove current step/field fieldgroup/field association
-                disassociate_field(c)
-
                 field.children.add(c)
 
             db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
@@ -296,11 +243,6 @@ def db_update_field(store, field_id, field_dict, language):
             }
 
             field.update(partial_update)
-
-        # remove current step/field fieldgroup/field association
-        disassociate_field(field)
-
-        associate_field(store, field, template, step, fieldgroup)
     except Exception as dberror:
         log.err('Unable to update field: {e}'.format(e=dberror))
         raise errors.InvalidInputFormat(dberror)
