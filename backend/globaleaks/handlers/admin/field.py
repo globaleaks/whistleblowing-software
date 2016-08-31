@@ -402,12 +402,12 @@ def get_fieldtemplate_list(store, language, request_type=None):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    language  = language if request_type != 'export' else None
+    language = language if request_type != 'export' else None
 
     ret = []
-    for f in store.find(models.Field, models.Field.instance == u'template'):
-        if f.fieldgroup is None:
-            ret.append(serialize_field(store, f, language))
+    for f in store.find(models.Field, And(models.Field.instance == u'template',
+                                          models.Field.fieldgroup_id == None)):
+        ret.append(serialize_field(store, f, language))
 
     return ret
 
