@@ -43,12 +43,6 @@ controller('AdminQuestionnaireEditorCtrl', ['$scope', 'AdminStepResource',
       $scope.questionnaire.steps.splice($scope.questionnaire.steps.indexOf(step), 1);
     });
   };
-
-  $scope.delAllSteps = function() {
-    angular.forEach($scope.questionnaire.steps, function(step) {
-      $scope.delStep(step);
-    });
-  };
 }]).
 controller('AdminQuestionnaireAddCtrl', ['$scope', function($scope) {
   $scope.new_questionnaire = {};
