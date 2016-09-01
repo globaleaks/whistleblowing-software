@@ -120,21 +120,23 @@ def db_create_field(store, field_dict, language):
     """
     fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-    field = models.Field.new(store, field_dict)
+    field = models.Field(field_dict)
 
-    if field_dict['template_id']:
+    if field_dict['template_id'] != '':
         field.template_id = field_dict['template_id']
 
-    if field_dict['step_id']:
+    if field_dict['step_id'] != '':
         field.step_id = field_dict['step_id']
 
-    if field_dict['fieldgroup_id']:
+    if field_dict['fieldgroup_id'] != '':
         ancestors = set(fieldtree_ancestors(store, field_dict['fieldgroup_id']))
 
         if field.id == field_dict['fieldgroup_id'] or field.id in ancestors:
             raise errors.InvalidInputFormat("Provided field association would cause recursion loop")
 
         field.fieldgroup_id = field_dict['fieldgroup_id']
+
+    store.add(field)
 
     if field.template:
         # special handling of the whistleblower_identity field

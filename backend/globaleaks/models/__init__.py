@@ -58,19 +58,6 @@ class Model(Storm):
     def __init__(self, values=None):
         self.update(values)
 
-    @classmethod
-    def new(cls, store, values=None):
-        """
-        Add a new object to the store, filling its data with the attributes
-        given.
-
-        :param store:
-        :param attrs: The dictionary containing initial values for the
-        """
-        obj = cls(values)
-        store.add(obj)
-        return obj
-
     def update(self, values=None):
         """
         Updated Models attributes from dict.

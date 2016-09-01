@@ -303,7 +303,11 @@ class TestGL(unittest.TestCase):
 
         field.update(custom_attrs)
 
-        return models.Field.new(store, field).id
+        f = models.Field(store, field)
+
+        store.add(f)
+
+        return f.id
 
     def fill_random_field_recursively(self, answers, field):
         field_type = field['type']
