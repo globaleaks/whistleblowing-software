@@ -68,12 +68,6 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
     });
   };
 
-  $scope.delAllSteps = function() {
-    angular.forEach($scope.context.steps, function(step) {
-      $scope.delStep(step);
-    });
-  };
-
   $scope.updateContextImgUrl = function() {
     $scope.contextImgUrl = '/admin/contexts/' + $scope.context.id + '/img#' + $scope.Utils.randomFluff();
   };

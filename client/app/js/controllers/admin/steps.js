@@ -41,12 +41,6 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       });
     };
 
-    $scope.delAllFields = function() {
-      angular.forEach($scope.step.children, function(field) {
-        $scope.delField($scope.step.children, field);
-      });
-    };
-
     $scope.add_field = function() {
       var field = $scope.admin_utils.new_field($scope.step.id, '');
       field.label = $scope.new_field.label;

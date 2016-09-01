@@ -16,12 +16,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
       });
     };
 
-    $scope.delAllFields = function() {
-      angular.forEach($scope.fields, function(field) {
-        $scope.delField($scope.fields, field);
-      });
-    };
-
     $scope.exportQuestionTemplates = function() {
       AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
         $scope.Utils.exportJSON(fields, 'question-templates.json');

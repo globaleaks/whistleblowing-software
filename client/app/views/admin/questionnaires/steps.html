@@ -37,15 +37,6 @@
     <span class="col-md-8">
       <span data-translate>Configured steps:</span>
     </span>
-    <span class="col-md-4 text-right">
-      <button class="btn btn-xs btn-danger"
-              data-ng-show="questionnaire.steps.length > 0"
-              data-ng-click="delAllSteps()"
-              popover-placement="right"
-              popover-trigger="'mouseenter'">
-        <span data-translate>Delete all</span>
-      </button>
-    </span>
   </div>
   <div class="row">
     <div data-ng-repeat="step in questionnaire.steps | orderBy:'presentation_order'">
@@ -131,15 +122,6 @@
                 <div class="editorTitle row">
                   <span class="col-md-8">
                     <span data-translate>Add new question</span>
-                  </span>
-                  <span class="col-md-4 text-right">
-                    <button class="btn btn-xs btn-danger"
-                            data-ng-show="step.children.length > 0"
-                            data-ng-click="delAllFields()"
-                            popover-placement="right"
-                            popover-trigger="'mouseenter'">
-                      <span data-translate>Delete all</span>
-                    </button>
                   </span>
                 </div>
                 <div class="nested">
