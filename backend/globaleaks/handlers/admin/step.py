@@ -18,18 +18,20 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
 
 
-def db_create_step(store, step, language):
+def db_create_step(store, step_dict, language):
     """
     Create the specified step
 
     :param store: the store on which perform queries.
     :param language: the language of the specified steps.
     """
-    fill_localized_keys(step, models.Step.localized_keys, language)
+    fill_localized_keys(step_dict, models.Step.localized_keys, language)
 
-    s = models.Step.new(store, step)
+    s = models.Step(step_dict)
 
-    for c in step['children']:
+    store.add(s)
+
+    for c in step_dict['children']:
         c['step_id'] = s.id
         db_create_field(store, c, language)
 
