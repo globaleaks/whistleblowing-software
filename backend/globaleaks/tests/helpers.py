@@ -303,7 +303,7 @@ class TestGL(unittest.TestCase):
 
         field.update(custom_attrs)
 
-        f = models.Field(store, field)
+        f = models.Field(field)
 
         store.add(f)
 
