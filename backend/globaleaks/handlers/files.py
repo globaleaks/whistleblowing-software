@@ -234,11 +234,11 @@ def download_file(store, user_id, rtip_id, file_id):
     rfile = store.find(ReceiverFile,
                        ReceiverFile.id == unicode(file_id)).one()
 
-    if not rfile or rfile.receiver_id != user_id:
+    if not rfile or rfile.receivertip.receiver_id != user_id:
         raise errors.FileIdNotFound
 
     log.debug("Download of file %s by receiver %s (%d)" %
-              (rfile.internalfile_id, rfile.receiver_id, rfile.downloads))
+              (rfile.internalfile_id, rfile.receivertip.receiver_id, rfile.downloads))
 
     rfile.downloads += 1
 

@@ -8,7 +8,7 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.admin.context import get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
-from globaleaks.handlers.submission import create_whistleblower_tip, SubmissionInstance
+from globaleaks.handlers.submission import SubmissionInstance
 from globaleaks.models import InternalTip
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

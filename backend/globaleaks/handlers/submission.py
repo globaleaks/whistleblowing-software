@@ -244,7 +244,7 @@ def serialize_internalfile(ifile):
 def serialize_receiverfile(rfile):
     rfile_dict = {
         'id' : rfile.id,
-        'creation_date': datetime_to_ISO8601(rfile.internaltip.creation_date),
+        'creation_date': datetime_to_ISO8601(rfile.internalfile.internaltip.creation_date),
         'internaltip_id': rfile.internaltip_id,
         'internalfile_id': rfile.internalfile_id,
         'receiver_id': rfile.receiver_id,
@@ -285,7 +285,7 @@ def db_create_receivertip(store, receiver, internaltip):
 
     return receivertip.id
 
-def db_create_whistleblower_tip(store, internaltip):
+def db_create_whistleblowertip(store, internaltip):
     """
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
@@ -299,42 +299,12 @@ def db_create_whistleblower_tip(store, internaltip):
 
     store.add(wbtip)
 
-    created_rtips = [db_create_receivertip(store, receiver, internaltip) for receiver in internaltip.receivers]
-
-    internaltip.new = False
-
-    if len(created_rtips):
-        log.debug("The finalized submissions had created %d models.ReceiverTip(s)" % len(created_rtips))
-
     return receipt, wbtip
 
 
 @transact
-def create_whistleblower_tip(*args):
-    return db_create_whistleblower_tip(*args)[0] # here is exported only the receipt
-
-
-def import_receivers(store, submission, receiver_id_list):
-    context = submission.context
-
-    if context.maximum_selectable_receivers and \
-                    len(receiver_id_list) > context.maximum_selectable_receivers:
-        raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
-
-    for receiver in store.find(models.Receiver, In(models.Receiver.id, receiver_id_list)):
-        if context not in receiver.contexts:
-            continue
-
-        if not GLSettings.memory_copy.allow_unencrypted and len(receiver.user.pgp_key_public) == 0:
-            continue
-
-        submission.receivers.add(receiver)
-
-        log.debug("+receiver [%s] In tip (%s) #%d" % \
-                  (receiver.user.name, submission.id, submission.receivers.count()))
-
-    if submission.receivers.count() == 0:
-        raise errors.SubmissionValidationFailure("need at least one receiver")
+def create_whistleblowertip(*args):
+    return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
 def db_create_submission(store, token_id, request, t2w, language):
@@ -393,12 +363,6 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise excep
 
     try:
-        import_receivers(store, submission, request['receivers'])
-    except Exception as excep:
-        log.err("Submission create: receivers import fail: %s" % excep)
-        raise excep
-
-    try:
         for filedesc in token.uploaded_files:
             new_file = models.InternalFile()
             new_file.name = filedesc['filename']
@@ -415,7 +379,26 @@ def db_create_submission(store, token_id, request, t2w, language):
         log.err("Submission create: unable to create db entry for files: %s" % excep)
         raise excep
 
-    receipt, wbtip = db_create_whistleblower_tip(store, submission)
+    receipt, wbtip = db_create_whistleblowertip(store, submission)
+
+    if submission.context.maximum_selectable_receivers and \
+                    len(receiver_id_list) > submission.context.maximum_selectable_receivers:
+        raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
+
+    rtips = []
+    for receiver in store.find(models.Receiver, In(models.Receiver.id, request['receivers'])):
+        if submission.context not in receiver.contexts:
+            continue
+
+        if not GLSettings.memory_copy.allow_unencrypted and len(receiver.user.pgp_key_public) == 0:
+            continue
+
+        rtips.append(db_create_receivertip(store, receiver, submission))
+
+    if len(rtips) == 0:
+        raise errors.SubmissionValidationFailure("needed almost one receiver")
+
+    log.debug("The finalized submission had created %d models.ReceiverTip(s)" % len(rtips))
 
     submission_dict = serialize_usertip(store, wbtip, language)
 

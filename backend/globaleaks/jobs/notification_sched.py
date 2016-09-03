@@ -110,11 +110,11 @@ class MailGenerator(object):
         if rfile.internalfile.submission:
             return
 
-        language = rfile.receiver.user.language
+        language = rfile.receivertip.receiver.user.language
 
         data['tip'] = serialize_content(store, self.cache, 'tip', rfile.receivertip, language)
         data['context'] = serialize_content(store, self.cache, 'context', rfile.internalfile.internaltip.context, language)
-        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receiver, language)
+        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receivertip.receiver, language)
         data['file'] = serialize_content(store, self.cache, 'file', rfile.internalfile, language)
 
         self.process_mail_creation(store, data)

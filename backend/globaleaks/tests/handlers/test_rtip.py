@@ -2,6 +2,7 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.handlers import rtip
@@ -251,6 +252,7 @@ class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
+        yield DeliverySchedule().operation()
 
     @inlineCallbacks
     def test_get(self):

@@ -58,15 +58,10 @@ def receiverfile_planning(store):
 
         ifile.processing_attempts += 1
 
-        for receiver in ifile.internaltip.receivers:
-            rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
-                              ReceiverTip.receiver_id == receiver.id).one()
-
+        for rtip in ifile.internaltip.receivertips:
             receiverfile = ReceiverFile()
-            receiverfile.receiver_id = receiver.id
-            receiverfile.internaltip_id = ifile.internaltip_id
             receiverfile.internalfile_id = ifile.id
-            receiverfile.receivertip_id = rtrf.id
+            receiverfile.receivertip_id = rtip.id
             receiverfile.file_path = ifile.file_path
             receiverfile.size = ifile.size
             receiverfile.status = u'processing'
@@ -92,7 +87,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(receiver, GLSettings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(rtip.receiver, GLSettings.memory_copy.default_language)
             })
 
     return receiverfiles_maps

@@ -90,9 +90,10 @@ def collect_users_overview(store):
             'receivertips': []
         }
 
-        rcvr_files = store.find(models.ReceiverFile, models.ReceiverFile.receiver_id == receiver.id)
+        rcvr_files = store.find(models.ReceiverFile,
+                                models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                models.ReceiverTip.receiver_id == receiver.id)
         for rfile in rcvr_files:
-
             if not rfile.internalfile:
                 log.err("(user_overview) ReceiverFile without InternaFile available: skipped")
                 continue
