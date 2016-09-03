@@ -87,6 +87,8 @@ def create_receiver_user(store, request, language):
 
 
 def db_create_user(store, request, language):
+    fill_localized_keys(request, models.User.localized_keys, language)
+
     user = models.User({
         'username': request['username'],
         'role': request['role'],

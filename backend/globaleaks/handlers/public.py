@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# node
+# public
 #   ****
 #
 # Implementation of classes handling the HTTP request to /node, public
@@ -53,7 +53,7 @@ def db_serialize_node(store, language):
         ro_node['submission_minimum_delay'] = 0
 
     misc_dict = {
-        'languages_enabled': l10n.EnabledLanguage.get_all_strs(store),
+        'languages_enabled': l10n.EnabledLanguage.get_all_strings(store),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': GLSettings.accept_submissions,
@@ -280,11 +280,6 @@ def db_get_public_context_list(store, language):
     return context_list
 
 
-@transact_ro
-def get_public_context_list(store, language):
-    return db_get_public_context_list(store, language)
-
-
 def db_get_public_receiver_list(store, language):
     receiver_list = []
 
@@ -292,17 +287,18 @@ def db_get_public_receiver_list(store, language):
         if receiver.user.state == u'disabled':
             continue
 
-        receiver_desc = serialize_receiver(receiver, language)
-        # receiver not yet ready for submission return None
-        if receiver_desc:
-            receiver_list.append(receiver_desc)
+        receiver_list.append(serialize_receiver(receiver, language))
 
     return receiver_list
 
 
 @transact_ro
-def get_public_receiver_list(store, language):
-    return db_get_public_receiver_list(store, language)
+def get_public_resources(store, language):
+    returnValue({
+        'node': db_serialize_node(store, language),
+        'contexts': db_get_public_context_list(store, language),
+        'receivers': db_get_public_receiver_list(store, language)
+    })
 
 
 class PublicResource(BaseHandler):
@@ -313,23 +309,12 @@ class PublicResource(BaseHandler):
         """
         Get all the public resources.
         """
-        @transact_ro
-        def _get_public_resources(store, language):
-            returnValue({
-              'node': db_serialize_node(store, language),
-              'contexts': db_get_public_context_list(store, language),
-              'receivers': db_get_public_receiver_list(store, language)
-            })
-
         ret = yield GLApiCache.get('public', self.request.language,
-                                   _get_public_resources, self.request.language)
+                                   get_public_resources, self.request.language)
         self.write(ret)
 
 
 class AhmiaDescriptionHandler(BaseHandler):
-    def _empt_gen(self):
-        return None
-
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
     @inlineCallbacks
@@ -337,14 +322,15 @@ class AhmiaDescriptionHandler(BaseHandler):
         """
         Get the ahmia.fi descriptor
         """
-        if GLSettings.memory_copy.ahmia:
-            ret = yield GLApiCache.get('ahmia', self.request.language,
-                                       serialize_ahmia, self.request.language)
-
-            self.write(ret)
-        else:  # in case of disabled option we return 404
-            yield self._empt_gen() # TODO remove inlineCallbacks from outer get.
+        if not GLSettings.memory_copy.ahmia:
+            yield
             self.set_status(404)
+            return
+
+        ret = yield GLApiCache.get('ahmia', self.request.language,
+                                   serialize_ahmia, self.request.language)
+
+        self.write(ret)
 
 
 class RobotstxtHandler(BaseHandler):
