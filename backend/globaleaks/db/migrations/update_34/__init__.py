@@ -253,7 +253,7 @@ class MigrationScript(MigrationBase):
         config.system_analyze_update(self.store_new)
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-        langs_enabled = l10n.EnabledLanguage.get_all_strs(self.store_new)
+        langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)
         obj_appdata = self.appdata[appd_key]
 
         for name in old_obj.localized_keys:

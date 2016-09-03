@@ -43,7 +43,7 @@ def wizard(store, request, language):
 
         context = db_create_context(store, request['context'], language)
 
-        langs_to_drop = EnabledLanguage.get_all_strs(store)
+        langs_to_drop = EnabledLanguage.get_all_strings(store)
         langs_to_drop.remove(language)
         for lang_code in langs_to_drop:
             EnabledLanguage.remove_old_lang(store, lang_code)

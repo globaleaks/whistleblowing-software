@@ -582,10 +582,8 @@ class FieldAnswerGroup(ModelWithID):
 
 class Step(ModelWithID):
     questionnaire_id = Unicode()
- #-- TODO remove me
     label = JSON()
     description = JSON()
- #-- TODO remove me
     presentation_order = Int(default=0)
     triggered_by_score = Int(default=0)
 

@@ -173,6 +173,9 @@ class PrivateFactory(ConfigFactory):
         return self._export_group_dict(self.mem_export_set)
 
 
+factories = [NodeFactory, NotificationFactory, PrivateFactory]
+
+
 class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
@@ -211,25 +214,16 @@ class Config(Storm):
     def __repr__(self):
         return "<Config: %s.%s>" % (self.var_group, self.var_name)
 
-
 def system_cfg_init(store):
     for gname, group in GLConfig.iteritems():
         for var_name, cfg_desc in group.iteritems():
             item = Config(gname, var_name, cfg_desc.default)
             store.add(item)
 
-
 def del_cfg_not_in_groups(store):
     where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
                 Not(Config.var_group == u'private'))
-    cur = store.find(Config, where)
-    for c in cur:
-        log.info("Deleting %s.%s from the config table" % (c.var_group, c.var_name))
-        store.remove(c)
-
-
-factories = [NodeFactory, NotificationFactory, PrivateFactory]
-
+    store.find(Config, where).remove()
 
 def system_cfg_stable(store):
     stable = True
@@ -242,7 +236,6 @@ def system_cfg_stable(store):
         stable = False
 
     return stable
-
 
 def system_analyze_update(store):
     prv = PrivateFactory(store)

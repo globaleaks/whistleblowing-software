@@ -27,11 +27,10 @@ class EnabledLanguage(Storm):
 
     @classmethod
     def remove_old_lang(cls, store, lang_code):
-        obj = store.find(cls, cls.name == unicode(lang_code)).one()
-        store.remove(obj)
+        store.find(cls, cls.name == unicode(lang_code)).remove()
 
     @classmethod
-    def get_all_strs(cls, store):
+    def get_all_strings(cls, store):
         return [e.name for e in store.find(cls)]
 
     @classmethod
