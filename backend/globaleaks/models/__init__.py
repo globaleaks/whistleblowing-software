@@ -278,8 +278,6 @@ class InternalTip(ModelWithID):
 
     wb_last_access = DateTime(default_factory=datetime_now)
 
-    new = Int(default=True)
-
     def wb_revoke_access_date(self):
         revoke_date = self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
         return revoke_date
@@ -365,9 +363,7 @@ class ReceiverFile(ModelWithID):
     """
     This model keeps track of files destinated to a specific receiver
     """
-    internaltip_id = Unicode()
     internalfile_id = Unicode()
-    receiver_id = Unicode()
     receivertip_id = Unicode()
     file_path = Unicode()
     size = Int()
@@ -643,17 +639,6 @@ class ReceiverContext(Model):
     receiver_id = Unicode()
 
 
-class ReceiverInternalTip(Model):
-    """
-    Class used to implement references between Receivers and IntInternalTips
-    """
-    __storm_table__ = 'receiver_internaltip'
-    __storm_primary__ = 'receiver_id', 'internaltip_id'
-
-    receiver_id = Unicode()
-    internaltip_id = Unicode()
-
-
 class Counter(Model):
     """
     Class used to implement unique counters
@@ -739,13 +724,6 @@ Step.questionnaire = Reference(Step.questionnaire_id, Questionnaire.id)
 
 Receiver.user = Reference(Receiver.id, User.id)
 
-InternalTip.receivers = ReferenceSet(
-    InternalTip.id,
-    ReceiverInternalTip.internaltip_id,
-    ReceiverInternalTip.receiver_id,
-    Receiver.id
-)
-
 InternalTip.context = Reference(
     InternalTip.context_id,
     Context.id
@@ -791,16 +769,6 @@ ReceiverFile.internalfile = Reference(
     InternalFile.id
 )
 
-ReceiverFile.receiver = Reference(
-    ReceiverFile.receiver_id,
-    Receiver.id
-)
-
-ReceiverFile.internaltip = Reference(
-    ReceiverFile.internaltip_id,
-    InternalTip.id
-)
-
 ReceiverFile.receivertip = Reference(
     ReceiverFile.receivertip_id,
     ReceiverTip.id
@@ -824,8 +792,6 @@ WhistleblowerTip.internaltip = Reference(
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
-
-Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 Comment.author = Reference(Comment.author_id, User.id)

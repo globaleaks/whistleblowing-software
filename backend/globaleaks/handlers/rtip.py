@@ -115,9 +115,12 @@ def db_access_rtip(store, user_id, rtip_id):
 def db_get_files_receiver(store, user_id, rtip_id):
     rtip = db_access_rtip(store, user_id, rtip_id)
 
+    receiver_files = store.find(ReceiverFile)
+
     receiver_files = store.find(ReceiverFile,
-                                (ReceiverFile.internaltip_id == rtip.internaltip_id,
-                                 ReceiverFile.receiver_id == rtip.receiver_id))
+                                (ReceiverFile.receivertip_id == ReceiverTip.id,
+                                 ReceiverTip.id == rtip_id,
+                                 ReceiverTip.receiver_id == user_id))
 
     return [receiver_serialize_file(receiverfile.internalfile, receiverfile, rtip_id)
             for receiverfile in receiver_files]

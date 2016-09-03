@@ -454,7 +454,7 @@ class TestGL(unittest.TestCase):
         ret = []
         for tip in store.find(models.WhistleblowerTip):
             x = wbtip.serialize_wbtip(store, tip, 'en')
-            x['receivers_ids'] = [rcvr.id for rcvr in tip.internaltip.receivers]
+            x['receivers_ids'] = [rtip.receiver_id for rtip in tip.internaltip.receivertips]
             ret.append(x)
 
         return ret
