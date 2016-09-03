@@ -1,3 +1,8 @@
+Changes in version 2.63.4 - 2016-09-03
+    o Minor UI fixes
+    o Add CHECK constraints to field table to improve data consistency.
+    o Update translations
+
 Changes in version 2.63.3 - 2016-08-27
     o Fix initialization of first contexts in relations to recipients selection.
     o Fix bug not allowing to complete submissions on nodes configured with PGP encryption.
