@@ -323,28 +323,25 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row adminConfigSection" data-ng-if="editable">
-          <div class="col-md-6">
-            <div class="nested">
-              <div class="editorTitle">
-                <span data-translate>Add new question</span>
+            <div data-ng-if="editable && field.type === 'fieldgroup'">
+              <div class="col-md-12">
+                <label data-translate>Add new question</label>
+                <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
               </div>
-              <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
-              <div data-ng-if="(field.step_id !== '' || field.fieldgroup_id !== '') && admin.fieldtemplates.length > 0">
+              <div class="col-md-12" data-ng-if="admin.node.enable_experimental_features && field.instance === 'instance' && admin.fieldtemplates.length > 0">
+                <label data-translate>Add question from template</label>
                 <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group" data-ng-if="editable && (field.instance !== 'reference' && fields.length > 0)">
-              <div class="editorTitle" data-translate>Configured questions:</div>
-              <div class="configuredFields">
-                <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
-                  <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group" data-ng-if="editable && (field.instance !== 'reference' && fields.length > 0)">
+                  <div class="editorTitle" data-translate>Configured questions:</div>
+                  <div class="configuredFields">
+                    <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
+                      <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

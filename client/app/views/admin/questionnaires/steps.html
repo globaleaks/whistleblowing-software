@@ -119,29 +119,24 @@
             </div>
             <div class="row adminConfigSection">
               <div class="col-md-6">
-                <div class="editorTitle row">
-                  <span class="col-md-8">
-                    <span data-translate>Add new question</span>
-                  </span>
-                </div>
-                <div class="nested">
-                  <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
-                </div>
+                <label data-translate>Add new question</label>
+                <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
               </div>
             </div>
             <div class="row adminConfigSection" data-ng-if="admin.node.enable_experimental_features">
               <div class="col-md-6">
+                <label data-translate>Add question from template</label>
                 <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
               </div>
             </div>
             <div id="FieldsEditBox" class="form-group" data-ng-show="step.children.length > 0">
-              <div class="editorTitle row">
+              <div class="row">
                 <span class="col-md-12">
-                  <span data-translate>Configured questions:</span>
+                  <label data-translate>Configured questions:</label>
                 </span>
               </div>
-              <div class="configuredFields">
-                <div data-ng-repeat="field in step.children | orderBy:['y', 'x']">
+              <div class="row configuredFields">
+                <div class="col-md-12" data-ng-repeat="field in step.children | orderBy:['y', 'x']">
                   <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
                 </div>
               </div>
