@@ -130,16 +130,16 @@ class MailGenerator(object):
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
         sent_emails = GLSettings.get_mail_counter(receiver_id)
-        if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
+        if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
             log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour" %
                       receiver_id)
             return
 
         GLSettings.increment_mail_counter(receiver_id)
-        if sent_emails >= GLSettings.memory_copy.notification_threshold_per_hour:
+        if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
             log.info("Reached threshold of %d emails with limit of %d for receiver %s" % (
                      sent_emails,
-                     GLSettings.memory_copy.notification_threshold_per_hour,
+                     GLSettings.memory_copy.notif.notification_threshold_per_hour,
                      receiver_id)
             )
 
@@ -192,8 +192,8 @@ class MailGenerator(object):
             # due to possible exceptions in handling
             element.new = False
 
-            if GLSettings.memory_copy.disable_receiver_notification_emails:
-                continue 
+            if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
+                continue
 
             data = {
                 'type': trigger_template_map[trigger]

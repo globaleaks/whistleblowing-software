@@ -9,10 +9,14 @@ import traceback
 
 from storm import exceptions
 
+from cyclone.util import ObjectDict
 from twisted.internet.defer import succeed, inlineCallbacks
 
-from globaleaks import models,  __version__, DATABASE_VERSION
+from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks.models import config
+from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.db.appdata import db_update_appdata
+from globaleaks.models.l10n import NodeL10NFactory, NotificationL10NFactory, EnabledLanguage
 from globaleaks.handlers.admin import files
 from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
@@ -47,25 +51,23 @@ def db_create_tables(store):
 
 
 @transact
-def init_db(store):
+def init_db(store, use_single_lang=False):
     db_create_tables(store)
     appdata_dict = db_update_appdata(store)
 
     log.debug("Performing database initialization...")
 
-    node = models.Node()
-    node.wizard_done = GLSettings.skip_wizard
-    node.receipt_salt = generateRandomSalt()
-    store.add(node)
+    config.system_cfg_init(store)
 
-    for k in appdata_dict['node']:
-        setattr(node, k, appdata_dict['node'][k])
+    if GLSettings.skip_wizard:
+        NodeFactory(store).set_val('wizard_done', True)
 
-    notification = models.Notification()
-    for k in appdata_dict['templates']:
-        setattr(notification, k, appdata_dict['templates'][k])
-    store.add(notification)
+    log.debug("Inserting internationalized strings...")
 
+    if not use_single_lang:
+        EnabledLanguage.add_all_supported_langs(store, appdata_dict)
+    else:
+        EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
     logo_data = ''
     with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
         logo_data = logo_file.read()
@@ -157,91 +159,34 @@ def db_refresh_memory_variables(store):
     This routine loads in memory few variables of node and notification tables
     that are subject to high usage.
     """
-    node = store.find(models.Node).one()
+    node_ro = ObjectDict(NodeFactory(store).admin_export())
 
-    GLSettings.memory_copy.nodename = node.name
-
-    GLSettings.memory_copy.basic_auth = node.basic_auth
-    GLSettings.memory_copy.basic_auth_username = node.basic_auth_username
-    GLSettings.memory_copy.basic_auth_password = node.basic_auth_password
-
-    GLSettings.memory_copy.maximum_filesize = node.maximum_filesize
-    GLSettings.memory_copy.maximum_namesize = node.maximum_namesize
-    GLSettings.memory_copy.maximum_textsize = node.maximum_textsize
+    GLSettings.memory_copy = node_ro
 
     GLSettings.memory_copy.accept_tor2web_access = {
-        'admin': node.tor2web_admin,
-        'custodian': node.tor2web_custodian,
-        'whistleblower': node.tor2web_whistleblower,
-        'receiver': node.tor2web_receiver,
-        'unauth': node.tor2web_unauth
+        'admin': node_ro.tor2web_admin,
+        'custodian': node_ro.tor2web_custodian,
+        'whistleblower': node_ro.tor2web_whistleblower,
+        'receiver': node_ro.tor2web_receiver,
+        'unauth': node_ro.tor2web_unauth
     }
 
-    GLSettings.memory_copy.can_postpone_expiration = node.can_postpone_expiration
-    GLSettings.memory_copy.can_delete_submission =  node.can_delete_submission
-    GLSettings.memory_copy.can_grant_permissions = node.can_grant_permissions
+    enabled_langs = models.l10n.EnabledLanguage.get_all_strings(store)
+    GLSettings.memory_copy.languages_enabled = enabled_langs
 
-    GLSettings.memory_copy.submission_minimum_delay = node.submission_minimum_delay
-    GLSettings.memory_copy.submission_maximum_ttl =  node.submission_maximum_ttl
+    notif_ro = ObjectDict(NotificationFactory(store).admin_export())
 
-    GLSettings.memory_copy.allow_indexing = node.allow_indexing
-    GLSettings.memory_copy.allow_unencrypted = node.allow_unencrypted
-    GLSettings.memory_copy.allow_iframes_inclusion = node.allow_iframes_inclusion
-
-    GLSettings.memory_copy.enable_captcha = node.enable_captcha
-    GLSettings.memory_copy.enable_proof_of_work = node.enable_proof_of_work
-
-    GLSettings.memory_copy.wbtip_timetolive = node.wbtip_timetolive
-
-    GLSettings.memory_copy.default_password = node.default_password
-    GLSettings.memory_copy.default_language = node.default_language
-    GLSettings.memory_copy.languages_enabled  = node.languages_enabled
-
-    GLSettings.memory_copy.receipt_salt  = node.receipt_salt
-
-    GLSettings.memory_copy.simplified_login = node.simplified_login
-
-    GLSettings.memory_copy.threshold_free_disk_megabytes_high = node.threshold_free_disk_megabytes_high
-    GLSettings.memory_copy.threshold_free_disk_megabytes_medium = node.threshold_free_disk_megabytes_medium
-    GLSettings.memory_copy.threshold_free_disk_megabytes_low = node.threshold_free_disk_megabytes_low
-
-    GLSettings.memory_copy.threshold_free_disk_percentage_high = node.threshold_free_disk_percentage_high
-    GLSettings.memory_copy.threshold_free_disk_percentage_medium = node.threshold_free_disk_percentage_medium
-    GLSettings.memory_copy.threshold_free_disk_percentage_low = node.threshold_free_disk_percentage_low
-
-    notif = store.find(models.Notification).one()
-
-    GLSettings.memory_copy.notif_server = notif.server
-    GLSettings.memory_copy.notif_port = notif.port
-    GLSettings.memory_copy.notif_password = notif.password
-    GLSettings.memory_copy.notif_username = notif.username
-    GLSettings.memory_copy.notif_source_email = notif.source_email
-    GLSettings.memory_copy.notif_security = notif.security
-    GLSettings.memory_copy.tip_expiration_threshold = notif.tip_expiration_threshold
-    GLSettings.memory_copy.notification_threshold_per_hour = notif.notification_threshold_per_hour
-    GLSettings.memory_copy.notification_suspension_time = notif.notification_suspension_time
+    GLSettings.memory_copy.notif = notif_ro
 
     if GLSettings.developer_name:
-        GLSettings.memory_copy.notif_source_name = GLSettings.developer_name
-    else:
-        GLSettings.memory_copy.notif_source_name = notif.source_name
-
-    GLSettings.memory_copy.notif_source_name = notif.source_name
-    GLSettings.memory_copy.notif_source_email = notif.source_email
-
-    GLSettings.memory_copy.exception_email_address = notif.exception_email_address
-    GLSettings.memory_copy.exception_email_pgp_key_fingerprint = notif.exception_email_pgp_key_fingerprint
-    GLSettings.memory_copy.exception_email_pgp_key_public = notif.exception_email_pgp_key_public
-    GLSettings.memory_copy.exception_email_pgp_key_expiration = notif.exception_email_pgp_key_expiration
+        GLSettings.memory_copy.notif.source_name = GLSettings.developer_name
 
     if GLSettings.disable_mail_notification:
-        GLSettings.memory_copy.disable_admin_notification_emails = True
-        GLSettings.memory_copy.disable_custodian_notification_emails = True
-        GLSettings.memory_copy.disable_receiver_notification_emails = True
-    else:
-        GLSettings.memory_copy.disable_admin_notification_emails = notif.disable_admin_notification_emails
-        GLSettings.memory_copy.disable_admin_custodian_emails = notif.disable_custodian_notification_emails
-        GLSettings.memory_copy.disable_receiver_notification_emails = notif.disable_receiver_notification_emails
+        GLSettings.memory_copy.notif.disable_admin_notification_emails = True
+        GLSettings.memory_copy.notif.disable_custodian_notification_emails = True
+        GLSettings.memory_copy.notif.disable_receiver_notification_emails = True
+
+    GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
 
 
 @transact_ro
@@ -250,7 +195,13 @@ def refresh_memory_variables(*args):
 
 
 @transact
-def update_version(store):
-    node = store.find(models.Node).one()
-    node.version = unicode(__version__)
-    node.version_db = unicode(DATABASE_VERSION)
+def handle_stored_version(store):
+    prv = PrivateFactory(store)
+
+    ver = prv.get_val('version')
+    ver_db = prv.get_val('version_db')
+
+    # Only update config if the version has changed
+    if ver != __version__ or ver_db != DATABASE_VERSION:
+        log.info("Updating config version from %s to %s" % (ver, __version__))
+        config.system_analyze_update(store)

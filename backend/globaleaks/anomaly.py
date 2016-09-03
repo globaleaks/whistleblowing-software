@@ -228,7 +228,7 @@ class AlarmClass(object):
             # we are lucky! no stress activities detected, no mail needed
             return
 
-        if GLSettings.memory_copy.disable_admin_notification_emails:
+        if GLSettings.memory_copy.notif.disable_admin_notification_emails:
             return
 
         if self.last_alarm_email and not is_expired(self.last_alarm_email,

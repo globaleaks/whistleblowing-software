@@ -3,10 +3,152 @@
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models
+from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.models import config
+from globaleaks.db.appdata import load_appdata
+from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
+from globaleaks.handlers.admin.user import db_create_user
 from globaleaks.orm import transact, transact_ro
 from globaleaks.tests import helpers
+from globaleaks.settings import GLSettings
+from globaleaks.models.config_desc import GLConfig
+
+
+class TestSystemConfigModels(helpers.TestGL):
+    @inlineCallbacks
+    def test_config_import(self):
+        yield self._test_config_import()
+
+    @transact
+    def _test_config_import(self, store):
+        c = store.find(config.Config).count()
+
+        stated_conf = reduce(lambda x,y: x+y, [len(v) for k, v in GLConfig.iteritems()], 0)
+        self.assertEqual(c, stated_conf)
+
+    @inlineCallbacks
+    def test_system_config_stable(self):
+        yield self._test_stable()
+
+    @transact
+    def _test_stable(self, store):
+        self.assertEqual(True, config.system_cfg_stable(store))
+
+    @inlineCallbacks
+    def test_missing_config(self):
+        yield self._test_missing_config()
+
+    @transact
+    def _test_missing_config(self, store):
+        self.assertEqual(True, config.system_cfg_stable(store))
+
+        p = config.Config('private', 'smtp_password', 'XXXX')
+        p.var_group = u'outside'
+        store.add(p)
+
+        self.assertEqual(False, config.system_cfg_stable(store))
+
+        node = config.NodeFactory(store)
+        c = node.get_cfg('public_site')
+        store.remove(c)
+        store.commit()
+
+        self.assertEqual(False, node.db_corresponds())
+
+        # Delete all of the vars in Private Factory
+        prv = config.PrivateFactory(store)
+
+        store.execute('DELETE FROM config WHERE var_group = "private"')
+
+        self.assertEqual(False, prv.db_corresponds())
+
+        ntfn = config.NotificationFactory(store)
+
+        c = config.Config('notification', 'server', 'guarda.giochi.con.occhi')
+        c.var_name = u'anextravar'
+        store.add(c)
+
+        self.assertEqual(False, ntfn.db_corresponds())
+
+        config.system_analyze_update(store)
+
+        self.assertEqual(True, config.system_cfg_stable(store))
+
+
+class TestConfigL10N(helpers.TestGL):
+    @inlineCallbacks
+    def test_config_l10n_init(self):
+        yield self.run_node_mgr()
+
+    @transact
+    def run_node_mgr(self, store):
+        # Initialize the Node manager
+        node_l10n = NodeL10NFactory(store)
+
+        # Make a query with the Node manager
+        ret = node_l10n.retrieve_rows('en')
+        self.assertTrue(len(ret) == 18)
+
+    @inlineCallbacks
+    def test_enabled_langs(self):
+        yield self.enable_langs()
+
+    @transact
+    def enable_langs(self, store):
+        res = EnabledLanguage.get_all_strings(store)
+
+        self.assertTrue(u'en' in res)
+        self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))
+
+        c = store.find(ConfigL10N).count()
+        self.assertTrue(c > 1500 and c < 2300)
+
+    @inlineCallbacks
+    def test_disable_langs(self):
+        yield self.disable_langs()
+
+    @transact
+    def disable_langs(self, store):
+        c = len(EnabledLanguage.get_all_strings(store))
+        i = store.find(ConfigL10N).count()
+        n = i/c
+
+        EnabledLanguage.remove_old_lang(store, 'en')
+
+        c_f = len(EnabledLanguage.get_all_strings(store))
+        i_f = store.find(ConfigL10N).count()
+
+        self.assertTrue(i-i_f == n and c_f == c-1)
+
+
+class TestUserL10N(helpers.TestGL):
+
+    @transact
+    def create_user_with_descript(self, store):
+        req = self.get_dummy_user('custodian', 'duke-McMockingHam')
+        user = db_create_user(store, req, 'en')
+
+        d = {'en': 'Lord of Hammington', 'it': 'Un coglione', 'de': 'Deutsch'}
+
+        for k, v in d.iteritems():
+            usr_l10n = models.User_L10N({
+                'id': user.id,
+                'description': v,
+                'lang': k,
+            })
+            store.add(usr_l10n)
+            print usr_l10n
+
+    @transact
+    def find_user_l10n(self, store):
+        res = [x for x in store.find(models.User_L10N)]
+        self.assertEqual(len(res), 3)
+
+    def _test_l10n_table(self):
+        #yield self.create_user_with_descript()
+        #yield self.find_user_l10n()
+        pass
 
 
 class TestModels(helpers.TestGL):

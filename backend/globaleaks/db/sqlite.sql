@@ -1,6 +1,28 @@
 PRAGMA foreign_keys = ON;
 PRAGMA auto_vacuum = FULL;
 
+CREATE TABLE enabledlanguage (
+    name TEXT NOT NULL,
+    PRIMARY KEY (name)
+);
+
+CREATE TABLE config (
+    var_group TEXT NOT NULL,
+    var_name TEXT NOT NULL,
+    value BLOB NOT NULL,
+    PRIMARY KEY (var_group, var_name)
+);
+
+CREATE TABLE config_l10n (
+    lang TEXT NOT NULL,
+    var_group TEXT NOT NULL,
+    var_name TEXT NOT NULL,
+    value TEXT NOT NULL,
+    def_val TEXT NOT NULL,
+    FOREIGN KEY (lang) REFERENCES enabledlanguage(name) ON DELETE CASCADE,
+    PRIMARY KEY (lang, var_group, var_name)
+);
+
 CREATE TABLE user (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
@@ -147,143 +169,6 @@ CREATE TABLE identityaccessrequest (
     reply TEXT NOT NULL,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     FOREIGN KEY (reply_user_id) REFERENCES user(id) ON DELETE CASCADE,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE node (
-    id TEXT NOT NULL,
-    version TEXT NOT NULL,
-    version_db TEXT NOT NULL,
-    description BLOB NOT NULL,
-    presentation BLOB NOT NULL,
-    footer BLOB NOT NULL,
-    security_awareness_title BLOB NOT NULL,
-    security_awareness_text BLOB NOT NULL,
-    contexts_clarification BLOB NOT NULL,
-    whistleblowing_question BLOB NOT NULL,
-    whistleblowing_button BLOB NOT NULL,
-    whistleblowing_receipt_prompt BLOB NOT NULL,
-    languages_enabled BLOB NOT NULL,
-    default_language TEXT NOT NULL,
-    default_password TEXT NOT NULL,
-    name TEXT NOT NULL,
-    receipt_salt TEXT NOT NULL,
-    public_site TEXT NOT NULL,
-    hidden_service TEXT NOT NULL,
-    tb_download_link TEXT NOT NULL,
-    maximum_namesize INTEGER NOT NULL,
-    maximum_textsize INTEGER NOT NULL,
-    maximum_filesize INTEGER NOT NULL,
-    tor2web_admin INTEGER NOT NULL,
-    tor2web_custodian INTEGER NOT NULL,
-    tor2web_whistleblower INTEGER NOT NULL,
-    tor2web_receiver INTEGER NOT NULL,
-    tor2web_unauth INTEGER NOT NULL,
-    submission_minimum_delay INTEGER NOT NULL,
-    submission_maximum_ttl INTEGER NOT NULL,
-    can_postpone_expiration INTEGER NOT NULL,
-    can_delete_submission INTEGER NOT NULL,
-    can_grant_permissions INTEGER NOT NULL,
-    ahmia INTEGER NOT NULL,
-    allow_indexing INTEGER NOT NULL,
-    wizard_done INTEGER NOT NULL,
-    allow_unencrypted INTEGER NOT NULL,
-    disable_encryption_warnings INTEGER NOT NULL,
-    allow_iframes_inclusion INTEGER NOT NULL,
-    disable_submissions INTEGER NOT NULL,
-    disable_privacy_badge INTEGER NOT NULL,
-    disable_security_awareness_badge INTEGER NOT NULL,
-    disable_security_awareness_questions INTEGER NOT NULL,
-    disable_key_code_hint INTEGER NOT NULL,
-    disable_donation_panel INTEGER NOT NULL,
-    enable_captcha INTEGER NOT NULL,
-    enable_proof_of_work INTEGER NOT NULL,
-    enable_experimental_features INTEGER NOT NULL,
-    simplified_login INTEGER NOT NULL,
-    enable_custom_privacy_badge INTEGER NOT NULL,
-    custom_privacy_badge_tor BLOB NOT NULL,
-    custom_privacy_badge_none BLOB NOT NULL,
-    header_title_homepage BLOB NOT NULL,
-    header_title_submissionpage BLOB NOT NULL,
-    header_title_receiptpage BLOB NOT NULL,
-    header_title_tippage BLOB NOT NULL,
-    widget_comments_title BLOB NOT NULL,
-    widget_messages_title BLOB NOT NULL,
-    widget_files_title BLOB NOT NULL,
-    landing_page TEXT NOT NULL CHECK (landing_page IN ('homepage', 'submissionpage')),
-    show_contexts_in_alphabetical_order INTEGER NOT NULL,
-    show_small_context_cards INTEGER NOT NULL,
-    wbtip_timetolive INTEGER NOT NULL,
-    threshold_free_disk_megabytes_high INTEGER NOT NULL,
-    threshold_free_disk_megabytes_medium INTEGER NOT NULL,
-    threshold_free_disk_megabytes_low INTEGER NOT NULL,
-    threshold_free_disk_percentage_high INTEGER NOT NULL,
-    threshold_free_disk_percentage_medium INTEGER NOT NULL,
-    threshold_free_disk_percentage_low INTEGER NOT NULL,
-    context_selector_type TEXT NOT NULL,
-    basic_auth INTEGER NOT NULL,
-    basic_auth_username TEXT NOT NULL,
-    basic_auth_password TEXT NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE notification (
-    id TEXT NOT NULL,
-    server TEXT,
-    port INTEGER,
-    password TEXT,
-    username TEXT,
-    source_name TEXT NOT NULL,
-    source_email TEXT NOT NULL,
-    security TEXT NOT NULL CHECK (security IN ('TLS', 'SSL')),
-    torify INTEGER,
-    tip_mail_template BLOB,
-    tip_mail_title BLOB,
-    file_mail_template BLOB,
-    file_mail_title BLOB,
-    message_mail_template BLOB,
-    message_mail_title BLOB,
-    comment_mail_template BLOB,
-    comment_mail_title BLOB,
-    tip_expiration_mail_template BLOB,
-    tip_expiration_mail_title BLOB,
-    admin_anomaly_mail_template BLOB,
-    admin_anomaly_mail_title BLOB,
-    admin_anomaly_disk_low BLOB,
-    admin_anomaly_disk_medium BLOB,
-    admin_anomaly_disk_high BLOB,
-    admin_anomaly_activities BLOB,
-    admin_pgp_alert_mail_template BLOB,
-    admin_pgp_alert_mail_title BLOB,
-    admin_test_static_mail_template BLOB,
-    admin_test_static_mail_title BLOB,
-    pgp_alert_mail_template BLOB,
-    pgp_alert_mail_title BLOB,
-    notification_digest_mail_title BLOB,
-    identity_access_authorized_mail_template BLOB,
-    identity_access_authorized_mail_title BLOB,
-    identity_access_denied_mail_template BLOB,
-    identity_access_denied_mail_title BLOB,
-    identity_access_request_mail_template BLOB,
-    identity_access_request_mail_title BLOB,
-    identity_provided_mail_template BLOB,
-    identity_provided_mail_title BLOB,
-    export_template BLOB,
-    export_message_whistleblower BLOB,
-    export_message_recipient BLOB,
-    receiver_notification_limit_reached_mail_template BLOB,
-    receiver_notification_limit_reached_mail_title BLOB,
-    tip_expiration_threshold INTEGER NOT NULL,
-    notification_threshold_per_hour INTEGER NOT NULL,
-    notification_suspension_time INTEGER NOT NULL,
-    disable_admin_notification_emails INTEGER NOT NULL,
-    disable_custodian_notification_emails INTEGER NOT NULL,
-    disable_receiver_notification_emails INTEGER NOT NULL,
-    send_email_for_every_event INTEGER NOT NULL,
-    exception_email_address TEXT NOT NULL,
-    exception_email_pgp_key_fingerprint TEXT,
-    exception_email_pgp_key_public TEXT,
-    exception_email_pgp_key_expiration INTEGER,
     PRIMARY KEY (id)
 );
 
@@ -539,3 +424,7 @@ CREATE INDEX field__template_id_index ON field(template_id);
 CREATE INDEX step__questionnaire_id_index ON step(questionnaire_id);
 CREATE INDEX context_questionnaire_id_index ON context(questionnaire_id);
 CREATE INDEX fieldanswer__internaltip_id_index ON fieldanswer(internaltip_id);
+CREATE INDEX config_group_index ON config(var_group);
+CREATE INDEX config_item_index ON config(var_group, var_name);
+CREATE INDEX config_l10n_group_index ON config_l10n(var_group);
+CREATE INDEX config_l10n_item_index ON config_l10n(lang, var_group, var_name);

@@ -294,7 +294,7 @@ def db_create_whistleblower_tip(store, internaltip):
 
     receipt = unicode(generateRandomReceipt())
 
-    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.receipt_salt)
+    wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
     wbtip.internaltip_id = internaltip.id
 
     store.add(wbtip)
@@ -334,7 +334,7 @@ def import_receivers(store, submission, receiver_id_list):
                   (receiver.user.name, submission.id, submission.receivers.count()))
 
     if submission.receivers.count() == 0:
-        raise errors.SubmissionValidationFailure("needed almost one receiver")
+        raise errors.SubmissionValidationFailure("need at least one receiver")
 
 
 def db_create_submission(store, token_id, request, t2w, language):

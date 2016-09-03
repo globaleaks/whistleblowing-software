@@ -8,8 +8,12 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
+from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
+from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.models import config
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
@@ -21,74 +25,23 @@ from globaleaks.utils.utility import log
 
 
 def db_admin_serialize_node(store, language):
-    node = store.find(models.Node).one()
+    node_dict = NodeFactory(store).admin_export()
 
     # Contexts and Receivers relationship
     configured  = store.find(models.ReceiverContext).count() > 0
-
     custom_homepage = os.path.isfile(os.path.join(GLSettings.static_path, "custom_homepage.html"))
 
-    ret_dict = {
-        'name': node.name,
-        'presentation': node.presentation,
-        'hidden_service': node.hidden_service,
-        'public_site': node.public_site,
-        'tb_download_link': node.tb_download_link,
-        'version': node.version,
-        'version_db': node.version_db,
+    misc_dict = {
+        'version': PrivateFactory(store).get_val('version'),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': node.languages_enabled,
-        'default_language': node.default_language,
-        'default_password': node.default_password,
-        'maximum_filesize': node.maximum_filesize,
-        'maximum_namesize': node.maximum_namesize,
-        'maximum_textsize': node.maximum_textsize,
-        'tor2web_admin': node.tor2web_admin,
-        'tor2web_custodian': node.tor2web_custodian,
-        'tor2web_whistleblower': node.tor2web_whistleblower,
-        'tor2web_receiver': node.tor2web_receiver,
-        'tor2web_unauth': node.tor2web_unauth,
-        'submission_minimum_delay': node.submission_minimum_delay,
-        'submission_maximum_ttl': node.submission_maximum_ttl,
-        'can_postpone_expiration': node.can_postpone_expiration,
-        'can_delete_submission': node.can_delete_submission,
-        'can_grant_permissions': node.can_grant_permissions,
-        'ahmia': node.ahmia,
-        'allow_indexing': node.allow_indexing,
-        'allow_unencrypted': node.allow_unencrypted,
-        'disable_encryption_warnings': node.disable_encryption_warnings,
-        'allow_iframes_inclusion': node.allow_iframes_inclusion,
-        'wizard_done': node.wizard_done,
+        'languages_enabled': EnabledLanguage.get_all_strings(store),
         'configured': configured,
         'custom_homepage': custom_homepage,
-        'disable_submissions': node.disable_submissions,
-        'disable_privacy_badge': node.disable_privacy_badge,
-        'disable_security_awareness_badge': node.disable_security_awareness_badge,
-        'disable_security_awareness_questions': node.disable_security_awareness_questions,
-        'disable_key_code_hint': node.disable_key_code_hint,
-        'disable_donation_panel': node.disable_donation_panel,
-        'simplified_login': node.simplified_login,
-        'enable_captcha': node.enable_captcha,
-        'enable_proof_of_work': node.enable_proof_of_work,
-        'enable_experimental_features': node.enable_experimental_features,
-        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page,
-        'context_selector_type': node.context_selector_type,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'show_small_context_cards': node.show_small_context_cards,
-        'threshold_free_disk_megabytes_high': node.threshold_free_disk_megabytes_high,
-        'threshold_free_disk_megabytes_medium': node.threshold_free_disk_megabytes_medium,
-        'threshold_free_disk_megabytes_low': node.threshold_free_disk_megabytes_low,
-        'threshold_free_disk_percentage_high': node.threshold_free_disk_percentage_high,
-        'threshold_free_disk_percentage_medium': node.threshold_free_disk_percentage_medium,
-        'threshold_free_disk_percentage_low': node.threshold_free_disk_percentage_low,
-        'wbtip_timetolive': node.wbtip_timetolive,
-        'basic_auth': node.basic_auth,
-        'basic_auth_username': node.basic_auth_username,
-        'basic_auth_password': node.basic_auth_password
     }
 
-    return get_localized_values(ret_dict, node, models.Node.localized_keys, language)
+    l10n_dict = NodeL10NFactory(store).localized_dict(language)
+
+    return utils.sets.disjoint_union(node_dict, misc_dict, l10n_dict)
 
 
 @transact_ro
@@ -96,6 +49,32 @@ def admin_serialize_node(store, language):
     return db_admin_serialize_node(store, language)
 
 
+def enable_disable_languages(store, request):
+    cur_enabled_langs = EnabledLanguage.get_all_strings(store)
+    new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
+
+    if len(new_enabled_langs) < 1:
+        raise errors.InvalidInputFormat("No languages enabled!")
+
+    if request['default_language'] not in new_enabled_langs:
+        raise errors.InvalidInputFormat("Invalid lang code for chosen default_language")
+
+    appdata = None
+    for lang_code in new_enabled_langs:
+        if lang_code not in LANGUAGES_SUPPORTED_CODES:
+            raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
+        if lang_code not in cur_enabled_langs:
+            if appdata is None:
+              appdata = load_appdata()
+            log.debug("Adding a new lang %s" % lang_code)
+            EnabledLanguage.add_new_lang(store, lang_code, appdata)
+
+    for lang_code in cur_enabled_langs:
+        if lang_code not in new_enabled_langs:
+            EnabledLanguage.remove_old_lang(store, lang_code)
+
+
+# TODO This cmd issues at least 3 SQL queries on node config.
 def db_update_node(store, request, language):
     """
     Update and serialize the node infos
@@ -104,44 +83,24 @@ def db_update_node(store, request, language):
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the node
     """
-    node = store.find(models.Node).one()
+    enable_disable_languages(store, request)
 
-    fill_localized_keys(request, models.Node.localized_keys, language)
+    node_l10n = NodeL10NFactory(store)
+    node_l10n.update(request, language)
 
-    # verify that the languages enabled are valid 'code' in the languages supported
-    node.languages_enabled = []
-    for lang_code in request['languages_enabled']:
-        if lang_code in LANGUAGES_SUPPORTED_CODES:
-            node.languages_enabled.append(lang_code)
-        else:
-            raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
-
-    if not len(node.languages_enabled):
-        raise errors.InvalidInputFormat("Missing enabled languages")
-
-    # enforcing of default_language usage (need to be set, need to be _enabled)
-    if request['default_language']:
-        if request['default_language'] not in node.languages_enabled:
-            raise errors.InvalidInputFormat("Invalid lang code as default")
-
-        node.default_language = request['default_language']
-
-    else:
-        node.default_language = node.languages_enabled[0]
-        log.err("Default language not set!? fallback on %s" % node.default_language)
-
-    node.basic_auth = request['basic_auth']
-    if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
-        node.basic_auth = True
-        node.basic_auth_username = request['basic_auth_username']
-        node.basic_auth_password = request['basic_auth_password']
-    else:
-        node.basic_auth = False
-
+    node = NodeFactory(store)
     node.update(request)
+
+    if request['basic_auth'] and request['basic_auth_username'] != '' and request['basic_auth_password']  != '':
+        node.set_val('basic_auth', True)
+        node.set_val('basic_auth_username', request['basic_auth_username'])
+        node.set_val('basic_auth_password', request['basic_auth_password'])
+    else:
+        node.set_val('basic_auth', False)
 
     db_refresh_memory_variables(store)
 
+    # TODO pass instance of db_update_node into admin_serialize
     return db_admin_serialize_node(store, language)
 
 
