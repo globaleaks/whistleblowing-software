@@ -235,7 +235,7 @@ AdminNotificationDesc = {
     'port': int,
     'security': unicode, # 'TLS' or 'SSL' only
     'username': unicode,
-    'password': unicode,
+    'smtp_password': unicode,
     'source_name': unicode,
     'source_email': email_regexp,
     'tip_mail_template': unicode,

@@ -95,15 +95,15 @@ def sendmail(to_address, subject, body):
 
             return result_deferred.errback(reason)
 
-        authentication_username=GLSettings.memory_copy.notif_username
-        authentication_password=GLSettings.memory_copy.notif_password
-        from_address=GLSettings.memory_copy.notif_source_email
-        smtp_host=GLSettings.memory_copy.notif_server
-        smtp_port=GLSettings.memory_copy.notif_port
-        security=GLSettings.memory_copy.notif_security
+        authentication_username=GLSettings.memory_copy.notif.username
+        authentication_password=GLSettings.memory_copy.private.smtp_password
+        from_address=GLSettings.memory_copy.notif.source_email
+        smtp_host=GLSettings.memory_copy.notif.server
+        smtp_port=GLSettings.memory_copy.notif.port
+        security=GLSettings.memory_copy.notif.security
 
-        message = MIME_mail_build(GLSettings.memory_copy.notif_source_name,
-                                  GLSettings.memory_copy.notif_source_email,
+        message = MIME_mail_build(GLSettings.memory_copy.notif.source_name,
+                                  GLSettings.memory_copy.notif.source_email,
                                   to_address,
                                   to_address,
                                   subject,
@@ -231,7 +231,7 @@ def extract_exception_traceback_and_send_email(e):
 
 
 def send_exception_email(mail_body):
-    if not hasattr(GLSettings.memory_copy, 'exception_email_address'):
+    if not hasattr(GLSettings.memory_copy.notif, 'exception_email_address'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
@@ -265,8 +265,8 @@ def send_exception_email(mail_body):
         if len(GLSettings.memory_copy.exception_email_pgp_key_public):
             gpob = GLBPGP()
             try:
-                gpob.load_key(GLSettings.memory_copy.exception_email_pgp_key_public)
-                mail_body = gpob.encrypt_message(GLSettings.memory_copy.exception_email_pgp_key_fingerprint, mail_body)
+                gpob.load_key(GLSettings.memory_copy.notif.exception_email_pgp_key_public)
+                mail_body = gpob.encrypt_message(GLSettings.memory_copy.notif.exception_email_pgp_key_fingerprint, mail_body)
             except Exception as excep:
                 # If exception emails are configured to be subject to encryption an the key
                 # expires the only thing to do is to disable the email.
@@ -280,7 +280,7 @@ def send_exception_email(mail_body):
                 gpob.destroy_environment()
 
         # avoid to wait for the notification to happen  but rely on  background completion
-        sendmail(GLSettings.memory_copy.exception_email_address, mail_subject,  mail_body)
+        sendmail(GLSettings.memory_copy.notif.exception_email_address, mail_subject,  mail_body)
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors

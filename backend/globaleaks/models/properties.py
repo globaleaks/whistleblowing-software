@@ -45,14 +45,24 @@ class MetaModel(PropertyPublisherMeta):
 
         super(MetaModel, cls).__init__(name, bases, attrs)
 
+
+def iso_strp_time(s):
+    return datetime.datetime.strptime(s, "%Y-%m-%d %H:%M:%S.%f")
+
+
+def iso_strf_time(d):
+    return d.strftime("%Y-%m-%d %H:%M:%S.%f")
+
+
 class DateTimeVariable(_DateTimeVariable):
     """
     Extend storm variable for datetime objects to parse string-formatted dates.
     """
     def parse_set(self, value, from_db):
         if not from_db and isinstance(value, (str, unicode)):
-            value = datetime.datetime.strptime(value, "%Y-%m-%d %H:%M:%S.%f")
+            value = iso_strp_time(value)
         return super(DateTimeVariable, self).parse_set(value, from_db)
+
 
 class DateTime(_DateTime):
     """

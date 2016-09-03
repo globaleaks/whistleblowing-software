@@ -5,6 +5,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
 from globaleaks.handlers import admin, public
+from globaleaks.models import config
+from globaleaks.settings import GLSettings
 
 
 class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
@@ -14,10 +16,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_ahmia_disabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['ahmia'] = False
-
-        yield admin.node.update_node(nodedict, 'en')
+        GLSettings.memory_copy.ahmia = False
 
         yield handler.get()
 
@@ -25,9 +24,7 @@ class TestAhmiaDescriptionHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_ahmia_enabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['ahmia'] = True
-        yield admin.node.update_node(nodedict, 'en')
+        GLSettings.memory_copy.ahmia = True
 
         yield handler.get()
 
@@ -41,10 +38,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_disabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['allow_indexing'] = False
-
-        yield admin.node.update_node(nodedict, 'en')
+        GLSettings.memory_copy.allow_indexing = False
 
         yield handler.get()
 
@@ -55,9 +49,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandlerWithPopulatedDB):
     def test_get_with_indexing_enabled(self):
         handler = self.request({}, role='admin')
 
-        nodedict = helpers.MockDict().dummyNode
-        nodedict['allow_indexing'] = True
-        yield admin.node.update_node(nodedict, 'en')
+        GLSettings.memory_copy.allow_indexing = True
 
         yield handler.get()
 
@@ -73,4 +65,5 @@ class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='admin')
         yield handler.get()
 
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.PublicResourcesDesc)
+        resp_desc = self.ss_serial_desc(config.NodeFactory.public_node, requests.PublicResourcesDesc)
+        self._handler.validate_message(json.dumps(self.responses[0]), resp_desc)

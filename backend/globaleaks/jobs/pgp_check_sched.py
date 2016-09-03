@@ -74,7 +74,7 @@ class PGPCheckSchedule(GLJob):
                     expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
 
         if expired_or_expiring:
-            if not GLSettings.memory_copy.disable_admin_notification_emails:
+            if not GLSettings.memory_copy.notif.disable_admin_notification_emails:
                 self.prepare_admin_pgp_alerts(store, expired_or_expiring)
 
             for user_desc in expired_or_expiring:

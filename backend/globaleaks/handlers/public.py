@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# node
+# public
 #   ****
 #
 # Implementation of classes handling the HTTP request to /node, public
@@ -7,14 +7,19 @@
 import os
 
 from twisted.internet.defer import inlineCallbacks, returnValue
+from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
+from globaleaks.models import config, l10n
+from globaleaks.models.config import NodeFactory
+from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
+from globaleaks.utils.sets import disjoint_union
 
 
 @transact_ro
@@ -22,17 +27,14 @@ def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.
     """
-    node = store.find(models.Node).one()
-
-    mo = Rosetta(node.localized_keys)
-    mo.acquire_storm_object(node)
+    ret_dict = NodeFactory(store).public_export()
 
     return {
-        'title': node.name,
-        'description': mo.dump_localized_key('description', language),
-        'keywords': '%s (GlobaLeaks instance)' % node.name,
-        'relation': node.public_site,
-        'language': node.default_language,
+        'title': ret_dict['name'],
+        'description': NodeL10NFactory(store).get_val(language, 'description'),
+        'keywords': '%s (GlobaLeaks instance)' % ret_dict['name'],
+        'relation': ret_dict['public_site'],
+        'language': ret_dict['default_language'],
         'contactInformation': u'',
         'type': 'GlobaLeaks'
     }
@@ -40,65 +42,30 @@ def serialize_ahmia(store, language):
 
 def db_serialize_node(store, language):
     """
-    Serialize node infos.
+    Serialize node info.
     """
-    node = store.find(models.Node).one()
-
     # Contexts and Receivers relationship
     configured = store.find(models.ReceiverContext).count() > 0
 
-    ret_dict = {
-        'name': node.name,
-        'hidden_service': node.hidden_service,
-        'public_site': node.public_site,
-        'tb_download_link': node.tb_download_link,
-        'languages_enabled': node.languages_enabled,
+    ro_node = NodeFactory(store).public_export()
+
+    if GLSettings.devel_mode:
+        ro_node['submission_minimum_delay'] = 0
+
+    misc_dict = {
+        'languages_enabled': l10n.EnabledLanguage.get_all_strings(store),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'default_language': node.default_language,
-        'maximum_namesize': node.maximum_namesize,
-        'maximum_textsize': node.maximum_textsize,
-        'maximum_filesize': node.maximum_filesize,
-        'tor2web_admin': node.tor2web_admin,
-        'tor2web_custodian': node.tor2web_custodian,
-        'tor2web_whistleblower': node.tor2web_whistleblower,
-        'tor2web_receiver': node.tor2web_receiver,
-        'tor2web_unauth': node.tor2web_unauth,
-        'submission_minimum_delay': 0 if GLSettings.devel_mode else GLSettings.memory_copy.submission_minimum_delay,
-        'submission_maximum_ttl': GLSettings.memory_copy.submission_maximum_ttl,
-        'wbtip_timetolive': node.wbtip_timetolive,
-        'ahmia': node.ahmia,
-        'allow_indexing': node.allow_indexing,
-        'can_postpone_expiration': node.can_postpone_expiration,
-        'can_delete_submission': node.can_delete_submission,
-        'can_grant_permissions': node.can_grant_permissions,
-        'wizard_done': node.wizard_done,
-        'allow_unencrypted': node.allow_unencrypted,
-        'disable_encryption_warnings': node.disable_encryption_warnings,
-        'allow_iframes_inclusion': node.allow_iframes_inclusion,
         'configured': configured,
-        'disable_submissions': node.disable_submissions,
-        'disable_privacy_badge': node.disable_privacy_badge,
-        'disable_security_awareness_badge': node.disable_security_awareness_badge,
-        'disable_security_awareness_questions': node.disable_security_awareness_questions,
-        'disable_key_code_hint': node.disable_key_code_hint,
-        'disable_donation_panel': node.disable_donation_panel,
-        'simplified_login': node.simplified_login,
-        'enable_custom_privacy_badge': node.enable_custom_privacy_badge,
-        'landing_page': node.landing_page,
-        'context_selector_type': node.context_selector_type,
-        'show_contexts_in_alphabetical_order': node.show_contexts_in_alphabetical_order,
-        'show_small_context_cards': node.show_small_context_cards,
         'accept_submissions': GLSettings.accept_submissions,
-        'enable_captcha': node.enable_captcha,
-        'enable_proof_of_work': node.enable_proof_of_work,
-        'enable_experimental_features': node.enable_experimental_features,
         'logo': db_get_file(store, u'logo'),
         'css': db_get_file(store, u'css'),
         'homepage': db_get_file(store, u'homepage'),
         'script': db_get_file(store, u'script')
     }
 
-    return get_localized_values(ret_dict, node, node.localized_keys, language)
+    l10n_dict = NodeL10NFactory(store).localized_dict(language)
+    
+    return disjoint_union(ro_node, l10n_dict, misc_dict)
 
 
 @transact_ro
@@ -313,11 +280,6 @@ def db_get_public_context_list(store, language):
     return context_list
 
 
-@transact_ro
-def get_public_context_list(store, language):
-    return db_get_public_context_list(store, language)
-
-
 def db_get_public_receiver_list(store, language):
     receiver_list = []
 
@@ -325,17 +287,18 @@ def db_get_public_receiver_list(store, language):
         if receiver.user.state == u'disabled':
             continue
 
-        receiver_desc = serialize_receiver(receiver, language)
-        # receiver not yet ready for submission return None
-        if receiver_desc:
-            receiver_list.append(receiver_desc)
+        receiver_list.append(serialize_receiver(receiver, language))
 
     return receiver_list
 
 
 @transact_ro
-def get_public_receiver_list(store, language):
-    return db_get_public_receiver_list(store, language)
+def get_public_resources(store, language):
+    returnValue({
+        'node': db_serialize_node(store, language),
+        'contexts': db_get_public_context_list(store, language),
+        'receivers': db_get_public_receiver_list(store, language)
+    })
 
 
 class PublicResource(BaseHandler):
@@ -346,16 +309,8 @@ class PublicResource(BaseHandler):
         """
         Get all the public resources.
         """
-        @transact_ro
-        def _get_public_resources(store, language):
-            returnValue({
-              'node': db_serialize_node(store, language),
-              'contexts': db_get_public_context_list(store, language),
-              'receivers': db_get_public_receiver_list(store, language)
-            })
-
         ret = yield GLApiCache.get('public', self.request.language,
-                                   _get_public_resources, self.request.language)
+                                   get_public_resources, self.request.language)
         self.write(ret)
 
 
@@ -367,30 +322,26 @@ class AhmiaDescriptionHandler(BaseHandler):
         """
         Get the ahmia.fi descriptor
         """
-        node_info = yield GLApiCache.get('node', self.request.language,
-                                         serialize_node, self.request.language)
-
-        if node_info['ahmia']:
-            ret = yield GLApiCache.get('ahmia', self.request.language,
-                                       serialize_ahmia, self.request.language)
-
-            self.write(ret)
-        else:  # in case of disabled option we return 404
+        if not GLSettings.memory_copy.ahmia:
+            yield
             self.set_status(404)
+            return
+
+        ret = yield GLApiCache.get('ahmia', self.request.language,
+                                   serialize_ahmia, self.request.language)
+
+        self.write(ret)
 
 
 class RobotstxtHandler(BaseHandler):
+
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
-    @inlineCallbacks
     def get(self):
         """
         Get the robots.txt
         """
-        node_info = yield GLApiCache.get('node', self.request.language,
-                                         serialize_node, self.request.language)
-
         self.set_header('Content-Type', 'text/plain')
 
         self.write("User-agent: *\n")
-        self.write("Allow: /" if node_info['allow_indexing'] else "Disallow: /")
+        self.write("Allow: /" if GLSettings.memory_copy.allow_indexing else "Disallow: /")

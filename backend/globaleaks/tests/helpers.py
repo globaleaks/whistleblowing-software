@@ -121,8 +121,8 @@ def export_fixture(*models):
 
 
 @transact
-def update_node_encryption_setting(store, allow_unencrypted):
-    store.find(models.Node).one().allow_unencrypted = allow_unencrypted
+def update_node_setting(store, var_name, value):
+    models.config.NodeFactory(store).set_val(var_name, value)
 
 
 def change_field_type(field, field_type):
@@ -182,10 +182,11 @@ class TestGL(unittest.TestCase):
                 os.path.join(GLSettings.working_path, 'db', GLSettings.db_file_name)
             )
         else:
-            yield db.init_db()
+            yield db.init_db(use_single_lang=True)
 
-        allow_encrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
-        yield update_node_encryption_setting(allow_encrypted)
+        allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
+
+        yield update_node_setting('allow_unencrypted', allow_unencrypted)
 
         yield db.refresh_memory_variables()
 
@@ -706,6 +707,13 @@ class TestHandler(TestGLWithPopulatedDB):
             handler.request.headers['X-Session'] = session.id
 
         return handler
+
+    def ss_serial_desc(self, safe_set, request_desc):
+        """
+        Constructs a request_dec parser of a handler that uses a safe_set in its serialization
+        """
+        return {k : v for k, v in request_desc.iteritems() if k in safe_set}
+
 
 
 class TestHandlerWithPopulatedDB(TestHandler):

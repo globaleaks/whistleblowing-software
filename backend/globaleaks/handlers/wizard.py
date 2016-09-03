@@ -9,6 +9,8 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
+from globaleaks.models.config import NodeFactory
+from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -19,21 +21,32 @@ from twisted.internet.defer import inlineCallbacks
 
 @transact
 def wizard(store, request, language):
-    node = store.find(models.Node).one()
-    if node.wizard_done:
-      # TODO report as anomaly
-      log.err("DANGER: Wizard already initialized!")
-      raise errors.ForbiddenOperation
+    node = NodeFactory(store)
+
+    if node.get_val('wizard_done'):
+        # TODO report as anomaly
+        log.err("DANGER: Wizard already initialized!")
+        raise errors.ForbiddenOperation
     try:
-        node.default_language = language
-        node.languages_enabled = [language]
-        node.name = request['node']['name']
-        node.description[language] = request['node']['name']
-        node.header_title_homepage[language] = request['node']['name']
-        node.presentation[language] = request['node']['name']
-        node.wizard_done = True
+        node._query_group()
+
+        nn = unicode(request['node']['name'])
+        node.set_val('name', nn)
+        node.set_val('default_language', language)
+        node.set_val('wizard_done', True)
+
+        node_l10n = NodeL10NFactory(store, lang_code=language)
+
+        node_l10n.set_val('description', nn)
+        node_l10n.set_val('header_title_homepage', nn)
+        node_l10n.set_val('presentation', nn)
 
         context = db_create_context(store, request['context'], language)
+
+        langs_to_drop = EnabledLanguage.get_all_strings(store)
+        langs_to_drop.remove(language)
+        for lang_code in langs_to_drop:
+            EnabledLanguage.remove_old_lang(store, lang_code)
 
         request['receiver']['contexts'] = [context.id]
         request['receiver']['language'] = language

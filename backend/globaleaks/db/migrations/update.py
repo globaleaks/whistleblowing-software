@@ -248,9 +248,6 @@ class MigrationBase(object):
             for _, v in new_obj._storm_columns.iteritems():
                 self.migrate_model_key(old_obj, new_obj, v.name)
 
-            if model_name == 'Notification':
-                self.migration_fix_Notification(old_obj, new_obj)
-
             self.store_new.add(new_obj)
 
     def migration_fix_Notification(self, old_obj, new_obj):
