@@ -400,10 +400,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
        * whistleblower.
        */
       self.submit = function() {
-        if (!self._submission || !self.receivers_selected) {
-          return;
-        }
-
         self.done = true;
 
         self._submission.receivers = [];
