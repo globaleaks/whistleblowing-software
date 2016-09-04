@@ -154,6 +154,9 @@ def db_create_context(store, request, language):
     if request['questionnaire_id'] == '':
         request['questionnaire_id'] = db_get_default_questionnaire_id(store)
 
+    if not request['allow_recipients_selection']:
+        request['select_all_receivers'] = True
+
     context = models.Context(request)
 
     store.add(context)
@@ -202,6 +205,9 @@ def update_context(store, context_id, request, language):
     context = store.find(models.Context, models.Context.id == context_id).one()
     if not context:
         raise errors.ContextIdNotFound
+
+    if not request['allow_recipients_selection']:
+        request['select_all_receivers'] = True
 
     context = db_update_context(store, context, request, language)
 
