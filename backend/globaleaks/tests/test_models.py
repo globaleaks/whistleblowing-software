@@ -402,10 +402,12 @@ class TestField(helpers.TestGL):
             label={"en": "the first testable field"},
             type='checkbox'
         )
+
         field2_id = yield self.create_dummy_field(
             label={"en": "the second testable field"},
             type='inputbox'
         )
+
         fieldgroup_id = yield self.create_dummy_field(
             label={"en": "a testable group of fields."},
             type='fieldgroup',
