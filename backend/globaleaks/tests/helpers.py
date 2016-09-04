@@ -273,7 +273,7 @@ class TestGL(unittest.TestCase):
         return {
             'id': '',
             'key': '',
-            'instance': 'instance',
+            'instance': 'template',
             'editable': True,
             'template_id': '',
             'step_id': '',
@@ -472,7 +472,8 @@ class TestGL(unittest.TestCase):
     def get_receiverfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
-        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.internaltip_id == unicode(wbtip.internaltip_id))
+        rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
+                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.internaltip_id))
 
         return [serialize_receiverfile(rfile) for rfile in rfiles]
 

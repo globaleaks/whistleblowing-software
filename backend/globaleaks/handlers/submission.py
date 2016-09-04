@@ -245,9 +245,9 @@ def serialize_receiverfile(rfile):
     rfile_dict = {
         'id' : rfile.id,
         'creation_date': datetime_to_ISO8601(rfile.internalfile.internaltip.creation_date),
-        'internaltip_id': rfile.internaltip_id,
+        'internaltip_id': rfile.internalfile.internaltip_id,
         'internalfile_id': rfile.internalfile_id,
-        'receiver_id': rfile.receiver_id,
+        'receiver_id': rfile.receivertip.receiver_id,
         'receivertip_id': rfile.receivertip_id,
         'file_path': rfile.file_path,
         'size': rfile.size,
