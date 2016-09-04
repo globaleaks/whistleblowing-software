@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
 
+from cyclone.web import HTTPError
+
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 
-from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, TimingStatsHandler
+from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, BaseStaticFileHandler, TimingStatsHandler
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
@@ -107,6 +109,22 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(BaseHandler.validate_host("thirteenchars123.onion:31337"))
         self.assertFalse(BaseHandler.validate_host("invalid.onion"))
         self.assertFalse(BaseHandler.validate_host("invalid.onion:12345"))  # gabanbus i miss you!
+
+
+class TestBaseStaticFileHandler(helpers.TestHandler):
+    _handler = BaseStaticFileHandler
+
+    @inlineCallbacks
+    def test_get_existent(self):
+        handler = self.request()
+        handler.root = GLSettings.client_path
+        yield handler.get('')
+        self.assertEqual(handler.get_status(), 200)
+
+    def test_get_unexistent(self):
+        handler = self.request()
+        handler.root = GLSettings.client_path
+        self.assertRaises(HTTPError, handler.get, 'unexistent')
 
 
 class TestTimingStats(helpers.TestHandler):
