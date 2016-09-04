@@ -359,25 +359,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           }
         });
-
-        // temporary fix for contitions in which receiver selection step is disabled but
-        // select_all_receivers is marked false and the admin has forgotten to mark at least
-        // one receiver to automtically selected nor the user is coming from a link with
-        // explicit receivers selection.
-        // in all this conditions we select all receivers for which submission is allowed.
-        if (!self.context.allow_recipients_selection) {
-          if (self.count_selected_receivers() === 0 && !self.context.select_all_receivers) {
-            angular.forEach($rootScope.receivers, function(receiver) {
-              if (self.context.receivers.indexOf(receiver.id) !== -1) {
-                if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
-                  if (receiver.configuration !== 'unselectable') {
-                    self.receivers_selected[receiver.id] = true;
-                  }
-                }
-              }
-            });
-          }
-        }
       };
 
       /**
