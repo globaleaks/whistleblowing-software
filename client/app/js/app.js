@@ -144,7 +144,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Recipient interface',
         header_subtitle: 'Preferences',
         resolve: {
-          access: requireAuth('*'),
+          access: requireAuth('receiver'),
         }
       }).
       when('/receiver/tips', {
@@ -243,7 +243,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'User preferences',
         header_subtitle: '',
         resolve: {
-          access: requireAuth('admin'),
+          access: requireAuth('*'),
         }
       }).
       when('/admin/overview/users', {
