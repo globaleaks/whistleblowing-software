@@ -24,35 +24,36 @@ describe('globaLeaks process', function() {
       });
     });
 
-    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click().then(function () {
-      element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click().then(function () {
-        element(by.id('NextStepButton')).click().then(function () {
-          element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text).then(function () {
-            if (utils.testFileUpload()) {
-              browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-              element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                browser.waitForAngular();
-                element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
-                  browser.waitForAngular();
-                });
-              });
-            }
+    element(by.id('NextStepButton')).click();
+    element(by.id('PreviousStepButton')).click();
 
-            var submit_button = element(by.id('SubmitButton'));
-            var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-            browser.wait(isClickable);
+    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
+    element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
 
-            submit_button.click().then(function() {
-              utils.waitForUrl('/receipt');
-              element(by.id('KeyCode')).getText().then(function (txt) {
-                receipts.unshift(txt);
-                element(by.id('ReceiptButton')).click().then(function() {
-                  utils.waitForUrl('/status');
-                  utils.logout();
-                });
-              });
-            });
-          });
+    element(by.id('NextStepButton')).click();
+
+    element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text);
+    if (utils.testFileUpload()) {
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+      element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+        browser.waitForAngular();
+        element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+          browser.waitForAngular();
+        });
+      });
+    }
+
+    var submit_button = element(by.id('SubmitButton'));
+    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
+    browser.wait(isClickable);
+
+    submit_button.click().then(function() {
+      utils.waitForUrl('/receipt');
+      element(by.id('KeyCode')).getText().then(function (txt) {
+        receipts.unshift(txt);
+        element(by.id('ReceiptButton')).click().then(function() {
+          utils.waitForUrl('/status');
+          utils.logout();
         });
       });
     });
