@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 
-from cyclone.web import HTTPError
+from cyclone.web import HTTPError, HTTPAuthenticationRequired
 
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
@@ -49,6 +49,36 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         yield handler.get_authenticated()
         date2 = GLSessions.get(session.id).getTime()
         self.assertEqual(date1 + FUTURE, date2)
+
+    @inlineCallbacks
+    def test_base_handler_on_finish(self):
+        handler = self.request({})
+        yield handler.get_unauthenticated()
+        handler.on_finish()
+
+    @inlineCallbacks
+    def test_basic_auth_on_and_valid_authentication(self):
+        GLSettings.memory_copy.basic_auth = True
+        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
+        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
+        handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczpnbG9iYWxlYWtz'})
+        yield handler.get_unauthenticated()
+
+    @inlineCallbacks
+    def test_basic_auth_on_and_invalid_authentication(self):
+        GLSettings.memory_copy.basic_auth = True
+        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
+        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
+        handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczp3cm9uZ3Bhc3N3b3Jk'})
+        yield self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
+
+    @inlineCallbacks
+    def test_basic_auth_on_and_missing_authentication(self):
+        GLSettings.memory_copy.basic_auth = True
+        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
+        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
+        handler = self.request({})
+        yield self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
 
     @inlineCallbacks
     def test_get_with_no_language_header(self):
