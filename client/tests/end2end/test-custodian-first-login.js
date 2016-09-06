@@ -20,6 +20,7 @@ describe('receiver first login', function() {
   });
 
   it('should be able to change password accessing the user preferences', function() {
+    element(by.cssContainingText("a", "Preferences")).click();
     element(by.cssContainingText("a", "Password configuration")).click();
     element(by.model('preferences.old_password')).sendKeys(temporary_password);
     element(by.model('preferences.password')).sendKeys(utils.vars['user_password']);
