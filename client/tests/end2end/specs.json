@@ -19,5 +19,5 @@
   "test-globaleaks-process.js",
   "test-authentication-redirects.js",
   "test-file-consistency.js",
-  "test-css-customization.js"
+  "test-admin-visualize-stats.js"
 ]
