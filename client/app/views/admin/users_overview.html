@@ -1,54 +1,23 @@
 <div class="row">
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
-    <span data-translate>This interface shows user activity on your server. It may be helpful in detecting anomalies and providing support to the recipients using your server.</span>
-    <div data-ng-if="receivers.length">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-horizontal">
-            <span class="form-group col-md-12" data-ng-init="search.id = receivers.length ? receivers[0].id : ''">
-              <label class="control-label col-md-4">
-                <span data-translate>Recipient</span>:
-              </label>
-              <div class="col-md-6">
-                <select data-ng-model="search.id" class="form-control">
-                  <option data-ng-repeat="receiver in receivers" value="{{::receiver.id}}">{{::receiver.name}}</option>
-                </select>
-              </div>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-condensed table-striped" id="receiverList">
-          <thead>
-            <tr>
-              <th class="col-md-6">
-                <span data-translate>Submissions</span>
-              </th>
-              <th class="col-md-6">
-                <span data-translate>Files and downloads</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody id="receiverListBody">
-            <tr data-ng-repeat="receiver in receivers | filter:search">
-              <td class="col-md-4">
-                <div data-ng-repeat="rtip in receiver.receivertips">
-                  <span class="glyphicon glyphicon-book"></span>
-                  <span>{{::rtip.status}} {{::rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{::rtip.access_counter}})</span>
-                </div>
-              </td>
-              <td class="col-md-4">
-                <div data-ng-repeat="rfile in receiver.receiverfiles">
-                  <span class="glyphicon glyphicon-file"></span>
-                  <span>{{::rfile.file_name}} ({{::rfile.downloads}}), {{::rfile.last_access | date:'dd-MM-yyyy HH:mm'}}</span>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <table class="table table-condensed table-striped" id="userList">
+      <thead>
+        <tr>
+          <th class="col-md-3" data-translate>ID</th>
+          <th class="col-md-3" data-translate>Role</th>
+          <th class="col-md-3" data-translate>Name</th>
+          <th class="col-md-3" data-translate>Last access</th>
+        </tr>
+      </thead>
+      <tbody id="userListBody">
+        <tr data-ng-repeat="user in users">
+          <td class="col-md-3">{{::user.id}}</td>
+          <td class="col-md-3">{{::user.role}}</td>
+          <td class="col-md-3">{{::user.name}}</td>
+          <td class="col-md-3">{{::user.last_login | date:'dd-MM-yyyy HH:mm'}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

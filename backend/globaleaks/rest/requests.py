@@ -450,39 +450,18 @@ NodeDesc = {
 
 TipOverviewDesc = {
     'context_id': uuid_regexp,
-    'creation_lifetime': DateType,
-    'receivertips': list,
     'creation_date': DateType,
     'context_name': unicode,
     'id': uuid_regexp,
-    'wb_access_counter': int,
-    'internalfiles': list,
-    'comments': list,
-    'wb_last_access': unicode,
     'expiration_date': DateType
 }
 
 TipsOverviewDesc = [TipOverviewDesc]
 
-UserOverviewDesc = {
-    'receivertips': list,
-    'receiverfiles': list,
-    'id': uuid_regexp,
-    'name': unicode
-}
-
-UsersOverviewDesc = [UserOverviewDesc]
-
 FileOverviewDesc = {
-    'rfiles': int,
-    'stored': bool,
-    'name': unicode,
-    'content_type': unicode,
-    'itip': uuid_regexp,
-    'path': unicode,
-    'creation_date': DateType,
     'id': uuid_regexp,
-    'size': int
+    'itip': uuid_regexp,
+    'path': unicode
 }
 
 ReceiverIdentityAccessRequestDesc = {
