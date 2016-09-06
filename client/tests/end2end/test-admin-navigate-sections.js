@@ -26,12 +26,5 @@ describe('verify navigation of admin sections', function() {
     element(by.cssContainingText("a", "Main configuration")).click();
     element(by.cssContainingText("a", "HTTPS settings")).click();
     element(by.cssContainingText("a", "Anomaly detection thresholds")).click();
-
-    element(by.cssContainingText("a", "Recent activities")).click();
-    element(by.cssContainingText("a", "System stats")).click();
-    element(by.cssContainingText("a", "Anomalies")).click();
-    element(by.cssContainingText("a", "User overview")).click();
-    element(by.cssContainingText("a", "Submission overview")).click();
-    element(by.cssContainingText("a", "File overview")).click();
   });
 });
