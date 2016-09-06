@@ -32,10 +32,6 @@ def init_models():
 
 
 def db_create_tables(store):
-    if not os.access(GLSettings.db_schema, os.R_OK):
-        log.err("Unable to access %s" % GLSettings.db_schema)
-        raise Exception("Unable to access db schema file")
-
     with open(GLSettings.db_schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
