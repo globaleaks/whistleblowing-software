@@ -31,6 +31,7 @@
     "node-gettext": "0.2.14",
     "openpgp": "2.3.3",
     "protractor": "4.0.4",
+    "protractor-accessibility-plugin": "0.1.1",
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
     "superagent": "2.2.0",

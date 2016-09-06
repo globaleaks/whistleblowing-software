@@ -36,5 +36,12 @@ exports.config = {
     isVerbose: true,
     includeStackTrace: true,
     defaultTimeoutInterval: 60000
-  }
+  },
+
+  plugins: [{
+    chromeA11YDevTools: {
+      treatWarningsAsFailures: false
+    },
+    package: 'protractor-accessibility-plugin'
+  }]
 };
