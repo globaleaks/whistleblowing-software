@@ -113,9 +113,6 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['FieldOption']()
             for _, v in new_obj._storm_columns.iteritems():
-                if v.name == 'option_id':
-                    continue
-
                 if v.name == 'trigger_field':
                     continue
 
