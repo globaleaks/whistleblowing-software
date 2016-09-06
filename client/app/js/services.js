@@ -594,9 +594,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
     return new GLResource('custodian/identityaccessrequests');
 }]).
-  factory('ReceiverOverview', ['GLResource', function(GLResource) {
-    return new GLResource('admin/overview/users');
-}]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/contexts/:id', {id: '@id'});
 }]).

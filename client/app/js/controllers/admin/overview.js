@@ -1,7 +1,6 @@
-GLClient.controller('OverviewCtrl', ['$scope', '$location', 'ReceiverOverview', 'TipOverview', 'FileOverview',
-  function($scope, $location, ReceiverOverview, TipOverview, FileOverview) {
-
-      $scope.receivers = ReceiverOverview.query();
+GLClient.controller('OverviewCtrl', ['$scope', '$location', 'AdminUserResource', 'TipOverview', 'FileOverview',
+  function($scope, $location, AdminUserResource, TipOverview, FileOverview) {
+      $scope.users = AdminUserResource.query();
       $scope.tips = TipOverview.query();
       $scope.files = FileOverview.query();
 

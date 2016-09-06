@@ -124,7 +124,6 @@ spec = [
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/([a-zA-Z0-9_\-\/\.]*)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
-    (r'/admin/overview/users', admin_overview.Users),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),
 
