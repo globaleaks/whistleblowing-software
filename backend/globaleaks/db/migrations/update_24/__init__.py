@@ -542,14 +542,6 @@ class MigrationScript(MigrationBase):
                     new_obj.total_score = 0
                     continue
 
-                if v.name == 'enable_comments':
-                    new_obj.enable_comments = old_obj.context.enable_comments
-                    continue
-
-                if v.name == 'enable_messages':
-                    new_obj.enable_messages = old_obj.context.enable_private_messages
-                    continue
-
                 if v.name == 'enable_two_way_comments':
                     new_obj.enable_two_way_comments = True
                     continue
