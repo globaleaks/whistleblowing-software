@@ -5,7 +5,7 @@
       <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-12" data-ng-click="selectContext(context)">
         <div class="contextList">
           <div class="contextListContent">
-            <span class="verticalAlignHelper"></span><span><img class="contextImg" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" /></span><span><b>{{context.name}}</b></span><div data-ng-if="::context.description" class="contextListDescription">{{::context.description}}</span>
+            <span class="verticalAlignHelper"></span><span><img class="contextImg" alt="context picture" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" /></span><span><b>{{context.name}}</b></span><div data-ng-if="::context.description" class="contextListDescription">{{::context.description}}</span>
           </div>
         </div>
       </div>
@@ -21,7 +21,7 @@
           </div>
           <div class="contextCardContent row">
             <div class="contextCardFrame" data-ng-class="{'col-md-3': !node.small_context_cards, 'col-md-12': node.show_small_context_cards}">
-              <span class="verticalAlignHelper"></span><img class="contextImg" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" />
+              <span class="verticalAlignHelper"></span><img class="contextImg" alt="context picture" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" />
             </div>
             <div data-ng-if="!node.show_small_context_cards" class="contextCardDescription col-md-7">{{::context.description}}</div>
           </div>
