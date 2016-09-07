@@ -283,14 +283,14 @@ CREATE TABLE field (
     FOREIGN KEY (step_id) REFERENCES step(id) ON DELETE CASCADE,
     FOREIGN KEY (template_id) REFERENCES field(id) ON DELETE CASCADE,
     PRIMARY KEY (id),
-    CONSTRAINT chk_parent CHECK ((instance IS 'instance' AND template_id IS NULL AND
-                                                             ((step_id IS NOT NULL AND fieldgroup_id IS NULL) OR
-                                                              (step_id IS NULL AND fieldgroup_id IS NOT NULL))) OR
-                                 (instance IS 'reference' AND template_id is NOT NULL AND
-                                                              ((step_id IS NOT NULL AND fieldgroup_id IS NULL) OR
+    CONSTRAINT check_parent CHECK ((instance IS 'instance' AND template_id IS NULL AND
+                                                               ((step_id IS NOT NULL AND fieldgroup_id IS NULL) OR
                                                                (step_id IS NULL AND fieldgroup_id IS NOT NULL))) OR
-                                 (instance IS 'template' AND template_id IS NULL AND
-                                                             NOT(step_id IS NOT NULL AND fieldgroup_id IS NOT NULL)))
+                                   (instance IS 'reference' AND template_id is NOT NULL AND
+                                                                ((step_id IS NOT NULL AND fieldgroup_id IS NULL) OR
+                                                                 (step_id IS NULL AND fieldgroup_id IS NOT NULL))) OR
+                                   (instance IS 'template' AND template_id IS NULL AND
+                                                               NOT(step_id IS NOT NULL AND fieldgroup_id IS NOT NULL)))
 );
 
 CREATE TABLE fieldattr (
