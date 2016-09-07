@@ -1,0 +1,18 @@
+<table id="fileList" class="table table-condensed table-striped">
+  <thead>
+    <tr>
+      <th class="col-md-3" data-translate>ID</th>
+      <th class="col-md-3" data-translate>Submission</th>
+      <th class="col-md-3" data-translate>Path</th>
+      <th class="col-md-2" data-translate>Size</th>
+    </tr>
+  </thead>
+  <tbody id="fileListBody">
+    <tr data-ng-repeat="file in admin.file_overview">
+      <td class="col-md-4">{{::file.id}}</td>
+      <td class="col-md-2">{{::file.itip}}</td>
+      <td class="col-md-2">{{::file.path}}</td>
+      <td class="col-md-2">{{::file.size | byteFmt:2}}</td>
+    </tr>
+  </tbody>
+</table>

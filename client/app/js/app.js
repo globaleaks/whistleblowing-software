@@ -246,29 +246,11 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('*'),
         }
       }).
-      when('/admin/overview/users', {
-        templateUrl: 'views/admin/users_overview.html',
-        controller: 'OverviewCtrl',
+      when('/admin/overview', {
+        templateUrl: 'views/admin/overview.html',
+        controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'User overview',
-        resolve: {
-          access: requireAuth('admin'),
-        }
-      }).
-      when('/admin/overview/tips', {
-        templateUrl: 'views/admin/tips_overview.html',
-        controller: 'OverviewCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Submission overview',
-        resolve: {
-          access: requireAuth('admin'),
-        }
-      }).
-      when('/admin/overview/files', {
-        templateUrl: 'views/admin/files_overview.html',
-        controller: 'OverviewCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'File overview',
+        header_subtitle: 'System overview',
         resolve: {
           access: requireAuth('admin'),
         }

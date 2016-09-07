@@ -56,7 +56,7 @@ def collect_files_overview(store):
         file_desc = {
             'id': rfile.internalfile_id,
             'itip': rfile.internalfile.internaltip_id,
-            'path': rfile.internalfile.file_path,
+            'path': rfile.file_path,
             'size': rfile.size
 
         }
