@@ -262,7 +262,7 @@ def send_exception_email(mail_body):
             mail_subject +=  " [%s]" % GLSettings.developer_name
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if len(GLSettings.memory_copy.exception_email_pgp_key_public):
+        if len(GLSettings.memory_copy.notif.exception_email_pgp_key_public):
             gpob = GLBPGP()
             try:
                 gpob.load_key(GLSettings.memory_copy.notif.exception_email_pgp_key_public)

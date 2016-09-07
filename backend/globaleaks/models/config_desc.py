@@ -52,16 +52,14 @@ GLConfig = {
         'disable_admin_notification_emails': Bool(default=False),
         'disable_custodian_notification_emails': Bool(default=False),
         'disable_receiver_notification_emails': Bool(default=False),
-        'send_email_for_every_event': Bool(default=True), # TODO remove me, I am unused
 
         'tip_expiration_threshold': Int(validator=natnum_v, default=72),
         'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
-        'notification_suspension_time': Int(validator=natnum_v, default=(2 * 3600)), #TODO remove unused
 
         'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
-        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())), #TODO remove unused
+        'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),
     },
     'node': {
         'name': Unicode(validator=shorttext_v, default=u''),
