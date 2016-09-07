@@ -773,8 +773,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'TipOverview', 'FileOverview',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, TipOverview, FileOverview) {
   return function(fn) {
       var self = this;
 
@@ -786,6 +786,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
       self.shorturls = AdminShorturlResource.query();
+      self.tip_overview = TipOverview.query();
+      self.file_overview = FileOverview.query();
 
       self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
         self.field_attrs = field_attrs;

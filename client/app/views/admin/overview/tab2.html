@@ -1,0 +1,34 @@
+<table data-ng-controller="" id="RecentEventList" class="table table-condensed table-striped" data-ng-init="sortKey = 'time'; sortReverse=true;">
+  <thead>
+    <tr>
+      <th data-ng-click="sortKey = 'event_id'; sortReverse = !sortReverse">
+        <span data-translate>Event ID</span>
+        <span data-ng-show="sortKey == 'event_id' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+        <span data-ng-show="sortKey == 'event_id' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+      </th>
+      <th data-ng-click="sortKey = 'time'; sortReverse = !sortReverse">
+        <span data-translate>Time</span>
+        <span data-ng-show="sortKey == 'time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+        <span data-ng-show="sortKey == 'time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+      </th>
+      <th data-ng-click="sortKey = 'event'; sortReverse = !sortReverse">
+        <span data-translate>Event</span>
+        <span data-ng-show="sortKey == 'event' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+        <span data-ng-show="sortKey == 'event' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+      </th>
+      <th data-ng-click="sortKey = 'response_time'; sortReverse = !sortReverse">
+       <span data-translate>Response time</span>
+        <span data-ng-show="sortKey == 'response_time' && !sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+        <span data-ng-show="sortKey == 'response_time' && sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr data-ng-repeat="activity in activities | orderBy:sortKey:sortReverse">
+      <td>{{activity.id}}</td>
+      <td>{{activity.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+      <td>{{activity.event}}</td>
+      <td>{{activity.duration}}</td>
+    </tr>
+  </tbody>
+</table>
