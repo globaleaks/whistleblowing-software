@@ -37,4 +37,10 @@ describe('receiver first login', function() {
   it('should be able to load his/her public PGP key', function() {
     receiver.addPublicKey(pgp_key);
   });
+
+  it('should redirect the user to its landing page if visiting the login page as logged user', function() {
+    utils.login_receiver();
+    browser.setLocation('login');
+    utils.waitForUrl('/receiver/tips');
+  });
 });
