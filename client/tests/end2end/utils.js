@@ -180,6 +180,15 @@ exports.logout = function(redirect_url) {
   exports.waitForUrl(redirect_url);
 };
 
+exports.clickFirstDisplayed = function(selector) {
+  var elems = element.all(selector);
+
+  var displayedElems = elems.filter(function(elem) {
+    return elem.isDisplayed();
+  });
+
+  displayedElems.first().click();
+}
 
 // Utility Functions for handling File operations
 

@@ -11,7 +11,7 @@ describe('receiver first login', function() {
     element(by.model('preferences.old_password')).sendKeys(utils.vars['default_password']);
     element(by.model('preferences.password')).sendKeys(temporary_password);
     element(by.model('preferences.check_password')).sendKeys(temporary_password);
-    element(by.css('[data-ng-click="pass_save()"]')).click();
+    element(by.css('[data-ng-click="save()"]')).click();
     utils.waitForUrl('/custodian/identityaccessrequests');
   });
 
@@ -25,6 +25,6 @@ describe('receiver first login', function() {
     element(by.model('preferences.old_password')).sendKeys(temporary_password);
     element(by.model('preferences.password')).sendKeys(utils.vars['user_password']);
     element(by.model('preferences.check_password')).sendKeys(utils.vars['user_password']);
-    element(by.css('[data-ng-click="pass_save()"]')).click();
+    utils.clickFirstDisplayed(by.css('[data-ng-click="save()"]'));
   });
 });
