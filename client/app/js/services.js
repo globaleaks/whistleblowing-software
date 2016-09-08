@@ -773,8 +773,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'TipOverview', 'FileOverview',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, TipOverview, FileOverview) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview) {
   return function(fn) {
       var self = this;
 
@@ -786,6 +786,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.receivers = AdminReceiverResource.query();
       self.notification = AdminNotificationResource.get();
       self.shorturls = AdminShorturlResource.query();
+      self.activities = ActivitiesCollection.query();
+      self.anomalies = AnomaliesCollection.query();
       self.tip_overview = TipOverview.query();
       self.file_overview = FileOverview.query();
 
@@ -807,7 +809,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               self.fieldtemplates.$promise,
               self.receivers.$promise,
               self.notification.$promise,
-              self.shorturls.$promise]).then(function() {
+              self.shorturls.$promise,
+              self.activities.$promise,
+              self.anomalies.$promise,
+              self.tip_overview.$promise,
+              self.file_overview.$promise]).then(function() {
         fn(this);
       });
     };
