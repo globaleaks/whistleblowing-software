@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="activity in activities | orderBy:sortKey:sortReverse">
+    <tr data-ng-repeat="activity in admin.activities | orderBy:sortKey:sortReverse">
       <td>{{activity.id}}</td>
       <td>{{activity.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{activity.event}}</td>

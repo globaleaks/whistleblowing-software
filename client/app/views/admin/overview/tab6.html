@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="anomaly in anomalies">
+    <tr data-ng-repeat="anomaly in admin.anomalies">
       <td>{{anomaly.date | date:'dd-MM-yyyy HH:mm'}}</td>
       <td>{{anomaly.alarm}}</td>
       <td data-ng-repeat="event in anomaly.events">
