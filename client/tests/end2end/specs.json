@@ -6,6 +6,7 @@
   "test-admin-configure-languages.js",
   "test-admin-configure-node.js",
   "test-admin-configure-css.js",
+  "test-admin-custom-file.js",
   "test-internationalization.js",
   "test-admin-configure-custom-texts.js",
   "test-admin-configure-mail.js",

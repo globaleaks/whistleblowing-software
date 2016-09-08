@@ -9,7 +9,7 @@
       <label data-translate>Upload custom file</label>
       <br />
       <span data-translate>The file will be available at URL: /s/$filename</span>
-      <div class="well well-large uploadfile" data-ng-controller="AdminFileUploadCtrl">
+      <div class="well well-large uploadfile file-custom" data-ng-controller="AdminFileUploadCtrl">
         <span flow-init="{target: 'admin/staticfiles/upload', headers: Authentication.get_headers()}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()">
@@ -26,8 +26,8 @@
         <br />
         <div class="table-container">
           <table class="table table-striped" id="fileList">
-            <tbody id="fileListBody" data-ng-repeat="file in staticfiles | orderBy:'filename'">
-              <tr>
+            <tbody id="fileListBody">
+              <tr data-ng-repeat="file in staticfiles | orderBy:'filename'">
                 <td>{{file.filename}}</td>
                 <td>
                   <a class="btn btn-primary" data-ng-href="s/{{file.filename}}" download="{{file.filename}}">
