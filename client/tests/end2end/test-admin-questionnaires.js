@@ -22,7 +22,7 @@ describe('admin add, configure and delete questionnaires', function() {
 
       element.all(by.css('[data-ng-click="delOption(field, option)"]')).get(2).click();
 
-      element(by.css('[data-ng-click="save_field(field)"]')).click();
+      utils.clickFirstDisplayed(by.css('[data-ng-click="save_field(field)"]'));
     }
   };
 

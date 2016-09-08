@@ -41,30 +41,9 @@ GLClient.controller('PreferencesCtrl', ['$scope', '$rootScope', 'CONSTANTS',
 
     $scope.email_regexp = CONSTANTS.email_regexp;
 
-    $scope.pass_save = function () {
-      if ($scope.preferences.pgp_key_remove === undefined) {
-        $scope.preferences.pgp_key_remove = false;
-      }
-      if ($scope.preferences.pgp_key_public === undefined) {
-        $scope.preferences.pgp_key_public = '';
-      }
-
-      $scope.preferences.$update(function () {
-        $rootScope.successes.push({message: 'Updated your password!'});
-      });
-    };
-
-    $scope.pref_save = function() {
-      $scope.preferences.password = '';
-      $scope.preferences.old_password = '';
-
+    $scope.save = function() {
       if ($scope.preferences.pgp_key_remove === true) {
         $scope.preferences.pgp_key_public = '';
-      }
-
-      if ($scope.preferences.pgp_key_public !== undefined &&
-          $scope.preferences.pgp_key_public !== '') {
-        $scope.preferences.pgp_key_remove = false;
       }
 
       $scope.preferences.$update(function() {

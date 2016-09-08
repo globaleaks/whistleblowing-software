@@ -1,13 +1,8 @@
 GLClient
 .controller('ForcedPasswordChangeCtrl', ['$scope', '$location', 'locationForce',
   function($scope, $location, locationForce) {
-
-    $scope.pass_save = function () {
+    $scope.save = function () {
       locationForce.clear();
-
-      // avoid changing any PGP setting
-      $scope.preferences.pgp_key_remove = false;
-      $scope.preferences.pgp_key_public = '';
 
       $scope.preferences.$update(function () {
         $location.path($scope.session.auth_landing_page);
