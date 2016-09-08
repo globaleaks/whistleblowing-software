@@ -1,3 +1,9 @@
+Changes in version 2.63.5 - 2016-09-09
+    o Fix migration script 33 in relation to field constraints
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1759
+
 Changes in version 2.63.4 - 2016-09-03
     o Minor UI fixes
     o Add CHECK constraints to field table to improve data consistency.
