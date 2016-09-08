@@ -15,7 +15,11 @@ describe('globaLeaks process', function() {
   var receiver_password = utils.vars['user_password'];
 
   var perform_submission = function() {
-    browser.get('/#/submission');
+    browser.get('/#/');
+    element(by.cssContainingText("button", "Blow the whistle")).click();
+    browser.driver.switchTo().activeElement();
+    element(by.id("answer-2")).click();
+    element(by.cssContainingText("a", "Proceed to submission")).click();
 
     browser.wait(function(){
       // Wait until the proof of work is resolved;
@@ -58,13 +62,6 @@ describe('globaLeaks process', function() {
       });
     });
   };
-
-  it('should redirect to /submission by clicking on the blow the whistle button', function() {
-    browser.get('/#/');
-    element(by.css('[data-ng-click="goToSubmission()"]')).click().then(function () {
-      utils.waitForUrl('/submission');
-    });
-  });
 
   it('Whistleblowers should be able to submit tips (1)', function() {
     perform_submission();
