@@ -87,7 +87,7 @@
               </span>
             </span>
           </div>
-          <div data-ng-form="editStep" data-ng-show="editing">
+          <div data-ng-form="editStep" data-ng-if="editing">
             <hr />
             <div class="row">
               <div class="form-group">
@@ -129,7 +129,7 @@
                 <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
               </div>
             </div>
-            <div id="FieldsEditBox" class="form-group" data-ng-show="step.children.length > 0">
+            <div id="FieldsEditBox" class="form-group" data-ng-if="step.children.length > 0">
               <div class="row">
                 <span class="col-md-12">
                   <label data-translate>Configured questions:</label>

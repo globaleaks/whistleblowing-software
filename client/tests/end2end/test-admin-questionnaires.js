@@ -11,6 +11,19 @@ describe('admin add, configure and delete questionnaires', function() {
     element.all(by.model('new_field.label')).first().sendKeys(question_type);
     element.all(by.model('new_field.type')).first().element(by.xpath(".//*[text()='" + question_type + "']")).click();
     element.all(by.id('add-field-button')).first().click();
+
+    if(['Checkbox', 'Multiple choice input', 'Selection box'].indexOf(question_type) === 0) {
+      element.all(by.xpath(".//*[text()='" + question_type + "']")).get(1).click();
+
+      for (var i=0; i<3; i++) {
+        element(by.css('[data-ng-click="addOption(field)"]')).click();
+        element.all(by.model('option.label')).get(i).sendKeys('option');
+      }
+
+      element.all(by.css('[data-ng-click="delOption(field, option)"]')).get(2).click();
+
+      element(by.css('[data-ng-click="save_field(field)"]')).click();
+    }
   };
 
   var add_step = function(step_label) {
@@ -34,6 +47,7 @@ describe('admin add, configure and delete questionnaires', function() {
 
     add_step("Step 1");
     add_step("Step 2");
+    add_step("Step 3");
 
     // Open Step 1
     element(by.xpath(".//*[text()='Step 1']")).click();
@@ -44,6 +58,9 @@ describe('admin add, configure and delete questionnaires', function() {
 
     // Close Step 1
     element(by.xpath(".//*[text()='Step 1']")).click();
+
+    // Delete Step 3
+    element.all(by.css('[data-ng-click="delStep(step); $event.stopPropagation();"]')).get(2).click();
 
     // Close Questionnaire 1
     element(by.xpath(".//*[text()='Questionnaire 1']")).click();
