@@ -2,7 +2,10 @@ var utils = require('./utils.js');
 
 describe('Admin upload custom file', function() {
   it('should upload a file and the file should be available for download and deletion', function() {
-    utils.login_admin();
+    if (!utils.testFileUpload()) {
+      return;
+    }
+
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
 

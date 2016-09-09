@@ -2,7 +2,10 @@ var utils = require('./utils.js');
 
 describe('Admin upload custom CSS', function() {
   it('should upload a file and the file should be available for download', function() {
-    utils.login_admin();
+    if (!utils.testFileUpload()) {
+      return;
+    }
+
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
 
@@ -35,7 +38,7 @@ describe('Custom CSS classes are attached to the interface', function() {
     expect(EC.visibilityOf($('#FooterBox')));
   });
 
-  it('the footer should be hidden from an authd user', function() {
+  it('the footer should be hidden from an authenticated user', function() {
     utils.login_admin();
     browser.setLocation('/#/admin/landing');
     expect(EC.invisibilityOf($('#FooterBox')));
