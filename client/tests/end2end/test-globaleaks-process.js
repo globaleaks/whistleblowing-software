@@ -17,7 +17,7 @@ describe('globaLeaks process', function() {
   var perform_submission = function() {
     browser.get('/#/');
     element(by.cssContainingText("button", "Blow the whistle")).click();
-    browser.driver.switchTo().activeElement();
+    utils.waitUntilPresent(element(by.cssContainingText("div.modal-title", "Warning! You are not anonymous.")));
     element(by.id("answer-2")).click();
     element(by.cssContainingText("a", "Proceed to submission")).click();
 

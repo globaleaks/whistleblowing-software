@@ -36,16 +36,8 @@
         <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
       </div>
     </div>
-    <div data-ng-show="!answer.value">
-      <div>
-        <span>&nbsp;</span>
-      </div>
-    </div>
-    <div data-ng-show="(answer.value && answer.value != 'b')">
-      <div class="bg-danger">
-        <span data-translate>Wrong Answer!</span>
-      </div>
-    </div>
+    <div data-ng-show="!answer.value">&nbsp;</div>
+    <div data-ng-show="(answer.value && answer.value != 'b')" class="bg-danger" data-translate>Wrong Answer!</div>
   </div>
 </div>
 <div class="modal-footer">
