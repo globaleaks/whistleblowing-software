@@ -102,10 +102,11 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):
     encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
 
-    files_created = 3
+    files_created = 6
 
     counters_check = {
         'encrypted': 3,
+        'unavailable': 3,
         'reference': 0
     }
 

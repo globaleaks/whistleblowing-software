@@ -412,7 +412,7 @@ class GLBPGP(object):
         encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)
 
         if not encrypted_obj.ok:
-            return None, 0
+            raise errors.PGPKeyInvalid
 
         return encrypted_obj,  os.stat(output_path).st_size
 
@@ -423,7 +423,7 @@ class GLBPGP(object):
         encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))
 
         if not encrypted_obj.ok:
-            return None
+            raise errors.PGPKeyInvalid
 
         return str(encrypted_obj)
 
