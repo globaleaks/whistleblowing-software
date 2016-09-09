@@ -15,8 +15,6 @@ describe('Admin upload custom file', function() {
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    utils.waitUntilPresent(element(by.cssContainingText("td", "antani.js")));
-
     if (utils.testFileDownload() && utils.verifyFileDownload()) {
       element(by.css("div.uploadfile.file-custom")).element(by.cssContainingText("span", "Download"))
       .click().then(function() {
