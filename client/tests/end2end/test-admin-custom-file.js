@@ -16,7 +16,7 @@ describe('Admin upload custom file', function() {
     element(by.cssContainingText("a", "Theme customization")).click();
 
     if (utils.testFileDownload() && utils.verifyFileDownload()) {
-      element(by.css("div.uploadfile.file-custom")).element(by.cssContainingText("span", "Download"))
+      element(by.id("fileList")).element(by.cssContainingText("a", "Download"))
       .click().then(function() {
         var actualFile = utils.makeSavedFilePath('antani.js');
         utils.TestFileEquality(customFile, actualFile);

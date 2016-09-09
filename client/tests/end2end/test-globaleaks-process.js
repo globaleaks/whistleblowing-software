@@ -21,6 +21,8 @@ describe('globaLeaks process', function() {
     element(by.id("answer-2")).click();
     element(by.cssContainingText("a", "Proceed to submission")).click();
 
+    utils.waitUntilPresent(element(by.id('submissionForm')));
+
     browser.wait(function(){
       // Wait until the proof of work is resolved;
       return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
