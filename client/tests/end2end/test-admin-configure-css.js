@@ -22,7 +22,7 @@ describe('Admin upload custom CSS', function() {
     element(by.cssContainingText("a", "Theme customization")).click();
 
     if (utils.testFileDownload() && utils.verifyFileDownload()) {
-      element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("span", "Download"))
+      element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("a", "Download"))
       .click().then(function() {
         var actualFile = utils.makeSavedFilePath('custom_stylesheet.css');
         utils.TestFileEquality(customCSSFile, actualFile);
