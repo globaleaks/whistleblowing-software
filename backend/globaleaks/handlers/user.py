@@ -29,7 +29,7 @@ def parse_pgp_options(user, request):
 
     k = None
     if not remove_key and pgp_key_public != '':
-        k = parse_pgp_key(request['pgp_key_public'])
+        k = parse_pgp_key(pgp_key_public)
 
     if k is not None:
         user.pgp_key_public = k['public']
