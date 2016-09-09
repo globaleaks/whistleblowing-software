@@ -18,38 +18,27 @@ from globaleaks.settings import GLSettings
 
 def parse_pgp_options(notif, request):
     """
-    This is called in a @transact, when an users update their preferences or
-    when admins configure keys on their behalf.
+    Used for parsing PGP key infos and fill related notification configurations.
 
-    @param user: the user ORM object
+    @param notif: the notif orm object
     @param request: the dictionary containing the pgp infos to be parsed
     @return: None
     """
-    new_pgp_key = request.get('exception_email_pgp_key_public', u'')
-    remove_key = request.get('exception_email_pgp_key_remove', False)
+    pgp_key_public = request['exception_email_pgp_key_public']
+    remove_key = request['exception_email_pgp_key_remove']
 
-    if remove_key:
+    k = None
+    if not remove_key and pgp_key_public != '':
+        k = parse_pgp_key(request['pgp_key_public'])
+
+    if k is not None:
+        notif.set_val('exception_email_pgp_key_public', k['public'])
+        notif.set_val('exception_email_pgp_key_fingerprint', k['fingerprint'])
+        notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(k['expiration']))
+    else:
         notif.set_val('exception_email_pgp_key_public ', '')
         notif.set_val('exception_email_pgp_key_fingerprint ', '')
         notif.set_val('exception_email_pgp_key_expiration ', '')
-    elif new_pgp_key != u'':
-        gnob = GLBPGP()
-
-        try:
-            result = gnob.load_key(new_pgp_key)
-
-            log.debug("PGP Key imported: %s" % result['fingerprint'])
-            notif.set_val('exception_email_pgp_key_public', new_pgp_key)
-            notif.set_val('exception_email_pgp_key_fingerprint', result['fingerprint'])
-            notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(result['expiration']))
-
-        except Exception as e:
-            raise e
-
-        finally:
-            # the finally statement is always called also if
-            # except contains a return or a raise
-            gnob.destroy_environment()
 
 
 def admin_serialize_notification(store, language):

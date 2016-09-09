@@ -10,7 +10,7 @@ from globaleaks import models
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
-from globaleaks.security import change_password, GLBPGP
+from globaleaks.security import change_password, parse_pgp_key
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
@@ -27,30 +27,18 @@ def parse_pgp_options(user, request):
     pgp_key_public = request['pgp_key_public']
     remove_key = request['pgp_key_remove']
 
-    if remove_key:
-        # In all the cases below, the key is marked disabled as request
+    k = None
+    if not remove_key and pgp_key_public != '':
+        k = parse_pgp_key(request['pgp_key_public'])
+
+    if k is not None:
+        user.pgp_key_public = k['public']
+        user.pgp_key_fingerprint = k['fingerprint']
+        user.pgp_key_expiration = k['expiration']
+    else:
         user.pgp_key_public = ''
         user.pgp_key_fingerprint = ''
         user.pgp_key_expiration = datetime_null()
-
-    elif pgp_key_public != '':
-        gnob = GLBPGP()
-
-        try:
-            result = gnob.load_key(pgp_key_public)
-
-            log.debug("PGP Key imported: %s" % result['fingerprint'])
-
-            user.pgp_key_public = pgp_key_public
-            user.pgp_key_fingerprint = result['fingerprint']
-            user.pgp_key_expiration = result['expiration']
-        except:
-            raise
-
-        finally:
-            # the finally statement is always called also if
-            # except contains a return or a raise
-            gnob.destroy_environment()
 
 
 def user_serialize_user(user, language):

@@ -432,3 +432,31 @@ class GLBPGP(object):
             shutil.rmtree(self.gnupg.gnupghome)
         except Exception as excep:
             log.err("Unable to clean temporary PGP environment: %s: %s" % (self.gnupg.gnupghome, excep))
+
+
+def parse_pgp_key(key):
+    """
+    Used for parsing a PGP key
+
+    @param key
+    @return: the parsed information
+    """
+    gnob = GLBPGP()
+
+    try:
+        k = gnob.load_key(key)
+
+        log.debug("Parsed the PGP Key: %s" % k['fingerprint'])
+
+        return {
+            'public': key,
+            'fingerprint': k['fingerprint'],
+            'expiration': k['expiration']
+        }
+    except:
+        raise
+
+    finally:
+        # the finally statement is always called also if
+        # except contains a return or a raise
+        gnob.destroy_environment()
