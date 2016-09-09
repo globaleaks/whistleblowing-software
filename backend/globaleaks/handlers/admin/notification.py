@@ -29,16 +29,16 @@ def parse_pgp_options(notif, request):
 
     k = None
     if not remove_key and pgp_key_public != '':
-        k = parse_pgp_key(request['pgp_key_public'])
+        k = parse_pgp_key(pgp_key_public)
 
     if k is not None:
         notif.set_val('exception_email_pgp_key_public', k['public'])
         notif.set_val('exception_email_pgp_key_fingerprint', k['fingerprint'])
         notif.set_val('exception_email_pgp_key_expiration', iso_strf_time(k['expiration']))
     else:
-        notif.set_val('exception_email_pgp_key_public ', '')
-        notif.set_val('exception_email_pgp_key_fingerprint ', '')
-        notif.set_val('exception_email_pgp_key_expiration ', '')
+        notif.set_val('exception_email_pgp_key_public', '')
+        notif.set_val('exception_email_pgp_key_fingerprint', '')
+        notif.set_val('exception_email_pgp_key_expiration', '')
 
 
 def admin_serialize_notification(store, language):
