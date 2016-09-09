@@ -2,7 +2,7 @@ var fs = require('fs');
 var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
 
 // The test directory for downloaded files
-var tmpDir = '/tmp/globaleaks-download';
+var tmpDir = '/tmp/globaleaks-downloads';
 
 exports.config = {
   framework: 'jasmine',
