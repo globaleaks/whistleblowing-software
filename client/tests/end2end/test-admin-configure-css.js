@@ -7,6 +7,9 @@ describe('Admin upload custom CSS', function() {
     }
 
     browser.setLocation('admin/content');
+
+    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
+
     element(by.cssContainingText("a", "Theme customization")).click();
 
     var customCSSFile = utils.makeTestFilePath('application-home.css');
@@ -14,7 +17,7 @@ describe('Admin upload custom CSS', function() {
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
-    browser.waitForAngular();
+    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
