@@ -82,5 +82,16 @@
       <label data-translate>Maximum emails per hour before triggering email suspension</label> <label>(<span data-translate>this configuration only applies to recipients</span>)</label>
       <input class="form-control" data-ng-model="admin.notification.notification_threshold_per_hour" maxlength="{{node.maximum_namesize}}" type="number" />
     </div>
+
+    <div class="form-group">
+      <input type="hidden" name="session" value="{{session.id}}" />
+      <button uib-popover="{{'Send a test email from the SMTP account to your email address.' | translate}}"
+              popover-placement="right"
+              popover-trigger="'mouseenter'"
+              ng-click="updateThenTestMail();"
+              class="btn btn-primary">
+        <i class="glyphicon glyphicon-envelope"></i>
+        <span>Test the configuration</span>
+      </button>
   </div>
 </div>
