@@ -7,6 +7,9 @@ describe('Admin upload custom file', function() {
     }
 
     browser.setLocation('admin/content');
+
+    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
+
     element(by.cssContainingText("a", "Theme customization")).click();
 
     var customFile = utils.makeTestFilePath('antani.js');
@@ -14,7 +17,7 @@ describe('Admin upload custom file', function() {
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     element(by.css("div.uploadfile.file-custom")).element(by.css("input")).sendKeys(customFile);
 
-    browser.waitForAngular();
+    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
