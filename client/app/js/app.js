@@ -255,33 +255,6 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('admin'),
         }
       }).
-      when('/admin/anomalies', {
-        templateUrl: 'views/admin/anomalies.html',
-        controller: 'AnomaliesCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Anomalies',
-        resolve: {
-          access: requireAuth('admin'),
-        }
-      }).
-      when('/admin/stats', {
-        templateUrl: 'views/admin/stats.html',
-        controller: 'StatisticsCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'System stats',
-        resolve: {
-          access: requireAuth('admin'),
-        }
-      }).
-      when('/admin/activities', {
-        templateUrl: 'views/admin/activities.html',
-        controller: 'ActivitiesCtrl',
-        header_title: 'Administration interface',
-        header_subtitle: 'Recent activities',
-        resolve: {
-          access: requireAuth('admin'),
-        }
-      }).
       when('/admin', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
