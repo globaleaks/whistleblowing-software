@@ -24,7 +24,7 @@ from gnupg import GPG
 from tempfile import _TemporaryFileWrapper
 
 from globaleaks.rest import errors
-from globaleaks.utils.utility import log, datetime_to_day_str
+from globaleaks.utils.utility import log
 from globaleaks.settings import GLSettings
 
 
