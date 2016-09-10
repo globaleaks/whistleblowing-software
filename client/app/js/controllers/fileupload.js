@@ -28,10 +28,7 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope,
       $scope.file_error_msg = "Only PNG files are currently supported.";
     }
 
-    console.log($scope.file_error_msg);
     if ($scope.file_error_msg !== undefined)  {
-      flowFile.error = true;
-      flowFile.error_msg = $scope.file_error_msg;
       event.preventDefault();
     }
   });
