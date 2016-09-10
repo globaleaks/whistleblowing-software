@@ -114,53 +114,6 @@ GLClient.controller('AdminCtrl',
     return max + 1;
   };
 }]).
-controller('AdminFileUploadCtrl', ['$scope', function($scope){
-    $scope.uploadfile = false;
-
-    $scope.fileSelected = false;
-    $scope.markFileSelected = function () {
-      $scope.fileSelected = true;
-    };
-
-    $scope.openUploader = function () {
-      $scope.uploadfile = true;
-    };
-
-    $scope.closeUploader = function () {
-      $scope.uploadfile = $scope.fileSelected = false;
-    };
-}]).
-controller('AdminImgUploadCtrl', ['$scope', function($scope){
-    $scope.uploadfile = false;
-
-    $scope.fileSelected = false;
-    $scope.markFileSelected = function () {
-      $scope.fileSelected = true;
-    };
-
-    $scope.openUploader = function () {
-      $scope.uploadfile = true;
-    };
-
-    $scope.closeUploader = function () {
-      $scope.uploadfile = $scope.fileSelected = false;
-    };
-
-    $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
-      $scope.file_upload_error = undefined;
-      if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
-        $scope.file_upload_error = "This file exceeds the maximum upload size for this server.";
-      } else if(flowFile.file.type !== "image/png") {
-        $scope.file_upload_error = "Only PNG files are currently supported.";
-      }
-
-      if ($scope.file_upload_error !== undefined)  {
-        flowFile.error = true;
-        flowFile.error_msg = $scope.file_upload_error;
-        event.preventDefault();
-      }
-    });
-}]).
 controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFiles', 'AdminL10NResource', 'DefaultL10NResource',
   function($scope, $filter, $http, StaticFiles, AdminL10NResource, DefaultL10NResource){
   $scope.tabs = [
@@ -235,19 +188,6 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
     var updated_staticfiles = StaticFiles.query(function () {
       $scope.staticfiles = updated_staticfiles;
     });
-  };
-
-  $scope.fileExists = function (filename) {
-    for (var i=0; i<$scope.staticfiles.length; i++) {
-      if ($scope.staticfiles[i].filename === filename) {
-        return true;
-      }
-    }
-    return false;
-  };
-
-  $scope.uploadfinished = function () {
-    $scope.Utils.update_static_files();
   };
 
   $scope.delete_resource = function (url, refresh) {
