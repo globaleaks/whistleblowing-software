@@ -1,10 +1,4 @@
 angular.module('GLDirectives', []).
-  directive('fadeout', function() {
-    /* eslint-disable no-unused-vars */
-    return function(scope, element, attrs) {
-
-    };
-}).
   directive('inputPrefix', function() {
     return {
       require: 'ngModel',
@@ -233,7 +227,7 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
   }]};
 }]).
 // pgpPubkeyValidator binds to text-areas to provide input validation on user
-// input GPG public keys. Note that the directive attaches itself to the
+// input PGP public keys. Note that the directive attaches itself to the
 // containing form's ngModelController NOT the ngModel bound to the value of the
 // text-area itself. If the key word 'canBeEmpty' the pgp key validator is disabled
 // when the textarea's input is empty.
@@ -273,17 +267,6 @@ directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
     }
   };
 }]).
-directive('uibDatepickerPopupa', function () {
-  return {
-    restrict: 'EAC',
-    require: 'ngModel',
-    link: function(scope, elem, attrs, ngModel) {
-      ngModel.$parsers.push(function toModel(date) {
-        return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-      });
-    }
-  }
-}).
 directive('stopccp', function(){
   return {
     link:function(scope,element){
