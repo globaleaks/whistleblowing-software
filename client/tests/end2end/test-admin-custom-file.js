@@ -1,7 +1,5 @@
 var utils = require('./utils.js');
 
-var path = require('path');
-
 describe('Admin upload custom file', function() {
   it('should upload a file and the file should be available for download and deletion', function() {
     if (!utils.testFileUpload()) {
@@ -14,10 +12,10 @@ describe('Admin upload custom file', function() {
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    var customJSFile = utils.makeTestFilePath('antani.js');
+    var customFile = utils.makeTestFilePath('nyancat.pdf');
 
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-    element(by.css("div.uploadfile.file-custom")).element(by.css("input")).sendKeys(customJSFile);
+    element(by.css("div.uploadfile.file-custom")).element(by.css("input")).sendKeys(customFile);
 
     utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
 
