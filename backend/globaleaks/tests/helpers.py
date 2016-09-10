@@ -703,6 +703,14 @@ class TestHandler(TestGLWithPopulatedDB):
 
         handler = self._handler(application, request, **kwargs)
 
+        if user_id is None and role is not None:
+            if role == 'admin':
+                user_id = self.dummyAdminUser['id']
+            elif role == 'receiver':
+                user_id = self.dummyReceiverUser['id']
+            elif role == 'custodian':
+                user_id = self.dummyCustodianUser['id']
+
         if role is not None:
             session = GLSession(user_id, role, 'enabled')
             handler.request.headers['X-Session'] = session.id
