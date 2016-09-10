@@ -125,6 +125,7 @@ directive('imageUpload', function () {
   return {
     restrict: 'A',
     scope: {
+      nodeModel: '=',
       imageUploadModel: '=',
       imageUploadModelAttr: '@',
       imageUploadUrl: '@'

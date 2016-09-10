@@ -1,5 +1,5 @@
 <label>{{admin_file.title | translate}}</label>
-<div class="well well-large uploadfile file-{{ admin_file.varname }}" data-ng-controller="AdminFileUploadCtrl">
+<div class="well well-large uploadfile file-{{ admin_file.varname }}">
   <span flow-init="{target: 'admin/files/' + admin_file.varname, headers: Authentication.get_headers()}"
         flow-files-submitted="$flow.upload()"
         flow-file-success="reload()">
