@@ -234,12 +234,6 @@ def query_yes_no(question, default="no"):
 
 ## time facilities ##
 
-def time_now():
-    """
-    @return: current timestamp
-    """
-    return time.time()
-
 
 def datetime_null():
     """
@@ -287,9 +281,6 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
     """
-    if not check_date:
-        return False
-
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
 
@@ -300,9 +291,6 @@ def datetime_to_ISO8601(date):
     """
     conver a datetime into ISO8601 date
     """
-    if date is None:
-        date = datetime_null()
-
     return date.isoformat() + "Z" # Z means that the date is in UTC
 
 
@@ -324,20 +312,7 @@ def datetime_to_pretty_str(date):
     """
     print a datetime in pretty formatted str format
     """
-    if date is None:
-        date = datetime_null()
-
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
-
-
-def datetime_to_day_str(date):
-    """
-    print a datetime in DD/MM/YYYY formatted str
-    """
-    if date is None:
-        date = datetime_null()
-
-    return date.strftime("%d/%m/%Y")
 
 
 def ISO8601_to_day_str(isodate, tz=0):

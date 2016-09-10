@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 import re
 from twisted.trial import unittest
@@ -63,6 +64,12 @@ class TestUtility(unittest.TestCase):
         for i in ordered:
             self.assertTrue(i in shuffle)
 
+    def test_datetime_null(self):
+        self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))
+
+    def test_datetime_null(self):
+        self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))
+
     def test_utc_dynamic_date(self):
         a = utility.utc_dynamic_date(utility.datetime_null())
         b = utility.utc_dynamic_date(utility.datetime_null(), seconds=0, minutes=0, hours=0)
@@ -99,7 +106,6 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(c < d)
 
     def test_is_expired(self):
-        self.assertFalse(utility.is_expired(None))
         self.assertTrue(utility.is_expired(utility.datetime_null()))
         self.assertTrue(utility.is_expired(utility.datetime_now()))
         self.assertFalse(utility.is_expired(utility.utc_future_date(seconds=1337)))
@@ -113,7 +119,6 @@ class TestUtility(unittest.TestCase):
         self.assertTrue(b, d)
 
     def test_datetime_to_pretty_str(self):
-        self.assertEqual(utility.datetime_to_pretty_str(None), 'Thursday 01 January 1970 00:00 (UTC)')
         self.assertEqual(utility.datetime_to_pretty_str(utility.datetime_null()),
                         'Thursday 01 January 1970 00:00 (UTC)')
 
