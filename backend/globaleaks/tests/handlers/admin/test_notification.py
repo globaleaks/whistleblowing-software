@@ -54,3 +54,14 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         appdata_dict = load_appdata()
         for k in appdata_dict['templates']:
             self.assertEqual(self.responses[1][k], appdata_dict['templates'][k]['en'])
+
+
+class TestNotificationTestInstance(helpers.TestHandlerWithPopulatedDB):
+    _handler = admin.notification.NotificationTestInstance
+
+    @inlineCallbacks
+    def test_post(self):
+        handler = self.request(role='admin')
+        yield handler.post()
+
+        # TODO: test email generation
