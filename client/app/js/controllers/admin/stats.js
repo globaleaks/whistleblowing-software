@@ -196,16 +196,4 @@ GLClient.controller('StatisticsCtrl', ['$scope', '$filter', 'StatsCollection',
     };
 
     $scope.update_week();
-
-}]).
-controller('AnomaliesCtrl', ['$scope', 'AnomaliesCollection',
-  function($scope, AnomaliesCollection) {
-
-    $scope.showLevel = true;
-    $scope.anomalies = AnomaliesCollection.query();
-}]).
-controller('ActivitiesCtrl', ['$scope', 'ActivitiesCollection',
-  function($scope, ActivitiesCollection) {
-
-    $scope.activities = ActivitiesCollection.query();
 }]);
