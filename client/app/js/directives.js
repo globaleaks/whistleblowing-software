@@ -215,7 +215,7 @@ directive('pgpPubkeyDisplay', ['pgp', 'glbcKeyLib', function(pgp, glbcKeyLib) {
 
     },
     controller: ['$scope', function($scope) {
-      $scope.$watch('keyStr', function(newVal, oldVal) {
+      $scope.$watch('keyStr', function(newVal) {
         if (newVal === "") {
           return;
         }
@@ -243,7 +243,7 @@ directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
     }
 
     // modelValue is the models value, viewVal is displayed on the page.
-    ngModel.$validators.pgpPubKeyValidator = function(modelVal, viewVal) {
+    ngModel.$validators.pgpPubKeyValidator = function(modelVal) {
       // Check for obvious problems.
       if (typeof modelVal !== 'string') {
         modelVal = '';
