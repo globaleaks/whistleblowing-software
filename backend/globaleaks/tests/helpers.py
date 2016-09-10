@@ -707,7 +707,7 @@ class TestHandler(TestGLWithPopulatedDB):
             if role == 'admin':
                 user_id = self.dummyAdminUser['id']
             elif role == 'receiver':
-                user_id = self.dummyReceiverUser['id']
+                user_id = self.dummyReceiverUser_1['id']
             elif role == 'custodian':
                 user_id = self.dummyCustodianUser['id']
 
