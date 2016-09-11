@@ -4,7 +4,6 @@
 #   *****
 # Implementation of the code executed on handler /admin/steps
 #
-from storm.expr import Not, In
 
 from twisted.internet.defer import inlineCallbacks
 

@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
-import shutil
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact_ro
-from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.handlers import export
-from globaleaks.models import ReceiverTip
-from globaleaks.settings import GLSettings
+from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.tests import helpers
 
 class TestExportHandler(helpers.TestHandlerWithPopulatedDB):

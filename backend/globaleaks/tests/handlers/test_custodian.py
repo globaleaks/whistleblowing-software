@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-import unittest
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.handlers import custodian
+from globaleaks.tests import helpers
 
 
 class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):

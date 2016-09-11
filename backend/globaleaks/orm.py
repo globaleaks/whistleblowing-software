@@ -2,24 +2,16 @@
 # orm: contains main hooks to storm ORM
 # ******
 import sys
+from twisted.internet import reactor
+from twisted.internet.threads import deferToThreadPool
+
+import storm.databases.sqlite
 import transaction
-
-from cyclone.web import HTTPError
-
+from globaleaks.rest.errors import DatabaseIntegrityError
+from globaleaks.settings import GLSettings
 from storm import exceptions, tracer
 from storm.databases.sqlite import sqlite
 from storm.zope.zstorm import ZStorm
-
-from twisted.internet import reactor
-from twisted.internet.defer import succeed
-from twisted.internet.threads import deferToThreadPool
-
-from globaleaks.rest.errors import DatabaseIntegrityError
-from globaleaks.settings import GLSettings
-
-
-# XXX. MONKEYPATCH OF STORM IN ORDER TO ENABLE VARIOUS SQLITE CAPABILITIES
-import storm.databases.sqlite
 
 
 class SQLite(storm.databases.sqlite.Database):

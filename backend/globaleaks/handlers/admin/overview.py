@@ -4,16 +4,13 @@
 #   ********
 # Implementation of the code executed when an HTTP client reach /overview/* URI
 
-import os
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.settings import GLSettings
+from globaleaks.orm import transact_ro
 from globaleaks.utils.structures import Rosetta
-from globaleaks.utils.utility import log, datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact_ro

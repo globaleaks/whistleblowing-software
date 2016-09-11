@@ -4,18 +4,16 @@
 #  *****
 #
 # API handling submissions file uploads and subsequent submissions attachments
-import shutil
-
 import os
-
-from cyclone.web import asynchronous
+import shutil
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact, transact_ro
+from cyclone.web import asynchronous
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
+from globaleaks.handlers.rtip import db_access_rtip
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList

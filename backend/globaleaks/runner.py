@@ -3,24 +3,16 @@
 # Here is implemented the preApplication and postApplication method
 # along the Asynchronous event schedule
 
-import os
-
-from twisted.scripts._twistd_unix import UnixApplicationRunner
 from twisted.internet import reactor, defer
-from twisted.python.util import untilConcludes
+from twisted.scripts._twistd_unix import UnixApplicationRunner
 
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables, handle_stored_version
-
-from globaleaks.db.appdata import update_appdata
-
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
     pgp_check_sched
-
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_now, disable_swap
-
+from globaleaks.utils.utility import log, datetime_now
 
 test_reactor = None
 
@@ -60,7 +52,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         pgp_check = pgp_check_sched.PGPCheckSchedule().schedule(3600 * 24, delay)
 
         # Scheduling the Statistics schedule to be executed every hour on the hour
-        delay = (3600) - (current_time.minute * 60) - current_time.second
+        delay = 3600 - (current_time.minute * 60) - current_time.second
         stats = statistics_sched.StatisticsSchedule().schedule(3600, delay)
 
     @defer.inlineCallbacks

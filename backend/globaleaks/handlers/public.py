@@ -4,22 +4,20 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
-import os
 
 from twisted.internet.defer import inlineCallbacks, returnValue
-from storm.expr import And
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import config, l10n
+from globaleaks.handlers.admin.files import db_get_file
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.orm import transact_ro
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.structures import get_localized_values
 
 
 @transact_ro

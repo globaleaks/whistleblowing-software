@@ -6,16 +6,13 @@ our needs.
 
 import base64
 import collections
-import httplib
 import json
 import mimetypes
 import os
 import re
 import sys
 import time
-
 from StringIO import StringIO
-
 from twisted.internet import fdesc, reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
@@ -24,15 +21,13 @@ from cyclone import httputil, web, template
 from cyclone.escape import native_str
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
-
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_password
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, log_encode_html, datetime_now, deferred_sleep, randint
-
+from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
 
@@ -224,13 +219,6 @@ class BaseHandler(RequestHandler):
         """
         def wrapper(method_handler):
             def call_handler(cls, *args, **kwargs):
-                """
-                GLSettings contain the copy of the latest admin configuration, this
-                enhance performance instead of searching in te DB at every handler
-                connection.
-                """
-                tor2web_roles = ['whistleblower', 'receiver', 'admin', 'custodian', 'unauth']
-
                 using_tor2web = cls.check_tor2web()
 
                 if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[role]:

@@ -2,7 +2,6 @@
 #
 # wizard
 
-from globaleaks import models, security
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_create_context
@@ -13,7 +12,6 @@ from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
 from twisted.internet.defer import inlineCallbacks

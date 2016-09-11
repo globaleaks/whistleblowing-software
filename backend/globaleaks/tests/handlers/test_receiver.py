@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-import unittest
-import random
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import receiver, admin
-from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 

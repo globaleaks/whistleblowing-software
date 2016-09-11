@@ -28,18 +28,17 @@ from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
 from globaleaks.handlers.admin.context import create_context, \
-    get_context, update_context, db_get_context_steps
+    get_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
-from globaleaks.handlers.admin.field import create_field, db_create_field
-from globaleaks.handlers.admin.step import create_step, update_step
+from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
-from globaleaks.handlers.submission import create_submission, serialize_usertip, \
-    serialize_internalfile, serialize_receiverfile
+from globaleaks.handlers.submission import create_submission, serialize_internalfile, serialize_receiverfile
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile, generateRandomKey, generateRandomSalt
-from globaleaks.utils import mailutils, tempdict, token, utility
+from globaleaks.security import GLSecureTemporaryFile
+from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
@@ -670,9 +669,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
             method:
                 HTTP method, e.g. "GET" or "POST"
-
-            uri:
-                URL to fetch
 
             headers:
                 (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP

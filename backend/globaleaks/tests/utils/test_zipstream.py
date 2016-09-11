@@ -1,13 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-import os
 import StringIO
+from twisted.internet.defer import inlineCallbacks
 from zipfile import ZipFile
 
-from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.db.appdata import load_appdata
-from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 from globaleaks.utils.zipstream import ZipStream
 

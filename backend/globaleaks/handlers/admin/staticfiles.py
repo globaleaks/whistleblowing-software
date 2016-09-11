@@ -8,12 +8,10 @@
 from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import models
-from globaleaks.orm import transact_ro, transact
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils.utility import log
-from globaleaks.rest import errors, requests
+from globaleaks.rest import errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import directory_traversal_check
 

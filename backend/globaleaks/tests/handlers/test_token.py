@@ -1,19 +1,11 @@
 # -*- encoding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
-# override GLSettings
-from globaleaks import event
 from globaleaks.anomaly import Alarm
-from globaleaks.orm import transact_ro
-from globaleaks.settings import GLSettings
+from globaleaks.handlers import token
 from globaleaks.tests import helpers
-from globaleaks.handlers import wbtip, token
-from globaleaks.handlers.admin.context import get_context_steps
-from globaleaks.handlers.admin.receiver import create_receiver
-from globaleaks.rest import errors
-from globaleaks.models import InternalTip
-from globaleaks.utils.token import Token
 from globaleaks.tests.test_anomaly import pollute_events_for_testing
+from globaleaks.utils.token import Token
 
 class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = token.TokenCreate

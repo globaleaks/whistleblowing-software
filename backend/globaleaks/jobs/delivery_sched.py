@@ -13,15 +13,14 @@
 import os
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
+from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, ReceiverFile, ReceiverTip
+from globaleaks.models import InternalFile, ReceiverFile
+from globaleaks.orm import transact
+from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
-from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
-from globaleaks.handlers.admin.receiver import admin_serialize_receiver
-
 
 __all__ = ['DeliverySchedule']
 
