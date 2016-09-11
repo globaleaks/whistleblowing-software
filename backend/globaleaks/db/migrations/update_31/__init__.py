@@ -1,16 +1,11 @@
 # -*- encoding: utf-8 -*-
 import base64
 import os
-import shutil
 
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
-
-from globaleaks.db.appdata import load_appdata
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.handlers.admin.field import db_import_fields
-from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.models import ModelWithID, Model, Questionnaire, Step, db_forge_obj
+from globaleaks.models import ModelWithID
 from globaleaks.settings import GLSettings
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 
 class Node_v_30(ModelWithID):

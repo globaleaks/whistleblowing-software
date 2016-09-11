@@ -5,12 +5,10 @@
 #
 # Tip export utils
 import copy
-
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -19,13 +17,11 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
     db_get_comment_list, db_get_message_list
-from globaleaks.handlers.submission import get_submission_sequence_number
-from globaleaks.models import ReceiverFile
-from globaleaks.rest import errors
+from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.zipstream import ZipStream
 from globaleaks.utils.utility import deferred_sleep
+from globaleaks.utils.zipstream import ZipStream
 
 
 @transact_ro

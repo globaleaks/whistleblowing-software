@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from storm.expr import And
 from storm.locals import Unicode, Storm
-
-from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.utils.utility import log
 
 
 class EnabledLanguage(Storm):

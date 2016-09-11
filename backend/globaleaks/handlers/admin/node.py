@@ -5,22 +5,18 @@
 # Implementation of the code executed on handler /admin/node
 #
 import os
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
-from globaleaks.db.appdata import load_appdata
 from globaleaks.db import db_refresh_memory_variables
-from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
-from globaleaks.models.config import NodeFactory, PrivateFactory
-from globaleaks.models import config
-from globaleaks.orm import transact, transact_ro
+from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
 

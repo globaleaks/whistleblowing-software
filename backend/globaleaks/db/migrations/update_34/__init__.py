@@ -1,14 +1,10 @@
-import os
-
-from globaleaks.db.migrations.update import MigrationBase
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 from globaleaks.models import l10n, properties, config
-from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.config import Config
+from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import ConfigL10N
-from globaleaks.db.appdata import load_archived_appdata
-from globaleaks.utils.utility import log
 
 
 class Node_v_33(ModelWithID):

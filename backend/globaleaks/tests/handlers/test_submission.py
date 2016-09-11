@@ -1,21 +1,13 @@
 # -*- encoding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks, returnValue
 
-# override GLSettings
-from globaleaks.orm import transact_ro
-from globaleaks.settings import GLSettings
-from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import authentication, wbtip
-from globaleaks.handlers.admin.context import get_context_steps
-from globaleaks.handlers.admin.receiver import create_receiver
 from globaleaks.handlers.submission import SubmissionInstance
-from globaleaks.models import InternalTip
-from globaleaks.rest import errors
+from globaleaks.jobs import delivery_sched
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
 # and here, our protagonist character:
-from globaleaks.handlers.submission import create_submission
 
 
 class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):

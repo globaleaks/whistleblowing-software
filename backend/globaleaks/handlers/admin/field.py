@@ -114,7 +114,7 @@ def db_create_field(store, field_dict, language):
     Create and add a new field to the store, then return the new serialized object.
 
     :param store: the store on which perform queries.
-    :param field: the field definition dict
+    :param field_dict: the field definition dict
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """

@@ -12,15 +12,12 @@ import inspect
 import logging
 import os
 import sys
-import time
 import traceback
 import uuid
 from datetime import datetime, timedelta
-
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
-from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
 

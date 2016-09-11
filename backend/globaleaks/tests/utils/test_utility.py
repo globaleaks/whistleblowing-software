@@ -1,10 +1,8 @@
-import time
-from datetime import datetime
-
 import re
+from datetime import datetime
 from twisted.trial import unittest
+
 from globaleaks.utils import utility
-from globaleaks.settings import GLSettings
 
 
 class TestUtility(unittest.TestCase):
@@ -63,9 +61,6 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(len(ordered), len(shuffle))
         for i in ordered:
             self.assertTrue(i in shuffle)
-
-    def test_datetime_null(self):
-        self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))
 
     def test_datetime_null(self):
         self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))

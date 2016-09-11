@@ -1,22 +1,17 @@
-import json
-import os
-from datetime import datetime
-
-from storm.locals import Storm, Unicode, And, JSON, Not
-
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.utility import log
+from storm.locals import Storm, Unicode, And, JSON, Not
 
 import config_desc
 from .config_desc import GLConfig
 
 
 class ConfigFactory(object):
-    '''
+    """
     This factory depends on the following attributes set by the sub class:
       update_set    -- keys updated when fact.update(d) is called
       group_desc    -- the corresponding dict in GLConfig
-    '''
+    """
 
     def __init__(self, group, store, lazy=True, *args, **kwargs):
         self.group = unicode(group)
@@ -70,7 +65,7 @@ class ConfigFactory(object):
         self.res = None
         try:
             self._query_group()
-        except ValueError as e:
+        except ValueError:
             return False
 
         k = set(self.res.keys())
@@ -103,7 +98,7 @@ class ConfigFactory(object):
             log.info("Removing unused config: %s.%s" % (c.var_group, c.var_name))
             self.store.remove(c)
 
-        return (len(missing), len(extra))
+        return len(missing), len(extra)
 
 
 class NodeFactory(ConfigFactory):

@@ -1,18 +1,15 @@
 import binascii
-import gnupg
 import os
-import scrypt
-
-from cryptography.hazmat.primitives import hashes
 from datetime import datetime
-
 from twisted.trial import unittest
-from globaleaks.tests import helpers
+
+import scrypt
+from globaleaks.rest import errors
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
     directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
-    crypto_backend, GLBPGP
+    GLBPGP
 from globaleaks.settings import GLSettings
-from globaleaks.rest import errors
+from globaleaks.tests import helpers
 
 
 class TestPasswordManagement(unittest.TestCase):

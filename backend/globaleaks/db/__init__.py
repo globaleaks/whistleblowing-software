@@ -1,28 +1,22 @@
 # -*- coding: UTF-8
 # Database routines
 # ******************
-import base64
 import os
-import re
 import sys
 import traceback
-
-from storm import exceptions
-
-from cyclone.util import ObjectDict
 from twisted.internet.defer import succeed, inlineCallbacks
 
+from cyclone.util import ObjectDict
 from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks.db.appdata import db_update_appdata
+from globaleaks.handlers.admin import files
 from globaleaks.models import config
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
-from globaleaks.db.appdata import db_update_appdata
-from globaleaks.models.l10n import NodeL10NFactory, NotificationL10NFactory, EnabledLanguage
-from globaleaks.handlers.admin import files
+from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_ro
-from globaleaks.rest import requests
-from globaleaks.security import generateRandomSalt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
+from storm import exceptions
 
 
 def init_models():

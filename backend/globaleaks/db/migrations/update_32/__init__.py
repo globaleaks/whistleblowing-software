@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
-
+from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
-
-from globaleaks import __version__, DATABASE_VERSION
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 
 class Node_v_31(ModelWithID):

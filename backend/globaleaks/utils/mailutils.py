@@ -5,33 +5,30 @@
 #
 # GlobaLeaks Utility used to handle Mail, format, exception, etc
 
-import logging
+import StringIO
 import re
 import sys
 import traceback
-import StringIO
-from datetime import datetime
+from OpenSSL import SSL
 from calendar import timegm
+from datetime import datetime
+from email import Charset
 from email import utils as mailutils
+from email.header import Header
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.header import Header
-from email import Charset
-
+from twisted.internet import reactor, defer
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.internet import reactor, protocol, error,  defer
-from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient, SMTPClientError, SMTPError
 from twisted.internet.ssl import ClientContextFactory
+from twisted.mail.smtp import ESMTPSenderFactory, SMTPError
 from twisted.protocols import tls
 from twisted.python.failure import Failure
-
-from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
-from globaleaks.utils.utility import log
-from globaleaks.settings import GLSettings
 from globaleaks.security import GLBPGP, sha256
+from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import log
 
 
 def rfc822_date():

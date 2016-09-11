@@ -3,14 +3,10 @@
 #   *********
 #
 # Base class for implement the scheduled tasks
-import exceptions
 import time
-
 from twisted.internet import task, defer, reactor
-from twisted.python.failure import Failure
 
 from globaleaks.handlers.base import TimingStatsHandler
-from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import send_exception_email,  extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
 
@@ -97,7 +93,7 @@ class GLJob(object):
 
         # discard empty cicles from stats
         if current_run_time > 0.000000:
-            self.mean_time = ((self.mean_time * (self.job_runs - 1)) + current_run_time) / (self.job_runs)
+            self.mean_time = ((self.mean_time * (self.job_runs - 1)) + current_run_time) / self.job_runs
 
         if self.low_time == -1 or current_run_time < self.low_time:
             self.low_time = current_run_time

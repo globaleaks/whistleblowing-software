@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 import random
-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import __version__
-from globaleaks.rest.errors import InvalidInputFormat
-from globaleaks.tests import helpers
-from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import user
-from globaleaks.models import User
+from globaleaks.rest import errors
+from globaleaks.tests import helpers
 
 
 class TestUsersCollection(helpers.TestHandlerWithPopulatedDB):

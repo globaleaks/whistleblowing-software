@@ -4,20 +4,18 @@
 #   *****
 # Implementation of the code executed on handler /admin/questionnaires
 #
-import copy
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.field import db_import_fields
 from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step, serialize_questionnaire
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.structures import fill_localized_keys
+from globaleaks.utils.utility import log
 
 
 @transact_ro

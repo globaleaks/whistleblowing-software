@@ -1,17 +1,14 @@
 # -*- coding: UTF-8
 # datainit.py: database initialization
 #   ******************
-import copy
 import json
 import os
 
-from storm.expr import And, Not, In
-
 from globaleaks import models
+from globaleaks.handlers.admin.field import db_create_field, db_import_fields
 from globaleaks.orm import transact
-from globaleaks.handlers.admin.field import db_create_field, db_update_field, db_import_fields
-from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
+from storm.expr import And, Not, In
 
 
 def read_appdata(p):

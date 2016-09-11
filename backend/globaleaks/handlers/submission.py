@@ -7,23 +7,20 @@
 #   by an HTTP client in /submission URI
 
 import copy
-
 import json
-
-from storm.expr import And, In
-
 from twisted.internet import defer
 
 from globaleaks import models
-from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.context import db_get_context_steps
-from globaleaks.utils.token import TokenList
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601, ISO8601_to_datetime
+from globaleaks.utils.token import TokenList
+from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
+from storm.expr import And, In
 
 
 def get_submission_sequence_number(itip):

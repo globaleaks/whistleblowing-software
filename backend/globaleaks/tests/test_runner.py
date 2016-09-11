@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from globaleaks.tests import helpers
-
-from globaleaks.runner import GlobaLeaksRunner
-from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks
 from twisted.scripts._twistd_unix import ServerOptions
+
+from globaleaks.runner import GlobaLeaksRunner
+from globaleaks.tests import helpers
 
 
 class TestRunner(helpers.TestGL):

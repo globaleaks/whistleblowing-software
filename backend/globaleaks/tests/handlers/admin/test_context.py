@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-import random
 import json
-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import __version__
-from globaleaks.rest.errors import InvalidInputFormat
-from globaleaks.tests import helpers
-from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import context
 from globaleaks.models import Context
+from globaleaks.rest import requests, errors
+from globaleaks.tests import helpers
 
 # special guest:
 

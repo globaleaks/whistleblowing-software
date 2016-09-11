@@ -3,24 +3,20 @@
 # ******
 from __future__ import print_function
 
-import glob
-import logging
-import pwd
-import grp
 import getpass
+import glob
+import grp
+import logging
 import os
+import pwd
 import re
-
-from optparse import OptionParser
-
 from distutils import dir_util
-
-from cyclone.util import ObjectDict as OD
-
+from optparse import OptionParser
 from twisted.internet import reactor
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
+from cyclone.util import ObjectDict as OD
+from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
 
 this_directory = os.path.dirname(__file__)

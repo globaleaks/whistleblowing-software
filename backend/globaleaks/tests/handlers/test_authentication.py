@@ -1,11 +1,10 @@
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.handlers import authentication, admin
-from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
+from globaleaks.handlers.base import GLSessions
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
-from globaleaks.utils import utility
+from globaleaks.tests import helpers
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):

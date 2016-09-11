@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
-import unittest
-import random
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.handlers import admin, user
 from globaleaks.rest import errors
+from globaleaks.tests import helpers
 
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):

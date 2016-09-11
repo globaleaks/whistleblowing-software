@@ -9,20 +9,14 @@
 # This code differs from handlers/file.py because files here are not tracked in the DB
 
 from __future__ import with_statement
-import json
-import os
 
-from twisted.internet import threads
+import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact, transact_ro
-from globaleaks.rest import errors
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.security import directory_traversal_check
-from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log
 
 
 @transact_ro

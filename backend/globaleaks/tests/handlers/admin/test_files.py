@@ -1,14 +1,9 @@
 # -*- coding: utf-8 -*-
-from io import BytesIO as StringIO
 
 from twisted.internet.defer import inlineCallbacks
-import os
-from globaleaks import models
-from globaleaks.orm import transact_ro
-from globaleaks.rest import errors
-from globaleaks.tests import helpers
+
 from globaleaks.handlers.admin import files
-from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
 
 
 class TestFileInstance(helpers.TestHandler):

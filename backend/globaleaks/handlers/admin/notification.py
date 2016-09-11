@@ -2,18 +2,17 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
-from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
-from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.config import NotificationFactory, PrivateFactory
+from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.properties import iso_strf_time
+from globaleaks.orm import transact, transact_ro
 from globaleaks.rest import requests
-from globaleaks.security import GLBPGP
-from globaleaks.utils.sets import disjoint_union
-from globaleaks.utils.utility import log, datetime_to_ISO8601
-from globaleaks.utils.mailutils import sendmail
 from globaleaks.settings import GLSettings
+from globaleaks.utils.mailutils import sendmail
+from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.utility import log
 
 
 def parse_pgp_options(notif, request):

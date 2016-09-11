@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.internet import task
 
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers.admin.statistics import get_anomaly_history

@@ -1,8 +1,5 @@
-from twisted.internet import interfaces, task
-
 from globaleaks.tests import helpers
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import uuid4
 
 
 class TestObject(object):

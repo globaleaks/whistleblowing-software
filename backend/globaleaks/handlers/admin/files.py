@@ -7,22 +7,21 @@
 
 import base64
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact_ro, transact
-from globaleaks.settings import GLSettings
-from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.apicache import GLApiCache
 
 
 def db_add_file(store, data, key = None):
     file_obj = None
-    if key != None:
+    if key is not None:
         file_obj = store.find(models.File, models.File.id == key).one()
 
     if file_obj is None:
         file_obj = models.File()
-        if key != None:
+        if key is not None:
             file_obj.id = key
         store.add(file_obj)
 

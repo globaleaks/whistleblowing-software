@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 import os
-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import event
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

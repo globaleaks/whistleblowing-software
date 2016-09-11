@@ -5,14 +5,11 @@ GlobaLeaks ORM Models definitions.
 from __future__ import absolute_import
 from datetime import timedelta
 
-from storm.expr import And
-from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON, Pickle
+from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
-from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.models.validators import shorttext_v, longtext_v, \
     shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
 from globaleaks.orm import transact
-from globaleaks.security import hash_password
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
 from globaleaks.rest import errors

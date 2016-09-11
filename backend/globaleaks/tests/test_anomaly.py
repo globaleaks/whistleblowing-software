@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 
-from twisted.internet import task, defer
-
-from globaleaks.tests import helpers
+from twisted.internet import defer
 
 from globaleaks import event
 from globaleaks.anomaly import Alarm
+from globaleaks.tests import helpers
 
 
 def pollute_events_for_testing(number_of_times=10):
