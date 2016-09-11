@@ -238,10 +238,8 @@ directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
   // attrs is the list of directives on the element
   // ngModel is the model controller attached to the form
   function link(scope, elem, attrs, ngModel) {
-    scope.canBeEmpty = false;
-    if (scope.pgpPubkeyValidator === 'canBeEmpty') {
-      scope.canBeEmpty = true;
-    }
+
+    scope.canBeEmpty = scope.pgpPubkeyValidator === 'canBeEmpty';
 
     // modelValue is the models value, viewVal is displayed on the page.
     ngModel.$validators.pgpPubKeyValidator = function(modelVal) {

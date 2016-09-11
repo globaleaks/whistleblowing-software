@@ -48,7 +48,7 @@ GLClient.controller('TipCtrl',
                 }
               }
             }
-          }
+          };
 
           if (!$scope.isStepTriggered(step, $scope.tip.answers, $scope.tip.total_score)) {
             tip.questionnaire.splice(i, 1);

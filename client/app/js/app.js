@@ -384,7 +384,7 @@ var GLClient = angular.module('GLClient', [
     $rootScope.showLoadingPanel = false;
     $rootScope.successes = [];
     $rootScope.errors = [];
-    $rootScope.embedded = $location.search().embedded === 'true' ? true : false;
+    $rootScope.embedded = $location.search().embedded === 'true';
 
     $rootScope.closeAlert = function (list, index) {
       list.splice(index, 1);

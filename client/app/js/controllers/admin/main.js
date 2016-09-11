@@ -155,7 +155,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.vars = {
     'language_to_customize': $scope.node.default_language
-  }
+  };
 
   $scope.get_l10n = function(lang) {
     if (!lang) {
@@ -178,7 +178,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
       $scope.default_texts = default_texts;
       $scope.custom_texts_selector = $filter('orderBy')(list, 'value');
     });
-  }
+  };
 
   $scope.get_l10n($scope.vars.language_to_customize);
 
