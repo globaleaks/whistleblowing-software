@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-from globaleaks import __version__, DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
