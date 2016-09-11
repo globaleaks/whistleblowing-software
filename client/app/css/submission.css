@@ -29,20 +29,12 @@
   word-wrap: break-word;
 }
 
-.contextCardTitle, .contextListTitle, .receiverCardTitle {
-  font-weight: bold;
-}
-
 .contextCardTitle, .receiverCardTitle {
   margin-bottom: 0.8em;
 }
 
 .receiverCard.selected, .contextCard:hover {
   background-color: #fcf8e3;
-}
-
-.receiverCard.forcefullySelected {
-  background-color: #a0c5e5;
 }
 
 .receiverCard.disabled {
@@ -130,10 +122,6 @@
   z-index: 1;
 }
 
-#Receipt {
-  padding-bottom: 1.25em;
-}
-
 #KeyCode {
   margin: 1.25em auto;
   padding: 1.25em;
@@ -171,7 +159,7 @@
   line-height: 1.42857143;
   color: #333;
   white-space: pre-wrap;
-  word-break: break-word;
+  word-wrap: break-word;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 5px;

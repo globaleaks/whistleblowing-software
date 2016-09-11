@@ -21,10 +21,6 @@
   margin-bottom: 0.8em;
 }
 
-.addFieldButton {
-  vertical-align: bottom;
-}
-
 .fileDetails {
   margin: 0 0 0.8em 20px;
 }
@@ -37,14 +33,6 @@
 
 .fieldLabel {
   margin-top: 20px;
-}
-
-.stepEditorHeader, .fieldEditorHeader {
-  padding: 20px;
-}
-
-.stepEditor, .fieldEditor {
-  padding-top: 20px;
 }
 
 .editorHeader {
