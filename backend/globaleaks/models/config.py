@@ -95,7 +95,7 @@ class ConfigFactory(object):
 
         for key in extra:
             c = res[key]
-            log.info("Removing unused config: %s.%s" % (c.var_group, c.var_name))
+            log.info("Removing unused config: %s" % c)
             self.store.remove(c)
 
         return len(missing), len(extra)
@@ -216,6 +216,9 @@ def system_cfg_init(store):
 def del_cfg_not_in_groups(store):
     where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
                 Not(Config.var_group == u'private'))
+    res = store.find(Config, where)
+    for c in res:
+        log.info("Removing extra Config <%s>" % c)
     store.find(Config, where).remove()
 
 def system_cfg_stable(store):
@@ -230,6 +233,7 @@ def system_cfg_stable(store):
 
     return stable
 
+# NOTE make sure it is idempotent
 def system_analyze_update(store):
     prv = PrivateFactory(store)
 
