@@ -1,10 +1,12 @@
 var utils = require('./utils.js');
 
-describe('Admin upload custom CSS', function() {
-  it('should upload a file and the file should be available for download', function() {
+describe('Admin configure custom CSS', function() {
+  it('should be able to configure a custom CSS', function() {
     if (!utils.testFileUpload()) {
       return;
     }
+
+    var EC = protractor.ExpectedConditions;
 
     browser.setLocation('admin/content');
 
@@ -28,32 +30,19 @@ describe('Admin upload custom CSS', function() {
         utils.TestFileEquality(customCSSFile, actualFile);
       });
     }
-  });
-});
 
-describe('Custom CSS classes are attached to the interface', function() {
-  var EC = protractor.ExpectedConditions;
-
-  // check that element is hidden.
-  it('the logo should be hidden in the public interface', function() {
     browser.get('/');
     expect(EC.invisibilityOf($('#LogoBox')));
     expect(EC.visibilityOf($('#FooterBox')));
-  });
 
-  it('the footer should be hidden from an authenticated user', function() {
     utils.login_admin();
     browser.setLocation('/#/admin/landing');
     expect(EC.invisibilityOf($('#FooterBox')));
     expect(EC.visibilityOf($('#LogoBox')));
-  });
 
-  it('the login button should be hidden on the embedded login page', function() {
     browser.get('/#/login?embed=true');
     expect(EC.invisibilityOf($('#login-button')));
-  });
 
-  it('should allow deletion of the file', function() {
     utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
