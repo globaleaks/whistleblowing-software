@@ -19,7 +19,7 @@ describe('Admin configure custom CSS', function() {
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
-    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
+    utils.waitUntilPresent(element(by.cssContainingText("label", "Project name")));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
