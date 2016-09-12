@@ -203,6 +203,9 @@ class Notification_v_33(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
+    # NOTE
+    MIG_SYS_VERSION = '2.63.6'
+
     def epilogue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
@@ -242,8 +245,8 @@ class MigrationScript(MigrationBase):
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
-        self.store_new.add(Config('private', 'version', __version__))
-        self.store_new.add(Config('private', 'version_db', DATABASE_VERSION))
+        self.store_new.add(Config('private', 'version', MIG_SYS_VERSION))
+        self.store_new.add(Config('private', 'version_db', 34))
 
         # Ensure that no there is no missing or extra config rows
         config.system_analyze_update(self.store_new)

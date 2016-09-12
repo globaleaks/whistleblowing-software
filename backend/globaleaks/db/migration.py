@@ -178,15 +178,11 @@ def perform_version_update(version):
 
             store_verify.close()
 
-        store_appdata = Store(create_database('sqlite:' + new_db_file))
-        db_update_appdata(store_appdata)
-        db_fix_fields_attrs(store_appdata)
-        store_appdata.commit()
         store_appdata.close()
 
     except Exception as exception:
         print exception
-        # simply propagage the exception
+        # simply propagate the exception
         raise exception
 
     else:

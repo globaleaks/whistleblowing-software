@@ -66,10 +66,13 @@ def init_db(store, use_single_lang=False):
     files.db_add_file(store, '', u'custom_stylesheet')
 
 
+# NOTE rename me.
 def check_db_files():
     """
-    This function checks the database version and executes eventually
-    executes migration scripts
+    This function checks the system and database versions and executes migration
+    routines based on the system's state. After this function has completed the
+    node is either ready for initialization (0), running a version of the DB 
+    (>1), or broken (-1).
     """
     db_files = []
     max_version = 0
@@ -94,7 +97,7 @@ def check_db_files():
         if db_version < DATABASE_VERSION:
             log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
-                migration.perform_version_update(db_version)
+                migration.perform_schema_migration(db_version)
             except Exception as exception:
                 log.msg("Migration failure: %s" % exception)
                 log.msg("Verbose exception traceback:")
@@ -104,7 +107,7 @@ def check_db_files():
 
             log.msg("Migration completed with success!")
 
-    elif len(db_files) > 1:
+    if len(db_files) > 1:
         log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
         log.msg("Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path)
         log.msg("Files found:")
@@ -113,6 +116,24 @@ def check_db_files():
             log.msg("\t%s" % f)
 
         return -1
+
+    store = Store(create_database('sqlite:' + new_db_file))
+    # analyze stored versions
+    if config.stored > globaleaks.version:
+        # TODO perform system update after the migration of the Schema.
+
+        # handle version nums/addition/deletion of config
+        # fnc must update DB Version and Sys version
+        # config.system_analyze_config(store)
+
+        db_update_appdata(store)
+        db_fix_fields_attrs(store)
+        store.commit()
+
+    if not config.system_ok()
+        log.msg("The system config is in a broken state")
+        return -1
+
 
     return db_version
 
