@@ -121,9 +121,7 @@ class NodeFactory(ConfigFactory):
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_medium',
-        'threshold_free_disk_percentage_low',
-
-        'wbtip_timetolive',
+        'threshold_free_disk_percentage_low'
     })
 
     admin_node = frozenset(GLConfig['node'].keys())
