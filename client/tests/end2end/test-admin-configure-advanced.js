@@ -54,3 +54,39 @@ describe('adming configure advanced settings - Anomaly detection thresholds', fu
     });
   });
 });
+
+describe('adming disable submissions', function() {
+  it('should disable submission', function() {
+    browser.setLocation('admin/advanced_settings');
+
+    element(by.model('admin.node.disable_submissions')).click();
+
+    // save settings
+    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+      utils.emulateUserRefresh();
+      expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
+    });
+
+    browser.get('/#/');
+
+    expect(browser.isElementPresent(element(by.cssContainingText("span", "Submissions disabled")))).toBe(true);
+
+    utils.login_admin();
+
+    browser.setLocation('admin/advanced_settings');
+
+    element(by.model('admin.node.disable_submissions')).click();
+
+    // save settings
+    element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
+      utils.emulateUserRefresh();
+      expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
+    });
+
+    browser.get('/#/');
+
+    expect(browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
+
+    utils.login_admin();
+  });
+});
