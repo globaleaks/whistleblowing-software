@@ -33,7 +33,7 @@ class TestSystemConfigModels(helpers.TestGL):
 
     @transact
     def _test_stable(self, store):
-        self.assertEqual(True, config.system_cfg_stable(store))
+        self.assertEqual(True, config.system_cfg_valid(store))
 
     @inlineCallbacks
     def test_missing_config(self):
@@ -41,13 +41,13 @@ class TestSystemConfigModels(helpers.TestGL):
 
     @transact
     def _test_missing_config(self, store):
-        self.assertEqual(True, config.system_cfg_stable(store))
+        self.assertEqual(True, config.is_cfg_valid(store))
 
         p = config.Config('private', 'smtp_password', 'XXXX')
         p.var_group = u'outside'
         store.add(p)
 
-        self.assertEqual(False, config.system_cfg_stable(store))
+        self.assertEqual(False, config.is_cfg_valid(store))
 
         node = config.NodeFactory(store)
         c = node.get_cfg('public_site')
@@ -71,9 +71,9 @@ class TestSystemConfigModels(helpers.TestGL):
 
         self.assertEqual(False, ntfn.db_corresponds())
 
-        config.system_analyze_update(store)
+        config.manage_cfg_update(store)
 
-        self.assertEqual(True, config.system_cfg_stable(store))
+        self.assertEqual(True, config.is_cfg_valid())
 
 
 class TestConfigL10N(helpers.TestGL):

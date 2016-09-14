@@ -119,7 +119,7 @@ class transact(object):
         except exceptions.IntegrityError as e:
             transaction.abort()
             raise DatabaseIntegrityError(str(e))
-        except Exception as e:
+        except Exception:
             transaction.abort()
             raise
         finally:

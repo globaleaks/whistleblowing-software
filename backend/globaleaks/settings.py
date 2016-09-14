@@ -16,6 +16,7 @@ from twisted.internet import reactor
 from twisted.python.threadpool import ThreadPool
 
 from cyclone.util import ObjectDict as OD
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
 
@@ -223,7 +224,7 @@ class GLSettingsClass(object):
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
         self.db_file_path = os.path.join(os.path.abspath(os.path.join(self.db_path, self.db_file_name)))
-        self.db_uri = 'sqlite:' + self.db_file_path + '?foreign_keys=ON'
+        self.db_uri = self.make_db_uri(self.db_file_path)
 
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
         self.httplogfile = os.path.abspath(os.path.join(self.log_path, "http.log"))
@@ -541,6 +542,9 @@ class GLSettingsClass(object):
             except Exception as excep:
                 self.print_msg("Error while evaluating removal for %s: %s" % (path, excep))
 
+    @staticmethod
+    def make_db_uri(db_file_path):
+        return 'sqlite:' + db_file_path + '?foreign_keys=ON'
 
 # GLSettings is a singleton class exported once
 GLSettings = GLSettingsClass()

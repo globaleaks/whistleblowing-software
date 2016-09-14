@@ -9,8 +9,7 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.models import l10n, config
 from globaleaks.settings import GLSettings
-
-from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
+from globaleaks.utils import utility
 
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
@@ -76,7 +75,7 @@ migration_mapping = OrderedDict([
 ])
 
 
-def perform_version_update(version):
+def perform_schema_migration(version, tmpdir):
     """
     @param version:
     @return:
@@ -85,11 +84,9 @@ def perform_version_update(version):
     to_delete_on_success = []
 
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
-        GLSettings.print_msg("Migrations from DB version lower than %d are no more supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
-        GLSettings.print_msg("If you can't create your Node from scratch, contact us asking for support.")
+        GLSettings.print_msg("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
-    tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
     orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
     final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
 
@@ -97,13 +94,11 @@ def perform_version_update(version):
     os.mkdir(tmpdir)
     shutil.copy2(orig_db_file, tmpdir)
 
-    old_db_file = None
-    new_db_file = None
+    old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
+    new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
 
     try:
         while version < DATABASE_VERSION:
-            old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
-            new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
 
             GLSettings.db_file = new_db_file
             GLSettings.enable_input_length_checks = False
@@ -148,7 +143,7 @@ def perform_version_update(version):
                     raise exception
 
             finally:
-                # the database should bee always closed before leaving the application
+                # the database should be always closed before leaving the application
                 # in order to not keep leaking journal files.
                 migration_script.close()
 
@@ -178,18 +173,22 @@ def perform_version_update(version):
 
             store_verify.close()
 
-        store_appdata.close()
+        ### END-WHILE ### The tmp-db is now at the latest version
+        store = utility.make_db_uri(new_db_file)
+        manage_version_update(store)
 
     except Exception as exception:
-        print exception
         # simply propagate the exception
         raise exception
 
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
         shutil.copy(new_db_file, final_db_file)
-        os.remove(orig_db_file)
+        security.overwrite_and_remove(orig_db_file)
 
     finally:
-        # always cleanup the temporary directory used for the migration
-        shutil.rmtree(tmpdir, True)
+        # Always cleanup the temporary directory used for the migration
+        for f in os.listidr(tmpdir):
+            tmp_db_file = os.path.join(tmpdir, f)
+            security.overwrite_and_remove(tmp_db_file)
+        shutil.rmtree(tmpdir)

@@ -7,7 +7,7 @@ from twisted.internet import reactor, defer
 from twisted.scripts._twistd_unix import UnixApplicationRunner
 
 from globaleaks.db import init_db, clean_untracked_files, \
-    refresh_memory_variables, handle_stored_version
+    refresh_memory_variables
 from globaleaks.jobs import session_management_sched, statistics_sched, \
     notification_sched, delivery_sched, cleaning_sched, \
     pgp_check_sched
@@ -64,8 +64,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             if GLSettings.initialize_db:
                 yield init_db()
-            else:
-                yield handle_stored_version()
 
             yield clean_untracked_files()
 

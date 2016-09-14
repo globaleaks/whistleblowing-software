@@ -83,8 +83,9 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
 
     Note: At each iteration the original size of the file is altered.
     """
+    random.seed(os.urandom(10))
+
     if random.randint(1, 5) == 3:
-        # "never let attackers do assumptions"
         iterations_number += 1
 
     log.debug("Starting secure deletion of file %s" % absolutefpath)
@@ -225,7 +226,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
             finally:
                 if self.delete:
-                    os.remove(self.keypath)
+                    overwrite_and_remove(self.keypath)
 
         try:
             _TemporaryFileWrapper.close(self)

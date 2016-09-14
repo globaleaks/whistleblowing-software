@@ -245,11 +245,8 @@ class MigrationScript(MigrationBase):
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
-        self.store_new.add(Config('private', 'version', MIG_SYS_VERSION))
+        self.store_new.add(Config('private', 'version', self.MIG_SYS_VERSION))
         self.store_new.add(Config('private', 'version_db', 34))
-
-        # Ensure that no there is no missing or extra config rows
-        config.system_analyze_update(self.store_new)
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
         langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)

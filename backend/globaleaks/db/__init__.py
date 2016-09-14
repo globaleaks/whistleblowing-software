@@ -4,11 +4,14 @@
 import os
 import sys
 import traceback
-from twisted.internet.defer import succeed, inlineCallbacks
 
 from cyclone.util import ObjectDict
+from twisted.internet.defer import succeed, inlineCallbacks
+from storm import exceptions
+from storm.locals import Store, create_database
+
 from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.db.appdata import db_update_appdata
+from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
 from globaleaks.models import config
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
@@ -16,7 +19,7 @@ from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-from storm import exceptions
+from globaleaks.rest.errors import DatabaseIntegrityError
 
 
 def init_models():
@@ -66,12 +69,11 @@ def init_db(store, use_single_lang=False):
     files.db_add_file(store, '', u'custom_stylesheet')
 
 
-# NOTE rename me.
-def check_db_files():
+def manage_system_update():
     """
     This function checks the system and database versions and executes migration
     routines based on the system's state. After this function has completed the
-    node is either ready for initialization (0), running a version of the DB 
+    node is either ready for initialization (0), running a version of the DB
     (>1), or broken (-1).
     """
     db_files = []
@@ -97,7 +99,7 @@ def check_db_files():
         if db_version < DATABASE_VERSION:
             log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
-                migration.perform_schema_migration(db_version)
+                migration.perform_schema_migration(db_version, tmpdir)
             except Exception as exception:
                 log.msg("Migration failure: %s" % exception)
                 log.msg("Verbose exception traceback:")
@@ -117,23 +119,11 @@ def check_db_files():
 
         return -1
 
-    store = Store(create_database('sqlite:' + new_db_file))
-    # analyze stored versions
-    if config.stored > globaleaks.version:
-        # TODO perform system update after the migration of the Schema.
-
-        # handle version nums/addition/deletion of config
-        # fnc must update DB Version and Sys version
-        # config.system_analyze_config(store)
-
-        db_update_appdata(store)
-        db_fix_fields_attrs(store)
-        store.commit()
-
-    if not config.system_ok()
-        log.msg("The system config is in a broken state")
+    try:
+        manage_version_update()
+    except Exception as e:
+        log.msg("Cannot start the application. . . Bailing out")
         return -1
-
 
     return db_version
 
@@ -204,15 +194,23 @@ def db_refresh_memory_variables(store):
 def refresh_memory_variables(*args):
     return db_refresh_memory_variables(*args)
 
-
 @transact
-def handle_stored_version(store):
+def manage_version_update(store):
     prv = PrivateFactory(store)
 
-    ver = prv.get_val('version')
-    ver_db = prv.get_val('version_db')
+    stored_ver = prv.get_val('version')
+    t = (stored_ver, __version__)
 
-    # Only update config if the version has changed
-    if ver != __version__ or ver_db != DATABASE_VERSION:
-        log.info("Updating config version from %s to %s" % (ver, __version__))
-        config.system_analyze_update(store)
+    # Catch all failures
+    if stored_ver != __version__:
+        log.msg('Detected minor update from %s to %s' % t)
+        prv.set_val('version', __version__)
+
+        config.manage_cfg_update(store)
+        db_update_appdata(store)
+        db_fix_fields_attrs(store)
+
+    ok = config.is_cfg_valid(store)
+    if not ok:
+        m = 'Error: the system is not stable, update failed from %s to %s' % t
+        raise DatabaseIntegrityError(m)
