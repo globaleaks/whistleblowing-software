@@ -13,7 +13,7 @@ from storm.locals import Store, create_database
 from globaleaks import models, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
-from globaleaks.models import config
+from globaleaks.models import config, l10n
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_ro
@@ -217,7 +217,8 @@ def db_manage_version_update(store):
         prv.set_val('version', __version__)
 
         config.manage_cfg_update(store)
-        db_update_appdata(store)
+        appdata = db_update_appdata(store)
+        #l10n.manage_cfg_update(store, appdata)
         db_fix_fields_attrs(store)
 
     ok = config.is_cfg_valid(store)

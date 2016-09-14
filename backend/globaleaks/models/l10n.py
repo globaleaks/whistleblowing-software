@@ -93,11 +93,31 @@ class ConfigL10NFactory(object):
         return loc_dict
 
     def update(self, request, lang_code):
+
+        "UPDATE config_l10n (VALUES**) (value) WHERE value != %s AND var_name == '' AND var_group == '' AND lang == '';"
+
         c_map = {c.var_name : c for c in self.retrieve_rows(lang_code)}
 
         for key in self.localized_keys:
             c = c_map[key]
-            c.value = unicode(request[key])
+            new_val = unicode(request[key])
+            if c.value != new_val:
+                c.value = new_val
+                c.customized = True
+
+    def update_defaults(self, langs, l10n_data_src):
+        for lang in langs:
+            for cfg in self.get_all(lang_code):
+                new_def = data_obj[cfg.var_name][lang]
+                old_def = cfg.var_def
+                if new_def != old_def and old_def != u'XXX-&&&':
+                    cfg.var_def = new_def
+                    if cfg.val == old_def:
+                        cfg.val = new_def
+
+    def get_all(self, lang_code):
+        return self.store.find(ConfigL10N, ConfigL10N.var_group == self.group,
+                                           ConfigL10N.lang == self.lang_code)
 
     def _where_is(self, lang_code, var_name):
         return And(ConfigL10N.lang == unicode(lang_code),
@@ -202,3 +222,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_message_whistleblower',
         'export_message_recipient',
     })
+
+
+def manage_cfgl10n_update(store, appdata):
+    langs = EnabledLangs.get_all_strings(store)
+    NotificationFactory(store).update_defaults(langs, appdata['notification'])
+    NodeFactory(store).update_defaults(langs, appdata['node'])

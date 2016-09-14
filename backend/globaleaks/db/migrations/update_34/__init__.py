@@ -247,16 +247,18 @@ class MigrationScript(MigrationBase):
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
         self.store_new.add(Config('private', 'version', self.MIG_SYS_VERSION))
         self.store_new.add(Config('private', 'version_db', 34))
+        self.store_new.add(Config('private', 'migrated_cfg', True))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
         langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)
-        obj_appdata = self.appdata[appd_key]
+
+        new_obj_appdata = self.appdata[appd_key]
 
         for name in old_obj.localized_keys:
             xx_json_dict = getattr(old_obj, name, {})
             if xx_json_dict is None:
                 xx_json_dict = {} # protects against Nones in early db versions
-            app_data_item = obj_appdata.get(name, {})
+            app_data_item = new_obj_appdata.get(name, {})
             for lang in langs_enabled:
                 val = xx_json_dict.get(lang, None)
                 val_def = app_data_item.get(lang, "")
@@ -264,10 +266,12 @@ class MigrationScript(MigrationBase):
                 if val is not None:
                     val_f = val
                 elif val is None and val_def != "":
+                    # This is the reset of the new default
                     val_f = val_def
                 else: # val is None and val_def == ""
                     val_f = ""
 
                 s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f, val_def)
+                s.customized = True
 
                 self.store_new.add(s)

@@ -10,15 +10,16 @@ from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from storm.expr import And, Not, In
 
-
 def read_appdata(p):
     with file(p, 'r') as f:
         json_string = f.read()
         appdata_dict = json.loads(json_string)
         return appdata_dict
 
+
 def load_appdata():
     return read_appdata(GLSettings.appdata_file)
+
 
 def load_archived_appdata(p):
     return read_appdata(p)
