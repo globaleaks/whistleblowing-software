@@ -332,7 +332,6 @@ class AhmiaDescriptionHandler(BaseHandler):
 
 
 class RobotstxtHandler(BaseHandler):
-
     @BaseHandler.transport_security_check("unauth")
     @BaseHandler.unauthenticated
     def get(self):
