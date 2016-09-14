@@ -1,4 +1,4 @@
-from globaleaks import __version__, DATABASE_VERSION
+from globaleaks import __version__
 from globaleaks.utils.utility import log
 from storm.locals import Storm, Unicode, And, JSON, Not
 
@@ -221,23 +221,19 @@ def del_cfg_not_in_groups(store):
         log.info("Removing extra Config <%s>" % c)
     store.find(Config, where).remove()
 
-def system_cfg_stable(store):
-    stable = True
+def is_cfg_valid(store):
     for fact_model in factories:
         if not fact_model(store).db_corresponds():
-            stable = False
+            return False
 
     s = {r.var_group for r in store.find(Config).group_by(Config.var_group)}
     if s != set(GLConfig.keys()):
-        stable = False
+        return False
 
-    return stable
+    return True
 
-# NOTE make sure it is idempotent
-def system_analyze_update(store):
-    prv = PrivateFactory(store)
-
-    if not system_cfg_stable(store):
+def manage_cfg_update(store):
+    if not is_cfg_valid(store):
         log.info("This update will change system configuration")
 
         for fact_model in factories:
@@ -246,5 +242,6 @@ def system_analyze_update(store):
 
         del_cfg_not_in_groups(store)
 
+    # Set the system version to the current aligned cfg
+    prv = PrivateFactory(store)
     prv.set_val('version', __version__)
-    prv.set_val('version_db', DATABASE_VERSION)

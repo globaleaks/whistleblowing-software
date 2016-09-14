@@ -93,7 +93,7 @@ from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.db import check_db_files
+from globaleaks.db import manage_system_update
 from globaleaks.runner import GlobaLeaksRunner
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
@@ -258,8 +258,9 @@ sys.argv[1:] = args
 
 def run_backend():
     # Check presence of an existing database and eventually perform its migration
-    db_status = check_db_files()
+    db_status = manage_system_update()
     if db_status == -1:
+        print(db_status)
         return
     elif db_status == 0:
         GLSettings.initialize_db = True
