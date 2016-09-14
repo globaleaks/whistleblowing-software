@@ -197,6 +197,7 @@ AdminNodeDesc = {
     'disable_security_awareness_questions': bool,
     'disable_key_code_hint': bool,
     'disable_donation_panel': bool,
+    'disable_submissions': bool,
     'simplified_login': bool,
     'enable_captcha': bool,
     'enable_proof_of_work': bool,
