@@ -25,6 +25,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'ar', 'name': 'Arabic', 'native': u'\u0627\u0644\u0639\u0631\u0628\u064a\u0629'},
   {'code': 'bs', 'name': 'Bosnian', 'native': u'Bosanski'},
   {'code': 'ca', 'name': 'Catalan', 'native': u'Catal\xe0'},
+  {'code': 'cs', 'name': 'Czech', 'native': u'\u010de\u0161tina'},
   {'code': 'de', 'name': 'German', 'native': u'Deutsch'},
   {'code': 'el', 'name': 'Greek',  'native': u'\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac'},
   {'code': 'en', 'name': 'English', 'native': u'English'},
