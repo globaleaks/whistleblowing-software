@@ -37,6 +37,8 @@ GLConfig = {
 
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
+
+        'migrated_cfg': Bool(default=False),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),

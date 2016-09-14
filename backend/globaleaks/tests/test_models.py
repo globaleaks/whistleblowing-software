@@ -28,12 +28,12 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(c, stated_conf)
 
     @inlineCallbacks
-    def test_system_config_stable(self):
-        yield self._test_stable()
+    def test_valid_confg(self):
+        yield self._test_valid_cfg()
 
     @transact
-    def _test_stable(self, store):
-        self.assertEqual(True, config.system_cfg_valid(store))
+    def _test_valid_cfg(self, store):
+        self.assertEqual(True, config.is_cfg_valid(store))
 
     @inlineCallbacks
     def test_missing_config(self):
@@ -73,7 +73,7 @@ class TestSystemConfigModels(helpers.TestGL):
 
         config.manage_cfg_update(store)
 
-        self.assertEqual(True, config.is_cfg_valid())
+        self.assertEqual(True, config.is_cfg_valid(store))
 
 
 class TestConfigL10N(helpers.TestGL):
