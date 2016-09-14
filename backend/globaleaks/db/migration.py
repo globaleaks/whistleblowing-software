@@ -9,7 +9,8 @@ from storm.locals import create_database, Store
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.models import l10n, config
 from globaleaks.settings import GLSettings
-from globaleaks.utils import utility
+from globaleaks.db import db_manage_version_update
+from globaleaks import security
 
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
@@ -75,7 +76,7 @@ migration_mapping = OrderedDict([
 ])
 
 
-def perform_schema_migration(version, tmpdir):
+def perform_schema_migration(version):
     """
     @param version:
     @return:
@@ -87,6 +88,7 @@ def perform_schema_migration(version, tmpdir):
         GLSettings.print_msg("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
+    tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
     orig_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
     final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
 
@@ -94,11 +96,14 @@ def perform_schema_migration(version, tmpdir):
     os.mkdir(tmpdir)
     shutil.copy2(orig_db_file, tmpdir)
 
-    old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
-    new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
+    old_db_file = None
+    new_db_file = None
+
 
     try:
         while version < DATABASE_VERSION:
+            old_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % version))
+            new_db_file = os.path.abspath(os.path.join(tmpdir, 'glbackend-%d.db' % (version + 1)))
 
             GLSettings.db_file = new_db_file
             GLSettings.enable_input_length_checks = False
@@ -150,7 +155,7 @@ def perform_schema_migration(version, tmpdir):
             GLSettings.print_msg("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
-            store_verify = Store(create_database('sqlite:' + new_db_file + '?foreign_keys=ON'))
+            store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
 
             for model_name, _ in migration_mapping.iteritems():
                 if model_name == 'ApplicationData':
@@ -173,9 +178,17 @@ def perform_schema_migration(version, tmpdir):
 
             store_verify.close()
 
-        ### END-WHILE ### The tmp-db is now at the latest version
-        store = utility.make_db_uri(new_db_file)
-        manage_version_update(store)
+        ### END-WHILE ### The tmp-db is now at the latest version ###
+        new_tmp_store = Store(create_database(GLSettings.make_db_uri(new_db_file)))
+        try:
+            db_manage_version_update(new_tmp_store)
+            new_tmp_store.commit()
+        except:
+            new_tmp_store.rollback()
+            new_tmp_store.close()
+            raise
+        finally:
+            new_tmp_store.close()
 
     except Exception as exception:
         # simply propagate the exception
@@ -188,7 +201,7 @@ def perform_schema_migration(version, tmpdir):
 
     finally:
         # Always cleanup the temporary directory used for the migration
-        for f in os.listidr(tmpdir):
+        for f in os.listdir(tmpdir):
             tmp_db_file = os.path.join(tmpdir, f)
             security.overwrite_and_remove(tmp_db_file)
         shutil.rmtree(tmpdir)

@@ -260,7 +260,6 @@ def run_backend():
     # Check presence of an existing database and eventually perform its migration
     db_status = manage_system_update()
     if db_status == -1:
-        print(db_status)
         return
     elif db_status == 0:
         GLSettings.initialize_db = True
