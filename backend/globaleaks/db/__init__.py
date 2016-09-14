@@ -218,7 +218,7 @@ def db_manage_version_update(store):
 
         config.manage_cfg_update(store)
         appdata = db_update_appdata(store)
-        #l10n.manage_cfg_update(store, appdata)
+        l10n.manage_cfg_update(store, appdata)
         db_fix_fields_attrs(store)
 
     ok = config.is_cfg_valid(store)

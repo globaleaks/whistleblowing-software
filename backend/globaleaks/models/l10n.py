@@ -105,14 +105,14 @@ class ConfigL10NFactory(object):
                 c.value = new_val
                 c.customized = True
 
-    def update_defaults(self, langs, l10n_data_src):
+    def update_defaults(self, langs, l10n_data_src, migrated_conf):
         for lang in langs:
             for cfg in self.get_all(lang_code):
                 new_def = data_obj[cfg.var_name][lang]
                 old_def = cfg.var_def
-                if new_def != old_def and old_def != u'XXX-&&&':
+                if new_def != old_def:
                     cfg.var_def = new_def
-                    if cfg.val == old_def:
+                    if cfg.val == old_def and not migrated_conf:
                         cfg.val = new_def
 
     def get_all(self, lang_code):
@@ -226,5 +226,6 @@ class NotificationL10NFactory(ConfigL10NFactory):
 
 def manage_cfgl10n_update(store, appdata):
     langs = EnabledLangs.get_all_strings(store)
-    NotificationFactory(store).update_defaults(langs, appdata['notification'])
-    NodeFactory(store).update_defaults(langs, appdata['node'])
+    m = PrivateFactory(store).get_val('migrated_conf')
+    NotificationFactory(store).update_defaults(langs, appdata['notification'], m)
+    NodeFactory(store).update_defaults(langs, appdata['node'], m)
