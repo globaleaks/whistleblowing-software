@@ -499,36 +499,16 @@ class BaseHandler(RequestHandler):
         except Exception as excep:
             log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
-    def write_chunk(self, f):
-        try:
-            chunk = f.read(GLSettings.file_chunk_size)
-            if len(chunk) != 0:
-                self.write(chunk)
-                self.flush()
-                reactor.callLater(0.01, self.write_chunk, f)
-            else:
-                f.close()
-                self.finish()
-        except Exception:
-            f.close()
-            self.finish()
-
+    @inlineCallbacks
     def write_file(self, filepath):
-        f = None
+        with open(filepath, "rb") as f:
+            chunk = f.read(GLSettings.file_chunk_size)
+            self.write(chunk)
 
-        try:
-            f = open(filepath, "rb")
-        except IOError as srcerr:
-            log.err("Unable to open %s: %s " % (filepath, srcerr.strerror))
-            self.finish()
-
-        try:
-            reactor.callLater(0, self.write_chunk, f)
-        except Exception:
-            if f is not None:
-                f.close()
-
-            self.finish()
+            chunk = f.read(GLSettings.file_chunk_size)
+            while(len(chunk) != 0):
+                yield deferred_sleep(0.001)
+                self.write(chunk)
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -701,24 +681,15 @@ class BaseHandler(RequestHandler):
 
 
 class BaseStaticFileHandler(BaseHandler):
-    def initialize(self, path=None):
-        if path is None:
-            path = GLSettings.static_path
-
-        self.root = "%s%s" % (os.path.abspath(path), os.path.sep)
-
-    def parse_url_path(self, url_path):
-        if os.path.sep != "/":
-            url_path = url_path.replace("/", os.path.sep)
-        return url_path
+    def initialize(self, path):
+        self.root = "%s%s" % (os.path.abspath(path), "/")
 
     @BaseHandler.unauthenticated
-    @web.asynchronous
+    @inlineCallbacks
     def get(self, path):
         if path == '':
             path = 'index.html'
 
-        path = self.parse_url_path(path)
         abspath = os.path.abspath(os.path.join(self.root, path))
 
         directory_traversal_check(self.root, abspath)
@@ -730,7 +701,7 @@ class BaseStaticFileHandler(BaseHandler):
         if mime_type:
             self.set_header("Content-Type", mime_type)
 
-        self.write_file(abspath)
+        yield self.write_file(abspath)
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):

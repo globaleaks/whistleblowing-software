@@ -128,9 +128,8 @@ spec = [
     (r'/wizard', wizard.Wizard),
 
     ## Special Files Handlers##
-    (r'/(favicon.ico)', base.BaseStaticFileHandler),
     (r'/robots.txt', public.RobotstxtHandler),
-    (r'/s/(.*)', base.BaseStaticFileHandler),
+    (r'/s/(.*)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
