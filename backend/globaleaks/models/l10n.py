@@ -2,7 +2,7 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from storm.expr import And
-from storm.locals import Unicode, Storm
+from storm.locals import Unicode, Storm, Bool
 
 
 class EnabledLanguage(Storm):
@@ -50,7 +50,7 @@ class ConfigL10N(Storm):
     var_group = Unicode()
     var_name = Unicode()
     value = Unicode()
-    def_val = Unicode()
+    customized = Bool()
 
     def __init__(self, lang_code, group, var_name, value='', def_val=''):
         self.lang = unicode(lang_code)
@@ -64,6 +64,10 @@ class ConfigL10N(Storm):
     def __repr__(self):
       return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
                                                self.var_name, self.value[:5])
+
+    def set_v(self, value):
+        self.value = value
+        self.customized = True
 
 
 class ConfigL10NFactory(object):
@@ -135,7 +139,7 @@ class ConfigL10NFactory(object):
             raise ValueError('Cannot assign ConfigL10N without a language')
 
         cfg = self.store.find(ConfigL10N, self._where_is(self.lang_code, var_name)).one()
-        cfg.value = value
+        cfg.set_v(value)
 
 
 class NodeL10NFactory(ConfigL10NFactory):

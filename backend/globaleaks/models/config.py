@@ -176,6 +176,7 @@ class Config(Storm):
     var_group = Unicode()
     var_name = Unicode()
     value = JSON()
+    customized = Bool()
 
     def __init__(self, group, name, value):
         self.var_group = unicode(group)
@@ -193,6 +194,7 @@ class Config(Storm):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
         if self.desc.validator is not None:
             self.desc.validator(self, self.var_name, val)
+        # TODO compare if dirty self.customized = True
         self.value = {'v': val}
 
     def find_descriptor(self):
