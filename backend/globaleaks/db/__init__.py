@@ -99,7 +99,7 @@ def manage_system_update():
         if db_version < DATABASE_VERSION:
             log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
-                migration.perform_schema_migration(db_version, tmpdir)
+                migration.perform_schema_migration(db_version)
             except Exception as exception:
                 log.msg("Migration failure: %s" % exception)
                 log.msg("Verbose exception traceback:")
@@ -120,7 +120,7 @@ def manage_system_update():
         return -1
 
     try:
-        manage_version_update()
+        inline_manage_version_update()
     except Exception as e:
         log.msg("Cannot start the application. . . Bailing out")
         return -1
@@ -194,8 +194,18 @@ def db_refresh_memory_variables(store):
 def refresh_memory_variables(*args):
     return db_refresh_memory_variables(*args)
 
+
+@inlineCallbacks
+def inline_manage_version_update():
+    yield manage_version_update()
+
+
 @transact
 def manage_version_update(store):
+    db_manage_version_update(store)
+
+
+def db_manage_version_update(store):
     prv = PrivateFactory(store)
 
     stored_ver = prv.get_val('version')

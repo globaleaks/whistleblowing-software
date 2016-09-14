@@ -28,12 +28,11 @@ class TestMigrationRoutines(unittest.TestCase):
         init_glsettings_for_unit_tests()
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
         final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
-        GLSettings.db_uri = 'sqlite:' + final_db_file + '?foriegn_keys=ON'
+        GLSettings.db_uri = GLSettings.make_db_uri(final_db_file)
 
         os.mkdir(GLSettings.db_path)
         dbpath = os.path.join(path, f)
         shutil.copyfile(dbpath, os.path.join(GLSettings.db_path, f))
-        print "GLSettings path in test", GLSettings.db_path
         ret = db.manage_system_update()
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
@@ -80,14 +79,12 @@ class TestConfigUpdates(unittest.TestCase):
         config.is_cfg_valid = self._bck_f
 
     def test_detect_and_fix_cfg_change(self):
-        prv = config.PrivateFactory(self.store)
-        self.assertEqual(prv.get_val('version'), self.dummy_ver)
-
         ret = config.is_cfg_valid(self.store)
         self.assertFalse(ret)
 
         config.manage_cfg_update(self.store)
 
+        prv = config.PrivateFactory(self.store)
         self.assertEqual(prv.get_val('version'), __version__)
         self.assertEqual(prv.get_val('xx_smtp_password'), self.dp)
 
@@ -96,9 +93,6 @@ class TestConfigUpdates(unittest.TestCase):
 
     @inlineCallbacks
     def test_ver_change_success(self):
-        prv = config.PrivateFactory(self.store)
-        self.store.close()
-
         yield db.manage_version_update()
 
         self.store = Store(create_database(GLSettings.db_uri))
@@ -117,9 +111,8 @@ class TestConfigUpdates(unittest.TestCase):
             self.assertIsInstance(e, DatabaseIntegrityError)
 
         # Ensure the rollback has succeeded
-        self.store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(self.store)
-        self.assertEqual(prv.get_val('version'), __version__)
+        self.assertEqual(prv.get_val('version'), self.dummy_ver)
 
     @inlineCallbacks
     def test_ver_change_exception(self):
@@ -132,9 +125,8 @@ class TestConfigUpdates(unittest.TestCase):
         except IOError as e:
             self.assertIsInstance(e, IOError)
 
-        self.store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(self.store)
-        self.assertEqual(prv.get_val('version'), __version__)
+        self.assertEqual(prv.get_val('version'), self.dummy_ver)
 
 
 def apply_gen(f):

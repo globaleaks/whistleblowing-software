@@ -83,7 +83,6 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
 
     Note: At each iteration the original size of the file is altered.
     """
-    random.seed(os.urandom(10))
 
     if random.randint(1, 5) == 3:
         iterations_number += 1
