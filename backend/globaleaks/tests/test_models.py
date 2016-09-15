@@ -71,7 +71,7 @@ class TestSystemConfigModels(helpers.TestGL):
 
         self.assertEqual(False, ntfn.db_corresponds())
 
-        config.manage_cfg_update(store)
+        config.update(store)
 
         self.assertEqual(True, config.is_cfg_valid(store))
 

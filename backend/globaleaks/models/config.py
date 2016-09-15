@@ -1,6 +1,7 @@
 from globaleaks import __version__
 from globaleaks.utils.utility import log
-from storm.locals import Storm, Unicode, And, JSON, Not
+from storm.expr import And, Not
+from storm.locals import Storm, Bool, Unicode, JSON
 
 import config_desc
 from .config_desc import GLConfig
@@ -25,9 +26,6 @@ class ConfigFactory(object):
             return
         cur = self.store.find(Config, And(Config.var_group == self.group))
         self.res = {c.var_name : c for c in cur}
-
-    # TODO find var_name with SELECT IN.
-    # def _select_from_set(self, safe_set):
 
     def update(self, request):
         self._query_group()
@@ -176,7 +174,7 @@ class Config(Storm):
     var_group = Unicode()
     var_name = Unicode()
     value = JSON()
-    customized = Bool()
+    customized = Bool(default=False)
 
     def __init__(self, group, name, value):
         self.var_group = unicode(group)
@@ -194,7 +192,10 @@ class Config(Storm):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
         if self.desc.validator is not None:
             self.desc.validator(self, self.var_name, val)
-        # TODO compare if dirty self.customized = True
+
+        if self.value is not None and self.value['v'] != val:
+            self.customized = True
+
         self.value = {'v': val}
 
     def find_descriptor(self):
@@ -234,7 +235,7 @@ def is_cfg_valid(store):
 
     return True
 
-def manage_cfg_update(store):
+def update(store):
     if not is_cfg_valid(store):
         log.info("This update will change system configuration")
 
