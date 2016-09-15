@@ -61,21 +61,19 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczpnbG9iYWxlYWtz'})
         yield handler.get_unauthenticated()
 
-    @inlineCallbacks
     def test_basic_auth_on_and_invalid_authentication(self):
         GLSettings.memory_copy.basic_auth = True
         GLSettings.memory_copy.basic_auth_username = 'globaleaks'
         GLSettings.memory_copy.basic_auth_password = 'globaleaks'
         handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczp3cm9uZ3Bhc3N3b3Jk'})
-        yield self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
+        self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
 
-    @inlineCallbacks
     def test_basic_auth_on_and_missing_authentication(self):
         GLSettings.memory_copy.basic_auth = True
         GLSettings.memory_copy.basic_auth_username = 'globaleaks'
         GLSettings.memory_copy.basic_auth_password = 'globaleaks'
         handler = self.request({})
-        yield self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
+        self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
 
     @inlineCallbacks
     def test_get_with_no_language_header(self):
@@ -182,15 +180,14 @@ class TestBaseStaticFileHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_existent(self):
-        handler = self.request()
-        handler.root = GLSettings.client_path
+        handler = self.request(kwargs={'path': GLSettings.client_path})
         yield handler.get('')
         self.assertEqual(handler.get_status(), 200)
 
+    @inlineCallbacks
     def test_get_unexistent(self):
-        handler = self.request()
-        handler.root = GLSettings.client_path
-        self.assertRaises(HTTPError, handler.get, 'unexistent')
+        handler = self.request(kwargs={'path': GLSettings.client_path})
+        yield self.assertFailure(handler.get('unexistent'), HTTPError)
 
 
 class TestTimingStats(helpers.TestHandler):
