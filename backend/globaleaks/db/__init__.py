@@ -19,7 +19,6 @@ from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-from globaleaks.rest.errors import DatabaseIntegrityError
 
 
 def init_models():
@@ -69,13 +68,14 @@ def init_db(store, use_single_lang=False):
     files.db_add_file(store, '', u'custom_stylesheet')
 
 
-def manage_system_update():
+def perform_system_update():
     """
     This function checks the system and database versions and executes migration
     routines based on the system's state. After this function has completed the
     node is either ready for initialization (0), running a version of the DB
     (>1), or broken (-1).
     """
+    from globaleaks.db import migration
     db_files = []
     max_version = 0
     min_version = 0
@@ -92,12 +92,21 @@ def manage_system_update():
 
     db_version = max_version
 
-    if len(db_files) == 1 and db_version > 0:
-        from globaleaks.db import migration
+    if len(db_files) > 1:
+        log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
+        log.msg("Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path)
+        log.msg("Files found:")
+
+        for f in db_files:
+            log.msg("\t%s" % f)
+
+        return -1
+
+    if len(db_files) == 1:
         log.msg("Found an already initialized database version: %d" % db_version)
 
         if db_version < DATABASE_VERSION:
-            log.msg("Performing update of database from version %d to version %d" % (db_version, DATABASE_VERSION))
+            log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
             try:
                 migration.perform_schema_migration(db_version)
             except Exception as exception:
@@ -109,21 +118,9 @@ def manage_system_update():
 
             log.msg("Migration completed with success!")
 
-    if len(db_files) > 1:
-        log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
-        log.msg("Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path)
-        log.msg("Files found:")
-
-        for f in db_files:
-            log.msg("\t%s" % f)
-
-        return -1
-
-    try:
-        inline_manage_version_update()
-    except Exception as e:
-        log.msg("Cannot start the application. . . Bailing out")
-        return -1
+        else:
+            log.msg('Performing data update')
+            migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
     return db_version
 
@@ -193,35 +190,3 @@ def db_refresh_memory_variables(store):
 @transact_ro
 def refresh_memory_variables(*args):
     return db_refresh_memory_variables(*args)
-
-
-@inlineCallbacks
-def inline_manage_version_update():
-    yield manage_version_update()
-
-
-@transact
-def manage_version_update(store):
-    db_manage_version_update(store)
-
-
-def db_manage_version_update(store):
-    prv = PrivateFactory(store)
-
-    stored_ver = prv.get_val('version')
-    t = (stored_ver, __version__)
-
-    # Catch all failures
-    if stored_ver != __version__:
-        log.msg('Detected minor update from %s to %s' % t)
-        prv.set_val('version', __version__)
-
-        config.manage_cfg_update(store)
-        appdata = db_update_appdata(store)
-        l10n.manage_cfg_update(store, appdata)
-        db_fix_fields_attrs(store)
-
-    ok = config.is_cfg_valid(store)
-    if not ok:
-        m = 'Error: the system is not stable, update failed from %s to %s' % t
-        raise DatabaseIntegrityError(m)

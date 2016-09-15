@@ -6,11 +6,10 @@ import shutil
 
 from storm.locals import create_database, Store
 
-from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
+from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, security
 from globaleaks.models import l10n, config
+from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
-from globaleaks.db import db_manage_version_update
-from globaleaks import security
 
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
@@ -76,6 +75,45 @@ migration_mapping = OrderedDict([
 ])
 
 
+from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
+from globaleaks.models import config, l10n
+from globaleaks.models.config import PrivateFactory
+
+
+def db_perform_data_update(store):
+    prv = PrivateFactory(store)
+
+    stored_ver = prv.get_val('version')
+    t = (stored_ver, __version__)
+
+    # Catch all failures
+    if stored_ver != __version__:
+        prv.set_val('version', __version__)
+
+        appdata = db_update_appdata(store)
+        config.update(store)
+        l10n.update(store, appdata)
+        db_fix_fields_attrs(store)
+
+    ok = config.is_cfg_valid(store)
+    if not ok:
+        m = 'Error: the system is not stable, update failed from %s to %s' % t
+        raise DatabaseIntegrityError(m)
+
+
+def perform_data_update(dbfile):
+    new_tmp_store = Store(create_database(GLSettings.make_db_uri(dbfile)))
+    try:
+        db_perform_data_update(new_tmp_store)
+        new_tmp_store.commit()
+    except:
+        new_tmp_store.rollback()
+        raise
+    finally:
+        new_tmp_store.close()
+
+
 def perform_schema_migration(version):
     """
     @param version:
@@ -96,9 +134,7 @@ def perform_schema_migration(version):
     os.mkdir(tmpdir)
     shutil.copy2(orig_db_file, tmpdir)
 
-    old_db_file = None
     new_db_file = None
-
 
     try:
         while version < DATABASE_VERSION:
@@ -178,18 +214,7 @@ def perform_schema_migration(version):
 
             store_verify.close()
 
-        ### END-WHILE ### The tmp-db is now at the latest version ###
-        new_tmp_store = Store(create_database(GLSettings.make_db_uri(new_db_file)))
-        try:
-            db_manage_version_update(new_tmp_store)
-            new_tmp_store.commit()
-        except:
-            new_tmp_store.rollback()
-            new_tmp_store.close()
-            raise
-        finally:
-            new_tmp_store.close()
-
+        perform_data_update(new_db_file)
     except Exception as exception:
         # simply propagate the exception
         raise exception

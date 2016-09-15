@@ -271,7 +271,6 @@ class MigrationScript(MigrationBase):
                 else: # val is None and val_def == ""
                     val_f = ""
 
-                s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f, val_def)
-                s.customized = True
+                s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f)
 
                 self.store_new.add(s)

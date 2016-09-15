@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from storm.expr import And
 from storm.locals import Unicode, Storm, Bool
 
@@ -50,16 +51,13 @@ class ConfigL10N(Storm):
     var_group = Unicode()
     var_name = Unicode()
     value = Unicode()
-    customized = Bool()
+    customized = Bool(default=False)
 
     def __init__(self, lang_code, group, var_name, value='', def_val=''):
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
         self.value = unicode(value)
-        if def_val is None:
-            def_val = ''
-        self.def_val = unicode(def_val)
 
     def __repr__(self):
       return "<ConfigL10N %s::%s.%s::'%s'>" % (self.lang, self.var_group,
@@ -71,11 +69,13 @@ class ConfigL10N(Storm):
 
 
 class ConfigL10NFactory(object):
-    def __init__(self, group, store, lang_code=None):
+    def __init__(self, store, group, lang_code=None):
         self.store = store
         self.group = unicode(group)
+
         if lang_code is not None:
             self.lang_code = unicode(lang_code)
+
         #TODO use lazy loading to optimize query performance
 
     def create_default(self, lang_code, l10n_data_src):
@@ -97,9 +97,6 @@ class ConfigL10NFactory(object):
         return loc_dict
 
     def update(self, request, lang_code):
-
-        "UPDATE config_l10n (VALUES**) (value) WHERE value != %s AND var_name == '' AND var_group == '' AND lang == '';"
-
         c_map = {c.var_name : c for c in self.retrieve_rows(lang_code)}
 
         for key in self.localized_keys:
@@ -109,19 +106,15 @@ class ConfigL10NFactory(object):
                 c.value = new_val
                 c.customized = True
 
-    def update_defaults(self, langs, l10n_data_src, migrated_conf):
-        for lang in langs:
+    def update_defaults(self, langs, l10n_data_src):
+        for lang_code in langs:
             for cfg in self.get_all(lang_code):
-                new_def = data_obj[cfg.var_name][lang]
-                old_def = cfg.var_def
-                if new_def != old_def:
-                    cfg.var_def = new_def
-                    if cfg.val == old_def and not migrated_conf:
-                        cfg.val = new_def
+                if not cfg.customized and cfg.var_name in  l10n_data_src:
+                    cfg.val = l10n_data_src[cfg.var_name][lang_code]
 
     def get_all(self, lang_code):
-        return self.store.find(ConfigL10N, ConfigL10N.var_group == self.group,
-                                           ConfigL10N.lang == self.lang_code)
+        return self.store.find(ConfigL10N, And(ConfigL10N.var_group == self.group,
+                                               ConfigL10N.lang == unicode(lang_code)))
 
     def _where_is(self, lang_code, var_name):
         return And(ConfigL10N.lang == unicode(lang_code),
@@ -144,7 +137,7 @@ class ConfigL10NFactory(object):
 
 class NodeL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, 'node', store, *args, **kwargs)
+        ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
 
     def create_default(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['node']
@@ -174,7 +167,7 @@ class NodeL10NFactory(ConfigL10NFactory):
 
 class NotificationL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, 'notification', store, *args, **kwargs)
+        ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
 
     def create_default(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['templates']
@@ -228,8 +221,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
     })
 
 
-def manage_cfgl10n_update(store, appdata):
-    langs = EnabledLangs.get_all_strings(store)
-    m = PrivateFactory(store).get_val('migrated_conf')
-    NotificationFactory(store).update_defaults(langs, appdata['notification'], m)
-    NodeFactory(store).update_defaults(langs, appdata['node'], m)
+def update(store, appdata):
+    langs = EnabledLanguage.get_all_strings(store)
+    ConfigL10NFactory(store, 'node').update_defaults(langs, appdata['node'])
+    ConfigL10NFactory(store, 'notification').update_defaults(langs, appdata['node'])
