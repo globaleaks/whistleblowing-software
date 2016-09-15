@@ -1,9 +1,7 @@
-from twisted.trial import unittest
+from globaleaks.tests.helpers import TestGL
 
-from globaleaks.rest import api
-
-
-class TestAPI(unittest.TestCase):
+class TestAPI(TestGL):
     def test_api_factory(self):
+        from globaleaks.rest import api
         api_factory = api.get_api_factory()
         # TODO: write some tests againg the API factory
