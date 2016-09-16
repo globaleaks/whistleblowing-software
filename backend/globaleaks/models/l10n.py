@@ -21,8 +21,8 @@ class EnabledLanguage(Storm):
     def add_new_lang(cls, store, lang_code, appdata):
         store.add(cls(lang_code))
 
-        NotificationL10NFactory(store).create_default(lang_code, appdata)
-        NodeL10NFactory(store).create_default(lang_code, appdata)
+        NotificationL10NFactory(store).initialize(lang_code, appdata)
+        NodeL10NFactory(store).initialize(lang_code, appdata)
 
     @classmethod
     def remove_old_lang(cls, store, lang_code):
@@ -39,8 +39,8 @@ class EnabledLanguage(Storm):
 
         for lang_code in LANGUAGES_SUPPORTED_CODES:
             store.add(cls(lang_code))
-            node_l10n.create_default(lang_code, appdata_dict)
-            notif_l10n.create_default(lang_code, appdata_dict)
+            node_l10n.initialize(lang_code, appdata_dict)
+            notif_l10n.initiaize(lang_code, appdata_dict)
 
 
 class ConfigL10N(Storm):
@@ -84,7 +84,7 @@ class ConfigL10NFactory(object):
 
         #TODO use lazy loading to optimize query performance
 
-    def create_default(self, lang_code, l10n_data_src):
+    def initialize(self, lang_code, l10n_data_src):
         for key in self.localized_keys:
             if key in l10n_data_src and lang_code in l10n_data_src[key]:
                 val = l10n_data_src[key][lang_code]
@@ -110,10 +110,10 @@ class ConfigL10NFactory(object):
             new_val = unicode(request[key])
             c.set_v(new_val)
 
-    def update_defaults(self, langs, l10n_data_src):
+    def update_defaults(self, langs, l10n_data_src, reset=False):
         for lang_code in langs:
             for cfg in self.get_all(lang_code):
-                if not cfg.customized and cfg.var_name in l10n_data_src:
+                if (not cfg.customized or reset) and cfg.var_name in l10n_data_src:
                     cfg.val = l10n_data_src[cfg.var_name][lang_code]
 
     def get_all(self, lang_code):
@@ -143,9 +143,9 @@ class NodeL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
 
-    def create_default(self, lang_code, appdata_dict):
+    def initialize(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['node']
-        ConfigL10NFactory.create_default(self, lang_code, l10n_data_src)
+        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
 
     localized_keys = frozenset({
         'description',
@@ -173,18 +173,13 @@ class NotificationL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
 
-    def create_default(self, lang_code, appdata_dict):
+    def initialize(self, lang_code, appdata_dict):
         l10n_data_src = appdata_dict['templates']
-        ConfigL10NFactory.create_default(self, lang_code, l10n_data_src)
+        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
 
-    def reset_templates(self, appdata):
-        l10n_data_src = appdata['templates']
-        selector = And(ConfigL10N.var_group == self.group)
-        for c in self.store.find(ConfigL10N, selector):
-            new_value = ''
-            if c.var_name in l10n_data_src:
-                new_value = l10n_data_src[c.var_name][c.lang]
-            c.reset(new_value)
+    def reset_templates(self, l10n_data_src):
+        langs = EnabledLanguage.get_all_strings(self.store)
+        self.update_defaults(langs, l10n_data_src, reset=True)
 
     localized_keys = frozenset({
         'admin_anomaly_mail_title',
@@ -227,5 +222,5 @@ class NotificationL10NFactory(ConfigL10NFactory):
 
 def update_table(store, appdata):
     langs = EnabledLanguage.get_all_strings(store)
-    ConfigL10NFactory(store, 'node').update_defaults(langs, appdata['node'])
-    ConfigL10NFactory(store, 'notification').update_defaults(langs, appdata['node'])
+    NodeL10NFactory(store).update_defaults(langs, appdata['node'])
+    NotificationL10NFactory(store).update_defaults(langs, appdata['templates'])
