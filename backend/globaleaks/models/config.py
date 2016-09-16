@@ -235,7 +235,7 @@ def is_cfg_valid(store):
 
     return True
 
-def update(store):
+def update_table(store):
     if not is_cfg_valid(store):
         log.info("This update will change system configuration")
 
