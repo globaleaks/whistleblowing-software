@@ -96,7 +96,7 @@ GLConfig = {
         'can_grant_permissions': Bool(default=False),
 
         'ahmia': Bool(default=False),
-        'allow_indexing': Bool(default=False),
+        'allow_indexing': Bool(default=True),
 
         'wizard_done': Bool(default=False),
 
