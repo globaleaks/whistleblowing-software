@@ -220,7 +220,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
     })
 
 
-def update_table(store, appdata):
+def update_defaults(store, appdata):
     langs = EnabledLanguage.get_all_strings(store)
     NodeL10NFactory(store).update_defaults(langs, appdata['node'])
     NotificationL10NFactory(store).update_defaults(langs, appdata['templates'])
