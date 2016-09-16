@@ -503,12 +503,14 @@ class BaseHandler(RequestHandler):
     def write_file(self, filepath):
         with open(filepath, "rb") as f:
             chunk = f.read(GLSettings.file_chunk_size)
-            self.write(chunk)
+            if (len(chunk) != 0):
+                self.write(chunk)
 
             chunk = f.read(GLSettings.file_chunk_size)
             while(len(chunk) != 0):
                 yield deferred_sleep(0.001)
                 self.write(chunk)
+                chunk = f.read(GLSettings.file_chunk_size)
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
