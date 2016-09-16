@@ -109,7 +109,7 @@ class ConfigL10NFactory(object):
     def update_defaults(self, langs, l10n_data_src):
         for lang_code in langs:
             for cfg in self.get_all(lang_code):
-                if not cfg.customized and cfg.var_name in  l10n_data_src:
+                if not cfg.customized and cfg.var_name in l10n_data_src:
                     cfg.val = l10n_data_src[cfg.var_name][lang_code]
 
     def get_all(self, lang_code):
