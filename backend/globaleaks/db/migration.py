@@ -92,8 +92,8 @@ def db_perform_data_update(store):
         prv.set_val('version', __version__)
 
         appdata = db_update_appdata(store)
-        config.update(store)
-        l10n.update(store, appdata)
+        config.update_table(store)
+        l10n.update_table(store, appdata)
         db_fix_fields_attrs(store)
 
     ok = config.is_cfg_valid(store)

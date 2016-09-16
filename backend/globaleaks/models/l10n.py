@@ -53,7 +53,7 @@ class ConfigL10N(Storm):
     value = Unicode()
     customized = Bool(default=False)
 
-    def __init__(self, lang_code, group, var_name, value='', def_val=''):
+    def __init__(self, lang_code, group, var_name, value=''):
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
@@ -64,8 +64,14 @@ class ConfigL10N(Storm):
                                                self.var_name, self.value[:5])
 
     def set_v(self, value):
-        self.value = value
-        self.customized = True
+        value = unicode(value)
+        if self.value != value:
+            self.value = value
+            self.customized = True
+
+    def reset(self, new_value):
+        self.set_v(new_value)
+        c.customized = False
 
 
 class ConfigL10NFactory(object):
@@ -82,7 +88,7 @@ class ConfigL10NFactory(object):
         for key in self.localized_keys:
             if key in l10n_data_src and lang_code in l10n_data_src[key]:
                 val = l10n_data_src[key][lang_code]
-                entry = ConfigL10N(lang_code, self.group, key, val, val)
+                entry = ConfigL10N(lang_code, self.group, key, val)
             else:
                 entry = ConfigL10N(lang_code, self.group, key)
             self.store.add(entry)
@@ -102,9 +108,7 @@ class ConfigL10NFactory(object):
         for key in self.localized_keys:
             c = c_map[key]
             new_val = unicode(request[key])
-            if c.value != new_val:
-                c.value = new_val
-                c.customized = True
+            c.set_v(new_val)
 
     def update_defaults(self, langs, l10n_data_src):
         for lang_code in langs:
@@ -180,7 +184,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
             new_value = ''
             if c.var_name in l10n_data_src:
                 new_value = l10n_data_src[c.var_name][c.lang]
-            c.value = unicode(new_value)
+            c.reset(new_value)
 
     localized_keys = frozenset({
         'admin_anomaly_mail_title',
@@ -221,7 +225,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
     })
 
 
-def update(store, appdata):
+def update_table(store, appdata):
     langs = EnabledLanguage.get_all_strings(store)
     ConfigL10NFactory(store, 'node').update_defaults(langs, appdata['node'])
     ConfigL10NFactory(store, 'notification').update_defaults(langs, appdata['node'])

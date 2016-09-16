@@ -71,7 +71,7 @@ class TestSystemConfigModels(helpers.TestGL):
 
         self.assertEqual(False, ntfn.db_corresponds())
 
-        config.update(store)
+        config.update_table(store)
 
         self.assertEqual(True, config.is_cfg_valid(store))
 
@@ -138,7 +138,6 @@ class TestUserL10N(helpers.TestGL):
                 'lang': k,
             })
             store.add(usr_l10n)
-            print usr_l10n
 
     @transact
     def find_user_l10n(self, store):
