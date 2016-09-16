@@ -10,7 +10,6 @@ TRAVIS_USR="travis-`git rev-parse --short HEAD`"
 
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
-  npm install -g grunt grunt-cli bower istanbul
   npm install -d
   bower update
   grunt copy:sources
@@ -33,6 +32,8 @@ setupDependencies() {
   setupBackendDependencies
 }
 
+npm install -g grunt grunt-cli bower
+
 if [ "$GLTEST" = "test" ]; then
 
   echo "Running backend unit tests"
@@ -51,6 +52,8 @@ if [ "$GLTEST" = "test" ]; then
     tar -xjf /tmp/firefox-45.0.tar.bz2 --directory /tmp
     export PATH="/tmp/firefox:$PATH"
     echo "Using firefox version `firefox --version`"
+
+    npm install -g istanbul
 
     echo "Running BrowserTesting locally collecting code coverage"
     cd $TRAVIS_BUILD_DIR/client
