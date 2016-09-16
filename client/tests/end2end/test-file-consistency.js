@@ -53,11 +53,10 @@ describe('Submission file process', function() {
       // Download each file
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
         btn.click();
-        browser.waitForAngular();
 
         var name = filenames[i];
         var fullpath = path.resolve(path.join(browser.params.tmpDir, name));
-        utils.waitForFile(fullpath, 2000).then(function() {
+        utils.waitForFile(fullpath).then(function() {
           // Check that each downloaded file's checksum matches its original
           var test = utils.checksum(fs.readFileSync(fullpath));
           expect(test).toEqual(chksums[name]);
@@ -90,7 +89,6 @@ describe('Submission file process', function() {
 
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
         btn.click();
-        browser.waitForAngular();
 
         var name = filenames[i];
         var fullpath = path.resolve(path.join(browser.params.tmpDir, name + '.pgp'));
