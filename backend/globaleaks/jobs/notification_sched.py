@@ -39,40 +39,52 @@ trigger_model_map = {
 }
 
 
-def serialize_content(store, cache, key, obj, language):
-    obj_id = obj.id
-
-    cache_key = key + obj_id + language
-
-    if cache_key not in cache:
-        if key == 'tip':
-             cache_obj = serialize_rtip(store, obj, language)
-        elif key == 'context':
-             cache_obj = admin_serialize_context(store, obj, language)
-        elif key == 'receiver':
-             cache_obj = admin_serialize_receiver(obj, language)
-        elif key == 'message':
-             cache_obj = serialize_message(obj)
-        elif key == 'comment':
-             cache_obj = serialize_comment(obj)
-        elif key == 'file':
-             cache_obj = serialize_internalfile(obj)
-
-        cache[cache_key] = cache_obj
-
-    return copy.deepcopy(cache[cache_key])
-
-
 class MailGenerator(object):
     def __init__(self):
         self.cache = {}
 
+    def serialize_config(self, store, key, language):
+        cache_key = key + '-' + language
+
+        if cache_key not in self.cache:
+            if key == 'node':
+                cache_obj = db_admin_serialize_node(store, language)
+            elif key == 'notification':
+                cache_obj = db_get_notification(store, language)
+
+            self.cache[cache_key] = cache_obj
+
+        return self.cache[cache_key]
+
+    def serialize_obj(self, store, key, obj, language):
+        obj_id = obj.id
+
+        cache_key = key + '-' + obj_id + '-' + language
+
+        if cache_key not in self.cache:
+            if key == 'tip':
+                cache_obj = serialize_rtip(store, obj, language)
+            elif key == 'context':
+                cache_obj = admin_serialize_context(store, obj, language)
+            elif key == 'receiver':
+                cache_obj = admin_serialize_receiver(obj, language)
+            elif key == 'message':
+                cache_obj = serialize_message(obj)
+            elif key == 'comment':
+                cache_obj = serialize_comment(obj)
+            elif key == 'file':
+                cache_obj = serialize_internalfile(obj)
+
+            self.cache[cache_key] = cache_obj
+
+        return self.cache[cache_key]
+
     def process_ReceiverTip(self, store, rtip, data):
         language = rtip.receiver.user.language
 
-        data['tip'] = serialize_content(store, self.cache, 'tip', rtip, language)
-        data['context'] = serialize_content(store, self.cache, 'context', rtip.internaltip.context, language)
-        data['receiver'] = serialize_content(store, self.cache, 'receiver', rtip.receiver, language)
+        data['tip'] = self.serialize_obj(store, 'tip', rtip, language)
+        data['context'] = self.serialize_obj(store, 'context', rtip.internaltip.context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', rtip.receiver, language)
 
         self.process_mail_creation(store, data)
 
@@ -83,10 +95,10 @@ class MailGenerator(object):
 
         language = message.receivertip.receiver.user.language
 
-        data['tip'] = serialize_content(store, self.cache, 'tip', message.receivertip, language)
-        data['context'] = serialize_content(store, self.cache, 'context', message.receivertip.internaltip.context, language)
-        data['receiver'] = serialize_content(store, self.cache, 'receiver', message.receivertip.receiver, language)
-        data['message'] = serialize_content(store, self.cache, 'message', message, language)
+        data['tip'] = self.serialize_obj(store, 'tip', message.receivertip, language)
+        data['context'] = self.serialize_obj(store, 'context', message.receivertip.internaltip.context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', message.receivertip.receiver, language)
+        data['message'] = self.serialize_obj(store, 'message', message, language)
 
         self.process_mail_creation(store, data)
 
@@ -98,10 +110,10 @@ class MailGenerator(object):
             language = rtip.receiver.user.language
 
             dataX = copy.deepcopy(data)
-            dataX['tip'] = serialize_content(store, self.cache, 'tip', rtip, language)
-            dataX['context'] = serialize_content(store, self.cache, 'context', comment.internaltip.context, language)
-            dataX['receiver'] = serialize_content(store, self.cache, 'receiver', rtip.receiver, language)
-            dataX['comment'] = serialize_content(store, self.cache, 'comment', comment, language)
+            dataX['tip'] = self.serialize_obj(store, 'tip', rtip, language)
+            dataX['context'] = self.serialize_obj(store, 'context', comment.internaltip.context, language)
+            dataX['receiver'] = self.serialize_obj(store, 'receiver', rtip.receiver, language)
+            dataX['comment'] = self.serialize_obj(store, 'comment', comment, language)
 
             self.process_mail_creation(store, dataX)
 
@@ -112,10 +124,10 @@ class MailGenerator(object):
 
         language = rfile.receivertip.receiver.user.language
 
-        data['tip'] = serialize_content(store, self.cache, 'tip', rfile.receivertip, language)
-        data['context'] = serialize_content(store, self.cache, 'context', rfile.internalfile.internaltip.context, language)
-        data['receiver'] = serialize_content(store, self.cache, 'receiver', rfile.receivertip.receiver, language)
-        data['file'] = serialize_content(store, self.cache, 'file', rfile.internalfile, language)
+        data['tip'] = self.serialize_obj(store, 'tip', rfile.receivertip, language)
+        data['context'] = self.serialize_obj(store, 'context', rfile.internalfile.internaltip.context, language)
+        data['receiver'] = self.serialize_obj(store, 'receiver', rfile.receivertip.receiver, language)
+        data['file'] = self.serialize_obj(store, 'file', rfile.internalfile, language)
 
         self.process_mail_creation(store, data)
 
@@ -147,8 +159,8 @@ class MailGenerator(object):
             # to send the notification_limit_reached
             data['type'] = u'receiver_notification_limit_reached'
 
-        data['notification'] = db_get_notification(store, data['receiver']['language'])
-        data['node'] = db_admin_serialize_node(store, data['receiver']['language'])
+        data['notification'] = self.serialize_config(store, 'notification', data['receiver']['language'])
+        data['node'] = self.serialize_config(store, 'node', data['receiver']['language'])
 
         if not data['node']['allow_unencrypted'] and len(data['receiver']['pgp_key_public']) == 0:
             return
