@@ -71,7 +71,7 @@ class ConfigL10N(Storm):
 
     def reset(self, new_value):
         self.set_v(new_value)
-        c.customized = False
+        self.customized = False
 
 
 class ConfigL10NFactory(object):
