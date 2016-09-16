@@ -247,7 +247,6 @@ class MigrationScript(MigrationBase):
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
         self.store_new.add(Config('private', 'version', self.MIG_SYS_VERSION))
         self.store_new.add(Config('private', 'version_db', 34))
-        self.store_new.add(Config('private', 'migrated_cfg', True))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
         langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)
