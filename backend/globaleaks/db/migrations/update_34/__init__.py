@@ -271,5 +271,8 @@ class MigrationScript(MigrationBase):
                     val_f = ""
 
                 s = ConfigL10N(lang, old_obj.__storm_table__, name, val_f)
+                # Set the cfg item to customized if the final assigned val does
+                # not equal the current default template value
+                s.customized = val_f != val_def
 
                 self.store_new.add(s)
