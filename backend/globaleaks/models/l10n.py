@@ -40,7 +40,7 @@ class EnabledLanguage(Storm):
         for lang_code in LANGUAGES_SUPPORTED_CODES:
             store.add(cls(lang_code))
             node_l10n.initialize(lang_code, appdata_dict)
-            notif_l10n.initiaize(lang_code, appdata_dict)
+            notif_l10n.initialize(lang_code, appdata_dict)
 
 
 class ConfigL10N(Storm):
