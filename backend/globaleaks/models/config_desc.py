@@ -32,7 +32,7 @@ class Bool(Item):
 
 GLConfig = {
     'private': {
-        'receipt_salt': Unicode(validator=shorttext_v, default=salt()),
+        'receipt_salt': Unicode(validator=shorttext_v, default=salt()), # is always customized
         'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
 
         'version': Unicode(default=unicode(__version__)),

@@ -181,6 +181,10 @@ class Config(Storm):
         self.var_name = unicode(name)
 
         self.set_v(value)
+        # If the value initializing the config item does not equal the default
+        # record the fact that it was customized.
+        if value != self.desc.default:
+            self.customized = True
 
     def set_v(self, val):
         self.find_descriptor()
