@@ -34,7 +34,6 @@ var public_resources = [
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
     'X-XSS-Protection': '1; mode=block',
-    'X-Robots-Tag': 'noindex',
     'X-Content-Type-Options': 'nosniff',
     'Expires': '-1',
     'Server': 'globaleaks',
