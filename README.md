@@ -18,17 +18,12 @@ Other resources:
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
 ## Build Status
-| Branch | Build status | Code coverage
-| ------------- |:-------------:|:-------------:|:-------------:|
-| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master)
-| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel)
+| Branch | Build status | Code coverage | Browser compatibility
+| ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
+| [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=master)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=master) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
+| [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
-Browser compatibility:
-
-[![Saucelabs Test Status](https://saucelabs.com/browser-matrix/globaleaks.svg)](https://saucelabs.com/u/globaleaks)
-
-Code quality:
-
+## Code quality:
 [![Code Climate](https://codeclimate.com/github/globaleaks/GlobaLeaks/badges/gpa.svg)](https://codeclimate.com/github/globaleaks/GlobaLeaks)
 
 ## Donate
