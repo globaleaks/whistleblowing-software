@@ -4,7 +4,7 @@ var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
 var browser_capabilities = JSON.parse(process.env.SELENIUM_BROWSER_CAPABILITIES);
 browser_capabilities['name'] = 'GlobaLeaks-E2E';
 browser_capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
-browser_capabilities['build'] = process.env.TRAVIS_BUILD_ID;
+browser_capabilities['build'] = process.env.TRAVIS_BUILD_NUMBER;
 browser_capabilities['tags'] = [process.env.TRAVIS_BRANCH];
 
 exports.config = {
