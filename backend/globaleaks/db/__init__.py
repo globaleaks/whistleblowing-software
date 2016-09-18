@@ -60,12 +60,14 @@ def init_db(store, use_single_lang=False):
         EnabledLanguage.add_all_supported_langs(store, appdata_dict)
     else:
         EnabledLanguage.add_new_lang(store, u'en', appdata_dict)
-    logo_data = ''
-    with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
-        logo_data = logo_file.read()
 
-    files.db_add_file(store, logo_data, u'logo')
-    files.db_add_file(store, '', u'custom_stylesheet')
+    with open(os.path.join(GLSettings.client_path, 'logo.png'), 'r') as logo_file:
+        data = logo_file.read()
+        files.db_add_file(store, data, u'logo')
+
+    with open(os.path.join(GLSettings.client_path, 'favicon.ico'), 'r') as favicon_file:
+        data = favicon_file.read()
+        files.db_add_file(store, data, u'favicon')
 
 
 def perform_system_update():

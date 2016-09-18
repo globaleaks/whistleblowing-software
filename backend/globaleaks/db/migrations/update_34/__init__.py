@@ -1,10 +1,16 @@
+# -*- encoding: utf-8 -*-
+
+import os
+
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.db.migrations.update import MigrationBase
+from globaleaks.handlers.admin import files
 from globaleaks.models import *
 from globaleaks.models import l10n, properties, config
 from globaleaks.models.config import Config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import ConfigL10N
+from globaleaks.settings import GLSettings
 
 
 class Node_v_33(ModelWithID):
@@ -209,6 +215,11 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
+
+        with open(os.path.join(GLSettings.client_path, 'favicon.ico'), 'r') as favicon_file:
+            data = favicon_file.read()
+            files.db_add_file(self.store_new, data, u'favicon')
+            self.entries_count['File'] += 1
 
         #### Create ConfigL10N table and rows ####
 
