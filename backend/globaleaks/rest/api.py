@@ -15,7 +15,8 @@ from globaleaks.handlers import exception, \
                                 rtip, wbtip, \
                                 files, authentication, token, \
                                 export, l10n, wizard, \
-                                base, user, shorturl
+                                base, user, shorturl, \
+                                robots
 
 from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import user as admin_user
@@ -52,9 +53,6 @@ spec = [
 
     ## Public API ##
     (r'/public', public.PublicResource),
-
-    # Fake file hosting the Ahmia.fi descriptor
-    (r'/description.json', public.AhmiaDescriptionHandler),
 
     # User Preferences Handler
     (r'/preferences', user.UserInstance),
@@ -128,7 +126,9 @@ spec = [
     (r'/wizard', wizard.Wizard),
 
     ## Special Files Handlers##
-    (r'/robots.txt', public.RobotstxtHandler),
+    (r'/robots.txt', robots.RobotstxtHandler),
+    (r'/sitemap.xml', robots.SitemapHandler),
+    (r'/description.json', robots.AhmiaDescriptionHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
     (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
