@@ -24,7 +24,7 @@ Other resources:
 | [devel](https://github.com/globaleaks/GlobaLeaks/tree/devel) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=devel)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Coverage Status](https://coveralls.io/repos/globaleaks/GlobaLeaks/badge.svg?branch=devel)](https://coveralls.io/r/globaleaks/GlobaLeaks?branch=devel) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=devel&labels=none)](https://saucelabs.com/u/globaleaks)
 
 ## Code quality:
-[![Code Climate](https://codeclimate.com/github/globaleaks/GlobaLeaks/badges/gpa.svg)](https://codeclimate.com/github/globaleaks/GlobaLeaks)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/829f1847c5794c758e17d6e939cb76f0)](https://www.codacy.com/app/GlobaLeaks/GlobaLeaks)
 
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development!
