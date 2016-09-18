@@ -373,8 +373,8 @@ var GLClient = angular.module('GLClient', [
         }
     };
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
@@ -430,8 +430,11 @@ var GLClient = angular.module('GLClient', [
       var deferred = $q.defer();
 
       PublicResource.get(function(result, getResponseHeaders) {
-        $rootScope.node = result.node;
+        if (result.node.homepage) {
+          $templateCache.put('custom_homepage.html', atob(result.node.homepage));
+        }
 
+        $rootScope.node = result.node;
         $rootScope.contexts = result.contexts;
         $rootScope.receivers = result.receivers;
 
