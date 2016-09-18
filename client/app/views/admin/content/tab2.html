@@ -1,8 +1,22 @@
 <div class="row">
   <div class="col-md-12">
     <div class="form-group">
-      <label data-translate>Current project logo</label>
+      <label data-translate>Project logo</label>
       <div image-upload image-upload-model="node" image-upload-model-attr="logo" image-upload-url="{{'admin/files/logo'}}"></div>
+    </div>
+    <div class="form-group">
+      <label data-translate>Project favicon</label>
+      <div class="well well-large uploadfile file-favicon">
+        <span flow-init="{target: 'admin/files/favicon', headers: Authentication.get_headers()}"
+              flow-files-submitted="$flow.upload()">
+          <div class="btn btn-success fileinput-button">
+            <span class="uploadfile" flow-btn>
+              <span class="glyphicon glyphicon-plus"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </div>
+        </span>
+      </div>
     </div>
     <div class="form-group">
       <div data-ng-repeat="admin_file in admin_files" data-ng-include="'views/partials/admin_file.html'"></div>

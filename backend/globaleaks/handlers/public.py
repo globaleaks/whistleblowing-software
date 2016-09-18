@@ -38,6 +38,7 @@ def db_serialize_node(store, language):
         'configured': configured,
         'accept_submissions': GLSettings.accept_submissions,
         'logo': db_get_file(store, u'logo'),
+        'favicon': db_get_file(store, u'favicon'),
         'css': db_get_file(store, u'css'),
         'homepage': db_get_file(store, u'homepage'),
         'script': db_get_file(store, u'script')
