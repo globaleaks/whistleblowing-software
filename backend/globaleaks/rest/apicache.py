@@ -23,6 +23,8 @@ class GLApiCache(object):
             cls.memory_cache_dict[resource_name] = {}
 
         cls.memory_cache_dict[resource_name][language] = value
+
+    @classmethod
     def invalidate(cls, resource_name=None):
         """
         When a function has an update, all the language need to be
