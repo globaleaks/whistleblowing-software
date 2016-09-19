@@ -264,10 +264,9 @@ def db_get_public_context_list(store, language):
 def db_get_public_receiver_list(store, language):
     receiver_list = []
 
-    for receiver in store.find(models.Receiver):
-        if receiver.user.state == u'disabled':
-            continue
-
+    for receiver in store.find(models.Receiver,
+                               models.Receiver.id == models.User.id,
+                               models.User.state != u'disabled'):
         receiver_list.append(serialize_receiver(receiver, language))
 
     return receiver_list
