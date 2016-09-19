@@ -97,7 +97,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo /etc/init.d/globaleaks restart
-  sleep 3
+  sleep 5
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor.config.js
@@ -130,7 +130,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   setupDependencies 1
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000 --disable-mail-torification
-  sleep 3
+  sleep 5
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
 
