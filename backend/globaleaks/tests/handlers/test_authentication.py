@@ -151,32 +151,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, headers={'X-Session': session_id})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSeessions.keys()), 0)
-
-        # A second logout must not be accepted (this validate also X-Session reuse)
-        handler = self.request({}, headers={'X-Session': session_id})
-
-        self.assertRaises(errors.NotAuthenticated, handler.delete)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSessions.keys()), 0)
-
-    @inlineCallbacks
-    def test_successful_whistleblower_logout(self):
-        yield self.perform_full_submission_actions()
-        handler = self.request({
-            'receipt': self.dummySubmission['receipt']
-        })
-        yield handler.post()
-        self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSessions.keys()), 1)
-
-        # Logout
-        session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'X-Session': session_id})
-        yield handler.delete()
-        self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSessions.keys()), 0)
 
         # A second logout must not be accepted (this validate also X-Session reuse)
