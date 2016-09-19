@@ -66,11 +66,6 @@ class TestFieldCreate(helpers.TestHandler):
 class TestFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
 
-        @transact_ro
-        def _get_children(self, store, field_id):
-            field = models.Field.get(store, field_id)
-            return [child.id for child in field.children]
-
         @inlineCallbacks
         def test_get(self):
             """
@@ -136,16 +131,6 @@ class TestFieldInstance(helpers.TestHandler):
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplateInstance
-
-        @transact_ro
-        def _get_field(self, store, field_id):
-            field = models.Field.get(store, field_id)
-            return serialize_field(store, field, 'en')
-
-        @transact_ro
-        def _get_children(self, store, field_id):
-            field = models.Field.get(store, field_id)
-            return [child.id for child in field.children]
 
         @inlineCallbacks
         def test_get(self):
