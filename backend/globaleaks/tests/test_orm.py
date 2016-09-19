@@ -78,10 +78,6 @@ class TestORM(helpers.TestGL):
         store.add(m)
         return m.id
 
-    @transact_ro
-    def _transact_ro_context_bla_bla(self, store, context_id):
-        self.assertEqual(store.find(Context, Context.id == context_id).one(), None)
-
     @inlineCallbacks
     def test_transaction_with_exception(self):
         yield self.assertFailure(self._transaction_with_exception(), Exception)
