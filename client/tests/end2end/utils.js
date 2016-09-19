@@ -61,15 +61,6 @@ exports.waitUntilClickable = function (locator, timeout) {
   genericWait(EC.elementToBeClickable(element(locator)), timeout);
 };
 
-exports.waitUntilHidden = function(locator, timeout) {
-  if (element(locator).isPresent()) {
-    var EC = protractor.ExpectedConditions;
-    genericWait(EC.invisibilityOf(elem), timeout);
-  } else {
-    return; // The element is not on the page.
-  }
-};
-
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   browser.wait(function () {
