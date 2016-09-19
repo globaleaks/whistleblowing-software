@@ -4,7 +4,7 @@ describe('admin add, configure and delete questionnaires', function() {
   var add_questionnaires = function(questionnaire_name) {
     element(by.model('new_questionnaire.name')).sendKeys(questionnaire_name);
     element(by.id('add-questionnaire-button')).click();
-    utils.waitUntilPresent(element(by.xpath(".//*[text()='" + questionnaire_name + "']")));
+    utils.waitUntilPresent(by.xpath(".//*[text()='" + questionnaire_name + "']"));
   };
 
   var add_question = function(question_type) {
@@ -29,13 +29,13 @@ describe('admin add, configure and delete questionnaires', function() {
   var add_step = function(step_label) {
     element(by.model('new_step.label')).sendKeys(step_label);
     element(by.id('add-step-button')).click();
-    utils.waitUntilPresent(element(by.xpath(".//*[text()='" + step_label + "']")));
+    utils.waitUntilPresent(by.xpath(".//*[text()='" + step_label + "']"));
   };
 
   it('should add new questionnaires', function() {
     browser.setLocation('admin/questionnaires');
 
-    utils.waitUntilPresent(element(by.xpath(".//*[text()='Default']")));
+    utils.waitUntilPresent(by.xpath(".//*[text()='Default']"));
 
     add_questionnaires('Questionnaire 1');
     add_questionnaires('Questionnaire 2');

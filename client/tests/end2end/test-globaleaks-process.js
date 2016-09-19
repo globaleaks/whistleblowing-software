@@ -17,11 +17,11 @@ describe('globaLeaks process', function() {
   var perform_submission = function() {
     browser.get('/#/');
     element(by.cssContainingText("button", "Blow the whistle")).click();
-    utils.waitUntilPresent(element(by.cssContainingText("div.modal-title", "Warning! You are not anonymous.")));
+    utils.waitUntilPresent(by.cssContainingText("div.modal-title", "Warning! You are not anonymous."));
     element(by.id("answer-2")).click();
     element(by.cssContainingText("a", "Proceed to submission")).click();
 
-    utils.waitUntilPresent(element(by.id('submissionForm')));
+    utils.waitUntilPresent(by.id('submissionForm'));
 
     browser.wait(function(){
       // Wait until the proof of work is resolved;
@@ -219,7 +219,7 @@ describe('globaLeaks process', function() {
         }
 
         var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
-        utils.waitForFile(fullpath + '.zip', 30000);
+        utils.waitForFile(fullpath + '.zip');
       });
   });
 

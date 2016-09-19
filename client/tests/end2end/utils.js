@@ -50,19 +50,19 @@ exports.browserTimeout = function() {
   return 30000;
 };
 
-exports.waitUntilEnabled = function (elem, timeout) {
+exports.waitUntilEnabled = function (locator, timeout) {
   genericWait(function() {
-    return elem.isEnabled();
+    return element(locator).isEnabled();
   }, timeout);
 };
 
-exports.waitUntilClickable = function (elem, timeout) {
+exports.waitUntilClickable = function (locator, timeout) {
   var EC = protractor.ExpectedConditions;
-  genericWait(EC.elementToBeClickable(elem), timeout);
+  genericWait(EC.elementToBeClickable(element(locator)), timeout);
 };
 
-exports.waitUntilHidden = function(elem, timeout) {
-  if (elem.isPresent()) {
+exports.waitUntilHidden = function(locator, timeout) {
+  if (element(locator).isPresent()) {
     var EC = protractor.ExpectedConditions;
     genericWait(EC.invisibilityOf(elem), timeout);
   } else {
@@ -70,20 +70,18 @@ exports.waitUntilHidden = function(elem, timeout) {
   }
 };
 
-exports.waitUntilPresent = function (elem, timeout) {
+exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   browser.wait(function () {
-    return elem.isPresent();
-  }, t);
-  browser.wait(function () {
-    return elem.isDisplayed();
+    var elem = element(locator);
+    return elem.isPresent() && elem.isDisplayed();
   }, t);
 };
 
-exports.waitUntilNotPresent = function (elem, timeout) {
+exports.waitUntilNotPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   browser.wait(function () {
-    return !elem.isPresent();
+    return !element(locator).isPresent();
   }, t);
 };
 
