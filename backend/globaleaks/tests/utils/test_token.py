@@ -16,7 +16,7 @@ class TestToken(helpers.TestGL):
     to check the handler testing, see in
     test_anomalies
     """
-    stress_indicator = ['graph_captcha', 'human_captcha', 'proof_of_work']
+    stress_indicator = ['human_captcha', 'proof_of_work']
 
     @inlineCallbacks
     def setUp(self):
@@ -35,10 +35,6 @@ class TestToken(helpers.TestGL):
         st_dict = st.serialize()
 
         self.assertEqual(st_dict['remaining_uses'], Token.MAX_USES)
-
-        if st.graph_captcha:
-            self.assertTrue(st.graph_captcha.has_key('answer'))
-            self.assertTrue(isinstance(st.graph_captcha['answer'], list))
 
         if st.human_captcha:
             self.assertTrue(st.human_captcha.has_key('answer'))
@@ -117,7 +113,6 @@ class TestToken(helpers.TestGL):
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False,
             'proof_of_work': False
         }
 
@@ -139,7 +134,6 @@ class TestToken(helpers.TestGL):
 
         difficulty = {
             'human_captcha': False,
-            'graph_captcha': False,
             'proof_of_work': False
         }
 

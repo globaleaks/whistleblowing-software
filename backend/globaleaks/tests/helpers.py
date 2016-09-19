@@ -360,7 +360,6 @@ class TestGL(unittest.TestCase):
             'receivers': (yield get_context(context_id, 'en'))['receivers'],
             'files': [],
             'human_captcha_answer': 0,
-            'graph_captcha_answer': '',
             'proof_of_work_answer': 0,
             'identity_provided': False,
             'total_score': 0,

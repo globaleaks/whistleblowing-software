@@ -16,7 +16,6 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
         self.assertEqual(token['end_validity_secs'], 10800)
         self.assertEqual(token['remaining_uses'], Token.MAX_USES)
         self.assertEqual(token['human_captcha_answer'], 0)
-        self.assertEqual(token['graph_captcha_answer'], '')
 
     @inlineCallbacks
     def test_post(self):
