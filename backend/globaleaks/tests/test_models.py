@@ -122,34 +122,6 @@ class TestConfigL10N(helpers.TestGL):
         self.assertTrue(i-i_f == n and c_f == c-1)
 
 
-class TestUserL10N(helpers.TestGL):
-
-    @transact
-    def create_user_with_descript(self, store):
-        req = self.get_dummy_user('custodian', 'duke-McMockingHam')
-        user = db_create_user(store, req, 'en')
-
-        d = {'en': 'Lord of Hammington', 'it': 'Un coglione', 'de': 'Deutsch'}
-
-        for k, v in d.iteritems():
-            usr_l10n = models.User_L10N({
-                'id': user.id,
-                'description': v,
-                'lang': k,
-            })
-            store.add(usr_l10n)
-
-    @transact
-    def find_user_l10n(self, store):
-        res = [x for x in store.find(models.User_L10N)]
-        self.assertEqual(len(res), 3)
-
-    def _test_l10n_table(self):
-        #yield self.create_user_with_descript()
-        #yield self.find_user_l10n()
-        pass
-
-
 class TestModels(helpers.TestGL):
     receiver_inc = 0
 
