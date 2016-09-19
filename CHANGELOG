@@ -1,3 +1,16 @@
+Changes in version 2.64.0 - 2016-09-19
+    o Support updating customized translations
+    o Support for schema-less configurations
+    o Integrate usage of protractor-accessibility-plugin
+    o Improve code coverage from 88% to 91%
+    o Update translations
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1739
+    - https://github.com/globaleaks/GlobaLeaks/issues/1333
+    - https://github.com/globaleaks/GlobaLeaks/issues/1764
+    - https://github.com/globaleaks/GlobaLeaks/issues/1763
+
 Changes in version 2.63.5 - 2016-09-09
     o Fix migration script 33 in relation to field constraints
 
