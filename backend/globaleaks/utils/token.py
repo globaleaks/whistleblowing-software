@@ -79,7 +79,6 @@ class Token(object):
 
         # initialization of token configuration
         self.human_captcha = False
-        self.graph_captcha = False
         self.proof_of_work = False
 
         self.generate_token_challenge()
@@ -91,7 +90,7 @@ class Token(object):
 
     def __repr__(self):
         test_desc = ""
-        dump_attr = ['graph_captcha', 'human_captcha', 'proof_of_work']
+        dump_attr = ['human_captcha', 'proof_of_work']
 
         for a in dump_attr:
             if getattr(self, a):
@@ -109,24 +108,20 @@ class Token(object):
             'end_validity_secs': self.end_validity_secs,
             'remaining_uses': self.remaining_uses,
             'type': self.kind,
-            'graph_captcha': self.graph_captcha['question'] if self.graph_captcha else False,
             'human_captcha': self.human_captcha['question'] if self.human_captcha else False,
             'proof_of_work': self.proof_of_work['question'] if self.proof_of_work else False,
             'human_captcha_answer': 0,
-            'graph_captcha_answer': '',
             'proof_of_work_answer': 0
         }
 
     def generate_token_challenge(self, challenges_dict = None):
         # initialization
         self.human_captcha = False
-        self.graph_captcha = False
         self.proof_of_work = False
 
         if challenges_dict is None:
             challenges_dict = {
                 'human_captcha': False,
-                'graph_captcha': False,
                 'proof_of_work': False
             }
 
@@ -144,10 +139,6 @@ class Token(object):
                 'question': u"%d + %d" % (random_a, random_b),
                 'answer': u"%d" % (random_a + random_b)
             }
-
-        if challenges_dict['graph_captcha']:
-            # still not implemented
-            pass
 
         if challenges_dict['proof_of_work']:
             self.proof_of_work = {
@@ -193,9 +184,6 @@ class Token(object):
             log.debug("Exception while validating the human captcha: %s" % e)
             return True
 
-    def graph_captcha_check(self, resolved_graph_captcha):
-        return False
-
     def proof_of_work_check(self, resolved_proof_of_work):
         """
         :param resolved_proof_of_work: a string, that has to be an integer
@@ -239,9 +227,6 @@ class Token(object):
             else:
                 error = True
 
-        if not error and self.graph_captcha is not False:
-            raise errors.TokenFailure("Graphical captcha error: not yet implemented")
-
         if not error and self.proof_of_work is not False:
             if 'proof_of_work_answer' in request:
                 error |= self.proof_of_work_check(request['proof_of_work_answer'])
@@ -258,7 +243,6 @@ class Token(object):
         self.validity_checks()
 
         if self.human_captcha is not False or \
-           self.graph_captcha is not False or \
            self.proof_of_work is not False:
              raise errors.TokenFailure("Token still requires user action to be used.")
 

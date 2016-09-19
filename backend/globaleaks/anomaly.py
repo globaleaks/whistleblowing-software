@@ -131,8 +131,7 @@ class AlarmClass(object):
         self.current_time = datetime_now()
 
         self.difficulty_dict = {
-            'human_captcha': False,
-            'graph_captcha': False
+            'human_captcha': False
         }
 
         self.reset()
