@@ -129,7 +129,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Testing Configuration: ${testkey}"
   setupDependencies 1
   eval $capability
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 9000 --disable-mail-torification
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000 --disable-mail-torification
   sleep 3
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
