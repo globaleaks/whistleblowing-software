@@ -70,11 +70,6 @@ def deferred_sleep_mock(seconds):
 utility.deferred_sleep = deferred_sleep_mock
 
 
-def load_json_file(file_path):
-    with open(file_path) as f:
-      return json.loads(f.read())
-
-
 class UTlog:
     @staticmethod
     def err(stuff):
@@ -122,12 +117,6 @@ def export_fixture(*models):
 @transact
 def update_node_setting(store, var_name, value):
     models.config.NodeFactory(store).set_val(var_name, value)
-
-
-def change_field_type(field, field_type):
-    field['instance'] = field_type
-    for f in field['children']:
-        change_field_type(f, field_type)
 
 
 def get_dummy_file(filename=None, content_type=None, content=None):
@@ -430,10 +419,6 @@ class TestGL(unittest.TestCase):
         self.assertFalse(existing, msg)
 
     @transact_ro
-    def get_submissions_ids(self, store):
-        return [s.id for s in store.find(models.InternalTip)]
-
-    @transact_ro
     def get_rtips(self, store):
         ret = []
         for tip in store.find(models.ReceiverTip):
@@ -483,13 +468,6 @@ class TestGLWithPopulatedDB(TestGL):
     def setUp(self):
         yield TestGL.setUp(self)
         yield self.fill_data()
-
-    def receiver_assertions(self, source_r, created_r):
-        self.assertEqual(source_r['name'], created_r['name'], 'name')
-        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], 'delete')
-
-    def context_assertions(self, source_c, created_c):
-        self.assertEqual(source_c['show_small_receiver_cards'], created_c['show_small_receiver_cards'])
 
     @inlineCallbacks
     def fill_data(self):
@@ -598,10 +576,6 @@ class TestGLWithPopulatedDB(TestGL):
         yield self.perform_submission_uploads()
         yield self.perform_submission_actions()
         yield self.perform_post_submission_actions()
-
-    @transact
-    def check_emails_number(self, store, number):
-        self.assertEqual(store.find(models.Mail).count(), number)
 
 
 class TestHandler(TestGLWithPopulatedDB):
