@@ -282,7 +282,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'logo.png'];
+    var files = ['index.html', 'logo.png', 'favicon.ico'];
     for (x in files) {
       grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
     }
