@@ -63,17 +63,14 @@ exports.waitUntilClickable = function (locator, timeout) {
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  browser.wait(function () {
-    var elem = element(locator);
-    return elem.isPresent() && elem.isDisplayed();
-  }, t);
+  var EC = protractor.ExpectedConditions;
+  browser.wait(EC.visibilityOf(element(locator)), timeout);
 };
 
 exports.waitUntilNotPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  browser.wait(function () {
-    return !element(locator).isPresent();
-  }, t);
+  var EC = protractor.ExpectedConditions;
+  browser.wait(EC.invisibilityOf(element(locator)), timeout);
 };
 
 exports.waitForUrl = function (url) {
