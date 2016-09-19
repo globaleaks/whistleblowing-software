@@ -5,6 +5,20 @@ from globaleaks.tests import helpers
 
 from globaleaks.jobs.base import GLJob
 
+
+class GLJobX(GLJob):
+    monitor_time = 1000000
+    operation_called = 0
+    monitor_called = 0
+
+    @inlineCallbacks
+    def operation(self):
+        self.operation_called += 1
+
+    def monitor_fun(self):
+        self.monitor_called += 1
+
+
 class TestGLJob(helpers.TestGL):
     @inlineCallbacks
     def test_base_scheduler_1(self):
@@ -12,17 +26,6 @@ class TestGLJob(helpers.TestGL):
         This function asseses the functionalities of a scheduler in calling
         the operation() function periodically.
         """
-        class GLJobX(GLJob):
-            monitor_time = 1000000
-            operation_called = 0
-            monitor_called = 0
-
-            def operation(self):
-                self.operation_called += 1
-
-            def monitor_fun(self):
-                self.monitor_called += 1
-
         job = GLJobX()
         yield job.schedule(1000, 3)
 
@@ -45,10 +48,8 @@ class TestGLJob(helpers.TestGL):
         This function asseses the functionalities of a scheduler in calling
         the monitor_fun() function periodically in order to monitor the job.
         """
-        class GLJobX(GLJob):
+        class GLJobY(GLJobX):
             monitor_time = 1000
-            operation_called = 0
-            monitor_called = 0
 
             @inlineCallbacks
             def operation(self):
@@ -57,10 +58,7 @@ class TestGLJob(helpers.TestGL):
                 # to sleep is like to die
                 yield Deferred()
 
-            def monitor_fun(self):
-                self.monitor_called += 1
-
-        job = GLJobX()
+        job = GLJobY()
         yield job.schedule(1000000, 3)
 
         self.assertEqual(job.operation_called, 0)
