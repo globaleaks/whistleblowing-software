@@ -68,7 +68,7 @@ def get_stats(store, week_delta):
         stats_day = int(hourdata.start.weekday())
         stats_hour = int(hourdata.start.isoformat()[11:13])
 
-        hourly_dict = {
+        week_map[stats_day][stats_hour] = {
             'hour': stats_hour,
             'day': stats_day,
             'summary': hourdata.summary,
@@ -76,56 +76,42 @@ def get_stats(store, week_delta):
             'valid': 0  # 0 means valid data
         }
 
-        if week_map[stats_day][stats_hour]:
-            continue
-
-        week_map[stats_day][stats_hour] = hourly_dict
         week_entries += 1
 
     # if all the hourly element are avail
-    if week_entries == (7 * 24):
-        return {
-            'complete': True,
-            'week': datetime_to_ISO8601(target_week),
-            'heatmap': weekmap_to_heatmap(week_map)
-        }
+    if week_entries != (7 * 24):
+        for day in xrange(7):
+            for hour in xrange(24):
 
-    # else, supply default for the missing hour.
-    # an hour can miss for two reason: the node was down (alarm)
-    # or the hour is in the future (just don't display nothing)
-    # -- this can be moved in the initialization phases ?
-    for day in xrange(7):
-        for hour in xrange(24):
+                if week_map[day][hour]:
+                    continue
 
-            if week_map[day][hour]:
-                continue
+                # valid is used as status variable.
+                # in the case the stats for the hour are missing it
+                # assumes the following values:
+                #  the hour is lacking from the results: -1
+                #  the hour is in the future: -2
+                #  the hour is the current hour (in the current day): -3
+                if current_week != looked_week:
+                    marker = -1
+                elif day > current_wday or \
+                    (day == current_wday and hour > current_hour):
+                    marker = -2
+                elif current_wday == day and hour == current_hour:
+                    marker = -3
+                else:
+                    marker = -1
 
-            # valid is used as status variable.
-            # in the case the stats for the hour are missing it
-            # assumes the following values:
-            #  the hour is lacking from the results: -1
-            #  the hour is in the future: -2
-            #  the hour is the current hour (in the current day): -3
-            if current_week != looked_week:
-                marker = -1
-            elif day > current_wday or \
-                (day == current_wday and hour > current_hour):
-                marker = -2
-            elif current_wday == day and hour == current_hour:
-                marker = -3
-            else:
-                marker = -1
-
-            week_map[day][hour] = {
-                'hour': hour,
-                'day': day,
-                'summary': {},
-                'free_disk_space': 0,
-                'valid': marker
-            }
+                week_map[day][hour] = {
+                    'hour': hour,
+                    'day': day,
+                    'summary': {},
+                    'free_disk_space': 0,
+                    'valid': marker
+                }
 
     return {
-        'complete': False,
+        'complete': week_entries == (7 * 24),
         'week': datetime_to_ISO8601(target_week),
         'heatmap': weekmap_to_heatmap(week_map)
     }
