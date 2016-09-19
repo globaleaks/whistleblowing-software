@@ -6,9 +6,9 @@ describe('globaLeaks setup wizard', function() {
 
     // Test language selector switching to italian and then re-switching to english
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='Italiano']")).click();
-    expect(browser.isElementPresent(element(by.cssContainingText("div", "Benvenuto su GlobaLeaks!")))).toBe(true);
+    utils.waitUntilPresent(by.cssContainingText("div", "Benvenuto su GlobaLeaks!"));
     element(by.model('GLTranslate.indirect.appLanguage')).element(by.xpath(".//*[text()='English']")).click();
-    expect(browser.isElementPresent(element(by.cssContainingText("div", "Welcome to GlobaLeaks!")))).toBe(true);
+    utils.waitUntilPresent(by.cssContainingText("div", "Welcome to GlobaLeaks!"));
 
     element.all(by.id('ButtonNext')).get(0).click();
       
