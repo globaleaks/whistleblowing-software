@@ -92,7 +92,7 @@ describe('Submission file process', function() {
 
         var name = filenames[i];
         var fullpath = path.resolve(path.join(browser.params.tmpDir, name + '.pgp'));
-        utils.waitForFile(fullpath, 2000).then(function() {
+        utils.waitForFile(fullpath).then(function() {
           var data = fs.readFileSync(fullpath, opts);
 
           var options = {

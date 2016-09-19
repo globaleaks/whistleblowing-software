@@ -21,7 +21,7 @@ describe('admin configure, add, and delete contexts', function() {
     var add_context = function(context_name) {
       element(by.model('new_context.name')).sendKeys(context_name);
       element(by.id('add-button')).click();
-      utils.waitUntilPresent(element(by.xpath(".//*[text()='" + context_name + "']")));
+      utils.waitUntilPresent(by.xpath(".//*[text()='" + context_name + "']"));
     };
 
     add_context('Context 2');

@@ -43,7 +43,7 @@ describe('admin add, configure, and delete users', function() {
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
       element(by.id('add-button')).click();
-      utils.waitUntilPresent(element(by.xpath(".//*[text()='" + user.name + "']")));
+      utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
     };
 
     new_users.forEach(make_account);

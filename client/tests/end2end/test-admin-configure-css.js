@@ -10,7 +10,7 @@ describe('Admin configure custom CSS', function() {
 
     browser.setLocation('admin/content');
 
-    utils.waitUntilPresent(element(by.cssContainingText("a", "Theme customization")));
+    utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
@@ -19,7 +19,7 @@ describe('Admin configure custom CSS', function() {
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
-    utils.waitUntilPresent(element(by.cssContainingText("label", "Project name")));
+    utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
@@ -50,6 +50,6 @@ describe('Admin configure custom CSS', function() {
     element(by.cssContainingText("a", "Delete")).click();
 
     // wait until redirect to the first tab of the admin/content section
-    utils.waitUntilPresent(element(by.cssContainingText("label", "Project name")));
+    utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
   });
 });
