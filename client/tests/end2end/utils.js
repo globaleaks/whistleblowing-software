@@ -41,46 +41,27 @@ browser.getCapabilities().then(function(capabilities) {
   };
 });
 
-function genericWait(waitFn, timeout) {
-  var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  return browser.wait(waitFn, t);
-}
-
 exports.browserTimeout = function() {
   return 30000;
 };
 
-exports.waitUntilEnabled = function (locator, timeout) {
-  genericWait(function() {
-    return element(locator).isEnabled();
-  }, timeout);
-};
-
-exports.waitUntilClickable = function (locator, timeout) {
-  var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  var EC = protractor.ExpectedConditions;
-  genericWait(EC.elementToBeClickable(element(locator)), t);
-};
-
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  var EC = protractor.ExpectedConditions;
-  browser.wait(EC.visibilityOf(element(locator)), t);
+  return browser.wait(function() {
+    return element(locator).isPresent().then(function(present) {
+      return present;
+    });
+  }, t);
 };
 
-exports.waitUntilNotPresent = function (locator, timeout) {
+exports.waitForUrl = function (url, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  var EC = protractor.ExpectedConditions;
-  browser.wait(EC.invisibilityOf(element(locator)), t);
-};
-
-exports.waitForUrl = function (url) {
   return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
       current_url = current_url.split('#')[1];
       return (current_url === url);
     });
-  }, 20000);
+  }, t);
 };
 
 exports.waitForFile = function (filename, timeout) {
