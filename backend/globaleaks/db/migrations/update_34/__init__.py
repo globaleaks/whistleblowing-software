@@ -2,7 +2,7 @@
 
 import os
 
-from globaleaks import __version__, DATABASE_VERSION
+from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin import files
 from globaleaks.models import *
@@ -209,9 +209,6 @@ class Notification_v_33(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-    # NOTE
-    MIG_SYS_VERSION = '2.63.6'
-
     def epilogue(self):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
@@ -235,7 +232,8 @@ class MigrationScript(MigrationBase):
 
         # Fill out enabled langs table
         for lang in old_node.languages_enabled:
-            self.store_new.add(l10n.EnabledLanguage(lang))
+            if lang in LANGUAGES_SUPPORTED_CODES:
+                self.store_new.add(l10n.EnabledLanguage(lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
@@ -266,8 +264,10 @@ class MigrationScript(MigrationBase):
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))
         self.store_new.add(Config('private', 'smtp_password', old_notif.password))
-        self.store_new.add(Config('private', 'version', self.MIG_SYS_VERSION))
-        self.store_new.add(Config('private', 'version_db', 34))
+
+        # Set old verions that will be then handled by the version update
+        self.store_new.add(Config('private', 'version', 'X.Y.Z'))
+        self.store_new.add(Config('private', 'version_db', 0))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
         langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)
