@@ -7,9 +7,9 @@ GlobaLeaks is a project aimed at creating an opensource and free software whistl
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 ## Community and support
-If you need help with the software write your inquiry to the GlobaLeaks [Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk): globaleaks-talk@lists.globaleaks.org
+If you need support with the software subscribe and participate to the [GlobaLeaks Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk).
 
-If instead you need to contact us privately to get feedback on a specific whistleblowing project and involve us as Hermes Center, please [contact us directly](http://logioshermes.org/home/about-mission/contacts/), we'd love to help you out!
+If instead you need private support by the Hermes Center on a specific whistleblowing project you can [contact us directly](https://hermescenter.org/home/about-mission/contacts/), we'd love to help you out!
 
 Other resources:
 * [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
@@ -34,10 +34,9 @@ To support the GlobaLeaks project you can help us with donations that will goes 
 
 [![Bitcoin](https://bitpay.com/img/donate-button.svg)](https://www.globaleaks.org/bitcoin.html) [![PayPal](https://www.paypalobjects.com/en_US/i/btn/x-click-butcc-donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id= 22CAHH6GRRCTC)  [![Subscription](https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif)](https://globaleaks.org/paypal.html)
 
-[Help us](http://logioshermes.org/home/about-mission/support-us/) by sending us a small donation!
+[Help us](https://hermescenter.org/home/about-mission/support-us/) by sending us a small donation!
 
 ## License
 This software is released under the AGPLv3 license. See LICENSE file for more information.
 
-Copyright (c) 2011-2016 - Hermes Center for Transparency and Digital Human Rights
-
+Copyright (c) 2011-2016 - [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org)
