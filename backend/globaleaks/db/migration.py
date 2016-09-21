@@ -87,13 +87,15 @@ def db_perform_data_update(store):
     stored_ver = prv.get_val('version')
     t = (stored_ver, __version__)
 
-    # Catch all failures
     if stored_ver != __version__:
         prv.set_val('version', __version__)
 
+        # The below commands can change the current store based on the what is
+        # currently stored in the DB.
         appdata = db_update_appdata(store)
-        config.update_defaults(store)
+        l10n.update_enabled_langs(store)
         l10n.update_defaults(store, appdata)
+        config.update_defaults(store)
         db_fix_fields_attrs(store)
 
     ok = config.is_cfg_valid(store)

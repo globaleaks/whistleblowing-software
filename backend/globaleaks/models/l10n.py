@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from storm.expr import And
 from storm.locals import Unicode, Storm, Bool
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
+from globaleaks.utils.utility import log
 
 class EnabledLanguage(Storm):
     __storm_table__ = 'enabledlanguage'
@@ -219,6 +220,13 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_message_recipient',
     })
 
+
+def update_enabled_langs(store):
+    active_langs = set(EnabledLanguage.get_all_strings(store))
+    to_drop = active_langs - LANGUAGES_SUPPORTED_CODES
+    for lang_code in to_drop:
+        log.err("Dropping %s translations. It is no longer supported!!!" % lang_code)
+        EnabledLanguage.remove_old_lang(store, lang_code)
 
 def update_defaults(store, appdata):
     langs = EnabledLanguage.get_all_strings(store)
