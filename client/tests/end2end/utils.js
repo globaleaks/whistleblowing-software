@@ -48,7 +48,7 @@ exports.browserTimeout = function() {
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(function() {
-    return element(locator).isPresent().then(function(present) {
+    return element(locator).isDisplayed().then(function(present) {
       return present;
     });
   }, t);
