@@ -16,7 +16,8 @@ from storm.locals import create_database, Store
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 
 from globaleaks.db import migration, perform_system_update
-from globaleaks.models import config, config_desc
+from globaleaks.models import config, config_desc, l10n
+from globaleaks.models.l10n import EnabledLanguage, ConfigL10N
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.settings import GLSettings
 from globaleaks.tests.helpers import init_glsettings_for_unit_tests
@@ -79,6 +80,27 @@ class TestConfigUpdates(unittest.TestCase):
         shutil.rmtree(GLSettings.db_path)
         GLConfig['private']['smtp_password'] = GLConfig['private'].pop('xx_smtp_password')
         config.is_cfg_valid = self._bck_f
+
+    def test_remove_extra_lang(self):
+        store = Store(create_database(GLSettings.db_uri))
+        # add lang no longer supported
+        zyx = EnabledLanguage('zyx')
+        cfg = ConfigL10N(zyx.name, 'fakegroup', 'fakevar', '...---...')
+
+        store.add(zyx)
+        store.add(cfg)
+        store.commit()
+
+        cfg = store.find(ConfigL10N, ConfigL10N.var_name==u'fakevar').one()
+        self.assertTrue(cfg is not None)
+        self.assertIn(zyx.name, EnabledLanguage.get_all_strings(store))
+
+        # ensure that it is removed by l10n.update_defaults
+        l10n.update_enabled_langs(store)
+
+        self.assertNotIn(zyx.name, EnabledLanguage.get_all_strings(store))
+        cfg = store.find(ConfigL10N, ConfigL10N.var_name==u'fakevar').one()
+        self.assertTrue(cfg is None)
 
     def test_detect_and_fix_cfg_change(self):
         store = Store(create_database(GLSettings.db_uri))
