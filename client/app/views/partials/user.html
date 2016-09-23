@@ -9,7 +9,7 @@
       <span id="LoginRoleText">
         <label>
           <span data-translate>Currently logged in</span>
-          (<a data-ng-href="{{session.homepage}}">{{session.role}}</a>)
+          (<a data-ng-href="{{session.homepage}}">{{session.role | roleToString | translate}}</a>)
         </label>
       </span>
      <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">
