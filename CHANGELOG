@@ -1,3 +1,10 @@
+Changes in version 2.64.2 - 2016-09-23
+    o Complete implementation of migration in relation to
+      removed languages.
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1767
+
 Changes in version 2.64.1 - 2016-09-20
     o Fix migration script 34 in relation to removed languages
 
