@@ -16,12 +16,14 @@ from storm.locals import create_database, Store
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 
 from globaleaks.db import migration, perform_system_update
-from globaleaks.models import config, config_desc, l10n
+from globaleaks.models import config, config_desc, l10n, Field
 from globaleaks.models.l10n import EnabledLanguage, ConfigL10N
 from globaleaks.models.config_desc import GLConfig
+from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.settings import GLSettings
-from globaleaks.tests.helpers import init_glsettings_for_unit_tests
 from globaleaks.rest.errors import DatabaseIntegrityError
+from globaleaks.tests.helpers import init_glsettings_for_unit_tests, TestGL
+
 
 class TestMigrationRoutines(unittest.TestCase):
     def _test(self, path, f):
@@ -180,3 +182,48 @@ def mod_bool():
     while True:
         yield i % 2 == 0
         i += 1
+
+class TestMigrationRegression(unittest.TestCase):
+    def _initStartDB(self, target_ver):
+        init_glsettings_for_unit_tests()
+
+        GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
+        os.mkdir(GLSettings.db_path)
+        db_name = 'glbackend-%d.db' % target_ver
+        db_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', 'populated', db_name)
+        shutil.copyfile(db_path, os.path.join(GLSettings.db_path, db_name))
+
+        self.db_file = os.path.join(GLSettings.db_path, db_name)
+        GLSettings.db_uri = GLSettings.make_db_uri(self.db_file)
+
+        self.store = Store(create_database(GLSettings.db_uri))
+
+    # This test case asserts that a migration from db ver 32 up to 34 with
+    # fields that fail the constraints still functions.
+    def test_check_field_constraints(self):
+        self._initStartDB(32)
+
+        field_dict = TestGL.get_dummy_field()
+        field_dict['instance'] = 'reference'
+        field_dict['step_id'] = None
+        field_dict['field_id'] = None
+
+        db_create_field(self.store, field_dict, u'en')
+
+        field_dict = TestGL.get_dummy_field()
+        field_dict['instance'] = 'instance'
+
+        db_create_field(self.store, field_dict, u'en')
+
+        field_dict = TestGL.get_dummy_field()
+        field_dict['instance'] = 'template'
+        field_dict['step_id'] = None
+        fld_grp_id = self.store.find(Field, Field.fieldgroup_id is not None)[0].fieldgroup_id
+        field_dict['field_id'] = fld_grp_id
+
+        db_create_field(self.store, field_dict, u'en')
+        self.store.commit()
+
+        ret = perform_system_update()
+        shutil.rmtree(GLSettings.db_path)
+        self.assertNotEqual(ret, -1)

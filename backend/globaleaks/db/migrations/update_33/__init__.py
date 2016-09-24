@@ -195,7 +195,9 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.iteritems():
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
-            if new_obj.instance == 'instance' and new_obj.step_id is None and new_obj.fieldgroup_id is None:
+            if (new_obj.instance == 'instance' and new_obj.step_id is None and new_obj.fieldgroup_id is None or
+               new_obj.instance == 'reference' and new_obj.step_id is None and new_obj.fieldgroup_id is None or
+               new_obj.instance == 'template' and not(new_obj.step_id is None or new_obj.fieldgroup_id is None)):
                 # This fix is necessary in order to remove zombies caused by a step removal or a parent field removal
                 # The issue was caused by the db reference deleting only the StepField/FieldField relations but not the childrens hierarchy
                 # The issue affected al releases before database 28 and the fix is added here in order to remove the dead fields

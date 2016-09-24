@@ -223,9 +223,6 @@ class FileInstance(BaseHandler):
 
 @transact
 def download_file(store, user_id, rtip_id, file_id):
-    """
-    Auth temporary disabled, just Tip_id and File_id required
-    """
     db_access_rtip(store, user_id, rtip_id)
 
     rfile = store.find(ReceiverFile,
