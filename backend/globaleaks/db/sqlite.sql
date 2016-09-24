@@ -291,7 +291,7 @@ CREATE TABLE field (
                                                                 ((step_id IS NOT NULL AND fieldgroup_id IS NULL) OR
                                                                  (step_id IS NULL AND fieldgroup_id IS NOT NULL))) OR
                                    (instance IS 'template' AND template_id IS NULL AND
-                                                               NOT(step_id IS NOT NULL AND fieldgroup_id IS NOT NULL)))
+                                                               (step_id IS NULL OR fieldgroup_id IS NULL)))
 );
 
 CREATE TABLE fieldattr (
