@@ -22,12 +22,12 @@ from globaleaks.models.config_desc import GLConfig
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.settings import GLSettings
 from globaleaks.rest.errors import DatabaseIntegrityError
-from globaleaks.tests.helpers import init_glsettings_for_unit_tests, TestGL
+from globaleaks.tests import helpers
 
 
 class TestMigrationRoutines(unittest.TestCase):
     def _test(self, path, f):
-        init_glsettings_for_unit_tests()
+        helpers.init_glsettings_for_unit_tests()
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
         final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
         GLSettings.db_uri = GLSettings.make_db_uri(final_db_file)
@@ -53,7 +53,7 @@ for directory in ['empty', 'populated']:
 
 class TestConfigUpdates(unittest.TestCase):
     def setUp(self):
-        init_glsettings_for_unit_tests()
+        helpers.init_glsettings_for_unit_tests()
 
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
         os.mkdir(GLSettings.db_path)
@@ -185,7 +185,7 @@ def mod_bool():
 
 class TestMigrationRegression(unittest.TestCase):
     def _initStartDB(self, target_ver):
-        init_glsettings_for_unit_tests()
+        helpers.init_glsettings_for_unit_tests()
 
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
         os.mkdir(GLSettings.db_path)
@@ -203,19 +203,19 @@ class TestMigrationRegression(unittest.TestCase):
     def test_check_field_constraints(self):
         self._initStartDB(32)
 
-        field_dict = TestGL.get_dummy_field()
+        field_dict = helpers.get_dummy_field()
         field_dict['instance'] = 'reference'
         field_dict['step_id'] = None
         field_dict['field_id'] = None
 
         db_create_field(self.store, field_dict, u'en')
 
-        field_dict = TestGL.get_dummy_field()
+        field_dict = helpers.get_dummy_field()
         field_dict['instance'] = 'instance'
 
         db_create_field(self.store, field_dict, u'en')
 
-        field_dict = TestGL.get_dummy_field()
+        field_dict = helpers.get_dummy_field()
         field_dict['instance'] = 'template'
         field_dict['step_id'] = None
         fld_grp_id = self.store.find(Field, Field.fieldgroup_id is not None)[0].fieldgroup_id

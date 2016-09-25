@@ -25,7 +25,7 @@ class TestFieldCreate(helpers.TestHandler):
             """
             Attempt to create a new field via a post request.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(self.dummyContext, 'en')
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
@@ -42,14 +42,14 @@ class TestFieldCreate(helpers.TestHandler):
             """
             Attempt to create a new field from template via post request
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'template'
             field_template = yield create_field(values, 'en')
 
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             step_id = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
 
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'reference'
             values['template_id'] = field_template['id']
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
@@ -71,7 +71,7 @@ class TestFieldInstance(helpers.TestHandler):
             """
             Create a new field, then get it back using the received id.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
@@ -87,13 +87,13 @@ class TestFieldInstance(helpers.TestHandler):
             """
             Attempt to update a field, changing its type via a put request.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             field = yield create_field(values, 'en')
 
-            updated_sample_field = self.get_dummy_field()
+            updated_sample_field = helpers.get_dummy_field()
             updated_sample_field['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             updated_sample_field['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
@@ -104,7 +104,7 @@ class TestFieldInstance(helpers.TestHandler):
             self.assertEqual(field['id'], self.responses[0]['id'])
             self.assertEqual(self.responses[0]['type'], 'inputbox')
 
-            wrong_sample_field = self.get_dummy_field()
+            wrong_sample_field = helpers.get_dummy_field()
             values['instance'] = 'instance'
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             wrong_sample_field.update(type='nonexistingfieldtype')
@@ -116,7 +116,7 @@ class TestFieldInstance(helpers.TestHandler):
             """
             Create a new field, then attempt to delete it.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'instance'
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
@@ -137,7 +137,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             """
             Create a new field, the get it back using the receieved id.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'template'
             field = yield create_field(values, 'en')
 
@@ -151,11 +151,11 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             """
             Attempt to update a field, changing its type via a put request.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'template'
             field = yield create_field(values, 'en')
 
-            updated_sample_field = self.get_dummy_field()
+            updated_sample_field = helpers.get_dummy_field()
             updated_sample_field['instance'] = 'template'
             updated_sample_field['type'] ='inputbox'
             handler = self.request(updated_sample_field, role='admin')
@@ -164,7 +164,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(field['id'], self.responses[0]['id'])
             self.assertEqual(self.responses[0]['type'], 'inputbox')
 
-            wrong_sample_field = self.get_dummy_field()
+            wrong_sample_field = helpers.get_dummy_field()
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
             yield self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
@@ -174,7 +174,7 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             """
             Create a new field template, then attempt to delete it.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'template'
             field = yield create_field(values, 'en')
 
@@ -197,7 +197,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             n = 3
             ids = []
             for i in range(3):
-                values = self.get_dummy_field()
+                values = helpers.get_dummy_field()
                 values['instance'] = 'template'
                 handler = self.request(values, role='admin')
                 yield handler.post()
@@ -227,7 +227,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             """
             Attempt to create a new field via a post request.
             """
-            values = self.get_dummy_field()
+            values = helpers.get_dummy_field()
             values['instance'] = 'template'
             handler = self.request(values, role='admin')
             yield handler.post()
