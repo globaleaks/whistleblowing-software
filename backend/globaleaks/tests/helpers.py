@@ -504,7 +504,7 @@ class TestGLWithPopulatedDB(TestGL):
     def add_whistleblower_identity_field_to_step(self, store, step_id):
         wbf = store.find(models.Field, models.Field.key == u'whistleblower_identity').one()
 
-        reference_field = self.get_dummy_field()
+        reference_field = get_dummy_field()
         reference_field['instance'] = 'reference'
         reference_field['template_id'] = wbf.id
         reference_field['step_id'] = step_id
