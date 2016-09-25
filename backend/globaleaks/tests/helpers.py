@@ -119,6 +119,45 @@ def update_node_setting(store, var_name, value):
     models.config.NodeFactory(store).set_val(var_name, value)
 
 
+def get_dummy_step():
+    return {
+        'id': '',
+        'questionnaire_id': '',
+        'label': u'Step 1',
+        'description': u'Step Description',
+        'presentation_order': 0,
+        'triggered_by_score': 0,
+        'children': []
+    }
+
+def get_dummy_field():
+    return {
+        'id': '',
+        'key': '',
+        'instance': 'template',
+        'editable': True,
+        'template_id': '',
+        'step_id': '',
+        'fieldgroup_id': '',
+        'label': u'antani',
+        'type': u'inputbox',
+        'preview': False,
+        'description': u'field description',
+        'hint': u'field hint',
+        'multi_entry': False,
+        'multi_entry_hint': '',
+        'stats_enabled': False,
+        'required': False,
+        'attrs': {},
+        'options': [],
+        'children': [],
+        'y': 1,
+        'x': 1,
+        'width': 0,
+        'triggered_by_score': 0
+    }
+
+
 def get_dummy_file(filename=None, content_type=None, content=None):
     filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
 
@@ -246,47 +285,9 @@ class TestGL(unittest.TestCase):
 
         return sum_dicts(new_r, new_u)
 
-    def get_dummy_step(self):
-        return {
-            'id': '',
-            'questionnaire_id': '',
-            'label': u'Step 1',
-            'description': u'Step Description',
-            'presentation_order': 0,
-            'triggered_by_score': 0,
-            'children': []
-        }
-
-    def get_dummy_field(self):
-        return {
-            'id': '',
-            'key': '',
-            'instance': 'template',
-            'editable': True,
-            'template_id': '',
-            'step_id': '',
-            'fieldgroup_id': '',
-            'label': u'antani',
-            'type': u'inputbox',
-            'preview': False,
-            'description': u'field description',
-            'hint': u'field hint',
-            'multi_entry': False,
-            'multi_entry_hint': '',
-            'stats_enabled': False,
-            'required': False,
-            'attrs': {},
-            'options': [],
-            'children': [],
-            'y': 1,
-            'x': 1,
-            'width': 0,
-            'triggered_by_score': 0
-        }
-
     @transact
     def create_dummy_field(self, store, **custom_attrs):
-        field = self.get_dummy_field()
+        field = get_dummy_field()
 
         fill_localized_keys(field, models.Field.localized_keys, 'en')
 
@@ -490,7 +491,7 @@ class TestGLWithPopulatedDB(TestGL):
 
         self.dummyQuestionnaire = yield get_questionnaire(self.dummyContext['questionnaire_id'], 'en')
 
-        self.dummyQuestionnaire['steps'].append(self.get_dummy_step())
+        self.dummyQuestionnaire['steps'].append(get_dummy_step())
         self.dummyQuestionnaire['steps'][1]['questionnaire_id'] = self.dummyContext['questionnaire_id']
         self.dummyQuestionnaire['steps'][1]['label'] = 'Whistleblower identity'
         self.dummyQuestionnaire['steps'][1]['presentation_order'] = 1
