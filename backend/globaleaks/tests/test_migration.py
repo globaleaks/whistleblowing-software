@@ -104,13 +104,14 @@ class TestConfigUpdates(unittest.TestCase):
         cfg = store.find(ConfigL10N, ConfigL10N.var_name==u'fakevar').one()
         self.assertTrue(cfg is None)
 
+    @inlineCallbacks
     def test_detect_and_fix_cfg_change(self):
         store = Store(create_database(GLSettings.db_uri))
         ret = config.is_cfg_valid(store)
         self.assertFalse(ret)
         store.close()
 
-        migration.perform_data_update(self.db_file)
+        yield migration.perform_data_update(self.db_file)
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
@@ -161,7 +162,6 @@ class TestConfigUpdates(unittest.TestCase):
         prv = config.PrivateFactory(store)
         self.assertEqual(prv.get_val('version'), self.dummy_ver)
         store.close()
-
 
 def apply_gen(f):
     gen = f()
