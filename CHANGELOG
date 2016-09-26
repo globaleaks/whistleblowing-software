@@ -1,10 +1,12 @@
-Changes in version 2.64.5 - 2016-09-25
+Changes in version 2.64.4 - 2016-09-26
     o Fix issue on migration 34 (#1759)
-    o Update translations
-    o Update npm and bower dependencies to latest stables versions.
 
     Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1759
+
+Changes in version 2.64.3 - 2016-09-25
+    o Update translations
+    o Update npm and bower dependencies to latest stables versions.
 
 Changes in version 2.64.2 - 2016-09-23
     o Complete implementation of migration in relation to
