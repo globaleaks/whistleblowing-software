@@ -278,6 +278,11 @@ def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):
         if now > check_date + (seconds+minutes+hours)
         True is returned, else False
     """
+    # TODO: this check may hide a bug a should be removed.
+    #       (see commit message for details)
+    if not check_date:
+        return False
+
     total_hours = (day * 24) + hours
     check = check_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
 
@@ -288,6 +293,11 @@ def datetime_to_ISO8601(date):
     """
     conver a datetime into ISO8601 date
     """
+    # TODO: this check may hide a bug a should be removed.
+    #       (see commit message for details)
+    if date is None:
+        date = datetime_null()
+
     return date.isoformat() + "Z" # Z means that the date is in UTC
 
 
@@ -309,6 +319,11 @@ def datetime_to_pretty_str(date):
     """
     print a datetime in pretty formatted str format
     """
+    # TODO: this check may hide a bug a should be removed.
+    #       (see commit message for details)
+    if date is None:
+        date = datetime_null()
+
     return date.strftime("%A %d %B %Y %H:%M (UTC)")
 
 
@@ -316,6 +331,8 @@ def ISO8601_to_day_str(isodate, tz=0):
     """
     print a ISO8601 in DD/MM/YYYY formatted str
     """
+    # TODO: this check may hide a bug a should be removed.
+    #       (see commit message for details)
     if isodate is None:
         isodate = datetime_null().isoformat()
 
