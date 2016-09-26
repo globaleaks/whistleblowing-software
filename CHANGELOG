@@ -1,3 +1,6 @@
+Changes in version 2.64.5 - 2016-09-26
+    o Apply minor bugfixing
+
 Changes in version 2.64.4 - 2016-09-26
     o Fix issue on migration 34 (#1759)
 
