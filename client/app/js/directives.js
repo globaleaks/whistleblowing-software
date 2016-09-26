@@ -1,4 +1,29 @@
 angular.module('GLDirectives', []).
+  directive('textarea', function () {
+    return {
+      restrict: 'E',
+      link: function postLink(scope, element, attrs) {
+        // hidding the scroll of textarea
+        element.css('overflow', 'hidden');
+        element.css('min-height', '2em');
+
+        var update = function(){
+          element.css("height", "auto");
+
+          var height = element[0].scrollHeight;
+          if(height > 0){
+            element.css("height", height + "px");
+          }
+        };
+
+        scope.$watch(attrs.ngModel, function(){
+          update();
+        });
+
+        attrs.$set("ngTrim", "false");
+      }
+    };
+}).
   directive('inputPrefix', function() {
     return {
       require: 'ngModel',
