@@ -32,54 +32,45 @@
                 <div data-ng-include="'views/partials/fileupload_status.html'"></div>
               </div>
             </div>
+            <div class="row">
+                <div ng-show="true || step.is_invalid" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
+            </div>
           </div>
         </div>
         <div class="clearfix"></div>
       </div>
+    </div>
+    <div class="row" ><div class="col-md-7">
+      <div id="SubmissionButtons">
+        <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
+          <i class="glyphicon glyphicon-circle-arrow-left"></i>
+          <span data-translate>previous step</span>
+        </button>
 
-        <div id="SubmissionButtons">
-            <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
-              <i class="glyphicon glyphicon-circle-arrow-left"></i>
-              <span data-translate>previous step</span>
-            </button>
+        <button id="NextStepButton" class="btn btn-default" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
+          <span data-translate>next step</span>
+          <i class="glyphicon glyphicon-circle-arrow-right"></i>
+        </button>
 
-            <button id="NextStepButton" class="btn btn-default" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
-              <span data-translate>next step</span>
-              <i class="glyphicon glyphicon-circle-arrow-right"></i>
-            </button>
+        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="checkForErrors(submissionForm)" type="submit">
+          <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
+          <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Submit</span>
+          <span data-ng-show="submission.wait">({{submission.countdown}})</span>
+        </button>
+      </div>
 
-            <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="checkForErrors(submissionForm)" type="submit">
-              <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
-              <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
-              <span data-translate>Submit</span>
-              <span data-ng-show="submission.wait">({{submission.countdown}})</span>
-            </button>
+      <div id="SubmissionErrors" class="panel panel-danger" data-ng-show="submissionForm.$dirty && checkForErrors(submissionForm) && !hashNextStep()">
+        <div class="panel-heading">
+          <span data-translate>Problems with the submission
+          </span>
+        </div>
+        <div class="panel-body text-danger">
+          <p ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</p>
+          <p ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</p>
+          <p ng-if="!submission.pow" data-translate>Still computing anti-spam token.</p>
+          <p data-ng-repeat="errObj in submissionForm.$error.required">{{ errObj }}</p>
        </div>
-       </br>
-
-       <div class="row" data-ng-show="checkForErrors(submissionForm) || true"><div class="col-md-7"><div class="panel panel-danger">
-          <div class="panel-heading">
-              <span ng-show="hasNextStep()"
-                  data-translate>Errors on this step
-              </span>
-              <span ng-show="!hasNextStep()"
-                  data-translate>Submission Errors
-              </span>
-          </div>
-          <div class="panel-body">
-              <div id="SubmissionErrors" class="text-danger">
-                  <p ng-if="submissionForm.$invalid"
-                     data-translate-values="{num_errors: submissionForm.$error.required.length}"
-                     data-translate>There are XX {{num_errors}} required questions without a suitable answer.</p>
-                  <span ng-show="!hasNextStep()">
-                      <p ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</p>
-                      <p ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</p>
-                      <p ng-if="!submission.pow" data-translate>Still computing anti-spam token.</p>
-                      <p data-ng-repeat="errObj in submissionForm.$error.required">{{ errObj }}</p>
-                  </span>
-                  <p>{{ submission.context.questionnaire.steps[selection] }}</p>
-              </div>
-          </div>
-      </div></div></div>
+    </div></div>
   </form>
 </div>
