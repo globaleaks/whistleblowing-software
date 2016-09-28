@@ -1,7 +1,3 @@
-#SubmissionTabsContentBox {
-  margin-bottom: 1.25em;
-}
-
 .contextClarification {
   font-size: 1.125em;
 }
@@ -138,6 +134,10 @@
 #SubmissionButtons button {
   margin-left: 0px;
   margin-right: 0.8em;
+}
+
+#SubmissionErrors {
+  margin-top: 20px;
 }
 
 #FileUploadsHeader {
