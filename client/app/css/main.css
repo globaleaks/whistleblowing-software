@@ -111,10 +111,6 @@ table {
   width: auto;
 }
 
-#Logobox, #TitleBox {
-  line-height: 10em;
-}
-
 #PageTitle {
   font-size: 2em;
   font-weight: bold;
