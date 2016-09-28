@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', 'Utils', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, Utils, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
@@ -327,6 +327,16 @@ GLClient.controller('SubmissionCtrl',
         $scope.prepareSubmission($scope.selected_context, $scope.receivers_ids);
       }
     });
+
+    $scope.checkForErrors = function(submissionForm) {
+          var b = angular.isUndefined(submissionForm) ||
+                  submission.isDisabled() ||
+                  submissionForm.$pristine ||
+                  submissionForm.$invalid ||
+                  Utils.isUploading($scope.uploads);
+          console.log(b);
+          return b;
+    };
 
   });
 }]).
