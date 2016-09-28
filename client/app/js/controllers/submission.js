@@ -331,7 +331,6 @@ GLClient.controller('SubmissionCtrl',
     $scope.checkForErrors = function(submissionForm) {
           var b = angular.isUndefined(submissionForm) ||
                   submission.isDisabled() ||
-                  submissionForm.$pristine ||
                   submissionForm.$invalid ||
                   Utils.isUploading($scope.uploads);
           console.log(b);

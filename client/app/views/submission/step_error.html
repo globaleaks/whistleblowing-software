@@ -1,0 +1,16 @@
+<div id="SubmissionStepError" class="panel panel-danger">
+  <div class="panel-heading">
+    Errors in this step
+  </div>
+  <div class="panel-body text-danger">
+    <span data-translate>Unable to proceed until the following errors are resolved:</span>
+    <p ng-if="submissionForm.$invalid"
+       data-translate-values="{num_errors: submissionForm.$error.required.length}"
+       data-translate>There are XX {{num_errors}} required questions without a suitable answer.
+    </p>
+    <ul>
+      <li>Blah has errors
+      <li>Scheda Uno has errors
+    </ul>
+  </div>
+</div>
