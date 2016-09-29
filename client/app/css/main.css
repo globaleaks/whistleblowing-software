@@ -13,7 +13,7 @@ body {
   margin: 0;
 }
 
-@media (min-width: 800px) and (min-height: 600px) {
+@media (min-width: 992px) {
   body {
     min-height: 100%;
     padding-bottom: 10em;
