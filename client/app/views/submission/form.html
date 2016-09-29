@@ -9,11 +9,12 @@
               <i class="glyphicon glyphicon-question-sign"></i>
             </span>
           </label>
-          <span class="text-danger"
+          <span class="required-glyph glyphicon glyphicon-asterisk text-danger small"
+                aria-hidden="true"
                 data-ng-if="::field.required"
                 uib-popover="{{'This field is mandatory' | translate}}"
                 popover-placement="right"
-                popover-trigger="'mouseenter'">*</span>
+                popover-trigger="'mouseenter'"></span>
         </div>
         <div class="panel-body">
           <div class="fieldDescription">{{::field.description}}</div>
