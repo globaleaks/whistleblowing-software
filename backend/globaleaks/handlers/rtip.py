@@ -113,10 +113,6 @@ def db_access_rtip(store, user_id, rtip_id):
 
 
 def db_get_files_receiver(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    receiver_files = store.find(ReceiverFile)
-
     receiver_files = store.find(ReceiverFile,
                                 (ReceiverFile.receivertip_id == ReceiverTip.id,
                                  ReceiverTip.id == rtip_id,
