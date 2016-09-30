@@ -13,6 +13,8 @@ from globaleaks.settings import GLSettings
 
 
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
+    population_of_submissions = 10
+
     @transact
     def force_wbtip_expiration(self, store):
         for itip in store.find(models.InternalTip):
@@ -20,8 +22,8 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
 
     @transact
     def force_itip_expiration(self, store):
-        for tip in store.find(models.InternalTip):
-            tip.expiration_date = datetime_null()
+        for itip in store.find(models.InternalTip):
+            itip.expiration_date = datetime_null()
 
     @transact_ro
     def check0(self, store):
@@ -40,24 +42,24 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
     def check1(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
-        self.assertEqual(store.find(models.InternalTip).count(), 1)
-        self.assertEqual(store.find(models.ReceiverTip).count(), 2)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 1)
-        self.assertEqual(store.find(models.InternalFile).count(), 16)
+        self.assertEqual(store.find(models.InternalTip).count(), self.population_of_submissions)
+        self.assertEqual(store.find(models.ReceiverTip).count(), self.population_of_recipients * self.population_of_submissions)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), self.population_of_submissions)
+        self.assertEqual(store.find(models.InternalFile).count(), self.population_of_attachments * self.population_of_submissions)
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-        self.assertEqual(store.find(models.Comment).count(), 3)
-        self.assertEqual(store.find(models.Message).count(), 4)
+        self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
+        self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
 
     @transact_ro
     def check2(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
-        self.assertEqual(store.find(models.InternalTip).count(), 1)
-        self.assertEqual(store.find(models.ReceiverTip).count(), 2)
+        self.assertEqual(store.find(models.InternalTip).count(), self.population_of_submissions)
+        self.assertEqual(store.find(models.ReceiverTip).count(), self.population_of_recipients * self.population_of_submissions)
         self.assertEqual(store.find(models.WhistleblowerTip).count(), 0) # Note the diff
-        self.assertEqual(store.find(models.InternalFile).count(), 16)
+        self.assertEqual(store.find(models.InternalFile).count(), self.population_of_attachments * self.population_of_submissions)
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-        self.assertEqual(store.find(models.Comment).count(), 3)
-        self.assertEqual(store.find(models.Message).count(), 4)
+        self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
+        self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
 
     @inlineCallbacks
     def test_submission_life(self):
