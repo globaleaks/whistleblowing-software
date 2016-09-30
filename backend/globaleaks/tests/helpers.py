@@ -382,25 +382,6 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
-    @inlineCallbacks
-    def emulate_file_append(self, rtip_id, n):
-        @transact_ro
-        def get_itip_id_from_rtip_id(store, rtip_id):
-            return store.find(models.ReceiverTip, models.ReceiverTip.id == rtip_id).one().internaltip_id
-
-        itip_id = yield get_itip_id_from_rtip_id(rtip_id)
-
-        for i in range(0, n):
-            dummyFile = self.get_dummy_file()
-            dummyFile['submission'] = True
-
-            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
-            registered_file = yield files.register_file_db(
-                dummyFile, itip_id,
-            )
-
-            self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(registered_file.keys()))
-
     @transact_ro
     def _exists(self, store, model, *id_args, **id_kwargs):
         if not id_args and not id_kwargs:
@@ -464,6 +445,11 @@ class TestGL(unittest.TestCase):
 
 class TestGLWithPopulatedDB(TestGL):
     complex_field_population = False
+    population_of_recipients = 2
+    population_of_submissions = 3
+    population_of_attachments = 5
+    population_of_comments = 3
+    population_of_messages = 2
 
     @inlineCallbacks
     def setUp(self):
@@ -516,7 +502,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_submission_uploads(self):
-        yield self.emulate_file_upload(self.dummyToken, 10)
+        yield self.emulate_file_upload(self.dummyToken, self.population_of_attachments)
 
     @inlineCallbacks
     def perform_submission_actions(self):
@@ -555,8 +541,6 @@ class TestGLWithPopulatedDB(TestGL):
                                       rtip_desc['id'],
                                       messageCreation)
 
-            yield self.emulate_file_append(rtip_desc['id'], 3)
-
             yield rtip.create_identityaccessrequest(rtip_desc['receiver_id'],
                                                     rtip_desc['id'],
                                                     identityaccessrequestCreation,
@@ -573,9 +557,11 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
-        self.perform_submission_start()
-        yield self.perform_submission_uploads()
-        yield self.perform_submission_actions()
+        for x in range(0, self.population_of_submissions):
+            self.perform_submission_start()
+            yield self.perform_submission_uploads()
+            yield self.perform_submission_actions()
+
         yield self.perform_post_submission_actions()
 
 
