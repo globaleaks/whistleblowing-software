@@ -423,11 +423,11 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
   $scope.rows = fieldUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
-  // If the field is type 'date' attach an option configurator for the 
+  // If the field is type 'date' attach an option configurator for the
   // uib-datepicker modal.
   if ($scope.field.type === 'date') {
     var options = {
-      showWeeks: false, // Just a sample option 
+      showWeeks: false, // Just a sample option
     };
     var max = $scope.field.attrs.max_date.value;
     var min = $scope.field.attrs.min_date.value;
