@@ -1163,7 +1163,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
         for (var i=0; i<step.triggered_by_options.length; i++) {
           if (answers[step.triggered_by_options[i].field] === undefined) {
-            continue
+            continue;
           }
 
           if (step.triggered_by_options[i].option === answers[step.triggered_by_options[i].field][0]['value']) {
