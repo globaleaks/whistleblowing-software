@@ -21,7 +21,7 @@
           <div data-ng-if="selection === receiver_selection_step_index" data-ng-include="'views/submission/receiver_selection.html'"></div>
         </div>
         <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + $index" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
-          <div id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
+          <ng-form id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index" name="{{ stepFormVarName }}">
             <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
             <div class="row">
@@ -32,8 +32,8 @@
                 <div data-ng-include="'views/partials/fileupload_status.html'"></div>
               </div>
             </div>
-            <div class="row">
-                <div ng-if="stepHasErrors(step, submissionForm)" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
+            <div class="row" data-ng-controller="SubmissionStepFormErrCtrl">
+                <div ng-show="stepHasErrors(submissionForm)" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
             </div>
           </ng-form>
         </div>
@@ -52,7 +52,7 @@
           <i class="glyphicon glyphicon-circle-arrow-right"></i>
         </button>
 
-        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="checkForErrors(submissionForm)" type="submit">
+        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submissionHasErrors(submissionForm)" type="submit">
           <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
           <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
           <span data-translate>Submit</span>
@@ -60,15 +60,25 @@
         </button>
       </div>
 
-      <div id="SubmissionErrors" class="panel panel-danger" data-ng-show="submissionForm.$dirty && checkForErrors(submissionForm) && !hashNextStep()">
+      <div id="SubmissionErrors" class="panel panel-danger" data-ng-if="displaySubmissionErrors(submissionForm)">
         <div class="panel-heading">
-          <h4 class="panel-title" data-translate>Problems with the submission</h4>
+          <b data-translate>Problems with the submission exist:</b>
         </div>
         <div class="panel-body text-danger">
-          <p ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</p>
-          <p ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</p>
-          <p ng-if="!submission.pow" data-translate>Still computing anti-spam token.</p>
-          <p data-ng-repeat="errObj in submissionForm.$error.required">{{ errObj }}</p>
+          <ul>
+            <li data-ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</li>
+            <li data-ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</li>
+            <li data-ng-if="!submission.pow"><span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh glyphicon-spin"></span></li>
+            <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
+                 data-ng-controller="SubmissionStepFormErrCtrl">
+              <li data-ng-if="stepForm.$invalid">
+              <p>The step
+                <code ng-click="goToStep(step.presentation_order)">{{ step.label }}</code>
+                <span data-translate>has errors.</span>
+              </p>
+              </li>
+            </div>
+          </ul>
        </div>
     </div></div>
   </form>
