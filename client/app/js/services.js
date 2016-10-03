@@ -1136,6 +1136,30 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return field.answer_structure;
       };
 
+      var flatten_field = function(id_map, field) {
+        if (field.children.length === 0) {
+          id_map[field.id] = field;
+          return id_map;
+        } else {
+          id_map[field.id] = field;
+          return field.children.reduce(flatten_field, id_map);
+        }
+      };
+
+      var build_field_id_map = function(context) {
+        return context.questionnaire.steps.reduce(function(id_map, cur_step) {
+          return cur_step.children.reduce(flatten_field, id_map);
+        }, {});
+      };
+
+      underscore = function(s) {
+        return s.replace(new RegExp('-', 'g'), '_');
+      };
+
+      var formName = function(id) {
+        return 'fieldForm_' + underscore(id);
+      };
+
       var isStepTriggered = function(step, answers, score) {
         if (step.triggered_by_score > score) {
           return false;
@@ -1184,6 +1208,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         getValidator: getValidator,
         splitRows: splitRows,
         prepare_field_answers_structure: prepare_field_answers_structure,
+        build_field_id_map: build_field_id_map,
+        formName: formName,
         isStepTriggered: isStepTriggered,
         isFieldTriggered: isFieldTriggered
       };
