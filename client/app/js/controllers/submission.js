@@ -149,11 +149,16 @@ GLClient.controller('SubmissionCtrl',
     // if we find one, set focus
     if (firstInvalid) {
       $scope.clicked = true;
-      firstInvalid.focus();
       return false;
     }
 
     return true;
+  };
+
+  $scope.displaySubmissionErrors = function(submissionForm) {
+    return angular.isDefined(submissionForm) &&
+           $scope.submissionHasErrors(submissionForm) &&
+           !$scope.hasNextStep();
   };
 
   $scope.incrementStep = function() {
@@ -333,61 +338,56 @@ GLClient.controller('SubmissionCtrl',
       }
     });
 
-    $scope.checkForErrors = function(submissionForm) {
-          var b = angular.isUndefined(submissionForm) ||
-                  submission.isDisabled() ||
-                  submissionForm.$invalid ||
-                  Utils.isUploading($scope.uploads);
-          return b;
+    $scope.submissionHasErrors = function(submissionForm) {
+      if (angular.isDefined(submissionForm)) {
+        var b = submission.isDisabled() ||
+                submissionForm.$invalid ||
+                Utils.isUploading($scope.uploads);
+        return b;
+      }
+      return false;
     };
 
   });
 }]).
-factory('SubFormService', function() {
-  var submissionForm = {};
-  return {
-    init: function(submissionForm) {
-      console.log('hi');
-    },
-  };
-}).
-controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities', 'SubFormService',
-  function($scope, $filter, fieldUtilities, SubFormService) {
+controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
+  function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
 
-  $scope.rows = fieldUtilities.splitRows($scope.fields);
+  var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
+  $scope.stepFormVarName = stepFormVarName;
 
-  function underscore(s) {
-    return s.replace(new RegExp('-', 'g'), '_');
-  }
-
-  $scope.stepHasErrors = function() {
-    if (angular.isDefined($scope.stepForm) && $scope.status.nextBtnClicked) {
-      return $scope.stepForm.$invalid;
+  $scope.stepHasErrors = function(submissionForm) {
+    var sf_ref = submissionForm[stepFormVarName];
+    if (angular.isDefined(sf_ref) && $scope.clicked) {
+      return sf_ref.$invalid;
     }
     return false;
   };
 
-  var stepFormVarName = underscore('stepForm_'+$scope.step.id);
-  var deregStep = $scope.$watch(stepFormVarName, function() {
-    var stepForm = $scope.submissionForm[stepFormVarName];
-    if (angular.isDefined(stepForm)) {
-      $scope.stepForm = stepForm;
-      deregStep();
-    }
-  });
-
+  $scope.rows = fieldUtilities.splitRows($scope.fields);
 
   $scope.status = {
     opened: false,
-    nextBtnClicked: false
   };
+}]).
+controller('SubmissionStepFormErrCtrl', ['$scope', 'fieldUtilities',
+  function($scope, fieldUtilities) {
+    var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
+    $scope.stepForm = $scope.submissionForm[stepFormVarName];
 }]).
 controller('SubmissionFieldErrKeyCtrl', ['$scope',
   function($scope) {
     var pre = 'fieldForm_';
     var f_id = $scope.err.$name.slice(pre.length).replace(new RegExp('_', 'g'), '-');
     $scope.field = $scope.field_id_map[f_id];
+
+    $scope.goToQuestion = function() {
+      var form = document.getElementById('step-' + $scope.selection);
+      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .inputelem';
+      var formFieldSel = form.querySelector(s);
+      formFieldSel.focus();
+    };
 }]).
 controller('SubmissionFormFieldCtrl', ['$scope',
   function($scope) {
@@ -396,7 +396,7 @@ controller('SubmissionFormFieldCtrl', ['$scope',
 .
 controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
 
-  var fieldFormVarName = fieldUtilities.formName($scope.field.id);
+  var fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id);
   $scope.fieldFormVarName = fieldFormVarName;
 
   $scope.getClass = function(field, row_length) {
