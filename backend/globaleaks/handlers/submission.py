@@ -19,7 +19,8 @@ from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import log, utc_future_date, \
+    datetime_now, datetime_never, datetime_to_ISO8601
 from storm.expr import And, In
 
 
@@ -320,7 +321,10 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.progressive = db_assign_submission_progressive(store)
 
-    submission.expiration_date = utc_future_date(days=context.tip_timetolive)
+    if context.context.tip_timetolive > -1:
+        submission.expiration_date = utc_future_date(days=context.tip_timetolive)
+    else:
+        submission.expiration_date = datetime_never()
 
     # this is get from the client as it the only possibility possible
     # that would fit with the end to end submission.
