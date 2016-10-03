@@ -1156,7 +1156,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return s.replace(new RegExp('-', 'g'), '_');
       };
 
-      var formName = function(id) {
+      var stepFormName = function(id) {
+        return 'stepForm_' + underscore(id);
+      };
+
+      var fieldFormName = function(id) {
         return 'fieldForm_' + underscore(id);
       };
 
@@ -1209,7 +1213,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         splitRows: splitRows,
         prepare_field_answers_structure: prepare_field_answers_structure,
         build_field_id_map: build_field_id_map,
-        formName: formName,
+        fieldFormName: fieldFormName,
+        stepFormName: stepFormName,
         isStepTriggered: isStepTriggered,
         isFieldTriggered: isFieldTriggered
       };
