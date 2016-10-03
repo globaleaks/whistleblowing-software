@@ -10,6 +10,7 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemModal = undefined;
 
   $scope.total_score = 0;
+  $scope.clicked = false;
 
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;
@@ -147,6 +148,7 @@ GLClient.controller('SubmissionCtrl',
 
     // if we find one, set focus
     if (firstInvalid) {
+      $scope.clicked = true;
       firstInvalid.focus();
       return false;
     }
@@ -165,6 +167,7 @@ GLClient.controller('SubmissionCtrl',
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
+          $scope.clicked = false;
           $anchorScroll('top');
           break;
         }
@@ -319,6 +322,8 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
+
+      $scope.field_id_map = fieldUtilities.build_field_id_map(context);
     }
 
     // Watch for changes in certain variables
@@ -333,23 +338,67 @@ GLClient.controller('SubmissionCtrl',
                   submission.isDisabled() ||
                   submissionForm.$invalid ||
                   Utils.isUploading($scope.uploads);
-          console.log(b);
           return b;
     };
 
   });
 }]).
-controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
-  function($scope, $filter, fieldUtilities) {
+factory('SubFormService', function() {
+  var submissionForm = {};
+  return {
+    init: function(submissionForm) {
+      console.log('hi');
+    },
+  };
+}).
+controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities', 'SubFormService',
+  function($scope, $filter, fieldUtilities, SubFormService) {
   $scope.fields = $scope.step.children;
 
   $scope.rows = fieldUtilities.splitRows($scope.fields);
 
+  function underscore(s) {
+    return s.replace(new RegExp('-', 'g'), '_');
+  }
+
+  $scope.stepHasErrors = function() {
+    if (angular.isDefined($scope.stepForm) && $scope.status.nextBtnClicked) {
+      return $scope.stepForm.$invalid;
+    }
+    return false;
+  };
+
+  var stepFormVarName = underscore('stepForm_'+$scope.step.id);
+  var deregStep = $scope.$watch(stepFormVarName, function() {
+    var stepForm = $scope.submissionForm[stepFormVarName];
+    if (angular.isDefined(stepForm)) {
+      $scope.stepForm = stepForm;
+      deregStep();
+    }
+  });
+
+
   $scope.status = {
-    opened: false
+    opened: false,
+    nextBtnClicked: false
   };
 }]).
+controller('SubmissionFieldErrKeyCtrl', ['$scope',
+  function($scope) {
+    var pre = 'fieldForm_';
+    var f_id = $scope.err.$name.slice(pre.length).replace(new RegExp('_', 'g'), '-');
+    $scope.field = $scope.field_id_map[f_id];
+}]).
+controller('SubmissionFormFieldCtrl', ['$scope',
+  function($scope) {
+    $scope.f = $scope[$scope.fieldFormVarName];
+}])
+.
 controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
+
+  var fieldFormVarName = fieldUtilities.formName($scope.field.id);
+  $scope.fieldFormVarName = fieldFormVarName;
+
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
       return "col-md-" + field.width;
