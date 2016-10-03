@@ -424,9 +424,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('RTipResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id', {id: '@id'});
 }]).
-  factory('RTipReceiverResource', ['GLResource', function(GLResource) {
-    return new GLResource('rtip/:id/receivers', {id: '@id'});
-}]).
   factory('RTipCommentResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/comments', {id: '@id'});
 }]).
@@ -461,17 +458,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipReceiverResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
-          function($http, $q, $filter, RTipResource, RTipReceiverResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
+  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
+          function($http, $q, $filter, RTipResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
     return function(tipID, fn) {
       var self = this;
 
       self.tip = RTipResource.get(tipID, function (tip) {
-        tip.receivers = RTipReceiverResource.query(tipID);
-        tip.comments = tip.enable_comments ? RTipCommentResource.query(tipID) : [];
-        tip.messages = tip.enable_messages ? RTipMessageResource.query(tipID) : [];
-        tip.iars = tip.identity_provided ? RTipIdentityAccessRequestResource.query(tipID) : [];
-
         $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
           tip.iars = $filter('orderBy')(tip.iars, 'request_date');
           tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
@@ -520,23 +512,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip');
 }]).
-  factory('WBTipReceiverResource', ['GLResource', function(GLResource) {
-    return new GLResource('wbtip/receivers');
-}]).
   factory('WBTipCommentResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/comments');
 }]).
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
-  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipReceiverResource', 'WBTipCommentResource', 'WBTipMessageResource',
-      function($q, $rootScope, WBTipResource, WBTipReceiverResource, WBTipCommentResource, WBTipMessageResource) {
+  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
+      function($q, $rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
       var self = this;
 
       self.tip = WBTipResource.get(function (tip) {
-        tip.receivers = WBTipReceiverResource.query();
-        tip.comments = tip.enable_comments ? WBTipCommentResource.query() : [];
         tip.messages = [];
 
         $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {

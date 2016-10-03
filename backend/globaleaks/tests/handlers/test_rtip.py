@@ -156,17 +156,17 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(self.responses[0]['enable_notifications'], operation['args']['value'])
 
     @inlineCallbacks
-    def test_delete_delete(self):
+    def test_delete(self):
         rtips_desc = yield self.get_rtips()
-        self.assertEqual(len(rtips_desc), 2)
+        self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients)
 
-        # we deleete the first and then we verify that the second does not exist anymore
+        # we dellete the first and then we verify that the second does not exist anymore
         handler = self.request(role='receiver', user_id = rtips_desc[0]['receiver_id'])
         yield handler.delete(rtips_desc[0]['id'])
 
         rtips_desc = yield self.get_rtips()
 
-        self.assertEqual(len(rtips_desc), 0)
+        self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
@@ -196,14 +196,6 @@ class TestRTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_get(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
-            yield handler.get(rtip_desc['id'])
-
-    @inlineCallbacks
     def test_post(self):
         body = {
             'content': "can you provide an evidence of what you are telling?",
@@ -225,14 +217,6 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_get(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
-            yield handler.get(rtip_desc['id'])
-
-    @inlineCallbacks
     def test_post(self):
         body = {
             'content': "can you provide an evidence of what you are telling?",
@@ -245,24 +229,6 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.post(rtip_desc['id'])
 
 
-class TestRTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.RTipReceiversCollection
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
-
-    @inlineCallbacks
-    def test_get(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
-            yield handler.get(rtip_desc['id'])
-
-
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.IdentityAccessRequestsCollection
 
@@ -270,14 +236,6 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
-
-    @inlineCallbacks
-    def test_get(self):
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-
-            yield handler.get(rtip_desc['id'])
 
     @inlineCallbacks
     def test_post(self):

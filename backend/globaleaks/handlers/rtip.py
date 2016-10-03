@@ -30,7 +30,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     required to create the download link
     """
     if receiverfile.status != 'unavailable':
-
         ret_dict = {
             'id': receiverfile.id,
             'internalfile_id': internalfile.id,
@@ -45,7 +44,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         }
 
     else:  # == 'unavailable' in this case internal file metadata is returned.
-
         ret_dict = {
             'id': receiverfile.id,
             'internalfile_id': internalfile.id,
@@ -89,14 +87,18 @@ def serialize_message(msg):
 
 
 def serialize_rtip(store, rtip, language):
-    user_id = rtip.receiver.user.id
+    user_id = rtip.receiver.id
 
     ret = serialize_usertip(store, rtip, language)
 
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
+    ret['receivers'] = db_get_itip_receiver_list(store, rtip.internaltip, language)
+    ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
+    ret['messages'] = db_get_message_list(store, rtip)
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
+    ret['iars'] = db_get_identityaccessrequest_list(store, rtip.id, language)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
 
     return ret
@@ -201,13 +203,6 @@ def db_get_itip_receiver_list(store, itip, language):
     } for rtip in itip.receivertips]
 
 
-@transact_ro
-def get_receiver_list(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    return db_get_itip_receiver_list(store, rtip.internaltip, language)
-
-
 @transact
 def delete_rtip(store, user_id, rtip_id):
     """
@@ -267,15 +262,8 @@ def get_rtip(store, user_id, rtip_id, language):
     return db_get_rtip(store, user_id, rtip_id, language)
 
 
-def db_get_comment_list(rtip):
-    return [serialize_comment(comment) for comment in rtip.internaltip.comments]
-
-
-@transact_ro
-def get_comment_list(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    return db_get_comment_list(rtip)
+def db_get_itip_comment_list(store, internaltip):
+    return [serialize_comment(comment) for comment in internaltip.comments]
 
 
 @transact
@@ -299,22 +287,15 @@ def create_comment(store, user_id, rtip_id, request):
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip_id
     comment.type = u'receiver'
-    comment.author = rtip.receiver.user.id
+    comment.author = rtip.receiver.id
 
     rtip.internaltip.comments.add(comment)
 
     return serialize_comment(comment)
 
 
-def db_get_message_list(rtip):
+def db_get_message_list(store, rtip):
     return [serialize_message(message) for message in rtip.messages]
-
-
-@transact_ro
-def get_message_list(store, user_id, rtip_id):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    return db_get_message_list(rtip)
 
 
 @transact
@@ -332,11 +313,8 @@ def create_message(store, user_id, rtip_id, request):
     return serialize_message(msg)
 
 
-@transact_ro
-def get_identityaccessrequest_list(store, user_id, rtip_id, language):
-    rtip = db_access_rtip(store, user_id, rtip_id)
-
-    iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip.id)
+def db_get_identityaccessrequest_list(store, rtip_id, language):
+    iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip_id)
 
     return [serialize_identityaccessrequest(iar, language) for iar in iars]
 
@@ -408,24 +386,8 @@ class RTipInstance(BaseHandler):
 
 class RTipCommentCollection(BaseHandler):
     """
-    Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
-    needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
-    as a stone written consideration about Tip reliability, therefore no editing and rethinking is
-    permitted.
+    Interface use to write rtip comments
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    def get(self, tip_id):
-        """
-        Parameters: None
-        Response: actorsCommentList
-        Errors: InvalidAuthentication
-        """
-        comment_list = yield get_comment_list(self.current_user.user_id, tip_id)
-
-        self.write(comment_list)
-
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
@@ -443,37 +405,10 @@ class RTipCommentCollection(BaseHandler):
         self.write(answer)
 
 
-class RTipReceiversCollection(BaseHandler):
-    """
-    This interface return the list of the Receiver active in a Tip.
-    GET /tip/<auth_tip_id>/receivers
-    """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    def get(self, rtip_id):
-        """
-        Parameters: None
-        Response: actorsReceiverList
-        Errors: InvalidAuthentication
-        """
-        answer = yield get_receiver_list(self.current_user.user_id, rtip_id, self.request.language)
-
-        self.write(answer)
-
-
 class ReceiverMsgCollection(BaseHandler):
     """
-    This interface return the lists of the private messages exchanged.
+    Interface use to write rtip messages
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    def get(self, tip_id):
-        answer = yield get_message_list(self.current_user.user_id, tip_id)
-
-        self.write(answer)
-
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
@@ -493,24 +428,8 @@ class ReceiverMsgCollection(BaseHandler):
 
 class IdentityAccessRequestsCollection(BaseHandler):
     """
-    This interface return the list of identity access requests performed
-    on the tip and allow to perform new ones.
+    This interface allow to perform identity access requests.
     """
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    def get(self, tip_id):
-        """
-        Response: identityaccessrequestsList
-        Errors: InvalidAuthentication
-        """
-        answer = yield get_identityaccessrequest_list(self.current_user.user_id,
-                                                      tip_id,
-                                                      self.request.language)
-
-        self.write(answer)
-
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
