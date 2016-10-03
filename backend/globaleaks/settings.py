@@ -66,7 +66,7 @@ class GLSettingsClass(object):
         self.nodaemon = False
 
         # thread pool size of 1
-        self.orm_tp = ThreadPool(0, 1)
+        self.orm_tp = ThreadPool(1, 1)
 
         self.bind_addresses = '127.0.0.1'
 
