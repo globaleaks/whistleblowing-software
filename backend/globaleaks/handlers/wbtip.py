@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
-    serialize_comment, serialize_message
+    serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
@@ -60,20 +60,6 @@ def get_wbtip(store, wbtip_id, language):
     return db_get_wbtip(store, wbtip_id, language)
 
 
-@transact_ro
-def get_receiver_list(store, wbtip_id, language):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
-    return db_get_itip_receiver_list(store, wbtip.internaltip, language)
-
-
-@transact_ro
-def get_comment_list(store, wbtip_id):
-    wbtip = db_access_wbtip(store, wbtip_id)
-
-    return [serialize_comment(comment) for comment in wbtip.internaltip.comments]
-
-
 def serialize_wbtip(store, wbtip, language):
     ret = serialize_usertip(store, wbtip, language)
 
@@ -83,6 +69,8 @@ def serialize_wbtip(store, wbtip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
+    ret['receivers'] = db_get_itip_receiver_list(store, wbtip.internaltip, language)
+    ret['comments'] = db_get_itip_comment_list(store, wbtip.internaltip)
     ret['files'] = db_get_file_list(store, wbtip.id)
 
     return ret
@@ -140,6 +128,26 @@ def create_message(store, wbtip_id, receiver_id, request):
     return serialize_message(msg)
 
 
+@transact
+def update_identity_information(store, tip_id, identity_field_id, identity_field_answers, language):
+    wbtip = db_access_wbtip(store, tip_id)
+    internaltip = wbtip.internaltip
+    identity_provided = internaltip.identity_provided
+
+    if not identity_provided:
+        questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+        for step in questionnaire:
+            for field in step['children']:
+                if field['id'] == identity_field_id and field['key'] == 'whistleblower_identity':
+                    db_save_questionnaire_answers(store, internaltip.id,
+                                                  {identity_field_id: [identity_field_answers]})
+                    now = datetime_now()
+                    internaltip.update_date = now
+                    internaltip.identity_provided = True
+                    internaltip.identity_provided_date = now
+                    return
+
+
 class WBTipInstance(BaseHandler):
     """
     This interface expose the Whistleblower Tip.
@@ -167,23 +175,11 @@ class WBTipInstance(BaseHandler):
 
 class WBTipCommentCollection(BaseHandler):
     """
-    Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
+    Interface use to write comments inside of a Tip, is not implemented as CRUD because we've not
     needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
-    def get(self):
-        """
-        Parameters: None
-        Response: actorsCommentList
-        """
-        wb_comment_list = yield get_comment_list(self.current_user.user_id)
-
-        self.write(wb_comment_list)
-
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
@@ -193,30 +189,10 @@ class WBTipCommentCollection(BaseHandler):
         Response: CommentDesc
         Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
-
         request = self.validate_message(self.request.body, requests.CommentDesc)
         answer = yield create_comment(self.current_user.user_id, request)
 
         self.set_status(201)  # Created
-        self.write(answer)
-
-
-class WBTipReceiversCollection(BaseHandler):
-    """
-    This interface return the list of the Receiver active in a Tip.
-    GET /tip/receivers
-    """
-
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
-    def get(self):
-        """
-        Parameters: None
-        Response: actorsReceiverList
-        """
-        answer = yield get_receiver_list(self.current_user.user_id, self.request.language)
-
         self.write(answer)
 
 
@@ -227,7 +203,6 @@ class WBTipMessageCollection(BaseHandler):
 
     Supports the creation of a new message for the requested receiver
     """
-
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
@@ -256,31 +231,11 @@ class WBTipIdentityHandler(BaseHandler):
     @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self, tip_id):
-        """
-        Some special operation over the Tip are handled here
-        """
         request = self.validate_message(self.request.body, requests.WhisleblowerIdentityAnswers)
 
-        @transact
-        def update_identity_information(store, identity_field_id, identity_field_answers, language):
-            wbtip = db_access_wbtip(store, tip_id)
-            internaltip = wbtip.internaltip
-            identity_provided = internaltip.identity_provided
-
-            if not identity_provided:
-                questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
-                for step in questionnaire:
-                    if identity_provided: break
-                    for field in step['children']:
-                        if identity_provided: break
-                        if field['id'] == identity_field_id and field['key'] == 'whistleblower_identity':
-                            db_save_questionnaire_answers(store, internaltip.id,
-                                                          {identity_field_id: [identity_field_answers]})
-                            now = datetime_now()
-                            internaltip.update_date = now
-                            internaltip.identity_provided = True
-                            internaltip.identity_provided_date = now
-
-        yield update_identity_information(request['identity_field_id'], request['identity_field_answers'], self.request.language)
+        yield update_identity_information(tip_id,
+                                          request['identity_field_id'],
+                                          request['identity_field_answers'],
+                                          self.request.language)
 
         self.set_status(202)  # Updated

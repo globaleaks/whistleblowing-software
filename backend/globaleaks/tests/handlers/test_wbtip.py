@@ -31,14 +31,6 @@ class TestWBTipCommentCollection(helpers.TestHandlerWithPopulatedDB):
         yield self.perform_full_submission_actions()
 
     @inlineCallbacks
-    def test_get(self):
-        wbtips_desc = yield self.get_wbtips()
-        for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
-
-            yield handler.get()
-
-    @inlineCallbacks
     def test_post(self):
         body = {
             'content' : "can you provide an evidence of what you are telling?",
@@ -79,22 +71,6 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
 
             for rcvr_id in wbtip_desc['receivers_ids']:
                 yield handler.post(rcvr_id)
-
-class TestWBTipReceiversCollection(helpers.TestHandlerWithPopulatedDB):
-    _handler = wbtip.WBTipReceiversCollection
-
-    @inlineCallbacks
-    def setUp(self):
-        yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
-
-    @inlineCallbacks
-    def test_get(self):
-        wbtips_desc = yield self.get_wbtips()
-        for wbtip_desc in wbtips_desc:
-            handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
-
-            yield handler.get()
 
 
 class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):

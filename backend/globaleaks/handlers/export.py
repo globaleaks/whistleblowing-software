@@ -16,7 +16,7 @@ from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
-    db_get_comment_list, db_get_message_list
+    db_get_itip_comment_list, db_get_message_list
 from globaleaks.orm import transact_ro
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
@@ -37,8 +37,8 @@ def get_tip_export(store, user_id, rtip_id, language):
         'tip': serialize_rtip(store, rtip, language),
         'context': admin_serialize_context(store, rtip.internaltip.context, language),
         'receiver': admin_serialize_receiver(receiver, language),
-        'comments': db_get_comment_list(rtip),
-        'messages': db_get_message_list(rtip),
+        'comments': db_get_itip_comment_list(store, rtip),
+        'messages': db_get_message_list(store, rtip),
         'files': []
     }
 

@@ -235,7 +235,7 @@ def serialize_receiver(receiver, language):
     :return: a serializtion of the object
     """
     ret_dict = {
-        'id': receiver.user.id,
+        'id': receiver.id,
         'name': receiver.user.public_name,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
         'state': receiver.user.state,
