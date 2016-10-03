@@ -68,7 +68,7 @@
           <ul>
             <li data-ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</li>
             <li data-ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</li>
-            <li data-ng-if="!submission.pow"><span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh glyphicon-spin"></span></li>
+            <li data-ng-if="!submission.pow"><span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh gly-spin"></span></li>
             <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
                  data-ng-controller="SubmissionStepFormErrCtrl">
               <li data-ng-if="stepForm.$invalid">
