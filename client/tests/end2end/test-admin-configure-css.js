@@ -14,7 +14,7 @@ describe('Admin configure custom CSS', function() {
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    var customCSSFile = utils.makeTestFilePath('application-home.css');
+    var customCSSFile = utils.makeTestFilePath('custom_css.css');
 
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
@@ -33,12 +33,12 @@ describe('Admin configure custom CSS', function() {
 
     browser.get('/');
     expect(EC.invisibilityOf($('#LogoBox')));
-    expect(EC.visibilityOf($('#FooterBox')));
 
-    utils.login_admin();
-    browser.setLocation('/#/admin/landing');
-    expect(EC.invisibilityOf($('#FooterBox')));
+    browser.get('/admin');
     expect(EC.visibilityOf($('#LogoBox')));
+
+    browser.get('/');
+    expect(EC.invisibilityOf($('#LogoBox')));
 
     browser.get('/#/login?embed=true');
     expect(EC.invisibilityOf($('#login-button')));
@@ -46,7 +46,6 @@ describe('Admin configure custom CSS', function() {
     utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
-
     element(by.cssContainingText("a", "Delete")).click();
 
     // wait until redirect to the first tab of the admin/content section
