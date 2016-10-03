@@ -10,7 +10,6 @@ GLClient.controller('SubmissionCtrl',
   $scope.problemModal = undefined;
 
   $scope.total_score = 0;
-  $scope.clicked = false;
 
   $scope.problemSolved = function() {
     $scope.problemModal = undefined;
@@ -105,8 +104,15 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection;
   };
 
-  $scope.goToStep = function(index) {
+  $scope.getCurrentStep = function() {
+    return $scope.submission.context.questionnaire.steps[$scope.selection];
+  };
+
+  $scope.goToStep = function(index, activateErrPanel) {
     $scope.selection = index;
+    if (angular.isDefined(activateErrPanel)) {
+      $scope.getCurrentStep().errPanelActive = true;
+    }
   };
 
   $scope.firstStepIndex = function() {
@@ -148,7 +154,8 @@ GLClient.controller('SubmissionCtrl',
 
     // if we find one, set focus
     if (firstInvalid) {
-      $scope.clicked = true;
+      $scope.getCurrentStep().errPanelActive = true;
+      $anchorScroll('top');
       return false;
     }
 
@@ -157,6 +164,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.displaySubmissionErrors = function(submissionForm) {
     return angular.isDefined(submissionForm) &&
+           submissionForm.$dirty &&
            $scope.submissionHasErrors(submissionForm) &&
            !$scope.hasNextStep();
   };
@@ -172,7 +180,6 @@ GLClient.controller('SubmissionCtrl',
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
-          $scope.clicked = false;
           $anchorScroll('top');
           break;
         }
@@ -353,13 +360,14 @@ GLClient.controller('SubmissionCtrl',
 controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
   function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
+  $scope.step.errPanelActive = false;
 
   var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
   $scope.stepFormVarName = stepFormVarName;
 
   $scope.stepHasErrors = function(submissionForm) {
     var sf_ref = submissionForm[stepFormVarName];
-    if (angular.isDefined(sf_ref) && $scope.clicked) {
+    if (angular.isDefined(sf_ref) && $scope.step.errPanelActive) {
       return sf_ref.$invalid;
     }
     return false;
