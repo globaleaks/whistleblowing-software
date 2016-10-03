@@ -199,7 +199,10 @@
           <td>{{::tip.label}}</td>
           <td>{{::tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
           <td>{{::tip.update_date | date:'dd-MM-yyyy HH:mm'}}</td>
-          <td>{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</td>
+          <td>
+            <span data-ng-if="tip.timetolive > -1">{{::tip.expiration_date | date:'dd-MM-yyyy HH:mm'}}</span>
+            <span data-ng-if="tip.timetolive < 0" data-translate>Never</span>
+          </td>
           <td>{{::tip.file_counter}}</td>
           <td>{{::tip.comment_counter}}</td>
           <td>{{::tip.message_counter}}</td>
