@@ -33,9 +33,9 @@
               </div>
             </div>
             <div class="row">
-                <div ng-show="true || step.is_invalid" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
+                <div ng-if="stepHasErrors(step, submissionForm)" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
             </div>
-          </div>
+          </ng-form>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -62,8 +62,7 @@
 
       <div id="SubmissionErrors" class="panel panel-danger" data-ng-show="submissionForm.$dirty && checkForErrors(submissionForm) && !hashNextStep()">
         <div class="panel-heading">
-          <span data-translate>Problems with the submission
-          </span>
+          <h4 class="panel-title" data-translate>Problems with the submission</h4>
         </div>
         <div class="panel-body text-danger">
           <p ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</p>
