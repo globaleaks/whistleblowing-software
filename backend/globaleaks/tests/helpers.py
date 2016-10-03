@@ -15,7 +15,6 @@ import shutil
 
 from cyclone import httpserver
 from cyclone.web import Application
-from storm.twisted.testing import FakeThreadPool
 from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
@@ -61,9 +60,6 @@ for filename in os.listdir(KEYS_PATH):
     with open(os.path.join(KEYS_PATH, filename)) as pgp_file:
         PGPKEYS[filename] = unicode(pgp_file.read())
 
-transact.tp = FakeThreadPool()
-
-
 def deferred_sleep_mock(seconds):
     return
 
@@ -88,7 +84,6 @@ def init_glsettings_for_unit_tests():
     GLSettings.testing = True
     GLSettings.set_devel_mode()
     GLSettings.logging = None
-    GLSettings.scheduler_threadpool = FakeThreadPool()
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
     GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
