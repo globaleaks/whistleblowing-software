@@ -915,6 +915,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 path === '/receipt');
       },
 
+      isAdminPage: function() {
+        var path = $location.path();
+        return path.startsWith('/admin');
+      },
+
       isWhistleblowerPage: function() {
         var path = $location.path();
         return this.isSubmissionPage() || path === '/status';
@@ -932,7 +937,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return {
           'ext-public': this.isWhistleblowerPage(),
           'ext-login': this.isLoginPage(),
-          'ext-auth': Authentication.hasUserRole(),
+          'ext-authenticated': Authentication.hasUserRole(),
           'ext-embedded': $rootScope.embedded,
         };
       },

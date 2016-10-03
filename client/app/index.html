@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/tip.css" />
     <!-- endbuild -->
 
-    <link rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
+    <link data-ng-if="!Utils.isAdminPage()" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
   </head>
 
   <body>
