@@ -321,7 +321,7 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission.progressive = db_assign_submission_progressive(store)
 
-    if context.context.tip_timetolive > -1:
+    if context.tip_timetolive > -1:
         submission.expiration_date = utc_future_date(days=context.tip_timetolive)
     else:
         submission.expiration_date = datetime_never()
