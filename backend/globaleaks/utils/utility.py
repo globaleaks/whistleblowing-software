@@ -246,6 +246,13 @@ def datetime_now():
     return datetime.utcnow()
 
 
+def datetime_never():
+    """
+    @return: a utc datetime object representing the 1st January 3000
+    """
+    return datetime.utcfromtimestamp(32503680000)
+
+
 def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0, days=0):
     """
     @param start_date: a date stored in a db

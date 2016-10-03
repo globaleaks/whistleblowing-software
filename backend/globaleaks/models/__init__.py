@@ -201,7 +201,7 @@ class Context(ModelWithID):
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True)
 
-    tip_timetolive = Int(validator=natnum_v, default=15)
+    tip_timetolive = Int(default=15)
 
     # localized strings
     name = JSON(validator=shortlocal_v)

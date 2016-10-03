@@ -111,7 +111,7 @@ def get_context_steps(*args):
 def fill_context_request(request, language):
     fill_localized_keys(request, models.Context.localized_keys, language)
 
-    request['tip_timetolive'] = int(request['tip_timetolive'])
+    request['tip_timetolive'] = -1 if request['tip_timetolive'] < 0 else request['tip_timetolive']
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:

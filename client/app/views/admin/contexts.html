@@ -173,8 +173,11 @@
                           <label data-translate>Show recipient details on the status page of the submission</label>
                         </div>
                         <div class="form-group">
-                          <label data-translate>Submission expiration, in days</label>
-                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" min="0" />
+                          <label>
+                            <span data-translate>Submission expiration, in days</span>
+                            <span>(<span data-translate>-1 = unlimited</span>)</span>
+                          </label>
+                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" min="-1" />
                           <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
                         <div class="form-group">

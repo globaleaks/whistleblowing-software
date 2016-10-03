@@ -54,7 +54,7 @@ def login_whistleblower(store, receipt, using_tor2web):
     """
     hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
     wbtip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+                       WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
 
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
