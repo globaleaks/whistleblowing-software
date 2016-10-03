@@ -24,6 +24,9 @@
           <ng-form id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index" name="{{ stepFormVarName }}">
             <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
+            <div class="row" data-ng-controller="SubmissionStepFormErrCtrl">
+                <div ng-if="stepHasErrors(submissionForm)" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
+            </div>
             <div class="row">
               <div class="col-md-7">
                 <div data-ng-include="'views/submission/form.html'"></div>
@@ -31,9 +34,6 @@
               <div class="col-md-offset-1 col-md-4">
                 <div data-ng-include="'views/partials/fileupload_status.html'"></div>
               </div>
-            </div>
-            <div class="row" data-ng-controller="SubmissionStepFormErrCtrl">
-                <div ng-show="stepHasErrors(submissionForm)" class="col-md-7" data-ng-include="'views/submission/step_error.html'"></div>
             </div>
           </ng-form>
         </div>
@@ -73,7 +73,7 @@
                  data-ng-controller="SubmissionStepFormErrCtrl">
               <li data-ng-if="stepForm.$invalid">
               <p>The step
-                <code ng-click="goToStep(step.presentation_order)">{{ step.label }}</code>
+                <code ng-click="goToStep(step.presentation_order, true)">{{ step.label }}</code>
                 <span data-translate>has errors.</span>
               </p>
               </li>
