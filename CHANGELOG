@@ -1,3 +1,14 @@
+Changes in version 2.64.6 - 2016-10-04
+    o Fix responsiveness of the sticky footer on small-screen devices
+    o Allow to set an unlimited retention policy
+    o Add polish translation (63%)
+    o Update translations
+
+    - https://github.com/globaleaks/GlobaLeaks/issues/1779
+    - https://github.com/globaleaks/GlobaLeaks/issues/1165
+    - https://github.com/globaleaks/GlobaLeaks/issues/1731
+    - https://github.com/globaleaks/GlobaLeaks/issues/994
+
 Changes in version 2.64.5 - 2016-09-26
     o Apply minor bugfixing
 
