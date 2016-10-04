@@ -3,11 +3,11 @@
     <b data-translate>Problems with the submission exist:</b>
   </div>
   <div class="panel-body text-danger">
-    <div data-ng-if="!Utils.isUploading(upload)">
+    <div data-ng-if="Utils.isUploading(upload)">
       <span data-translate>Waiting for a file to finish uploading.</span>&nbsp;&nbsp;
       <i class="glyphicon glyphicon-refresh gly-spin"></i>
     </div>
-    <div data-ng-if="submission.pow"><p>
+    <div data-ng-if="!submission.pow"><p>
       <span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;
       <i class="glyphicon glyphicon-refresh gly-spin"></i>
     </p></div>
