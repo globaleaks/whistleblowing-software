@@ -41,6 +41,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'ko', 'name': 'Korean', 'native': u'\ud55c\uad6d\uc5b4'},
   {'code': 'nb_NO', 'name': 'Norwegian Bokm\xc3\xa5l (Norway)', 'native': u'Norsk bokm\xe5l (Norge)'},
   {'code': 'nl', 'name': 'Dutch', 'native': u'Nederlands'},
+  {'code': 'pl', 'name': 'Polish', 'native': u'polski'},
   {'code': 'pt_BR', 'name': 'Portuguese (Brazil)', 'native': u'Portugu\xeas (Brasil)'},
   {'code': 'pt_PT', 'name': 'Portuguese (Portugal)', 'native': u'Portugu\xeas (Portugal)'},
   {'code': 'ro', 'name': 'Romanian', 'native': u'Rom\xe2n\u0103'},
