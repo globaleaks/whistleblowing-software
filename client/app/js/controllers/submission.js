@@ -113,6 +113,10 @@ GLClient.controller('SubmissionCtrl',
     if (angular.isDefined(activateErrPanel)) {
       $scope.getCurrentStep().errPanelActive = true;
     }
+    if (index === $scope.receiver_selection_step_index) {
+      $scope.receiver_selection_step_show_err_panel = true;
+    }
+    $anchorScroll('top');
   };
 
   $scope.firstStepIndex = function() {
@@ -170,6 +174,12 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.incrementStep = function() {
+    if ($scope.selection === $scope.receiver_selection_step_index && $scope.receiverSelectionError()) {
+      $scope.receiver_selection_step_show_err_panel = true;
+      $anchorScroll('top');
+      return;
+    }
+
     if ($scope.selection >=0 &&
         $scope.submission.context.questionnaire.steps_navigation_requires_completion &&
         !$scope.checkForInvalidFields()) {
@@ -308,6 +318,7 @@ GLClient.controller('SubmissionCtrl',
       if ($scope.submission.context.allow_recipients_selection) {
         $scope.receiver_selection_step = true;
         $scope.selection = -1;
+        $scope.receiver_selection_step_show_err_panel = false;
       }
 
       $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
@@ -347,12 +358,20 @@ GLClient.controller('SubmissionCtrl',
 
     $scope.submissionHasErrors = function(submissionForm) {
       if (angular.isDefined(submissionForm)) {
-        var b = submission.isDisabled() ||
-                submissionForm.$invalid ||
-                Utils.isUploading($scope.uploads);
-        return b;
+        return submission.isDisabled() ||
+               submissionForm.$invalid ||
+               Utils.isUploading($scope.uploads);
       }
       return false;
+    };
+
+    $scope.receiverSelectionError = function() {
+      for (var rec_id in submission.receivers_selected) {
+        if (submission.receivers_selected[rec_id]) {
+          return false;
+        }
+      }
+      return true;
     };
 
   });
