@@ -22,14 +22,15 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         data['node'] = yield admin.node.admin_serialize_node('en')
 
         if self.dummyRTips[0]['receiver_id'] == self.dummyReceiver_1['id']:
-            data['tip'] = self.dummyRTips[0]
+            tip_id = self.dummyRTips[0]['id']
         else:
-            data['tip'] = self.dummyRTips[1]
+            tip_id = self.dummyRTips[1]['id']
 
-        comments = yield rtip.get_comment_list(self.dummyReceiver_1['id'], data['tip']['id'])
-        data['comment'] = comments[0]
-        messages = yield rtip.get_message_list(self.dummyReceiver_1['id'], data['tip']['id'])
-        data['message'] = messages[0]
+        data['tip'] = yield rtip.get_rtip(self.dummyReceiver_1['id'], tip_id, 'en')
+
+        data['comment'] = data['tip']['comments'][0]
+        data['message'] = data['tip']['messages'][0]
+
         files = yield rtip.get_files_receiver(self.dummyReceiver_1['id'], data['tip']['id'])
         data['file'] = files[0]
 

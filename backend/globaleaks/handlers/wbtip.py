@@ -91,7 +91,7 @@ def create_comment(store, wbtip_id, request):
 
 
 @transact_ro
-def get_message_list(store, wbtip_id, receiver_id):
+def get_itip_message_list(store, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread
     messages as "read"
@@ -207,7 +207,7 @@ class WBTipMessageCollection(BaseHandler):
     @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def get(self, receiver_id):
-        messages = yield get_message_list(self.current_user.user_id, receiver_id)
+        messages = yield get_itip_message_list(self.current_user.user_id, receiver_id)
 
         self.write(messages)
 
