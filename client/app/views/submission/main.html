@@ -59,27 +59,7 @@
           <span data-ng-show="submission.wait">({{submission.countdown}})</span>
         </button>
       </div>
-
-      <div id="SubmissionErrors" class="panel panel-danger" data-ng-if="displaySubmissionErrors(submissionForm)">
-        <div class="panel-heading">
-          <b data-translate>Problems with the submission exist:</b>
-        </div>
-        <div class="panel-body text-danger">
-          <ul>
-            <li data-ng-if="submission.count_selected_receivers() === 0" data-translate>You must select at least one recipient.</li>
-            <li data-ng-if="Utils.isUploading(upload)" data-translate>Waiting for a file to finish uploading.</li>
-            <li data-ng-if="!submission.pow"><span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;<span class="glyphicon glyphicon-refresh gly-spin"></span></li>
-            <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
-                 data-ng-controller="SubmissionStepFormErrCtrl">
-              <li data-ng-if="stepForm.$invalid">
-              <p>The step
-                <code ng-click="goToStep(step.presentation_order, true)">{{ step.label }}</code>
-                <span data-translate>has errors.</span>
-              </p>
-              </li>
-            </div>
-          </ul>
-       </div>
+      <div data-ng-if="displaySubmissionErrors(submissionForm)" data-ng-include="'views/submission/submission_error.html'"></div>
     </div></div>
   </form>
 </div>
