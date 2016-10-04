@@ -174,11 +174,15 @@
                         </div>
                         <div class="form-group">
                           <label>
+                            <span class="btn btn-xs" data-ng-class="{'btn-danger': tip_ttl_off, 'btn-success': !tip_ttl_off}"
+                              data-ng-click="context.tip_timetolive = tip_ttl_off ? 15 : -1">
+                              <span ng-if="tip_ttl_off" data-translate>Disabled</span>
+                              <span ng-if="!tip_ttl_off" data-translate>Enabled</span>
+                            </span>
                             <span data-translate>Submission expiration, in days</span>
-                            <span>(<span data-translate>-1 = unlimited</span>)</span>
                           </label>
-                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" min="-1" />
-                          <div data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
+                          <input class="form-control" data-ng-model="context.tip_timetolive" type="number" min="0" data-ng-hide="tip_ttl_off" />
+                          <div data-ng-hide="tip_ttl_off" data-translate>For security reasons, as a matter of data retention policy, the platform automatically deletes submissions and their data after a certain amount of time.</div>
                         </div>
                         <div class="form-group">
                           <label data-translate>Message shown on top of the status page of the submission</label>

@@ -73,6 +73,13 @@ controller('AdminContextEditorCtrl', ['$scope', 'AdminStepResource',
   };
 
   $scope.updateContextImgUrl();
+
+  $scope.tip_ttl_off = $scope.context.tip_timetolive === -1;
+  $scope.$watch('context.tip_timetolive', function(new_val) {
+    if (angular.isDefined(new_val)) {
+      $scope.tip_ttl_off = new_val === -1;
+    }
+  });
 }]).
 controller('AdminContextAddCtrl', ['$scope', function($scope) {
   $scope.new_context = {};
