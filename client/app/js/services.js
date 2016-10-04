@@ -458,54 +458,52 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$q', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
-          function($http, $q, $filter, RTipResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
+  factory('RTip', ['$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
+          function($http, $filter, RTipResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
     return function(tipID, fn) {
       var self = this;
 
       self.tip = RTipResource.get(tipID, function (tip) {
-        $q.all([tip.receivers.$promise, tip.comments.$promise, tip.messages.$promise, tip.iars.$promise]).then(function() {
-          tip.iars = $filter('orderBy')(tip.iars, 'request_date');
-          tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
+        tip.iars = $filter('orderBy')(tip.iars, 'request_date');
+        tip.last_iar = tip.iars.length > 0 ? tip.iars[tip.iars.length - 1] : null;
 
-          tip.newComment = function(content) {
-            var c = new RTipCommentResource(tipID);
-            c.content = content;
-            c.$save(function(newComment) {
-              tip.comments.unshift(newComment);
-            });
+        tip.newComment = function(content) {
+          var c = new RTipCommentResource(tipID);
+          c.content = content;
+          c.$save(function(newComment) {
+            tip.comments.unshift(newComment);
+          });
+        };
+
+        tip.newMessage = function(content) {
+          var m = new RTipMessageResource(tipID);
+          m.content = content;
+          m.$save(function(newMessage) {
+            tip.messages.unshift(newMessage);
+          });
+        };
+
+        tip.setVar = function(var_name, var_value) {
+          var req = {
+            'operation': 'set',
+            'args': {
+              'key': var_name,
+              'value': var_value
+            }
           };
 
-          tip.newMessage = function(content) {
-            var m = new RTipMessageResource(tipID);
-            m.content = content;
-            m.$save(function(newMessage) {
-              tip.messages.unshift(newMessage);
-            });
-          };
+          return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function () {
+            tip[var_name] = var_value;
+          });
+        };
 
-          tip.setVar = function(var_name, var_value) {
-            var req = {
-              'operation': 'set',
-              'args': {
-                'key': var_name,
-                'value': var_value
-              }
-            };
+        tip.updateLabel = function(label) {
+          return tip.setVar('label', label);
+        };
 
-            return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function () {
-              tip[var_name] = var_value;
-            });
-          };
-
-          tip.updateLabel = function(label) {
-            return tip.setVar('label', label);
-          };
-
-          if (fn) {
-            fn(tip);
-          }
-        });
+        if (fn) {
+          fn(tip);
+        }
       });
     };
 }]).
@@ -518,57 +516,55 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
-  factory('WBTip', ['$q', '$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
-      function($q, $rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
+  factory('WBTip', ['$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
+      function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
       var self = this;
 
       self.tip = WBTipResource.get(function (tip) {
         tip.messages = [];
 
-        $q.all([tip.receivers.$promise, tip.comments.$promise]).then(function() {
-          tip.msg_receiver_selected = null;
-          tip.msg_receivers_selector = [];
+        tip.msg_receiver_selected = null;
+        tip.msg_receivers_selector = [];
 
-          angular.forEach(tip.receivers, function(r1) {
-            angular.forEach($rootScope.receivers, function(r2) {
-              if (r2.id === r1.id) {
-                tip.msg_receivers_selector.push({
-                  key: r2.id,
-                  value: r2.name
-                });
-              }
-            });
-          });
-
-          tip.newComment = function(content) {
-            var c = new WBTipCommentResource();
-            c.content = content;
-            c.$save(function(newComment) {
-              tip.comments.unshift(newComment);
-            });
-          };
-
-          tip.newMessage = function(content) {
-            var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
-            m.content = content;
-            m.$save(function(newMessage) {
-              tip.messages.unshift(newMessage);
-            });
-          };
-
-          tip.updateMessages = function () {
-            if (tip.msg_receiver_selected) {
-              WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
-                tip.messages = messageCollection;
+        angular.forEach(tip.receivers, function(r1) {
+          angular.forEach($rootScope.receivers, function(r2) {
+            if (r2.id === r1.id) {
+              tip.msg_receivers_selector.push({
+                key: r2.id,
+                value: r2.name
               });
             }
-          };
-
-          if (fn) {
-            fn(tip);
-          }
+          });
         });
+
+        tip.newComment = function(content) {
+          var c = new WBTipCommentResource();
+          c.content = content;
+          c.$save(function(newComment) {
+            tip.comments.unshift(newComment);
+          });
+        };
+
+        tip.newMessage = function(content) {
+          var m = new WBTipMessageResource({id: tip.msg_receiver_selected});
+          m.content = content;
+          m.$save(function(newMessage) {
+            tip.messages.unshift(newMessage);
+          });
+        };
+
+        tip.updateMessages = function () {
+          if (tip.msg_receiver_selected) {
+            WBTipMessageResource.query({id: tip.msg_receiver_selected}, function (messageCollection) {
+              tip.messages = messageCollection;
+            });
+          }
+        };
+
+        if (fn) {
+          fn(tip);
+        }
       });
     };
 }]).
