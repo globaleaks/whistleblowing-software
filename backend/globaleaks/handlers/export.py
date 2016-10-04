@@ -30,6 +30,8 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     receiver = rtip.receiver
 
+    rtip_dict = serialize_rtip(store, rtip, language)
+
     export_dict = {
         'type': u'export_template',
         'node': db_admin_serialize_node(store, language),
@@ -37,8 +39,8 @@ def get_tip_export(store, user_id, rtip_id, language):
         'tip': serialize_rtip(store, rtip, language),
         'context': admin_serialize_context(store, rtip.internaltip.context, language),
         'receiver': admin_serialize_receiver(receiver, language),
-        'comments': db_get_itip_comment_list(store, rtip),
-        'messages': db_get_itip_message_list(rtip),
+        'comments': rtip_dict['comments'],
+        'messages': rtip_dict['messages'],
         'files': []
     }
 
