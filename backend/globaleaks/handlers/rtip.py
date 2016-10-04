@@ -96,7 +96,7 @@ def serialize_rtip(store, rtip, language):
     ret['label'] = rtip.label
     ret['receivers'] = db_get_itip_receiver_list(store, rtip.internaltip, language)
     ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
-    ret['messages'] = db_get_message_list(rtip)
+    ret['messages'] = db_get_itip_message_list(rtip)
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
     ret['iars'] = db_get_identityaccessrequest_list(store, rtip.id, language)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
@@ -294,7 +294,7 @@ def create_comment(store, user_id, rtip_id, request):
     return serialize_comment(comment)
 
 
-def db_get_message_list(rtip):
+def db_get_itip_message_list(rtip):
     return [serialize_message(message) for message in rtip.messages]
 
 
