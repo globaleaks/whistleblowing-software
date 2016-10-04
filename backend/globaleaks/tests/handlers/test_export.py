@@ -19,16 +19,16 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_export(self):
         rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            handler = self.request({}, role='receiver')
-            handler.current_user.user_id = rtip_desc['receiver_id']
 
-            # As the handler calls internally the flush() we should
-            # mock that function because during tests the flush could not
-            # be called as the handler is not fully run.
-            def flush_mock():
-                pass
+        handler = self.request({}, role='receiver')
+        handler.current_user.user_id = rtips_desc[0]['receiver_id']
 
-            handler.flush = flush_mock
+        # As the handler calls internally the flush() we should
+        # mock that function because during tests the flush could not
+        # be called as the handler is not fully run.
+        def flush_mock():
+            pass
 
-            yield handler.get(rtip_desc['id'])
+        handler.flush = flush_mock
+
+        yield handler.get(rtips_desc[0]['id'])
