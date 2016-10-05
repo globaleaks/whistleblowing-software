@@ -6,6 +6,9 @@
 # API handling submissions file uploads and subsequent submissions attachments
 import os
 import shutil
+
+from cyclone.web import asynchronous
+
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -245,6 +248,7 @@ class Download(BaseHandler):
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
+    @asynchronous
     def get(self, rtip_id, rfile_id):
         rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
 
@@ -253,8 +257,7 @@ class Download(BaseHandler):
         if os.path.exists(filelocation):
             self.set_header('X-Download-Options', 'noopen')
             self.set_header('Content-Type', 'application/octet-stream')
-            self.set_header('Content-Length', rfile['size'])
             self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % rfile['name'])
-            yield self.write_file(filelocation)
+            self.write_file(filelocation)
         else:
             self.set_status(404)

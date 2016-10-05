@@ -41,6 +41,43 @@ mimetypes.add_type('application/x-font-ttf', '.ttf')
 mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
 
+class StaticFileProducer(object):
+    """
+    Superclass for classes that implement the business of producing.
+
+    @ivar handler: The L{IRequest} to write the contents of the file to.
+    @ivar fileObject: The file the contents of which to write to the request.
+    """
+    bufferSize = 65535
+
+    def __init__(self, request, fileObject):
+        """
+        Initialize the instance.
+        """
+        self.handler = request
+        self.fileObject = fileObject
+
+    def start(self):
+        self.handler.request.connection.transport.registerProducer(self, False)
+
+    def resumeProducing(self):
+        if not self.handler:
+            return
+        data = self.fileObject.read(self.bufferSize)
+        if data:
+            # this .write will spin the reactor, calling .doWrite and then
+            # .resumeProducing again, so be prepared for a re-entrant call
+            self.handler.write(data)
+            self.handler.flush()
+        else:
+            self.handler.request.connection.transport.unregisterProducer()
+            self.handler.finish()
+            self.stopProducing()
+
+    def stopProducing(self):
+        self.fileObject.close()
+        self.handler = None
+
 class GLSession(object):
     def __init__(self, user_id, user_role, user_status):
         self.id = generateRandomKey(42)
@@ -499,18 +536,9 @@ class BaseHandler(RequestHandler):
         except Exception as excep:
             log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
-    @inlineCallbacks
     def write_file(self, filepath):
-        with open(filepath, "rb") as f:
-            chunk = f.read(GLSettings.file_chunk_size)
-            if (len(chunk) != 0):
-                self.write(chunk)
-
-            chunk = f.read(GLSettings.file_chunk_size)
-            while(len(chunk) != 0):
-                yield deferred_sleep(0.001)
-                self.write(chunk)
-                chunk = f.read(GLSettings.file_chunk_size)
+        f = open(filepath, "rb")
+        StaticFileProducer(self, f).start()
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -687,7 +715,7 @@ class BaseStaticFileHandler(BaseHandler):
         self.root = "%s%s" % (os.path.abspath(path), "/")
 
     @BaseHandler.unauthenticated
-    @inlineCallbacks
+    @web.asynchronous
     def get(self, path):
         if path == '':
             path = 'index.html'
@@ -703,7 +731,7 @@ class BaseStaticFileHandler(BaseHandler):
         if mime_type:
             self.set_header("Content-Type", mime_type)
 
-        yield self.write_file(abspath)
+        self.write_file(abspath)
 
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
