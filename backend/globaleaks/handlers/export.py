@@ -5,6 +5,9 @@
 #
 # Tip export utils
 import copy
+
+from cyclone.web import asynchronous
+
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -57,12 +60,61 @@ def get_tip_export(store, user_id, rtip_id, language):
     return export_dict
 
 
+class ZipStreamProducer(object):
+    """ Streaming producter for ZipStream
+
+    @ivar handler: The L{IRequest} to write the contents of the file to.
+    @ivar fileObject: The file the contents of which to write to the request.
+    """
+    bufferSize = 65535
+
+    def __init__(self, handler, zipstreamObject):
+        """
+        Initialize the instance.
+        """
+        self.handler = handler
+        self.zipstreamObject = zipstreamObject
+
+    def start(self):
+        self.handler.request.connection.transport.registerProducer(self, False)
+
+    def resumeProducing(self):
+        if not self.handler:
+            return
+
+        data = self.zip_chunk()
+        if data:
+            self.handler.write(data)
+            self.handler.flush()
+        else:
+            self.handler.request.connection.transport.unregisterProducer()
+            self.handler.finish()
+            self.stopProducing()
+
+    def stopProducing(self):
+        self.handler = None
+
+    def zip_chunk(self):
+        chunk = []
+        chunk_size = 0
+
+        for data in self.zipstreamObject:
+            if len(data):
+                chunk_size += len(data)
+                chunk.append(data)
+                if chunk_size >= GLSettings.file_chunk_size:
+                    return ''.join(chunk)
+
+        return ''.join(chunk)
+
+
 class ExportHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
+    @asynchronous
     def get(self, rtip_id):
         tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
 
@@ -72,22 +124,5 @@ class ExportHandler(BaseHandler):
 
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
-        def zip_chunk():
-            chunk = []
-            chunk_size = 0
+        ZipStreamProducer(self, self.zip_stream).start()
 
-            for data in self.zip_stream:
-                if len(data):
-                    chunk_size += len(data)
-                    chunk.append(data)
-                    if chunk_size >= GLSettings.file_chunk_size:
-                        return ''.join(chunk)
-
-            return ''.join(chunk)
-
-        chunk = yield threads.deferToThread(zip_chunk)
-        while len(chunk):
-            self.write(chunk)
-            self.flush()
-            yield deferred_sleep(0.01)
-            chunk = yield threads.deferToThread(zip_chunk)
