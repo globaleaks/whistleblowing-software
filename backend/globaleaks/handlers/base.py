@@ -42,19 +42,15 @@ mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
 
 class StaticFileProducer(object):
-    """
-    Superclass for classes that implement the business of producing.
+    """Streaming producter for files
 
     @ivar handler: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
     bufferSize = 65535
 
-    def __init__(self, request, fileObject):
-        """
-        Initialize the instance.
-        """
-        self.handler = request
+    def __init__(self, handler, fileObject):
+        self.handler = handler
         self.fileObject = fileObject
 
     def start(self):
@@ -65,8 +61,6 @@ class StaticFileProducer(object):
             return
         data = self.fileObject.read(self.bufferSize)
         if data:
-            # this .write will spin the reactor, calling .doWrite and then
-            # .resumeProducing again, so be prepared for a re-entrant call
             self.handler.write(data)
             self.handler.flush()
         else:
@@ -77,6 +71,7 @@ class StaticFileProducer(object):
     def stopProducing(self):
         self.fileObject.close()
         self.handler = None
+
 
 class GLSession(object):
     def __init__(self, user_id, user_role, user_status):
