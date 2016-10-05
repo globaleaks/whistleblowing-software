@@ -458,8 +458,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
-  factory('RTip', ['$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource', 'RTipIdentityAccessRequestResource',
-          function($http, $filter, RTipResource, RTipMessageResource, RTipCommentResource, RTipIdentityAccessRequestResource) {
+  factory('RTip', ['$http', '$filter', 'RTipResource', 'RTipMessageResource', 'RTipCommentResource',
+          function($http, $filter, RTipResource, RTipMessageResource, RTipCommentResource) {
     return function(tipID, fn) {
       var self = this;
 
