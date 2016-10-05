@@ -13,7 +13,6 @@ setupClientDependencies() {
   npm install -d
   bower update
   grunt copy:sources
-  ./node_modules/protractor/bin/webdriver-manager update
   if [ "$1" = 1 ]; then
     grunt build
   fi
@@ -64,6 +63,7 @@ if [ "$GLTEST" = "test" ]; then
     sleep 3
 
     cd $TRAVIS_BUILD_DIR/client
+    node_modules/protractor/bin/webdriver-manager update
     node_modules/protractor/bin/protractor tests/end2end/protractor-coverage.config.js
     grunt end2end-coverage-report
 
@@ -100,6 +100,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sleep 5
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
+  node_modules/protractor/bin/webdriver-manager update
   node_modules/protractor/bin/protractor tests/end2end/protractor.config.js
 
 elif [[ $GLTEST =~ ^end2end-.* ]]; then
