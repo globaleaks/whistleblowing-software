@@ -47,7 +47,7 @@ class StaticFileProducer(object):
     @ivar handler: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
-    bufferSize = 65535
+    bufferSize = GLSettings.file_chunk_size
 
     def __init__(self, handler, fileObject):
         self.handler = handler
