@@ -19,7 +19,7 @@
         </span></p>
       </ul>
     </div>
-    <div><p data-translate>The following steps have errors:</p>
+    <div data-ng-if="submissionForm.$invalid"><p data-translate>The following steps have errors:</p>
       <ul>
         <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
              data-ng-controller="SubmissionStepFormErrCtrl">
