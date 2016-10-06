@@ -12,7 +12,6 @@ import pwd
 import re
 from distutils import dir_util
 from optparse import OptionParser
-from twisted.internet import reactor
 from twisted.python.threadpool import ThreadPool
 
 from cyclone.util import ObjectDict as OD
@@ -198,9 +197,6 @@ class GLSettingsClass(object):
         self.mail_counters = {}
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
-
-        reactor.addSystemEventTrigger('after', 'shutdown', self.orm_tp.stop)
-        self.orm_tp.start()
 
     def get_mail_counter(self, receiver_id):
         return self.mail_counters.get(receiver_id, 0)
