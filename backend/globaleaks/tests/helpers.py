@@ -20,6 +20,8 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 
+from storm.twisted.testing import FakeThreadPool
+
 from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
@@ -91,6 +93,7 @@ def init_glsettings_for_unit_tests():
     GLSettings.eval_paths()
     GLSettings.remove_directories()
     GLSettings.create_directories()
+    GLSettings.orm_tp = FakeThreadPool()
 
     GLSessions.clear()
 
