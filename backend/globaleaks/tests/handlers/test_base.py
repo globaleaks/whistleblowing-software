@@ -184,10 +184,9 @@ class TestBaseStaticFileHandler(helpers.TestHandler):
         yield handler.get('')
         self.assertEqual(handler.get_status(), 200)
 
-    @inlineCallbacks
     def test_get_unexistent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
-        yield self.assertFailure(handler.get('unexistent'), HTTPError)
+        self.assertRaises(HTTPError, handler.get, 'unexistent')
 
 
 class TestTimingStats(helpers.TestHandler):
