@@ -62,6 +62,9 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             GLSettings.drop_privileges()
             GLSettings.check_directories()
 
+            GLSettings.orm_tp.start()
+            self._reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
+
             if GLSettings.initialize_db:
                 yield init_db()
 
