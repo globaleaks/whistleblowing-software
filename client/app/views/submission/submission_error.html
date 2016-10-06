@@ -13,7 +13,7 @@
     </p></div>
     <div data-ng-if="submission.count_selected_receivers() === 0"> <p data-translate>You must select at least one recipient.</p>
       <ul>
-        <p><span ng-click="goToStep(receiver_selection_step_index)">
+        <p><span class="err-link" ng-click="goToStep(receiver_selection_step_index)">
           <i class="glyphicon glyphicon-arrow-right"></i>
           <code><span data-translate>Recipient selection</span></code>
         </span></p>
@@ -23,7 +23,7 @@
       <ul>
         <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
              data-ng-controller="SubmissionStepFormErrCtrl">
-           <p data-ng-if="stepForm.$invalid"><span ng-click="goToStep(step.presentation_order, true)">
+           <p data-ng-if="stepForm.$invalid"><span class="err-link" ng-click="goToStep(step.presentation_order, true)">
             <i class="glyphicon glyphicon-arrow-right"></i> <code><span>{{ step.label }}</span></code>
           </span></p>
         </div>
