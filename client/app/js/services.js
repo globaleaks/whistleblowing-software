@@ -1140,7 +1140,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         }, {});
       };
 
-      underscore = function(s) {
+      var underscore = function(s) {
         return s.replace(new RegExp('-', 'g'), '_');
       };
 
