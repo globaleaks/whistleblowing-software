@@ -9,8 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_get_itip_receiver_list, \
-    serialize_comment, serialize_message, db_get_itip_comment_list
+from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
@@ -69,7 +68,6 @@ def serialize_wbtip(store, wbtip, language):
     del ret['progressive']
 
     ret['id'] = wbtip.id
-    ret['receivers'] = db_get_itip_receiver_list(store, wbtip.internaltip, language)
     ret['comments'] = db_get_itip_comment_list(store, wbtip.internaltip)
     ret['files'] = db_get_file_list(store, wbtip.id)
 
