@@ -900,7 +900,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       isAdminPage: function() {
         var path = $location.path();
-        return path.startsWith('/admin');
+        return path.substr(0, 6) == '/admin';
       },
 
       isWhistleblowerPage: function() {
