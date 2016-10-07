@@ -84,6 +84,14 @@ GLClient.controller('TipCtrl',
         $scope.tip = tip;
         $scope.extractSpecialTipFields(tip);
 
+        $scope.tip_unencrypted = false;
+        for(var i = 0; i < tip.receivers.length; i++) {
+          if (tip.receivers[i].pgp_key_public === '') {
+            $scope.tip_unencrypted = true;
+            break;
+          }
+        }
+
         // FIXME: remove this variable that is now needed only to map wb_identity_field
         $scope.submission = tip;
 
@@ -94,12 +102,6 @@ GLClient.controller('TipCtrl',
                 $route.reload();
               });
         };
-
-        angular.forEach($scope.contexts, function(context){
-          if (context.id === tip.context_id) {
-            $scope.current_context = context;
-          }
-        });
 
         if (tip.receivers.length === 1 && tip.msg_receiver_selected === null) {
           tip.msg_receiver_selected = tip.msg_receivers_selector[0].key;
@@ -129,18 +131,12 @@ GLClient.controller('TipCtrl',
         $scope.showEditLabelInput = $scope.tip.label === '';
 
         $scope.tip_unencrypted = false;
-        angular.forEach(tip.receivers, function(receiver){
-          if (receiver.pgp_key_public === '' && receiver.receiver_id !== tip.receiver_id) {
+        for(var i = 0; i < tip.receivers.length; i++) {
+          if (tip.receivers[i].pgp_key_public === '') {
             $scope.tip_unencrypted = true;
+            break;
           }
-        });
-
-        angular.forEach($scope.contexts, function(context){
-          if (context.id === $scope.tip.context_id) {
-            $scope.current_context = context;
-          }
-        });
-
+        }
       });
     }
 

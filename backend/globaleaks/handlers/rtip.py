@@ -94,7 +94,6 @@ def serialize_rtip(store, rtip, language):
     ret['id'] = rtip.id
     ret['receiver_id'] = user_id
     ret['label'] = rtip.label
-    ret['receivers'] = db_get_itip_receiver_list(store, rtip.internaltip, language)
     ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
     ret['messages'] = db_get_itip_message_list(rtip)
     ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
@@ -192,15 +191,6 @@ def db_postpone_expiration_date(rtip):
     if rtip.internaltip.context.tip_timetolive > -1:
         rtip.internaltip.expiration_date = \
             utc_future_date(days=rtip.internaltip.context.tip_timetolive)
-
-
-def db_get_itip_receiver_list(store, itip, language):
-    return [{
-        "id": rtip.receiver.id,
-        "name": rtip.receiver.user.name,
-        "last_access": datetime_to_ISO8601(rtip.last_access),
-        "access_counter": rtip.access_counter,
-    } for rtip in itip.receivertips]
 
 
 @transact

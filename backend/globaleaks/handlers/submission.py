@@ -195,6 +195,16 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
         store.add(aqsp)
 
 
+def db_get_itip_receiver_list(store, itip, language):
+    return [{
+        "id": rtip.receiver.id,
+        "name": rtip.receiver.user.name,
+        "pgp_key_public": rtip.receiver.user.pgp_key_public,
+        "last_access": datetime_to_ISO8601(rtip.last_access),
+        "access_counter": rtip.access_counter,
+    } for rtip in itip.receivertips]
+
+
 def serialize_itip(store, internaltip, language):
     context = internaltip.context
     mo = Rosetta(context.localized_keys)
@@ -210,6 +220,7 @@ def serialize_itip(store, internaltip, language):
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
         'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
+        'receivers': db_get_itip_receiver_list(store, internaltip, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
         'enable_comments': context.enable_comments,
