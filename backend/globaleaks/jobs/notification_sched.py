@@ -193,74 +193,80 @@ class MailGenerator(object):
         store.add(mail)
 
     @transact
-    def process_data(self, store, trigger):
-        model = trigger_model_map[trigger]
+    def generate(self, store):
+        for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
+            model = trigger_model_map[trigger]
 
-        elements = store.find(model, model.new == True)
-        for element in elements:
-            # Mark data as handled as first step;
-            # For resiliency reasons it's better to be sure that the
-            # state machine move forward, than having starving datas
-            # due to possible exceptions in handling
-            element.new = False
+            elements = store.find(model, model.new == True)
+            for element in elements:
+                element.new = False
 
-            if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
-                continue
+                if GLSettings.memory_copy.notif.disable_receiver_notification_emails:
+                    continue
 
-            data = {
-                'type': trigger_template_map[trigger]
-            }
+                data = {
+                    'type': trigger_template_map[trigger]
+                }
 
-            getattr(self, 'process_%s' % trigger)(store, element, data)
+                getattr(self, 'process_%s' % trigger)(store, element, data)
 
-        count = elements.count()
-        if count > 0:
-            log.debug("Notification: generated %d notifications of type %s" %
-                      (count, trigger))
+            count = elements.count()
+            if count > 0:
+                log.debug("Notification: generated %d notifications of type %s" %
+                          (count, trigger))
+
+
+@transact
+def delete_sent_mail(store, mail_id):
+    store.find(models.Mail, models.Mail.id == mail_id).remove()
+
+
+@inlineCallbacks
+def _success_callback(result, mail_id):
+    yield delete_sent_mail(mail_id)
+
+
+def _failure_callback(failure, mail_id):
+    pass
+
+
+@transact
+def get_mails_from_the_pool(store):
+    ret = []
+
+    for mail in store.find(models.Mail):
+        ret.append({
+            'id': mail.id,
+            'address': mail.address,
+            'subject': mail.subject,
+            'body': mail.body
+        })
+
+        mail.processing_attempts += 1
+        if mail.processing_attempts > 9:
+            store.remove(mail)
+
+    return ret
 
 
 class NotificationSchedule(GLJob):
     name = "Notification"
     monitor_time = 1800
 
-    @transact
-    def get_mails_from_the_pool(self, store):
-        ret = []
+    def sendmail(self, address, subject, body):
+        return sendmail(address, subject, body)
 
-        for mail in store.find(models.Mail):
-            ret.append({
-                'id': mail.id,
-                'address': mail.address,
-                'subject': mail.subject,
-                'body': mail.body
-            })
+    @inlineCallbacks
+    def spool_emails(self):
+        mails = yield get_mails_from_the_pool()
+        for mail in mails:
+            sendmail_deferred = self.sendmail(mail['address'], mail['subject'], mail['body'])
+            sendmail_deferred.addCallbacks(_success_callback, _failure_callback,
+                                           callbackArgs=(mail['id'],), errbackArgs=(mail['id'],))
 
-            mail.processing_attempts += 1
-            if mail.processing_attempts > 9:
-                store.remove(mail)
-
-        return ret
 
     @inlineCallbacks
     def operation(self):
-        @transact
-        def delete_sent_mail(store, mail_id):
-            store.find(models.Mail, models.Mail.id == mail_id).remove()
+        yield MailGenerator().generate()
 
-        @inlineCallbacks
-        def _success_callback(result, mail_id):
-            yield delete_sent_mail(mail_id)
-
-        def _failure_callback(failure, mail_id):
-            pass
-
-        mail_generator = MailGenerator()
-        for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
-            yield mail_generator.process_data(trigger)
-
-        mails = yield self.get_mails_from_the_pool()
-        for mail in mails:
-            sendmail_deferred = sendmail(mail['address'], mail['subject'], mail['body'])
-            sendmail_deferred.addCallbacks(_success_callback, _failure_callback,
-                                           callbackArgs=(mail['id'],), errbackArgs=(mail['id'],))
-            yield sendmail_deferred
+        yield self.spool_emails()
