@@ -9,8 +9,10 @@
 # application shuts down.
 
 import os
+import sys
 
 from twisted.application import internet, service
+from twisted.internet import reactor, protocol
 
 from twisted.python import log, logfile
 
@@ -32,8 +34,17 @@ if not GLSettings.nodaemon and GLSettings.logfile:
 
 api_factory = api.get_api_factory()
 
-for ip in GLSettings.bind_addresses:
-    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, api_factory, interface=ip)
-    GLBackendAPI.setServiceParent(application)
+GLBackendAPI = internet.TCPServer(8083, api_factory)
+GLBackendAPI.setServiceParent(application)
 
-# define exit behaviour
+battery = os.path.join(os.path.dirname(__file__), 'battery.py')
+
+env = {}
+env['listening_ips'] = str(GLSettings.bind_addresses)
+env['listening_port'] = str(GLSettings.bind_port)
+
+reactor.spawnProcess(protocol.ProcessProtocol(),
+                     sys.executable,
+                     [sys.executable, battery],
+                     childFDs={},
+                     env=env)
