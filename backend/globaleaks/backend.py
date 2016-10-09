@@ -20,6 +20,12 @@ from globaleaks.utils.utility import GLLogObserver
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 
+
+class GLPP(protocol.ProcessProtocol):
+    def processExited(self, reason):
+        reactor.stop()
+
+
 application = service.Application('GLBackend')
 
 if not GLSettings.nodaemon and GLSettings.logfile:
@@ -39,11 +45,12 @@ GLBackendAPI.setServiceParent(application)
 
 battery = os.path.join(os.path.dirname(__file__), 'battery.py')
 
-env = {}
-env['listening_ips'] = str(GLSettings.bind_addresses)
-env['listening_port'] = str(GLSettings.bind_port)
+env = {
+  'listening_ips': str(GLSettings.bind_addresses),
+  'listening_port': str(GLSettings.bind_port)
+}
 
-reactor.spawnProcess(protocol.ProcessProtocol(),
+reactor.spawnProcess(GLPP(),
                      sys.executable,
                      [sys.executable, battery],
                      childFDs={},

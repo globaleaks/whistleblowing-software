@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-#   backend
+#   battery
 #
 # Implement a battery of HTTP Servers distributing the GZIP compression on multiple cores
 import ast
@@ -12,15 +12,13 @@ from sys import executable
 
 from socket import AF_INET
 
-from twisted.internet import reactor
+from twisted.internet import reactor, protocol
 from twisted.web.server import Site
 
-from twisted.python.compat import urlquote
 from twisted.web.server import Site, GzipEncoderFactory
 from twisted.web.resource import EncodingResourceWrapper
 from twisted.web import proxy
 from twisted.internet import reactor
-
 
 def SigQUIT(SIG, FRM):
     try:
@@ -28,11 +26,13 @@ def SigQUIT(SIG, FRM):
     except Exception:
         pass
 
+
 def set_proctitle(title):
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
     buff = ctypes.create_string_buffer(len(title) + 1)
     buff.value = title
     libc.prctl(15, ctypes.byref(buff), 0, 0, 0)
+
 
 def set_pdeathsig(sig):
     PR_SET_PDEATHSIG = 1
@@ -41,17 +41,20 @@ def set_pdeathsig(sig):
                            ctypes.c_ulong, ctypes.c_ulong)
     libc.prctl(PR_SET_PDEATHSIG, sig, 0, 0, 0)
 
+
+class GLPP(protocol.ProcessProtocol):
+    def processExited(self, reason):
+        reactor.stop()
+
+
 class ReverseProxyGzipResource(proxy.ReverseProxyResource):
     def getChild(self, path, request):
         child = ReverseProxyGzipResource(
-            self.host, self.port, self.path + b'/' + urlquote(path, safe=b"").encode('utf-8'),
+            self.host, self.port, self.path + b'/' + proxy.urlquote(path, safe=b"").encode('utf-8'),
             self.reactor)
 
         return EncodingResourceWrapper(child, [GzipEncoderFactory()])
 
-signal.signal(signal.SIGINT, SigQUIT)
-set_pdeathsig(signal.SIGINT)
-set_proctitle('globaleaks-http')
 
 def main(ips, port, fds):
     resource = ReverseProxyGzipResource('127.0.0.1', 8083, '')
@@ -69,7 +72,7 @@ def main(ips, port, fds):
         env['listening_fds'] = str(fds)
 
         for i in range(multiprocessing.cpu_count() - 1):
-            reactor.spawnProcess(None,
+            reactor.spawnProcess(GLPP(),
                                  executable,
                                  [executable, __file__],
                                  childFDs=childFDs,
@@ -79,6 +82,13 @@ def main(ips, port, fds):
             reactor.adoptStreamPort(fd, AF_INET, factory)
 
     reactor.run()
+
+
+processes = multiprocessing.cpu_count() - 1
+
+signal.signal(signal.SIGINT, SigQUIT)
+set_pdeathsig(signal.SIGINT)
+set_proctitle('globaleaks-http')
 
 ips = ast.literal_eval(os.environ.get('listening_ips', '[]'))
 fds = ast.literal_eval(os.environ.get('listening_fds', '[]'))
