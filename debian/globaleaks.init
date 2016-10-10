@@ -128,7 +128,11 @@ network_sandboxing_start()
         do
             iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
+        iptables -A INPUT -p tcp -d ${IP_DST} --dport 8083 -s 127.0.0.1 -j ACCEPT
+
+        iptables -A INPUT -p tcp -d ${IP_DST} --dport 8083 -j DROP
         iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
+
     done
 
     # OUTBOUND
@@ -140,12 +144,13 @@ network_sandboxing_start()
             iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done
     done
-    iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+
+    iptables -A OUTPUT -t nat ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -A OUTPUT -t nat ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -A OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -A OUTPUT -t filter -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
+    iptables -A OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -A OUTPUT -t filter ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
@@ -169,6 +174,9 @@ network_sandboxing_stop()
         do
             iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
+        iptables -D INPUT -p tcp -d ${IP_DST} --dport 8083 -s 127.0.0.1 -j ACCEPT
+
+        iptables -D INPUT -p tcp -d ${IP_DST} --dport 8083 -j DROP
         iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
     done
 
@@ -180,12 +188,13 @@ network_sandboxing_stop()
             iptables -D OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done
     done
-    iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+
+    iptables -D OUTPUT -t nat ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -D OUTPUT -t nat ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -D OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -D OUTPUT -t filter -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
+    iptables -D OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -D OUTPUT -t filter ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
