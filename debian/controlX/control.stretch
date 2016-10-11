@@ -32,8 +32,10 @@ Depends:
  , python-scrypt
  , python-storm
  , python-transaction
- , python-twisted-core
- , python-txsocksx
+ , python-twisted-core,
+ , python-zope.component
+ , python-zope.event
+ , python-zope.interface
  , ${python:Depends}
 Recommends:
  ${misc:Recommends}

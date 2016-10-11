@@ -25,7 +25,10 @@ Depends:
  , haveged
  , iptables
  , python (>=2.7)
- , python-pip
+ , python-pip,
+ , python-zope.component
+ , python-zope.event
+ , python-zope.interface
 # The following substitution variable shall be uncommented once we get
 # all globaleaks dependencies into debian.
 # , ${python:Depends}

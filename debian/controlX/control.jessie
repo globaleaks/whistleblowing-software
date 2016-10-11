@@ -26,6 +26,9 @@ Depends:
  , iptables
  , python (>=2.7)
  , python-pip (>= 1.3)
+ , python-zope.component
+ , python-zope.event
+ , python-zope.interface
  , ${python:Depends}
 Recommends:
  ${misc:Recommends}
