@@ -3,14 +3,14 @@
     <b data-translate>Errors in this step</b>
   </div>
   <div class="panel-body text-danger">
-    <p data-translate>These questions need suitable answers.</p>
+    <p data-translate>The answers to the following questions is either missing or invalid</p>
     <ul>
-    <span data-ng-repeat="(key, errors) in stepForm.$error track by $index">
-      <p data-ng-repeat="err in errors">
-        <i class="glyphicon glyphicon-arrow-right"></i>
-        <code data-ng-controller="SubmissionFieldErrKeyCtrl" data-ng-click="goToQuestion()">{{ field.label }}</code>
-      </p>
-    </span>
+      <span data-ng-repeat="(key, errors) in stepForm.$error track by $index">
+        <p data-ng-repeat="err in errors">
+          <i class="glyphicon glyphicon-arrow-right"></i>
+          <code data-ng-controller="SubmissionFieldErrKeyCtrl" data-ng-click="goToQuestion()">{{ field.label }}</code>
+        </p>
+      </span>
     </ul>
   </div>
 </div>
