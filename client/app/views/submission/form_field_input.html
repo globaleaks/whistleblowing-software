@@ -1,18 +1,19 @@
-<div data-ng-form="f" class="submissionFieldInput">
-  <div data-ng-switch="field.key">
+<div data-ng-form="{{fieldFormVarName}}" class="submissionFieldInput">
+  <div data-ng-controller="SubmissionFormFieldCtrl" data-ng-switch="field.key">
     <div data-ng-switch-when="whistleblower_identity">
       <div data-ng-include="'views/submission/fields/whistleblower_identity.html'"></div>
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
-        <textarea id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+        <textarea id="{{::stepId}}-field-{{::fieldRow}}-{{::fieldCol}}-input-{{::entryIndex}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
-                  name="input-{{entryIndex}}"
+                  name="input-{{::entryIndex}}"
                   class="form-control inputelem"
                   data-ng-model="entry['value']"
                   data-ng-minlength="field.attrs.min_len.value"
-                  maxlength="{{maxlength}}"
+                  maxlength="{{::maxlength}}"
                   rows="3"
+                  aria-label="{{::field.label}}"
                   data-ng-required="field.required"
                   data-ng-attr-placeholder="{{field.placeholder}}"></textarea>
         <div>
@@ -63,6 +64,7 @@
                  type="text"
                  maxlength="{{node.maximum_namesize}}"
                  readonly="readonly"
+                 aria-label="{{::field.label}}"
                  data-ng-model="entry['value']"
                  data-ng-required="field.required"
                  data-ng-attr-placeholder="{{field.placeholder}}"
@@ -110,6 +112,7 @@
                maxlength="{{maxlength}}"
                data-ng-required="field.required"
                data-ng-attr-placeholder="{{field.placeholder}}"
+               aria-label="{{::field.label}}"
                type="text" />
         <div>
           <div data-ng-if="f['input-' + entryIndex].$error.pattern && field.attrs.input_validation.value !== 'custom'">

@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', 'Utils', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, Utils, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
@@ -104,8 +104,19 @@ GLClient.controller('SubmissionCtrl',
     return $scope.selection;
   };
 
-  $scope.goToStep = function(index) {
+  $scope.getCurrentStep = function() {
+    return $scope.submission.context.questionnaire.steps[$scope.selection];
+  };
+
+  $scope.goToStep = function(index, activateErrPanel) {
     $scope.selection = index;
+    if (angular.isDefined(activateErrPanel)) {
+      $scope.getCurrentStep().errPanelActive = true;
+    }
+    if (index === $scope.receiver_selection_step_index) {
+      $scope.receiver_selection_step_show_err_panel = true;
+    }
+    $anchorScroll('top');
   };
 
   $scope.firstStepIndex = function() {
@@ -147,14 +158,28 @@ GLClient.controller('SubmissionCtrl',
 
     // if we find one, set focus
     if (firstInvalid) {
-      firstInvalid.focus();
+      $scope.getCurrentStep().errPanelActive = true;
+      $anchorScroll('top');
       return false;
     }
 
     return true;
   };
 
+  $scope.displaySubmissionErrors = function(submissionForm) {
+    return angular.isDefined(submissionForm) &&
+           submissionForm.$dirty &&
+           $scope.submissionHasErrors(submissionForm) &&
+           !$scope.hasNextStep();
+  };
+
   $scope.incrementStep = function() {
+    if ($scope.selection === $scope.receiver_selection_step_index && $scope.receiverSelectionError()) {
+      $scope.receiver_selection_step_show_err_panel = true;
+      $anchorScroll('top');
+      return;
+    }
+
     if ($scope.selection >=0 &&
         $scope.submission.context.questionnaire.steps_navigation_requires_completion &&
         !$scope.checkForInvalidFields()) {
@@ -293,6 +318,7 @@ GLClient.controller('SubmissionCtrl',
       if ($scope.submission.context.allow_recipients_selection) {
         $scope.receiver_selection_step = true;
         $scope.selection = -1;
+        $scope.receiver_selection_step_show_err_panel = false;
       }
 
       $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
@@ -319,6 +345,8 @@ GLClient.controller('SubmissionCtrl',
 
     if (context) {
       $scope.selected_context = context;
+
+      $scope.field_id_map = fieldUtilities.build_field_id_map(context);
     }
 
     // Watch for changes in certain variables
@@ -328,19 +356,76 @@ GLClient.controller('SubmissionCtrl',
       }
     });
 
+    $scope.submissionHasErrors = function(submissionForm) {
+      if (angular.isDefined(submissionForm)) {
+        return submission.isDisabled() ||
+               submissionForm.$invalid ||
+               Utils.isUploading($scope.uploads);
+      }
+      return false;
+    };
+
+    $scope.receiverSelectionError = function() {
+      for (var rec_id in submission.receivers_selected) {
+        if (submission.receivers_selected[rec_id]) {
+          return false;
+        }
+      }
+      return true;
+    };
+
   });
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
   function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
+  $scope.step.errPanelActive = false;
+
+  var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
+  $scope.stepFormVarName = stepFormVarName;
+
+  $scope.stepHasErrors = function(submissionForm) {
+    var sf_ref = submissionForm[stepFormVarName];
+    if (angular.isDefined(sf_ref) && $scope.step.errPanelActive) {
+      return sf_ref.$invalid;
+    }
+    return false;
+  };
 
   $scope.rows = fieldUtilities.splitRows($scope.fields);
 
   $scope.status = {
-    opened: false
+    opened: false,
   };
 }]).
+controller('SubmissionStepFormErrCtrl', ['$scope', 'fieldUtilities',
+  function($scope, fieldUtilities) {
+    var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
+    $scope.stepForm = $scope.submissionForm[stepFormVarName];
+}]).
+controller('SubmissionFieldErrKeyCtrl', ['$scope',
+  function($scope) {
+    var pre = 'fieldForm_';
+    var f_id = $scope.err.$name.slice(pre.length).replace(new RegExp('_', 'g'), '-');
+    $scope.field = $scope.field_id_map[f_id];
+
+    $scope.goToQuestion = function() {
+      var form = document.getElementById('step-' + $scope.selection);
+      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .inputelem';
+      var formFieldSel = form.querySelector(s);
+      formFieldSel.focus();
+    };
+}]).
+controller('SubmissionFormFieldCtrl', ['$scope',
+  function($scope) {
+    $scope.f = $scope[$scope.fieldFormVarName];
+}])
+.
 controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
+
+  var fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id);
+  $scope.fieldFormVarName = fieldFormVarName;
+
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
       return "col-md-" + field.width;
@@ -365,11 +450,11 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
   $scope.rows = fieldUtilities.splitRows($scope.fields);
   $scope.entries = $scope.getAnswersEntries($scope.entry);
 
-  // If the field is type 'date' attach an option configurator for the 
+  // If the field is type 'date' attach an option configurator for the
   // uib-datepicker modal.
   if ($scope.field.type === 'date') {
     var options = {
-      showWeeks: false, // Just a sample option 
+      showWeeks: false, // Just a sample option
     };
     var max = $scope.field.attrs.max_date.value;
     var min = $scope.field.attrs.min_date.value;

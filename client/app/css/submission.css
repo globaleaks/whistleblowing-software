@@ -1,7 +1,3 @@
-#SubmissionTabsContentBox {
-  margin-bottom: 1.25em;
-}
-
 .contextClarification {
   font-size: 1.125em;
 }
@@ -21,11 +17,11 @@
 }
 
 .contextCard, .contextList, .receiverCard {
-  margin: 0.5em;
+  margin-bottom: 20px;
   padding: 1em;
   background-color: white;
   border: 1px solid #DDD;
-  border-radius: 1em;
+  border-radius: 4px;
   word-wrap: break-word;
 }
 
@@ -79,7 +75,7 @@
 }
 
 #MaxSelectableReceiverBox {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #KeyCodeThanks1 {
@@ -138,6 +134,10 @@
 #SubmissionButtons button {
   margin-left: 0px;
   margin-right: 0.8em;
+}
+
+#SubmissionErrors {
+  margin-top: 20px;
 }
 
 #FileUploadsHeader {
