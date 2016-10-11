@@ -33,7 +33,9 @@ Depends:
  , python-storm
  , python-transaction
  , python-twisted-core
- , python-txsocksx
+ , python-zope.component
+ , python-zope.event
+ , python-zope.interface
  , ${python:Depends}
 Recommends:
  ${misc:Recommends}

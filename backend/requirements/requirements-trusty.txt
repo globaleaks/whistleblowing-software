@@ -12,7 +12,6 @@ scrypt==0.6.1
 six==1.5.2
 storm==0.19
 transaction==1.1.1
-txsocksx==1.13.0.0
 zope.component==4.0.2
 zope.event==4.0.1
 zope.interface==4.0.5
