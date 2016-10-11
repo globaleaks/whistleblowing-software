@@ -1,16 +1,8 @@
 <div id="SubmissionErrors" class="panel panel-danger">
   <div class="panel-heading">
-    <b data-translate>Problems with the submission exist:</b>
+    <b data-translate>Submission errors</b>
   </div>
   <div class="panel-body text-danger">
-    <div data-ng-if="Utils.isUploading(upload)">
-      <span data-translate>Waiting for a file to finish uploading.</span>&nbsp;&nbsp;
-      <i class="glyphicon glyphicon-refresh gly-spin"></i>
-    </div>
-    <div data-ng-if="!submission.pow"><p>
-      <span data-translate>Still computing anti-spam token.</span>&nbsp;&nbsp;
-      <i class="glyphicon glyphicon-refresh gly-spin"></i>
-    </p></div>
     <div data-ng-if="submission.count_selected_receivers() === 0"> <p data-translate>You must select at least one recipient.</p>
       <ul>
         <p><span class="err-link" ng-click="goToStep(receiver_selection_step_index)">
