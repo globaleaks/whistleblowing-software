@@ -3,7 +3,8 @@
     <b data-translate>Submission errors</b>
   </div>
   <div class="panel-body text-danger">
-    <div data-ng-if="submission.count_selected_receivers() === 0"> <p data-translate>You must select at least one recipient.</p>
+    <div data-ng-if="submission.count_selected_receivers() === 0">
+      <p data-translate>You must select at least one recipient.</p>
       <ul>
         <p><span class="err-link" ng-click="goToStep(receiver_selection_step_index)">
           <i class="glyphicon glyphicon-arrow-right"></i>
