@@ -7,9 +7,14 @@
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showLoginForm() || session">
     <div data-ng-show="session" class="pull-right">
       <span id="LoginRoleText">
-        <label>
+        <label ng-switch="{{session.role}}">
           <span data-translate>Currently logged in</span>
-          (<a data-ng-href="{{session.homepage}}">{{session.role | roleToString | translate}}</a>)
+          <span ng-switch-when="whistleblower">
+            (<a data-ng-href="{{session.homepage}}" data-translate>Whistleblower</a>)
+          </span>
+          <span ng-switch-default>
+            (<a data-ng-href="{{session.homepage}}">{{session.username}}</a>)
+          </span>
         </label>
       </span>
      <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">

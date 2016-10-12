@@ -1,3 +1,28 @@
+<div class="">
+  <div class="row">
+    <div class="col-md-4">
+      <p><label data-translate>Username</label> {{::session.username }}
+      <span gl-user-role="{{::preferences.role}}"></span>
+      </p>
+      <p><label data-translate>Name</label> {{::preferences.name }}</p>
+      <p><label data-translate>Public pseudonym</label> {{::preferences.public_name }}</p>
+      <p><label data-translate>Email address</label> {{::preferences.mail_address }}</p>
+    </div>
+    <div class="col-md-4">
+      <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
+      <span> </span>
+    </div>
+    <div class="col-md-4">
+      <img class="receiverImg pull-right" alt="user picture" data-ng-if="preferences.picture !== ''" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" />
+    </div>
+  </div>
+  <div ng-if="preferences.contexts.length > 0">
+    <label data-translate>Contexts</label>
+    <div ng-repeat="context_id in preferences.contexts">
+      <p>{{ context_id }}</p>
+    </div>
+  </div>
+</div>
 <div class="form-group">
   <label data-translate>Language</label>
   <select class="form-control" data-ng-model="preferences.language" data-ng-options="item.code as item.name for item in languages_enabled_selector | orderBy:'name'"></select>
