@@ -7,15 +7,19 @@
   <div id="LoginStatusBox" class="row" data-ng-if="Utils.showLoginForm() || session">
     <div data-ng-show="session" class="pull-right">
       <span id="LoginRoleText">
-        <label ng-switch="{{session.role}}">
-          <span data-translate>Currently logged in</span>
-          <span ng-switch-when="whistleblower">
-            (<a data-ng-href="{{session.homepage}}" data-translate>Whistleblower</a>)
-          </span>
-          <span ng-switch-default>
-            (<a data-ng-href="{{session.homepage}}">{{session.username}}</a>)
+        <label data-ng-if="session.role === 'whistleblower'">
+          <span>
+            <a data-ng-href="{{session.homepage}}" data-translate>Whistleblower</a>
           </span>
         </label>
+        <span data-ng-if="session.role !== 'whistleblower'" data-ng-switch="session.role">
+           <label>{{session.username}}</label>
+           <span class="text-separator">|</span>
+           <a data-ng-href="{{session.homepage}}">
+              <span data-ng-switch-when="admin" data-translate>Admin</span>
+              <span data-ng-switch-when="receiver" data-translate>Recipient</span>
+              <span data-ng-switch-when="custodian" data-translate>Custodian</span></a>
+        </span>
       </span>
      <span id="PreferencesLinkBox" data-ng-if="session.role != 'whistleblower'">
        <span class="text-separator">|</span>

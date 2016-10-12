@@ -57,6 +57,7 @@ angular.module('GLServices', ['ngResource']).
               ReceiverPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'whistleblower') {
               self.session.auth_landing_page = '/status';
+              self.session.homepage = '#/status';
             }
 
             // reset login state before returning
