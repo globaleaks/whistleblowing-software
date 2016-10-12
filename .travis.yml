@@ -79,13 +79,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='test' GLREQUIREMENTS='precise'
-      python: "2.7"
-
     - env: GLTEST='test' GLREQUIREMENTS='xenial'
-      python: "2.7"
-
-    - env: GLTEST='test' GLREQUIREMENTS='wheezy'
       python: "2.7"
 
     - env: GLTEST='test' GLREQUIREMENTS='jessie'
