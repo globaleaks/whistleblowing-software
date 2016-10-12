@@ -1,6 +1,6 @@
 <div class="">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <p><label data-translate>Username</label> {{::session.username }}
       <span gl-user-role="{{::preferences.role}}"></span>
       </p>
@@ -8,12 +8,9 @@
       <p><label data-translate>Public pseudonym</label> {{::preferences.public_name }}</p>
       <p><label data-translate>Email address</label> {{::preferences.mail_address }}</p>
     </div>
-    <div class="col-md-4">
-      <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
-      <span> </span>
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
       <img class="receiverImg pull-right" alt="user picture" data-ng-if="preferences.picture !== ''" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" />
+      <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
     </div>
   </div>
   <div ng-if="preferences.contexts.length > 0">
