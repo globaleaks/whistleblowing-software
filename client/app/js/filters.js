@@ -32,18 +32,6 @@ filter('anomalyToString', function() {
     return anomalies[anomaly];
   };
 }).
-filter('roleToString', function() {
-  return function(role) {
-    var mapping = {
-      'admin': 'Admin',
-      'custodian': 'Custodian',
-      'receiver': 'Recipient',
-      'whistleblower': 'Whistleblower'
-    }
-
-    return mapping[role];
-  };
-}).
 filter('tipFileName', ['$filter', function($filter) {
   return function(tip) {
     if (angular.isDefined(tip)) {
