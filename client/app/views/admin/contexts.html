@@ -120,58 +120,68 @@
                     <div class="row" data-ng-show="show_advanced_settings">
                       <div class="col-md-6">
                         <div class="form-group">
-                          <input data-ng-model="context.show_context" type="checkbox" />
-                          <label data-translate>Allow selection of this context through the context selector.</label>
-                          <div data-translate>If disabled, submissions for this context will only be accessible through a direct link to it.</div>
+                          <label class="inline-checkbox">
+                            <input data-ng-model="context.show_context" type="checkbox" />
+                            <span data-translate>Allow selection of this context through the context selector.</span>
+                          </label>
+                          <p data-translate>If disabled, submissions for this context will only be accessible through a direct link to it.</p>
                         </div>
                         <div class="form-group">
-                          <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
-                          <label data-translate>Allow whistleblowers to select their recipients</label>
+                          <label class="inline-checkbox">
+                            <button class="btn btn-default" data-ng-click="context.allow_recipients_selection = !context.allow_recipients_selection" type="checkbox">
+                              <i data-ng-if="context.allow_recipients_selection" class="glyphicon glyphicon-check"></i>
+                              <i data-ng-if="!context.allow_recipients_selection" class="glyphicon glyphicon-unchecked"></i>
+                            </button>
+                            <span data-translate>Allow whistleblowers to select their recipients</span>
+                          </label>
                         </div>
-                        <div data-ng-show="context.allow_recipients_selection">
-                          <div class="form-group">
-                            <label>
+                        <div data-ng-show="context.allow_recipients_selection" class="form-group" data-ng-class="{'well': context.allow_recipients_selection}">
+                          <div class="form-group"><label class="inline-checkbox">
+                            <input data-ng-model="context.select_all_receivers" data-ng-disabled="!context.allow_recipients_selection"
+                                    type="checkbox"
+                                    data-ng-click="context.maximum_selectable_receivers=0"
+                            />
+                            <span data-translate>Select all recipients by default</span>
+                            </label></div>
+                          <div class="form-group"><label class="inline-checkbox">
+                            <span data-translate>Maximum number of selectable recipients:</span> <p data-translate>(0 = unlimited)</p>
+                            <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" min="0"  data-ng-disabled="context.select_all_receivers"/>
+                          </label></div>
+                          <div class="form-group"><label class="inline-checkbox">
                               <input data-ng-model="context.show_receivers_in_alphabetical_order" type="checkbox" />
                               <span data-translate>Show recipients in alphabetical order</span>
-                            </label>
-                          </div>
-                          <div class="form-group">
-                            <input data-ng-model="context.select_all_receivers" type="checkbox" />
-                            <label data-translate>Select all recipients by default</label>
-                          </div>
-                          <div class="form-group" data-ng-show="!context.select_all_receivers">
-                            <label data-translate>Maximum number of selectable recipients:</label> <label data-translate>(0 = unlimited)</label>
-                            <input class="form-control" data-ng-model="context.maximum_selectable_receivers" type="number" min="0" />
-                          </div>
-                          <div class="form-group">
+                          </label></div>
+                          <div class="form-group"><label class="inline-checkbox">
                             <input data-ng-model="context.show_small_receiver_cards" type="checkbox" />
-                            <label data-translate>Show small recipient cards on submission interface</label>
-                          </div>
+                            <span data-translate>Show small recipient cards on submission interface</span>
+                          </label></div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"><label class="inline-checkbox">
                           <input data-ng-model="context.enable_comments" type="checkbox" />
-                          <label data-translate>Enable comments</label>
-                        </div>
-                        <div class="form-group" data-ng-if="admin.node.enable_experimental_features && context.enable_comments">
+                          <span data-translate>Enable comments</span>
+                        </label></div>
+                        <div class="form-group"><label class="inline-checkbox" data-ng-if="admin.node.enable_experimental_features && context.enable_comments">
                           <input data-ng-model="context.enable_two_way_comments" type="checkbox" />
-                          <label data-translate>Allow whistleblowers to write comments</label>
-                        </div>
-                        <div class="form-group">
+                          <span data-translate>Allow whistleblowers to write comments</span>
+                        </label></div>
+                        <div class="form-group"><label class="inline-checkbox">
                           <input data-ng-model="context.enable_messages" type="checkbox" />
-                          <label data-translate>Enable private messages</label>
-                        </div>
+                          <span data-translate>Enable private messages</span>
+                        </label></div>
                         <div class="form-group" data-ng-if="admin.node.enable_experimental_features && context.enable_messages">
-                          <input data-ng-model="context.enable_two_way_messages" type="checkbox" />
-                          <label data-translate>Allow whistleblowers to send messages</label>
+                          <label class="inline-checkbox">
+                            <input data-ng-model="context.enable_two_way_messages" type="checkbox" />
+                            <span data-translate>Allow whistleblowers to send messages</span>
+                          </label>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group"><label class="inline-checkbox">
                           <input data-ng-model="context.enable_attachments" type="checkbox" />
-                          <label data-translate>Allow whistleblowers to add attachments on existing submissions</label>
-                        </div>
-                        <div class="form-group">
+                          <span data-translate>Allow whistleblowers to add attachments on existing submissions</span>
+                        </label></div>
+                        <div class="form-group"><label class="inline-checkbox">
                           <input data-ng-model="context.show_recipients_details" type="checkbox" />
-                          <label data-translate>Show recipient details on the status page of the submission</label>
-                        </div>
+                          <span data-translate>Show recipient details on the status page of the submission</span>
+                        </label></div>
                         <div class="form-group">
                           <label>
                             <span class="btn btn-xs" data-ng-class="{'btn-danger': tip_ttl_off, 'btn-success': !tip_ttl_off}"
