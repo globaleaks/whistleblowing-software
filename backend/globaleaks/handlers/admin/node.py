@@ -65,9 +65,13 @@ def enable_disable_languages(store, request):
             log.debug("Adding a new lang %s" % lang_code)
             EnabledLanguage.add_new_lang(store, lang_code, appdata)
 
+    to_remove = []
     for lang_code in cur_enabled_langs:
         if lang_code not in new_enabled_langs:
-            EnabledLanguage.remove_old_lang(store, lang_code)
+            to_remove.append(lang_code)
+
+    if len(to_remove):
+        EnabledLanguage.remove_old_langs(store, to_remove)
 
 
 # TODO This cmd issues at least 3 SQL queries on node config.
