@@ -14,6 +14,7 @@ service_identity==16.0.0
 six==1.10.0
 storm==0.19
 transaction==1.4.3
+txsocksx==1.15.0.2
 zope.component==4.2.2
 zope.event==4.2.0
 zope.interface==4.1.3
