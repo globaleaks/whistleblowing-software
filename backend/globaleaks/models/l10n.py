@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from storm.expr import And
+from storm.expr import And, In
 from storm.locals import Unicode, Storm, Bool
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks import LANGUAGES_SUPPORTED_CODES, models
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.utils.utility import log
 
@@ -26,8 +26,8 @@ class EnabledLanguage(Storm):
         NodeL10NFactory(store).initialize(lang_code, appdata)
 
     @classmethod
-    def remove_old_lang(cls, store, lang_code):
-        store.find(cls, cls.name == unicode(lang_code)).remove()
+    def remove_old_langs(cls, store, lang_codes):
+        store.find(cls, In(cls.name, lang_codes)).remove()
 
     @classmethod
     def get_all_strings(cls, store):
@@ -222,11 +222,16 @@ class NotificationL10NFactory(ConfigL10NFactory):
 
 
 def update_enabled_langs(store):
+    #default_language = NodeFactory(store).get_val('default_language')
+    #print default_language
+
     active_langs = set(EnabledLanguage.get_all_strings(store))
     to_drop = active_langs - LANGUAGES_SUPPORTED_CODES
-    for lang_code in to_drop:
-        log.err("Dropping %s translations. It is no longer supported!!!" % lang_code)
-        EnabledLanguage.remove_old_lang(store, lang_code)
+    if len(to_drop):
+        log.err("Dropping support for the following languages which translations are incomplete: %s" % to_drop)
+        EnabledLanguage.remove_old_langs(store, list(to_drop))
+
+        #for user in store.find(models.User, models.User.language == lang_code)
 
 def update_defaults(store, appdata):
     langs = EnabledLanguage.get_all_strings(store)

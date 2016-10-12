@@ -43,8 +43,8 @@ def wizard(store, request, language):
 
         langs_to_drop = EnabledLanguage.get_all_strings(store)
         langs_to_drop.remove(language)
-        for lang_code in langs_to_drop:
-            EnabledLanguage.remove_old_lang(store, lang_code)
+        if len(langs_to_drop):
+            EnabledLanguage.remove_old_langs(store, langs_to_drop)
 
         request['receiver']['contexts'] = [context.id]
         request['receiver']['language'] = language

@@ -114,7 +114,7 @@ class TestConfigL10N(helpers.TestGL):
         i = store.find(ConfigL10N).count()
         n = i/c
 
-        EnabledLanguage.remove_old_lang(store, 'en')
+        EnabledLanguage.remove_old_langs(store, [u'en'])
 
         c_f = len(EnabledLanguage.get_all_strings(store))
         i_f = store.find(ConfigL10N).count()
