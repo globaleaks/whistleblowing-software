@@ -9,7 +9,7 @@ describe('admin configure, add, and delete contexts', function() {
     element(by.cssContainingText("span", "Recipient2")).click();
     element(by.cssContainingText("span", "Recipient3")).click();
     element(by.id('context-0')).element(by.css('.actionButtonAdvanced')).click();
-    element(by.id('context-0')).element(by.model('context.allow_recipients_selection')).click();
+    element(by.id('context-0')).element(by.id('recipientsSelectionEnabler')).click();
     element(by.id('context-0')).element(by.model('context.select_all_receivers')).click();
     element(by.id('context-0')).element(by.model('context.enable_messages')).click();
     // Save the results
