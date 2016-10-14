@@ -128,11 +128,8 @@ network_sandboxing_start()
         do
             iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
-        iptables -A INPUT -p tcp -d ${IP_DST} --dport 8083 -s 127.0.0.1 -j ACCEPT
 
-        iptables -A INPUT -p tcp -d ${IP_DST} --dport 8083 -j DROP
         iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
-
     done
 
     # OUTBOUND
@@ -174,9 +171,7 @@ network_sandboxing_stop()
         do
             iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
-        iptables -D INPUT -p tcp -d ${IP_DST} --dport 8083 -s 127.0.0.1 -j ACCEPT
 
-        iptables -D INPUT -p tcp -d ${IP_DST} --dport 8083 -j DROP
         iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
     done
 
