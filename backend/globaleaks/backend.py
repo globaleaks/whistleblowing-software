@@ -9,21 +9,14 @@
 # application shuts down.
 
 import os
-import sys
 
 from twisted.application import internet, service
-from twisted.internet import reactor, protocol
 
 from twisted.python import log, logfile
 
 from globaleaks.utils.utility import GLLogObserver
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
-
-
-class GLPP(protocol.ProcessProtocol):
-    def processExited(self, reason):
-        reactor.stop()
 
 
 application = service.Application('GLBackend')
@@ -40,18 +33,6 @@ if not GLSettings.nodaemon and GLSettings.logfile:
 
 api_factory = api.get_api_factory()
 
-GLBackendAPI = internet.TCPServer(8083, api_factory)
-GLBackendAPI.setServiceParent(application)
-
-battery = os.path.join(os.path.dirname(__file__), 'battery.py')
-
-env = {
-  'listening_ips': str(GLSettings.bind_addresses),
-  'listening_port': str(GLSettings.bind_port)
-}
-
-reactor.spawnProcess(GLPP(),
-                     sys.executable,
-                     [sys.executable, battery],
-                     childFDs={},
-                     env=env)
+for ip in GLSettings.bind_addresses:
+    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, api_factory, interface=ip)
+    GLBackendAPI.setServiceParent(application)
