@@ -96,7 +96,7 @@ class TestConfigL10N(helpers.TestGL):
 
     @transact
     def enable_langs(self, store):
-        res = EnabledLanguage.get_all_strings(store)
+        res = EnabledLanguage.list(store)
 
         self.assertTrue(u'en' in res)
         self.assertTrue(len(res) == len(LANGUAGES_SUPPORTED))
@@ -110,13 +110,13 @@ class TestConfigL10N(helpers.TestGL):
 
     @transact
     def disable_langs(self, store):
-        c = len(EnabledLanguage.get_all_strings(store))
+        c = len(EnabledLanguage.list(store))
         i = store.find(ConfigL10N).count()
         n = i/c
 
         EnabledLanguage.remove_old_langs(store, [u'en'])
 
-        c_f = len(EnabledLanguage.get_all_strings(store))
+        c_f = len(EnabledLanguage.list(store))
         i_f = store.find(ConfigL10N).count()
 
         self.assertTrue(i-i_f == n and c_f == c-1)

@@ -33,7 +33,7 @@ def db_serialize_node(store, language):
         ro_node['submission_minimum_delay'] = 0
 
     misc_dict = {
-        'languages_enabled': l10n.EnabledLanguage.get_all_strings(store),
+        'languages_enabled': l10n.EnabledLanguage.list(store),
         'languages_supported': LANGUAGES_SUPPORTED,
         'configured': configured,
         'accept_submissions': GLSettings.accept_submissions,

@@ -270,7 +270,7 @@ class MigrationScript(MigrationBase):
         self.store_new.add(Config('private', 'version_db', 0))
 
     def _migrate_l10n_static_config(self, old_obj, appd_key):
-        langs_enabled = l10n.EnabledLanguage.get_all_strings(self.store_new)
+        langs_enabled = l10n.EnabledLanguage.list(self.store_new)
 
         new_obj_appdata = self.appdata[appd_key]
 
