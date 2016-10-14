@@ -818,17 +818,3 @@ Receiver.contexts = ReferenceSet(
     ReceiverContext.context_id,
     Context.id
 )
-
-model_list = [
-    User, Receiver,
-    Context, ReceiverContext,
-    Questionnaire, Step, Field, FieldOption, FieldAttr,
-    FieldAnswer, FieldAnswerGroup,
-    InternalTip, ReceiverTip, WhistleblowerTip,
-    Comment, Message, Mail,
-    InternalFile, ReceiverFile,
-    Stats, Anomalies,
-    SecureFileDelete,
-    IdentityAccessRequest,
-    ArchivedSchema, ApplicationData
-]

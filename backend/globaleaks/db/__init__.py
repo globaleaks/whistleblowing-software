@@ -21,12 +21,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
 
-def init_models():
-    for model in models.model_list:
-        model()
-    return succeed(None)
-
-
 def db_create_tables(store):
     with open(GLSettings.db_schema) as f:
         create_queries = ''.join(f.readlines()).split(';')
@@ -36,10 +30,6 @@ def db_create_tables(store):
             except exceptions.OperationalError as exc:
                 log.err("OperationalError in [%s]" % create_query)
                 log.err(exc)
-
-    init_models()
-    # new is the only Models function executed without @transact, call .add, but
-    # the called has to .commit and .close, operations commonly performed by decorator
 
 
 @transact
