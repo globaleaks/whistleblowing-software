@@ -229,11 +229,8 @@ class MigrationScript(MigrationBase):
             os.remove(file_path)
 
         #### Create ConfigL10N table and rows ####
-
-        # Fill out enabled langs table
         for lang in old_node.languages_enabled:
-            if lang in LANGUAGES_SUPPORTED_CODES:
-                self.store_new.add(l10n.EnabledLanguage(lang))
+            self.store_new.add(l10n.EnabledLanguage(lang))
 
         self._migrate_l10n_static_config(old_node, 'node')
         self._migrate_l10n_static_config(old_notif, 'templates')
