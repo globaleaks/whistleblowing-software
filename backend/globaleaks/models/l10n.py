@@ -30,7 +30,7 @@ class EnabledLanguage(Storm):
         store.find(cls, In(cls.name, lang_codes)).remove()
 
     @classmethod
-    def get_all_strings(cls, store):
+    def list(cls, store):
         return [e.name for e in store.find(cls)]
 
     @classmethod
@@ -179,7 +179,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
         ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
 
     def reset_templates(self, l10n_data_src):
-        langs = EnabledLanguage.get_all_strings(self.store)
+        langs = EnabledLanguage.list(self.store)
         self.update_defaults(langs, l10n_data_src, reset=True)
 
     localized_keys = frozenset({
@@ -221,19 +221,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
     })
 
 
-def update_enabled_langs(store):
-    #default_language = NodeFactory(store).get_val('default_language')
-    #print default_language
-
-    active_langs = set(EnabledLanguage.get_all_strings(store))
-    to_drop = active_langs - LANGUAGES_SUPPORTED_CODES
-    if len(to_drop):
-        log.err("Dropping support for the following languages which translations are incomplete: %s" % to_drop)
-        EnabledLanguage.remove_old_langs(store, list(to_drop))
-
-        #for user in store.find(models.User, models.User.language == lang_code)
-
 def update_defaults(store, appdata):
-    langs = EnabledLanguage.get_all_strings(store)
+    langs = EnabledLanguage.list(store)
     NodeL10NFactory(store).update_defaults(langs, appdata['node'])
     NotificationL10NFactory(store).update_defaults(langs, appdata['templates'])

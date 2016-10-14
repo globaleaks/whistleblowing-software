@@ -30,7 +30,7 @@ def db_admin_serialize_node(store, language):
     misc_dict = {
         'version': PrivateFactory(store).get_val('version'),
         'languages_supported': LANGUAGES_SUPPORTED,
-        'languages_enabled': EnabledLanguage.get_all_strings(store),
+        'languages_enabled': EnabledLanguage.list(store),
         'configured': configured,
         'custom_homepage': custom_homepage,
     }
@@ -46,7 +46,7 @@ def admin_serialize_node(store, language):
 
 
 def enable_disable_languages(store, request):
-    cur_enabled_langs = EnabledLanguage.get_all_strings(store)
+    cur_enabled_langs = EnabledLanguage.list(store)
     new_enabled_langs = [unicode(y) for y in request['languages_enabled']]
 
     if len(new_enabled_langs) < 1:

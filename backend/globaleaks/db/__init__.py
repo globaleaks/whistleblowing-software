@@ -161,7 +161,7 @@ def db_refresh_memory_variables(store):
         'unauth': node_ro.tor2web_unauth
     }
 
-    enabled_langs = models.l10n.EnabledLanguage.get_all_strings(store)
+    enabled_langs = models.l10n.EnabledLanguage.list(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
 
     notif_ro = ObjectDict(NotificationFactory(store).admin_export())
