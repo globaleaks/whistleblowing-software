@@ -6,7 +6,7 @@ import shutil
 
 from storm.locals import create_database, Store
 
-from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, security
+from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.models import l10n, config
 from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
@@ -93,7 +93,6 @@ def db_perform_data_update(store):
         # The below commands can change the current store based on the what is
         # currently stored in the DB.
         appdata = db_update_appdata(store)
-        l10n.update_enabled_langs(store)
         l10n.update_defaults(store, appdata)
         config.update_defaults(store)
         db_fix_fields_attrs(store)
@@ -105,15 +104,27 @@ def db_perform_data_update(store):
 
 
 def perform_data_update(dbfile):
-    new_tmp_store = Store(create_database(GLSettings.make_db_uri(dbfile)))
+    store = Store(create_database(GLSettings.make_db_uri(dbfile)))
+
+    enabled_languages = [lang.name for lang in store.find(l10n.EnabledLanguage)]
+
+    removed_languages = list(set(enabled_languages) - set(LANGUAGES_SUPPORTED_CODES))
+
+    if len(removed_languages):
+        removed_languages.sort()
+        removed_languages = ', '.join(removed_languages)
+        raise Exception("FATAL: cannot complete the upgrade because the support for some of the enabled languages is currently incomplete (%s)\n"
+                        "Read about how to handle this condition at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#lang-drop" % removed_languages)
+
+
     try:
-        db_perform_data_update(new_tmp_store)
-        new_tmp_store.commit()
+        db_perform_data_update(store)
+        store.commit()
     except:
-        new_tmp_store.rollback()
+        store.rollback()
         raise
     finally:
-        new_tmp_store.close()
+        store.close()
 
 
 def perform_schema_migration(version):

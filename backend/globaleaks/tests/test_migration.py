@@ -83,26 +83,19 @@ class TestConfigUpdates(unittest.TestCase):
         GLConfig['private']['smtp_password'] = GLConfig['private'].pop('xx_smtp_password')
         config.is_cfg_valid = self._bck_f
 
-    def test_remove_extra_lang(self):
+    @inlineCallbacks
+    def test_migration_error_with_removed_language(self):
         store = Store(create_database(GLSettings.db_uri))
-        # add lang no longer supported
         zyx = EnabledLanguage('zyx')
-        cfg = ConfigL10N(zyx.name, 'fakegroup', 'fakevar', '...---...')
-
         store.add(zyx)
-        store.add(cfg)
         store.commit()
+        store.close()
 
-        cfg = store.find(ConfigL10N, ConfigL10N.var_name==u'fakevar').one()
-        self.assertTrue(cfg is not None)
-        self.assertIn(zyx.name, EnabledLanguage.get_all_strings(store))
-
-        # ensure that it is removed by l10n.update_defaults
-        l10n.update_enabled_langs(store)
-
-        self.assertNotIn(zyx.name, EnabledLanguage.get_all_strings(store))
-        cfg = store.find(ConfigL10N, ConfigL10N.var_name==u'fakevar').one()
-        self.assertTrue(cfg is None)
+        try:
+            yield migration.perform_data_update(self.db_file)
+            self.fail()
+        except Exception:
+            pass
 
     @inlineCallbacks
     def test_detect_and_fix_cfg_change(self):
@@ -138,7 +131,7 @@ class TestConfigUpdates(unittest.TestCase):
         try:
             yield migration.perform_data_update(self.db_file)
             self.fail()
-        except DatabaseIntegrityError as e:
+        except Exception as e:
             self.assertIsInstance(e, DatabaseIntegrityError)
 
         # Ensure the rollback has succeeded
