@@ -30,10 +30,12 @@ describe('globaLeaks process', function() {
       });
     });
 
+    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
+
     element(by.id('NextStepButton')).click();
+
     element(by.id('PreviousStepButton')).click();
 
-    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
     element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
 
     element(by.id('NextStepButton')).click();

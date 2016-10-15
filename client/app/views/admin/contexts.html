@@ -128,10 +128,7 @@
                         </div>
                         <div class="form-group">
                           <label class="inline-checkbox">
-                            <button id="recipientsSelectionEnabler" class="btn btn-default" data-ng-click="context.allow_recipients_selection = !context.allow_recipients_selection" type="checkbox">
-                              <i data-ng-if="context.allow_recipients_selection" class="glyphicon glyphicon-check"></i>
-                              <i data-ng-if="!context.allow_recipients_selection" class="glyphicon glyphicon-unchecked"></i>
-                            </button>
+                            <input data-ng-model="context.allow_recipients_selection" type="checkbox" />
                             <span data-translate>Allow whistleblowers to select their recipients</span>
                           </label>
                         </div>
