@@ -12,6 +12,10 @@
         </span></p>
       </ul>
     </div>
+    <div data-ng-if="Utils.isUploading(upload)">
+      <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;&nbsp;
+      <i class="glyphicon glyphicon-refresh gly-spin"></i>
+    </div>
     <div data-ng-if="submissionForm.$invalid"><p data-translate>The following steps have errors:</p>
       <ul>
         <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
