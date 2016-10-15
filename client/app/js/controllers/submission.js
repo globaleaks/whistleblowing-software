@@ -167,10 +167,15 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.displaySubmissionErrors = function(submissionForm) {
-    return angular.isDefined(submissionForm) &&
-           submissionForm.$dirty &&
-           $scope.submissionHasErrors(submissionForm) &&
-           !$scope.hasNextStep();
+    var t = angular.isDefined(submissionForm) &&
+            submissionForm.$dirty &&
+            $scope.submissionHasErrors(submissionForm) &&
+            !$scope.hasNextStep();
+    if (angular.isDefined($scope.submission)) {
+      // Prevents the flash of error panel after submission btn is clicked
+      return t && !$scope.submission.done;
+    }
+    return t;
   };
 
   $scope.incrementStep = function() {
