@@ -335,13 +335,4 @@ directive('isolateForm', [function () {
       angular.extend(ctrl, isolatedFormCtrl);
     }
   };
-}])
-.directive('glUserRole', function() {
-  return {
-    restrict: 'A',
-    templateUrl: 'views/partials/user_role.html',
-    scope: {
-      role: '@glUserRole',
-    },
-  };
-});
+}]);

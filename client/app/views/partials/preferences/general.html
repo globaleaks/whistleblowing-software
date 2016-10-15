@@ -1,23 +1,22 @@
 <div class="">
   <div class="row">
     <div class="col-md-8">
-      <p><label data-translate>Username</label> {{::session.username }}
-      <span gl-user-role="{{::preferences.role}}"></span>
-      </p>
-      <p><label data-translate>Name</label> {{::preferences.name }}</p>
-      <p><label data-translate>Public pseudonym</label> {{::preferences.public_name }}</p>
-      <p><label data-translate>Email address</label> {{::preferences.mail_address }}</p>
+      <div data-ng-if="preferences.picture !== ''" class="imageThumbnail">
+        <img class="receiverImg" alt="user picture" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" /><br />
+      </div>
+      <p><label><span data-translate>Username</span>:</label> {{::session.username }}</p>
+      <p><label><span data-translate>Role</span>:</label> {{::preferences.role }}</p>
+      <p><label><span data-translate>Name</span>:</label> {{::preferences.name }}</p>
+      <p><label><span data-translate>Public pseudonym</span>:</label> {{::preferences.public_name }}</p>
+      <p><label><span data-translate>Email address</span>:</label> {{::preferences.mail_address }}</p>
       <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
-    </div>
-    <div class="col-md-4">
-      <img class="receiverImg pull-right" alt="user picture" data-ng-if="preferences.picture !== ''" data-ng-src="{{::Utils.imgDataUri(preferences.picture)}}" />
     </div>
   </div>
   <div ng-if="preferences.contexts.length > 0">
-    <label data-translate>Contexts</label>
-    <div ng-repeat="context_id in preferences.contexts">
-      <p>{{ context_id }}</p>
-    </div>
+    <label><span data-translate>Contexts</span></label>
+    <ul data-ng-repeat="context_id in preferences.contexts">
+      <li>{{ context_id }}</li>
+    </ul>
   </div>
 </div>
 <div class="form-group">

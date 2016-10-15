@@ -198,8 +198,9 @@ table {
   left: 0;
 }
 
-.imageUploadThumbnail, .contextCardFrame, .receiverCardFrame {
+.imageThumbnail, .imageUploadThumbnail, .contextCardFrame, .receiverCardFrame {
   height: 10em;
+  margin-bottom: 1em;
 }
 
 .contextListContent {
