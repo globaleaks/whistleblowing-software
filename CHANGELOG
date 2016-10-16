@@ -1,9 +1,21 @@
+Changes in version 2.64.7 - 2016-10-16
+    o Fix feature for disabling encryption warnings
+    o Install all zope packages at system level to fix import issue
+    o Update translations
+    o Add Slovenian (82%)
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1754
+    - https://github.com/globaleaks/GlobaLeaks/issues/1791
+    - https://github.com/globaleaks/GlobaLeaks/issues/1790
+
 Changes in version 2.64.6 - 2016-10-04
     o Fix responsiveness of the sticky footer on small-screen devices
     o Allow to set an unlimited retention policy
     o Add polish translation (63%)
     o Update translations
 
+    Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1779
     - https://github.com/globaleaks/GlobaLeaks/issues/1165
     - https://github.com/globaleaks/GlobaLeaks/issues/1731
