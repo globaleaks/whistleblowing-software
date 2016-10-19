@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "2.64.7",
+  "version": "2.64.8",
   "dependencies": {
     "@types/jasmine": {
       "version": "2.2.34",
