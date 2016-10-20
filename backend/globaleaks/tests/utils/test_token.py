@@ -25,10 +25,6 @@ class TestToken(helpers.TestGL):
         pollute_events_for_testing()
         yield Alarm.compute_activity_level()
 
-        # Token submission
-        st = Token('submission')
-        st.generate_token_challenge()
-
     def test_token(self):
         st = Token('submission')
 
@@ -38,7 +34,7 @@ class TestToken(helpers.TestGL):
 
         if st.human_captcha:
             self.assertTrue(st.human_captcha.has_key('answer'))
-            self.assertTrue(isinstance(st.human_captcha['answer'], unicode))
+            self.assertTrue(isinstance(st.human_captcha['answer'], int))
 
     @inlineCallbacks
     def test_token_create_and_get_upload_expire(self):
@@ -59,7 +55,7 @@ class TestToken(helpers.TestGL):
                 self.assertTrue(os.path.exists(f['encrypted_path']))
                 file_list.append(f['encrypted_path'])
 
-        TokenList.reactor.pump([1] * TokenList.get_timeout())
+        TokenList.reactor.advance(TokenList.get_timeout()+1)
 
         for t in token_collection:
             self.assertRaises(errors.TokenFailure, TokenList.get, t.id)
@@ -70,19 +66,19 @@ class TestToken(helpers.TestGL):
     def test_token_update_right_answer(self):
         token = Token('submission')
 
-        token.human_captcha = {'question': '1 + 0', 'answer': 1}
-        token.proof_of_work = False
+        token.human_captcha = {'question': '1 + 0', 'answer': 1, 'solved': False}
+        token.proof_of_work = {'solved': False}
 
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
 
         # verify that the challenge is marked as solved
-        self.assertFalse(token.human_captcha)
+        self.assertTrue(token.human_captcha['solved'])
 
     def test_token_update_wrong_answer(self):
         token = Token('submission')
 
-        token.human_captcha = {'question': 'XXX', 'answer': 1}
+        token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
 
         token.update({'human_captcha_answer': 0})
 
@@ -92,8 +88,8 @@ class TestToken(helpers.TestGL):
     def test_token_uses_limit(self):
         token = Token('submission')
 
-        token.human_captcha = False
-        token.proof_of_work = False
+        token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
+        token.proof_of_work = {'solved': True}
 
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
@@ -103,10 +99,7 @@ class TestToken(helpers.TestGL):
 
         # validate with right value but with no additional
         # attempts available: FAIL
-        self.assertRaises(
-                errors.TokenFailure,
-                token.use
-        )
+        self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_wrong_answer(self):
         token = Token('submission')
@@ -126,23 +119,25 @@ class TestToken(helpers.TestGL):
         # validate with right value: OK
         self.assertFalse(token.update({'proof_of_work_answer': 26}))
 
-        # verify that the challenge is marked as solved
-        self.assertFalse(token.proof_of_work)
+        self.assertTrue(token.proof_of_work['solved'])
 
     def test_proof_of_work_right_answer(self):
         token = Token('submission')
+        token.human_captcha = {'solved': True}
 
-        difficulty = {
-            'human_captcha': False,
-            'proof_of_work': False
-        }
-
-        token.generate_token_challenge(difficulty)
-
-        token = TokenList.get(token.id)
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
         token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q"}
 
         # validate with right value: OK
         self.assertTrue(token.update({'proof_of_work_answer': 0}))
+
+    def test_tokens_garbage_collected(self):
+        self.assertTrue(len(TokenList) == 0)
+
+        for i in range(100):
+            Token('submission')
+
+        tempdict.test_reactor.advance(TokenList.get_timeout()+1)
+
+        self.assertTrue(len(TokenList) == 0)
