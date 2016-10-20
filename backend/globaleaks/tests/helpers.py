@@ -192,9 +192,9 @@ class TestGL(unittest.TestCase):
     def setUp(self):
         self.test_reactor = task.Clock()
         jobs.base.test_reactor = self.test_reactor
+        tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
         runner.test_reactor = self.test_reactor
-        tempdict.test_reactor = self.test_reactor
         GLSessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
@@ -212,6 +212,7 @@ class TestGL(unittest.TestCase):
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
         yield update_node_setting('allow_unencrypted', allow_unencrypted)
+        yield update_node_setting('submission_minimum_delay', 0)
 
         yield db.refresh_memory_variables()
 
@@ -220,6 +221,26 @@ class TestGL(unittest.TestCase):
         jobs.statistics_sched.StatisticsSchedule.reset()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
+
+    def tearDown(self):
+        """
+        Required for clearing scheduled callbacks in the testReactor that have yet to run.
+        If a unittest has scheduled something, we execute it before moving on.
+        """
+
+        def call_spigot():
+            deferred_fns = self.test_reactor.getDelayedCalls()
+            i = 0;
+            while len(deferred_fns) != 0:
+                f = deferred_fns.pop(0)
+                yield f.getTime()
+                if i >= 30:
+                    raise Exception("stuck in callback loop")
+                i += 1
+                deferred_fns = self.test_reactor.getDelayedCalls()
+            raise StopIteration
+
+        self.test_reactor.pump(call_spigot())
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
@@ -366,7 +387,7 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def emulate_file_upload(self, token, n):
         """
-        This emulate the file upload of a incomplete submission
+        This emulates the file upload of an incomplete submission
         """
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
@@ -495,8 +516,8 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(store, reference_field, 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = token.Token(token_kind='submission')
-        self.dummyToken.proof_of_work = False
+        self.dummyToken = token.Token('submission')
+        self.dummyToken.solve()
 
     @inlineCallbacks
     def perform_submission_uploads(self):
@@ -511,7 +532,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['total_score'] = 0
 
         self.dummySubmission = yield create_submission(self.dummyToken.id,
-                                                       self.dummySubmission, 
+                                                       self.dummySubmission,
                                                        True, 'en')
 
     @inlineCallbacks

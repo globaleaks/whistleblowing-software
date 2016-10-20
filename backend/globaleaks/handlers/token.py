@@ -57,7 +57,9 @@ class TokenInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.TokenAnswerDesc)
 
         token = TokenList.get(token_id)
-        token.update(request)
+
+        if not token.update(request):
+            raise errors.TokenFailure('failed challenge')
 
         self.set_status(202) # Updated
         self.write(token.serialize())

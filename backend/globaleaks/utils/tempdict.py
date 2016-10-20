@@ -30,13 +30,10 @@ class TempDict(OrderedDict):
 
     def set(self, key, value):
         timeout = self.get_timeout()
-        if timeout is not None:
-            if test_reactor is None:
-                value.expireCall = reactor.callLater(timeout, self._expire, key)
-            else:
-                value.expireCall = test_reactor.callLater(timeout, self._expire, key)
+        if test_reactor is None:
+            value.expireCall = reactor.callLater(timeout, self._expire, key)
         else:
-            value.expireCall = None
+            value.expireCall = test_reactor.callLater(timeout, self._expire, key)
 
         self[key] = value
 
@@ -52,13 +49,12 @@ class TempDict(OrderedDict):
         return None
 
     def delete(self, key):
-        if key in self:
-            try:
-                self[key].expireCall.stop()
-            except:
-                pass
+        if key in self and self[key].expireCall.active:
+            self[key].expireCall.cancel()
+            self._expire(key)
+        else:
+            log.err("Failed to delete %s from %s" % (key, self.__class__))
 
-            del self[key]
 
     def _check_size_limit(self):
         size_limit = self.get_size_limit()

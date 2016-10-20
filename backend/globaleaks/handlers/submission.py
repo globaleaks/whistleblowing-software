@@ -319,7 +319,6 @@ def create_whistleblowertip(*args):
 def db_create_submission(store, token_id, request, t2w, language):
     # the .get method raise an exception if the token is invalid
     token = TokenList.get(token_id)
-
     token.use()
 
     answers = request['answers']
@@ -415,6 +414,10 @@ def db_create_submission(store, token_id, request, t2w, language):
     submission_dict = serialize_usertip(store, wbtip, language)
 
     submission_dict.update({'receipt': receipt})
+
+    # The token has been used to create a valid submission. Delete it so it 
+    # cannot be used again
+    TokenList.delete(token_id)
 
     return submission_dict
 
