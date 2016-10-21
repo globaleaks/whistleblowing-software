@@ -98,7 +98,7 @@ class Token(object):
 
         return r
 
-    def generate_token_challenges(self, challenges_dict = None):
+    def generate_token_challenges(self):
         if Alarm.stress_levels['activity'] >= 1 and GLSettings.memory_copy.enable_captcha:
             random_a = randint(0, 99)
             random_b = randint(0, 99)
@@ -162,7 +162,7 @@ class Token(object):
 
     def decrement(self):
         self.remaining_uses -= 1
-        if self.remaining_uses <= 0:
+        if self.remaining_uses < 0:
             raise errors.TokenFailure("Token is no longer valid.")
 
     def update(self, request):
@@ -177,7 +177,6 @@ class Token(object):
         passed = self.human_captcha['solved'] and self.proof_of_work['solved']
         if not passed:
             self.generate_token_challenges()
-
         return passed
 
     def use(self):

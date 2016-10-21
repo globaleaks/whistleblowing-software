@@ -227,13 +227,11 @@ class TestGL(unittest.TestCase):
         Required for clearing scheduled callbacks in the testReactor that have yet to run.
         If a unittest has scheduled something, we execute it before moving on.
         """
-
         def call_spigot():
             deferred_fns = self.test_reactor.getDelayedCalls()
             i = 0;
             while len(deferred_fns) != 0:
-                f = deferred_fns.pop(0)
-                yield f.getTime()
+                yield deferred_fns[0].getTime()
                 if i >= 30:
                     raise Exception("stuck in callback loop")
                 i += 1
@@ -531,7 +529,7 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.dummySubmission['total_score'] = 0
 
-        self.dummySubmission = yield create_submission(self.dummyToken.id,
+        self.dummySubmission = yield create_submission(self.dummyToken,
                                                        self.dummySubmission,
                                                        True, 'en')
 

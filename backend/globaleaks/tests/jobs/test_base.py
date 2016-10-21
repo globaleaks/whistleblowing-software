@@ -20,6 +20,9 @@ class GLJobX(GLJob):
 
 
 class TestGLJob(helpers.TestGL):
+    def tearDown(self):
+        pass
+
     @inlineCallbacks
     def test_base_scheduler_1(self):
         """
