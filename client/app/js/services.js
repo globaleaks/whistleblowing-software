@@ -1070,6 +1070,16 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return sum / n;
       },
 
+      getContext: function(context_id) {
+        for (var i = 0; i < $rootScope.contexts.length; i++) {
+          var ctx = $rootScope.contexts[i];
+          if (ctx.id === context_id) {
+            return ctx;
+          }
+        }
+        return undefined;
+      },
+
       openConfirmableModalDialog: function(template, arg, scope) {
         scope = scope === undefined ? $rootScope : scope;
 

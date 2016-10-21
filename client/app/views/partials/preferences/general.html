@@ -12,10 +12,10 @@
       <p data-ng-if="preferences.description !== ''"><label data-translate>Description</label> {{::preferences.description }}</p>
     </div>
   </div>
-  <div ng-if="preferences.contexts.length > 0">
+  <div data-ng-if="preferences.contexts.length > 0">
     <label><span data-translate>Contexts</span></label>
     <ul data-ng-repeat="context_id in preferences.contexts">
-      <li>{{ context_id }}</li>
+      <li data-ng-init="ctx = Utils.getContext(context_id)"><span data-ng-if="ctx.name">{{::ctx.name}}</span> :: {{::ctx.id}}</li>
     </ul>
   </div>
 </div>
