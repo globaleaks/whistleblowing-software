@@ -316,11 +316,7 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, token_id, request, t2w, language):
-    # the .get method raise an exception if the token is invalid
-    token = TokenList.get(token_id)
-    token.use()
-
+def db_create_submission(store, token, request, t2w, language):
     answers = request['answers']
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
@@ -415,16 +411,12 @@ def db_create_submission(store, token_id, request, t2w, language):
 
     submission_dict.update({'receipt': receipt})
 
-    # The token has been used to create a valid submission. Delete it so it 
-    # cannot be used again
-    TokenList.delete(token_id)
-
     return submission_dict
 
 
 @transact
-def create_submission(store, token_id, request, t2w, language):
-    return db_create_submission(store, token_id, request, t2w, language)
+def create_submission(store, token, request, t2w, language):
+    return db_create_submission(store, token, request, t2w, language)
 
 
 class SubmissionInstance(BaseHandler):
@@ -444,8 +436,15 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
-        submission = yield create_submission(token_id, request,
+        # The get and use method will raise if the token is invalid
+        token = TokenList.get(token_id)
+        token.use()
+
+        submission = yield create_submission(token, request,
                                              self.check_tor2web(),
                                              self.request.language)
+        # Delete the token only when a valid submission has been stored in the DB
+        TokenList.delete(token_id)
+
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.write(submission)

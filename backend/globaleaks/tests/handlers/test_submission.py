@@ -5,6 +5,7 @@ from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
 from globaleaks.jobs import delivery_sched
 from globaleaks.tests import helpers
+from globaleaks.rest import errors
 from globaleaks.utils.token import Token
 
 # and here, our protagonist character:
@@ -89,6 +90,27 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
         self.assertTrue('answers' in wbtip_desc)
+
+class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
+    _handler = SubmissionInstance
+
+    @inlineCallbacks
+    def test_token_must_be_solved(self):
+        token = Token()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        handler = self.request(self.submission_desc)
+        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
+
+
+    @inlineCallbacks
+    def test_token_reuse_blocked(self):
+        token = Token()
+        token.solve()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+
+        handler = self.request(self.submission_desc)
+        yield handler.put(token.id)
+        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
 
 
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):

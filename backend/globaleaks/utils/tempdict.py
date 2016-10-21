@@ -28,16 +28,15 @@ class TempDict(OrderedDict):
         """The override of this method allows dynamic limits imlementations"""
         return self.size_limit
 
-    def set(self, key, value):
+    def set(self, key, item):
+        self._check_size_limit()
         timeout = self.get_timeout()
         if test_reactor is None:
-            value.expireCall = reactor.callLater(timeout, self._expire, key)
+            item.expireCall = reactor.callLater(timeout, self._expire, key)
         else:
-            value.expireCall = test_reactor.callLater(timeout, self._expire, key)
+            item.expireCall = test_reactor.callLater(timeout, self._expire, key)
 
-        self[key] = value
-
-        self._check_size_limit()
+        self[key] = item
 
     def get(self, key):
         if key in self:
@@ -49,18 +48,21 @@ class TempDict(OrderedDict):
         return None
 
     def delete(self, key):
-        if key in self and self[key].expireCall.active:
-            self[key].expireCall.cancel()
+        if key in self:
+            item = self.pop(key)
+            item.expireCall.cancel()
             self._expire(key)
         else:
-            log.err("Failed to delete %s from %s" % (key, self.__class__))
+            raise Exception("Failed to delete %s from %s" % (key, self.__class__))
 
 
     def _check_size_limit(self):
         size_limit = self.get_size_limit()
         if size_limit is not None:
-            while len(self) > size_limit:
-                self.popitem(last=False)
+            while len(self) >= size_limit:
+                # retrieves the oldest key in the OD
+                k = next(self.iterkeys())
+                self.delete(k)
 
     def _expire(self, key):
         if key in self:

@@ -55,7 +55,7 @@ class TestToken(helpers.TestGL):
                 self.assertTrue(os.path.exists(f['encrypted_path']))
                 file_list.append(f['encrypted_path'])
 
-        TokenList.reactor.advance(TokenList.get_timeout()+1)
+        self.test_reactor.advance(TokenList.get_timeout()+1)
 
         for t in token_collection:
             self.assertRaises(errors.TokenFailure, TokenList.get, t.id)
@@ -65,18 +65,19 @@ class TestToken(helpers.TestGL):
 
     def test_token_update_right_answer(self):
         token = Token('submission')
+        token.solve()
 
         token.human_captcha = {'question': '1 + 0', 'answer': 1, 'solved': False}
-        token.proof_of_work = {'solved': False}
 
         # validate with right value: OK
-        token.update({'human_captcha_answer': 1})
+        self.assertTrue(token.update({'human_captcha_answer': 1}))
 
         # verify that the challenge is marked as solved
         self.assertTrue(token.human_captcha['solved'])
 
     def test_token_update_wrong_answer(self):
         token = Token('submission')
+        token.solve()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
 
@@ -85,16 +86,16 @@ class TestToken(helpers.TestGL):
         # verify that the challenge is changed
         self.assertNotEqual(token.human_captcha['question'], 'XXX')
 
-    def test_token_uses_limit(self):
+    def test_token_usage_limit(self):
         token = Token('submission')
+        token.solve()
 
         token.human_captcha = {'question': 'XXX', 'answer': 1, 'solved': False}
-        token.proof_of_work = {'solved': True}
 
         # validate with right value: OK
         token.update({'human_captcha_answer': 1})
 
-        for i in range(0, token.MAX_USES):
+        for i in range(0, token.MAX_USES-1):
             token.use()
 
         # validate with right value but with no additional
@@ -103,34 +104,27 @@ class TestToken(helpers.TestGL):
 
     def test_proof_of_work_wrong_answer(self):
         token = Token('submission')
+        token.solve()
 
-        difficulty = {
-            'human_captcha': False,
-            'proof_of_work': False
-        }
-
-        token.generate_token_challenge(difficulty)
-
-        token = TokenList.get(token.id)
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
-        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q"}
+        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q", 'solved': False}
 
+        self.assertFalse(token.update({'proof_of_work_answer': 0}))
         # validate with right value: OK
-        self.assertFalse(token.update({'proof_of_work_answer': 26}))
-
-        self.assertTrue(token.proof_of_work['solved'])
+        self.assertRaises(errors.TokenFailure, token.use)
 
     def test_proof_of_work_right_answer(self):
         token = Token('submission')
-        token.human_captcha = {'solved': True}
+        token.solve()
 
         # Note, this solution works with two '00' at the end, if the
         # difficulty changes, also this dummy value has to.
-        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q"}
+        token.proof_of_work = {'question': "7GJ4Sl37AEnP10Zk9p7q", 'solved': False}
 
         # validate with right value: OK
-        self.assertTrue(token.update({'proof_of_work_answer': 0}))
+        self.assertTrue(token.update({'proof_of_work_answer': 26}))
+        token.use()
 
     def test_tokens_garbage_collected(self):
         self.assertTrue(len(TokenList) == 0)
@@ -138,6 +132,6 @@ class TestToken(helpers.TestGL):
         for i in range(100):
             Token('submission')
 
-        tempdict.test_reactor.advance(TokenList.get_timeout()+1)
+        self.test_reactor.advance(TokenList.get_timeout()+1)
 
         self.assertTrue(len(TokenList) == 0)
