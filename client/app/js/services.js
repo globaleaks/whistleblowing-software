@@ -313,10 +313,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.done = false;
 
       self.isDisabled = function() {
-        return (self.count_selected_receivers() === 0 ||
-                self.wait ||
-                !self.pow ||
-                self.done);
+        return self.count_selected_receivers() === 0 ||
+               self.wait ||
+               !self.pow ||
+               self.done;
       };
 
       self.count_selected_receivers = function () {
