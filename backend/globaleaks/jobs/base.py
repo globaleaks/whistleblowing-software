@@ -14,18 +14,15 @@ from globaleaks.utils.utility import log
 test_reactor = None
 
 
-DEFAULT_JOB_MONITOR_TIME = 5 * 60 # seconds
-
-
 class GLJob(object):
     name = "unnamed"
-    job_runs = 0
-    start_time = 0
+    running = False
+    period = 60
     low_time = -1
     high_time = -1
     mean_time = -1
-
-    monitor_time = DEFAULT_JOB_MONITOR_TIME
+    start_time = -1
+    monitor_time = 5 * 60
 
     def __init__(self):
         self.clock = reactor if test_reactor is None else test_reactor
@@ -33,67 +30,41 @@ class GLJob(object):
         self.job = task.LoopingCall(self._operation)
         self.job.clock = self.clock
 
-        self.monitor = task.LoopingCall(self.monitor_fun)
-        self.monitor.clock = self.clock
+        self._schedule()
 
-    def monitor_fun(self):
-        self.monitor_runs += 1
-        elapsed_time = self.monitor_time * self.monitor_runs
-
-        if elapsed_time < 60:
-            error = "Job %s is taking more than %d seconds to execute" % (self.name, elapsed_time)
-        elif elapsed_time < 3600:
-            minutes = int(elapsed_time / 60)
-            error = "Job %s is taking more than %d minutes to execute" % (self.name, minutes)
-        else:
-            hours = int(elapsed_time / 3600)
-            error = "Job %s is taking more than %d hours to execute" % (self.name, hours)
+    def _errback(self, loopingCall):
+        error = "Job %s is died with runtime %.4f [low: %.4f, high: %.4f]" % \
+                      (self.name, self.mean_time, self.low_time, self.high_time)
 
         log.err(error)
         send_exception_email(error)
 
-    def dead_fun(self, loopingCall):
-        error = "Job %s is died with runtime %.4f [iterations: %d, low: %.4f, high: %.4f]" % \
-                      (self.name, self.mean_time, self.job_runs, self.low_time, self.high_time)
+    def start_job(self, period):
+        self.job.start(period).addErrback(self._errback)
 
-        log.err(error)
-        send_exception_email(error)
+    def schedule(self):
+        return 0
 
-    def start_job(self, delay):
-        d = self.job.start(delay)
+    def _schedule(self):
+        delay = self.schedule()
 
-        d.addErrback(self.dead_fun)
+        if delay < 1:
+            delay = 1
 
-    def schedule(self, period = 1, delay = 0):
-        delay = int(delay)
+        self.clock.callLater(delay, self.start_job, self.period)
 
-        if delay > 0:
-            self.clock.callLater(delay, self.start_job, period)
-        else:
-            self.start_job(delay)
-
-    def stats_collection_start(self):
-        if self.mean_time != -1:
-            log.time_debug("Starting job %s expecting an execution time of %.4f [iterations: %d low: %.4f, high: %.4f]" %
-                           (self.name, self.mean_time, self.job_runs, self.low_time, self.high_time))
-        else:
-            log.time_debug("Starting job %s" % self.name)
-
-        self.monitor_runs = 0
+    def stats_collection_begin(self):
         self.start_time = time.time()
-        self.job_runs += 1
-
-        self.monitor.start(self.monitor_time, False)
+        self.running = True
 
     def stats_collection_end(self):
-        if self.monitor.running:
-            self.monitor.stop()
-
         current_run_time = time.time() - self.start_time
 
         # discard empty cicles from stats
-        if current_run_time > 0.000000:
-            self.mean_time = ((self.mean_time * (self.job_runs - 1)) + current_run_time) / self.job_runs
+        if self.mean_time == -1:
+            self.meantime = current_run_time
+        else:
+            self.mean_time = (self.mean_time * 0.7) + (current_run_time * 0.3)
 
         if self.low_time == -1 or current_run_time < self.low_time:
             self.low_time = current_run_time
@@ -101,13 +72,11 @@ class GLJob(object):
         if self.high_time == -1 or current_run_time > self.high_time:
             self.high_time = current_run_time
 
-        log.time_debug("Job %s ended with an execution time of %.4f seconds" % (self.name, current_run_time))
-
-        TimingStatsHandler.log_measured_timing("JOB", self.name, self.start_time, current_run_time)
+        self.running = False
 
     @defer.inlineCallbacks
     def _operation(self):
-        self.stats_collection_start()
+        self.stats_collection_begin()
 
         try:
             yield self.operation()
@@ -115,6 +84,37 @@ class GLJob(object):
             log.err("Exception while performing scheduled operation %s: %s" % \
                     (type(self).__name__, e))
 
-            extract_exception_traceback_and_send_email(e)
+            extact_exception_traceback_and_send_email(e)
 
         self.stats_collection_end()
+
+
+class GLJobsMonitor(GLJob):
+    name = "jobs monitor"
+    period = 2
+
+    def __init__(self, jobs_list):
+        GLJob.__init__(self)
+        self.jobs_list = jobs_list
+
+    #@defer.inlineCallbacks
+    def operation(self):
+        current_time = time.time()
+
+        for job in self.jobs_list:
+            execution_time = 0
+            if job.running:
+                execution_time = current_time - job.start_time
+
+            if execution_time > job.monitor_time:
+                if execution_time < 60:
+                    error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
+                elif execution_time < 3600:
+                    minutes = int(execution_time / 60)
+                    error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
+                else:
+                    hours = int(execution_time / 3600)
+                    error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
+
+                log.err(error)
+                send_exception_email(error)

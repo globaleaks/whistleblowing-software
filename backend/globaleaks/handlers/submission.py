@@ -8,6 +8,7 @@
 
 import copy
 import json
+from storm.expr import And, In
 from twisted.internet import defer
 
 from globaleaks import models
@@ -21,7 +22,6 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, utc_future_date, \
     datetime_now, datetime_never, datetime_to_ISO8601
-from storm.expr import And, In
 
 
 def get_submission_sequence_number(itip):
@@ -410,6 +410,10 @@ def db_create_submission(store, token, request, t2w, language):
     submission_dict = serialize_usertip(store, wbtip, language)
 
     submission_dict.update({'receipt': receipt})
+
+    # The token has been used to create a valid submission. Delete it so it
+    # cannot be used again
+    TokenList.delete(token_id)
 
     return submission_dict
 
