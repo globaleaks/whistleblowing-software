@@ -8,9 +8,10 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables
-from globaleaks.jobs import session_management_sched, statistics_sched, \
-    notification_sched, delivery_sched, cleaning_sched, \
-    pgp_check_sched
+
+from globaleaks.jobs import jobs_list
+from globaleaks.jobs.base import GLJob, GLJobsMonitor
+
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
@@ -30,30 +31,11 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         if test_reactor:
             self._reactor = test_reactor
 
-        # Scheduling the Delivery schedule to be executed every 2 seconds
-        delivery_sched.DeliverySchedule().schedule(2, 1)
+        jobs = []
+        for job in jobs_list:
+            jobs.append(job())
 
-        # Scheduling the Anomalies Check schedule to be executed every 30 seconds
-        statistics_sched.AnomaliesSchedule().schedule(30, 2)
-
-        # Scheduling the Notification schedule to be executed every 60 seconds
-        notification_sched.NotificationSchedule().schedule(60, 3)
-
-        # Scheduling the Session Management schedule to be executed every minute
-        session_management_sched.SessionManagementSchedule().schedule(60, 5)
-
-        # Scheduling the Tip Cleaning scheduler to be executed every day at 00:00
-        current_time = datetime_now()
-        delay = (3600 * (24 + 0)) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
-        clean = cleaning_sched.CleaningSchedule().schedule(3600 * 24, delay)
-
-        # Scheduling the PGP Check scheduler to be executed every day at 02:00
-        delay = (3600 * (24 + 2)) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
-        pgp_check = pgp_check_sched.PGPCheckSchedule().schedule(3600 * 24, delay)
-
-        # Scheduling the Statistics schedule to be executed every hour on the hour
-        delay = 3600 - (current_time.minute * 60) - current_time.second
-        stats = statistics_sched.StatisticsSchedule().schedule(3600, delay)
+        GLJobsMonitor(jobs)
 
     @defer.inlineCallbacks
     def start_globaleaks(self):

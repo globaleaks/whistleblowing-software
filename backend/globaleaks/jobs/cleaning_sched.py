@@ -39,6 +39,11 @@ def db_clean_expired_wbtips(store):
 
 class CleaningSchedule(GLJob):
     name = "Cleaning"
+    period = 24 * 3600
+
+    def schedule(self):
+         current_time = datetime_now()
+         return (3600 * (24 + 0)) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
     @transact
     def clean_expired_wbtips(self, store):
