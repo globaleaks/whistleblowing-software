@@ -48,6 +48,10 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       field.attrs = $scope.admin.get_field_attrs(field.type);
       field.y = $scope.newItemOrder($scope.step.children, 'y');
 
+      if (field.type === 'fileupload') {
+        field.multi_entry = true;
+      }
+
       field.$save(function(new_field){
         $scope.addField(new_field);
         $scope.new_field = {};
