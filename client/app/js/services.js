@@ -999,75 +999,22 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         saveAs(blob, filename);
       },
 
-      uploadedFiles: function(uploads) {
-        var sum = 0;
-
-        angular.forEach(uploads, function(flow) {
-          if (flow !== undefined) {
-            sum += flow.files.length;
-          }
-        });
-
-        return sum;
-      },
-
       getUploadStatus: function(uploads) {
-        var error = false;
-
-        for (var key in uploads) {
-          if (uploads.hasOwnProperty(key)) {
-            if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
-              return 'uploading';
-            }
-
-            for (var i=0; i<uploads[key].files.length; i++) {
-              if (uploads[key].files[i].error) {
-                error = true;
-                break;
-              }
-            }
-          }
+        if (uploads.progress() != 1) {
+          return 'uploading';
         }
 
-        if (error) {
-          return 'error';
-        } else {
-          return 'finished';
-        }
+        return 'finished';
       },
 
       isUploading: function(uploads) {
-        return this.getUploadStatus(uploads) === 'uploading';
-      },
-
-      remainingUploadTime: function(uploads) {
-        var sum = 0;
-
-        angular.forEach(uploads, function(flow) {
-          var x = flow.timeRemaining();
-          if (x === 'Infinity') {
-            return 'Infinity';
+        for (var key in uploads) {
+          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+            return true;
           }
-          sum += x;
-        });
-
-        return sum;
-      },
-
-      uploadProgress: function(uploads) {
-        var sum = 0;
-        var n = 0;
-
-        angular.forEach(uploads, function(flow) {
-          sum += flow.progress();
-          n += 1;
-        });
-
-        if (n === 0 || sum === 0) {
-          return 1;
         }
 
-        return sum / n;
+        return false;
       },
 
       getContext: function(context_id) {
