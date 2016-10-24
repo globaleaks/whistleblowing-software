@@ -251,7 +251,7 @@ def get_mails_from_the_pool(store):
 
 class NotificationSchedule(GLJob):
     name = "Notification"
-    monitor_time = 1800
+    monitor_period = 60*15
 
     def sendmail(self, address, subject, body):
         return sendmail(address, subject, body)
