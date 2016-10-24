@@ -1,3 +1,10 @@
+Changes in version 2.64.9 - 2016-10-24
+    o Fix integration of Slovenian translation
+    o Simplified job scheduling and monitoring
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1794
+
 Changes in version 2.64.8 - 2016-10-18
     o Fix integration of Slovenian translation
 
@@ -9,6 +16,7 @@ Changes in version 2.64.7 - 2016-10-16
 
     Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1754
+    - https://github.com/globaleaks/GlobaLeaks/issues/1778
     - https://github.com/globaleaks/GlobaLeaks/issues/1791
     - https://github.com/globaleaks/GlobaLeaks/issues/1790
 
