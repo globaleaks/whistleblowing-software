@@ -906,7 +906,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       isWhistleblowerPage: function() {
         var path = $location.path();
-        return this.isSubmissionPage() || path === '/status';
+        return (path === '/' ||
+                path === '/start' ||
+                path === '/submission' ||
+                path === '/receipt' ||
+                path === '/status');
       },
 
       isSubmissionPage: function() {
@@ -927,9 +931,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       },
 
       showLoginForm: function () {
-        return (!this.isHomepage() &&
-                !this.isLoginPage() &&
-                !this.isSubmissionPage());
+        var path = $location.path();
+        return path === '/submission';
       },
 
       showUserStatusBox: function() {
