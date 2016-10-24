@@ -1,3 +1,6 @@
+Changes in version 2.64.10 - 2016-10-25
+    o Apply minior bugfixing
+
 Changes in version 2.64.9 - 2016-10-24
     o Fix integration of Slovenian translation
     o Simplified job scheduling and monitoring
