@@ -15,7 +15,8 @@ class GLJobX(GLJob):
 
 
 class TestGLJob(helpers.TestGL):
-    @inlineCallbacks
+    uses_looping_callbacks = True
+
     def test_base_scheduler(self):
         """
         This function asseses the functionalities of a scheduler in calling
