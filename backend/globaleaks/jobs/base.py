@@ -7,8 +7,8 @@ import time
 from twisted.internet import task, defer, reactor
 
 from globaleaks.handlers.base import TimingStatsHandler
-from globaleaks.utils.mailutils import send_exception_email,  extract_exception_traceback_and_send_email
-from globaleaks.utils.utility import log
+from globaleaks.utils.mailutils import send_exception_email, extract_exception_traceback_and_send_email
+from globaleaks.utils.utility import log, datetime_null
 
 
 test_reactor = None
@@ -22,7 +22,11 @@ class GLJob(object):
     high_time = -1
     mean_time = -1
     start_time = -1
-    monitor_time = 5 * 60
+    # The minimum period (seconds) the job has taken to execute before an
+    # exception will be recorded. If the job does not finish every period
+    # after another exception will also be generated.
+    monitor_period = 5 * 60
+    last_monitor_check_failed = datetime_null()
 
     def __init__(self):
         self.clock = reactor if test_reactor is None else test_reactor
@@ -33,7 +37,7 @@ class GLJob(object):
         self._schedule()
 
     def _errback(self, loopingCall):
-        error = "Job %s is died with runtime %.4f [low: %.4f, high: %.4f]" % \
+        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
                       (self.name, self.mean_time, self.low_time, self.high_time)
 
         log.err(error)
@@ -60,7 +64,7 @@ class GLJob(object):
     def stats_collection_end(self):
         current_run_time = time.time() - self.start_time
 
-        # discard empty cicles from stats
+        # discard empty cycles from stats
         if self.mean_time == -1:
             self.meantime = current_run_time
         else:
@@ -84,7 +88,7 @@ class GLJob(object):
             log.err("Exception while performing scheduled operation %s: %s" % \
                     (type(self).__name__, e))
 
-            extact_exception_traceback_and_send_email(e)
+            extract_exception_traceback_and_send_email(e)
 
         self.stats_collection_end()
 
@@ -97,16 +101,22 @@ class GLJobsMonitor(GLJob):
         GLJob.__init__(self)
         self.jobs_list = jobs_list
 
-    #@defer.inlineCallbacks
     def operation(self):
         current_time = time.time()
 
+        error_msg = ""
         for job in self.jobs_list:
             execution_time = 0
             if job.running:
                 execution_time = current_time - job.start_time
 
-            if execution_time > job.monitor_time:
+            time_from_last_failed_check = current_time - job.last_monitor_check_failed
+
+            if execution_time > job.monitor_period
+               and time_from_last_failed_check > job.monitor_period:
+
+                job.last_monitor_check_failed = datetime_now()
+
                 if execution_time < 60:
                     error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
                 elif execution_time < 3600:
@@ -115,6 +125,7 @@ class GLJobsMonitor(GLJob):
                 else:
                     hours = int(execution_time / 3600)
                     error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
-
+                error_msg += '\n' + error
                 log.err(error)
-                send_exception_email(error)
+        if error_msg != "":
+            send_exception_email(error)

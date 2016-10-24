@@ -529,8 +529,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.dummySubmission['total_score'] = 0
 
-        self.dummySubmission = yield create_submission(self.dummyToken,
-                                                       self.dummySubmission,
+        self.dummySubmission = yield create_submission(self.dummySubmission,
+                                                       self.dummyToken.uploaded_files,
                                                        True, 'en')
 
     @inlineCallbacks
