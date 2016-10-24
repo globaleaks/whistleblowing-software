@@ -16,8 +16,6 @@ from globaleaks.jobs import statistics_sched
 
 
 class TestAnomaliesSchedule(helpers.TestGL):
-    uses_looping_callbacks = True
-
     @inlineCallbacks
     def test_anomalies_schedule(self):
         self.n = 0

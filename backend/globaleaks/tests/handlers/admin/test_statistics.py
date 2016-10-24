@@ -13,7 +13,6 @@ from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
 
 class TestStatsCollection(helpers.TestHandler):
     _handler = statistics.StatsCollection
-    uses_looping_callbacks = True
 
     @transact_ro
     def get_stats_count(self, store):
@@ -60,7 +59,6 @@ class TestStatsCollection(helpers.TestHandler):
 
 class TestAnomalyCollection(helpers.TestHandler):
     _handler = statistics.AnomalyCollection
-    uses_looping_callbacks = True
 
     @inlineCallbacks
     def test_get(self):

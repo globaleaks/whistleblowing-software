@@ -7,7 +7,7 @@ from globaleaks.jobs.base import GLJob
 
 
 class GLJobX(GLJob):
-    period = 2
+    interval = 2
     operation_called = 0
 
     def operation(self):
@@ -15,14 +15,14 @@ class GLJobX(GLJob):
 
 
 class TestGLJob(helpers.TestGL):
-    uses_looping_callbacks = True
-
     def test_base_scheduler(self):
         """
         This function asseses the functionalities of a scheduler in calling
         the operation() function periodically.
         """
         job = GLJobX()
+
+        job.schedule()
 
         self.assertEqual(job.operation_called, 0)
 
@@ -37,3 +37,5 @@ class TestGLJob(helpers.TestGL):
         for i in range(2, 10):
             self.test_reactor.advance(2)
             self.assertEqual(job.operation_called, i)
+
+        job.stop()

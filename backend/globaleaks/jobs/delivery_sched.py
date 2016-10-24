@@ -225,8 +225,8 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
 
 class DeliverySchedule(GLJob):
     name = "Delivery"
-    period = 2
-    monitor_period = 15 * 60
+    interval = 2
+    monitor_interval = 15 * 60
 
     @inlineCallbacks
     def operation(self):

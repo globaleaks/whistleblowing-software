@@ -33,7 +33,9 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
         jobs = []
         for job in jobs_list:
-            jobs.append(job())
+            j = job()
+            j.schedule()
+            jobs.append(j)
 
         GLJobsMonitor(jobs)
 

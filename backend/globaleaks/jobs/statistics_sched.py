@@ -87,7 +87,7 @@ class AnomaliesSchedule(GLJob):
     This job checks for anomalies and take care of saving them on the db.
     """
     name = "Anomalies"
-    period = 30
+    interval = 30
 
     @defer.inlineCallbacks
     def operation(self):
@@ -105,7 +105,7 @@ class StatisticsSchedule(GLJob):
     in the database.
     """
     name = "Statistics Sched"
-    period = 30
+    interval = 30
 
     def schedule(self):
          current_time = datetime_now()
