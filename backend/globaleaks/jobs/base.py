@@ -26,7 +26,7 @@ class GLJob(object):
     # exception will be recorded. If the job does not finish, every monitor_period
     # after the first exception another will be generated.
     monitor_period = 5 * 60
-    last_monitor_check_failed = datetime_null()
+    last_monitor_check_failed = 0 # Epoch start
 
     def __init__(self):
         self.clock = reactor if test_reactor is None else test_reactor
@@ -115,7 +115,7 @@ class GLJobsMonitor(GLJob):
             if (execution_time > job.monitor_period
                 and time_from_last_failed_check > job.monitor_period):
 
-                job.last_monitor_check_failed = datetime_now()
+                job.last_monitor_check_failed = current_time
 
                 if execution_time < 60:
                     error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
