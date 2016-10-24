@@ -187,7 +187,6 @@ BaseHandler.get_file_upload = get_file_upload
 class TestGL(unittest.TestCase):
     initialize_test_database_using_archived_db = True
     encryption_scenario = 'ENCRYPTED'
-    uses_looping_callbacks = False
 
     @inlineCallbacks
     def setUp(self):
@@ -239,8 +238,7 @@ class TestGL(unittest.TestCase):
                 deferred_fns = self.test_reactor.getDelayedCalls()
             raise StopIteration
 
-        if not self.uses_looping_callbacks:
-            self.test_reactor.pump(call_spigot())
+        self.test_reactor.pump(call_spigot())
 
     def setUp_dummy(self):
         dummyStuff = MockDict()

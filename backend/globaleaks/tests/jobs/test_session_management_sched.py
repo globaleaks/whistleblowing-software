@@ -9,8 +9,6 @@ from globaleaks.jobs import session_management_sched
 
 
 class TestSessionManagementSched(helpers.TestGL):
-    uses_looping_callbacks = True
-
     @inlineCallbacks
     def test_session_management_sched(self):
         GLSession('admin', 'admin', 'enabled')  # 1!

@@ -12,7 +12,7 @@ __all__ = ['SessionManagementSchedule']
 
 class SessionManagementSchedule(GLJob):
     name = "Session Management"
-    period = 60
+    interval = 60
 
     def operation(self):
         """

@@ -39,8 +39,8 @@ def db_clean_expired_wbtips(store):
 
 class CleaningSchedule(GLJob):
     name = "Cleaning"
-    period = 24 * 3600
-    monitor_period = 15 * 60
+    interval = 24 * 3600
+    monitor_interval = 15 * 60
 
     def schedule(self):
          current_time = datetime_now()

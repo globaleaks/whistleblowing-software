@@ -14,27 +14,23 @@ from globaleaks.utils.utility import log, datetime_null
 test_reactor = None
 
 
-class GLJob(object):
+class GLJob(task.LoopingCall):
     name = "unnamed"
-    running = False
-    period = 60
+    interval = 60
     low_time = -1
     high_time = -1
     mean_time = -1
     start_time = -1
-    # The minimum period (seconds) the job has taken to execute before an
-    # exception will be recorded. If the job does not finish, every monitor_period
+
+    # The minimum interval (seconds) the job has taken to execute before an
+    # exception will be recorded. If the job does not finish, every monitor_interval
     # after the first exception another will be generated.
     monitor_period = 5 * 60
     last_monitor_check_failed = 0 # Epoch start
 
     def __init__(self):
+        self.job = task.LoopingCall.__init__(self, self._operation)
         self.clock = reactor if test_reactor is None else test_reactor
-
-        self.job = task.LoopingCall(self._operation)
-        self.job.clock = self.clock
-
-        self._schedule()
 
     def _errback(self, loopingCall):
         error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
@@ -43,23 +39,22 @@ class GLJob(object):
         log.err(error)
         send_exception_email(error)
 
-    def start_job(self, period):
-        self.job.start(period).addErrback(self._errback)
+    def start(self, interval):
+        task.LoopingCall.start(self, interval).addErrback(self._errback)
 
-    def schedule(self):
+    def get_start_time(self):
         return 0
 
-    def _schedule(self):
-        delay = self.schedule()
+    def schedule(self):
+        delay = self.get_start_time()
 
         if delay < 1:
             delay = 1
 
-        self.clock.callLater(delay, self.start_job, self.period)
+        self.clock.callLater(delay, self.start, self.interval)
 
     def stats_collection_begin(self):
         self.start_time = time.time()
-        self.running = True
 
     def stats_collection_end(self):
         current_run_time = time.time() - self.start_time
@@ -75,8 +70,6 @@ class GLJob(object):
 
         if self.high_time == -1 or current_run_time > self.high_time:
             self.high_time = current_run_time
-
-        self.running = False
 
     @defer.inlineCallbacks
     def _operation(self):
@@ -95,7 +88,7 @@ class GLJob(object):
 
 class GLJobsMonitor(GLJob):
     name = "jobs monitor"
-    period = 2
+    interval = 2
 
     def __init__(self, jobs_list):
         GLJob.__init__(self)
@@ -110,22 +103,23 @@ class GLJobsMonitor(GLJob):
             if job.running:
                 execution_time = current_time - job.start_time
 
-            time_from_last_failed_check = current_time - job.last_monitor_check_failed
+                time_from_last_failed_check = current_time - job.last_monitor_check_failed
 
-            if (execution_time > job.monitor_period
-                and time_from_last_failed_check > job.monitor_period):
+                if (execution_time > job.monitor_interval
+                    and time_from_last_failed_check > job.monitor_interval):
 
-                job.last_monitor_check_failed = current_time
+                    job.last_monitor_check_failed = current_time
 
-                if execution_time < 60:
-                    error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
-                elif execution_time < 3600:
-                    minutes = int(execution_time / 60)
-                    error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
-                else:
-                    hours = int(execution_time / 3600)
-                    error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
-                error_msg += '\n' + error
-                log.err(error)
-        if error_msg != "":
-            send_exception_email(error)
+                    if execution_time < 60:
+                        error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
+                    elif execution_time < 3600:
+                        minutes = int(execution_time / 60)
+                        error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
+                    else:
+                        hours = int(execution_time / 3600)
+                        error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
+                    error_msg += '\n' + error
+                    log.err(error)
+
+            if error_msg != "":
+                send_exception_email(error)
