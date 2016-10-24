@@ -30,11 +30,11 @@ __all__ = ['CleaningSchedule']
 def db_clean_expired_wbtips(store):
     threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
 
-    itips = store.find(models.InternalTip, models.InternalTip.wb_last_access < threshold)
-    for itip in itips:
-        if itip.whistleblowertip is not None:
-            log.info("Disabling WB access to %s" % itip.id)
-            store.remove(itip.whistleblowertip)
+    wbtips = store.find(models.WhistleblowerTip, models.WhistleblowerTip.internaltip_id == models.InternalTip.id,
+                                                 models.InternalTip.wb_last_access < threshold)
+    for wbtip in wbtips:
+        log.info("Disabling WB access to %s" % wbtip.internaltip_id)
+        store.remove(wbtip)
 
 
 class CleaningSchedule(GLJob):
@@ -66,34 +66,34 @@ class CleaningSchedule(GLJob):
     @transact
     def check_for_expiring_submissions(self, store):
         threshold = datetime_now() + timedelta(GLSettings.memory_copy.notif.tip_expiration_threshold)
-        for itip in store.find(models.InternalTip, models.InternalTip.expiration_date < threshold):
-            for rtip in itip.receivertips:
-                user = rtip.receiver.user
-                language = user.language
-                node_desc = db_admin_serialize_node(store, language)
-                notification_desc = db_get_notification(store, language)
-                context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
-                receiver_desc = admin_serialize_receiver(rtip.receiver, language)
-                tip_desc = serialize_rtip(store, rtip, user.language)
+        for rtip in store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                   models.InternalTip.expiration_date < threshold):
+            user = rtip.receiver.user
+            language = user.language
+            node_desc = db_admin_serialize_node(store, language)
+            notification_desc = db_get_notification(store, language)
+            context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
+            receiver_desc = admin_serialize_receiver(rtip.receiver, language)
+            tip_desc = serialize_rtip(store, rtip, user.language)
 
-                data = {
-                   'type': u'tip_expiration',
-                   'node': node_desc,
-                   'context': context_desc,
-                   'receiver': receiver_desc,
-                   'notification': notification_desc,
-                   'tip': tip_desc
-                }
+            data = {
+               'type': u'tip_expiration',
+               'node': node_desc,
+               'context': context_desc,
+               'receiver': receiver_desc,
+               'notification': notification_desc,
+               'tip': tip_desc
+            }
 
-                subject, body = Templating().get_mail_subject_and_body(data)
+            subject, body = Templating().get_mail_subject_and_body(data)
 
-                mail = models.Mail({
-                   'address': data['receiver']['mail_address'],
-                   'subject': subject,
-                   'body': body
-                })
+            mail = models.Mail({
+               'address': data['receiver']['mail_address'],
+               'subject': subject,
+               'body': body
+            })
 
-                store.add(mail)
+            store.add(mail)
 
     @transact
     def clean_db(self, store):
