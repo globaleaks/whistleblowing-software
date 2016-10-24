@@ -4,8 +4,8 @@
       <select class="form-control" data-ng-model="GLTranslate.indirect.appLanguage" ng-change="GLTranslate.setLang(); reload();" data-ng-options="item.code as item.name for item in languages_enabled_selector"></select>
     </div>
   </div>
-  <div id="LoginStatusBox" class="row" data-ng-if="Utils.showLoginForm() || session">
-    <div data-ng-show="session" class="pull-right">
+  <div id="LoginStatusBox" class="row" data-ng-if="Utils.showUserStatusBox()">
+    <div class="pull-right">
       <span id="LoginRoleText">
         <label data-ng-if="session.role === 'whistleblower'" data-translate>Whistleblower</label>
         <span data-ng-if="session.role !== 'whistleblower'" data-ng-switch="session.role">
@@ -26,7 +26,9 @@
         </span>
       </span>
     </div>
-    <div data-ng-if="Utils.showLoginForm() && !session" class="pull-right">
+  </div>
+  <div id="LoginStatusBox" class="row" data-ng-if="Utils.showLoginForm()">
+    <div class="pull-right">
       <div>{{::node.whistleblowing_receipt_prompt}}</div>
       <div data-ng-include="'views/partials/wb_login.html'"></div>
       <div class="row LoginErrorBox" data-ng-show="errors[0].code == 29">
