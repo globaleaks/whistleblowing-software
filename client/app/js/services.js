@@ -932,6 +932,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 !this.isSubmissionPage());
       },
 
+      showUserStatusBox: function() {
+        return angular.isDefined($rootScope.session);
+      },
+
       showPrivacyBadge: function() {
         return (!$rootScope.embedded &&
                 !$rootScope.node.disable_privacy_badge &&
