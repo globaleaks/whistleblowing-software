@@ -11,6 +11,8 @@ from globaleaks.jobs.notification_sched import NotificationSchedule, MailGenerat
 
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
+    uses_looping_callbacks = True
+
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGLWithPopulatedDB.setUp(self)

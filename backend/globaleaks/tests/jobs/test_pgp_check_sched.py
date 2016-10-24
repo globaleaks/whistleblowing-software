@@ -7,6 +7,7 @@ from globaleaks.jobs import pgp_check_sched
 
 
 class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
+    uses_looping_callbacks = True
     encryption_scenario = 'ENCRYPTED_WITH_ONE_KEY_EXPIRED'
 
     @inlineCallbacks

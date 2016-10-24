@@ -13,6 +13,7 @@ from globaleaks.settings import GLSettings
 
 
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
+    uses_looping_callabacks = True
     population_of_submissions = 10
 
     @transact

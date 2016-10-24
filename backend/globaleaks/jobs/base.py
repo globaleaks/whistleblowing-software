@@ -23,8 +23,8 @@ class GLJob(object):
     mean_time = -1
     start_time = -1
     # The minimum period (seconds) the job has taken to execute before an
-    # exception will be recorded. If the job does not finish every period
-    # after another exception will also be generated.
+    # exception will be recorded. If the job does not finish, every monitor_period
+    # after the first exception another will be generated.
     monitor_period = 5 * 60
     last_monitor_check_failed = datetime_null()
 
@@ -112,8 +112,8 @@ class GLJobsMonitor(GLJob):
 
             time_from_last_failed_check = current_time - job.last_monitor_check_failed
 
-            if execution_time > job.monitor_period
-               and time_from_last_failed_check > job.monitor_period:
+            if (execution_time > job.monitor_period
+                and time_from_last_failed_check > job.monitor_period):
 
                 job.last_monitor_check_failed = datetime_now()
 
