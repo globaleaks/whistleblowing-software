@@ -42,7 +42,7 @@ class CleaningSchedule(GLJob):
     interval = 24 * 3600
     monitor_interval = 15 * 60
 
-    def schedule(self):
+    def get_start_time(self):
          current_time = datetime_now()
          return (3600 * (24 + 0)) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
