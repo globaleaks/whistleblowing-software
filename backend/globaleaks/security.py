@@ -406,7 +406,7 @@ class GLBPGP(object):
         """
         Encrypt a file with the specified PGP key
         """
-        encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)
+        encrypted_obj = self.gnupg.encrypt_file(input_file, str(key_fingerprint), output=output_path)#add sign?
 
         if not encrypted_obj.ok:
             raise errors.PGPKeyInvalid
@@ -417,7 +417,7 @@ class GLBPGP(object):
         """
         Encrypt a text message with the specified key
         """
-        encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))
+        encrypted_obj = self.gnupg.encrypt(plaintext, str(key_fingerprint))#add sign?
 
         if not encrypted_obj.ok:
             raise errors.PGPKeyInvalid
