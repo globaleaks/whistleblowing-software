@@ -6,8 +6,6 @@ from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
 import storm.databases.sqlite
-import transaction
-from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
 from storm import exceptions, tracer
 from storm.databases.sqlite import sqlite
@@ -109,18 +107,8 @@ class transact(object):
 
             if not self.readonly:
                 self.store.commit()
-            else:
-                self.store.flush()
-                self.store.invalidate()
-
-        except exceptions.DisconnectionError as e:
-            transaction.abort()
-            result = None
-        except exceptions.IntegrityError as e:
-            transaction.abort()
-            raise DatabaseIntegrityError(str(e))
-        except Exception:
-            transaction.abort()
+        except:
+            self.store.rollback()
             raise
         finally:
             self.store.close()

@@ -122,17 +122,7 @@ class InvalidModelInput(GLException):
         self.arguments = [wrong_source]
 
 
-class DatabaseIntegrityError(GLException):
-    """
-    A query on the database resulted in an integrity error
-    """
-    reason = "A query on the database resulted in an integrity error"
-    error_code = 17
-    status_code = 406  # Not Acceptable
-
-    def __init__(self, dberror):
-        self.reason = "%s: %s" % (self.reason, dberror)
-        self.arguments = [dberror]
+# UNUSED ERROR CODE 17 HERE!
 
 
 class UserIdNotFound(GLException):

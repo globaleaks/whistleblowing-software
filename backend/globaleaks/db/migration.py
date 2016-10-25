@@ -8,7 +8,6 @@ from storm.locals import create_database, Store
 
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.models import l10n, config
-from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
 
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
@@ -100,7 +99,7 @@ def db_perform_data_update(store):
     ok = config.is_cfg_valid(store)
     if not ok:
         m = 'Error: the system is not stable, update failed from %s to %s' % t
-        raise DatabaseIntegrityError(m)
+        raise Exception(m)
 
 
 def perform_data_update(dbfile):
