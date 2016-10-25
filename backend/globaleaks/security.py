@@ -5,7 +5,7 @@
 #
 # GlobaLeaks security functions
 
-import base64
+from base64 import b64encode
 import binascii
 import json
 import os
@@ -48,16 +48,16 @@ def generateRandomReceipt():
 
 def generateRandomKey(N):
     """
-    Return a random key of N characters in a-zA-Z0-9
+    python urandom with length = N#Return a random key of N characters in a-zA-Z0-9
     """
-    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N)).encode('utf-8')
-
+    #return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(N)).encode('utf-8')
+    return b64encode(os.urandom(N))
 
 def generateRandomSalt():
     """
     Return a base64 encoded string with 128 bit of entropy
     """
-    return base64.b64encode(os.urandom(16))
+    return b64encode(os.urandom(16))
 
 
 def generateRandomPassword():
