@@ -1,5 +1,4 @@
 from twisted.internet.defer import inlineCallbacks
-from storm import exceptions
 
 from globaleaks.tests import helpers
 
@@ -66,7 +65,7 @@ class TestORM(helpers.TestGL):
         receiver.user_id = receiver_user.id
         store.add(receiver)
 
-        raise exceptions.DisconnectionError
+        raise Exception("antani")
 
     @transact_ro
     def _transact_ro_add_mail(self, store):
@@ -97,9 +96,18 @@ class TestORM(helpers.TestGL):
 
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):
-        receiver_id = yield self._transact_with_stuff_failing()
         store = transact.get_store()
-        self.assertEqual(list(store.find(Receiver, Receiver.id == receiver_id)), [])
+        count1 = store.find(Receiver).count()
+
+        try:
+            receiver_id = yield self._transact_with_stuff_failing()
+        except:
+            pass
+
+        store = transact.get_store()
+        count2 = store.find(Receiver).count()
+
+        self.assertEqual(count1, count2)
 
     @inlineCallbacks
     def test_transact_decorate_function(self):
