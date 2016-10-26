@@ -46,7 +46,7 @@ LANGUAGES_SUPPORTED = [
   {'code': 'pt_PT', 'name': 'Portuguese (Portugal)', 'native': u'Portugu\xeas (Portugal)'},
   {'code': 'ro', 'name': 'Romanian', 'native': u'Rom\xe2n\u0103'},
   {'code': 'ru', 'name': 'Russian', 'native': u'\u0440\u0443\u0441\u0441\u043a\u0438\u0439'},
-  {'code': 'sl_SI', 'name': 'Slovenian (Slovenia)', 'native': 'sloven\u0161\u010dina (Slovenija)'},
+  {'code': 'sl_SI', 'name': 'Slovenian (Slovenia)', 'native': u'sloven\u0161\u010dina (Slovenija)'},
   {'code': 'sq', 'name': 'Albanian', 'native': u'Shqip'},
   {'code': 'sv', 'name': 'Swedish', 'native': u'Vvenska'},
   {'code': 'ta', 'name': 'Tamil', 'native': u'\u0ba4\u0bae\u0bbf\u0bb4\u0bcd'},
