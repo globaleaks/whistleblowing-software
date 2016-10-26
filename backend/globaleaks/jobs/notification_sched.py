@@ -216,14 +216,9 @@ class MailGenerator(object):
                           (count, trigger))
 
 
-@transact_sync
-def delete_sent_mail(store, mail_id):
+@transact
+def delete_sent_mail(store, result, mail_id):
     store.find(models.Mail, models.Mail.id == mail_id).remove()
-
-
-@defer.inlineCallbacks
-def _success_callback(result, mail_id):
-    yield delete_sent_mail(mail_id)
 
 
 @transact_sync
@@ -231,16 +226,18 @@ def get_mails_from_the_pool(store):
     ret = []
 
     for mail in store.find(models.Mail):
+        if mail.processing_attempts > 9:
+            store.remove(mail)
+            continue
+
+        mail.processing_attempts += 1
+
         ret.append({
             'id': mail.id,
             'address': mail.address,
             'subject': mail.subject,
             'body': mail.body
         })
-
-        mail.processing_attempts += 1
-        if mail.processing_attempts > 9:
-            store.remove(mail)
 
     return ret
 
@@ -251,7 +248,7 @@ class NotificationSchedule(GLJob):
 
     def sendmail(self, mail):
         d = sendmail(mail['address'], mail['subject'], mail['body'])
-        d.addCallback(_success_callback, mail['id'])
+        d.addCallback(delete_sent_mail, mail['id'])
         return d
 
     def spool_emails(self):

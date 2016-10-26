@@ -2,7 +2,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact, transact_ro, get_store
 from globaleaks.models import *
 from globaleaks.utils.utility import datetime_null
 
@@ -77,10 +77,6 @@ class TestORM(helpers.TestGL):
         store.add(m)
         return m.id
 
-    @inlineCallbacks
-    def test_transaction_with_exception(self):
-        yield self.assertFailure(self._transaction_with_exception(), Exception)
-
     def test_transaction_pragmas(self):
         return self._transaction_pragmas()
 
@@ -91,20 +87,17 @@ class TestORM(helpers.TestGL):
     def test_transact_with_stuff(self):
         receiver_id = yield self._transact_with_stuff()
         # now check data actually written
-        store = transact.get_store()
+        store = get_store()
         self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(), 1)
 
     @inlineCallbacks
-    def test_transact_with_stuff_failing(self):
-        store = transact.get_store()
+    def test_transaction_with_exception(self):
+        store = get_store()
         count1 = store.find(Receiver).count()
 
-        try:
-            receiver_id = yield self._transact_with_stuff_failing()
-        except:
-            pass
+        yield self.assertFailure(self._transact_with_stuff_failing(), Exception)
 
-        store = transact.get_store()
+        store = get_store()
         count2 = store.find(Receiver).count()
 
         self.assertEqual(count1, count2)
