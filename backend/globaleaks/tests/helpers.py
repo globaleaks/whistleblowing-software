@@ -17,11 +17,8 @@ from cyclone import httpserver
 from cyclone.web import Application
 from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
-from twisted.python.threadpool import ThreadPool
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-
-from twisted.python.threadpool import ThreadPool
 
 from storm.twisted.testing import FakeThreadPool
 
