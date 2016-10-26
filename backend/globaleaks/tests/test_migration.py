@@ -21,7 +21,6 @@ from globaleaks.models.l10n import EnabledLanguage, ConfigL10N
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.settings import GLSettings
-from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.tests import helpers
 
 
@@ -83,7 +82,6 @@ class TestConfigUpdates(unittest.TestCase):
         GLConfig['private']['smtp_password'] = GLConfig['private'].pop('xx_smtp_password')
         config.is_cfg_valid = self._bck_f
 
-    @inlineCallbacks
     def test_migration_error_with_removed_language(self):
         store = Store(create_database(GLSettings.db_uri))
         zyx = EnabledLanguage('zyx')
@@ -91,20 +89,15 @@ class TestConfigUpdates(unittest.TestCase):
         store.commit()
         store.close()
 
-        try:
-            yield migration.perform_data_update(self.db_file)
-            self.fail()
-        except Exception:
-            pass
+        self.assertRaises(Exception, migration.perform_data_update, self.db_file)
 
-    @inlineCallbacks
     def test_detect_and_fix_cfg_change(self):
         store = Store(create_database(GLSettings.db_uri))
         ret = config.is_cfg_valid(store)
         self.assertFalse(ret)
         store.close()
 
-        yield migration.perform_data_update(self.db_file)
+        migration.perform_data_update(self.db_file)
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
@@ -114,25 +107,19 @@ class TestConfigUpdates(unittest.TestCase):
         self.assertTrue(ret)
         store.close()
 
-    @inlineCallbacks
     def test_version_change_success(self):
-        yield migration.perform_data_update(self.db_file)
+        migration.perform_data_update(self.db_file)
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
         self.assertEqual(prv.get_val('version'), __version__)
         store.close()
 
-    @inlineCallbacks
     def test_version_change_not_ok(self):
         # Set is_config_valid to false  during managed ver update
         config.is_cfg_valid = apply_gen(mod_bool)
 
-        try:
-            yield migration.perform_data_update(self.db_file)
-            self.fail()
-        except Exception as e:
-            self.assertIsInstance(e, DatabaseIntegrityError)
+        self.assertRaises(Exception, migration.perform_data_update, self.db_file)
 
         # Ensure the rollback has succeeded
         store = Store(create_database(GLSettings.db_uri))
@@ -140,16 +127,11 @@ class TestConfigUpdates(unittest.TestCase):
         self.assertEqual(prv.get_val('version'), self.dummy_ver)
         store.close()
 
-    @inlineCallbacks
     def test_ver_change_exception(self):
         # Explicity throw an exception in managed_ver_update via is_cfg_valid
         config.is_cfg_valid = apply_gen(throw_excep)
 
-        try:
-            yield migration.perform_data_update(self.db_file)
-            self.fail()
-        except IOError as e:
-            self.assertIsInstance(e, IOError)
+        self.assertRaises(IOError, migration.perform_data_update, self.db_file)
 
         store = Store(create_database(GLSettings.db_uri))
         prv = config.PrivateFactory(store)
