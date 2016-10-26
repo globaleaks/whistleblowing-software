@@ -8,10 +8,9 @@
 import time
 
 from datetime import timedelta
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact_sync, transact_ro_sync
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -46,7 +45,7 @@ class CleaningSchedule(GLJob):
          current_time = datetime_now()
          return (3600 * (24 + 0)) - (current_time.hour * 3600) - (current_time.minute * 60) - current_time.second
 
-    @transact
+    @transact_sync
     def clean_expired_wbtips(self, store):
         """
         This function checks all the InternalTips and deletes WhistleblowerTips
@@ -54,7 +53,7 @@ class CleaningSchedule(GLJob):
         """
         db_clean_expired_wbtips(store)
 
-    @transact
+    @transact_sync
     def clean_expired_itips(self, store):
         """
         This function, checks all the InternalTips and their expiration date.
@@ -63,7 +62,7 @@ class CleaningSchedule(GLJob):
         """
         db_delete_itips(store, store.find(models.InternalTip, models.InternalTip.expiration_date < datetime_now()))
 
-    @transact
+    @transact_sync
     def check_for_expiring_submissions(self, store):
         threshold = datetime_now() + timedelta(GLSettings.memory_copy.notif.tip_expiration_threshold)
         for rtip in store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
@@ -95,7 +94,7 @@ class CleaningSchedule(GLJob):
 
             store.add(mail)
 
-    @transact
+    @transact_sync
     def clean_db(self, store):
         # delete stats older than 3 months
         store.find(models.Stats, models.Stats.start < datetime_now() - timedelta(3*(365/12))).remove()
@@ -103,34 +102,32 @@ class CleaningSchedule(GLJob):
         # delete anomalies older than 1 months
         store.find(models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365/12)).remove()
 
-    @transact_ro
+    @transact_ro_sync
     def get_files_to_secure_delete(self, store):
         return [file_to_delete.filepath for file_to_delete in store.find(models.SecureFileDelete)]
 
-    @transact
+    @transact_sync
     def commit_file_deletion(self, store, filepath):
         store.find(models.SecureFileDelete, models.SecureFileDelete.filepath == filepath).remove()
 
-    @inlineCallbacks
     def perform_secure_deletion_of_files(self):
-        files_to_delete = yield self.get_files_to_secure_delete()
+        files_to_delete = self.get_files_to_secure_delete()
 
         for file_to_delete in files_to_delete:
             self.start_time = time.time()
             log.debug("Starting secure delete of file %s" % file_to_delete)
             overwrite_and_remove(file_to_delete)
-            yield self.commit_file_deletion(file_to_delete)
+            self.commit_file_deletion(file_to_delete)
             current_run_time = time.time() - self.start_time
             log.debug("Ending secure delete of file %s (execution time: %.2f)" % (file_to_delete, current_run_time))
 
-    @inlineCallbacks
     def operation(self):
-        yield self.clean_expired_wbtips()
+        self.clean_expired_wbtips()
 
-        yield self.clean_expired_itips()
+        self.clean_expired_itips()
 
-        yield self.check_for_expiring_submissions()
+        self.check_for_expiring_submissions()
 
-        yield self.clean_db()
+        self.clean_db()
 
-        yield self.perform_secure_deletion_of_files()
+        self.perform_secure_deletion_of_files()

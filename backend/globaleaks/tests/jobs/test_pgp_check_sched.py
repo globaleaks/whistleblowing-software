@@ -13,4 +13,4 @@ class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):
     def test_pgp_check_schedule(self):
         # FIXME: complete this unit test by performing checks
         #        on the actions performed by the scheduler.
-        yield pgp_check_sched.PGPCheckSchedule().operation()
+        yield pgp_check_sched.PGPCheckSchedule().run()

@@ -71,21 +71,21 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         # verify tip creation
         yield self.check1()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify tips survive the scheduler if they are not expired
         yield self.check1()
 
         yield self.force_wbtip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify rtips survive the scheduler if the wbtip expires
         yield self.check2()
 
         yield self.force_itip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify cascade deletion when tips expire
         yield self.check0()

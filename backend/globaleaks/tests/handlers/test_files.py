@@ -71,7 +71,7 @@ class TestDownload(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:

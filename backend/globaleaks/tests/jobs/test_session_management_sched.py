@@ -25,4 +25,4 @@ class TestSessionManagementSched(helpers.TestGL):
 
         self.assertEqual(len(GLSessions), 0)
 
-        yield session_management_sched.SessionManagementSchedule().operation()
+        yield session_management_sched.SessionManagementSchedule().run()

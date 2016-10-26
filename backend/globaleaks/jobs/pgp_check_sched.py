@@ -14,7 +14,7 @@ from datetime import timedelta
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
+from globaleaks.orm import transact_sync
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
@@ -59,7 +59,7 @@ class PGPCheckSchedule(GLJob):
 
         Templating().db_prepare_mail(store, data)
 
-    @transact
+    @transact_sync
     def perform_pgp_validation_checks(self, store):
         expired_or_expiring = []
 
@@ -80,6 +80,5 @@ class PGPCheckSchedule(GLJob):
             for user_desc in expired_or_expiring:
                 self.prepare_user_pgp_alerts(store, user_desc)
 
-    @inlineCallbacks
     def operation(self):
-        yield self.perform_pgp_validation_checks()
+        self.perform_pgp_validation_checks()

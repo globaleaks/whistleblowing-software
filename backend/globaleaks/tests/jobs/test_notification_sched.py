@@ -25,11 +25,11 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
 
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
-        yield notification_schedule.operation()
+        yield notification_schedule.run()
 
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
@@ -39,7 +39,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
 
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
@@ -50,12 +50,12 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         notification_schedule.sendmail = sendmail
 
         for i in range(0, 9):
-            yield notification_schedule.operation()
+            yield notification_schedule.run()
 
             count = yield self.get_scheduled_email_count()
             self.assertEqual(count, 40)
 
-        yield notification_schedule.operation()
+        yield notification_schedule.run()
 
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)

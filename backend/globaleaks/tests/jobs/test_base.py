@@ -10,15 +10,14 @@ class GLJobX(GLJob):
     interval = 2
     operation_called = 0
 
-    def operation(self):
+    def run(self):
         self.operation_called += 1
-
 
 class TestGLJob(helpers.TestGL):
     def test_base_scheduler(self):
         """
         This function asseses the functionalities of a scheduler in calling
-        the operation() function periodically.
+        the run() function periodically.
         """
         job = GLJobX()
 

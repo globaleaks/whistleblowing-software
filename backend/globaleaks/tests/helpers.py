@@ -17,8 +17,11 @@ from cyclone import httpserver
 from cyclone.web import Application
 from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
+from twisted.python.threadpool import ThreadPool
 from twisted.trial import unittest
 from twisted.test import proto_helpers
+
+from twisted.python.threadpool import ThreadPool
 
 from storm.twisted.testing import FakeThreadPool
 
@@ -191,6 +194,7 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def setUp(self):
         self.test_reactor = task.Clock()
+
         jobs.base.test_reactor = self.test_reactor
         tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
@@ -222,23 +226,23 @@ class TestGL(unittest.TestCase):
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
-    def tearDown(self):
+    def call_spigot(self):
         """
         Required for clearing scheduled callbacks in the testReactor that have yet to run.
         If a unittest has scheduled something, we execute it before moving on.
         """
-        def call_spigot():
+        deferred_fns = self.test_reactor.getDelayedCalls()
+        i = 0;
+        while len(deferred_fns) != 0:
+            yield deferred_fns[0].getTime()
+            if i >= 30:
+                raise Exception("stuck in callback loop")
+            i += 1
             deferred_fns = self.test_reactor.getDelayedCalls()
-            i = 0;
-            while len(deferred_fns) != 0:
-                yield deferred_fns[0].getTime()
-                if i >= 30:
-                    raise Exception("stuck in callback loop")
-                i += 1
-                deferred_fns = self.test_reactor.getDelayedCalls()
-            raise StopIteration
+        raise StopIteration
 
-        self.test_reactor.pump(call_spigot())
+    def tearDown(self):
+        self.test_reactor.pump(self.call_spigot())
 
     def setUp_dummy(self):
         dummyStuff = MockDict()

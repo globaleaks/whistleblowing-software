@@ -29,8 +29,8 @@ class TestStatsCollection(helpers.TestHandler):
 
         pollute_events_for_testing_and_perform_synthesis(10)
 
-        yield AnomaliesSchedule().operation()
-        yield StatisticsSchedule().operation()
+        yield AnomaliesSchedule().run()
+        yield StatisticsSchedule().run()
 
         for i in range(0, 2):
             handler = self.request({}, role='admin')
@@ -41,8 +41,8 @@ class TestStatsCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_delete(self):
         pollute_events_for_testing_and_perform_synthesis(10)
-        yield AnomaliesSchedule().operation()
-        yield StatisticsSchedule().operation()
+        yield AnomaliesSchedule().run()
+        yield StatisticsSchedule().run()
 
         # be sure that Stats is populated
         count = yield self.get_stats_count()
@@ -63,8 +63,8 @@ class TestAnomalyCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         pollute_events_for_testing_and_perform_synthesis(10)
-        yield AnomaliesSchedule().operation()
-        yield StatisticsSchedule().operation()
+        yield AnomaliesSchedule().run()
+        yield StatisticsSchedule().run()
 
         handler = self.request({}, role='admin')
         yield handler.get()
@@ -75,8 +75,8 @@ class TestAnomalyCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_delete(self):
         pollute_events_for_testing_and_perform_synthesis(10)
-        yield AnomaliesSchedule().operation()
-        yield StatisticsSchedule().operation()
+        yield AnomaliesSchedule().run()
+        yield StatisticsSchedule().run()
 
         # be sure that AnomalyHistory is populated
         handler = self.request({}, role='admin')
@@ -105,7 +105,7 @@ class TestRecentEventsCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         pollute_events_for_testing_and_perform_synthesis(3)
-        yield StatisticsSchedule().operation()
+        yield StatisticsSchedule().run()
 
         handler = self.request({}, role='admin')
 

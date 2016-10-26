@@ -57,6 +57,7 @@ class transact(object):
     Because Storm sucks.
     """
     readonly = False
+    synchronous = False
 
     def __init__(self, method):
         self.store = None
@@ -74,16 +75,17 @@ class transact(object):
     def __call__(self, *args, **kwargs):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
-    @staticmethod
-    def run(function, *args, **kwargs):
+    def run(self, function, *args, **kwargs):
         """
         Defer provided function to thread
         """
+        if self.synchronous:
+            return function(*args, **kwargs)
+
         return deferToThreadPool(reactor, GLSettings.orm_tp,
                                  function, *args, **kwargs)
 
-    @staticmethod
-    def get_store():
+    def get_store(self):
         """
         Returns a reference to Storm Store
         """
@@ -118,3 +120,11 @@ class transact(object):
 
 class transact_ro(transact):
     readonly = True
+
+
+class transact_sync(transact):
+    synchronous = True
+
+
+class transact_ro_sync(transact_ro):
+    synchronous = True
