@@ -11,15 +11,13 @@
 # kind of file has been submitted.
 
 import os
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, ReceiverFile
-from globaleaks.orm import transact
+from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import send_exception_email
 from globaleaks.utils.utility import log
 
 __all__ = ['DeliverySchedule']
@@ -28,7 +26,7 @@ __all__ = ['DeliverySchedule']
 INTERNALFILES_HANDLE_RETRY_MAX = 3
 
 
-@transact
+@transact_sync
 def receiverfile_planning(store):
     """
     This function roll over the InternalFile uploaded, extract a path, id and
@@ -43,7 +41,6 @@ def receiverfile_planning(store):
             error = "Failed to handle receiverfiles creation for ifile %s (%d retries)" % \
                     (ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
             log.err(error)
-            send_exception_email(error)
             continue
 
         elif ifile.processing_attempts >= 1:
@@ -201,7 +198,7 @@ def process_files(receiverfiles_maps):
             log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, ose.message))
 
 
-@transact
+@transact_sync
 def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
     for ifile_id, receiverfiles_map in receiverfiles_maps.iteritems():
         ifile = store.find(InternalFile, InternalFile.id == ifile_id).one()
@@ -228,13 +225,12 @@ class DeliverySchedule(GLJob):
     interval = 2
     monitor_interval = 15 * 60
 
-    @inlineCallbacks
     def operation(self):
         """
         This function creates receiver files
         """
-        receiverfiles_maps = yield receiverfile_planning()
+        receiverfiles_maps = receiverfile_planning()
 
         if len(receiverfiles_maps):
             process_files(receiverfiles_maps)
-            yield update_internalfile_and_store_receiverfiles(receiverfiles_maps)
+            update_internalfile_and_store_receiverfiles(receiverfiles_maps)

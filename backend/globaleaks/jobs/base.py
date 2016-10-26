@@ -4,7 +4,7 @@
 #
 # Base class for implement the scheduled tasks
 import time
-from twisted.internet import task, defer, reactor
+from twisted.internet import task, defer, reactor, threads
 
 from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.utils.mailutils import send_exception_email, extract_exception_traceback_and_send_email
@@ -29,7 +29,7 @@ class GLJob(task.LoopingCall):
     last_monitor_check_failed = 0 # Epoch start
 
     def __init__(self):
-        self.job = task.LoopingCall.__init__(self, self._operation)
+        self.job = task.LoopingCall.__init__(self, self.run)
         self.clock = reactor if test_reactor is None else test_reactor
 
     def _errback(self, loopingCall):
@@ -72,11 +72,11 @@ class GLJob(task.LoopingCall):
             self.high_time = current_run_time
 
     @defer.inlineCallbacks
-    def _operation(self):
+    def run(self):
         self.stats_collection_begin()
 
         try:
-            yield self.operation()
+            yield threads.deferToThread(self.operation)
         except Exception as e:
             log.err("Exception while performing scheduled operation %s: %s" % \
                     (type(self).__name__, e))

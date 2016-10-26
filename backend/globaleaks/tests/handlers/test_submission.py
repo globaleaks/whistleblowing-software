@@ -54,7 +54,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        yield delivery_sched.DeliverySchedule().operation()
+        yield delivery_sched.DeliverySchedule().run()
 
         self.fil = yield self.get_internalfiles_by_wbtip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
