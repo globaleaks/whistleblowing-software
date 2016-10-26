@@ -51,6 +51,16 @@ storm.databases.sqlite.create_from_uri = SQLite
 # XXX. END MONKEYPATCH
 
 
+def get_store():
+    """
+    Returns a reference to Storm Store
+    """
+    zstorm = ZStorm()
+    zstorm.set_default_uri(GLSettings.store_name, GLSettings.db_uri)
+
+    return zstorm.get(GLSettings.store_name)
+
+
 class transact(object):
     """
     Class decorator for managing transactions.
@@ -85,21 +95,12 @@ class transact(object):
         return deferToThreadPool(reactor, GLSettings.orm_tp,
                                  function, *args, **kwargs)
 
-    def get_store(self):
-        """
-        Returns a reference to Storm Store
-        """
-        zstorm = ZStorm()
-        zstorm.set_default_uri(GLSettings.store_name, GLSettings.db_uri)
-
-        return zstorm.get(GLSettings.store_name)
-
     def _wrap(self, function, *args, **kwargs):
         """
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        self.store = self.get_store()
+        self.store = get_store()
 
         try:
             if self.instance:
