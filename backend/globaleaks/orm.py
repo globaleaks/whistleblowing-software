@@ -2,14 +2,18 @@
 # orm: contains main hooks to storm ORM
 # ******
 import sys
+import transaction
+
+from storm import exceptions, tracer
+import storm.databases.sqlite
+from storm.databases.sqlite import sqlite
+from storm.zope.zstorm import ZStorm
+
+
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-import storm.databases.sqlite
 from globaleaks.settings import GLSettings
-from storm import exceptions, tracer
-from storm.databases.sqlite import sqlite
-from storm.zope.zstorm import ZStorm
 
 
 class SQLite(storm.databases.sqlite.Database):
@@ -70,7 +74,6 @@ class transact(object):
     synchronous = False
 
     def __init__(self, method):
-        self.store = None
         self.method = method
         self.instance = None
         self.debug = GLSettings.orm_debug
@@ -86,35 +89,36 @@ class transact(object):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
     def run(self, function, *args, **kwargs):
-        """
-        Defer provided function to thread
-        """
-        if self.synchronous:
-            return function(*args, **kwargs)
-
-        return deferToThreadPool(reactor, GLSettings.orm_tp,
-                                 function, *args, **kwargs)
+        return deferToThreadPool(reactor,
+                                 GLSettings.orm_tp,
+                                 function,
+                                 *args,
+                                 **kwargs)
 
     def _wrap(self, function, *args, **kwargs):
         """
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        self.store = get_store()
+        store = get_store()
 
         try:
             if self.instance:
-                result = function(self.instance, self.store, *args, **kwargs)
+                result = function(self.instance, store, *args, **kwargs)
             else:
-                result = function(self.store, *args, **kwargs)
+                result = function(store, *args, **kwargs)
 
             if not self.readonly:
-                self.store.commit()
+                store.commit()
         except:
-            self.store.rollback()
+            store.rollback()
+            transaction.abort()
             raise
         finally:
-            self.store.close()
+            store._cache.clear()
+            store.close()
+
+        transaction.commit()
 
         return result
 
@@ -124,8 +128,9 @@ class transact_ro(transact):
 
 
 class transact_sync(transact):
-    synchronous = True
+    def run(self, function, *args, **kwargs):
+        return function(*args, **kwargs)
 
 
-class transact_ro_sync(transact_ro):
-    synchronous = True
+class transact_sync_ro(transact_sync):
+    readonly = True
