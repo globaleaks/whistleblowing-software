@@ -10,7 +10,7 @@ import time
 from datetime import timedelta
 
 from globaleaks import models
-from globaleaks.orm import transact_sync, transact_ro_sync
+from globaleaks.orm import transact_sync, transact_sync_ro
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -102,7 +102,7 @@ class CleaningSchedule(GLJob):
         # delete anomalies older than 1 months
         store.find(models.Anomalies, models.Anomalies.date < datetime_now() - timedelta(365/12)).remove()
 
-    @transact_ro_sync
+    @transact_sync_ro
     def get_files_to_secure_delete(self, store):
         return [file_to_delete.filepath for file_to_delete in store.find(models.SecureFileDelete)]
 
