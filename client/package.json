@@ -29,7 +29,7 @@
     "gruntify-eslint": "3.1.0",
     "mocha": "3.1.2",
     "node-gettext": "0.2.14",
-    "openpgp": "2.3.4",
+    "openpgp": "2.3.5",
     "protractor": "4.0.9",
     "protractor-accessibility-plugin": "0.1.1",
     "protractor-istanbul-plugin": "2.0.0",
