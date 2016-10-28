@@ -4,7 +4,8 @@ import importlib
 import os
 import shutil
 
-from storm.locals import create_database, Store
+from storm.database import create_database
+from storm.store import Store
 
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.models import l10n, config

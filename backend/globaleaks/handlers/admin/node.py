@@ -13,7 +13,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -40,7 +40,7 @@ def db_admin_serialize_node(store, language):
     return utils.sets.disjoint_union(node_dict, misc_dict, l10n_dict)
 
 
-@transact_ro
+@transact
 def admin_serialize_node(store, language):
     return db_admin_serialize_node(store, language)
 

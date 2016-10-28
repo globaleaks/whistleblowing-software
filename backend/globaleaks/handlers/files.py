@@ -15,7 +15,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_access_rtip
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
@@ -110,7 +110,7 @@ def dump_file_fs(uploaded_file):
     return uploaded_file
 
 
-@transact_ro
+@transact
 def get_itip_id_by_wbtip_id(store, wbtip_id):
     wbtip = store.find(WhistleblowerTip,
                        WhistleblowerTip.id == wbtip_id).one()

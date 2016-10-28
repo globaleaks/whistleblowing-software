@@ -6,7 +6,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
 from globaleaks.rest import requests
@@ -36,13 +36,13 @@ def serialize_identityaccessrequest(identityaccessrequest, language):
     return iar
 
 
-@transact_ro
+@transact
 def get_identityaccessrequest_list(store, language):
     return [serialize_identityaccessrequest(iar, language)
         for iar in store.find(IdentityAccessRequest, IdentityAccessRequest.reply == u'pending')]
 
 
-@transact_ro
+@transact
 def get_identityaccessrequest(store, identityaccessrequest_id, language):
     iar = store.find(IdentityAccessRequest,
                      IdentityAccessRequest.id == identityaccessrequest_id).one()

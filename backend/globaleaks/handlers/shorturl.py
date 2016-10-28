@@ -2,10 +2,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 
 
-@transact_ro
+@transact
 def translate_shorturl(store, shorturl):
     shorturl = store.find(models.ShortURL, models.ShortURL.shorturl == shorturl).one()
     if not shorturl:

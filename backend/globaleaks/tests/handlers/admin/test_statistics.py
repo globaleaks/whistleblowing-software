@@ -2,7 +2,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.admin import statistics
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
@@ -14,7 +14,7 @@ from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
 class TestStatsCollection(helpers.TestHandler):
     _handler = statistics.StatsCollection
 
-    @transact_ro
+    @transact
     def get_stats_count(self, store):
         return store.find(Stats).count()
 

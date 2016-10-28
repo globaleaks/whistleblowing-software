@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 import base64
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 
 model_map = {
@@ -24,7 +24,7 @@ def db_get_model_img(store, model, obj_id):
     return picture.data if picture is not None else ''
 
 
-@transact_ro
+@transact
 def get_model_img(store, model, obj_id):
     return db_get_model_img(store, model, obj_id)
 

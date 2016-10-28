@@ -13,14 +13,14 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.sets import disjoint_union
 from globaleaks.utils.structures import get_localized_values
 
 
-@transact_ro
+@transact
 def serialize_ahmia(store, language):
     """
     Serialize Ahmia.fi descriptor.

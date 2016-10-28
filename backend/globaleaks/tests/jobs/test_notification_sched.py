@@ -1,7 +1,7 @@
 from twisted.internet.defer import inlineCallbacks, fail, succeed
 
 from globaleaks import models
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 
 from globaleaks.tests import helpers
 
@@ -16,7 +16,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         yield helpers.TestGLWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
 
-    @transact_ro
+    @transact
     def get_scheduled_email_count(self, store):
         return store.find(models.Mail).count()
 

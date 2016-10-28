@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from storm.expr import And
 
 from globaleaks import security
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.models import User
 from globaleaks.settings import GLSettings
 from globaleaks.models import WhistleblowerTip
@@ -47,7 +47,7 @@ def random_login_delay():
     return 0
 
 
-@transact_ro  # read only transact; manual commit on success needed
+@transact
 def login_whistleblower(store, receipt, using_tor2web):
     """
     login_whistleblower returns the WhistleblowerTip.id
@@ -69,11 +69,10 @@ def login_whistleblower(store, receipt, using_tor2web):
 
     log.debug("Whistleblower login: Valid receipt")
     wbtip.last_access = datetime_now()
-    store.commit()  # the transact was read only! on success we apply the commit()
     return wbtip.id
 
 
-@transact_ro  # read only transact; manual commit on success needed
+@transact
 def login(store, username, password, using_tor2web):
     """
     login returns a tuple (user_id, state, pcn)
@@ -94,7 +93,6 @@ def login(store, username, password, using_tor2web):
 
     log.debug("Login: Success (%s)" % user.role)
     user.last_login = datetime_now()
-    store.commit()  # the transact was read only! on success we apply the commit()
     return user.id, user.state, user.role, user.password_change_needed
 
 

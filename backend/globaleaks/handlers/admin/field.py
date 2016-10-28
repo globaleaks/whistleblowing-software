@@ -11,7 +11,7 @@ from storm.expr import And, Not, In
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field
 from globaleaks.rest import errors, requests
@@ -227,7 +227,7 @@ def update_field(store, field_id, field, language, request_type=None):
     return serialize_field(store, field, language)
 
 
-@transact_ro
+@transact
 def get_field(store, field_id, language, request_type=None):
     """
     Serialize a specified field
@@ -293,7 +293,7 @@ def fieldtree_ancestors(store, field_id):
         yield fieldtree_ancestors(store, field.fieldgroup_id)
 
 
-@transact_ro
+@transact
 def get_fieldtemplate_list(store, language, request_type=None):
     """
     Serialize all the field templates localizing their content depending on the language.
