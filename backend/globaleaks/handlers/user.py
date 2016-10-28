@@ -7,7 +7,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, parse_pgp_key
@@ -76,7 +76,7 @@ def user_serialize_user(user, language):
     return get_localized_values(ret_dict, user, user.localized_keys, language)
 
 
-@transact_ro
+@transact
 def get_user_settings(store, user_id, language):
     user = store.find(models.User, models.User.id == user_id).one()
 

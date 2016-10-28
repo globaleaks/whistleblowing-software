@@ -25,7 +25,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
 from globaleaks.handlers.admin.context import create_context, \
@@ -400,7 +400,7 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
-    @transact_ro
+    @transact
     def _exists(self, store, model, *id_args, **id_kwargs):
         if not id_args and not id_kwargs:
             raise ValueError
@@ -418,7 +418,7 @@ class TestGL(unittest.TestCase):
         msg = 'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
         self.assertFalse(existing, msg)
 
-    @transact_ro
+    @transact
     def get_rtips(self, store):
         ret = []
         for tip in store.find(models.ReceiverTip):
@@ -428,11 +428,11 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    @transact_ro
+    @transact
     def get_rfiles(self, store, rtip_id):
         return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)]
 
-    @transact_ro
+    @transact
     def get_wbtips(self, store):
         ret = []
         for tip in store.find(models.WhistleblowerTip):
@@ -442,7 +442,7 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    @transact_ro
+    @transact
     def get_internalfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
@@ -451,7 +451,7 @@ class TestGL(unittest.TestCase):
         return [serialize_internalfile(ifil) for ifil in ifiles]
 
 
-    @transact_ro
+    @transact
     def get_receiverfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 

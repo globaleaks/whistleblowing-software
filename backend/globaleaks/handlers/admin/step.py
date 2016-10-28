@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
@@ -76,7 +76,7 @@ def update_step(store, step_id, request, language):
     return serialize_step(store, db_update_step(store, step_id, request, language), language)
 
 
-@transact_ro
+@transact
 def get_step(store, step_id, language):
     """
     Serialize the specified step

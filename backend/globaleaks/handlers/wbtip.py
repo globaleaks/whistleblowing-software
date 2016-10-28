@@ -7,7 +7,7 @@
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
@@ -88,7 +88,7 @@ def create_comment(store, wbtip_id, request):
     return serialize_comment(comment)
 
 
-@transact_ro
+@transact
 def get_itip_message_list(store, wbtip_id, receiver_id):
     """
     Get the messages content and mark all the unread

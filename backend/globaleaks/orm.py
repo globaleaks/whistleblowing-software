@@ -2,12 +2,13 @@
 # orm: contains main hooks to storm ORM
 # ******
 import sys
-import transaction
+import threading
 
 from storm import exceptions, tracer
 import storm.databases.sqlite
+from storm.database import create_database
 from storm.databases.sqlite import sqlite
-from storm.zope.zstorm import ZStorm
+from storm.store import Store
 
 
 from twisted.internet import reactor
@@ -28,8 +29,6 @@ class SQLite(storm.databases.sqlite.Database):
         self._journal_mode = uri.options.get("journal_mode")
         self._foreign_keys = uri.options.get("foreign_keys")
 
-        self.raw_connect().execute("VACUUM")
-
     def raw_connect(self):
         raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
                                         isolation_level=None)
@@ -46,23 +45,19 @@ class SQLite(storm.databases.sqlite.Database):
             raw_connection.execute("PRAGMA foreign_keys = %s" %
                                    (self._foreign_keys,))
 
-        raw_connection.execute("PRAGMA secure_delete = ON") # = 1
+        raw_connection.execute("PRAGMA secure_delete = ON")
 
         return raw_connection
 
 storm.databases.sqlite.SQLite = SQLite
 storm.databases.sqlite.create_from_uri = SQLite
-# XXX. END MONKEYPATCH
 
 
 def get_store():
-    """
-    Returns a reference to Storm Store
-    """
-    zstorm = ZStorm()
-    zstorm.set_default_uri(GLSettings.store_name, GLSettings.db_uri)
+    return Store(create_database(GLSettings.db_uri))
 
-    return zstorm.get(GLSettings.store_name)
+
+transact_lock = threading.Lock()
 
 
 class transact(object):
@@ -70,9 +65,6 @@ class transact(object):
     Class decorator for managing transactions.
     Because Storm sucks.
     """
-    readonly = False
-    synchronous = False
-
     def __init__(self, method):
         self.method = method
         self.instance = None
@@ -100,37 +92,25 @@ class transact(object):
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        store = get_store()
+        with transact_lock:
+            store = Store(create_database(GLSettings.db_uri))
 
-        try:
-            if self.instance:
-                result = function(self.instance, store, *args, **kwargs)
-            else:
-                result = function(store, *args, **kwargs)
+            try:
+                if self.instance:
+                    result = function(self.instance, store, *args, **kwargs)
+                else:
+                    result = function(store, *args, **kwargs)
 
-            if not self.readonly:
                 store.commit()
-        except:
-            store.rollback()
-            transaction.abort()
-            raise
-        finally:
-            store._cache.clear()
-            store.close()
-
-        transaction.commit()
-
-        return result
-
-
-class transact_ro(transact):
-    readonly = True
+            except:
+                raise
+            else:
+                return result
+            finally:
+                store.reset()
+                store.close()
 
 
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
         return function(*args, **kwargs)
-
-
-class transact_sync_ro(transact_sync):
-    readonly = True

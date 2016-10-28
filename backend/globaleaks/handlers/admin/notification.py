@@ -7,7 +7,7 @@ from globaleaks.handlers.user import get_user_settings
 from globaleaks.models.config import NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.properties import iso_strf_time
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
 from globaleaks.security import parse_pgp_key
@@ -59,7 +59,7 @@ def db_get_notification(store, language):
     return admin_serialize_notification(store, language)
 
 
-@transact_ro
+@transact
 def get_notification(store, language):
     return db_get_notification(store, language)
 

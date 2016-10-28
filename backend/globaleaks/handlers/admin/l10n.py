@@ -15,11 +15,11 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 
 
-@transact_ro
+@transact
 def get_custom_texts(store, lang):
     texts = store.find(models.CustomTexts, models.CustomTexts.lang == lang).one()
     return texts.texts if texts is not None else {}

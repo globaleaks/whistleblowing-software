@@ -7,7 +7,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
@@ -51,7 +51,7 @@ def admin_serialize_context(store, context, language):
     return get_localized_values(ret_dict, context, context.localized_keys, language)
 
 
-@transact_ro
+@transact
 def get_context_list(store, language):
     """
     Returns the context list.
@@ -74,7 +74,7 @@ def db_associate_context_receivers(store, context, receivers_ids):
         context.receivers.add(receiver)
 
 
-@transact_ro
+@transact
 def get_context(store, context_id, language):
     """
     Returns:
@@ -103,7 +103,7 @@ def db_get_context_steps(store, context_id, language):
     return [serialize_step(store, s, language) for s in context.questionnaire.steps]
 
 
-@transact_ro
+@transact
 def get_context_steps(*args):
     return db_get_context_steps(*args)
 

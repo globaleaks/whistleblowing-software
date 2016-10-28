@@ -20,14 +20,14 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import serialize_receiver_file
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
     db_get_itip_comment_list, db_get_itip_message_list
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import deferred_sleep
 from globaleaks.utils.zipstream import ZipStream
 
 
-@transact_ro
+@transact
 def get_tip_export(store, user_id, rtip_id, language):
     rtip = db_access_rtip(store, user_id, rtip_id)
 

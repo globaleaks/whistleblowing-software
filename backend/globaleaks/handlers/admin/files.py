@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact_ro, transact
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 
 
@@ -42,7 +42,7 @@ def db_get_file(store, key):
     return file_obj.data
 
 
-@transact_ro
+@transact
 def get_file(store, key):
     return db_get_file(store, key)
 

@@ -8,7 +8,6 @@ import traceback
 from cyclone.util import ObjectDict
 from twisted.internet.defer import succeed, inlineCallbacks
 from storm import exceptions
-from storm.locals import Store, create_database
 
 from globaleaks import models, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
@@ -16,7 +15,7 @@ from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
@@ -117,7 +116,7 @@ def perform_system_update():
     return db_version
 
 
-@transact_ro
+@transact
 def get_tracked_files(store):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
@@ -179,6 +178,6 @@ def db_refresh_memory_variables(store):
     GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
 
 
-@transact_ro
+@transact
 def refresh_memory_variables(*args):
     return db_refresh_memory_variables(*args)

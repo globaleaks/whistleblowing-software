@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
@@ -36,7 +36,7 @@ def receiver_serialize_receiver(receiver, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
-@transact_ro
+@transact
 def get_receiver_settings(store, receiver_id, language):
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
 
@@ -61,7 +61,7 @@ def update_receiver_settings(store, receiver_id, request, language):
     return receiver_serialize_receiver(receiver, language)
 
 
-@transact_ro
+@transact
 def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 

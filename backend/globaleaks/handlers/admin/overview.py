@@ -8,12 +8,12 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
-@transact_ro
+@transact
 def collect_tip_overview(store, language):
     tip_description_list = []
 
@@ -35,7 +35,7 @@ def collect_tip_overview(store, language):
     return tip_description_list
 
 
-@transact_ro
+@transact
 def collect_files_overview(store):
     file_description_list = []
 

@@ -4,7 +4,7 @@ from io import BytesIO as StringIO
 from twisted.internet.defer import inlineCallbacks
 import os
 from globaleaks import models
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import modelimgs

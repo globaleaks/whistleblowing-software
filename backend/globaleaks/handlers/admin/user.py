@@ -7,7 +7,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.rest import requests, errors
@@ -164,7 +164,7 @@ def db_get_user(store, user_id):
     return user
 
 
-@transact_ro
+@transact
 def get_user(store, user_id, language):
     user = db_get_user(store, user_id)
     return user_serialize_user(user, language)
@@ -185,7 +185,7 @@ def delete_user(store, user_id):
     store.remove(user)
 
 
-@transact_ro
+@transact
 def get_user_list(store, language):
     """
     Returns:

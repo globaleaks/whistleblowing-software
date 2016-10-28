@@ -10,7 +10,7 @@ import operator
 from storm.expr import Desc, And
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.event import EventTrackQueue, events_monitored
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
@@ -30,7 +30,7 @@ def weekmap_to_heatmap(week_map):
 
     return retlist
 
-@transact_ro
+@transact
 def get_stats(store, week_delta):
     """
     :param week_delta: commonly is 0, mean that you're taking this
@@ -128,7 +128,7 @@ def delete_weekstats_history(store):
     log.info("Week statistics removal completed.")
 
 
-@transact_ro
+@transact
 def get_anomaly_history(store, limit):
     anomalies = store.find(Anomalies).order_by(Desc(Anomalies.date))[:limit]
 
