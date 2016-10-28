@@ -18,12 +18,30 @@ setupClientDependencies() {
   fi
 }
 
+LOG () {
+  CMD=$1
+  echo -n "Running: \"$CMD\"... "
+  $CMD
+}
+
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
   ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
   pip install -r requirements.txt
   pip install coverage coveralls
+  echo "Setup backend dependencies"
+  set +e
+  LOG "which python"
+  LOG "pwd"
+  LOG "ls -alH"
+  LOG "ls -alH globaleaks"
+  LOG "echo $PYTHONPATH"
+  echo "Running python"
+  python -c "import cryptography as c; print c.__version__; import globaleaks as g; print g.__version__"
+  echo "Running failed line"
+  python -c "from globaleaks import DATABASE_VERSION; print DATABASE_VERSION"
+  set -e
 }
 
 setupDependencies() {
@@ -31,10 +49,10 @@ setupDependencies() {
   setupBackendDependencies
 }
 
-npm install -g grunt grunt-cli bower
 
 if [ "$GLTEST" = "test" ]; then
 
+  npm install -g grunt grunt-cli bower
   echo "Running backend unit tests"
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
@@ -74,6 +92,7 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
+  npm install -g grunt grunt-cli bower
   setupDependencies
 
   pip install pylint
@@ -87,6 +106,7 @@ elif [ "$GLTEST" = "lint" ]; then
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 
+  npm install -g grunt grunt-cli bower
   echo "Running Build & Install and BrowserTesting tests"
   # we build all packages to test build for each distributions and then we test against trusty
   sudo apt-get update -y

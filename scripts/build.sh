@@ -11,6 +11,7 @@ usage() {
   echo "Valid options:"
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
+  echo -e " -f (Use local repository & skip frontend build)"
   echo -e " -d distribution (available: precise, trusty, wheezy, jessie, unstable)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
@@ -19,10 +20,11 @@ usage() {
 TARGETS="precise trusty xenial wheezy jessie stretch"
 DISTRIBUTION="trusty"
 TAG="master"
+FAST_BUILD=0
 NOSIGN=0
 PUSH=0
 
-while getopts "d:t:np:h" opt; do
+while getopts "d:t:np:h:f" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
@@ -31,6 +33,8 @@ while getopts "d:t:np:h" opt; do
     n) NOSIGN=1
     ;;
     p) PUSH=1
+    ;;
+    f) FAST_BUILD=1
     ;;
     h)
         usage
@@ -73,15 +77,25 @@ fi
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
-git clone https://github.com/globaleaks/GlobaLeaks.git
-cd GlobaLeaks
-git checkout $TAG
-cd client
-npm install grunt-cli
-npm install
-bower update
-grunt build
-cd ../../../
+
+if [ $FAST_BUILD ]; then
+    cd ../client/
+    grunt build
+    cd ../GLRelease
+    git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
+    cp -rf ../client/build GlobaLeaks/client/
+    cd ../
+else
+    git clone --branch="$TAG" --depth=1 https://github.com/globaleaks/GlobaLeaks.git
+    cd GlobaLeaks
+    git checkout $TAG
+    cd client
+    npm install grunt-cli
+    npm install
+    bower update
+    grunt build
+    cd ../../../
+fi
 
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET

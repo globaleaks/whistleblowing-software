@@ -1,66 +1,78 @@
 {
-    "variables": {
-        "machine_name": "globaleaks-ubuntu-16.04"
-    },
-
-    "builders": [
-        {
-            "type": "virtualbox-iso",
-            "iso_url": "http://cdimage.ubuntu.com/daily-live/current/xenial-desktop-amd64.iso",
-            "iso_checksum": "weekly",
-            "iso_checksum_type": "none",
-            "guest_os_type": "Ubuntu_64",
-            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "http_directory": "http",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "virtualbox_version_file": ".vbox_version",
-            "ssh_username": "vagrant",
-            "ssh_password": "vagrant",
-            "ssh_wait_timeout": "20m",
-            "output_directory": "../../../dist/{{user `machine_name`}}",
-            "vm_name": "{{user `machine_name`}}",
-            "boot_wait": "5s",
-            "boot_command": [
-                "<esc><esc><enter><wait>",
-                "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
-                "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
-                "hostname={{ .Name }} ",
-                "fb=false debconf/frontend=noninteractive ",
-                "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
-                "initrd=/install/initrd.gz -- <enter>"
-            ]
-        }
+  "builders": [{
+    "type": "virtualbox-iso",
+    "guest_os_type": "Ubuntu_64",
+    "iso_url": "{{user `mirror`}}/16.04/ubuntu-16.04.1-server-amd64.iso",
+    "iso_checksum": "{{user `iso_checksum`}}",
+    "iso_checksum_type": "{{user `iso_checksum_type`}}",
+    "output_directory": "../../../dist/{{user `machine_name`}}",
+    "vm_name": "packer-ubuntu-16.04-amd64",
+    "disk_size": "{{user `disk_size`}}",
+    "headless": "{{user `headless`}}",
+    "http_directory": "http",
+    "boot_wait": "5s",
+    "boot_command": [
+      "<enter><wait>",
+      "<f6><esc>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+      "<bs><bs><bs>",
+      "/install/vmlinuz ",
+      "initrd=/install/initrd.gz ",
+      "net.ifnames=0 ",
+      "auto-install/enable=true ",
+      "debconf/priority=critical ",
+      "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg ",
+      "<enter>"
     ],
-
-    "provisioners": [
-        {
-            "type": "shell",
-            "scripts": [
-                "../../scripts/vagrant.sh",
-                "../../scripts/virtualbox.sh"
-            ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
-        },
-        {
-            "type": "file",
-            "source": "../../data",
-            "destination": "/data/globaleaks"
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "../../scripts/globaleaks.sh",
-                "../../scripts/cleanup.sh",
-                "../../scripts/zerodisk.sh"
-            ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
-        }
-    ],
-
-    "post-processors": [
-        {
-            "type": "vagrant",
-            "output": "../../dist/packer_{{.Provider}}_{{user `machine_name`}}.box"
-        }
+    "ssh_timeout": "{{user `ssh_timeout`}}",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "shutdown_command": "sudo systemctl poweroff",
+    "vboxmanage": [
+      ["modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}"],
+      ["modifyvm", "{{.Name}}", "--cpus", "{{user `cpus`}}"]
     ]
+  }],
+  "provisioners": [
+  {
+    "type": "shell",
+    "scripts": [
+      "../../scripts/vagrant.sh",
+      "virtualbox.sh"
+    ],
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
+  },
+  {
+    "type": "shell",
+    "scripts": [
+      "../../scripts/cleanup.sh",
+      "../../scripts/zerodisk.sh"
+      ],
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
+    }
+  ],
+  "post-processors": [{
+      "type": "vagrant",
+      "compression_level": "{{user `compression_level`}}",
+      "output": "../../dist/packer_{{.Provider}}_{{ user `machine_name`}}.box"
+    }],
+    "variables": {
+      "machine_name": "globaleaks-ubuntu-16.04",
+      "compression_level": "6",
+      "cpus": "1",
+      "disk_size": "10240",
+      "headless": "false",
+      "iso_checksum": "29a8b9009509b39d542ecb229787cdf48f05e739a932289de9e9858d7c487c80",
+      "iso_checksum_type": "sha256",
+      "memory": "512",
+      "mirror": "http://releases.ubuntu.com",
+      "ssh_timeout": "60m"
+    }
 }
