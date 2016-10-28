@@ -20,10 +20,14 @@ if which lsb_release >/dev/null; then
 fi
 
 PIP_NEEDED=1
-if [ "$DISTRO_CODENAME" = "jessie" ]; then
-  # debian jessie is currently the only one with all the dependencies
+if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
   PIP_NEEDED=0
 fi
+
+
+# Soft link the correct requirements.txt for the distro overwriting the existing file.
+SRC_F_PATH="/usr/share/globaleaks/"
+ln -fs -T "$SRC_F_PATH"/requirements/requirements-"$DISTRO_CODENAME".txt "$SRC_F_PATH"/requirements.txt
 
 if [ $PIP_NEEDED -eq 1 ]; then
   # XXX. Hardcore installation of globaleaks dependencies using pip.
@@ -33,7 +37,7 @@ if [ $PIP_NEEDED -eq 1 ]; then
     curl https://bootstrap.pypa.io/get-pip.py | python
   fi
 
-  pip install -r /usr/share/globaleaks/requirements.txt
+  pip install -r "$SRC_F_PATH"/requirements.txt
 fi
 
 # simple check to ensure to run the below commands once at the first install.

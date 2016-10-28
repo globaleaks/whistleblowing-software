@@ -42,12 +42,15 @@ Planned methods:
 
 
 ### Ubuntu 14.04
+
 On your local machine:
 
 ```bash
-> /path/to/packer build templates/ubuntu-14.04/template.json
+> packer build templates/ubuntu-14.04/template.json
 > vagrant init
+> vagrant box add --name=gl-ubuntu-14.04 dist/packer_virtualbox_globaleaks-ubuntu-14.04.box
 # Name box, edit Vagrant file add ip=191.168.33.10
+# config.vm.network "private_network", ip: "192.168.33.10"
 > vagrant up
 # Check everything is working 
 > curl 191.168.33.10:8082
@@ -55,3 +58,17 @@ On your local machine:
 > ./node_modules/protractor/bin/protractor --baseUrl http://191.168.33.10:8082 tests/end2end/protractor-coverage.config.js
 ```
 
+### Ubuntu 16.04
+
+```bash
+
+# Create the globaleaks debian package you intend to install
+> ./scripts/build.sh -gt devel -d xenial -n
+> cp /path/to/globaleaks_2.64.11_all.deb data/
+
+
+> cd templates/ubuntu-16.04
+> packer build -on-error=ask templates/ubuntu-16.04/template.json 
+
+> ./node_modules/protractor/bin/protractor --baseUrl http://192.168.33.10:8082 tests/end2end/protractor-coverage.config.js
+```

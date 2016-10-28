@@ -2,20 +2,23 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
 
-import sys
+import re
+import os
+import pip
+import platform
+import sys 
+
+print('before reload:', sys.path)
+
+# Use UTF-8 for all string to unicode conversions
 reload(sys)
 sys.setdefaultencoding('utf8')
-sys.excepthook = None
 
-# avoid to write bytecode files at runtime
+# Avoid writing bytecode files at runtime
 sys.dont_write_bytecode = True
 
-import os
-import random
-import re
-import pip
-
 from pkg_resources import parse_version
+
 
 def pip_version_check(path):
     def version_number_compare(version1, version2):
@@ -25,46 +28,44 @@ def pip_version_check(path):
     for dist in pip.get_installed_distributions(local_only=False):
         installed_packages[dist.project_name.lower()] = dist.version
 
+    p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>[<=>]{2}|[<>]{1})(?P<version>\S+)')
     unmet_requirements = []
     with open(path, "r") as rf:
-        p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
-        while 1:
-            requirement = rf.readline().strip()
-            if not requirement:
-                break
-            match = p.match(requirement)
-            if match:
-                package = match.group('package').lower()
-                version = match.group('version')
-                condition = match.group('condition')
+        for requirement in rf.readlines():
+            match = p.match(requirement.strip())
+            if match is not None:
+                continue
 
-                if package in installed_packages:
-                    pass
-                elif package.replace('_', '-') in installed_packages:
-                    package = package.replace('_', '-')
-                else:
-                    unmet_requirements.append([requirement, ""])
-                    continue
+            package = match.group('package').lower()
+            version = match.group('version')
+            condition = match.group('condition')
 
-                if condition:
-                    installed_version = installed_packages[package]
+            if package in installed_packages:
+                pass
+            elif package.replace('_', '-') in installed_packages:
+                package = package.replace('_', '-')
+            else:
+                unmet_requirements.append([requirement, ""])
+                continue
 
-                    check = version_number_compare(installed_version, version)
-                    if condition == "<":
-                        if check >= 0:
-                            unmet_requirements.append([requirement, installed_version])
-                    elif condition == "<=":
-                        if check > 0:
-                            unmet_requirements.append([requirement, installed_version])
-                    elif condition == "==":
-                        if check != 0:
-                            unmet_requirements.append([requirement, installed_version])
-                    elif condition == ">=":
-                        if check < 0:
-                            unmet_requirements.append([requirement, installed_version])
-                    elif condition == ">":
-                        if check <= 0:
-                            unmet_requirements.append([requirement, installed_version])
+            installed_version = installed_packages[package]
+
+            check = version_number_compare(installed_version, version)
+            if condition == "<":
+                if check >= 0:
+                    unmet_requirements.append([requirement, installed_version])
+            elif condition == "<=":
+                if check > 0:
+                    unmet_requirements.append([requirement, installed_version])
+            elif condition == "==":
+                if check != 0:
+                    unmet_requirements.append([requirement, installed_version])
+            elif condition == ">=":
+                if check < 0:
+                    unmet_requirements.append([requirement, installed_version])
+            elif condition == ">":
+                if check <= 0:
+                    unmet_requirements.append([requirement, installed_version])
 
     if unmet_requirements:
         print("Some GlobaLeaks requirements are unmet\n")
@@ -80,21 +81,24 @@ def pip_version_check(path):
         print("2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/requirements.txt")
         quit(-1)
 
-print("Starting GlobaLeaks")
-
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-requirements_path = os.path.join(root, 'requirements.txt')
-if not os.path.exists(requirements_path):
-    requirements_path = '/usr/share/globaleaks/requirements.txt'
+if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
+    ('trusty', 'precise', 'wheezy', 'jessie')):
 
-pip_version_check(requirements_path)
+    requirements_path = os.path.join(root, 'requirements.txt')
+    if not os.path.exists(requirements_path):
+        requirements_path = '/usr/share/globaleaks/requirements.txt'
+
+    pip_version_check(requirements_path)
+
 
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
+print('after reload with addition:', sys.path)
 from globaleaks import DATABASE_VERSION
 from globaleaks.db import perform_system_update
 from globaleaks.runner import GlobaLeaksRunner
@@ -260,6 +264,8 @@ args +=['--pidfile', GLSettings.pidfile_path]
 sys.argv[1:] = args
 
 def run_backend():
+    print("Starting GlobaLeaks")
+
     # Check presence of an existing database and eventually perform its migration
     db_status = perform_system_update()
     if db_status == -1:
