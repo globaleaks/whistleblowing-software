@@ -186,7 +186,6 @@ AdminNodeDesc = {
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
-    'ahmia': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_encryption_warnings': bool,
@@ -428,7 +427,6 @@ NodeDesc = {
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
-    'ahmia': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_privacy_badge': bool,
@@ -527,16 +525,6 @@ PublicResourcesDesc = {
     'node': NodeDesc,
     'contexts': [ContextDesc],
     'receivers': [ReceiverDesc]
-}
-
-AhmiaDesc = {
-    'description': unicode,
-    'language': unicode,
-    'title': unicode,
-    'contactInformation': unicode,
-    'relation': unicode,
-    'keywords': unicode,
-    'type': unicode
 }
 
 StaticFileDesc = {
