@@ -95,7 +95,6 @@ GLConfig = {
         'can_delete_submission': Bool(default=False),
         'can_grant_permissions': Bool(default=False),
 
-        'ahmia': Bool(default=False),
         'allow_indexing': Bool(default=True),
 
         'wizard_done': Bool(default=False),
