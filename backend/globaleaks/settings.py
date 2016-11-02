@@ -327,19 +327,6 @@ class GLSettingsClass(object):
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
 
-        # we're not performing here the checks because utility.acquire_url_address cannot
-        # be included here.
-        # This cause that *content* validation cannot be done here, but when GL is started.
-        if self.cmdline_options.tor_dir and self.validate_tor_dir_struct(self.cmdline_options.tor_dir):
-            hostname_tor_file = os.path.join(self.cmdline_options.tor_dir, 'hostname')
-
-            if not os.access(hostname_tor_file, os.R_OK):
-                self.print_msg("Tor HS file in %s cannot be read" % hostname_tor_file)
-                quit(-1)
-
-            with file(hostname_tor_file, 'r') as htf:
-                self.tor_address = htf.read(22)
-
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
             self.group = self.cmdline_options.group
