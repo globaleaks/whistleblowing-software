@@ -103,6 +103,7 @@ class transact(object):
 
                 store.commit()
             except:
+                store.rollback()
                 raise
             else:
                 return result
