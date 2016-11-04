@@ -118,8 +118,7 @@ class ConfigL10NFactory(object):
         for lang_code in langs:
             for cfg in self.get_all(lang_code):
                 if (not cfg.customized or reset or cfg.var_name in self.unmodifiable_keys) and cfg.var_name in l10n_data_src:
-                    print cfg.var_name in self.unmodifiable_keys
-                    cfg.val = l10n_data_src[cfg.var_name][lang_code]
+                    cfg.set_v(l10n_data_src[cfg.var_name][lang_code])
 
     def get_all(self, lang_code):
         return self.store.find(ConfigL10N, And(ConfigL10N.var_group == self.group,
