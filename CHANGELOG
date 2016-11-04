@@ -1,3 +1,6 @@
+Changes in version 2.64.13 - 2016-11-04
+    o Fix packaging in relation to requirements
+
 Changes in version 2.64.12 - 2016-11-04
     o Fix migration scripts in relation to unmodifiable strings
     o Update translations
