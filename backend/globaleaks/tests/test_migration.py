@@ -17,7 +17,7 @@ from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUP
 
 from globaleaks.db import migration, perform_system_update
 from globaleaks.models import config, config_desc, l10n, Field
-from globaleaks.models.l10n import EnabledLanguage, ConfigL10N
+from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.settings import GLSettings
@@ -173,9 +173,9 @@ class TestMigrationRegression(unittest.TestCase):
 
         self.store = Store(create_database(GLSettings.db_uri))
 
-    # This test case asserts that a migration from db ver 32 up to 34 with
-    # fields that fail the constraints still functions.
     def test_check_field_constraints(self):
+        # This test case asserts that a migration from db ver 32 up to 34 with
+        # fields that fail the constraints still functions.
         self._initStartDB(32)
 
         field_dict = helpers.get_dummy_field()
@@ -202,3 +202,41 @@ class TestMigrationRegression(unittest.TestCase):
         ret = perform_system_update()
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
+
+    def test_check_unmodifiable_strings(self):
+        # This test case asserts that data migration updates unmodifiable l10n strings
+        self._initStartDB(34)
+
+        notification_l10n = NotificationL10NFactory(self.store)
+
+        t0 = notification_l10n.get_val('export_template', 'ar')
+
+        #print notification_l10n.get_val('export_template', 'ar')
+        notification_l10n.set_val('export_template', 'ar', '')
+
+        t1 = notification_l10n.get_val('export_template', 'ar')
+
+        self.assertEqual(t1, '')
+
+        self.store.commit()
+
+        # place a dummy version in the current db
+        store = Store(create_database(GLSettings.db_uri))
+        prv = config.PrivateFactory(store)
+        self.dummy_ver = '2.XX.XX'
+        prv.set_val('version', self.dummy_ver)
+        self.assertEqual(prv.get_val('version'), self.dummy_ver)
+        store.commit()
+        store.close()
+
+        migration.perform_data_update(self.db_file)
+
+        # place a dummy version in the current db
+        store = Store(create_database(GLSettings.db_uri))
+        notification_l10n = NotificationL10NFactory(store)
+        t2 = notification_l10n.get_val('export_template', 'ar')
+        self.assertEqual(t2, t0)
+        store.commit()
+        store.close()
+
+        shutil.rmtree(GLSettings.db_path)
