@@ -1,3 +1,7 @@
+Changes in version 2.64.12 - 2016-11-04
+    o Fix migration scripts in relation to unmodifiable strings
+    o Update translations
+
 Changes in version 2.64.11 - 2016-10-31
     o Fix migration 33 in relation to user images
     o Rewrite schedulers in order to run them inside threads
