@@ -4,6 +4,7 @@ from storm.expr import And, In
 from storm.locals import Unicode, Storm, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
+from globaleaks.rest import errors
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.utils.utility import log
 
@@ -79,12 +80,9 @@ class ConfigL10NFactory(object):
     localized_keys = frozenset()
     unmodifiable_keys = frozenset()
 
-    def __init__(self, store, group, lang_code=None):
+    def __init__(self, store, group):
         self.store = store
         self.group = unicode(group)
-
-        if lang_code is not None:
-            self.lang_code = unicode(lang_code)
 
         #TODO use lazy loading to optimize query performance
 
@@ -129,17 +127,14 @@ class ConfigL10NFactory(object):
                    ConfigL10N.var_group == self.group,
                    ConfigL10N.var_name == unicode(var_name))
 
-    def get_val(self, lang_code, var_name):
+    def get_val(self, var_name, lang_code):
         cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
         if cfg is None:
             raise errors.ModelNotFound('ConfigL10N:%s.%s' % (self.group, var_name))
         return cfg.value
 
-    def set_val(self, var_name, value):
-        if self.lang_code is None:
-            raise ValueError('Cannot assign ConfigL10N without a language')
-
-        cfg = self.store.find(ConfigL10N, self._where_is(self.lang_code, var_name)).one()
+    def set_val(self, var_name, lang_code, value):
+        cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
         cfg.set_v(value)
 
 
