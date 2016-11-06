@@ -103,7 +103,7 @@ class StatisticsSchedule(GLJob):
     in the database.
     """
     name = "Statistics Sched"
-    interval = 30
+    interval = 3600
 
     def get_start_time(self):
          current_time = datetime_now()
@@ -135,12 +135,7 @@ class StatisticsSchedule(GLJob):
         # ------- BEGIN Mail thresholds management -----------
         GLSettings.exceptions = {}
         GLSettings.exceptions_email_count = 0
-
-        for k, v in GLSettings.mail_counters.iteritems():
-            if v > GLSettings.memory_copy.notif.notification_threshold_per_hour:
-                GLSettings.mail_counters[k] -= GLSettings.memory_copy.notif.notification_threshold_per_hour
-            else:
-                GLSettings.mail_counters[k] = 0
+        GLSettings.mail_counters.clear()
         # ------- END Mail thresholds management -----------
 
         self.reset()
