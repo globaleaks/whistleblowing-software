@@ -1,3 +1,7 @@
+Changes in version 2.64.14 - 2016-11-06
+    o Update ukrainian translation
+    o Revise statistics scheduler period
+
 Changes in version 2.64.13 - 2016-11-04
     o Fix packaging in relation to requirements
 
