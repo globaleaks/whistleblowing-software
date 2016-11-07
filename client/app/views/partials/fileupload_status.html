@@ -8,7 +8,7 @@
   </div>
   <div id="FileUpoloadsInfo">
     <div data-ng-show="uploads[fileinput].progress() != 1">
-      <span data-translate>Estimated upload time:</span> <span>{{Utils.remainingUploadTime(uploads[fileinput])}} </span><span data-translate>seconds</span>
+      <span data-translate>Estimated upload time:</span> <span>{{uploads[fileinput].timeRemaining()}} </span><span data-translate>seconds</span>
       <div class="progress progress-striped" data-ng-class="active">
         <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" data-ng-style="{width: (uploads[fileinput] * 100) + '%'}"></div>
       </div>
