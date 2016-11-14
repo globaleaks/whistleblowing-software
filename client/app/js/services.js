@@ -913,14 +913,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
                 path === '/status');
       },
 
-      isSubmissionPage: function() {
-        var path = $location.path();
-        return (path === '/' ||
-                path === '/start' ||
-                path === '/submission' ||
-                path === '/receipt');
-      },
-
       classExtension: function() {
         return {
           'ext-public': this.isWhistleblowerPage(),
