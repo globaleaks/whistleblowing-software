@@ -174,8 +174,8 @@ class TestMigrationRegression(unittest.TestCase):
         self.store = Store(create_database(GLSettings.db_uri))
 
     def test_check_field_constraints(self):
-        # This test case asserts that a migration from db ver 32 up to 34 with
-        # fields that fail the constraints still functions.
+        # This test case asserts that a migration from db ver 32 up to the latest 
+        # db with fields that fail the constraints still functions.
         self._initStartDB(32)
 
         field_dict = helpers.get_dummy_field()
@@ -211,7 +211,6 @@ class TestMigrationRegression(unittest.TestCase):
 
         t0 = notification_l10n.get_val('export_template', 'ar')
 
-        #print notification_l10n.get_val('export_template', 'ar')
         notification_l10n.set_val('export_template', 'ar', '')
 
         t1 = notification_l10n.get_val('export_template', 'ar')
