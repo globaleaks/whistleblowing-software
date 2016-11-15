@@ -8,10 +8,13 @@
 
 import os
 
+from cyclone.web import asynchronous
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.files import serialize_rfile
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import Comment, Message, \
@@ -23,7 +26,7 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 
-def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
+def receiver_serialize_rfile(internalfile, receiverfile, receivertip_id):
     """
     ReceiverFile is the mixing between the metadata present in InternalFile
     and the Receiver-dependent, and for the client sake receivertip_id is
@@ -119,7 +122,7 @@ def db_get_files_receiver(store, user_id, rtip_id):
                                  ReceiverTip.id == rtip_id,
                                  ReceiverTip.receiver_id == user_id))
 
-    return [receiver_serialize_file(receiverfile.internalfile, receiverfile, rtip_id)
+    return [receiver_serialize_rfile(receiverfile.internalfile, receiverfile, rtip_id)
             for receiverfile in receiver_files]
 
 
@@ -414,6 +417,49 @@ class ReceiverMsgCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.write(message)
+
+
+class _FileDownload(BaseHandler):
+    handler_exec_time_threshold = 3600
+
+    def serve_file(self, f):
+        filelocation = os.path.join(GLSettings.submission_path, f['path'])
+
+        if os.path.exists(filelocation):
+            self.set_header('X-Download-Options', 'noopen')
+            self.set_header('Content-Type', 'application/octet-stream')
+            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % f['name'])
+            self.write_file(filelocation)
+        else:
+            self.set_status(404)
+
+
+class ReceiverfileDownload(_FileDownload):
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    @asynchronous
+    def get(self, rtip_id, rfile_id):
+        rfile = yield self.download_rfile(self.current_user.user_id, rtip_id, rfile_id)
+
+        self.serve_file(rfile)
+
+    @transact
+    def download_rfile(self, store, user_id, rtip_id, file_id):
+        db_access_rtip(store, user_id, rtip_id)
+
+        rfile = store.find(ReceiverFile,
+                           ReceiverFile.id == unicode(file_id)).one()
+
+        if not rfile or rfile.receivertip.receiver_id != user_id:
+            raise errors.FileIdNotFound
+
+        log.debug("Download of file %s by receiver %s (%d)" %
+                  (rfile.internalfile_id, rfile.receivertip.receiver_id, rfile.downloads))
+
+        rfile.downloads += 1
+
+        return serialize_rfile(rfile)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

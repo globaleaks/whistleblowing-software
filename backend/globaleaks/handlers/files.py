@@ -7,13 +7,10 @@
 import os
 import shutil
 
-from cyclone.web import asynchronous
-
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_access_rtip
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -22,39 +19,36 @@ from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
-def serialize_file(internalfile):
+def serialize_ifile(internalfile):
     return {
-        'size': internalfile.size,
-        'content_type': internalfile.content_type,
-        'name': internalfile.name,
+        'id': internalfile.id,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'id': internalfile.id
+        'name': internalfile.name,
+        'size': internalfile.size,
+        'content_type': internalfile.content_type
     }
 
-def serialize_receiver_file(receiverfile):
+
+def serialize_rfile(receiverfile):
     internalfile = receiverfile.internalfile
 
     return {
+        'id': receiverfile.id,
         'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'content_type': internalfile.content_type,
         'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
+        'content_type': internalfile.content_type,
         'size': receiverfile.size,
-        'downloads': receiverfile.downloads,
         'path': receiverfile.file_path,
+        'downloads': receiverfile.downloads
     }
 
 
-def serialize_memory_file(uploaded_file):
-    """
-    This is the memory version of the function register_file_db below,
-    return the file serialization used by JQueryFileUploader to display
-    information about our file.
-    """
+def serialize_uploaded_file(uploaded_file):
     return {
-        'content_type': unicode(uploaded_file['content_type']),
         'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
-        'name': unicode(uploaded_file['filename']),
+        'name': uploaded_file['filename'],
         'size': uploaded_file['body_len'],
+        'content_type': uploaded_file['content_type']
     }
 
 
@@ -81,7 +75,7 @@ def register_file_db(store, uploaded_file, internaltip_id):
 
     log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
 
-    return serialize_file(new_file)
+    return serialize_ifile(new_file)
 
 
 def dump_file_fs(uploaded_file):
@@ -204,7 +198,7 @@ class FileInstance(BaseHandler):
 
             token.associate_file(uploaded_file)
 
-            serialize_memory_file(uploaded_file)
+            serialize_uploaded_file(uploaded_file)
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
@@ -222,42 +216,3 @@ class FileInstance(BaseHandler):
         yield self.handle_file_upload(token_id)
 
         self.set_status(201)  # Created
-
-
-@transact
-def download_file(store, user_id, rtip_id, file_id):
-    db_access_rtip(store, user_id, rtip_id)
-
-    rfile = store.find(ReceiverFile,
-                       ReceiverFile.id == unicode(file_id)).one()
-
-    if not rfile or rfile.receivertip.receiver_id != user_id:
-        raise errors.FileIdNotFound
-
-    log.debug("Download of file %s by receiver %s (%d)" %
-              (rfile.internalfile_id, rfile.receivertip.receiver_id, rfile.downloads))
-
-    rfile.downloads += 1
-
-    return serialize_receiver_file(rfile)
-
-
-class Download(BaseHandler):
-    handler_exec_time_threshold = 3600
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    @asynchronous
-    def get(self, rtip_id, rfile_id):
-        rfile = yield download_file(self.current_user.user_id, rtip_id, rfile_id)
-
-        filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
-
-        if os.path.exists(filelocation):
-            self.set_header('X-Download-Options', 'noopen')
-            self.set_header('Content-Type', 'application/octet-stream')
-            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % rfile['name'])
-            self.write_file(filelocation)
-        else:
-            self.set_status(404)
