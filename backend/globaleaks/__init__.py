@@ -8,10 +8,10 @@ import operator
 __author__ = u'Random GlobaLeaks Developers'
 __copyright__ = u'2011-2016 - Hermes Center for Transparency and Digital Human Rights - GlobaLeaks Project'
 __email__ = u'info@globaleaks.org'
-__version__ = u'2.64.16'
+__version__ = u'2.65.0'
 __license__ = u'AGPL-3.0'
 
-DATABASE_VERSION = 34
+DATABASE_VERSION = 35
 FIRST_DATABASE_VERSION_SUPPORTED = 15
 
 # Add new languages as they are supported here! To do this retrieve the name of
