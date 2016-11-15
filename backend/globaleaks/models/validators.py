@@ -20,21 +20,18 @@ def natnum_v(self, attr, value):
         raise errors.InvalidModelInput("natnum_v: expected val to be in Z+ (%s:%d)" % (attr, value))
     return value
 
-def range_v(start, stop):
-    """
-    Validates that the passed values is an integer within the range of start and stop.
-    """
-    def f(self, attr, value):
-        if not isinstance(value, int):
+class range_v(object):
+  def __call__(self, model_obj, attr, value):
+    if not isinstance(value, int):
             raise errors.InvalidModelInput("range_v: expected int (%s)" % attr)
-        if value < start or value > stop:
-            m = "range_v(%d, %d): value outside of acceptable range (%d)" % (start, stop, value)
-            raise errors.InvalidModelInput(m)
-        return value
-    f.start = start
-    f.stop = stop
-    return f
+    if value < self.start or value > self.stop:
+        m = "range_v(%d, %d): value outside of acceptable range (%d)" % (self.start, self.stop, value)
+        raise errors.InvalidModelInput(m)
+    return value
 
+  def __init__(self, start, stop):
+    self.start = start
+    self.stop = stop
 
 def shorttext_v(self, attr, value):
     if isinstance(value, str):
