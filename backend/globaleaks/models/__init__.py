@@ -199,7 +199,8 @@ class Context(ModelWithID):
     enable_messages = Bool(default=False)
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)
-    enable_attachments = Bool(default=True)
+    enable_attachments = Bool(default=True) # Lets WB attach files to submission
+    enable_rc_to_wb_files = Bool(default=True) # The name says it all folks
 
     tip_timetolive = Int(default=15)
 
@@ -376,6 +377,25 @@ class ReceiverFile(ModelWithID):
     #                                    the specific receiver
     # unavailable = the file was supposed to be available but something goes
     # wrong and now is lost
+
+
+class WhistleblowerFile(ModelWithID):
+    """
+    This models stores metadata of files uploaded by recipients intended to be
+    delivered to the whistleblower. This file is not encrypted and nor is it 
+    integrity checked in any meaningful way.
+    """
+    internaltip_id = Unicode()
+    receivertip_id = Unicode()
+
+    name = Unicode(validator=shorttext_v)
+    file_path = Unicode()
+    size = Int()
+
+    downloads = Int(default=0)
+    creation_date = DateTime(default_factory=datetime_now)
+    last_access = DateTime(default_factory=datetime_null)
+    description = Unicode(validator=longtext_v)
 
 
 class Comment(ModelWithID):
@@ -774,6 +794,16 @@ ReceiverFile.receivertip = Reference(
 WhistleblowerTip.internaltip = Reference(
     WhistleblowerTip.internaltip_id,
     InternalTip.id
+)
+
+WhistleblowerFile.internaltip = Reference(
+    WhistleblowerFile.internaltip_id,
+    InternalTip.id
+)
+
+WhistleblowerFile.receivertip = Reference(
+    WhistleblowerFile.receivertip_id,
+    ReceiverTip.id
 )
 
 InternalFile.internaltip = Reference(

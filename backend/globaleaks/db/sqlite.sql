@@ -91,6 +91,7 @@ CREATE TABLE context (
     enable_two_way_comments INTEGER NOT NULL,
     enable_two_way_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
+    enable_rc_to_wb_files INTEGER NOT NULL,
     status_page_message BLOB NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
@@ -128,6 +129,23 @@ CREATE TABLE receiverfile (
     status TEXT NOT NULL CHECK (status IN ('processing', 'reference', 'encrypted', 'unavailable', 'nokey')),
     new INTEGER  NOT NULL,
     FOREIGN KEY (internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE whistleblowerfile (
+    id TEXT NOT NULL,
+    internaltip_id TEXT NOT NULL,
+    receivertip_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    file_path TEXT,
+    size INTEGER NOT NULL,
+    downloads INTEGER NOT NULL,
+    create_date TEXT,
+    last_access TEXT,
+    description TEXT,
+    UNIQUE(internaltip_id, name),
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
