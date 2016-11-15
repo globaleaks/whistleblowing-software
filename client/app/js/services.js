@@ -563,6 +563,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         };
 
+        tip.showFileDownload = function() {
+          // TODO
+          return true;
+        };
+
         if (fn) {
           fn(tip);
         }

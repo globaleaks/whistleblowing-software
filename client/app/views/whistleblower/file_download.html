@@ -1,0 +1,34 @@
+<div id="AttachedWBFile" class="panel panel-default" data-ng-init="collapsed = false; submission = {}">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+     <div>
+        <span data-translate>Attached Files</span>
+        <span class="pull-right">
+          <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+          <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+        </span>
+     </div>
+  </div>
+  <div class="panel-body">
+    <div class="file-wrapper panel panel-default">
+      <div class="panel-body">
+        <div class="top-row">
+          <div class="download-button btn-warning btn btn-small">
+           <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
+          </div>
+          <h4>finale_finale_riposta_v3.pdf</h4>
+          <p>The newspaper has concluded that the information you have provided
+          is sufficient to warrant a legal investigation. Unfortunately the fine
+          paper you are communicating with cannot help. The Post will continue its
+          quest for journalistic excellence without your submission. Here is a copy of snake for
+          your operating system!
+          </p>
+        </div>
+        <div class="bottom-row">
+          <p class="text-muted" data-translate>Size: <span>32.5 KB</span> 
+          <span data-translate>Upload date: </span><span>02-10-16</span>
+          <span data-translate>Downloaded: </span><span>Never</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
