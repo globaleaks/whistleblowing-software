@@ -5,26 +5,19 @@
 #
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
+from cyclone.web import asynchronous
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.files import serialize_ifile
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors, requests
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-
-
-def wb_serialize_file(internalfile):
-    return {
-        'id': internalfile.id,
-        'name': internalfile.name,
-        'content_type': internalfile.content_type,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'size': internalfile.size
-    }
 
 
 def db_access_wbtip(store, wbtip_id):
@@ -39,7 +32,7 @@ def db_access_wbtip(store, wbtip_id):
 def db_get_file_list(store, wbtip_id):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    return [wb_serialize_file(internalfile) for internalfile in wbtip.internaltip.internalfiles]
+    return [serialize_ifile(internalfile) for internalfile in wbtip.internaltip.internalfiles]
 
 
 def db_get_wbtip(store, wbtip_id, language):
