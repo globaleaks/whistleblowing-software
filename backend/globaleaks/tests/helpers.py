@@ -35,7 +35,7 @@ from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.handlers.admin.step import create_step
 from globaleaks.handlers.admin.questionnaire import get_questionnaire
 from globaleaks.handlers.admin.user import create_admin_user, create_custodian_user
-from globaleaks.handlers.submission import create_submission, serialize_internalfile, serialize_receiverfile
+from globaleaks.handlers.submission import create_submission
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
@@ -393,7 +393,7 @@ class TestGL(unittest.TestCase):
             dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
             dummyFile['creation_date'] = datetime_null()
 
-            f = files.serialize_memory_file(dummyFile)
+            f = files.serialize_uploaded_file(dummyFile)
 
             token.associate_file(dummyFile)
             dummyFile['body'].close()
@@ -448,7 +448,7 @@ class TestGL(unittest.TestCase):
 
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
 
-        return [serialize_internalfile(ifil) for ifil in ifiles]
+        return [files.serialize_ifile(ifil) for ifil in ifiles]
 
 
     @transact
@@ -458,7 +458,13 @@ class TestGL(unittest.TestCase):
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                                  models.ReceiverTip.internaltip_id == unicode(wbtip.internaltip_id))
 
-        return [serialize_receiverfile(rfile) for rfile in rfiles]
+        ret = []
+        for rfile in rfiles:
+            f = files.serialize_rfile(rfile)
+            f['status'] = rfile.status
+            ret.append(f)
+
+        return ret
 
 
 class TestGLWithPopulatedDB(TestGL):

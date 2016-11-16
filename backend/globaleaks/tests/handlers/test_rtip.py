@@ -229,6 +229,22 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.post(rtip_desc['id'])
 
 
+class TestReceiverfileDownload(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.ReceiverfileDownload
+
+    @inlineCallbacks
+    def test_get(self):
+        yield self.perform_full_submission_actions()
+        yield DeliverySchedule().run()
+
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
+            for rfile_desc in rfiles_desc:
+                handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+                yield handler.get(rfile_desc['id'])
+
+
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = rtip.IdentityAccessRequestsCollection
 

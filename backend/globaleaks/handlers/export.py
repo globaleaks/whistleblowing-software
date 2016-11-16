@@ -17,7 +17,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.files import serialize_receiver_file
+from globaleaks.handlers.files import serialize_rfile
 from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
     db_get_itip_comment_list, db_get_itip_message_list
 from globaleaks.orm import transact
@@ -53,7 +53,7 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     for rf in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id):
         rf.downloads += 1
-        file_dict = serialize_receiver_file(rf)
+        file_dict = serialize_rfile(rf)
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(copy.deepcopy(file_dict))
 
@@ -79,17 +79,21 @@ class ZipStreamProducer(object):
         self.handler.request.connection.transport.registerProducer(self, False)
 
     def resumeProducing(self):
-        if not self.handler:
-            return
+        try:
+            if not self.handler:
+                return
 
-        data = self.zip_chunk()
-        if data:
-            self.handler.write(data)
-            self.handler.flush()
-        else:
-            self.handler.request.connection.transport.unregisterProducer()
+            data = self.zip_chunk()
+            if data:
+                self.handler.write(data)
+                self.handler.flush()
+            else:
+                self.handler.request.connection.transport.unregisterProducer()
+                self.handler.finish()
+                self.stopProducing()
+        except:
             self.handler.finish()
-            self.stopProducing()
+            raise
 
     def stopProducing(self):
         self.handler = None
@@ -125,4 +129,3 @@ class ExportHandler(BaseHandler):
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
         ZipStreamProducer(self, self.zip_stream).start()
-

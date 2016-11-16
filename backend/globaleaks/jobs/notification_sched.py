@@ -14,7 +14,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
-from globaleaks.handlers.submission import serialize_internalfile
+from globaleaks.handlers.files import serialize_ifile
 from globaleaks.jobs.base import GLJob
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -73,7 +73,7 @@ class MailGenerator(object):
             elif key == 'comment':
                 cache_obj = serialize_comment(obj)
             elif key == 'file':
-                cache_obj = serialize_internalfile(obj)
+                cache_obj = serialize_ifile(obj)
 
             self.cache[cache_key] = cache_obj
 

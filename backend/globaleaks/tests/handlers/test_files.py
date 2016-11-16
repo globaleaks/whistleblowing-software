@@ -63,19 +63,3 @@ class TestFileAdd(helpers.TestHandlerWithPopulatedDB):
         for wbtip_desc in wbtips_desc:
             handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
             yield handler.post()
-
-
-class TestDownload(helpers.TestHandlerWithPopulatedDB):
-    _handler = files.Download
-
-    @inlineCallbacks
-    def test_get(self):
-        yield self.perform_full_submission_actions()
-        yield DeliverySchedule().run()
-
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            rfiles_desc = yield self.get_rfiles(rtip_desc['id'])
-            for rfile_desc in rfiles_desc:
-                handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
-                yield handler.get(rtip_desc['id'], rfile_desc['id'])
