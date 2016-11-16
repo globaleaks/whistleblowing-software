@@ -441,7 +441,7 @@ class ReceiverfileDownload(_FileDownloadHandler):
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     @asynchronous
-    def get(self, rtip_id, rfile_id):
+    def get(self, rfile_id):
         rfile = yield self.download_rfile(self.current_user.user_id, rfile_id)
 
         filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
