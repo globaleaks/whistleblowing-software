@@ -52,8 +52,8 @@ class TestToken(helpers.TestGL):
             yield self.emulate_file_upload(token, 3)
 
             for f in token.uploaded_files:
-                self.assertTrue(os.path.exists(f['encrypted_path']))
-                file_list.append(f['encrypted_path'])
+                self.assertTrue(os.path.exists(f['path']))
+                file_list.append(f['path'])
 
         self.test_reactor.advance(TokenList.get_timeout()+1)
 

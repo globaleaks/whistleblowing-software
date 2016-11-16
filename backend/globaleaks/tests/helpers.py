@@ -27,7 +27,8 @@ from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import files, rtip, wbtip
-from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
+from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession, \
+    write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, \
     get_context, db_get_context_steps
 from globaleaks.handlers.admin.receiver import create_receiver
@@ -169,11 +170,11 @@ def get_dummy_file(filename=None, content_type=None, content=None):
     temporary_file.avoid_delete()
 
     return {
+        'name': filename,
         'body': temporary_file,
-        'body_len': len(content),
-        'body_filepath': temporary_file.filepath,
-        'filename': filename,
-        'content_type': content_type,
+        'size': len(content),
+        'path': temporary_file.filepath,
+        'type': content_type,
         'submission': False
     }
 
@@ -390,15 +391,16 @@ class TestGL(unittest.TestCase):
         """
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
-            dummyFile = yield threads.deferToThread(files.dump_file_fs, dummyFile)
-            dummyFile['creation_date'] = datetime_null()
 
-            f = files.serialize_uploaded_file(dummyFile)
+            dst = os.path.join(GLSettings.submission_path,
+                               os.path.basename(dummyFile['path']))
+
+            dummyFile = yield threads.deferToThread(write_upload_encrypted_to_disk, dummyFile, dst)
+            dummyFile['date'] = datetime_null()
 
             token.associate_file(dummyFile)
-            dummyFile['body'].close()
 
-            self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
+            dummyFile['body'].close()
 
     @transact
     def _exists(self, store, model, *id_args, **id_kwargs):
