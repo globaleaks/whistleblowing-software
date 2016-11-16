@@ -237,36 +237,6 @@ def serialize_itip(store, internaltip, language):
         'wb_access_revoked': internaltip.is_wb_access_revoked()
     }
 
-def serialize_internalfile(ifile):
-    ifile_dict = {
-        'id': ifile.id,
-        'creation_date': datetime_to_ISO8601(ifile.internaltip.creation_date),
-        'internaltip_id': ifile.internaltip_id,
-        'name': ifile.name,
-        'file_path': ifile.file_path,
-        'content_type': ifile.content_type,
-        'size': ifile.size,
-    }
-
-    return ifile_dict
-
-def serialize_receiverfile(rfile):
-    rfile_dict = {
-        'id' : rfile.id,
-        'creation_date': datetime_to_ISO8601(rfile.internalfile.internaltip.creation_date),
-        'internaltip_id': rfile.internalfile.internaltip_id,
-        'internalfile_id': rfile.internalfile_id,
-        'receiver_id': rfile.receivertip.receiver_id,
-        'receivertip_id': rfile.receivertip_id,
-        'file_path': rfile.file_path,
-        'size': rfile.size,
-        'downloads': rfile.downloads,
-        'last_access': rfile.last_access,
-        'status': rfile.status,
-    }
-
-    return rfile_dict
-
 
 def serialize_usertip(store, usertip, language):
     internaltip = usertip.internaltip

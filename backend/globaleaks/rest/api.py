@@ -73,8 +73,8 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
     (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
-    (r'/rtip/' + uuid_regexp + r'/download/' + uuid_regexp, files.Download),
     (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
+    (r'/rtip/download/' + uuid_regexp, rtip.ReceiverfileDownload),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
