@@ -58,6 +58,22 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.put(), InvalidInputFormat)
 
     @inlineCallbacks
+    def test_put_update_node_languages_with_default_not_compatible_with_enabled(self):
+        self.dummyNode['languages_enabled'] = ["fr"]
+        self.dummyNode['default_language'] = "en"
+        handler = self.request(self.dummyNode, role='admin')
+
+        yield self.assertFailure(handler.put(), Exception)
+
+    @inlineCallbacks
+    def test_put_update_node_languages_removing_en_adding_fr(self):
+        self.dummyNode['languages_enabled'] = ["fr"]
+        self.dummyNode['default_language'] = "fr"
+        handler = self.request(self.dummyNode, role='admin')
+
+        yield handler.put()
+
+    @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
         self.dummyNode['hidden_service'] = 'http://www.scroogle.com'
         self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
