@@ -438,7 +438,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       $http({
         method: 'GET',
-        url: '/rtip/download' + file.id,
+        url: '/rtip/download/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -517,6 +517,19 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
+  factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
+    return function(file_id) {
+      $http({
+        method: 'POST',
+        url: '/wbtip/download/' + file_id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        console.log("made the post");
+        //FileSaver.saveAs(blob, file.name);
+      });
+    };
+}]).
   factory('WBTip', ['$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
       function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
     return function(fn) {
@@ -563,8 +576,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
           }
         };
 
-        tip.showFileDownload = function() {
-          // TODO
+        tip.showFileDownloadWidget = function(file_id) {
           return true;
         };
 

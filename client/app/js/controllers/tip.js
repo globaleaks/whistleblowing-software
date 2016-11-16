@@ -92,6 +92,16 @@ GLClient.controller('TipCtrl',
           }
         }
 
+        $scope.showFileDownloadModal = function(file) {
+          $uibModal.open({
+            templateUrl: 'views/whistleblower/file_download_modal.html',
+            controller: 'wbTipFileDownloadCtrl',
+            resolve: {
+              'file': function() { return file; },
+            }
+          });
+        };
+
         // FIXME: remove this variable that is now needed only to map wb_identity_field
         $scope.submission = tip;
 
@@ -258,6 +268,16 @@ controller('TipOperationsCtrl',
           $route.reload();
         });
     }
+  };
+}]).
+controller('wbTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownloadFile', 'file', function($scope, $uibModalInstance, WBTipDownloadFile, file) {
+  $scope.ok = function() {
+    $uibModalInstance.close();
+    WBTipDownloadFile(file.file_id);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.close();
   };
 }]).
 controller('IdentityAccessRequestCtrl',
