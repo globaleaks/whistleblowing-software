@@ -3,6 +3,7 @@
 import os
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.handlers.base import write_upload_plaintext_to_disk
 from globaleaks.handlers.admin import staticfiles
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -21,12 +22,11 @@ class TestStaticFileInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_delete_on_existent_file(self):
         self.fakeFile = self.get_dummy_file()
-        realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
-        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
-        self.assertTrue('filelocation' in dumped_file)
+        realpath = os.path.join(GLSettings.static_path, self.fakeFile['name'])
+        dumped_file = yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
 
         handler = self.request({}, role='admin')
-        yield handler.delete(self.fakeFile['filename'])
+        yield handler.delete(self.fakeFile['name'])
 
     def test_delete_non_existent_file(self):
         handler = self.request({}, role='admin')
@@ -39,9 +39,8 @@ class TestStaticFileList(helpers.TestHandler):
     @inlineCallbacks
     def test_get_list_of_files(self):
         self.fakeFile = self.get_dummy_file()
-        realpath = os.path.join(GLSettings.static_path, self.fakeFile['filename'])
-        dumped_file = yield staticfiles.dump_static_file(self.fakeFile, realpath)
-        self.assertTrue('filelocation' in dumped_file)
+        realpath = os.path.join(GLSettings.static_path, self.fakeFile['name'])
+        dumped_file = yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
 
         handler = self.request(role='admin')
         yield handler.get()
@@ -50,7 +49,7 @@ class TestStaticFileList(helpers.TestHandler):
         found = False
 
         for f in self.responses[0]:
-            if f['filename'] == self.fakeFile['filename']:
+            if f['name'] == self.fakeFile['name']:
                 found = True
                 break
 

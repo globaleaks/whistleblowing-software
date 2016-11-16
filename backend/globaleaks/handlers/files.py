@@ -10,10 +10,11 @@ import shutil
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
 from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors
+from globaleaks.security import directory_traversal_check
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
@@ -43,17 +44,8 @@ def serialize_rfile(rfile):
     }
 
 
-def serialize_uploaded_file(uploaded_file):
-    return {
-        'creation_date': datetime_to_ISO8601(uploaded_file['creation_date']),
-        'name': uploaded_file['filename'],
-        'size': uploaded_file['body_len'],
-        'content_type': uploaded_file['content_type']
-    }
-
-
 @transact
-def register_file_db(store, uploaded_file, internaltip_id):
+def register_ifile_on_db(store, uploaded_file, internaltip_id):
     internaltip = store.find(InternalTip,
                              InternalTip.id == internaltip_id).one()
 
@@ -64,44 +56,18 @@ def register_file_db(store, uploaded_file, internaltip_id):
     internaltip.update_date = datetime_now()
 
     new_file = InternalFile()
-    new_file.name = uploaded_file['filename']
-    new_file.content_type = uploaded_file['content_type']
-    new_file.size = uploaded_file['body_len']
+    new_file.name = uploaded_file['name']
+    new_file.content_type = uploaded_file['type']
+    new_file.size = uploaded_file['size']
     new_file.internaltip_id = internaltip_id
     new_file.submission = uploaded_file['submission']
-    new_file.file_path = uploaded_file['encrypted_path']
+    new_file.file_path = uploaded_file['path']
 
     store.add(new_file)
 
-    log.debug("=> Recorded new InternalFile %s" % uploaded_file['filename'])
+    log.debug("=> Recorded new InternalFile %s" % uploaded_file['name'])
 
     return serialize_ifile(new_file)
-
-
-def dump_file_fs(uploaded_file):
-    """
-    @param uploaded_file: the uploaded_file data struct
-    @return: the uploaded_file dict, removed the old path (is moved) and updated
-            with the key 'encrypted_path', pointing to the AES encrypted file
-    """
-    encrypted_destination = os.path.join(GLSettings.submission_path,
-                                         os.path.basename(uploaded_file['body_filepath']))
-
-    log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
-        (uploaded_file['body_len'],
-         uploaded_file['filename'],
-         uploaded_file['body_filepath'],
-         encrypted_destination)
-    )
-
-    shutil.move(uploaded_file['body_filepath'], encrypted_destination)
-
-    # body_filepath is the tmp file path, is removed to avoid mistakes
-    uploaded_file.pop('body_filepath')
-
-    # update the uploaded_file dictionary to keep track of the info
-    uploaded_file['encrypted_path'] = encrypted_destination
-    return uploaded_file
 
 
 @transact
@@ -123,8 +89,17 @@ class FileAdd(BaseHandler):
     handler_exec_time_threshold = 3600
     filehandler = True
 
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
-    def handle_file_append(self, itip_id):
+    def post(self):
+        """
+        Request: Unknown
+        Response: Unknown
+        Errors: TipIdNotFound
+        """
+        itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
+
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
             return
@@ -133,39 +108,26 @@ class FileAdd(BaseHandler):
         uploaded_file['body'].close()
 
         try:
-            # First: dump the file in the filesystem,
-            # and exception raised here would prevent the InternalFile recordings
-            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            # First: dump the file in the filesystem
+            dst = os.path.join(GLSettings.submission_path,
+                               os.path.basename(uploaded_file['path']))
+
+            directory_traversal_check(GLSettings.submission_path, dst)
+
+            uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-        uploaded_file['creation_date'] = datetime_now()
+        uploaded_file['date'] = datetime_now()
         uploaded_file['submission'] = False
 
         try:
             # Second: register the file in the database
-            yield register_file_db(uploaded_file, itip_id)
+            yield register_ifile_on_db(uploaded_file, itip_id)
         except Exception as excep:
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
-
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
-    def post(self, *args):
-        """
-        Request: Unknown
-        Response: Unknown
-        Errors: TipIdNotFound
-
-        This is not manage by token, is unchanged by the D8 update,
-        because is an operation tip-established, and they can be
-        rate-limited in a different way.
-        """
-        itip_id = yield get_itip_id_by_wbtip_id(self.current_user.user_id)
-
-        yield self.handle_file_append(itip_id)
 
         self.set_status(201)  # Created
 
@@ -177,8 +139,16 @@ class FileInstance(BaseHandler):
     handler_exec_time_threshold = 3600
     filehandler = True
 
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.unauthenticated
     @inlineCallbacks
-    def handle_file_upload(self, token_id):
+    def post(self, token_id):
+        """
+        Parameter: internaltip_id
+        Request: Unknown
+        Response: Unknown
+        Errors: TokenFailure
+        """
         token = TokenList.get(token_id)
 
         log.debug("file upload with token associated: %s" % token)
@@ -191,28 +161,18 @@ class FileInstance(BaseHandler):
         uploaded_file['body'].close()
 
         try:
-            # dump_file_fs return the new filepath inside the dictionary
-            uploaded_file = yield threads.deferToThread(dump_file_fs, uploaded_file)
-            uploaded_file['creation_date'] = datetime_now()
+            dst = os.path.join(GLSettings.submission_path,
+                               os.path.basename(uploaded_file['path']))
+
+            directory_traversal_check(GLSettings.submission_path, dst)
+
+            uploaded_file = yield threads.deferToThread(write_upload_encrypted_to_disk, uploaded_file, dst)
+            uploaded_file['date'] = datetime_now()
             uploaded_file['submission'] = True
 
             token.associate_file(uploaded_file)
-
-            serialize_uploaded_file(uploaded_file)
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
-
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
-    def post(self, token_id):
-        """
-        Parameter: internaltip_id
-        Request: Unknown
-        Response: Unknown
-        Errors: TokenFailure
-        """
-        yield self.handle_file_upload(token_id)
 
         self.set_status(201)  # Created

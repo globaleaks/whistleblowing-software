@@ -33,12 +33,12 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
         token.TokenList.reactor.pump([1] * (token.TokenList.get_timeout() - 1))
 
         for f in self.dummyToken.uploaded_files:
-            self.assertTrue(os.path.exists(f['encrypted_path']))
+            self.assertTrue(os.path.exists(f['path']))
 
         token.TokenList.reactor.advance(1)
 
         for f in self.dummyToken.uploaded_files:
-            yield self.assertFalse(os.path.exists(f['encrypted_path']))
+            yield self.assertFalse(os.path.exists(f['path']))
 
     @inlineCallbacks
     def test_post_file_finalized_submission(self):

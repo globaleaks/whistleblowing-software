@@ -10,6 +10,7 @@ import json
 import mimetypes
 import os
 import re
+import shutil
 import sys
 import time
 from StringIO import StringIO
@@ -40,6 +41,53 @@ mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
 mimetypes.add_type('application/x-font-ttf', '.ttf')
 mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
+
+
+def write_upload_plaintext_to_disk(uploaded_file, destination):
+    """
+    @param uploaded_file: uploaded_file data struct
+    @param the file destination
+    @return: a descriptor dictionary for the saved file
+    """
+    try:
+        if os.path.exists(destination):
+            log.err('Overwriting file %s with %d bytes' % (destination, uploaded_file['size']))
+        else:
+            log.debug('Creating file %s with %d bytes' % (destination, uploaded_file['size']))
+
+        with open(destination, 'w+') as fd:
+            uploaded_file['body'].seek(0, 0)
+            data = uploaded_file['body'].read(4000)
+            while data != '':
+                os.write(fd.fileno(), data)
+                data = uploaded_file['body'].read(4000)
+    finally:
+        uploaded_file['body'].close()
+        uploaded_file['path'] = destination
+
+    return uploaded_file
+
+
+def write_upload_encrypted_to_disk(uploaded_file, destination):
+    """
+    @param uploaded_file: uploaded_file data struct
+    @param the file destination
+    @return: a descriptor dictionary for the saved file
+    """
+    log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
+        (uploaded_file['size'],
+         uploaded_file['name'],
+         uploaded_file['path'],
+         destination)
+    )
+
+    shutil.move(uploaded_file['path'], destination)
+
+    uploaded_file['path'] = destination
+
+    return uploaded_file
+
+
 
 class StaticFileProducer(object):
     """Streaming producter for files
@@ -612,10 +660,10 @@ class BaseHandler(RequestHandler):
                     return None
 
             uploaded_file = {
-                'filename': self.request.files['file'][0]['filename'],
-                'content_type': self.request.files['file'][0]['content_type'],
-                'body_len': total_file_size,
-                'body_filepath': f.filepath,
+                'name': self.request.files['file'][0]['filename'],
+                'type': self.request.files['file'][0]['content_type'],
+                'size': total_file_size,
+                'path': f.filepath,
                 'body': f
             }
 
