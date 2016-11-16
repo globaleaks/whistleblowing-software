@@ -57,16 +57,20 @@ class StaticFileProducer(object):
         self.handler.request.connection.transport.registerProducer(self, False)
 
     def resumeProducing(self):
-        if not self.handler:
-            return
-        data = self.fileObject.read(self.bufferSize)
-        if data:
-            self.handler.write(data)
-            self.handler.flush()
-        else:
-            self.handler.request.connection.transport.unregisterProducer()
+        try:
+            if not self.handler:
+                return
+            data = self.fileObject.read(self.bufferSize)
+            if data:
+                self.handler.write(data)
+                self.handler.flush()
+            else:
+                self.handler.request.connection.transport.unregisterProducer()
+                self.handler.finish()
+                self.stopProducing()
+        except:
             self.handler.finish()
-            self.stopProducing()
+            raise
 
     def stopProducing(self):
         self.fileObject.close()
@@ -703,6 +707,20 @@ class BaseHandler(RequestHandler):
                 self.do_verbose_log(content)
             except Exception as excep:
                 log.err("HTTP Requests/Responses logging fail (end): %s" % excep.message)
+
+
+class _FileDownloadHandler(BaseHandler):
+    handler_exec_time_threshold = 3600
+
+    def serve_file(self, filename, filepath):
+        if os.path.exists(filepath):
+            self.set_header('X-Download-Options', 'noopen')
+            self.set_header('Content-Type', 'application/octet-stream')
+            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
+            self.write_file(filepath)
+        else:
+            self.set_status(404)
+            self.finish()
 
 
 class BaseStaticFileHandler(BaseHandler):

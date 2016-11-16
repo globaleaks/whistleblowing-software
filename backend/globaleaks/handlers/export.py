@@ -79,17 +79,21 @@ class ZipStreamProducer(object):
         self.handler.request.connection.transport.registerProducer(self, False)
 
     def resumeProducing(self):
-        if not self.handler:
-            return
+        try:
+            if not self.handler:
+                return
 
-        data = self.zip_chunk()
-        if data:
-            self.handler.write(data)
-            self.handler.flush()
-        else:
-            self.handler.request.connection.transport.unregisterProducer()
+            data = self.zip_chunk()
+            if data:
+                self.handler.write(data)
+                self.handler.flush()
+            else:
+                self.handler.request.connection.transport.unregisterProducer()
+                self.handler.finish()
+                self.stopProducing()
+        except:
             self.handler.finish()
-            self.stopProducing()
+            raise
 
     def stopProducing(self):
         self.handler = None
@@ -125,4 +129,3 @@ class ExportHandler(BaseHandler):
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
         ZipStreamProducer(self, self.zip_stream).start()
-

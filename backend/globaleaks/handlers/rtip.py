@@ -13,7 +13,7 @@ from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, directory_traversal_check
 from globaleaks.handlers.files import serialize_rfile
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
@@ -419,39 +419,15 @@ class ReceiverMsgCollection(BaseHandler):
         self.write(message)
 
 
-class _FileDownload(BaseHandler):
-    handler_exec_time_threshold = 3600
-
-    def serve_file(self, f):
-        filelocation = os.path.join(GLSettings.submission_path, f['path'])
-
-        if os.path.exists(filelocation):
-            self.set_header('X-Download-Options', 'noopen')
-            self.set_header('Content-Type', 'application/octet-stream')
-            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % f['name'])
-            self.write_file(filelocation)
-        else:
-            self.set_status(404)
-
-
-class ReceiverfileDownload(_FileDownload):
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
-    @asynchronous
-    def get(self, rtip_id, rfile_id):
-        rfile = yield self.download_rfile(self.current_user.user_id, rtip_id, rfile_id)
-
-        self.serve_file(rfile)
-
+class ReceiverfileDownload(_FileDownloadHandler):
     @transact
-    def download_rfile(self, store, user_id, rtip_id, file_id):
-        db_access_rtip(store, user_id, rtip_id)
-
+    def download_rfile(self, store, user_id, file_id):
         rfile = store.find(ReceiverFile,
-                           ReceiverFile.id == unicode(file_id)).one()
+                           ReceiverFile.id == file_id,
+                           ReceiverFile.receivertip_id == ReceiverTip.id,
+                           ReceiverTip.receiver_id == user_id).one()
 
-        if not rfile or rfile.receivertip.receiver_id != user_id:
+        if not rfile:
             raise errors.FileIdNotFound
 
         log.debug("Download of file %s by receiver %s (%d)" %
@@ -460,6 +436,19 @@ class ReceiverfileDownload(_FileDownload):
         rfile.downloads += 1
 
         return serialize_rfile(rfile)
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    @asynchronous
+    def get(self, rtip_id, rfile_id):
+        rfile = yield self.download_rfile(self.current_user.user_id, rfile_id)
+
+        filelocation = os.path.join(GLSettings.submission_path, rfile['path'])
+
+        directory_traversal_check(GLSettings.submission_path, filelocation)
+
+        self.serve_file(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
