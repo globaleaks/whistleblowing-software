@@ -231,7 +231,6 @@ class TestMigrationRegression(unittest.TestCase):
 
         migration.perform_data_update(self.db_file)
 
-        # place a dummy version in the current db
         store = Store(create_database(GLSettings.db_uri))
         notification_l10n = NotificationL10NFactory(store)
         t2 = notification_l10n.get_val('export_template', 'ar')

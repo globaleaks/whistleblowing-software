@@ -5,6 +5,9 @@
 # Implementation of the code executed on handler /admin/node
 #
 import os
+
+from storm.expr import In
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
@@ -65,12 +68,13 @@ def enable_disable_languages(store, request):
             log.debug("Adding a new lang %s" % lang_code)
             EnabledLanguage.add_new_lang(store, lang_code, appdata)
 
-    to_remove = []
-    for lang_code in cur_enabled_langs:
-        if lang_code not in new_enabled_langs:
-            to_remove.append(lang_code)
+    to_remove = list(set(cur_enabled_langs) - set(new_enabled_langs))
 
     if len(to_remove):
+        users = store.find(models.User, In(models.User.language, to_remove))
+        for user in users:
+            user.language = request['default_language']
+
         EnabledLanguage.remove_old_langs(store, to_remove)
 
 
@@ -85,8 +89,9 @@ def db_update_node(store, request, language):
     """
     enable_disable_languages(store, request)
 
-    node_l10n = NodeL10NFactory(store)
-    node_l10n.update(request, language)
+    if language in request['languages_enabled']:
+        node_l10n = NodeL10NFactory(store)
+        node_l10n.update(request, language)
 
     node = NodeFactory(store)
     node.update(request)
