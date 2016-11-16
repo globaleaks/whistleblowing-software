@@ -435,10 +435,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
  factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
-    return function(tip, file) {
+    return function(file) {
       $http({
         method: 'GET',
-        url: '/rtip/' + tip.id + '/download/' + file.id,
+        url: '/rtip/download' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
