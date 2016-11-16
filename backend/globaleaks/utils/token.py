@@ -31,7 +31,7 @@ class TokenListClass(TempDict):
         for f in item.uploaded_files:
             # TODO delete from GLUploadFile
             try:
-                os.remove(f['encrypted_path'])
+                os.remove(f['path'])
             except Exception:
                 pass
 
