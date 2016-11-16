@@ -46,6 +46,7 @@ CREATE TABLE user (
     pgp_key_expiration INTEGER,
     img_id TEXT,
     UNIQUE (username),
+    FOREIGN KEY (language) REFERENCES enabledlanguage(name),
     FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,
     PRIMARY KEY (id)
 );
