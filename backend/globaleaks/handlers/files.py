@@ -19,27 +19,27 @@ from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
 
 
-def serialize_ifile(internalfile):
+def serialize_ifile(ifile):
     return {
-        'id': internalfile.id,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'name': internalfile.name,
-        'size': internalfile.size,
-        'content_type': internalfile.content_type
+        'id': ifile.id,
+        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'name': ifile.name,
+        'size': ifile.size,
+        'content_type': ifile.content_type
     }
 
 
-def serialize_rfile(receiverfile):
-    internalfile = receiverfile.internalfile
+def serialize_rfile(rfile):
+    ifile = rfile.internalfile
 
     return {
-        'id': receiverfile.id,
-        'creation_date': datetime_to_ISO8601(internalfile.creation_date),
-        'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
-        'content_type': internalfile.content_type,
-        'size': receiverfile.size,
-        'path': receiverfile.file_path,
-        'downloads': receiverfile.downloads
+        'id': rfile.id,
+        'creation_date': datetime_to_ISO8601(ifile.creation_date),
+        'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
+        'content_type': ifile.content_type,
+        'size': rfile.size,
+        'path': rfile.file_path,
+        'downloads': rfile.downloads
     }
 
 
