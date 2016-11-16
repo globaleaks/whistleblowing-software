@@ -243,6 +243,7 @@ def serialize_usertip(store, usertip, language):
 
     ret = serialize_itip(store, internaltip, language)
     ret['id'] = usertip.id
+    ret['internaltip_id'] = internaltip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
     ret['access_counter'] = usertip.access_counter
     ret['total_score'] = usertip.internaltip.total_score
@@ -342,13 +343,13 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
     try:
         for filedesc in uploaded_files:
             new_file = models.InternalFile()
-            new_file.name = filedesc['filename']
+            new_file.name = filedesc['name']
             new_file.description = ""
-            new_file.content_type = filedesc['content_type']
-            new_file.size = filedesc['body_len']
+            new_file.content_type = filedesc['type']
+            new_file.size = filedesc['size']
             new_file.internaltip_id = submission.id
             new_file.submission = filedesc['submission']
-            new_file.file_path = filedesc['encrypted_path']
+            new_file.file_path = filedesc['path']
             store.add(new_file)
             log.debug("=> file associated %s|%s (%d bytes)" % (
                 new_file.name, new_file.content_type, new_file.size))
