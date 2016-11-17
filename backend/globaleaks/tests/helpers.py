@@ -683,7 +683,12 @@ class TestHandler(TestGLWithPopulatedDB):
                 self.responses.append(response)
 
         self._handler.write = mock_write
-        #self._handler.finish = mock_write
+
+
+        def mock_finish(cls):
+            pass
+
+        self._handler.finish = mock_finish
 
         handler = self._handler(application, request, **kwargs)
 

@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-show="tip.files.length">
+    <div data-ng-show="tip.rfiles.length">
       <div class="table-container">
         <table class="table table-striped" id="fileList">
           <thead>
@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody id="fileListBody">
-            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files | orderBy:'creation_date'">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles | orderBy:'creation_date'">
               <td>
                 <span>{{::file.name}}</span>
               </td>
@@ -47,7 +47,7 @@
         </table>
       </div>
     </div>
-    <div data-ng-hide="tip.files.length || uploads['status_page']['files'].length">
+    <div data-ng-hide="tip.rfiles.length || uploads['status_page']['files'].length">
       <span data-translate>No files have been uploaded!</span>
     </div>
     <br />

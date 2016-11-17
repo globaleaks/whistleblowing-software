@@ -32,18 +32,15 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 
-def receiver_serialize_rfile(internalfile, receiverfile, receivertip_id):
-    """
-    ReceiverFile is the mixing between the metadata present in InternalFile
-    and the Receiver-dependent, and for the client sake receivertip_id is
-    required to create the download link
-    """
+def receiver_serialize_rfile(receiverfile):
+    internalfile = receiverfile.internalfile
+
     if receiverfile.status != 'unavailable':
         ret_dict = {
             'id': receiverfile.id,
             'internalfile_id': internalfile.id,
             'status': receiverfile.status,
-            'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
+            'href': "/rtip/" + receiverfile.receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
             'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
             'content_type': internalfile.content_type,
@@ -58,14 +55,26 @@ def receiver_serialize_rfile(internalfile, receiverfile, receivertip_id):
             'internalfile_id': internalfile.id,
             'status': 'unavailable',
             'href': "",
-            'name': internalfile.name,  # original filename
-            'content_type': internalfile.content_type,  # original content size
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),  # original creation_date
-            'size': int(internalfile.size),  # original filesize
-            'downloads': unicode(receiverfile.downloads)  # this counter is always valid
+            'name': internalfile.name,
+            'content_type': internalfile.content_type,
+            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
+            'size': int(internalfile.size),
+            'downloads': receiverfile.downloads
         }
 
     return ret_dict
+
+
+def receiver_serialize_wbfile(f):
+    return {
+        'id': f.id,
+        'creation_date': datetime_to_ISO8601(f.creation_date),
+        'name': f.name,
+        'size': f.size,
+        'content_type': f.content_type,
+        'downloads': f.downloads
+    }
+
 
 def serialize_comment(comment):
     if comment.type == 'whistleblower':
@@ -105,7 +114,8 @@ def serialize_rtip(store, rtip, language):
     ret['label'] = rtip.label
     ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
     ret['messages'] = db_get_itip_message_list(rtip)
-    ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
+    ret['rfiles'] = db_receiver_get_rfile_list(store, rtip.id)
+    ret['wbfiles'] = db_receiver_get_wbfile_list(store, rtip.internaltip_id)
     ret['iars'] = db_get_identityaccessrequest_list(store, rtip.id, language)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
 
@@ -122,14 +132,19 @@ def db_access_rtip(store, user_id, rtip_id):
     return rtip
 
 
-def db_get_files_receiver(store, user_id, rtip_id):
+def db_receiver_get_rfile_list(store, rtip_id):
     receiver_files = store.find(ReceiverFile,
-                                (ReceiverFile.receivertip_id == ReceiverTip.id,
-                                 ReceiverTip.id == rtip_id,
-                                 ReceiverTip.receiver_id == user_id))
+                                ReceiverFile.receivertip_id == ReceiverTip.id,
+                                ReceiverTip.id == rtip_id)
 
-    return [receiver_serialize_rfile(receiverfile.internalfile, receiverfile, rtip_id)
-            for receiverfile in receiver_files]
+    return [receiver_serialize_rfile(receiverfile) for receiverfile in receiver_files]
+
+
+def db_receiver_get_wbfile_list(store, itip_id):
+    wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                                            ReceiverTip.internaltip_id == itip_id)
+
+    return [receiver_serialize_wbfile(wbfile) for wbfile in wbfiles]
 
 
 @transact
@@ -148,7 +163,6 @@ def register_wbfile_on_db(store, uploaded_file, receivertip_id):
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.receivertip_id = receivertip.id
-    print new_file.receivertip_id
     new_file.file_path = uploaded_file['path']
 
     store.add(new_file)
@@ -159,8 +173,8 @@ def register_wbfile_on_db(store, uploaded_file, receivertip_id):
 
 
 @transact
-def get_files_receiver(store, user_id, rtip_id):
-    return db_get_files_receiver(store, user_id, rtip_id)
+def receiver_get_rfile_list(store, rtip_id):
+    return db_receiver_get_rfile_list(store, rtip_id)
 
 
 def db_get_rtip(store, user_id, rtip_id, language):
@@ -492,7 +506,6 @@ class WhistleblowerFileUpload(BaseHandler):
             # Second: register the file in the database
             yield register_wbfile_on_db(uploaded_file, rtip['id'])
         except Exception as excep:
-            print excep
             raise errors.InternalServerError("Unable to accept new files")
 
         self.set_status(201)  # Created

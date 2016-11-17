@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
-    <div data-ng-show="tip.files.length">
+    <div data-ng-show="tip.rfiles.length">
       <div class="table-container">
         <table class="table table-striped" id="fileList">
           <thead>
@@ -32,7 +32,7 @@
             </tr>
           </thead>
           <tbody id="fileListBody">
-            <tr id="file-{{$index}}" data-ng-repeat="file in tip.files">
+            <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
               <td>
                 <span>{{::file.name}}</span>
               </td>
@@ -67,7 +67,7 @@
         </table>
       </div>
     </div>
-    <div data-ng-hide="tip.files.length">
+    <div data-ng-hide="tip.rfiles.length">
       <span data-translate>No files have been uploaded!</span>
     </div>
       <div data-ng-if="session.role === 'receiver' && preferences.can_grant_permissions" data-ng-switch="tip.enable_attachments" class="pull-right">
