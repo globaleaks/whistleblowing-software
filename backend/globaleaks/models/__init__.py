@@ -275,6 +275,7 @@ class InternalTip(ModelWithID):
     enable_whistleblower_identity = Bool(default=False)
 
     wb_last_access = DateTime(default_factory=datetime_now)
+    wb_access_counter = Int(default=0)
 
     def wb_revoke_access_date(self):
         revoke_date = self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
@@ -310,15 +311,10 @@ class ReceiverTip(ModelWithID):
 
 class WhistleblowerTip(ModelWithID):
     """
-    WhisteleblowerTip is intended, to provide a whistleblower access to the
-    Tip. It has some differencies from the ReceiverTips: It has a secret
-    authentication receipt and different capabilities, like: cannot not
-    download.
+    WhisteleblowerTip implement the expiring authentication token for
+    the whistleblower and acts as interface to the InternalTip.
     """
-    internaltip_id = Unicode()
     receipt_hash = Unicode()
-
-    access_counter = Int(default=0)
 
 
 class IdentityAccessRequest(ModelWithID):
@@ -757,7 +753,7 @@ InternalTip.comments = ReferenceSet(
 
 InternalTip.whistleblowertip = Reference(
     InternalTip.id,
-    WhistleblowerTip.internaltip_id
+    WhistleblowerTip.id
 )
 
 InternalTip.receivertips = ReferenceSet(
@@ -791,7 +787,7 @@ ReceiverFile.receivertip = Reference(
 )
 
 WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.internaltip_id,
+    WhistleblowerTip.id,
     InternalTip.id
 )
 
@@ -800,10 +796,6 @@ InternalFile.internaltip = Reference(
     InternalTip.id
 )
 
-WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.internaltip_id,
-    InternalTip.id
-)
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 

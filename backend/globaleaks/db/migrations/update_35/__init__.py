@@ -32,6 +32,33 @@ class Context_v_34(ModelWithID):
     localized_keys = ['name', 'description', 'recipients_clarification', 'status_page_message']
 
 
+class WhistleblowerTip_v_34(ModelWithID):
+    __storm_table__ = 'whistleblowertip'
+    internaltip_id = Unicode()
+    receipt_hash = Unicode()
+    access_counter = Int(default=0)
+
+
+class InternalTip_v_34(ModelWithID):
+    __storm_table__ = 'internaltip'
+    creation_date = DateTime(default_factory=datetime_now)
+    update_date = DateTime(default_factory=datetime_now)
+    context_id = Unicode()
+    questionnaire_hash = Unicode()
+    preview = JSON()
+    progressive = Int(default=0)
+    tor2web = Bool(default=False)
+    total_score = Int(default=0)
+    expiration_date = DateTime()
+    identity_provided = Bool(default=False)
+    identity_provided_date = DateTime(default_factory=datetime_null)
+    enable_two_way_comments = Bool(default=True)
+    enable_two_way_messages = Bool(default=True)
+    enable_attachments = Bool(default=True)
+    enable_whistleblower_identity = Bool(default=False)
+    wb_last_access = DateTime(default_factory=datetime_now)
+
+
 class MigrationScript(MigrationBase):
     # Trim a Config validator to fall within the range of the range_v object
     # This ensures that future update to the config dictionary will not fail
@@ -100,6 +127,19 @@ class MigrationScript(MigrationBase):
                 elif v.name == 'language' and getattr(old_obj, v.name) not in enabled_languages:
                     # fix users that have configured a language that has never been there
                     setattr(new_obj, v.name, default_language)
+                    continue
+
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
+    def migrate_WhistleblowerTip(self):
+        old_objs = self.store_old.find(self.model_from['WhistleblowerTip'])
+        for old_obj in old_objs:
+            new_obj = self.model_to['WhistleblowerTip']()
+            for _, v in new_obj._storm_columns.iteritems():
+                if v.name == 'id':
+                    new_obj.id = old_obj.internaltip_id
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))

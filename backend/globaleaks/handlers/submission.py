@@ -245,7 +245,6 @@ def serialize_usertip(store, usertip, language):
     ret['id'] = usertip.id
     ret['internaltip_id'] = internaltip.id
     ret['answers'] = db_serialize_questionnaire_answers(store, usertip)
-    ret['access_counter'] = usertip.access_counter
     ret['total_score'] = usertip.internaltip.total_score
 
     return ret
@@ -270,13 +269,11 @@ def db_create_whistleblowertip(store, internaltip):
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
-    wbtip = models.WhistleblowerTip()
-
     receipt = unicode(generateRandomReceipt())
 
+    wbtip = models.WhistleblowerTip()
+    wbtip.id = internaltip.id
     wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
-    wbtip.internaltip_id = internaltip.id
-
     store.add(wbtip)
 
     return receipt, wbtip
