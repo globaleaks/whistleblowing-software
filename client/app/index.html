@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="css/tip.css" />
     <!-- endbuild -->
 
-    <link data-ng-if="isWhistleblowerPage() && node.css" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
+    <link data-ng-if="Utils.renderCustomCSS()" rel="stylesheet" data-ng-href="data:text/css;base64,{{node.css}}" />
   </head>
 
   <body>
@@ -279,6 +279,6 @@
       <!-- start_globaleaks(); -->
     </script>
 
-    <script data-ng-if="isWhistleblowerPage() && node.script" data-ng-src="{{Utils.base64ToTrustedScriptUrl(node.script)}}"></script>
+    <script data-ng-if="Utils.attachCustomJS()" data-ng-src="{{Utils.base64ToTrustedScriptUrl(node.script)}}"></script>
   </body>
 </html>
