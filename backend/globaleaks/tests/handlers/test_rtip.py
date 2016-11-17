@@ -229,8 +229,8 @@ class TestReceiverMsgCollection(helpers.TestHandlerWithPopulatedDB):
             yield handler.post(rtip_desc['id'])
 
 
-class TestReceiverfileDownload(helpers.TestHandlerWithPopulatedDB):
-    _handler = rtip.ReceiverfileDownload
+class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
+    _handler = rtip.ReceiverFileDownload
 
     @inlineCallbacks
     def test_get(self):
