@@ -419,7 +419,7 @@ class ReceiverMsgCollection(BaseHandler):
         self.write(message)
 
 
-class ReceiverfileDownload(_FileDownloadHandler):
+class ReceiverFileDownload(_FileDownloadHandler):
     @transact
     def download_rfile(self, store, user_id, file_id):
         rfile = store.find(ReceiverFile,
