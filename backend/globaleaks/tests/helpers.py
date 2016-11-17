@@ -26,7 +26,7 @@ from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
-from globaleaks.handlers import files, rtip, wbtip
+from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, \
@@ -450,7 +450,7 @@ class TestGL(unittest.TestCase):
 
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
 
-        return [files.serialize_ifile(ifil) for ifil in ifiles]
+        return [models.serializers.serialize_ifile(ifile) for ifile in ifiles]
 
 
     @transact
@@ -462,7 +462,7 @@ class TestGL(unittest.TestCase):
 
         ret = []
         for rfile in rfiles:
-            f = files.serialize_rfile(rfile)
+            f = models.serializers.serialize_rfile(rfile)
             f['status'] = rfile.status
             ret.append(f)
 
