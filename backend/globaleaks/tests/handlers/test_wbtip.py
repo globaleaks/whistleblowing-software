@@ -3,7 +3,7 @@ import json
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.handlers import wbtip
+from globaleaks.handlers import wbtip, rtip
 
 
 class TestWBTipInstance(helpers.TestHandlerWithPopulatedDB):
@@ -71,6 +71,28 @@ class TestWBTipMessageCollection(helpers.TestHandlerWithPopulatedDB):
 
             for rcvr_id in wbtip_desc['receivers_ids']:
                 yield handler.post(rcvr_id)
+
+
+class TestWhistleblowerFileDownload(helpers.TestHandlerWithPopulatedDB):
+    _handler = None
+
+    @inlineCallbacks
+    def test_get(self):
+        yield self.perform_full_submission_actions()
+
+        self._handler = rtip.WhistleblowerFileUpload
+        rtips_desc = yield self.get_rtips()
+        for rtip_desc in rtips_desc:
+            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+            yield handler.post(rtip_desc['id'])
+
+        self._handler = wbtip.WhistleblowerFileDownload
+        wbtips_desc = yield self.get_wbtips()
+        for wbtip_desc in wbtips_desc:
+            wbfiles_desc = yield self.get_wbfiles(wbtip_desc['id'])
+            for wbfile_desc in wbfiles_desc:
+                handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
+                yield handler.get(wbfile_desc['id'])
 
 
 class WBTipIdentityHandler(helpers.TestHandlerWithPopulatedDB):

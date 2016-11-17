@@ -5,19 +5,35 @@
 #
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
+import os
+
 from cyclone.web import asynchronous
 
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, \
+    directory_traversal_check
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import serializers, \
-    WhistleblowerTip, Comment, Message, ReceiverTip
+    InternalFile, WhistleblowerFile, \
+    ReceiverTip, WhistleblowerTip, Comment, Message
 from globaleaks.rest import errors, requests
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+
+# function compatible with both ifiles and wbfiles
+def wb_serialize_file(f):
+    return {
+        'id': f.id,
+        'creation_date': datetime_to_ISO8601(f.creation_date),
+        'name': f.name,
+        'size': f.size,
+        'content_type': f.content_type
+    }
 
 
 def db_access_wbtip(store, wbtip_id):
@@ -29,10 +45,17 @@ def db_access_wbtip(store, wbtip_id):
     return wbtip
 
 
-def db_get_file_list(store, wbtip_id):
-    wbtip = db_access_wbtip(store, wbtip_id)
+def db_get_rfile_list(store, itip_id):
+    ifiles = store.find(InternalFile, InternalFile.internaltip_id == itip_id)
 
-    return [serializers.serialize_ifile(internalfile) for internalfile in wbtip.internaltip.internalfiles]
+    return [wb_serialize_file(ifile) for ifile in ifiles]
+
+
+def db_get_wbfile_list(store, itip_id):
+    wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                                           ReceiverTip.internaltip_id == itip_id)
+
+    return [wb_serialize_file(wbfile) for wbfile in wbfiles]
 
 
 def db_get_wbtip(store, wbtip_id, language):
@@ -62,7 +85,8 @@ def serialize_wbtip(store, wbtip, language):
 
     ret['id'] = wbtip.id
     ret['comments'] = db_get_itip_comment_list(store, wbtip.internaltip)
-    ret['files'] = db_get_file_list(store, wbtip.id)
+    ret['rfiles'] = db_get_rfile_list(store, wbtip.id)
+    ret['wbfiles'] = db_get_wbfile_list(store, wbtip.internaltip_id)
 
     return ret
 
@@ -212,6 +236,38 @@ class WBTipMessageCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.write(message)
+
+
+class WhistleblowerFileDownload(_FileDownloadHandler):
+    @transact
+    def download_wbfile(self, store, user_id, file_id):
+        wbfile = store.find(WhistleblowerFile,
+                           WhistleblowerFile.id == file_id,
+                           WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                           WhistleblowerTip.internaltip_id == ReceiverTip.internaltip_id).one()
+
+        if not wbfile:
+            raise errors.FileIdNotFound
+
+        log.debug("Download of file %s by whistleblower %s" %
+                  (wbfile.id, user_id))
+
+        wbfile.downloads += 1
+
+        return serializers.serialize_wbfile(wbfile)
+
+    @BaseHandler.transport_security_check('whistleblower')
+    @BaseHandler.authenticated('whistleblower')
+    @inlineCallbacks
+    @asynchronous
+    def get(self, wbfile_id):
+        wbfile = yield self.download_wbfile(self.current_user.user_id, wbfile_id)
+
+        filelocation = os.path.join(GLSettings.submission_path, wbfile['path'])
+
+        directory_traversal_check(GLSettings.submission_path, filelocation)
+
+        self.serve_file(wbfile['name'], filelocation)
 
 
 class WBTipIdentityHandler(BaseHandler):
