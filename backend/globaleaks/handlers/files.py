@@ -28,7 +28,7 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
                              InternalTip.id == internaltip_id).one()
 
     if not internaltip:
-        log.err("File associated to a non existent Internaltip!")
+        log.err("Cannot associate a file to a not existent internaltip!")
         raise errors.TipIdNotFound
 
     internaltip.update_date = datetime_now()

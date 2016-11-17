@@ -390,7 +390,7 @@ class WhistleblowerFile(ModelWithID):
     name = Unicode(validator=shorttext_v)
     file_path = Unicode()
     size = Int()
-
+    content_type = Unicode()
     downloads = Int(default=0)
     creation_date = DateTime(default_factory=datetime_now)
     last_access = DateTime(default_factory=datetime_null)

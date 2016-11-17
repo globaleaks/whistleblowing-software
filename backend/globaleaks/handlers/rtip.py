@@ -10,15 +10,21 @@ import os
 
 from cyclone.web import asynchronous
 
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, directory_traversal_check
+from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, \
+    directory_traversal_check, write_upload_plaintext_to_disk
+
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import serializers, \
+    ArchivedSchema, \
     Comment, Message, \
-    ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
+    InternalTip, \
+    ReceiverFile, ReceiverTip, \
+    WhistleblowerFile, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -124,6 +130,32 @@ def db_get_files_receiver(store, user_id, rtip_id):
 
     return [receiver_serialize_rfile(receiverfile.internalfile, receiverfile, rtip_id)
             for receiverfile in receiver_files]
+
+
+@transact
+def register_wbfile_on_db(store, uploaded_file, receivertip_id):
+    receivertip = store.find(ReceiverTip,
+                             ReceiverTip.id == receivertip_id).one()
+
+    if not receivertip:
+        log.err("Cannot associate a file to a not existent receivertip!")
+        raise errors.TipIdNotFound
+
+    receivertip.update_date = datetime_now()
+
+    new_file = WhistleblowerFile()
+    new_file.name = uploaded_file['name']
+    new_file.content_type = uploaded_file['type']
+    new_file.size = uploaded_file['size']
+    new_file.receivertip_id = receivertip.id
+    print new_file.receivertip_id
+    new_file.file_path = uploaded_file['path']
+
+    store.add(new_file)
+
+    log.debug("=> Recorded new WhistleblowerFile %s" % uploaded_file['name'])
+
+    return serializers.serialize_wbfile(new_file)
 
 
 @transact
@@ -417,6 +449,53 @@ class ReceiverMsgCollection(BaseHandler):
 
         self.set_status(201)  # Created
         self.write(message)
+
+
+class WhistleblowerFileUpload(BaseHandler):
+    """
+    Receiver interface to upload a file destinated to the whistleblower
+    """
+    handler_exec_time_threshold = 3600
+    filehandler = True
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Request: Unknown
+        Response: Unknown
+        Errors: TipIdNotFound
+        """
+        rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
+
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            return
+
+        try:
+            # First: dump the file in the filesystem
+            dst = os.path.join(GLSettings.submission_path,
+                               os.path.basename(uploaded_file['path']))
+
+            directory_traversal_check(GLSettings.submission_path, dst)
+
+            uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
+        except Exception as excep:
+            log.err("Unable to save a file in filesystem: %s" % excep)
+            raise errors.InternalServerError("Unable to accept new files")
+
+        uploaded_file['creation_date'] = datetime_now()
+        uploaded_file['submission'] = False
+
+        try:
+            # Second: register the file in the database
+            yield register_wbfile_on_db(uploaded_file, rtip['id'])
+        except Exception as excep:
+            print excep
+            raise errors.InternalServerError("Unable to accept new files")
+
+        self.set_status(201)  # Created
 
 
 class ReceiverFileDownload(_FileDownloadHandler):

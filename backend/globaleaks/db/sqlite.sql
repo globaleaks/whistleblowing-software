@@ -146,7 +146,6 @@ CREATE TABLE whistleblowerfile (
     create_date TEXT,
     last_access TEXT,
     description TEXT,
-    internaltip_id TEXT NOT NULL,
     UNIQUE(file_path),
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
