@@ -574,6 +574,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             });
           }
         };
+
+        tip.showFileDownloadWidget = function() {
+          // TODO use context.enable_rc_to_wb_files or attach to tip
+          return true;
+        };
+
+        if (fn) {
+          fn(tip);
+        }
       });
     };
 }]).
