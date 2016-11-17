@@ -200,7 +200,7 @@ class Context(ModelWithID):
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)
     enable_attachments = Bool(default=True) # Lets WB attach files to submission
-    enable_rc_to_wb_files = Bool(default=True) # The name says it all folks
+    enable_rc_to_wb_files = Bool(default=False) # The name says it all folks
 
     tip_timetolive = Int(validator=range_v(-1, 5*365), default=15) # in days, -1 indicates no expiration
 
