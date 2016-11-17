@@ -136,7 +136,8 @@ CREATE TABLE receiverfile (
 
 CREATE TABLE whistleblowerfile (
     id TEXT NOT NULL,
-    internaltip_id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    content_type TEXT NOT NULL,
     receivertip_id TEXT NOT NULL,
     name TEXT NOT NULL,
     file_path TEXT,
@@ -145,8 +146,8 @@ CREATE TABLE whistleblowerfile (
     create_date TEXT,
     last_access TEXT,
     description TEXT,
-    UNIQUE(internaltip_id, name),
-    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    internaltip_id TEXT NOT NULL,
+    UNIQUE(file_path),
     FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );

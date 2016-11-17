@@ -385,7 +385,6 @@ class WhistleblowerFile(ModelWithID):
     delivered to the whistleblower. This file is not encrypted and nor is it 
     integrity checked in any meaningful way.
     """
-    internaltip_id = Unicode()
     receivertip_id = Unicode()
 
     name = Unicode(validator=shorttext_v)
@@ -794,16 +793,6 @@ ReceiverFile.receivertip = Reference(
 WhistleblowerTip.internaltip = Reference(
     WhistleblowerTip.internaltip_id,
     InternalTip.id
-)
-
-WhistleblowerFile.internaltip = Reference(
-    WhistleblowerFile.internaltip_id,
-    InternalTip.id
-)
-
-WhistleblowerFile.receivertip = Reference(
-    WhistleblowerFile.receivertip_id,
-    ReceiverTip.id
 )
 
 InternalFile.internaltip = Reference(
