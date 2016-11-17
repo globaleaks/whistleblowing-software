@@ -61,11 +61,11 @@ def db_get_wbfile_list(store, itip_id):
 def db_get_wbtip(store, wbtip_id, language):
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    wbtip.access_counter += 1
+    wbtip.internaltip.wb_access_counter += 1
     wbtip.internaltip.wb_last_access = datetime_now()
 
     log.debug("Tip %s access granted to whistleblower (%d)" %
-              (wbtip.id, wbtip.access_counter))
+              (wbtip.id, wbtip.internaltip.wb_access_counter))
 
     return serialize_wbtip(store, wbtip, language)
 
@@ -86,7 +86,7 @@ def serialize_wbtip(store, wbtip, language):
     ret['id'] = wbtip.id
     ret['comments'] = db_get_itip_comment_list(store, wbtip.internaltip)
     ret['rfiles'] = db_get_rfile_list(store, wbtip.id)
-    ret['wbfiles'] = db_get_wbfile_list(store, wbtip.internaltip_id)
+    ret['wbfiles'] = db_get_wbfile_list(store, wbtip.id)
 
     return ret
 
@@ -97,7 +97,7 @@ def create_comment(store, wbtip_id, request):
 
     comment = Comment()
     comment.content = request['content']
-    comment.internaltip_id = wbtip.internaltip_id
+    comment.internaltip_id = wbtip.id
     comment.type = u'whistleblower'
 
     wbtip.internaltip.comments.add(comment)
@@ -113,7 +113,7 @@ def get_itip_message_list(store, wbtip_id, receiver_id):
     """
     wbtip = db_access_wbtip(store, wbtip_id)
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
@@ -127,7 +127,7 @@ def create_message(store, wbtip_id, receiver_id, request):
     wbtip = db_access_wbtip(store, wbtip_id)
     wbtip.internaltip.update_date = datetime_now()
 
-    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.internaltip_id,
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wbtip.id,
                       ReceiverTip.receiver_id == receiver_id).one()
 
     if not rtip:
@@ -244,7 +244,7 @@ class WhistleblowerFileDownload(_FileDownloadHandler):
         wbfile = store.find(WhistleblowerFile,
                            WhistleblowerFile.id == file_id,
                            WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                           WhistleblowerTip.internaltip_id == ReceiverTip.internaltip_id).one()
+                           WhistleblowerTip.id == ReceiverTip.internaltip_id).one()
 
         if not wbfile:
             raise errors.FileIdNotFound

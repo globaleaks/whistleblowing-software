@@ -451,13 +451,13 @@ class TestGL(unittest.TestCase):
         return [{'id': wbfile.id} for wbfile in store.find(models.WhistleblowerFile,
                                                            models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
                                                            models.WhistleblowerTip.id == wbtip_id,
-                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.internaltip_id)]
+                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id)]
 
     @transact
     def get_internalfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
-        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
+        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id))
 
         return [models.serializers.serialize_ifile(ifile) for ifile in ifiles]
 
@@ -467,7 +467,7 @@ class TestGL(unittest.TestCase):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.internaltip_id))
+                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.id))
 
         ret = []
         for rfile in rfiles:
