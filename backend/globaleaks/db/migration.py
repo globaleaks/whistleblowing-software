@@ -42,7 +42,7 @@ migration_mapping = OrderedDict([
     ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, Comment_v_31, 0, 0, 0, 0, 0, 0, 0, 0, models.Comment, 0, 0, 0]),
-    ('Context', [Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, models.Context, 0, 0, 0, 0]),
+    ('Context', [Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, models.Context]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustomTexts, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.EnabledLanguage, 0]),
     ('Field', [Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, Field_v_27, 0, 0, 0, models.Field, 0, 0, 0, 0, 0, 0, 0]),

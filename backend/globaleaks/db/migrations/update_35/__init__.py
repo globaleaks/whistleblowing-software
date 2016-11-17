@@ -33,7 +33,6 @@ class Context_v_34(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-
     # Trim a Config validator to fall within the range of the range_v object
     # This ensures that future update to the config dictionary will not fail
     # because an old value was set outside of the acceptable range.
@@ -75,8 +74,14 @@ class MigrationScript(MigrationBase):
                         new_obj.tip_timetolive = old_obj.tip_timetolive
                     continue
 
+                elif v.name == 'enable_rc_to_wb_files':
+                    new_obj.enable_rc_to_wb_files = False
+                    continue
 
-class MigrationScript(MigrationBase):
+                setattr(new_obj, v.name, getattr(old_obj, v.name))
+
+            self.store_new.add(new_obj)
+
     def migrate_User(self):
         default_language = NodeFactory(self.store_old).get_val('default_language')
         enabled_languages = EnabledLanguage.list(self.store_old)
