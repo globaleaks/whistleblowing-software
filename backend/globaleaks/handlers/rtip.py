@@ -14,10 +14,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, directory_traversal_check
-from globaleaks.handlers.files import serialize_rfile
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
-from globaleaks.models import Comment, Message, \
+from globaleaks.models import serializers, \
+    Comment, Message, \
     ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
@@ -435,7 +435,7 @@ class ReceiverfileDownload(_FileDownloadHandler):
 
         rfile.downloads += 1
 
-        return serialize_rfile(rfile)
+        return serializers.serialize_rfile(rfile)
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
