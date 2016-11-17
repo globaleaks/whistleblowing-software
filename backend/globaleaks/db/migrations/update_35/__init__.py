@@ -17,7 +17,7 @@ class MigrationScript(MigrationBase):
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'language' and getattr(old_obj, v.name) not in enabled_languages:
                     # fix users that have configured a language that has never been there
-                    #setattr(new_obj, v.name, default_language)
+                    setattr(new_obj, v.name, default_language)
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
