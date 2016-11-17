@@ -51,9 +51,6 @@ class MigrationScript(MigrationBase):
        self.trim_value_to_range(nf, 'submission_maximum_ttl')
        self.store_old.commit()
 
-       # TODO include fix for PGP KEYS
-
-
     def migrate_Context(self):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:
@@ -90,7 +87,17 @@ class MigrationScript(MigrationBase):
         for old_obj in old_objs:
             new_obj = self.model_to['User']()
             for _, v in new_obj._storm_columns.iteritems():
-                if v.name == 'language' and getattr(old_obj, v.name) not in enabled_languages:
+                if v.name in ['pgp_key_public', 'pgp_key_fingerprint']:
+                    if getattr(old_obj, v.name) is None:
+                        setattr(new_obj, v.name, '')
+                        continue
+
+                elif v.name in ['pgp_key_expiration']:
+                    if getattr(old_obj, v.name) is None:
+                        setattr(new_obj, v.name, datetime_null())
+                        continue
+
+                elif v.name == 'language' and getattr(old_obj, v.name) not in enabled_languages:
                     # fix users that have configured a language that has never been there
                     setattr(new_obj, v.name, default_language)
                     continue
