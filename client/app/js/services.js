@@ -921,6 +921,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return path.substr(0, 6) == '/admin';
       },
 
+      renderCustomCSS: function() {
+        if (angular.isUndefined($rootScope.node)) {
+          return false;
+        }
+        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.css);
+      },
+
+      attachCustomJS: function() {
+        if (angular.isUndefined($rootScope.node)) {
+          return false;
+        }
+        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.script);
+      },
+
       isWhistleblowerPage: function() {
         var path = $location.path();
         return (path === '/' ||
