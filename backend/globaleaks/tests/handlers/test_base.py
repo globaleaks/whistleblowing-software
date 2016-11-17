@@ -16,12 +16,12 @@ class BaseHandlerMock(BaseHandler):
     @BaseHandler.authenticated('admin')
     def get_authenticated(self):
         self.set_status(200)
-        self.finish("test")
+        self.finish()
 
     @BaseHandler.unauthenticated
     def get_unauthenticated(self):
         self.set_status(200)
-        self.finish("test")
+        self.finish()
 
 
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
