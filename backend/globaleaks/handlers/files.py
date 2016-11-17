@@ -11,37 +11,16 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
-from globaleaks.models import ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+
+from globaleaks.models import serializers, \
+    ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
 from globaleaks.settings import GLSettings
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now
-
-
-def serialize_ifile(ifile):
-    return {
-        'id': ifile.id,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
-        'name': ifile.name,
-        'size': ifile.size,
-        'content_type': ifile.content_type
-    }
-
-
-def serialize_rfile(rfile):
-    ifile = rfile.internalfile
-
-    return {
-        'id': rfile.id,
-        'creation_date': datetime_to_ISO8601(ifile.creation_date),
-        'name': ("%s.pgp" % ifile.name) if rfile.status == u'encrypted' else ifile.name,
-        'content_type': ifile.content_type,
-        'size': rfile.size,
-        'path': rfile.file_path,
-        'downloads': rfile.downloads
-    }
+from globaleaks.utils.utility import log, datetime_now
 
 
 @transact
@@ -67,7 +46,7 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
 
     log.debug("=> Recorded new InternalFile %s" % uploaded_file['name'])
 
-    return serialize_ifile(new_file)
+    return serializers.serialize_ifile(new_file)
 
 
 @transact
