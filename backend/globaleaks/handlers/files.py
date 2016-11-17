@@ -5,7 +5,6 @@
 #
 # API handling submissions file uploads and subsequent submissions attachments
 import os
-import shutil
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
