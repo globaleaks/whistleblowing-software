@@ -1,3 +1,36 @@
+Changes in version 2.64.15 - 2016-11-06
+    o Apply mixed UI fixes
+    o Update translations
+
+Changes in version 2.64.15 - 2016-11-06
+    o Apply mixed UI fixes
+
+Changes in version 2.64.14 - 2016-11-06
+    o Update ukrainian translation
+    o Revise statistics scheduler period
+
+Changes in version 2.64.13 - 2016-11-04
+    o Fix packaging in relation to requirements
+
+Changes in version 2.64.12 - 2016-11-04
+    o Fix migration scripts in relation to unmodifiable strings
+    o Update translations
+
+Changes in version 2.64.11 - 2016-10-31
+    o Fix migration 33 in relation to user images
+    o Rewrite schedulers in order to run them inside threads
+    o Remove ahmia descriptor, no more used
+
+Changes in version 2.64.10 - 2016-10-25
+    o Apply minior bugfixing
+
+Changes in version 2.64.9 - 2016-10-24
+    o Fix integration of Slovenian translation
+    o Simplified job scheduling and monitoring
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1794
+
 Changes in version 2.64.8 - 2016-10-18
     o Fix integration of Slovenian translation
 
@@ -9,6 +42,7 @@ Changes in version 2.64.7 - 2016-10-16
 
     Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1754
+    - https://github.com/globaleaks/GlobaLeaks/issues/1778
     - https://github.com/globaleaks/GlobaLeaks/issues/1791
     - https://github.com/globaleaks/GlobaLeaks/issues/1790
 

@@ -5,10 +5,10 @@
 #
 import copy
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet import defer, reactor, threads
 
 from globaleaks import models
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_sync
 from globaleaks.handlers.admin.context import admin_serialize_context
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
@@ -192,7 +192,7 @@ class MailGenerator(object):
 
         store.add(mail)
 
-    @transact
+    @transact_sync
     def generate(self, store):
         for trigger in ['ReceiverTip', 'Comment', 'Message', 'ReceiverFile']:
             model = trigger_model_map[trigger]
@@ -217,24 +217,21 @@ class MailGenerator(object):
 
 
 @transact
-def delete_sent_mail(store, mail_id):
+def delete_sent_mail(store, result, mail_id):
     store.find(models.Mail, models.Mail.id == mail_id).remove()
 
 
-@inlineCallbacks
-def _success_callback(result, mail_id):
-    yield delete_sent_mail(mail_id)
-
-
-def _failure_callback(failure, mail_id):
-    pass
-
-
-@transact
+@transact_sync
 def get_mails_from_the_pool(store):
     ret = []
 
     for mail in store.find(models.Mail):
+        if mail.processing_attempts > 9:
+            store.remove(mail)
+            continue
+
+        mail.processing_attempts += 1
+
         ret.append({
             'id': mail.id,
             'address': mail.address,
@@ -242,31 +239,24 @@ def get_mails_from_the_pool(store):
             'body': mail.body
         })
 
-        mail.processing_attempts += 1
-        if mail.processing_attempts > 9:
-            store.remove(mail)
-
     return ret
 
 
 class NotificationSchedule(GLJob):
     name = "Notification"
-    monitor_time = 1800
+    monitor_interval = 15 * 60
 
-    def sendmail(self, address, subject, body):
-        return sendmail(address, subject, body)
+    def sendmail(self, mail):
+        d = sendmail(mail['address'], mail['subject'], mail['body'])
+        d.addCallback(delete_sent_mail, mail['id'])
+        return d
 
-    @inlineCallbacks
     def spool_emails(self):
-        mails = yield get_mails_from_the_pool()
+        mails = get_mails_from_the_pool()
         for mail in mails:
-            sendmail_deferred = self.sendmail(mail['address'], mail['subject'], mail['body'])
-            sendmail_deferred.addCallbacks(_success_callback, _failure_callback,
-                                           callbackArgs=(mail['id'],), errbackArgs=(mail['id'],))
+            threads.blockingCallFromThread(reactor, self.sendmail, mail)
 
-
-    @inlineCallbacks
     def operation(self):
-        yield MailGenerator().generate()
+        MailGenerator().generate()
 
-        yield self.spool_emails()
+        self.spool_emails()

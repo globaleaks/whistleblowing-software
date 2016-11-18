@@ -111,7 +111,6 @@ class NodeFactory(ConfigFactory):
         'can_delete_submission',
         'can_grant_permissions',
 
-        'ahmia',
         'allow_indexing',
 
         'threshold_free_disk_megabytes_high',

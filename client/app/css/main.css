@@ -130,7 +130,7 @@ table {
   margin-bottom: 0.8em;
 }
 
-#LoginStatusBox {
+#LoginStatusBox, #LoginFormBox {
   color: #000;
   padding: 1em;
   background-color: #FFF;

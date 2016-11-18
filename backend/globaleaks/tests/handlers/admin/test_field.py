@@ -7,12 +7,12 @@ from globaleaks.handlers import admin
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.field import create_field
 from globaleaks.handlers.public import serialize_field
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
 
 
-@transact_ro
+@transact
 def get_id_of_first_step_of_questionnaire(store, questionnaire_id):
     return store.find(models.Step, models.Step.questionnaire_id == questionnaire_id)[0].id
 

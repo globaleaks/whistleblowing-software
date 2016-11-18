@@ -126,9 +126,7 @@ spec = [
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
-    (r'/description.json', robots.AhmiaDescriptionHandler),
     (r'/s/(.*)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
-    (r'/static/(.*)', base.BaseStaticFileHandler), # still here for backward compatibility
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'/x/timingstats', base.TimingStatsHandler),

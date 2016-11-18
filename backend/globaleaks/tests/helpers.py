@@ -25,7 +25,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers import files, rtip, wbtip
 from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession
 from globaleaks.handlers.admin.context import create_context, \
@@ -191,10 +191,11 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def setUp(self):
         self.test_reactor = task.Clock()
+
         jobs.base.test_reactor = self.test_reactor
+        tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
         runner.test_reactor = self.test_reactor
-        tempdict.test_reactor = self.test_reactor
         GLSessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
@@ -212,6 +213,7 @@ class TestGL(unittest.TestCase):
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
         yield update_node_setting('allow_unencrypted', allow_unencrypted)
+        yield update_node_setting('submission_minimum_delay', 0)
 
         yield db.refresh_memory_variables()
 
@@ -220,6 +222,24 @@ class TestGL(unittest.TestCase):
         jobs.statistics_sched.StatisticsSchedule.reset()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
+
+    def call_spigot(self):
+        """
+        Required for clearing scheduled callbacks in the testReactor that have yet to run.
+        If a unittest has scheduled something, we execute it before moving on.
+        """
+        deferred_fns = self.test_reactor.getDelayedCalls()
+        i = 0;
+        while len(deferred_fns) != 0:
+            yield deferred_fns[0].getTime()
+            if i >= 30:
+                raise Exception("stuck in callback loop")
+            i += 1
+            deferred_fns = self.test_reactor.getDelayedCalls()
+        raise StopIteration
+
+    def tearDown(self):
+        self.test_reactor.pump(self.call_spigot())
 
     def setUp_dummy(self):
         dummyStuff = MockDict()
@@ -366,7 +386,7 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def emulate_file_upload(self, token, n):
         """
-        This emulate the file upload of a incomplete submission
+        This emulates the file upload of an incomplete submission
         """
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
@@ -380,7 +400,7 @@ class TestGL(unittest.TestCase):
 
             self.assertFalse({'size', 'content_type', 'name', 'creation_date'} - set(f.keys()))
 
-    @transact_ro
+    @transact
     def _exists(self, store, model, *id_args, **id_kwargs):
         if not id_args and not id_kwargs:
             raise ValueError
@@ -398,7 +418,7 @@ class TestGL(unittest.TestCase):
         msg = 'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
         self.assertFalse(existing, msg)
 
-    @transact_ro
+    @transact
     def get_rtips(self, store):
         ret = []
         for tip in store.find(models.ReceiverTip):
@@ -408,11 +428,11 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    @transact_ro
+    @transact
     def get_rfiles(self, store, rtip_id):
         return [{'id': rfile.id} for rfile in store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == rtip_id)]
 
-    @transact_ro
+    @transact
     def get_wbtips(self, store):
         ret = []
         for tip in store.find(models.WhistleblowerTip):
@@ -422,7 +442,7 @@ class TestGL(unittest.TestCase):
 
         return ret
 
-    @transact_ro
+    @transact
     def get_internalfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
@@ -431,7 +451,7 @@ class TestGL(unittest.TestCase):
         return [serialize_internalfile(ifil) for ifil in ifiles]
 
 
-    @transact_ro
+    @transact
     def get_receiverfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
@@ -495,8 +515,8 @@ class TestGLWithPopulatedDB(TestGL):
         db_create_field(store, reference_field, 'en')
 
     def perform_submission_start(self):
-        self.dummyToken = token.Token(token_kind='submission')
-        self.dummyToken.proof_of_work = False
+        self.dummyToken = token.Token('submission')
+        self.dummyToken.solve()
 
     @inlineCallbacks
     def perform_submission_uploads(self):
@@ -510,8 +530,8 @@ class TestGLWithPopulatedDB(TestGL):
         self.dummySubmission['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.dummySubmission['total_score'] = 0
 
-        self.dummySubmission = yield create_submission(self.dummyToken.id,
-                                                       self.dummySubmission, 
+        self.dummySubmission = yield create_submission(self.dummySubmission,
+                                                       self.dummyToken.uploaded_files,
                                                        True, 'en')
 
     @inlineCallbacks

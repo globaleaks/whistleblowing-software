@@ -12,7 +12,7 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
     @inlineCallbacks
     def test_keywords_conversion(self):
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         data = {}
         data['type'] = 'tip'

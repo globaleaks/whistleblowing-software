@@ -1,7 +1,7 @@
 from twisted.internet.defer import inlineCallbacks, fail, succeed
 
 from globaleaks import models
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 
 from globaleaks.tests import helpers
 
@@ -16,7 +16,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         yield helpers.TestGLWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
 
-    @transact_ro
+    @transact
     def get_scheduled_email_count(self, store):
         return store.find(models.Mail).count()
 
@@ -25,11 +25,11 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
 
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
-        yield notification_schedule.operation()
+        yield notification_schedule.run()
 
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
@@ -39,7 +39,7 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)
 
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
@@ -49,13 +49,13 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
 
         notification_schedule.sendmail = sendmail
 
-        for i in range(0, 9):
-            yield notification_schedule.operation()
+        for i in range(0, 10):
+            yield notification_schedule.run()
 
             count = yield self.get_scheduled_email_count()
             self.assertEqual(count, 40)
 
-        yield notification_schedule.operation()
+        yield notification_schedule.run()
 
         count = yield self.get_scheduled_email_count()
         self.assertEqual(count, 0)

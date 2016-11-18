@@ -115,7 +115,7 @@ network_sandboxing_start()
 
     check_iptables
 
-    iptables -L | grep ${USERNAME} >/dev/null 2>&1
+    iptables -L | grep "globaleaks-network-sandboxing" >/dev/null 2>&1
     if [ "$?" -eq "0" ]; then
         log_action_end_msg 0 "already enabled."
         return
@@ -126,10 +126,9 @@ network_sandboxing_start()
     do
         for IP_SRC in "${ALLOWED_SRC_IP[@]}"
         do
-            iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
-
-        iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
+        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
     done
 
     # OUTBOUND
@@ -138,16 +137,15 @@ network_sandboxing_start()
     do
         for IP_SRC in "${ALLOWED_SRC_IP[@]}"
         do
-            iptables -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done
     done
-
-    iptables -A OUTPUT -t nat ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -A OUTPUT -t nat ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -A OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -A OUTPUT -t filter -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
-    iptables -A OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -A OUTPUT -t filter ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
 }
@@ -164,32 +162,8 @@ network_sandboxing_stop()
         return
     fi
 
-    # INBOUND
-    for IP_DST in "${ALLOWED_DST_IP[@]}"
-    do
-        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
-        do
-            iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
-        done
-
-        iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
-    done
-
-    # OUTBOUND
-    for IP_DST in "${ALLOWED_DST_IP[@]}"
-    do
-        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
-        do
-            iptables -D OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
-        done
-    done
-
-    iptables -D OUTPUT -t nat ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -D OUTPUT -t nat ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -D OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -D OUTPUT -t filter -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j ACCEPT
-    iptables -D OUTPUT -t filter -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -D OUTPUT -t filter ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
+    # remove all rules with the comment: "globaleaks-network-sandboxing"
+    iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
 
     log_action_end_msg 0
 }

@@ -5,7 +5,7 @@
       <div data-ng-repeat="context in selectable_contexts | orderBy:contextsOrderPredicate" id="context-{{$index}}" class="col-md-12" data-ng-click="selectContext(context)">
         <div class="contextList">
           <div class="contextListContent">
-            <span class="verticalAlignHelper"></span><span><img class="contextImg" alt="context picture" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" /></span><span><b>{{context.name}}</b></span><div data-ng-if="::context.description" class="contextListDescription">{{::context.description}}</span>
+            <span class="verticalAlignHelper"></span><span><img class="contextImg" alt="context picture" data-ng-if="context.picture !== ''" data-ng-src="{{::Utils.imgDataUri(context.picture)}}" /></span><span><b>{{context.name}}</b></span><span data-ng-if="::context.description" class="contextListDescription">{{::context.description}}</span>
           </div>
         </div>
       </div>

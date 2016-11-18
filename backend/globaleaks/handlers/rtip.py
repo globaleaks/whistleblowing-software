@@ -10,7 +10,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
@@ -123,7 +123,7 @@ def db_get_files_receiver(store, user_id, rtip_id):
             for receiverfile in receiver_files]
 
 
-@transact_ro
+@transact
 def get_files_receiver(store, user_id, rtip_id):
     return db_get_files_receiver(store, user_id, rtip_id)
 

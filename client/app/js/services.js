@@ -313,10 +313,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.done = false;
 
       self.isDisabled = function() {
-        return (self.count_selected_receivers() === 0 ||
-                self.wait ||
-                !self.pow ||
-                self.done);
+        return self.count_selected_receivers() === 0 ||
+               self.wait ||
+               !self.pow ||
+               self.done;
       };
 
       self.count_selected_receivers = function () {
@@ -906,15 +906,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       isWhistleblowerPage: function() {
         var path = $location.path();
-        return this.isSubmissionPage() || path === '/status';
-      },
-
-      isSubmissionPage: function() {
-        var path = $location.path();
         return (path === '/' ||
                 path === '/start' ||
                 path === '/submission' ||
-                path === '/receipt');
+                path === '/receipt' ||
+                path === '/status');
       },
 
       classExtension: function() {
@@ -927,9 +923,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       },
 
       showLoginForm: function () {
-        return (!this.isHomepage() &&
-                !this.isLoginPage() &&
-                !this.isSubmissionPage());
+        var path = $location.path();
+        return path === '/submission';
+      },
+
+      showUserStatusBox: function() {
+        return angular.isDefined($rootScope.session);
       },
 
       showPrivacyBadge: function() {
@@ -999,75 +998,32 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         saveAs(blob, filename);
       },
 
-      uploadedFiles: function(uploads) {
-        var sum = 0;
-
-        angular.forEach(uploads, function(flow) {
-          if (flow !== undefined) {
-            sum += flow.files.length;
-          }
-        });
-
-        return sum;
-      },
-
       getUploadStatus: function(uploads) {
-        var error = false;
-
-        for (var key in uploads) {
-          if (uploads.hasOwnProperty(key)) {
-            if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
-              return 'uploading';
-            }
-
-            for (var i=0; i<uploads[key].files.length; i++) {
-              if (uploads[key].files[i].error) {
-                error = true;
-                break;
-              }
-            }
-          }
+        if (uploads.progress() != 1) {
+          return 'uploading';
         }
 
-        if (error) {
-          return 'error';
-        } else {
-          return 'finished';
-        }
+        return 'finished';
       },
 
       isUploading: function(uploads) {
-        return this.getUploadStatus(uploads) === 'uploading';
-      },
-
-      remainingUploadTime: function(uploads) {
-        var sum = 0;
-
-        angular.forEach(uploads, function(flow) {
-          var x = flow.timeRemaining();
-          if (x === 'Infinity') {
-            return 'Infinity';
+        for (var key in uploads) {
+          if (uploads[key].files.length > 0 && uploads[key].progress() != 1) {
+            return true;
           }
-          sum += x;
-        });
-
-        return sum;
-      },
-
-      uploadProgress: function(uploads) {
-        var sum = 0;
-        var n = 0;
-
-        angular.forEach(uploads, function(flow) {
-          sum += flow.progress();
-          n += 1;
-        });
-
-        if (n === 0 || sum === 0) {
-          return 1;
         }
 
-        return sum / n;
+        return false;
+      },
+
+      getContext: function(context_id) {
+        for (var i = 0; i < $rootScope.contexts.length; i++) {
+          var ctx = $rootScope.contexts[i];
+          if (ctx.id === context_id) {
+            return ctx;
+          }
+        }
+        return undefined;
       },
 
       openConfirmableModalDialog: function(template, arg, scope) {

@@ -2,16 +2,19 @@
 # orm: contains main hooks to storm ORM
 # ******
 import sys
+import threading
+
+from storm import exceptions, tracer
+import storm.databases.sqlite
+from storm.database import create_database
+from storm.databases.sqlite import sqlite
+from storm.store import Store
+
+
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 
-import storm.databases.sqlite
-import transaction
-from globaleaks.rest.errors import DatabaseIntegrityError
 from globaleaks.settings import GLSettings
-from storm import exceptions, tracer
-from storm.databases.sqlite import sqlite
-from storm.zope.zstorm import ZStorm
 
 
 class SQLite(storm.databases.sqlite.Database):
@@ -21,12 +24,10 @@ class SQLite(storm.databases.sqlite.Database):
         if sqlite is storm.databases.sqlite.dummy:
             raise storm.databases.sqlite.DatabaseModuleError("'pysqlite2' module not found")
         self._filename = uri.database or ":memory:"
-        self._timeout = float(uri.options.get("timeout", 5))
+        self._timeout = float(uri.options.get("timeout", 30))
         self._synchronous = uri.options.get("synchronous")
         self._journal_mode = uri.options.get("journal_mode")
         self._foreign_keys = uri.options.get("foreign_keys")
-
-        self.raw_connect().execute("VACUUM")
 
     def raw_connect(self):
         raw_connection = sqlite.connect(self._filename, timeout=self._timeout,
@@ -44,13 +45,19 @@ class SQLite(storm.databases.sqlite.Database):
             raw_connection.execute("PRAGMA foreign_keys = %s" %
                                    (self._foreign_keys,))
 
-        raw_connection.execute("PRAGMA secure_delete = ON") # = 1
+        raw_connection.execute("PRAGMA secure_delete = ON")
 
         return raw_connection
 
 storm.databases.sqlite.SQLite = SQLite
 storm.databases.sqlite.create_from_uri = SQLite
-# XXX. END MONKEYPATCH
+
+
+def get_store():
+    return Store(create_database(GLSettings.db_uri))
+
+
+transact_lock = threading.Lock()
 
 
 class transact(object):
@@ -58,10 +65,7 @@ class transact(object):
     Class decorator for managing transactions.
     Because Storm sucks.
     """
-    readonly = False
-
     def __init__(self, method):
-        self.store = None
         self.method = method
         self.instance = None
         self.debug = GLSettings.orm_debug
@@ -76,57 +80,38 @@ class transact(object):
     def __call__(self, *args, **kwargs):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
-    @staticmethod
-    def run(function, *args, **kwargs):
-        """
-        Defer provided function to thread
-        """
-        return deferToThreadPool(reactor, GLSettings.orm_tp,
-                                 function, *args, **kwargs)
-
-    @staticmethod
-    def get_store():
-        """
-        Returns a reference to Storm Store
-        """
-        zstorm = ZStorm()
-        zstorm.set_default_uri(GLSettings.store_name, GLSettings.db_uri)
-
-        return zstorm.get(GLSettings.store_name)
+    def run(self, function, *args, **kwargs):
+        return deferToThreadPool(reactor,
+                                 GLSettings.orm_tp,
+                                 function,
+                                 *args,
+                                 **kwargs)
 
     def _wrap(self, function, *args, **kwargs):
         """
         Wrap provided function calling it inside a thread and
         passing the store to it.
         """
-        self.store = self.get_store()
+        with transact_lock:
+            store = Store(create_database(GLSettings.db_uri))
 
-        try:
-            if self.instance:
-                result = function(self.instance, self.store, *args, **kwargs)
+            try:
+                if self.instance:
+                    result = function(self.instance, store, *args, **kwargs)
+                else:
+                    result = function(store, *args, **kwargs)
+
+                store.commit()
+            except:
+                store.rollback()
+                raise
             else:
-                result = function(self.store, *args, **kwargs)
-
-            if not self.readonly:
-                self.store.commit()
-            else:
-                self.store.flush()
-                self.store.invalidate()
-
-        except exceptions.DisconnectionError as e:
-            transaction.abort()
-            result = None
-        except exceptions.IntegrityError as e:
-            transaction.abort()
-            raise DatabaseIntegrityError(str(e))
-        except Exception:
-            transaction.abort()
-            raise
-        finally:
-            self.store.close()
-
-        return result
+                return result
+            finally:
+                store.reset()
+                store.close()
 
 
-class transact_ro(transact):
-    readonly = True
+class transact_sync(transact):
+    def run(self, function, *args, **kwargs):
+        return function(*args, **kwargs)

@@ -186,7 +186,6 @@ AdminNodeDesc = {
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
-    'ahmia': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_encryption_warnings': bool,
@@ -254,25 +253,8 @@ AdminNotificationDesc = {
     'receiver_notification_limit_reached_mail_title': unicode,
     'tip_expiration_mail_template': unicode,
     'tip_expiration_mail_title': unicode,
-    'identity_access_authorized_mail_template': unicode,
-    'identity_access_authorized_mail_title': unicode,
-    'identity_access_denied_mail_template': unicode,
-    'identity_access_denied_mail_title': unicode,
-    'identity_access_request_mail_template': unicode,
-    'identity_access_request_mail_title': unicode,
-    'identity_provided_mail_template': unicode,
-    'identity_provided_mail_title': unicode,
-    'export_template': unicode,
-    'export_message_whistleblower': unicode,
-    'export_message_recipient': unicode,
     'admin_anomaly_mail_template': unicode,
     'admin_anomaly_mail_title': unicode,
-    'admin_anomaly_activities': unicode,
-    'admin_anomaly_disk_high': unicode,
-    'admin_anomaly_disk_medium': unicode,
-    'admin_anomaly_disk_low': unicode,
-    'admin_test_static_mail_template': unicode,
-    'admin_test_static_mail_title': unicode,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
@@ -428,7 +410,6 @@ NodeDesc = {
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
-    'ahmia': bool,
     'allow_indexing': bool,
     'allow_unencrypted': bool,
     'disable_privacy_badge': bool,
@@ -527,16 +508,6 @@ PublicResourcesDesc = {
     'node': NodeDesc,
     'contexts': [ContextDesc],
     'receivers': [ReceiverDesc]
-}
-
-AhmiaDesc = {
-    'description': unicode,
-    'language': unicode,
-    'title': unicode,
-    'contactInformation': unicode,
-    'relation': unicode,
-    'keywords': unicode,
-    'type': unicode
 }
 
 StaticFileDesc = {

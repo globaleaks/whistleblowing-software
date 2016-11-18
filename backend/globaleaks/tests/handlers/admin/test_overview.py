@@ -16,7 +16,7 @@ class TestTipsOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
     @inlineCallbacks
     def test_get(self):
@@ -36,7 +36,7 @@ class TestFilesOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield self.perform_full_submission_actions()
-        yield DeliverySchedule().operation()
+        yield DeliverySchedule().run()
 
     @inlineCallbacks
     def test_get(self):

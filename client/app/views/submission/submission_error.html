@@ -20,7 +20,7 @@
       <ul>
         <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
              data-ng-controller="SubmissionStepFormErrCtrl">
-           <p data-ng-if="stepForm.$invalid"><span class="err-link" ng-click="goToStep(step.presentation_order, true)">
+           <p data-ng-if="stepForm.$invalid"><span class="err-link" ng-click="goToStep($index, true)">
             <i class="glyphicon glyphicon-arrow-right"></i> <code><span>{{ step.label }}</span></code>
           </span></p>
         </div>

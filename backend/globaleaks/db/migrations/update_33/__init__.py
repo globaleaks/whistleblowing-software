@@ -150,6 +150,7 @@ class User_v_32(ModelWithID):
     pgp_key_public = Unicode(default=u'')
     pgp_key_expiration = DateTime(default_factory=datetime_null)
     pgp_key_status = Unicode(default=u'disabled')
+    img_id = Unicode()
 
 
 class MigrationScript(MigrationBase):

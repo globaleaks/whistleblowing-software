@@ -4,6 +4,7 @@ from storm.expr import And, In
 from storm.locals import Unicode, Storm, Bool
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES, models
+from globaleaks.rest import errors
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.utils.utility import log
 
@@ -76,12 +77,12 @@ class ConfigL10N(Storm):
 
 
 class ConfigL10NFactory(object):
-    def __init__(self, store, group, lang_code=None):
+    localized_keys = frozenset()
+    unmodifiable_keys = frozenset()
+
+    def __init__(self, store, group):
         self.store = store
         self.group = unicode(group)
-
-        if lang_code is not None:
-            self.lang_code = unicode(lang_code)
 
         #TODO use lazy loading to optimize query performance
 
@@ -106,7 +107,7 @@ class ConfigL10NFactory(object):
     def update(self, request, lang_code):
         c_map = {c.var_name : c for c in self.retrieve_rows(lang_code)}
 
-        for key in self.localized_keys:
+        for key in self.localized_keys - self.unmodifiable_keys:
             c = c_map[key]
             new_val = unicode(request[key])
             c.set_v(new_val)
@@ -114,8 +115,8 @@ class ConfigL10NFactory(object):
     def update_defaults(self, langs, l10n_data_src, reset=False):
         for lang_code in langs:
             for cfg in self.get_all(lang_code):
-                if (not cfg.customized or reset) and cfg.var_name in l10n_data_src:
-                    cfg.val = l10n_data_src[cfg.var_name][lang_code]
+                if (not cfg.customized or reset or cfg.var_name in self.unmodifiable_keys) and cfg.var_name in l10n_data_src:
+                    cfg.value = l10n_data_src[cfg.var_name][lang_code]
 
     def get_all(self, lang_code):
         return self.store.find(ConfigL10N, And(ConfigL10N.var_group == self.group,
@@ -126,28 +127,19 @@ class ConfigL10NFactory(object):
                    ConfigL10N.var_group == self.group,
                    ConfigL10N.var_name == unicode(var_name))
 
-    def get_val(self, lang_code, var_name):
+    def get_val(self, var_name, lang_code):
         cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
         if cfg is None:
             raise errors.ModelNotFound('ConfigL10N:%s.%s' % (self.group, var_name))
+
         return cfg.value
 
-    def set_val(self, var_name, value):
-        if self.lang_code is None:
-            raise ValueError('Cannot assign ConfigL10N without a language')
-
-        cfg = self.store.find(ConfigL10N, self._where_is(self.lang_code, var_name)).one()
+    def set_val(self, var_name, lang_code, value):
+        cfg = self.store.find(ConfigL10N, self._where_is(lang_code, var_name)).one()
         cfg.set_v(value)
 
 
 class NodeL10NFactory(ConfigL10NFactory):
-    def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
-
-    def initialize(self, lang_code, appdata_dict):
-        l10n_data_src = appdata_dict['node']
-        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
-
     localized_keys = frozenset({
         'description',
         'presentation',
@@ -169,19 +161,16 @@ class NodeL10NFactory(ConfigL10NFactory):
         'widget_files_title',
     })
 
-
-class NotificationL10NFactory(ConfigL10NFactory):
     def __init__(self, store, *args, **kwargs):
-        ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
+        ConfigL10NFactory.__init__(self, store, 'node', *args, **kwargs)
 
     def initialize(self, lang_code, appdata_dict):
-        l10n_data_src = appdata_dict['templates']
+        l10n_data_src = appdata_dict['node']
         ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
 
-    def reset_templates(self, l10n_data_src):
-        langs = EnabledLanguage.list(self.store)
-        self.update_defaults(langs, l10n_data_src, reset=True)
 
+
+class NotificationL10NFactory(ConfigL10NFactory):
     localized_keys = frozenset({
         'admin_anomaly_mail_title',
         'admin_anomaly_mail_template',
@@ -219,6 +208,39 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_message_whistleblower',
         'export_message_recipient',
     })
+
+    unmodifiable_keys = frozenset({
+      'identity_access_authorized_mail_template',
+      'identity_access_authorized_mail_title',
+      'identity_access_denied_mail_template',
+      'identity_access_denied_mail_title',
+      'identity_access_request_mail_template',
+      'identity_access_request_mail_title',
+      'identity_provided_mail_template',
+      'identity_provided_mail_title',
+      'export_template',
+      'export_message_whistleblower',
+      'export_message_recipient',
+      'admin_anomaly_mail_template',
+      'admin_anomaly_mail_title',
+      'admin_anomaly_activities',
+      'admin_anomaly_disk_high',
+      'admin_anomaly_disk_medium',
+      'admin_anomaly_disk_low',
+      'admin_test_static_mail_template',
+      'admin_test_static_mail_title',
+    })
+
+    def __init__(self, store, *args, **kwargs):
+        ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
+
+    def initialize(self, lang_code, appdata_dict):
+        l10n_data_src = appdata_dict['templates']
+        ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
+
+    def reset_templates(self, l10n_data_src):
+        langs = EnabledLanguage.list(self.store)
+        self.update_defaults(langs, l10n_data_src, reset=True)
 
 
 def update_defaults(store, appdata):

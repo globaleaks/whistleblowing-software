@@ -229,6 +229,9 @@ describe('globaLeaks process', function() {
     utils.login_receiver();
 
     element(by.id('tip-0')).click();
+
+    utils.waitUntilPresent(by.id('tip-action-silence'));
+
     var silence = element(by.id('tip-action-silence'));
     silence.click();
     var notif = element(by.id('tip-action-notify'));

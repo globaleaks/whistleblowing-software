@@ -9,7 +9,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.user import db_create_user
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.tests import helpers
 from globaleaks.settings import GLSettings
 from globaleaks.models.config_desc import GLConfig
@@ -137,7 +137,7 @@ class TestModels(helpers.TestGL):
         store.add(context)
         return context.id
 
-    @transact_ro
+    @transact
     def context_get(self, store, context_id):
         context = models.Context.get(store, context_id)
         if context is None:
@@ -176,7 +176,7 @@ class TestModels(helpers.TestGL):
 
         return receiver.id
 
-    @transact_ro
+    @transact
     def receiver_get(self, store, receiver_id):
         receiver = models.Receiver.get(store, receiver_id)
         if receiver is None:
@@ -277,7 +277,7 @@ class TestModels(helpers.TestGL):
         store.add(receiver)
         return receiver.id
 
-    @transact_ro
+    @transact
     def list_receivers_of_context(self, store, context_id):
         context = models.Context.get(store, context_id)
         receivers = []
@@ -285,7 +285,7 @@ class TestModels(helpers.TestGL):
             receivers.append(receiver.id)
         return receivers
 
-    @transact_ro
+    @transact
     def list_context_of_receivers(self, store, receiver_id):
         """
         Return the list of context ids associated with the receiver identified
@@ -351,7 +351,7 @@ class TestField(helpers.TestGL):
             field = models.Field.get(store, field_id)
             parent.children.add(field)
 
-    @transact_ro
+    @transact
     def get_children(self, store, field_id):
         return [c.id for c in models.Field.get(store, field_id).children]
 

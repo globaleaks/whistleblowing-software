@@ -11,14 +11,14 @@ from globaleaks import models
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step, serialize_questionnaire
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
 
-@transact_ro
+@transact
 def get_questionnaire_list(store, language):
     """
     Returns the questionnaire list.
@@ -31,7 +31,7 @@ def get_questionnaire_list(store, language):
         for questionnaire in store.find(models.Questionnaire)]
 
 
-@transact_ro
+@transact
 def get_questionnaire(store, questionnaire_id, language):
     """
     Returns:
@@ -64,7 +64,7 @@ def db_get_questionnaire_steps(store, questionnaire_id, language):
     return [serialize_step(store, s, language) for s in questionnaire.steps]
 
 
-@transact_ro
+@transact
 def get_questionnaire_steps(*args):
     return db_get_questionnaire_steps(*args)
 

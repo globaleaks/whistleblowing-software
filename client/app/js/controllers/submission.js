@@ -68,7 +68,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.wait = true;
     $scope.submission.pow = false;
 
-    $scope.submission.countdown = $scope.submission._token.start_validity_secs;
+    $scope.submission.countdown = $scope.node.submission_minimum_delay;
 
     var countDown = function () {
       $scope.submission.countdown -= 1;
@@ -173,7 +173,9 @@ GLClient.controller('SubmissionCtrl',
             !$scope.hasNextStep();
     if (angular.isDefined($scope.submission)) {
       // Prevents the flash of error panel after submission btn is clicked
-      return t && !$scope.submission.done;
+      t = t && !$scope.submission.done;
+      // Prevents the display of errors before a user can possibly submit
+      t = t && !$scope.submission.wait;
     }
     return t;
   };

@@ -41,22 +41,22 @@ class TestAnomaliesSchedule(helpers.TestGL):
 
         # testing the scheduler with all the conditions unmet
         self.n = -1
-        yield statistics_sched.AnomaliesSchedule().operation()
+        yield statistics_sched.AnomaliesSchedule().run()
 
         # testing the scheduler enabling all conditions one at once
         for j in range(conditions_count):
             self.n = j
-            yield statistics_sched.AnomaliesSchedule().operation()
+            yield statistics_sched.AnomaliesSchedule().run()
 
-        yield statistics_sched.AnomaliesSchedule().operation()
+        yield statistics_sched.AnomaliesSchedule().run()
 
         # testing the scheduler with all the conditions unmet
         # a second time in order test the accept_submissions value
         self.n = -1
-        yield statistics_sched.AnomaliesSchedule().operation()
+        yield statistics_sched.AnomaliesSchedule().run()
 
 
 class TestStaticsSchedule(helpers.TestGL):
     @inlineCallbacks
     def test_statistics_schedule(self):
-        yield statistics_sched.StatisticsSchedule().operation()
+        yield statistics_sched.StatisticsSchedule().run()

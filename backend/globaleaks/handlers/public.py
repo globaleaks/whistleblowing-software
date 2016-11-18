@@ -13,7 +13,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
-from globaleaks.orm import transact_ro
+from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.sets import disjoint_union
@@ -28,9 +28,6 @@ def db_serialize_node(store, language):
     configured = store.find(models.ReceiverContext).count() > 0
 
     ro_node = NodeFactory(store).public_export()
-
-    if GLSettings.devel_mode:
-        ro_node['submission_minimum_delay'] = 0
 
     misc_dict = {
         'languages_enabled': l10n.EnabledLanguage.list(store),
@@ -49,7 +46,7 @@ def db_serialize_node(store, language):
     return disjoint_union(ro_node, l10n_dict, misc_dict)
 
 
-@transact_ro
+@transact
 def serialize_node(store, language):
     return db_serialize_node(store, language)
 
@@ -272,7 +269,7 @@ def db_get_public_receiver_list(store, language):
     return receiver_list
 
 
-@transact_ro
+@transact
 def get_public_resources(store, language):
     return {
         'node': db_serialize_node(store, language),

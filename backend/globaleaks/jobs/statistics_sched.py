@@ -11,10 +11,9 @@
 #  The anomaly detection based on stress level measurement.
 
 import os
-from twisted.internet import defer
 
 from globaleaks.anomaly import Alarm
-from globaleaks.orm import transact
+from globaleaks.orm import transact_sync
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
 from globaleaks.models import Stats, Anomalies
@@ -34,7 +33,7 @@ def get_ramdisk_space():
     return free_bytes, total_bytes
 
 
-@transact
+@transact_sync
 def save_anomalies(store, anomaly_list):
     for anomaly in anomaly_list:
         anomaly_date, anomaly_desc, alarm_raised = anomaly
@@ -69,7 +68,7 @@ def get_statistics():
 
     return statsummary
 
-@transact
+@transact_sync
 def save_statistics(store, start, end, activity_collection):
     newstat = Stats()
     newstat.start = start
@@ -87,10 +86,10 @@ class AnomaliesSchedule(GLJob):
     This job checks for anomalies and take care of saving them on the db.
     """
     name = "Anomalies"
+    interval = 30
 
-    @defer.inlineCallbacks
     def operation(self):
-        yield Alarm.compute_activity_level()
+        Alarm.compute_activity_level()
 
         free_disk_bytes, total_disk_bytes = get_workingdir_space()
         free_ramdisk_bytes, total_ramdisk_bytes = get_ramdisk_space()
@@ -104,6 +103,11 @@ class StatisticsSchedule(GLJob):
     in the database.
     """
     name = "Statistics Sched"
+    interval = 3600
+
+    def get_start_time(self):
+         current_time = datetime_now()
+         return 3600 - (current_time.minute * 60) - current_time.second
 
     def __init__(self):
         self.collection_start_time = datetime_now()
@@ -115,29 +119,23 @@ class StatisticsSchedule(GLJob):
         GLSettings.RecentAnomaliesQ = {}
         cls.collection_start_time = datetime_now()
 
-    @defer.inlineCallbacks
     def operation(self):
         # ------- BEGIN Anomalies section -------
         anomalies_to_save = get_anomalies()
-        yield save_anomalies(anomalies_to_save)
+        save_anomalies(anomalies_to_save)
         # ------- END Anomalies section ---------
 
         # ------- BEGIN Stats section -----------
         current_time = datetime_now()
         statistic_summary = get_statistics()
-        yield save_statistics(self.collection_start_time,
+        save_statistics(self.collection_start_time,
                               current_time, statistic_summary)
         # ------- END Stats section -------------
 
         # ------- BEGIN Mail thresholds management -----------
         GLSettings.exceptions = {}
         GLSettings.exceptions_email_count = 0
-
-        for k, v in GLSettings.mail_counters.iteritems():
-            if v > GLSettings.memory_copy.notif.notification_threshold_per_hour:
-                GLSettings.mail_counters[k] -= GLSettings.memory_copy.notif.notification_threshold_per_hour
-            else:
-                GLSettings.mail_counters[k] = 0
+        GLSettings.mail_counters.clear()
         # ------- END Mail thresholds management -----------
 
         self.reset()

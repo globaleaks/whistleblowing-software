@@ -7,7 +7,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.handlers.admin.user import db_create_receiver
@@ -40,7 +40,7 @@ def admin_serialize_receiver(receiver, language):
     return get_localized_values(ret_dict, receiver, receiver.localized_keys, language)
 
 
-@transact_ro
+@transact
 def get_receiver_list(store, language):
     """
     Returns:
@@ -72,7 +72,7 @@ def db_get_receiver(store, receiver_id):
     return receiver
 
 
-@transact_ro
+@transact
 def get_receiver(store, receiver_id, language):
     return admin_serialize_receiver(db_get_receiver(store, receiver_id), language)
 

@@ -25,6 +25,7 @@ def wizard(store, request, language):
         # TODO report as anomaly
         log.err("DANGER: Wizard already initialized!")
         raise errors.ForbiddenOperation
+
     try:
         node._query_group()
 
@@ -33,11 +34,11 @@ def wizard(store, request, language):
         node.set_val('default_language', language)
         node.set_val('wizard_done', True)
 
-        node_l10n = NodeL10NFactory(store, lang_code=language)
+        node_l10n = NodeL10NFactory(store)
 
-        node_l10n.set_val('description', nn)
-        node_l10n.set_val('header_title_homepage', nn)
-        node_l10n.set_val('presentation', nn)
+        node_l10n.set_val('description', language, nn)
+        node_l10n.set_val('header_title_homepage', language, nn)
+        node_l10n.set_val('presentation', language, nn)
 
         context = db_create_context(store, request['context'], language)
 

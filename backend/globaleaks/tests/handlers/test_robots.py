@@ -57,27 +57,3 @@ class TestSitemapHandlerHandler(helpers.TestHandler):
         yield handler.get()
 
         self.assertEqual(handler.get_status(), 200)
-
-
-class TestAhmiaDescriptionHandler(helpers.TestHandler):
-    _handler = robots.AhmiaDescriptionHandler
-
-    @inlineCallbacks
-    def test_get_ahmia_disabled(self):
-        handler = self.request()
-
-        GLSettings.memory_copy.ahmia = False
-
-        yield handler.get()
-
-        self.assertEqual(handler.get_status(), 404)
-
-    @inlineCallbacks
-    def test_get_ahmia_enabled(self):
-        handler = self.request()
-
-        GLSettings.memory_copy.ahmia = True
-
-        yield handler.get()
-
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.AhmiaDesc)

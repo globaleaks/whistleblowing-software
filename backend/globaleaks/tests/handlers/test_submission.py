@@ -5,6 +5,7 @@ from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
 from globaleaks.jobs import delivery_sched
 from globaleaks.tests import helpers
+from globaleaks.rest import errors
 from globaleaks.utils.token import Token
 
 # and here, our protagonist character:
@@ -27,7 +28,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def create_submission(self, request):
         token = Token('submission')
-        token.proof_of_work = False
+        token.solve()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
         yield handler.put(token.id)
@@ -36,7 +37,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def create_submission_with_files(self, request):
         token = Token('submission')
-        token.proof_of_work = False
+        token.solve()
         yield self.emulate_file_upload(token, 3)
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
@@ -53,7 +54,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
 
-        yield delivery_sched.DeliverySchedule().operation()
+        yield delivery_sched.DeliverySchedule().run()
 
         self.fil = yield self.get_internalfiles_by_wbtip(self.submission_desc['id'])
         self.assertTrue(isinstance(self.fil, list))
@@ -89,6 +90,27 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
         self.assertTrue('answers' in wbtip_desc)
+
+class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
+    _handler = SubmissionInstance
+
+    @inlineCallbacks
+    def test_token_must_be_solved(self):
+        token = Token()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+        handler = self.request(self.submission_desc)
+        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
+
+
+    @inlineCallbacks
+    def test_token_reuse_blocked(self):
+        token = Token()
+        token.solve()
+        self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
+
+        handler = self.request(self.submission_desc)
+        yield handler.put(token.id)
+        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
 
 
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):

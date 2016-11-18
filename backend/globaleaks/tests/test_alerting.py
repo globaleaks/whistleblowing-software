@@ -44,7 +44,7 @@ class TestStatistics(helpers.TestGL):
             self.assertEqual(count, ANOMALIES_COUNT * 2)
 
         # scheduler happen to save these anomalies, along with stats
-        yield StatisticsSchedule().operation()
+        yield StatisticsSchedule().run()
 
         # now if we get our anomalies, we expect the same 10, right ?
         AH = yield get_anomaly_history(limit=10)

@@ -6,7 +6,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks import models
-from globaleaks.orm import transact, transact_ro
+from globaleaks.orm import transact
 from globaleaks.jobs import cleaning_sched
 from globaleaks.utils.utility import datetime_null
 from globaleaks.settings import GLSettings
@@ -25,7 +25,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         for itip in store.find(models.InternalTip):
             itip.expiration_date = datetime_null()
 
-    @transact_ro
+    @transact
     def check0(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
@@ -38,7 +38,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertEqual(store.find(models.Comment).count(), 0)
         self.assertEqual(store.find(models.Message).count(), 0)
 
-    @transact_ro
+    @transact
     def check1(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
@@ -50,7 +50,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
         self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
 
-    @transact_ro
+    @transact
     def check2(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
         self.assertEqual(store.find(models.InternalTip).count(), self.population_of_submissions)
@@ -71,21 +71,21 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         # verify tip creation
         yield self.check1()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify tips survive the scheduler if they are not expired
         yield self.check1()
 
         yield self.force_wbtip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify rtips survive the scheduler if the wbtip expires
         yield self.check2()
 
         yield self.force_itip_expiration()
 
-        yield cleaning_sched.CleaningSchedule().operation()
+        yield cleaning_sched.CleaningSchedule().run()
 
         # verify cascade deletion when tips expire
         yield self.check0()

@@ -8,6 +8,7 @@
 
 import copy
 import json
+from storm.expr import And, In
 from twisted.internet import defer
 
 from globaleaks import models
@@ -21,7 +22,6 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.token import TokenList
 from globaleaks.utils.utility import log, utc_future_date, \
     datetime_now, datetime_never, datetime_to_ISO8601
-from storm.expr import And, In
 
 
 def get_submission_sequence_number(itip):
@@ -179,7 +179,7 @@ def extract_answers_preview(questionnaire, answers):
 
 
 def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
-    if store.find(models.ArchivedSchema, 
+    if store.find(models.ArchivedSchema,
                   models.ArchivedSchema.hash == questionnaire_hash).count() <= 0:
 
         aqs = models.ArchivedSchema()
@@ -316,12 +316,7 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, token_id, request, t2w, language):
-    # the .get method raise an exception if the token is invalid
-    token = TokenList.get(token_id)
-
-    token.use()
-
+def db_create_submission(store, request, uploaded_files, t2w, language):
     answers = request['answers']
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
@@ -375,7 +370,7 @@ def db_create_submission(store, token_id, request, t2w, language):
         raise excep
 
     try:
-        for filedesc in token.uploaded_files:
+        for filedesc in uploaded_files:
             new_file = models.InternalFile()
             new_file.name = filedesc['filename']
             new_file.description = ""
@@ -420,8 +415,8 @@ def db_create_submission(store, token_id, request, t2w, language):
 
 
 @transact
-def create_submission(store, token_id, request, t2w, language):
-    return db_create_submission(store, token_id, request, t2w, language)
+def create_submission(store, request, uploaded_files, t2w, language):
+    return db_create_submission(store, request, uploaded_files, t2w, language)
 
 
 class SubmissionInstance(BaseHandler):
@@ -441,8 +436,16 @@ class SubmissionInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.SubmissionDesc)
 
-        submission = yield create_submission(token_id, request,
+        # The get and use method will raise if the token is invalid
+        token = TokenList.get(token_id)
+        token.use()
+
+        submission = yield create_submission(request, 
+                                             token.uploaded_files,
                                              self.check_tor2web(),
                                              self.request.language)
+        # Delete the token only when a valid submission has been stored in the DB
+        TokenList.delete(token_id)
+
         self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.write(submission)
