@@ -84,6 +84,8 @@ GLClient.controller('TipCtrl',
         $scope.tip = tip;
         $scope.extractSpecialTipFields(tip);
 
+        $scope.downloadWBFile = WBTipDownloadFile;
+
         $scope.tip_unencrypted = false;
         for(var i = 0; i < tip.receivers.length; i++) {
           if (tip.receivers[i].pgp_key_public === '') {
@@ -136,7 +138,7 @@ GLClient.controller('TipCtrl',
         $scope.extractSpecialTipFields(tip);
 
         $scope.exportTip = RTipExport;
-        $scope.downloadFile = RTipDownloadFile;
+        $scope.downloadRFile = RTipDownloadFile;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 

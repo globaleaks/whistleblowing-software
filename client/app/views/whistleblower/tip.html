@@ -18,6 +18,7 @@
 <div class="row">
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_info.html'"></div>
+    <div data-ng-if="tip.showFileDownloadWidget()" data-ng-include="'views/partials/widget_wbfiles.html'"></div>
     <div data-ng-if="tip.show_recipients_details" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
   </div>
 </div>
@@ -28,9 +29,6 @@
   </div>
   <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity">
     <div data-ng-include="'views/whistleblower/whistleblower_identity.html'"></div>
-  </div>
-  <div class="col-md-6" data-ng-if="tip.showFileDownloadWidget()">
-    <div data-ng-include="'views/whistleblower/file_download_widget.html'"></div>
   </div>
 </div>
 
