@@ -518,15 +518,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
 }]).
   factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
-    return function(file_id) {
+    return function(file) {
       $http({
         method: 'POST',
-        url: '/wbtip/download/' + file_id,
+        url: '/wbtip/download/' + file,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
-        console.log("made the post");
-        //FileSaver.saveAs(blob, file.name);
+        FileSaver.saveAs(blob, file.name);
       });
     };
 }]).
@@ -575,14 +574,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             });
           }
         };
-
-        tip.showFileDownloadWidget = function(file_id) {
-          return true;
-        };
-
-        if (fn) {
-          fn(tip);
-        }
       });
     };
 }]).
