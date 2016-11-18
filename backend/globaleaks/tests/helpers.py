@@ -856,6 +856,8 @@ class MockDict:
             'widget_comments_title': '',
             'widget_messages_title': '',
             'widget_files_title': '',
+            'widget_wbfiles_title': '',
+            'widget_wbfiles_description': '',
             'threshold_free_disk_megabytes_high': 200,
             'threshold_free_disk_megabytes_medium': 500,
             'threshold_free_disk_megabytes_low': 1000,
