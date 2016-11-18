@@ -7,6 +7,7 @@
 # receiver side. These classes are executed in the /rtip/* URI PATH
 
 import os
+import string
 
 from cyclone.web import asynchronous
 
@@ -489,8 +490,9 @@ class WhistleblowerFileUpload(BaseHandler):
 
         try:
             # First: dump the file in the filesystem
-            dst = os.path.join(GLSettings.submission_path,
-                               os.path.basename(uploaded_file['path']))
+            filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
+
+            dst = os.path.join(GLSettings.submission_path, filename)
 
             directory_traversal_check(GLSettings.submission_path, dst)
 
