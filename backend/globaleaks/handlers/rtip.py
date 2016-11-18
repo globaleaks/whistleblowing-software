@@ -379,6 +379,7 @@ def set_wbfile_description(store, user_id, file_id, description):
 @transact
 def delete_wbfile(store, user_id, file_id):
     wbfile = db_access_wbfile(store, user_id, file_id)
+    db_mark_file_for_secure_deletion(store, wbfile.file_path)
     store.remove(wbfile)
 
 
