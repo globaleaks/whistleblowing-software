@@ -199,6 +199,18 @@ GLClient.controller('TipCtrl',
       $scope.tip.setVar('enable_notifications', enable);
     };
 
+    $scope.showWBFileUpload = function() {
+      // TODO use context.enable_rc_to_wb_files
+      return true;
+    };
+
+    $scope.uploadWbFile = function() {
+
+    };
+
+    now = new Date();
+    $scope.wbfile = {'name': 'finale_report.txt', 'creation_date': now, 'author': 'nn2@n.org', 'description': 'The city of Barcelona has produced its analysis and decided that blah blah blah blah blah'};
+
     $scope.tip_delete = function () {
       $uibModal.open({
         templateUrl: 'views/partials/tip_operation_delete.html',
