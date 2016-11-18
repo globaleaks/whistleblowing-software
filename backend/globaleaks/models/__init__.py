@@ -786,6 +786,11 @@ ReceiverFile.receivertip = Reference(
     ReceiverTip.id
 )
 
+WhistleblowerFile.receivertip = Reference(
+    WhistleblowerFile.receivertip_id,
+    ReceiverTip.id
+)
+
 WhistleblowerTip.internaltip = Reference(
     WhistleblowerTip.id,
     InternalTip.id

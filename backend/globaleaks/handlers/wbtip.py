@@ -25,12 +25,22 @@ from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
-# function compatible with both ifiles and wbfiles
-def wb_serialize_file(f):
+def wb_serialize_ifile(f):
     return {
         'id': f.id,
         'creation_date': datetime_to_ISO8601(f.creation_date),
         'name': f.name,
+        'size': f.size,
+        'content_type': f.content_type
+    }
+
+
+def wb_serialize_wbfile(f):
+    return {
+        'id': f.id,
+        'creation_date': datetime_to_ISO8601(f.creation_date),
+        'name': f.name,
+        'description': f.description,
         'size': f.size,
         'content_type': f.content_type
     }
@@ -48,14 +58,14 @@ def db_access_wbtip(store, wbtip_id):
 def db_get_rfile_list(store, itip_id):
     ifiles = store.find(InternalFile, InternalFile.internaltip_id == itip_id)
 
-    return [wb_serialize_file(ifile) for ifile in ifiles]
+    return [wb_serialize_ifile(ifile) for ifile in ifiles]
 
 
 def db_get_wbfile_list(store, itip_id):
     wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
                                            ReceiverTip.internaltip_id == itip_id)
 
-    return [wb_serialize_file(wbfile) for wbfile in wbfiles]
+    return [wb_serialize_wbfile(wbfile) for wbfile in wbfiles]
 
 
 def db_get_wbtip(store, wbtip_id, language):
