@@ -217,6 +217,8 @@ AdminNodeDesc = {
     'widget_comments_title': unicode,
     'widget_messages_title': unicode,
     'widget_files_title': unicode,
+    'widget_wbfiles_title': unicode,
+    'widget_wbfiles_description': unicode,
     'threshold_free_disk_megabytes_high': int,
     'threshold_free_disk_megabytes_medium': int,
     'threshold_free_disk_megabytes_low': int,
