@@ -78,7 +78,7 @@ GLClient.controller('TipCtrl',
     };
 
     if ($scope.session.role === 'whistleblower') {
-      $scope.fileupload_url = 'wbtip/upload';
+      $scope.fileupload_url = 'wbtip/rfile';
 
       new WBTip(function(tip) {
         $scope.tip = tip;

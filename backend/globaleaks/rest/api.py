@@ -74,16 +74,16 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
-    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileUpload),
-    (r'/rtip/wbfile/' + uuid_regexp, rtip.WhistleblowerFileUploadInstance),
-    (r'/rtip/download/' + uuid_regexp, rtip.ReceiverFileDownload),
+    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFile),
+    (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
+    (r'/rtip/wbfile/' + uuid_regexp, rtip.WhistleblowerFileInstanceHandler),
 
     ## Whistleblower Tip Handlers
     (r'/wbtip', wbtip.WBTipInstance),
     (r'/wbtip/comments', wbtip.WBTipCommentCollection),
     (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
-    (r'/wbtip/upload', files.FileAdd),
-    (r'/wbtip/wbfiledownload/' + uuid_regexp, wbtip.WhistleblowerFileDownload),
+    (r'/wbtip/rfile', files.FileAdd),
+    (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WhistleblowerFileInstanceHandler),
     (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
 
     ## Receiver Handlers ##

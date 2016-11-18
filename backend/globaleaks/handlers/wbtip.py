@@ -13,8 +13,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, \
-    directory_traversal_check
+from globaleaks.handlers.base import BaseHandler, directory_traversal_check
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
@@ -248,13 +247,13 @@ class WBTipMessageCollection(BaseHandler):
         self.write(message)
 
 
-class WhistleblowerFileDownload(_FileDownloadHandler):
+class WhistleblowerFileInstanceHandler(BaseHandler):
     @transact
     def download_wbfile(self, store, user_id, file_id):
         wbfile = store.find(WhistleblowerFile,
-                           WhistleblowerFile.id == file_id,
-                           WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                           WhistleblowerTip.id == ReceiverTip.internaltip_id).one()
+                            WhistleblowerFile.id == file_id,
+                            WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                            WhistleblowerTip.id == ReceiverTip.internaltip_id).one()
 
         if not wbfile:
             raise errors.FileIdNotFound
@@ -277,7 +276,7 @@ class WhistleblowerFileDownload(_FileDownloadHandler):
 
         directory_traversal_check(GLSettings.submission_path, filelocation)
 
-        self.serve_file(wbfile['name'], filelocation)
+        self.force_file_download(wbfile['name'], filelocation)
 
 
 class WBTipIdentityHandler(BaseHandler):

@@ -88,7 +88,7 @@ class TestConfigL10N(helpers.TestGL):
 
         # Make a query with the Node manager
         ret = node_l10n.retrieve_rows('en')
-        self.assertTrue(len(ret) == 18)
+        self.assertTrue(len(ret) == 20)
 
     @inlineCallbacks
     def test_enabled_langs(self):

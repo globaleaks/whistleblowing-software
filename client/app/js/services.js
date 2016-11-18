@@ -438,7 +438,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       $http({
         method: 'GET',
-        url: '/rtip/download/' + file.id,
+        url: '/rtip/rfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -521,7 +521,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       $http({
         method: 'POST',
-        url: '/wbtip/download/' + file,
+        url: '/wbtip/rfile/' + file,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
