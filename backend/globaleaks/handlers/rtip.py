@@ -15,7 +15,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, \
+from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
@@ -495,7 +495,7 @@ class ReceiverMsgCollection(BaseHandler):
         self.write(message)
 
 
-class WhistleblowerFileUpload(BaseHandler):
+class WhistleblowerFileHandler(BaseHandler):
     """
     Receiver interface to upload a file destinated to the whistleblower
     """
@@ -542,7 +542,7 @@ class WhistleblowerFileUpload(BaseHandler):
         self.set_status(201)  # Created
 
 
-class WhistleblowerFileUploadInstance(BaseHandler):
+class WhistleblowerFileInstanceHandler(BaseHandler):
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
@@ -566,7 +566,7 @@ class WhistleblowerFileUploadInstance(BaseHandler):
         yield delete_wbfile(self.current_user.user_id, file_id)
 
 
-class ReceiverFileDownload(_FileDownloadHandler):
+class ReceiverFileDownload(BaseHandler):
     @transact
     def download_rfile(self, store, user_id, file_id):
         rfile = store.find(ReceiverFile,
@@ -595,7 +595,7 @@ class ReceiverFileDownload(_FileDownloadHandler):
 
         directory_traversal_check(GLSettings.submission_path, filelocation)
 
-        self.serve_file(rfile['name'], filelocation)
+        self.force_file_download(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

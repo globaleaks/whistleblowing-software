@@ -14,13 +14,13 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
         yield self.perform_full_submission_actions()
 
-        self._handler = rtip.WhistleblowerFileUpload
+        self._handler = rtip.WhistleblowerFileHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
-        self._handler = rtip.WhistleblowerFileUploadInstance
+        self._handler = rtip.WhistleblowerFileInstanceHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             for wbfile_desc in rtip_desc['wbfiles']:
@@ -31,7 +31,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
                 yield handler.put(wbfile_desc['id'])
 
-        self._handler = wbtip.WhistleblowerFileDownload
+        self._handler = wbtip.WhistleblowerFileInstanceHandler
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             wbfiles_desc = yield self.get_wbfiles(wbtip_desc['id'])
@@ -39,7 +39,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
                 yield handler.get(wbfile_desc['id'])
 
-        self._handler = rtip.WhistleblowerFileUploadInstance
+        self._handler = rtip.WhistleblowerFileInstanceHandler
         rtips_desc = yield self.get_rtips()
         deleted_wbfiles_ids = []
         for rtip_desc in rtips_desc:
