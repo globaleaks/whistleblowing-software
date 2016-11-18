@@ -148,6 +148,10 @@ CommentDesc = {
     'content': unicode
 }
 
+WBFileDesc = {
+    'description': unicode
+}
+
 TipOpsDesc = {
     'operation': tip_operation_regexp,
     'args': dict

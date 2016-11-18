@@ -71,6 +71,7 @@ def receiver_serialize_wbfile(f):
         'id': f.id,
         'creation_date': datetime_to_ISO8601(f.creation_date),
         'name': f.name,
+        'description': f.description,
         'size': f.size,
         'content_type': f.content_type,
         'downloads': f.downloads
@@ -131,6 +132,23 @@ def db_access_rtip(store, user_id, rtip_id):
         raise errors.TipIdNotFound
 
     return rtip
+
+
+def db_access_wbfile(store, user_id, wbfile_id):
+    wbfile = store.find(WhistleblowerFile,
+                        WhistleblowerFile.id == unicode(wbfile_id)).one()
+
+    if not wbfile:
+        raise errors.WBFileIdNotFound
+
+    receivers = []
+    for receivertip in wbfile.receivertip.internaltip.receivertips:
+        receivers.append(receivertip.receiver_id)
+
+    if user_id not in receivers:
+        raise errors.WBFileIdNotFound
+
+    return wbfile
 
 
 def db_receiver_get_rfile_list(store, rtip_id):
@@ -352,6 +370,17 @@ def create_message(store, user_id, rtip_id, request):
 
     return serialize_message(msg)
 
+@transact
+def set_wbfile_description(store, user_id, file_id, description):
+    wbfile = db_access_wbfile(store, user_id, file_id)
+    wbfile.description = description
+
+
+@transact
+def delete_wbfile(store, user_id, file_id):
+    wbfile = db_access_wbfile(store, user_id, file_id)
+    store.remove(wbfile)
+
 
 def db_get_identityaccessrequest_list(store, rtip_id, language):
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip_id)
@@ -511,6 +540,30 @@ class WhistleblowerFileUpload(BaseHandler):
             raise errors.InternalServerError("Unable to accept new files")
 
         self.set_status(201)  # Created
+
+
+class WhistleblowerFileUploadInstance(BaseHandler):
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def put(self, file_id):
+        """
+        This interface allow the recipient to set the description of a WhistleblowerFile
+        """
+        request = self.validate_message(self.request.body, requests.WBFileDesc)
+
+        yield set_wbfile_description(self.current_user.user_id, file_id, request['description'])
+
+        self.set_status(202) # Updated
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def delete(self, file_id):
+        """
+        This interface allow the recipient to set the description of a WhistleblowerFile
+        """
+        yield delete_wbfile(self.current_user.user_id, file_id)
 
 
 class ReceiverFileDownload(_FileDownloadHandler):
