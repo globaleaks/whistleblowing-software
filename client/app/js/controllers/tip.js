@@ -208,8 +208,8 @@ GLClient.controller('TipCtrl',
 
     };
 
-    now = new Date();
-    $scope.wbfile = {'name': 'finale_report.txt', 'creation_date': now, 'author': 'nn2@n.org', 'description': 'The city of Barcelona has produced its analysis and decided that blah blah blah blah blah'};
+    var now = new Date();
+    $scope.wbfile = {'name': 'finale_report.txt', 'creation_date': now, 'author': 'nn2@n.org', 'description': 'We have produced analysis and decided that blah blah blah blah blah'};
 
     $scope.tip_delete = function () {
       $uibModal.open({
