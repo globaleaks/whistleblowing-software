@@ -1,0 +1,67 @@
+<div id="TipPageWBFileUpload" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <div>
+      <span data-translate>Attached files for the Whistleblower</span>
+      <span class="pull-right">
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+      </span>
+    </div>
+  </div>
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed">
+
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning</span></strong>
+      <span data-translate>Files uploaded here are made available for the whistleblower and other recipients to download.</span>
+    </div>
+
+    <div data-ng-init="">
+      <div class="wbfile-row panel panel-default">
+        <div class="panel-body">
+          <span><b>{{wbfile.name}}</b></span>
+          <span class="label label-info" uib-tooltip="Creation date | translate">
+            {{wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}
+          </span>
+          <span class="label label-info" uib-tooltip="Creator | translate">
+            {{wbfile.author}}
+          </span>
+          <code class="" uib-tooltip="{{wbfile.description}}">
+            {{wbfile.description | limitTo:20 }}
+          </code>
+          <span class="pull-right">
+            <span class="btn btn-primary btn-xs">
+              <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
+            </span>
+            <span class="btn btn-danger btn-xs">
+              <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
+            </span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+    <h5>Upload a new file</h5>
+    <span class="form-inline" data-ng-controller="WBFileUploadCtrl">
+      <span class="form-group">
+        <span class="input-group">
+          <span class="input-group-addon">Description</span>
+          <input type="text" class="form-control"
+            data-ng-model="file_upload_description"
+          />
+          <span class="input-group-btn"
+            flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
+            flow-files-submitted="beginUpload($files, $event, $flow)"
+            flow-error="throwErrUp($message)"
+            flow-single-file
+            flow-btn>
+            <span class="btn btn-warning">
+              <span class="glyphicon glyphicon-upload"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </span>
+        </span>
+      </span>
+    </span>
+  </div>
+</div>

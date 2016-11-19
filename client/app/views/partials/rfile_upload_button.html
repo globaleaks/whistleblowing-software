@@ -1,5 +1,5 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
-  <div data-ng-controller="WBFileUploadCtrl" flow-init="{target: fileupload_url, headers: Authentication.get_headers()}" flow-files-submitted="$flow.upload()" flow-name="uploads[fileinput]">
+  <div data-ng-controller="RFileUploadCtrl" flow-init="{target: fileupload_url, headers: Authentication.get_headers()}" flow-files-submitted="$flow.upload()" flow-name="uploads[fileinput]">
     <div data-ng-if="field === undefined || field.multi_entry">
       <button id="fileupload" class="btn btn-success fileinput-button" data-ng-disabled="disabled" flow-btn>
         <i class="glyphicon glyphicon-paperclip"></i>
@@ -16,5 +16,5 @@
       <span data-translate="Error:"></span> <span>{{file_error_msg}}</span>
     </div>
   </div>
-  <div data-ng-include="'views/partials/fileupload_status.html'"></div>
+  <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
 </div>
