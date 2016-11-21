@@ -74,7 +74,7 @@ spec = [
     (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
     (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
     (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
-    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFile),
+    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
     (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
     (r'/rtip/wbfile/' + uuid_regexp, rtip.WhistleblowerFileInstanceHandler),
 
