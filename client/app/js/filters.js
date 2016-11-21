@@ -40,6 +40,16 @@ filter('tipFileName', ['$filter', function($filter) {
     }
   };
 }]).
+filter('wbfileCreator', [function() {
+  return function(rec_id, rec_list) {
+    for (var i = 0; i < rec_list.length; i++) {
+      if (rec_id === rec_list[i].id) {
+        return rec_list[i]['name'];
+      }
+    }
+    return '';
+  };
+}]).
 filter('wbAccessRevoked', ['$filter', function($filter) {
   return function(wb_last_access, wbtip_timetolive) {
     if (angular.isUndefined(wb_last_access)) {
