@@ -87,12 +87,12 @@ class MigrationScript(MigrationBase):
                     # NOTE hardcoded policy. . . .
                     tip_ttl = 5*365
                     if old_obj.tip_timetolive > tip_ttl:
-                        GLSettings.print_msg('[WARNING] This update changes the servers submission retention policy')
+                        GLSettings.print_msg('[WARNING] Found an expiration date bigger than 5years; expiration date set to unlimited.')
                         # If data retention was larger than 5 years the intended goal was 
                         # probably to keep the submission around forever.
                         new_obj.tip_timetolive = -1
                     elif old_obj.tip_timetolive < -1:
-                        GLSettings.print_msg('[WARNING] Found tip_ttl with negative value %s reseting to default')
+                        GLSettings.print_msg('[WARNING] Found a negative tip expiration; expiration date set to umlimited.')
                         new_obj.tip_timetolive = Context.tip_timetolive.default
                     else:
                         new_obj.tip_timetolive = old_obj.tip_timetolive
