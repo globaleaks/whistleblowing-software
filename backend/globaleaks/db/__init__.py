@@ -123,8 +123,9 @@ def get_tracked_files(store):
     """
     ifiles = list(store.find(models.InternalFile).values(models.InternalFile.file_path))
     rfiles = list(store.find(models.ReceiverFile).values(models.ReceiverFile.file_path))
+    wbfiles = list(store.find(models.WhistleblowerFile).values(models.WhistleblowerFile.file_path))
 
-    return [os.path.basename(files) for files in list(set(ifiles + rfiles))]
+    return [os.path.basename(files) for files in list(set(ifiles + rfiles + wbfiles))]
 
 
 @inlineCallbacks
