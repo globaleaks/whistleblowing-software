@@ -547,19 +547,6 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
-    def put(self, file_id):
-        """
-        This interface allow the recipient to set the description of a WhistleblowerFile
-        """
-        request = self.validate_message(self.request.body, requests.WBFileDesc)
-
-        yield set_wbfile_description(self.current_user.user_id, file_id, request['description'])
-
-        self.set_status(202) # Updated
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
     def delete(self, file_id):
         """
         This interface allow the recipient to set the description of a WhistleblowerFile
