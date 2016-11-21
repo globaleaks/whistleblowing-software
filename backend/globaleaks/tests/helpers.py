@@ -174,6 +174,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     return {
         'name': filename,
+        'description': 'description',
         'body': temporary_file,
         'size': len(content),
         'path': temporary_file.filepath,
