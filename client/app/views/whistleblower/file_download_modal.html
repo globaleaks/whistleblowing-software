@@ -5,11 +5,10 @@
   <div class="modal-title" data-translate>Are you sure?</div>
 </div>
 <div class="modal-body">
-  <div class="alert alert-danger">
-    <span data-translate>If the file you are downloading contains malicious content your identity or your computer could be compromised.</span>
-    <span data-translate>Understand that filenames can be intentionally misleading.</span>
-    <span data-translate>This file was placed on the platform on XXX with XXX and is XXX.</span>
-    <p data-translate>That is all we know.</p>
+  <div id="DownloadWarning" class="alert alert-danger">
+    <span data-translate>Downloading a file with malicious content could compromise your computer or disclose your identity.</span>
+    <span data-translate>The name of the file and its content can be intentionally misleading.</span>
+    <span data-translate>Please review the following information and decide if you wish to proceed.</span>
   </div>
 </div>
 <div class="modal-footer">
@@ -19,6 +18,6 @@
   </span>
   <span id="modal-action-ok" class="btn btn-danger" data-ng-click="ok()">
     <i class="glyphicon glyphicon-ok"></i>
-    <span data-translate>Confirm</span>
+    <span data-translate>Download</span>
   </span>
 </div>

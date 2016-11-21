@@ -1,7 +1,7 @@
 <div id="TipPageWBFileUpload" class="panel panel-default" data-ng-init="collapsed = false">
   <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
     <div>
-      <span data-translate>Attached files for the Whistleblower</span>
+      <span data-translate>Attached files for the whistleblower</span>
       <span class="pull-right">
         <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
         <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
@@ -20,10 +20,10 @@
       <div class="wbfile-row panel panel-default">
         <div class="panel-body">
           <span><b>{{wbfile.name}}</b></span>
-          <span class="label label-info" uib-tooltip="Creation date | translate">
+          <span class="label label-info" uib-tooltip="Creation date">
             {{wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}
           </span>
-          <span class="label label-info" uib-tooltip="Creator | translate">
+          <span class="label label-info" uib-tooltip="From">
             {{wbfile.author}}
           </span>
           <span class="" uib-tooltip="{{wbfile.description}}">
