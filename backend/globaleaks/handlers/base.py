@@ -681,7 +681,7 @@ class BaseHandler(RequestHandler):
                 'type': self.request.files['file'][0]['content_type'],
                 'size': total_file_size,
                 'path': f.filepath,
-                'body': f
+                'body': f,
                 'description': self.request.arguments.get('description', [''])[0]
             }
 

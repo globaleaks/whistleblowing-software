@@ -10,8 +10,6 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        file_description = "Status report for the submission."
-
         yield self.perform_full_submission_actions()
 
         self._handler = rtip.WhistleblowerFileHandler
@@ -19,17 +17,6 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
-
-        self._handler = rtip.WhistleblowerFileInstanceHandler
-        rtips_desc = yield self.get_rtips()
-        for rtip_desc in rtips_desc:
-            for wbfile_desc in rtip_desc['wbfiles']:
-                body = {
-                  'description' : file_description
-                }
-
-                handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], body=json.dumps(body))
-                yield handler.put(wbfile_desc['id'])
 
         self._handler = wbtip.WhistleblowerFileInstanceHandler
         wbtips_desc = yield self.get_wbtips()
@@ -47,7 +34,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 if wbfile_desc['id'] in deleted_wbfiles_ids:
                     continue
 
-                self.assertEqual(wbfile_desc['description'], file_description)
+                self.assertEqual(wbfile_desc['description'], 'description')
 
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
                 yield handler.delete(wbfile_desc['id'])
