@@ -434,11 +434,26 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+ factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
       $http({
         method: 'GET',
         url: '/rtip/rfile/' + file.id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, file.name);
+      });
+    };
+}]).
+ factory('RTipWBFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('rtip/wbfile/:id', {id: '@id'});
+}]).
+ factory('RTipDownloadWBFile', ['$http', 'FileSaver', function($http, FileSaver) {
+    return function(file) {
+      return $http({
+        method: 'GET',
+        url: '/rtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -520,8 +535,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
       $http({
-        method: 'POST',
-        url: '/wbtip/rfile/' + file,
+        method: 'GET',
+        url: '/wbtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -573,11 +588,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               tip.messages = messageCollection;
             });
           }
-        };
-
-        tip.showFileDownloadWidget = function() {
-          // TODO use context.enable_rc_to_wb_files or attach to tip
-          return true;
         };
 
         if (fn) {

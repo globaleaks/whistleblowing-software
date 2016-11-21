@@ -548,6 +548,8 @@ class WhistleblowerFileHandler(BaseHandler):
 
 
 class WhistleblowerFileInstanceHandler(BaseHandler):
+    #TODO TODO TODO write download_wbfile
+
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks

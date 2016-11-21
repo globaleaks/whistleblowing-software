@@ -6,10 +6,15 @@
 </div>
 <div class="modal-body">
   <div id="DownloadWarning" class="alert alert-danger">
+    <span class="label label-danger">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <span data-translate>Danger</span>
+    </span>&nbsp;
     <span data-translate>Downloading a file with malicious content could compromise your computer or disclose your identity.</span>
     <span data-translate>The name of the file and its content can be intentionally misleading.</span>
-    <span data-translate>Please review the following information and decide if you wish to proceed.</span>
   </div>
+  <p data-translate>Please review the following information and decide if you wish to proceed.</p>
+  <div><label>{{ file }}</label></div>
 </div>
 <div class="modal-footer">
   <span id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
