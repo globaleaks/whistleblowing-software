@@ -26,7 +26,7 @@ def serialize_rfile(rfile):
         'downloads': rfile.downloads
     }
 
-#WhistleblowerFile
+# WhistleblowerFile
 def serialize_wbfile(wbfile):
     return {
         'id': wbfile.id,
@@ -35,5 +35,6 @@ def serialize_wbfile(wbfile):
         'size': wbfile.size,
         'content_type': wbfile.content_type,
         'path': wbfile.file_path,
-        'downloads': wbfile.downloads
+        'downloads': wbfile.downloads,
+        'author': wbfile.receivertip.receiver_id
     }

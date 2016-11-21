@@ -675,12 +675,14 @@ class BaseHandler(RequestHandler):
                 if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
                     return None
 
+
             uploaded_file = {
                 'name': self.request.files['file'][0]['filename'],
                 'type': self.request.files['file'][0]['content_type'],
                 'size': total_file_size,
                 'path': f.filepath,
                 'body': f
+                'description': self.request.arguments.get('description', [''])[0]
             }
 
             self.request._start_time = f.creation_date

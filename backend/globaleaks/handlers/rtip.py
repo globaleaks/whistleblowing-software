@@ -74,7 +74,8 @@ def receiver_serialize_wbfile(f):
         'description': f.description,
         'size': f.size,
         'content_type': f.content_type,
-        'downloads': f.downloads
+        'downloads': f.downloads,
+        'author': f.receivertip.receiver_id
     }
 
 
@@ -178,7 +179,10 @@ def register_wbfile_on_db(store, uploaded_file, receivertip_id):
     receivertip.update_date = datetime_now()
 
     new_file = WhistleblowerFile()
+
     new_file.name = uploaded_file['name']
+    new_file.description = uploaded_file['description']
+
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
     new_file.receivertip_id = receivertip.id
