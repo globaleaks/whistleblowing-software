@@ -96,7 +96,7 @@ GLClient.controller('TipCtrl',
 
         $scope.showFileDownloadModal = function(file) {
           $uibModal.open({
-            templateUrl: 'views/whistleblower/file_download_modal.html',
+            templateUrl: 'views/partials/file_download_modal.html',
             controller: 'wbTipFileDownloadCtrl',
             resolve: {
               'file': function() { return file; },
