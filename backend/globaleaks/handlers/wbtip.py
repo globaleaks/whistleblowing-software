@@ -14,7 +14,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler, directory_traversal_check
-from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list
+from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
 from globaleaks.models import serializers, \
@@ -41,7 +41,8 @@ def wb_serialize_wbfile(f):
         'name': f.name,
         'description': f.description,
         'size': f.size,
-        'content_type': f.content_type
+        'content_type': f.content_type,
+        'author': f.receivertip.receiver_id
     }
 
 
@@ -247,36 +248,15 @@ class WBTipMessageCollection(BaseHandler):
         self.write(message)
 
 
-class WhistleblowerFileInstanceHandler(BaseHandler):
-    @transact
-    def download_wbfile(self, store, user_id, file_id):
-        wbfile = store.find(WhistleblowerFile,
-                            WhistleblowerFile.id == file_id,
-                            WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                            WhistleblowerTip.id == ReceiverTip.internaltip_id).one()
+class WBTipWhistleblowerFileInstanceHandler(WhistleblowerFileInstanceHandler):
 
-        if not wbfile:
-            raise errors.FileIdNotFound
-
-        log.debug("Download of file %s by whistleblower %s" %
-                  (wbfile.id, user_id))
-
-        wbfile.downloads += 1
-
-        return serializers.serialize_wbfile(wbfile)
+    def user_can_access(self, wbfile):
+        return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
 
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
-    @asynchronous
     def get(self, wbfile_id):
-        wbfile = yield self.download_wbfile(self.current_user.user_id, wbfile_id)
-
-        filelocation = os.path.join(GLSettings.submission_path, wbfile['path'])
-
-        directory_traversal_check(GLSettings.submission_path, filelocation)
-
-        self.force_file_download(wbfile['name'], filelocation)
+        self._get(wbfile_id)
 
 
 class WBTipIdentityHandler(BaseHandler):

@@ -168,6 +168,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
+        # TODO Check if attached files are gone as well.
+
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
         rtips_desc = yield self.get_rtips()
