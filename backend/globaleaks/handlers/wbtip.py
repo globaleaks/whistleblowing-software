@@ -248,7 +248,7 @@ class WBTipMessageCollection(BaseHandler):
         self.write(message)
 
 
-class WBTipWhistleblowerFileInstanceHandler(WhistleblowerFileInstanceHandler):
+class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
 
     def user_can_access(self, wbfile):
         return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
