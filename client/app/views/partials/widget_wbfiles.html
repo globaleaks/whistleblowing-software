@@ -12,33 +12,11 @@
 
     <div class="alert alert-warning">
       <i class="glyphicon glyphicon-warning-sign"></i>
-      <span data-translate> These files have been attached to your submission by the recipient</span>
+      <span data-translate> These files have been attached to your submission by the recipient.</span>
     </div>
 
-    <div class="file-wrapper panel panel-default" data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <div class="panel-body">
-        <div class="top-row">
-          <div class="download-button btn-warning btn btn-small" data-ng-click=showFileDownloadModal(wbfile)>
-           <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
-          </div>
-          <h4>{{::wbfile.name}}</h4>
-          <p>
-            <span class="label label-default"><i class="glyphicon glyphicon-info-sign"></i>
-            <span data-translate>Description</span>
-          </span>&nbsp; 
-          {{::wbfile.description}}</p>
-        </div>
-        <div class="bottom-row">
-          <div data-file-meta-data="wbfile"></div>
-          <p class="text-muted" data-translate>File Size<span>: {{::wbfile.size | byteFmt:2}}</span>
-          <span data-translate>Creation date</span>:
-            <span>{{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
-          </span>
-          <span class="text-muted" data-translate>From</span>:
-            <span>{{::wbfile.author | wbfileCreator: tip.receivers }}</span>
-          </span>
-        </div>
-      </div>
+    <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
+      <div data-wbfile></div>
     </div>
   </div>
 </div>

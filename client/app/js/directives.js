@@ -335,4 +335,11 @@ directive('isolateForm', [function () {
       angular.extend(ctrl, isolatedFormCtrl);
     }
   };
+}])
+.directive('wbfile', [function() {
+  return {
+    restrict: 'A',
+    scope: false,
+    templateUrl: 'views/partials/wbfile.html',
+  };
 }]);

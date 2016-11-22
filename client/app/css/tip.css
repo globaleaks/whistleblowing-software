@@ -53,13 +53,3 @@
 #RecvSearchFilter {
   margin-left: 5px;
 }
-
-#AttachedWBFile div.download-button {
-  float: right;
-  margin-left: 15px;
-  margin-bottom: 15px;
-}
-
-#AttachedWBFile .download-button .glyphicon {
-  /*font-size: 2.5em; */
-}

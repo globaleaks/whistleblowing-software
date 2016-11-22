@@ -442,3 +442,7 @@ table {
 .wbfile label {
   margin: 0;
 }
+
+.wbfile .top-row {
+  min-height: 30px;
+}
