@@ -27,7 +27,7 @@ controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Aut
 
   $scope.throwErrUp = function($message) {
      // TODO should use standard interface.
-     $scope.errors.push(new Error('WBFile Upload: ' + $message));
+     $scope.errors.push(new Error('File Upload: ' + $message));
   };
 }]).
 controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {

@@ -47,7 +47,8 @@ filter('wbfileCreator', [function() {
         return rec_list[i]['name'];
       }
     }
-    return '';
+    // TODO log fact that receiver_id was not found
+    return 'Unknown';
   };
 }]).
 filter('wbAccessRevoked', ['$filter', function($filter) {

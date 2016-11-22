@@ -219,7 +219,7 @@ def db_mark_file_for_secure_deletion(store, relpath):
         secure_file_delete.filepath = abspath
         store.add(secure_file_delete)
     else:
-        log.warn("Tried to securely delete a non existent file: %s" % abspath)
+        log.err("Tried to permanently delete a non existent file: %s" % abspath)
 
 
 def db_delete_itip_files(store, itip):

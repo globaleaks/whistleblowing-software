@@ -18,69 +18,29 @@
     </div>
 
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <div class="wbfile panel panel-default">
-        <div class="panel-body">
-          <div class="top-row">
-            <span class="filename pull-left">{{::wbfile.name }}</span>
-            <span class="pull-right">
-              <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
-                <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
-              </span>
-              <span class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)">
-                <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
-              </span>
-            </span>
-          </div>
-          <div class="clearfix"></div>
-          <p class="file-info-row">
-            <span>
-              <span class="text-muted" data-translate>From</span>:&nbsp;
-              <span>
-              {{::wbfile.author | wbfileCreator: tip.receivers }}
-              </span>
-            </span>&nbsp;&nbsp;
-            <span>
-              <span class="text-muted" data-translate>Creation date</span>:&nbsp;
-              <span >
-              {{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}
-              </span>
-            </span>&nbsp;&nbsp;
-            <span>
-              <span class="text-muted" data-translate>Size</span>:&nbsp;
-              <span>
-              {{::wbfile.size | byteFmt:2}}
-              </span>
-            </span>
-          </p>
-          <p data-ng-if="wbfile.description !== ''">
-            <span class="text-muted">
-              <span data-translate>Description</span>:
-            </span>&nbsp;
-            {{::wbfile.description | limitTo:20 }}
-          </p>
-        </div>
-      </div>
-
+      <div data-wbfile data-ctx="'rtip'"></div>
     </div>
     <h5>Upload a new file</h5>
-    <span class="form-inline" data-ng-controller="WBFileUploadCtrl">
+    <span class="form" data-ng-controller="WBFileUploadCtrl">
       <span class="form-group">
+        <button class="btn btn-warning pull-right"
+            flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
+            flow-files-submitted="beginUpload($files, $event, $flow)"
+            flow-error="throwErrUp($message)"
+            flow-complete="reload()"
+            flow-single-file
+            flow-btn>
+            <span class="">
+              <span class="glyphicon glyphicon-upload"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </span>
+        </button>
         <span class="input-group">
           <span class="input-group-addon">Description</span>
           <input type="text" class="form-control"
             data-ng-model="file_upload_description"
           />
-          <span class="input-group-btn"
-            flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
-            flow-files-submitted="beginUpload($files, $event, $flow)"
-            flow-error="throwErrUp($message)"
-            flow-single-file
-            flow-btn>
-            <span class="btn btn-warning">
-              <span class="glyphicon glyphicon-upload"></span>
-              <span data-translate>Upload</span>
-            </span>
-          </span>
         </span>
       </span>
     </span>
