@@ -12,13 +12,13 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     def test_get(self):
         yield self.perform_full_submission_actions()
 
-        self._handler = rtip.RTipWhistleblowerFileHandler
+        self._handler = rtip.WhistleblowerFileHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.post(rtip_desc['id'])
 
-        self._handler = wbtip.WBTipWhistleblowerFileInstanceHandler
+        self._handler = wbtip.WBTipWBFileInstanceHandler
         wbtips_desc = yield self.get_wbtips()
         for wbtip_desc in wbtips_desc:
             wbfiles_desc = yield self.get_wbfiles(wbtip_desc['id'])
@@ -26,7 +26,7 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
                 handler = self.request(role='whistleblower', user_id = wbtip_desc['id'])
                 yield handler.get(wbfile_desc['id'])
 
-        self._handler = rtip.RTipWhistleblowerFileInstanceHandler
+        self._handler = rtip.RTipWBFileInstanceHandler
         rtips_desc = yield self.get_rtips()
         deleted_wbfiles_ids = []
         for rtip_desc in rtips_desc:
@@ -45,11 +45,11 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
             self.assertEqual(len(rtip_desc['wbfiles']), 0)
 
       #@inlineCallbacks
-      def test_delete(self):
-          #TODO
-          pass
+    def test_delete(self):
+        #TODO
+         pass
 
-      #@inlineCallbacks
-      def test_system_delete(self):
-          #TODO
-          pass
+     #@inlineCallbacks
+    def test_system_delete(self):
+        #TODO
+        pass

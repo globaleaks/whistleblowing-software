@@ -593,7 +593,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
         self.force_file_download(wbfile['name'], filelocation)
 
 
-class RTipWhistleblowerFileInstanceHandler(WhistleblowerFileInstanceHandler):
+class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
 
     def user_can_access(self, wbfile):
         r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
