@@ -30,37 +30,38 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertTrue(os.listdir(GLSettings.submission_path) == [])
         self.assertTrue(os.listdir(GLSettings.tmp_upload_path) == [])
 
-        self.assertEqual(store.find(models.InternalTip).count(), 0)
-        self.assertEqual(store.find(models.ReceiverTip).count(), 0)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
-        self.assertEqual(store.find(models.InternalFile).count(), 0)
-        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-        self.assertEqual(store.find(models.Comment).count(), 0)
-        self.assertEqual(store.find(models.Message).count(), 0)
-        self.assertEqual(store.find(models.SecureFileDelete).count(), 0)
+        self.db_test_model_count(store, models.InternalTip, 0)
+        self.db_test_model_count(store, models.ReceiverTip, 0)
+        self.db_test_model_count(store, models.WhistleblowerTip, 0)
+        self.db_test_model_count(store, models.InternalFile, 0)
+        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.Comment, 0)
+        self.db_test_model_count(store, models.Message, 0)
+        self.db_test_model_count(store, models.SecureFileDelete, 0)
 
     @transact
     def check1(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
 
-        self.assertEqual(store.find(models.InternalTip).count(), self.population_of_submissions)
-        self.assertEqual(store.find(models.ReceiverTip).count(), self.population_of_recipients * self.population_of_submissions)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), self.population_of_submissions)
-        self.assertEqual(store.find(models.InternalFile).count(), self.population_of_attachments * self.population_of_submissions)
-        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-        self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
-        self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
+        self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
+        self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
+        self.db_test_model_count(store, models.WhistleblowerTip, self.population_of_submissions)
+        self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
+        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.Comment, self.population_of_submissions * self.population_of_comments)
+        self.db_test_model_count(store, models.Message, self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
 
     @transact
     def check2(self, store):
         self.assertTrue(os.listdir(GLSettings.submission_path) != [])
-        self.assertEqual(store.find(models.InternalTip).count(), self.population_of_submissions)
-        self.assertEqual(store.find(models.ReceiverTip).count(), self.population_of_recipients * self.population_of_submissions)
-        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0) # Note the diff
-        self.assertEqual(store.find(models.InternalFile).count(), self.population_of_attachments * self.population_of_submissions)
-        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-        self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
-        self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
+
+        self.db_test_model_count(store, models.InternalTip, self.population_of_submissions)
+        self.db_test_model_count(store, models.ReceiverTip, self.population_of_recipients * self.population_of_submissions)
+        self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
+        self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
+        self.db_test_model_count(store, models.ReceiverFile, 0)
+        self.db_test_model_count(store, models.Comment, self.population_of_submissions * self.population_of_comments)
+        self.db_test_model_count(store, models.Message, self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
 
 
     @inlineCallbacks
