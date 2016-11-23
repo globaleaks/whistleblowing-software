@@ -479,6 +479,13 @@ class TestGL(unittest.TestCase):
 
         return ret
 
+    def db_test_model_count(self, store, model, n):
+        self.assertEqual(store.find(model).count(), n)
+
+    @transact
+    def test_model_count(self, store, model, n):
+        self.db_test_model_count(store, model, n)
+
 
 class TestGLWithPopulatedDB(TestGL):
     complex_field_population = False

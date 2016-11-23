@@ -2,8 +2,10 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.tests import helpers
+
+from globaleaks import models
 from globaleaks.handlers import wbtip, rtip
+from globaleaks.tests import helpers
 
 class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
     _handler = None
@@ -38,18 +40,13 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
 
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
                 yield handler.delete(wbfile_desc['id'])
+
                 deleted_wbfiles_ids.append(wbfile_desc['id'])
 
+                yield self.test_model_count(models.SecureFileDelete, len(deleted_wbfiles_ids))
+
+
+        # check that the files are effectively gone from the db
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
             self.assertEqual(len(rtip_desc['wbfiles']), 0)
-
-      #@inlineCallbacks
-    def test_delete(self):
-        #TODO
-         pass
-
-     #@inlineCallbacks
-    def test_system_delete(self):
-        #TODO
-        pass

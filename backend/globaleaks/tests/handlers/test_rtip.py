@@ -2,6 +2,8 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks import models
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -168,7 +170,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(len(rtips_desc), self.population_of_submissions * self.population_of_recipients - self.population_of_recipients)
 
-        # TODO Check if attached files are gone as well.
+        yield self.test_model_count(models.SecureFileDelete, self.population_of_attachments)
+
 
     @inlineCallbacks
     def test_delete_unexistent_tip_by_existent_and_logged_receiver(self):
