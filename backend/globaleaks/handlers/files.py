@@ -5,15 +5,14 @@
 #
 # API handling submissions file uploads and subsequent submissions attachments
 import os
+import shutil
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
-
 from globaleaks.models import serializers, \
     ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
-
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check
@@ -28,7 +27,7 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
                              InternalTip.id == internaltip_id).one()
 
     if not internaltip:
-        log.err("File associated to a non existent Internaltip!")
+        log.err("Cannot associate a file to a not existent internaltip!")
         raise errors.TipIdNotFound
 
     internaltip.update_date = datetime_now()
@@ -43,8 +42,6 @@ def register_ifile_on_db(store, uploaded_file, internaltip_id):
 
     store.add(new_file)
 
-    log.debug("=> Recorded new InternalFile %s" % uploaded_file['name'])
-
     return serializers.serialize_ifile(new_file)
 
 
@@ -56,7 +53,7 @@ def get_itip_id_by_wbtip_id(store, wbtip_id):
     if not wbtip:
         raise errors.InvalidAuthentication
 
-    return wbtip.internaltip_id
+    return wbtip.id
 
 
 # This is different from FileInstance, just because there are a different authentication requirements
@@ -149,6 +146,7 @@ class FileInstance(BaseHandler):
             uploaded_file['submission'] = True
 
             token.associate_file(uploaded_file)
+
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")

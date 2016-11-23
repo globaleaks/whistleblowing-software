@@ -109,7 +109,6 @@ class StepIdNotFound(GLException):
     error_code = 15
     status_code = 404  # Not Found
 
-
 class InvalidModelInput(GLException):
     """
     This error is used when a Model validation fails
@@ -121,9 +120,13 @@ class InvalidModelInput(GLException):
         self.reason = "Invalid Model Input [%s]" % wrong_source
         self.arguments = [wrong_source]
 
-
-# UNUSED ERROR CODE 17 HERE!
-
+class WBFileIdNotFound(GLException):
+    """
+    The wbfile_id used do not exist in the database.
+    """
+    reason = "Not found a WBFile the specified id"
+    error_code = 17
+    status_code = 404 # Not Found
 
 class UserIdNotFound(GLException):
     """

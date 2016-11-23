@@ -3,7 +3,7 @@
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.properties import iso_strf_time
 from globaleaks.models.validators import shorttext_v, longtext_v, \
-    natnum_v
+    natnum_v, range_v
 from globaleaks.security import generateRandomSalt as salt
 from globaleaks.utils.utility import datetime_null
 
@@ -53,7 +53,7 @@ GLConfig = {
         'disable_custodian_notification_emails': Bool(default=False),
         'disable_receiver_notification_emails': Bool(default=False),
 
-        'tip_expiration_threshold': Int(validator=natnum_v, default=72),
+        'tip_expiration_threshold': Int(validator=natnum_v, default=72), # Hours
         'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
 
         'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
@@ -88,7 +88,7 @@ GLConfig = {
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),
         'submission_minimum_delay': Int(validator=natnum_v, default=10),
-        'submission_maximum_ttl': Int(validator=natnum_v, default=10800),
+        'submission_maximum_ttl': Int(validator=range_v(0, 10800*5), default=10800), # Seconds
 
         # privileges of receivers
         'can_postpone_expiration': Bool(default=False),
@@ -120,7 +120,7 @@ GLConfig = {
         'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
 
-        'wbtip_timetolive': Int(validator=natnum_v, default=90),
+        'wbtip_timetolive': Int(validator=range_v(0, 365*2), default=90), # Days
 
         'threshold_free_disk_megabytes_high': Int(validator=natnum_v, default=200),
         'threshold_free_disk_megabytes_medium': Int(validator=natnum_v, default=500),

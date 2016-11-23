@@ -428,3 +428,21 @@ table {
   height: 100%;
   vertical-align: middle;
 }
+
+.filename {
+  font-family: monospace;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.file-info-row {
+  margin-top: 10px;
+}
+
+.wbfile label {
+  margin: 0;
+}
+
+.wbfile .top-row {
+  min-height: 30px;
+}

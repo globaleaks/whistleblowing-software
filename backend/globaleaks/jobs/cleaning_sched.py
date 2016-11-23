@@ -29,10 +29,11 @@ __all__ = ['CleaningSchedule']
 def db_clean_expired_wbtips(store):
     threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
 
-    wbtips = store.find(models.WhistleblowerTip, models.WhistleblowerTip.internaltip_id == models.InternalTip.id,
+    wbtips = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == models.InternalTip.id,
                                                  models.InternalTip.wb_last_access < threshold)
+
     for wbtip in wbtips:
-        log.info("Disabling WB access to %s" % wbtip.internaltip_id)
+        log.info("Disabling WB access to %s" % wbtip.id)
         store.remove(wbtip)
 
 

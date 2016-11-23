@@ -97,24 +97,18 @@
     <div data-ng-include="'views/partials/tip_info.html'"></div>
     <div data-ng-if="tip.show_recipients_details" data-ng-include="'views/partials/tip_receiver_list.html'"></div>
   </div>
-</div>
-
-<div class="row">
   <div class="col-md-6">
     <div data-ng-include="'views/partials/tip_questionnaire_answers.html'"></div>
   </div>
   <div class="col-md-6" data-ng-if="tip.enable_whistleblower_identity">
     <div data-ng-include="'views/receiver/whistleblower_identity.html'"></div>
   </div>
-</div>
-
-<div class="row">
+  <div class="col-md-6" data-ng-if="showWBFileUpload()">
+    <div data-ng-include="'views/partials/tip_upload_wbfile.html'"></div>
+  </div>
   <div class="col-md-12">
     <div data-ng-include="'views/partials/tip_files_receiver.html'"></div>
   </div>
-</div>
-
-<div class="row">
   <div class="col-md-6" data-ng-if="tip.enable_comments">
     <div data-ng-include="'views/partials/tip_comments.html'"></div>
   </div>

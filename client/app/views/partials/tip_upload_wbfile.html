@@ -1,0 +1,48 @@
+<div id="TipPageWBFileUpload" class="panel panel-default" data-ng-init="collapsed = false">
+  <div class="panel-heading" data-ng-click="collapsed = !collapsed; $event.stopPropagation();">
+    <div>
+      <span data-translate>Attached files for the whistleblower</span>
+      <span class="pull-right">
+        <i data-ng-if="!collapsed" class="glyphicon glyphicon-collapse-down" uib-popover="{{'Collapse' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+        <i data-ng-if="collapsed" class="glyphicon glyphicon-fullscreen" uib-popover="{{'Expand' | translate}}" popover-placement="left" popover-trigger="'mouseenter'"></i>
+      </span>
+    </div>
+  </div>
+  <div class="TipPageSectionContent panel-body" data-ng-show="!collapsed"
+       data-ng-controller="RTipWBFileUploadCtrl">
+
+    <div class="alert alert-warning">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <strong><span data-translate>Warning</span></strong>
+      <span data-translate>Files uploaded here are made available for the whistleblower and other recipients to download.</span>
+    </div>
+
+    <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
+      <div data-wbfile data-ctx="'rtip'"></div>
+    </div>
+    <h5>Upload a new file</h5>
+    <span class="form" data-ng-controller="WBFileUploadCtrl">
+      <span class="form-group">
+        <button class="btn btn-warning pull-right"
+            flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
+            flow-files-submitted="beginUpload($files, $event, $flow)"
+            flow-error="throwErrUp($message)"
+            flow-complete="reload()"
+            flow-single-file
+            flow-btn>
+            <span class="">
+              <span class="glyphicon glyphicon-upload"></span>
+              <span data-translate>Upload</span>
+            </span>
+          </span>
+        </button>
+        <span class="input-group">
+          <span class="input-group-addon">Description</span>
+          <input type="text" class="form-control"
+            data-ng-model="file_upload_description"
+          />
+        </span>
+      </span>
+    </span>
+  </div>
+</div>

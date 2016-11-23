@@ -156,9 +156,12 @@ def get_dummy_field():
         'triggered_by_score': 0
     }
 
+files_count = 0
 
 def get_dummy_file(filename=None, content_type=None, content=None):
-    filename = ''.join(unichr(x) for x in range(0x400, 0x40A))
+    global files_count
+    files_count += 1
+    filename = ''.join(unichr(x) for x in range(0x400, 0x40A)).join('-%d' % files_count)
 
     content_type = 'application/octet'
 
@@ -171,13 +174,13 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     return {
         'name': filename,
+        'description': 'description',
         'body': temporary_file,
         'size': len(content),
         'path': temporary_file.filepath,
         'type': content_type,
         'submission': False
     }
-
 
 def get_file_upload(self):
     return get_dummy_file()
@@ -392,6 +395,7 @@ class TestGL(unittest.TestCase):
         for i in range(0, n):
             dummyFile = self.get_dummy_file()
 
+
             dst = os.path.join(GLSettings.submission_path,
                                os.path.basename(dummyFile['path']))
 
@@ -445,10 +449,17 @@ class TestGL(unittest.TestCase):
         return ret
 
     @transact
+    def get_wbfiles(self, store, wbtip_id):
+        return [{'id': wbfile.id} for wbfile in store.find(models.WhistleblowerFile,
+                                                           models.WhistleblowerFile.receivertip_id == models.ReceiverTip.id,
+                                                           models.WhistleblowerTip.id == wbtip_id,
+                                                           models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id)]
+
+    @transact
     def get_internalfiles_by_wbtip(self, store, wbtip_id):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
-        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.internaltip_id))
+        ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id))
 
         return [models.serializers.serialize_ifile(ifile) for ifile in ifiles]
 
@@ -458,7 +469,7 @@ class TestGL(unittest.TestCase):
         wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
 
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
-                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.internaltip_id))
+                                                 models.ReceiverTip.internaltip_id == unicode(wbtip.id))
 
         ret = []
         for rfile in rfiles:
@@ -610,20 +621,6 @@ class TestHandler(TestGLWithPopulatedDB):
     def initialization(self):
         self.responses = []
 
-        def mock_write(cls, response=None):
-            # !!!
-            # Here we are making the assumption that every time write() get's
-            # called it contains *all* of the response message.
-            #RequestHandler.finish(cls, response)
-
-            if response:
-                self.responses.append(response)
-
-
-        self._handler.write = mock_write
-        # we make the assumption that we will always use call finish on write.
-        self._handler.finish = mock_write
-
         # we need to reset settings.session to keep each test independent
         GLSessions.clear()
 
@@ -682,6 +679,18 @@ class TestHandler(TestGLWithPopulatedDB):
                                          body=body,
                                          remote_ip=remote_ip,
                                          connection=connection)
+
+        def mock_write(cls, response=None):
+            if response:
+                self.responses.append(response)
+
+        self._handler.write = mock_write
+
+
+        def mock_finish(cls):
+            pass
+
+        self._handler.finish = mock_finish
 
         handler = self._handler(application, request, **kwargs)
 
@@ -849,6 +858,8 @@ class MockDict:
             'widget_comments_title': '',
             'widget_messages_title': '',
             'widget_files_title': '',
+            'widget_wbfiles_title': '',
+            'widget_wbfiles_description': '',
             'threshold_free_disk_megabytes_high': 200,
             'threshold_free_disk_megabytes_medium': 500,
             'threshold_free_disk_megabytes_low': 1000,
