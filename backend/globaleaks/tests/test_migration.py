@@ -209,11 +209,11 @@ class TestMigrationRegression(unittest.TestCase):
 
         notification_l10n = NotificationL10NFactory(self.store)
 
-        t0 = notification_l10n.get_val('export_template', 'ar')
+        t0 = notification_l10n.get_val('export_template', 'it')
 
-        notification_l10n.set_val('export_template', 'ar', '')
+        notification_l10n.set_val('export_template', 'it', '')
 
-        t1 = notification_l10n.get_val('export_template', 'ar')
+        t1 = notification_l10n.get_val('export_template', 'it')
 
         self.assertEqual(t1, '')
 
@@ -232,7 +232,7 @@ class TestMigrationRegression(unittest.TestCase):
 
         store = Store(create_database(GLSettings.db_uri))
         notification_l10n = NotificationL10NFactory(store)
-        t2 = notification_l10n.get_val('export_template', 'ar')
+        t2 = notification_l10n.get_val('export_template', 'it')
         self.assertEqual(t2, t0)
         store.commit()
         store.close()
