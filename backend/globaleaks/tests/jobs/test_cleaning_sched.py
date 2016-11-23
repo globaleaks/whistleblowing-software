@@ -37,6 +37,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), 0)
         self.assertEqual(store.find(models.Message).count(), 0)
+        self.assertEqual(store.find(models.SecureFileDelete).count(), 0)
 
     @transact
     def check1(self, store):
@@ -60,6 +61,7 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.assertEqual(store.find(models.ReceiverFile).count(), 0)
         self.assertEqual(store.find(models.Comment).count(), self.population_of_submissions * self.population_of_comments)
         self.assertEqual(store.find(models.Message).count(), self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
+
 
     @inlineCallbacks
     def test_submission_life(self):
