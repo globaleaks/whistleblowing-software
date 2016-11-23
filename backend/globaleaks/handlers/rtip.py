@@ -7,18 +7,22 @@
 # receiver side. These classes are executed in the /rtip/* URI PATH
 
 import os
+import string
 
 from cyclone.web import asynchronous
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler, _FileDownloadHandler, directory_traversal_check
+from globaleaks.handlers.base import BaseHandler, \
+    directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
 from globaleaks.handlers.submission import serialize_usertip
 from globaleaks.models import serializers, \
+    ArchivedSchema, \
     Comment, Message, \
-    ReceiverFile, ReceiverTip, InternalTip, ArchivedSchema, \
+    InternalTip, \
+    ReceiverFile, ReceiverTip, \
+    WhistleblowerFile, \
     SecureFileDelete, IdentityAccessRequest
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
@@ -26,18 +30,15 @@ from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 
-def receiver_serialize_rfile(internalfile, receiverfile, receivertip_id):
-    """
-    ReceiverFile is the mixing between the metadata present in InternalFile
-    and the Receiver-dependent, and for the client sake receivertip_id is
-    required to create the download link
-    """
+def receiver_serialize_rfile(receiverfile):
+    internalfile = receiverfile.internalfile
+
     if receiverfile.status != 'unavailable':
         ret_dict = {
             'id': receiverfile.id,
             'internalfile_id': internalfile.id,
             'status': receiverfile.status,
-            'href': "/rtip/" + receivertip_id + "/download/" + receiverfile.id,
+            'href': "/rtip/" + receiverfile.receivertip_id + "/download/" + receiverfile.id,
             # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
             'name': ("%s.pgp" % internalfile.name) if receiverfile.status == u'encrypted' else internalfile.name,
             'content_type': internalfile.content_type,
@@ -52,14 +53,28 @@ def receiver_serialize_rfile(internalfile, receiverfile, receivertip_id):
             'internalfile_id': internalfile.id,
             'status': 'unavailable',
             'href': "",
-            'name': internalfile.name,  # original filename
-            'content_type': internalfile.content_type,  # original content size
-            'creation_date': datetime_to_ISO8601(internalfile.creation_date),  # original creation_date
-            'size': int(internalfile.size),  # original filesize
-            'downloads': unicode(receiverfile.downloads)  # this counter is always valid
+            'name': internalfile.name,
+            'content_type': internalfile.content_type,
+            'creation_date': datetime_to_ISO8601(internalfile.creation_date),
+            'size': int(internalfile.size),
+            'downloads': receiverfile.downloads
         }
 
     return ret_dict
+
+
+def receiver_serialize_wbfile(f):
+    return {
+        'id': f.id,
+        'creation_date': datetime_to_ISO8601(f.creation_date),
+        'name': f.name,
+        'description': f.description,
+        'size': f.size,
+        'content_type': f.content_type,
+        'downloads': f.downloads,
+        'author': f.receivertip.receiver_id
+    }
+
 
 def serialize_comment(comment):
     if comment.type == 'whistleblower':
@@ -99,7 +114,8 @@ def serialize_rtip(store, rtip, language):
     ret['label'] = rtip.label
     ret['comments'] = db_get_itip_comment_list(store, rtip.internaltip)
     ret['messages'] = db_get_itip_message_list(rtip)
-    ret['files'] = db_get_files_receiver(store, user_id, rtip.id)
+    ret['rfiles'] = db_receiver_get_rfile_list(store, rtip.id)
+    ret['wbfiles'] = db_receiver_get_wbfile_list(store, rtip.internaltip_id)
     ret['iars'] = db_get_identityaccessrequest_list(store, rtip.id, language)
     ret['enable_notifications'] = bool(rtip.enable_notifications)
 
@@ -116,19 +132,69 @@ def db_access_rtip(store, user_id, rtip_id):
     return rtip
 
 
-def db_get_files_receiver(store, user_id, rtip_id):
-    receiver_files = store.find(ReceiverFile,
-                                (ReceiverFile.receivertip_id == ReceiverTip.id,
-                                 ReceiverTip.id == rtip_id,
-                                 ReceiverTip.receiver_id == user_id))
+def db_access_wbfile(store, user_id, wbfile_id):
+    wbfile = store.find(WhistleblowerFile,
+                        WhistleblowerFile.id == unicode(wbfile_id)).one()
 
-    return [receiver_serialize_rfile(receiverfile.internalfile, receiverfile, rtip_id)
-            for receiverfile in receiver_files]
+    if not wbfile:
+        raise errors.WBFileIdNotFound
+
+    receivers = []
+    for receivertip in wbfile.receivertip.internaltip.receivertips:
+        receivers.append(receivertip.receiver_id)
+
+    if user_id not in receivers:
+        raise errors.WBFileIdNotFound
+
+    return wbfile
+
+
+def db_receiver_get_rfile_list(store, rtip_id):
+    receiver_files = store.find(ReceiverFile,
+                                ReceiverFile.receivertip_id == ReceiverTip.id,
+                                ReceiverTip.id == rtip_id)
+
+    return [receiver_serialize_rfile(receiverfile) for receiverfile in receiver_files]
+
+
+def db_receiver_get_wbfile_list(store, itip_id):
+    wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                                            ReceiverTip.internaltip_id == itip_id)
+
+    return [receiver_serialize_wbfile(wbfile) for wbfile in wbfiles]
 
 
 @transact
-def get_files_receiver(store, user_id, rtip_id):
-    return db_get_files_receiver(store, user_id, rtip_id)
+def register_wbfile_on_db(store, uploaded_file, receivertip_id):
+    receivertip = store.find(ReceiverTip,
+                             ReceiverTip.id == receivertip_id).one()
+
+    if not receivertip:
+        log.err("Cannot associate a file to a not existent receivertip!")
+        raise errors.TipIdNotFound
+
+    receivertip.update_date = datetime_now()
+
+    new_file = WhistleblowerFile()
+
+    new_file.name = uploaded_file['name']
+    new_file.description = uploaded_file['description']
+
+    new_file.content_type = uploaded_file['type']
+    new_file.size = uploaded_file['size']
+    new_file.receivertip_id = receivertip.id
+    new_file.file_path = uploaded_file['path']
+
+    store.add(new_file)
+
+    log.debug("=> Recorded new WhistleblowerFile %s" % uploaded_file['name'])
+
+    return serializers.serialize_wbfile(new_file)
+
+
+@transact
+def receiver_get_rfile_list(store, rtip_id):
+    return db_receiver_get_rfile_list(store, rtip_id)
 
 
 def db_get_rtip(store, user_id, rtip_id, language):
@@ -142,12 +208,15 @@ def db_get_rtip(store, user_id, rtip_id, language):
 
     return serialize_rtip(store, rtip, language)
 
+
 def db_mark_file_for_secure_deletion(store, relpath):
     abspath = os.path.join(GLSettings.submission_path, relpath)
     if os.path.isfile(abspath):
         secure_file_delete = SecureFileDelete()
         secure_file_delete.filepath = abspath
         store.add(secure_file_delete)
+    else:
+        log.err("Tried to permanently delete a non existent file: %s" % abspath)
 
 
 def db_delete_itip_files(store, itip):
@@ -166,6 +235,11 @@ def db_delete_itip_files(store, itip):
             log.debug("Marking receiverfile %s for secure deletion" % rfile.file_path)
 
             db_mark_file_for_secure_deletion(store, rfile.file_path)
+
+    for wbfile in store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                                                ReceiverTip.internaltip_id == itip.id):
+        log.debug("Marking whistleblowerfile %s for secure deletion" % wbfile.file_path)
+        db_mark_file_for_secure_deletion(store, wbfile.file_path)
 
 
 def db_delete_itip(store, itip):
@@ -306,6 +380,19 @@ def create_message(store, user_id, rtip_id, request):
     return serialize_message(msg)
 
 
+@transact
+def set_wbfile_description(store, user_id, file_id, description):
+    wbfile = db_access_wbfile(store, user_id, file_id)
+    wbfile.description = description
+
+
+@transact
+def delete_wbfile(store, user_id, file_id):
+    wbfile = db_access_wbfile(store, user_id, file_id)
+    db_mark_file_for_secure_deletion(store, wbfile.file_path)
+    store.remove(wbfile)
+
+
 def db_get_identityaccessrequest_list(store, rtip_id, language):
     iars = store.find(IdentityAccessRequest, IdentityAccessRequest.receivertip_id == rtip_id)
 
@@ -419,7 +506,120 @@ class ReceiverMsgCollection(BaseHandler):
         self.write(message)
 
 
-class ReceiverFileDownload(_FileDownloadHandler):
+class WhistleblowerFileHandler(BaseHandler):
+    """
+    Receiver interface to upload a file intended for the whistleblower
+    """
+    handler_exec_time_threshold = 3600
+    filehandler = True
+
+    @transact
+    def can_perform_action(self, store, tip_id):
+        rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
+        return rtip.internaltip.context.enable_rc_to_wb_files
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Request: Unknown
+        Response: Unknown
+        Errors: TipIdNotFound
+        """
+        if not self.can_perform_action(tip_id):
+            raise errors.ForbiddenOperation('Cannot attach wbfiles to this context')
+
+        rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
+
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            return
+
+        try:
+            # First: dump the file in the filesystem
+            filename = string.split(os.path.basename(uploaded_file['path']), '.aes')[0] + '.plain'
+
+            dst = os.path.join(GLSettings.submission_path, filename)
+
+            directory_traversal_check(GLSettings.submission_path, dst)
+
+            uploaded_file = yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, dst)
+        except Exception as excep:
+            log.err("Unable to save a file in filesystem: %s" % excep)
+            raise errors.InternalServerError("Unable to accept new files")
+
+        uploaded_file['creation_date'] = datetime_now()
+        uploaded_file['submission'] = False
+
+        try:
+            # Second: register the file in the database
+            yield register_wbfile_on_db(uploaded_file, rtip['id'])
+        except Exception as excep:
+            raise errors.InternalServerError("Unable to accept new files")
+
+        self.set_status(201)  # Created
+
+
+class WhistleblowerFileInstanceHandler(BaseHandler):
+    """
+    This class is used in both RTip and WBTip to define a base for respective handlers
+    """
+    @transact
+    def download_wbfile(self, store, user_id, file_id):
+        wbfile = store.find(WhistleblowerFile,
+                            WhistleblowerFile.id == file_id).one()
+
+        if wbfile is None or not self.user_can_access(wbfile):
+            raise errors.FileIdNotFound
+
+        log.debug("Download of file %s by whistleblower %s" %
+                  (wbfile.id, user_id))
+
+        wbfile.downloads += 1
+
+        return serializers.serialize_wbfile(wbfile)
+
+    @inlineCallbacks
+    @asynchronous
+    def _get(self, wbfile_id):
+        wbfile = yield self.download_wbfile(self.current_user.user_id, wbfile_id)
+
+        filelocation = os.path.join(GLSettings.submission_path, wbfile['path'])
+
+        directory_traversal_check(GLSettings.submission_path, filelocation)
+
+        self.force_file_download(wbfile['name'], filelocation)
+
+
+class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
+    """
+    This handler lets the recipient download and delete wbfiles, which are files
+    intended for delivery to the whistleblower.
+    """
+    def user_can_access(self, wbfile):
+        r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
+        return self.current_user.user_id in r_ids
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    def get(self, file_id):
+        self._get(file_id)
+
+    @BaseHandler.transport_security_check('receiver')
+    @BaseHandler.authenticated('receiver')
+    @inlineCallbacks
+    def delete(self, file_id):
+        """
+        This interface allow the recipient to set the description of a WhistleblowerFile
+        """
+        yield delete_wbfile(self.current_user.user_id, file_id)
+
+
+class ReceiverFileDownload(BaseHandler):
+    """
+    This handler exposes rfiles for download.
+    """
     @transact
     def download_rfile(self, store, user_id, file_id):
         rfile = store.find(ReceiverFile,
@@ -448,7 +648,7 @@ class ReceiverFileDownload(_FileDownloadHandler):
 
         directory_traversal_check(GLSettings.submission_path, filelocation)
 
-        self.serve_file(rfile['name'], filelocation)
+        self.force_file_download(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):

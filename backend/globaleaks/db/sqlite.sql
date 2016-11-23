@@ -41,9 +41,9 @@ CREATE TABLE user (
     language TEXT NOT NULL,
     password_change_needed INTEGER DEFAULT 0 NOT NULL,
     password_change_date TEXT DEFAULT '1970-01-01 00:00:00.000000' NOT NULL,
-    pgp_key_fingerprint TEXT,
-    pgp_key_public TEXT,
-    pgp_key_expiration INTEGER,
+    pgp_key_fingerprint TEXT NOT NULL,
+    pgp_key_public TEXT NOT NULL,
+    pgp_key_expiration INTEGER NOT NULL,
     img_id TEXT,
     UNIQUE (username),
     FOREIGN KEY (language) REFERENCES enabledlanguage(name),
@@ -92,6 +92,7 @@ CREATE TABLE context (
     enable_two_way_comments INTEGER NOT NULL,
     enable_two_way_messages INTEGER NOT NULL,
     enable_attachments INTEGER NOT NULL,
+    enable_rc_to_wb_files INTEGER NOT NULL,
     status_page_message BLOB NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
@@ -133,6 +134,23 @@ CREATE TABLE receiverfile (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE whistleblowerfile (
+    id TEXT NOT NULL,
+    creation_date TEXT NOT NULL,
+    content_type TEXT NOT NULL,
+    receivertip_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    file_path TEXT,
+    size INTEGER NOT NULL,
+    downloads INTEGER NOT NULL,
+    create_date TEXT,
+    last_access TEXT,
+    description TEXT,
+    UNIQUE(file_path),
+    FOREIGN KEY (receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE internaltip (
     id TEXT NOT NULL,
     creation_date TEXT NOT NULL,
@@ -150,7 +168,8 @@ CREATE TABLE internaltip (
     enable_whistleblower_identity INTEGER NOT NULL,
     identity_provided INTEGER NOT NULL,
     identity_provided_date TEXT NOT NULL,
-    wb_last_access TEXT,
+    wb_access_counter INTEGER NOT NULL,
+    wb_last_access TEXT NOT NULL,
     FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -216,10 +235,8 @@ CREATE TABLE receivertip (
 
 CREATE TABLE whistleblowertip (
     id TEXT NOT NULL,
-    internaltip_id TEXT NOT NULL,
-    access_counter INTEGER NOT NULL,
     receipt_hash TEXT NOT NULL,
-    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    FOREIGN KEY (id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 

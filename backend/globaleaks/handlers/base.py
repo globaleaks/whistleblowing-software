@@ -583,10 +583,6 @@ class BaseHandler(RequestHandler):
         except Exception as excep:
             log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
 
-    def write_file(self, filepath):
-        f = open(filepath, "rb")
-        StaticFileProducer(self, f).start()
-
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
         if exception and hasattr(exception, 'error_code'):
@@ -604,6 +600,26 @@ class BaseHandler(RequestHandler):
             self.write(error_dict)
         else:
             RequestHandler.write_error(self, status_code, **kw)
+
+    def write_file(self, filepath):
+        if not os.path.exists(filepath):
+          raise HTTPError(404)
+
+        mime_type, encoding = mimetypes.guess_type(filepath)
+        if mime_type:
+            self.set_header("Content-Type", mime_type)
+
+        StaticFileProducer(self, open(filepath, "rb")).start()
+
+    def force_file_download(self, filename, filepath):
+        if not os.path.exists(filepath):
+          raise HTTPError(404)
+
+        self.set_header('X-Download-Options', 'noopen')
+        self.set_header('Content-Type', 'application/octet-stream')
+        self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
+
+        StaticFileProducer(self, open(filepath, "rb")).start()
 
     @inlineCallbacks
     def uniform_answers_delay(self):
@@ -659,12 +675,14 @@ class BaseHandler(RequestHandler):
                 if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
                     return None
 
+
             uploaded_file = {
                 'name': self.request.files['file'][0]['filename'],
                 'type': self.request.files['file'][0]['content_type'],
                 'size': total_file_size,
                 'path': f.filepath,
-                'body': f
+                'body': f,
+                'description': self.request.arguments.get('description', [''])[0]
             }
 
             self.request._start_time = f.creation_date
@@ -757,20 +775,6 @@ class BaseHandler(RequestHandler):
                 log.err("HTTP Requests/Responses logging fail (end): %s" % excep.message)
 
 
-class _FileDownloadHandler(BaseHandler):
-    handler_exec_time_threshold = 3600
-
-    def serve_file(self, filename, filepath):
-        if os.path.exists(filepath):
-            self.set_header('X-Download-Options', 'noopen')
-            self.set_header('Content-Type', 'application/octet-stream')
-            self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
-            self.write_file(filepath)
-        else:
-            self.set_status(404)
-            self.finish()
-
-
 class BaseStaticFileHandler(BaseHandler):
     def initialize(self, path):
         self.root = "%s%s" % (os.path.abspath(path), "/")
@@ -784,13 +788,6 @@ class BaseStaticFileHandler(BaseHandler):
         abspath = os.path.abspath(os.path.join(self.root, path))
 
         directory_traversal_check(self.root, abspath)
-
-        if not os.path.exists(abspath) or not os.path.isfile(abspath):
-            raise HTTPError(404)
-
-        mime_type, encoding = mimetypes.guess_type(abspath)
-        if mime_type:
-            self.set_header("Content-Type", mime_type)
 
         self.write_file(abspath)
 

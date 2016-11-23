@@ -25,3 +25,16 @@ def serialize_rfile(rfile):
         'path': rfile.file_path,
         'downloads': rfile.downloads
     }
+
+# WhistleblowerFile
+def serialize_wbfile(wbfile):
+    return {
+        'id': wbfile.id,
+        'creation_date': datetime_to_ISO8601(wbfile.creation_date),
+        'name': wbfile.name,
+        'size': wbfile.size,
+        'content_type': wbfile.content_type,
+        'path': wbfile.file_path,
+        'downloads': wbfile.downloads,
+        'author': wbfile.receivertip.receiver_id
+    }

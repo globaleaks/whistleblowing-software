@@ -1,4 +1,4 @@
-GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
+GLClient.controller('RFileUploadCtrl', ['$scope', function($scope) {
   $scope.disabled = false;
 
   $scope.$on('flow::fileAdded', function (event, flow, flowFile) {
@@ -14,6 +14,21 @@ GLClient.controller('WBFileUploadCtrl', ['$scope', function($scope) {
       }
     }
   });
+}]).
+controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Authentication) {
+  $scope.file_upload_description = "";
+
+  $scope.beginUpload = function($files, $event, $flow) {
+    var h = Authentication.get_headers();
+    $flow.opts.headers = h;
+    $flow.opts.query = {'description': $scope.file_upload_description};
+    $flow.upload();
+  };
+
+  $scope.throwErrUp = function($message) {
+     // TODO should use standard interface.
+     $scope.errors.push(new Error('File Upload: ' + $message));
+  };
 }]).
 controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
   $scope.imageUploadObj = {};

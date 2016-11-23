@@ -8,7 +8,7 @@ from datetime import timedelta
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.models.validators import shorttext_v, longtext_v, \
-    shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v
+    shortlocal_v, longlocal_v, shorturl_v, longurl_v, natnum_v, range_v
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
@@ -199,9 +199,10 @@ class Context(ModelWithID):
     enable_messages = Bool(default=False)
     enable_two_way_comments = Bool(default=True)
     enable_two_way_messages = Bool(default=True)
-    enable_attachments = Bool(default=True)
+    enable_attachments = Bool(default=True) # Lets WB attach files to submission
+    enable_rc_to_wb_files = Bool(default=False) # The name says it all folks
 
-    tip_timetolive = Int(default=15)
+    tip_timetolive = Int(validator=range_v(-1, 5*365), default=15) # in days, -1 indicates no expiration
 
     # localized strings
     name = JSON(validator=shortlocal_v)
@@ -274,6 +275,7 @@ class InternalTip(ModelWithID):
     enable_whistleblower_identity = Bool(default=False)
 
     wb_last_access = DateTime(default_factory=datetime_now)
+    wb_access_counter = Int(default=0)
 
     def wb_revoke_access_date(self):
         revoke_date = self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
@@ -309,15 +311,10 @@ class ReceiverTip(ModelWithID):
 
 class WhistleblowerTip(ModelWithID):
     """
-    WhisteleblowerTip is intended, to provide a whistleblower access to the
-    Tip. It has some differencies from the ReceiverTips: It has a secret
-    authentication receipt and different capabilities, like: cannot not
-    download.
+    WhisteleblowerTip implement the expiring authentication token for
+    the whistleblower and acts as interface to the InternalTip.
     """
-    internaltip_id = Unicode()
     receipt_hash = Unicode()
-
-    access_counter = Int(default=0)
 
 
 class IdentityAccessRequest(ModelWithID):
@@ -376,6 +373,24 @@ class ReceiverFile(ModelWithID):
     #                                    the specific receiver
     # unavailable = the file was supposed to be available but something goes
     # wrong and now is lost
+
+
+class WhistleblowerFile(ModelWithID):
+    """
+    This models stores metadata of files uploaded by recipients intended to be
+    delivered to the whistleblower. This file is not encrypted and nor is it 
+    integrity checked in any meaningful way.
+    """
+    receivertip_id = Unicode()
+
+    name = Unicode(validator=shorttext_v)
+    file_path = Unicode()
+    size = Int()
+    content_type = Unicode()
+    downloads = Int(default=0)
+    creation_date = DateTime(default_factory=datetime_now)
+    last_access = DateTime(default_factory=datetime_null)
+    description = Unicode(validator=longtext_v)
 
 
 class Comment(ModelWithID):
@@ -738,7 +753,7 @@ InternalTip.comments = ReferenceSet(
 
 InternalTip.whistleblowertip = Reference(
     InternalTip.id,
-    WhistleblowerTip.internaltip_id
+    WhistleblowerTip.id
 )
 
 InternalTip.receivertips = ReferenceSet(
@@ -771,8 +786,13 @@ ReceiverFile.receivertip = Reference(
     ReceiverTip.id
 )
 
+WhistleblowerFile.receivertip = Reference(
+    WhistleblowerFile.receivertip_id,
+    ReceiverTip.id
+)
+
 WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.internaltip_id,
+    WhistleblowerTip.id,
     InternalTip.id
 )
 
@@ -781,10 +801,6 @@ InternalFile.internaltip = Reference(
     InternalTip.id
 )
 
-WhistleblowerTip.internaltip = Reference(
-    WhistleblowerTip.internaltip_id,
-    InternalTip.id
-)
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 

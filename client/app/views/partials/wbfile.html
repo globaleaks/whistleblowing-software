@@ -1,0 +1,52 @@
+<div class="wbfile panel panel-default">
+  <div class="panel-body">
+    <div class="top-row">
+      <span class="pull-left">
+        <span class="text-muted" ng-if="ctx == 'download'"><span data-translate>Filename</span>:</span>
+        <span class="filename">{{::wbfile.name }}</span>
+      </span>
+      <span class="pull-right">
+        <span data-ng-if="ctx == 'rtip'">
+          <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
+            <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
+          </span>
+          <span class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)">
+            <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
+          </span>
+        </span>
+        <span data-ng-if="ctx == 'wbtip'">
+          <div class="download-button btn-warning btn btn-small" data-ng-click="showFileDownloadModal(tip, wbfile)">
+           <i class="glyphicon glyphicon-download-alt"></i> <span data-translate>Download</span>
+          </div>
+        </span>
+      </span>
+    </div>
+    <div class="clearfix"></div>
+    <p class="file-info-row">
+      <span>
+        <span class="text-muted" data-translate>From</span>:&nbsp;
+        <span>
+        {{::wbfile.author | wbfileCreator: tip.receivers }}
+        </span>
+      </span>&nbsp;&nbsp;
+      <span>
+        <span class="text-muted" data-translate>Creation date</span>:&nbsp;
+        <span >
+        {{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}
+        </span>
+      </span>&nbsp;&nbsp;
+      <span>
+        <span class="text-muted" data-translate>Size</span>:&nbsp;
+        <span>
+        {{::wbfile.size | byteFmt:2}}
+        </span>
+      </span>
+    </p>
+    <p data-ng-if="wbfile.description !== ''">
+      <span class="text-muted">
+        <span data-translate>Description</span>:
+      </span>
+      {{::wbfile.description }}
+    </p>
+  </div>
+</div>

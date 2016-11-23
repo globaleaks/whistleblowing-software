@@ -72,14 +72,14 @@ GLClient.controller('SubmissionCtrl',
 
     var countDown = function () {
       $scope.submission.countdown -= 1;
-      if ($scope.submission.countdown <= 0) {
+      if ($scope.submission.countdown < 0) {
         $scope.submission.wait = false;
       } else {
         $timeout(countDown, 1000);
       }
     };
 
-    countDown();
+    $timeout(countDown, 1000);
   };
 
   $scope.selectable = function () {

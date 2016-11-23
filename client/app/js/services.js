@@ -434,11 +434,26 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
- factory('RTipDownloadFile', ['$http', '$filter', 'FileSaver', function($http, $filter, FileSaver) {
+ factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
       $http({
         method: 'GET',
-        url: '/rtip/download' + file.id,
+        url: '/rtip/rfile/' + file.id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, file.name);
+      });
+    };
+}]).
+ factory('RTipWBFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('rtip/wbfile/:id', {id: '@id'});
+}]).
+ factory('RTipDownloadWBFile', ['$http', 'FileSaver', function($http, FileSaver) {
+    return function(file) {
+      return $http({
+        method: 'GET',
+        url: '/rtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -516,6 +531,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('WBTipMessageResource', ['GLResource', function(GLResource) {
     return new GLResource('wbtip/messages/:id', {id: '@id'});
+}]).
+  factory('WBTipDownloadFile', ['$http', 'FileSaver', function($http, FileSaver) {
+    return function(file) {
+      $http({
+        method: 'GET',
+        url: '/wbtip/wbfile/' + file.id,
+        responseType: 'blob',
+      }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, file.name);
+      });
+    };
 }]).
   factory('WBTip', ['$rootScope', 'WBTipResource', 'WBTipCommentResource', 'WBTipMessageResource',
       function($rootScope, WBTipResource, WBTipCommentResource, WBTipMessageResource) {
@@ -902,6 +929,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       isAdminPage: function() {
         var path = $location.path();
         return path.substr(0, 6) == '/admin';
+      },
+
+      renderCustomCSS: function() {
+        if (angular.isUndefined($rootScope.node)) {
+          return false;
+        }
+        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.css);
+      },
+
+      attachCustomJS: function() {
+        if (angular.isUndefined($rootScope.node)) {
+          return false;
+        }
+        return this.isWhistleblowerPage() && angular.isDefined($rootScope.node.script);
       },
 
       isWhistleblowerPage: function() {

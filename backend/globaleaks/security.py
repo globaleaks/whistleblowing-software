@@ -124,7 +124,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
             log.err("Unable to perform unlink operation on file %s: %s" %
                     (absolutefpath, remove_ose))
 
-    log.debug("Performed deletion of file file: %s" % absolutefpath)
+    log.debug("Performed deletion of file: %s" % absolutefpath)
 
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):

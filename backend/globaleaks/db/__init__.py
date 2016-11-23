@@ -9,7 +9,7 @@ from cyclone.util import ObjectDict
 from twisted.internet.defer import succeed, inlineCallbacks
 from storm import exceptions
 
-from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks import models, security, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n
@@ -123,8 +123,9 @@ def get_tracked_files(store):
     """
     ifiles = list(store.find(models.InternalFile).values(models.InternalFile.file_path))
     rfiles = list(store.find(models.ReceiverFile).values(models.ReceiverFile.file_path))
+    wbfiles = list(store.find(models.WhistleblowerFile).values(models.WhistleblowerFile.file_path))
 
-    return [os.path.basename(files) for files in list(set(ifiles + rfiles))]
+    return [os.path.basename(files) for files in list(set(ifiles + rfiles + wbfiles))]
 
 
 @inlineCallbacks
@@ -138,7 +139,8 @@ def clean_untracked_files():
         if filesystem_file not in tracked_files:
             file_to_remove = os.path.join(GLSettings.submission_path, filesystem_file)
             try:
-                os.remove(file_to_remove)
+                log.debug("Removing untracked file: %s" % file_to_remove)
+                security.overwrite_and_remove(file_to_remove)
             except OSError:
                 log.err("Failed to remove untracked file" % file_to_remove)
 

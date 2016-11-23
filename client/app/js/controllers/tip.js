@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadFile', 'fieldUtilities',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadFile, fieldUtilities) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'fieldUtilities',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -78,10 +78,11 @@ GLClient.controller('TipCtrl',
     };
 
     if ($scope.session.role === 'whistleblower') {
-      $scope.fileupload_url = 'wbtip/upload';
+      $scope.fileupload_url = 'wbtip/rfile';
 
       new WBTip(function(tip) {
         $scope.tip = tip;
+        $scope.ctx = 'wbtip';
         $scope.extractSpecialTipFields(tip);
 
         $scope.tip_unencrypted = false;
@@ -91,6 +92,22 @@ GLClient.controller('TipCtrl',
             break;
           }
         }
+
+        $scope.showFileDownloadWidget = function() {
+          // TODO use context.enable_rc_to_wb_files or attach to tip
+          return true;
+        };
+
+        $scope.showFileDownloadModal = function(tip, wbfile) {
+          $uibModal.open({
+            templateUrl: 'views/partials/file_download_modal.html',
+            controller: 'WBTipFileDownloadCtrl',
+            resolve: {
+              'wbfile': function() { return wbfile; },
+              'tip': function() { return tip; },
+            }
+          });
+        };
 
         // FIXME: remove this variable that is now needed only to map wb_identity_field
         $scope.submission = tip;
@@ -123,10 +140,11 @@ GLClient.controller('TipCtrl',
     
       new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
+        $scope.ctx = 'rtip';
         $scope.extractSpecialTipFields(tip);
 
         $scope.exportTip = RTipExport;
-        $scope.downloadFile = RTipDownloadFile;
+        $scope.downloadRFile = RTipDownloadRFile;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
 
@@ -185,6 +203,11 @@ GLClient.controller('TipCtrl',
 
     $scope.tip_notify = function(enable) {
       $scope.tip.setVar('enable_notifications', enable);
+    };
+
+    $scope.showWBFileUpload = function() {
+      // TODO use context.enable_rc_to_wb_files
+      return true;
     };
 
     $scope.tip_delete = function () {
@@ -258,6 +281,29 @@ controller('TipOperationsCtrl',
           $route.reload();
         });
     }
+  };
+}]).
+controller('RTipWBFileUploadCtrl', ['$scope', 'RTipDownloadWBFile', 'RTipWBFileResource', function($scope, RTipDownloadWBFile, RTipWBFileResource) {
+  var reloadUI = function (){ $scope.reload(); };
+
+  $scope.downloadWBFile = function(f) {
+    RTipDownloadWBFile(f).finally(reloadUI);
+  };
+  $scope.deleteWBFile = function(f) {
+    RTipWBFileResource.remove({'id':f.id}).$promise.finally(reloadUI);
+  };
+}]).
+controller('WBTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownloadFile', 'wbfile', 'tip', function($scope, $uibModalInstance, WBTipDownloadFile, wbfile, tip) {
+  $scope.ctx = 'download';
+  $scope.wbfile = wbfile;
+  $scope.tip = tip;
+  $scope.ok = function() {
+    $uibModalInstance.close();
+    WBTipDownloadFile(wbfile);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.close();
   };
 }]).
 controller('IdentityAccessRequestCtrl',
