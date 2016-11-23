@@ -520,8 +520,8 @@ class WhistleblowerFileHandler(BaseHandler):
         if not rtip.internaltip.context.enable_rc_to_wb_files:
             return errors.ForbiddenOperation()
         n = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == rtip.id).count()
-        if n > 4:
-            return errors.CannotAddMoreWBFiles()
+        if n > 100:
+            return errors.FailedSanityCheck()
         return None
 
     @BaseHandler.transport_security_check('receiver')
