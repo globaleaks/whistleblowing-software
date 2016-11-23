@@ -1,6 +1,6 @@
 GLClient.controller('TipCtrl',
-  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'fieldUtilities',
-  function($scope, $location, $route, $routeParams, $uibModal, $http, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, fieldUtilities) {
+  ['$scope', '$location', '$route', '$routeParams', '$uibModal', '$http', 'Utils', 'Authentication', 'RTip', 'WBTip', 'ReceiverPreferences', 'RTipExport', 'RTipDownloadRFile', 'fieldUtilities',
+  function($scope, $location, $route, $routeParams, $uibModal, $http, Utils, Authentication, RTip, WBTip, ReceiverPreferences, RTipExport, RTipDownloadRFile, fieldUtilities) {
     $scope.tip_id = $routeParams.tip_id;
     $scope.target_file = '#';
 
@@ -93,17 +93,18 @@ GLClient.controller('TipCtrl',
           }
         }
 
-        $scope.showFileDownloadWidget = function() {
-          // TODO use context.enable_rc_to_wb_files or attach to tip
-          return true;
+        $scope.showWBFileWidget = function() {
+          var ctx = Utils.getContext(tip.context_id);
+          return ctx.enable_rc_to_wb_files && (tip.wbfiles.length > 0);
         };
 
-        $scope.showFileDownloadModal = function(tip, wbfile) {
+        $scope.showFileDownloadModal = function(tip, file) {
+          // Intentionally kept generic for later reuse.
           $uibModal.open({
             templateUrl: 'views/partials/file_download_modal.html',
             controller: 'WBTipFileDownloadCtrl',
             resolve: {
-              'wbfile': function() { return wbfile; },
+              'file': function() { return file; },
               'tip': function() { return tip; },
             }
           });
@@ -137,7 +138,7 @@ GLClient.controller('TipCtrl',
 
     } else if ($scope.session.role === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
-    
+
       new RTip({id: $scope.tip_id}, function(tip) {
         $scope.tip = tip;
         $scope.ctx = 'rtip';
@@ -147,6 +148,11 @@ GLClient.controller('TipCtrl',
         $scope.downloadRFile = RTipDownloadRFile;
 
         $scope.showEditLabelInput = $scope.tip.label === '';
+
+        $scope.showWBFileUpload = function() {
+          var ctx = Utils.getContext(tip.context_id);
+          return ctx.enable_rc_to_wb_files;
+        };
 
         $scope.tip_unencrypted = false;
         for(var i = 0; i < tip.receivers.length; i++) {
@@ -203,11 +209,6 @@ GLClient.controller('TipCtrl',
 
     $scope.tip_notify = function(enable) {
       $scope.tip.setVar('enable_notifications', enable);
-    };
-
-    $scope.showWBFileUpload = function() {
-      // TODO use context.enable_rc_to_wb_files
-      return true;
     };
 
     $scope.tip_delete = function () {
@@ -283,23 +284,28 @@ controller('TipOperationsCtrl',
     }
   };
 }]).
-controller('RTipWBFileUploadCtrl', ['$scope', 'RTipDownloadWBFile', 'RTipWBFileResource', function($scope, RTipDownloadWBFile, RTipWBFileResource) {
+controller('RTipWBFileUploadCtrl', ['$scope', 'Authentication', 'RTipDownloadWBFile', 'RTipWBFileResource', function($scope, Authentication, RTipDownloadWBFile, RTipWBFileResource) {
   var reloadUI = function (){ $scope.reload(); };
 
   $scope.downloadWBFile = function(f) {
     RTipDownloadWBFile(f).finally(reloadUI);
   };
+
+  $scope.showDeleteWBFile = function(f) {
+    return Authentication.session.user_id === f.author;
+  };
+
   $scope.deleteWBFile = function(f) {
     RTipWBFileResource.remove({'id':f.id}).$promise.finally(reloadUI);
   };
 }]).
-controller('WBTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownloadFile', 'wbfile', 'tip', function($scope, $uibModalInstance, WBTipDownloadFile, wbfile, tip) {
+controller('WBTipFileDownloadCtrl', ['$scope', '$uibModalInstance', 'WBTipDownloadFile', 'file', 'tip', function($scope, $uibModalInstance, WBTipDownloadFile, file, tip) {
   $scope.ctx = 'download';
-  $scope.wbfile = wbfile;
+  $scope.file = file;
   $scope.tip = tip;
   $scope.ok = function() {
     $uibModalInstance.close();
-    WBTipDownloadFile(wbfile);
+    WBTipDownloadFile(file);
   };
 
   $scope.cancel = function () {

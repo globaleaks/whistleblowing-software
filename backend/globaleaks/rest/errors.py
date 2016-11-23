@@ -223,7 +223,11 @@ class ShortURLIdNotFound(GLException):
     status_code = 404  # Not Found
 
 
-# UNUSED ERROR CODE 28 HERE!
+class CannotAddMoreWBFiles(GLException):
+    reason = "Exceeded limit of attached files"
+    error_code = 28
+    status_code = 403  # Forbidden
+
 
 class InvalidAuthentication(GLException):
     """

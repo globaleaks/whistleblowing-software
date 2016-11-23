@@ -11,6 +11,7 @@ import string
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet import threads
 
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler, \
@@ -516,19 +517,24 @@ class WhistleblowerFileHandler(BaseHandler):
     @transact
     def can_perform_action(self, store, tip_id):
         rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
-        return rtip.internaltip.context.enable_rc_to_wb_files
+        if not rtip.internaltip.context.enable_rc_to_wb_files:
+            return errors.ForbiddenOperation()
+        n = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == rtip.id).count()
+        if n > 4:
+            return errors.CannotAddMoreWBFiles()
+        return None
 
     @BaseHandler.transport_security_check('receiver')
     @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
-        Request: Unknown
-        Response: Unknown
-        Errors: TipIdNotFound
+        Errors: TipIdNotFound, ForbiddenOperation
         """
-        if not self.can_perform_action(tip_id):
-            raise errors.ForbiddenOperation('Cannot attach wbfiles to this context')
+
+        err = yield self.can_perform_action(tip_id)
+        if err is not None:
+            raise err
 
         rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
 

@@ -10,7 +10,7 @@
           <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
             <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
           </span>
-          <span class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)">
+          <span ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)">
             <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
           </span>
         </span>

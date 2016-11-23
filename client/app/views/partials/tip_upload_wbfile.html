@@ -27,7 +27,7 @@
             flow-init="{target: 'rtip/' + tip_id + '/wbfile'}"
             flow-files-submitted="beginUpload($files, $event, $flow)"
             flow-error="throwErrUp($message)"
-            flow-complete="reload()"
+            flow-file-success="reload()"
             flow-single-file
             flow-btn>
             <span class="">
