@@ -608,6 +608,8 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield self.perform_post_submission_actions()
 
+        yield self.test_model_count(models.SecureFileDelete, 0)
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
