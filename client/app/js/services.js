@@ -1064,7 +1064,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             return ctx;
           }
         }
-        return undefined;
+        throw new Error('Context not found');
       },
 
       openConfirmableModalDialog: function(template, arg, scope) {

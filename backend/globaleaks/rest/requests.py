@@ -148,10 +148,6 @@ CommentDesc = {
     'content': unicode
 }
 
-WBFileDesc = {
-    'description': unicode
-}
-
 TipOpsDesc = {
     'operation': tip_operation_regexp,
     'args': dict
@@ -367,6 +363,7 @@ AdminContextDesc = {
     'enable_two_way_comments': bool,
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
+    'enable_rc_to_wb_files': bool,
     'presentation_order': int,
     'recipients_clarification': unicode,
     'status_page_message': unicode,
