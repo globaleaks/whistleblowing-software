@@ -490,9 +490,9 @@ class TestGL(unittest.TestCase):
 class TestGLWithPopulatedDB(TestGL):
     complex_field_population = False
     population_of_recipients = 2
-    population_of_submissions = 3
-    population_of_attachments = 3
-    population_of_comments = 3
+    population_of_submissions = 2
+    population_of_attachments = 2
+    population_of_comments = 2
     population_of_messages = 2
 
     @inlineCallbacks
