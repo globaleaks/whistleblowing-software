@@ -42,7 +42,7 @@ exports.whistleblower = function() {
       return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
         return submission.pow === true;
       });
-    });
+    }, utils.browserTimeout());
 
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
     element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
