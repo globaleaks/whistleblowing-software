@@ -1,3 +1,17 @@
+Changes in version 2.65.0 - 2016-11-24
+    o Apply custom css and javascript file only to pages of the whistleblower
+    o Implement file attachments from the recipient to the whistleblower
+    o Enforce stricter ranges for tip access and expiration timeouts
+    o Add "noopener" to increase privacy over new page opening
+    o Bump npm dependencies to latest stables versions
+    o Update translations
+    o Add romanian 100%
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1812
+    - https://github.com/globaleaks/GlobaLeaks/issues/1813
+    - https://github.com/globaleaks/GlobaLeaks/issues/1817
+
 Changes in version 2.64.15 - 2016-11-06
     o Apply mixed UI fixes
     o Update translations
