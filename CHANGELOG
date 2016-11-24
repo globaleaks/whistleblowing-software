@@ -1,3 +1,7 @@
+Changes in version 2.65.3 - 2016-11-24
+    o Apply revision of migration 35
+    o Add pylint checks to the CI tests
+
 Changes in version 2.65.2 - 2016-11-24
     o Apply revision of migration 35
 
