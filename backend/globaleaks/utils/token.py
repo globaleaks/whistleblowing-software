@@ -121,6 +121,10 @@ class Token(object):
         validity time and the end validity time.
         """
         min_delay = GLSettings.memory_copy.submission_minimum_delay
+
+        if GLSettings.devel_mode:
+            min_delay = 0
+
         max_ttl = GLSettings.memory_copy.submission_maximum_ttl
 
         now = datetime_now()
