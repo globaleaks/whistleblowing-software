@@ -659,7 +659,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       context.enable_messages = false;
       context.enable_two_way_comments = true;
       context.enable_two_way_messages = true;
-      context.enable_rc_to_wb_files = false;
       context.enable_attachments = true;
       context.enable_rc_to_wb_files = false;
       context.recipients_clarification = '';

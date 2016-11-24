@@ -9,12 +9,10 @@
      </div>
   </div>
   <div class="panel-body">
-
-    <div class="alert alert-warning">
-      <i class="glyphicon glyphicon-warning-sign"></i>
+    <div class="alert alert-info">
+      <i class="glyphicon glyphicon-info-sign"></i>
       <span data-translate> These files have been attached to your submission by the recipients.</span>
     </div>
-
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
       <div data-wbfile></div>
     </div>
