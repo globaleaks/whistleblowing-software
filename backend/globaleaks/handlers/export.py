@@ -6,6 +6,8 @@
 # Tip export utils
 import copy
 
+from storm.expr import In
+
 from cyclone.web import asynchronous
 
 from twisted.internet import threads
@@ -56,8 +58,8 @@ def get_tip_export(store, user_id, rtip_id, language):
         file_dict['name'] = 'files/' + file_dict['name']
         export_dict['files'].append(copy.deepcopy(file_dict))
 
-    wfs = store.find(models.WhistleblowerFile, models.WhistleblowerFile.receivertip_id == rtip_id,
-                                               models.ReceiverTip.internaltip_id == rtip.internaltip_id)
+    rtips_ids = [rt.id for rt in rtip.internaltip.receivertips]
+    wfs = store.find(models.WhistleblowerFile, In(models.WhistleblowerFile.receivertip_id, rtips_ids))
 
     for wf in wfs:
         file_dict = models.serializers.serialize_wbfile(wf)

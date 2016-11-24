@@ -13,6 +13,8 @@ from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet import threads
 
+from storm.expr import In
+
 from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
@@ -159,8 +161,9 @@ def db_receiver_get_rfile_list(store, rtip_id):
 
 
 def db_receiver_get_wbfile_list(store, itip_id):
-    wbfiles = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == ReceiverTip.id,
-                                            ReceiverTip.internaltip_id == itip_id)
+    rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == itip_id)
+    rtips_ids = [rt.id for rt in rtips]
+    wbfiles = store.find(WhistleblowerFile, In(WhistleblowerFile.receivertip_id, rtips_ids))
 
     return [receiver_serialize_wbfile(wbfile) for wbfile in wbfiles]
 
