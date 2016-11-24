@@ -88,7 +88,7 @@ GLConfig = {
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),
         'submission_minimum_delay': Int(validator=natnum_v, default=10),
-        'submission_maximum_ttl': Int(validator=range_v(0, 10800*5), default=10800), # Seconds
+        'submission_maximum_ttl': Int(validator=range_v(10, 10800*5), default=10800), # Seconds
 
         # privileges of receivers
         'can_postpone_expiration': Bool(default=False),
@@ -120,7 +120,7 @@ GLConfig = {
         'show_small_context_cards': Bool(default=False),
         'show_contexts_in_alphabetical_order': Bool(default=False),
 
-        'wbtip_timetolive': Int(validator=range_v(0, 365*2), default=90), # Days
+        'wbtip_timetolive': Int(validator=range_v(5, 365*2), default=90), # Days
 
         'threshold_free_disk_megabytes_high': Int(validator=natnum_v, default=200),
         'threshold_free_disk_megabytes_medium': Int(validator=natnum_v, default=500),

@@ -89,19 +89,15 @@ class MigrationScript(MigrationBase):
                     # NOTE hardcoded policy. . . .
                     tip_ttl = 5*365
                     if old_obj.tip_timetolive > tip_ttl:
-                        GLSettings.print_msg('[WARNING] Found an expiration date bigger than 5years; expiration date set to unlimited.')
+                        GLSettings.print_msg('[WARNING] Found an expiration date longer than 5 years! Configuring tips to never expire.')
                         # If data retention was larger than 5 years the intended goal was 
                         # probably to keep the submission around forever.
                         new_obj.tip_timetolive = -1
                     elif old_obj.tip_timetolive < -1:
-                        GLSettings.print_msg('[WARNING] Found a negative tip expiration; expiration date set to umlimited.')
-                        new_obj.tip_timetolive = Context.tip_timetolive.default
+                        GLSettings.print_msg('[WARNING] Found a negative tip expiration! Configuring tips to never expire.')
+                        new_obj.tip_timetolive = -1
                     else:
                         new_obj.tip_timetolive = old_obj.tip_timetolive
-                    continue
-
-                elif v.name == 'enable_rc_to_wb_files':
-                    new_obj.enable_rc_to_wb_files = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
