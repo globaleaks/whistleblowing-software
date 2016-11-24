@@ -34,7 +34,7 @@
           <tbody id="fileListBody">
             <tr id="file-{{$index}}" data-ng-repeat="file in tip.rfiles">
               <td>
-                <span>{{::file.name}}</span>
+                <span class="filename">{{::file.name}}</span>
               </td>
               <td data-ng-show="file.status != 'unavailable'">
                 <button class="tip-action-download-file"
