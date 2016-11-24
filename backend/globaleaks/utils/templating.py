@@ -44,7 +44,6 @@ tip_keywords = [
 file_keywords = [
     '%FileName%',
     '%FileSize%',
-    '%FileType%'
 ]
 
 export_template_keywords = [
@@ -266,13 +265,10 @@ class FileKeyword(TipKeyword):
         return self.data['file']['name']
 
     def EventTime(self):
-        return ISO8601_to_pretty_str(self.data['file']['date'])
+        return ISO8601_to_pretty_str(self.data['file']['creation_date'])
 
     def FileSize(self):
         return str(self.data['file']['size'])
-
-    def FileType(self):
-        return self.data['file']['type']
 
 
 class ExportKeyword(TipKeyword):
