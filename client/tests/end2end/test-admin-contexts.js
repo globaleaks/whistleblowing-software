@@ -16,6 +16,7 @@ describe('admin configure, add, and delete contexts', function() {
     element(by.id('context-0')).element(by.model('context.select_all_receivers')).click();
 
     element(by.id('context-0')).element(by.model('context.enable_messages')).click();
+    element(by.id('context-0')).element(by.model('context.enable_rc_to_wb_files')).click();
     // Save the results
     element(by.id('context-0')).element(by.css('.actionButtonSave')).click();
     // TODO check if the result was saved

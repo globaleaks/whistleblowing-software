@@ -241,7 +241,8 @@ class Context(ModelWithID):
       'enable_messages',
       'enable_two_way_comments',
       'enable_two_way_messages',
-      'enable_attachments'
+      'enable_attachments',
+      'enable_rc_to_wb_files'
     ]
 
 class InternalTip(ModelWithID):
