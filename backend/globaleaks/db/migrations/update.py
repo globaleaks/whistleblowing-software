@@ -215,6 +215,15 @@ class MigrationBase(object):
 
         return generateCreateQuery(model_obj)
 
+    def trim_value_to_range(self, factory, name):
+        cfg_v = factory.get_val(name)
+        cfg_d = factory.group_desc[name]
+        if cfg_v > cfg_d.validator.stop:
+            factory.set_val(name, cfg_d.validator.stop)
+        if cfg_v < cfg_d.validator.start:
+            GLSettings.print_msg('[Warning!] Found field with negative value %s reseting to default' % s)
+            factory.set_val(name, cfg_d.default)
+
     def migrate_model_key(self, old_obj, new_obj, key, old_key = None):
         """
         Migrate an existing model key allowing key name change
