@@ -100,6 +100,10 @@ class MigrationScript(MigrationBase):
                         new_obj.tip_timetolive = old_obj.tip_timetolive
                     continue
 
+                elif v.name == 'enable_rc_to_wb_files':
+                    new_obj.enable_rc_to_wb_files = False
+                    continue
+
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
