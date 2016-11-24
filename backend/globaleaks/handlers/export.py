@@ -63,7 +63,7 @@ def get_tip_export(store, user_id, rtip_id, language):
 
     for wf in wfs:
         file_dict = models.serializers.serialize_wbfile(wf)
-        file_dict['name'] = 'recipients_uploads/' + file_dict['name']
+        file_dict['name'] = 'files_from_recipients/' + file_dict['name']
         export_dict['files'].append(copy.deepcopy(file_dict))
 
     return export_dict
