@@ -60,18 +60,6 @@ class InternalTip_v_34(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-    # Trim a Config validator to fall within the range of the range_v object
-    # This ensures that future update to the config dictionary will not fail
-    # because an old value was set outside of the acceptable range.
-    def trim_value_to_range(self, factory, name):
-        cfg_v = factory.get_val(name)
-        cfg_d = factory.group_desc[name]
-        if cfg_v > cfg_d.validator.stop:
-            nf.set_val(name, cfg_d.validator.stop)
-        if cfg_v < cfg_d.validator.start:
-            GLSettings.print_msg('[Warning!] Found field with negative value %s reseting to default' % s)
-            nf.set_val(name, cfg_d.default)
-
     def prologue(self):
        nf = NodeFactory(self.store_old)
        self.trim_value_to_range(nf, 'wbtip_timetolive')
