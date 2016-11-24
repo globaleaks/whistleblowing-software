@@ -50,7 +50,7 @@ class TempDict(OrderedDict):
     def delete(self, key):
         if key in self:
             item = self.pop(key)
-            item.expireCall.cancel()
+            item.expireCall.cancel() # pylint: disable=no-member
             self._expire(key)
         else:
             raise Exception("Failed to delete %s from %s" % (key, self.__class__))

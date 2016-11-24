@@ -22,6 +22,9 @@ class GLJob(task.LoopingCall):
     mean_time = -1
     start_time = -1
 
+    def operation(self):
+        raise NotImplementedError('GLJob does not implement operation')
+
     # The minimum interval (seconds) the job has taken to execute before an
     # exception will be recorded. If the job does not finish, every monitor_interval
     # after the first exception another will be generated.

@@ -701,7 +701,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         self._handler.finish = mock_finish
 
-        handler = self._handler(application, request, **kwargs)
+        handler = self._handler(application, request, **kwargs) # pylint: disable=not-callable
 
         if user_id is None and role is not None:
             if role == 'admin':

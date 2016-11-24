@@ -1,1 +1,1 @@
-__all__ = ['structures', 'mailutils', 'utility', 'set']
+__all__ = ['structures', 'mailutils', 'utility', 'sets']

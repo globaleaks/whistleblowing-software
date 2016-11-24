@@ -12,7 +12,7 @@ import traceback
 from OpenSSL import SSL
 from calendar import timegm
 from datetime import datetime
-from email import Charset
+from email import Charset # pylint: disable=no-name-in-module
 from email import utils as mailutils
 from email.header import Header
 from email.mime.multipart import MIMEMultipart

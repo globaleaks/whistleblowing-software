@@ -103,6 +103,7 @@ class Model(Storm):
                 setattr(self, k, value)
 
     def __repr___(self):
+        # pylint: disable=no-member
         values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
         return '<%s model with values %s>' % (self.__name__, ', '.join(values))
 
@@ -119,6 +120,7 @@ class Model(Storm):
 
         :raises KeyError: if a key is not recognized as public attribute.
         """
+        # pylint: disable=no-member
         keys = set(keys or self._public_attrs)
         not_allowed_keys = keys - self._public_attrs
         if not_allowed_keys:

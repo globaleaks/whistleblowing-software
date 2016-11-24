@@ -25,7 +25,7 @@ class TestStepCollection(helpers.TestHandler):
             yield handler.post()
             self.assertEqual(len(self.responses), 1)
 
-            resp, = self.responses
+            resp = self.responses[0]
             self.assertIn('id', resp)
             self.assertNotEqual(resp.get('questionnaire_id'), None)
 

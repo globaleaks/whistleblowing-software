@@ -10,7 +10,7 @@ import logging
 import os
 import pwd
 import re
-from distutils import dir_util
+from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
 from twisted.python.threadpool import ThreadPool
 

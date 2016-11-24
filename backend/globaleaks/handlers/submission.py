@@ -356,8 +356,8 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
 
     receipt, wbtip = db_create_whistleblowertip(store, submission)
 
-    if submission.context.maximum_selectable_receivers and \
-                    len(receiver_id_list) > submission.context.maximum_selectable_receivers:
+    if submission.context.maximum_selectable_receivers > 0 and \
+                    len(request['receivers']) > submission.context.maximum_selectable_receivers:
         raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
 
     rtips = []
