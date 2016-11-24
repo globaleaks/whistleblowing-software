@@ -75,7 +75,13 @@ if [ "$GLTEST" = "test" ]; then
 elif [ "$GLTEST" = "lint" ]; then
 
   setupDependencies
-  echo "Running lint checks"
+
+  pip install pylint
+  echo "Running pylint checks"
+  cd $TRAVIS_BUILD_DIR/backend
+  pylint globaleaks -E --disable=no-value-for-parameter
+
+  echo "Running eslint checks"
   cd $TRAVIS_BUILD_DIR/client
   grunt eslint
 

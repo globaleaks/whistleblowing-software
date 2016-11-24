@@ -10,9 +10,9 @@ from .config_desc import GLConfig
 class ConfigFactory(object):
     """
     This factory depends on the following attributes set by the sub class:
-      update_set    -- keys updated when fact.update(d) is called
-      group_desc    -- the corresponding dict in GLConfig
     """
+    update_set = frozenset() # keys updated when fact.update(d) is called
+    group_desc = dict() # the corresponding dict in GLConfig
 
     def __init__(self, group, store, lazy=True, *args, **kwargs):
         self.group = unicode(group)

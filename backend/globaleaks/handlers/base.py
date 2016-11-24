@@ -126,6 +126,8 @@ class StaticFileProducer(object):
 
 
 class GLSession(object):
+    expireCall = None # attached to object by tempDict
+
     def __init__(self, user_id, user_role, user_status):
         self.id = generateRandomKey(42)
         self.user_id = user_id

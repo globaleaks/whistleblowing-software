@@ -574,6 +574,10 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     """
     This class is used in both RTip and WBTip to define a base for respective handlers
     """
+
+    def user_can_access(self, wbfile):
+        raise NotImplementedError("This class defines the user_can_access interface.")
+
     @transact
     def download_wbfile(self, store, user_id, file_id):
         wbfile = store.find(WhistleblowerFile,
