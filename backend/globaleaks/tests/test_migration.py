@@ -9,6 +9,7 @@ for each version one an empty and a populated db must be stored in directories:
 import os
 import shutil
 
+import unittest as pyunit
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from storm.locals import create_database, Store
@@ -21,10 +22,14 @@ from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.settings import GLSettings
-from globaleaks.tests import helpers
+from globaleaks.tests import helpers, config as test_config
 
 
 class TestMigrationRoutines(unittest.TestCase):
+
+    def setUp(self):
+        test_config.skipIf('migration')
+
     def _test(self, path, f):
         helpers.init_glsettings_for_unit_tests()
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
