@@ -19,7 +19,6 @@ from twisted.internet import threads, defer, task
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks import db, models, security, event, runner, jobs
@@ -45,7 +44,9 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
 
+from .tests import config as test_config
 from . import TEST_DIR
+
 
 ## constants
 VALID_PASSWORD1 = u'ACollectionOfDiplomaticHistorySince_1966_ToThe_Pr esentDay#'
@@ -194,6 +195,7 @@ class TestGL(unittest.TestCase):
 
     @inlineCallbacks
     def setUp(self):
+        test_config.skipCase(self)
         self.test_reactor = task.Clock()
 
         jobs.base.test_reactor = self.test_reactor
