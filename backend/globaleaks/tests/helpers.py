@@ -44,8 +44,7 @@ from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
 
-from .tests import config as test_config
-from . import TEST_DIR
+from . import TEST_DIR, config as test_config
 
 
 ## constants
