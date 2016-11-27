@@ -6,6 +6,19 @@ from globaleaks.utils import utility
 
 
 class TestUtility(unittest.TestCase):
+    def test_msdos_encode(self):
+        strs = [
+            ('This is \n news', 'This is \r\n news'),
+            ('No\r\nreplace', 'No\r\nreplace'),
+            ('No\r\n\nreplace', 'No\r\n\r\nreplace'),
+            ('No', 'No'),
+            ('\nNo\n\n', '\r\nNo\r\n\r\n'),
+            ('\r\nNo\n\n', '\r\nNo\r\n\r\n'),
+        ]
+
+        for (i, o) in strs:
+            self.assertEqual(utility.msdos_encode(i), o)
+
     def test_log_encode_html_str(self):
         self.assertEqual(utility.log_encode_html("<"), '&lt;')
         self.assertEqual(utility.log_encode_html(">"), '&gt;')

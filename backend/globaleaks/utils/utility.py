@@ -14,6 +14,7 @@ import os
 import sys
 import traceback
 import uuid
+import re
 from datetime import datetime, timedelta
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
@@ -85,6 +86,16 @@ def deferred_sleep(timeout):
     reactor.callLater(timeout, callbackDeferred)
 
     return d
+
+
+def msdos_encode(s):
+    """
+    This functions returns a new string with all occurences of newlines
+    preprended with a carriage return.
+    """
+    gex = r'(\r\n)|(\n)'
+    repl = '\r\n'
+    return re.sub(gex, repl, s)
 
 
 def log_encode_html(s):
