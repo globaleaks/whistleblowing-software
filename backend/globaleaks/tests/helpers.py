@@ -611,6 +611,12 @@ class TestGLWithPopulatedDB(TestGL):
 
         yield self.test_model_count(models.SecureFileDelete, 0)
 
+    @inlineCallbacks
+    def perform_minimal_submission(self):
+        self.perform_submission_start()
+        yield self.perform_submission_uploads()
+        yield self.perform_submission_actions()
+
 
 class TestHandler(TestGLWithPopulatedDB):
     """
