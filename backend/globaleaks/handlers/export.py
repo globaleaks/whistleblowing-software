@@ -24,7 +24,7 @@ from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import deferred_sleep
+from globaleaks.utils.utility import deferred_sleep, msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 
@@ -49,6 +49,8 @@ def get_tip_export(store, user_id, rtip_id, language):
     }
 
     export_template = Templating().format_template(export_dict['notification']['export_template'], export_dict).encode('utf-8')
+
+    export_template = msdos_encode(export_template)
 
     export_dict['files'].append({'buf': export_template, 'name': "data.txt"})
 
