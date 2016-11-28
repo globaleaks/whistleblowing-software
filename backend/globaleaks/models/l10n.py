@@ -159,8 +159,6 @@ class NodeL10NFactory(ConfigL10NFactory):
         'widget_comments_title',
         'widget_messages_title',
         'widget_files_title',
-        'widget_wbfiles_title',
-        'widget_wbfiles_description'
     })
 
     def __init__(self, store, *args, **kwargs):
