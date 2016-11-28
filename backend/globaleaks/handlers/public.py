@@ -43,7 +43,12 @@ def db_serialize_node(store, language):
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
     
-    return disjoint_union(ro_node, l10n_dict, misc_dict)
+    ret = disjoint_union(ro_node, l10n_dict, misc_dict)
+
+    if GLSettings.devel_mode:
+        ret['submission_minimum_delay'] = 0
+
+    return ret
 
 
 @transact
