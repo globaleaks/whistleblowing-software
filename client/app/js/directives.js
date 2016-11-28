@@ -336,6 +336,16 @@ directive('isolateForm', [function () {
     }
   };
 }])
+.directive('singleClick', [function() {
+  return {
+    restrict: 'A',
+    link: function(scope, elm) {
+      elm.on('click', function() {
+        elm.attr('disabled', true);
+      });
+    },
+  };
+}])
 .directive('wbfile', [function() {
   return {
     restrict: 'A',
