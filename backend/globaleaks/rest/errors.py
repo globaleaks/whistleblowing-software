@@ -224,7 +224,7 @@ class ShortURLIdNotFound(GLException):
 
 
 class FailedSanityCheck(GLException):
-    reason = "Exceeded usage expectations of a normal human"
+    reason = "Exceeded usage expectations of normal humans"
     error_code = 28
     status_code = 403  # Forbidden
 
