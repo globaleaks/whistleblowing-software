@@ -10,9 +10,9 @@
           <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
             <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
           </span>
-          <span ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)">
+          <button ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)" data-single-click>
             <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
-          </span>
+          </button>
         </span>
         <span data-ng-if="ctx == 'wbtip'">
           <div class="download-button btn-warning btn btn-small" data-ng-click="showFileDownloadModal(tip, wbfile)">
