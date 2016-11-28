@@ -526,9 +526,7 @@ class WhistleblowerFileHandler(BaseHandler):
         if n > 100:
             return errors.FailedSanityCheck()
 
-        new_name = self.request.files['file'][0]['filename']
-        wbfile_names = store.find(WhistleblowerFile.name, WhistleblowerFile.receivertip_id == ReceiverTip.id, 
-                                                          InternalTip.id == rtip.internaltip_id)
+        wbfile_names = [f.name for f in rtip['wbfiles']]
         if new_name in wbfile_names:
             return errors.FailedSanityCheck()
         return None
@@ -583,6 +581,9 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     def user_can_access(self, wbfile):
         raise NotImplementedError("This class defines the user_can_access interface.")
 
+    def access_wbfile(self, wbfile):
+        pass
+
     @transact
     def download_wbfile(self, store, user_id, file_id):
         wbfile = store.find(WhistleblowerFile,
@@ -591,10 +592,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
         if wbfile is None or not self.user_can_access(wbfile):
             raise errors.FileIdNotFound
 
-        log.debug("Download of file %s by whistleblower %s" %
-                  (wbfile.id, user_id))
-
-        wbfile.downloads += 1
+        self.access_wbfile(wbfile)
 
         return serializers.serialize_wbfile(wbfile)
 

@@ -254,6 +254,11 @@ class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     def user_can_access(self, wbfile):
         return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
 
+    def access_wbfile(self, wbfile):
+        log.debug("Download of file %s by whistleblower %s" %
+                  (wbfile.id, self.current_user.user_id))
+        wbfile.downloads += 1
+
     @BaseHandler.transport_security_check('whistleblower')
     @BaseHandler.authenticated('whistleblower')
     def get(self, wbfile_id):
