@@ -445,3 +445,8 @@ table {
 .wbfile .top-row {
   min-height: 30px;
 }
+
+.side-spaced {
+  margin-left: 2px;
+  margin-right: 2px;
+}
