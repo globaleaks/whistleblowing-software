@@ -85,10 +85,12 @@ class TestConfigL10N(helpers.TestGL):
     def run_node_mgr(self, store):
         # Initialize the Node manager
         node_l10n = NodeL10NFactory(store)
+        num_trans = len(NodeL10NFactory.localized_keys)
 
         # Make a query with the Node manager
         ret = node_l10n.retrieve_rows('en')
-        self.assertTrue(len(ret) == 20)
+
+        self.assertTrue(len(ret) == num_trans)
 
     @inlineCallbacks
     def test_enabled_langs(self):
