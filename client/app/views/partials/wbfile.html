@@ -23,23 +23,23 @@
     </div>
     <div class="clearfix"></div>
     <p class="file-info-row">
-      <span>
+      <span class="side-spaced">
         <span class="text-muted" data-translate>From</span>:&nbsp;
         <span>
         {{::wbfile.author | wbfileCreator: tip.receivers }}
         </span>
-      </span>&nbsp;&nbsp;
-      <span>
+      </span>
+      <span class="side-spaced">
         <span class="text-muted" data-translate>Creation date</span>:&nbsp;
-        <span >
-        {{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}
-        </span>
-      </span>&nbsp;&nbsp;
-      <span>
+        <span>{{::wbfile.creation_date | date:'dd-MM-yyyy HH:MM'}}</span>
+      </span>
+      <span class="side-spaced">
         <span class="text-muted" data-translate>Size</span>:&nbsp;
-        <span>
-        {{::wbfile.size | byteFmt:2}}
-        </span>
+        <span>{{::wbfile.size | byteFmt:2}}</span>
+      </span>
+      <span data-ng-if="ctx == 'rtip'" class="side-spaced">
+        <span class="text-muted" data-translate>Number of downloads</span>:&nbsp;
+        <span>{{::wbfile.downloads}}</span>
       </span>
     </p>
     <p data-ng-if="wbfile.description !== ''">
