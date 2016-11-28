@@ -525,6 +525,12 @@ class WhistleblowerFileHandler(BaseHandler):
         n = store.find(WhistleblowerFile, WhistleblowerFile.receivertip_id == rtip.id).count()
         if n > 100:
             return errors.FailedSanityCheck()
+
+        new_name = self.request.files['file'][0]['filename']
+        wbfile_names = store.find(WhistleblowerFile.name, WhistleblowerFile.receivertip_id == ReceiverTip.id, 
+                                                          InternalTip.id == rtip.internaltip_id)
+        if new_name in wbfile_names:
+            return errors.FailedSanityCheck()
         return None
 
     @BaseHandler.transport_security_check('receiver')
@@ -534,7 +540,6 @@ class WhistleblowerFileHandler(BaseHandler):
         """
         Errors: TipIdNotFound, ForbiddenOperation
         """
-
         err = yield self.can_perform_action(tip_id)
         if err is not None:
             raise err
