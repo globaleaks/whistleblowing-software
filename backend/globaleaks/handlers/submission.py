@@ -198,7 +198,7 @@ def db_archive_questionnaire_schema(store, questionnaire, questionnaire_hash):
 def db_get_itip_receiver_list(store, itip, language):
     return [{
         "id": rtip.receiver.id,
-        "name": rtip.receiver.user.name,
+        "name": rtip.receiver.user.public_name,
         "pgp_key_public": rtip.receiver.user.pgp_key_public,
         "last_access": datetime_to_ISO8601(rtip.last_access),
         "access_counter": rtip.access_counter,
