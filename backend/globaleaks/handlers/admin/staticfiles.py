@@ -5,9 +5,10 @@
 #
 # API handling static files upload/download/delete
 
-from twisted.internet import threads
 from cyclone.web import os
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk
 from globaleaks.utils.utility import log

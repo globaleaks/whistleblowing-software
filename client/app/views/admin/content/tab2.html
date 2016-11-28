@@ -41,14 +41,14 @@
         <div class="table-container">
           <table class="table table-striped" id="fileList">
             <tbody id="fileListBody">
-              <tr data-ng-repeat="file in staticfiles | orderBy:'filename'">
-                <td>{{file.filename}}</td>
+              <tr data-ng-repeat="file in staticfiles | orderBy:'name'">
+                <td>{{file.name}}</td>
                 <td>
-                  <a class="btn btn-primary" data-ng-href="s/{{file.filename}}" download="{{file.filename}}">
+                  <a class="btn btn-primary" data-ng-href="s/{{file.name}}" download="{{file.name}}">
                     <span class="glyphicon glyphicon-download"></span>
                     <span data-translate>Download</span>
                   </a>
-                  <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/' + file.filename)">
+                  <a class="btn btn-danger" data-ng-click="delete_file('admin/staticfiles/' + file.name)">
                     <span class="glyphicon glyphicon-trash"></span>
                     <span data-translate>Delete</span>
                   </a>
