@@ -731,9 +731,9 @@
       "dev": true
     },
     "eslint": {
-      "version": "3.11.0",
-      "from": "eslint@3.11.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.11.0.tgz",
+      "version": "3.11.1",
+      "from": "eslint@3.11.1",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.11.1.tgz",
       "dev": true
     },
     "espree": {
@@ -2206,42 +2206,16 @@
           "resolved": "https://registry.npmjs.org/request/-/request-2.79.0.tgz",
           "dev": true
         },
-        "sax": {
-          "version": "0.6.1",
-          "from": "sax@>=0.6.0 <0.7.0",
-          "resolved": "https://registry.npmjs.org/sax/-/sax-0.6.1.tgz",
-          "dev": true
-        },
-        "selenium-webdriver": {
-          "version": "2.53.3",
-          "from": "selenium-webdriver@2.53.3",
-          "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-2.53.3.tgz",
-          "dev": true,
-          "dependencies": {
-            "adm-zip": {
-              "version": "0.4.4",
-              "from": "adm-zip@0.4.4",
-              "resolved": "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.4.tgz",
-              "dev": true
-            }
-          }
-        },
         "uuid": {
-          "version": "3.0.0",
+          "version": "3.0.1",
           "from": "uuid@>=3.0.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.0.0.tgz",
+          "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.0.1.tgz",
           "dev": true
         },
         "webdriver-manager": {
           "version": "10.2.8",
           "from": "webdriver-manager@>=10.2.8 <11.0.0",
           "resolved": "https://registry.npmjs.org/webdriver-manager/-/webdriver-manager-10.2.8.tgz",
-          "dev": true
-        },
-        "xml2js": {
-          "version": "0.4.4",
-          "from": "xml2js@0.4.4",
-          "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.4.tgz",
           "dev": true
         }
       }
@@ -2663,9 +2637,9 @@
       "dev": true
     },
     "superagent": {
-      "version": "3.0.0",
-      "from": "superagent@3.0.0",
-      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.0.0.tgz",
+      "version": "3.1.0",
+      "from": "superagent@3.1.0",
+      "resolved": "https://registry.npmjs.org/superagent/-/superagent-3.1.0.tgz",
       "dev": true,
       "dependencies": {
         "form-data": {

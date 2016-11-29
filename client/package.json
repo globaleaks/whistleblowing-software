@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "coveralls": "2.11.15",
-    "eslint": "3.11.0",
+    "eslint": "3.11.1",
     "firefox-profile": "0.4.3",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
@@ -35,7 +35,7 @@
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
     "selenium-webdriver": "2.53.3",
-    "superagent": "3.0.0",
+    "superagent": "3.1.0",
     "supertest": "2.0.1"
   }
 }
