@@ -4,7 +4,7 @@
 #   ***************
 #
 # Implements periodic checks in order to verify pgp key status and other consistencies:
-# 
+#
 # to be implemented:
 #     if keys configured by receiver are going
 #     to expire in short time, if so, send a warning email to the recipient.

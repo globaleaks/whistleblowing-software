@@ -101,7 +101,7 @@ def msdos_encode(s):
 def log_encode_html(s):
     """
     This function encodes the following characters
-    using HTML encoding: < > & ' " \ / 
+    using HTML encoding: < > & ' " \ /
     """
     s = cgi.escape(s, True)
     s = s.replace("'", "&#39;")

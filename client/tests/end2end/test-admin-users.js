@@ -56,8 +56,8 @@ describe('admin add, configure, and delete users', function() {
     // Find Recipient2, click edit, flip some toggles, and save.
     var editUsrForm = element(by.xpath(path));
     editUsrForm.element(by.css('.actionButtonEdit')).click();
-    
-    // Add a description 
+
+    // Add a description
     var descriptBox = editUsrForm.element(by.model('user.description'));
     var words = "Description of recipient 2";
     descriptBox.clear();
@@ -65,7 +65,7 @@ describe('admin add, configure, and delete users', function() {
 
     element(by.model('user.password')).sendKeys(utils.vars['user_password']);
     element(by.model('user.password_change_needed')).click();
-    
+
     // Click Save and check the fields
     editUsrForm.element(by.css('.actionButtonSave')).click();
     editUsrForm.element(by.css('.actionButtonEdit')).click();

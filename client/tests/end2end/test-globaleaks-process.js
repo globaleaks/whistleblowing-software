@@ -251,14 +251,14 @@ describe('globaLeaks process', function() {
     function make_dates(strings) {
       return strings.map(function(s) {
         expect(s).toEqual(jasmine.any(String));
-        return new Date(s); 
+        return new Date(s);
       });
     }
-      
+
     // Get the expiration dates of all of the tips.
     element.all(by.css('#tipListTableBody tr'))
         .evaluate('tip.expiration_date').then(function(exprs) {
-      var start_expirations = make_dates(exprs); 
+      var start_expirations = make_dates(exprs);
       // Postpone the expiration of all tips
       element(by.id('tip-action-select-all')).click();
       element(by.id('tip-action-postpone-selected')).click();
@@ -276,7 +276,7 @@ describe('globaLeaks process', function() {
 
   it('Recipient should be able to postpone first submission from its tip page', function() {
     utils.login_receiver();
-    
+
     element(by.id('tip-0')).click();
     // Get the tip's original expiration date.
     element(by.id('tipFileName')).evaluate('tip.expiration_date').then(function(d) {
@@ -301,7 +301,7 @@ describe('globaLeaks process', function() {
     element(by.id('tipFileName')).evaluate('tip.id').then(function(tip_uuid) {
       element(by.id('tip-action-delete')).click();
       element(by.id('modal-action-ok')).click();
-      
+
       // Ensure that the tip has disappeared from the recipient's view.
       element.all(by.css('#tipListTableBody tr')).evaluate('tip.id').then(function(uuids) {
         var i = uuids.indexOf(tip_uuid);

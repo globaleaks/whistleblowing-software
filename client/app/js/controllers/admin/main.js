@@ -70,7 +70,7 @@ GLClient.controller('AdminCtrl',
 
         $scope.admin.node.default_language = language_selected;
         $scope.admin.node.languages_enabled = languages_enabled;
-  
+
         $scope.languages_enabled_selector = languages_enabled_selector;
 
       }
@@ -238,10 +238,10 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     });
   };
 }]).
-controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource', 
+controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource',
   function($scope, $http, Admin, AdminNotificationResource){
   $scope.notif = Admin.notification;
-  
+
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -264,7 +264,7 @@ controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResou
   var sendTestMail = function() {
     $http({
       method: 'POST',
-      url: '/admin/notification/mail', 
+      url: '/admin/notification/mail',
     });
   };
 

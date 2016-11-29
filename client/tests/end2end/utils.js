@@ -71,17 +71,17 @@ exports.waitForUrl = function (url, timeout) {
 
 exports.waitForFile = function (filename, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
-  return browser.wait(function() {    
-    try {   
-      var buf = fs.readFileSync(filename);   
-      if (buf.length > 5) {    
+  return browser.wait(function() {
+    try {
+      var buf = fs.readFileSync(filename);
+      if (buf.length > 5) {
         return true;
-      }   
-    } catch(err) {   
+      }
+    } catch(err) {
       // no-op
       return false;
-    } 
-  }, t);    
+    }
+  }, t);
 };
 
 exports.emulateUserRefresh = function () {

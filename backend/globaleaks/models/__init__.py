@@ -350,7 +350,7 @@ class InternalFile(ModelWithID):
     size = Int()
 
     new = Int(default=True)
-    
+
     submission = Int(default = False)
 
     processing_attempts = Int(default=0)
@@ -381,7 +381,7 @@ class ReceiverFile(ModelWithID):
 class WhistleblowerFile(ModelWithID):
     """
     This models stores metadata of files uploaded by recipients intended to be
-    delivered to the whistleblower. This file is not encrypted and nor is it 
+    delivered to the whistleblower. This file is not encrypted and nor is it
     integrity checked in any meaningful way.
     """
     receivertip_id = Unicode()

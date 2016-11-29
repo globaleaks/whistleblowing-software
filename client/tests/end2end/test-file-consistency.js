@@ -35,17 +35,17 @@ describe('Submission file process', function() {
   function uploadAndDownloadTest() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
-    
+
     wb.performSubmission('Test file consistency').then(function(receipt) {
       wb.viewReceipt(receipt);
-      
+
       // Add each file as an attachment.
       dirs.forEach(function(name) {
-        wb.submitFile(name); 
+        wb.submitFile(name);
       });
 
       utils.logout();
-      
+
       // Login as the receiver
       utils.login_receiver('Recipient2', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
@@ -69,7 +69,7 @@ describe('Submission file process', function() {
   function uploadAndDecryptTest() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
-    
+
     var opts = { encoding: 'utf8', flag: 'r' };
     var priv_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PRV', opts);
     var pub_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
@@ -77,13 +77,13 @@ describe('Submission file process', function() {
     wb.performSubmission('Test file openpgp consistency').then(function(receipt) {
       // attach files to submission
       wb.viewReceipt(receipt);
-      
+
       dirs.forEach(function(name) {
-        wb.submitFile(name); 
+        wb.submitFile(name);
       });
 
       utils.logout();
-      
+
       utils.login_receiver('Recipient1', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 

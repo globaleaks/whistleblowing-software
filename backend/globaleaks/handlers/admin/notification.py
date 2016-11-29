@@ -128,8 +128,8 @@ class NotificationInstance(BaseHandler):
 class NotificationTestInstance(BaseHandler):
     """
     Send Test Email Notifications to the admin that clicked the button.
-    This post takes no arguments and generates an empty response to both 
-    successful and unsucessful requests. Understand that this handler blocks 
+    This post takes no arguments and generates an empty response to both
+    successful and unsucessful requests. Understand that this handler blocks
     its thread until both the db query and the SMTP round trip return.
     """
     @BaseHandler.transport_security_check('admin')
@@ -140,7 +140,7 @@ class NotificationTestInstance(BaseHandler):
         Parameters: None
         Response: None
         """
-        user = yield get_user_settings(self.current_user.user_id, 
+        user = yield get_user_settings(self.current_user.user_id,
                                      GLSettings.memory_copy.default_language)
         notif = yield get_notification(user['language'])
 
@@ -151,7 +151,7 @@ class NotificationTestInstance(BaseHandler):
 
         log.debug("Attempting to send test email to: %s" % send_to)
         # If sending the email fails the exception mail address will be mailed.
-        # If the failure is due to a bad SMTP config that will fail too, but it 
+        # If the failure is due to a bad SMTP config that will fail too, but it
         # doesn't hurt to try!
         try:
             yield sendmail(send_to, subject, msg)

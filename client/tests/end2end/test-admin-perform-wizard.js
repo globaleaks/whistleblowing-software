@@ -11,7 +11,7 @@ describe('globaLeaks setup wizard', function() {
     utils.waitUntilPresent(by.cssContainingText("form", "Welcome to GlobaLeaks!"));
 
     element.all(by.id('ButtonNext')).get(0).click();
-      
+
     element(by.model('wizard.node.name')).sendKeys('E2E Test Instance');
     element(by.model('wizard.node.description')).sendKeys('This instance is for E2E testing');
 

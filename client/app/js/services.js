@@ -1234,10 +1234,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
   // This is a value set by the node.
   var enabledLanguages = [];
-  
+
   // Country codes with multiple languages or an '_XX' extension
   var problemLangs = {
-    'zh': ['CN', 'TW'], 
+    'zh': ['CN', 'TW'],
     'pt': ['BR', 'PT'],
     'nb': 'NO',
     'hr': 'HR',
@@ -1247,18 +1247,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   var indirect = {
     appLanguage: null,
   };
-        
+
   initializeStartLanguage();
- 
+
   function initializeStartLanguage() {
     var queryLang = $location.search().lang;
     if (angular.isDefined(queryLang) && validLang(queryLang)) {
       facts.urlParam = queryLang;
-    } 
-    
+    }
+
     var s = normalizeLang(window.navigator.language);
     if (validLang(s)) {
-      facts.browserSniff = s; 
+      facts.browserSniff = s;
     }
 
     determineLanguage();
@@ -1272,15 +1272,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     if (s.length !== 2 && s.length !== 5) {
       // The string is not in a format we are expecting so just return it.
-      return s; 
+      return s;
     }
 
     // The string is probably a valid ISO 639-1 language.
     var iso_lang = s.slice(0,2).toLowerCase();
-    
+
     if (problemLangs.hasOwnProperty(iso_lang)) {
 
-      var t = problemLangs[iso_lang]; 
+      var t = problemLangs[iso_lang];
       if (t instanceof Array) {
         // We do not know which extension to use, so just use the most popular one.
         return iso_lang + '_' + t[0];
@@ -1297,7 +1297,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     if (typeof inp !== 'string' || !/^([a-z]{2})(_[A-Z]{2})?$/.test(inp)) {
       return false;
     }
-    
+
     // Check if lang is in the list of enabled langs if we have enabledLangs
     if (enabledLanguages.length > 0) {
       return enabledLanguages.indexOf(inp) > -1;
@@ -1325,7 +1325,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       t = lang.replace('_', '-').toLowerCase();
     }
 
-    tmhDynamicLocale.set(t); 
+    tmhDynamicLocale.set(t);
   }
 
 
@@ -1373,8 +1373,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   }
 
-  // determineLanguage contains all of the scope creeping ugliness of the 
-  // factory. It finds the best language to use, changes the appLanguage 
+  // determineLanguage contains all of the scope creeping ugliness of the
+  // factory. It finds the best language to use, changes the appLanguage
   // pointer, and notifies the dependent services of the change.
   function determineLanguage() {
     indirect.appLanguage = bestLanguage(facts);

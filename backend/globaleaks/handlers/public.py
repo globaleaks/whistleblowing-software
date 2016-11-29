@@ -42,7 +42,7 @@ def db_serialize_node(store, language):
     }
 
     l10n_dict = NodeL10NFactory(store).localized_dict(language)
-    
+
     ret = disjoint_union(ro_node, l10n_dict, misc_dict)
 
     if GLSettings.devel_mode:
@@ -81,7 +81,7 @@ def serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'questionnaire': serialize_questionnaire(store, context.questionnaire, language), 
+        'questionnaire': serialize_questionnaire(store, context.questionnaire, language),
         'receivers': [r.id for r in context.receivers],
         'picture': context.picture.data if context.picture is not None else ''
     }
