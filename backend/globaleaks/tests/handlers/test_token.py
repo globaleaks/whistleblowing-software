@@ -4,7 +4,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers import token
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.token import Token
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -35,7 +34,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_right_answer(self):
-        pollute_events_for_testing()
+        self.pollute_events()
         yield Alarm.compute_activity_level()
 
         token = Token('submission')
@@ -56,7 +55,7 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_wrong_answer(self):
-        pollute_events_for_testing()
+        self.pollute_events()
         yield Alarm.compute_activity_level()
 
         token = Token('submission')
