@@ -38,10 +38,19 @@ exports.config = {
     defaultTimeoutInterval: 60000
   },
 
-  plugins: [{
-    chromeA11YDevTools: {
-      treatWarningsAsFailures: false
+  plugins: [
+    {
+      package: 'protractor-accessibility-plugin',
+      chromeA11YDevTools: {
+        treatWarningsAsFailures: false
+      }
     },
-    package: 'protractor-accessibility-plugin'
-  }]
+    {
+      package: 'protractor-console-plugin',
+      failOnWarning: false,
+      failOnError: true,
+      logWarnings: true,
+      exclude: []
+    }
+  ]
 };

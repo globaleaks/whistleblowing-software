@@ -2234,6 +2234,12 @@
         }
       }
     },
+    "protractor-console-plugin": {
+      "version": "0.1.1",
+      "from": "protractor-console-plugin@0.1.1",
+      "resolved": "https://registry.npmjs.org/protractor-console-plugin/-/protractor-console-plugin-0.1.1.tgz",
+      "dev": true
+    },
     "protractor-istanbul-plugin": {
       "version": "2.0.0",
       "from": "protractor-istanbul-plugin@2.0.0",
