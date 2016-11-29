@@ -6,7 +6,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.anomaly import Alarm
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.token import Token, TokenList
 
 
@@ -22,7 +21,7 @@ class TestToken(helpers.TestGL):
     def setUp(self):
         yield helpers.TestGL.setUp(self)
 
-        pollute_events_for_testing()
+        self.pollute_events()
         yield Alarm.compute_activity_level()
 
     def test_token(self):

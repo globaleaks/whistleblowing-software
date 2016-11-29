@@ -7,7 +7,6 @@ from globaleaks.handlers.admin.statistics import get_anomaly_history
 from globaleaks.jobs.statistics_sched import StatisticsSchedule
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
@@ -24,7 +23,7 @@ class TestStatistics(helpers.TestGL):
 
         # start test
         ANOMALIES_COUNT = 50
-        pollute_events_for_testing(ANOMALIES_COUNT)
+        self.pollute_events(ANOMALIES_COUNT)
 
         Alarm.compute_activity_level()
 
