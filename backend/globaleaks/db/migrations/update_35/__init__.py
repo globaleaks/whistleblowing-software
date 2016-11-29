@@ -78,7 +78,7 @@ class MigrationScript(MigrationBase):
                     tip_ttl = 5*365
                     if old_obj.tip_timetolive > tip_ttl:
                         GLSettings.print_msg('[WARNING] Found an expiration date longer than 5 years! Configuring tips to never expire.')
-                        # If data retention was larger than 5 years the intended goal was 
+                        # If data retention was larger than 5 years the intended goal was
                         # probably to keep the submission around forever.
                         new_obj.tip_timetolive = -1
                     elif old_obj.tip_timetolive < -1:

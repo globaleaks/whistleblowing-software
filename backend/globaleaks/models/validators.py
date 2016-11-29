@@ -98,7 +98,7 @@ def shortlocal_v(self, attr, value):
         return value
 
     # If a language does not exist, it does not mean that a malicious input have been provided,
-    # this condition in fact may happen when a language is removed from the package and 
+    # this condition in fact may happen when a language is removed from the package and
     # so the proper way to handle it so is simply to log the issue and discard the input.
     # https://github.com/globaleaks/GlobaLeaks/issues/879
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]

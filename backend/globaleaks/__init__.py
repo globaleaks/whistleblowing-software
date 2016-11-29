@@ -15,11 +15,11 @@ DATABASE_VERSION = 35
 FIRST_DATABASE_VERSION_SUPPORTED = 15
 
 # Add new languages as they are supported here! To do this retrieve the name of
-# the language and its code from transifex. Then use the following command to 
+# the language and its code from transifex. Then use the following command to
 # generate the 'native' unicode string:
 #
 # python -c "code='ar'; import babel; print 'native: %s' % repr(babel.Locale.parse(code).get_display_name(code));"
-# 
+#
 # NOTE that the cmd requires Babel is installed via pip and `code` is defined.
 LANGUAGES_SUPPORTED = [
   {'code': 'ar', 'name': 'Arabic', 'native': u'\u0627\u0644\u0639\u0631\u0628\u064a\u0629'},

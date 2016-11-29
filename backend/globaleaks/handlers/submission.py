@@ -408,7 +408,7 @@ class SubmissionInstance(BaseHandler):
         token = TokenList.get(token_id)
         token.use()
 
-        submission = yield create_submission(request, 
+        submission = yield create_submission(request,
                                              token.uploaded_files,
                                              self.check_tor2web(),
                                              self.request.language)

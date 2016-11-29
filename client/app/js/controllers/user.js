@@ -23,11 +23,11 @@ GLClient
         if (forcedLocation !== null && next !== forcedLocation) {
           event.preventDefault();
         }
-      }); 
+      });
 
       $location.path(path);
     },
-    
+
     clear: function() {
       forcedLocation = null;
       deregister();

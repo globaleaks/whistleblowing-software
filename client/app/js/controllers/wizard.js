@@ -15,7 +15,7 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
         });
       }
     };
-    
+
     if ($scope.node.wizard_done) {
       /* if the wizard has been already performed redirect to the homepage */
       $location.path('/');

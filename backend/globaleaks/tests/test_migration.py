@@ -179,7 +179,7 @@ class TestMigrationRegression(unittest.TestCase):
         self.store = Store(create_database(GLSettings.db_uri))
 
     def test_check_field_constraints(self):
-        # This test case asserts that a migration from db ver 32 up to the latest 
+        # This test case asserts that a migration from db ver 32 up to the latest
         # db with fields that fail the constraints still functions.
         self._initStartDB(32)
 

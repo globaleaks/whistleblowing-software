@@ -441,9 +441,9 @@ class RTipInstance(BaseHandler):
         elif request['operation'] == 'set':
             key = request['args']['key']
             value = request['args']['value']
-            internal_var_lst = ['enable_two_way_comments', 
-                                'enable_two_way_messages', 
-                                'enable_attachments'] 
+            internal_var_lst = ['enable_two_way_comments',
+                                'enable_two_way_messages',
+                                'enable_attachments']
             if key == 'label' and isinstance(value, unicode):
                 set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
             elif key == 'enable_notifications' and isinstance(value, bool):

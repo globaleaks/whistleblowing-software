@@ -346,11 +346,11 @@ class ZipStream(object):
         Returns data to finish off an archive based on the files already
         added via zip_file(...).  The data returned corresponds to the fields:
 
-        [archive decryption header] 
-        [archive extra data record] 
+        [archive decryption header]
+        [archive extra data record]
         [central directory]
         [zip64 end of central directory record]
-        [zip64 end of central directory locator] 
+        [zip64 end of central directory locator]
         [end of central directory record]
 
         as described in section V. of the PKZIP Application Note:

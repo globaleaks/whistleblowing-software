@@ -2,14 +2,14 @@ var utils = require('./utils.js');
 
 exports.receiver = function() {
   this.viewMostRecentSubmission = function() {
-    return element(by.id('tip-0')).click(); 
+    return element(by.id('tip-0')).click();
   };
 
   this.addPublicKey = function(pub_pgp_key) {
     browser.setLocation('receiver/preferences');
     element(by.cssContainingText("a", "Encryption settings")).click();
     var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
-    
+
     return pgpTxtArea.isDisplayed().then(function(displayed) {
       if (!displayed) {
         clickDelPubKey();
