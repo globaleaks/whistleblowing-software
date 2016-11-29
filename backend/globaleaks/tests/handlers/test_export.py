@@ -13,8 +13,10 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_minimal_submission()
-        yield DeliverySchedule().run()
+
+        # this call is needed in order to populate the database
+        # tables related to tips, comments, messages and files
+        yield self.perform_full_submission_actions()
 
     @inlineCallbacks
     def test_export(self):
