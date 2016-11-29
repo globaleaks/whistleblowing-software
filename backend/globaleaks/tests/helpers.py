@@ -425,6 +425,17 @@ class TestGL(unittest.TestCase):
         msg = 'The following model has been found on the store: {} {}'.format(id_args, id_kwargs)
         self.assertFalse(existing, msg)
 
+    def pollute_events(self, number_of_times=10):
+        for _ in xrange(number_of_times):
+            for event_obj in event.events_monitored:
+                for x in xrange(2):
+                    event.EventTrack(event_obj, 1.0 * x)
+
+    def pollute_events_and_perform_synthesis(self, number_of_times=10):
+        for _ in xrange(number_of_times):
+            for event_obj in event.events_monitored:
+                for x in xrange(2):
+                    event.EventTrack(event_obj, 1.0 * x).synthesis()
     @transact
     def get_rtips(self, store):
         ret = []

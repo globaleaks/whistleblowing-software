@@ -7,8 +7,6 @@ from globaleaks.handlers.admin import statistics
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
 from globaleaks.tests import helpers
-from globaleaks.tests.test_anomaly import pollute_events_for_testing, \
-    pollute_events_for_testing_and_perform_synthesis
 
 
 class TestStatsCollection(helpers.TestHandler):
@@ -27,7 +25,7 @@ class TestStatsCollection(helpers.TestHandler):
         self.assertEqual(len(self.responses[0]), 3)
         self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
 
-        pollute_events_for_testing_and_perform_synthesis(10)
+        self.pollute_events_and_perform_synthesis(10)
 
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
@@ -40,7 +38,8 @@ class TestStatsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing_and_perform_synthesis(10)
+        self.pollute_events_and_perform_synthesis(10)
+
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
 
@@ -62,7 +61,8 @@ class TestAnomalyCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing_and_perform_synthesis(10)
+        self.pollute_events_and_perform_synthesis(10)
+
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
 
@@ -74,7 +74,8 @@ class TestAnomalyCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        pollute_events_for_testing_and_perform_synthesis(10)
+        self.pollute_events_and_perform_synthesis(10)
+
         yield AnomaliesSchedule().run()
         yield StatisticsSchedule().run()
 
@@ -104,7 +105,8 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        pollute_events_for_testing_and_perform_synthesis(3)
+        self.pollute_events_and_perform_synthesis(3)
+
         yield StatisticsSchedule().run()
 
         handler = self.request({}, role='admin')

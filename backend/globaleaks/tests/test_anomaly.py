@@ -7,20 +7,6 @@ from globaleaks.anomaly import Alarm
 from globaleaks.tests import helpers
 
 
-def pollute_events_for_testing(number_of_times=10):
-    for _ in xrange(number_of_times):
-        for event_obj in event.events_monitored:
-            for x in xrange(2):
-                event.EventTrack(event_obj, 1.0 * x)
-
-
-def pollute_events_for_testing_and_perform_synthesis(number_of_times=10):
-    for _ in xrange(number_of_times):
-        for event_obj in event.events_monitored:
-            for x in xrange(2):
-                event.EventTrack(event_obj, 1.0 * x).synthesis()
-
-
 class TestAlarm(helpers.TestGL):
     """
     This test mostly the function in anomaly.py Alarm object
@@ -40,10 +26,10 @@ class TestAlarm(helpers.TestGL):
         """
         remind: activity level is called every 30 seconds by
         """
-        pollute_events_for_testing()
+        self.pollute_events()
         previous_len = len(event.EventTrackQueue.take_current_snapshot())
 
-        pollute_events_for_testing()
+        self.pollute_events()
         self.assertEqual(len(
             event.EventTrackQueue.take_current_snapshot()
         ), previous_len * 2)
@@ -60,7 +46,7 @@ class TestAnomalyNotification(helpers.TestGL):
     @defer.inlineCallbacks
     def test_generate_admin_alert_mail(self):
         # Remind, these two has to be done to get an event matrix meaningful
-        pollute_events_for_testing()
+        self.pollute_events()
         activity_level = yield Alarm.compute_activity_level()
 
         x = yield Alarm.generate_admin_alert_mail(

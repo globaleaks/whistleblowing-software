@@ -18,6 +18,9 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         # tables related to tips, comments, messages and files
         yield self.perform_full_submission_actions()
 
+        # this call is needed in order to populate alarms conditions
+        self.pollute_events(10)
+
     @inlineCallbacks
     def test_export(self):
         rtips_desc = yield self.get_rtips()
