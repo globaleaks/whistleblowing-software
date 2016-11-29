@@ -10,10 +10,10 @@
         </span>
 
         <span data-ng-if="showEditLabelInput" class="form-inline">
-          <div class="input-group">
-            <input type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
+          <div id="AssignLabelInput" class="input-group">
+            <input id="assignLabelInput" type="text" class="form-control" data-ng-attr-placeholder="{{'Label' | translate}}" data-ng-click="$event.stopPropagation();" data-ng-model="tip.label" />
             <span class="input-group-btn" uib-popover="{{'Assign a label to the submission' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">
-              <button class="btn btn-primary" data-ng-click="updateLabel(tip.label); $event.stopPropagation();">
+              <button id="assignLabelButton" class="btn btn-primary" data-ng-click="updateLabel(tip.label); $event.stopPropagation();">
                 <i class="glyphicon glyphicon-tag"></i>
               </button>
             </span>
