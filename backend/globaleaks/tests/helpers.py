@@ -644,7 +644,7 @@ class TestHandler(TestGLWithPopulatedDB):
         GLApiCache.invalidate()
 
     def request(self, jbody=None, user_id=None, role=None, headers=None, body='',
-                remote_ip='0.0.0.0', method='MOCK', kwargs={}):
+                remote_ip='0.0.0.0', method='MOCK', attached_file={}, kwargs={}):
 
         """
         Function userful for performing mock requests.
@@ -676,11 +676,19 @@ class TestHandler(TestGLWithPopulatedDB):
             remote_ip:
                 If a particular remote_ip should be set.
 
+            attached_file:
+                A cyclone.httputil.HTTPFiles or a dict to place in the request.files obj
+
         """
         if jbody and not body:
             body = json.dumps(jbody)
         elif body and jbody:
             raise ValueError('jbody and body in conflict')
+
+        if attached_file is None:
+            fake_files = {}
+        else:
+            fake_files = {'file': [attached_file]} # Yes this is ugly, but it's the format
 
         application = Application([])
 
@@ -694,7 +702,8 @@ class TestHandler(TestGLWithPopulatedDB):
                                          headers=headers,
                                          body=body,
                                          remote_ip=remote_ip,
-                                         connection=connection)
+                                         connection=connection,
+                                         files=fake_files)
 
         def mock_write(cls, response=None):
             if response:
