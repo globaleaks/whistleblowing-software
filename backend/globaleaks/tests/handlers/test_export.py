@@ -10,16 +10,16 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
     complex_field_population = True
     _handler = export.ExportHandler
 
+    # All of the setup here is used by the templating that goes into the data.txt file.
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
-        # this call is needed in order to populate the database
-        # tables related to tips, comments, messages and files
         yield self.perform_full_submission_actions()
-
-        # this call is needed in order to populate alarms conditions
+        # populates alarms conditions
         self.pollute_events(10)
+        # creates the receiver files
+        yield DeliverySchedule().run()
 
     @inlineCallbacks
     def test_export(self):
