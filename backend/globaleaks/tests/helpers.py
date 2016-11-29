@@ -613,6 +613,7 @@ class TestGLWithPopulatedDB(TestGL):
 
     @inlineCallbacks
     def perform_full_submission_actions(self):
+        '''Populates the DB with tips, comments, messages and files'''
         for x in range(0, self.population_of_submissions):
             self.perform_submission_start()
             yield self.perform_submission_uploads()

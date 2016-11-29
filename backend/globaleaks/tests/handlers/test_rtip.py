@@ -239,7 +239,7 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_get(self):
-        yield self.perform_full_submission_actions()
+        yield self.perform_minimal_submission()
         yield DeliverySchedule().run()
 
         rtips_desc = yield self.get_rtips()
@@ -256,7 +256,7 @@ class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
-        yield self.perform_full_submission_actions()
+        yield self.perform_minimal_submission()
 
     @inlineCallbacks
     def test_post(self):
