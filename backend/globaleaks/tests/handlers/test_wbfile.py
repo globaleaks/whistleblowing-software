@@ -17,7 +17,8 @@ class TestWhistleblowerFileWorkFlow(helpers.TestHandlerWithPopulatedDB):
         self._handler = rtip.WhistleblowerFileHandler
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
+            samplefile = {'filename': 'hi.txt', 'body': 'Hello, world!', 'content_type': 'application/bogan'}
+            handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'], attached_file=samplefile)
             yield handler.post(rtip_desc['id'])
 
         self._handler = wbtip.WBTipWBFileInstanceHandler
