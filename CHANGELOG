@@ -1,3 +1,11 @@
+Changes in version 2.65.4 - 2016-11-29
+    o Fix minor UI defects
+    o Replace recipient name with pseudonym in all the public APIs
+    o Force description input for file uploaded by recipients
+    o Add display of counters of whistleblower file downloads
+    o Add constraint on unique names for file uploads by recipients
+    o Update translations
+
 Changes in version 2.65.3 - 2016-11-24
     o Apply revision of migration 35
     o Add pylint checks to the CI tests
