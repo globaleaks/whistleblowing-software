@@ -2,7 +2,7 @@
 
 # user permission check
 if [ ! $(id -u) = 0 ]; then
-    echo "Error: GlobaLeaks install script must be runned by root"
+    echo "Error: GlobaLeaks install script must be run by root"
     exit 1
 fi
 
@@ -34,10 +34,10 @@ fi
 if [ $DISTRO_CODENAME != "trusty" ]; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Supported platform is Ubuntu Trusty (14.04)"
+  echo "Only Ubuntu Trusty (14.04) is supported"
 
   while true; do
-    read -p "Do you wish to continue anyhow? [y|n]?" yn
+    read -p "Do you wish to continue anyway? [y|n]?" yn
     case $yn in
       [Yy]*) break;;
       [Nn]*) echo "Installation aborted."; exit;;
@@ -59,9 +59,9 @@ if [ $DISTRO_CODENAME != "precise" ] &&
    [ $DISTRO_CODENAME != "wheezy" ] &&
    [ $DISTRO_CODENAME != "jessie" ]; then
   # In case of unsupported platforms we fallback on Trusty
-  echo "Given that the platform is not supported the install script will use trusty repository."
-  echo "In case of failure refer to the wiki for manual setup possibilities."
-  echo "GlobaLeaks Wiki Address: https://github.com/globaleaks/GlobaLeaks/wiki"
+  echo "Given that the platform is not supported the install script will use the trusty repository."
+  echo "In case of a failure refer to the wiki for manual setup possibilities."
+  echo "GlobaLeaks Wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
   DISTRO="Ubuntu"
   DISTRO_CODENAME="trusty"
 fi
@@ -150,7 +150,7 @@ fi
 
 if [ -r /var/globaleaks/torhs/hostname ]; then
   TORHS=`cat /var/globaleaks/torhs/hostname`
-  echo "To access your GlobaLeaks use the following Tor HS URL: $TORHS"
-  echo "Use Tor Browser to access it, download it from https://antani.tor2web.org/gettor"
-  echo "If you need to access it directly on your public IP address, you must edit /etc/default/globaleaks and restart globaleaks"
+  echo "To access and configure your GlobaLeaks node use the following Tor HS URL: $TORHS"
+  echo "Use the Tor Browser to connect, You can download it from https://www.torproject.org/download"
+  echo "If you need to access the node directly on your public IP address, edit /etc/default/globaleaks and restart globaleaks"
 fi
