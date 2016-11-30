@@ -4,11 +4,8 @@ from __future__ import print_function
 
 import re
 import os
-import pip
 import platform
-import sys 
-
-print('before reload:', sys.path)
+import sys
 
 # Use UTF-8 for all string to unicode conversions
 reload(sys)
@@ -21,6 +18,8 @@ from pkg_resources import parse_version
 
 
 def pip_version_check(path):
+    import pip
+
     def version_number_compare(version1, version2):
         return cmp(parse_version(version1), parse_version(version2))
 
@@ -98,7 +97,6 @@ if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions
 
-print('after reload with addition:', sys.path)
 from globaleaks import DATABASE_VERSION
 from globaleaks.db import perform_system_update
 from globaleaks.runner import GlobaLeaksRunner
