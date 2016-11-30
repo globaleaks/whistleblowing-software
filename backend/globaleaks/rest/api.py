@@ -135,7 +135,7 @@ spec = [
     (r'/x/timingstats', base.TimingStatsHandler),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]+)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
 ]
 
 
