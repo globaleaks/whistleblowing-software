@@ -41,34 +41,28 @@ Planned methods:
 - CentOS 6 : via ???
 
 
-### Ubuntu 14.04
+### Example for Ubuntu 14.04 for running the latest release
 
 On your local machine:
 
 ```bash
-> packer build templates/ubuntu-14.04/template.json
-> vagrant init
-> vagrant box add --name=gl-ubuntu-14.04 dist/packer_virtualbox_globaleaks-ubuntu-14.04.box
-# Name box, edit Vagrant file add ip=191.168.33.10
-# config.vm.network "private_network", ip: "192.168.33.10"
-> vagrant up
-# Check everything is working 
-> curl 191.168.33.10:8082
-# Run E2E tests with something like:
-> ./node_modules/protractor/bin/protractor --baseUrl http://191.168.33.10:8082 tests/end2end/protractor-coverage.config.js
+> cd templates/ubuntu-14.04
+> packer build template.json
 ```
 
-### Ubuntu 16.04
+
+### Example for Ubuntu 16.04 for running a development package
 
 ```bash
-
 # Create the globaleaks debian package you intend to install
-> ./scripts/build.sh -gt devel -d xenial -n
+> ./scripts/build.sh -t devel -d xenial -n
 > cp /path/to/globaleaks_2.64.11_all.deb data/
-
-
 > cd templates/ubuntu-16.04
-> packer build -on-error=ask templates/ubuntu-16.04/template.json 
-
-> ./node_modules/protractor/bin/protractor --baseUrl http://192.168.33.10:8082 tests/end2end/protractor-coverage.config.js
+> packer build templates/ubuntu-16.04/template.json
 ```
+
+### Commands for running the VM
+```bash
+> vagrant init
+> vagrant up
+> curl 127.0.0.1:8082

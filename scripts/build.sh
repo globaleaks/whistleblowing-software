@@ -11,8 +11,8 @@ usage() {
   echo "Valid options:"
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
-  echo -e " -f (Use local repository & skip frontend build)"
-  echo -e " -d distribution (available: precise, trusty, wheezy, jessie, unstable)"
+  echo -e " -f (Use local repository & enviroment)"
+  echo -e " -d distribution (available: precise, trusty, xenial, wheezy, jessie, stretch, unstable)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
@@ -20,11 +20,11 @@ usage() {
 TARGETS="precise trusty xenial wheezy jessie stretch"
 DISTRIBUTION="trusty"
 TAG="master"
-FAST_BUILD=0
+LOCAL_ENV=0
 NOSIGN=0
 PUSH=0
 
-while getopts "d:t:np:h:f" opt; do
+while getopts "d:t:np:h:l" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
@@ -34,7 +34,7 @@ while getopts "d:t:np:h:f" opt; do
     ;;
     p) PUSH=1
     ;;
-    f) FAST_BUILD=1
+    l) LOCAL_ENV=1
     ;;
     h)
         usage
@@ -74,17 +74,18 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
+cwd=$(pwd)
+
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
 
-if [ $FAST_BUILD ]; then
+if [ $LOCAL_ENV -eq 1 ]; then
     cd ../client/
     grunt build
     cd ../GLRelease
     git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
     cp -rf ../client/build GlobaLeaks/client/
-    cd ../
 else
     git clone --branch="$TAG" --depth=1 https://github.com/globaleaks/GlobaLeaks.git
     cd GlobaLeaks
@@ -94,8 +95,9 @@ else
     npm install
     bower update
     grunt build
-    cd ../../../
 fi
+
+cd $cwd
 
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET
@@ -106,7 +108,7 @@ for TARGET in $TARGETS; do
 
   cp -r $BUILDSRC $BUILDDIR
   cd $BUILDDIR/GlobaLeaks
-  rm debian/control
+  rm debian/control backend/requirements.txt
 
   if [ "$TARGET" != 'unstable' ]; then
     ln -s controlX/control.$TARGET debian/control
@@ -116,6 +118,13 @@ for TARGET in $TARGETS; do
 
   sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
 
+  if [[ "$TARGET" =~ ^(precise|wheezy|trusty|unstable)$ ]]; then
+    ln -s requirements/requirements-trusty.txt backend/requirements.txt
+  else
+    ln -s requirements/requirements-$TARGET.txt backend/requirements.txt
+  fi
+
+  echo $(pwd)
   if [ $NOSIGN -eq 1 ]; then
     debuild -i -us -uc -b
   else

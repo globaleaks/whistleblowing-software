@@ -20,14 +20,9 @@ if which lsb_release >/dev/null; then
 fi
 
 PIP_NEEDED=1
-if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
+if echo "$DISTRO_CODENAME" | grep -v -qE "^(precise)|(trusty)|(wheezy)$"; then
   PIP_NEEDED=0
 fi
-
-
-# Soft link the correct requirements.txt for the distro overwriting the existing file.
-SRC_F_PATH="/usr/share/globaleaks/"
-ln -fs -T "$SRC_F_PATH"/requirements/requirements-"$DISTRO_CODENAME".txt "$SRC_F_PATH"/requirements.txt
 
 if [ $PIP_NEEDED -eq 1 ]; then
   # XXX. Hardcore installation of globaleaks dependencies using pip.

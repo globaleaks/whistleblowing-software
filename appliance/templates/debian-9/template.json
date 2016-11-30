@@ -1,74 +1,56 @@
 {
-    "variables": {
-        "machine_name": "globaleaks-debian-9"
-    },
-
-    "builders": [
-        {
-            "type": "virtualbox-iso",
-            "iso_url": "http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
-            "iso_checksum": "weekly",
-            "iso_checksum_type": "none",
-            "guest_os_type": "Debian_64",
-            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-            "http_directory": "http",
-            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-            "virtualbox_version_file": ".vbox_version",
-            "ssh_username": "vagrant",
-            "ssh_password": "vagrant",
-            "ssh_wait_timeout": "20m",
-            "output_directory": "../../../dist/{{user `machine_name`}}",
-            "vm_name": "{{user `machine_name`}}",
-            "boot_wait": "5s",
-            "boot_command": [
-                "<esc><wait>",
-                "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-                "debian-installer=en_US <wait>",
-                "auto <wait>",
-                "locale=en_US <wait>",
-                "kbd-chooser/method=us <wait>",
-                "fb=false <wait>",
-                "netcfg/get_hostname={{ .Name }} <wait>",
-                "netcfg/get_domain=local <wait>",
-                "debconf/frontend=noninteractive <wait>",
-                "console-setup/ask_detect=false <wait>",
-                "console-keymaps-at/keymap=us <wait>",
-                "keyboard-configuration/xkb-keymap=us <wait>",
-                "<enter><wait>"
-            ]
-        }
+  "builders": [{
+    "type": "virtualbox-iso",
+    "guest_os_type": "Debian_64",
+    "iso_url": "http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-netinst.iso",
+    "iso_checksum": "3c96d5a3c85b1e6878d5cc227368d2e5ccb0df0ea35cfb7c5fc05d27ee94aa7a",
+    "http_directory": "templates/debian-9/http/",
+    "iso_checksum_type": "sha256",
+    "output_directory": "",
+    "vm_name": "globaleaks.box",
+    "disk_size": "10240",
+    "boot_wait": "5s",
+    "ssh_timeout": "20m",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "shutdown_command": "sudo systemctl poweroff",
+    "vboxmanage": [
+      [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+      [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
     ],
-
-    "provisioners": [
-        {
-            "type": "shell",
-            "scripts": [
-                "../../scripts/vagrant.sh",
-                "../../scripts/virtualbox.sh"
-            ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
-        },
-        {
-            "type": "file",
-            "source": "../../data",
-            "destination": "/data/globaleaks"
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "../../scripts/globaleaks.sh",
-                "../../scripts/cleanup.sh",
-                "../../scripts/zerodisk.sh"
-            ],
-            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
-        }
-    ],
-
-    "post-processors": [
-        {
-            "type": "vagrant",
-            "output": "../../dist/packer_{{.Provider}}_{{user `machine_name`}}.box"
-        }
+    "boot_command": [
+      "<esc><wait>",
+      "install <wait>",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+      "debian-installer=en_US <wait>",
+      "auto <wait>",
+      "locale=en_US <wait>",
+      "kbd-chooser/method=us <wait>",
+      "fb=false <wait>",
+      "netcfg/get_hostname={{ .Name }} <wait>",
+      "netcfg/get_domain=local <wait>",
+      "debconf/frontend=noninteractive <wait>",
+      "console-setup/ask_detect=false <wait>",
+      "console-keymaps-at/keymap=us <wait>",
+      "keyboard-configuration/xkb-keymap=us <wait>",
+      "<enter><wait>"
     ]
+  }],
+  "provisioners": [
+  {
+    "type": "shell",
+    "scripts": [
+      "scripts/vagrant.sh",
+      "scripts/virtualbox.sh",
+      "scripts/cleanup.sh",
+      "scripts/zerodisk.sh"
+    ],
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S '{{.Path}}'"
+    }
+  ],
+  "post-processors": [{
+    "type": "vagrant",
+    "compression_level": "6",
+    "output": "globaleaks.box"
+  }]
 }

@@ -18,30 +18,12 @@ setupClientDependencies() {
   fi
 }
 
-LOG () {
-  CMD=$1
-  echo -n "Running: \"$CMD\"... "
-  $CMD
-}
-
 setupBackendDependencies() {
   cd $TRAVIS_BUILD_DIR/backend  # to install backend dependencies
   rm -rf requirements.txt
   ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
   pip install -r requirements.txt
   pip install coverage coveralls
-  echo "Setup backend dependencies"
-  set +e
-  LOG "which python"
-  LOG "pwd"
-  LOG "ls -alH"
-  LOG "ls -alH globaleaks"
-  LOG "echo $PYTHONPATH"
-  echo "Running python"
-  python -c "import cryptography as c; print c.__version__; import globaleaks as g; print g.__version__"
-  echo "Running failed line"
-  python -c "from globaleaks import DATABASE_VERSION; print DATABASE_VERSION"
-  set -e
 }
 
 setupDependencies() {
