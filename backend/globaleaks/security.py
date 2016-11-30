@@ -295,7 +295,7 @@ class GLSecureFile(GLSecureTemporaryFile):
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     """
-    check that an 'untrusted_path' match a 'trusted_absolute_path' prefix
+    check that an 'untrusted_path' matches a 'trusted_absolute_path' prefix
     """
     if not os.path.isabs(trusted_absolute_prefix):
         raise Exception("programming error: trusted_absolute_prefix is not an absolute path: %s" %

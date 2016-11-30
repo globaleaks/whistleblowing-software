@@ -121,7 +121,7 @@ spec = [
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
-    (r'/admin/staticfiles/(.*)', admin_staticfiles.StaticFileInstance),
+    (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),
@@ -129,13 +129,13 @@ spec = [
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
-    (r'/s/(.*)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
+    (r'/s/(.+)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     (r'/x/timingstats', base.TimingStatsHandler),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.]+)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
 ]
 
 
