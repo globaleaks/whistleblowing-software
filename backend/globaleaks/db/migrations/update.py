@@ -251,7 +251,7 @@ class MigrationBase(object):
         old_objects = self.store_old.find(self.model_from[model_name])
 
         for old_obj in old_objects:
-            new_obj = self.model_to[model_name]()
+            new_obj = self.model_to[model_name](migrate=True)
 
             for _, v in new_obj._storm_columns.iteritems():
                 self.migrate_model_key(old_obj, new_obj, v.name)
@@ -277,29 +277,3 @@ class MigrationBase(object):
         else:
             GLSettings.print_msg(' * %s [#%d]' % (model_name, objs_count))
             self.generic_migration_function(model_name)
-
-    def migrate_model_with_init(self, model_name, init_func):
-        old_objs = self.store_old.find(self.model_from[model_name])
-        new_cls = self.model_to[model_name]
-
-        for old_obj in old_objs:
-            new_obj = init_func(old_obj, new_cls)
-            self.store_new.add(new_obj)
-
-    def migrate_EnabledLanguage(self):
-        def copy(old_obj, new_cls):
-            return new_cls(old_obj.name)
-
-        self.migrate_model_with_init('EnabledLanguage', copy)
-
-    def migrate_Config(self):
-        def copy(old_obj, new_cls):
-            return new_cls(old_obj.var_group, old_obj.var_name, old_obj.get_v())
-
-        self.migrate_model_with_init('Config', copy)
-
-    def migrate_ConfigL10N(self):
-        def copy(old_obj, new_cls):
-            return new_cls(old_obj.lang, old_obj.var_group, old_obj.var_name, old_obj.value)
-
-        self.migrate_model_with_init('ConfigL10N', copy)

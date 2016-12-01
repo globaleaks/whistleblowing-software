@@ -8,12 +8,15 @@ from globaleaks.rest import errors
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.utils.utility import log
 
+
 class EnabledLanguage(Storm):
     __storm_table__ = 'enabledlanguage'
 
     name = Unicode(primary=True)
 
-    def __init__(self, name):
+    def __init__(self, name=None, migrate=False):
+        if migrate:
+            return
         self.name = unicode(name)
 
     def __repr__(self):
@@ -55,7 +58,9 @@ class ConfigL10N(Storm):
     value = Unicode()
     customized = Bool(default=False)
 
-    def __init__(self, lang_code, group, var_name, value=''):
+    def __init__(self, lang_code=None, group=None, var_name=None, value='', migrate=False):
+        if migrate:
+            return
         self.lang = unicode(lang_code)
         self.var_group = unicode(group)
         self.var_name = unicode(var_name)
@@ -169,7 +174,6 @@ class NodeL10NFactory(ConfigL10NFactory):
         ConfigL10NFactory.initialize(self, lang_code, l10n_data_src)
 
 
-
 class NotificationL10NFactory(ConfigL10NFactory):
     localized_keys = frozenset({
         'admin_anomaly_mail_title',
@@ -209,26 +213,27 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_message_recipient',
     })
 
+    # These strings are not exposed in admin the interface for customization
     unmodifiable_keys = frozenset({
-      'identity_access_authorized_mail_template',
-      'identity_access_authorized_mail_title',
-      'identity_access_denied_mail_template',
-      'identity_access_denied_mail_title',
-      'identity_access_request_mail_template',
-      'identity_access_request_mail_title',
-      'identity_provided_mail_template',
-      'identity_provided_mail_title',
-      'export_template',
-      'export_message_whistleblower',
-      'export_message_recipient',
-      'admin_anomaly_mail_template',
-      'admin_anomaly_mail_title',
-      'admin_anomaly_activities',
-      'admin_anomaly_disk_high',
-      'admin_anomaly_disk_medium',
-      'admin_anomaly_disk_low',
-      'admin_test_static_mail_template',
-      'admin_test_static_mail_title',
+        'identity_access_authorized_mail_template',
+        'identity_access_authorized_mail_title',
+        'identity_access_denied_mail_template',
+        'identity_access_denied_mail_title',
+        'identity_access_request_mail_template',
+        'identity_access_request_mail_title',
+        'identity_provided_mail_template',
+        'identity_provided_mail_title',
+        'export_template',
+        'export_message_whistleblower',
+        'export_message_recipient',
+        'admin_anomaly_mail_template',
+        'admin_anomaly_mail_title',
+        'admin_anomaly_activities',
+        'admin_anomaly_disk_high',
+        'admin_anomaly_disk_medium',
+        'admin_anomaly_disk_low',
+        'admin_test_static_mail_template',
+        'admin_test_static_mail_title',
     })
 
     def __init__(self, store, *args, **kwargs):
