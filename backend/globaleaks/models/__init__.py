@@ -50,7 +50,7 @@ class Model(Storm):
     datetime_keys = []
     json_keys = []
 
-    def __init__(self, values=None):
+    def __init__(self, values=None, migrate=False):
         self.update(values)
 
     def update(self, values=None):

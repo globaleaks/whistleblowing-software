@@ -163,9 +163,6 @@ class PrivateFactory(ConfigFactory):
         return self._export_group_dict(self.mem_export_set)
 
 
-factories = [NodeFactory, NotificationFactory, PrivateFactory]
-
-
 class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
@@ -175,7 +172,9 @@ class Config(Storm):
     value = JSON()
     customized = Bool(default=False)
 
-    def __init__(self, group, name, value):
+    def __init__(self, group=None, name=None, value=None, migrate=False):
+        if migrate:
+            return
         self.var_group = unicode(group)
         self.var_name = unicode(name)
 
@@ -185,8 +184,15 @@ class Config(Storm):
         if value != self.desc.default:
             self.customized = True
 
+    @classmethod
+    def find_descriptor(cls, var_group, var_name):
+        d = GLConfig.get(var_group, {}).get(var_name, None)
+        if d is None:
+            raise ValueError('%s.%s descriptor cannot be None' % (var_group, var_name))
+        return d
+
     def set_v(self, val):
-        self.find_descriptor()
+        self.desc = Config.find_descriptor(self.var_group, self.var_name)
         if val is None:
             val = self.desc._type()
         if isinstance(self.desc, config_desc.Unicode) and isinstance(val, str):
@@ -201,23 +207,22 @@ class Config(Storm):
 
         self.value = {'v': val}
 
-    def find_descriptor(self):
-        d = GLConfig.get(self.var_group, {}).get(self.var_name, None)
-        if d is None:
-            raise ValueError('%s descriptor cannot be None' % self)
-        self.desc = d
-
     def get_v(self):
         return self.value['v']
 
     def __repr__(self):
         return "<Config: %s.%s>" % (self.var_group, self.var_name)
 
+
+factories = [NodeFactory, NotificationFactory, PrivateFactory]
+
+
 def system_cfg_init(store):
     for gname, group in GLConfig.iteritems():
         for var_name, cfg_desc in group.iteritems():
             item = Config(gname, var_name, cfg_desc.default)
             store.add(item)
+
 
 def del_cfg_not_in_groups(store):
     where = And(Not(Config.var_group == u'node'), Not(Config.var_group == u'notification'),
@@ -226,6 +231,7 @@ def del_cfg_not_in_groups(store):
     for c in res:
         log.info("Removing extra Config <%s>" % c)
     store.find(Config, where).remove()
+
 
 def is_cfg_valid(store):
     for fact_model in factories:
@@ -237,6 +243,7 @@ def is_cfg_valid(store):
         return False
 
     return True
+
 
 def update_defaults(store):
     if not is_cfg_valid(store):

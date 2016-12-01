@@ -60,13 +60,6 @@ class InternalTip_v_34(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-    def prologue(self):
-       nf = NodeFactory(self.store_old)
-       self.trim_value_to_range(nf, 'wbtip_timetolive')
-       self.trim_value_to_range(nf, 'submission_maximum_ttl')
-       self.store_old.commit()
-
-       # TODO include fix for PGP KEYS
 
     def migrate_Context(self):
         old_objs = self.store_old.find(self.model_from['Context'])
@@ -135,3 +128,9 @@ class MigrationScript(MigrationBase):
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
 
             self.store_new.add(new_obj)
+
+    def epilogue(self):
+        nf = NodeFactory(self.store_new)
+        self.trim_value_to_range(nf, 'wbtip_timetolive')
+        self.trim_value_to_range(nf, 'submission_maximum_ttl')
+        self.store_new.commit()
