@@ -142,7 +142,10 @@ def db_create_field(store, field_dict, language):
         # special handling of the whistleblower_identity field
         if field.template.key == 'whistleblower_identity':
             if field.step:
-                if not field.step.questionnaire.enable_whistleblower_identity:
+                if store.find(models.Field, models.Field.key == u'whistleblower_identity',
+                                            models.Field.step_id == models.Step.id,
+                                            models.Step.questionnaire_id == models.Questionnaire.id,
+                                            models.Questionnaire.id == field.step.questionnaire_id).count() == 0:
                     field.step.questionnaire.enable_whistleblower_identity = True
                 else:
                     raise errors.InvalidInputFormat("Whistleblower identity field already present")
@@ -153,9 +156,10 @@ def db_create_field(store, field_dict, language):
         db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
         db_update_fieldoptions(store, field.id, field_dict['options'], language)
 
-    for c in field_dict['children']:
-        c['fieldgroup_id'] = field.id
-        db_create_field(store, c, language)
+    if field.instance != 'reference':
+        for c in field_dict['children']:
+            c['fieldgroup_id'] = field.id
+            db_create_field(store, c, language)
 
     return field
 
