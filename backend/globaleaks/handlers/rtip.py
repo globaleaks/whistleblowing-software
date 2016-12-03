@@ -84,7 +84,7 @@ def serialize_comment(comment):
         author = 'Whistleblower'
     else:
         if comment.author is not None:
-            author = comment.author.name
+            author = comment.author.public_name
         else:
             author = 'Recipient'
 
@@ -100,7 +100,7 @@ def serialize_comment(comment):
 def serialize_message(msg):
     return {
         'id': msg.id,
-        'author': msg.receivertip.receiver.user.name,
+        'author': msg.receivertip.receiver.user.public_name,
         'type': msg.type,
         'creation_date': datetime_to_ISO8601(msg.creation_date),
         'content': msg.content
