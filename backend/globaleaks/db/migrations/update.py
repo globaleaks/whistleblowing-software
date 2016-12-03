@@ -4,7 +4,7 @@ import os
 from storm.exceptions import OperationalError
 from storm.properties import PropertyColumn
 from storm.variables import BoolVariable, DateTimeVariable
-from storm.variables import EnumVariable, IntVariable, RawStrVariable, PickleVariable
+from storm.variables import IntVariable
 from storm.variables import UnicodeVariable, JSONVariable
 
 from globaleaks import DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
@@ -26,27 +26,15 @@ def variableToSQL(var, db_type):
         data_mapping = {
             "sqlite": "VARCHAR",
         }
-    elif isinstance(var, EnumVariable):
-        data_mapping = {
-            "sqlite": "BLOB",
-        }
     elif isinstance(var, IntVariable):
         data_mapping = {
             "sqlite": "INTEGER",
-        }
-    elif isinstance(var, RawStrVariable):
-        data_mapping = {
-            "sqlite": "BLOB",
         }
     elif isinstance(var, UnicodeVariable):
         data_mapping = {
             "sqlite": "VARCHAR",
         }
     elif isinstance(var, JSONVariable):
-        data_mapping = {
-            "sqlite": "BLOB",
-        }
-    elif isinstance(var, PickleVariable):
         data_mapping = {
             "sqlite": "BLOB",
         }
