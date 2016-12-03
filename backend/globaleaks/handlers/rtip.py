@@ -136,17 +136,17 @@ def db_access_rtip(store, user_id, rtip_id):
 
 
 def db_access_wbfile(store, user_id, wbfile_id):
+    itips = store.find(InternalTip, InternalTip.id == ReceiverTip.internaltip_id,
+                                    ReceiverTip.receiver_id == user_id)
+
+    itips_ids = [itip.id for itip in itips]
+
     wbfile = store.find(WhistleblowerFile,
-                        WhistleblowerFile.id == unicode(wbfile_id)).one()
+                        WhistleblowerFile.id == unicode(wbfile_id),
+                        WhistleblowerFile.receivertip_id == ReceiverTip.id,
+                        In(ReceiverTip.internaltip_id, itips_ids)).one()
 
     if not wbfile:
-        raise errors.WBFileIdNotFound
-
-    receivers = []
-    for receivertip in wbfile.receivertip.internaltip.receivertips:
-        receivers.append(receivertip.receiver_id)
-
-    if user_id not in receivers:
         raise errors.WBFileIdNotFound
 
     return wbfile
