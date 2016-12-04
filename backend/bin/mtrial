@@ -2,5 +2,5 @@
 import os, sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from globaleaks.tests.config import exec_parser; exec_parser();
+from globaleaks.tests.config import exec_parser; exec_parser()
 from twisted.scripts.trial import run; run()

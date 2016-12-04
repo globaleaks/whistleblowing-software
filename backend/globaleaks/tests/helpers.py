@@ -234,7 +234,7 @@ class TestGL(unittest.TestCase):
         If a unittest has scheduled something, we execute it before moving on.
         """
         deferred_fns = self.test_reactor.getDelayedCalls()
-        i = 0;
+        i = 0
         while len(deferred_fns) != 0:
             yield deferred_fns[0].getTime()
             if i >= 30:
