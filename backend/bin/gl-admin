@@ -46,9 +46,10 @@ def normal_db_path():
 
 def is_gl_running():
     try:
-	with open(GLSettings.pidfile_path, 'r') as fd:
+        with open(GLSettings.pidfile_path, 'r') as fd:
             gl_pid = int(fd.read())
-            try: os.kill(gl_pid, 0)
+            try:
+                os.kill(gl_pid, 0)
             except OSError:
                 return False
             return True
