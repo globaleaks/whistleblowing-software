@@ -1,7 +1,9 @@
 #!/usr/bin/make -f
+#export DH_VERBOSE=1
 
 export PYBUILD_NAME=globaleaks
 export PYBUILD_DISABLE=test
+export PYBUILD_INSTALL_ARGS=--no-compile
 
 %:
 	dh $@ --with python2 --buildsystem=pybuild --sourcedirectory=backend/
