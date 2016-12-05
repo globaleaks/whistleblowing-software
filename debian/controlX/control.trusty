@@ -13,7 +13,7 @@ Build-Depends:
  , python-sphinx
 X-Python-Version: 2.7
 Vcs-Git: https://github.com/globaleaks/GlobaLeaks.git
-Standards-Version: 3.9.1
+Standards-Version: 3.9.8
 
 Package: globaleaks
 Architecture: all
