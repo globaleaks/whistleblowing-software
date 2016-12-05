@@ -102,10 +102,13 @@ class Model(Storm):
                 value = values[k]
                 setattr(self, k, value)
 
-    def __repr___(self):
+    def __str__(self):
         # pylint: disable=no-member
         values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self._public_attrs]
-        return '<%s model with values %s>' % (self.__name__, ', '.join(values))
+        return '<%s model with values %s>' % (self.__class__.__name__, ', '.join(values))
+
+    def __repr__(self):
+        return self.__str__()
 
     def __setattr__(self, name, value):
         # harder better faster stronger
@@ -544,12 +547,6 @@ class FieldAttr(ModelWithID):
                 setattr(self, 'value', value)
         else:
             setattr(self, 'value', unicode(values['value']))
-
-    def __str__(self):
-       return "<FieldAttr: {}.{} value:{}>".format(self.type, self.name, self.value)
-
-    def __repr__(self):
-        return self.__str__()
 
 
 class FieldOption(ModelWithID):
