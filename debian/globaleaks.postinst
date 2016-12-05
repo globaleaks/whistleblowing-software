@@ -32,7 +32,9 @@ if [ $PIP_NEEDED -eq 1 ]; then
   pip install -r /usr/share/globaleaks/requirements.txt
 fi
 
-python -c 'import compileall; compileall.compile_dir("/usr/lib/python2.7/dist-packages/globaleaks/")'
+if which pycompile >/dev/null 2>&1; then
+  pycompile -p globaleaks
+fi
 
 # simple check to ensure to run the below commands once at the first install.
 if ! id -u globaleaks >/dev/null 2>&1; then
