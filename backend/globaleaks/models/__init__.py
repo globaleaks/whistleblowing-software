@@ -545,6 +545,12 @@ class FieldAttr(ModelWithID):
         else:
             setattr(self, 'value', unicode(values['value']))
 
+    def __str__(self):
+       return "<FieldAttr: {}.{} value:{}>".format(self.type, self.name, self.value)
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class FieldOption(ModelWithID):
     field_id = Unicode()

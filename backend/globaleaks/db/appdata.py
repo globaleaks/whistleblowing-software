@@ -4,11 +4,13 @@
 import json
 import os
 
+from storm.expr import And, Not, In, Or
+
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_import_fields
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
-from storm.expr import And, Not, In
+from globaleaks.utils.utility import log
 
 def read_appdata(p):
     with file(p, 'r') as f:
@@ -82,30 +84,46 @@ def update_appdata(store):
 
 
 def db_fix_fields_attrs(store):
+    '''
+    Ensures that the current store and the field_attrs.json file correspond.
+    The content of the field_attrs dict is used to add and remove all of the
+    excepted forms of field_attrs for FieldAttrs in the db.
+    '''
+
     # Load the field attributes descriptors
     field_attrs = {}
     with file(GLSettings.field_attrs_file, 'r') as f:
         json_string = f.read()
         field_attrs = json.loads(json_string)
 
-    # Get the list of keys
-    uptodate_keys = []
-    for k1 in field_attrs.keys():
-        for k2 in field_attrs[k1].keys():
-            field_attrs[k1][k2]['name'] = k2
-            uptodate_keys.append(k2)
+    std_lst = ['inputbox', 'textarea', 'multichoice', 'checkbox', 'tos', 'date']
 
-    # Remove keys that have been removed
-    store.find(models.FieldAttr,
-               Not(In(models.FieldAttr.name, uptodate_keys))).remove()
+    for field_type, attrs_dict in field_attrs.iteritems():
+        attrs_to_keep_for_type = attrs_dict.keys()
+        if field_type in std_lst:
+            # Ensure that the standard field attrs do not have extra attr rows
+            res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
+                                               models.FieldAttr.field_id == models.Field.id,
+                                               models.Field.type == field_type,
+                                               models.Field.key == unicode(''))
+        else:
+            # Look for dropped attrs in non-standard field_groups like whistleblower_identity
+            res = store.find(models.FieldAttr, Not(In(models.FieldAttr.name, attrs_to_keep_for_type)),
+                                               models.FieldAttr.field_id == models.Field.id,
+                                               models.Field.key == field_type)
 
-    # Add keys that have been added
+        log.debug("Removing %s count: %s keys from field_attrs" % (field_type, res.count()))
+        for r in res:
+            store.remove(r)
+
+    # Add keys to the db that have been added to field_attrs
     for field in store.find(models.Field):
-        attrs = field_attrs.get(field.type, {})
-        for attr_name in attrs.keys():
+        typ = field.type if field.key == '' else field.key
+        attrs = field_attrs.get(typ, {})
+        for attr_name, attr_dict in attrs.iteritems():
             if not store.find(models.FieldAttr,
                               And(models.FieldAttr.field_id == field.id,
                                   models.FieldAttr.name == attr_name)).one():
-
-                field.attrs.add(models.db_forge_obj(store, models.FieldAttr,
-                                                    attrs[attr_name]))
+                log.debug("Adding new field attr %s.%s" % (typ, attr_name))
+                attr_dict['name'] = attr_name
+                field.attrs.add(models.db_forge_obj(store, models.FieldAttr, attr_dict))
