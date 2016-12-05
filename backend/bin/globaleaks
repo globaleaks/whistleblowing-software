@@ -7,6 +7,9 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 sys.excepthook = None
 
+# avoid to write bytecode files at runtime
+sys.dont_write_bytecode = True
+
 import os
 import random
 import re
