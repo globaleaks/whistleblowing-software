@@ -232,16 +232,8 @@
         "max_date": {
           "type": "unicode",
           "value": ""
-        },
-        "input_validation": {
-          "type": "unicode",
-          "value": "none"
-        },
-        "regexp": {
-          "type": "unicode",
-          "value": ""
         }
-       },
+      },
       "instance": "template",
       "hint": {
         "en": ""
