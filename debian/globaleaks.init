@@ -237,8 +237,6 @@ do_start()
 
     if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
         APPARMOR_STARTED=0
-	# bytecode will not be written to .pyc files with app-armor enabled
-        export PYTHONDONTWRITEBYTECODE=1
 
         log_action_begin_msg "Enabling GlobaLeaks Apparmor Sandboxing"
 
