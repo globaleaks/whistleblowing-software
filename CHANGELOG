@@ -1,3 +1,6 @@
+Changes in version 2.65.6 - 2016-12-06
+    o Packaging fixes
+
 Changes in version 2.65.5 - 2016-12-06
     o Remove pyc files from packaging following Debian guidelines
     o Fix attributes of whistleblower identity fields
