@@ -17,12 +17,12 @@ Standards-Version: 3.9.8
 Package: globaleaks
 Architecture: all
 Depends:
- ${python:Depends}
- , ${misc:Depends}
+ ${misc:Depends}
  , apparmor
  , apparmor-utils
  , haveged
  , iptables
+ , python (>= 2.7)
  , python-pip (>= 1.3)
  , python-zope.component
  , python-zope.event
