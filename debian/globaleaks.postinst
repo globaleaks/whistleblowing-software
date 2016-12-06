@@ -2,6 +2,8 @@
 # This is the post installation script for globaleaks
 set -e
 
+#DEBHELPER#
+
 CHECK_PIP_VERSION="
 import pip
 from pkg_resources import parse_version as v
@@ -30,10 +32,6 @@ if [ $PIP_NEEDED -eq 1 ]; then
   fi
 
   pip install -r /usr/share/globaleaks/requirements.txt
-fi
-
-if which pycompile >/dev/null 2>&1; then
-  pycompile -p globaleaks
 fi
 
 # simple check to ensure to run the below commands once at the first install.
@@ -81,5 +79,3 @@ EOF
   sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
   service haveged restart
 fi
-
-#DEBHELPER#
