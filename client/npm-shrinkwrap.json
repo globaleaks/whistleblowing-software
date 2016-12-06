@@ -1,6 +1,6 @@
 {
   "name": "GlobaLeaks",
-  "version": "2.65.4",
+  "version": "2.65.5",
   "dependencies": {
     "@types/jasmine": {
       "version": "2.5.38",
@@ -21,9 +21,9 @@
       "dev": true
     },
     "@types/selenium-webdriver": {
-      "version": "2.53.35",
+      "version": "2.53.36",
       "from": "@types/selenium-webdriver@>=2.53.31 <2.54.0",
-      "resolved": "https://registry.npmjs.org/@types/selenium-webdriver/-/selenium-webdriver-2.53.35.tgz",
+      "resolved": "https://registry.npmjs.org/@types/selenium-webdriver/-/selenium-webdriver-2.53.36.tgz",
       "dev": true
     },
     "abbrev": {
@@ -85,15 +85,15 @@
       }
     },
     "ajv": {
-      "version": "4.9.0",
+      "version": "4.9.1",
       "from": "ajv@>=4.7.0 <5.0.0",
-      "resolved": "https://registry.npmjs.org/ajv/-/ajv-4.9.0.tgz",
+      "resolved": "https://registry.npmjs.org/ajv/-/ajv-4.9.1.tgz",
       "dev": true
     },
     "ajv-keywords": {
-      "version": "1.1.1",
+      "version": "1.2.0",
       "from": "ajv-keywords@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-1.1.1.tgz",
+      "resolved": "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-1.2.0.tgz",
       "dev": true
     },
     "align-text": {
@@ -2213,9 +2213,9 @@
           "dev": true
         },
         "webdriver-manager": {
-          "version": "10.2.8",
+          "version": "10.2.10",
           "from": "webdriver-manager@>=10.2.8 <11.0.0",
-          "resolved": "https://registry.npmjs.org/webdriver-manager/-/webdriver-manager-10.2.8.tgz",
+          "resolved": "https://registry.npmjs.org/webdriver-manager/-/webdriver-manager-10.2.10.tgz",
           "dev": true
         }
       }
@@ -2507,9 +2507,9 @@
       "dev": true
     },
     "signal-exit": {
-      "version": "3.0.1",
+      "version": "3.0.2",
       "from": "signal-exit@>=3.0.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.1.tgz",
+      "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz",
       "dev": true
     },
     "slice-ansi": {
@@ -2769,9 +2769,9 @@
       "dev": true
     },
     "tweetnacl": {
-      "version": "0.14.3",
+      "version": "0.14.4",
       "from": "tweetnacl@>=0.14.0 <0.15.0",
-      "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.3.tgz",
+      "resolved": "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.14.4.tgz",
       "dev": true,
       "optional": true
     },

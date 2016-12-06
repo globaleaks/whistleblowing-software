@@ -1,3 +1,8 @@
+Changes in version 2.65.5 - 2016-12-06
+    o Remove pyc files from packaging following Debian guidelines
+    o Fix attributes of whistleblower identity fields
+    o Update Dutch translation
+
 Changes in version 2.65.4 - 2016-11-29
     o Fix minor UI defects
     o Replace recipient name with pseudonym in all the public APIs
