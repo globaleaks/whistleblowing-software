@@ -23,7 +23,6 @@ Depends:
  , apparmor-utils
  , haveged
  , iptables
- , python (>=2.7)
  , python-cryptography
  , python-cyclone
  , python-gnupg
