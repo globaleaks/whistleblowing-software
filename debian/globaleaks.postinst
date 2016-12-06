@@ -4,6 +4,10 @@ set -e
 
 #DEBHELPER#
 
+if which pycompile >/dev/null 2>&1; then
+    pycompile -p globaleaks
+fi
+
 CHECK_PIP_VERSION="
 import pip
 from pkg_resources import parse_version as v

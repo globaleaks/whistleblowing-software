@@ -20,4 +20,4 @@ override_dh_installinit:
 	dh_installinit --update-rcd-params="defaults 99"
 
 override_dh_python2:
-	dh_python2 --no-guessing-deps
+	dh_python2 --no-guessing-deps --no-guessing-versions
