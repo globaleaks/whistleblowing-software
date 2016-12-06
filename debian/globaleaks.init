@@ -144,7 +144,7 @@ network_sandboxing_start()
     iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
     iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport ${TORTRANSPORT} -j ACCEPT
     iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
-    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -d 127.0.0.1 -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
     iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
 
     log_action_end_msg 0
