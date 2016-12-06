@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+#DEBHELPER#
+
+if which pyclean >/dev/null 2>&1; then
+  pyclean -p globaleaks
+else
+  dpkg -L globaleaks | grep \.py$ | while read file
+  do
+    rm -f "${file}"[co] >/dev/null
+  done
+fi
