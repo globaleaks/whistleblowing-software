@@ -38,18 +38,15 @@ tip_keywords = [
     '%ExpirationDate%',
     '%ExpirationWatch%',
     '%RecipientName%',
-    '%ContextName%'
+    '%ContextName%',
+    '%QuestionnaireAnswers%',
+    '%Comments%',
+    '%Messages%'
 ]
 
 file_keywords = [
     '%FileName%',
     '%FileSize%',
-]
-
-export_template_keywords = [
-    '%QuestionnaireAnswers%',
-    '%Comments%',
-    '%Messages%'
 ]
 
 export_message_keywords = [
@@ -86,89 +83,21 @@ def indent_text(text, n=1):
     return '\n'.join([('  ' * n if not l.isspace() else '') + l for l in text.splitlines()])
 
 
-def dump_field_entry(output, field, entry, indent_n):
-    field_type = field['type']
-    if field_type == 'checkbox':
-        for k, v in entry.iteritems():
-            for option in field['options']:
-                if k == option.get('id', '') and v == 'True':
-                    output += indent(indent_n) + option['label'] + '\n'
-    elif field_type in ['selectbox', 'multichoice']:
-        for option in field['options']:
-            if entry.get('value', '') == option['id']:
-                output += indent(indent_n) + option['label'] + '\n'
-    elif field_type == 'date':
-        output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value', '')) + '\n'
-    elif field_type == 'tos':
-        answer = '☑' if entry.get('value', '') == 'True' else '☐'
-        output += indent(indent_n) + answer + '\n'
-    elif field_type == 'fieldgroup':
-        output = dump_fields(output, field['children'], entry, indent_n)
-    else:
-        output += indent_text(entry.get('value', ''), indent_n) + '\n'
-
-    return output + '\n'
-
-
-def dump_fields(output, fields, answers, indent_n):
-    rows = {}
-    for f in fields:
-        y = f['y']
-        if y not in rows:
-            rows[y] = []
-        rows[y].append(f)
-
-    rows = collections.OrderedDict(sorted(rows.items()))
-
-    for r in rows:
-        rows[r] = sorted(rows[r], key=lambda k: k['x'])
-
-    for index_x, row in rows.iteritems():
-        for field in row:
-            if field['type'] != 'fileupload' and field['id'] in answers:
-                output += indent(indent_n) + field['label'] + '\n'
-                entries = answers[field['id']]
-                if len(entries) == 1:
-                    output = dump_field_entry(output, field, entries[0], indent_n + 1)
-                else:
-                    i = 1
-                    for entry in entries:
-                        output += indent(indent_n) + '#' + str(i) + '\n'
-                        output = dump_field_entry(output, field, entry, indent_n + 2)
-                        i += 1
-
-    return output
-
-
-def dump_questionnaire_answers(questionnaire, answers):
-    output = ''
-
-    try:
-        questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
-    except:
-        pass
-
-    for step in questionnaire:
-        output += step['label'] + '\n'
-        output = dump_fields(output, step['children'], answers, 1) +'\n'
-
-    return output
-
-
 class Keyword(object):
-    """
-    This class define the base keyword list supported by all the events
-    """
-    keyword_list = node_keywords
-    data_keys = ['node', 'notification']
+    keyword_list = []
+    data_keys = []
 
     def __init__(self, data):
-        # node and notification are always injected as they contain general information
         for k in self.data_keys:
             if k not in data:
                 raise errors.InternalServerError('Missing key \'%s\' while resolving template \'%s\'' % (k, type(self).__name__))
 
         self.data = data
+
+
+class NodeKeyword(Keyword):
+    keyword_list = node_keywords
+    data_keys = ['node', 'notification']
 
     def NodeName(self):
         return self.data['node']['name']
@@ -180,9 +109,84 @@ class Keyword(object):
         return self.data['node']['public_site']
 
 
-class TipKeyword(Keyword):
-    keyword_list = Keyword.keyword_list + tip_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip']
+class TipKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + tip_keywords
+    data_keys =  NodeKeyword.data_keys + ['context', 'receiver', 'tip']
+
+    def dump_field_entry(self, output, field, entry, indent_n):
+        field_type = field['type']
+        if field_type == 'checkbox':
+            for k, v in entry.iteritems():
+                for option in field['options']:
+                    if k == option.get('id', '') and v == 'True':
+                        output += indent(indent_n) + option['label'] + '\n'
+        elif field_type in ['selectbox', 'multichoice']:
+            for option in field['options']:
+                if entry.get('value', '') == option['id']:
+                    output += indent(indent_n) + option['label'] + '\n'
+        elif field_type == 'date':
+            output += indent(indent_n) + ISO8601_to_pretty_str(entry.get('value', '')) + '\n'
+        elif field_type == 'tos':
+            answer = '☑' if entry.get('value', '') == 'True' else '☐'
+            output += indent(indent_n) + answer + '\n'
+        elif field_type == 'fieldgroup':
+            output = self.dump_fields(output, field['children'], entry, indent_n)
+        else:
+            output += indent_text(entry.get('value', ''), indent_n) + '\n'
+
+        return output + '\n'
+
+    def dump_fields(self, output, fields, answers, indent_n):
+        rows = {}
+        for f in fields:
+            y = f['y']
+            if y not in rows:
+                rows[y] = []
+            rows[y].append(f)
+
+        rows = collections.OrderedDict(sorted(rows.items()))
+
+        for r in rows:
+            rows[r] = sorted(rows[r], key=lambda k: k['x'])
+
+        for index_x, row in rows.iteritems():
+            for field in row:
+                if field['type'] != 'fileupload' and field['id'] in answers:
+                    output += indent(indent_n) + field['label'] + '\n'
+                    entries = answers[field['id']]
+                    if len(entries) == 1:
+                        output = self.dump_field_entry(output, field, entries[0], indent_n + 1)
+                    else:
+                        i = 1
+                        for entry in entries:
+                            output += indent(indent_n) + '#' + str(i) + '\n'
+                            output = self.dump_field_entry(output, field, entry, indent_n + 2)
+                            i += 1
+
+        return output
+
+    def dump_questionnaire_answers(self, questionnaire, answers):
+        output = ''
+
+        questionnaire = sorted(questionnaire, key=lambda k: k['presentation_order'])
+
+        for step in questionnaire:
+            output += step['label'] + '\n'
+            output = self.dump_fields(output, step['children'], answers, 1) +'\n'
+
+        return output
+
+    def dump_messages(self, messages):
+        ret = ''
+        for message in messages:
+            data = copy.deepcopy(self.data)
+            data['type'] = 'export_message'
+            data['message'] = copy.deepcopy(message)
+            template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
+            ret += indent_text('-' * 40) + '\n'
+            ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
+
+        return ret
 
     def TipID(self):
         return self.data['tip']['id']
@@ -242,6 +246,27 @@ class TipKeyword(Keyword):
     def RecipientName(self):
         return self.data['receiver']['name']
 
+    def QuestionnaireAnswers(self):
+        return self.dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
+
+    def Comments(self):
+        comments = self.data.get('comments', [])
+        if len(comments) == 0:
+            return '%Blank%'
+
+        ret = self.data['node']['widget_comments_title'] + ':\n'
+        ret += self.dump_messages(comments) + '\n'
+        return ret + '\n'
+
+    def Messages(self):
+        messages = self.data.get('messages', [])
+        if len(messages) == 0:
+            return '%Blank%'
+
+        ret = self.data['node']['widget_messages_title'] + ':\n'
+        ret += self.dump_messages(messages)
+        return ret + '\n'
+
 
 class CommentKeyword(TipKeyword):
     data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comment']
@@ -271,52 +296,16 @@ class FileKeyword(TipKeyword):
         return str(self.data['file']['size'])
 
 
-class ExportKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + export_template_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comments', 'messages', 'files']
-
-    def dump_messages(self, messages):
-        ret = ''
-        for message in messages:
-            data = copy.deepcopy(self.data)
-            data['type'] = 'export_message'
-            data['message'] = copy.deepcopy(message)
-            template = 'export_message_whistleblower' if (message['type'] == 'whistleblower') else 'export_message_recipient'
-            ret += indent_text('-' * 40) + '\n'
-            ret += indent_text(Templating().format_template(self.data['notification'][template], data).encode('utf-8')) + '\n\n'
-
-        return ret
-
-    def QuestionnaireAnswers(self):
-        return dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
-
-    def Comments(self):
-        if len(self.data['comments']) == 0:
-            return '%Blank%'
-
-        ret = self.data['node']['widget_comments_title'] + ':\n'
-        ret += self.dump_messages(self.data['comments']) + '\n'
-        return ret + '\n'
-
-    def Messages(self):
-        if len(self.data['messages']) == 0:
-            return '%Blank%'
-
-        ret = self.data['node']['widget_messages_title'] + ':\n'
-        ret += self.dump_messages(self.data['messages'])
-        return ret + '\n'
-
-
-class ExportMessageKeyword(TipKeyword):
-    keyword_list = TipKeyword.keyword_list + export_template_keywords + export_message_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
+class ExportMessageKeyword(Keyword):
+    keyword_list = export_message_keywords
+    data_keys =  ['message']
 
     def Content(self):
         return self.data['message']['content']
 
 
-class AdminPGPAlertKeyword(Keyword):
-    keyword_list = Keyword.keyword_list + admin_pgp_alert_keywords
+class AdminPGPAlertKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + admin_pgp_alert_keywords
     data_keys =  ['node', 'notification', 'users']
 
     def PGPKeyInfoList(self):
@@ -331,8 +320,8 @@ class AdminPGPAlertKeyword(Keyword):
         return ret
 
 
-class PGPAlertKeyword(Keyword):
-    keyword_list = Keyword.keyword_list + user_pgp_alert_keywords
+class PGPAlertKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + user_pgp_alert_keywords
     data_keys =  ['node', 'notification', 'user']
 
     def PGPKeyInfo(self):
@@ -342,8 +331,8 @@ class PGPAlertKeyword(Keyword):
         return '\t0x%s (%s)' % (key, ISO8601_to_day_str(self.data['user']['pgp_key_expiration']))
 
 
-class AnomalyKeyword(Keyword):
-    keyword_list = Keyword.keyword_list + admin_anomaly_keywords
+class AnomalyKeyword(NodeKeyword):
+    keyword_list = NodeKeyword.keyword_list + admin_anomaly_keywords
     data_keys =  ['node', 'notification', 'alert']
 
     def AnomalyDetailDisk(self):
@@ -394,7 +383,7 @@ supported_template_types = {
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
-    u'export_template': ExportKeyword,
+    u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword
 }
