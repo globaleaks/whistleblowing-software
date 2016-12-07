@@ -27,6 +27,13 @@ from globaleaks.utils.templating import Templating
 
 __all__ = ['PGPCheckSchedule']
 
+def db_get_expired_or_expiring_pgp_users(store):
+    threshold = datetime_now() + timedelta(days=15)
+
+    return store.find(models.User, models.User.pgp_key_public != u'',
+                                   models.User.pgp_key_expiration != datetime_null(),
+                                   models.User.pgp_key_expiration < threshold)
+
 
 class PGPCheckSchedule(GLJob):
     name = "PGP Check"
@@ -63,17 +70,15 @@ class PGPCheckSchedule(GLJob):
     def perform_pgp_validation_checks(self, store):
         expired_or_expiring = []
 
-        for user in store.find(models.User):
-            if user.pgp_key_public and user.pgp_key_expiration != datetime_null():
-                if user.pgp_key_expiration < datetime_now():
-                    expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
-                    user.pgp_key_public = None
-                    user.pgp_key_fingerprint = None
-                    user.pgp_key_expiration = None
-                elif user.pgp_key_expiration < datetime_now() - timedelta(days=15):
-                    expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
+        for user in db_get_expired_or_expiring_pgp_users(store):
+            expired_or_expiring.append(user_serialize_user(user, GLSettings.memory_copy.default_language))
 
-        if expired_or_expiring:
+            if user.pgp_key_expiration < datetime_now():
+                user.pgp_key_public = ''
+                user.pgp_key_fingerprint = ''
+                user.pgp_key_expiration = datetime_null()
+
+        if len(expired_or_expiring):
             if not GLSettings.memory_copy.notif.disable_admin_notification_emails:
                 self.prepare_admin_pgp_alerts(store, expired_or_expiring)
 

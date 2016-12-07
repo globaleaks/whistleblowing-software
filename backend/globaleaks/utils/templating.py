@@ -460,3 +460,5 @@ class Templating(object):
             'subject': subject,
             'body': body
         })
+
+        store.add(mail)
