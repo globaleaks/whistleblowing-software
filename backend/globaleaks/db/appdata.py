@@ -112,9 +112,11 @@ def db_fix_fields_attrs(store):
                                                models.FieldAttr.field_id == models.Field.id,
                                                models.Field.key == field_type)
 
-        log.debug("Removing %s count: %s keys from field_attrs" % (field_type, res.count()))
-        for r in res:
-            store.remove(r)
+        count = res.count()
+        if count:
+            log.debug("Removing %d attributes from fields of type %s" % (count, field_type))
+            for r in res:
+                store.remove(r)
 
     # Add keys to the db that have been added to field_attrs
     for field in store.find(models.Field):
