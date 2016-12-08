@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt-get -y install dkms make
+sudo apt-get -y install build-essential dkms
 
 sudo mount -o loop,ro ~/VBoxGuestAdditions.iso /mnt/
 sudo /mnt/VBoxLinuxAdditions.run || :
