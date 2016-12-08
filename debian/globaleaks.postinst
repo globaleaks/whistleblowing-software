@@ -2,8 +2,6 @@
 # This is the post installation script for globaleaks
 set -e
 
-#DEBHELPER#
-
 if which pycompile >/dev/null 2>&1; then
     pycompile -p globaleaks
 fi
@@ -83,3 +81,5 @@ EOF
   sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
   service haveged restart
 fi
+
+#DEBHELPER#
