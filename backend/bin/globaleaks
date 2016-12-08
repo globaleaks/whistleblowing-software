@@ -86,6 +86,7 @@ sys.path.insert(0, root)
 
 if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
     ('trusty', 'precise', 'wheezy', 'jessie')):
+    print("LINUX DISTRO IS %s", platform.system())
 
     requirements_path = os.path.join(root, 'requirements.txt')
     if not os.path.exists(requirements_path):

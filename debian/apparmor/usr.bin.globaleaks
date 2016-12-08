@@ -23,8 +23,8 @@ profile usr.bin.globaleaks {
     /bin/dash ix,
     /usr/bin/gpg ix,
 
-    # proc and lsb_release are needed by xenial
-    /etc/lsb_release r,
+    # proc and lsb-release are needed by xenial
+    /etc/lsb-release r,
     /proc r,
 
     /usr/share/** r,
