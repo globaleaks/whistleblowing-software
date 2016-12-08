@@ -138,6 +138,8 @@ if [ -d /data/globaleaks/deb ]; then
   echo "Installing from locally provided debian package"
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
   echo "deb file:///data/globaleaks/deb/ /" >> /etc/apt/sources.list
+  # must update the cache after the package has been added
+  DO "apt-get update -y"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew"
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then
