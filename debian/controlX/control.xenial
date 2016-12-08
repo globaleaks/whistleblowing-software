@@ -18,6 +18,7 @@ Package: globaleaks
 Architecture: all
 Depends:
  ${misc:Depends}
+ , ${python:Depends}
  , apparmor
  , apparmor-utils
  , tor
