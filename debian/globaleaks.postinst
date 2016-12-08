@@ -20,7 +20,7 @@ if which lsb_release >/dev/null; then
 fi
 
 PIP_NEEDED=1
-if echo "$DISTRO_CODENAME" | grep -v -qE "^(precise)|(trusty)|(wheezy)$"; then
+if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
   PIP_NEEDED=0
 fi
 
@@ -32,7 +32,7 @@ if [ $PIP_NEEDED -eq 1 ]; then
     curl https://bootstrap.pypa.io/get-pip.py | python
   fi
 
-  pip install -r "$SRC_F_PATH"/requirements.txt
+  pip install -r /usr/share/globaleaks/requirements.txt
 fi
 
 # simple check to ensure to run the below commands once at the first install.

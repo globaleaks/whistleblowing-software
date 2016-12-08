@@ -133,11 +133,11 @@ if [ $DISTRO == "Ubuntu" ]; then
 fi
 
 if [ -d /data/globaleaks/deb ]; then
+  DO "apt-get update -y"
+  DO "apt-get install dpkg-dev -y"
   echo "Installing from locally provided debian package"
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
   echo "deb file:///data/globaleaks/deb/ /" >> /etc/apt/sources.list
-  DO "apt-get update -y"
-  DO "apt-get install dpkg-dev -y"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew"
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then

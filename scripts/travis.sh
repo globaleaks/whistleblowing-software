@@ -31,10 +31,10 @@ setupDependencies() {
   setupBackendDependencies
 }
 
+npm install -g grunt grunt-cli bower
 
 if [ "$GLTEST" = "test" ]; then
 
-  npm install -g grunt grunt-cli bower
   echo "Running backend unit tests"
   setupDependencies
   cd $TRAVIS_BUILD_DIR/backend
@@ -74,7 +74,6 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
-  npm install -g grunt grunt-cli bower
   setupDependencies
 
   pip install pylint
@@ -88,7 +87,6 @@ elif [ "$GLTEST" = "lint" ]; then
 
 elif [ "$GLTEST" = "build_and_install" ]; then
 
-  npm install -g grunt grunt-cli bower
   echo "Running Build & Install and BrowserTesting tests"
   # we build all packages to test build for each distributions and then we test against trusty
   sudo apt-get update -y
