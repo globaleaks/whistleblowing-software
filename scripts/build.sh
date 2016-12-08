@@ -1,5 +1,7 @@
+#!/bin/bash
 
 set -e
+set -x
 
 DISTRIBUTION="trusty"
 TAG="master"
@@ -73,6 +75,8 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
+ROOTDIR=`pwd`
+
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
@@ -94,7 +98,7 @@ else
     grunt build
 fi
 
-cd $cwd
+cd $ROOTDIR
 
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET
