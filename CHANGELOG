@@ -1,3 +1,8 @@
+Changes in version 2.65.9 - 2016-12-08
+    o Packaging fixes
+    o Solved bug preventing admin email to be sent
+    o Update translations
+
 Changes in version 2.65.8 - 2016-12-06
     o Packaging fixes
 
