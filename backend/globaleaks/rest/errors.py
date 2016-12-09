@@ -31,7 +31,7 @@ class GLException(HTTPError):
 
 class InternalServerError(GLException):
     """
-    The context_id used do not exist in the database.
+    The context_id used does not exist in the database.
     """
     error_code = 1
     status_code = 500  # Internal Server Error
@@ -67,7 +67,7 @@ class TokenFailure(GLException):
 
 class ContextIdNotFound(GLException):
     """
-    The context_id used do not exist in the database.
+    The context_id used does not exist in the database.
     """
     reason = "Not found a Context with the specified id"
     error_code = 11
@@ -76,7 +76,7 @@ class ContextIdNotFound(GLException):
 
 class QuestionnaireIdNotFound(GLException):
     """
-    The questionnaire_id used do not exist in the database.
+    The questionnaire_id used does not exist in the database.
     """
     reason = "Not found a Questionnaire with the specified id"
     error_code = 12
@@ -85,7 +85,7 @@ class QuestionnaireIdNotFound(GLException):
 
 class TipIdNotFound(GLException):
     """
-    The Tip Id requested do not exists in the database.
+    The Tip Id requested does not exists in the database.
     """
     reason = "Not found a Tip with the specified id"
     error_code = 13
@@ -94,7 +94,7 @@ class TipIdNotFound(GLException):
 
 class TipReceiptNotFound(GLException):
     """
-    The WhisleBlower receipt is not related to any of the whistleblower tips
+    The WhistleBlower receipt is not related to any of the whistleblower tips
     """
     reason = "Not found a Whistleblower Tip with the specified id"
     error_code = 14
@@ -267,10 +267,10 @@ class InvalidOldPassword(GLException):
 
 class InvalidHostSpecified(GLException):
     """
-    The host delcared by the client 'Host:' field is not between
+    The host declared by the client 'Host:' field is not between
     the list of the acceptable hosts
     """
-    reason = "The specified host do not match a configured one"
+    reason = "The specified host does not match a configured one"
     error_code = 36
     status_code = 403  # Forbidden
 
@@ -313,7 +313,7 @@ class ExtendTipLifeNotEnabled(GLException):
     """
     Ability to postpone expiration date is not enabled in the node
     """
-    reason = "This node do not permit expiration date extensions"
+    reason = "This node does not permit expiration date extensions"
     error_code = 50
     status_code = 403
 
