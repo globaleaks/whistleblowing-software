@@ -2,9 +2,9 @@
   "builders": [{
     "type": "virtualbox-iso",
     "guest_os_type": "Ubuntu_64",
-    "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso",
-    "iso_checksum": "29a8b9009509b39d542ecb229787cdf48f05e739a932289de9e9858d7c487c80",
-    "http_directory": "templates/ubuntu-16.04/http/",
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-amd64.iso",
+    "iso_checksum": "a3b345908a826e262f4ea1afeb357fd09ec0558cf34e6c9112cead4bb55ccdfb",
+    "http_directory": "templates/ubuntu-14.04/http/",
     "iso_checksum_type": "sha256",
     "output_directory": "",
     "vm_name": "globaleaks.box",
@@ -19,24 +19,13 @@
       [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
     ],
     "boot_command": [
-      "<enter><wait>",
-      "<f6><esc>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-      "<bs><bs><bs>",
-      "/install/vmlinuz ",
-      "initrd=/install/initrd.gz ",
-      "net.ifnames=0 ",
-      "auto-install/enable=true ",
-      "debconf/priority=critical ",
-      "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/preseed.cfg",
-      "<enter>"
+      "<esc><esc><enter><wait>",
+      "/install/vmlinuz noapic preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ",
+      "debian-installer=en_US auto locale=en_US kbd-chooser/method=us ",
+      "hostname={{ .Name }} ",
+      "fb=false debconf/frontend=noninteractive ",
+      "keyboard-configuration/modelcode=SKIP keyboard-configuration/layout=USA keyboard-configuration/variant=USA console-setup/ask_detect=false ",
+      "initrd=/install/initrd.gz -- <enter>"
     ]
   }],
   "provisioners": [
