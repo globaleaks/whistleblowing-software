@@ -23,7 +23,7 @@ Depends:
  , tor
  , haveged
  , iptables
- , python:any (>= 2.7.5-5~), python, python:any (<< 2.8)
+ , python:any (>= 2.7.5-5~), python:any (<< 2.8)
  , python-cyclone (>= 1.1)
  , python-openssl (>= 0.15.1)
  , python-gnupg (>= 0.3.8)
