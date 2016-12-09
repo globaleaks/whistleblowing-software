@@ -80,8 +80,6 @@ def pip_version_check(path):
         print("2) Installing missing requirements using rm -rf /tmp/pip-build-root/ && pip install -r /usr/share/globaleaks/requirements.txt")
         quit(-1)
 
-print("Starting GlobaLeaks")
-
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
@@ -229,6 +227,8 @@ if GLSettings.cmdline_options.version:
     print("GlobaLeaks DB version:", DATABASE_VERSION)
     quit()
 
+print("Starting Globaleaks")
+
 GLSettings.load_cmdline_options()
 
 if GLSettings.cmdline_options.kill:
@@ -284,23 +284,20 @@ def run_backend():
         print("- http://%s%s" % (GLSettings.tor_address, path))
 
     sys.excepthook = mail_exception_handler
-
     config = ServerOptions()
     try:
         config.parseOptions()
     except usage.error, ue:
         print("%s: %s" % (sys.argv[0], ue))
-    else:
-        try:
-            GlobaLeaksRunner(config).run()
+        return
+    try:
+        # This blocks until the app exits
+        GlobaLeaksRunner(config).run()
+        print("Exiting GlobaLeaks")
+    except Exception as excep:
+        print("Unable to start GlobaLeaks: %s" % excep)
+        quit(-1)
 
-            # this is a blocking operation, until app exit
-
-            print("Exiting GlobaLeaks")
-        except Exception as excep:
-            print("Unable to start GlobaLeaks: %s" % excep)
-            quit(-1)
-
-# "And now his watch begins"
+# "Now his watch begins"
 run_backend()
-# "And now his watch is ended"
+# "Now his watch ends"
