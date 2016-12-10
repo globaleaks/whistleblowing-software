@@ -18,7 +18,7 @@
     </div>
 
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <div data-wbfile data-ctx="'rtip'"></div>
+      <div id="wbfile-{{$index}}" data-wbfile data-ctx="'rtip'"></div>
     </div>
     <h5 data-translate>Upload a new file:</h5>
     <span class="form" data-ng-controller="WBFileUploadCtrl">
