@@ -4,7 +4,6 @@ import sys
 from datetime import datetime
 
 from twisted.trial import unittest
-from twisted.logger import LogLevel
 from twisted.python.failure import Failure
 
 from globaleaks.utils import utility
