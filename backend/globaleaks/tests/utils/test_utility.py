@@ -177,11 +177,11 @@ class TestLogging(unittest.TestCase):
         observer.start()
 
         # Manually emit logs
-        e1 = {'time': 100000, 'message': 'x', 'system': '?'}
+        e1 = {'time': 100000, 'message': 'x', 'system': 'ut'}
         observer.emit(e1)
 
         f = Failure(IOError('This is a mock failure'))
-        e2 = {'time': 100001, 'message': 'x', 'system': '?', 'failure': f}
+        e2 = {'time': 100001, 'message': 'x', 'system': 'ut', 'failure': f}
         observer.emit(e2)
 
         # Emit logs through twisted's interface. Import is required now b/c of stdout hack
@@ -193,6 +193,7 @@ class TestLogging(unittest.TestCase):
 
         s = output_buff.getvalue()
         # A bit of a mess, but this is the format we are expecting.
-        valid = "1970-01-02 04:46:40+0100 [?] x\n1970-01-02 04:46:41+0100 [?] x"
-        self.assertTrue(s.startswith(valid))
+        gex = r".+ \[ut\] x\n"
+        m = re.findall(gex, s)
+        self.assertTrue(len(m) == 2)
         self.assertTrue(s.endswith("[-] msg-msg\n"))

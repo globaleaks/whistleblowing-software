@@ -46,7 +46,7 @@ var test_meta_files = fs.readdirSync(utils.vars.testFileDir).map(function(name) 
 
 // TODO File types left to test:
 // docx, ppt, mp4, mp3, wav, html, zip, > 30mb
-fdescribe('Submission whistleblower file upload process', function() {
+describe('Submission whistleblower file upload process', function() {
 
   beforeEach(function() {
     test_meta_files.forEach(function(meta_file) {
@@ -136,7 +136,7 @@ fdescribe('Submission whistleblower file upload process', function() {
   }
 });
 
-fdescribe('Tip wbfile upload process', function() {
+describe('Tip wbfile upload process', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
