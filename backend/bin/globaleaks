@@ -289,7 +289,7 @@ def run_backend():
         config.parseOptions()
     except usage.error, ue:
         print("%s: %s" % (sys.argv[0], ue))
-        return
+        quit(-1)
     try:
         # This blocks until the app exits
         GlobaLeaksRunner(config).run()
