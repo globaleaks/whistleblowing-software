@@ -44,9 +44,9 @@ var test_meta_files = fs.readdirSync(utils.vars.testFileDir).map(function(name) 
 });
 
 
-// TODO File types left to test:
-// docx, ppt, mp4, mp3, wav, html, zip, > 30mb
-describe('Submission whistleblower file upload process', function() {
+function submissionUploadSuite() {
+  // TODO File types left to test:
+  // docx, ppt, mp4, mp3, wav, html, zip, > 30mb
 
   beforeEach(function() {
     test_meta_files.forEach(function(meta_file) {
@@ -54,7 +54,7 @@ describe('Submission whistleblower file upload process', function() {
     });
   });
 
-  function uploadAndDownloadTest() {
+  it('uploaded and encrypted files should match downloaded and decrypted files', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -80,9 +80,9 @@ describe('Submission whistleblower file upload process', function() {
         mfile.waitForDownload();
       });
     });
-  }
+  });
 
-  function uploadAndDecryptTest() {
+  it('uploaded and downloaded plaintext files should match', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -128,15 +128,10 @@ describe('Submission whistleblower file upload process', function() {
         });
       });
     });
-  }
+  });
+}
 
-  if (browser.params.verifyFileDownload) {
-    it('uploaded and downloaded plaintext files should match', uploadAndDownloadTest);
-    it('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
-  }
-});
-
-describe('Tip wbfile upload process', function() {
+function wbfileUploadSuite() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -160,6 +155,7 @@ describe('Tip wbfile upload process', function() {
         rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
         rec.uploadWBFile(f1_info.origin_path);
 
+        utils.waitUntilPresent(by.css('#TipPageWBFileUpload input[type="text"]'));
         rec.wbfile_widget().element(by.css('input[type="text"]')).sendKeys('wbfile to delete');
         rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
         rec.uploadWBFile(f2_info.origin_path);
@@ -194,4 +190,9 @@ describe('Tip wbfile upload process', function() {
         f1_info.waitForDownload();
       });
     });
-});
+}
+
+if (browser.params.verifyFileDownload) {
+  describe('Submission whistleblower file upload process', submissionUploadSuite);
+  describe('Tip wbfile upload process', wbfileUploadSuite);
+}
