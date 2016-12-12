@@ -142,7 +142,7 @@ spec = [
 class Application(web.Application):
     """
     This class simply overrides the web.Application.__class_ in order to
-    allow to allow adding a prefix to the API urls.
+    allow adding a prefix to the API urls.
     """
     def __call__(self, request):
         prefix = GLSettings.api_prefix
