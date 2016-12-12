@@ -255,8 +255,10 @@ def send_exception_email(mail_body):
 
     try:
         mail_subject = "GlobaLeaks Exception"
+        mail_address = GLSettings.memory_copy.notif.exception_email_address
         if GLSettings.devel_mode:
             mail_subject +=  " [%s]" % GLSettings.developer_name
+            mail_address = "globaleaks-stackexception-devel@globaleaks.org"
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if len(GLSettings.memory_copy.notif.exception_email_pgp_key_public):
@@ -277,7 +279,7 @@ def send_exception_email(mail_body):
                 gpob.destroy_environment()
 
         # avoid to wait for the notification to happen  but rely on  background completion
-        sendmail(GLSettings.memory_copy.notif.exception_email_address, mail_subject,  mail_body)
+        sendmail(mail_address, mail_subject,  mail_body)
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
