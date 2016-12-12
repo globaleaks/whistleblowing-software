@@ -96,7 +96,7 @@ CREATE TABLE context (
     status_page_message BLOB NOT NULL,
     presentation_order INTEGER,
     show_receivers_in_alphabetical_order INTEGER NOT NULL,
-    questionnaire_id TEXT,
+    questionnaire_id TEXT NOT NULL,
     img_id TEXT,
     FOREIGN KEY (questionnaire_id) REFERENCES questionnaire(id) ON DELETE SET NULL,
     FOREIGN KEY (img_id) REFERENCES file(id) ON DELETE SET NULL,
