@@ -27,7 +27,7 @@ class GLApiCache(object):
     @classmethod
     def invalidate(cls, resource_name=None):
         """
-        When a function has an update, all the language need to be
+        When a function has an update, all the languages need to be
         invalidated, because the change is still effective
         """
         if resource_name is None:
