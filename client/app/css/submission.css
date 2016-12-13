@@ -100,22 +100,36 @@
   padding: 0.8em;
   background: #FFF;
   border-radius: 5px;
-  margin-left: 30px;
   border: 1px solid rgb(204, 204, 204);
-  box-shadow: 2px 1px 5px #888888;
+}
+
+html[dir="ltr"] #KeyCodeHintBox:after {
+  margin-right: 30px;
+}
+
+html[dir="rtl"] #KeyCodeHintBox:after {
+  margin-left: 30px;
 }
 
 #KeyCodeHintBox:after {
   content: '';
   position: absolute;
   border-style: solid;
-  border-width: 15px 15px 15px 0;
   border-color: transparent #ccc;
   display: block;
   width: 0;
-  left: -15px;
   top: 17px;
   z-index: 1;
+}
+
+html[dir="ltr"] #KeyCodeHintBox:after {
+  left: -15px;
+  border-width: 15px 15px 15px 0px;
+}
+
+html[dir="rtl"] #KeyCodeHintBox:after {
+  right: -15px;
+  border-width: 15px 0px 15px 15px;
 }
 
 #KeyCode {
