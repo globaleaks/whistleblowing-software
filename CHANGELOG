@@ -1,3 +1,6 @@
+Changes in version 2.65.10 -2016-12-13
+    o Apply minor fixes
+
 Changes in version 2.65.9 - 2016-12-08
     o Packaging fixes
     o Solved bug preventing admin email to be sent
