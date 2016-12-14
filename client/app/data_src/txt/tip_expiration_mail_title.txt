@@ -1,1 +1,1 @@
-Tip [%TipNum%] is going to expire in %ExpirationWatch% hours
+Some submissions are going to expire in %ExpirationWatch% hours
