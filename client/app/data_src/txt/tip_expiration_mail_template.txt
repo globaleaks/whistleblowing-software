@@ -1,9 +1,15 @@
 Dear %RecipientName%,
 
-The following %ExpiringSubmissionCount% submissions expire within %ExpirationWatch% hours.
-The earliest expiration date is %EarliestExpirationDate%.
+The submission [%TipNum%] related to context %ContextName% is going to expire in %ExpirationWatch% hours.
 
-%ExpiringSubmissions%
+Please check the platform for more information.
+
+The submission can be accessed:
+via Tor at: %TorURL%
+via HTTPS at: %T2WURL%
+
+Submission date: %EventTime%
+Expiration date: %ExpirationDate%
 
 Kind regards,
 %NodeName%
