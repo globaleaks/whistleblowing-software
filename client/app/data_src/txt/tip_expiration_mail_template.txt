@@ -1,6 +1,7 @@
 Dear %RecipientName%,
 
-The following submissions are going to expire in %ExpirationWatch% hours:
+The following %ExpiringSubmissionCount% submissions expire within %ExpirationWatch% hours.
+The earliest expiration date is %EarliestExpirationDate%.
 
 %ExpiringSubmissions%
 
