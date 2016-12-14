@@ -1,1 +1,1 @@
-Some submissions are going to expire in %ExpirationWatch% hours
+One or more submissions expire in %ExpirationWatch% hours
