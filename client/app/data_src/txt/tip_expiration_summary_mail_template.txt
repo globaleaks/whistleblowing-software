@@ -1,0 +1,10 @@
+Dear %RecipientName%,
+
+The earliest expiration date is %EarliestExpirationDate%.
+If no action is taken, %ExpiringSubmissionCount% submissions will be deleted soon.
+Please check the platform for more information.
+
+%AccessLink%
+
+Kind regards,
+%NodeName%
