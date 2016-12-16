@@ -21,42 +21,46 @@ from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, 
 node_keywords = [
     '%NodeName%',
     '%HiddenService%',
-    '%PublicSite%',
+    '%PublicSite%'
 ]
 
-expiration_keywords = [
-    '%ExpiringSubmissionCount%',
-    '%EarliestExpirationDate%',
-    '%ExpirationWatch%',
-    '%ExpiringSubmissions%',
+context_keywords = [
+    '%ContextName%'
+]
+
+receiver_keywords = [
+    '%RecipientName%'
 ]
 
 tip_keywords = [
     '%TipID%',
-    '%TipTorURL%',
-    '%TipT2WURL%',
-    '%TorURL%',
-    '%T2WURL%',
     '%TipNum%',
     '%TipLabel%',
     '%EventTime%',
     '%SubmissionDate%',
     '%ExpirationDate%',
     '%ExpirationWatch%',
-    '%RecipientName%',
-    '%ContextName%',
     '%QuestionnaireAnswers%',
     '%Comments%',
-    '%Messages%'
+    '%Messages%',
+    '%TorURL%',
+    '%T2WURL%'
 ]
 
 file_keywords = [
     '%FileName%',
-    '%FileSize%',
+    '%FileSize%'
 ]
 
 export_message_keywords = [
     '%Content%'
+]
+
+expiration_summary_keywords = [
+    '%ExpiringSubmissionCount%',
+    '%EarliestExpirationDate%',
+    '%TorURL%',
+    '%T2WURL%'
 ]
 
 admin_pgp_alert_keywords = [
@@ -115,9 +119,25 @@ class NodeKeyword(Keyword):
         return self.data['node']['public_site']
 
 
-class TipKeyword(NodeKeyword):
-    keyword_list = NodeKeyword.keyword_list + tip_keywords
-    data_keys =  NodeKeyword.data_keys + ['context', 'receiver', 'tip']
+class ContextKeyword(Keyword):
+    keyword_list = context_keywords
+    data_keys = ['context']
+
+    def ContextName(self):
+        return self.data['context']['name']
+
+
+class ReceiverKeyword(Keyword):
+    keyword_list = receiver_keywords
+    data_keys = ['receiver']
+
+    def RecipientName(self):
+        return self.data['receiver']['name']
+
+
+class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
+    keyword_list = NodeKeyword.keyword_list + ContextKeyword.keyword_list + ReceiverKeyword.keyword_list + tip_keywords
+    data_keys =  NodeKeyword.data_keys + ContextKeyword.data_keys + ReceiverKeyword.data_keys + ['tip']
 
     def dump_field_entry(self, output, field, entry, indent_n):
         field_type = field['type']
@@ -197,7 +217,7 @@ class TipKeyword(NodeKeyword):
     def TipID(self):
         return self.data['tip']['id']
 
-    def TipTorURL(self):
+    def TorURL(self):
         hidden_service = self.data['node']['hidden_service']
 
         if len(hidden_service):
@@ -207,7 +227,7 @@ class TipKeyword(NodeKeyword):
 
         return retstr
 
-    def TipT2WURL(self):
+    def T2WURL(self):
         public_site = self.data['node']['public_site']
 
         if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
@@ -218,12 +238,6 @@ class TipKeyword(NodeKeyword):
             retstr = '[NOT CONFIGURED]'
 
         return retstr
-
-    def TorURL(self):
-        return self.TipTorURL()
-
-    def T2WURL(self):
-        return self.TipT2WURL()
 
     def TipNum(self):
         return self.data['tip']['sequence_number']
@@ -245,12 +259,6 @@ class TipKeyword(NodeKeyword):
         missing_time = ISO8601_to_datetime(self.data['tip']['expiration_date']) - datetime_now()
         missing_hours = int(divmod(missing_time.total_seconds(), 3600)[0])
         return str(missing_hours)
-
-    def ContextName(self):
-        return self.data['context']['name']
-
-    def RecipientName(self):
-        return self.data['receiver']['name']
 
     def QuestionnaireAnswers(self):
         return self.dump_questionnaire_answers(self.data['tip']['questionnaire'], self.data['tip']['answers'])
@@ -275,14 +283,14 @@ class TipKeyword(NodeKeyword):
 
 
 class CommentKeyword(TipKeyword):
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'comment']
+    data_keys =  TipKeyword.data_keys + ['comment']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['comment']['creation_date'])
 
 
 class MessageKeyword(TipKeyword):
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'message']
+    data_keys =  TipKeyword.data_keys + ['message']
 
     def EventTime(self):
         return ISO8601_to_pretty_str(self.data['message']['creation_date'])
@@ -290,7 +298,7 @@ class MessageKeyword(TipKeyword):
 
 class FileKeyword(TipKeyword):
     keyword_list = TipKeyword.keyword_list + file_keywords
-    data_keys =  ['node', 'notification', 'context', 'receiver', 'tip', 'file']
+    data_keys =  TipKeyword.data_keys + ['file']
 
     def FileName(self):
         return self.data['file']['name']
@@ -310,9 +318,47 @@ class ExportMessageKeyword(Keyword):
         return self.data['message']['content']
 
 
+class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
+    keyword_list = NodeKeyword.keyword_list + \
+                   ReceiverKeyword.keyword_list + \
+                   expiration_summary_keywords
+
+    data_keys =  NodeKeyword.data_keys + \
+                 ReceiverKeyword.data_keys + \
+                 ['expiring_submission_count', 'earliest_expiration_date']
+
+    def ExpiringSubmissionCount(self):
+        return str(self.data['expiring_submission_count'])
+
+    def EarliestExpirationDate(self):
+        return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
+
+    def TorURL(self):
+        hidden_service = self.data['node']['hidden_service']
+
+        if len(hidden_service):
+            retstr = '%s/#/receiver/tips' % hidden_service
+        else:
+            retstr = '[NOT CONFIGURED]'
+
+        return retstr
+
+    def T2WURL(self):
+        public_site = self.data['node']['public_site']
+
+        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
+            retstr = 'DISABLED'
+        elif len(public_site):
+            retstr =  '%s/#/receiver/tips' % public_site
+        else:
+            retstr = '[NOT CONFIGURED]'
+
+        return retstr
+
+
 class AdminPGPAlertKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + admin_pgp_alert_keywords
-    data_keys =  ['node', 'notification', 'users']
+    data_keys =  NodeKeyword.data_keys + ['users']
 
     def PGPKeyInfoList(self):
         ret = ''
@@ -328,7 +374,7 @@ class AdminPGPAlertKeyword(NodeKeyword):
 
 class PGPAlertKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + user_pgp_alert_keywords
-    data_keys =  ['node', 'notification', 'user']
+    data_keys =  NodeKeyword.data_keys + ['user']
 
     def PGPKeyInfo(self):
         fingerprint = self.data['user']['pgp_key_fingerprint']
@@ -339,7 +385,7 @@ class PGPAlertKeyword(NodeKeyword):
 
 class AnomalyKeyword(NodeKeyword):
     keyword_list = NodeKeyword.keyword_list + admin_anomaly_keywords
-    data_keys =  ['node', 'notification', 'alert']
+    data_keys =  NodeKeyword.data_keys + ['alert']
 
     def AnomalyDetailDisk(self):
         # This happens all the time anomalies are present but disk is ok
@@ -386,6 +432,7 @@ supported_template_types = {
     u'message': MessageKeyword,
     u'file': FileKeyword,
     u'tip_expiration': TipKeyword,
+    u'tip_expiration_summary': ExpirationSummaryKeyword,
     u'pgp_alert': PGPAlertKeyword,
     u'admin_pgp_alert': AdminPGPAlertKeyword,
     u'receiver_notification_limit_reached': Keyword,
