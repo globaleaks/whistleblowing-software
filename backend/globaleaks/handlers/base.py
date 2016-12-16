@@ -33,7 +33,17 @@ from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 HANDLER_EXEC_TIME_THRESHOLD = 30
 
 GLUploads = {}
-GLSessions = TempDict(timeout=GLSettings.authentication_lifetime)
+
+class GLSessionsFactory(TempDict):
+  '''Extends TempDict to provide session management functions ontop of temp session keys'''
+
+  def revoke_all_sessions(self, user_id):
+      for other_session in GLSessions.values():
+          if other_session.user_id == user_id:
+              log.debug("Revoking old session for %s" % user_id)
+              GLSessions.delete(other_session.id)
+
+GLSessions = GLSessionsFactory(timeout=GLSettings.authentication_lifetime)
 
 # https://github.com/globaleaks/GlobaLeaks/issues/1601
 mimetypes.add_type('image/svg+xml', '.svg')
