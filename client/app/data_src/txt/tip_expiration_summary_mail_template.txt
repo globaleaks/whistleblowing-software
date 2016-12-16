@@ -6,7 +6,8 @@ The earliest expiration date is %EarliestExpirationDate%.
 
 Please remember to check them before they are deleted.
 
-%AccessLink%
+via Tor at: %TorURL%
+via HTTPS at: %T2WURL%
 
 Kind regards,
 %NodeName%
