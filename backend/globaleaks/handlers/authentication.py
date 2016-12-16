@@ -184,6 +184,7 @@ class ReceiptAuthHandler(AuthenticationHandler):
 
         try:
             user_id = yield login_whistleblower(receipt, using_tor2web)
+            GLSessions.revoke_all_sessions(user_id)
         finally:
             yield self.uniform_answers_delay()
 
