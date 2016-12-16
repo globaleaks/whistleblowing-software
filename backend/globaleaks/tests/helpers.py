@@ -656,10 +656,9 @@ class TestHandler(TestGLWithPopulatedDB):
         GLApiCache.invalidate()
 
     def request(self, jbody=None, user_id=None, role=None, headers=None, body='',
-                remote_ip='0.0.0.0', method='MOCK', attached_file={}, kwargs={}):
-
+                remote_ip='0.0.0.0', method='MOCK', handler_cls=None, attached_file={}, kwargs={}):
         """
-        Function userful for performing mock requests.
+        Constructs a handler for preforming mock requests using the bag of params described below.
 
         Args:
 
@@ -688,14 +687,19 @@ class TestHandler(TestGLWithPopulatedDB):
             remote_ip:
                 If a particular remote_ip should be set.
 
+            handler_cls:
+                The type of handler that will respond to the request. If this is not set self._handler is used.
+
             attached_file:
                 A cyclone.httputil.HTTPFiles or a dict to place in the request.files obj
-
         """
         if jbody and not body:
             body = json.dumps(jbody)
         elif body and jbody:
             raise ValueError('jbody and body in conflict')
+
+        if handler_cls is None:
+            handler_cls = self._handler
 
         if attached_file is None:
             fake_files = {}
@@ -721,15 +725,15 @@ class TestHandler(TestGLWithPopulatedDB):
             if response:
                 self.responses.append(response)
 
-        self._handler.write = mock_write
+        handler_cls.write = mock_write
 
 
         def mock_finish(cls):
             pass
 
-        self._handler.finish = mock_finish
+        handler_cls.finish = mock_finish
 
-        handler = self._handler(application, request, **kwargs) # pylint: disable=not-callable
+        handler = handler_cls(application, request, **kwargs)
 
         if user_id is None and role is not None:
             if role == 'admin':
@@ -750,7 +754,6 @@ class TestHandler(TestGLWithPopulatedDB):
         Constructs a request_dec parser of a handler that uses a safe_set in its serialization
         """
         return {k : v for k, v in request_desc.iteritems() if k in safe_set}
-
 
 
 class TestHandlerWithPopulatedDB(TestHandler):
