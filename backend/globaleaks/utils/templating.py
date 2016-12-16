@@ -24,6 +24,12 @@ node_keywords = [
     '%PublicSite%',
 ]
 
+expiration_keywords = [
+    '%ExpiringSubmissionCount%',
+    '%EarliestExpirationDate%',
+    '%ExpirationWatch%',
+    '%ExpiringSubmissions%',
+]
 
 tip_keywords = [
     '%TipID%',
