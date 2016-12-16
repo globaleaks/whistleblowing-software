@@ -1,8 +1,10 @@
 Dear %RecipientName%,
 
+%ExpiringSubmissionCount% submissions are expiring and will be soon deleted.
+
 The earliest expiration date is %EarliestExpirationDate%.
-If no action is taken, %ExpiringSubmissionCount% submissions will be deleted soon.
-Please check the platform for more information.
+
+Please remember to check them before they are deleted.
 
 %AccessLink%
 
