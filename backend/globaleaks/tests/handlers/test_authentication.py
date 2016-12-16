@@ -5,6 +5,8 @@ from globaleaks.handlers.base import GLSessions
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
+from globaleaks.handlers.user import UserInstance
+from globaleaks.handlers.wbtip import WBTipInstance
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
@@ -119,7 +121,6 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
         yield auth_handler.post()
 
-        from globaleaks.handlers.user import UserInstance
         first_session_id = self.responses[0]['session_id']
 
         user_handler = self.request({}, handler_cls=UserInstance,
@@ -134,8 +135,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         # The first_session should now deny access to authenticated resources
         try:
             yield user_handler.get()
-        except errors.NotAuthenticated as e:
             # cannot use self.assertFailure here because self points else where
+            self.fail('user_handler.get must throw')
+        except errors.NotAuthenticated as e:
             pass
 
         # The second_session should have no problems.
@@ -209,3 +211,36 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSessions.keys()), 0)
+
+    @inlineCallbacks
+    def test_single_session_per_whistleblower(self):
+        '''Asserts that the first_id is dropped from GLSessions and requests
+        using that session id are rejected'''
+        yield self.perform_full_submission_actions()
+        handler = self.request({
+            'receipt': self.dummySubmission['receipt']
+        })
+        yield handler.post()
+
+        first_id = self.responses[0]['session_id']
+        wbtip_handler = self.request(headers={'X-Session': first_id}, handler_cls=WBTipInstance)
+        yield wbtip_handler.get()
+
+        yield handler.post()
+        second_id = self.responses[2]['session_id']
+
+        try:
+            wbtip_handler.get()
+            self.fail('wbtip_handler.get must throw')
+        except errors.NotAuthenticated:
+            pass
+
+        self.assertTrue(GLSessions.get(first_id) is None)
+
+        valid_session = GLSessions.get(second_id)
+        self.assertTrue(valid_session is not None)
+
+        self.assertEqual(valid_session.user_role, 'whistleblower')
+
+        wbtip_handler = self.request(headers={'X-Session': second_id}, handler_cls=WBTipInstance)
+        yield wbtip_handler.get()
