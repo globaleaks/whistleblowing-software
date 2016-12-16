@@ -14,7 +14,7 @@
       <span data-translate>These files have been attached to your submission by the recipients.</span>
     </div>
     <div data-ng-repeat="wbfile in tip.wbfiles | orderBy: 'creation_date'">
-      <div data-wbfile></div>
+      <div id="wbfile-{{$index}}" data-wbfile></div>
     </div>
   </div>
 </div>

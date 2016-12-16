@@ -1,6 +1,10 @@
 import re
+import StringIO
+import sys
 from datetime import datetime
+
 from twisted.trial import unittest
+from twisted.python.failure import Failure
 
 from globaleaks.utils import utility
 
@@ -157,3 +161,39 @@ class TestUtility(unittest.TestCase):
             return utility.caller_name()
 
         self.assertEqual(abcdef(), 'globaleaks.tests.utils.test_utility.TestUtility.test_caller_name')
+
+class TestLogging(unittest.TestCase):
+    def setUp(self):
+        fake_std_out = StringIO.StringIO()
+        self._stdout, sys.stdout = sys.stdout, fake_std_out
+
+    def tearDown(self):
+        sys.stdout = self._stdout
+
+    def test_log_emission(self):
+        output_buff = StringIO.StringIO()
+
+        observer = utility.GLLogObserver(output_buff)
+        observer.start()
+
+        # Manually emit logs
+        e1 = {'time': 100000, 'message': 'x', 'system': 'ut'}
+        observer.emit(e1)
+
+        f = Failure(IOError('This is a mock failure'))
+        e2 = {'time': 100001, 'message': 'x', 'system': 'ut', 'failure': f}
+        observer.emit(e2)
+
+        # Emit logs through twisted's interface. Import is required now b/c of stdout hack
+        from twisted.python import log as twlog
+        twlog.err("error-msg")
+        twlog.err("info-msg")
+        twlog.msg("msg-msg")
+        observer.stop()
+
+        s = output_buff.getvalue()
+        # A bit of a mess, but this is the format we are expecting.
+        gex = r".+ \[ut\] x\n"
+        m = re.findall(gex, s)
+        self.assertTrue(len(m) == 2)
+        self.assertTrue(s.endswith("[-] msg-msg\n"))

@@ -6,33 +6,55 @@ var openpgp = require('openpgp');
 var pages = require('./pages.js');
 var utils = require('./utils.js');
 
-// File types left to test:
-// docx, doc, ppt, mp4, mp3, wav, html, zip
-describe('Submission file process', function() {
-  var filenames = fs.readdirSync(utils.vars.testFileDir);
-  var dirs = filenames.map(utils.makeTestFilePath);
 
-  var chksums = {};
+function TmpFileMeta(filename) {
+    this.name = filename;
+    this.origin_path = utils.makeTestFilePath(filename);
+    this.tmp_path = path.join(browser.params.tmpDir, filename);
 
-  for (var i = 0; i < dirs.length; i++) {
-    var s = fs.readFileSync(dirs[i]);
+    this.unlinkTmpPath();
+
+    var s = fs.readFileSync(this.origin_path);
     var c = utils.checksum(s);
-    chksums[filenames[i]] = c;
-  }
+    this.chksum = c;
+    if (browser.params.verifyFileDownload) {
+      this.waitForDownload = function() {}; // noop
+    }
+}
+
+TmpFileMeta.prototype.unlinkTmpPath = function(){
+    if (fs.existsSync(this.tmp_path)) {
+      fs.unlinkSync(this.tmp_path);
+    }
+};
+
+TmpFileMeta.prototype.waitForDownload = function() {
+  var self = this;
+  utils.waitForFile(self.tmp_path).then(function() {
+      var tmp_sum = utils.checksum(fs.readFileSync(self.tmp_path));
+      expect(tmp_sum).toEqual(self.chksum);
+      // Remove the tmp file before moving on. (it could be used again)
+      fs.unlinkSync(self.tmp_path);
+  });
+};
+
+
+var test_meta_files = fs.readdirSync(utils.vars.testFileDir).map(function(name) {
+  return new TmpFileMeta(name);
+});
+
+
+function submissionUploadSuite() {
+  // TODO File types left to test:
+  // docx, ppt, mp4, mp3, wav, html, zip, > 30mb
 
   beforeEach(function() {
-    filenames.forEach(function(t) {
-      try {
-        fs.unlinkSync(path.join(browser.params.tmpDir, t));
-      } catch (e) {
-        /* eslint-disable no-console */
-        console.error(e);
-        /* eslint-enable no-console */
-      }
+    test_meta_files.forEach(function(meta_file) {
+      meta_file.unlinkTmpPath();
     });
   });
 
-  function uploadAndDownloadTest() {
+  it('uploaded and encrypted files should match downloaded and decrypted files', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -40,8 +62,8 @@ describe('Submission file process', function() {
       wb.viewReceipt(receipt);
 
       // Add each file as an attachment.
-      dirs.forEach(function(name) {
-        wb.submitFile(name);
+      test_meta_files.forEach(function(m_file) {
+        wb.submitFile(m_file.origin_path);
       });
 
       utils.logout();
@@ -50,23 +72,17 @@ describe('Submission file process', function() {
       utils.login_receiver('Recipient2', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
-      // Download each file
+      // Download each file end assert that it matches the input
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
         btn.click();
-
-        var name = filenames[i];
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, name));
-        utils.waitForFile(fullpath).then(function() {
-          // Check that each downloaded file's checksum matches its original
-          var test = utils.checksum(fs.readFileSync(fullpath));
-          expect(test).toEqual(chksums[name]);
-        });
+        // TODO WARN fragile: dl list and meta_file_lst must align
+        var mfile = test_meta_files[i];
+        mfile.waitForDownload();
       });
-
     });
-  }
+  });
 
-  function uploadAndDecryptTest() {
+  it('uploaded and downloaded plaintext files should match', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -78,8 +94,8 @@ describe('Submission file process', function() {
       // attach files to submission
       wb.viewReceipt(receipt);
 
-      dirs.forEach(function(name) {
-        wb.submitFile(name);
+      test_meta_files.forEach(function(m_file) {
+        wb.submitFile(m_file.origin_path);
       });
 
       utils.logout();
@@ -90,10 +106,11 @@ describe('Submission file process', function() {
       element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
         btn.click();
 
-        var name = filenames[i];
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, name + '.pgp'));
-        utils.waitForFile(fullpath).then(function() {
-          var data = fs.readFileSync(fullpath, opts);
+        // TODO WARN fragile: dl list and meta_file_lst must align
+        var m_file = test_meta_files[i];
+        var full_path = m_file.tmp_path + '.pgp';
+        utils.waitForFile(full_path).then(function() {
+          var data = fs.readFileSync(full_path, opts);
 
           var options = {
             message: openpgp.message.readArmored(data),
@@ -106,15 +123,76 @@ describe('Submission file process', function() {
 
             // check the files to see if they match
             var test = utils.checksum(result.data);
-            expect(test).toEqual(chksums[name]);
+            expect(test).toEqual(m_file.chksum);
           });
         });
       });
     });
-  }
+  });
+}
 
-  if (browser.params.verifyFileDownload) {
-    it('uploaded and downloaded plaintext files should match', uploadAndDownloadTest);
-    it('uploaded and encrypted files should match downloaded and decrypted files', uploadAndDecryptTest);
-  }
-});
+function wbfileUploadSuite() {
+    var wb = new pages.whistleblower();
+    var rec = new pages.receiver();
+
+    var f1_info = test_meta_files[4];
+    f1_info.unlinkTmpPath(); // cleanup
+    var f1_text = 'file to show to the whistleblower';
+    var f2_info = test_meta_files[5];
+
+    var receipt;
+
+
+    it('the recipient should be able to upload wbfiles', function() {
+      wb.performSubmission('Test WBFile process').then(function(r) {
+        receipt = r;
+
+        utils.login_receiver('Recipient1', utils.vars['user_password']);
+
+        element(by.id('tip-0')).click();
+
+        rec.wbfile_widget().element(by.css('input[type="text"]')).sendKeys(f1_text);
+        rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
+        rec.uploadWBFile(f1_info.origin_path);
+
+        utils.waitUntilPresent(by.css('#TipPageWBFileUpload input[type="text"]'));
+        rec.wbfile_widget().element(by.css('input[type="text"]')).sendKeys('wbfile to delete');
+        rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
+        rec.uploadWBFile(f2_info.origin_path);
+
+        expect(rec.wbfile_widget().element(by.css('#wbfile-0 p.description')).getText())
+          .toEqual('Description: ' + f1_text);
+
+        // Assert that the uploads worked
+        expect(rec.wbfile_widget().all(by.css('div.wbfile')).count()).toEqual(2);
+   });
+
+   it('the recipient should be able to downlad a wbfile', function() {
+        // Let the reciever download the first file
+        rec.wbfile_widget().element(by.css('#wbfile-0 span.btn span.glyphicon-download')).click();
+
+        f1_info.waitForDownload();
+    });
+
+    it('a recipient should be able to delete a wbfile', function() {
+        // Delete the second wbfile
+        rec.wbfile_widget().element(by.css('#wbfile-1 span span.glyphicon-trash')).click();
+        // Assert the file is gone from the interfaccia
+        expect(rec.wbfile_widget().all(by.css('div.wbfile')).count()).toEqual(1);
+
+        utils.logout();
+    });
+
+    it('a whistleblower should be able to download wbfiles', function() {
+        utils.login_whistleblower(receipt);
+        // Choose the first file which should be f1_info
+        element(by.css('#AttachedWBFile #wbfile-0 div.download-btn')).click();
+        f1_info.waitForDownload();
+      });
+    });
+}
+
+if (browser.params.verifyFileDownload) {
+  describe('Submission whistleblower file upload process', submissionUploadSuite);
+  describe('Tip wbfile upload process', wbfileUploadSuite);
+}
