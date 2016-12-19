@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 DISTRIBUTION="trusty"
 TAG="master"
@@ -11,7 +12,8 @@ usage() {
   echo "Valid options:"
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
-  echo -e " -d distribution (available: precise, trusty, wheezy, jessie, unstable)"
+  echo -e " -l (Use local repository & enviroment)"
+  echo -e " -d distribution (available: precise, trusty, xenial, wheezy, jessie, unstable)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
@@ -19,10 +21,11 @@ usage() {
 TARGETS="precise trusty xenial wheezy jessie stretch"
 DISTRIBUTION="trusty"
 TAG="master"
+LOCAL_ENV=0
 NOSIGN=0
 PUSH=0
 
-while getopts "d:t:np:h" opt; do
+while getopts "d:t:np:h:l" opt; do
   case $opt in
     d) DISTRIBUTION="$OPTARG"
     ;;
@@ -31,6 +34,8 @@ while getopts "d:t:np:h" opt; do
     n) NOSIGN=1
     ;;
     p) PUSH=1
+    ;;
+    l) LOCAL_ENV=1
     ;;
     h)
         usage
@@ -70,18 +75,30 @@ if [ $ERR -ne 0 ]; then
   exit 1
 fi
 
+ROOTDIR=`pwd`
+
 BUILDSRC="GLRelease"
 [ -d $BUILDSRC ] && rm -rf $BUILDSRC
 mkdir $BUILDSRC && cd $BUILDSRC
-git clone https://github.com/globaleaks/GlobaLeaks.git
-cd GlobaLeaks
-git checkout $TAG
-cd client
-npm install grunt-cli
-npm install
-bower update
-grunt build
-cd ../../../
+
+if [ $LOCAL_ENV -eq 1 ]; then
+    cd ../client/
+    grunt build
+    cd ../GLRelease
+    git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
+    cp -rf ../client/build GlobaLeaks/client/
+else
+    git clone https://github.com/globaleaks/GlobaLeaks.git
+    cd GlobaLeaks
+    git checkout $TAG
+    cd client
+    npm install grunt-cli
+    npm install
+    bower update
+    grunt build
+fi
+
+cd $ROOTDIR
 
 for TARGET in $TARGETS; do
   echo "Packaging GlobaLeaks for:" $TARGET
