@@ -123,8 +123,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         first_session_id = self.responses[0]['session_id']
 
-        user_handler = self.request({}, handler_cls=UserInstance,
-                                           headers={'X-Session': first_session_id})
+        user_handler = self.request({}, headers={'X-Session': first_session_id},
+                                        handler_cls=UserInstance)
         # The first_session is valid and the request should work
         yield user_handler.get()
 
@@ -137,12 +137,13 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             yield user_handler.get()
             # cannot use self.assertFailure here because self points else where
             self.fail('user_handler.get must throw')
-        except errors.NotAuthenticated as e:
+        except errors.NotAuthenticated:
             pass
 
         # The second_session should have no problems.
-        user_handler = self.request({}, handler_cls=UserInstance,
-                                        headers={'X-Session': second_session_id})
+        user_handler = self.request({}, headers={'X-Session': second_session_id},
+                                        handler_cls=UserInstance)
+
         yield user_handler.get()
 
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
@@ -223,7 +224,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
         first_id = self.responses[0]['session_id']
-        wbtip_handler = self.request(headers={'X-Session': first_id}, handler_cls=WBTipInstance)
+        wbtip_handler = self.request(headers={'X-Session': first_id},
+                                     handler_cls=WBTipInstance)
         yield wbtip_handler.get()
 
         yield handler.post()
@@ -242,5 +244,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(valid_session.user_role, 'whistleblower')
 
-        wbtip_handler = self.request(headers={'X-Session': second_id}, handler_cls=WBTipInstance)
+        wbtip_handler = self.request(headers={'X-Session': second_id},
+                                     handler_cls=WBTipInstance)
         yield wbtip_handler.get()
