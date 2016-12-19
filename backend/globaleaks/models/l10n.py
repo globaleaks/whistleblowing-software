@@ -238,6 +238,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_test_static_mail_title',
     })
 
+    # These strings are modifiable via the admin/notification handler
+    modifiable_keys = localized_keys - unmodifiable_keys
+
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)
 

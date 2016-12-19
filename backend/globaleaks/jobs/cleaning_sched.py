@@ -85,7 +85,7 @@ class CleaningSchedule(GLJob):
             receiver_desc = admin_serialize_receiver(receiver, language)
 
             if rtips.count() == 1:
-                tip_desc = serialize_rtip(store, rtip, user.language)
+                tip_desc = serialize_rtip(store, rtips[0], user.language)
                 context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
 
                 data = {
