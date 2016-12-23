@@ -28,15 +28,20 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
 
         self._handler.validate_message(json.dumps(self.responses[0]), resp_desc)
 
+
     @inlineCallbacks
     def test_put(self):
         handler = self.request(role='admin')
         yield handler.get()
 
-        self.responses[0]['server'] = stuff
-        self.responses[0]['password'] = u'widdlyscuds'
+        notif_desc = self.responses[0]
+        notif_desc['server'] = stuff
+        notif_desc['password'] = u'widdlyscuds'
 
-        handler = self.request(self.responses[0], role='admin')
+        # Ensure that the exception mailer can handle multiple emails
+        notif_desc['exception_email_address_list'].append('maker@iz.cool.yeah')
+
+        handler = self.request(notif_desc, role='admin')
         yield handler.put()
         self.assertEqual(self.responses[1]['server'], stuff)
 
@@ -45,10 +50,11 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(role='admin')
         yield handler.get()
 
-        self.responses[0]['reset_templates'] = True
-        self.responses[0]['password'] = u'widdlyscuds'
+        notif_desc = self.responses[0]
+        notif_desc['reset_templates'] = True
+        notif_desc['password'] = u'widdlyscuds'
 
-        handler = self.request(self.responses[0], role='admin')
+        handler = self.request(notif_desc, role='admin')
         yield handler.put()
 
         appdata_dict = load_appdata()
