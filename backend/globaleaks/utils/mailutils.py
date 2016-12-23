@@ -255,10 +255,10 @@ def send_exception_email(mail_body):
 
     try:
         mail_subject = "GlobaLeaks Exception"
-        mail_address = GLSettings.memory_copy.notif.exception_email_address
+        mail_address = GLSettings.memory_copy.notif.exception_email_address_list
         if GLSettings.devel_mode:
             mail_subject +=  " [%s]" % GLSettings.developer_name
-            mail_address = "globaleaks-stackexception-devel@globaleaks.org"
+            mail_address = ["globaleaks-stackexception-devel@globaleaks.org"]
 
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if len(GLSettings.memory_copy.notif.exception_email_pgp_key_public):
