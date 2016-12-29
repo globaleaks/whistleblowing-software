@@ -32,7 +32,7 @@ Other resources:
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
 
-[Help us by sending us a small donation!](https://www.globaleaks.org/donate.html)
+[Help us by sending us a small donation!](https://www.globaleaks.org/donate)
 
 ## License
 This software is released under the AGPLv3 license. See LICENSE file for more information.
