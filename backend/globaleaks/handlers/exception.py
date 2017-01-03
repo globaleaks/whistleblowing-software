@@ -31,7 +31,7 @@ class ExceptionHandler(BaseHandler):
             exception_email += "Stacktrace:\n"
             exception_email += json.dumps(request['stackTrace'], indent=2)
             send_exception_email(exception_email)
-            log.debug("Received client exception and notified to exception email")
+            log.debug("Received client exception and passed error to exception mail handler")
 
         self.set_status(201)  # Created
 
