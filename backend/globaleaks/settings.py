@@ -10,6 +10,7 @@ import logging
 import os
 import pwd
 import re
+import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
 from twisted.python.threadpool import ThreadPool
@@ -319,7 +320,7 @@ class GLSettingsClass(object):
         self.socks_host = self.cmdline_options.socks_host
 
         if not self.validate_port(self.cmdline_options.socks_port):
-            quit(-1)
+            sys.exit(1)
         self.socks_port = self.cmdline_options.socks_port
 
         self.side_channels_guard = self.cmdline_options.side_channels_guard / 1000.0
@@ -345,7 +346,7 @@ class GLSettingsClass(object):
 
         if self.uid == 0 or self.gid == 0:
             self.print_msg("Invalid user: cannot run as root")
-            quit(-1)
+            sys.exit(1)
 
         self.start_clean = self.cmdline_options.start_clean
 
@@ -375,7 +376,7 @@ class GLSettingsClass(object):
             self.print_msg("Serving the client from directory: %s" % self.client_path)
         else:
             self.print_msg("Unable to find a directory where to load the client")
-            quit(-1)
+            sys.exit(1)
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
@@ -453,7 +454,7 @@ class GLSettingsClass(object):
                 os.chmod(path, 0700)
         except Exception as excep:
             self.print_msg("Unable to update permissions on %s: %s" % (path, excep))
-            quit(-1)
+            sys.exit(1)
 
         for item in glob.glob(path + '/*'):
             if os.path.isdir(item):
@@ -464,7 +465,7 @@ class GLSettingsClass(object):
                     os.chmod(item, 0700)
                 except Exception as excep:
                     self.print_msg("Unable to update permissions on %s: %s" % (item, excep))
-                    quit(-1)
+                    sys.exit(1)
 
     def remove_directories(self):
         if os.path.exists(self.working_path):
@@ -477,7 +478,7 @@ class GLSettingsClass(object):
                 os.setgid(self.gid)
             except OSError as droperr:
                 self.print_msg("unable to drop group privileges: %s" % droperr.strerror)
-                quit(-1)
+                sys.exit(1)
 
         if os.getuid() != self.uid:
             try:
@@ -485,7 +486,7 @@ class GLSettingsClass(object):
                 os.setuid(self.uid)
             except OSError as droperr:
                 self.print_msg("unable to drop user privileges: %s" % droperr.strerror)
-                quit(-1)
+                sys.exit(1)
 
     def print_msg(self, *args):
         if not self.testing:
