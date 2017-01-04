@@ -165,9 +165,11 @@ def db_refresh_memory_variables(store):
     enabled_langs = models.l10n.EnabledLanguage.list(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
 
-    notif_ro = ObjectDict(NotificationFactory(store).admin_export())
+    notif_fact = NotificationFactory(store)
+    notif_ro = ObjectDict(notif_fact.admin_export())
 
     GLSettings.memory_copy.notif = notif_ro
+    GLSettings.memory_copy.notif.exception_email_address_list = notif_fact.build_exception_addr_list()
 
     if GLSettings.developer_name:
         GLSettings.memory_copy.notif.source_name = GLSettings.developer_name

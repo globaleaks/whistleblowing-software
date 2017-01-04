@@ -1,26 +1,14 @@
 <div class="row">
   <div class="col-md-8">
-    <label data-translate>Exception reporting email addresses</label>
-    <div data-ng-repeat="email_addr in admin.notification.exception_email_address_list track by $index">
-      <span ng-init="item_name = 'email_'+$index"></span>
-      <span class="input-group">
-        <span class="input-group-addon" data-translate>Email Address</span>
-        <input class="form-control" data-ng-model="admin.notification.exception_email_address_list[$index]" name="{{item_name}}" type="text" data-ng-pattern="email_regexp" required/>
-        <span class="input-group-btn">
-          <button class="btn btn-danger" data-ng-click="admin.notification.exception_email_address_list.splice($index, 1)">
-            <i class="glyphicon glyphicon-minus"></i> <span data-translate>Remove</span>
-          </button>
-        </span>
-      </span>
-      <p class="text-danger" data-ng-if="notificationForm[item_name].$error.pattern">
-        * <span data-translate>Invalid email address</span>
+    <div class="form-group">
+      <label data-translate>Exception reporting email address</label>
+      <input class="form-control" data-ng-model="admin.notification.exception_email_address" name="email" type="text" data-ng-pattern="email_regexp" />
+      <p class="text-danger" data-ng-if="notificationForm.email.$error.pattern">
+        <span data-translate>Invalid email address</span>
       </p>
     </div>
-    <button class="btn btn-primary" data-ng-click="admin.notification.exception_email_address_list.push('')">
-       <i class="glyphicon glyphicon-plus"></i> <span data-translate>Add</span>
-    </button>
 
-    <hr>
+     <hr>
 
     <div data-ng-show="admin.notification.exception_email_pgp_key_public !== ''">
       <div class="alert alert-success">

@@ -141,16 +141,6 @@ def longlocal_v(self, attr, value):
     return value
 
 
-def email_addr_list_v(self, attr, value):
-    if type(value) is not list:
-        raise errors.InvalidModelInput("Not a list")
-    for raw in value:
-        if type(raw) is not unicode:
-            raise errors.InvalidModelInput("Passed value not a unicode")
-        if not "@" in raw: # TODO use RE
-            raise errors.InvalideModelInput("Not a valid email addr")
-    return value
-
 def shorturl_v(self, attr, value):
     if not re.match(r'^(/s/[a-z0-9]{1,30})$', value):
         raise errors.InvalidModelInput("invalid shorturl")

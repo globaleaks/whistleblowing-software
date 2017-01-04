@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.public import serialize_node
-from globaleaks.models.config import NodeFactory, NotificationFactory
+from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
@@ -70,10 +70,6 @@ def wizard(store, request, language):
         }
 
         db_create_admin_user(store, admin_dict, language)
-
-        # Add the new admin's email to list of recipients of errors
-        notif = NotificationFactory(store)
-        notif.get_val('exception_email_address_list').append(admin_dict['mail_address'])
 
     except Exception as excep:
         log.err("Failed wizard initialization %s" % excep)
