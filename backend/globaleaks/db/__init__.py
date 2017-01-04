@@ -12,7 +12,7 @@ from storm import exceptions
 from globaleaks import models, security, __version__, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
-from globaleaks.models import config, l10n
+from globaleaks.models import config, l10n, User
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact
@@ -145,6 +145,25 @@ def clean_untracked_files():
                 log.err("Failed to remove untracked file" % file_to_remove)
 
 
+def db_refresh_exception_delivery_list(store):
+    """
+    Constructs a list of (email_addr, public_key) pairs that will receive errors from the platform.
+    If the email_addr is empty, drop the tuple from the list.
+    """
+    notif_fact = NotificationFactory(store)
+    error_addr = notif_fact.get_val('exception_email_address')
+    error_pk = notif_fact.get_val('exception_email_pgp_key_public')
+
+    lst = [(error_addr, error_pk)]
+
+    results = store.find(User, User.role==unicode('admin')) \
+                   .values(User.mail_address, User.pgp_key_public)
+
+    lst.extend([(mail, pub_key) for (mail, pub_key) in results])
+    trimmed = filter(lambda x: x[0] != '', lst)
+    GLSettings.memory_copy.notif.exception_delivery_list = trimmed
+
+
 def db_refresh_memory_variables(store):
     """
     This routine loads in memory few variables of node and notification tables
@@ -169,7 +188,6 @@ def db_refresh_memory_variables(store):
     notif_ro = ObjectDict(notif_fact.admin_export())
 
     GLSettings.memory_copy.notif = notif_ro
-    GLSettings.memory_copy.notif.exception_email_address_list = notif_fact.build_exception_addr_list()
 
     if GLSettings.developer_name:
         GLSettings.memory_copy.notif.source_name = GLSettings.developer_name
@@ -178,6 +196,8 @@ def db_refresh_memory_variables(store):
         GLSettings.memory_copy.notif.disable_admin_notification_emails = True
         GLSettings.memory_copy.notif.disable_custodian_notification_emails = True
         GLSettings.memory_copy.notif.disable_receiver_notification_emails = True
+
+    db_refresh_exception_delivery_list(store)
 
     GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
 

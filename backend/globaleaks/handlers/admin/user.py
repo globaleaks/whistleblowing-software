@@ -7,7 +7,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security
-from globaleaks.db import db_refresh_memory_variables
+from globaleaks.db import db_refresh_exception_delivery_list
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
@@ -28,8 +28,7 @@ def db_create_admin_user(store, request, language):
 
     log.debug("Created new admin")
 
-    # Update global state
-    GLSettings.memory_copy.notif.exception_email_address_list.append(user.mail_address)
+    db_refresh_exception_delivery_list(store)
 
     return user
 
@@ -146,7 +145,7 @@ def db_admin_update_user(store, user_id, request, language):
     parse_pgp_options(user, request)
 
     if user.role == 'admin':
-        db_refresh_memory_variables(store)
+        db_refresh_exception_delivery_list(store)
 
     return user
 

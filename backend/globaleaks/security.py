@@ -369,8 +369,8 @@ class GLBPGP(object):
 
     def load_key(self, key):
         """
-        @param key:
-        @return: True or False, True only if a key is effectively importable and listed.
+        @param key
+        @return: a dict with the expiration date and the key fingerprint
         """
         try:
             import_result = self.gnupg.import_keys(key)

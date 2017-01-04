@@ -4,7 +4,6 @@ from storm.expr import And, Not
 from storm.locals import Storm, Bool, Unicode, JSON
 
 import config_desc
-from . import User
 from .config_desc import GLConfig
 
 
@@ -150,16 +149,6 @@ class NotificationFactory(ConfigFactory):
 
     def admin_export(self):
         return self._export_group_dict(self.admin_notification)
-
-    def build_exception_addr_list(self):
-        '''Constructs the list of emails that will receive errors from the platform'''
-        lst = []
-        ea = self.get_val('exception_email_address')
-        if not ea == '':
-            lst.append(ea)
-
-        rs = self.store.find(User, User.role==unicode('admin')).values(User.mail_address)
-        return lst + map(lambda addr: addr, rs)
 
 
 class PrivateFactory(ConfigFactory):
