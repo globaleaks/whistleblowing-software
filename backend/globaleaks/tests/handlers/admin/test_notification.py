@@ -38,9 +38,6 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         notif_desc['server'] = stuff
         notif_desc['password'] = u'widdlyscuds'
 
-        # Ensure that the exception mailer can handle multiple emails
-        notif_desc['exception_email_address_list'].append('maker@iz.cool.yeah')
-
         handler = self.request(notif_desc, role='admin')
         yield handler.put()
         self.assertEqual(self.responses[1]['server'], stuff)
