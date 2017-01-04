@@ -152,8 +152,8 @@ class NotificationFactory(ConfigFactory):
         return self._export_group_dict(self.admin_notification)
 
     def build_exception_addr_list(self):
-	'''Constructs the list of emails that will receive errors from the platform'''
-	lst = []
+        '''Constructs the list of emails that will receive errors from the platform'''
+        lst = []
         ea = self.get_val('exception_email_address')
         if not ea == '':
             lst.append(ea)
