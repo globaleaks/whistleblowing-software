@@ -2,8 +2,8 @@
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.properties import iso_strf_time
-from globaleaks.models.validators import shorttext_v, longtext_v, natnum_v, \
-                                         range_v, email_addr_list_v
+from globaleaks.models.validators import shorttext_v, longtext_v, \
+    natnum_v, range_v
 from globaleaks.security import generateRandomSalt as salt
 from globaleaks.utils.utility import datetime_null
 
@@ -28,10 +28,6 @@ class Int(Item):
 
 class Bool(Item):
     _type = bool
-
-
-class JsonList(Item):
-    _type = list
 
 
 GLConfig = {
@@ -60,8 +56,7 @@ GLConfig = {
         'tip_expiration_threshold': Int(validator=natnum_v, default=72), # Hours
         'notification_threshold_per_hour': Int(validator=natnum_v, default=20),
 
-        'exception_email_address_list': JsonList(validator=email_addr_list_v,
-                                        default=[u'globaleaks-stackexception@lists.globaleaks.org']),
+        'exception_email_address': Unicode(validator=shorttext_v, default=u'globaleaks-stackexception@lists.globaleaks.org'),
         'exception_email_pgp_key_fingerprint': Unicode(default=u''),
         'exception_email_pgp_key_public': Unicode(default=u''),
         'exception_email_pgp_key_expiration': Unicode(default=iso_strf_time(datetime_null())),

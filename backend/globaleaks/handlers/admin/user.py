@@ -7,9 +7,10 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security
-from globaleaks.orm import transact
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
@@ -26,6 +27,9 @@ def db_create_admin_user(store, request, language):
     user = db_create_user(store, request, language)
 
     log.debug("Created new admin")
+
+    # Update global state
+    GLSettings.memory_copy.notif.exception_email_address_list.append(user.mail_address)
 
     return user
 
@@ -123,7 +127,7 @@ def db_create_user(store, request, language):
 def db_admin_update_user(store, user_id, request, language):
     """
     Updates the specified user.
-    raises: globaleaks.errors.ReceiverIdNotFound` if the receiver does not exist.
+    raises: globaleaks.errors.UserIdNotFound` if the user does not exist.
     """
     user = models.User.get(store, user_id)
     if not user:
@@ -140,6 +144,9 @@ def db_admin_update_user(store, user_id, request, language):
 
     # The various options related in manage PGP keys are used here.
     parse_pgp_options(user, request)
+
+    if user.role == 'admin':
+        db_refresh_memory_variables(store)
 
     return user
 

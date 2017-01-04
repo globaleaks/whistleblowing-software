@@ -245,7 +245,7 @@ AdminNotificationDesc = disjoint_union({
     'tip_expiration_threshold': int,
     'notification_threshold_per_hour': int,
     'reset_templates': bool,
-    'exception_email_address_list': [email_regexp],
+    'exception_email_address': email_regexp,
     'exception_email_pgp_key_fingerprint': unicode,
     'exception_email_pgp_key_expiration': unicode,
     'exception_email_pgp_key_public': unicode,
