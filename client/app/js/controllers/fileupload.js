@@ -1,4 +1,28 @@
-GLClient.controller('RFileUploadCtrl', ['$scope', function($scope) {
+GLClient.factory('uploadUtils', function() {
+  // Utils shared across file upload controllers and directives
+
+  function endsWith(subjectString, searchString) {
+    // endsWith polyfill adapted for use with IE from:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+    var position = subjectString.length - searchString.length;
+    if (position < 0 ) { return false; }
+    var lastIndex = subjectString.lastIndexOf(searchString, position);
+    return lastIndex !== -1 && lastIndex === position;
+  }
+
+  return {
+    'validFilename': function(filename, types) {
+      for (var i = 0; i < types.length; i++) {
+        var s = filename.toLowerCase();
+        if (endsWith(filename, types[i])) {
+            return true;
+        }
+      }
+      return false;
+    },
+  };
+}).
+controller('RFileUploadCtrl', ['$scope', function($scope) {
   $scope.disabled = false;
 
   $scope.$on('flow::fileAdded', function (event, flow, flowFile) {
@@ -39,10 +63,7 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope,
     $scope.file_error_msg = undefined;
     if (flowFile.size > $rootScope.node.maximum_filesize * 1024 * 1024) {
       $scope.file_error_msg = "This file exceeds the maximum upload size for this server.";
-    } else if(flowFile.file.type !== "image/png") {
-      $scope.file_error_msg = "Only PNG files are currently supported.";
     }
-
     if ($scope.file_error_msg !== undefined)  {
       event.preventDefault();
     }
