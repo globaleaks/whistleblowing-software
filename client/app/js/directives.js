@@ -160,7 +160,7 @@ directive('extendFlowValidTypes', ['uploadUtils', function(uploadUtils) {
       var validTypes = scope.$eval(iAttrs.extendFlowValidTypes);
       scope.$on('flow::fileAdded', function(event, _, flowFile) {
         if (!uploadUtils.validFilename(flowFile.name, validTypes)) {
-          scope.file_error_msg = "The submitted files must end in the one of the following extensions: " + validTypes;
+          scope.file_error_msg = "The submitted file: '" + flowFile.name + "' must end in the one of the following extensions: " + validTypes;
           event.preventDefault();
         }
       });
