@@ -165,6 +165,10 @@ table {
   white-space: pre-wrap;
 }
 
+.imageUploadBox {
+  display: inline-block;
+}
+
 .imageUpload {
   position: relative;
   width: 10em;

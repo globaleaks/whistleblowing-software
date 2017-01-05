@@ -146,6 +146,27 @@ directive('zxPasswordMeter', function() {
     }
   };
 }).
+directive('inlineUploadError', function() {
+  return {
+    restrict: 'A',
+    template: '<span data-ng-if="file_error_msg" class="text-danger"><span data-translate>Error:</span> <span>{{file_error_msg}}</span></span>',
+  };
+}).
+directive('extendFlowValidTypes', ['uploadUtils', function(uploadUtils) {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function(scope, iElment, iAttrs, ctrl) {
+      var validTypes = scope.$eval(iAttrs.extendFlowValidTypes);
+      scope.$on('flow::fileAdded', function(event, _, flowFile) {
+        if (!uploadUtils.validFilename(flowFile.name, validTypes)) {
+          scope.file_error_msg = "The submitted files must end in the one of the following extensions: " + validTypes;
+          event.preventDefault();
+        }
+      });
+    },
+  };
+}]).
 directive('imageUpload', function () {
   return {
     restrict: 'A',

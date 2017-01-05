@@ -8,13 +8,16 @@
       <label data-translate>Project favicon</label>
       <div class="well well-large uploadfile file-favicon">
         <span flow-init="{target: 'admin/files/favicon', headers: Authentication.get_headers()}"
-              flow-files-submitted="$flow.upload()">
+              flow-files-submitted="$flow.upload()"
+              flow-file-success="reload()"
+              extend-flow-valid-types="['ico']">
           <div class="btn btn-success fileinput-button">
             <span class="uploadfile" flow-btn>
               <span class="glyphicon glyphicon-plus"></span>
               <span data-translate>Upload</span>
             </span>
           </div>
+          <span inline-upload-error></span>
         </span>
       </div>
     </div>
