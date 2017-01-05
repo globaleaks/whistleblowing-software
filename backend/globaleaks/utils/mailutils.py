@@ -245,22 +245,20 @@ def send_exception_email(cleartxt_mail_body):
         mail_subject +=  " [%s]" % GLSettings.developer_name
         delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-    num_mails = len(delivery_list)
-
     cleartxt_mail_body = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, cleartxt_mail_body))
 
     sha256_hash = sha256(cleartxt_mail_body)
 
     if sha256_hash in GLSettings.exceptions:
-        GLSettings.exceptions[sha256_hash] += num_mails
+        GLSettings.exceptions[sha256_hash] += 1
         if GLSettings.exceptions[sha256_hash] > 5:
             # if the threshold has been exceeded
             log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
-        GLSettings.exceptions[sha256_hash] = num_mails
+        GLSettings.exceptions[sha256_hash] = 1
 
-    GLSettings.exceptions_email_count += num_mails
+    GLSettings.exceptions_email_count += 1
 
     try:
         for mail_address, pub_key in delivery_list:
