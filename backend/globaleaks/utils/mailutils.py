@@ -227,60 +227,63 @@ def extract_exception_traceback_and_send_email(e):
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 
-def send_exception_email(mail_body):
-    if not hasattr(GLSettings.memory_copy.notif, 'exception_email_address'):
+def send_exception_email(cleartxt_mail_body):
+    if not hasattr(GLSettings.memory_copy.notif, 'exception_delivery_list'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
-    if not isinstance(mail_body, str) and not isinstance(mail_body, unicode):
+    if not isinstance(cleartxt_mail_body, str) and not isinstance(cleartxt_mail_body, unicode):
         return
 
     if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
         return
 
-    mail_body = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, mail_body))
+    mail_subject = "GlobaLeaks Exception"
+    delivery_list = GLSettings.memory_copy.notif.exception_delivery_list
 
-    sha256_hash = sha256(mail_body)
+    if GLSettings.devel_mode:
+        mail_subject +=  " [%s]" % GLSettings.developer_name
+        delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
+
+    num_mails = len(delivery_list)
+
+    cleartxt_mail_body = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, cleartxt_mail_body))
+
+    sha256_hash = sha256(cleartxt_mail_body)
 
     if sha256_hash in GLSettings.exceptions:
-        GLSettings.exceptions[sha256_hash] += 1
+        GLSettings.exceptions[sha256_hash] += num_mails
         if GLSettings.exceptions[sha256_hash] > 5:
             # if the threshold has been exceeded
             log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
             return
     else:
-        GLSettings.exceptions[sha256_hash] = 1
+        GLSettings.exceptions[sha256_hash] = num_mails
 
-    GLSettings.exceptions_email_count += 1
+    GLSettings.exceptions_email_count += num_mails
 
     try:
-        mail_subject = "GlobaLeaks Exception"
-        mail_address = GLSettings.memory_copy.notif.exception_email_address
-        if GLSettings.devel_mode:
-            mail_subject +=  " [%s]" % GLSettings.developer_name
-            mail_address = "globaleaks-stackexception-devel@globaleaks.org"
+        for mail_address, pub_key in delivery_list:
+            # Opportunisticly encrypt the mail body. NOTE that mails will go out
+            # unencrypted if one address in the list does not have a public key set.
+            if len(pub_key):
+                gpob = GLBPGP()
+                try:
+                    r = gpob.load_key(pub_key)
+                    mail_body = gpob.encrypt_message(r['fingerprint'], cleartxt_mail_body)
+                    gpob.destroy_environment()
+                except Exception as excep:
+                    # If this exception email is configured to be subject to encryption
+                    # and the encryption step throws, log the error and move on.
+                    log.err("Error while encrypting exception email: %s" % str(excep))
+                    gpob.destroy_environment()
+                    continue
+            else:
+                mail_body = cleartxt_mail_body
 
-        # If the receiver has encryption enabled (for notification), encrypt the mail body
-        if len(GLSettings.memory_copy.notif.exception_email_pgp_key_public):
-            gpob = GLBPGP()
-            try:
-                gpob.load_key(GLSettings.memory_copy.notif.exception_email_pgp_key_public)
-                mail_body = gpob.encrypt_message(GLSettings.memory_copy.notif.exception_email_pgp_key_fingerprint, mail_body)
-            except Exception as excep:
-                # If exception emails are configured to be subject to encryption an the key
-                # expires the only thing to do is to disable the email.
-                # TODO: evaluate if notificate an alert in plaintext to the exception email
-                #       this could be done simply here replacing the email subject and body.
-                log.err("Error while encrypting exception email: %s" % str(excep))
-                return None
-            finally:
-                # the finally statement is always called also if
-                # except contains a return or a raise
-                gpob.destroy_environment()
-
-        # avoid to wait for the notification to happen  but rely on  background completion
-        sendmail(mail_address, mail_subject,  mail_body)
+            # avoid waiting for the notification to send and instead rely on threads to handle it
+            sendmail(mail_address, mail_subject, mail_body)
 
     except Exception as excep:
-        # we strongly need to avoid raising exception inside email logic to avoid chained errors
-        log.err("Unexpected exception in process_mail_exception: %s" % excep)
+        # Avoid raising exception inside email logic to avoid chaining errors
+        log.err("Unexpected exception in send_exception_mail: %s" % excep)
