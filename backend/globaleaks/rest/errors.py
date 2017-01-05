@@ -85,7 +85,7 @@ class QuestionnaireIdNotFound(GLException):
 
 class TipIdNotFound(GLException):
     """
-    The Tip Id requested does not exists in the database.
+    The Tip Id requested does not exist in the database.
     """
     reason = "Not found a Tip with the specified id"
     error_code = 13
