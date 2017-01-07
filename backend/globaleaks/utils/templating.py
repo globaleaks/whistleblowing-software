@@ -438,7 +438,8 @@ supported_template_types = {
     u'receiver_notification_limit_reached': Keyword,
     u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
-    u'admin_anomaly': AnomalyKeyword
+    u'admin_anomaly': AnomalyKeyword,
+    u'admin_test_static': NodeKeyword
 }
 
 
