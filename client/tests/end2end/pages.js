@@ -21,6 +21,17 @@ exports.receiver = function() {
     });
   };
 
+  this.wbfile_widget = function() {
+    return element(by.css('#TipPageWBFileUpload'));
+  };
+
+  this.uploadWBFile = function(fname) {
+    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
+      return browser.waitForAngular();
+    });
+  };
+
   function clickDelPubKey() {
     element(by.model('preferences.pgp_key_remove')).click();
     return element(by.cssContainingText("span", "Update notification and encryption settings")).click();

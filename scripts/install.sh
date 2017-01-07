@@ -31,10 +31,12 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
-if [ $DISTRO_CODENAME != "trusty" ]; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial)$" ; then
   echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
   echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Only Ubuntu Trusty (14.04) is supported"
+  echo "Supported platforms are:"
+  echo "  -  Ubuntu Trusty (14.04)"
+  echo "  -  Ubuntu Xenial (16.04)"
 
   while true; do
     read -p "Do you wish to continue anyway? [y|n]?" yn
@@ -56,6 +58,7 @@ echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_CODENAME"
 # or trusty as fallback.
 if [ $DISTRO_CODENAME != "precise" ] &&
    [ $DISTRO_CODENAME != "trusty" ] &&
+   [ $DISTRO_CODENAME != "xenial" ] &&
    [ $DISTRO_CODENAME != "wheezy" ] &&
    [ $DISTRO_CODENAME != "jessie" ]; then
   # In case of unsupported platforms we fallback on Trusty
@@ -130,10 +133,13 @@ if [ $DISTRO == "Ubuntu" ]; then
 fi
 
 if [ -d /data/globaleaks/deb ]; then
-  cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
-  echo "deb file:///data/globaleaks/deb/ /" >> /etc/apt/sources.list
   DO "apt-get update -y"
   DO "apt-get install dpkg-dev -y"
+  echo "Installing from locally provided debian package"
+  cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
+  echo "deb file:///data/globaleaks/deb/ /" >> /etc/apt/sources.list
+  # must update the cache after the package has been added
+  DO "apt-get update -y"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew"
 else
   if [ ! -f /etc/apt/sources.list.d/globaleaks.list ]; then

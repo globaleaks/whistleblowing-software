@@ -12,9 +12,7 @@
         <span data-translate>Add file</span>
       </button>
     </div>
-    <div data-ng-if="file_error_msg" class="file-upload-error alert alert-danger">
-      <span data-translate="Error:"></span> <span>{{file_error_msg}}</span>
-    </div>
+    <div errors-upload></div>
   </div>
   <div data-ng-include="'views/partials/rfile_upload_status.html'"></div>
 </div>

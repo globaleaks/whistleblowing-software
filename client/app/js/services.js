@@ -438,7 +438,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       $http({
         method: 'GET',
-        url: '/rtip/rfile/' + file.id,
+        url: 'rtip/rfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -453,7 +453,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       return $http({
         method: 'GET',
-        url: '/rtip/wbfile/' + file.id,
+        url: 'rtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -465,7 +465,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(tip) {
       $http({
         method: 'GET',
-        url: '/rtip/' + tip.id + '/export',
+        url: 'rtip/' + tip.id + '/export',
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;
@@ -508,7 +508,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           };
 
-          return $http({method: 'PUT', url: '/rtip/' + tip.id, data: req}).success(function () {
+          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).success(function () {
             tip[var_name] = var_value;
           });
         };
@@ -536,7 +536,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     return function(file) {
       $http({
         method: 'GET',
-        url: '/wbtip/wbfile/' + file.id,
+        url: 'wbtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
         var blob = response.data;

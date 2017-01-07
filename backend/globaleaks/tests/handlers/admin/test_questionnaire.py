@@ -11,6 +11,8 @@ from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import questionnaire
 from globaleaks.models import Questionnaire
 
+from globaleaks.handlers.admin.context import ContextInstance
+
 # special guest:
 stuff = u"³²¼½¬¼³²"
 
@@ -57,6 +59,8 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_delete(self):
         handler = self.request(self.dummyQuestionnaire, role='admin')
+        ctx_handler = self.request({}, handler_cls=ContextInstance, role='admin')
+        yield ctx_handler.delete(self.dummyContext['id'])
         yield handler.delete(self.dummyQuestionnaire['id'])
         yield self.assertFailure(handler.get(self.dummyQuestionnaire['id']),
                                  errors.QuestionnaireIdNotFound)

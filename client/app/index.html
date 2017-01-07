@@ -45,19 +45,17 @@
       #LoaderBox {
         position: relative;
         margin: 0 auto;
-        width: 30%;
-        height: 30%;
+        padding: 2em;
         display: flex;
         align-items: center;
-        font-size: 48px;
+        font-size: 2em;
         font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;
-        font-size: 48px;
         color: #555;
         background-color: #FFF;
-        border: 1px solid #DDD;
-        border-radius: 10px 10px 10px 10px;
-        -moz-border-radius: 10px 10px 10px 10px;
-        -webkit-border-radius: 10px 10px 10px 10px;
+        border: 0.1em solid #EEE;
+        border-radius: 0.7em;
+        -moz-border-radius: 0.7em;
+        -webkit-border-radius: 0.7em;
       }
 
       #LoaderBoxContent {
@@ -249,8 +247,8 @@
           return false;
         }
 
-        // Check related to WebCrypto compatibility currently disabled as end2end encryption  is still not finalized
-        if (!(window.crypto && window.crypto.getRandomValues) &&
+        // Check related to WebCrypto compatibility currently disabled as end2end encryption is still not finalized
+        if (!(window.crypto && (window.crypto.subtle || window.crypto.webkitSubtle) && window.crypto.getRandomValues) &&
             !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
           console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
           return false;

@@ -27,13 +27,12 @@ body {
 
 .container-fluid {
   width: 95%;
-  padding: 0;
+  padding: 3em;
   margin: 0;
 }
 
 #ContentBox {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding: 2em;
 }
 
 #FooterBox {
@@ -164,6 +163,10 @@ table {
 
 .preformatted {
   white-space: pre-wrap;
+}
+
+.imageUploadBox {
+  display: inline-block;
 }
 
 .imageUpload {

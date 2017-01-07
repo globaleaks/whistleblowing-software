@@ -13,7 +13,7 @@ If instead you need private support by the Hermes Center on a specific whistlebl
 
 Other resources:
 * [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
-* Join [#globaleaks](https://kiwiirc.com/client/irc.oftc.net/?nick=gl-?#globaleaks), our IRC chat channel on the irc.oftc.net server.
+* Join [#globaleaks](https://webchat.oftc.net/?nick=gl-guest.&channels=globaleaks), our IRC chat channel on the irc.oftc.net server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
@@ -32,7 +32,7 @@ Other resources:
 ## Donate
 To support the GlobaLeaks project you can help us with donations that will goes entirely for the software development.
 
-[Help us by sending us a small donation!](https://www.globaleaks.org/donate.html)
+[Help us by sending us a small donation!](https://www.globaleaks.org/donate)
 
 ## License
 This software is released under the AGPLv3 license. See LICENSE file for more information.
