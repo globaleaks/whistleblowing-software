@@ -1,10 +1,35 @@
-GLClient.controller('RFileUploadCtrl', ['$scope', function($scope) {
+GLClient.factory('uploadUtils', function() {
+  // Utils shared across file upload controllers and directives
+
+  function endsWith(subjectString, searchString) {
+    // endsWith polyfill adapted for use with IE from:
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/endsWith
+    var position = subjectString.length - searchString.length;
+    if (position < 0 ) { return false; }
+    var lastIndex = subjectString.lastIndexOf(searchString, position);
+    return lastIndex !== -1 && lastIndex === position;
+  }
+
+  return {
+    'validFilename': function(filename, types) {
+      for (var i = 0; i < types.length; i++) {
+        var s = filename.toLowerCase();
+        if (endsWith(s, types[i])) {
+            return true;
+        }
+      }
+      return false;
+    },
+  };
+}).
+controller('RFileUploadCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.disabled = false;
 
-  $scope.$on('flow::fileAdded', function (event, flow, flowFile) {
-    $scope.file_error_msg = undefined;
-    if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
-      $scope.file_error_msg = "This file exceeds the maximum upload size for this server.";
+  $scope.$on('flow::fileAdded', function (event, _, flowFile) {
+    var validSize = $scope.node.maximum_filesize * 1024 * 1024;
+    if ($scope.file_error_msgs === undefined) $scope.file_error_msgs = [];
+    if (flowFile.size > validSize) {
+      $scope.file_error_msgs.push($filter('translate')('Error on file:') + ' ' +  flowFile.name + ' - ' + $filter('translate')('File size not accepted.') + ' ' + $filter('translate')('Maximum file size is:') + ' ' + $filter('byteFmt')(validSize, 2));
       event.preventDefault();
     } else {
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
@@ -39,10 +64,7 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope,
     $scope.file_error_msg = undefined;
     if (flowFile.size > $rootScope.node.maximum_filesize * 1024 * 1024) {
       $scope.file_error_msg = "This file exceeds the maximum upload size for this server.";
-    } else if(flowFile.file.type !== "image/png") {
-      $scope.file_error_msg = "Only PNG files are currently supported.";
     }
-
     if ($scope.file_error_msg !== undefined)  {
       event.preventDefault();
     }

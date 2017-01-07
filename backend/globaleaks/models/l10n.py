@@ -198,6 +198,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'message_mail_title',
         'tip_expiration_mail_template',
         'tip_expiration_mail_title',
+        'tip_expiration_summary_mail_template',
+        'tip_expiration_summary_mail_title',
         'receiver_notification_limit_reached_mail_template',
         'receiver_notification_limit_reached_mail_title',
         'identity_access_authorized_mail_template',
@@ -235,6 +237,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_test_static_mail_template',
         'admin_test_static_mail_title',
     })
+
+    # These strings are modifiable via the admin/notification handler
+    modifiable_keys = localized_keys - unmodifiable_keys
 
     def __init__(self, store, *args, **kwargs):
         ConfigL10NFactory.__init__(self, store, 'notification', *args, **kwargs)

@@ -20,7 +20,8 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.security import overwrite_and_remove
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log, datetime_now, datetime_never, \
+    datetime_to_ISO8601
 
 
 __all__ = ['CleaningSchedule']
@@ -66,29 +67,60 @@ class CleaningSchedule(GLJob):
     @transact_sync
     def check_for_expiring_submissions(self, store):
         threshold = datetime_now() + timedelta(GLSettings.memory_copy.notif.tip_expiration_threshold)
-        for rtip in store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
-                                                   models.InternalTip.expiration_date < threshold):
-            user = rtip.receiver.user
+        receivers = store.find(models.Receiver)
+        for receiver in receivers:
+            rtips = store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
+                                                   models.InternalTip.expiration_date < threshold,
+                                                   models.ReceiverTip.receiver_id == models.Receiver.id,
+                                                   models.Receiver.id == receiver.id)
+
+            if rtips.count() == 0:
+              continue
+
+            user = receiver.user
             language = user.language
             node_desc = db_admin_serialize_node(store, language)
             notification_desc = db_get_notification(store, language)
-            context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
-            receiver_desc = admin_serialize_receiver(rtip.receiver, language)
-            tip_desc = serialize_rtip(store, rtip, user.language)
 
-            data = {
-               'type': u'tip_expiration',
-               'node': node_desc,
-               'context': context_desc,
-               'receiver': receiver_desc,
-               'notification': notification_desc,
-               'tip': tip_desc
-            }
+            receiver_desc = admin_serialize_receiver(receiver, language)
+
+            if rtips.count() == 1:
+                rtip = rtips[0]
+                tip_desc = serialize_rtip(store, rtip, user.language)
+                context_desc = admin_serialize_context(store, rtip.internaltip.context, language)
+
+                data = {
+                   'type': u'tip_expiration',
+                   'node': node_desc,
+                   'context': context_desc,
+                   'receiver': receiver_desc,
+                   'notification': notification_desc,
+                   'tip': tip_desc
+                }
+
+            else:
+                tips_desc = []
+                earliest_expiration_date = datetime_never()
+
+                for rtip in rtips:
+                    if rtip.internaltip.expiration_date < earliest_expiration_date:
+                        earliest_expiration_date = rtip.internaltip.expiration_date
+
+                    tips_desc.append(serialize_rtip(store, rtip, user.language))
+
+                data = {
+                   'type': u'tip_expiration_summary',
+                   'node': node_desc,
+                   'notification': notification_desc,
+                   'receiver': receiver_desc,
+                   'expiring_submission_count': rtips.count(),
+                   'earliest_expiration_date': datetime_to_ISO8601(earliest_expiration_date)
+                }
 
             subject, body = Templating().get_mail_subject_and_body(data)
 
             mail = models.Mail({
-               'address': data['receiver']['mail_address'],
+               'address': receiver_desc['mail_address'],
                'subject': subject,
                'body': body
             })

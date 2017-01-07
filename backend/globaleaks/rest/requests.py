@@ -8,7 +8,9 @@
 # handler in order to verify if the request is correct.
 
 from globaleaks import models
+from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.utils.structures import get_raw_request_format
+from globaleaks.utils.sets import disjoint_union
 
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'
@@ -229,7 +231,7 @@ AdminNodeDesc = {
     'basic_auth_password': unicode
 }
 
-AdminNotificationDesc = {
+AdminNotificationDesc = disjoint_union({
     'server': unicode,
     'port': int,
     'security': unicode, # 'TLS' or 'SSL' only
@@ -237,24 +239,6 @@ AdminNotificationDesc = {
     'smtp_password': unicode,
     'source_name': unicode,
     'source_email': email_regexp,
-    'tip_mail_template': unicode,
-    'tip_mail_title': unicode,
-    'file_mail_template': unicode,
-    'file_mail_title': unicode,
-    'comment_mail_template': unicode,
-    'comment_mail_title': unicode,
-    'message_mail_template': unicode,
-    'message_mail_title': unicode,
-    'admin_pgp_alert_mail_template': unicode,
-    'admin_pgp_alert_mail_title': unicode,
-    'pgp_alert_mail_template': unicode,
-    'pgp_alert_mail_title': unicode,
-    'receiver_notification_limit_reached_mail_template': unicode,
-    'receiver_notification_limit_reached_mail_title': unicode,
-    'tip_expiration_mail_template': unicode,
-    'tip_expiration_mail_title': unicode,
-    'admin_anomaly_mail_template': unicode,
-    'admin_anomaly_mail_title': unicode,
     'disable_admin_notification_emails': bool,
     'disable_custodian_notification_emails': bool,
     'disable_receiver_notification_emails': bool,
@@ -266,7 +250,9 @@ AdminNotificationDesc = {
     'exception_email_pgp_key_expiration': unicode,
     'exception_email_pgp_key_public': unicode,
     'exception_email_pgp_key_remove': bool
-}
+  },
+  {k: unicode for k in NotificationL10NFactory.modifiable_keys}
+)
 
 AdminFieldOptionDesc = {
     'id': uuid_regexp_or_empty,

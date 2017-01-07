@@ -20,8 +20,7 @@ if which lsb_release >/dev/null; then
 fi
 
 PIP_NEEDED=1
-if [ "$DISTRO_CODENAME" = "jessie" ]; then
-  # debian jessie is currently the only one with all the dependencies
+if echo "$DISTRO_CODENAME" | grep -qE "^(jessie)|(xenial)$"; then
   PIP_NEEDED=0
 fi
 

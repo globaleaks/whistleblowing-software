@@ -12,7 +12,13 @@ profile usr.bin.globaleaks {
     capability dac_override,
     capability sys_tty_config,
 
-    /proc/*/mounts r,
+    /etc/lsb-release r,
+    /etc/mime.types r,
+    /etc/python2.7/** r,
+
+    @{PROC}/ r,
+    owner @{PROC}/@{pid}/mounts r,
+    owner @{PROC}/@{pid}/status r,
 
     /usr/bin/ r,
     /usr/bin/globaleaks r,
@@ -27,8 +33,6 @@ profile usr.bin.globaleaks {
     /usr/include/python2.7/** r,
     /usr/lib/python2.7/** mr,
     /usr/local/lib/python2.7/** mr,
-    /etc/python2.7/** r,
-    /etc/mime.types r,
 
     /var/globaleaks/ r,
     /var/globaleaks/** lrwk,

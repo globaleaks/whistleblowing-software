@@ -2,7 +2,7 @@ Dear %RecipientName%,
 
 The submission [%TipNum%] related to context %ContextName% is going to expire in %ExpirationWatch% hours.
 
-Log in and check it out before it's too late!
+Please check the platform for more information.
 
 The submission can be accessed:
 via Tor at: %TorURL%

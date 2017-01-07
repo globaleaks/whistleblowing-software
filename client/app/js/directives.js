@@ -146,6 +146,50 @@ directive('zxPasswordMeter', function() {
     }
   };
 }).
+directive('errorsUpload', function() {
+  return {
+    restrict: 'A',
+    template: '<div data-ng-if="file_error_msgs" data-ng-repeat="file_error_msg in file_error_msgs track by $index"><div class="file-upload-error alert alert-danger alert-dismissible"><button type="button" class="close" ng-click="file_error_msgs.splice($index, 1)" data-dismiss="alert" aria-label="close">&times;</button><div>{{file_error_msg}}</div></div>',
+  };
+}).
+directive('extendFlowValidTypes', ['uploadUtils', '$filter', function(uploadUtils, $filter) {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function(scope, iElment, iAttrs, ctrl) {
+      var validTypes = scope.$eval(iAttrs.extendFlowValidTypes);
+      scope.$on('flow::fileAdded', function(event, _, flowFile) {
+        var uppercaseTypes = [];
+
+        for (var i=0; i<validTypes.length; i++) {
+            uppercaseTypes.push(validTypes[i].toUpperCase());
+        }
+
+        if (!uploadUtils.validFilename(flowFile.name, validTypes)) {
+          if (scope.file_error_msgs === undefined) scope.file_error_msgs = [];
+          scope.file_error_msgs.push($filter('translate')('Error on file:') + ' ' +  flowFile.name + ' - ' + $filter('translate')('File type not accepted.') + ' ' + $filter('translate')('Accepted file types are:') + ' ' + uppercaseTypes);
+          event.preventDefault();
+        }
+      });
+    },
+  };
+}]).
+directive('extendFlowValidSize', ['$filter', function($filter) {
+  return {
+    restrict: 'A',
+    scope: true,
+    link: function(scope, iElment, iAttrs, ctrl) {
+      var validSize = scope.$eval(iAttrs.extendFlowValidSize);
+      scope.$on('flow::fileAdded', function(event, _, flowFile) {
+        if (flowFile.size > validSize) {
+          if (scope.file_error_msgs == undefined) scope.file_error_msgs = [];
+          scope.file_error_msgs.push($filter('translate')('Error on file:') + ' ' +  flowFile.name + ' - ' + $filter('translate')('File size not accepted.') + ' ' + $filter('translate')('Maximum file size is:') + ' ' + $filter('byteFmt')(validSize, 2));
+          event.preventDefault();
+        }
+      });
+    }
+  };
+}]).
 directive('imageUpload', function () {
   return {
     restrict: 'A',
