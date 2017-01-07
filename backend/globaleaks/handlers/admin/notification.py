@@ -2,6 +2,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.db import db_refresh_memory_variables
 from globaleaks.db.appdata import load_appdata
+from globaleaks.handlers.admin.node import admin_serialize_node
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import get_user_settings
 from globaleaks.models.config import NotificationFactory, PrivateFactory
@@ -13,6 +14,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.security import parse_pgp_key
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
 
@@ -142,19 +144,26 @@ class NotificationTestInstance(BaseHandler):
         """
         user = yield get_user_settings(self.current_user.user_id,
                                      GLSettings.memory_copy.default_language)
-        notif = yield get_notification(user['language'])
+
+        language = user['language']
+
+        notif = yield get_notification(language)
+
+        data = {}
+        data['type'] = 'admin_test_static'
+        data['node'] = yield admin_serialize_node(language)
+        data['notification'] = yield get_notification(language)
+
+        subject, body = Templating().get_mail_subject_and_body(data)
 
         send_to = user['mail_address']
-        # Get the test emails subject line and body internationalized from notif
-        subject = notif['admin_test_static_mail_title']
-        msg = notif['admin_test_static_mail_template']
 
         log.debug("Attempting to send test email to: %s" % send_to)
         # If sending the email fails the exception mail address will be mailed.
         # If the failure is due to a bad SMTP config that will fail too, but it
         # doesn't hurt to try!
         try:
-            yield sendmail(send_to, subject, msg)
+            yield sendmail(send_to, subject, body)
         except Exception as e:
             log.debug("Sending to admin failed. Trying an exception mail")
             raise e

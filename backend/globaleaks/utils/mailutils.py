@@ -26,6 +26,7 @@ from twisted.python.failure import Failure
 from txsocksx.client import SOCKS5ClientEndpoint
 
 from globaleaks import __version__
+from globaleaks.orm import transact
 from globaleaks.security import GLBPGP, sha256
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
