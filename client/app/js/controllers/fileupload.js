@@ -14,7 +14,7 @@ GLClient.factory('uploadUtils', function() {
     'validFilename': function(filename, types) {
       for (var i = 0; i < types.length; i++) {
         var s = filename.toLowerCase();
-        if (endsWith(filename, types[i])) {
+        if (endsWith(s, types[i])) {
             return true;
         }
       }
