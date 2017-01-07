@@ -3,14 +3,16 @@
   <span flow-init="{target: 'admin/files/' + admin_file.varname, headers: Authentication.get_headers()}"
         flow-files-submitted="$flow.upload()"
         flow-file-success="reload()"
-        extend-flow-valid-types="[admin_file.type]">
+        flow-file-single
+        extend-flow-valid-types="[admin_file.type]"
+        extend-flow-valid-size="[admin_file.size]">
     <div class="btn btn-success fileinput-button">
       <span class="uploadfile" flow-btn>
         <span class="glyphicon glyphicon-plus"></span>
         <span data-translate>Upload</span>
       </span>
     </div>
-    <span inline-upload-error></span>
+    <div errors-upload></div>
   </span>
   <span data-ng-if="node[admin_file.varname]">
     <a class="btn btn-primary" href="data:application/octet-stream;base64,{{node[admin_file.varname]}}" download={{admin_file.filename}}>

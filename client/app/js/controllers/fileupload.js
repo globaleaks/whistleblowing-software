@@ -22,13 +22,14 @@ GLClient.factory('uploadUtils', function() {
     },
   };
 }).
-controller('RFileUploadCtrl', ['$scope', function($scope) {
+controller('RFileUploadCtrl', ['$scope', '$filter', function($scope, $filter) {
   $scope.disabled = false;
 
-  $scope.$on('flow::fileAdded', function (event, flow, flowFile) {
-    $scope.file_error_msg = undefined;
-    if (flowFile.size > $scope.node.maximum_filesize * 1024 * 1024) {
-      $scope.file_error_msg = "This file exceeds the maximum upload size for this server.";
+  $scope.$on('flow::fileAdded', function (event, _, flowFile) {
+    var validSize = $scope.node.maximum_filesize * 1024 * 1024;
+    if ($scope.file_error_msgs === undefined) $scope.file_error_msgs = [];
+    if (flowFile.size > validSize) {
+      $scope.file_error_msgs.push($filter('translate')('Error on file:') + ' ' +  flowFile.name + ' - ' + $filter('translate')('File size not accepted.') + ' ' + $filter('translate')('Maximum file size is:') + ' ' + $filter('byteFmt')(validSize, 2));
       event.preventDefault();
     } else {
       if ($scope.field !== undefined && !$scope.field.multi_entry) {
