@@ -26,7 +26,7 @@ If the current behavior is a bug or you can illustrate your feature request bett
 <!-- Operating system, IDE, package manager, HTTP server, ... -->
 
 * **GlobaLeaks version:** 2.X.Y
-<!-- Check whether this is still an issue in the most recent Angular version -->
+<!-- Check whether this is still an issue in the most recent GlobaLeaks version -->
 
 * **Browser:** [all | Chrome XX | Firefox XX | IE XX | Safari XX | Mobile Chrome XX | Other (specify) ]
 <!-- All browsers where this could be reproduced -->
