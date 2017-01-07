@@ -147,9 +147,10 @@ directive('zxPasswordMeter', function() {
   };
 }).
 directive('errorsUpload', function() {
+  // Depends on file_error_msgs is defined in parent scope.
   return {
     restrict: 'A',
-    template: '<div data-ng-if="file_error_msgs" data-ng-repeat="file_error_msg in file_error_msgs track by $index"><div class="file-upload-error alert alert-danger alert-dismissible"><button type="button" class="close" ng-click="file_error_msgs.splice($index, 1)" data-dismiss="alert" aria-label="close">&times;</button><div>{{file_error_msg}}</div></div>',
+    templateUrl: 'views/partials/upload_error_msg.html',
   };
 }).
 directive('extendFlowValidTypes', ['uploadUtils', '$filter', function(uploadUtils, $filter) {
