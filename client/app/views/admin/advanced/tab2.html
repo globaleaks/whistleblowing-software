@@ -23,5 +23,14 @@
       <input data-ng-init="admin.node.tor2web_unauth" data-ng-model="admin.node.tor2web_unauth" type="checkbox">
       <label data-translate>Allow access to public resources via HTTPS</label>
     </div>
+
+    <h3 data-translate>SSL certificate configuration</h3>
+    <p>
+    <span data-translate>This section allows you to upload an SSL certificate to use with this node.</span>
+    <span data-translate>Once you have uploaded all three files you can check the configuration by visiting this server on port 443 with a web browser.</span>
+    </p>
+
+    <div data-ng-repeat="ssl_file in ssl_files" data-ng-include="'views/partials/ssl_file.html'"></div>
+
   </div>
 </div>

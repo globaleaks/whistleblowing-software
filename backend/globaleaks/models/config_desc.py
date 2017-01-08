@@ -131,5 +131,8 @@ GLConfig = {
         'threshold_free_disk_percentage_low': Int(default=10),
 
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
+        'ssl_priv_key_set': Bool(default=False),
+        'ssl_cert_set': Bool(default=False),
+        'ssl_chain_set': Bool(default=False),
     },
 }

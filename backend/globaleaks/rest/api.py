@@ -119,6 +119,7 @@ spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
+    (r'/admin/files/ssl/(priv_key|cert|chain)', admin_files.SSLFileInstance),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),

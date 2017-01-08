@@ -288,7 +288,7 @@ class GLSecureFile(GLSecureTemporaryFile):
             self.initialize_cipher()
 
         except Exception as axa:
-            # I'm sorry, those file is a dead file!
+            # I'm sorry, that file is a dead file!
             log.err("The file %s has been encrypted with a lost/invalid key (%s)" % (self.keypath, axa.message))
             raise axa
 
@@ -312,7 +312,7 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
 
 def hash_password(password, salt):
     """
-    @param password: a password
+    @param password: a unicode or utf-8 string
     @param salt: a password salt
 
     @return:
@@ -347,9 +347,9 @@ def change_password(old_password_hash, old_password, new_password, salt):
 
 class GLBPGP(object):
     """
-    PGP has not a dedicated class, because one of the function is called inside a transact, and
-    I'm not quite confident on creating an object that operates on the filesystem knowing
-    that would be run also on the Storm cycle.
+    PGP does not have a dedicated class, because one of the function is called inside a transact.
+    I'm not confident creating an object that operates on the filesystem knowing that
+    would be run also on the Storm cycle.
     """
     def __init__(self):
         """
