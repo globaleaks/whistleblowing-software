@@ -712,7 +712,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     new_shorturl: function () {
       return new AdminShorturlResource();
-    }
+    },
+
+    delete_resource: function(url, refresh) {
+      return $http.delete(url).success(function () {
+        if (refresh) {
+          $scope.$emit("REFRESH");
+        }
+      });
+    },
   };
 }]).
   factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',

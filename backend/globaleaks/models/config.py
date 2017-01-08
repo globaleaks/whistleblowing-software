@@ -118,7 +118,11 @@ class NodeFactory(ConfigFactory):
         'threshold_free_disk_megabytes_low',
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_medium',
-        'threshold_free_disk_percentage_low'
+        'threshold_free_disk_percentage_low',
+
+        'ssl_priv_key_set',
+        'ssl_cert_set',
+        'ssl_chain_set',
     })
 
     admin_node = frozenset(GLConfig['node'].keys())

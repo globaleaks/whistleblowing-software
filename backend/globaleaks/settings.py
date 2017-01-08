@@ -230,6 +230,7 @@ class GLSettingsClass(object):
         self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
+        self.ssl_file_path = os.path.abspath(os.path.join(self.files_path, 'ssl'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION

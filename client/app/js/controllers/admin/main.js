@@ -229,6 +229,32 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     }
   ];
 
+  $scope.ssl_files = [
+    {
+       title: 'Private key',
+       name: 'priv_key',
+       flag: 'ssl_priv_key_set',
+       type: 'pem',
+       help: 'The key for the certificate',
+    },
+    {
+       title: 'Certificate',
+       name: 'cert',
+       flag: 'ssl_cert_set',
+       type: 'pem',
+    },
+    {
+       title: 'Certificate chain',
+       name: 'chain',
+       flag: 'ssl_chain_set',
+       type: 'pem',
+    },
+  ];
+
+  angular.forEach($scope.ssl_files, function(file) {
+    file.url = '/admin/files/ssl/' + file.name;
+  });
+
   $scope.open_modal_allow_unencrypted = function() {
     if (!$scope.admin.node.allow_unencrypted) {
       return;
