@@ -212,6 +212,18 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
+controller('AdminSSLConfigCtrl', ['$scope', 'AdminSSLConfigResource',
+  function($scope, SSLConfigResource) {
+  $scope.ssl_config = new SSLConfigResource({
+    cert: 'xxx',
+    priv_key: 'yyy',
+    chain: 'zzz',
+  });
+
+  $scope.submitConfig = function() {
+    $scope.ssl_config.$save();
+  };
+}]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   function($scope, $uibModal){
   $scope.tabs = [
@@ -228,32 +240,6 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
       template:"views/admin/advanced/tab3.html"
     }
   ];
-
-  $scope.ssl_files = [
-    {
-       title: 'Private key',
-       name: 'priv_key',
-       flag: 'ssl_priv_key_set',
-       type: 'pem',
-       help: 'The key for the certificate',
-    },
-    {
-       title: 'Certificate',
-       name: 'cert',
-       flag: 'ssl_cert_set',
-       type: 'pem',
-    },
-    {
-       title: 'Certificate chain',
-       name: 'chain',
-       flag: 'ssl_chain_set',
-       type: 'pem',
-    },
-  ];
-
-  angular.forEach($scope.ssl_files, function(file) {
-    file.url = '/admin/files/ssl/' + file.name;
-  });
 
   $scope.open_modal_allow_unencrypted = function() {
     if (!$scope.admin.node.allow_unencrypted) {

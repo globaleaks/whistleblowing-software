@@ -368,6 +368,12 @@ AdminReceiverDesc = {
     'configuration': unicode
 }
 
+AdminSSLConfigDesc = {
+    'priv_key': unicode,
+    'chain': unicode,
+    'cert': unicode,
+}
+
 AdminShortURLDesc = {
     'shorturl': shorturl_regexp,
     'longurl': longurl_regexp

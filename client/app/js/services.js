@@ -568,6 +568,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/l10n/:lang', {lang: '@lang'});
 }]).
+  factory('AdminSSLConfigResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/ssl');
+}]).
   factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return {
