@@ -183,13 +183,12 @@ class MailGenerator(object):
                 # except contains a return or a raise
                 gpob.destroy_environment()
 
-        mail = models.Mail({
+        store.add(models.Mail({
             'address': data['receiver']['mail_address'],
             'subject': subject,
             'body': body
-        })
+        }))
 
-        store.add(mail)
 
     @transact_sync
     def generate(self, store):

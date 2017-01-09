@@ -494,14 +494,3 @@ class Templating(object):
         body = self.format_template(body_template, data)
 
         return subject, body
-
-    def db_prepare_mail(self, store, data):
-        subject, body = self.get_mail_subject_and_body(data)
-
-        mail = models.Mail({
-            'address': data['address'],
-            'subject': subject,
-            'body': body
-        })
-
-        store.add(mail)

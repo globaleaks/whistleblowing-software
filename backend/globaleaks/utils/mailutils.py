@@ -25,7 +25,7 @@ from twisted.protocols import tls
 from twisted.python.failure import Failure
 from txsocksx.client import SOCKS5ClientEndpoint
 
-from globaleaks import __version__
+from globaleaks import __version__, models
 from globaleaks.orm import transact
 from globaleaks.security import GLBPGP, sha256
 from globaleaks.settings import GLSettings
@@ -228,12 +228,9 @@ def extract_exception_traceback_and_send_email(e):
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 
-def send_exception_email(cleartxt_mail_body):
+def send_exception_email(exception_text):
     if not hasattr(GLSettings.memory_copy.notif, 'exception_delivery_list'):
         log.err("Error: Cannot send mail exception before complete initialization.")
-        return
-
-    if not isinstance(cleartxt_mail_body, str) and not isinstance(cleartxt_mail_body, unicode):
         return
 
     if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
@@ -246,9 +243,9 @@ def send_exception_email(cleartxt_mail_body):
         mail_subject +=  " [%s]" % GLSettings.developer_name
         delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-    cleartxt_mail_body = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, cleartxt_mail_body))
+    exception_text = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, exception_text))
 
-    sha256_hash = sha256(cleartxt_mail_body)
+    sha256_hash = sha256(exception_text)
 
     if sha256_hash in GLSettings.exceptions:
         GLSettings.exceptions[sha256_hash] += 1
@@ -263,13 +260,15 @@ def send_exception_email(cleartxt_mail_body):
 
     try:
         for mail_address, pub_key in delivery_list:
+            mail_body = exception_text
+
             # Opportunisticly encrypt the mail body. NOTE that mails will go out
             # unencrypted if one address in the list does not have a public key set.
             if len(pub_key):
                 gpob = GLBPGP()
                 try:
                     r = gpob.load_key(pub_key)
-                    mail_body = gpob.encrypt_message(r['fingerprint'], cleartxt_mail_body)
+                    mail_body = gpob.encrypt_message(r['fingerprint'], mail_body)
                     gpob.destroy_environment()
                 except Exception as excep:
                     # If this exception email is configured to be subject to encryption
@@ -277,11 +276,9 @@ def send_exception_email(cleartxt_mail_body):
                     log.err("Error while encrypting exception email: %s" % str(excep))
                     gpob.destroy_environment()
                     continue
-            else:
-                mail_body = cleartxt_mail_body
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            sendmail(mail_address, mail_subject, mail_body)
+            send_email(mail_address, mail_subject, mail_body)
 
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors
