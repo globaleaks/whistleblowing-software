@@ -43,28 +43,38 @@ class PGPCheckSchedule(GLJob):
             user_language = user_desc['language']
 
             data = {
-                'address': user_desc['mail_address'],
                 'type': u'admin_pgp_alert',
                 'node': db_admin_serialize_node(store, user_language),
                 'notification': db_get_notification(store, user_language),
                 'users': expired_or_expiring
             }
 
-            Templating().db_prepare_mail(store, data)
+            subject, body = Templating().get_mail_subject_and_body(data)
+
+            store.add(models.Mail({
+                'address': user_desc['mail_address'],
+                'subject': subject,
+                'body': body
+            }))
 
 
     def prepare_user_pgp_alerts(self, store, user_desc):
         user_language = user_desc['language']
 
         data = {
-            'address': user_desc['mail_address'],
             'type': u'pgp_alert',
             'node': db_admin_serialize_node(store, user_language),
             'notification': db_get_notification(store, user_language),
             'user': user_desc
         }
 
-        Templating().db_prepare_mail(store, data)
+        subject, body = Templating().get_mail_subject_and_body(data)
+
+        store.add(models.Mail({
+            'address': user_desc['mail_address'],
+            'subject': subject,
+            'body': body
+        }))
 
     @transact_sync
     def perform_pgp_validation_checks(self, store):

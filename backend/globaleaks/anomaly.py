@@ -247,14 +247,20 @@ class AlarmClass(object):
                 user_language = user_desc['language']
 
                 data = {
-                    'address': user_desc['mail_address'],
                     'type': u'admin_anomaly',
                     'node': db_admin_serialize_node(store, user_language),
                     'notification': db_get_notification(store, user_language),
                     'alert': alert
                 }
 
-                Templating().db_prepare_mail(store, data)
+                subject, body = Templating().get_mail_subject_and_body(data)
+
+                store.add(models.Mail({
+                    'address': user_desc['mail_adddress'],
+                    'subject': subject,
+                    'body': body
+                }))
+
 
 
         self.last_alarm_email = datetime_now()
