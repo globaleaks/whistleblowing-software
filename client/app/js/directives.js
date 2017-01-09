@@ -179,7 +179,7 @@ directive('extendFlowValidSize', ['$filter', function($filter) {
     restrict: 'A',
     scope: true,
     link: function(scope, iElment, iAttrs, ctrl) {
-      var validSize = scope.$eval(iAttrs.extendFlowValidSize);
+      var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize));
       scope.$on('flow::fileAdded', function(event, _, flowFile) {
         if (flowFile.size > validSize) {
           if (scope.file_error_msgs == undefined) scope.file_error_msgs = [];

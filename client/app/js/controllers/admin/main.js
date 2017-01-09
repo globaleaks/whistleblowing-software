@@ -140,19 +140,22 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
         'title': 'Custom CSS',
         'varname': 'css',
         'filename': 'custom_stylesheet.css',
-        'type': 'css'
+        'type': 'css',
+        'size': '1048576'
       },
       {
         'title': 'Custom JavaScript',
         'varname': 'script',
         'filename': 'custom_script.js',
         'type': 'js',
+        'size': '1048576'
       },
       {
         'title': 'Custom homepage',
         'varname': 'homepage',
         'filename': 'custom_homepage.html',
-        'type': 'html,'
+        'type': 'html',
+        'size': '1048576'
       },
   ];
 
