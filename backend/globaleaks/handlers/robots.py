@@ -30,7 +30,12 @@ class RobotstxtHandler(BaseHandler):
         self.set_header('Content-Type', 'text/plain')
 
         self.write("User-agent: *\n")
-        self.write("Allow: /" if GLSettings.memory_copy.allow_indexing else "Disallow: /")
+
+        if GLSettings.memory_copy.allow_indexing:
+            self.write("Allow: /\n\n")
+            self.write("Sitemap: %s/sitemap.xml" % GLSettings.memory_copy.public_site)
+        else:
+            self.write("Disallow: /\n")
 
 
 class SitemapHandler(BaseHandler):
