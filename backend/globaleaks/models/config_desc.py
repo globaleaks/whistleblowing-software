@@ -21,6 +21,8 @@ class Item:
 class Unicode(Item):
     _type = unicode
 
+    def __init__(self, default=u'', *args, **kwargs):
+        Item.__init__(self,  default=default, *args, **kwargs)
 
 class Int(Item):
     _type = int
@@ -37,6 +39,10 @@ GLConfig = {
 
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
+
+        'ssl_priv_key': Unicode(),
+        'ssl_cert': Unicode(),
+        'ssl_chain': Unicode(),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
@@ -131,8 +137,5 @@ GLConfig = {
         'threshold_free_disk_percentage_low': Int(default=10),
 
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
-        'ssl_priv_key_set': Bool(default=False),
-        'ssl_cert_set': Bool(default=False),
-        'ssl_chain_set': Bool(default=False),
     },
 }

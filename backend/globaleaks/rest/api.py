@@ -7,7 +7,7 @@ from cyclone import web
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.handlers import exception, \
-    receiver, custodian, \
+                                receiver, custodian, \
                                 public, \
                                 submission, \
                                 rtip, wbtip, \
@@ -15,6 +15,8 @@ from globaleaks.handlers import exception, \
                                 export, l10n, wizard, \
                                 base, user, shorturl, \
                                 robots
+
+from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
@@ -32,6 +34,7 @@ from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
+
 from globaleaks.utils.utility import randbits
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -120,6 +123,7 @@ spec = [
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/files/ssl/(priv_key|cert|chain)', admin_files.SSLFileInstance),
+    (r'/admin/config/ssl', admin_config.SSLSetupWizard),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
