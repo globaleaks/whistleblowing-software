@@ -47,19 +47,20 @@ class SitemapHandler(BaseHandler):
         self.set_header('Content-Type', 'text/xml')
 
         self.write("<?xml version='1.0' encoding='UTF-8' ?>\n" +
-                   "<urlset\n" +
-                   "         xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'\n" +
-                   "         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'\n" +
-                   "         xsi:schemaLocation='http://www.sitemaps.org/schemas/sitemap/0.9\n" +
-                   "         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'>\n" +
-                   "  <url>\n" +
-                   "    <loc>" + GLSettings.memory_copy.public_site + "/</loc>\n" +
-                   "    <changefreq>weekly</changefreq>\n" +
-                   "    <priority>1.00</priority>\n" +
-                   "  </url>\n" +
-                   "  <url>\n" +
-                   "    <loc>" + GLSettings.memory_copy.public_site + "/#/submission</loc>\n" +
-                   "    <changefreq>weekly</changefreq>\n" +
-                   "    <priority>1.00</priority>\n" +
-                   "  </url>\n" +
-                   "</urlset>")
+                   "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n")
+
+        for url in ['/#/', '/#/submission']:
+            self.write("  <url>\n" +
+                       "    <loc>" + GLSettings.memory_copy.public_site + url + "</loc>\n" +
+                       "    <changefreq>weekly</changefreq>\n" +
+                       "    <priority>1.00</priority>\n")
+
+            for lang in sorted(GLSettings.memory_copy.languages_enabled):
+                if lang != GLSettings.memory_copy.default_language:
+                    l = lang.lower()
+                    l = l.replace('_', '-')
+                    self.write("    <xhtml:link rel='alternate' hreflang='" + l + "' href='" + GLSettings.memory_copy.public_site + "/#/?lang=" + lang + "' />\n")
+
+            self.write("  </url>\n")
+
+        self.write("</urlset>")
