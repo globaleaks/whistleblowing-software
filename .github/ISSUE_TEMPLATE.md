@@ -1,11 +1,12 @@
-<!--PLEASE FILL THE FOLLOWING INFORMATION -->
+<!--
 
-**I'm submitting a ...**  (check one with "x")
-```
-[ ] bug report => search github for a similar issue before submitting
-[ ] feature request
-[ ] support request => Please do not submit support requests here, instead use: https://www.globaleaks.org/contact/
-```
+PLEASE FILL THE FOLLOWING INFORMATION
+
+Please use this form just for but reporting or feature requests.
+For all that relates to support requests please instead use: https://www.globaleaks.org/contact/
+
+-->
+~                           
 
 **Current behavior**
 <!-- Describe how the bug manifests. -->
@@ -21,9 +22,6 @@ If the current behavior is a bug or you can illustrate your feature request bett
 
 **What is the motivation / use case for changing the behavior?**
 <!-- Describe the motivation or the concrete use case -->
-
-**Please tell us about your environment:**
-<!-- Operating system, IDE, package manager, HTTP server, ... -->
 
 * **GlobaLeaks version:** 2.X.Y
 <!-- Check whether this is still an issue in the most recent GlobaLeaks version -->
