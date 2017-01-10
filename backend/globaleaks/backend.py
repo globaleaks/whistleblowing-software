@@ -18,6 +18,8 @@ from globaleaks.utils.utility import GLLogObserver
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 
+import globaleaks.mocks.cyclone_mocks
+
 
 application = service.Application('GLBackend')
 

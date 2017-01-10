@@ -157,7 +157,4 @@ def get_api_factory():
                     debug=GLSettings.log_requests_responses,
                     gzip=True)
 
-    GLAPIFactory = Application(spec, **settings)
-    GLAPIFactory.protocol = base.GLHTTPConnection
-
-    return GLAPIFactory
+    return Application(spec, **settings)
