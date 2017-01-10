@@ -44,9 +44,6 @@ def mock_RequestHandler_set_default_headers(self):
         self.set_header("X-Frame-Options", "sameorigin")
 
 
-def mock_HTTPConnection_init(self):
-    self.uploaded_file = {}
-
 def mock_HTTPConnection_on_headers(self, data):
     try:
         data = native_str(data.decode("latin1"))
@@ -97,5 +94,4 @@ def mock_HTTPConnection_on_headers(self, data):
         self.transport.loseConnection()
 
 RequestHandler.set_default_headers = mock_RequestHandler_set_default_headers
-#HTTPConnection.__init__ = mock_HTTPConnection_init
 HTTPConnection._on_headers = mock_HTTPConnection_on_headers
