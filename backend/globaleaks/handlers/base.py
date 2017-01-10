@@ -292,39 +292,6 @@ class BaseHandler(RequestHandler):
         if msg is not None:
             raise web.HTTPAuthenticationRequired(log_message=msg, auth_type="Basic", realm="")
 
-    def aset_default_headers(self):
-        """
-        In this function are written some security enforcements
-        related to WebServer versioning and XSS attacks.
-
-        This is the first function called when a new request reach GLB
-        """
-        self.request.start_time = datetime_now()
-
-        # to avoid version attacks
-        self.set_header("Server", "globaleaks")
-
-        # to reduce possibility for XSS attacks.
-        self.set_header("X-Content-Type-Options", "nosniff")
-        self.set_header("X-XSS-Protection", "1; mode=block")
-
-        self.set_header("Cache-control", "no-cache, no-store, must-revalidate")
-        self.set_header("Pragma", "no-cache")
-
-        self.set_header("Expires", "-1")
-
-        # to avoid information leakage via referrer
-        self.set_header("Content-Security-Policy", "referrer no-referrer")
-
-        # to avoid Robots spidering, indexing, caching
-        if not GLSettings.memory_copy.allow_indexing:
-            self.set_header("X-Robots-Tag", "noindex")
-
-        # to mitigate clickjaking attacks on iframes allowing only same origin
-        # same origin is needed in order to include svg and other html <object>
-        if not GLSettings.memory_copy.allow_iframes_inclusion:
-            self.set_header("X-Frame-Options", "sameorigin")
-
     @staticmethod
     def validate_host(host_key):
         """
