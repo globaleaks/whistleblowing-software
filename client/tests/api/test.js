@@ -28,6 +28,11 @@ var public_resources = [
     'url': '/unexistent',
     'type': 'text/html; charset=UTF-8',
     'status': 404
+  },
+  {
+    'url': '/@invalid@',
+    'type': 'text/html; charset=UTF-8',
+    'status': 404
   }
 ];
 
@@ -80,7 +85,7 @@ public_resources.forEach(function(req){
     it('responds with 405', function(done){
       app
       .post(req['url'])
-      .expect(405)
+      .expect(req['url'] == '/@invalid@' ? 404 : 405)
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -103,7 +108,7 @@ public_resources.forEach(function(req){
     it('responds with 405', function(done){
       app
       .put(req['url'])
-      .expect(405)
+      .expect(req['url'] == '/@invalid@' ? 404 : 405)
       .end(function(err, res) {
         if (err) {
           return done(err);
@@ -126,7 +131,7 @@ public_resources.forEach(function(req){
     it('responds with ' + req['type'], function(done){
       app
       .del(req['url'])
-      .expect(405)
+      .expect(req['url'] == '/@invalid@' ? 404 : 405)
       .end(function(err, res) {
         if (err) {
           return done(err);
