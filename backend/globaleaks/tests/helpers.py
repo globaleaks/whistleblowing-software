@@ -8,25 +8,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-import copy
-import json
-import os
-import shutil
-
-from cyclone import httpserver
-from cyclone.web import Application
-from twisted.internet import threads, defer, task
-from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
-from twisted.test import proto_helpers
-from storm.twisted.testing import FakeThreadPool
-
 from globaleaks import db, models, security, event, runner, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
-from globaleaks.handlers.base import GLHTTPConnection, BaseHandler, GLSessions, GLSession, \
+from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, \
     get_context, db_get_context_steps
@@ -45,6 +32,20 @@ from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_IS
     log, sum_dicts
 
 from . import TEST_DIR, config as test_config
+
+
+import copy
+import json
+import os
+import shutil
+
+from cyclone import httpserver
+from cyclone.web import Application
+from twisted.internet import threads, defer, task
+from twisted.internet.defer import inlineCallbacks
+from twisted.trial import unittest
+from twisted.test import proto_helpers
+from storm.twisted.testing import FakeThreadPool
 
 
 ## constants
@@ -709,7 +710,7 @@ class TestHandler(TestGLWithPopulatedDB):
         application = Application([])
 
         tr = proto_helpers.StringTransport()
-        connection = GLHTTPConnection()
+        connection = httpserver.HTTPConnection()
         connection.factory = application
         connection.makeConnection(tr)
 
