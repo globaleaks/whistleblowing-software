@@ -278,7 +278,7 @@ def send_exception_email(exception_text):
                     continue
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            send_email(mail_address, mail_subject, mail_body)
+            sendmail(mail_address, mail_subject, mail_body)
 
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors
