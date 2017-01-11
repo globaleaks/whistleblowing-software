@@ -13,6 +13,7 @@
 import copy
 from twisted.internet import defer
 
+from globaleaks import models
 from globaleaks.event import EventTrackQueue
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
