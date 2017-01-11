@@ -7,7 +7,7 @@ from cyclone.web import RequestHandler
 
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import datetime_now
+from globaleaks.utils.utility import log, datetime_now
 
 
 def mock_RequestHandler_set_default_headers(self):
