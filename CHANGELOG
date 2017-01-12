@@ -1,3 +1,18 @@
+Changes in version 2.65.11 -2017-01-12
+    o Improve sitemap.xml listing hreflang alternatives
+    o Implement single active session for user [1836]
+    o Implement exception notifications for administrators
+    o Implement summary for Tip expiration
+    o Apply mixed RTL fixes
+    o Update translations
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1836
+    - https://github.com/globaleaks/GlobaLeaks/issues/1829
+    - https://github.com/globaleaks/GlobaLeaks/issues/1831
+    - https://github.com/globaleaks/GlobaLeaks/issues/1771
+    - https://github.com/globaleaks/GlobaLeaks/issues/1868
+
 Changes in version 2.65.10 -2016-12-13
     o Apply minor fixes
 
