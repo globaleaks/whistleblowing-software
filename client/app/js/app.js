@@ -517,6 +517,16 @@ var GLClient = angular.module('GLClient', [
 
     //////////////////////////////////////////////////////////////////
 
+    $rootScope.$watch(function() {
+        return $http.pendingRequests.length > 0;
+    }, function(hasPending) {
+      if (hasPending) {
+          $rootScope.showLoadingPanel = true;
+      } else {
+          $rootScope.showLoadingPanel = false;
+      }
+    });
+
     $rootScope.$watch('GLTranslate.indirect.appLanguage', function() {
       GLTranslate.setLang();
       $rootScope.reload();
@@ -604,10 +614,53 @@ var GLClient = angular.module('GLClient', [
   factory('globaleaksRequestInterceptor', ['$injector', function($injector) {
     return {
      'request': function(config) {
-        var Authentication = $injector.get('Authentication');
+       var Authentication = $injector.get('Authentication');
 
        angular.extend(config.headers, Authentication.get_headers());
+
        return config;
+     },
+     'responseError': function(response) {
+       /*
+          When the response has failed write the rootScope
+          errors array the error message.
+       */
+       var $http = $injector.get('$http');
+       var $window = $injector.get('$window');
+       var $q = $injector.get('$q');
+       var $rootScope = $injector.get('$rootScope');
+
+       var Authentication = $injector.get('Authentication');
+
+       if (response.status === 405) {
+         var errorData = angular.toJson({
+             errorUrl: $window.location.href,
+             errorMessage: response.statusText,
+             stackTrace: [{
+               'url': response.config.url,
+               'method': response.config.method
+             }],
+             agent: navigator.userAgent
+           });
+          $http.post('exception', errorData);
+       }
+
+       if (response.data !== null) {
+         var error = {
+           'message': response.data.error_message,
+           'code': response.data.error_code,
+           'arguments': response.data.arguments
+         };
+
+         /* 30: Not Authenticated */
+         if (error.code === 30) {
+           Authentication.loginRedirect(false);
+         }
+
+         $rootScope.errors.push(error);
+       }
+
+       return $q.reject(response);
      }
    };
 }]).

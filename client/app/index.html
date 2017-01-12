@@ -162,7 +162,7 @@
     <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingModal}">
       <div data-ng-if="started" class="ng-cloak" data-ng-include="'app.html'"></div>
 
-      <div data-ng-hide="started" class="PageOverlay block-user-input">
+      <div data-ng-hide="started && !showLoadingPanel" class="PageOverlay block-user-input">
         <div id="LoaderBox">
           <div id="LoaderBoxContent">
             <div class="glyphicon glyphicon-cog gly-spin"></div>

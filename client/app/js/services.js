@@ -208,76 +208,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   return Access;
 
 }]).
-  factory('globalInterceptor', ['$q', '$injector', '$window', '$rootScope',
-  function($q, $injector, $window, $rootScope) {
-    /* This interceptor is responsible for keeping track of the HTTP requests
-     * that are sent and their result (error or not error) */
-
-    return {
-      request: function(config) {
-        // A new request should display the loader overlay
-        $rootScope.showLoadingPanel = true;
-        return config;
-      },
-
-      response: function(response) {
-        var $http = $injector.get('$http');
-
-        // the last response should hide the loader overlay
-        if ($http.pendingRequests.length < 1) {
-          $rootScope.showLoadingPanel = false;
-        }
-
-        return response;
-      },
-
-      responseError: function(response) {
-        /*
-           When the response has failed write the rootScope
-           errors array the error message.
-        */
-        var $http = $injector.get('$http');
-        var Authentication = $injector.get('Authentication');
-
-        if (response.status === 405) {
-          var errorData = angular.toJson({
-              errorUrl: $window.location.href,
-              errorMessage: response.statusText,
-              stackTrace: [{
-                'url': response.config.url,
-                'method': response.config.method
-              }],
-              agent: navigator.userAgent
-            });
-
-          $http.post('exception', errorData);
-        }
-
-        try {
-          if (response.data !== null) {
-            var error = {
-              'message': response.data.error_message,
-              'code': response.data.error_code,
-              'arguments': response.data.arguments
-            };
-
-            /* 30: Not Authenticated */
-            if (error.code === 30) {
-              Authentication.loginRedirect(false);
-            }
-
-            $rootScope.errors.push(error);
-          }
-        } finally {
-          if ($http.pendingRequests.length < 1) {
-            $rootScope.showLoadingPanel = false;
-          }
-        }
-
-        return $q.reject(response);
-      }
-    };
-}]).
   factory('PublicResource', ['GLResource', function(GLResource) {
     return new GLResource('public');
 }]).
@@ -1217,9 +1147,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
      "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
      "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/
 }).
-  config(['$httpProvider', function($httpProvider) {
-    $httpProvider.interceptors.push('globalInterceptor');
-}]).
   factory('GLTranslate', ['$translate', '$location','tmhDynamicLocale',
   function($translate, $location, tmhDynamicLocale) {
 
