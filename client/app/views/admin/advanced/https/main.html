@@ -1,0 +1,10 @@
+<div data-ng-controller="AdminTLSConfigCtrl">
+  <div data-ng-switch="tls_config.state">
+    <div class="row" data-ng-switch-when="empty">
+      <span data-ng-include="'views/admin/advanced/https/config.html'"></span>
+    </div>
+    <div class="row" data-ng-switch-default>
+      <span data-ng-include="'views/admin/advanced/https/status.html'"></span>
+    </div>
+  </div>
+</div>

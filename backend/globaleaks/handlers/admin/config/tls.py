@@ -105,7 +105,7 @@ class CSRConfigHandler(BaseHandler):
 
         try:
           csr = yield generate_csr(request)
-          self.write(csr)
+          self.write({'csr_txt': csr})
         except Exception as e:
           log.err(e)
           self.set_status(400)
