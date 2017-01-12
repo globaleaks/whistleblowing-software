@@ -13,15 +13,30 @@ read session_id < <(curl -s -A 'test-script' \
 
 printf '\nAcquired session_id: %s\n' $session_id
 
-printf '\nPosting a private key\n\n'
+printf '\nGetting tls/config\n\n'
 
 curl -vvv -A 'test-script' \
     -H "X-Session: $session_id" \
-    -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryQSeSIiYKGwMGTB5r" \
-    --data @priv_key_form.txt "$BASE/admin/files/ssl/priv_key" 
+    "$BASE/admin/config/tls"
 
-printf 'Deleting the file\n\n'
+printf '\nIssuing a Cert Sig Request\n\n'
 
-curl -A 'test-script' -i -X DELETE -H "X-Session: $session_id" $BASE/admin/files/ssl/priv_key
+curl -vvv -A 'test-script' \
+     -X POST -H 'Content-type: application/json' \
+    -H "X-Session: $session_id" \
+    -d '{"country":"stato","province":"regione","city":"citta","company":"azienda","department": "gruppo","email": "indrizzio@asdf"}' \
+    "$BASE/admin/config/tls/csr"
 
+
+printf '\nPosting a private key\n\n'
+
+curl -vvv -A 'test-script' \
+     -X POST -H 'Content-type: application/json' \
+    -H "X-Session: $session_id" \
+    -d '{"cert": "aaaa", "priv_key": "secret", "chain": "link-link-link"}' \
+    "$BASE/admin/config/tls/files"
+
+printf 'Deleting content\n\n'
+
+curl -vvv -A 'test-script' -i -X DELETE -H "X-Session: $session_id" "$BASE/admin/config/tls"
 
