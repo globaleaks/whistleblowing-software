@@ -368,10 +368,19 @@ AdminReceiverDesc = {
     'configuration': unicode
 }
 
-AdminSSLConfigDesc = {
+AdminTLSCertFilesConfigDesc = {
     'priv_key': unicode,
     'chain': unicode,
     'cert': unicode,
+}
+
+AdminCSRConfigDesc = {
+    'country': unicode,
+    'province': unicode,
+    'city': unicode,
+    'company': unicode,
+    'department': unicode,
+    'email': email_regexp,
 }
 
 AdminShortURLDesc = {
