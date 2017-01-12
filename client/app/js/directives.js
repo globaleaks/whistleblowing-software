@@ -156,7 +156,7 @@ directive('extendFlowValidTypes', ['uploadUtils', '$filter', function(uploadUtil
   return {
     restrict: 'A',
     scope: true,
-    link: function(scope, iElment, iAttrs, ctrl) {
+    link: function(scope, iElment, iAttrs) {
       var validTypes = scope.$eval(iAttrs.extendFlowValidTypes);
       scope.$on('flow::fileAdded', function(event, _, flowFile) {
         var uppercaseTypes = [];
@@ -178,7 +178,7 @@ directive('extendFlowValidSize', ['$filter', function($filter) {
   return {
     restrict: 'A',
     scope: true,
-    link: function(scope, iElment, iAttrs, ctrl) {
+    link: function(scope, iElment, iAttrs) {
       var validSize = parseInt(scope.$eval(iAttrs.extendFlowValidSize));
       scope.$on('flow::fileAdded', function(event, _, flowFile) {
         if (flowFile.size > validSize) {
