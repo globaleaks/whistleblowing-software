@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x
+set -e
 
 TT=`tty`
 BASE='http://localhost:8082'

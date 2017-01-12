@@ -568,8 +568,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/l10n/:lang', {lang: '@lang'});
 }]).
-  factory('AdminSSLConfigResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/config/ssl');
+factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls');
+}]).
+factory('AdminCSRConfigResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls/csr');
+}]).
+factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls/files');
 }]).
   factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
@@ -726,8 +732,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     },
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTLSConfigResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTLSConfigResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
   return function(fn) {
       var self = this;
 
@@ -744,6 +750,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.tip_overview = TipOverview.query();
       self.file_overview = FileOverview.query();
       self.jobs_overview = JobsOverview.query();
+      self.tls_config = AdminTLSConfigResource.get();
 
       self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
         self.field_attrs = field_attrs;
@@ -769,6 +776,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               self.tip_overview.$promise,
               self.file_overview.$promise,
               self.jobs_overview.$promise]).then(function() {
+              self.tls_config.$promise]).then(function() {
         fn(this);
       });
     };
