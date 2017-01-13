@@ -61,6 +61,7 @@ PGPKEYS = {}
 
 KEYS_PATH = os.path.join(TEST_DIR, 'keys')
 for filename in os.listdir(KEYS_PATH):
+    if filename == 'https': continue # TODO REMOVE ME
     with open(os.path.join(KEYS_PATH, filename)) as pgp_file:
         PGPKEYS[filename] = unicode(pgp_file.read())
 

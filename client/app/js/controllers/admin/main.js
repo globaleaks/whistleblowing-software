@@ -217,14 +217,20 @@ controller('AdminTLSConfigCtrl', ['$scope', 'AdminTLSConfigResource', 'AdminCSRC
   console.log("AdminTLSConfigCtrl: scope", $scope, $scope.admin.tls_config);
   $scope.tls_config = $scope.admin.tls_config;
 
+  $scope.active_pane = 'configure_start';
+  panes = ['configure_start', 'csr_gen', 'cert_upload', 'status'];
+  $scope.go = function(where) {
+    $scope.active_pane = where;
+  }
 
   $scope.csr_cfg = new csrCfgResource({
-    country: 'stato',
+    country: 'it',
     province: 'regione',
     city: 'citta',
     company: 'azienda',
     department: 'gruppo',
     email: 'indrizzio@email',
+    commonname: 'notreal.ns.com',
   });
 
   $scope.csr_state = {
@@ -246,29 +252,28 @@ controller('AdminTLSConfigCtrl', ['$scope', 'AdminTLSConfigResource', 'AdminCSRC
     $scope.csr_cfg.$save().then(function(resp) {
         $scope.csr_state.text = resp.csr_txt;
         $scope.csr_state.success = true;
+        return $scope.tls_config.$get().$promise;
+    }).then(function() {
+        $scope.go('cert_upload');
     }, function(err) {
         $scope.csr_state.success = false
         $scope.csr_state.error = err;
     });
   };
 
-  $scope.skipCSR = function() {
-    $location.hash('certUpload');
-  }
-
   $scope.submitCertFiles = function() {
     console.log("Submitting cert_files", $scope.cert_files);
     // TODO Allow the selection of files here.
     $scope.cert_files.$save().then(function() {
-        configResource.$get();
-    // TODO handle success and failure
-    // success:
-    //   display url
-    //   refresh tls_config state
-    //   display https status page
-    // failure:
-    //   display error and/or ask for reset
-    //   if error is parsing related; maybe provide more feedback
+        // TODO handle success and failure
+        // success:
+        //   display url
+        //   refresh tls_config state
+        //   display https status page
+        // failure:
+        //   display error and/or ask for reset
+        //   if error is parsing related; maybe provide more feedback
+        return $scope.tls_config.$get().$promise;
     })
   };
 }]).

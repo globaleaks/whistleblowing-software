@@ -40,9 +40,9 @@ GLConfig = {
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
 
-        'tls_priv_key': Unicode(),
-        'tls_cert': Unicode(),
-        'tls_chain': Unicode(),
+        'https_priv_key': Unicode(),
+        'https_cert': Unicode(),
+        'https_chain': Unicode(),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),

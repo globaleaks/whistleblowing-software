@@ -28,6 +28,8 @@ tip_operation_regexp              = r'^(postpone|set)$'
 shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
 
+# TODO(@nskelsey) define hostname regex
+
 token_regexp                      = r'([a-zA-Z0-9]{42})'
 token_type_regexp                 = r'^submission$'
 
@@ -375,6 +377,7 @@ AdminTLSCertFilesConfigDesc = {
 }
 
 AdminCSRConfigDesc = {
+    'commonname': unicode,
     'country': unicode,
     'province': unicode,
     'city': unicode,

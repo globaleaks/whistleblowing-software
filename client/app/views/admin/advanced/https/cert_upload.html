@@ -1,0 +1,52 @@
+<h3 id="certUpload" data-translate>Upload X.509 certificate</h3>
+
+<div data-ng-form name="certFileForm">
+  <div class="form-group">
+    <label data-translate>Private key</label>
+    <div>
+      <textarea class="form-control"
+        data-ng-model="cert_files.priv_key"
+        data-ng-required>
+      </textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label data-translate>Certificate</label>
+    <div>
+      <textarea class="form-control"
+        data-ng-model="cert_files.cert"
+        data-ng-required>
+      </textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label data-translate>Intermediate chain</label>
+    <div>
+      <textarea class="form-control"
+        data-ng-model="cert_files.chain"
+        data-ng-required>
+      </textarea>
+    </div>
+  </div>
+  <div class="panel panel-danger" data-ng-if="certFileForm.$invalid && certFileForm.$dirty">
+    <div class="panel-heading">
+      <b data-translate>Errors</b>
+    </div>
+    <div class="panel-body text-danger">
+      <ul>
+        <li data-ng-repeat="error in certFileForm.$error">{{ error }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="btn btn-success" ng-click="go('csr_gen')">
+    <i class="glyphicon glyphicon-left"></i>
+    <span data-translate>Previous</span>
+  </button>
+  <button class="btn btn-success" ng-click="submitCertFiles()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Save</span>
+  </button>
+</div>
