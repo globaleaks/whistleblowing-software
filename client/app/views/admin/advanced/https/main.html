@@ -1,10 +1,17 @@
 <div data-ng-controller="AdminTLSConfigCtrl">
-  <div data-ng-switch="tls_config.state">
-    <div class="row" data-ng-switch-when="empty">
+  <div data-ng-switch="active_pane">
+    <div data-ng-switch-when="configure_start">
       <span data-ng-include="'views/admin/advanced/https/config.html'"></span>
     </div>
-    <div class="row" data-ng-switch-default>
+    <div data-ng-switch-when="csr_gen">
+      <span data-ng-include="'views/admin/advanced/https/csr_gen.html'"></span>
+    </div>
+    <div data-ng-switch-when="cert_upload">
+      <span data-ng-include="'views/admin/advanced/https/cert_upload.html'"></span>
+    </div>
+    <div data-ng-switch-when="status">
       <span data-ng-include="'views/admin/advanced/https/status.html'"></span>
     </div>
   </div>
 </div>
+<hr />
