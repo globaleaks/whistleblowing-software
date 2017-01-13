@@ -11,9 +11,6 @@ describe('submission error elements', function() {
     var errPanel = by.id('SubmissionErrors');
     utils.waitUntilPresent(errPanel);
 
-    var submitBtn = element(by.id('SubmitButton'));
-    expect(submitBtn.isEnabled()).toEqual(false);
-
     // Navigation should take us back to the Recipient selection page
     element(by.css('#SubmissionErrors span.err-link')).click();
 

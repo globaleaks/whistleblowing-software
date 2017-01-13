@@ -39,17 +39,17 @@
     </div>
     <div class="row" ><div class="col-md-7">
       <div id="SubmissionButtons">
-        <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep()">
+        <button id="PreviousStepButton" class="btn btn-default" data-ng-show="hasPreviousStep()" data-ng-click="decrementStep(submissionForm)">
           <i class="glyphicon glyphicon-circle-arrow-left"></i>
           <span data-translate>previous step</span>
         </button>
 
-        <button id="NextStepButton" class="btn btn-default" data-ng-show="hasNextStep()" data-ng-click="incrementStep()">
+        <button id="NextStepButton" class="btn btn-default" data-ng-show="hasNextStep()" data-ng-click="incrementStep(submissionForm)">
           <span data-translate>next step</span>
           <i class="glyphicon glyphicon-circle-arrow-right"></i>
         </button>
 
-        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission()" data-ng-disabled="submissionHasErrors(submissionForm)" type="submit">
+        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="checkForInvalidFields() && completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
           <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
           <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
           <span data-translate>Submit</span>
