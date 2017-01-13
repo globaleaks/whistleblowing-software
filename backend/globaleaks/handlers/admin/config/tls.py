@@ -21,7 +21,7 @@ def check_https(priv_key, cert, chain):
 def configure_https(store, request):
     # TODO validate config params with SSL logic
     priv_key, cert, chain = request['priv_key'], request['cert'], request['chain']
-    
+
     privFact = PrivateFactory(store)
 
     privFact.set_val('https_priv_key', priv_key)
@@ -116,19 +116,19 @@ def gen_RSA_key():
 
 def gen_x509_csr(key_pair, csr_fields):
     '''
-    gen_x509_csr creates a certificate signature request by applying the passed 
-    fields to the subject of the request, attaches the public key's fingerprint 
+    gen_x509_csr creates a certificate signature request by applying the passed
+    fields to the subject of the request, attaches the public key's fingerprint
     and signs the request using the private key.
-    
+
     csr_fields dictionary and generates a
-    certificate request using the passed keypair. Note that the default digest 
+    certificate request using the passed keypair. Note that the default digest
     is sha256.
 
     :param key_pair: The key pair that will sign the request
-    :type key_pair: :py:data:`OpenSSL.crypto.PKey` the key must have an attached 
+    :type key_pair: :py:data:`OpenSSL.crypto.PKey` the key must have an attached
     private component.
 
-    :param csr_fields: The certifcate issuer's details in X.509 Distinguished 
+    :param csr_fields: The certifcate issuer's details in X.509 Distinguished
     Name format.
     :type csr_fields: :py:data:`dict`
         C     - Country name
@@ -191,7 +191,7 @@ class CSRConfigHandler(BaseHandler):
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.body, 
+        request = self.validate_message(self.request.body,
                                         requests.AdminCSRConfigDesc)
         csr_fields = {
                 'C':  request['country'],
