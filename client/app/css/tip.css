@@ -53,3 +53,7 @@
 #RecvSearchFilter {
   margin-left: 5px;
 }
+
+.fieldLabel {
+  font-weight: bold;
+}
