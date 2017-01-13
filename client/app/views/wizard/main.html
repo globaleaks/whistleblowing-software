@@ -30,7 +30,7 @@
             <span data-translate>Project name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep1.node_name.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep2.node_name.$error.required}">
             <input name="node_name" class="form-control" data-ng-model="wizard.node.name" data-ng-attr-placeholder="{{'Enter the name for your whistleblowing project' | translate}}" maxlength="{{node.maximum_namesize}}" type="text" required>
           </div>
         </div>
@@ -39,7 +39,7 @@
             <span data-translate>Project description</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
           </label>
-          <div class="col-md-8"  data-ng-class="{'has-error': wizardFormStep1.node_description.$error.required}">
+          <div class="col-md-8"  data-ng-class="{'has-error': wizardFormStep2.node_description.$error.required}">
             <textarea name="node_description" class="form-control" data-ng-model="wizard.node.description" data-ng-attr-placeholder="{{'Give a concise description of your project' | translate}}" maxlength="{{node.maximum_textsize}}" required></textarea>
           </div>
         </div>
