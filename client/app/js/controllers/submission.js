@@ -180,7 +180,7 @@ GLClient.controller('SubmissionCtrl',
     return t;
   };
 
-  $scope.incrementStep = function() {
+  $scope.incrementStep = function(submissionForm) {
     if ($scope.selection === $scope.receiver_selection_step_index && $scope.receiverSelectionError()) {
       $scope.receiver_selection_step_show_err_panel = true;
       $anchorScroll('top');
@@ -194,6 +194,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     if ($scope.hasNextStep()) {
+      submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
@@ -204,8 +205,9 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.decrementStep = function() {
+  $scope.decrementStep = function(submissionForm) {
     if ($scope.hasPreviousStep()) {
+      submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
