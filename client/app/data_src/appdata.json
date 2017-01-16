@@ -1,7 +1,7 @@
 {
   "version": 1,
   "node": {
-    "context_clarification": {
+    "contexts_clarification": {
       "en": "Select the context of your submission:"
     },
     "security_awareness_title": {
