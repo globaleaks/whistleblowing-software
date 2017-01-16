@@ -7,7 +7,7 @@ def listenTCPonExistingFD(reactor, fd, factory):
 
 def listenSSLonExistingFD(reactor, fd, factory, contextFactory):
     tlsFactory = tls.TLSMemoryBIOFactory(contextFactory, False, factory)
-    port = reactor.listenTCPonExistingFD(reactor, fd, tlsFactory)
+    port = listenTCPonExistingFD(reactor, fd, tlsFactory)
     port._type = 'TLS'
     return port
 
