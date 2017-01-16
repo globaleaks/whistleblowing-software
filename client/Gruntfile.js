@@ -282,11 +282,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build/');
 
-    var files = ['index.html', 'logo.png', 'favicon.ico'];
-    for (x in files) {
-      grunt.file.copy('tmp/' + files[x], 'build/' + files[x]);
-    }
-
+    grunt.file.copy('tmp/index.html', 'build/index.html');
     grunt.file.copy('tmp/js/scripts.js', 'build/js/scripts.js');
     grunt.file.copy('tmp/js/plugin.js', 'build/js/plugin.js');
 
@@ -743,6 +739,8 @@ module.exports = function(grunt) {
       });
 
       grunt.file.copy('app/data_src/field_attrs.json', 'app/data/field_attrs.json');
+      grunt.file.copy('app/data_src/favicon.ico', 'app/data/favicon.ico');
+      grunt.file.copy('app/data_src/logo.png', 'app/data/logo.png');
 
       done();
     });
