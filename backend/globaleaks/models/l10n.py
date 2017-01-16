@@ -91,13 +91,13 @@ class ConfigL10NFactory(object):
 
         #TODO use lazy loading to optimize query performance
 
-    def initialize(self, lang_code, l10n_data_src):
-        for key in self.localized_keys:
-            if key in l10n_data_src and lang_code in l10n_data_src[key]:
-                val = l10n_data_src[key][lang_code]
-                entry = ConfigL10N(lang_code, self.group, key, val)
-            else:
-                entry = ConfigL10N(lang_code, self.group, key)
+    def initialize(self, lang_code, l10n_data_src, keys=None):
+        if keys is None:
+            keys = self.localized_keys
+
+        for key in keys:
+            value = l10n_data_src[key][lang_code] if key in l10n_data_src else ''
+            entry = ConfigL10N(lang_code, self.group, key, value)
             self.store.add(entry)
 
     def retrieve_rows(self, lang_code):
@@ -119,9 +119,17 @@ class ConfigL10NFactory(object):
 
     def update_defaults(self, langs, l10n_data_src, reset=False):
         for lang_code in langs:
+            old_keys = []
+
             for cfg in self.get_all(lang_code):
-                if (not cfg.customized or reset or cfg.var_name in self.unmodifiable_keys) and cfg.var_name in l10n_data_src:
-                    cfg.value = l10n_data_src[cfg.var_name][lang_code]
+                old_keys.append(cfg.var_name)
+                if cfg.var_name in self.localized_keys:
+                    if (not cfg.customized or reset or cfg.var_name in self.unmodifiable_keys) and cfg.var_name in l10n_data_src:
+                        cfg.value = l10n_data_src[cfg.var_name][lang_code]
+                else:
+                    self.store.remove(cfg)
+
+            ConfigL10NFactory.initialize(self, lang_code, l10n_data_src,  list(set(self.localized_keys) - set(old_keys)))
 
     def get_all(self, lang_code):
         return self.store.find(ConfigL10N, And(ConfigL10N.var_group == self.group,
