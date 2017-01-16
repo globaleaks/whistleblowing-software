@@ -17,7 +17,7 @@ describe('submission error elements', function() {
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
     element(by.id('NextStepButton')).click();
 
-    submitBtn = element(by.id('SubmitButton'));
+    var submitBtn = element(by.id('SubmitButton'));
     expect(submitBtn.isEnabled()).toEqual(true);
   });
 
