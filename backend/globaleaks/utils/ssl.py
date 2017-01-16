@@ -5,7 +5,7 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
-class ContextFactory(ssl.ContextFactory):
+class ServerContextFactory(ssl.ContextFactory):
     def __init__(self, privateKey, certificate, intermediate, dh, cipherList):
         """
         @param privateKey: String representation of the private key
