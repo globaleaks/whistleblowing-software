@@ -28,11 +28,13 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
         handler = self.request()
 
         GLSettings.memory_copy.allow_indexing = True
+        GLSettings.memory_copy.public_site = "https://www.globaleaks.org"
 
         yield handler.get()
 
         self.assertEqual(self.responses[0], "User-agent: *\n")
-        self.assertEqual(self.responses[1], "Allow: /")
+        self.assertEqual(self.responses[1], "Allow: /\n")
+        self.assertEqual(self.responses[2], "Sitemap: https://www.globaleaks.org/sitemap.xml")
 
 
 class TestSitemapHandlerHandler(helpers.TestHandler):
