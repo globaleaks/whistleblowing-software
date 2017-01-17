@@ -226,6 +226,24 @@
 
     <script type="text/javascript">
       var isBrowserCompatible = function() {
+        var crawlers = [
+          "Googlebot",
+          "Bingbot",
+          "Slurp",
+          "DuckDuckBot",
+          "Baiduspider",
+          "YandexBot",
+          "Sogou",
+          "Exabot",
+          "ia_archiver"
+        ];
+
+        for (var i=0; i < crawlers.length; crawlers++) {
+          if (navigator.userAgent.indexOf(crawlers[i]) !== -1) {
+            return true;
+          }
+        }
+
         if (typeof window === 'undefined') {
           return false;
         }
