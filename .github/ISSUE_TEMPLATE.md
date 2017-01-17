@@ -2,7 +2,7 @@
 
 PLEASE FILL THE FOLLOWING INFORMATION
 
-Please use this form just for but reporting or feature requests.
+Please use this form just for bug reporting or feature requests.
 For all that relates to support requests please instead use: https://www.globaleaks.org/contact/
 
 -->
