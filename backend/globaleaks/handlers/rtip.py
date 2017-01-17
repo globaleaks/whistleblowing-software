@@ -170,14 +170,14 @@ def db_receiver_get_wbfile_list(store, itip_id):
 
 @transact
 def register_wbfile_on_db(store, uploaded_file, receivertip_id):
-    receivertip = store.find(ReceiverTip,
-                             ReceiverTip.id == receivertip_id).one()
+    rtip = store.find(ReceiverTip,
+                      ReceiverTip.id == receivertip_id).one()
 
-    if not receivertip:
+    if not rtip:
         log.err("Cannot associate a file to a not existent receivertip!")
         raise errors.TipIdNotFound
 
-    receivertip.update_date = datetime_now()
+    rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
     new_file = WhistleblowerFile()
 
@@ -186,7 +186,7 @@ def register_wbfile_on_db(store, uploaded_file, receivertip_id):
 
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
-    new_file.receivertip_id = receivertip.id
+    new_file.receivertip_id = rtip.id
     new_file.file_path = uploaded_file['path']
 
     store.add(new_file)
@@ -352,7 +352,7 @@ def create_identityaccessrequest(store, user_id, rtip_id, request, language):
 @transact
 def create_comment(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    rtip.internaltip.update_date = datetime_now()
+    rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
     comment = Comment()
     comment.content = request['content']
@@ -372,7 +372,7 @@ def db_get_itip_message_list(rtip):
 @transact
 def create_message(store, user_id, rtip_id, request):
     rtip = db_access_rtip(store, user_id, rtip_id)
-    rtip.internaltip.update_date = datetime_now()
+    rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
     msg = Message()
     msg.content = request['content']
