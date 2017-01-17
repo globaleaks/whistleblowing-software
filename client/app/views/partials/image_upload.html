@@ -3,10 +3,9 @@
      flow-name="imageUploadObj.flow"
      flow-init="{target: imageUploadUrl, headers: Authentication.get_headers()}"
      flow-files-submitted="$flow.upload()"
-     flow-btn
      extend-flow-valid-types="['png']">
   <div class="imageUpload">
-    <button class="changePicture actionButton btn btn-xs btn-primary" data-translate>Change picture</button>
+    <button class="changePicture actionButton btn btn-xs btn-primary" flow-btn data-translate>Change picture</button>
     <div class="imageUploadThumbnail">
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length == 0" data-ng-src="{{Utils.imgDataUri(imageUploadModel[imageUploadModelAttr])}}" class="imageUploadThumbnailContent" />
       <img alt="preview picture" data-ng-if="imageUploadObj.flow.files.length > 0" flow-img="imageUploadObj.flow.files[imageUploadObj.flow.files.length - 1]" class="imageUploadThumbnailContent" />

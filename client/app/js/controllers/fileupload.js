@@ -1,4 +1,4 @@
-GLClient.factory('uploadUtils', function() {
+GLClient.factory('uploadUtils', ['$filter', function($filter) {
   // Utils shared across file upload controllers and directives
 
   function endsWith(subjectString, searchString) {
@@ -20,23 +20,38 @@ GLClient.factory('uploadUtils', function() {
       }
       return false;
     },
+
+    'translateInvalidSizeErr': function(filename, maxSize) {
+      var strs = ['Error with file:', 'File size not accepted.', 'Maximum file size is:'];
+      angular.forEach(strs, function(s, i) {
+        strs[i] = $filter('translate')(s);
+      });
+      return strs[0] + ' ' + filename + ' - ' + strs[1] + ' ' + strs[2] + ' ' + $filter('byteFmt')(maxSize, 2);
+    },
+
+    'translateInvalidTypeErr': function(filename, validTypes) {
+      var uppercaseTypes = []
+      for (var i=0; i<validTypes.length; i++) {
+        uppercaseTypes.push(validTypes[i].toUpperCase());
+      }
+      var strs = ['Error with file:', 'File type not accepted.', 'Accepted file types are:'];
+      angular.forEach(strs, function(s, i) {
+        strs[i] = $filter('translate')(s);
+      });
+      return strs[0] + ' ' + filename + ' - ' + strs[1] + ' ' + strs[2] + ' ' + uppercaseTypes;
+    },
   };
-}).
-controller('RFileUploadCtrl', ['$scope', '$filter', function($scope, $filter) {
+}]).
+controller('RFileUploadCtrl', ['$scope','uploadUtils', function($scope, uploadUtils) {
   $scope.disabled = false;
 
   $scope.$on('flow::fileAdded', function (event, _, flowFile) {
-    var validSize = $scope.node.maximum_filesize * 1024 * 1024;
-    if ($scope.file_error_msgs === undefined) $scope.file_error_msgs = [];
-    if (flowFile.size > validSize) {
-      $scope.file_error_msgs.push($filter('translate')('Error on file:') + ' ' +  flowFile.name + ' - ' + $filter('translate')('File size not accepted.') + ' ' + $filter('translate')('Maximum file size is:') + ' ' + $filter('byteFmt')(validSize, 2));
-      event.preventDefault();
-    } else {
-      if ($scope.field !== undefined && !$scope.field.multi_entry) {
-        // if the field allows to load only one file disable the button
-        // as soon as a file is loaded.
-        $scope.disabled = true;
-      }
+    $scope.file_error_msgs = [];
+
+    if ($scope.field !== undefined && !$scope.field.multi_entry) {
+      // if the field allows to load only one file disable the button
+      // as soon as a file is loaded.
+      $scope.disabled = true;
     }
   });
 }]).
@@ -44,29 +59,24 @@ controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Aut
   $scope.file_upload_description = "";
 
   $scope.beginUpload = function($files, $event, $flow) {
+    $scope.file_error_msgs = [];
+
     var h = Authentication.get_headers();
     $flow.opts.headers = h;
     $flow.opts.query = {'description': $scope.file_upload_description};
     $flow.upload();
   };
-
-  $scope.throwErrUp = function($message) {
-     // TODO should use standard interface.
-     $scope.errors.push(new Error('File Upload: ' + $message));
-  };
 }]).
-controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
+controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', 'uploadUtils', function($scope, $rootScope, $http, uploadUtils) {
   $scope.imageUploadObj = {};
-  $scope.Authentication = $rootScope.Authentication;
   $scope.Utils = $rootScope.Utils;
 
   $scope.$on('flow::fileAdded', function (event, $flow, flowFile) {
-    $scope.file_error_msg = undefined;
-    if (flowFile.size > $rootScope.node.maximum_filesize * 1024 * 1024) {
-      $scope.file_error_msg = "This file exceeds the maximum upload size for this server.";
-    }
-    if ($scope.file_error_msg !== undefined)  {
-      event.preventDefault();
+    $scope.file_error_msgs = [];
+    var validSize = $rootScope.node.maximum_filesize * 1024 * 1024;
+    if (flowFile.size > validSize) {
+      var errMsg = uploadUtils.translateInvalidSizeErr(flowFile.name, validSize);
+      $scope.file_error_msgs.push(errMsg);
     }
   });
 
@@ -74,10 +84,9 @@ controller('ImageUploadCtrl', ['$scope', '$rootScope', '$http', function($scope,
     $http({
       method: 'DELETE',
       url: $scope.imageUploadUrl,
-      headers: $scope.Authentication.get_headers()
-    }).then(function successCallback() {
+    }).then(function() {
       $scope.imageUploadModel[$scope.imageUploadModelAttr] = '';
       $scope.imageUploadObj.flow.files = [];
-    }, function errorCallback() { });
+    });
   };
 }]);
