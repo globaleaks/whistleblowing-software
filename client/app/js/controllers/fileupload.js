@@ -42,10 +42,10 @@ GLClient.factory('uploadUtils', ['$filter', function($filter) {
     },
   };
 }]).
-controller('RFileUploadCtrl', ['$scope','uploadUtils', function($scope, uploadUtils) {
+controller('RFileUploadCtrl', ['$scope', function($scope) {
   $scope.disabled = false;
 
-  $scope.$on('flow::fileAdded', function (event, _, flowFile) {
+  $scope.$on('flow::fileAdded', function (event) {
     $scope.file_error_msgs = [];
 
     if ($scope.field !== undefined && !$scope.field.multi_entry) {
