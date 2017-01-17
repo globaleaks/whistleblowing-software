@@ -6,13 +6,12 @@
 
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-## Community and support
-If you need support with the software subscribe and participate to the [GlobaLeaks Mailing List] (https://lists.ghserv.net/mailman/listinfo/globaleaks-talk).
+## Community and Professional Support
+If you need community support with the software subscribe and participate to the [GlobaLeaks Forum](https://forum.globaleaks.org/).
 
-If instead you need private support by the Hermes Center on a specific whistleblowing project you can [contact us directly](https://hermescenter.org/home/about-mission/contacts/), we'd love to help you out!
+If you need professional support please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
 
 Other resources:
-* [Development mailing list](https://lists.ghserv.net/mailman/listinfo/globaleaks-dev).
 * Join [#globaleaks](https://webchat.oftc.net/?nick=gl-guest.&channels=globaleaks), our IRC chat channel on the irc.oftc.net server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
