@@ -66,7 +66,7 @@ class CleaningSchedule(GLJob):
 
     @transact_sync
     def check_for_expiring_submissions(self, store):
-        threshold = datetime_now() + timedelta(GLSettings.memory_copy.notif.tip_expiration_threshold)
+        threshold = datetime_now() + timedelta(hours=GLSettings.memory_copy.notif.tip_expiration_threshold)
         receivers = store.find(models.Receiver)
         for receiver in receivers:
             rtips = store.find(models.ReceiverTip, models.ReceiverTip.internaltip_id == models.InternalTip.id,
