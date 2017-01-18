@@ -231,6 +231,7 @@ def perform_schema_migration(version):
         perform_data_update(new_db_file)
     except Exception as exception:
         GLSettings.print_msg("[FATAL]: ", exception)
+        print exception
         raise exception
 
     else:
