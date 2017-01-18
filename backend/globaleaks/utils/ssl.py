@@ -1,3 +1,5 @@
+import tempfile
+
 from twisted.internet import ssl
 
 from OpenSSL import SSL
@@ -5,7 +7,7 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
-class ServerContextFactory(ssl.ContextFactory):
+class TLSContextFactory(ssl.ContextFactory):
     def __init__(self, privateKey, certificate, intermediate, dh, cipherList):
         """
         @param privateKey: String representation of the private key
@@ -64,7 +66,7 @@ class ServerContextFactory(ssl.ContextFactory):
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
         _lib.SSL_CTX_set_tmp_ecdh(self._ctx._context, ecdh)
 
-        self._context = ctx
+        self._context = self._ctx
 
     def getContext(self):
         """

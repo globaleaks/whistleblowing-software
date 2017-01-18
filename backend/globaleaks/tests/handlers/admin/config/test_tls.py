@@ -1,7 +1,9 @@
 import unittest
 import os
 
+import twisted
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet import reactor, defer
 from OpenSSL import crypto, SSL
 
 from globaleaks.handlers.admin.config import tls, http_master
@@ -22,9 +24,13 @@ class TestCryptoFuncs(unittest.TestCase):
         pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, csr)
         #print(pem_csr)
 
+from twisted.trial.unittest import TestCase
+
 class TestHTTPSWorkers(unittest.TestCase):
 
     def test_launch_workers(self):
+        #http_master.reactor = self.test_reactor
+
         d = {
             'cert': '',
             #'chain': '',
@@ -36,8 +42,18 @@ class TestHTTPSWorkers(unittest.TestCase):
             with open(os.path.join(helpers.KEYS_PATH, 'https', key+'.pem')) as f:
                 d[key] = f.read()
 
-        res = http_master.launch_workers({}, d['priv_key'], d['cert'], '', '')
-        import time; time.sleep(30)
+        pool = http_master.launch_workers({}, d['priv_key'], d['cert'], '', '')
+
+        d = defer.gatherResults([p.deferredConnect for p in pool])
+        def test_cb(ignored):
+            print('Resolving final defered', ignored)
+
+        d.addCallback(test_cb)
+        return d
+
+        #from twisted.internet import reactor
+        #from IPython import embed; embed()
+        #import time; time.sleep(60)
 
 
 class TestCertFileHandler(helpers.TestHandlerWithPopulatedDB):

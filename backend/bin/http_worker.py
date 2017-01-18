@@ -1,158 +1,77 @@
 #!/usr/bin/env python
+print('[subproc] reached python')
 
 import json
-import multiprocessing
 import os
 import signal
 import socket
-import tempfile
+import sys
 
-from sys import argv, executable
+# WARN signalling in this way is a race condition.
+def SigRespond(SIG, FRM):
+    print('responding')
+    p = os.getpid()
+    print("[subproc]:%d received note from: %s : %s" % (p, FRM, SIG))
 
-from twisted.internet import reactor, ssl, task
+signal.signal(signal.SIGUSR1, SigRespond)
+
+from twisted.internet import reactor, ssl, protocol, defer
 from twisted.protocols import tls
-from twisted.python.compat import urllib_parse, urlquote
-from twisted.web import proxy, resource, server
+from twisted.web.proxy import ReverseProxyResource
+from twisted.web.server import Site
 
-from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM
-from OpenSSL._util import lib as _lib, ffi as _ffi
+# When this executable is not within the systems standard path, the globaleaks
+# module must add it to sys path manually. Hence the following line.
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-
-def testFileAccess(f):
-  return os.path.exists(f) and os.path.isfile(f) and os.access(f, os.R_OK)
-
-
-def listenTCPonExistingFD(reactor, fd, factory):
-    return reactor.adoptStreamPort(fd, socket.AF_INET, factory)
-
-
-def listenSSLonExistingFD(reactor, fd, factory, contextFactory):
-    tlsFactory = tls.TLSMemoryBIOFactory(contextFactory, False, factory)
-    port = reactor.listenTCPonExistingFD(reactor, fd, tlsFactory)
-    port._type = 'TLS'
-    return port
-
-
-class ServerContextFactory(ssl.ContextFactory):
-    _context = None
-
-    def __init__(self, privateKey, certificate, intermediate, dh, cipherList):
-        """
-        @param privateKeyFileName: Name of a file containing a private key
-        @param certificateChainFileName: Name of a file containing a certificate chain
-        @param dhFileName: Name of a file containing diffie hellman parameters
-        @param cipherList: The SSL cipher list selection to use
-        """
-        self.privateKey = privateKey
-        self.certificate = certificate
-        self.intermediate = intermediate
-
-        # as discussed on https://trac.torproject.org/projects/tor/ticket/11598
-        # there is no way of enabling all TLS methods excluding SSL.
-        # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
-        # is denied by OpenSSL.
-        #
-        # As spotted by nickm the only good solution right now is to enable SSL.SSLv23_METHOD then explicitly
-        # use options: SSL_OP_NO_SSLv2 and SSL_OP_NO_SSLv3
-        #
-        # This trick make openssl consider valid all TLS methods.
-        self.sslmethod = SSL.SSLv23_METHOD
-
-        self.dh = dh
-        self.cipherList = cipherList
-
-        # Create a context object right now.  This is to force validation of
-        # the given parameters so that errors are detected earlier rather
-        # than later.
-        self.cacheContext()
-
-    def cacheContext(self):
-        if self._context is None:
-            ctx = SSL.Context(self.sslmethod)
-
-            ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE |
-                            SSL.OP_NO_SSLv2 |
-                            SSL.OP_NO_SSLv3 |
-                            SSL.OP_NO_COMPRESSION |
-                            SSL.OP_NO_TICKET)
-
-            ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
-
-            x509 = load_certificate(FILETYPE_PEM, self.certificate)
-            ctx.use_certificate(x509)
-
-            if self.intermediate != '':
-                x509 = load_certificate(FILETYPE_PEM, self.intermediate)
-                ctx.add_extra_chain_cert(x509)
-
-            pkey = load_privatekey(FILETYPE_PEM, self.privateKey)
-            ctx.use_privatekey(pkey)
-
-            ctx.set_cipher_list(self.cipherList)
-
-            temp = tempfile.NamedTemporaryFile()
-            temp.write(self.dh)
-            temp.flush()
-            ctx.load_tmp_dh(temp.name)
-            temp.close()
-
-            ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
-            ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
-            _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
-
-            self._context = ctx
-
-    def getContext(self):
-        """
-        Return an SSL context.
-        """
-        return self._context
-
-
-reactor.listenTCPonExistingFD = listenTCPonExistingFD
-reactor.listenSSLonExistingFD = listenSSLonExistingFD
-
-
-class ReverseProxyGzipResource(proxy.ReverseProxyResource):
-    def getChild(self, path, request):
-        child = ReverseProxyGzipResource(
-            self.host, self.port, self.path + b'/' + urlquote(path, safe=b"").encode('utf-8'),
-            self.reactor)
-
-        return resource.EncodingResourceWrapper(child, [server.GzipEncoderFactory()])
+from globaleaks.utils.process import set_pdeathsig
+from globaleaks.utils.socket import listen_tls_on_sock
+from globaleaks.utils.ssl import TLSContextFactory
 
 
 def SigQUIT(SIG, FRM):
+    print('Quitting')
     try:
         reactor.stop()
     except Exception:
         pass
 
-
-signal.signal(signal.SIGUSR1, SigQUIT)
 signal.signal(signal.SIGTERM, SigQUIT)
 signal.signal(signal.SIGINT, SigQUIT)
 
+set_pdeathsig(signal.SIGINT)
 
-resource = ReverseProxyGzipResource('127.0.0.1', 8082, '')
+def config_wait(file_desc):
+    print("[subproc] subprocess listening for cfg from: %d" % file_desc)
+    f = os.fdopen(file_desc, 'r')
+    s = f.read()
+    f.close()
+    config = json.loads(s)
+    print("[subproc] read config!")
+    return config
 
-http_factory = server.Site(resource)
+def setup_tls_proxy(config):
+    resource = ReverseProxyResource('127.0.0.1', 8082, '')
+    http_factory = Site(resource)
 
-print "Waiting for piped config"
-config = json.loads(os.fdopen(2, 'r').read())
+    for fd in config['fds']:
+        tls_factory = TLSContextFactory(config['ssl_key'],
+                                        config['ssl_cert'],
+                                        config['ssl_intermediate'],
+                                        config['ssl_dh'],
+                                        config['ssl_cipher_list'])
 
-print "Received Server config over socket!"
-tls_factory = ServerContextFactory(config['ssl_key'],
-                                   config['ssl_cert'],
-                                   config['ssl_intermediate'],
-                                   config['ssl_dh'],
-                                   config['ssl_cipher_list'])
+        print("[subproc] TLS proxy listening on %d" % fd)
+        port = listen_tls_existing_sock(reactor, fd=fd, factory=http_factory,
+                                        contextFactory=tls_factory)
 
-reactor.listenSSLonExistingFD(reactor,
-                              fd=3,
-                              factory=http_factory,
-                              contextFactory=tls_factory)
+if __name__ == '__main__':
+    try:
+        cfg = config_wait(42)
 
-print "Starting an HTTPS listener"
-reactor.run()
+        setup_tls_proxy(cfg)
+    except Exception as e:
+        print("[subproc] setup failed for %s" % e)
+        raise e
+
+    reactor.run()
