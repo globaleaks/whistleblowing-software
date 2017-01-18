@@ -213,7 +213,7 @@ class MigrationScript(MigrationBase):
         old_node = self.store_old.find(self.model_from['Node']).one()
         old_notif = self.store_old.find(self.model_from['Notification']).one()
 
-        with open(os.path.join(GLSettings.client_path, 'favicon.ico'), 'r') as favicon_file:
+        with open(os.path.join(GLSettings.client_path, 'data', 'favicon.ico'), 'r') as favicon_file:
             data = favicon_file.read()
             files.db_add_file(self.store_new, data, u'favicon')
             self.entries_count['File'] += 1
