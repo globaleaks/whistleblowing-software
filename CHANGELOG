@@ -1,3 +1,8 @@
+Changes in version 2.65.13 -2017-01-18
+    o Fix time check for notification of expiring submissions
+    o Apply minor UI fixes
+    o Update translations
+
 Changes in version 2.65.12 -2017-01-16
     o Fix addition of new template for submission expiration summary
     o Apply minor UI fixes
