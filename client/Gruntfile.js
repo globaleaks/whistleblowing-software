@@ -739,8 +739,6 @@ module.exports = function(grunt) {
       });
 
       grunt.file.copy('app/data_src/field_attrs.json', 'app/data/field_attrs.json');
-      grunt.file.copy('app/data_src/favicon.ico', 'app/data/favicon.ico');
-      grunt.file.copy('app/data_src/logo.png', 'app/data/logo.png');
 
       done();
     });
