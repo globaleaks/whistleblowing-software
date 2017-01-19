@@ -1,17 +1,23 @@
 #!/usr/bin/env python
-print('[subproc] reached python')
+import os
+
+def logger():
+    pid = os.getpid()
+    def prefix(m):
+        print('[https-worker:%d] %s' % (pid, m))
+    return prefix
+
+log = logger()
+log('started')
 
 import json
-import os
 import signal
 import socket
 import sys
 
 # WARN signalling in this way is a race condition.
 def SigRespond(SIG, FRM):
-    print('responding')
-    p = os.getpid()
-    print("[subproc]:%d received note from: %s : %s" % (p, FRM, SIG))
+    log("received sig: %s from %s" % (FRM, SIG))
 
 signal.signal(signal.SIGUSR1, SigRespond)
 
@@ -25,12 +31,12 @@ from twisted.web.server import Site
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from globaleaks.utils.process import set_pdeathsig
-from globaleaks.utils.socket import listen_tls_on_sock
+from globaleaks.utils.sock import listen_tls_on_sock
 from globaleaks.utils.ssl import TLSContextFactory
 
 
 def SigQUIT(SIG, FRM):
-    print('Quitting')
+    log('Quitting')
     try:
         reactor.stop()
     except Exception:
@@ -42,28 +48,31 @@ signal.signal(signal.SIGINT, SigQUIT)
 set_pdeathsig(signal.SIGINT)
 
 def config_wait(file_desc):
-    print("[subproc] subprocess listening for cfg from: %d" % file_desc)
+    log("listening for cfg on %d" % file_desc)
     f = os.fdopen(file_desc, 'r')
     s = f.read()
     f.close()
-    config = json.loads(s)
-    print("[subproc] read config!")
-    return config
+    cfg = json.loads(s)
+    log("read config")
+    return cfg
 
-def setup_tls_proxy(config):
-    resource = ReverseProxyResource('127.0.0.1', 8082, '')
+def setup_tls_proxy(cfg):
+    resource = ReverseProxyResource(cfg['proxy_ip'], cfg['proxy_port'], '')
     http_factory = Site(resource)
 
-    for fd in config['fds']:
-        tls_factory = TLSContextFactory(config['ssl_key'],
-                                        config['ssl_cert'],
-                                        config['ssl_intermediate'],
-                                        config['ssl_dh'],
-                                        config['ssl_cipher_list'])
+    socket_fd = cfg['tls_socket_fd']
 
-        print("[subproc] TLS proxy listening on %d" % fd)
-        port = listen_tls_existing_sock(reactor, fd=fd, factory=http_factory,
-                                        contextFactory=tls_factory)
+    log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
+
+    tls_factory = TLSContextFactory(cfg['key'],
+                                    cfg['cert'],
+                                    cfg['ssl_intermediate'],
+                                    cfg['ssl_dh'],
+                                    cfg['ssl_cipher_list'])
+
+    port = listen_tls_on_sock(reactor, fd=socket_fd, factory=http_factory,
+                              contextFactory=tls_factory)
+    log("TLS proxy listening on %s" % port)
 
 if __name__ == '__main__':
     try:
@@ -71,7 +80,7 @@ if __name__ == '__main__':
 
         setup_tls_proxy(cfg)
     except Exception as e:
-        print("[subproc] setup failed for %s" % e)
+        log("setup failed with %s" % e)
         raise e
 
     reactor.run()
