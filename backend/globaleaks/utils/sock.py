@@ -22,8 +22,8 @@ def open_socket_listen(ip, port):
     s.listen(1024)
     return s
 
-def reserve_network_sockets():
-    https_sock = open_socket_listen('127.0.0.1', 443)
-    http_sock = open_socket_listen('127.0.0.1', 80)
+def reserve_network_sockets(mask=0):
+    https_sock = open_socket_listen('127.0.0.1', mask+443)
+    http_sock = open_socket_listen('127.0.0.1', mask+80)
 
     return {'http': http_sock, 'https': https_sock}

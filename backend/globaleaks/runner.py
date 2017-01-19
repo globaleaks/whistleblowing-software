@@ -11,7 +11,7 @@ from globaleaks.db import init_db, clean_untracked_files, \
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 from globaleaks.utils.http_master import ProcessSupervisor
-from globaleaks.utils.ssocket import reserve_network_sockets
+from globaleaks.utils.sock import reserve_network_sockets
 
 test_reactor = None
 
@@ -33,7 +33,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         try:
             GLSettings.fix_file_permissions()
 
-            public_net_sockets = reserve_network_sockets()
+            public_net_sockets = reserve_network_sockets(mask=9000)
 
             GLSettings.drop_privileges()
             GLSettings.check_directories()
