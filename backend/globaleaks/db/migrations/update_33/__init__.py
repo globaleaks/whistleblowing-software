@@ -167,7 +167,10 @@ class MigrationScript(MigrationBase):
 
             for _, v in new_obj._storm_columns.iteritems():
                 if v.name == 'wb_last_access':
-                    new_obj.wb_last_access = old_wbtip.last_access
+                    if old_wbtip.last_access != datetime_null():
+                        new_obj.wb_last_access = old_wbtip.last_access
+                    else:
+                        new_obj.last_access = old_obj.creation_date
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name))
