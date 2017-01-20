@@ -451,6 +451,24 @@ var GLClient = angular.module('GLClient', [
         $rootScope.contexts = result.contexts;
         $rootScope.receivers = result.receivers;
 
+        if (result.node.favicon) {
+
+          var favicon = document.getElementById('favicon');
+          var href = "data:image/x-icon;base64," + result.node.favicon;
+
+          if (favicon === null) {
+              var fileref = document.createElement('link');
+              fileref.setAttribute("rel", "shortcut icon");
+              fileref.setAttribute("type", "image/x-icon");
+              fileref.setAttribute("href", href);
+              if (typeof fileref != "undefined") {
+                document.getElementsByTagName("head")[0].appendChild(fileref);
+              }
+          } else {
+            document.getElementById('favicon').setAttribute("href", href);
+          }
+        }
+
         // Tor detection and enforcing of usage of HS if users are using Tor
         if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
           // A better check on this situation would be
