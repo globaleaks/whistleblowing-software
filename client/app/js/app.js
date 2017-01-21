@@ -452,21 +452,7 @@ var GLClient = angular.module('GLClient', [
         $rootScope.receivers = result.receivers;
 
         if (result.node.favicon) {
-
-          var favicon = document.getElementById('favicon');
-          var href = "data:image/x-icon;base64," + result.node.favicon;
-
-          if (favicon === null) {
-              var fileref = document.createElement('link');
-              fileref.setAttribute("rel", "shortcut icon");
-              fileref.setAttribute("type", "image/x-icon");
-              fileref.setAttribute("href", href);
-              if (typeof fileref != "undefined") {
-                document.getElementsByTagName("head")[0].appendChild(fileref);
-              }
-          } else {
-            document.getElementById('favicon').setAttribute("href", href);
-          }
+          document.getElementById('favicon').setAttribute("href", "data:image/x-icon;base64," + result.node.favicon);
         }
 
         // Tor detection and enforcing of usage of HS if users are using Tor
