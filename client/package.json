@@ -14,7 +14,7 @@
   "devDependencies": {
     "coveralls": "2.11.15",
     "eslint": "3.11.1",
-    "firefox-profile": "0.4.4",
+    "firefox-profile": "0.4.7",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
     "grunt-confirm": "1.0.5",
