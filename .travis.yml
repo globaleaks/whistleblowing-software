@@ -14,7 +14,7 @@ matrix:
     - env: GLTEST='test' GLREQUIREMENTS='trusty'
       python: "2.7"
       addons:
-        firefox: "45.0"
+        firefox: "47.0"
 
     - env: GLTEST='lint'
       python: "2.7"
@@ -34,7 +34,7 @@ matrix:
       addons:
         sauce_connect: true
 
-    - env: GLTEST='end2end-3' BROWSER='firefox 45'
+    - env: GLTEST='end2end-3' BROWSER='firefox 47'
       python: "2.7"
       addons:
         sauce_connect: true
@@ -92,7 +92,7 @@ matrix:
     - env: GLTEST='end2end-0' BROWSER='edge 13'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
     - env: GLTEST='end2end-2' BROWSER='firefox 34'
-    - env: GLTEST='end2end-3' BROWSER='firefox 45'
+    - env: GLTEST='end2end-3' BROWSER='firefox 47'
     - env: GLTEST='end2end-4' BROWSER='chrome 37'
     - env: GLTEST='end2end-5' BROWSER='chrome 48'
     - env: GLTEST='end2end-6' BROWSER='safari 8'
