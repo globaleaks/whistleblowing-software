@@ -30,7 +30,7 @@
     "mocha": "3.2.0",
     "node-gettext": "0.2.14",
     "openpgp": "2.3.5",
-    "protractor": "5.0.0",
+    "protractor": "4.0.14",
     "protractor-accessibility-plugin": "0.3.0",
     "protractor-console-plugin": "0.1.1",
     "protractor-istanbul-plugin": "2.0.0",
