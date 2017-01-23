@@ -17,7 +17,7 @@ import sys
 
 # WARN signalling in this way is a race condition.
 def SigRespond(SIG, FRM):
-    log("received sig: %s from %s" % (FRM, SIG))
+    log("Received sig: %s from %s" % (FRM, SIG))
 
 signal.signal(signal.SIGUSR1, SigRespond)
 
@@ -36,7 +36,7 @@ from globaleaks.utils.ssl import TLSContextFactory
 
 
 def SigQUIT(SIG, FRM):
-    log('Quitting')
+    log('Received %s . . . quitting' % (SIG))
     try:
         reactor.stop()
     except Exception:

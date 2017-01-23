@@ -204,6 +204,11 @@ class GLSettingsClass(object):
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
+        # Holds global state until GLSettings is inverted and it is placed 
+        # under this object.
+        self.state = OD()
+        self.state.process_supervisor = None
+
     def reset_hourly(self):
         self.RecentEventQ[:] = []
         self.RecentAnomaliesQ.clear()

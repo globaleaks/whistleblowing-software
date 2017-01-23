@@ -8,34 +8,31 @@ from globaleaks.models.config import PrivateFactory
 from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
-from . import http_master
-
-
-def check_https(priv_key, cert, chain):
-    if (priv_key == 'throw'):
-        raise errors.InvalidInputFormat('Dummy exception raised')
-    return True
+from globaleaks.utils.ssl import generate_dh_params
+from globaleaks.utils import http_master
+from globaleaks.utils.http_master import should_serve_https
 
 
 @transact
 def configure_https(store, request):
-    # TODO validate config params with SSL logic
+    #TODO(nskelsey) validate config params with SSL logic
     priv_key, cert, chain = request['priv_key'], request['cert'], request['chain']
 
+    dh_params = generate_dh_params()
     privFact = PrivateFactory(store)
 
+    # TODO check if the private key already exists.
     privFact.set_val('https_priv_key', priv_key)
     privFact.set_val('https_cert', cert)
     privFact.set_val('https_chain', chain)
+    privFact.set_val('https_dh_params', dh_params)
+    privFact.set_val('https_enabled', True)
 
-    if check_https(pk, cert, chain):
-        http_master.launch_workers({}, priv_key, cert, chain, 'dhparam')
-    else:
-        raise errors.InternalServerError("Cert upload failed!")
+    GLSettings.state.process_supervisor.db_maybe_launch_https_workers(store)
 
 
 def stop_serving_https():
-    pass
+    GLSettings.state.process_supervisor.shutdown()
 
 
 @transact
@@ -43,9 +40,11 @@ def delete_https_config(store):
     privFact = PrivateFactory(store)
     log.info('Deleting all HTTPS configuration')
 
-    privFact.set_val('https_priv_key', u'')
-    privFact.set_val('https_cert', u'')
-    privFact.set_val('https_chain', u'')
+    privFact.set_val('https_priv_key', '')
+    privFact.set_val('https_cert', '')
+    privFact.set_val('https_chain', '')
+    privFact.set_val('https_dh_params', '')
+    privFact.set_val('https_enabled', False)
 
 
 class CertFileHandler(BaseHandler):
@@ -71,7 +70,7 @@ class CertFileHandler(BaseHandler):
     @inlineCallbacks
     def delete(self):
         try:
-          yield delete_tls()
+          yield delete_https_config()
         except Exception as e:
           log.err(e)
           self.set_status(400)
@@ -94,8 +93,9 @@ class ConfigHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @inlineCallbacks
     def delete(self):
-        yield stop_serving_https()
+        stop_serving_https()
         yield delete_https_config()
         self.set_status(200)
 
@@ -108,7 +108,7 @@ def gen_RSA_key():
     :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
     '''
     pub_key = crypto.PKey()
-    #TODO(@evilaliv3|@nskelsey) pick real params
+    #TODO(evilaliv3|nskelsey) pick real params
     pub_key.generate_key(crypto.TYPE_RSA, 1024)
 
     return pub_key
