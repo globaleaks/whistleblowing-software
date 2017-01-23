@@ -212,12 +212,12 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminTLSConfigCtrl', ['$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCertFileResource',
-  function($scope, configResource, csrCfgResource, certFileResource) {
+controller('AdminTLSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCertFileResource',
+  function(FileReader, $scope, configResource, csrCfgResource, certFileResource) {
   console.log("AdminTLSConfigCtrl: scope", $scope, $scope.admin.tls_config);
   $scope.tls_config = $scope.admin.tls_config;
 
-  $scope.active_pane = 'configure_start';
+  $scope.active_pane = $scope.tls_config ? 'status' : 'configure_start';
   panes = ['configure_start', 'csr_gen', 'cert_upload', 'status'];
   $scope.go = function(where) {
     $scope.active_pane = where;
@@ -245,6 +245,13 @@ controller('AdminTLSConfigCtrl', ['$scope', 'AdminTLSConfigResource', 'AdminCSRC
     cert: 'certificato',
     chain: 'linko',
   });
+
+  $scope.placeAsString = function(fileList, target) {
+    var file = fileList.item(0);
+    FileReader.readAsText(file, $scope).then(function(str) {
+      $scope.cert_files[target] = str;
+    });
+  };
 
   $scope.submitCSR = function() {
     console.log("Submitting CSR", $scope.csr_cfg);
@@ -274,7 +281,9 @@ controller('AdminTLSConfigCtrl', ['$scope', 'AdminTLSConfigResource', 'AdminCSRC
         //   display error and/or ask for reset
         //   if error is parsing related; maybe provide more feedback
         return $scope.tls_config.$get().$promise;
-    })
+    }).then(function() {
+        go('status');
+    });
   };
 }]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',

@@ -35,10 +35,9 @@ printf '\nPosting a private key\n\n'
 curl -vvv -A 'test-script' \
      -X POST -H 'Content-type: application/json' \
     -H "X-Session: $session_id" \
-    -d '{"cert": "aaaa", "priv_key": "secret", "chain": "link-link-link"}' \
+    --data @cert_upload.json \
     "$BASE/admin/config/tls/files"
 
 printf 'Deleting content\n\n'
 
-curl -vvv -A 'test-script' -i -X DELETE -H "X-Session: $session_id" "$BASE/admin/config/tls"
-
+#curl -vvv -A 'test-script' -i -X DELETE -H "X-Session: $session_id" "$BASE/admin/config/tls"

@@ -1,9 +1,13 @@
 <h3 id="certUpload" data-translate>Upload X.509 certificate</h3>
 
 <div data-ng-form name="certFileForm">
-  <div class="form-group">
+  <div class="form-group" data-ng-if="tls_config.key_configured">
     <label data-translate>Private key</label>
-    <div>
+    <div class="text-area-with-btn">
+      <label for="httpsPk" class="btn btn-xs btn-primary">
+          <input id="httpsPk" type="file" file-change handler="placeAsString(files, 'priv_key')" />
+          <span data-translate>Choose file</span>
+      </label>
       <textarea class="form-control"
         data-ng-model="cert_files.priv_key"
         data-ng-required>
@@ -13,7 +17,11 @@
 
   <div class="form-group">
     <label data-translate>Certificate</label>
-    <div>
+    <div class="text-area-with-btn">
+      <label for="httpsChain" class="btn btn-xs btn-primary">
+          <input id="httpsChain" type="file" file-change handler="placeAsString(files, 'cert')" />
+          <span data-translate>Choose file</span>
+      </label>
       <textarea class="form-control"
         data-ng-model="cert_files.cert"
         data-ng-required>
@@ -23,14 +31,18 @@
 
   <div class="form-group">
     <label data-translate>Intermediate chain</label>
-    <div>
+    <div class="text-area-with-btn">
+      <label for="httpsChain" class="btn btn-xs btn-primary">
+          <input id="httpsChain" type="file" file-change handler="placeAsString(files, 'chain')" />
+          <span data-translate>Choose file</span>
+      </label>
       <textarea class="form-control"
         data-ng-model="cert_files.chain"
         data-ng-required>
       </textarea>
     </div>
   </div>
-  <div class="panel panel-danger" data-ng-if="certFileForm.$invalid && certFileForm.$dirty">
+<div class="panel panel-danger" data-ng-if="certFileForm.$invalid && certFileForm.$dirty">
     <div class="panel-heading">
       <b data-translate>Errors</b>
     </div>
