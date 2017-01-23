@@ -58,10 +58,8 @@ if ! id -u globaleaks >/dev/null 2>&1; then
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
 VirtualAddrNetwork 10.23.47.0/10
 AutomapHostsOnResolve 1
-TransPort 9040
-TransListenAddress 127.0.0.1
-DNSPort 5353
-DNSListenAddress 127.0.0.1
+TransPort 127.0.0.1:9040
+DNSPort 127.0.0.1:5353
 HiddenServiceDir /var/globaleaks/torhs/
 HiddenServicePort 80 127.0.0.1:8082
 # END GlobaLeaks Configuration - DO NOT EDIT!
