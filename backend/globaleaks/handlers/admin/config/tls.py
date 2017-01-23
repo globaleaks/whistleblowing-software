@@ -18,11 +18,19 @@ def configure_https(store, request):
     #TODO(nskelsey) validate config params with SSL logic
     priv_key, cert, chain = request['priv_key'], request['cert'], request['chain']
 
-    dh_params = generate_dh_params()
     privFact = PrivateFactory(store)
+    dh_params = privFact.get_val('https_dh_params') 
 
-    # TODO check if the private key already exists.
-    privFact.set_val('https_priv_key', priv_key)
+    # TODO undo
+    if dh_params == u'':
+        dh_params = generate_dh_params()
+
+
+    if not is_https_key_configured(privFact):
+        privFact.set_val('https_priv_key', priv_key)
+    else:
+        log.info("Ignoring passed priv_key for https. One is already set")
+
     privFact.set_val('https_cert', cert)
     privFact.set_val('https_chain', chain)
     privFact.set_val('https_dh_params', dh_params)
@@ -43,7 +51,7 @@ def delete_https_config(store):
     privFact.set_val('https_priv_key', '')
     privFact.set_val('https_cert', '')
     privFact.set_val('https_chain', '')
-    privFact.set_val('https_dh_params', '')
+    #TODO undo privFact.set_val('https_dh_params', '')
     privFact.set_val('https_enabled', False)
 
 
@@ -78,17 +86,31 @@ class CertFileHandler(BaseHandler):
 
         self.set_status(200)
 
+
+def is_https_key_configured(privFact):
+    priv_key = privFact.get_val('https_priv_key')
+    return True if priv_key != u'' else False
+
+
+@transact
+def serialize_https_config_summary(store):
+    privFact = PrivateFactory(store)
+
+    ret = {
+      'enabled': privFact.get_val('https_enabled'),
+      'status': GLSettings.state.process_supervisor.get_status(),
+      'key_configured': is_https_key_configured(privFact),
+    }
+    return ret
+
+
 class ConfigHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @inlineCallbacks
     def get(self):
-        https_cfg = {
-            'state': 'empty',
-            'cert': 'py-back',
-            'priv_key': '',
-            'chain': '',
-        }
+        https_cfg = yield serialize_https_config_summary()
         self.write(https_cfg)
 
     @BaseHandler.transport_security_check('admin')

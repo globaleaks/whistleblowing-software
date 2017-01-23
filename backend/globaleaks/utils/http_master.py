@@ -194,6 +194,12 @@ class ProcessSupervisor(object):
         log.debug('process death accountant: r=%3f, d=%2f, window=%2f' % (r, d, window))
         return r
 
+    def get_status(self):
+        if len(self.tls_process_pool) > 0:
+            return "Processes are serving https"
+        else:
+            return "Nothing is being served"
+
     def shutdown(self):
         self.shutting_down = True
 

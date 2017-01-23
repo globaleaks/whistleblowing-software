@@ -81,30 +81,6 @@ angular.module('GLDirectives', []).
       }
     };
 }).
- directive("fileread", function () {
-   return {
-     scope: {
-       fileread: "="
-     },
-     /* eslint-disable no-unused-vars */
-     link: function (scope, element, attributes) {
-     /* eslint-enable no-unused-vars */
-       element.bind('click', function(){
-         element.val('');
-       });
-
-       element.bind("change", function (changeEvent) {
-         var reader = new FileReader();
-         reader.onload = function (e) {
-           scope.$apply(function () {
-             scope.fileread(e.target.result);
-           });
-         };
-         reader.readAsText(changeEvent.target.files[0]);
-       });
-     }
-   };
-}).
 directive('zxPasswordMeter', function() {
   return {
     scope: {
@@ -386,11 +362,28 @@ directive('isolateForm', [function () {
       });
     },
   };
-}])
-.directive('wbfile', [function() {
+}]).
+directive('wbfile', [function() {
   return {
     restrict: 'A',
     scope: false,
     templateUrl: 'views/partials/wbfile.html',
   };
-}]);
+}]).
+directive('fileChange', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      handler: '&',
+    },
+    link: function (scope, element) {
+      element.on('change', function (event) {
+      scope.$apply(function(){
+        console.log("Caught change: ", event);
+        scope.handler({files: event.target.files});
+      });
+    });
+    }
+  };
+});
+

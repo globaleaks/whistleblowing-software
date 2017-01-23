@@ -65,6 +65,7 @@ var GLClient = angular.module('GLClient', [
     'zxcvbn',
     'ngSanitize',
     'ngFileSaver',
+    'ngFileReader',
     'GLServices',
     'GLDirectives',
     'GLFilters',

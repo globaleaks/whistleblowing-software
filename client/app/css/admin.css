@@ -87,3 +87,22 @@ text.axis-workweek {
 text.axis-worktime {
   fill: #000;
 }
+
+.text-area-with-btn {
+  position: relative;
+}
+
+.text-area-with-btn label {
+  position: absolute;
+  x: 0;
+  y: 0;
+}
+
+.text-area-with-btn input[type='file'] {
+  display: none;
+}
+
+.text-area-with-btn textarea {
+  padding-top: 20px !important;
+  min-height: 150px !important;
+}
