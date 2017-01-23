@@ -13,7 +13,7 @@ filter('weekNumber', function() {
 }).
 filter('newExpirationDate', function() {
   return function(tip) {
-    return new Date((new Date()).getTime() + tip.timetolive * 1000);
+    return new Date(new Date().getTime() + tip.timetolive * 24 * 3600 * 1000);
   };
 }).
 filter('anomalyToString', function() {
