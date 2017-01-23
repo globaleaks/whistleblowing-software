@@ -1,3 +1,12 @@
+Changes in version 2.65.14 -2017-01-23
+    o Fix migration script 33 in relation to expiration of
+      the access by the whistleblower
+    o Optimize favicon loading
+    o Fix issue #1878
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1878
+
 Changes in version 2.65.13 -2017-01-18
     o Fix time check for notification of expiring submissions
     o Apply minor UI fixes
