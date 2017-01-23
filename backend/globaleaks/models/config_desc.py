@@ -43,6 +43,8 @@ GLConfig = {
         'https_priv_key': Unicode(),
         'https_cert': Unicode(),
         'https_chain': Unicode(),
+        'https_dh_params': Unicode(),
+        'https_enabled': Bool(default=False),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
