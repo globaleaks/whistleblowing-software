@@ -165,6 +165,9 @@ class ProcessSupervisor(object):
             pp = TLSProcProtocol(self, self.tls_cfg)
             log.info('Relaunched: %s' % (pp))
             self.tls_process_pool.append(pp)
+        elif self.last_one_out():
+            self.shutting_down = False
+            log.err("Supervisor has turned off all children")
         else:
             log.err("Not relaunching child process")
 
@@ -183,6 +186,13 @@ class ProcessSupervisor(object):
         return len(self.tls_process_pool) < self.tls_process_state['target_proc_num'] and \
                num_deaths < max_deaths and \
                (mort_rate < self.MAX_MORTALITY_RATE or num_deaths < nrml_deaths)
+
+    def last_one_out(self):
+        '''
+        last_one_out captures the condition of the last shutdown process before
+        the process supervisor has closed all children.
+        '''
+        return self.shutting_down and len(self.tls_process_pool) == 0
 
     def account_death(self):
         self.tls_process_state['deaths'] += 1

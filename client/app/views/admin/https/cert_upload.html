@@ -1,22 +1,28 @@
-<h3 id="certUpload" data-translate>Upload X.509 certificate</h3>
-
-<div data-ng-form name="certFileForm">
-  <div class="form-group" data-ng-if="tls_config.key_configured">
-    <label data-translate>Private key</label>
-    <div class="text-area-with-btn">
-      <label for="httpsPk" class="btn btn-xs btn-primary">
-          <input id="httpsPk" type="file" file-change handler="placeAsString(files, 'priv_key')" />
-          <span data-translate>Choose file</span>
-      </label>
-      <textarea class="form-control"
-        data-ng-model="cert_files.priv_key"
-        data-ng-required>
-      </textarea>
+<h3 id="certUpload" data-translate>Upload HTTPS files</h3>
+<p>
+  <span data-translate>This section allows you to upload an X.509 certificate, a private key, and an intermediate certificate chain.</span>
+  <span data-translate>Once you have uploaded all three files you can check the configuration by visiting this server on port 443 with a web browser.</span>
+</p>
+<div name="certFileForm">
+  <div class="panel-body">
+    <div class="form-group" data-ng-if="tls_config.key_configured">
+      <label data-translate>Private key</label>
+      <div class="text-area-with-btn">
+        <label for="httpsPk" class="btn btn-xs btn-primary">
+            <input id="httpsPk" type="file" file-change handler="placeAsString(files, 'priv_key')" />
+            <span data-translate>Choose file</span>
+        </label>
+        <textarea class="form-control"
+          data-ng-model="cert_files.priv_key"
+          data-ng-required>
+        </textarea>
+      </div>
     </div>
   </div>
 
   <div class="form-group">
     <label data-translate>Certificate</label>
+    <div class="panel-body">
     <div class="text-area-with-btn">
       <label for="httpsChain" class="btn btn-xs btn-primary">
           <input id="httpsChain" type="file" file-change handler="placeAsString(files, 'cert')" />
@@ -53,12 +59,12 @@
     </div>
   </div>
 
-  <button class="btn btn-success" ng-click="go('csr_gen')">
+  <button class="btn btn-success" ng-click="go('status')">
     <i class="glyphicon glyphicon-left"></i>
-    <span data-translate>Previous</span>
+    <span data-translate>Status</span>
   </button>
   <button class="btn btn-success" ng-click="submitCertFiles()">
     <i class="glyphicon glyphicon-ok"></i>
-    <span data-translate>Save</span>
+    <span data-translate>Apply</span>
   </button>
 </div>

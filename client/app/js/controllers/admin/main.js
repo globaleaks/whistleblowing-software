@@ -212,16 +212,24 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminTLSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCertFileResource',
+controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCertFileResource',
   function(FileReader, $scope, configResource, csrCfgResource, certFileResource) {
   console.log("AdminTLSConfigCtrl: scope", $scope, $scope.admin.tls_config);
   $scope.tls_config = $scope.admin.tls_config;
+  $scope.cert_files = certFileResource.get();
 
   $scope.active_pane = $scope.tls_config ? 'status' : 'configure_start';
   panes = ['configure_start', 'csr_gen', 'cert_upload', 'status'];
   $scope.go = function(where) {
     $scope.active_pane = where;
   }
+
+  $scope.default_config = function() {
+    if (angular.isUndefined($scope.tls_config)) {
+      return true;
+    }
+    return !$scope.tls_config.enabled;
+  };
 
   $scope.csr_cfg = new csrCfgResource({
     country: 'it',
@@ -238,13 +246,8 @@ controller('AdminTLSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResourc
     tried: false,
     error: '',
     text: '',
-  }
+  };
 
-  $scope.cert_files = new certFileResource({
-    priv_key: 'chiave',
-    cert: 'certificato',
-    chain: 'linko',
-  });
 
   $scope.placeAsString = function(fileList, target) {
     var file = fileList.item(0);
@@ -259,7 +262,7 @@ controller('AdminTLSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResourc
     $scope.csr_cfg.$save().then(function(resp) {
         $scope.csr_state.text = resp.csr_txt;
         $scope.csr_state.success = true;
-        return $scope.tls_config.$get().$promise;
+        return $scope.tls_config.get().$promise;
     }).then(function() {
         $scope.go('cert_upload');
     }, function(err) {
@@ -296,10 +299,6 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     {
       title:"HTTPS access control",
       template:"views/admin/advanced/tab2.html"
-    },
-    {
-      title:"HTTPS settings",
-      template:"views/admin/advanced/https/main.html",
     },
     {
       title:"Anomaly detection thresholds",
