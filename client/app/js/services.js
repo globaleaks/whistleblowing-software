@@ -849,14 +849,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         return $location.path() === '/wizard';
       },
 
-      isLoginPage: function () {
-        var path = $location.path();
-        return (path === '/login' ||
-                path === '/admin' ||
-                path === '/custodian' ||
-                path === '/receipt');
-      },
-
       isAdminPage: function() {
         var path = $location.path();
         return path.substr(0, 6) == '/admin';
@@ -888,7 +880,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       classExtension: function() {
         return {
           'ext-public': this.isWhistleblowerPage(),
-          'ext-login': this.isLoginPage(),
           'ext-authenticated': Authentication.hasUserRole(),
           'ext-embedded': $rootScope.embedded,
         };
