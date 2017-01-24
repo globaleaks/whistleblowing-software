@@ -88,21 +88,24 @@ text.axis-worktime {
   fill: #000;
 }
 
-.text-area-with-btn {
-  position: relative;
-}
 
-.text-area-with-btn label {
-  position: absolute;
-  x: 0;
-  y: 0;
-}
-
-.text-area-with-btn input[type='file'] {
+.file-upload input[type='file'] {
   display: none;
 }
 
-.text-area-with-btn textarea {
-  padding-top: 20px !important;
-  min-height: 150px !important;
+.hideable-div {
+  position: relative;
+}
+
+.disabling-div {
+  display: block;
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  opacity: 0.75;
+  filter: alpha(opacity=0.75);
 }

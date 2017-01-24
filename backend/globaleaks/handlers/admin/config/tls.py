@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from OpenSSL import crypto, SSL
 from twisted.internet.defer import inlineCallbacks
 
@@ -11,6 +13,7 @@ from globaleaks.utils.utility import log
 from globaleaks.utils.ssl import generate_dh_params
 from globaleaks.utils import http_master
 from globaleaks.utils.http_master import should_serve_https
+from globaleaks.utils.utility import datetime_to_ISO8601
 
 
 @transact
@@ -19,7 +22,7 @@ def configure_https(store, request):
     priv_key, cert, chain = request['priv_key'], request['cert'], request['chain']
 
     privFact = PrivateFactory(store)
-    dh_params = privFact.get_val('https_dh_params') 
+    dh_params = privFact.get_val('https_dh_params')
 
     # TODO undo
     if dh_params == u'':
@@ -55,7 +58,34 @@ def delete_https_config(store):
     privFact.set_val('https_enabled', False)
 
 
+@transact
+def serialize_cert_files(store):
+    privFact = PrivateFactory(store)
+
+    priv_key = privFact.get_val('https_priv_key')
+    cert = privFact.get_val('https_cert')
+    chain = privFact.get_val('https_chain')
+
+    def build_file(name):
+        val = privFact.get_val('https_'+name)
+        return {
+           'empty': val == '',
+           'content': val,
+        }
+
+    ret = {}
+    for name in ['priv_key', 'cert', 'chain']:
+        ret[name] = build_file(name)
+    return ret
+
 class CertFileHandler(BaseHandler):
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
+    def get(self):
+        cert_file_cfg = yield serialize_cert_files()
+
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -98,8 +128,9 @@ def serialize_https_config_summary(store):
 
     ret = {
       'enabled': privFact.get_val('https_enabled'),
-      'status': GLSettings.state.process_supervisor.get_status(),
+      'status_msg': GLSettings.state.process_supervisor.get_status(),
       'key_configured': is_https_key_configured(privFact),
+      'timestamp': datetime_to_ISO8601(datetime.now()),
     }
     return ret
 
