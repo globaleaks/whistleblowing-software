@@ -4,7 +4,7 @@
       <input data-ng-model="admin.node.tor2web_admin" type="checkbox">
       <label data-translate>Allow admin access via HTTPS</label>
     </div>
-    <div class="form-group">
+    <div class="form-group" data-ng-if="admin.node.enable_experimental_features">
       <input data-ng-model="admin.node.tor2web_custodian" type="checkbox">
       <label data-translate>Allow custodian access via HTTPS</label>
     </div>
