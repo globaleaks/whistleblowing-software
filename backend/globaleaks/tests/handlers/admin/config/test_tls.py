@@ -6,12 +6,11 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.internet import reactor, defer
 from OpenSSL import crypto, SSL
 
-from globaleaks.handlers.admin.config import tls, http_master
+from globaleaks.handlers.admin.config import tls
 from globaleaks.tests import helpers
 
 
 class TestCryptoFuncs(unittest.TestCase):
-
     def test_it_all(self):
         key_pair = tls.gen_RSA_key()
 
@@ -24,13 +23,12 @@ class TestCryptoFuncs(unittest.TestCase):
         pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, csr)
         #print(pem_csr)
 
+
 from twisted.trial.unittest import TestCase
 
+
 class TestHTTPSWorkers(unittest.TestCase):
-
     def test_launch_workers(self):
-        #http_master.reactor = self.test_reactor
-
         d = {
             'cert': '',
             #'chain': '',
@@ -42,7 +40,7 @@ class TestHTTPSWorkers(unittest.TestCase):
             with open(os.path.join(helpers.KEYS_PATH, 'https', key+'.pem')) as f:
                 d[key] = f.read()
 
-        pool = http_master.launch_workers({}, d['priv_key'], d['cert'], '', '')
+        pool = tls.tls_master.launch_workers({}, d['priv_key'], d['cert'], '', '')
 
         d = defer.gatherResults([p.deferredConnect for p in pool])
         def test_cb(ignored):
