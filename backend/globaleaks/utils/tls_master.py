@@ -19,7 +19,6 @@ from globaleaks.utils.utility import log
 
 
 class TLSProcProtocol(protocol.ProcessProtocol):
-
     def __init__(self, supervisor, cfg, cfg_fd=42):
         self.supervisor = supervisor
         self.cfg = json.dumps(cfg)
@@ -35,8 +34,8 @@ class TLSProcProtocol(protocol.ProcessProtocol):
                   tls_socket_fd, os.fstat(tls_socket_fd)))
 
         # TODO remove abs path.
-        # Debian will unpack the binary into /usr/bin/http_worker
-        path = '/home/nskelsey/projects/globaleaks/backend/bin/http_worker.py'
+        # Debian will unpack the binary into /usr/bin/gl-tls_worker
+        path = '/home/nskelsey/projects/globaleaks/backend/bin/gl-tls-worker.py'
         reactor.spawnProcess(self, executable, [executable, path], childFDs=fd_map, env=os.environ)
 
     def connectionMade(self):

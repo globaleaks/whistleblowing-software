@@ -23,8 +23,6 @@ signal.signal(signal.SIGUSR1, SigRespond)
 
 from twisted.internet import reactor, ssl, protocol, defer
 from twisted.protocols import tls
-from twisted.web.proxy import ReverseProxyResource
-from twisted.web.server import Site
 
 # When this executable is not within the systems standard path, the globaleaks
 # module must add it to sys path manually. Hence the following line.
@@ -33,6 +31,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from globaleaks.utils.process import set_pdeathsig
 from globaleaks.utils.sock import listen_tls_on_sock
 from globaleaks.utils.ssl import TLSContextFactory
+from globaleaks.utils.tcpproxy import ProxyServerFactory
 
 
 def SigQUIT(SIG, FRM):
@@ -47,6 +46,7 @@ signal.signal(signal.SIGINT, SigQUIT)
 
 set_pdeathsig(signal.SIGINT)
 
+
 def config_wait(file_desc):
     log("listening for cfg on %d" % file_desc)
     f = os.fdopen(file_desc, 'r')
@@ -56,13 +56,12 @@ def config_wait(file_desc):
     log("read config")
     return cfg
 
+
 def setup_tls_proxy(cfg):
-    resource = ReverseProxyResource(cfg['proxy_ip'], cfg['proxy_port'], '')
-    http_factory = Site(resource)
-
-    socket_fd = cfg['tls_socket_fd']
-
-    log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
+    """
+    Instantiate a TLS proxy that will handle 10.000 connections
+    """
+    tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
 
     tls_factory = TLSContextFactory(cfg['key'],
                                     cfg['cert'],
@@ -70,9 +69,15 @@ def setup_tls_proxy(cfg):
                                     cfg['ssl_dh'],
                                     cfg['ssl_cipher_list'])
 
-    port = listen_tls_on_sock(reactor, fd=socket_fd, factory=http_factory,
+    socket_fd = cfg['tls_socket_fd']
+
+    log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
+
+    port = listen_tls_on_sock(reactor, fd=socket_fd, factory=tcp_proxy_factory,
                               contextFactory=tls_factory)
+
     log("TLS proxy listening on %s" % port)
+
 
 if __name__ == '__main__':
     try:

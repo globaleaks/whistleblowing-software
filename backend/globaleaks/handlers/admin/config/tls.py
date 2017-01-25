@@ -11,8 +11,7 @@ from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 from globaleaks.utils.ssl import generate_dh_params
-from globaleaks.utils import http_master
-from globaleaks.utils.http_master import should_serve_https
+from globaleaks.utils import tls_master
 from globaleaks.utils.utility import datetime_to_ISO8601
 
 
