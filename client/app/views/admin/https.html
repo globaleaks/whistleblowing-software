@@ -1,0 +1,101 @@
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+  <div class="col-md-9">
+    <div id="HttpsSettings" data-ng-controller="AdminHTTPSConfigCtrl">
+      <div data-ng-if="default_config()">
+        <h3 data-translate>HTTPS is not configured.</h3>
+      </div>
+      <div data-ng-if="!default_config()">
+        <h3 data-translate>HTTPS is running</h3>
+        <h3><span data-translate>Status</span>:
+          <span class="label label-success">Enabled</span>
+          <span class="label label-success">Running</span>
+        </h3>
+        <h4><span data-translate>Resource locator</span>: <a target="_blank" rel="noreferrer noopener" href="https://127.0.0.1:9443/">https://127.0.0.1:9443/</a></h4>
+        <h4 data-translate>System message:</h4>
+        <div class="alert alert-info"><b>{{ tls_config.timestamp | date:'dd-MM-yyyy HH:MM' }} </b>{{ tls_config.status_msg }}</div>
+      </div>
+      <div>
+        <h3 data-translate>Configuration</h3>
+
+        <div class="panel panel-default" data-ng-class="{'disabled': cert_files.priv_key.empty}">
+          <div class="panel-body">
+            <i class="glyphicon glyphicon-file"></i>
+            <b data-translate>Private key</b>
+            <small>(.pem)</small>
+            <div class="pull-right">
+              <button class="btn btn-xs btn-success" data-ng-click="">Generate</button>
+              <span class="file-upload">
+                <label for="privkeyUpload" class="btn btn-xs btn-warning">
+                  <input id="privKeyUpload" type="file" file-change handler="postFile(files, 'priv_key')" />
+                  <span data-translate>Upload</span>
+                </label>
+              </span>
+              <span  data-ng-if="!cert_files.priv_key.empty">
+                <button class="btn btn-xs btn-warning">Download</button>
+                <button class="btn btn-xs btn-danger">Delete</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default hideable-div">
+          <div class="panel-body">
+            <i class="glyphicon glyphicon-file"></i>
+            <b data-translate>Certificate signing request</b>
+            <small>(.pem)</small>
+            <div class="pull-right">
+              <button class="btn btn-xs btn-success" data-ng-click="">Generate</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default hideable-div">
+          <div class="panel-body">
+            <i class="glyphicon glyphicon-file"></i>
+            <b data-translate>Certificate</b>
+            <small>(.pem) Expires on: 20/20/20</small>
+            <div class="pull-right">
+              <span class="file-upload">
+                <label for="certUpload" class="btn btn-xs btn-primary">
+                  <input id="certUpload" type="file" file-change handler="postFile(files, 'cert')" />
+                  <span data-translate>Upload</span>
+                </label>
+              </span>
+              <span  data-ng-if="!cert_files.priv_key.empty">
+                <button class="btn btn-xs btn-primary">Download</button>
+                <button class="btn btn-xs btn-danger">Delete</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default hideable-div" data-ng-class="{'disabled': true}">
+          <div class="panel-body">
+            <i class="glyphicon glyphicon-file"></i>
+            <b data-translate>Certificate chain</b>
+            <small>Expires on: 4/20/00</small>
+            <div class="pull-right">
+              <span class="file-upload">
+                <label for="chainUpload" class="btn btn-xs btn-primary">
+                  <input id="chainUpload" type="file" file-change handler="postFile(files, 'chain')" />
+                  <span data-translate>Upload</span>
+                </label>
+              </span>
+              <span  data-ng-if="!cert_files.chain.empty">
+                <button class="btn btn-xs btn-primary">Download</button>
+                <button class="btn btn-xs btn-danger">Delete</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="btn btn-md btn-primary" data-translate>Test</button>
+      <button class="btn btn-md btn-success" data-ng-if="!tls_config.enabled" data-translate>Enable</button>
+      <button class="btn btn-md btn-warning" data-ng-if="tls_config.enabled" data-translate>Disable</button>
+
+    </div>
+  </div>
+</div>
