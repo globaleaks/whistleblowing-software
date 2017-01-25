@@ -1,21 +1,18 @@
 from StringIO import StringIO
 
 from cyclone import httputil
-from cyclone.escape import native_str
+from cyclone.escape import native_str, utf8
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler
 
-from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 
 def mock_RequestHandler_set_default_headers(self):
     """
-    In this function are written some security enforcements
-    related to WebServer versioning and XSS attacks.
-
-    This is the first function called when a new request reach GLB
+    This mock is required to force some HTTP Headers on all
+    the handlers included the internal error handlers of cyclone.
     """
     self.request.start_time = datetime_now()
 
@@ -45,6 +42,11 @@ def mock_RequestHandler_set_default_headers(self):
 
 
 def mock_HTTPConnection_on_headers(self, data):
+    """
+    This mock is required to force size validation on all
+    the handlers included the internal error handlers of cyclone.
+    The maximum request size is set to 101kb (100k + a 1k overhead for multipart)
+    """
     try:
         data = native_str(data.decode("latin1"))
         eol = data.find("\r\n")
@@ -71,19 +73,15 @@ def mock_HTTPConnection_on_headers(self, data):
             headers=headers, remote_ip=self._remote_ip)
 
         if content_length:
-            megabytes = int(content_length) / (1024 * 1024)
-            if megabytes > GLSettings.memory_copy.maximum_filesize:
-                raise _BadRequestException("Request exceeded size limit %d" %
-                                           GLSettings.memory_copy.maximum_filesize)
+            # the client will be written to send chunks of 100kb,
+            # but as we do not control the wrapping multipart encoding
+            # the size is set to 101kb considering a margin of the overhead.
+            maximum_request_size = 101 * 1024
 
-            if headers.get("Expect") == "100-continue":
-                self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
+            if content_length > maximum_request_size:
+                raise _BadRequestException("Request exceeded size limit %d" % maximum_request_size)
 
-            if content_length < 100000:
-                self._contentbuffer = StringIO()
-            else:
-                self._contentbuffer = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
-
+            self._contentbuffer = StringIO()
             self.content_length = content_length
             self.setRawMode()
             return
@@ -93,5 +91,32 @@ def mock_HTTPConnection_on_headers(self, data):
         log.msg("Exception while handling HTTP request from %s: %s" % (self._remote_ip, e))
         self.transport.loseConnection()
 
+
+def mock_HTTPConnection_on_request_body(self, data):
+    """
+    This mock is required to remove all the content parsing
+    but 'multipart/form-data' on all handlers included the
+    internal error handlers of cyclone.
+    """
+    self._request.body = data
+    content_type = self._request.headers.get("Content-Type", "")
+    if self._request.method in ("POST", "PATCH", "PUT"):
+        if content_type.startswith("multipart/form-data"):
+            fields = content_type.split(";")
+            for field in fields:
+                k, sep, v, = field.strip().partition("=")
+                if k == "boundary" and v:
+                    httputil.parse_multipart_form_data(
+                        utf8(v), data,
+                        self._request.arguments,
+                        self._request.files)
+                    break
+            else:
+                log.msg("Invalid multipart/form-data")
+
+    self.request_callback(self._request)
+
+
 RequestHandler.set_default_headers = mock_RequestHandler_set_default_headers
 HTTPConnection._on_headers = mock_HTTPConnection_on_headers
+HTTPConnection._on_request_body = mock_HTTPConnection_on_request_body
