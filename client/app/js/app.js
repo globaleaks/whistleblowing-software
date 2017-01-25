@@ -377,7 +377,7 @@ var GLClient = angular.module('GLClient', [
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
     flowFactoryProvider.defaults = {
-        chunkSize: 1024 * 1024,
+        chunkSize: 100 * 1024,
         forceChunkSize: true,
         testChunks: false,
         simultaneousUploads: 1,

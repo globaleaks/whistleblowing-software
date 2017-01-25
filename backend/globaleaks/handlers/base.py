@@ -596,7 +596,6 @@ class BaseHandler(RequestHandler):
                 if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
                     return None
 
-
             uploaded_file = {
                 'name': self.request.files['file'][0]['filename'],
                 'type': self.request.files['file'][0]['content_type'],
