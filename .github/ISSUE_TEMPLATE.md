@@ -23,7 +23,6 @@
 
 v2.?.?
 
-
 **Browser:**
 <!-- Indicate which browsers exhibit the bug. Mark the following box with an [x] -->
 
@@ -35,3 +34,14 @@ v2.?.?
 - [ ] Other: <!-- specify browser and version -->
 - [ ] Not Applicable
 
+* **Server Operating System and Version (if appliable):**
+<!--
+Indicate the server operating system and its version
+e.g.: Ubuntu(14.04)
+--> 
+
+* **Client Operating System and Version (if appliable):**
+<!--
+Indicate the client operating system and its version
+e.g. Windows 10
+-->
