@@ -1,10 +1,9 @@
-<h3 data-translate>Private key and certificate signature request (CSR) generator</h3>
+<h3 data-translate>Certificate Signature Request (CSR) generator</h3>
 <div data-ng-form name="certSigRequestForm" class="form-horizontal">
   <p data-translate>
-    <span data-translate>This form will generate a private key for deploying HTTPS with Globaleaks.</span>
-    <span data-translate>It will also generate the request most a certificate authority will need to validate the certificate</span>
-    <span data-translate>Use the following form if you plan issue a certificate with a certificate authority and you do not already have a private key.</span>
+    <span data-translate>This form will generate a certificate signing request to use with the private key generated above</span>
     <span data-translate>Once you are finished with this form, you will need to ensure that the domain you are intending to host the certificate on is validated by the authority.</span>
+    <span data-translate>You must take this request to your certificate authority who will give you a certificate and an intermediate chain to upload in the interface below.</span>
   </p>
 
   <div class="form-group">
@@ -70,30 +69,7 @@
     </div>
   </div>
 
-  <div class="panel panel-default" data-ng-if="csr_state.success">
-    <div class="panel-heading">
-      <b data-translate>Success! Here is the certificate request (cert_req.pem)</b>
-      <i class="glyphicon glyphicon-check"></i>
-    </div>
-    <div class="panel-body">
-      <pre>{{ csr_state.text }}</pre>
-      <button class="btn btn-sm btn-default">
-        <i class="glyphicon glyphicon-download"></i>
-        <span data-translate>Download</span>
-      </button>
-    </div>
-  </div>
-
-  <button class="btn btn-success" ng-click="go('configure_start')">
-    <i class="glyphicon glyphicon-left"></i>
-    <span data-translate>Previous</span>
-  </button>
   <button class="btn btn-success" ng-click="submitCSR()">
-    <i class="glyphicon glyphicon-check"></i>
-    <span data-translate>Generate Key</span>
-  </button>
-  <button class="btn btn-warning" ng-click="go('cert_upload')">
-    <i class="glyphicon glyphicon-arrow-right"></i>
-    <span data-translate>Skip</span>
+    <span data-translate>Generate</span>
   </button>
 </div>

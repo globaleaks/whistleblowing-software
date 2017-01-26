@@ -212,15 +212,18 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
-  function(FileReader, $scope, tlsConfigResource, csrCfgResource, cfgFileResource) {
+controller('AdminHTTPSConfigCtrl', ['$http', '$scope', 'FileReader', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
+  function($http, $scope, FileReader, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource) {
   $scope.tls_config = tlsConfigResource.get();
 
-  $scope.default_config = function() {
-    if (angular.isUndefined($scope.tls_config)) {
-      return true;
-    }
-    return !$scope.tls_config.enabled;
+  function refreshPromise() {
+    return $scope.tls_config.$get().$promise;
+  }
+
+  $scope.file_resources = {
+    priv_key: new cfgFileResource({name: 'priv_key'}),
+    cert:     new cfgFileResource({name: 'cert'}),
+    chain:    new cfgFileResource({name: 'chain'}),
   };
 
   $scope.csr_cfg = new csrCfgResource({
@@ -234,61 +237,70 @@ controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResou
   });
 
   $scope.csr_state = {
-    success: false,
-    tried: false,
-    error: '',
-    text: '',
+    open: false,
   };
 
-  $scope.file_resources = {
-    priv_key: new cfgFileResource({name: 'priv_key'}),
-    cert:     new cfgFileResource({name: 'cert'}),
-    chain:    new cfgFileResource({name: 'chain'}),
-  };
+  $scope.gen_priv_key = function() {
+    $scope.file_resources.priv_key.content = "";
+    return $scope.file_resources.priv_key.$save().then(refreshPromise);
+  }
 
+  // TODO(nskelsey) this implementation for download and upload
   $scope.postFile = function(fileList, fileRes) {
-    console.log('posting a specific file');
     var file = fileList.item(0);
+    console.log('Loaded a file:', file.name);
     FileReader.readAsText(file, $scope).then(function(str) {
       fileRes.content = str;
-      console.log('posting file resource');
       return fileRes.$save();
-    }).then(function(resp) {
-      console.log('saw a response', resp);
-      fileRes.content = "";
-    });
+    }).then(refreshPromise);
+  };
+
+  $scope.downloadFile = function(resource) {
+     $http({
+        method: 'GET',
+        url: 'admin/config/tls/files/' + resource.name, // NOTE path
+        responseType: 'blob',
+     }).then(function (response) {
+        var blob = response.data;
+        FileSaver.saveAs(blob, resource.name + '.pem');
+     });
+  };
+
+  $scope.iconClass = function(fileSum) {
+    if (angular.isDefined(fileSum) && fileSum.set) {
+        return {'text-success': true};
+    } else {
+        return {};
+    }
+  };
+
+  $scope.deleteFile = function(resource) {
+    resource.$delete().then(refreshPromise);
+  };
+
+  $scope.toggleCfg = function() {
+    if ($scope.tls_config.enabled) {
+      $scope.tls_config.$disable().then(refreshPromise);
+    } else {
+      $scope.tls_config.$enable().then(refreshPromise);
+    }
+  };
+
+  $scope.deleteAll = function() {
+    $scope.tls_config.$delete().then(refreshPromise);
   };
 
   $scope.submitCSR = function() {
     console.log("Submitting CSR", $scope.csr_cfg);
     $scope.csr_state.tried = true;
-    $scope.csr_cfg.$save().then(function(resp) {
-        $scope.csr_state.text = resp.csr_txt;
-        $scope.csr_state.success = true;
-        return $scope.tls_config.get().$promise;
-    }).then(function() {
-       // TODO
-    }, function(err) {
-        $scope.csr_state.success = false
-        $scope.csr_state.error = err;
-    });
-  };
-
-  $scope.submitCertFiles = function() {
-    console.log("Submitting cert_files", $scope.cert_files);
-    // TODO Allow the selection of files here.
-    $scope.cert_files.$save().then(function() {
-        // TODO handle success and failure
-        // success:
-        //   display url
-        //   refresh tls_config state
-        //   display https status page
-        // failure:
-        //   display error and/or ask for reset
-        //   if error is parsing related; maybe provide more feedback
-        return $scope.tls_config.$get().$promise;
-    }).then(function() {
-        go('status');
+    $http({
+        method: 'POST',
+        url: 'admin/config/tls/csr',
+        responseType: 'blob',
+        data: $scope.csr_cfg,
+    }).then(function(response) {
+      var blob = response.data;
+      FileSaver.saveAs(blob, 'cert_sig_req.pem');
     });
   };
 }]).
