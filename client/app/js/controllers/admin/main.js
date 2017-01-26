@@ -212,17 +212,9 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCertFileResource',
-  function(FileReader, $scope, configResource, csrCfgResource, certFileResource) {
-  console.log("AdminTLSConfigCtrl: scope", $scope, $scope.admin.tls_config);
-  $scope.tls_config = $scope.admin.tls_config;
-  $scope.cert_files = certFileResource.get();
-
-  $scope.active_pane = $scope.tls_config ? 'status' : 'configure_start';
-  panes = ['configure_start', 'csr_gen', 'cert_upload', 'status'];
-  $scope.go = function(where) {
-    $scope.active_pane = where;
-  }
+controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
+  function(FileReader, $scope, tlsConfigResource, csrCfgResource, cfgFileResource) {
+  $scope.tls_config = tlsConfigResource.get();
 
   $scope.default_config = function() {
     if (angular.isUndefined($scope.tls_config)) {
@@ -248,11 +240,22 @@ controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResou
     text: '',
   };
 
+  $scope.file_resources = {
+    priv_key: new cfgFileResource({name: 'priv_key'}),
+    cert:     new cfgFileResource({name: 'cert'}),
+    chain:    new cfgFileResource({name: 'chain'}),
+  };
 
-  $scope.placeAsString = function(fileList, target) {
+  $scope.postFile = function(fileList, fileRes) {
+    console.log('posting a specific file');
     var file = fileList.item(0);
     FileReader.readAsText(file, $scope).then(function(str) {
-      $scope.cert_files[target] = str;
+      fileRes.content = str;
+      console.log('posting file resource');
+      return fileRes.$save();
+    }).then(function(resp) {
+      console.log('saw a response', resp);
+      fileRes.content = "";
     });
   };
 
@@ -264,7 +267,7 @@ controller('AdminHTTPSConfigCtrl', ['FileReader', '$scope', 'AdminTLSConfigResou
         $scope.csr_state.success = true;
         return $scope.tls_config.get().$promise;
     }).then(function() {
-        $scope.go('cert_upload');
+       // TODO
     }, function(err) {
         $scope.csr_state.success = false
         $scope.csr_state.error = err;

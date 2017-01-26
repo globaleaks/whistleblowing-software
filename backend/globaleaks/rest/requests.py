@@ -376,6 +376,10 @@ AdminTLSCertFilesConfigDesc = {
     'cert': unicode,
 }
 
+AdminTLSCfgFileResourceDesc = {
+    'content': unicode,
+}
+
 AdminCSRConfigDesc = {
     'commonname': unicode,
     'country': unicode,
