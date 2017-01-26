@@ -1,30 +1,37 @@
-<!--
+<!-- Please use this form only for bug reports or feature requests. -->
+<!-- For support requests instead please visit: https://www.globaleaks.org/contact/ -->
 
-PLEASE FILL THE FOLLOWING INFORMATION
-
-Please use this form just for bug reporting or feature requests.
-For all that relates to support requests please instead use: https://www.globaleaks.org/contact/
-
--->
-~                           
 
 **Current behavior**
-<!-- Describe how the bug manifests. -->
+<!-- Describe how the bug breaks something. -->
+
 
 **Expected behavior**
 <!-- Describe what the behavior would be without the bug. -->
 
-**Minimal reproduction of the problem with instructions**
-<!--
-Please provide the *STEPS TO REPRODUCE*
-If the current behavior is a bug or you can illustrate your feature request better with an example. 
--->
 
-**What is the motivation / use case for changing the behavior?**
-<!-- Describe the motivation or the concrete use case -->
+**Steps to reproduce the problem or feature illustration**
+<!-- Please provide the *steps to reproduce* the bug or illustrate your feature request with an example. -->
 
-* **GlobaLeaks version:** 2.X.Y
+
+**What is the motivation or use case for changing the behavior?**
+<!-- Describe the motivation or the need for this feature-->
+
+
+**GlobaLeaks version:**
 <!-- Check whether this is still an issue in the most recent GlobaLeaks version -->
 
-* **Browser:** [all | Chrome XX | Firefox XX | IE XX | Safari XX | Mobile Chrome XX | Other (specify) ]
-<!-- All browsers where this could be reproduced -->
+v2.?.?
+
+
+**Browser:**
+<!-- Indicate which browsers exhibit the bug. Mark the following box with an [x] -->
+
+- [x] All browsers
+- [ ] Chrome: <!-- specify versions --> v45.0.1
+- [ ] Firefox: v55.0.1
+- [ ] Safari:
+- [ ] Mobile Chrome:
+- [ ] Other: <!-- specify browser and version -->
+- [ ] Not Applicable
+
