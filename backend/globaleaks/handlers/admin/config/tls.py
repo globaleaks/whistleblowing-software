@@ -68,7 +68,7 @@ class PrivKeyFileRes(FileResource):
         if dh_params == u'':
             log.info("Generating https_dh_params")
             dh_params = generate_dh_params()
-            prv_fact.set_val('https_dh_parms')
+            prv_fact.set_val('https_dh_params', dh_params)
             log.info("DH param generated and stored")
 
         log.info("Generating a new TLS key")
@@ -217,6 +217,7 @@ def serialize_https_config_summary(store):
     ret = {
       'enabled': prv_fact.get_val('https_enabled'),
       'runinng': True, # TODO process_sup.running
+      'https_url': 'https://127.0.0.1:9443', # TODO
       'status_msg': GLSettings.state.process_supervisor.get_status(),
       'timestamp': datetime_to_ISO8601(datetime.now()),
       'files': file_summaries,
@@ -305,7 +306,8 @@ def gen_RSA_key():
     return pub_key
 
 
-def gen_x509_csr(key_pair, csr_fields):
+@transact
+def gen_x509_csr(store, csr_fields):
     '''
     gen_x509_csr creates a certificate signature request by applying the passed
     fields to the subject of the request, attaches the public key's fingerprint
@@ -332,25 +334,24 @@ def gen_x509_csr(key_pair, csr_fields):
 
     :rtype: A `pyopenssl.OpenSSL.crypto.X509Req`
     '''
-    req = crypto.X509Req()
-    subj = req.get_subject()
-
-    for field, value in csr_fields.iteritems():
-        setattr(subj, field, value)
-
-    req.set_pubkey(key_pair)
-    req.sign(key_pair, 'sha512')
-
-    return req
-
-
-@transact
-def csr_gen(store, csr_fields):
     try:
-        csr = gen_x509_csr(csr_fields)
-        pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, csr)
-        log.info("Generated a new CSR")
+        req = crypto.X509Req()
+        subj = req.get_subject()
 
+        for field, value in csr_fields.iteritems():
+            setattr(subj, field, value)
+
+        str_prv_key = PrivateFactory(store).get_val('https_priv_key')
+        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, str_prv_key)
+
+        req.set_pubkey(prv_key)
+        req.sign(prv_key, 'sha512')
+        # TODO clean prv_key and str_prv_key from memory
+
+        pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, req)
+        # TODO clean req from memory
+
+        log.info("Generated a new CSR")
         return pem_csr
     except Exception as e:
         log.err(e)
@@ -376,11 +377,7 @@ class CSRConfigHandler(BaseHandler):
         if 'department' in request:
             csr_fields['OU'] = request['department']
 
-        try:
-          csr = yield csr_gen(csr_fields)
-          self.write({'csr_txt': csr})
-        except Exception as e:
-          log.err(e)
-          raise e
+        csr_txt = yield gen_x509_csr(csr_fields)
 
         self.set_status(200)
+        self.write(csr_txt)

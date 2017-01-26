@@ -570,7 +570,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
 factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls', {}, {
-        'save': {}, // Disable normal saves. This object contains client content for the client.
         'enable':  { method: 'POST', params: {}},
         'disable': { method: 'PUT', params: {}},
     });

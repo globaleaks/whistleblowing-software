@@ -2,31 +2,32 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div id="HttpsSettings" data-ng-controller="AdminHTTPSConfigCtrl">
+      <div>
         <h3 data-translate>HTTPS Dashboard</h3>
         <h3><span data-translate>Status</span>:
           <span data-ng-show="tls_config.enabled" class="label label-success" data-translate>Enabled</span>
           <span data-ng-hide="tls_config.enabled" class="label label-danger" data-translate>Disabled</span>
           <span data-ng-show="tls_config.running" class="label label-success" data-translate>Running</span>
-          <span data-ng-hide="tls_config.running" class="label label-danger" data-translate>Off</span>
+          <span data-ng-hide="tls_config.running" class="label label-danger" data-translate>Not running</span>
         </h3>
-        <h4><span data-translate>Resource locator</span>: <a target="_blank" rel="noreferrer noopener" href="https://127.0.0.1:9443/">https://127.0.0.1:9443/</a></h4>
+        <h4><span data-translate>Resource locator</span>: <a target="_blank" 
+                rel="noreferrer noopener" href="{{ tls_config.https_url }}">{{ tls_config.https_url }}</a></h4>
         <h4 data-translate>System message:</h4>
         <div class="alert alert-info"><b>{{ tls_config.timestamp | date:'dd-MM-yyyy HH:MM' }} </b>{{ tls_config.status_msg }}</div>
       </div>
       <div>
         <h3 data-translate>Configuration</h3>
 
-        <div class="panel panel-default" data-ng-class="{'disabled': cert_files.priv_key.empty}">
+        <div class="panel panel-default">
           <div class="panel-body">
-            <i class="glyphicon glyphicon-file"></i>
+            <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.priv_key)"></i>
             <b data-translate>Private key</b>
-            <small>(.pem)</small>
             <div class="pull-right">
               <button class="btn btn-xs btn-success"
-                  data-ng-click="file_resources.priv_key.$save({content:''})">Generate</button>
+                  data-ng-click="gen_priv_key()">Generate</button>
               <span data-ng-if="tls_config.files.priv_key.set">
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="file_resources.priv_key.$delete()">Delete</button>
+                    data-ng-click="deleteFile(file_resources.priv_key)">Delete</button>
               </span>
             </div>
           </div>
@@ -39,43 +40,52 @@
             <b data-translate>Certificate signing request</b>
             <small>(.pem)</small>
             <div class="pull-right">
-              <button class="btn btn-xs btn-success" data-ng-click="">Generate</button>
+              <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
+                <span data-translate>Generate</span>
+              </button>
+              <button type="button" class="close" data-ng-show="csr_state.open" data-ng-click="csr_state.open = false" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div data-ng-show="csr_state.open">
+               <hr />
+               <div ng-include="'views/admin/https/csr_gen.html'"></div>
             </div>
           </div>
         </div>
 
         <div class="panel panel-default hideable-div">
-          <div data-ng-if="!tls_config.files.priv_key.set" class="disabling-div"></div>
+            <div data-ng-hide="tls_config.files.cert.set || tls_config.files.priv_key.set" class="disabling-div"></div>
           <div class="panel-body">
-            <i class="glyphicon glyphicon-file"></i>
+            <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.cert)"></i>
             <b data-translate>Certificate</b>
-            <small>(.pem) Expires on: 20/20/20</small>
+            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.cert.expiration | date:'dd-MM-yyyy HH:MM' }}</small>
             <div class="pull-right">
-              <span class="file-upload">
+              <span class="file-upload" data-ng-if="tls_config.files.priv_key.set">
                 <label for="certUpload" class="btn btn-xs btn-primary">
                   <input id="certUpload" type="file" file-change
-                  handler="postFile(files, file_resources.cert)" />
+                  handler="postFile(files, file_resources.cert)"  />
                   <span data-translate>Upload</span>
                 </label>
               </span>
               <span data-ng-if="tls_config.files.cert.set">
                 <button class="btn btn-xs btn-primary"
-                    data-ng-click="file_resources.cert.get()">Download</button>
+                    data-ng-click="downloadFile(file_resources.cert)">Download</button>
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="file_resources.cert.$delete()">Delete</button>
+                    data-ng-click="deleteFile(file_resources.cert)">Delete</button>
               </span>
             </div>
           </div>
         </div>
 
-        <div class="panel panel-default hideable-div" data-ng-class="{'disabled': true}">
-          <div data-ng-if="!tls_config.files.priv_key.set" class="disabling-div"></div>
+        <div class="panel panel-default hideable-div">
+          <div data-ng-hide="tls_config.files.chain.set || tls_config.files.priv_key.set" class="disabling-div"></div>
           <div class="panel-body">
-            <i class="glyphicon glyphicon-file"></i>
+            <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.chain)"></i>
             <b data-translate>Certificate chain</b>
-            <small>Expires on: 4/20/00</small>
+            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration | date:'dd-MM-yyyy HH:MM' }}</small>
             <div class="pull-right">
-              <span class="file-upload">
+              <span class="file-upload" data-ng-if="tls_config.files.priv_key.set">
                 <label for="chainUpload" class="btn btn-xs btn-primary">
                   <input id="chainUpload" type="file" file-change
                   handler="postFile(files, file_resources.chain)" />
@@ -84,9 +94,9 @@
               </span>
               <span data-ng-if="tls_config.files.chain.set">
                 <button class="btn btn-xs btn-primary"
-                     data-ng-click="file_resources.chain.get()">Download</button>
+                     data-ng-click="downloadFile(file_resources.chain)">Download</button>
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="file_resources.chain.$delete()">Delete</button>
+                    data-ng-click="deleteFile(file_resources.chain)">Delete</button>
               </span>
             </div>
           </div>
@@ -96,14 +106,14 @@
 
       <button class="btn btn-md btn-primary" data-translate>Test</button>
       <button class="btn btn-md btn-success" data-ng-if="!tls_config.enabled"
-          data-ng-click="tls_config.enable()"
+          data-ng-click="toggleCfg()"
           data-translate>Enable</button>
-      <button class="btn btn-md btn-warning" data-ng-if="tls_config.enabled"
-          data-ng-click="tls_config.disable()"
+      <button class="btn btn-md btn-danger" data-ng-if="tls_config.enabled"
+          data-ng-click="toggleCfg()"
           data-translate>Disable</button>
-      <button class="btn btn-md btn-warning"
-          data-ng-click="tls_config.$delete()"
-          data-translate>Delete Everything</button>
+      <button class="btn btn-md btn-danger"
+          data-ng-click="deleteAll()"
+          data-translate>Delete All</button>
     </div>
   </div>
 </div>
