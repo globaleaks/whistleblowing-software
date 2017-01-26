@@ -41,6 +41,15 @@ angular.module('ngFileReader', [])
     reader.onprogress = onProgress(reader, scope);
     return reader;
   };
+
+  var readAsDataURL = function(file, scope) {
+    var deferred = $q.defer();
+
+    var reader = getReader(deferred, scope);
+    reader.readAsDataURL(file);
+
+    return deferred.promise;
+  };
   
   // Read a file as a text
   var readAsText = function(file, scope) {
@@ -54,5 +63,6 @@ angular.module('ngFileReader', [])
 
   return {
     readAsText: readAsText,
+    readAsDataURL: readAsDataURL,
   };
 }]);

@@ -59,7 +59,7 @@ def config_wait(file_desc):
 
 def setup_tls_proxy(cfg):
     """
-    Instantiate a TLS proxy that will handle 10.000 connections
+    Instantiate a TLS proxy that will handle 10,000 connections
     """
     tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
 

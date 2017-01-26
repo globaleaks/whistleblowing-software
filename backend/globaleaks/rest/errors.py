@@ -41,6 +41,18 @@ class InternalServerError(GLException):
         self.arguments = [error_str]
 
 
+class MethodNotImplemented(GLException):
+    """
+    The expected format described in the REST specification is not
+    respected by the data body in the HTTP request.
+    """
+    error_code = 2
+    status_code = 405  # Not Acceptable
+
+    def __init__(self):
+        self.reason = "Method not implemented"
+
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not

@@ -10,6 +10,9 @@ from OpenSSL._util import lib as _lib, ffi as _ffi
 
 from globaleaks.utils.utility import log
 
+# TODO TODO TODO TODO
+# Move dhparam load and generate off of temporary files.
+# TODO TODO TODO TODO
 
 def generate_dh_params():
     # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable

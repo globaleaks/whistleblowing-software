@@ -124,7 +124,7 @@ spec = [
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/config/tls', admin_config.tls.ConfigHandler),
     (r'/admin/config/tls/csr', admin_config.tls.CSRConfigHandler),
-    (r'/admin/config/tls/files', admin_config.tls.CertFileHandler),
+    (r'/admin/config/tls/files/(cert|chain|priv_key)', admin_config.tls.FileHandler),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
