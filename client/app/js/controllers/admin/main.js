@@ -212,8 +212,8 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminHTTPSConfigCtrl', ['$http', '$scope', 'FileReader', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
-  function($http, $scope, FileReader, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource) {
+controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', 'FileReader', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
+  function($window, $q, $http, $scope, FileReader, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource) {
   $scope.tls_config = tlsConfigResource.get();
 
   function refreshPromise() {
@@ -241,14 +241,12 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', 'FileReader', 'FileSaver'
   };
 
   $scope.gen_priv_key = function() {
-    $scope.file_resources.priv_key.content = "";
-    return $scope.file_resources.priv_key.$save().then(refreshPromise);
+    return $scope.file_resources.priv_key.$update().then(refreshPromise);
   }
 
   // TODO(nskelsey) this implementation for download and upload
   $scope.postFile = function(fileList, fileRes) {
     var file = fileList.item(0);
-    console.log('Loaded a file:', file.name);
     FileReader.readAsText(file, $scope).then(function(str) {
       fileRes.content = str;
       return fileRes.$save();
@@ -278,12 +276,30 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', 'FileReader', 'FileSaver'
     resource.$delete().then(refreshPromise);
   };
 
-  $scope.toggleCfg = function() {
-    if ($scope.tls_config.enabled) {
-      $scope.tls_config.$disable().then(refreshPromise);
-    } else {
-      $scope.tls_config.$enable().then(refreshPromise);
+  // A helper function to give us a bit more resolution on the status of the 
+  // tls_config...
+  function scheduleWithTimeouts(p, f, num, delay) {
+    var delayProm = function() {
+        var d = $q.defer();
+        $window.setTimeout(function() { d.resolve(); }, delay);
+        return d.promise;
+    };
+
+    for (var i = 0; i < num; i++) {
+        p = p.then(f).then(delayProm);
     }
+    return p;
+  }
+
+  $scope.toggleCfg = function() {
+    var p;
+    if ($scope.tls_config.enabled) {
+      p = $scope.tls_config.$disable();
+
+    } else {
+      p = $scope.tls_config.$enable();
+    }
+    scheduleWithTimeouts(p, refreshPromise, 3, 2000);
   };
 
   $scope.deleteAll = function() {
@@ -291,7 +307,6 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', 'FileReader', 'FileSaver'
   };
 
   $scope.submitCSR = function() {
-    console.log("Submitting CSR", $scope.csr_cfg);
     $scope.csr_state.tried = true;
     $http({
         method: 'POST',

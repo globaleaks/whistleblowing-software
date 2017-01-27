@@ -5,6 +5,7 @@ import signal
 import socket
 import sys
 import signal
+import time
 
 from datetime import datetime
 from sys import executable
@@ -193,21 +194,37 @@ class ProcessSupervisor(object):
         '''
         return self.shutting_down and len(self.tls_process_pool) == 0
 
-    def account_death(self):
-        self.tls_process_state['deaths'] += 1
+    def calc_mort_rate(self):
         d = self.tls_process_state['deaths']
-
         window = (datetime.now() - self.start_time).total_seconds()
-
         r = d / (window / 60.0) # deaths per minute
         log.debug('process death accountant: r=%3f, d=%2f, window=%2f' % (r, d, window))
         return r
 
+    def account_death(self):
+        self.tls_process_state['deaths'] += 1
+        r = self.calc_mort_rate()
+        return r
+
+    def is_running(self):
+        return len(self.tls_process_pool) > 0
+
     def get_status(self):
-        if len(self.tls_process_pool) > 0:
-            return "Processes are serving https"
+        s = {
+            'msg': '',
+            'timestamp': time.time(), # TODO this does not work...
+            'type': 'info'
+        }
+        if self.is_running():
+            r = self.calc_mort_rate()
+            if not self.should_spawn_child(r):
+                m = "The supervisor is no longer trying to spawn children. r=%3f" % r
+            else:
+                m = "Processes are serving https"
         else:
-            return "Nothing is being served"
+            m = "Nothing is being served"
+        s['msg'] = m
+        return s
 
     def shutdown(self):
         self.shutting_down = True
@@ -218,4 +235,4 @@ class ProcessSupervisor(object):
                 os.kill(pp.transport.pid, signal.SIGUSR1)
                 os.kill(pp.transport.pid, signal.SIGINT)
             except OSError as e:
-                log.info('Tried to signal: %d got: %s', (pp.transport.pid, e))
+                log.info('Tried to signal: %d got: %s' % (pp.transport.pid, e))

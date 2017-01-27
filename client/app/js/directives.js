@@ -379,7 +379,6 @@ directive('fileChange', function() {
     link: function (scope, element) {
       element.on('change', function (event) {
       scope.$apply(function(){
-        console.log("Caught change: ", event);
         scope.handler({files: event.target.files});
       });
     });
