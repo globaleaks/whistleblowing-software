@@ -7,7 +7,21 @@
 To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
 ## Community and Professional Support
-If you need community support with the software subscribe and participate to the [GlobaLeaks Forum](https://forum.globaleaks.org/).
+If you need technical support, have general questions or new ideas on
+using GlobaLeaks, please post your message on [Community Support Forum](https://forum.globaleaks.org/).
+
+For non-profit support for Projects for Investigative Journalism,
+Activism and Human Rights Defense, contact [Hermes Center, the GlobaLeaks
+NGO](projects@logioshermes.org)!
+
+For Media Inquiry, if you are a journalists that want to speak with us [drop us an email](media@globaleaks.org)!
+
+Do you want to contribute to software development or to report a bug?
+Please open an issue on [Github](https://github.com/globaleaks/GlobaLeaks/issues/)
+
+Do you want to chat with us?
+WebChat (https://webchat.oftc.net/?nick=gl-guest.&channels=globaleaks) to join our
+IRC channel at irc.oftc.net #globaleaks
 
 If you need professional support please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
 
