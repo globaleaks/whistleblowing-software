@@ -27,6 +27,11 @@ class FileResource(object):
 
     @staticmethod
     @transact
+    def perform_file_action(store):
+        raise errors.MethodNotImplemented()
+
+    @staticmethod
+    @transact
     def get_file(store):
         '''
         :rtype: A `unicode` string
@@ -54,7 +59,15 @@ class FileResource(object):
 class PrivKeyFileRes(FileResource):
     @staticmethod
     @transact
-    def create_file(store, _):
+    def create_file(store, json):
+        prv_fact = PrivateFactory(store)
+        # TODO Validate private key passed
+        prv_fact.set_val('https_priv_key', json['content'])
+
+
+    @staticmethod
+    @transact
+    def perform_file_action(store):
         prv_fact = PrivateFactory(store)
 
         prv_https_key_pem = prv_fact.get_val('https_priv_key')
@@ -98,7 +111,6 @@ class ChainFileRes(FileResource):
     @transact
     def create_file(store, json):
         prv_fact = PrivateFactory(store)
-        log.info('Saw the following: %s' % json)
         # TODO Validate chain file
         prv_fact.set_val('https_chain', json['content'])
 
@@ -120,7 +132,6 @@ class ChainFileRes(FileResource):
         ret = {
             'name': 'chain',
             'expiration_date': datetime_to_ISO8601(datetime.now()),
-            'content': c,
             'set': c != u'',
         }
         return ret
@@ -152,7 +163,6 @@ class CertFileRes(FileResource):
         ret = {
             'name': 'cert',
             'expiration_date': datetime_to_ISO8601(datetime.now()),
-            'content': c,
             'set': c != u'',
         }
         return ret
@@ -197,6 +207,16 @@ class FileHandler(BaseHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
+    def put(self, name):
+        file_res_cls = self.get_file_res_or_raise(name)
+
+        yield file_res_cls.perform_file_action()
+        self.set_status(201, 'Accepted changes')
+
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
     def get(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
@@ -215,11 +235,10 @@ def serialize_https_config_summary(store):
         file_summaries[key] = file_res_cls.db_serialize(store)
 
     ret = {
-      'enabled': prv_fact.get_val('https_enabled'),
-      'runinng': True, # TODO process_sup.running
       'https_url': 'https://127.0.0.1:9443', # TODO
-      'status_msg': GLSettings.state.process_supervisor.get_status(),
-      'timestamp': datetime_to_ISO8601(datetime.now()),
+      'enabled': prv_fact.get_val('https_enabled'),
+      'running': GLSettings.state.process_supervisor.is_running(),
+      'status': GLSettings.state.process_supervisor.get_status(),
       'files': file_summaries,
     }
     return ret
@@ -268,6 +287,9 @@ class ConfigHandler(BaseHandler):
         yield delete_https_config()
         self.set_status(200)
 
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
     def post(self):
         '''
         This post 'enables' the tls config.
