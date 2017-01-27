@@ -4,19 +4,25 @@
 
 [GlobaLeaks](https://www.globaleaks.org/) is an open-source, free software intended to enable secure and anonymous whistleblowing initiatives developed by the [Hermes Center for Transparency and Digital Human Rights](https://www.hermescenter.org/).
 
-To learn how to setup your own GlobaLeaks platform, look at the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
+To learn how to setup your own GlobaLeaks platform, read the [wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki).
 
-## Community and Professional Support
-If you need community support with the software subscribe and participate to the [GlobaLeaks Forum](https://forum.globaleaks.org/).
+## Community and professional support
+If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
 
-If you need professional support please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
+If your non-profit needs support for investigative journalism, activism or a human rights defense project, contact the [Hermes Center](projects@logioshermes.org).
+
+If you are a journalist or have a media inquiry, [send us an email](media@globaleaks.org).
+
+If you want to contribute to software development or report a bug, please open an issue on [Github](https://github.com/globaleaks/GlobaLeaks/issues/).
+
+If you need professional support, please use this form: [https://www.globaleaks.org/contact/](https://www.globaleaks.org/contact/ )
 
 Other resources:
-* Join [#globaleaks](https://webchat.oftc.net/?nick=gl-guest.&channels=globaleaks), our IRC chat channel on the irc.oftc.net server.
+* Join [#globaleaks](https://webchat.oftc.net/?nick=gl-guest.&channels=globaleaks), our IRC chat channel on the `irc.oftc.net` server.
 * Follow us on [Twitter](https://twitter.com/globaleaks)
 * Follow us on [Facebook](https://www.facebook.com/globaleaks)
 
-## Build Status
+## Build status
 | Branch | Build status | Browser compatibility
 | ------------- |:-------------:|:-------------:|:-------------:|:-------------:|
 | [master](https://github.com/globaleaks/GlobaLeaks/tree/master) | [![Build Status](https://travis-ci.org/globaleaks/GlobaLeaks.svg?branch=master)](https://travis-ci.org/globaleaks/GlobaLeaks) | [![Browser Status](https://badges.herokuapp.com/sauce/globaleaks?tag=master&labels=none)](https://saucelabs.com/u/globaleaks)
