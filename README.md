@@ -9,9 +9,9 @@ To learn how to setup your own GlobaLeaks platform, read the [wiki documentation
 ## Community and professional support
 If you need technical support, have general questions, or have new ideas for GlobaLeaks, please post your message on the [community support forum](https://forum.globaleaks.org/).
 
-If your non-profit needs support for investigative journalism, activism or a human rights defense project, contact the [Hermes Center](projects@logioshermes.org).
+If your non-profit needs support for investigative journalism, activism or a human rights defense project, contact the [Hermes Center](mailto:projects@logioshermes.org).
 
-If you are a journalist or have a media inquiry, [send us an email](media@globaleaks.org).
+If you are a journalist or have a media inquiry, [send us an email](mailto:media@globaleaks.org).
 
 If you want to contribute to software development or report a bug, please open an issue on [Github](https://github.com/globaleaks/GlobaLeaks/issues/).
 
