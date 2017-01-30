@@ -84,7 +84,9 @@ class PrivKeyFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(cls, store, json_req):
+    def create_file(store, cls, json_req):
+        # TODO pero perche'
+
         raw_key = json_req['content']
 
         prv_fact = PrivateFactory(store)
@@ -96,9 +98,10 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, err = pkv.validate(db_cfg)
         if ok:
-            prv_fact.set_val('https_cert', raw_key)
+            prv_fact.set_val('https_priv_key', raw_key)
         else:
-            raise err
+            log.info('Key validation failed')
+        return ok
 
     @staticmethod
     @transact
@@ -136,7 +139,7 @@ class CertFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(cls, store, json_req):
+    def create_file(store, cls, json_req):
         raw_cert = json_req['content']
 
         prv_fact = PrivateFactory(store)
@@ -149,7 +152,8 @@ class CertFileRes(FileResource):
         if ok:
             prv_fact.set_val('https_priv_key', raw_cert)
         else:
-            raise err
+            log.info("Cert validation failed")
+        return ok
 
     @staticmethod
     @transact
@@ -167,7 +171,7 @@ class CertFileRes(FileResource):
     @staticmethod
     def db_serialize(store):
         c = PrivateFactory(store).get_val('https_cert')
-        if c == u'':
+        if len(c) == 0:
             return {'name': 'cert', 'set': False}
 
         x509 = crypto.load_certificate(FILETYPE_PEM, c)
@@ -181,13 +185,12 @@ class CertFileRes(FileResource):
         return ret
 
 
-
 class ChainFileRes(FileResource):
     validator = ssl.ChainValidator
 
     @classmethod
     @transact
-    def create_file(cls, store, json_req):
+    def create_file(store, cls, json_req):
         raw_chain = json_req['content']
 
         prv_fact = PrivateFactory(store)
@@ -200,7 +203,8 @@ class ChainFileRes(FileResource):
         if ok:
             prv_fact.set_val('https_chain', raw_chain)
         else:
-            raise err
+            log.info('Chain validation failed')
+        return ok
 
     @staticmethod
     @transact
@@ -261,9 +265,12 @@ class FileHandler(BaseHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
+        ok = yield file_res_cls.create_file(req)
+        if ok:
+            self.set_status(201, 'Wrote everything')
+        else:
+            self.set_status(406, 'Validation failed')
 
-        yield file_res_cls.create_file(req)
-        self.set_status(201, 'Wrote everything')
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -311,11 +318,13 @@ def try_to_enable_https(store):
     cv = ssl.ContextValidator()
     db_cfg = ssl.load_db_cfg(store)
     db_cfg['https_enabled'] = True
-    cv.validate(db_cfg)
-    prv_fact.set_val('https_enabled', True)
 
-    # TODO this needs to move out of the transact
-    GLSettings.state.process_supervisor.db_maybe_launch_https_workers(store)
+    ok, err = cv.validate(db_cfg)
+    if ok:
+        prv_fact.set_val('https_enabled', True)
+        # TODO move process launch out of transact or resolve when launch succeeds
+        GLSettings.state.process_supervisor.db_maybe_launch_https_workers(store)
+    return ok
 
 
 @transact
@@ -334,7 +343,7 @@ def delete_https_config(store):
     prv_fact.set_val('https_priv_key', '')
     prv_fact.set_val('https_cert', '')
     prv_fact.set_val('https_chain', '')
-    prv_fact.set_val('https_dh_params', '')
+    #prv_fact.set_val('https_dh_params', '')
     prv_fact.set_val('https_enabled', False)
     GLSettings.state.process_supervisor.shutdown()
 
@@ -362,8 +371,11 @@ class ConfigHandler(BaseHandler):
         This post 'enables' the tls config.
         '''
         # TODO(nskelsey) rate limit me
-        yield try_to_enable_https()
-        self.set_status(200)
+        ok = yield try_to_enable_https()
+        if ok:
+            self.set_status(200)
+        else:
+            self.set_status(406)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')

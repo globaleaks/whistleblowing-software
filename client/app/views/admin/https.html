@@ -89,7 +89,7 @@
         </div>
 
         <div class="panel panel-default hideable-div">
-          <div data-ng-hide="(tls_config.files.chain.set || tls_config.files.priv_key.set) && !tls_config.enabled" class="disabling-div"></div>
+          <div data-ng-hide="(tls_config.files.chain.set || (tls_config.files.cert.set && tls_config.files.priv_key.set)) && !tls_config.enabled" class="disabling-div"></div>
           <div class="panel-body">
             <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.chain)"></i>
             <b data-translate>Certificate chain</b>

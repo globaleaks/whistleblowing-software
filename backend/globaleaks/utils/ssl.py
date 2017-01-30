@@ -96,39 +96,39 @@ class CtxValidator(object):
     def __init__(self):
         self.ctx = new_tls_context()
 
-    def validate_parents(self, db_cfg):
+    def _validate_parents(self, db_cfg):
         for parent in self.parents:
-            (ok, err) = parent.validate(db_cfg)
-            if not ok or err is not None:
-                raise err
+            p_v = parent()
+            p_v._validate(db_cfg, self.ctx)
 
-    def _validate(self, db_cfg):
+    def _validate(self, db_cfg, ctx):
         raise NotImplementedError()
 
     def validate(self, db_cfg):
         try:
-            self._validate(db_cfg)
-        except Exception as e:
-            return (False, e)
+            self._validate_parents(db_cfg)
+            self._validate(db_cfg, self.ctx)
+        except Exception as err:
+            print("there was a problem", err)
+            return (False, err)
         return (True, None)
 
 
 class PrivKeyValidator(CtxValidator):
-
     parents = []
 
-    def _validate(self, db_cfg):
+    def _validate(self, db_cfg, ctx):
         if db_cfg['https_enabled']:
             raise ValueError()
 
-        if db_cfg['dh_params'] == u'':
+        if db_cfg['ssl_dh'] == u'':
             raise ValueError()
 
         with NamedTemporaryFile() as f_dh:
-            f_dh.write(db_cfg['dh_params'])
+            f_dh.write(db_cfg['ssl_dh'])
             f_dh.flush()
             # TODO ensure load can deal with untrusted input
-            self.ctx.load_tmp_dh(f_dh.name)
+            ctx.load_tmp_dh(f_dh.name)
 
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
@@ -140,12 +140,9 @@ class PrivKeyValidator(CtxValidator):
 
 
 class CertValidator(CtxValidator):
-
     parents = [PrivKeyValidator]
 
-    def _validate(self, db_cfg):
-        self.validate_parents(db_cfg)
-
+    def _validate(self, db_cfg, ctx):
         certificate = db_cfg['cert']
         if certificate == u'':
             raise ValueError()
@@ -156,22 +153,20 @@ class CertValidator(CtxValidator):
         if x509.has_expired():
             raise ValueError('The certficate has expired')
 
-        self.ctx.use_certificate(x509)
+        ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, db_cfg['priv_key'], "")
+        priv_key = load_privatekey(FILETYPE_PEM, db_cfg['key'], "")
 
-        self.ctx.use_privatekey(priv_key)
+        ctx.use_privatekey(priv_key)
 
         # With the certificate loaded check if the key matches
-        self.ctx.check_privatekey()
+        ctx.check_privatekey()
 
 
 class ChainValidator(CtxValidator):
-
     parents = [PrivKeyValidator, CertValidator]
 
-    def _validate(self, db_cfg):
-        self.validate_parents(db_cfg)
+    def _validate(self, db_cfg, ctx):
 
         intermediate = db_cfg['ssl_intermediate']
         if intermediate == u'':
@@ -182,22 +177,20 @@ class ChainValidator(CtxValidator):
         if x509.has_expired():
             raise ValueError('The certficate has expired')
 
-        self.ctx.add_extra_chain_cert(x509)
+        ctx.add_extra_chain_cert(x509)
 
         # Check the correspondence with the chain loaded
-        self.ctx.check_privatekey()
+        ctx.check_privatekey()
 
 
 class ContextValidator(CtxValidator):
-
     parents = [PrivKeyValidator, CertValidator, ChainValidator]
 
-    def _validate(self, db_cfg):
-        self.validate_parents(db_cfg)
+    def _validate(self, db_cfg, ctx):
 
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
-        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)
+        _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
 
         #TODO try to establish a connection using this context
 
