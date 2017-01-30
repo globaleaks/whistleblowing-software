@@ -1008,7 +1008,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
       isNever: function(time) {
         var date = new Date(time);
-        alert(date.getTime());
         return date.getTime() === 32503680000000;
       }
     }
