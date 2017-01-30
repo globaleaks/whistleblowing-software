@@ -96,8 +96,8 @@ class TestUtility(unittest.TestCase):
         f = utility.utc_dynamic_date(c, seconds=121, minutes=120, hours=0)
         g = utility.utc_dynamic_date(d, seconds=61, minutes=61, hours=1)
         h = utility.utc_dynamic_date(e, seconds=1, minutes=2, hours=2)
-        self.assertEqual(c, d)
-        self.assertEqual(d, e)
+        self.assertEqual(f, g)
+        self.assertEqual(g, h)
 
     def test_utc_past_date(self):
         a = utility.datetime_now()
