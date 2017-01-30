@@ -78,11 +78,10 @@ def get_stats(store, week_delta):
 
         week_entries += 1
 
-    # if all the hourly element are avail
+    # if all the hourly element is available
     if week_entries != (7 * 24):
         for day in xrange(7):
             for hour in xrange(24):
-
                 if week_map[day][hour]:
                     continue
 

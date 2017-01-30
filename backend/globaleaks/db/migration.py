@@ -7,7 +7,7 @@ from collections import OrderedDict
 from storm.database import create_database
 from storm.store import Store
 
-from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
+from globaleaks import __version__, models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16

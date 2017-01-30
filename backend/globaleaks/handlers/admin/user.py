@@ -237,7 +237,7 @@ class UsersCollection(BaseHandler):
             response = yield create_custodian_user(request, self.request.language)
         elif request['role'] == 'admin':
             response = yield create_admin_user(request, self.request.language)
-        elif:
+        else:
             raise errors.InvalidInputFormat
 
         GLApiCache.invalidate()
