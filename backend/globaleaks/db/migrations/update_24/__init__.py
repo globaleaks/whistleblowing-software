@@ -5,9 +5,8 @@ import string
 from storm.expr import And
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, Reference
 
-from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.db.appdata import load_default_fields
 from globaleaks import models, __version__, DATABASE_VERSION
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import ModelWithID
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null

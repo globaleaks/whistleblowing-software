@@ -1,16 +1,14 @@
 # -*- encoding: utf-8 -*-
-from collections import OrderedDict
 import importlib
 import os
 import shutil
+from collections import OrderedDict
 
 from storm.database import create_database
 from storm.store import Store
 
 from globaleaks import models, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED, LANGUAGES_SUPPORTED_CODES, security
-from globaleaks.models import l10n, config
-from globaleaks.settings import GLSettings
-
+from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.db.migrations.update_16 import Receiver_v_15, Notification_v_15
 from globaleaks.db.migrations.update_17 import Node_v_16, Receiver_v_16, Notification_v_16, Stats_v_16
 from globaleaks.db.migrations.update_18 import Node_v_17
@@ -35,7 +33,9 @@ from globaleaks.db.migrations.update_32 import Node_v_31, Comment_v_31, Message_
 from globaleaks.db.migrations.update_33 import Node_v_32, WhistleblowerTip_v_32, InternalTip_v_32, User_v_32
 from globaleaks.db.migrations.update_34 import Node_v_33, Notification_v_33
 from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, WhistleblowerTip_v_34
-
+from globaleaks.models import config, l10n
+from globaleaks.models.config import PrivateFactory
+from globaleaks.settings import GLSettings
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0]),
@@ -75,12 +75,6 @@ migration_mapping = OrderedDict([
     ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.WhistleblowerFile]),
     ('WhistleblowerTip', [WhistleblowerTip_v_32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, WhistleblowerTip_v_34, 0, models.WhistleblowerTip])
 ])
-
-from globaleaks import models, __version__, DATABASE_VERSION
-from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
-from globaleaks.models import config, l10n
-from globaleaks.models.config import PrivateFactory
-
 
 def db_perform_data_update(store):
     prv = PrivateFactory(store)

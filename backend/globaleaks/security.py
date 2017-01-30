@@ -13,17 +13,18 @@ import random
 import shutil
 import string
 import time
+from tempfile import _TemporaryFileWrapper
+
+import scrypt
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from datetime import datetime
-from tempfile import _TemporaryFileWrapper
+from gnupg import GPG
 
-import scrypt
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-from gnupg import GPG
 
 crypto_backend = default_backend()
 
@@ -98,7 +99,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
             OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
 
             random_pattern = ""
-            for i in xrange(OPTIMIZATION_RANDOM_BLOCK):
+            for _ in xrange(OPTIMIZATION_RANDOM_BLOCK):
                 random_pattern += str(random.randrange(256))
 
             log.debug("Excecuting rewrite iteration (%d out of %d)" %
@@ -246,7 +247,6 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
 
-        data = None
         if c is None:
             data = self.file.read()
         else:

@@ -6,10 +6,10 @@ import sys
 import traceback
 
 from cyclone.util import ObjectDict
-from twisted.internet.defer import succeed, inlineCallbacks
 from storm import exceptions
+from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models, security, __version__, DATABASE_VERSION
+from globaleaks import models, security, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n, User

@@ -1,6 +1,7 @@
-from twisted.trial import unittest
+import argparse
+import sys
 
-import os, sys, argparse
+from twisted.trial import unittest
 
 def exec_parser():
     op = argparse.ArgumentParser()

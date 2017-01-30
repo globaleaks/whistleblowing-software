@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import os
+
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers.base import write_upload_plaintext_to_disk
 from globaleaks.handlers.admin import staticfiles
+from globaleaks.handlers.base import write_upload_plaintext_to_disk
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
@@ -23,7 +24,7 @@ class TestStaticFileInstance(helpers.TestHandler):
     def test_delete_on_existent_file(self):
         self.fakeFile = self.get_dummy_file()
         realpath = os.path.join(GLSettings.static_path, self.fakeFile['name'])
-        dumped_file = yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
+        yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
 
         handler = self.request({}, role='admin')
         yield handler.delete(self.fakeFile['name'])
@@ -40,7 +41,7 @@ class TestStaticFileList(helpers.TestHandler):
     def test_get_list_of_files(self):
         self.fakeFile = self.get_dummy_file()
         realpath = os.path.join(GLSettings.static_path, self.fakeFile['name'])
-        dumped_file = yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
+        yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
 
         handler = self.request(role='admin')
         yield handler.get()

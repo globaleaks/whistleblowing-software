@@ -5,23 +5,17 @@
 #
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
-import os
 
-from cyclone.web import asynchronous
-
-from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler, directory_traversal_check
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
 from globaleaks.handlers.submission import serialize_usertip, \
     db_save_questionnaire_answers, db_get_archived_questionnaire_schema
-from globaleaks.models import serializers, \
-    InternalFile, WhistleblowerFile, \
+from globaleaks.models import InternalFile, WhistleblowerFile, \
     ReceiverTip, WhistleblowerTip, Comment, Message
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 

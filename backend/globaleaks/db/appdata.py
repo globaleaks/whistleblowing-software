@@ -4,13 +4,14 @@
 import json
 import os
 
-from storm.expr import And, Not, In, Or
+from storm.expr import And, Not, In
 
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_import_fields
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
+
 
 def read_appdata(p):
     with file(p, 'r') as f:

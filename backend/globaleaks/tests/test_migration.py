@@ -9,18 +9,15 @@ for each version one an empty and a populated db must be stored in directories:
 import os
 import shutil
 
-import unittest as pyunit
-from twisted.trial import unittest
-from twisted.internet.defer import inlineCallbacks
 from storm.locals import create_database, Store
+from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-
 from globaleaks.db import migration, perform_system_update
-from globaleaks.models import config, config_desc, l10n, Field
-from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
-from globaleaks.models.config_desc import GLConfig
 from globaleaks.handlers.admin.field import db_create_field
+from globaleaks.models import config, Field
+from globaleaks.models.config_desc import GLConfig
+from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers, config as test_config
 

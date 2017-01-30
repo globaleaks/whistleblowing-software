@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 import json
-
 import os
+
 from storm.locals import Int, Bool, Unicode, DateTime, JSON, ReferenceSet
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_update_fieldattr
 from globaleaks.handlers.submission import extract_answers_preview

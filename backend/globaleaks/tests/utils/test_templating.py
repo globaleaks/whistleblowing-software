@@ -37,4 +37,4 @@ class notifTemplateTest(helpers.TestGLWithPopulatedDB):
         for key in ['tip', 'comment', 'message', 'file']:
             data['type'] = key
             template = ''.join(supported_template_types[key].keyword_list)
-            ret = Templating().format_template(template, data)
+            Templating().format_template(template, data)

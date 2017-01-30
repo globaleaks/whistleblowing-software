@@ -7,7 +7,6 @@
 import os
 
 from storm.expr import In
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED

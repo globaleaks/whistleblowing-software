@@ -4,13 +4,11 @@
 import sys
 import threading
 
-from storm import exceptions, tracer
 import storm.databases.sqlite
+from storm import tracer
 from storm.database import create_database
 from storm.databases.sqlite import sqlite
 from storm.store import Store
-
-
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
 

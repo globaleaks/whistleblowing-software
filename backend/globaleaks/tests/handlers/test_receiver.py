@@ -78,8 +78,6 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
         for _ in xrange(3):
             yield self.perform_full_submission_actions()
 
-        handler = self.request(user_id = self.dummyReceiver_1['id'], role='receiver')
-
         rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]
 

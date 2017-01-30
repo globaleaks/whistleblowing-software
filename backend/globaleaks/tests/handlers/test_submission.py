@@ -4,8 +4,8 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks.handlers import authentication, wbtip
 from globaleaks.handlers.submission import SubmissionInstance
 from globaleaks.jobs import delivery_sched
-from globaleaks.tests import helpers
 from globaleaks.rest import errors
+from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
 # and here, our protagonist character:

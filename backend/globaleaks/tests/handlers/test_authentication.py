@@ -2,11 +2,11 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import authentication, admin
 from globaleaks.handlers.base import GLSessions
+from globaleaks.handlers.user import UserInstance
+from globaleaks.handlers.wbtip import WBTipInstance
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-from globaleaks.handlers.user import UserInstance
-from globaleaks.handlers.wbtip import WBTipInstance
 
 
 class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
@@ -89,7 +89,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         })
 
         failed_login = 5
-        for i in xrange(0, failed_login):
+        for _ in xrange(0, failed_login):
             yield self.assertFailure(handler.post(), errors.InvalidAuthentication)
 
         receiver_status = yield admin.receiver.get_receiver(self.dummyReceiver_1['id'], 'en')

@@ -13,10 +13,10 @@
 import os
 
 from globaleaks.anomaly import Alarm
-from globaleaks.orm import transact_sync
 from globaleaks.jobs.base import GLJob
-from globaleaks.settings import GLSettings
 from globaleaks.models import Stats, Anomalies
+from globaleaks.orm import transact_sync
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_now
 
 

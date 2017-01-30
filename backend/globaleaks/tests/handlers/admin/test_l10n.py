@@ -2,10 +2,9 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.rest import requests, errors
-from globaleaks.tests import helpers
-from globaleaks.handlers import l10n
+
 from globaleaks.handlers.admin import l10n as admin_l10n
+from globaleaks.tests import helpers
 
 empty_texts = {}
 

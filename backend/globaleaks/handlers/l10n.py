@@ -12,8 +12,8 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSettings
 from globaleaks.security import directory_traversal_check
+from globaleaks.settings import GLSettings
 
 
 def langfile_path(lang):

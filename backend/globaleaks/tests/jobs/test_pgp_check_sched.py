@@ -2,10 +2,9 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.jobs import pgp_check_sched
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-
-from globaleaks.jobs import pgp_check_sched
 
 
 class TestPGPCheckSchedule(helpers.TestGLWithPopulatedDB):

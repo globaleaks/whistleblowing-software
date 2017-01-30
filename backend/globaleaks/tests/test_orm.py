@@ -1,9 +1,8 @@
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
-
-from globaleaks.orm import transact, get_store
 from globaleaks.models import *
+from globaleaks.orm import get_store
+from globaleaks.tests import helpers
 from globaleaks.utils.utility import datetime_null
 
 
@@ -59,7 +58,7 @@ class TestORM(helpers.TestGL):
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
-        receiver_id = yield self._transact_with_success()
+        yield self._transact_with_success()
 
         # now check data actually written
         store = get_store()

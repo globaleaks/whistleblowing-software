@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-import random
-import json
 
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import __version__
-from globaleaks.rest.errors import InvalidInputFormat, InvalidModelInput
-from globaleaks.tests import helpers
-from globaleaks.rest import requests, errors
 from globaleaks.handlers.admin import node
 from globaleaks.models.l10n import NodeL10NFactory
+from globaleaks.rest.errors import InvalidInputFormat, InvalidModelInput
+from globaleaks.tests import helpers
 
 # special guest:
 stuff = u"³²¼½¬¼³²"

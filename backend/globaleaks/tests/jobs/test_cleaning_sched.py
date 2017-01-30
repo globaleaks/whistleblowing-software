@@ -3,13 +3,12 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
-
 from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.jobs import cleaning_sched
-from globaleaks.utils.utility import datetime_null
+from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
+from globaleaks.utils.utility import datetime_null
 
 
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):

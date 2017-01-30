@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import context

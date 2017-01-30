@@ -2,10 +2,11 @@
 import base64
 import os
 
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import ModelWithID
 from globaleaks.settings import GLSettings
-from storm.locals import Int, Bool, Unicode, DateTime, JSON
 
 
 class Node_v_30(ModelWithID):

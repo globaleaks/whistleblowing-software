@@ -2,11 +2,10 @@
 
 import os
 
-from globaleaks import __version__, DATABASE_VERSION, LANGUAGES_SUPPORTED_CODES
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin import files
 from globaleaks.models import *
-from globaleaks.models import l10n, properties, config
+from globaleaks.models import l10n, properties
 from globaleaks.models.config import Config
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import ConfigL10N
@@ -240,7 +239,7 @@ class MigrationScript(MigrationBase):
         #### Create Config table and rows ####
 
         # Migrate Config saved in Node
-        for var_name, item_def in GLConfig['node'].iteritems():
+        for var_name, _ in GLConfig['node'].iteritems():
             old_val = getattr(old_node, var_name)
 
             # XXX this can throw errors if the validators run
@@ -248,7 +247,7 @@ class MigrationScript(MigrationBase):
             self.store_new.add(item)
 
         # Migrate Config saved in Notification
-        for var_name, item_def in GLConfig['notification'].iteritems():
+        for var_name, _ in GLConfig['notification'].iteritems():
             old_val = getattr(old_notif, var_name)
 
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:

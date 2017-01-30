@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import random
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin import user

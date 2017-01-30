@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 import datetime
-
-from storm.properties import Property
-# datetime objects are going to be extended
 from storm.locals import DateTime as _DateTime
-from storm.variables import DateTimeVariable as _DateTimeVariable
-# Storm's metaclass is going to be extended.
+from storm.properties import Property
 from storm.properties import PropertyPublisherMeta
+from storm.variables import DateTimeVariable as _DateTimeVariable
 
 __all__ = ['MetaModel']
 

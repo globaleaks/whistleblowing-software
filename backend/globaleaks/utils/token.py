@@ -6,17 +6,17 @@
 #   Implements a GlobaLeaks security token, to prevent resources exhaustion
 #   operation by anonymous user.
 
+import os
 from random import randint
+
 from datetime import datetime, timedelta
 
-import os
 from globaleaks.anomaly import Alarm
-
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 from globaleaks.rest import errors
-from globaleaks.utils.tempdict import TempDict
-from globaleaks.settings import GLSettings
 from globaleaks.security import sha256, generateRandomKey
+from globaleaks.settings import GLSettings
+from globaleaks.utils.tempdict import TempDict
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 class TokenListClass(TempDict):

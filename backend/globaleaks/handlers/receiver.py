@@ -5,21 +5,22 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers to update personal preferences and access to personal data
 
-from twisted.internet.defer import inlineCallbacks
 from storm.expr import And, In
+from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
-from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
 from globaleaks.handlers.submission import db_get_archived_preview_schema
+from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import Receiver, ReceiverTip
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
+
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):

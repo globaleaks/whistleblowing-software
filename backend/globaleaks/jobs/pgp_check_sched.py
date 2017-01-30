@@ -11,18 +11,16 @@
 #
 from datetime import timedelta
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
-from globaleaks.orm import transact_sync
 from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import GLJob
+from globaleaks.orm import transact_sync
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import datetime_now, datetime_null
 from globaleaks.utils.templating import Templating
+from globaleaks.utils.utility import datetime_now, datetime_null
 
 
 __all__ = ['PGPCheckSchedule']
