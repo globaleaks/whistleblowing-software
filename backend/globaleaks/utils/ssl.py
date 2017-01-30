@@ -43,69 +43,40 @@ def load_dh_params():
     _lib.SSL_CTX_set_tmp_dh(context, dh)
 
 
-"""
-def __generate_dh_params():
-    dh = _lib.DH_new()
-    try:
-        _lib.DH_generate_parameters_ex(dh, 2048, 5L, _ffi.NULL)
+def new_tls_context():
+    # As discussed on https://trac.torproject.org/projects/tor/ticket/11598
+    # there is no way to enable all TLS methods excluding SSL.
+    # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
+    # is denied by OpenSSL.
+    #
+    # As spotted by nickm the only good solution right now is to enable SSL.SSLv23_METHOD then explicitly
+    # use options: SSL_OP_NO_SSLv2 and SSL_OP_NO_SSLv3
+    #
+    # This trick make openssl consider valid all TLS methods.
+    ctx = SSL.Context(SSL.SSLv23_METHOD)
 
-        #str_buf = StringIO()
-        #with open(str_buf, 'w') as f:
-        # Want to use DHparams print and avoid tmp_files...
-        _lib.DHparams_print_fp(f, dh)
+    ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE |
+                    SSL.OP_NO_SSLv2 |
+                    SSL.OP_NO_SSLv3 |
+                    SSL.OP_NO_COMPRESSION |
+                    SSL.OP_NO_TICKET)
 
-    except Exception as e:
-        pass
-    finally:
-        print('generation took:', (datetime.now() - s).total_seconds())
+    ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
 
-    der = str_buf.getvalue()
-    return der
+    cipher_list = 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA',
+    ctx.set_cipher_list(cipher_list)
 
-
-def __load_dh_params(dh_param_der):
-    str_buf = StringIO(dh_param_der)
-
-    with open(str_buf, 'r') as f:
-        bio = _lib.BIO_new_file(f, b"r")
-
-    if bio == _ffi.NULL:
-        _raise_current_error()
-        bio = _ffi.gc(bio, _lib.BIO_free)
-
-    dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL)
-    dh = _ffi.gc(dh, _lib.DH_free)
-    return dh
-"""
-
+    return ctx
 
 class TLSContextFactory(ssl.ContextFactory):
-    def __init__(self, priv_key, certificate, intermediate, dh, cipher_list):
+    def __init__(self, priv_key, certificate, intermediate, dh):
         """
         @param priv_key: String representation of the private key
         @param certificate: String representation of the certificate
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
-        @param cipher_list: The SSL cipher list selection to use
         """
-        # as discussed on https://trac.torproject.org/projects/tor/ticket/11598
-        # there is no way of enabling all TLS methods excluding SSL.
-        # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
-        # is denied by OpenSSL.
-        #
-        # As spotted by nickm the only good solution right now is to enable SSL.SSLv23_METHOD then explicitly
-        # use options: SSL_OP_NO_SSLv2 and SSL_OP_NO_SSLv3
-        #
-        # This trick make openssl consider valid all TLS methods.
-        ctx = SSL.Context(SSL.SSLv23_METHOD)
-
-        ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE |
-                        SSL.OP_NO_SSLv2 |
-                        SSL.OP_NO_SSLv3 |
-                        SSL.OP_NO_COMPRESSION |
-                        SSL.OP_NO_TICKET)
-
-        ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
+        ctx = new_tls_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
         ctx.use_certificate(x509)
@@ -116,8 +87,6 @@ class TLSContextFactory(ssl.ContextFactory):
 
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
         ctx.use_privatekey(priv_key)
-
-        ctx.set_cipher_list(cipher_list)
 
         with NamedTemporaryFile() as f_dh:
             f_dh.write(dh)

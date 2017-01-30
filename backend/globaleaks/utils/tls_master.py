@@ -91,7 +91,6 @@ class ProcessSupervisor(object):
           'proxy_ip': '127.0.0.1',
           'proxy_port': 8082,
           'tls_socket_fd': net_sockets['https'].fileno(),
-          'ssl_cipher_list': 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA',
         }
 
         # TODO move loading of DB cfg to init
