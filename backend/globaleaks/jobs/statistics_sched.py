@@ -99,8 +99,7 @@ class AnomaliesSchedule(GLJob):
 
 class StatisticsSchedule(GLJob):
     """
-    Statistics just flush two temporary queue and store them
-    in the database.
+    Statistics collection scheduler runned hourly
     """
     name = "Statistics Sched"
     interval = 3600
@@ -110,14 +109,8 @@ class StatisticsSchedule(GLJob):
          return 3600 - (current_time.minute * 60) - current_time.second
 
     def __init__(self):
-        self.collection_start_time = datetime_now()
+        self.stats_collection_start_time = datetime_now()
         GLJob.__init__(self)
-
-    @classmethod
-    def reset(cls):
-        GLSettings.RecentEventQ = []
-        GLSettings.RecentAnomaliesQ = {}
-        cls.collection_start_time = datetime_now()
 
     def operation(self):
         # ------- BEGIN Anomalies section -------
@@ -128,16 +121,10 @@ class StatisticsSchedule(GLJob):
         # ------- BEGIN Stats section -----------
         current_time = datetime_now()
         statistic_summary = get_statistics()
-        save_statistics(self.collection_start_time,
-                              current_time, statistic_summary)
+        save_statistics(GLSettings.stats_collection_start_time, current_time, statistic_summary)
         # ------- END Stats section -------------
 
-        # ------- BEGIN Mail thresholds management -----------
-        GLSettings.exceptions = {}
-        GLSettings.exceptions_email_count = 0
-        GLSettings.mail_counters.clear()
-        # ------- END Mail thresholds management -----------
-
-        self.reset()
+        # Hourly Resets
+        GLSettings.reset_hourly()
 
         log.debug("Saved stats and time updated, keys saved %d" % len(statistic_summary.keys()))
