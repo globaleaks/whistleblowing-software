@@ -66,8 +66,7 @@ def setup_tls_proxy(cfg):
     tls_factory = TLSContextFactory(cfg['key'],
                                     cfg['cert'],
                                     cfg['ssl_intermediate'],
-                                    cfg['ssl_dh'],
-                                    cfg['ssl_cipher_list'])
+                                    cfg['ssl_dh'])
 
     socket_fd = cfg['tls_socket_fd']
 
