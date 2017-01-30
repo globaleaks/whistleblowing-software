@@ -571,7 +571,7 @@ class WhistleblowerFileHandler(BaseHandler):
             # Second: register the file in the database
             yield register_wbfile_on_db(uploaded_file, rtip['id'])
         except Exception as excep:
-            raise errors.InternalServerError("Unable to accept new files: %s", excep)
+            raise errors.InternalServerError("Unable to accept new files: %s" % excep)
 
         self.set_status(201)  # Created
 
