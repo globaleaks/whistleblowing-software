@@ -10,10 +10,11 @@
 """
 
 from storm.locals import Int, Bool, Unicode, DateTime, JSON
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import ModelWithID
-from globaleaks.utils.utility import datetime_null
 from globaleaks.security import GLBPGP
+from globaleaks.utils.utility import datetime_null
 
 
 class Node_v_16(ModelWithID):

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
-from twisted.internet.defer import inlineCallbacks
 
 from cyclone.web import HTTPError, HTTPAuthenticationRequired
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, BaseStaticFileHandler, TimingStatsHandler
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
-
 
 FUTURE = 100
 

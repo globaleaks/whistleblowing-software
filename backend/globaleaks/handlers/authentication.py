@@ -5,16 +5,16 @@
 #
 # Files collection handlers and utils
 
-from twisted.internet.defer import inlineCallbacks
 from storm.expr import And
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import security
-from globaleaks.orm import transact
-from globaleaks.models import User
-from globaleaks.settings import GLSettings
-from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
+from globaleaks.models import User
+from globaleaks.models import WhistleblowerTip
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, deferred_sleep, log, randint
 
 

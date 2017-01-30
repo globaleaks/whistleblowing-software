@@ -11,10 +11,11 @@ import ctypes
 import inspect
 import logging
 import os
+import re
 import sys
 import traceback
 import uuid
-import re
+
 from datetime import datetime, timedelta
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred

@@ -1,9 +1,10 @@
 import binascii
 import os
+
+import scrypt
 from datetime import datetime
 from twisted.trial import unittest
 
-import scrypt
 from globaleaks.rest import errors
 from globaleaks.security import generateRandomSalt, hash_password, check_password, change_password, \
     directory_traversal_check, GLSecureTemporaryFile, GLSecureFile, \
@@ -24,8 +25,7 @@ class TestPasswordManagement(unittest.TestCase):
         self.assertEqual(sure, not_sure)
 
     def test_valid_password(self):
-        dummy_password = dummy_salt_input = \
-            "http://blog.transparency.org/wp-content/uploads/2010/05/A2_Whistelblower_poster.jpg"
+        dummy_password = "http://blog.transparency.org/wp-content/uploads/2010/05/A2_Whistelblower_poster.jpg"
         dummy_salt = generateRandomSalt()
 
         hashed_once = binascii.b2a_hex(scrypt.hash(dummy_password, dummy_salt))
@@ -156,9 +156,7 @@ class TestPGP(helpers.TestGL):
             f.write(self.secret_content)
             f.seek(0)
 
-            encrypted_object, length = pgpobj.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'],
-                                                           f,
-                                                           file_dst)
+            pgpobj.encrypt_file(fake_receiver_desc['pgp_key_fingerprint'], f, file_dst)
 
         with open(file_dst, 'r') as f:
             self.assertEqual(str(pgpobj.gnupg.decrypt_file(f)), self.secret_content)

@@ -7,10 +7,10 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
+from globaleaks.handlers.admin.user import db_create_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.handlers.admin.user import db_create_receiver
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings

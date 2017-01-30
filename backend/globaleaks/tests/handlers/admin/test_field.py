@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 import copy
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers import admin
 from globaleaks.handlers.admin.context import create_context
 from globaleaks.handlers.admin.field import create_field
-from globaleaks.handlers.public import serialize_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
@@ -47,7 +47,6 @@ class TestFieldCreate(helpers.TestHandler):
             field_template = yield create_field(values, 'en')
 
             context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step_id = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
 
             values = helpers.get_dummy_field()
             values['instance'] = 'reference'
@@ -196,7 +195,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             """
             n = 3
             ids = []
-            for i in range(3):
+            for i in range(n):
                 values = helpers.get_dummy_field()
                 values['instance'] = 'template'
                 handler = self.request(values, role='admin')
@@ -209,8 +208,7 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             fields, = self.responses
 
             check_ids = [field.get('id') for field in fields]
-            types = [field.get('type') for field in fields]
-            self.assertGreater(len(fields), 3)
+            self.assertGreater(len(fields), n)
             self.assertNotIn(None, ids)
 
             for x in ids:

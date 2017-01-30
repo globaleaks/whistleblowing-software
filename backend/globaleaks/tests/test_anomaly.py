@@ -48,8 +48,9 @@ class TestAnomalyNotification(helpers.TestGL):
         # Remind, these two has to be done to get an event matrix meaningful
         self.pollute_events()
         activity_level = yield Alarm.compute_activity_level()
+        self.assertEqual(activity_level, 2)
 
-        x = yield Alarm.generate_admin_alert_mail(
+        yield Alarm.generate_admin_alert_mail(
             event_matrix = {
                 'wb_comments': 100,
                 'noise': 12345

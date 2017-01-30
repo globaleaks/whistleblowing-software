@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-import json
 
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers import robots
-from globaleaks.models import config
-from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 

@@ -11,6 +11,7 @@
 # https://docs.google.com/a/apps.globaleaks.org/document/d/1P-uHM5K3Hhe_KD6YvARbRTuqjVOVj0VkI7qPO9aWFQw/edit
 #
 import copy
+
 from twisted.internet import defer
 
 from globaleaks import models
@@ -24,7 +25,6 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log, datetime_now, is_expired, bytes_to_pretty_str
-
 
 ANOMALY_MAP = {
     'started_submissions': 50,
@@ -49,10 +49,6 @@ def get_disk_anomaly_conditions(free_workdir_bytes, total_workdir_bytes, free_ra
     free_disk_megabytes = free_workdir_bytes / (1024 * 1024)
     free_disk_percentage = free_workdir_bytes / (total_workdir_bytes / 100)
     free_ramdisk_megabytes = free_ramdisk_bytes / (1024 * 1024)
-    free_workdir_string = bytes_to_pretty_str(free_workdir_bytes)
-    free_ramdisk_string = bytes_to_pretty_str(free_ramdisk_bytes)
-    total_workdir_string = bytes_to_pretty_str(total_workdir_bytes)
-    total_ramdisk_string = bytes_to_pretty_str(total_ramdisk_bytes)
 
     def info_msg_0():
         return "free_disk_megabytes <= %d or free_disk_percentage <= %d" % \

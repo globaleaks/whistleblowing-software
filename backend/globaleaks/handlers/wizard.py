@@ -2,19 +2,19 @@
 #
 # wizard
 
-from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_node
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import log, datetime_null
-
-from twisted.internet.defer import inlineCallbacks
 
 
 @transact

@@ -7,16 +7,15 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
+from globaleaks.handlers.admin.step import db_create_step
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
-from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
-from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
+from globaleaks.utils.utility import log
 
 
 def admin_serialize_context(store, context, language):

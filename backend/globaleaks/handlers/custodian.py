@@ -6,9 +6,9 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
+from globaleaks.orm import transact
 from globaleaks.rest import requests
 from globaleaks.utils.structures import Rosetta
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now

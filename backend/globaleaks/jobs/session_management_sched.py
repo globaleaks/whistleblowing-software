@@ -3,8 +3,8 @@
 #   **************
 #
 
-from globaleaks.settings import GLSettings
 from globaleaks.jobs.base import GLJob
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
 __all__ = ['SessionManagementSchedule']

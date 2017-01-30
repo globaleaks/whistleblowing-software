@@ -7,13 +7,13 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, parse_pgp_key
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import get_localized_values
-from globaleaks.utils.utility import log, datetime_to_ISO8601, datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, datetime_null
 
 
 def parse_pgp_options(user, request):

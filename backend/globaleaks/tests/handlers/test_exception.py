@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.handlers import exception
+from globaleaks.tests import helpers
 
 
 class TestExceptionHandler(helpers.TestHandler):

@@ -13,9 +13,9 @@ import re
 import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
-from twisted.python.threadpool import ThreadPool
 
 from cyclone.util import ObjectDict as OD
+from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton

@@ -9,12 +9,11 @@ from cyclone.web import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk
-from globaleaks.utils.utility import log
 from globaleaks.rest import errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import directory_traversal_check
+from globaleaks.settings import GLSettings
+
 
 def get_description_by_stat(statstruct, name):
     return {

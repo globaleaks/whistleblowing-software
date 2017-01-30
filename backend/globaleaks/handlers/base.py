@@ -12,12 +12,13 @@ import re
 import shutil
 import sys
 import time
-from twisted.internet import fdesc, reactor
-from twisted.internet.defer import inlineCallbacks
-from twisted.python.failure import Failure
 
 from cyclone import web, template
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
+from twisted.internet import fdesc
+from twisted.internet.defer import inlineCallbacks
+from twisted.python.failure import Failure
+
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey

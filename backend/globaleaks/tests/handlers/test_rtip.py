@@ -4,11 +4,11 @@ import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
+from globaleaks.handlers import rtip
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.rest import errors
-from globaleaks.tests import helpers
-from globaleaks.handlers import rtip
 from globaleaks.settings import GLSettings
+from globaleaks.tests import helpers
 
 
 class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):

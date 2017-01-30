@@ -1,9 +1,8 @@
 # -*- coding: UTF-8
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models.config import NodeFactory, NotificationFactory
-from globaleaks.models.l10n import EnabledLanguage
-from globaleaks.settings import GLSettings
 from globaleaks.models import *
+from globaleaks.models.config import NodeFactory
+from globaleaks.models.l10n import EnabledLanguage
 
 
 class Context_v_34(ModelWithID):

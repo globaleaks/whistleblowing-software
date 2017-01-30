@@ -10,12 +10,10 @@ import os
 import string
 
 from cyclone.web import asynchronous
-from twisted.internet.defer import inlineCallbacks
-from twisted.internet import threads
-
 from storm.expr import In
+from twisted.internet import threads
+from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler, \
     directory_traversal_check, write_upload_plaintext_to_disk
 from globaleaks.handlers.custodian import serialize_identityaccessrequest
@@ -27,6 +25,7 @@ from globaleaks.models import serializers, \
     ReceiverFile, ReceiverTip, \
     WhistleblowerFile, \
     SecureFileDelete, IdentityAccessRequest
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
@@ -572,7 +571,7 @@ class WhistleblowerFileHandler(BaseHandler):
             # Second: register the file in the database
             yield register_wbfile_on_db(uploaded_file, rtip['id'])
         except Exception as excep:
-            raise errors.InternalServerError("Unable to accept new files")
+            raise errors.InternalServerError("Unable to accept new files: %s", excep)
 
         self.set_status(201)  # Created
 

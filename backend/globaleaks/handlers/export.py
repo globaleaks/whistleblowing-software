@@ -6,11 +6,8 @@
 # Tip export utils
 import copy
 
-from storm.expr import In
-
 from cyclone.web import asynchronous
-
-from twisted.internet import threads
+from storm.expr import In
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
@@ -19,12 +16,11 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip, \
-    db_get_itip_comment_list, db_get_itip_message_list
+from globaleaks.handlers.rtip import db_access_rtip, serialize_rtip
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
-from globaleaks.utils.utility import deferred_sleep, msdos_encode
+from globaleaks.utils.utility import msdos_encode
 from globaleaks.utils.zipstream import ZipStream
 
 

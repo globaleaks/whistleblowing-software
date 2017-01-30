@@ -3,10 +3,8 @@
 from storm.expr import And, In
 from storm.locals import Unicode, Storm, Bool
 
-from globaleaks import LANGUAGES_SUPPORTED_CODES, models
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.rest import errors
-from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
-from globaleaks.utils.utility import log
 
 
 class EnabledLanguage(Storm):

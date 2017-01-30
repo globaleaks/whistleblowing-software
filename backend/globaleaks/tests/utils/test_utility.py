@@ -1,10 +1,10 @@
-import re
 import StringIO
+import re
 import sys
-from datetime import datetime
 
-from twisted.trial import unittest
+from datetime import datetime
 from twisted.python.failure import Failure
+from twisted.trial import unittest
 
 from globaleaks.utils import utility
 

@@ -11,15 +11,11 @@
 import os
 
 from twisted.application import internet, service
-
 from twisted.python import log, logfile
 
-from globaleaks.utils.utility import GLLogObserver
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
-
-import globaleaks.mocks.cyclone_mocks
-
+from globaleaks.utils.utility import GLLogObserver
 
 application = service.Application('GLBackend')
 

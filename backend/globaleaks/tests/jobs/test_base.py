@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
-from twisted.internet.defer import inlineCallbacks, Deferred
-
-from globaleaks.tests import helpers
 
 from globaleaks.jobs.base import GLJob
+from globaleaks.tests import helpers
 
 
 class GLJobX(GLJob):

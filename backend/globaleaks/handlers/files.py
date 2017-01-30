@@ -5,14 +5,13 @@
 #
 # API handling submissions file uploads and subsequent submissions attachments
 import os
-import shutil
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler, write_upload_encrypted_to_disk
 from globaleaks.models import serializers, \
-    ReceiverFile, InternalTip, InternalFile, WhistleblowerTip
+    InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.security import directory_traversal_check

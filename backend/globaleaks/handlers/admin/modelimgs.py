@@ -5,9 +5,10 @@
 #
 # API handling upload/delete of users/contexts picture
 
+import base64
+
 from twisted.internet.defer import inlineCallbacks
 
-import base64
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact

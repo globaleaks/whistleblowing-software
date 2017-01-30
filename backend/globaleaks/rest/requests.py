@@ -9,8 +9,8 @@
 
 from globaleaks import models
 from globaleaks.models.l10n import NotificationL10NFactory
-from globaleaks.utils.structures import get_raw_request_format
 from globaleaks.utils.sets import disjoint_union
+from globaleaks.utils.structures import get_raw_request_format
 
 uuid_regexp                       = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$'
 uuid_regexp_or_empty              = r'^([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$|^$'

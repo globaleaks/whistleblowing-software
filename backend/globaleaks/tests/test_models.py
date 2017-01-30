@@ -1,18 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.models import config
-from globaleaks.db.appdata import load_appdata
-from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
-from globaleaks.handlers.admin.user import db_create_user
+from globaleaks.models import config
+from globaleaks.models.config_desc import GLConfig
+from globaleaks.models.l10n import NodeL10NFactory, EnabledLanguage, ConfigL10N
 from globaleaks.orm import transact
 from globaleaks.tests import helpers
-from globaleaks.settings import GLSettings
-from globaleaks.models.config_desc import GLConfig
 
 
 class TestSystemConfigModels(helpers.TestGL):

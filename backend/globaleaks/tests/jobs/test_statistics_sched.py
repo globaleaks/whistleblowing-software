@@ -2,9 +2,8 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
-from globaleaks.tests import helpers
-
 from globaleaks.jobs import statistics_sched
+from globaleaks.tests import helpers
 
 # E non è la distanza ad abitare l'assenza.
 # https://www.youtube.com/watch?v=UBdlNlDZDZA

@@ -8,12 +8,10 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables
-
 from globaleaks.jobs import jobs_list
-from globaleaks.jobs.base import GLJob, GLJobsMonitor
-
+from globaleaks.jobs.base import GLJobsMonitor
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log
 
 test_reactor = None
 

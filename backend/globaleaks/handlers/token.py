@@ -7,9 +7,9 @@
 # subject in general to rate limit.
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.utils.token import Token, TokenList
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
+from globaleaks.utils.token import Token, TokenList
 
 
 class TokenCreate(BaseHandler):

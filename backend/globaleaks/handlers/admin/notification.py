@@ -10,8 +10,8 @@ from globaleaks.models.l10n import NotificationL10NFactory
 from globaleaks.models.properties import iso_strf_time
 from globaleaks.orm import transact
 from globaleaks.rest import requests
-from globaleaks.settings import GLSettings
 from globaleaks.security import parse_pgp_key
+from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import sendmail
 from globaleaks.utils.sets import disjoint_union
 from globaleaks.utils.templating import Templating
@@ -147,7 +147,7 @@ class NotificationTestInstance(BaseHandler):
 
         language = user['language']
 
-        notif = yield get_notification(language)
+        yield get_notification(language)
 
         data = {}
         data['type'] = 'admin_test_static'

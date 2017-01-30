@@ -1,9 +1,9 @@
-from globaleaks import __version__
-from globaleaks.utils.utility import log
 from storm.expr import And, Not
 from storm.locals import Storm, Bool, Unicode, JSON
 
 import config_desc
+from globaleaks import __version__
+from globaleaks.utils.utility import log
 from .config_desc import GLConfig
 
 

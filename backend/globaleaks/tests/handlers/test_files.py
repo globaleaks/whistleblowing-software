@@ -3,7 +3,6 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.handlers import files
 from globaleaks.rest import errors
 from globaleaks.tests import helpers

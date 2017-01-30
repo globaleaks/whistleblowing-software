@@ -8,11 +8,9 @@
 # supporter KeyWords are here documented:
 # https://github.com/globaleaks/GlobaLeaks/wiki/Customization-guide#customize-notification
 
+import collections
 import copy
 
-import collections
-
-from globaleaks import models
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import ISO8601_to_pretty_str, ISO8601_to_day_str, \
@@ -175,7 +173,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         for r in rows:
             rows[r] = sorted(rows[r], key=lambda k: k['x'])
 
-        for index_x, row in rows.iteritems():
+        for _, row in rows.iteritems():
             for field in row:
                 if field['type'] != 'fileupload' and field['id'] in answers:
                     output += indent(indent_n) + field['label'] + '\n'
@@ -447,8 +445,7 @@ class Templating(object):
     def format_template(self, raw_template, data):
         keyword_converter = supported_template_types[data['type']](data)
         iterations = 3
-        stop = False
-        while stop is False and iterations > 0:
+        while iterations > 0:
             iterations -= 1
             count = 0
 
@@ -468,7 +465,6 @@ class Templating(object):
 
             if count == 0:
                 # finally!
-                stop = True
                 break
 
         return raw_template

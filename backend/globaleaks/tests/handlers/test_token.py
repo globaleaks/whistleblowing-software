@@ -3,10 +3,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.anomaly import Alarm
 from globaleaks.handlers import token
+from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
-from globaleaks.rest import errors
-from globaleaks.settings import GLSettings
+
 
 class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
     _handler = token.TokenCreate

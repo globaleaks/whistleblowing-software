@@ -6,10 +6,8 @@
 from cyclone import web
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.rest import requests
-from globaleaks.settings import GLSettings
 from globaleaks.handlers import exception, \
-                                admin, receiver, custodian, \
+    receiver, custodian, \
                                 public, \
                                 submission, \
                                 rtip, wbtip, \
@@ -17,23 +15,23 @@ from globaleaks.handlers import exception, \
                                 export, l10n, wizard, \
                                 base, user, shorturl, \
                                 robots
-
-from globaleaks.handlers.admin import node as admin_node
-from globaleaks.handlers.admin import user as admin_user
-from globaleaks.handlers.admin import receiver as admin_receiver
 from globaleaks.handlers.admin import context as admin_context
-from globaleaks.handlers.admin import questionnaire as admin_questionnaire
-from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import field as admin_field
+from globaleaks.handlers.admin import files as admin_files
 from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
-from globaleaks.handlers.admin import files as admin_files
-from globaleaks.handlers.admin import staticfiles as admin_staticfiles
-from globaleaks.handlers.admin import overview as admin_overview
-from globaleaks.handlers.admin import shorturl as admin_shorturl
-from globaleaks.handlers.admin import statistics as admin_statistics
+from globaleaks.handlers.admin import node as admin_node
 from globaleaks.handlers.admin import notification as admin_notification
-
+from globaleaks.handlers.admin import overview as admin_overview
+from globaleaks.handlers.admin import questionnaire as admin_questionnaire
+from globaleaks.handlers.admin import receiver as admin_receiver
+from globaleaks.handlers.admin import shorturl as admin_shorturl
+from globaleaks.handlers.admin import staticfiles as admin_staticfiles
+from globaleaks.handlers.admin import statistics as admin_statistics
+from globaleaks.handlers.admin import step as admin_step
+from globaleaks.handlers.admin import user as admin_user
+from globaleaks.rest import requests
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import randbits
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'

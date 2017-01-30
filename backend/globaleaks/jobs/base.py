@@ -4,12 +4,11 @@
 #
 # Base class for implement the scheduled tasks
 import time
+
 from twisted.internet import task, defer, reactor, threads
 
-from globaleaks.handlers.base import TimingStatsHandler
 from globaleaks.utils.mailutils import send_exception_email, extract_exception_traceback_and_send_email
-from globaleaks.utils.utility import log, datetime_null
-
+from globaleaks.utils.utility import log
 
 test_reactor = None
 
@@ -102,7 +101,6 @@ class GLJobsMonitor(GLJob):
 
         error_msg = ""
         for job in self.jobs_list:
-            execution_time = 0
             if job.running:
                 execution_time = current_time - job.start_time
 

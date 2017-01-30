@@ -2,11 +2,11 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.handlers import public
+from globaleaks.models import config
 from globaleaks.rest import requests
 from globaleaks.tests import helpers
-from globaleaks.handlers import admin, public
-from globaleaks.models import config
-from globaleaks.settings import GLSettings
 
 
 class TestPublicResource(helpers.TestHandlerWithPopulatedDB):

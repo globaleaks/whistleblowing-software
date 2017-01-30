@@ -3,8 +3,8 @@
 GlobaLeaks ORM Models definitions.
 """
 from __future__ import absolute_import
-from datetime import timedelta
 
+from datetime import timedelta
 from storm.locals import Bool, Int, Reference, ReferenceSet, Unicode, Storm, JSON
 
 from globaleaks.models.validators import shorttext_v, longtext_v, \
@@ -12,8 +12,6 @@ from globaleaks.models.validators import shorttext_v, longtext_v, \
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_now, datetime_null, uuid4
-from globaleaks.rest import errors
-
 from .properties import MetaModel, DateTime
 
 empty_localization = {}

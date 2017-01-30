@@ -7,13 +7,12 @@
 import copy
 
 from storm.expr import And, Not, In
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
-from globaleaks.orm import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field
+from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys

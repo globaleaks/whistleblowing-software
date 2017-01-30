@@ -5,19 +5,8 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 
-from twisted.internet.defer import inlineCallbacks, returnValue
-
-from globaleaks import models, LANGUAGES_SUPPORTED
-from globaleaks.handlers.admin.files import db_get_file
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import l10n
-from globaleaks.models.config import NodeFactory
-from globaleaks.models.l10n import NodeL10NFactory
-from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
-from globaleaks.utils.sets import disjoint_union
-from globaleaks.utils.structures import get_localized_values
 
 
 class RobotstxtHandler(BaseHandler):

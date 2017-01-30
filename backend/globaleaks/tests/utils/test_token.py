@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 import os
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.anomaly import Alarm
@@ -40,9 +41,8 @@ class TestToken(helpers.TestGL):
         file_list = []
 
         token_collection = []
-        for i in xrange(20):
+        for _ in xrange(20):
             st = Token('submission')
-
             token_collection.append(st)
 
         for t in token_collection:
