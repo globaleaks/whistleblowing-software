@@ -3,9 +3,9 @@
     <div>
       <span data-translate>Submission</span><span data-ng-if="::session.role == 'receiver'">:</span>
       <span data-ng-if="::session.role == 'receiver'">
-        <span id="Label" data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
+        <span data-ng-if="tip.label && !showEditLabelInput" class="TipLabel" data-ng-click="editLabel(); $event.stopPropagation();"
               uib-popover="{{'Label the submission' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">
-          <span>{{::tip.label}}</span>
+          <span id="Label">{{::tip.label}}</span>
           <i class="glyphicon glyphicon-tag"></i>
         </span>
 
