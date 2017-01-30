@@ -17,6 +17,9 @@ from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import GLLogObserver
 
+# this import seems unused but it is required in order to load the mocks
+import globaleaks.mocks.cyclone_mocks
+
 application = service.Application('GLBackend')
 
 if not GLSettings.nodaemon and GLSettings.logfile:
