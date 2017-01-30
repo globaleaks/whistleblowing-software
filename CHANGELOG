@@ -1,4 +1,13 @@
-Changes in version 2.65.14 -2017-01-23
+Changes in version 2.65.15 - 2017-01-30
+    o Limit requests size to 100kb
+    o Fix collection of general admin statistics
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1874
+    - https://github.com/globaleaks/GlobaLeaks/issues/1881
+    - https://github.com/globaleaks/GlobaLeaks/issues/1852
+
+Changes in version 2.65.14 - 2017-01-23
     o Fix migration script 33 in relation to expiration of
       the access by the whistleblower
     o Optimize favicon loading
@@ -7,17 +16,17 @@ Changes in version 2.65.14 -2017-01-23
     Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1878
 
-Changes in version 2.65.13 -2017-01-18
+Changes in version 2.65.13 - 2017-01-18
     o Fix time check for notification of expiring submissions
     o Apply minor UI fixes
     o Update translations
 
-Changes in version 2.65.12 -2017-01-16
+Changes in version 2.65.12 - 2017-01-16
     o Fix addition of new template for submission expiration summary
     o Apply minor UI fixes
     o Update translations
 
-Changes in version 2.65.11 -2017-01-12
+Changes in version 2.65.11 - 2017-01-12
     o Improve sitemap.xml listing hreflang alternatives
     o Implement single active session for user [1836]
     o Implement exception notifications for administrators
