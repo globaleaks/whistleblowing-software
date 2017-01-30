@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "coveralls": "2.11.15",
-    "eslint": "3.11.1",
+    "eslint": "3.14.1",
     "firefox-profile": "0.4.7",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
@@ -29,14 +29,14 @@
     "gruntify-eslint": "3.1.0",
     "mocha": "3.2.0",
     "node-gettext": "0.2.14",
-    "openpgp": "2.3.5",
+    "openpgp": "2.3.6",
     "protractor": "4.0.14",
     "protractor-accessibility-plugin": "0.3.0",
     "protractor-console-plugin": "0.1.1",
     "protractor-istanbul-plugin": "2.0.0",
     "q": "1.4.1",
     "selenium-webdriver": "2.53.3",
-    "superagent": "3.1.0",
-    "supertest": "2.0.1"
+    "superagent": "3.4.1",
+    "supertest": "3.0.0"
   }
 }
