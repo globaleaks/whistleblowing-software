@@ -225,7 +225,7 @@ class TestGL(unittest.TestCase):
 
         Alarm.reset()
         event.EventTrackQueue.clear()
-        jobs.statistics_sched.StatisticsSchedule.reset()
+        GLSettings.reset_hourly()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 

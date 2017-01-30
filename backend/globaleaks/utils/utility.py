@@ -24,7 +24,6 @@ from twisted.python import util
 from twisted.python.failure import Failure
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
-from globaleaks.settings import GLSettings
 
 
 def uuid4():
@@ -174,6 +173,11 @@ class Logger(object):
     """
     Customized LogPublisher
     """
+    loglevel = logging.ERROR
+
+    def setloglevel(self, loglevel):
+        self.loglevel = loglevel
+
     def _str(self, msg):
         if isinstance(msg, unicode):
             msg = msg.encode('utf-8')
@@ -192,24 +196,24 @@ class Logger(object):
             traceback.print_exception(exc_type, exc_value, exc_traceback)
 
     def info(self, msg):
-        if GLSettings.loglevel and GLSettings.loglevel <= logging.INFO:
+        if self.loglevel and self.loglevel <= logging.INFO:
             print("[-] %s" % self._str(msg))
 
     def err(self, msg):
-        if GLSettings.loglevel:
+        if self.loglevel:
             twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
-        if GLSettings.loglevel and GLSettings.loglevel <= logging.DEBUG:
+        if self.loglevel and self.loglevel <= logging.DEBUG:
             print("[D] %s" % self._str(msg))
 
     def time_debug(self, msg):
         # read the command in settings.py near 'verbosity_dict'
-        if GLSettings.loglevel and GLSettings.loglevel <= (logging.DEBUG - 1):
+        if self.loglevel and self.loglevel <= (logging.DEBUG - 1):
             print("[T] %s" % self._str(msg))
 
     def msg(self, msg):
-        if GLSettings.loglevel:
+        if self.loglevel:
             twlog.msg("[ ] %s" % self._str(msg))
 
 

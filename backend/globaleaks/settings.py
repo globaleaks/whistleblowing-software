@@ -19,6 +19,7 @@ from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
+from globaleaks.utils.utility import datetime_now#, log
 
 this_directory = os.path.dirname(__file__)
 
@@ -83,7 +84,6 @@ class GLSettingsClass(object):
         self.orm_debug = False
         self.log_requests_responses = -1
         self.requests_counter = 0
-        self.loglevel = "CRITICAL"
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -99,8 +99,10 @@ class GLSettingsClass(object):
         self.set_ramdisk_path()
 
         self.authentication_lifetime = 3600
+
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
+        self.stats_collection_start_time = datetime_now()
 
         self.accept_submissions = True
 
@@ -198,6 +200,14 @@ class GLSettingsClass(object):
         self.mail_counters = {}
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
+
+    def reset_hourly(self):
+        self.RecentEventQ[:] = []
+        self.RecentAnomaliesQ.clear()
+        self.exceptions.clear()
+        self.exceptions_email_count = 0
+        self.mail_counters.clear()
+        self.stats_collection_start_time = datetime_now()
 
     def get_mail_counter(self, receiver_id):
         return self.mail_counters.get(receiver_id, 0)
@@ -298,7 +308,7 @@ class GLSettingsClass(object):
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
 
-        self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
+        #log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
         self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
 
