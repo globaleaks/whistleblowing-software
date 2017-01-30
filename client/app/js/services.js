@@ -1004,6 +1004,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           }
         });
+      },
+
+      isNever: function(time) {
+        var date1 = new Date(time);
+        var date2 = new Date(32503680000000);
+        return date1.getTime() === date2.getTime();
       }
     }
 }]).
