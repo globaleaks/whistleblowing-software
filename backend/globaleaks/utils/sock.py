@@ -7,7 +7,7 @@ def listen_tcp_on_sock(reactor, fd, factory):
     return reactor.adoptStreamPort(fd, socket.AF_INET, factory)
 
 
-def listen_tls_on_sock(reactor, fd, factory, contextFactory):
+def listen_tls_on_sock(reactor, fd, contextFactory, factory):
     tlsFactory = tls.TLSMemoryBIOFactory(contextFactory, False, factory)
     port = listen_tcp_on_sock(reactor, fd, tlsFactory)
     port._type = 'TLS'

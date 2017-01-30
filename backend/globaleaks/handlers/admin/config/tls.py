@@ -1,6 +1,8 @@
 from datetime import datetime
+from functools import wraps
 
 from OpenSSL import crypto, SSL
+from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
@@ -10,7 +12,7 @@ from globaleaks.models.config import PrivateFactory
 from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
-from globaleaks.utils.ssl import generate_dh_params
+from globaleaks.utils import ssl
 from globaleaks.utils import tls_master
 from globaleaks.utils.utility import datetime_to_ISO8601
 
@@ -20,7 +22,7 @@ class FileResource(object):
     An interface for interacting with files stored on disk or in the db
     '''
 
-    @staticmethod
+    @classmethod
     @transact
     def create_file(store, request):
         raise errors.MethodNotImplemented()
@@ -56,42 +58,65 @@ class FileResource(object):
         raise errors.MethodNotImplemented()
 
 
-class PrivKeyFileRes(FileResource):
-    @staticmethod
-    @transact
-    def create_file(store, json):
-        prv_fact = PrivateFactory(store)
-        # TODO Validate private key passed
-        prv_fact.set_val('https_priv_key', json['content'])
+def gen_dh_params_if_none(prv_fact):
+    dh_params = prv_fact.get_val('https_dh_params')
 
+    if dh_params == u'':
+        log.info("Generating https dh params")
+        dh_params = ssl.generate_dh_params()
+        prv_fact.set_val('https_dh_params', dh_params)
+        log.info("DH param generated and stored")
+
+
+def https_disabled(f):
+    @wraps(f)
+    def wrapper(store, *args, **kwargs):
+        on = PrivateFactory(store).get_val('https_enabled')
+        if on:
+            raise errors.FailedSanityCheck()
+        return f(store, *args, **kwargs)
+
+    return wrapper
+
+
+class PrivKeyFileRes(FileResource):
+    validator = ssl.PrivKeyValidator
+
+    @classmethod
+    @transact
+    def create_file(cls, store, json_req):
+        raw_key = json_req['content']
+
+        prv_fact = PrivateFactory(store)
+        gen_dh_params_if_none(prv_fact)
+
+        db_cfg = ssl.load_db_cfg(store)
+        db_cfg['key'] = raw_key
+
+        pkv = cls.validator()
+        ok, err = pkv.validate(db_cfg)
+        if ok:
+            prv_fact.set_val('https_cert', raw_key)
+        else:
+            raise err
 
     @staticmethod
     @transact
     def perform_file_action(store):
         prv_fact = PrivateFactory(store)
-
-        prv_https_key_pem = prv_fact.get_val('https_priv_key')
-
-        # TODO move check
-        if prv_https_key_pem != '':
-            raise Exception("An https private key already exists")
-
-        dh_params = prv_fact.get_val('https_dh_params')
-
-        if dh_params == u'':
-            log.info("Generating https_dh_params")
-            dh_params = generate_dh_params()
-            prv_fact.set_val('https_dh_params', dh_params)
-            log.info("DH param generated and stored")
+        gen_dh_params_if_none(prv_fact)
 
         log.info("Generating a new TLS key")
+
         prv_key = gen_RSA_key()
         pem_prv_key = crypto.dump_privatekey(SSL.FILETYPE_PEM, prv_key)
         prv_fact.set_val('https_priv_key', pem_prv_key)
+
         log.info("Finished key generation and storage")
 
     @staticmethod
     @transact
+    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         # TODO(nskelsey) wipe key in a safer fashion or blame naif if it
@@ -106,47 +131,29 @@ class PrivKeyFileRes(FileResource):
         return {'set': is_key_set}
 
 
-class ChainFileRes(FileResource):
-    @staticmethod
-    @transact
-    def create_file(store, json):
-        prv_fact = PrivateFactory(store)
-        # TODO Validate chain file
-        prv_fact.set_val('https_chain', json['content'])
-
-    @staticmethod
-    @transact
-    def delete_file(store):
-        prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_chain', u'')
-
-    @staticmethod
-    @transact
-    def get_file(store):
-        prv_fact = PrivateFactory(store)
-        return prv_fact.get_val('https_chain')
-
-    @staticmethod
-    def db_serialize(store):
-        c = PrivateFactory(store).get_val('https_chain')
-        ret = {
-            'name': 'chain',
-            'expiration_date': datetime_to_ISO8601(datetime.now()),
-            'set': c != u'',
-        }
-        return ret
-
-
 class CertFileRes(FileResource):
-    @staticmethod
+    validator = ssl.CertValidator
+
+    @classmethod
     @transact
-    def create_file(store, json):
+    def create_file(cls, store, json_req):
+        raw_cert = json_req['content']
+
         prv_fact = PrivateFactory(store)
-        # TODO Validate cert
-        prv_fact.set_val('https_cert', json['content'])
+
+        db_cfg = ssl.load_db_cfg(store)
+        db_cfg['cert'] = raw_cert
+
+        cv = cls.validator()
+        ok, err = cv.validate(db_cfg)
+        if ok:
+            prv_fact.set_val('https_priv_key', raw_cert)
+        else:
+            raise err
 
     @staticmethod
     @transact
+    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_cert', u'')
@@ -160,10 +167,67 @@ class CertFileRes(FileResource):
     @staticmethod
     def db_serialize(store):
         c = PrivateFactory(store).get_val('https_cert')
+        if c == u'':
+            return {'name': 'cert', 'set': False}
+
+        x509 = crypto.load_certificate(FILETYPE_PEM, c)
+
         ret = {
             'name': 'cert',
-            'expiration_date': datetime_to_ISO8601(datetime.now()),
-            'set': c != u'',
+            'issuer': x509.get_issuer().organizationName,
+            'expiration_date': x509.get_notAfter(),
+            'set': True,
+        }
+        return ret
+
+
+
+class ChainFileRes(FileResource):
+    validator = ssl.ChainValidator
+
+    @classmethod
+    @transact
+    def create_file(cls, store, json_req):
+        raw_chain = json_req['content']
+
+        prv_fact = PrivateFactory(store)
+
+        db_cfg = ssl.load_db_cfg(store)
+        db_cfg['ssl_intermediate'] = raw_chain
+
+        cv = cls.validator()
+        ok, err = cv.validate(db_cfg)
+        if ok:
+            prv_fact.set_val('https_chain', raw_chain)
+        else:
+            raise err
+
+    @staticmethod
+    @transact
+    @https_disabled
+    def delete_file(store):
+        prv_fact = PrivateFactory(store)
+        prv_fact.set_val('https_chain', u'')
+
+    @staticmethod
+    @transact
+    def get_file(store):
+        prv_fact = PrivateFactory(store)
+        return prv_fact.get_val('https_chain')
+
+    @staticmethod
+    def db_serialize(store):
+        c = PrivateFactory(store).get_val('https_chain')
+        if c == u'':
+            return {'name': 'chain', 'set': False}
+
+        x509 = load_certificate(FILETYPE_PEM, c)
+
+        ret = {
+            'name': 'chain',
+            'issuer': x509.get_issuer().organizationName,
+            'expiration_date': x509.get_notAfter(),
+            'set': False,
         }
         return ret
 
@@ -185,7 +249,6 @@ class FileHandler(BaseHandler):
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, name):
-        # TODO assert file exists
         file_res_cls = self.get_file_res_or_raise(name)
         yield file_res_cls.delete_file()
 
@@ -193,14 +256,12 @@ class FileHandler(BaseHandler):
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self, name):
-        # TODO privKeyFileRes gets caught here because generate has no use for
-        # the content = unicode json.
         req = self.validate_message(self.request.body,
                                     requests.AdminTLSCfgFileResourceDesc)
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        # TODO assert file does not exist
+
         yield file_res_cls.create_file(req)
         self.set_status(201, 'Wrote everything')
 
@@ -230,12 +291,11 @@ def serialize_https_config_summary(store):
 
     file_summaries = {}
 
-    # TODO this loop is a bit of a mess.
     for key, file_res_cls in FileHandler.mapped_file_resources.iteritems():
         file_summaries[key] = file_res_cls.db_serialize(store)
 
     ret = {
-      'https_url': 'https://127.0.0.1:9443', # TODO
+      'https_url': 'https://127.0.0.1:9443', # TODO use config hostname
       'enabled': prv_fact.get_val('https_enabled'),
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
@@ -247,7 +307,14 @@ def serialize_https_config_summary(store):
 @transact
 def try_to_enable_https(store):
     prv_fact = PrivateFactory(store)
+
+    cv = ssl.ContextValidator()
+    db_cfg = ssl.load_db_cfg(store)
+    db_cfg['https_enabled'] = True
+    cv.validate(db_cfg)
     prv_fact.set_val('https_enabled', True)
+
+    # TODO this needs to move out of the transact
     GLSettings.state.process_supervisor.db_maybe_launch_https_workers(store)
 
 

@@ -59,10 +59,10 @@ INVALID_PASSWORD = u'antani'
 
 PGPKEYS = {}
 
-KEYS_PATH = os.path.join(TEST_DIR, 'keys')
-for filename in os.listdir(KEYS_PATH):
-    if filename == 'https': continue # TODO REMOVE ME
-    with open(os.path.join(KEYS_PATH, filename)) as pgp_file:
+DATA_DIR = os.path.join(TEST_DIR, 'data')
+kp = os.path.join(DATA_DIR, 'gpg')
+for filename in os.listdir(kp):
+    with open(os.path.join(kp, filename)) as pgp_file:
         PGPKEYS[filename] = unicode(pgp_file.read())
 
 def deferred_sleep_mock(seconds):

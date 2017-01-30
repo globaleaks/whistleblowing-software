@@ -5,9 +5,7 @@ import signal
 import socket
 import sys
 import signal
-import time
 
-from datetime import datetime
 from sys import executable
 
 from twisted.internet import reactor, task, protocol, defer
@@ -16,7 +14,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.utils import sock as socket_util
-from globaleaks.utils.utility import log
+from globaleaks.utils import ssl
+from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 class TLSProcProtocol(protocol.ProcessProtocol):
@@ -53,17 +52,6 @@ class TLSProcProtocol(protocol.ProcessProtocol):
         return "<TLSProcProtocol: %s:%s>" % (id(self), self.transport)
 
 
-def should_serve_https(enabled, key, cert, chain):
-    # TODO(nskelsey) preform validation of key, cert, and chain as valid ASN
-    # encoded objects.
-    if not enabled:
-        return False
-    elif key == "" or cert == "" or chain == "":
-        return False
-    else:
-        return True
-
-
 class ProcessSupervisor(object):
     '''
     A Supervisor for all subprocesses that the main globaleaks process can launch
@@ -79,11 +67,11 @@ class ProcessSupervisor(object):
         self._net_sockets = net_sockets
         self.shutting_down = False
 
-        self.start_time = datetime.now()
+        self.start_time = datetime_now()
         self.tls_process_pool = []
         self.tls_process_state = {
             'deaths': 0,
-            'last_death': datetime.now(),
+            'last_death': datetime_now(),
             'target_proc_num': multiprocessing.cpu_count(),
         }
 
@@ -110,33 +98,31 @@ class ProcessSupervisor(object):
         with open(root_path+'dh.pem', 'r') as f:
             self.tls_cfg['ssl_dh'] = f.read()
 
-    def load_db_cfg(self, store):
-        privFact = PrivateFactory(store)
-
-        key = privFact.get_val('https_priv_key')
-        cert = privFact.get_val('https_cert')
-        chain = privFact.get_val('https_chain')
-        dh_params = privFact.get_val('https_dh_params')
-
-        self.tls_cfg['key'] = key
-        self.tls_cfg['cert'] = cert
-        self.tls_cfg['ssl_intermediate'] = chain
-        self.tls_cfg['ssl_dh'] = dh_params
-
     @transact
     def maybe_launch_https_workers(self, store):
         self.db_maybe_launch_https_workers(store)
 
+    def should_serve_https(self, enabled, key, cert, chain):
+        # TODO(nskelsey) preform validation of key, cert, and chain as valid ASN
+        # encoded objects.
+        if not enabled:
+            return False
+        elif key == "" or cert == "" or chain == "":
+            return False
+        else:
+            return True
+
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
-        self.load_db_cfg(store)
+        db_cfg = ssl.load_db_cfg(store)
+        self.tls_cfg.update(db_cfg)
 
         on = privFact.get_val('https_enabled')
 
-        if should_serve_https(on, self.tls_cfg['key'],
-                                  self.tls_cfg['cert'],
-                                  self.tls_cfg['ssl_intermediate']):
+        if self.should_serve_https(on, self.tls_cfg['key'],
+                                           self.tls_cfg['cert'],
+                                           self.tls_cfg['ssl_intermediate']):
             log.info("Decided to launch https workers")
             self.launch_https_workers()
         else:
@@ -195,7 +181,7 @@ class ProcessSupervisor(object):
 
     def calc_mort_rate(self):
         d = self.tls_process_state['deaths']
-        window = (datetime.now() - self.start_time).total_seconds()
+        window = (datetime_now() - self.start_time).total_seconds()
         r = d / (window / 60.0) # deaths per minute
         log.debug('process death accountant: r=%3f, d=%2f, window=%2f' % (r, d, window))
         return r
@@ -211,7 +197,7 @@ class ProcessSupervisor(object):
     def get_status(self):
         s = {
             'msg': '',
-            'timestamp': time.time(), # TODO this does not work...
+            'timestamp': datetime_to_ISO8601(datetime_now()),
             'type': 'info'
         }
         if self.is_running():
