@@ -33,7 +33,10 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         try:
             GLSettings.fix_file_permissions()
 
-            public_net_sockets = reserve_network_sockets(mask=9000)
+            mask = 0
+            if GLSettings.devel_mode:
+                mask = 9000
+            public_net_sockets = reserve_network_sockets(mask)
 
             GLSettings.drop_privileges()
             GLSettings.check_directories()

@@ -14,7 +14,7 @@
             <a target="_blank" rel="noreferrer noopener" href="{{ tls_config.https_url }}">{{ tls_config.https_url }}</a>
         </h4>
         <h4 data-translate>System message:</h4>
-        <div data-ng-show="tls_config" class="alert alert-info"><b>{{ tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm:ss' }} </b>{{ tls_config.status.msg }}</div>
+        <div data-ng-show="tls_config" class="alert alert-info"><b>{{ tls_config.status.timestamp }} </b>{{ tls_config.status.msg }}</div>
       </div>
       <div>
         <h3 data-translate>Configuration</h3>
@@ -24,6 +24,7 @@
           <div class="panel-body">
             <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.priv_key)"></i>
             <b data-translate>Private key</b>
+            <small>(.pem)</small>
             <div class="pull-right">
               <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
                 <label for="certUpload" class="btn btn-xs btn-primary">
@@ -68,7 +69,7 @@
           <div class="panel-body">
             <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.cert)"></i>
             <b data-translate>Certificate</b>
-            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.cert.expiration | date:'dd-MM-yyyy HH:MM' }}</small>
+            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:MM' }}</small>
             <div class="pull-right">
               <span class="file-upload" data-ng-if="tls_config.files.priv_key.set && !tls_config.files.cert.set">
                 <label for="certUpload" class="btn btn-xs btn-primary">
@@ -92,7 +93,7 @@
           <div class="panel-body">
             <i class="glyphicon glyphicon-file" data-ng-class="iconClass(tls_config.files.chain)"></i>
             <b data-translate>Certificate chain</b>
-            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration | date:'dd-MM-yyyy HH:MM' }}</small>
+            <small>(.pem) <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:MM' }}</small>
             <div class="pull-right">
               <span class="file-upload" data-ng-if="tls_config.files.priv_key.set && !tls_config.files.chain.set">
                 <label for="chainUpload" class="btn btn-xs btn-primary">

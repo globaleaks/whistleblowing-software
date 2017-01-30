@@ -30,7 +30,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from globaleaks.utils.process import set_pdeathsig
 from globaleaks.utils.sock import listen_tls_on_sock
-from globaleaks.utils.ssl import TLSContextFactory
+from globaleaks.utils.ssl import TLSContextFactory, ContextValidator
 from globaleaks.utils.tcpproxy import ProxyServerFactory
 
 
@@ -63,6 +63,9 @@ def setup_tls_proxy(cfg):
     """
     tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
 
+    cv =  ContextValidator()
+    cv.validate(cfg)
+
     tls_factory = TLSContextFactory(cfg['key'],
                                     cfg['cert'],
                                     cfg['ssl_intermediate'],
@@ -72,8 +75,8 @@ def setup_tls_proxy(cfg):
 
     log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
 
-    port = listen_tls_on_sock(reactor, fd=socket_fd, factory=tcp_proxy_factory,
-                              contextFactory=tls_factory)
+    port = listen_tls_on_sock(reactor, fd=socket_fd,
+            contextFactory=tls_factory, factory=tcp_proxy_factory)
 
     log("TLS proxy listening on %s" % port)
 
@@ -81,7 +84,6 @@ def setup_tls_proxy(cfg):
 if __name__ == '__main__':
     try:
         cfg = config_wait(42)
-
         setup_tls_proxy(cfg)
     except Exception as e:
         log("setup failed with %s" % e)
