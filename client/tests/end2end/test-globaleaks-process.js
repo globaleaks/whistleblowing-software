@@ -208,21 +208,21 @@ describe('globaLeaks process', function() {
   });
 
   it('Recipient should be able to export the submission', function() {
-      if (utils.testFileDownload()) {
+    if (utils.testFileDownload()) {
+      return;
+    }
+
+    utils.login_receiver();
+    element(by.id('tip-0')).click();
+    element(by.id('tipFileName')).getText().then(function(t) {
+      expect(t).toEqual(jasmine.any(String));
+      if (!utils.verifyFileDownload()) {
         return;
       }
 
-      utils.login_receiver();
-      element(by.id('tip-0')).click();
-      element(by.id('tipFileName')).getText().then(function(t) {
-        expect(t).toEqual(jasmine.any(String));
-        if (!utils.verifyFileDownload()) {
-          return;
-        }
-
-        var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
-        utils.waitForFile(fullpath + '.zip');
-      });
+      var fullpath = path.resolve(path.join(browser.params.tmpDir, t));
+      utils.waitForFile(fullpath + '.zip');
+    });
   });
 
   it('Recipient should be able to disable and renable email notifications', function() {
