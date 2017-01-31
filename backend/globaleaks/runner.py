@@ -11,7 +11,7 @@ from globaleaks.db import init_db, clean_untracked_files, \
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 from globaleaks.utils.http_master import ProcessSupervisor
-from globaleaks.utils.sock import reserve_network_sockets
+from globaleaks.utils.sock import reserve_port_for_ifaces
 
 test_reactor = None
 
@@ -36,7 +36,11 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             mask = 0
             if GLSettings.devel_mode:
                 mask = 9000
-            public_net_sockets = reserve_network_sockets(mask)
+
+            http_socks,  a_fails  = reserve_port_for_ifaces(GLSettings.bind_addresses, 80+mask)
+            https_socks, b_fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
+            for addr, err in a_fails + b_fails:
+                log.err("Could not reserve socket for %s because %s!" % (addr, err))
 
             GLSettings.drop_privileges()
             GLSettings.check_directories()
@@ -53,9 +57,15 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             self.start_asynchronous_jobs()
 
-            GLSettings.state.process_supervisor = ProcessSupervisor(public_net_sockets)
+            if len(https_socks) > 0:
+                GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
+                                                                        '127.0.0.1',
+                                                                        GLSettings.bind_port,
+                                                                        GLSettings.worker_path)
 
-            yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+                yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+            else:
+                log.err("Not creating a process supervisor. No ports to bind to!")
 
         except Exception as excep:
             log.err("ERROR: Cannot start GlobaLeaks; please manually check the error.")

@@ -22,8 +22,19 @@ def open_socket_listen(ip, port):
     s.listen(1024)
     return s
 
-def reserve_network_sockets(mask=0):
-    https_sock = open_socket_listen('127.0.0.1', mask+443)
-    http_sock = open_socket_listen('127.0.0.1', mask+80)
+def reserve_interface_sockets(iface, mask=0):
+    https_sock = open_socket_listen(iface, mask+443)
+    http_sock = open_socket_listen(iface, mask+80)
 
     return {'http': http_sock, 'https': https_sock}
+
+def reserve_port_for_ifaces(ifaces, port):
+    socks = []
+    failed_binds = [] # (ip_addr, err) pairs
+    for ip in ifaces:
+        try:
+            new_sock = open_socket_listen(ip, port)
+            socks.append(new_sock)
+        except Exception as err:
+            failed_binds.append((ip, err))
+    return socks, failed_binds

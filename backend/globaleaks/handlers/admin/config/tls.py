@@ -170,6 +170,7 @@ class CertFileRes(FileResource):
 
     @staticmethod
     @transact
+    @https_disabled
     def get_file(store):
         prv_fact = PrivateFactory(store)
         return prv_fact.get_val('https_cert')
@@ -220,6 +221,7 @@ class ChainFileRes(FileResource):
 
     @staticmethod
     @transact
+    @https_disabled
     def get_file(store):
         prv_fact = PrivateFactory(store)
         return prv_fact.get_val('https_chain')
