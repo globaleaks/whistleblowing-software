@@ -1,8 +1,16 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import models
 from globaleaks.handlers import receiver, admin
+from globaleaks.orm import transact
 from globaleaks.tests import helpers
+from globaleaks.utils.utility import datetime_never
+
+@transact
+def set_expiration_of_all_rtips_to_unlimited(store):
+    for rtip in store.find(models.ReceiverTip):
+        rtip.internaltip.expiration_date = datetime_never()
 
 
 class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
@@ -52,6 +60,8 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
     def test_put_postpone(self):
         for _ in xrange(3):
             yield self.perform_full_submission_actions()
+
+        yield set_expiration_of_all_rtips_to_unlimited()
 
         rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')
         rtips_ids = [rtip['id'] for rtip in rtips]

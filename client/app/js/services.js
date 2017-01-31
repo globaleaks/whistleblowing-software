@@ -1009,6 +1009,13 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       isNever: function(time) {
         var date = new Date(time);
         return date.getTime() === 32503680000000;
+      },
+
+      getPostponeDate: function(ttl) {
+        var e = new Date(new Date().getTime());
+        e.setUTCHours(0, 0, 0, 0);
+        e.setDate(ttl + 1);
+        return e;
       }
     }
 }]).

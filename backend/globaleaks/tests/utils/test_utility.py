@@ -82,45 +82,15 @@ class TestUtility(unittest.TestCase):
     def test_datetime_null(self):
         self.assertEqual(utility.datetime_null(), datetime.utcfromtimestamp(0))
 
-    def test_utc_dynamic_date(self):
-        a = utility.utc_dynamic_date(utility.datetime_null())
-        b = utility.utc_dynamic_date(utility.datetime_null(), seconds=0, minutes=0, hours=0)
-        self.assertTrue(a == b)
-
-        c = utility.utc_dynamic_date(utility.datetime_null(), seconds=121, minutes=120, hours=0)
-        d = utility.utc_dynamic_date(utility.datetime_null(), seconds=61, minutes=61, hours=1)
-        e = utility.utc_dynamic_date(utility.datetime_null(), seconds=1, minutes=2, hours=2)
-        self.assertEqual(c, d)
-        self.assertEqual(d, e)
-
-        f = utility.utc_dynamic_date(c, seconds=121, minutes=120, hours=0)
-        g = utility.utc_dynamic_date(d, seconds=61, minutes=61, hours=1)
-        h = utility.utc_dynamic_date(e, seconds=1, minutes=2, hours=2)
-        self.assertEqual(f, g)
-        self.assertEqual(g, h)
-
-    def test_utc_past_date(self):
-        a = utility.datetime_now()
-        b = utility.utc_past_date(seconds=99)
-        c = utility.utc_past_date(minutes=99)
-        d = utility.utc_past_date(hours=99)
-        self.assertTrue(a > b)
-        self.assertTrue(b > c)
-        self.assertTrue(c > d)
-
-    def test_utc_future_date(self):
-        a = utility.datetime_now()
-        b = utility.utc_future_date(seconds=99)
-        c = utility.utc_future_date(minutes=99)
-        d = utility.utc_future_date(hours=99)
-        self.assertTrue(a < b)
-        self.assertTrue(b < c)
-        self.assertTrue(c < d)
+    def test_get_expiration(self):
+        date = utility.get_expiration(15)
+        self.assertEqual(date.hour, 00)
+        self.assertEqual(date.minute, 00)
+        self.assertEqual(date.second, 00)
 
     def test_is_expired(self):
         self.assertTrue(utility.is_expired(utility.datetime_null()))
         self.assertTrue(utility.is_expired(utility.datetime_now()))
-        self.assertFalse(utility.is_expired(utility.utc_future_date(seconds=1337)))
 
     def test_datetime_to_ISO8601_to_datetime_to_dot_dot_dot(self):
         a = utility.datetime_null()
