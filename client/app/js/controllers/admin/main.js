@@ -293,6 +293,8 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', 'FileRea
 
   $scope.toggleCfg = function() {
     var p;
+    // TODO these posts send the entire tls_config object.
+    // better for them to be removed.
     if ($scope.tls_config.enabled) {
       p = $scope.tls_config.$disable();
 

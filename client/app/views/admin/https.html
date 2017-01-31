@@ -102,7 +102,7 @@
             <small data-ng-show="tls_config.files.chain.set">(.pem)
               <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:MM' }}
               <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
-           </small>    
+           </small>
             <div class="pull-right">
               <span class="file-upload" data-ng-if="tls_config.files.priv_key.set && !tls_config.files.chain.set">
                 <label for="chainUpload" class="btn btn-xs btn-primary">
