@@ -260,15 +260,16 @@ class NotAuthenticated(GLException):
     status_code = 412  # Precondition Failed
     reason = "Not Authenticated"
 
+
 class ValidationError(GLException):
     def __init__(self, reason='Extended validation failed'):
         self.reason = reason
 
-    error_code = 31 
+    error_code = 31
     status_code = 403  # Forbidden
 
 
-# UNUSED ERROR CODE 31 32 33 HERE!
+# UNUSED ERROR CODE 32 33 HERE!
 
 
 class InvalidOldPassword(GLException):
