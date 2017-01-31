@@ -30,6 +30,12 @@ possible_client_paths = [
     os.path.abspath(os.path.join(this_directory, '../../client/app/'))
 ]
 
+possible_worker_paths = [
+    '/usr/lib/python2.7/dist-packages/globaleaks/backend/bin',
+    os.path.abspath(os.path.join(this_directory, '../bin')),
+    '/usr/bin/',
+]
+
 verbosity_dict = {
     # do not exist anything above DEBUG, so is used a -1)
     'TIMEDEBUG': (logging.DEBUG - 1),
@@ -90,10 +96,18 @@ class GLSettingsClass(object):
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
 
+        # TODO(vecnish|bug-fix-italian-style) why is this set to the 2nd entry in the possible
+        # client paths...? please fix.
         self.client_path = '/usr/share/globaleaks/client'
         for path in possible_client_paths:
             if os.path.exists(path):
                 self.client_path = path
+                break
+
+        self.worker_path = possible_worker_paths[0]
+        for path in possible_worker_paths:
+            if os.path.exists(path):
+                self.worker_path = path
                 break
 
         self.set_ramdisk_path()
@@ -204,8 +218,8 @@ class GLSettingsClass(object):
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
-        # Holds global state until GLSettings is inverted and it is placed 
-        # under this object.
+        # TODO holds global state until GLSettings is inverted and this
+        # state managed as an object by the application
         self.state = OD()
         self.state.process_supervisor = None
 

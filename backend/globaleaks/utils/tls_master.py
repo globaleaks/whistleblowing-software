@@ -19,7 +19,7 @@ from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 
 class TLSProcProtocol(protocol.ProcessProtocol):
-    def __init__(self, supervisor, cfg, cfg_fd=42):
+    def __init__(self, supervisor, bin_path, cfg, cfg_fd=42):
         self.supervisor = supervisor
         self.cfg = json.dumps(cfg)
         self.cfg_fd = cfg_fd
@@ -33,16 +33,13 @@ class TLSProcProtocol(protocol.ProcessProtocol):
         log.debug('subproc fd_map:%s, tls_socket_fd:%d, os_fstat=%s' % (fd_map,
                   tls_socket_fd, os.fstat(tls_socket_fd)))
 
-        # TODO remove abs path.
-        # Debian will unpack the binary into /usr/bin/gl-tls_worker
-        path = '/home/nskelsey/projects/globaleaks/backend/bin/gl-tls-worker.py'
-        reactor.spawnProcess(self, executable, [executable, path], childFDs=fd_map, env=os.environ)
+        reactor.spawnProcess(self, executable, [executable, bin_path], childFDs=fd_map, env=os.environ)
 
     def connectionMade(self):
         log.info("Parent writing to: %d" % self.cfg_fd)
         self.transport.writeToChild(self.cfg_fd, self.cfg)
         self.transport.closeChildFD(self.cfg_fd)
-        # TODO self.cfg has a copy of TLS cert key
+        # TODO self.cfg has a copy of TLS priv_key
         del self.cfg
 
     def processEnded(self, reason):
@@ -57,14 +54,13 @@ class ProcessSupervisor(object):
     A Supervisor for all subprocesses that the main globaleaks process can launch
     '''
 
-    # One child process death every 5 minutes is acceptable
+    # TODO One child process death every 5 minutes is acceptable. Four every minute
+    # is excessive.
     MAX_MORTALITY_RATE = 4 # 0.2
 
-    def __init__(self, net_sockets):
+    def __init__(self, net_sockets, proxy_ip, proxy_port, bin_dir):
         log.info("Starting process monitor")
 
-        # TODO remove me
-        self._net_sockets = net_sockets
         self.shutting_down = False
 
         self.start_time = datetime_now()
@@ -75,42 +71,18 @@ class ProcessSupervisor(object):
             'target_proc_num': multiprocessing.cpu_count(),
         }
 
+        self.bin_path = os.path.abspath(os.path.join(bin_dir, 'gl-tls-worker.py'))
+
         self.tls_cfg = {
-          'proxy_ip': '127.0.0.1',
-          'proxy_port': 8082,
-          'tls_socket_fd': net_sockets['https'].fileno(),
+          'proxy_ip': proxy_ip,
+          'proxy_port': proxy_port,
+          # TODO bind on all sockets
+          'tls_socket_fd': net_sockets[0].fileno(),
         }
-
-        # TODO move loading of DB cfg to init
-
-    def load_file_cfg(self):
-        # TODO use values passed from storm
-        root_path = '/home/nskelsey/scratch/'
-        with open(root_path+'key.pem', 'r') as f:
-            self.tls_cfg['key'] = f.read()
-
-        with open(root_path+'cert.pem', 'r') as f:
-            self.tls_cfg['cert'] = f.read()
-
-        with open(root_path+'fullchain1.pem', 'r') as f:
-            self.tls_cfg['ssl_intermediate'] = f.read()
-
-        with open(root_path+'dh.pem', 'r') as f:
-            self.tls_cfg['ssl_dh'] = f.read()
 
     @transact
     def maybe_launch_https_workers(self, store):
         self.db_maybe_launch_https_workers(store)
-
-    def should_serve_https(self, enabled, key, cert, chain):
-        # TODO(nskelsey) preform validation of key, cert, and chain as valid ASN
-        # encoded objects.
-        if not enabled:
-            return False
-        elif key == "" or cert == "" or chain == "":
-            return False
-        else:
-            return True
 
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
@@ -120,9 +92,7 @@ class ProcessSupervisor(object):
 
         on = privFact.get_val('https_enabled')
 
-        if self.should_serve_https(on, self.tls_cfg['key'],
-                                           self.tls_cfg['cert'],
-                                           self.tls_cfg['ssl_intermediate']):
+        if on:
             log.info("Decided to launch https workers")
             self.launch_https_workers()
         else:
@@ -130,9 +100,12 @@ class ProcessSupervisor(object):
 
     def launch_https_workers(self):
         for i in range(self.tls_process_state['target_proc_num']):
-            pp = TLSProcProtocol(self, self.tls_cfg)
-            log.info('Launched: %s' % (pp))
-            self.tls_process_pool.append(pp)
+            self.launch_worker()
+
+    def launch_worker(self):
+        pp = TLSProcProtocol(self, self.bin_path, self.tls_cfg)
+        self.tls_process_pool.append(pp)
+        log.info('Launched: %s' % (pp))
 
     def handle_worker_death(self, pp, reason):
         '''
@@ -145,11 +118,9 @@ class ProcessSupervisor(object):
         self.tls_process_pool.pop(self.tls_process_pool.index(pp))
         del pp
 
-        #self.tls_cfg['tls_socket_fd'] = self._net_sockets['https'].fileno()
         if (self.should_spawn_child(mortatility_rate)):
-            pp = TLSProcProtocol(self, self.tls_cfg)
-            log.info('Relaunched: %s' % (pp))
-            self.tls_process_pool.append(pp)
+            log.info('Decided to respawn a child')
+            self.launch_worker()
         elif self.last_one_out():
             self.shutting_down = False
             log.err("Supervisor has turned off all children")

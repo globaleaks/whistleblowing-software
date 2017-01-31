@@ -137,10 +137,11 @@ class PrivKeyValidator(CtxValidator):
 
         priv_key = load_privatekey(FILETYPE_PEM, raw_str, "")
 
-        if priv_key.type() == TYPE_RSA:
-            ok = priv_key.check()
-            if not ok:
-                raise ValidationError('invalid RSA key')
+        # TODO fix cffi dep for 14.04
+        # if priv_key.type() == TYPE_RSA:
+        #     ok = priv_key.check()
+        #     if not ok:
+        #         raise ValidationError('Invalid RSA key')
 
 
 
