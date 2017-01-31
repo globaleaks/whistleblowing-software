@@ -8,68 +8,71 @@
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Domain Name</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" type="text" data-ng-model="csr_cfg.commonname" required/>
+      <input class="form-control" type="text" data-ng-model="csr_cfg.commonname"
+       data-ng-class="{'has-error': csr_cfg.commonname.$invalid}"
+       required/>
     </div>
   </div>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" data-translate>Country name</label>
+    <label class="col-md-4 control-label" data-translate>Country code</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" type="text" data-ng-model="csr_cfg.country" required/>
+      <input class="form-control" type="text" data-ng-model="csr_cfg.country"
+       data-ng-class="{'has-error': csr_cfg.country.$invalid}"
+       placeholder="IT" minlength="2" maxlength="2" required />
     </div>
   </div>
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>State or Province name</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.province" type="text" required/>
+      <input class="form-control" data-ng-model="csr_cfg.province"
+      data-ng-class="{'has-error': csr_cfg.province.$invalid}"
+      type="text" required/>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Locality name</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.city" type="text" required/>
+      <input class="form-control" data-ng-model="csr_cfg.city"
+        data-ng-class="{'has-error': csr_cfg.city.$invalid}"
+        type="text" required/>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Organization</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.company" required/>
+        <input class="form-control" data-ng-model="csr_cfg.company"
+        data-ng-class="{'has-error': csr_cfg.company.$invalid}"
+        required/>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Organizational unit</label>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.department"
-        data-ng-class="{'has-error': certSigRequestForm.department.$error}"
-      />
+      <input class="form-control" data-ng-model="csr_cfg.department"/>
     </div>
   </div>
 
   <div class="form-group">
     <label class="col-md-4 control-label" data-translate>Email</label>
+    <span data-required-asterisk></span>
     <div class="col-md-8">
-      <input class="form-control" data-ng-model="csr_cfg.email" type="text" required/>
+      <input class="form-control" data-ng-model="csr_cfg.email"
+      data-ng-class="{'has-error': csr_cfg.email.$invalid}"
+      type="text" required/>
     </div>
   </div>
 
-  <div class="panel panel-danger" data-ng-if="certSigRequestForm.$invalid && certSigRequestForm.$dirty">
-    <div class="panel-heading">
-      <b data-translate>Errors</b>
-    </div>
-    <div class="panel-body text-danger">
-      <ul>
-        <li data-ng-repeat="(key, error) in certSigRequestForm.$error track by $index">
-          <span>{{ key }} {{ error }}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <button class="btn btn-success" ng-click="submitCSR()">
+  <button class="btn btn-success pull-right" ng-click="submitCSR()" ng-disabled="certSigRequestForm.$invalid">
     <span data-translate>Generate</span>
   </button>
 </div>
