@@ -64,7 +64,10 @@ def setup_tls_proxy(cfg):
     tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
 
     cv =  ContextValidator()
-    cv.validate(cfg)
+    cfg['https_enabled'] = False # TODO remove this for obvious reasons.
+    ok = cv.validate(cfg)
+    if not ok:
+        raise Exception("HTTPS configuration failed validation. Not running")
 
     tls_factory = TLSContextFactory(cfg['key'],
                                     cfg['cert'],
