@@ -227,13 +227,13 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', 'FileRea
   };
 
   $scope.csr_cfg = new csrCfgResource({
-    country: 'it',
-    province: 'regione',
-    city: 'citta',
-    company: 'azienda',
-    department: 'gruppo',
-    email: 'indrizzio@email',
-    commonname: 'notreal.ns.com',
+    country: '',
+    province: '',
+    city: '',
+    company: '',
+    department: '',
+    email: '',
+    commonname: '',
   });
 
   $scope.csr_state = {
