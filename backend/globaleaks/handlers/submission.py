@@ -21,7 +21,7 @@ from globaleaks.security import hash_password, sha256, generateRandomReceipt
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.token import TokenList
-from globaleaks.utils.utility import log, utc_future_date, \
+from globaleaks.utils.utility import log, get_expiration, \
     datetime_now, datetime_never, datetime_to_ISO8601
 
 
@@ -297,7 +297,7 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
     submission.progressive = db_assign_submission_progressive(store)
 
     if context.tip_timetolive > -1:
-        submission.expiration_date = utc_future_date(days=context.tip_timetolive)
+        submission.expiration_date = get_expiration(context.tip_timetolive)
     else:
         submission.expiration_date = datetime_never()
 

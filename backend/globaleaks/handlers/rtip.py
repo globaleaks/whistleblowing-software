@@ -28,7 +28,7 @@ from globaleaks.models import serializers, \
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, utc_future_date, datetime_now, \
+from globaleaks.utils.utility import log, get_expiration, datetime_now, \
     datetime_to_ISO8601, datetime_to_pretty_str
 
 
@@ -270,7 +270,7 @@ def db_delete_rtip(store, rtip):
 def db_postpone_expiration_date(rtip):
     if rtip.internaltip.context.tip_timetolive > -1:
         rtip.internaltip.expiration_date = \
-            utc_future_date(days=rtip.internaltip.context.tip_timetolive)
+            get_expiration(rtip.internaltip.context.tip_timetolive)
 
 
 @transact

@@ -5,8 +5,8 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
-
 import operator
+from datetime import timedelta
 from storm.expr import Desc, And
 from twisted.internet.defer import inlineCallbacks
 
@@ -16,7 +16,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Stats, Anomalies
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import datetime_to_ISO8601, datetime_now, \
-    utc_past_date, iso_to_gregorian, log
+    iso_to_gregorian, log
 
 
 def weekmap_to_heatmap(week_map):
@@ -40,12 +40,10 @@ def get_stats(store, week_delta):
     now = datetime_now()
     week_delta = abs(week_delta)
 
+    target_week = datetime_now()
     if week_delta > 0:
         # delta week in the past
-        target_week = utc_past_date(hours=(week_delta * 24 * 7))
-    else:
-        # taking current time!
-        target_week = datetime_now()
+        target_week -= timedelta(hours=week_delta * 24 * 7)
 
     looked_week = target_week.isocalendar()[1]
     looked_year = target_week.isocalendar()[0]

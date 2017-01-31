@@ -277,27 +277,12 @@ def datetime_never():
     return datetime.utcfromtimestamp(32503680000)
 
 
-def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0, days=0):
+def get_expiration(days):
     """
-    @param start_date: a date stored in a db
-    seconds/minutes/hours = the amount of future you want
-    @return: a datetime object, as base of the sum
+    @return: a utc datetime object representing an expiration time calculated as the current date + N days
     """
-    return start_date + timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
-
-
-def utc_past_date(seconds=0, minutes=0, hours=0, days=0):
-    """
-    @return a date in the past with the specified delta
-    """
-    return utc_dynamic_date(datetime_now()) - timedelta(seconds=seconds, minutes=minutes, hours=hours, days=days)
-
-
-def utc_future_date(seconds=0, minutes=0, hours=0, days=0):
-    """
-    @return a date in the future with the specified delta
-    """
-    return utc_dynamic_date(datetime_now(), seconds, minutes, hours, days)
+    date = datetime.utcnow()
+    return datetime(year=date.year, month=date.month, day=date.day, hour=00, minute=00, second=00) + timedelta(days=days+1)
 
 
 def is_expired(check_date, seconds=0, minutes=0, hours=0, day=0):

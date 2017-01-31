@@ -11,9 +11,12 @@ filter('weekNumber', function() {
     return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
   };
 }).
-filter('newExpirationDate', function() {
-  return function(tip) {
-    return new Date(new Date().getTime() + tip.timetolive * 24 * 3600 * 1000);
+filter('expirationDate', function() {
+  return function(date, ttl) {
+    var e = new Date(new Date(date).getTime());
+    e.setUTCHours(0, 0, 0, 0);
+    e.setDate(ttl + 1);
+    return e;
   };
 }).
 filter('anomalyToString', function() {
@@ -49,16 +52,5 @@ filter('wbfileCreator', [function() {
     }
     // TODO log fact that receiver_id was not found
     return 'Unknown';
-  };
-}]).
-filter('wbAccessRevoked', ['$filter', function($filter) {
-  return function(wb_last_access, wbtip_timetolive) {
-    if (angular.isUndefined(wb_last_access)) {
-      return undefined;
-    }
-    var a = new Date(wb_last_access);
-    var revokeDate = new Date(a.setDate(wbtip_timetolive));
-
-    return $filter('date')(revokeDate, 'dd-MM-yyyy HH:mm');
   };
 }]);
