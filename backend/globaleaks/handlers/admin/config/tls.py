@@ -130,8 +130,14 @@ class PrivKeyFileRes(FileResource):
     def db_serialize(store):
         k = PrivateFactory(store).get_val('https_priv_key')
         is_key_set = k != u''
+        #typ = 'RSA' if k.type() == RSA_TYPE else 'DSA'
+
         # TODO(nskelsey) this needs to be better
-        return {'set': is_key_set}
+        return {
+            'set': is_key_set,
+            #'type': typ,
+            #'bits': k.bits(),
+        }
 
 
 class CertFileRes(FileResource):
@@ -150,7 +156,7 @@ class CertFileRes(FileResource):
         cv = cls.validator()
         ok, err = cv.validate(db_cfg)
         if ok:
-            prv_fact.set_val('https_priv_key', raw_cert)
+            prv_fact.set_val('https_cert', raw_cert)
         else:
             log.info("Cert validation failed")
         return ok
@@ -176,13 +182,12 @@ class CertFileRes(FileResource):
 
         x509 = crypto.load_certificate(FILETYPE_PEM, c)
 
-        ret = {
+        return {
             'name': 'cert',
             'issuer': x509.get_issuer().organizationName,
             'expiration_date': x509.get_notAfter(),
             'set': True,
         }
-        return ret
 
 
 class ChainFileRes(FileResource):
@@ -227,13 +232,12 @@ class ChainFileRes(FileResource):
 
         x509 = load_certificate(FILETYPE_PEM, c)
 
-        ret = {
+        return {
             'name': 'chain',
             'issuer': x509.get_issuer().organizationName,
             'expiration_date': x509.get_notAfter(),
-            'set': False,
+            'set': True,
         }
-        return ret
 
 
 class FileHandler(BaseHandler):
@@ -317,7 +321,7 @@ def try_to_enable_https(store):
 
     cv = ssl.ContextValidator()
     db_cfg = ssl.load_db_cfg(store)
-    db_cfg['https_enabled'] = True
+    db_cfg['https_enabled'] = False
 
     ok, err = cv.validate(db_cfg)
     if ok:

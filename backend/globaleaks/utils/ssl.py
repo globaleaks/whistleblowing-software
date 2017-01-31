@@ -5,11 +5,12 @@ from StringIO import StringIO
 from twisted.internet import ssl
 
 from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM
+from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 from globaleaks.utils.utility import log
 from globaleaks.models.config import PrivateFactory
+from globaleaks.rest.errors import ValidationError
 
 def generate_dh_params():
     # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable
@@ -93,21 +94,19 @@ class TLSContextFactory(ssl.ContextFactory):
 class CtxValidator(object):
     parents = []
 
-    def __init__(self):
-        self.ctx = new_tls_context()
-
-    def _validate_parents(self, db_cfg):
+    def _validate_parents(self, db_cfg, ctx):
         for parent in self.parents:
             p_v = parent()
-            p_v._validate(db_cfg, self.ctx)
+            p_v._validate(db_cfg, ctx)
 
     def _validate(self, db_cfg, ctx):
         raise NotImplementedError()
 
     def validate(self, db_cfg):
+        ctx = new_tls_context()
         try:
-            self._validate_parents(db_cfg)
-            self._validate(db_cfg, self.ctx)
+            self._validate_parents(db_cfg, ctx)
+            self._validate(db_cfg, ctx)
         except Exception as err:
             print("there was a problem", err)
             return (False, err)
@@ -119,10 +118,10 @@ class PrivKeyValidator(CtxValidator):
 
     def _validate(self, db_cfg, ctx):
         if db_cfg['https_enabled']:
-            raise ValueError()
+            raise ValidationError('HTTPS must not be enabled')
 
         if db_cfg['ssl_dh'] == u'':
-            raise ValueError()
+            raise ValidationError('There is not dh parameter set')
 
         with NamedTemporaryFile() as f_dh:
             f_dh.write(db_cfg['ssl_dh'])
@@ -134,28 +133,35 @@ class PrivKeyValidator(CtxValidator):
         # keys from being used instead of plain pem keys.
         raw_str = db_cfg['key']
         if raw_str == u'':
-            raise ValueError()
+            raise ValidationError('No private key is set')
 
         priv_key = load_privatekey(FILETYPE_PEM, raw_str, "")
+
+        if priv_key.type() == TYPE_RSA:
+            ok = priv_key.check()
+            if not ok:
+                raise ValidationError('invalid RSA key')
+
 
 
 class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
     def _validate(self, db_cfg, ctx):
+
         certificate = db_cfg['cert']
         if certificate == u'':
-            raise ValueError()
+            raise ValidationError('There is no certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
         # NOTE when a cert expires it will fail validation.
         if x509.has_expired():
-            raise ValueError('The certficate has expired')
+            raise ValidationError('The certficate has expired')
 
         ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, db_cfg['key'], "")
+        priv_key = load_privatekey(FILETYPE_PEM, db_cfg['key'], '')
 
         ctx.use_privatekey(priv_key)
 
@@ -170,12 +176,12 @@ class ChainValidator(CtxValidator):
 
         intermediate = db_cfg['ssl_intermediate']
         if intermediate == u'':
-            raise ValueError()
+            raise ValidationError('There is no intermediate cert')
 
         x509 = load_certificate(FILETYPE_PEM, intermediate)
 
         if x509.has_expired():
-            raise ValueError('The certficate has expired')
+            raise ValidationError('The intermediate cert has expired')
 
         ctx.add_extra_chain_cert(x509)
 
