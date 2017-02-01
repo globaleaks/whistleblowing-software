@@ -88,7 +88,7 @@ class TestCSRHandler(helpers.TestHandlerWithPopulatedDB):
 
         pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, csr_pem)
 
-        self.assertIn(('CN', 'notreal.ns.com'), 
-                      pem_csr.get_subject().get_components())
-                      
-        # TODO assert CSR comes out all good
+        comps = pem_csr.get_subject().get_components()
+        self.assertIn(('CN', 'notreal.ns.com'), comps)
+        self.assertIn(('C', 'IT'), subject.comps)
+        self.assertIn(('L', 'citta'), subject.comps)
