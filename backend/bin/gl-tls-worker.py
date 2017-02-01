@@ -1,25 +1,31 @@
 #!/usr/bin/env python
 import os
+import signal
+from datetime import datetime
+
 
 def logger():
     pid = os.getpid()
     def prefix(m):
-        print('[https-worker:%d] %s' % (pid, m))
+        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S%z')
+        print('%s [gl-tls-worker:%d] %s' % (now, pid, m))
     return prefix
 
-log = logger()
-log('started')
-
-import json
-import signal
-import socket
-import sys
 
 # WARN signalling in this way is a race condition.
 def SigRespond(SIG, FRM):
     log("Received sig: %s from %s" % (FRM, SIG))
 
+
+log = logger()
+log('started')
+
 signal.signal(signal.SIGUSR1, SigRespond)
+
+
+import json
+import socket
+import sys
 
 from twisted.internet import reactor, ssl, protocol, defer
 from twisted.protocols import tls
@@ -74,14 +80,15 @@ def setup_tls_proxy(cfg):
                                     cfg['ssl_intermediate'],
                                     cfg['ssl_dh'])
 
-    socket_fd = cfg['tls_socket_fd']
+    socket_fds = cfg['tls_socket_fds']
 
-    log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
+    for socket_fd in socket_fds:
+        log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
 
-    port = listen_tls_on_sock(reactor, fd=socket_fd,
-            contextFactory=tls_factory, factory=tcp_proxy_factory)
+        port = listen_tls_on_sock(reactor, fd=socket_fd,
+                contextFactory=tls_factory, factory=tcp_proxy_factory)
 
-    log("TLS proxy listening on %s" % port)
+        log("TLS proxy listening on %s" % port)
 
 
 if __name__ == '__main__':

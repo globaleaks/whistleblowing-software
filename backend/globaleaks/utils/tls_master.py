@@ -27,11 +27,13 @@ class TLSProcProtocol(protocol.ProcessProtocol):
         fd_map = {0:0, 1:1, 2:2}
         fd_map[cfg_fd] = 'w'
 
-        tls_socket_fd = cfg['tls_socket_fd']
-        fd_map[tls_socket_fd] = tls_socket_fd
+        tls_socket_fds = cfg['tls_socket_fds']
 
-        log.debug('subproc fd_map:%s, tls_socket_fd:%d, os_fstat=%s' % (fd_map,
-                  tls_socket_fd, os.fstat(tls_socket_fd)))
+        for tls_socket_fd in tls_socket_fds:
+            fd_map[tls_socket_fd] = tls_socket_fd
+            log.debug('State of fd: <%d> %s' % (tls_socket_fd, os.fstat(tls_socket_fd)))
+
+        log.debug('subproc fd_map:%s' % (fd_map))
 
         reactor.spawnProcess(self, executable, [executable, bin_path], childFDs=fd_map, env=os.environ)
 
@@ -76,9 +78,13 @@ class ProcessSupervisor(object):
         self.tls_cfg = {
           'proxy_ip': proxy_ip,
           'proxy_port': proxy_port,
-          # TODO bind on all sockets
-          'tls_socket_fd': net_sockets[0].fileno(),
         }
+
+        if len(net_sockets) == 0:
+            log.err("No ports to bind to! Spawning processes will not work!")
+
+        self.tls_cfg['tls_socket_fds'] = [ns.fileno() for ns in net_sockets]
+
 
     @transact
     def maybe_launch_https_workers(self, store):
@@ -173,10 +179,7 @@ class ProcessSupervisor(object):
         }
         if self.is_running():
             r = self.calc_mort_rate()
-            if not self.should_spawn_child(r):
-                m = "The supervisor is no longer trying to spawn children. r=%3f" % r
-            else:
-                m = "Processes are serving https"
+            m = "The supervisor has a mort rate of r=%1.2f deaths/minute" % r
         else:
             m = "Nothing is being served"
         s['msg'] = m

@@ -57,15 +57,12 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             self.start_asynchronous_jobs()
 
-            if len(https_socks) > 0:
-                GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
-                                                                        '127.0.0.1',
-                                                                        GLSettings.bind_port,
-                                                                        GLSettings.worker_path)
+            GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
+                                                                    '127.0.0.1',
+                                                                    GLSettings.bind_port,
+                                                                    GLSettings.worker_path)
 
-                yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
-            else:
-                log.err("Not creating a process supervisor. No ports to bind to!")
+            yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
 
         except Exception as excep:
             log.err("ERROR: Cannot start GlobaLeaks; please manually check the error.")
