@@ -8,13 +8,13 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 from globaleaks.utils import ssl
 from globaleaks.utils import tls_master
-from globaleaks.utils.utility import datetime_to_ISO8601
+from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
 
 
 class FileResource(object):
@@ -130,13 +130,9 @@ class PrivKeyFileRes(FileResource):
     def db_serialize(store):
         k = PrivateFactory(store).get_val('https_priv_key')
         is_key_set = k != u''
-        #typ = 'RSA' if k.type() == RSA_TYPE else 'DSA'
 
-        # TODO(nskelsey) this needs to be better
         return {
             'set': is_key_set,
-            #'type': typ,
-            #'bits': k.bits(),
         }
 
 
@@ -182,11 +178,12 @@ class CertFileRes(FileResource):
             return {'name': 'cert', 'set': False}
 
         x509 = crypto.load_certificate(FILETYPE_PEM, c)
+        expr_date = format_cert_expr_date(x509.get_notAfter())
 
         return {
             'name': 'cert',
             'issuer': x509.get_issuer().organizationName,
-            'expiration_date': x509.get_notAfter(),
+            'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }
 
@@ -233,11 +230,12 @@ class ChainFileRes(FileResource):
             return {'name': 'chain', 'set': False}
 
         x509 = load_certificate(FILETYPE_PEM, c)
+        expr_date = format_cert_expr_date(x509.get_notAfter())
 
         return {
             'name': 'chain',
             'issuer': x509.get_issuer().organizationName,
-            'expiration_date': x509.get_notAfter(),
+            'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }
 
@@ -307,8 +305,10 @@ def serialize_https_config_summary(store):
     for key, file_res_cls in FileHandler.mapped_file_resources.iteritems():
         file_summaries[key] = file_res_cls.db_serialize(store)
 
+    url = NodeFactory(store).get_val('public_site')
+
     ret = {
-      'https_url': 'https://127.0.0.1:9443', # TODO use config hostname
+      'https_url': url,
       'enabled': prv_fact.get_val('https_enabled'),
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
