@@ -473,7 +473,7 @@ class CSRConfigHandler(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.AdminCSRConfigDesc)
         csr_fields = {
-                'C':  request['country'],
+                'C':  request['country'].upper(),
                 'ST': request['province'],
                 'L':  request['city'],
                 'O':  request['company'],
