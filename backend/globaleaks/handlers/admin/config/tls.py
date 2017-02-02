@@ -12,7 +12,7 @@ from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
-from globaleaks.utils import ssl
+from globaleaks.utils import tls
 from globaleaks.utils import tls_master
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
 
