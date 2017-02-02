@@ -9,7 +9,10 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 from globaleaks.utils.utility import log
-from globaleaks.rest.errors import ValidationError
+
+
+class ValidationException(Exception):
+    pass
 
 
 def generate_dh_params():
@@ -118,10 +121,10 @@ class PrivKeyValidator(CtxValidator):
 
     def _validate(self, db_cfg, ctx):
         if db_cfg['https_enabled']:
-            raise ValidationError('HTTPS must not be enabled')
+            raise ValidationException('HTTPS must not be enabled')
 
         if db_cfg['ssl_dh'] == u'':
-            raise ValidationError('There is not dh parameter set')
+            raise ValidationException('There is not dh parameter set')
 
         with NamedTemporaryFile() as f_dh:
             f_dh.write(db_cfg['ssl_dh'])
@@ -133,7 +136,7 @@ class PrivKeyValidator(CtxValidator):
         # keys from being used instead of plain pem keys.
         raw_str = db_cfg['key']
         if raw_str == u'':
-            raise ValidationError('No private key is set')
+            raise ValidationException('No private key is set')
 
         priv_key = load_privatekey(FILETYPE_PEM, raw_str, "")
 
@@ -141,7 +144,7 @@ class PrivKeyValidator(CtxValidator):
         # if priv_key.type() == TYPE_RSA:
         #     ok = priv_key.check()
         #     if not ok:
-        #         raise ValidationError('Invalid RSA key')
+        #         raise ValidationException('Invalid RSA key')
 
 
 
@@ -152,13 +155,13 @@ class CertValidator(CtxValidator):
 
         certificate = db_cfg['cert']
         if certificate == u'':
-            raise ValidationError('There is no certificate')
+            raise ValidationException('There is no certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
         # NOTE when a cert expires it will fail validation.
         if x509.has_expired():
-            raise ValidationError('The certficate has expired')
+            raise ValidationException('The certficate has expired')
 
         ctx.use_certificate(x509)
 
@@ -177,12 +180,12 @@ class ChainValidator(CtxValidator):
 
         intermediate = db_cfg['ssl_intermediate']
         if intermediate == u'':
-            raise ValidationError('There is no intermediate cert')
+            raise ValidationException('There is no intermediate cert')
 
         x509 = load_certificate(FILETYPE_PEM, intermediate)
 
         if x509.has_expired():
-            raise ValidationError('The intermediate cert has expired')
+            raise ValidationException('The intermediate cert has expired')
 
         ctx.add_extra_chain_cert(x509)
 
