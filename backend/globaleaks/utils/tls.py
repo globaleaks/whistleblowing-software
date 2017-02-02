@@ -8,21 +8,24 @@ from OpenSSL import SSL
 from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
-from globaleaks.utils.utility import log
-
 
 class ValidationException(Exception):
     pass
+
+
+def load_dh_params_from_string(ctx, dh_params_string):
+    with NamedTemporaryFile() as temp:
+        temp.write(dh_params_string)
+        temp.flush()
+        ctx.load_tmp_dh(temp.name)
 
 
 def generate_dh_params():
     # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable
     # and not easily abused
     dh = _lib.DH_new()
-    log.info("Starting DH params generation")
     s = datetime.now()
     _lib.DH_generate_parameters_ex(dh, 2048, 2L, _ffi.NULL)
-    log.info('DH params generation took: %2f secs' % (datetime.now() - s).total_seconds())
 
     # TODO TODO TODO TODO TODO TODO TODO TODO
     # Move dhparam load and generate off of temporary files.
@@ -84,6 +87,8 @@ class TLSServerContextFactory(ssl.ContextFactory):
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
         ctx.use_privatekey(priv_key)
 
+        load_dh_params_from_string(ctx, dh)
+
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
         _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
@@ -111,7 +116,6 @@ class CtxValidator(object):
             self._validate_parents(db_cfg, ctx)
             self._validate(db_cfg, ctx)
         except Exception as err:
-            print("there was a problem", err)
             return (False, err)
         return (True, None)
 
