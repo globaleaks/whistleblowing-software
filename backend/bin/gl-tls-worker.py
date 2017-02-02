@@ -36,7 +36,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from globaleaks.utils.process import set_pdeathsig
 from globaleaks.utils.sock import listen_tls_on_sock
-from globaleaks.utils.ssl import TLSServerContextFactory, ContextValidator
+from globaleaks.utils.ssl import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.tcpproxy import ProxyServerFactory
 
 
@@ -69,7 +69,7 @@ def setup_tls_proxy(cfg):
     """
     tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
 
-    cv =  ContextValidator()
+    cv = ChainValidator()
     cfg['https_enabled'] = False # TODO remove this for obvious reasons.
     ok = cv.validate(cfg)
     if not ok:
