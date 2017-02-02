@@ -11,3 +11,4 @@ def set_pdeathsig(sig):
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
     libc.prctl.argtypes = (ctypes.c_int, ctypes.c_ulong, ctypes.c_ulong,
                            ctypes.c_ulong, ctypes.c_ulong)
+    libc.prctl(PR_SET_PDEATHSIG, sig, 0, 0, 0)
