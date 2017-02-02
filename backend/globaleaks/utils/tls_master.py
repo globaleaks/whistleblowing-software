@@ -14,7 +14,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact
 from globaleaks.utils import sock as socket_util
-from globaleaks.utils import ssl
+from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
 
 

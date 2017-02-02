@@ -2,7 +2,7 @@ import os
 from twisted.trial.unittest import TestCase
 
 from globaleaks.tests import helpers
-from globaleaks.utils import ssl
+from globaleaks.utils import tls
 
 class TestKeyGen(TestCase):
     def test_dh_params(self):
