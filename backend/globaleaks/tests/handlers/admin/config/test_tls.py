@@ -64,6 +64,7 @@ class TestCertFileHandler(helpers.TestHandlerWithPopulatedDB):
         res = handler.post()
         # TODO TODO TODO
 
+        # TODO add tls.get (for refresh) after upload in tearDown()
 
 
 class TestCSRHandler(helpers.TestHandlerWithPopulatedDB):

@@ -11,7 +11,7 @@ from sys import executable
 from twisted.internet import reactor, task, protocol, defer
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact
 from globaleaks.utils import sock as socket_util
 from globaleaks.utils import ssl
@@ -93,10 +93,11 @@ class ProcessSupervisor(object):
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
-        db_cfg = ssl.load_db_cfg(store)
+        db_cfg = load_tls_dict(store)
         self.tls_cfg.update(db_cfg)
 
         on = privFact.get_val('https_enabled')
+        # TODO db_cfg must be validated here once again.
 
         if on:
             log.info("Decided to launch https workers")

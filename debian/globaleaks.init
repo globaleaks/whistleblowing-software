@@ -129,6 +129,7 @@ network_sandboxing_start()
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
         iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
+        # TODO add registration for 443, 80 on all bound addresses. . .
     done
 
     # OUTBOUND
