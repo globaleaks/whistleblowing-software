@@ -151,7 +151,6 @@ class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
     def _validate(self, db_cfg, ctx):
-
         certificate = db_cfg['cert']
         if certificate == u'':
             raise ValidationException('There is no certificate')
@@ -176,7 +175,6 @@ class ChainValidator(CtxValidator):
     parents = [PrivKeyValidator, CertValidator]
 
     def _validate(self, db_cfg, ctx):
-
         intermediate = db_cfg['ssl_intermediate']
         if intermediate == u'':
             raise ValidationException('There is no intermediate cert')
