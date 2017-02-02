@@ -38,7 +38,7 @@ def generate_dh_params():
     return dh_params
 
 
-def new_tls_context():
+def new_tls_server_context():
     # As discussed on https://trac.torproject.org/projects/tor/ticket/11598
     # there is no way to enable all TLS methods excluding SSL.
     # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
@@ -64,7 +64,7 @@ def new_tls_context():
     return ctx
 
 
-class TLSContextFactory(ssl.ContextFactory):
+class TLSServerContextFactory(ssl.ContextFactory):
     def __init__(self, priv_key, certificate, intermediate, dh):
         """
         @param priv_key: String representation of the private key
@@ -72,7 +72,7 @@ class TLSContextFactory(ssl.ContextFactory):
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
         """
-        ctx = new_tls_context()
+        ctx = new_tls_server_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
         ctx.use_certificate(x509)
@@ -145,7 +145,6 @@ class PrivKeyValidator(CtxValidator):
         #     ok = priv_key.check()
         #     if not ok:
         #         raise ValidationException('Invalid RSA key')
-
 
 
 class CertValidator(CtxValidator):

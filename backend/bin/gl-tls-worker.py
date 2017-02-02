@@ -36,7 +36,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from globaleaks.utils.process import set_pdeathsig
 from globaleaks.utils.sock import listen_tls_on_sock
-from globaleaks.utils.ssl import TLSContextFactory, ContextValidator
+from globaleaks.utils.ssl import TLSServerContextFactory, ContextValidator
 from globaleaks.utils.tcpproxy import ProxyServerFactory
 
 
@@ -75,7 +75,7 @@ def setup_tls_proxy(cfg):
     if not ok:
         raise Exception("HTTPS configuration failed validation. Not running")
 
-    tls_factory = TLSContextFactory(cfg['key'],
+    tls_factory = TLSServerContextFactory(cfg['key'],
                                     cfg['cert'],
                                     cfg['ssl_intermediate'],
                                     cfg['ssl_dh'])
