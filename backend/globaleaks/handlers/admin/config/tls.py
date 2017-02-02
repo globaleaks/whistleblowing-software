@@ -8,7 +8,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.config import PrivateFactory, NodeFactory
+from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
@@ -92,7 +92,7 @@ class PrivKeyFileRes(FileResource):
         prv_fact = PrivateFactory(store)
         gen_dh_params_if_none(prv_fact)
 
-        db_cfg = ssl.load_db_cfg(store)
+        db_cfg = load_tls_dict(store)
         db_cfg['key'] = raw_key
 
         pkv = cls.validator()
@@ -146,7 +146,7 @@ class CertFileRes(FileResource):
 
         prv_fact = PrivateFactory(store)
 
-        db_cfg = ssl.load_db_cfg(store)
+        db_cfg = load_tls_dict(store)
         db_cfg['cert'] = raw_cert
 
         cv = cls.validator()
@@ -198,7 +198,7 @@ class ChainFileRes(FileResource):
 
         prv_fact = PrivateFactory(store)
 
-        db_cfg = ssl.load_db_cfg(store)
+        db_cfg = load_tls_dict(store)
         db_cfg['ssl_intermediate'] = raw_chain
 
         cv = cls.validator()
@@ -322,7 +322,7 @@ def try_to_enable_https(store):
     prv_fact = PrivateFactory(store)
 
     cv = ssl.ContextValidator()
-    db_cfg = ssl.load_db_cfg(store)
+    db_cfg = load_tls_dict(store)
     db_cfg['https_enabled'] = False
 
     ok, err = cv.validate(db_cfg)

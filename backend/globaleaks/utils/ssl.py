@@ -9,8 +9,8 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 from globaleaks.utils.utility import log
-from globaleaks.models.config import PrivateFactory
 from globaleaks.rest.errors import ValidationError
+
 
 def generate_dh_params():
     # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable
@@ -200,16 +200,3 @@ class ContextValidator(CtxValidator):
         _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
 
         #TODO try to establish a connection using this context
-
-
-def load_db_cfg(store):
-    privFact = PrivateFactory(store)
-
-    tls_cfg = {
-        'key': privFact.get_val('https_priv_key'),
-        'cert': privFact.get_val('https_cert'),
-        'ssl_intermediate': privFact.get_val('https_chain'),
-        'ssl_dh': privFact.get_val('https_dh_params'),
-        'https_enabled': privFact.get_val('https_enabled'),
-    }
-    return tls_cfg

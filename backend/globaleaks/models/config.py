@@ -260,3 +260,19 @@ def update_defaults(store):
     # Set the system version to the current aligned cfg
     prv = PrivateFactory(store)
     prv.set_val('version', __version__)
+
+
+def load_tls_dict(store):
+    '''
+    A quick and dirty function to grab all of the tls config for use in subprocesses
+    '''
+    privFact = PrivateFactory(store)
+
+    tls_cfg = {
+        'key': privFact.get_val('https_priv_key'),
+        'cert': privFact.get_val('https_cert'),
+        'ssl_intermediate': privFact.get_val('https_chain'),
+        'ssl_dh': privFact.get_val('https_dh_params'),
+        'https_enabled': privFact.get_val('https_enabled'),
+    }
+    return tls_cfg

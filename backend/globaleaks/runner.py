@@ -37,9 +37,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             if GLSettings.devel_mode:
                 mask = 9000
 
-            http_socks,  a_fails  = reserve_port_for_ifaces(GLSettings.bind_addresses, 80+mask)
-            https_socks, b_fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
-            for addr, err in a_fails + b_fails:
+            https_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
+            for addr, err in fails:
                 log.err("Could not reserve socket for %s because %s!" % (addr, err))
 
             GLSettings.drop_privileges()

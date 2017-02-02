@@ -35,5 +35,9 @@ if not GLSettings.nodaemon and GLSettings.logfile:
 api_factory = api.get_api_factory()
 
 for ip in GLSettings.bind_addresses:
-    GLBackendAPI = internet.TCPServer(GLSettings.bind_port, api_factory, interface=ip)
-    GLBackendAPI.setServiceParent(application)
+    for port in GLSettings.bind_ports:
+        try:
+            GLBackendAPI = internet.TCPServer(port, api_factory, interface=ip)
+            GLBackendAPI.setServiceParent(application)
+        except Exception as err:
+            log.err('Failed to listen on %s:%d due to: %s' % (ip, port, err))
