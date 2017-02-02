@@ -190,15 +190,3 @@ class ChainValidator(CtxValidator):
 
         # Check the correspondence with the chain loaded
         ctx.check_privatekey()
-
-
-class ContextValidator(CtxValidator):
-    parents = [PrivKeyValidator, CertValidator, ChainValidator]
-
-    def _validate(self, db_cfg, ctx):
-
-        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
-        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
-        _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
-
-        #TODO try to establish a connection using this context

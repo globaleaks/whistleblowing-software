@@ -63,7 +63,7 @@ def gen_dh_params_if_none(prv_fact):
 
     if dh_params == u'':
         log.info("Generating https dh params")
-        dh_params = ssl.generate_dh_params()
+        dh_params = tls.generate_dh_params()
         prv_fact.set_val('https_dh_params', dh_params)
         log.info("DH param generated and stored")
 
@@ -80,7 +80,7 @@ def https_disabled(f):
 
 
 class PrivKeyFileRes(FileResource):
-    validator = ssl.PrivKeyValidator
+    validator = tls.PrivKeyValidator
 
     @classmethod
     @transact
@@ -137,7 +137,7 @@ class PrivKeyFileRes(FileResource):
 
 
 class CertFileRes(FileResource):
-    validator = ssl.CertValidator
+    validator = tls.CertValidator
 
     @classmethod
     @transact
@@ -189,7 +189,7 @@ class CertFileRes(FileResource):
 
 
 class ChainFileRes(FileResource):
-    validator = ssl.ChainValidator
+    validator = tls.ChainValidator
 
     @classmethod
     @transact
@@ -321,7 +321,7 @@ def serialize_https_config_summary(store):
 def try_to_enable_https(store):
     prv_fact = PrivateFactory(store)
 
-    cv = ssl.ContextValidator()
+    cv = tls.ChainValidator()
     db_cfg = load_tls_dict(store)
     db_cfg['https_enabled'] = False
 
