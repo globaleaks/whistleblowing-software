@@ -111,7 +111,7 @@ class CtxValidator(object):
         raise NotImplementedError()
 
     def validate(self, db_cfg):
-        ctx = new_tls_context()
+        ctx = new_tls_server_context()
         try:
             self._validate_parents(db_cfg, ctx)
             self._validate(db_cfg, ctx)

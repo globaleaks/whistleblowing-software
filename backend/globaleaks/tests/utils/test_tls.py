@@ -11,7 +11,7 @@ class TestKeyGen(TestCase):
 class TestObjectValidators(TestCase):
 
     def __init__(self, *args, **kwargs):
-        super(TestCase, self).__init__(*args, **kwargs)
+        super(TestObjectValidators, self).__init__(*args, **kwargs)
         self.test_data_dir = os.path.join(helpers.DATA_DIR, 'https')
 
         self.invalid_files = [
@@ -59,7 +59,7 @@ class TestObjectValidators(TestCase):
 
 
     def test_private_key_invalid(self):
-        pkv = ssl.PrivKeyValidator()
+        pkv = tls.PrivKeyValidator()
 
         self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
 
@@ -79,7 +79,7 @@ class TestObjectValidators(TestCase):
 
         self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
 
-        pkv = ssl.PrivKeyValidator()
+        pkv = tls.PrivKeyValidator()
         for fname in good_keys:
             p = os.path.join(self.test_data_dir, 'valid', fname)
             with open(p, 'r') as f:
@@ -89,7 +89,7 @@ class TestObjectValidators(TestCase):
             self.assertIsNone(err)
 
     def test_cert_invalid(self):
-        pkv = ssl.CertValidator()
+        pkv = tls.CertValidator()
         
         self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
         self.db_cfg['key'] = self.valid_setup['key']

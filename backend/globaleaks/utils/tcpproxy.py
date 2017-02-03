@@ -2,6 +2,8 @@ from twisted.internet import reactor, protocol, defer
 
 
 class ProxyClientProtocol(protocol.Protocol):
+    factory = None # attached on initialization by ProxyClientFactory
+
     def connectionMade(self):
         self.cli_queue = self.factory.cli_queue
         self.cli_queue.get().addCallback(self.serverDataReceived)
@@ -33,20 +35,22 @@ class ProxyClientFactory(protocol.ClientFactory):
 
 
 class ProxyServerProtocol(protocol.Protocol):
-    def connectionMade(self):
-        if self.factory.connectionState is not None:
-            self.factory.connectionState['counter'] += 1
+    factory = None # attached on initialization by ProxyServerFactory
 
-            if self.factory.connectionState['counter'] >= self.factory.connectionState['connectionsLimit']:
-                port.stopListening()
+    def connectionMade(self):
+        if self.factory.conns_have_limit:
+            self.factory.conns_opened += 1
+
+            if self.factory.conns_opened > self.factory.conns_limit:
+                reactor.stop() #TODO(evilaliv3) was an exception. Now ignored.
 
         self.srv_queue = defer.DeferredQueue()
         self.cli_queue = defer.DeferredQueue()
 
         self.srv_queue.get().addCallback(self.clientDataReceived)
 
-        factory = ProxyClientFactory(self.srv_queue, self.cli_queue)
-        reactor.connectTCP(self.factory.ip, self.factory.port, factory)
+        cli_fact = ProxyClientFactory(self.srv_queue, self.cli_queue)
+        reactor.connectTCP(self.factory.ip, self.factory.port, cli_fact)
 
     def clientDataReceived(self, chunk):
         self.transport.write(chunk)
@@ -56,25 +60,24 @@ class ProxyServerProtocol(protocol.Protocol):
         self.cli_queue.put(chunk)
 
     def connectionLost(self, reason):
-        if self.factory.connectionState is not None:
-            self.factory.connectionState['counter'] -= 1
-            self.factory.connectionState['countdown'] -= 1
+        if self.factory.conns_have_limit:
+            self.factory.conns_finished += 1
 
-            if self.factory.connectionState['countdown'] <= 0:
+            if self.factory.conns_finished > self.factory.conns_limit:
+                # TODO(evilaliv3) This is not a good way to stop the reactor . . . should
+                # be logged
                 reactor.stop()
 
 
 class ProxyServerFactory(protocol.Factory):
     protocol = ProxyServerProtocol
-    connectionState = None
 
-    def __init__(self, ip, port, connectionsLimit=-1):
+    def __init__(self, ip, port, conns_to_serve=-1):
         self.ip = ip
         self.port = port
 
-        if connectionsLimit > 0:
-            self.connectionState = {
-              'counter': 0,
-              'countdown': connectionsLimit,
-              'connectionsLimit': connectionsLimit
-            }
+        # Factory state
+        self.conns_have_limit = conns_to_serve > -1
+        self.conns_limit = conns_to_serve
+        self.conns_opened = 0
+        self.conns_finished = 0
