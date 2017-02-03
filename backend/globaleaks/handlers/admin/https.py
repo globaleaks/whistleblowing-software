@@ -85,6 +85,7 @@ class PrivKeyFileRes(FileResource):
 
     @classmethod
     @transact
+    @https_disabled
     def create_file(store, cls, raw_key):
         db_cfg = load_tls_dict(store)
         db_cfg['key'] = raw_key
@@ -138,6 +139,7 @@ class CertFileRes(FileResource):
 
     @classmethod
     @transact
+    @https_disabled
     def create_file(store, cls, raw_cert):
         prv_fact = PrivateFactory(store)
 
@@ -188,6 +190,7 @@ class ChainFileRes(FileResource):
 
     @classmethod
     @transact
+    @https_disabled
     def create_file(store, cls, raw_chain):
         prv_fact = PrivateFactory(store)
 
@@ -327,24 +330,10 @@ def try_to_enable_https(store):
 
 
 @transact
-def try_to_disable_https(store):
+def disable_https(store):
     prv_fact = PrivateFactory(store)
     log.info('Disabling https on the node.')
     prv_fact.set_val('https_enabled', False)
-    GLSettings.state.process_supervisor.shutdown()
-
-
-@transact
-def delete_https_config(store):
-    prv_fact = PrivateFactory(store)
-    log.info('Deleting all HTTPS configuration')
-
-    prv_fact.set_val('https_priv_key', '')
-    prv_fact.set_val('https_cert', '')
-    prv_fact.set_val('https_chain', '')
-    #prv_fact.set_val('https_dh_params', '')
-    prv_fact.set_val('https_enabled', False)
-    GLSettings.state.process_supervisor.shutdown()
 
 
 class ConfigHandler(BaseHandler):
@@ -354,13 +343,6 @@ class ConfigHandler(BaseHandler):
     def get(self):
         https_cfg = yield serialize_https_config_summary()
         self.write(https_cfg)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def delete(self):
-        yield delete_https_config()
-        self.set_status(200)
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -383,8 +365,8 @@ class ConfigHandler(BaseHandler):
         '''
         This post disables and deactivates TLS config and subprocesses.
         '''
-        # TODO(nskelsey) rate limit me
-        yield try_to_disable_https()
+        yield disable_https()
+        GLSettings.state.process_supervisor.shutdown()
         self.set_status(200)
 
 

@@ -224,7 +224,9 @@ class TestGL(unittest.TestCase):
         yield update_node_setting('submission_minimum_delay', 0)
 
         yield db.refresh_memory_variables()
-        GLSettings.state.process_supervisor = ProcessSupervisor([], '127.0.0.1', '8082', '/dev/null')
+
+        sup = ProcessSupervisor([], '127.0.0.1', 18082, GLSettings.worker_path)
+        GLSettings.state.process_supervisor = sup
 
         Alarm.reset()
         event.EventTrackQueue.clear()
