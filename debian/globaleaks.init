@@ -122,14 +122,18 @@ network_sandboxing_start()
     fi
 
     # INBOUND
+    LISTENING_PORTS=$(echo $LISTENING_PORT 80 443 | tr ' ' '\n' | sort -u)
     for IP_DST in "${ALLOWED_DST_IP[@]}"
     do
-        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        for PORT in "${LISTENING_PORTS}"
         do
-            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
+            for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+            do
+                iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${PORT} -s ${IP_SRC} -j ACCEPT
+            done
         done
-        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
-        # TODO add registration for 443, 80 on all bound addresses. . .
+
+        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${PORT} -j DROP
     done
 
     # OUTBOUND
