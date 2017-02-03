@@ -93,17 +93,23 @@ class ProcessSupervisor(object):
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
+        on = privFact.get_val('https_enabled')
+        if not on:
+            log.info("Not launching workers")
+            return
+
         db_cfg = load_tls_dict(store)
         self.tls_cfg.update(db_cfg)
 
-        on = privFact.get_val('https_enabled')
-        # TODO db_cfg must be validated here once again.
+        chnv = tls.ChainValidator()
+        db_cfg['https_enabled'] = False # quick hack for validate to move forward
+        ok, err = chnv.validate(db_cfg)
 
-        if on:
+        if ok and err is None:
             log.info("Decided to launch https workers")
             self.launch_https_workers()
         else:
-            log.info("Not launching https workers")
+            log.info("Not launching https workers due to %e", err)
 
     def launch_https_workers(self):
         for i in range(self.tls_process_state['target_proc_num']):

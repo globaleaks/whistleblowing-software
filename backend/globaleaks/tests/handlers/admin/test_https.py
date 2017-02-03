@@ -3,7 +3,6 @@ import os
 import twisted
 from twisted.trial.unittest import TestCase
 from twisted.internet.defer import inlineCallbacks
-from twisted.internet import reactor, defer
 from OpenSSL import crypto, SSL
 
 from globaleaks.handlers.admin import https
@@ -13,6 +12,7 @@ from globaleaks.rest import errors
 from globaleaks.utils import tls
 
 from globaleaks.tests import helpers
+from globaleaks.tests.utils import test_tls
 
 
 class TestCryptoFuncs(TestCase):
@@ -56,33 +56,21 @@ class TestCryptoFuncs(TestCase):
 #        #import time; time.sleep(60)
 
 
+@transact
+def set_dh_params(store, dh_params):
+    PrivateFactory(store).set_val('https_dh_params', dh_params)
+
+
 class TestFileHandler(helpers.TestHandler):
     
     _handler = https.FileHandler
-
-    valid_setup_files = {
-        'key': 'rsa_key.pem',
-        'cert': 'cert.pem',
-        'chain': 'moon_village_chain.pem',
-        'dh_params': 'dh_params.pem'
-    }
 
     @inlineCallbacks
     def setUp(self):
         yield super(TestFileHandler, self).setUp()
 
-        self.test_data_dir = os.path.join(helpers.DATA_DIR, 'https')
-
-        self.valid_setup = { 
-            k : open(os.path.join(self.test_data_dir, 'valid', fname), 'r').read() \
-                for k, fname in self.valid_setup_files.iteritems()
-        }
-
-        @transact
-        def set_dh_params(store):
-            dh_params = self.valid_setup['dh_params']
-            PrivateFactory(store).set_val('https_dh_params', dh_params)
-        yield set_dh_params()
+        self.valid_setup = test_tls.get_valid_setup()
+        yield set_dh_params(self.valid_setup['dh_params'])
 
     @inlineCallbacks
     def is_set(self, name, is_set):
@@ -117,7 +105,6 @@ class TestFileHandler(helpers.TestHandler):
         handler = self.request(role='admin')
         yield self.assertFailure(handler.get(n), errors.MethodNotImplemented)
 
-
         # Test key generation
         yield handler.put(n)
         yield self.is_set(n, True)
@@ -126,21 +113,19 @@ class TestFileHandler(helpers.TestHandler):
         yield handler.delete(n)
         yield self.is_set(n, False)
 
-        yield self.set_enabled()
-        yield self.assertFailure(handler.delete(n), errors.FailedSanityCheck)
-        yield self.assertFailure(handler.put(n), errors.FailedSanityCheck)
-
     @inlineCallbacks
     def test_cert_file(self):
         n = 'cert'
 
         yield self.is_set(n, False)
-        yield PrivKeyRes.create_file(self.valid_setup[n])
+        yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
 
-        bad_cert = 'bonk bonk bonk'
-        handler = self.request(bad_cert, role='admin')
+        # Test bad cert
+        body = {'content': 'bonk bonk bonk'}
+        handler = self.request(body, role='admin')
         yield self.assertFailure(handler.post(n), errors.ValidationError)
 
+        # Upload a valid cert
         body = {'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
         yield handler.post(n)
@@ -151,20 +136,76 @@ class TestFileHandler(helpers.TestHandler):
         content = self.responses[-1]
         self.assertEqual(content, self.valid_setup[n])
 
+        # Finally delete the cert
         yield handler.delete(n)
         yield self.is_set(n, False)
 
-        yield self.assertFailure(handler.get(n), errors.MethodNotImplemented)
-
     @inlineCallbacks
     def test_chain_file(self):
-        handler = self.request({'content': 'bonk bonk bonk'}, role='admin')
+        n = 'chain'
 
-        res = yield handler.post(name='cert')
+        yield self.is_set(n, False)
+        yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
+        yield https.CertFileRes.create_file(self.valid_setup['cert'])
+
+        body = {'content': self.valid_setup[n]}
+        handler = self.request(body, role='admin')
+
+        res = yield handler.post(n)
+        yield self.is_set(n, True)
+
+        handler = self.request(role='admin')
+        yield handler.get(n)
+        content = self.responses[-1]
+        self.assertEqual(content, self.valid_setup[n])
+
+        yield handler.delete(n)
+        yield self.is_set(n, False)
+
+    @inlineCallbacks
+    def test_file_res_disabled(self):
+        yield self.set_enabled()
+
+        handler = self.request(role='admin')
+        for n in ['priv_key', 'cert', 'chain']:
+            yield self.assertFailure(handler.delete(n), errors.FailedSanityCheck)
+            yield self.assertFailure(handler.put(n), errors.FailedSanityCheck,
+                                                     errors.MethodNotImplemented)
+            handler = self.request({'content':''}, role='admin')
+            yield self.assertFailure(handler.post(n), errors.FailedSanityCheck)
+            yield self.assertFailure(handler.get(n), errors.FailedSanityCheck,
+                                                     errors.MethodNotImplemented)
 
 
 class TestConfigHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = https.ConfigHandler
+
+    @inlineCallbacks
+    def test_all_methods(self):
+        valid_setup = test_tls.get_valid_setup()
+
+        yield set_dh_params(valid_setup['dh_params'])
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        yield https.CertFileRes.create_file(valid_setup['cert'])
+        yield https.ChainFileRes.create_file(valid_setup['chain'])
+
+        handler = self.request(role='admin')
+
+        yield handler.get()
+        self.assertTrue(len(self.responses[-1]['status']['msg']) > 0)
+
+        # Config is ready to go. So launch the subprocesses.
+        yield handler.post()
+        yield handler.get()
+        self.assertTrue(self.responses[-1]['enabled'])
+
+        self.test_reactor.pump([50])
+
+        # TODO improve resilience of shutdown. The child processes will complain 
+        # loudly as they die.
+        yield handler.put()
+        yield handler.get()
+        self.assertFalse(self.responses[-1]['enabled'])
 
 
 class TestCSRHandler(helpers.TestHandlerWithPopulatedDB):
