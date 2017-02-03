@@ -9,6 +9,19 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
+import glob
+
+import os
+from OpenSSL import SSL
+from OpenSSL.crypto import load_certificate, dump_certificate, FILETYPE_PEM, \
+ _raise_current_error
+from OpenSSL._util import lib as _lib, ffi as _ffi
+from pyasn1.type import univ, constraint, char, namedtype, tag
+from pyasn1.codec.der.decoder import decode
+from twisted.internet import ssl
+from twisted.protocols import tls
+
+
 class ValidationException(Exception):
     pass
 
@@ -202,3 +215,84 @@ class ChainValidator(CtxValidator):
 
         # Check the correspondence with the chain loaded
         ctx.check_privatekey()
+
+
+class ContextValidator(CtxValidator):
+    parents = [PrivKeyValidator, CertValidator, ChainValidator]
+
+    def _validate(self, db_cfg, ctx):
+
+        ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
+        ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
+        _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
+
+
+class GeneralName(univ.Choice):
+    componentType = namedtype.NamedTypes(
+        namedtype.NamedType('dNSName', char.IA5String().subtype(
+                implicitTag=tag.Tag(tag.tagClassContext, tag.tagFormatSimple, 2)
+            )
+        ),
+    )
+
+class GeneralNames(univ.SequenceOf):
+    componentType = GeneralName()
+    sizeSpec = univ.SequenceOf.sizeSpec + constraint.ValueSizeConstraint(1, 1024)
+
+
+def altnames(cert):
+    altnames = []
+
+    for i in range(cert.get_extension_count()):
+        ext = cert.get_extension(i)
+        if ext.get_short_name() == "subjectAltName":
+            dec = decode(ext.get_data(), asn1Spec=GeneralNames())
+            for j in dec[0]:
+                altnames.append(j[0].asOctets())
+
+    return altnames
+
+
+class TLSClientContextFactory(ssl.ClientContextFactory):
+    def __init__(self, hostname):
+        self.hostname = hostname
+
+        self.certificateAuthorityMap = {}
+
+        for certFileName in glob.glob("/etc/ssl/certs/*.pem"):
+            if os.path.exists(certFileName):
+                with open(certFileName) as f:
+                    data = f.read()
+                    x509 = load_certificate(FILETYPE_PEM, data)
+                    digest = x509.digest('sha1')
+                    self.certificateAuthorityMap[digest] = x509
+
+        self.ctx = new_tls_client_context()
+
+        store = self.ctx.get_cert_store()
+        for value in self.certificateAuthorityMap.values():
+            store.add_cert(value)
+
+        self.ctx.set_verify(SSL.VERIFY_PEER | SSL.VERIFY_FAIL_IF_NO_PEER_CERT, self.verifyCert)
+
+    def getContext(self):
+        return self.ctx
+
+    def verifyCert(self, connection, x509, errno, depth, preverifyOK):
+        print connection
+        if not preverifyOK:
+            return False
+
+        if depth != 0:
+            return preverifyOK
+
+        cn = x509.get_subject().commonName
+
+        if cn.startswith(b"*.") and self.hostname.split(b".")[1:] == cn.split(b".")[1:]:
+            return True
+
+        elif self.hostname == cn:
+            return True
+
+        elif self.hostname in altnames(x509):
+            return True
