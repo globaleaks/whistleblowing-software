@@ -41,7 +41,7 @@ def generate_dh_params():
     return dh_params
 
 
-def new_tls_server_context():
+def new_tls_context():
     # As discussed on https://trac.torproject.org/projects/tor/ticket/11598
     # there is no way to enable all TLS methods excluding SSL.
     # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
@@ -53,8 +53,7 @@ def new_tls_server_context():
     # This trick make openssl consider valid all TLS methods.
     ctx = SSL.Context(SSL.SSLv23_METHOD)
 
-    ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE |
-                    SSL.OP_NO_SSLv2 |
+    ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
                     SSL.OP_NO_COMPRESSION |
                     SSL.OP_NO_TICKET)
@@ -67,6 +66,19 @@ def new_tls_server_context():
     return ctx
 
 
+def new_tls_server_context():
+    ctx = new_tls_context()
+
+    cts.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE)
+
+    return ctx
+
+def new_tls_client_context():
+    ctx = new_tls_context()
+
+    return ctx
+
+
 class TLSServerContextFactory(ssl.ContextFactory):
     def __init__(self, priv_key, certificate, intermediate, dh):
         """
@@ -75,28 +87,26 @@ class TLSServerContextFactory(ssl.ContextFactory):
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
         """
-        ctx = new_tls_server_context()
+        self.ctx = new_tls_server_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
-        ctx.use_certificate(x509)
+        self.ctx.use_certificate(x509)
 
         if intermediate != '':
             x509 = load_certificate(FILETYPE_PEM, intermediate)
-            ctx.add_extra_chain_cert(x509)
+            self.ctx.add_extra_chain_cert(x509)
 
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
-        ctx.use_privatekey(priv_key)
+        self.ctx.use_privatekey(priv_key)
 
         load_dh_params_from_string(ctx, dh)
 
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
-        _lib.SSL_CTX_set_tmp_ecdh(ctx._context, ecdh)
-
-        self.context = ctx
+        _lib.SSL_CTX_set_tmp_ecdh(self.ctx._context, ecdh)
 
     def getContext(self):
-        return self.context
+        return self.ctx
 
 
 class CtxValidator(object):
