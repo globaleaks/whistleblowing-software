@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime
 from functools import wraps
 
@@ -24,7 +25,7 @@ class FileResource(object):
 
     @classmethod
     @transact
-    def create_file(store, request):
+    def create_file(store, content):
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -84,20 +85,15 @@ class PrivKeyFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, json_req):
-        # TODO pero perche'
-
-        raw_key = json_req['content']
-
-        prv_fact = PrivateFactory(store)
-        gen_dh_params_if_none(prv_fact)
-
+    def create_file(store, cls, raw_key):
         db_cfg = load_tls_dict(store)
         db_cfg['key'] = raw_key
 
+        prv_fact = PrivateFactory(store)
         pkv = cls.validator()
         ok, err = pkv.validate(db_cfg)
         if ok:
+            gen_dh_params_if_none(prv_fact)
             prv_fact.set_val('https_priv_key', raw_key)
         else:
             log.info('Key validation failed')
@@ -105,6 +101,7 @@ class PrivKeyFileRes(FileResource):
 
     @staticmethod
     @transact
+    @https_disabled
     def perform_file_action(store):
         prv_fact = PrivateFactory(store)
         gen_dh_params_if_none(prv_fact)
@@ -141,9 +138,7 @@ class CertFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, json_req):
-        raw_cert = json_req['content']
-
+    def create_file(store, cls, raw_cert):
         prv_fact = PrivateFactory(store)
 
         db_cfg = load_tls_dict(store)
@@ -193,9 +188,7 @@ class ChainFileRes(FileResource):
 
     @classmethod
     @transact
-    def create_file(store, cls, json_req):
-        raw_chain = json_req['content']
-
+    def create_file(store, cls, raw_chain):
         prv_fact = PrivateFactory(store)
 
         db_cfg = load_tls_dict(store)
@@ -269,11 +262,11 @@ class FileHandler(BaseHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
-        ok = yield file_res_cls.create_file(req)
+        ok = yield file_res_cls.create_file(req['content'])
         if ok:
             self.set_status(201, 'Wrote everything')
         else:
-            self.set_status(406, 'Validation failed')
+            raise errors.ValidationError()
 
 
     @BaseHandler.transport_security_check('admin')

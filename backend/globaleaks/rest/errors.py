@@ -261,7 +261,15 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
-# UNUSED ERROR CODE 31 32 33 HERE!
+class ValidationError(GLException):
+    def __init__(self, reason='Extended validation failed'):
+        self.reason = reason
+
+        error_code = 31
+        status_code = 403  # Forbidden
+
+
+# UNUSED ERROR CODE 32 33 HERE!
 
 
 class InvalidOldPassword(GLException):

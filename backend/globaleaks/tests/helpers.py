@@ -27,6 +27,7 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.utils import tempdict, token, utility
+from globaleaks.utils.tls_master import ProcessSupervisor
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
@@ -223,12 +224,14 @@ class TestGL(unittest.TestCase):
         yield update_node_setting('submission_minimum_delay', 0)
 
         yield db.refresh_memory_variables()
+        GLSettings.state.process_supervisor = ProcessSupervisor([], '127.0.0.1', '8082', '/dev/null')
 
         Alarm.reset()
         event.EventTrackQueue.clear()
         GLSettings.reset_hourly()
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
+
 
     def call_spigot(self):
         """
@@ -728,7 +731,6 @@ class TestHandler(TestGLWithPopulatedDB):
                 self.responses.append(response)
 
         handler_cls.write = mock_write
-
 
         def mock_finish(cls):
             pass

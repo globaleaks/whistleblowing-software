@@ -20,6 +20,7 @@ from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files
+from globaleaks.handlers.admin import https
 from globaleaks.handlers.admin import l10n as admin_l10n
 from globaleaks.handlers.admin import modelimgs as admin_modelimgs
 from globaleaks.handlers.admin import node as admin_node
@@ -122,9 +123,9 @@ spec = [
     (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
-    (r'/admin/config/tls', admin_config.tls.ConfigHandler),
-    (r'/admin/config/tls/csr', admin_config.tls.CSRConfigHandler),
-    (r'/admin/config/tls/files/(cert|chain|priv_key)', admin_config.tls.FileHandler),
+    (r'/admin/config/tls', https.ConfigHandler),
+    (r'/admin/config/tls/csr', https.CSRConfigHandler),
+    (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
