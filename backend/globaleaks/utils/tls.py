@@ -82,7 +82,7 @@ def new_tls_context():
 def new_tls_server_context():
     ctx = new_tls_context()
 
-    cts.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE)
+    ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     return ctx
 
@@ -112,7 +112,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         priv_key = load_privatekey(FILETYPE_PEM, priv_key)
         self.ctx.use_privatekey(priv_key)
 
-        load_dh_params_from_string(ctx, dh)
+        load_dh_params_from_string(self.ctx, dh)
 
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
@@ -219,6 +219,8 @@ class ChainValidator(CtxValidator):
 
 class ContextValidator(CtxValidator):
     parents = [PrivKeyValidator, CertValidator, ChainValidator]
+
+    # TODO unused but ressurected :)
 
     def _validate(self, db_cfg, ctx):
 
