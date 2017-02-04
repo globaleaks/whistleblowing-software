@@ -120,7 +120,7 @@ class TestObjectValidators(TestCase):
 
         good_certs = [
             'self_signed_cert.pem',
-            'int_signed_cert.pem',
+            'cert.pem',
         ]
 
         self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
@@ -157,7 +157,7 @@ class TestObjectValidators(TestCase):
         self.db_cfg['key'] = self.valid_setup['key']
         self.db_cfg['cert'] = self.valid_setup['cert']
 
-        p = os.path.join(self.test_data_dir, 'valid', 'ca-all.crt')
+        p = os.path.join(self.test_data_dir, 'valid', 'chain.pem')
         with open(p, 'r') as f:
             self.db_cfg['ssl_intermediate'] = f.read()
 
