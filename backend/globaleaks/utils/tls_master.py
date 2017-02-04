@@ -53,7 +53,7 @@ class TLSProcProtocol(protocol.ProcessProtocol):
 
 class ProcessSupervisor(object):
     '''
-    A Supervisor for all subprocesses that the main globaleaks process can launch
+    A supervisor for all subprocesses that the main globaleaks process can launch
     '''
 
     # TODO One child process death every 5 minutes is acceptable. Four every minute
@@ -102,14 +102,13 @@ class ProcessSupervisor(object):
         self.tls_cfg.update(db_cfg)
 
         chnv = tls.ChainValidator()
-        db_cfg['https_enabled'] = False # quick hack for validate to move forward
-        ok, err = chnv.validate(db_cfg)
+        ok, err = chnv.validate(db_cfg, must_be_disabled=False)
 
         if ok and err is None:
             log.info("Decided to launch https workers")
             self.launch_https_workers()
         else:
-            log.info("Not launching https workers due to %e", err)
+            log.info("Not launching https workers due to %s" % err)
 
     def launch_https_workers(self):
         for i in range(self.tls_process_state['target_proc_num']):
@@ -148,7 +147,8 @@ class ProcessSupervisor(object):
 
         nrml_deaths = 3*self.tls_process_state['target_proc_num']
 
-        max_deaths = nrml_deaths*50
+        # TODO hitting this condition means something is really wrong. Log it.
+        max_deaths = nrml_deaths*150
 
         num_deaths = self.tls_process_state['deaths']
 

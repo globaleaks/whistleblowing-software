@@ -314,7 +314,7 @@ def serialize_https_config_summary(store):
 
 
 @transact
-def try_to_enable_https(store):
+def try_to_enable_and_launch_https(store):
     prv_fact = PrivateFactory(store)
 
     cv = tls.ChainValidator()
@@ -349,10 +349,9 @@ class ConfigHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         '''
-        This post 'enables' the tls config.
         '''
         # TODO(nskelsey) rate limit me
-        ok = yield try_to_enable_https()
+        ok = yield try_to_enable_and_launch_https()
         if ok:
             self.set_status(200)
         else:
