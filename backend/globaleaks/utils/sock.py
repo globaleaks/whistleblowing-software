@@ -22,11 +22,6 @@ def open_socket_listen(ip, port):
     s.listen(1024)
     return s
 
-def reserve_interface_sockets(iface, mask=0):
-    https_sock = open_socket_listen(iface, mask+443)
-    http_sock = open_socket_listen(iface, mask+80)
-
-    return {'http': http_sock, 'https': https_sock}
 
 def reserve_port_for_ifaces(ifaces, port):
     socks = []

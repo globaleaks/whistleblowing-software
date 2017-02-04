@@ -133,7 +133,10 @@ class CtxValidator(object):
     def _validate(self, db_cfg, ctx):
         raise NotImplementedError()
 
-    def validate(self, db_cfg):
+    def validate(self, db_cfg, must_be_disabled=True):
+        if must_be_disabled and db_cfg['https_enabled']:
+            raise ValidationException('HTTPS must not be enabled')
+
         ctx = new_tls_server_context()
         try:
             self._validate_parents(db_cfg, ctx)
@@ -147,9 +150,6 @@ class PrivKeyValidator(CtxValidator):
     parents = []
 
     def _validate(self, db_cfg, ctx):
-        if db_cfg['https_enabled']:
-            raise ValidationException('HTTPS must not be enabled')
-
         if db_cfg['ssl_dh'] == u'':
             raise ValidationException('There is not dh parameter set')
 
