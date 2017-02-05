@@ -1,16 +1,31 @@
+import glob
 import os
+
 from tempfile import NamedTemporaryFile
 from datetime import datetime
 
 from twisted.internet import ssl
 
 from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA
+from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
 from pyasn1.type import univ, constraint, char, namedtype, tag
 from pyasn1.codec.der.decoder import decode
+
+from globaleaks.utils.limited_size_dict import LimitedSizeDict
+
+
+certificateTOFUMap = LimitedSizeDict()
+
+certificateAuthorityMap = {}
+for certFileName in glob.glob("/etc/ssl/certs/*.pem"):
+    with open(certFileName) as f:
+        data = f.read()
+        x509 = load_certificate(FILETYPE_PEM, data)
+        digest = x509.digest('sha512')
+        certificateAuthorityMap[digest] = x509
 
 
 class ValidationException(Exception):
@@ -76,6 +91,7 @@ def new_tls_server_context():
     ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     return ctx
+
 
 def new_tls_client_context():
     ctx = new_tls_context()
@@ -250,20 +266,10 @@ class TLSClientContextFactory(ssl.ClientContextFactory):
     def __init__(self, hostname):
         self.hostname = hostname
 
-        self.certificateAuthorityMap = {}
-
-        for certFileName in glob.glob("/etc/ssl/certs/*.pem"):
-            if os.path.exists(certFileName):
-                with open(certFileName) as f:
-                    data = f.read()
-                    x509 = load_certificate(FILETYPE_PEM, data)
-                    digest = x509.digest('sha1')
-                    self.certificateAuthorityMap[digest] = x509
-
         self.ctx = new_tls_client_context()
 
         store = self.ctx.get_cert_store()
-        for value in self.certificateAuthorityMap.values():
+        for value in certificateAuthorityMap.values():
             store.add_cert(value)
 
         self.ctx.set_verify(SSL.VERIFY_PEER | SSL.VERIFY_FAIL_IF_NO_PEER_CERT, self.verifyCert)
@@ -289,5 +295,11 @@ class TLSClientContextFactory(ssl.ClientContextFactory):
 
         elif self.hostname in altnames(x509):
             verify = True
+
+        if self.hostname not in certificateTOFUMap:
+            certificateTOFUMap[self.hostname] = x509.digest('sha512')
+
+        elif x509.digest('sha512') != certificateTOFUMap[self.hostname]:
+            verify = False
 
         return verify
