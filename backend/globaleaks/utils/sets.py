@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 def disjoint_union(*dictionaries):
     d_f = {}
