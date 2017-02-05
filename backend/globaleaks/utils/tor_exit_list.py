@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import re
-from twisted.web.client import getPage
-from globaleaks.utils.tls import TLSClientContextFactory
 
+from globaleaks.utils import agent
 
 class TorExitList(set):
     def processData(self, data):
@@ -13,6 +12,6 @@ class TorExitList(set):
             self.add(ip)
 
     def update(self):
-        pageFetchedDeferred = getPage('https://check.torproject.org/exit-addresses', TLSClientContextFactory('check.torproject.org'))
+        pageFetchedDeferred = agent.getPageSecurely('https://check.torproject.org/exit-addresses')
         pageFetchedDeferred.addCallback(self.processData)
         return pageFetchedDeferred
