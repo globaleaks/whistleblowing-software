@@ -1,6 +1,6 @@
+import os
 from tempfile import NamedTemporaryFile
 from datetime import datetime
-from StringIO import StringIO
 
 from twisted.internet import ssl
 
@@ -9,17 +9,8 @@ from OpenSSL.crypto import load_certificate, load_privatekey, FILETYPE_PEM, TYPE
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
-import glob
-
-import os
-from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, dump_certificate, FILETYPE_PEM, \
- _raise_current_error
-from OpenSSL._util import lib as _lib, ffi as _ffi
 from pyasn1.type import univ, constraint, char, namedtype, tag
 from pyasn1.codec.der.decoder import decode
-from twisted.internet import ssl
-from twisted.protocols import tls
 
 
 class ValidationException(Exception):
@@ -281,20 +272,22 @@ class TLSClientContextFactory(ssl.ClientContextFactory):
         return self.ctx
 
     def verifyCert(self, connection, x509, errno, depth, preverifyOK):
-        print connection
         if not preverifyOK:
             return False
 
         if depth != 0:
             return preverifyOK
 
+        verify = False
         cn = x509.get_subject().commonName
 
         if cn.startswith(b"*.") and self.hostname.split(b".")[1:] == cn.split(b".")[1:]:
-            return True
+            verify = True
 
         elif self.hostname == cn:
-            return True
+            verify = True
 
         elif self.hostname in altnames(x509):
-            return True
+            verify = True
+
+        return verify
