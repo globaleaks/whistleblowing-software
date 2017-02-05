@@ -272,6 +272,8 @@ class GLSettingsClass(object):
         self.fields_path = os.path.join(self.client_path, 'data/fields')
         self.field_attrs_file = os.path.join(self.client_path, 'data/field_attrs.json')
 
+        self.torbrowser_path = os.path.join(self.working_path, 'torbrowser')
+
     def set_ramdisk_path(self):
         self.ramdisk_path = '/dev/shm/globaleaks'
         if not os.path.isdir('/dev/shm'):
