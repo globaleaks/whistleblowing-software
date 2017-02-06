@@ -248,7 +248,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/network.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'HTTPS settings',
+        header_subtitle: 'Network settings',
         resolve: {
           access: requireAuth('admin'),
         }
