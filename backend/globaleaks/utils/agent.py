@@ -1,37 +1,56 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet.defer import fail
-from twisted.web.client import getPage, downloadPage
+from twisted.internet import defer, reactor
+from twisted.internet.protocol import Protocol
+from twisted.web.client import Agent, readBody
 
 try:
     from twisted.web.client import URI
 except ImportError:
     from twisted.web.client import _URI as URI
 
-from globaleaks.utils import tls
+
+class SaveContents(Protocol):
+    def __init__(self, finished, filesize, filename):
+        self.finished = finished
+        self.remaining = filesize
+        self.outfile = open(filename, 'wb')
+
+    def dataReceived(self, bytes):
+        if self.remaining:
+            display = bytes[:self.remaining]
+            self.outfile.write(display)
+            self.remaining -= len(display)
+
+    def connectionLost(self, reason):
+        self.outfile.close()
+        self.finished.callback(None)
 
 
 def getPageSecurely(url):
     try:
-        parsed_url=URI.fromBytes(url)
+        request = Agent(reactor).request('GET', url)
+        finished = defer.Deferred()
 
-        if parsed_url.scheme != 'https':
-            return fail()
+        def cbResponse(response):
+            d = readBody(response)
+            d.addCallback(finished.callback)
 
-        return getPage(url, tls.TLSClientContextFactory(parsed_url.host))
-
+        request.addCallback(cbResponse)
+        return finished
     except:
-        return fail()
+        return defer.fail()
 
 
-def downloadPageSecurely(url, file):
+def downloadPageSecurely(url, filename):
     try:
-        parsed_url=URI.fromBytes(url)
+        request = Agent(reactor).request('GET', url)
+        finished = defer.Deferred()
 
-        if parsed_url.scheme != 'https':
-            return fail()
+        def cbResponse(response):
+            response.deliverBody(SaveContents(finished, response.length, filename))
 
-        return downloadPage(url, file, tls.TLSClientContextFactory(parsed_url.host))
-
+        request.addCallback(cbResponse)
+        return finished
     except:
-        return fail()
+        return defer.fail()

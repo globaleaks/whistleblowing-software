@@ -1,4 +1,3 @@
-import glob
 import os
 
 from tempfile import NamedTemporaryFile
@@ -13,19 +12,6 @@ from OpenSSL._util import lib as _lib, ffi as _ffi
 
 from pyasn1.type import univ, constraint, char, namedtype, tag
 from pyasn1.codec.der.decoder import decode
-
-from globaleaks.utils.limited_size_dict import LimitedSizeDict
-
-
-certificateTOFUMap = LimitedSizeDict()
-
-certificateAuthorityMap = {}
-for certFileName in glob.glob("/etc/ssl/certs/*.pem"):
-    with open(certFileName) as f:
-        data = f.read()
-        x509 = load_certificate(FILETYPE_PEM, data)
-        digest = x509.digest('sha512')
-        certificateAuthorityMap[digest] = x509
 
 
 class ValidationException(Exception):
@@ -75,26 +61,13 @@ def new_tls_context():
     ctx.set_options(SSL.OP_NO_SSLv2 |
                     SSL.OP_NO_SSLv3 |
                     SSL.OP_NO_COMPRESSION |
-                    SSL.OP_NO_TICKET)
+                    SSL.OP_NO_TICKET |
+                    SSL.OP_CIPHER_SERVER_PREFERENCE)
 
     ctx.set_mode(SSL.MODE_RELEASE_BUFFERS)
 
     cipher_list = bytes('ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:DHE-DSS-AES256-SHA:DHE-RSA-AES128-SHA')
     ctx.set_cipher_list(cipher_list)
-
-    return ctx
-
-
-def new_tls_server_context():
-    ctx = new_tls_context()
-
-    ctx.set_options(SSL.OP_CIPHER_SERVER_PREFERENCE)
-
-    return ctx
-
-
-def new_tls_client_context():
-    ctx = new_tls_context()
 
     return ctx
 
@@ -262,46 +235,3 @@ def altnames(cert):
                 altnames.append(j[0].asOctets())
 
     return altnames
-
-
-class TLSClientContextFactory(ssl.ClientContextFactory):
-    def __init__(self, hostname):
-        self.hostname = hostname
-
-        self.ctx = new_tls_client_context()
-
-        store = self.ctx.get_cert_store()
-        for value in certificateAuthorityMap.values():
-            store.add_cert(value)
-
-        self.ctx.set_verify(SSL.VERIFY_PEER | SSL.VERIFY_FAIL_IF_NO_PEER_CERT, self.verifyCert)
-
-    def getContext(self):
-        return self.ctx
-
-    def verifyCert(self, connection, x509, errno, depth, preverifyOK):
-        if not preverifyOK:
-            return False
-
-        if depth != 0:
-            return preverifyOK
-
-        verify = False
-        cn = x509.get_subject().commonName
-
-        if cn.startswith(b"*.") and self.hostname.split(b".")[1:] == cn.split(b".")[1:]:
-            verify = True
-
-        elif self.hostname == cn:
-            verify = True
-
-        elif self.hostname in altnames(x509):
-            verify = True
-
-        if self.hostname not in certificateTOFUMap:
-            certificateTOFUMap[self.hostname] = x509.digest('sha512')
-
-        elif x509.digest('sha512') != certificateTOFUMap[self.hostname]:
-            verify = False
-
-        return verify
