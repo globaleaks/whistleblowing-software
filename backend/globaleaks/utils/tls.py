@@ -7,7 +7,7 @@ from datetime import datetime
 from twisted.internet import ssl
 
 from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA
+from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
@@ -132,22 +132,22 @@ class TLSServerContextFactory(ssl.ContextFactory):
 class CtxValidator(object):
     parents = []
 
-    def _validate_parents(self, db_cfg, ctx):
+    def _validate_parents(self, cfg, ctx):
         for parent in self.parents:
             p_v = parent()
-            p_v._validate(db_cfg, ctx)
+            p_v._validate(cfg, ctx)
 
-    def _validate(self, db_cfg, ctx):
+    def _validate(self, cfg, ctx):
         raise NotImplementedError()
 
-    def validate(self, db_cfg, must_be_disabled=True):
-        if must_be_disabled and db_cfg['https_enabled']:
+    def validate(self, cfg, must_be_disabled=True):
+        if must_be_disabled and cfg['https_enabled']:
             raise ValidationException('HTTPS must not be enabled')
 
         ctx = new_tls_server_context()
         try:
-            self._validate_parents(db_cfg, ctx)
-            self._validate(db_cfg, ctx)
+            self._validate_parents(cfg, ctx)
+            self._validate(cfg, ctx)
         except Exception as err:
             return (False, err)
         return (True, None)
@@ -156,19 +156,10 @@ class CtxValidator(object):
 class PrivKeyValidator(CtxValidator):
     parents = []
 
-    def _validate(self, db_cfg, ctx):
-        if db_cfg['ssl_dh'] == u'':
-            raise ValidationException('There is not dh parameter set')
-
-        with NamedTemporaryFile() as f_dh:
-            f_dh.write(db_cfg['ssl_dh'])
-            f_dh.flush()
-            # TODO ensure load can deal with untrusted input
-            ctx.load_tmp_dh(f_dh.name)
-
+    def _validate(self, cfg, ctx):
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        raw_str = db_cfg['key']
+        raw_str = cfg['key']
         if raw_str == u'':
             raise ValidationException('No private key is set')
 
@@ -184,8 +175,8 @@ class PrivKeyValidator(CtxValidator):
 class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
-    def _validate(self, db_cfg, ctx):
-        certificate = db_cfg['cert']
+    def _validate(self, cfg, ctx):
+        certificate = cfg['cert']
         if certificate == u'':
             raise ValidationException('There is no certificate')
 
@@ -197,7 +188,7 @@ class CertValidator(CtxValidator):
 
         ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, db_cfg['key'], '')
+        priv_key = load_privatekey(FILETYPE_PEM, cfg['key'], '')
 
         ctx.use_privatekey(priv_key)
 
@@ -208,20 +199,23 @@ class CertValidator(CtxValidator):
 class ChainValidator(CtxValidator):
     parents = [PrivKeyValidator, CertValidator]
 
-    def _validate(self, db_cfg, ctx):
-        intermediate = db_cfg['ssl_intermediate']
-        if intermediate == u'':
-            raise ValidationException('There is no intermediate cert')
+    def _validate(self, cfg, ctx):
+        store = ctx.get_cert_store()
 
-        x509 = load_certificate(FILETYPE_PEM, intermediate)
+        intermediate = cfg['ssl_intermediate']
+        if intermediate != u'':
+            x509 = load_certificate(FILETYPE_PEM, intermediate)
 
-        if x509.has_expired():
-            raise ValidationException('The intermediate cert has expired')
+            if x509.has_expired():
+                raise ValidationException('The intermediate cert has expired')
 
-        ctx.add_extra_chain_cert(x509)
+            store.add_cert(x509)
 
-        # Check the correspondence with the chain loaded
-        ctx.check_privatekey()
+        for value in certificateAuthorityMap.values():
+            store.add_cert(value)
+
+        x509 = load_certificate(FILETYPE_PEM, cfg['cert'])
+        X509StoreContext(store, x509).verify_certificate()
 
 
 class ContextValidator(CtxValidator):
@@ -229,7 +223,15 @@ class ContextValidator(CtxValidator):
 
     # TODO unused but ressurected :)
 
-    def _validate(self, db_cfg, ctx):
+    def _validate(self, cfg, ctx):
+        if cfg['ssl_dh'] == u'':
+            raise ValidationException('There is not dh parameter set')
+
+        with NamedTemporaryFile() as f_dh:
+            f_dh.write(db_cfg['ssl_dh'])
+            f_dh.flush()
+            # TODO ensure load can deal with untrusted input
+            ctx.load_tmp_dh(f_dh.name)
 
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
