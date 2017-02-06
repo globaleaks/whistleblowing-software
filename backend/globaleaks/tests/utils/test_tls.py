@@ -87,7 +87,7 @@ class TestObjectValidators(TestCase):
         pkv = tls.PrivKeyValidator()
 
         good_keys = [
-            'rsa_key.pem',
+            'priv_key.pem',
             'dh_key.pem',
         ]
 
