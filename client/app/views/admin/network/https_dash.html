@@ -14,10 +14,10 @@
       <div data-ng-show="tls_config.https_url == ''"
           class="alert alert-warning">
           <strong data-translate>Domain name is not set!</strong>
-          <span data-translate>Set the domain name in general settings.</span>
+          <span data-translate>Set the HTTPS domain name in network settings.</span>
       </div>
       <h4 data-translate>System message:</h4>
-      <div class="alert alert-info"><b>{{::tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
+      <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
     </div>
   </div>
   <div>

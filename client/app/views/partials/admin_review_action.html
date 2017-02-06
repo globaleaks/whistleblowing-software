@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <button type="button" class="close" aria-hidden="true" data-ng-click="cancel()">
+     <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+  </button>
+  <div class="modal-title" data-translate>Are you sure?</div>
+</div>
+<div class="modal-body">
+  <div id="DownloadWarning" class="alert alert-danger">
+    <span class="label label-danger">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <span data-translate>Danger</span>
+    </span>&nbsp;
+    <span data-translate>You are about to delete a file permanently!</span>
+</div>
+<div class="modal-footer">
+  <span id="modal-action-cancel" class="btn btn-default" data-ng-click="cancel()">
+    <i class="glyphicon glyphicon-remove"></i>
+    <span data-translate>Cancel</span>
+  </span>
+  <span id="modal-action-ok" class="btn btn-danger" data-ng-click="ok()">
+    <i class="glyphicon glyphicon-ok"></i>
+    <span data-translate>Yes</span>
+  </span>
+</div>
