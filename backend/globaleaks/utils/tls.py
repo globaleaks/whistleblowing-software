@@ -80,7 +80,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
         """
-        self.ctx = new_tls_server_context()
+        self.ctx = new_tls_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
         self.ctx.use_certificate(x509)
@@ -117,7 +117,7 @@ class CtxValidator(object):
         if must_be_disabled and cfg['https_enabled']:
             raise ValidationException('HTTPS must not be enabled')
 
-        ctx = new_tls_server_context()
+        ctx = new_tls_context()
         try:
             self._validate_parents(cfg, ctx)
             self._validate(cfg, ctx)
