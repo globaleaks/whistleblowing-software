@@ -27,7 +27,6 @@ def get_valid_setup():
 
 
 class TestObjectValidators(TestCase):
-
     def __init__(self, *args, **kwargs):
         super(TestObjectValidators, self).__init__(*args, **kwargs)
         self.test_data_dir = os.path.join(helpers.DATA_DIR, 'https')
@@ -61,7 +60,7 @@ class TestObjectValidators(TestCase):
         self.valid_setup = get_valid_setup()
 
     def setUp(self):
-        self.db_cfg = {
+        self.cfg = {
             'key': '',
             'cert': '',
             'chain': '',
@@ -73,13 +72,13 @@ class TestObjectValidators(TestCase):
     def test_private_key_invalid(self):
         pkv = tls.PrivKeyValidator()
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
             with open(p, 'r') as f:
-                self.db_cfg['key'] = f.read()
-            ok, err = pkv.validate(self.db_cfg)
+                self.cfg['ssl_key'] = f.read()
+            ok, err = pkv.validate(self.cfg)
             self.assertFalse(ok)
             self.assertIsNotNone(err)
 
@@ -91,27 +90,27 @@ class TestObjectValidators(TestCase):
             'dh_key.pem',
         ]
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
 
         for fname in good_keys:
             p = os.path.join(self.test_data_dir, 'valid', fname)
             with open(p, 'r') as f:
-                self.db_cfg['key'] = f.read()
-            ok, err = pkv.validate(self.db_cfg)
+                self.cfg['ssl_key'] = f.read()
+            ok, err = pkv.validate(self.cfg)
             self.assertTrue(ok)
             self.assertIsNone(err)
 
     def test_cert_invalid(self):
         crtv = tls.CertValidator()
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
-        self.db_cfg['key'] = self.valid_setup['key']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_key'] = self.valid_setup['key']
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
             with open(p, 'r') as f:
-                self.db_cfg['cert'] = f.read()
-            ok, err = crtv.validate(self.db_cfg)
+                self.cfg['ssl_cert'] = f.read()
+            ok, err = crtv.validate(self.cfg)
             self.assertFalse(ok)
             self.assertIsNotNone(err)
 
@@ -123,45 +122,48 @@ class TestObjectValidators(TestCase):
             'cert.pem',
         ]
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
-        self.db_cfg['key'] = self.valid_setup['key']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_key'] = self.valid_setup['key']
 
         for fname in good_certs:
             p = os.path.join(self.test_data_dir, 'valid', fname)
             with open(p, 'r') as f:
-                self.db_cfg['cert'] = f.read()
-            ok, err = crtv.validate(self.db_cfg)
+                self.cfg['ssl_cert'] = f.read()
+            ok, err = crtv.validate(self.cfg)
             self.assertTrue(ok)
             self.assertIsNone(err)
 
     def test_chain_invalid(self):
         chn_v = tls.ChainValidator()
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
-        self.db_cfg['key'] = self.valid_setup['key']
-        self.db_cfg['cert'] = self.valid_setup['cert']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_key'] = self.valid_setup['key']
+        self.cfg['ssl_cert'] = self.valid_setup['cert']
+
+        self.cfg['ssl_intermediate'] = self.valid_setup['cert']
+        ok, err = chn_v.validate(self.cfg)
+        self.assertFalse(ok)
+        self.assertIsNotNone(err)
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
             with open(p, 'r') as f:
-                print 'testing:',fname
-                self.db_cfg['ssl_intermediate'] = f.read()
-            ok, err = chn_v.validate(self.db_cfg)
+                self.cfg['ssl_intermediate'] = f.read()
+            ok, err = chn_v.validate(self.cfg)
             self.assertFalse(ok)
             self.assertIsNotNone(err)
 
     def test_chain_valid(self):
         chn_v = tls.ChainValidator()
 
-        self.db_cfg['ssl_dh'] = self.valid_setup['dh_params']
-        self.db_cfg['key'] = self.valid_setup['key']
-        self.db_cfg['cert'] = self.valid_setup['cert']
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_key'] = self.valid_setup['key']
+        self.cfg['ssl_cert'] = self.valid_setup['cert']
 
         p = os.path.join(self.test_data_dir, 'valid', 'chain.pem')
         with open(p, 'r') as f:
-            self.db_cfg['ssl_intermediate'] = f.read()
+            self.cfg['ssl_intermediate'] = f.read()
 
-        ok, err = chn_v.validate(self.db_cfg)
-
+        ok, err = chn_v.validate(self.cfg)
         self.assertTrue(ok)
         self.assertIsNone(err)

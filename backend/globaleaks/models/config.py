@@ -269,8 +269,8 @@ def load_tls_dict(store):
     privFact = PrivateFactory(store)
 
     tls_cfg = {
-        'key': privFact.get_val('https_priv_key'),
-        'cert': privFact.get_val('https_cert'),
+        'ssl_key': privFact.get_val('https_priv_key'),
+        'ssl_cert': privFact.get_val('https_cert'),
         'ssl_intermediate': privFact.get_val('https_chain'),
         'ssl_dh': privFact.get_val('https_dh_params'),
         'https_enabled': privFact.get_val('https_enabled'),
