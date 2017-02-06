@@ -140,7 +140,7 @@
     </div>
 
     <div class="form-group" data-ng-class="{'has-error': contentForm.public_site.$error.pattern}">
-      <label data-translate>HTTPS website (URL)</label>
+      <label data-translate>HTTPS domain name (URL)</label>
       <input class="form-control" name="public_site" data-ng-model="admin.node.public_site" data-ng-pattern="https_regexp" type="url">
       <p class="text-danger" data-ng-show="contentForm.public_site.$error.pattern">
         <span data-translate>Invalid format for public site (similar to https://thirteenchars123.tor2web.org)</span>

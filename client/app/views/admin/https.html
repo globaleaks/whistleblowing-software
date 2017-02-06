@@ -17,7 +17,7 @@
           <div data-ng-show="tls_config.https_url == ''"
               class="alert alert-warning">
               <strong data-translate>Domain name is not set!</strong>
-              <span data-translate>Set the HTTPS website (URL) in general settings.</span>
+              <span data-translate>Set the domain name in general settings.</span>
           </div>
           <h4 data-translate>System message:</h4>
           <div class="alert alert-info"><b>{{ tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
@@ -31,7 +31,7 @@
           <div class="panel-body">
             <b class="" data-ng-class="iconClass(tls_config.files.priv_key)">1</b>
             <b data-translate>Private key</b>
-            <small data-ng-show="tls_config.files.priv_key.set">(.pem)</small>
+            <small data-ng-show="tls_config.files.priv_key.set">PEM</small>
             <div class="pull-right">
               <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
                 <label for="certUpload" class="btn btn-xs btn-primary">
@@ -55,7 +55,7 @@
           <div class="panel-body">
             <i class="">2</i>
             <b data-translate>Certificate signing request</b>
-            <small>(.pem)</small>
+            <small>PEM</small>
             <div class="pull-right">
               <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
                 <span data-translate>Generate</span>
@@ -76,7 +76,7 @@
           <div class="panel-body">
             <b class="" data-ng-class="iconClass(tls_config.files.cert)">2</b>
             <b data-translate>Certificate</b>
-            <small data-ng-show="tls_config.files.cert.set">(.pem)
+            <small data-ng-show="tls_config.files.cert.set">PEM
               <span data-translate>Valid until:</span> {{ tls_config.files.cert.expiration_date | date:'dd-MM-yyyy HH:mm' }}
               <span data-translate>Issuer:</span> <b>{{ tls_config.files.cert.issuer }}</b>
             </small>
@@ -103,7 +103,7 @@
           <div class="panel-body">
             <b class="" data-ng-class="iconClass(tls_config.files.chain)">3</b>
             <b data-translate>Certificate chain</b>
-            <small data-ng-show="tls_config.files.chain.set">(.pem)
+            <small data-ng-show="tls_config.files.chain.set">PEM
                 <span data-translate>Valid until:</span>{{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm' }}
               <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
            </small>
