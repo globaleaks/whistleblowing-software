@@ -1,13 +1,15 @@
 <h3 data-translate>Certificate Signature Request (CSR) generator</h3>
 <div data-ng-form name="certSigRequestForm" class="form-horizontal">
   <p data-translate>
-    <span data-translate>This form will generate a certificate signing request to use with the private key generated above</span>
-    <span data-translate>Once you are finished with this form, you will need to ensure that the domain you are intending to host the certificate on is validated by the authority.</span>
-    <span data-translate>You must take this request to your certificate authority who will give you a certificate and an intermediate chain to upload in the interface below.</span>
+    <span data-translate>This form will generate a certificate signing request (cert_sig_req.pem) to use when applying for a certificate from a Certificate Authority.</span>
+    <span data-translate>After the Certificate Authority validates your ownership of the domain name you have chosen, they will issue you a certificate and provide a chain file.</span>
+    <span data-translate>Load the certificate and the chain file below to complete the HTTPS setup.</span>
+    <span data-translate>Please note that the file format expected for all files uploaded here is (.pem).</span>
+    <span data-translate>Sometimes CAs will provide certificates in (.der) format.</span>
   </p>
 
   <div class="form-group">
-    <label class="col-md-4 control-label" data-translate>Domain Name</label>
+    <label class="col-md-4 control-label" data-translate>Domain name</label>
     <span data-required-asterisk></span>
     <div class="col-md-8">
       <input class="form-control" type="text" data-ng-model="csr_cfg.commonname"
