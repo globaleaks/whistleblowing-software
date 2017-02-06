@@ -11,16 +11,15 @@
           <span data-ng-show="!tls_config.running && tls_config.enabled" class="label label-warning" data-translate>Not running</span>
         </h3>
         <div>
-          <h4><span data-translate>Hostname</span>:
+          <h4><span data-translate>Domain name</span>:
             <a data-ng-show="tls_config.https_url != ''" target="_blank" rel="noreferrer noopener" href="{{ tls_config.https_url }}">{{ tls_config.https_url }}</a>
           </h4>
           <div data-ng-show="tls_config.https_url == ''"
               class="alert alert-warning">
-              <strong data-tranlsate>Hostname is not set!</strong>
+              <strong data-translate>Domain name is not set!</strong>
               <span data-translate>Set the HTTPS website (URL) in general settings.</span>
           </div>
           <h4 data-translate>System message:</h4>
-            </span>
           <div class="alert alert-info"><b>{{ tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
         </div>
       </div>
@@ -42,10 +41,10 @@
                 </label>
               </span>
               <button class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set"
-                  data-ng-click="gen_priv_key()">Generate</button>
+                  data-ng-click="gen_priv_key()" data-translate>Generate</button>
               <span data-ng-if="tls_config.files.priv_key.set">
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="deleteFile(file_resources.priv_key)">Delete</button>
+                    data-ng-click="deleteFile(file_resources.priv_key)" data-translate>Delete</button>
               </span>
             </div>
           </div>
@@ -91,9 +90,9 @@
               </span>
               <span data-ng-if="tls_config.files.cert.set">
                 <button class="btn btn-xs btn-primary"
-                    data-ng-click="downloadFile(file_resources.cert)">Download</button>
+                    data-ng-click="downloadFile(file_resources.cert)" data-translate>Download</button>
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="deleteFile(file_resources.cert)">Delete</button>
+                    data-ng-click="deleteFile(file_resources.cert)" data-translate>Delete</button>
               </span>
             </div>
           </div>
@@ -118,9 +117,9 @@
               </span>
               <span data-ng-if="tls_config.files.chain.set">
                 <button class="btn btn-xs btn-primary"
-                     data-ng-click="downloadFile(file_resources.chain)">Download</button>
+                     data-ng-click="downloadFile(file_resources.chain)" data-translate>Download</button>
                 <button class="btn btn-xs btn-danger"
-                    data-ng-click="deleteFile(file_resources.chain)">Delete</button>
+                    data-ng-click="deleteFile(file_resources.chain)" data-translate>Delete</button>
               </span>
             </div>
           </div>
