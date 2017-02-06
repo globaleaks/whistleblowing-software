@@ -382,7 +382,7 @@ AdminTLSCfgFileResourceDesc = {
 
 AdminCSRConfigDesc = {
     'commonname': unicode,
-    'country': unicode,
+    'country': '[A-Za-z]{2}',
     'province': unicode,
     'city': unicode,
     'company': unicode,

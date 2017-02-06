@@ -15,19 +15,6 @@ from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 
 
-class TestCryptoFuncs(TestCase):
-    def test_it_all(self):
-        key_pair = https.gen_RSA_key()
-
-        d = {
-         'CN': 'fakedom.blah.blah',
-         'O': 'widgets-R-us',
-        }
-
-        csr = https.gen_x509_csr(key_pair, d)
-        pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, csr)
-
-
 #class TestHTTPSWorkers(TestCase):
 #    def test_launch_workers(self):
 #        pass
@@ -177,7 +164,7 @@ class TestFileHandler(helpers.TestHandler):
                                                      errors.MethodNotImplemented)
 
 
-class TestConfigHandler(helpers.TestHandlerWithPopulatedDB):
+class TestConfigHandler(helpers.TestHandler):
     _handler = https.ConfigHandler
 
     @inlineCallbacks
@@ -208,14 +195,18 @@ class TestConfigHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertFalse(self.responses[-1]['enabled'])
 
 
-class TestCSRHandler(helpers.TestHandlerWithPopulatedDB):
+class TestCSRHandler(helpers.TestHandler):
     _handler = https.CSRConfigHandler
 
     @inlineCallbacks
     def test_post(self):
+        valid_setup = test_tls.get_valid_setup()
+        yield set_dh_params(valid_setup['dh_params'])
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+
         d = {
            'commonname': 'notreal.ns.com',
-           'country': 'IT',
+           'country': 'it',
            'province': 'regione',
            'city': 'citta',
            'company': 'azienda',
@@ -226,7 +217,7 @@ class TestCSRHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(d, role='admin')
         res = yield handler.post()
 
-        csr_pem = self.responses[0]['csr_txt']
+        csr_pem = self.responses[-1]
 
         pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, csr_pem)
 

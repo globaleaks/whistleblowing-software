@@ -415,6 +415,11 @@ def gen_x509_csr(store, csr_fields):
 
     :rtype: A `pyopenssl.OpenSSL.crypto.X509Req`
     '''
+    db_cfg = load_tls_dict(store)
+    pkv = tls.PrivKeyValidator()
+    ok, err = pkv.validate(db_cfg)
+    if not ok or not err is None:
+        raise err
     try:
         req = crypto.X509Req()
         subj = req.get_subject()
@@ -422,8 +427,7 @@ def gen_x509_csr(store, csr_fields):
         for field, value in csr_fields.iteritems():
             setattr(subj, field, value)
 
-        str_prv_key = PrivateFactory(store).get_val('https_priv_key')
-        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, str_prv_key)
+        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, db_cfg['key'])
 
         req.set_pubkey(prv_key)
         req.sign(prv_key, 'sha512')
@@ -436,7 +440,7 @@ def gen_x509_csr(store, csr_fields):
         return pem_csr
     except Exception as e:
         log.err(e)
-        raise errors.InternalServerError('CSR gen failed')
+        raise errors.ValidationError('CSR gen failed')
 
 
 class CSRConfigHandler(BaseHandler):
