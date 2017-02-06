@@ -212,6 +212,21 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
+controller('AdminNetworkCtrl', ['$scope', function($scope) {
+  $scope.tabs = [
+    {
+      title:"Main configuration",
+      template: "views/admin/network/settings.html"
+    },
+    {
+      title:"HTTPS dashboard",
+      template: "views/admin/network/https_dash.html"
+    },
+  ];
+}]).
+controller('AdminNetFormCtrl', [function() {
+    // Scoped for future use.
+}]).
 controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', 'FileReader', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
   function($window, $q, $http, $scope, FileReader, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource) {
   $scope.tls_config = tlsConfigResource.get();
