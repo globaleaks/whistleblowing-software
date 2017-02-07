@@ -28,7 +28,7 @@ TmpFileMeta.prototype.unlinkTmpPath = function(){
     }
 };
 
-TmpFileMeta.prototype.waitForDownload = function() {
+TmpFileMeta.prototype.waitForDownloadAndVerifyCheckSum = function() {
   var self = this;
   utils.waitForFile(self.tmp_path).then(function() {
       var tmp_sum = utils.checksum(fs.readFileSync(self.tmp_path));
@@ -54,7 +54,7 @@ function submissionUploadSuite() {
     });
   });
 
-  it('uploaded and encrypted files should match downloaded and decrypted files', function() {
+  it('uploaded and downloaded plaintext files should match', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -72,17 +72,20 @@ function submissionUploadSuite() {
       utils.login_receiver('Recipient2', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
-      // Download each file end assert that it matches the input
-      element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
+      var files_sel = by.cssContainingText("button", "download");
+      expect(element.all(files_sel).count()).toBe(test_meta_files.length);
+
+      // Download each file and assert that it matches the input
+      element.all(files_sel).each(function(btn, i) {
         btn.click();
         // TODO WARN fragile: dl list and meta_file_lst must align
         var mfile = test_meta_files[i];
-        mfile.waitForDownload();
+        mfile.waitForDownloadAndVerifyCheckSum();
       });
     });
   });
 
-  it('uploaded and downloaded plaintext files should match', function() {
+  it('uploaded and encrypted files should match downloaded and decrypted files', function() {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -103,7 +106,10 @@ function submissionUploadSuite() {
       utils.login_receiver('Recipient1', utils.vars['user_password']);
       rec.viewMostRecentSubmission();
 
-      element.all(by.cssContainingText("button", "download")).each(function(btn, i) {
+      var files_sel = by.cssContainingText("button", "download");
+      expect(element.all(files_sel).count()).toBe(test_meta_files.length);
+
+      element.all(files_sel).each(function(btn, i) {
         btn.click();
 
         // TODO WARN fragile: dl list and meta_file_lst must align
