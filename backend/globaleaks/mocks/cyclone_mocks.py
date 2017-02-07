@@ -75,8 +75,8 @@ def mock_HTTPConnection_on_headers(self, data):
         if content_length:
             # the client will be written to send chunks of 100kb,
             # but as we do not control the wrapping multipart encoding
-            # the size is set to 101kb considering a margin of the overhead.
-            maximum_request_size = 101 * 1024
+            # the size is set to 200kb considering a margin of the overhead.
+            maximum_request_size = 200 * 1024
 
             if content_length > maximum_request_size:
                 raise _BadRequestException("Request exceeded size limit %d" % maximum_request_size)
