@@ -249,13 +249,13 @@ describe('globaLeaks process', function() {
     utils.login_receiver();
 
     element.all(by.css('#tipListTableBody tr'))
-        .evaluate('tip.expiration_date').then(function(exprs) {
+        .evaluate('tip.expiration_date').then(function() {
       // Postpone the expiration of all tips
       element(by.id('tip-action-select-all')).click();
       element(by.id('tip-action-postpone-selected')).click();
       element(by.id('modal-action-ok')).click();
       // Collect the new later expiration dates.
-      element.all(by.css('#tipListTableBody tr')).evaluate('tip.expiration_date').then(function(exprs) {
+      element.all(by.css('#tipListTableBody tr')).evaluate('tip.expiration_date').then(function() {
         // TODO
         // It is currently impossible to test that the expiration date is update because
         // during the same day of the submission a postpone will result in the same expiration date
