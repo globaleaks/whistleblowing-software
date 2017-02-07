@@ -259,7 +259,6 @@ describe('globaLeaks process', function() {
         // TODO
         // It is currently impossible to test that the expiration date is update because
         // during the same day of the submission a postpone will result in the same expiration date
-      }
       });
     });
   });
