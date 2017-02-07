@@ -250,7 +250,6 @@ describe('globaLeaks process', function() {
 
     element.all(by.css('#tipListTableBody tr'))
         .evaluate('tip.expiration_date').then(function(exprs) {
-      var start_expirations = make_dates(exprs);
       // Postpone the expiration of all tips
       element(by.id('tip-action-select-all')).click();
       element(by.id('tip-action-postpone-selected')).click();
