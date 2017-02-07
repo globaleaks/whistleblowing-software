@@ -1,3 +1,6 @@
+Changes in version 2.65.19 - 2017-02-07
+    o Set request size limit to 1MB (with server side cap at 2MB)
+
 Changes in version 2.65.18 - 2017-02-07
     o Fix request size check in relation to encoding overhead
 
