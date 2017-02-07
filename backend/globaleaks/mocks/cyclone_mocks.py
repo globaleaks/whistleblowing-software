@@ -43,10 +43,12 @@ def mock_RequestHandler_set_default_headers(self):
 
 def mock_HTTPConnection_on_headers(self, data):
     """
-    This mock is required to force size validation on all
-    the handlers included the internal error handlers of cyclone.
-    The maximum request size is set to 101kb (100k + a 1k overhead for multipart)
+    This mock is required to force size validation on all the handlers including 
+    the internal cyclone handlers. The maximum request size is set to max_request_size.  
+    NOTE that compatible frontends will only send 1/2 of that to the backend. 
+    The extra space is for coushining multipart forms.
     """
+    maximum_request_size = 2000 * 1024
     try:
         data = native_str(data.decode("latin1"))
         eol = data.find("\r\n")
@@ -73,11 +75,6 @@ def mock_HTTPConnection_on_headers(self, data):
             headers=headers, remote_ip=self._remote_ip)
 
         if content_length:
-            # the client will be written to send chunks of 1MB,
-            # but as we do not control the wrapping multipart encoding
-            # the size is set to 2MB considering a margin for the encoding overhead.
-            maximum_request_size = 2000 * 1024
-
             if content_length > maximum_request_size:
                 raise _BadRequestException("Request exceeded size limit %d" % maximum_request_size)
 
