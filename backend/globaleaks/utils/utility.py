@@ -260,7 +260,7 @@ def datetime_null():
     """
     @return: a utc datetime object representing a null date
     """
-    return datetime.utcfromtimestamp(0)
+    return datetime.datetime(1970, 1, 1, 0, 0)
 
 
 def datetime_now():
@@ -274,7 +274,7 @@ def datetime_never():
     """
     @return: a utc datetime object representing the 1st January 3000
     """
-    return datetime.utcfromtimestamp(32503680000)
+    return datetime.datetime(3000, 1, 1, 0, 0)
 
 
 def get_expiration(days):
