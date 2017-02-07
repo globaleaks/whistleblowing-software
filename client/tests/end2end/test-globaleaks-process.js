@@ -248,14 +248,6 @@ describe('globaLeaks process', function() {
   it('Recipient should be able to postpone all tips', function() {
     utils.login_receiver();
 
-    function make_dates(strings) {
-      return strings.map(function(s) {
-        expect(s).toEqual(jasmine.any(String));
-        return new Date(s);
-      });
-    }
-
-    // Get the expiration dates of all of the tips.
     element.all(by.css('#tipListTableBody tr'))
         .evaluate('tip.expiration_date').then(function(exprs) {
       var start_expirations = make_dates(exprs);
@@ -264,12 +256,11 @@ describe('globaLeaks process', function() {
       element(by.id('tip-action-postpone-selected')).click();
       element(by.id('modal-action-ok')).click();
       // Collect the new later expiration dates.
-      element.all(by.css('#tipListTableBody tr'))
-          .evaluate('tip.expiration_date').then(function(exprs) {
-        var final_expirations = make_dates(exprs);
-        for (var i = 0; i < start_expirations.length; i++) {
-          expect(start_expirations[i] < final_expirations[i]).toEqual(true);
-        }
+      element.all(by.css('#tipListTableBody tr')).evaluate('tip.expiration_date').then(function(exprs) {
+        // TODO
+        // It is currently impossible to test that the expiration date is update because
+        // during the same day of the submission a postpone will result in the same expiration date
+      }
       });
     });
   });
