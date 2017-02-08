@@ -35,7 +35,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
             j.schedule()
             jobs.append(j)
 
-        GLJobsMonitor(jobs)
+        monitor = GLJobsMonitor(jobs)
+        monitor.schedule()
 
     @defer.inlineCallbacks
     def start_globaleaks(self):

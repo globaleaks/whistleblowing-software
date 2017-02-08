@@ -103,6 +103,7 @@ class StatisticsSchedule(GLJob):
     """
     name = "Statistics Sched"
     interval = 3600
+    monitor_interval = 5 * 60
 
     def get_start_time(self):
          current_time = datetime_now()
