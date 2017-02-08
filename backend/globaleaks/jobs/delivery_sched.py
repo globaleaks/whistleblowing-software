@@ -222,8 +222,8 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
 
 class DeliverySchedule(GLJob):
     name = "Delivery"
-    interval = 2
-    monitor_interval = 15 * 60
+    interval = 5
+    monitor_interval = 180
 
     def operation(self):
         """

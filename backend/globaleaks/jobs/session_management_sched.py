@@ -13,6 +13,7 @@ __all__ = ['SessionManagementSchedule']
 class SessionManagementSchedule(GLJob):
     name = "Session Management"
     interval = 60
+    monitor_interval = 10
 
     def operation(self):
         """

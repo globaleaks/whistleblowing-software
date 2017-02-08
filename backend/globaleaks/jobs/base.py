@@ -16,6 +16,7 @@ test_reactor = None
 class GLJob(task.LoopingCall):
     name = "unnamed"
     interval = 60
+    monitor_interval = 60
     low_time = -1
     high_time = -1
     mean_time = -1
@@ -101,6 +102,7 @@ class GLJobsMonitor(GLJob):
 
         error_msg = ""
         for job in self.jobs_list:
+            print job
             if job.running:
                 execution_time = current_time - job.start_time
 
