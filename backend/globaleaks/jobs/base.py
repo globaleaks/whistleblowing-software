@@ -102,7 +102,6 @@ class GLJobsMonitor(GLJob):
 
         error_msg = ""
         for job in self.jobs_list:
-            print job
             if job.running:
                 execution_time = current_time - job.start_time
 
