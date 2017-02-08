@@ -21,6 +21,7 @@ class GLJob(task.LoopingCall):
     high_time = -1
     mean_time = -1
     start_time = -1
+    active = False
 
     def operation(self):
         raise NotImplementedError('GLJob does not implement operation')
@@ -56,10 +57,11 @@ class GLJob(task.LoopingCall):
 
         self.clock.callLater(delay, self.start, self.interval)
 
-    def stats_collection_begin(self):
+    def job_begin(self):
+        self.active = True
         self.start_time = time.time()
 
-    def stats_collection_end(self):
+    def job_end(self):
         current_run_time = time.time() - self.start_time
 
         # discard empty cycles from stats
@@ -74,9 +76,11 @@ class GLJob(task.LoopingCall):
         if self.high_time == -1 or current_run_time > self.high_time:
             self.high_time = current_run_time
 
+        self.active = False
+
     @defer.inlineCallbacks
     def run(self):
-        self.stats_collection_begin()
+        self.job_begin()
 
         try:
             yield threads.deferToThread(self.operation)
@@ -86,7 +90,7 @@ class GLJob(task.LoopingCall):
 
             extract_exception_traceback_and_send_email(e)
 
-        self.stats_collection_end()
+        self.job_end()
 
 
 class GLJobsMonitor(GLJob):
@@ -102,26 +106,28 @@ class GLJobsMonitor(GLJob):
 
         error_msg = ""
         for job in self.jobs_list:
-            if job.running:
-                execution_time = current_time - job.start_time
+            if not job.active:
+                continue
 
-                time_from_last_failed_check = current_time - job.last_monitor_check_failed
+            execution_time = current_time - job.start_time
 
-                if (execution_time > job.monitor_interval
-                    and time_from_last_failed_check > job.monitor_interval):
+            time_from_last_failed_check = current_time - job.last_monitor_check_failed
 
-                    job.last_monitor_check_failed = current_time
+            if (execution_time > job.monitor_interval
+                and time_from_last_failed_check > job.monitor_interval):
 
-                    if execution_time < 60:
-                        error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
-                    elif execution_time < 3600:
-                        minutes = int(execution_time / 60)
-                        error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
-                    else:
-                        hours = int(execution_time / 3600)
-                        error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
-                    error_msg += '\n' + error
-                    log.err(error)
+                job.last_monitor_check_failed = current_time
 
-            if error_msg != "":
-                send_exception_email(error)
+                if execution_time < 60:
+                    error = "Job %s is taking more than %d seconds to execute" % (job.name, execution_time)
+                elif execution_time < 3600:
+                    minutes = int(execution_time / 60)
+                    error = "Job %s is taking more than %d minutes to execute" % (job.name, minutes)
+                else:
+                    hours = int(execution_time / 3600)
+                    error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
+                error_msg += '\n' + error
+                log.err(error)
+
+        if error_msg != "":
+            send_exception_email(error)
