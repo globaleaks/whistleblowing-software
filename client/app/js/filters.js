@@ -13,6 +13,10 @@ filter('weekNumber', function() {
 }).
 filter('expirationDate', function() {
   return function(date, ttl) {
+    if (angular.isUndefined(date)) {
+      return undefined;
+    }
+
     var e = new Date(new Date(date).getTime());
     e.setUTCHours(0, 0, 0, 0);
     e.setDate(ttl + 1);
