@@ -153,10 +153,10 @@ class NotificationFactory(ConfigFactory):
 
 class PrivateFactory(ConfigFactory):
     non_mem_vars = {
-            'https_priv_key',
-            'https_cert',
-            'https_chain',
-            'https_dh_params',
+        'https_priv_key',
+        'https_cert',
+        'https_chain',
+        'https_dh_params',
     }
 
     mem_export_set = frozenset(set(GLConfig['private'].keys()) - non_mem_vars)

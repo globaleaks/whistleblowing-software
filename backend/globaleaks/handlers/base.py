@@ -23,6 +23,7 @@ from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.settings import GLSettings
+from globaleaks.utils import tls
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
@@ -188,6 +189,7 @@ class BaseHandler(RequestHandler):
         self.request.language = language
         self.set_header("Content-Language", language)
 
+        log.debug('Received request from: %s: %s' % (request.remote_ip, request.headers))
         if tls.should_redirect_https(GLSettings, request):
             self.redirect_https(request)
 
