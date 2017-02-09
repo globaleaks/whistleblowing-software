@@ -189,18 +189,6 @@ class BaseHandler(RequestHandler):
         self.request.language = language
         self.set_header("Content-Language", language)
 
-        log.debug('Received request from: %s: %s' % (request.remote_ip, request.headers))
-        if tls.should_redirect_https(GLSettings, request):
-            self.redirect_https(request)
-
-    def redirect_https(self, request):
-        self.set_header('Strict-Transport-Security', 'max-age=31536000')
-
-        url = request.uri.replace('http', 'https', 1)
-        if url == uri:
-            raise errors.InternalServerError('Redirection error.')
-        self.redirect(url, status=301) # permanently redirect
-
     def parse_accept_language_header(self):
         if "Accept-Language" in self.request.headers:
             languages = self.request.headers["Accept-Language"].split(",")
@@ -482,13 +470,25 @@ class BaseHandler(RequestHandler):
         pass
 
     def prepare(self):
-        """
-        Here is implemented:
-          - The performance analysts
-          - the Request/Response logging
-        """
         if not self.validate_host(self.request.host):
             raise errors.InvalidHostSpecified
+
+        if tls.should_redirect_https(GLSettings, self.request):
+            log.debug('Decided to redirect')
+            self.redirect_https()
+
+
+    def redirect_https(self):
+        in_url = self.request.full_url()
+
+        _, netloc, path, query, frag = urlparse.urlsplit(in_url)
+        netloc = netloc.split(':')[0]
+
+        out_url = urlparse.urlunsplit(('https', netloc, path, query, frag))
+
+        if out_url == in_url:
+            raise errors.InternalServerError('Should redirct made a mistake: %s' % out_url)
+        self.redirect(out_url, status=301) # permanently redirect
 
     def on_finish(self):
         """
