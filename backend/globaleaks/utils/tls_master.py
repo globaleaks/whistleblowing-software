@@ -111,6 +111,9 @@ class ProcessSupervisor(object):
             log.info("Not launching https workers due to %s" % err)
 
     def launch_https_workers(self):
+        self.tls_process_state['deaths'] = 0
+        self.tls_process_state['last_death'] = datetime_now()
+
         for i in range(self.tls_process_state['target_proc_num']):
             self.launch_worker()
 

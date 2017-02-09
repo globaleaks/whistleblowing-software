@@ -88,7 +88,7 @@ class PrivKeyFileRes(FileResource):
     @https_disabled
     def create_file(store, cls, raw_key):
         db_cfg = load_tls_dict(store)
-        db_cfg['key'] = raw_key
+        db_cfg['ssl_key'] = raw_key
 
         prv_fact = PrivateFactory(store)
         pkv = cls.validator()
@@ -144,7 +144,7 @@ class CertFileRes(FileResource):
         prv_fact = PrivateFactory(store)
 
         db_cfg = load_tls_dict(store)
-        db_cfg['cert'] = raw_cert
+        db_cfg['ssl_cert'] = raw_cert
 
         cv = cls.validator()
         ok, err = cv.validate(db_cfg)
@@ -427,7 +427,7 @@ def gen_x509_csr(store, csr_fields):
         for field, value in csr_fields.iteritems():
             setattr(subj, field, value)
 
-        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, db_cfg['key'])
+        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, db_cfg['ssl_key'])
 
         req.set_pubkey(prv_key)
         req.sign(prv_key, 'sha512')

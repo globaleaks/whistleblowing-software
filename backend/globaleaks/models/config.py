@@ -273,6 +273,8 @@ def load_tls_dict(store):
     '''
     privFact = PrivateFactory(store)
 
+    # /START ssl_* is used here to indicate the quality of the implementation
+    # /END Tongue in cheek.
     tls_cfg = {
         'ssl_key': privFact.get_val('https_priv_key'),
         'ssl_cert': privFact.get_val('https_cert'),

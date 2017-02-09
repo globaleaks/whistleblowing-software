@@ -74,8 +74,8 @@ def setup_tls_proxy(cfg):
     if not ok or not err is None:
         raise err
 
-    tls_factory = TLSServerContextFactory(cfg['key'],
-                                          cfg['cert'],
+    tls_factory = TLSServerContextFactory(cfg['ssl_key'],
+                                          cfg['ssl_cert'],
                                           cfg['ssl_intermediate'],
                                           cfg['ssl_dh'])
 
