@@ -100,6 +100,9 @@ class GLSettingsClass(object):
 
         self.authentication_lifetime = 3600
 
+        self.jobs = []
+        self.jobs_monitor = None
+
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
         self.stats_collection_start_time = datetime_now()
@@ -549,6 +552,18 @@ class GLSettingsClass(object):
     @staticmethod
     def make_db_uri(db_file_path):
         return 'sqlite:' + db_file_path + '?foreign_keys=ON'
+
+    def start_jobs(self):
+        from globaleaks.jobs import jobs_list
+        from globaleaks.jobs.base import GLJobsMonitor
+
+        for job in jobs_list:
+            j = job()
+            GLSettings.jobs.append(j)
+            j.schedule()
+
+        self.jobs_monitor = GLJobsMonitor(GLSettings.jobs)
+        self.jobs_monitor.schedule()
 
 # GLSettings is a singleton class exported once
 GLSettings = GLSettingsClass()

@@ -12,6 +12,8 @@ from globaleaks.utils.utility import log
 
 test_reactor = None
 
+TRACK_LAST_N_EXECUTIONS = 10
+
 
 class GLJob(task.LoopingCall):
     name = "unnamed"
@@ -22,6 +24,7 @@ class GLJob(task.LoopingCall):
     mean_time = -1
     start_time = -1
     active = False
+    last_executions = []
 
     def operation(self):
         raise NotImplementedError('GLJob does not implement operation')
@@ -59,10 +62,16 @@ class GLJob(task.LoopingCall):
 
     def job_begin(self):
         self.active = True
-        self.start_time = time.time()
+        self.start_time = int(time.time() * 1000)
+        self.last_executions=self.last_executions[:TRACK_LAST_N_EXECUTIONS - 1]
+        self.last_executions.append((self.start_time, -1))
 
     def job_end(self):
-        current_run_time = time.time() - self.start_time
+        self.end_time = int(time.time() * 1000)
+        last_execution = self.last_executions.pop()
+        self.last_executions.append((last_execution[0], self.end_time))
+
+        current_run_time = self.end_time - self.start_time
 
         # discard empty cycles from stats
         if self.mean_time == -1:
