@@ -22,7 +22,7 @@ class ConfigFactory(object):
             self._query_group()
 
     def _query_group(self):
-        if not self.res is None:
+        if self.res is not None:
             return
         cur = self.store.find(Config, And(Config.var_group == self.group))
         self.res = {c.var_name : c for c in cur}
