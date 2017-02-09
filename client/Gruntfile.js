@@ -33,6 +33,8 @@ module.exports = function(grunt) {
       src: [
         'Gruntfile.js',
         'app/js/**/*.js',
+        '!app/js/lib/*.js',
+        '!app/js/locale/*.js',
         '!app/js/crypto/lib/*.js',
         'tests/**/*.js'
       ]
