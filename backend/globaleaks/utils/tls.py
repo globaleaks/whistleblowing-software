@@ -235,3 +235,12 @@ def altnames(cert):
                 altnames.append(j[0].asOctets())
 
     return altnames
+
+
+def should_redirect(glsettings, request):
+    if (glsettings.memory_copy.private.https_enabled and \
+        request.protocol == 'http' and \
+        not request.host in glsettings.internal_hosts):
+        return True
+    else:
+        return False

@@ -75,9 +75,9 @@ def setup_tls_proxy(cfg):
         raise err
 
     tls_factory = TLSServerContextFactory(cfg['key'],
-                                    cfg['cert'],
-                                    cfg['ssl_intermediate'],
-                                    cfg['ssl_dh'])
+                                          cfg['cert'],
+                                          cfg['ssl_intermediate'],
+                                          cfg['ssl_dh'])
 
     socket_fds = cfg['tls_socket_fds']
 
