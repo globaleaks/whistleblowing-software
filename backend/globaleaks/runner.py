@@ -54,7 +54,9 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             yield refresh_memory_variables()
 
-            self.start_asynchronous_jobs()
+
+            yield GLSettings.state.exit_relay_list.update()
+            log.info('Retrieved: %d exit relay ips' % len(GLSettings.state.exit_relay_list))
 
             GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
                                                                     '127.0.0.1',
@@ -62,6 +64,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
                                                                     GLSettings.worker_path)
 
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+
+            self.start_asynchronous_jobs()
 
         except Exception as excep:
             log.err("ERROR: Cannot start GlobaLeaks; please manually check the error.")

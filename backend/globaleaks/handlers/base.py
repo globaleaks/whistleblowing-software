@@ -23,7 +23,7 @@ from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.settings import GLSettings
-from globaleaks.utils import tls
+from globaleaks.utils import tls, tor_exit_list
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
@@ -408,10 +408,10 @@ class BaseHandler(RequestHandler):
                     # strip whatever is not validated
                     #
                     # reminder: it's not possible to raise an exception for the
-                    # in case more values are presenct because it's normal that the
+                    # in case more values are present because it's normal that the
                     # client will send automatically more data.
                     #
-                    # e.g. the client will always send 'creation_date' attributs of
+                    # e.g. the client will always send 'creation_date' attributes of
                     #      objects and attributes like this are present generally only
                     #      from the second request on.
                     #
@@ -477,6 +477,9 @@ class BaseHandler(RequestHandler):
             log.debug('Decided to redirect')
             self.redirect_https()
 
+        # TODO handle the case where we are not interested in applying the exit list
+        if tor_exit_list.should_redirect_tor(GLSettings, self.request):
+            self.redirect_tor(GLSettings.tor_address)
 
     def redirect_https(self):
         in_url = self.request.full_url()
@@ -487,7 +490,19 @@ class BaseHandler(RequestHandler):
         out_url = urlparse.urlunsplit(('https', netloc, path, query, frag))
 
         if out_url == in_url:
-            raise errors.InternalServerError('Should redirct made a mistake: %s' % out_url)
+            raise errors.InternalServerError('Should redirect to https: %s' % out_url)
+        self.redirect(out_url, status=301) # permanently redirect
+
+    def redirect_tor(self, onion_addr):
+        in_url = self.request.full_url()
+
+        _, netloc, path, query, frag = urlparse.urlsplit(in_url)
+        netloc = netloc.split(':')[0]
+
+        out_url = urlparse.urlunsplit(('http', onion_addr, path, query, frag))
+
+        if out_url == in_url:
+            raise errors.InternalServerError('Should redirect to tor: %s' % out_url)
         self.redirect(out_url, status=301) # permanently redirect
 
     def on_finish(self):
