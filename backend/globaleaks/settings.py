@@ -14,12 +14,14 @@ import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
 
+from twisted.python.threadpool import ThreadPool
 from cyclone.util import ObjectDict as OD
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.utility import datetime_now#, log
+from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.tor_exit_list import TorExitList
 
 this_directory = os.path.dirname(__file__)
 
@@ -226,6 +228,7 @@ class GLSettingsClass(object):
         # state managed as an object by the application
         self.state = OD()
         self.state.process_supervisor = None
+        self.state.exit_relay_list = TorExitList()
 
     def reset_hourly(self):
         self.RecentEventQ[:] = []
@@ -337,7 +340,7 @@ class GLSettingsClass(object):
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
 
-        #log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
+        log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
         self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
 
