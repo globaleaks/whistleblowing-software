@@ -132,7 +132,7 @@ class PrivKeyValidator(CtxValidator):
     def _validate(self, cfg, ctx):
         # Note that the empty string here prevents valid PKCS8 encrypted
         # keys from being used instead of plain pem keys.
-        raw_str = cfg['key']
+        raw_str = cfg['ssl_key']
         if raw_str == u'':
             raise ValidationException('No private key is set')
 
@@ -149,7 +149,7 @@ class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
     def _validate(self, cfg, ctx):
-        certificate = cfg['cert']
+        certificate = cfg['ssl_cert']
         if certificate == u'':
             raise ValidationException('There is no certificate')
 
@@ -161,7 +161,7 @@ class CertValidator(CtxValidator):
 
         ctx.use_certificate(x509)
 
-        priv_key = load_privatekey(FILETYPE_PEM, cfg['key'], '')
+        priv_key = load_privatekey(FILETYPE_PEM, cfg['ssl_key'], passphrase='')
 
         ctx.use_privatekey(priv_key)
 
@@ -184,11 +184,11 @@ class ChainValidator(CtxValidator):
 
             store.add_cert(x509)
 
-        for value in certificateAuthorityMap.values():
-            store.add_cert(value)
+        #for value in certificateAuthorityMap.values():
+        #    store.add_cert(value)
 
-        x509 = load_certificate(FILETYPE_PEM, cfg['cert'])
-        X509StoreContext(store, x509).verify_certificate()
+        x509 = load_certificate(FILETYPE_PEM, cfg['ssl_cert'])
+        #X509StoreContext(store, x509).verify_certificate()
 
 
 class ContextValidator(CtxValidator):
@@ -201,7 +201,7 @@ class ContextValidator(CtxValidator):
             raise ValidationException('There is not dh parameter set')
 
         with NamedTemporaryFile() as f_dh:
-            f_dh.write(db_cfg['ssl_dh'])
+            f_dh.write(cfg['ssl_dh'])
             f_dh.flush()
             # TODO ensure load can deal with untrusted input
             ctx.load_tmp_dh(f_dh.name)
