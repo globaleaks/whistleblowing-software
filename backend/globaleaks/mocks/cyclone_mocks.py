@@ -29,7 +29,7 @@ def mock_RequestHandler_set_default_headers(self):
     self.set_header("Expires", "-1")
 
     # to avoid information leakage via referrer
-    self.set_header("Content-Security-Policy", "referrer no-referrer")
+    self.set_header("Referrer-Policy", "no-referrer")
 
     # to avoid Robots spidering, indexing, caching
     if not GLSettings.memory_copy.allow_indexing:
