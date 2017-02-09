@@ -3,9 +3,11 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
 from globaleaks.handlers.admin import statistics
+from globaleaks.jobs import jobs_list
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
 from globaleaks.orm import transact
+from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
 
@@ -123,3 +125,20 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
         for k in anomaly.ANOMALY_MAP.keys():
             self.assertTrue(k in self.responses[1])
+
+
+class TestJobsTiming(helpers.TestHandler):
+    _handler = statistics.JobsTiming
+
+    @inlineCallbacks
+    def test_get(self):
+        GLSettings.start_jobs()
+
+        handler = self.request({}, role='admin')
+
+        yield handler.get()
+        self.assertEqual(len(self.responses[0]), len(jobs_list))
+
+        for job in self.responses[0]:
+            self.assertTrue('name' in job)
+            self.assertTrue('timings' in job)

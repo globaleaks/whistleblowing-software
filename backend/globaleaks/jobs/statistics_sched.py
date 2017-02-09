@@ -101,7 +101,7 @@ class StatisticsSchedule(GLJob):
     """
     Statistics collection scheduler runned hourly
     """
-    name = "Statistics Sched"
+    name = "Statistics"
     interval = 3600
     monitor_interval = 5 * 60
 
