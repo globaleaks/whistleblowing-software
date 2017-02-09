@@ -237,10 +237,11 @@ def altnames(cert):
     return altnames
 
 
-def should_redirect(glsettings, request):
+def should_redirect_https(glsettings, request):
+    # Use a header to determine if connection has been proxyied
     if (glsettings.memory_copy.private.https_enabled and \
         request.protocol == 'http' and \
-        not request.host in glsettings.internal_hosts):
+        not request.remote_ip in glsettings.internal_hosts):
         return True
     else:
         return False
