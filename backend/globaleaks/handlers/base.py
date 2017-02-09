@@ -188,6 +188,17 @@ class BaseHandler(RequestHandler):
         self.request.language = language
         self.set_header("Content-Language", language)
 
+        if tls.should_redirect_https(GLSettings, request):
+            self.redirect_https(request)
+
+    def redirect_https(self, request):
+        self.set_header('Strict-Transport-Security', 'max-age=31536000')
+
+        url = request.uri.replace('http', 'https', 1)
+        if url == uri:
+            raise errors.InternalServerError('Redirection error.')
+        self.redirect(url, status=301) # permanently redirect
+
     def parse_accept_language_header(self):
         if "Accept-Language" in self.request.headers:
             languages = self.request.headers["Accept-Language"].split(",")

@@ -119,8 +119,6 @@ class NodeFactory(ConfigFactory):
         'threshold_free_disk_percentage_high',
         'threshold_free_disk_percentage_medium',
         'threshold_free_disk_percentage_low',
-
-
     })
 
     admin_node = frozenset(GLConfig['node'].keys())
@@ -154,7 +152,14 @@ class NotificationFactory(ConfigFactory):
 
 
 class PrivateFactory(ConfigFactory):
-    mem_export_set = frozenset(GLConfig['private'].keys())
+    non_mem_vars = {
+            'https_priv_key',
+            'https_cert',
+            'https_chain',
+            'https_dh_params',
+    }
+
+    mem_export_set = frozenset(set(GLConfig['private'].keys()) - non_mem_vars)
 
     group_desc = GLConfig['private']
 

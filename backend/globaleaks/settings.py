@@ -155,6 +155,9 @@ class GLSettingsClass(object):
                 'receiver': False,
                 'unauth': True,
             },
+            'private': {
+                'https_enabled': True,
+            },
         })
 
 
@@ -346,6 +349,8 @@ class GLSettingsClass(object):
 
         self.accepted_hosts = list(set(self.bind_addresses + \
                                    self.cmdline_options.host_list.replace(" ", "").split(",")))
+
+        self.internal_hosts = {'127.0.0.1', 'localhost'}
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
