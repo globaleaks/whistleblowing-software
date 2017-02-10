@@ -715,8 +715,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
     }
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
   return function(fn) {
       var self = this;
 
@@ -732,6 +732,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.anomalies = AnomaliesCollection.query();
       self.tip_overview = TipOverview.query();
       self.file_overview = FileOverview.query();
+      self.jobs_overview = JobsOverview.query();
 
       self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
         self.field_attrs = field_attrs;
@@ -755,7 +756,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
               self.activities.$promise,
               self.anomalies.$promise,
               self.tip_overview.$promise,
-              self.file_overview.$promise]).then(function() {
+              self.file_overview.$promise,
+              self.jobs_overview.$promise]).then(function() {
         fn(this);
       });
     };
@@ -768,6 +770,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('FileOverview', ['GLResource', function(GLResource) {
     return new GLResource('admin/overview/files');
+}]).
+  factory('JobsOverview', ['GLResource', function(GLResource) {
+    return new GLResource('admin/jobs');
 }]).
   factory('StatsCollection', ['GLResource', function(GLResource) {
     return new GLResource('admin/stats/:week_delta', {week_delta: '@week_delta'}, {});

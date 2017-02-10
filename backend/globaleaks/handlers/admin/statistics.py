@@ -235,3 +235,21 @@ class RecentEventsCollection(BaseHandler):
             self.write(templist)
         else:  # kind == 'summary':
             self.write(self.get_summary(templist))
+
+
+class JobsTiming(BaseHandler):
+    """
+    This handler return the timing for the latest scheduler execution
+    """
+    @BaseHandler.transport_security_check("admin")
+    @BaseHandler.authenticated("admin")
+    def get(self):
+        response = []
+
+        for job in GLSettings.jobs:
+            response.append({
+              'name': job.name,
+              'timings': job.last_executions
+            })
+
+        self.write(response)
