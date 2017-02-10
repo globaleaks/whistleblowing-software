@@ -8,8 +8,6 @@ from twisted.scripts._twistd_unix import UnixApplicationRunner
 
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables
-from globaleaks.jobs import jobs_list
-from globaleaks.jobs.base import GLJobsMonitor
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
@@ -26,17 +24,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
         """
         Initialize the asynchronous operation, scheduled in the system
         """
-        if test_reactor:
-            self._reactor = test_reactor
-
-        jobs = []
-        for job in jobs_list:
-            j = job()
-            j.schedule()
-            jobs.append(j)
-
-        monitor = GLJobsMonitor(jobs)
-        monitor.schedule()
+        GLSettings.start_jobs()
 
     @defer.inlineCallbacks
     def start_globaleaks(self):
@@ -64,5 +52,8 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
     def postApplication(self):
         reactor.callLater(0, self.start_globaleaks)
+
+        if test_reactor:
+            self._reactor = test_reactor
 
         UnixApplicationRunner.postApplication(self)

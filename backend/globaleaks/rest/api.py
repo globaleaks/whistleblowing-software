@@ -116,6 +116,7 @@ spec = [
     (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
     (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
     (r'/admin/anomalies', admin_statistics.AnomalyCollection),
+    (r'/admin/jobs', admin_statistics.JobsTiming),
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
