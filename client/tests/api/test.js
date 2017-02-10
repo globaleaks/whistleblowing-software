@@ -44,7 +44,7 @@ var validate_mandatory_headers = function(headers) {
     'Server': 'globaleaks',
     'Pragma': 'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate',
-    'Content-Security-Policy': 'referrer no-referrer',
+    'Referrer-Policy': 'no-referrer',
     'X-Frame-Options': 'sameorigin'
   };
 
