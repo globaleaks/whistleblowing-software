@@ -12,12 +12,12 @@
     "bower": "*"
   },
   "devDependencies": {
-    "coveralls": "2.11.15",
-    "eslint": "3.14.1",
-    "firefox-profile": "0.4.7",
+    "coveralls": "2.11.16",
+    "eslint": "3.15.0",
+    "firefox-profile": "0.4.8",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
-    "grunt-confirm": "1.0.5",
+    "grunt-confirm": "1.0.6",
     "grunt-contrib-clean": "1.0.0",
     "grunt-contrib-concat": "1.0.1",
     "grunt-contrib-connect": "1.0.2",
