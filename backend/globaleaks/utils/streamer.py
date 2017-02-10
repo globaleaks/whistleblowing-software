@@ -8,6 +8,19 @@ from twisted.internet import reactor, protocol, defer, address
 from twisted.web.iweb import IBodyProducer
 from twisted.web.server import NOT_DONE_YET
 
+
+class BodyStreamer(protocol.Protocol):
+    def __init__(self, streamfunction, finished):
+        self._finished = finished
+        self._streamfunction = streamfunction
+
+    def dataReceived(self, data):
+        self._streamfunction(data)
+
+    def connectionLost(self, reason):
+        self._finished.callback('')
+
+
 class BodyProducer(object):
     implements(IBodyProducer)
 
@@ -46,30 +59,33 @@ class BodyProducer(object):
 class FakeBody(object):
     implements(IBodyProducer)
     
-    msg = 'a'*50
-    length = 50
+    CHUNK_SIZE = 1024
+    length = _newclient.UNKNOWN_LENGTH
+
+    deferred = None
+    inp_buf = None
+
+    def __init__(self, io_buf):
+        self.inp_buf = io_buf
+        self.deferred = defer.Deferred()
+
 
     def startProducing(self, consumer):
-        consumer.write(self.msg)
+        return self.resumeProducing(consumer)
+
+    def resumeProducing(self, consumer):
+        chunk = self.inp_buf.read(self.CHUNK_SIZE)
+        print ("writing chunk", chunk)
+        consumer.write(chunk)
+        self.deferred.callback(None)
+        print("Finished")
+        return self.deferred
 
     def stopProducing(self):
-        pass
-
-
-class BodyStreamer(protocol.Protocol):
-    def __init__(self, streamfunction, finished):
-        self._finished = finished
-        self._streamfunction = streamfunction
-
-    def dataReceived(self, data):
-        self._streamfunction(data)
-
-    def connectionLost(self, reason):
-        self._finished.callback(None)
-
+        self.deferred = None
+        self.inp_buf.close()
 
 class HTTPStreamProxyRequest(http.Request):
-
     def handleForwardPart(self, data):
         print('writing some data')
         self.write(data)
@@ -81,6 +97,7 @@ class HTTPStreamProxyRequest(http.Request):
         self.unregisterProducer()
         self.finish()
         print("Finished")
+
 
     def handleError(self, failure):
         print("error occured %s" % failure)
@@ -95,13 +112,13 @@ class HTTPStreamProxyRequest(http.Request):
         self.responseHeaders = response.headers
         response.deliverBody(BodyStreamer(self.handleForwardPart, finished))
         finished.addCallback(self.handleForwardEnd)
+        finished.addErrback(self.handleError)
 
         # TODO signal here that the upstream needs to close
         return finished
 
     def __init__(self, *args, **kwargs):
         http.Request.__init__(self, *args, **kwargs)
-        print "Attaching body producer"
      
     def process(self):
    
@@ -116,15 +133,17 @@ class HTTPStreamProxyRequest(http.Request):
         hdrs.setRawHeaders('X-I-AM', ['Goomba!!'])
 
         #from IPython import embed; embed()
+        #self.content.seek(0,0)
+        prod = FakeBody(self.content)
 
         http_agent = Agent(reactor)
         self.proxy_d = http_agent.request(method=self.method,
                                      uri=proxy_url,
                                      headers=hdrs,
-                                     bodyProducer=FakeBody())
+                                     bodyProducer=prod)
 
-        #self.proxy_d.addCallback(self.cbResponse)
-        #self.proxy_d.addErrback(self.handleError)
+        self.proxy_d.addCallback(self.cbResponse)
+        self.proxy_d.addErrback(self.handleError)
 
         return NOT_DONE_YET
 
