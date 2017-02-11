@@ -111,7 +111,9 @@ for TARGET in $TARGETS; do
   cd $BUILDDIR/GlobaLeaks
   rm debian/control
 
-  if [ "$TARGET" != 'unstable' ]; then
+  if [ "$TARGET" == 'xenial' ]; then
+    ln -s controlX/control.$TARGET debian/control
+  elif [ "$TARGET" == 'unstable' ]; then
     ln -s controlX/control.$TARGET debian/control
   else
     ln -s controlX/control.trusty debian/control
