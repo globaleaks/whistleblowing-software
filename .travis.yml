@@ -82,12 +82,6 @@ matrix:
     - env: GLTEST='test' GLREQUIREMENTS='xenial'
       python: "2.7"
 
-    - env: GLTEST='test' GLREQUIREMENTS='jessie'
-      python: "2.7"
-
-    - env: GLTEST='test' GLREQUIREMENTS='stretch'
-      python: "2.7"
-
   allow_failures:
     - env: GLTEST='end2end-0' BROWSER='edge 13'
     - env: GLTEST='end2end-1' BROWSER='ie 11'
@@ -101,11 +95,7 @@ matrix:
     - env: GLTEST='end2end-9' BROWSER='android 5.1'
     - env: GLTEST='end2end-10' BROWSER='iphone 8.0'
     - env: GLTEST='end2end-11' BROWSER='iphone 9.2'
-    - env: GLTEST='test' GLREQUIREMENTS='precise'
     - env: GLTEST='test' GLREQUIREMENTS='xenial'
-    - env: GLTEST='test' GLREQUIREMENTS='wheezy'
-    - env: GLTEST='test' GLREQUIREMENTS='jessie'
-    - env: GLTEST='test' GLREQUIREMENTS='stretch'
 
 before_install:
   - nvm install 6.9
