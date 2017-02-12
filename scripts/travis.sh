@@ -11,7 +11,6 @@ TRAVIS_USR="travis-`git rev-parse --short HEAD`"
 setupClientDependencies() {
   cd $TRAVIS_BUILD_DIR/client  # to install frontend dependencies
   npm install -d
-  bower update
   grunt copy:sources
   if [ "$1" = 1 ]; then
     grunt build
@@ -31,7 +30,7 @@ setupDependencies() {
   setupBackendDependencies
 }
 
-npm install -g grunt grunt-cli bower
+npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
 

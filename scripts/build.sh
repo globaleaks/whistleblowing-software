@@ -94,7 +94,6 @@ else
     cd client
     npm install grunt-cli
     npm install
-    bower update
     grunt build
 fi
 
