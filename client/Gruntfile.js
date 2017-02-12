@@ -47,9 +47,33 @@ module.exports = function(grunt) {
     copy: {
       sources: {
         files: [
-          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
-          { dest: 'app/js/crypto/lib/', cwd: 'app/', src: ['components/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
+          { dest: 'app/css', cwd: '.', src: ['node_modules/bootstrap-inline-rtl/dist/css/bootstrap.css'], expand: true, flatten: true },
+          { dest: 'app/fonts', cwd: '.', src: ['node_modules/bootstrap-inline-rtl/fonts/*'], expand: true, flatten: true },
+          { dest: 'app/js/locale', cwd: '.', src: ['node_modules/angular-i18n/angular-locale*'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/stacktrace-js/dist/stacktrace.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular/angular.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-aria/angular-aria.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-filter/dist/angular-filter.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-resource/angular-resource.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-route/angular-route.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-sanitize/angular-sanitize.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-translate/dist/angular-translate.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-translate-loader-url/angular-translate-loader-url.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/d3/build/d3.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/file-saver/FileSaver.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-file-saver/dist/angular-file-saver.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/@flowjs/flow.js/dist/flow.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/@flowjs/ng-flow/dist/ng-flow.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/zxcvbn/dist/zxcvbn.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-zxcvbn/dist/angular-zxcvbn.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
         ]
       },
       build: {
@@ -149,7 +173,7 @@ module.exports = function(grunt) {
             {
               pattern: "src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');",
               replacement: function () {
-                return "src: url('" + fileToDataURI('tmp/components/bootstrap-inline-rtl/fonts/glyphicons-halflings-regular.woff') + "') format('woff');";
+                return "src: url('" + fileToDataURI('tmp/fonts/glyphicons-halflings-regular.woff') + "') format('woff');";
               }
             },
             {

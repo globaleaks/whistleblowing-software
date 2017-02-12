@@ -82,13 +82,12 @@ echo "Step 5/9: install npm and node"
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-echo "Step 6/9: install grunt and bower"
-sudo npm install -g grunt-cli bower
+echo "Step 6/9: install grunt"
+sudo npm install -g grunt-cli
 
 echo "Step 7/9: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
-bower update
 grunt copy:sources
 cd ../../
 
