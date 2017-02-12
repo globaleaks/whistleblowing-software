@@ -120,8 +120,8 @@ function submissionUploadSuite() {
 
           var options = {
             message: openpgp.message.readArmored(data),
-            publicKeys: pub_key,
-            privateKey: priv_key,
+            publicKeys: openpgp.key.readArmored(pub_key),
+            privateKey: openpgp.key.readArmored(priv_key).keys[0],
           };
 
           openpgp.decrypt(options).then(function(result) {
