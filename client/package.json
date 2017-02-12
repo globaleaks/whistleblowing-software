@@ -9,7 +9,7 @@
     "url": "git@github.com:globaleaks/GlobaLeaks.git"
   },
   "dependencies": {
-    "angular": "1.5.11",
+    "angular": "1.5.9",
     "angular-aria": "1.5.9",
     "angular-dynamic-locale": "0.1.32",
     "angular-file-saver": "1.1.3",

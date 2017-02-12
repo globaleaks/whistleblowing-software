@@ -119,8 +119,8 @@
       "dev": true
     },
     "angular": {
-      "version": "1.5.11",
-      "from": "angular@1.5.11",
+      "version": "1.5.9",
+      "from": "angular@1.5.9",
       "resolved": "https://registry.npmjs.org/angular/-/angular-1.5.11.tgz"
     },
     "angular-aria": {
