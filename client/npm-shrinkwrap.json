@@ -119,14 +119,14 @@
       "dev": true
     },
     "angular": {
-      "version": "1.5.9",
-      "from": "angular@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.5.11.tgz"
+      "version": "1.6.2",
+      "from": "angular@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.2.tgz"
     },
     "angular-aria": {
-      "version": "1.5.9",
-      "from": "angular-aria@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.5.9.tgz"
+      "version": "1.6.2",
+      "from": "angular-aria@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.2.tgz"
     },
     "angular-dynamic-locale": {
       "version": "0.1.32",
@@ -144,24 +144,24 @@
       "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.15.tgz"
     },
     "angular-i18n": {
-      "version": "1.5.9",
-      "from": "angular-i18n@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.5.9.tgz"
+      "version": "1.6.2",
+      "from": "angular-i18n@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.2.tgz"
     },
     "angular-resource": {
-      "version": "1.5.9",
-      "from": "angular-resource@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.5.9.tgz"
+      "version": "1.6.2",
+      "from": "angular-resource@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.2.tgz"
     },
     "angular-route": {
-      "version": "1.5.9",
-      "from": "angular-route@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.5.9.tgz"
+      "version": "1.6.2",
+      "from": "angular-route@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.2.tgz"
     },
     "angular-sanitize": {
-      "version": "1.5.9",
-      "from": "angular-sanitize@1.5.9",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.5.9.tgz"
+      "version": "1.6.2",
+      "from": "angular-sanitize@1.6.2",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.2.tgz"
     },
     "angular-translate": {
       "version": "2.14.0",
