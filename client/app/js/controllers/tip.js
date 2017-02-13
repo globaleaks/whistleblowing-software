@@ -116,7 +116,7 @@ GLClient.controller('TipCtrl',
         $scope.provideIdentityInformation = function(identity_field_id, identity_field_answers) {
           return $http.post('wbtip/' + $scope.tip.id + '/provideidentityinformation',
                             {'identity_field_id': identity_field_id, 'identity_field_answers': identity_field_answers}).
-              success(function(){
+              then(function(){
                 $route.reload();
               });
         };
@@ -272,12 +272,12 @@ controller('TipOperationsCtrl',
         'args': {}
       };
 
-      return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).success(function () {
+      return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).then(function () {
         $route.reload();
       });
     } else if ($scope.operation === 'delete') {
       return $http({method: 'DELETE', url: 'rtip/' + $scope.tip.id, data:{}}).
-        success(function() {
+        then(function() {
           $location.url('/receiver/tips');
           $route.reload();
         });
@@ -325,7 +325,7 @@ controller('IdentityAccessRequestCtrl',
     $uibModalInstance.close();
 
     return $http.post('rtip/' + tip.id + '/identityaccessrequests', {'request_motivation': $scope.request_motivation}).
-        success(function(){
+        then(function(){
           $route.reload();
         });
   };

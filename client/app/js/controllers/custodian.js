@@ -4,7 +4,7 @@ GLClient.controller('CustodianIdentityAccessRequestsCtrl', ['$scope',  '$http', 
 
   $scope.authorize_identity_access_request = function (iar_id) {
     return $http.put('custodian/identityaccessrequest/' + iar_id, {'reply': 'authorized', 'reply_motivation': ''}).
-      success(function(){
+      then(function(){
         $route.reload();
       });
   };
@@ -31,7 +31,7 @@ controller('IdentityAccessReplyCtrl', ['$scope', '$http', '$route', '$uibModalIn
     $scope.ok = function () {
       $uibModalInstance.close();
       return $http.put('custodian/identityaccessrequest/' + $scope.iar, {'reply': 'denied', 'reply_motivation': $scope.reply_motivation}).
-        success(function(){
+        then(function(){
           $route.reload();
         });
     };

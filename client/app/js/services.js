@@ -24,6 +24,8 @@ angular.module('GLServices', ['ngResource']).
           self.loginInProgress = true;
 
           var success_fn = function(response) {
+            var response = response.data;
+
             self.session = {
               'id': response.session_id,
               'user_id': response.user_id,
@@ -85,14 +87,12 @@ angular.module('GLServices', ['ngResource']).
           if (username === 'whistleblower') {
             password = password.replace(/\D/g,'');
             return $http.post('receiptauth', {'receipt': password}).
-            success(success_fn).
-            error(function() {
+            then(success_fn, function() {
               self.loginInProgress = false;
             });
           } else {
             return $http.post('authentication', {'username': username, 'password': password}).
-            success(success_fn).
-            error(function() {
+            then(success_fn, function() {
               self.loginInProgress = false;
             });
           }
@@ -438,7 +438,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
             }
           };
 
-          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).success(function () {
+          return $http({method: 'PUT', url: 'rtip/' + tip.id, data: req}).then(function () {
             tip[var_name] = var_value;
           });
         };

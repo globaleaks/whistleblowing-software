@@ -197,7 +197,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   };
 
   $scope.delete_resource = function (url, refresh) {
-    return $http.delete(url).success(function () {
+    return $http.delete(url).then(function () {
       if (refresh) {
         $scope.$emit("REFRESH");
       }
@@ -205,7 +205,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
   };
 
   $scope.delete_file = function (url) {
-    $http.delete(url).success(function () {
+    $http.delete(url).then(function () {
       $scope.update_static_files();
     });
   };

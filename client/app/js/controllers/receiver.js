@@ -78,7 +78,7 @@ controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '
     return $http({method: 'PUT', url: 'rtip/operations', data:{
       'operation': $scope.operation,
       'rtips': $scope.selected_tips
-    }}).success(function(){
+    }}).then(function(){
       $scope.selected_tips = [];
       $route.reload();
     });
