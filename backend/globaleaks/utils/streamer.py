@@ -18,153 +18,96 @@ class BodyStreamer(protocol.Protocol):
         self._streamfunction(data)
 
     def connectionLost(self, reason):
-        self._finished.callback('')
+        self._streamfunction = None
+        self._finished.callback(None)
+        self._finished = None
 
 
-class BodyProducer(object):
+class BodyForwarder(object):
     implements(IBodyProducer)
 
-    def __init__(self):
-        self.length = _newclient.UNKNOWN_LENGTH
-        self.finished = defer.Deferred()
-        self.consumer = None
-        self.can_stream = False
-        self.can_stream_d = defer.Deferred()
-
-    def startProducing(self, consumer):
-        self.consumer = consumer
-        self.can_stream = True
-        self.can_stream_d.callback(True)
-        return self.finished
-
-    @defer.inlineCallbacks
-    def dataReceived(self, data):
-        print("Data received called")
-        if not self.can_stream:
-            yield self.can_stream_d
-        self.consumer.write(data)
-
-    def allDataReceived(self):
-        self.finished.callback(None)
-
-    def resumeProducing(self):
-        pass
-
-    def pauseProducing(self):
-        pass
-
-    def stopProducing(self):
-        pass
-
-class FakeBody(object):
-    implements(IBodyProducer)
-    
     CHUNK_SIZE = 1024
-    length = _newclient.UNKNOWN_LENGTH
+    length = 0
 
     deferred = None
     inp_buf = None
 
-    def __init__(self, io_buf):
+    def __init__(self, io_buf, length):
         self.inp_buf = io_buf
+        self.length = length
         self.deferred = defer.Deferred()
-
 
     def startProducing(self, consumer):
         return self.resumeProducing(consumer)
 
     def resumeProducing(self, consumer):
+        print("resumeProducing()")
         chunk = self.inp_buf.read(self.CHUNK_SIZE)
-        print ("writing chunk", chunk)
         consumer.write(chunk)
+        # TODO handle longer reads
         self.deferred.callback(None)
-        print("Finished")
         return self.deferred
 
     def stopProducing(self):
         self.deferred = None
         self.inp_buf.close()
 
+
 class HTTPStreamProxyRequest(http.Request):
-    def handleForwardPart(self, data):
-        print('writing some data')
-        self.write(data)
-
-    def handleForwardEnd(self, data):
-        print("ForwardEnded")
-        if data is not None:
-            self.write(data)
-        self.unregisterProducer()
-        self.finish()
-        print("Finished")
-
-
-    def handleError(self, failure):
-        print("error occured %s" % failure)
-        self.close()
-
-    def cbResponse(self, response):
-        print("In request Callaback")
-
-        finished = defer.Deferred()
-
-        #from IPython import embed; embed()
-        self.responseHeaders = response.headers
-        response.deliverBody(BodyStreamer(self.handleForwardPart, finished))
-        finished.addCallback(self.handleForwardEnd)
-        finished.addErrback(self.handleError)
-
-        # TODO signal here that the upstream needs to close
-        return finished
-
     def __init__(self, *args, **kwargs):
         http.Request.__init__(self, *args, **kwargs)
-     
-    def process(self):
-   
-        proxy_url = urlparse.urljoin(self.transport.protocol.proxy_url, self.uri)
 
-        #self.transport.unregisterProducer()
-        #self.transport.registerProducer(BodyProducer(), streaming=False)
-        print('processing request', proxy_url)
+    def process(self):
+        proxy_url = urlparse.urljoin(self.transport.protocol.proxy_url, self.uri)
+        print('proxying: %s' % proxy_url)
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('X-Forwarded-For', [self.getClientIP()])
-        hdrs.setRawHeaders('X-I-AM', ['Goomba!!'])
+        hdrs.setRawHeaders('X-I-AM', ['Goomba'])
 
-        #from IPython import embed; embed()
-        #self.content.seek(0,0)
-        prod = FakeBody(self.content)
+        prod = None
+        content_length = self.getHeader('Content-Length')
+        if content_length is not None:
+            hdrs.removeHeader('Content-Length')
+            print('Found: %s' % content_length)
+            prod = BodyForwarder(self.content, int(content_length))
 
-        http_agent = Agent(reactor)
-        self.proxy_d = http_agent.request(method=self.method,
+        http_agent = Agent(reactor, connectTimeout=2)
+        proxy_d = http_agent.request(method=self.method,
                                      uri=proxy_url,
                                      headers=hdrs,
                                      bodyProducer=prod)
 
-        self.proxy_d.addCallback(self.cbResponse)
-        self.proxy_d.addErrback(self.handleError)
+        reactor.callLater(15, proxy_d.cancel)
+        proxy_d.addCallback(self.proxySuccess)
+        proxy_d.addErrback(self.proxyError)
 
         return NOT_DONE_YET
 
-    def connectionLost(self, reason):
-        print ("close conn for %s" % reason)
-        try:
-            if self.proxy_d:
-                self.proxy_d.cancel()
-        except Exception:
-            pass
- 
-        try:
-            if self.proxy_response:
-                self.proxy_response._transport.stopProducing()
-        except Exception:
-            pass
- 
-        try:
-            http.Request.connectionLost(self, reason)
-        except Exception:
-            pass
+    def proxySuccess(self, response):
+        print("proxySuccess: %s" % response)
+        self.unregisterProducer()
+        self.responseHeaders = response.headers
+
+        d_forward = defer.Deferred()
+        response.deliverBody(BodyStreamer(self.write, d_forward))
+        d_forward.addBoth(self.forwardClose)
+
+    def proxyError(self, fail):
+        print("proxyErr: %s" % fail)
+        # TODO respond with 500
+        self.unregisterProducer()
+        self.forwardClose()
+
+    def proxyClose(self):
+        # TODO ensure that the proxy connection is cleaned up
+        pass
+
+    def forwardClose(self):
+        print("forwardClose()")
+        self.unregisterProducer()
+        self.finish()
+        print("Cleanly finished")
 
 
 class HTTPStreamChannel(http.HTTPChannel):
@@ -175,10 +118,6 @@ class HTTPStreamChannel(http.HTTPChannel):
 
         self.proxy_url = proxy_url
         self.http_agent = Agent(reactor)
-
-    def requestReceived(self, *args, **kwargs):
-        print("I got passed up")
-        pass
 
 
 class HTTPStreamFactory(http.HTTPFactory):
