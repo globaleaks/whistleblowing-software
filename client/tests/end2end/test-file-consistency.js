@@ -85,7 +85,7 @@ function submissionUploadSuite() {
     });
   });
 
-  it('uploaded and encrypted files should match downloaded and decrypted files', function() {
+  it('uploaded and encrypted files should match downloaded and decrypted files', function(done) {
     var wb = new pages.whistleblower();
     var rec = new pages.receiver();
 
@@ -130,6 +130,8 @@ function submissionUploadSuite() {
             // check the files to see if they match
             var test = utils.checksum(result.data);
             expect(test).toEqual(m_file.chksum);
+
+            done();
           });
         });
       });
