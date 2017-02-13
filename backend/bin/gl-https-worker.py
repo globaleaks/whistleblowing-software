@@ -56,17 +56,20 @@ set_pdeathsig(signal.SIGINT)
 
 
 def setup_https_proxy():
+    iface, port = '127.0.0.1', 7000
+    proxy_url = 'http://127.0.0.1:8082'
 
     cfg = {
         # 'ssl_key':
         #
     }
 
-    http_proxy_factory = HTTPStreamFactory('http://127.0.0.1:8082')
-
-    sock = open_socket_listen('127.0.0.1', 7000)
+    http_proxy_factory = HTTPStreamFactory(proxy_url)
+    sock = open_socket_listen(iface, port)
     listen_tcp_on_sock(reactor, sock.fileno(), http_proxy_factory)
 
+    log('Listening on %s:%d' % (iface, port))
+    log('Forwarding requests to: %s' % proxy_url)
 
 if __name__ == '__main__':
     setup_https_proxy()
