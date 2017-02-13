@@ -5,6 +5,7 @@ from zope.interface import implements
 from twisted.web import http, client, _newclient
 from twisted.web.client import Agent
 from twisted.internet import reactor, protocol, defer, address
+from twisted.internet.protocol import connectionDone
 from twisted.web.iweb import IBodyProducer
 from twisted.web.server import NOT_DONE_YET
 
@@ -17,7 +18,7 @@ class BodyStreamer(protocol.Protocol):
     def dataReceived(self, data):
         self._streamfunction(data)
 
-    def connectionLost(self, reason):
+    def connectionLost(self, reason=connectionDone):
         self._streamfunction = None
         self._finished.callback(None)
         self._finished = None
@@ -33,25 +34,31 @@ class BodyForwarder(object):
     inp_buf = None
 
     def __init__(self, io_buf, length):
+        print("inp_buf type: %s" % type(io_buf))
         self.inp_buf = io_buf
         self.length = length
         self.deferred = defer.Deferred()
 
     def startProducing(self, consumer):
-        return self.resumeProducing(consumer)
+        self.consumer = consumer
+        return self.resumeProducing()
 
-    def resumeProducing(self, consumer):
+    def resumeProducing(self):
         print("resumeProducing()")
-        chunk = self.inp_buf.read(self.CHUNK_SIZE)
-        consumer.write(chunk)
-        # TODO handle longer reads
-        self.deferred.callback(None)
+        chunk = self.inp_buf.read()
+        if len(chunk) != 0:
+            self.consumer.write(chunk)
+        else:
+            self.deferred.callback(None)
         return self.deferred
 
     def stopProducing(self):
         self.deferred = None
         self.inp_buf.close()
+        self.consumer = None
 
+    def pauseProducing(self):
+        pass
 
 class HTTPStreamProxyRequest(http.Request):
     def __init__(self, *args, **kwargs):
@@ -63,7 +70,6 @@ class HTTPStreamProxyRequest(http.Request):
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('X-Forwarded-For', [self.getClientIP()])
-        hdrs.setRawHeaders('X-I-AM', ['Goomba'])
 
         prod = None
         content_length = self.getHeader('Content-Length')
@@ -71,6 +77,7 @@ class HTTPStreamProxyRequest(http.Request):
             hdrs.removeHeader('Content-Length')
             print('Found: %s' % content_length)
             prod = BodyForwarder(self.content, int(content_length))
+            self.registerProducer(prod, streaming=True)
 
         http_agent = Agent(reactor, connectTimeout=2)
         proxy_d = http_agent.request(method=self.method,
@@ -99,15 +106,11 @@ class HTTPStreamProxyRequest(http.Request):
         self.unregisterProducer()
         self.forwardClose()
 
-    def proxyClose(self):
-        # TODO ensure that the proxy connection is cleaned up
-        pass
-
-    def forwardClose(self):
+    def forwardClose(self, *args):
         print("forwardClose()")
         self.unregisterProducer()
         self.finish()
-        print("Cleanly finished")
+        print("handled close")
 
 
 class HTTPStreamChannel(http.HTTPChannel):
