@@ -350,10 +350,11 @@ class GLSettingsClass(object):
 
         self.bind_ports = {80, self.bind_port}
 
-        self.accepted_hosts = list(set(self.bind_addresses + \
-                                   self.cmdline_options.host_list.replace(" ", "").split(",")))
+        self.local_hosts = ['127.0.0.1', 'localhost']
 
-        self.internal_hosts = {'127.0.0.1', 'localhost'}
+        self.accepted_hosts = list(set(self.local_hosts + \
+                                       self.bind_addresses + \
+                                       self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification

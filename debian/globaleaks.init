@@ -29,6 +29,11 @@ fi
 if test -e "/etc/default/globaleaks" ; then
    . "/etc/default/globaleaks"
 fi
+
+ALLOWED_SRC_IP=$(echo $ALLOWED_SRC_IP 127.0.0.1 | tr ' ' '\n' | sort -u)
+ALLOWED_DST_IP=$(echo $ALLOWED_DST_IP 127.0.0.1 | tr ' ' '\n' | sort -u)
+LISTENING_PORTS=$(echo $LISTENING_PORT 80 443 | tr ' ' '\n' | sort -u)
+
 ##################################################################
 
 . /lib/init/vars.sh
