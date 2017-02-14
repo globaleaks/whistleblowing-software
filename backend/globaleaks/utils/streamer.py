@@ -28,19 +28,19 @@ class BodyStreamer(protocol.Protocol):
 class BodyProducer(object):
     implements(IBodyProducer)
 
-    BUF_MAX_SIZE = 30*1024*1024
+    BUF_MAX_SIZE = 2*1023*1024 # TODO Use the hardcoded value for buf max size
     length = 0
     bytes_written = 0
 
     deferred = None
     inp_buf = None
-    new_buf_fn = None
+    rf_buf_fn = None
     consumer = None
 
-    def __init__(self, inp_buf, new_buf_fn, length):
+    def __init__(self, inp_buf, rf_buf_fn, length):
         print("inp_buf type: %s" % type(inp_buf))
         self.inp_buf = inp_buf
-        self.new_buf_fn = new_buf_fn
+        self.rf_buf_fn = rf_buf_fn
         self.length = length
         self.deferred = defer.Deferred()
 
@@ -57,8 +57,8 @@ class BodyProducer(object):
             self.consumer.write(chunk)
             self.bytes_written += n
             if self.bytes_written > self.BUF_MAX_SIZE:
-                print("REFRESHED BUFFER")
-                self.inp_buf = self.new_buf_fn()
+                print("Install buffer")
+                self.inp_buf = self.rf_buf_fn()
                 self.bytes_written = 0
         else:
             self.deferred.callback(None)
@@ -68,7 +68,7 @@ class BodyProducer(object):
     def stopProducing(self):
         self.deferred = None
         self.inp_buf.close()
-        self.new_buf_fn = None
+        self.rf_buf_fn = None
         self.consumer = None
 
     def pauseProducing(self):
@@ -79,17 +79,18 @@ class HTTPStreamProxyRequest(http.Request):
     def __init__(self, *args, **kwargs):
         http.Request.__init__(self, *args, **kwargs)
 
-    def refresh_buffer(self):
-        self.content.close()
-        del self.content
-        self.content = io.BytesIO()
+    def reset_buffer(self):
+        self.content.seek(0, 0)
+        self.content.truncate(0)
         return self.content
 
     def gotLength(self, length):
         http.Request.gotLength(self, length)
         if isinstance(self.content, file):
             print('Found tmpfile, replacing')
-            self.refresh_buffer()
+            #TODO must close tmpfile
+            self.content = io.BytesIO()
+            self.reset_buffer()
 
     def process(self):
         proxy_url = urlparse.urljoin(self.transport.protocol.proxy_url, self.uri)
@@ -103,7 +104,7 @@ class HTTPStreamProxyRequest(http.Request):
         if content_length is not None:
             hdrs.removeHeader('Content-Length')
             print('Found: %s' % content_length)
-            prod = BodyProducer(self.content, self.refresh_buffer, int(content_length))
+            prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
             self.registerProducer(prod, streaming=True)
 
         http_agent = Agent(reactor, connectTimeout=2)
