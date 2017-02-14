@@ -220,12 +220,8 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
       template:"views/admin/advanced/tab1.html"
     },
     {
-      title:"HTTPS access control",
-      template:"views/admin/advanced/tab2.html"
-    },
-    {
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab3.html"
+      template:"views/admin/advanced/tab2.html"
     }
   ];
 

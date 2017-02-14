@@ -5,7 +5,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
       template: "views/admin/network/settings.html"
     },
     {
-      title:"HTTPS dashboard",
+      title:"HTTPS Settings",
       template: "views/admin/network/https_dash.html"
     },
   ];
