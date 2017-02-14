@@ -93,7 +93,7 @@ class HTTPStreamProxyRequest(http.Request):
             self.reset_buffer()
 
     def process(self):
-        proxy_url = urlparse.urljoin(self.transport.protocol.proxy_url, self.uri)
+        proxy_url = bytes(urlparse.urljoin(self.channel.proxy_url, self.uri))
         print('proxying: %s' % proxy_url)
 
         hdrs = self.requestHeaders
@@ -105,15 +105,18 @@ class HTTPStreamProxyRequest(http.Request):
             hdrs.removeHeader('Content-Length')
             print('Found: %s' % content_length)
             prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
-            self.registerProducer(prod, streaming=True)
+            self.channel.registerProducer(prod, streaming=True)
 
-        http_agent = Agent(reactor, connectTimeout=2)
-        proxy_d = http_agent.request(method=self.method,
-                                     uri=proxy_url,
-                                     headers=hdrs,
-                                     bodyProducer=prod)
+        proxy_d = self.channel.http_agent.request(method=self.method,
+                                                  uri=proxy_url,
+                                                  headers=hdrs,
+                                                  bodyProducer=prod)
 
         reactor.callLater(15, proxy_d.cancel)
+
+        if prod is not None:
+            proxy_d.addBoth(self.proxyUnregister)
+
         proxy_d.addCallback(self.proxySuccess)
         proxy_d.addErrback(self.proxyError)
 
@@ -121,7 +124,6 @@ class HTTPStreamProxyRequest(http.Request):
 
     def proxySuccess(self, response):
         print("proxySuccess: %s" % response)
-        self.unregisterProducer()
         self.responseHeaders = response.headers
 
         d_forward = defer.Deferred()
@@ -131,12 +133,14 @@ class HTTPStreamProxyRequest(http.Request):
     def proxyError(self, fail):
         print("proxyErr: %s" % fail)
         # TODO respond with 500
-        self.unregisterProducer()
         self.forwardClose()
+
+    def proxyUnregister(self, o):
+        self.channel.unregisterProducer()
+        return o
 
     def forwardClose(self, *args):
         print("forwardClose()")
-        self.unregisterProducer()
         self.content.close()
         self.finish()
         print("handled close")
@@ -149,11 +153,10 @@ class HTTPStreamChannel(http.HTTPChannel):
         http.HTTPChannel.__init__(self, *args, **kwargs)
 
         self.proxy_url = proxy_url
-        self.http_agent = Agent(reactor)
+        self.http_agent = Agent(reactor, connectTimeout=2)
 
 
 class HTTPStreamFactory(http.HTTPFactory):
-
     def __init__(self, proxy_url, *args, **kwargs):
         http.HTTPFactory.__init__(self, *args, **kwargs)
         self.proxy_url = proxy_url

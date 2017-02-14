@@ -26,6 +26,7 @@ signal.signal(signal.SIGUSR1, SigRespond)
 import json
 import socket
 import sys
+from urlparse import urlparse
 
 from twisted.internet import reactor, ssl, protocol, defer
 from twisted.protocols import tls
@@ -37,7 +38,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 from globaleaks.utils.process import set_pdeathsig
 from globaleaks.utils.sock import listen_tls_on_sock
 from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
-from globaleaks.utils.tcpproxy import ProxyServerFactory
+from globaleaks.utils.streamer import HTTPStreamFactory
 
 
 def SigQUIT(SIG, FRM):
@@ -64,10 +65,12 @@ def config_wait(file_desc):
 
 
 def setup_tls_proxy(cfg):
-    """
-    Instantiate a TLS proxy that will handle 10,000 connections
-    """
-    tcp_proxy_factory = ProxyServerFactory(cfg['proxy_ip'], cfg['proxy_port'], 10000)
+    proxy_url = 'http://' + cfg['proxy_ip'] + ':' + str(cfg['proxy_port'])
+    res = urlparse(proxy_url)
+    if not res.hostname in ['127.0.0.1', 'localhost']:
+        raise Exception('Attempting to proxy to an external host: %s . . aborting' % proxy_url)
+
+    http_proxy_factory = HTTPStreamFactory(proxy_url)
 
     cv = ChainValidator()
     ok, err = cv.validate(cfg, must_be_disabled=False)
@@ -85,7 +88,7 @@ def setup_tls_proxy(cfg):
         log("Opening socket: %d : %s" % (socket_fd, os.fstat(socket_fd)))
 
         port = listen_tls_on_sock(reactor, fd=socket_fd,
-                contextFactory=tls_factory, factory=tcp_proxy_factory)
+                contextFactory=tls_factory, factory=http_proxy_factory)
 
         log("TLS proxy listening on %s" % port)
 
