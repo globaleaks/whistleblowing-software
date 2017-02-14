@@ -24,9 +24,9 @@
   <div>
     <h3 data-translate>Configuration</h3>
     <div data-ng-if="!(tls_config.running && tls_config.enabled)" class="alert">
-      <p data-translate>This configuration wizard will guide you through the setup of HTTPS allowing you to generating a private key and to certificate signing request that you can use when applying for a certificate from a Certificate Authority.</p>
-      <p data-translate>After the Certificate Authority validates your ownership of the domain name you have chosen and upon the reception of the Certificate Signing Request, they will issue you a certificate and provide a file containing intermediate certificates which is sometimes called a chain file.</p>
-      <p data-translate>Load the certificate and the chain file below to complete the HTTPS setup.</p>
+      <p data-translate>This configuration wizard will guide you through the setup of HTTPS allowing to generate a Private Key and a Certificate Signing Request that you require to apply for a Certificate from a Certificate Authority.</p>
+      <p data-translate>After having validated your request and your ownership of the domain name the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.</p>
+      <p data-translate>Load below the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</p>
       <p data-translate>Please note that the file format expected for all files uploaded is PEM.</p>
       <p data-translate>Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
     </div>
@@ -35,7 +35,7 @@
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.priv_key)">
           <span class="text-bold">1</span>
-          <span class="text-bold" data-translate>Private key</span>
+          <span class="text-bold" data-translate>Private Key</span>
           <span>(PEM)</span>
         </span>
         <span class="pull-right">
@@ -61,7 +61,7 @@
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="text-bold">2</span>
-        <span class="text-bold" data-translate>Certificate signing request</span>
+        <span class="text-bold" data-translate>Certificate Signing Request</span>
         <span>(PEM)</span>
         <span class="pull-right">
           <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
@@ -112,7 +112,7 @@
       <div data-ng-hide="(tls_config.files.chain.set || (tls_config.files.cert.set && tls_config.files.priv_key.set)) && !tls_config.enabled" class="disabling-div"></div>
       <div class="panel-body">
         <b class="" data-ng-class="iconClass(tls_config.files.chain)">4</b>
-        <b data-translate>Intermediate certificates</b>
+        <b data-translate>Intermediate Certificates</b>
         <small data-ng-show="tls_config.files.chain.set">PEM
             <span data-translate>Valid until:</span>{{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm' }}
           <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
