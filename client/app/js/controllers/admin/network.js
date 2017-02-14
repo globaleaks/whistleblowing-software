@@ -2,11 +2,11 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
   $scope.tabs = [
     {
       title:"Main configuration",
-      template: "views/admin/network/settings.html"
+      template: "views/admin/network/main.html"
     },
     {
       title:"HTTPS Settings",
-      template: "views/admin/network/https_dash.html"
+      template: "views/admin/network/https_settings.html"
     },
   ];
 }]).
@@ -65,7 +65,7 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', '$uibMod
      });
   };
 
-  $scope.iconClass = function(fileSum) {
+  $scope.statusClass = function(fileSum) {
     if (angular.isDefined(fileSum) && fileSum.set) {
         return {'text-success': true};
     } else {
