@@ -28,7 +28,7 @@ class BodyStreamer(protocol.Protocol):
 class BodyProducer(object):
     implements(IBodyProducer)
 
-    BUF_MAX_SIZE = 2*1023*1024 # TODO Use the hardcoded value for buf max size
+    BUF_MAX_SIZE = 64 * 1024 # TODO Use the hardcoded value for buf max size
     length = 0
     bytes_written = 0
 
@@ -38,26 +38,22 @@ class BodyProducer(object):
     consumer = None
 
     def __init__(self, inp_buf, rf_buf_fn, length):
-        print("inp_buf type: %s" % type(inp_buf))
         self.inp_buf = inp_buf
         self.rf_buf_fn = rf_buf_fn
         self.length = length
         self.deferred = defer.Deferred()
 
     def startProducing(self, consumer):
-        print("startProducing: %s" % consumer)
         self.consumer = consumer
         return self.resumeProducing()
 
     def resumeProducing(self):
         chunk = self.inp_buf.read()
         n = len(chunk)
-        print("resumeProducing() n = %d" % n)
         if n != 0:
             self.consumer.write(chunk)
             self.bytes_written += n
             if self.bytes_written > self.BUF_MAX_SIZE:
-                print("Install buffer")
                 self.inp_buf = self.rf_buf_fn()
                 self.bytes_written = 0
         else:
@@ -87,14 +83,12 @@ class HTTPStreamProxyRequest(http.Request):
     def gotLength(self, length):
         http.Request.gotLength(self, length)
         if isinstance(self.content, file):
-            print('Found tmpfile, replacing')
-            #TODO must close tmpfile
+            self.content.close()
             self.content = io.BytesIO()
             self.reset_buffer()
 
     def process(self):
         proxy_url = bytes(urlparse.urljoin(self.channel.proxy_url, self.uri))
-        print('proxying: %s' % proxy_url)
 
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('X-Forwarded-For', [self.getClientIP()])
@@ -103,7 +97,6 @@ class HTTPStreamProxyRequest(http.Request):
         content_length = self.getHeader('Content-Length')
         if content_length is not None:
             hdrs.removeHeader('Content-Length')
-            print('Found: %s' % content_length)
             prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
             self.channel.registerProducer(prod, streaming=True)
 
@@ -123,7 +116,6 @@ class HTTPStreamProxyRequest(http.Request):
         return NOT_DONE_YET
 
     def proxySuccess(self, response):
-        print("proxySuccess: %s" % response)
         self.responseHeaders = response.headers
 
         d_forward = defer.Deferred()
@@ -131,7 +123,6 @@ class HTTPStreamProxyRequest(http.Request):
         d_forward.addBoth(self.forwardClose)
 
     def proxyError(self, fail):
-        print("proxyErr: %s" % fail)
         # TODO respond with 500
         self.forwardClose()
 
@@ -140,10 +131,8 @@ class HTTPStreamProxyRequest(http.Request):
         return o
 
     def forwardClose(self, *args):
-        print("forwardClose()")
         self.content.close()
         self.finish()
-        print("handled close")
 
 
 class HTTPStreamChannel(http.HTTPChannel):
