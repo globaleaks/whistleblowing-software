@@ -8,15 +8,11 @@ from twisted.internet import reactor
 from globaleaks.utils.utility import WorkerLogger
 
 def SigQUIT(SIG, FRM):
-    log('Received signal %s . . . quitting' % (SIG))
+    WorkerLogger()('Received signal %s . . . quitting' % (SIG))
     try:
         reactor.stop()
     except Exception:
         pass
-
-
-def log(msg):
-    pass
 
 
 def set_proctitle(title):
@@ -35,10 +31,14 @@ def set_pdeathsig(sig):
 
 
 class Process(object):
+    cfg = {}
+    name = ''
+
     def __init__(self, fd=42):
         signal.signal(signal.SIGTERM, SigQUIT)
         signal.signal(signal.SIGINT, SigQUIT)
         set_pdeathsig(signal.SIGINT)
+        set_proctitle(self.name)
 
         f = os.fdopen(fd, 'r')
 
@@ -51,14 +51,11 @@ class Process(object):
 
         self.cfg = json.loads(s)
 
-        if self.cfg['debug']:
-            self.log = WorkerLogger()
-
-    def log(self, msg):
-        pass
+        if self.cfg.get('debug', False):
+            self.log = WorkerLogger(self.name)
+        else:
+            def do_nothing(s, m): pass
+            self.log = do_nothing
 
     def start(self):
         reactor.run()
-
-    def stop(self):
-        reactor.stop()

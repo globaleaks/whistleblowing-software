@@ -42,7 +42,7 @@ class ProcessSupervisor(object):
         self.tls_cfg = {
           'proxy_ip': proxy_ip,
           'proxy_port': proxy_port,
-          'debug': GLSettings.loglevel <= logging.DEBUG
+          'debug': GLSettings.loglevel <= logging.DEBUG,
         }
 
         if len(net_sockets) == 0:
