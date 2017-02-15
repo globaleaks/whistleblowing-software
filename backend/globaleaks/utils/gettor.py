@@ -31,7 +31,7 @@ class GetTor(object):
     def getCurrentVersion(self):
         """Return the current available version of the Tor Browser"""
         if os.path.exists(self.file_latest_tb_version):
-            with open (latest_tb_file, 'r') as version_file:
+            with open(self.file_latest_tb_file, 'r') as version_file:
                 return version_file.read().replace('\n', '')
 
         return '0'
@@ -156,7 +156,7 @@ class GetTor(object):
 
             filenames_regexp = ''
 
-            for lang in LOCALES:
+            for lang in TB_LOCALES:
                 if filenames_regexp != '':
                     filenames_regexp += '|'
 
@@ -171,7 +171,7 @@ class GetTor(object):
             shutil.rmtree(temp_path, True)
             os.mkdir(temp_path)
             for f in files:
-                url = str('%s%s/%s' % (dist_tpo, latest_version, f))
+                url = str('%s%s/%s' % (TB_REPO, latest_version, f))
                 savefile = os.path.join(temp_path, f)
                 yield downloadPageSecurely(url, savefile)
 
