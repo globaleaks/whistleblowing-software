@@ -23,9 +23,10 @@ from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey
 from globaleaks.settings import GLSettings
-from globaleaks.utils import tls, tor_exit_list
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
+from globaleaks.utils.tls import should_redirect_https
+from globaleaks.utils.tor_exit_set import should_redirect_tor
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -473,21 +474,25 @@ class BaseHandler(RequestHandler):
         if not self.validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-        if tls.should_redirect_https(GLSettings, self.request):
+        log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
+        if should_redirect_https(GLSettings.memory_copy.private.https_enabled,
+                                 GLSettings.local_hosts,
+                                 self.request):
             log.debug('Decided to redirect')
             self.redirect_https()
 
         # TODO handle the case where we are not interested in applying the exit list
-        if tor_exit_list.should_redirect_tor(GLSettings, self.request):
+        if should_redirect_tor(GLSettings.tor_address,
+                               GLSettings.state.tor_exit_set,
+                               self.request):
             self.redirect_tor(GLSettings.tor_address)
 
     def redirect_https(self):
         in_url = self.request.full_url()
 
-        _, netloc, path, query, frag = urlparse.urlsplit(in_url)
-        netloc = netloc.split(':')[0]
+        pr = urlparse.urlsplit(self.request.full_url())
 
-        out_url = urlparse.urlunsplit(('https', netloc, path, query, frag))
+        out_url = urlparse.urlunsplit(('https', pr.hostname, pr.path, pr.query, pr.fragment))
 
         if out_url == in_url:
             raise errors.InternalServerError('Should redirect to https: %s' % out_url)
@@ -496,8 +501,7 @@ class BaseHandler(RequestHandler):
     def redirect_tor(self, onion_addr):
         in_url = self.request.full_url()
 
-        _, netloc, path, query, frag = urlparse.urlsplit(in_url)
-        netloc = netloc.split(':')[0]
+        _, _, path, query, frag = urlparse.urlsplit(in_url)
 
         out_url = urlparse.urlunsplit(('http', onion_addr, path, query, frag))
 

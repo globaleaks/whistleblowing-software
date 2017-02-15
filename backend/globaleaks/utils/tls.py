@@ -237,11 +237,12 @@ def altnames(cert):
     return altnames
 
 
-def should_redirect_https(glsettings, request):
-    # Use a header to determine if connection has been proxyied
-    if (glsettings.memory_copy.private.https_enabled and \
-        request.protocol == 'http' and \
-        not request.remote_ip in glsettings.local_hosts):
+def should_redirect_https(https_enabled, local_hosts, request):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if request.remote_ip in local_hosts and forwarded_ip is not None:
+        # This connection has been properly proxied through some transport locally
+        return False
+    elif https_enabled and not request.remote_ip in local_hosts:
         return True
     else:
         return False

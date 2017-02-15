@@ -21,7 +21,7 @@ from twisted.python.threadpool import ThreadPool
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import datetime_now, log
-from globaleaks.utils.tor_exit_list import TorExitList
+from globaleaks.utils.tor_exit_set import TorExitSet
 
 this_directory = os.path.dirname(__file__)
 
@@ -228,7 +228,7 @@ class GLSettingsClass(object):
         # state managed as an object by the application
         self.state = OD()
         self.state.process_supervisor = None
-        self.state.exit_relay_list = TorExitList()
+        self.state.tor_exit_set = TorExitSet()
 
     def reset_hourly(self):
         self.RecentEventQ[:] = []

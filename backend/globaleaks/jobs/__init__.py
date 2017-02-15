@@ -10,6 +10,7 @@ jobs_list = [
     statistics_sched.AnomaliesSchedule,
     notification_sched.NotificationSchedule,
     session_management_sched.SessionManagementSchedule,
+    session_management_sched.ExitRelayRefreshSchedule,
     cleaning_sched.CleaningSchedule,
     pgp_check_sched.PGPCheckSchedule,
     statistics_sched.StatisticsSchedule

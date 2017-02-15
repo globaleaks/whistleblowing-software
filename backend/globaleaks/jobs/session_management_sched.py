@@ -3,11 +3,13 @@
 #   **************
 #
 
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
-__all__ = ['SessionManagementSchedule']
+__all__ = ['SessionManagementSchedule', 'ExitRelayRefreshSchedule']
 
 
 class SessionManagementSchedule(GLJob):
@@ -25,3 +27,19 @@ class SessionManagementSchedule(GLJob):
                       % GLSettings.failed_login_attempts)
 
         GLSettings.failed_login_attempts = 0
+
+
+class ExitRelayRefreshSchedule(GLJob):
+    name = "ExitRelayRefresh"
+    interval = 3600
+
+    def operation(self):
+        self._operation()
+
+    @inlineCallbacks
+    def _operation(self):
+        """Issue an request to tor.checkstatus to update the exit relay list
+        """
+        log.debug('Fetching exit relays')
+        yield GLSettings.state.tor_exit_set.update()
+        log.debug('Retrieved: %d exit relays' % len(GLSettings.state.tor_exit_set))

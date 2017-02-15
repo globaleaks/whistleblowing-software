@@ -54,10 +54,6 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             yield refresh_memory_variables()
 
-
-            yield GLSettings.state.exit_relay_list.update()
-            log.info('Retrieved: %d exit relay ips' % len(GLSettings.state.exit_relay_list))
-
             GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
                                                                     '127.0.0.1',
                                                                     GLSettings.bind_port,
