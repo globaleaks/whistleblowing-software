@@ -24,9 +24,10 @@
   <div>
     <h3 data-translate>Configuration</h3>
     <div data-ng-if="!(tls_config.running && tls_config.enabled)" class="alert">
-      <p data-translate>This configuration wizard will guide you through the setup of HTTPS allowing to generate a Private Key and a Certificate Signing Request that you require to apply for a Certificate from a Certificate Authority.</p>
+      <p data-translate>This configuration wizard will guide you through the setup of HTTPS.</p>
+      <p data-translate>The interface can generate a Private Key and a Certificate Signing Request which must be taken to a Certificate Authority to retrieve a Certificate.</p>
       <p data-translate>After having validated your request and your ownership of the domain name the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.</p>
-      <p data-translate>Load below the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</p>
+      <p data-translate>Load the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</p>
       <p data-translate>Please note that the file format expected for all files uploaded is PEM.</p>
       <p data-translate>Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
     </div>
