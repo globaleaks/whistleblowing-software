@@ -4,7 +4,7 @@ import re
 
 from globaleaks.utils import agent
 
-class TorExitList(set):
+class TorExitSet(set):
     def processData(self, data):
         self.clear()
 
@@ -20,8 +20,11 @@ class TorExitList(set):
         pageFetchedDeferred.addErrback(self.requestFailed)
         return pageFetchedDeferred
 
-def should_redirect_tor(glsettings, request):
-    if glsettings.tor_address is not None and \
-       request.remote_ip in glsettings.state.exit_relay_list:
+def should_redirect_tor(tor_addr, exit_relay_set, request):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if forwarded_ip is None:
+        forwarded_ip = request.remote_ip
+
+    if tor_addr is not None and forwarded_ip in exit_relay_set:
         return True
     return False

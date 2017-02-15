@@ -44,7 +44,7 @@ def getPageSecurely(url):
 
 def downloadPageSecurely(url, filename):
     try:
-        request = Agent(reactor).request('GET', url)
+        request = Agent(reactor, connectTimeout=4).request('GET', url)
         finished = defer.Deferred()
 
         def cbResponse(response):
