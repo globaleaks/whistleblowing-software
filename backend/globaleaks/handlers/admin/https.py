@@ -58,16 +58,6 @@ class FileResource(object):
         raise errors.MethodNotImplemented()
 
 
-def gen_dh_params_if_none(prv_fact):
-    dh_params = prv_fact.get_val('https_dh_params')
-
-    if dh_params == u'':
-        log.info("Generating https dh params")
-        dh_params = tls.generate_dh_params()
-        prv_fact.set_val('https_dh_params', dh_params)
-        log.info("DH param generated and stored")
-
-
 def https_disabled(f):
     @wraps(f)
     def wrapper(store, *args, **kwargs):
@@ -93,7 +83,6 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, err = pkv.validate(db_cfg)
         if ok:
-            gen_dh_params_if_none(prv_fact)
             prv_fact.set_val('https_priv_key', raw_key)
         else:
             log.info('Key validation failed')
@@ -104,7 +93,6 @@ class PrivKeyFileRes(FileResource):
     @https_disabled
     def perform_file_action(store):
         prv_fact = PrivateFactory(store)
-        gen_dh_params_if_none(prv_fact)
 
         log.info("Generating a new TLS key")
 
