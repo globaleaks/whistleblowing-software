@@ -1,12 +1,18 @@
+import logging
 import multiprocessing
 import os
 import signal
 
+from sys import executable
+
+from twisted.internet import reactor
+
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact
+from globaleaks.settings import GLSettings
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-from globaleaks.workers.https_pp import HTTPSProcProtocol
+from globaleaks.workers.https_procproto import HTTPSProcProtocol
 
 
 class ProcessSupervisor(object):
@@ -36,6 +42,7 @@ class ProcessSupervisor(object):
         self.tls_cfg = {
           'proxy_ip': proxy_ip,
           'proxy_port': proxy_port,
+          'debug': GLSettings.loglevel <= logging.DEBUG
         }
 
         if len(net_sockets) == 0:
@@ -76,7 +83,8 @@ class ProcessSupervisor(object):
             self.launch_worker()
 
     def launch_worker(self):
-        pp = HTTPSProcProtocol(self, self.worker_path, self.tls_cfg)
+        pp = HTTPSProcProtocol(self, self.tls_cfg)
+        reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
         self.tls_process_pool.append(pp)
         log.info('Launched: %s' % (pp))
 
@@ -86,13 +94,13 @@ class ProcessSupervisor(object):
         in its place if the reason for death is reasonable and we haven't
         restarted the child an unreasonable number of times.
         '''
-        log.info("Subprocess: %s exited with: %s" % (pp, reason))
+        log.debug("Subprocess: %s exited with: %s" % (pp, reason))
         mortatility_rate = self.account_death()
         self.tls_process_pool.pop(self.tls_process_pool.index(pp))
         del pp
 
         if (self.should_spawn_child(mortatility_rate)):
-            log.info('Decided to respawn a child')
+            log.debug('Decided to respawn a child')
             self.launch_worker()
         elif self.last_one_out():
             self.shutting_down = False
@@ -145,21 +153,25 @@ class ProcessSupervisor(object):
             'timestamp': datetime_to_ISO8601(datetime_now()),
             'type': 'info'
         }
+
         if self.is_running():
             r = self.calc_mort_rate()
             m = "The supervisor has a mort rate of r=%1.2f deaths/minute" % r
         else:
             m = "Nothing is being served"
+
         s['msg'] = m
+
         return s
 
     def shutdown(self):
         self.shutting_down = True
 
-        log.info('Starting shutdown of %d children' % len(self.tls_process_pool))
+        log.debug('Starting shutdown of %d children' % len(self.tls_process_pool))
+
         for pp in self.tls_process_pool:
             try:
                 os.kill(pp.transport.pid, signal.SIGUSR1)
                 os.kill(pp.transport.pid, signal.SIGINT)
             except OSError as e:
-                log.info('Tried to signal: %d got: %s' % (pp.transport.pid, e))
+                log.debug('Tried to signal: %d got: %s' % (pp.transport.pid, e))
