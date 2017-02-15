@@ -117,6 +117,7 @@ class HTTPStreamProxyRequest(http.Request):
 
     def proxySuccess(self, response):
         self.responseHeaders = response.headers
+        self.setResponseCode(response.code)
 
         d_forward = defer.Deferred()
         response.deliverBody(BodyStreamer(self.write, d_forward))
