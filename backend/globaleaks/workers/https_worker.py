@@ -17,6 +17,8 @@ from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.httpsproxy import HTTPStreamFactory
 
 class HTTPSProcess(Process):
+    name = 'gl-https-proxy'
+
     def start(self):
         proxy_url = 'http://' + self.cfg['proxy_ip'] + ':' + str(self.cfg['proxy_port'])
         res = urlparse(proxy_url)

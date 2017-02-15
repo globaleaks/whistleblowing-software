@@ -124,7 +124,7 @@ class HTTPStreamProxyRequest(http.Request):
         d_forward.addBoth(self.forwardClose)
 
     def proxyError(self, fail):
-        # TODO respond with 500
+        self.setResponseCode(500)
         self.forwardClose()
 
     def proxyUnregister(self, o):
