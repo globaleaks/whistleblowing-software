@@ -14,7 +14,6 @@ from globaleaks.rest import requests
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log
 from globaleaks.utils import tls
-from globaleaks.utils import tls_master
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
 
 

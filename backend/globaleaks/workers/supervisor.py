@@ -1,54 +1,12 @@
-import json
 import multiprocessing
 import os
 import signal
-import socket
-import sys
-import signal
-
-from sys import executable
-
-from twisted.internet import reactor, task, protocol, defer
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact
-from globaleaks.utils import sock as socket_util
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-
-
-class TLSProcProtocol(protocol.ProcessProtocol):
-    def __init__(self, supervisor, bin_path, cfg, cfg_fd=42):
-        self.supervisor = supervisor
-        self.cfg = json.dumps(cfg)
-        self.cfg_fd = cfg_fd
-
-        fd_map = {0:0, 1:1, 2:2}
-        fd_map[cfg_fd] = 'w'
-
-        tls_socket_fds = cfg['tls_socket_fds']
-
-        for tls_socket_fd in tls_socket_fds:
-            fd_map[tls_socket_fd] = tls_socket_fd
-            log.debug('State of fd: <%d> %s' % (tls_socket_fd, os.fstat(tls_socket_fd)))
-
-        log.debug('subproc fd_map:%s' % (fd_map))
-
-        reactor.spawnProcess(self, executable, [executable, bin_path], childFDs=fd_map, env=os.environ)
-
-    def connectionMade(self):
-        log.info("Parent writing to: %d" % self.cfg_fd)
-        self.transport.writeToChild(self.cfg_fd, self.cfg)
-        self.transport.closeChildFD(self.cfg_fd)
-        # TODO self.cfg has a copy of TLS priv_key
-        del self.cfg
-
-    def processEnded(self, reason):
-        self.supervisor.handle_worker_death(self, reason)
-
-    def __repr__(self):
-        return "<TLSProcProtocol: %s:%s>" % (id(self), self.transport)
+from globaleaks.workers.https_pp import HTTPSProcProtocol
 
 
 class ProcessSupervisor(object):
@@ -73,7 +31,7 @@ class ProcessSupervisor(object):
             'target_proc_num': multiprocessing.cpu_count(),
         }
 
-        self.bin_path = os.path.abspath(os.path.join(bin_dir, 'gl-tls-worker.py'))
+        self.worker_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'https_worker.py')
 
         self.tls_cfg = {
           'proxy_ip': proxy_ip,
@@ -118,7 +76,7 @@ class ProcessSupervisor(object):
             self.launch_worker()
 
     def launch_worker(self):
-        pp = TLSProcProtocol(self, self.bin_path, self.tls_cfg)
+        pp = HTTPSProcProtocol(self, self.worker_path, self.tls_cfg)
         self.tls_process_pool.append(pp)
         log.info('Launched: %s' % (pp))
 
