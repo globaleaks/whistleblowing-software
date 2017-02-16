@@ -1,5 +1,6 @@
 import urlparse
 import io
+import zlib
 
 from zope.interface import implements
 
@@ -23,6 +24,21 @@ class BodyStreamer(protocol.Protocol):
         self._streamfunction = None
         self._finished.callback(None)
         self._finished = None
+
+
+class BodyGzipStreamer(BodyStreamer):
+    def __init__(self, streamfunction, finished):
+        BodyStreamer.__init__(self, streamfunction, finished)
+        self.encoderGzip = zlib.compressobj(6, zlib.DEFLATED, 16 + zlib.MAX_WBITS)
+
+    def dataReceived(self, data):
+        data = self.encoderGzip.compress(data)
+        BodyStreamer.dataReceived(self, data)
+
+    def connectionLost(self, reason=connectionDone):
+        data = self.encoderGzip.flush()
+        BodyStreamer.dataReceived(self, data)
+        BodyStreamer.connectionLost(self, reason)
 
 
 class BodyProducer(object):
@@ -72,6 +88,8 @@ class BodyProducer(object):
 
 
 class HTTPStreamProxyRequest(http.Request):
+    gzip = False
+
     def __init__(self, *args, **kwargs):
         http.Request.__init__(self, *args, **kwargs)
 
@@ -93,7 +111,11 @@ class HTTPStreamProxyRequest(http.Request):
         hdrs = self.requestHeaders
         hdrs.setRawHeaders('X-Forwarded-For', [self.getClientIP()])
 
-        prod = None
+        accept_encoding = self.getHeader('Accept-Encoding')
+        if accept_encoding is not None and 'gzip' in accept_encoding:
+            self.gzip = True
+
+	prod = None
         content_length = self.getHeader('Content-Length')
         if content_length is not None:
             hdrs.removeHeader('Content-Length')
@@ -117,10 +139,19 @@ class HTTPStreamProxyRequest(http.Request):
 
     def proxySuccess(self, response):
         self.responseHeaders = response.headers
+
+        if self.gzip:
+            self.responseHeaders.setRawHeaders(b'content-encoding', [b'gzip'])
+
         self.setResponseCode(response.code)
 
         d_forward = defer.Deferred()
-        response.deliverBody(BodyStreamer(self.write, d_forward))
+
+        if self.gzip:
+            response.deliverBody(BodyGzipStreamer(self.write, d_forward))
+        else:
+            response.deliverBody(BodyStreamer(self.write, d_forward))
+
         d_forward.addBoth(self.forwardClose)
 
     def proxyError(self, fail):
