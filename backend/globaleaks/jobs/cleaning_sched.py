@@ -1,10 +1,6 @@
 # -*- coding: UTF-8
-#
-#   cleaning_sched
-#   **************
-#
-# Implementation of the cleaning operations (delete incomplete submission,
-# delete expired tips, etc)
+# Implementation of the cleaning operations.
+
 import time
 
 from datetime import timedelta
