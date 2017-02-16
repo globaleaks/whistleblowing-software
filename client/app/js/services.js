@@ -24,7 +24,7 @@ angular.module('GLServices', ['ngResource']).
           self.loginInProgress = true;
 
           var success_fn = function(response) {
-            var response = response.data;
+            response = response.data;
 
             self.session = {
               'id': response.session_id,
