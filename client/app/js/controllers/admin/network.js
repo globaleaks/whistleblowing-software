@@ -86,7 +86,7 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', '$uibMod
     });
   };
 
-  // A helper function to give us a bit more resolution on the status of the 
+  // A helper function to give us a bit more resolution on the status of the
   // tls_config...
   function scheduleWithTimeouts(p, f, num, delay) {
     var delayProm = function() {

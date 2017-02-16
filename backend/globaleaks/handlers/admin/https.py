@@ -10,11 +10,9 @@ from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
-from globaleaks.rest import requests
-from globaleaks.rest import errors
-from globaleaks.utils.utility import log
+from globaleaks.rest import errors, requests
 from globaleaks.utils import tls
-from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date
+from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
 
 class FileResource(object):

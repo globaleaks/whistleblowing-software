@@ -16,7 +16,6 @@ from globaleaks.handlers import exception, \
                                 base, user, shorturl, \
                                 robots
 
-from globaleaks.handlers.admin import config as admin_config
 from globaleaks.handlers.admin import context as admin_context
 from globaleaks.handlers.admin import field as admin_field
 from globaleaks.handlers.admin import files as admin_files

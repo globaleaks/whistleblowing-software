@@ -10,8 +10,8 @@ from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-from globaleaks.utils.http_master import ProcessSupervisor
 from globaleaks.utils.sock import reserve_port_for_ifaces
+from globaleaks.workers.supervisor import ProcessSupervisor
 
 test_reactor = None
 

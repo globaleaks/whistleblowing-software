@@ -738,8 +738,8 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
     },
   };
 }]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTLSConfigResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTLSConfigResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
+  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
+    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
   return function(fn) {
       var self = this;
 
@@ -756,7 +756,6 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
       self.tip_overview = TipOverview.query();
       self.file_overview = FileOverview.query();
       self.jobs_overview = JobsOverview.query();
-      self.tls_config = AdminTLSConfigResource.get();
 
       self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
         self.field_attrs = field_attrs;
@@ -781,8 +780,7 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
               self.anomalies.$promise,
               self.tip_overview.$promise,
               self.file_overview.$promise,
-              self.jobs_overview.$promise,
-              self.tls_config.$promise]).then(function() {
+              self.jobs_overview.$promise]).then(function() {
         fn(this);
       });
     };

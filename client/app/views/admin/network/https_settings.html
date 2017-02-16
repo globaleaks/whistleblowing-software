@@ -8,16 +8,16 @@
       <span data-ng-show="!tls_config.running && tls_config.enabled" class="label label-warning" data-translate>Not running</span>
     </h3>
     <div>
-      <h4>
-        <span data-translate>Domain name</span><span>:</span>
+      <h2>
+        <span data-translate>HTTPS AddressDomain name</span><span>:</span>
         <a data-ng-show="tls_config.https_url != ''" target="_blank" rel="noreferrer noopener" href="{{ tls_config.https_url }}">{{ tls_config.https_url }}</a>
-      </h4>
+      </h2>
       <div data-ng-show="tls_config.https_url == ''"
           class="alert alert-warning">
-          <strong data-translate>Domain name is not set!</strong>
+          <span data-translate>Domain name is not set!</span>
           <span data-translate>Set the HTTPS domain name in network settings.</span>
       </div>
-      <h4 data-translate>System message:</h4>
+      <h2 data-translate>System message:</h2>
       <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
     </div>
   </div>
