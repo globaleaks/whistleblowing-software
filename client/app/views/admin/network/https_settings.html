@@ -1,39 +1,45 @@
 <div id="HttpsSettings" data-ng-controller="AdminHTTPSConfigCtrl">
   <div>
-    <h3 data-translate>HTTPS Dashboard</h3>
-    <h3><span data-translate>Status</span>:
-      <span data-ng-show="tls_config.enabled" class="label label-success" data-translate>Enabled</span>
-      <span data-ng-hide="tls_config.enabled" class="label label-danger" data-translate>Disabled</span>
-      <span data-ng-show="tls_config.running" class="label label-success" data-translate>Running</span>
-      <span data-ng-show="!tls_config.running && tls_config.enabled" class="label label-warning" data-translate>Not running</span>
+    <h3>
+      <span data-translate>Status</span>
+      <span data-ng-if="tls_config.enabled">
+        <span class="label label-success" data-translate>Enabled</span>
+        <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
+        <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
+      </span>
+      <span data-ng-if="!tls_config.enabled" class="label label-danger" data-translate>Disabled</span>
     </h3>
     <div>
-      <h2>
-        <span data-translate>HTTPS AddressDomain name</span><span>:</span>
+      <div data-ng-if="tls_config.enabled && tls_config.running">
+        <span data-translate>URL</span><span>:</span>
         <a data-ng-show="tls_config.https_url != ''" target="_blank" rel="noreferrer noopener" href="{{ tls_config.https_url }}">{{ tls_config.https_url }}</a>
-      </h2>
+      </div>
       <div data-ng-show="tls_config.https_url == ''"
           class="alert alert-warning">
           <span data-translate>Domain name is not set!</span>
           <span data-translate>Set the HTTPS domain name in network settings.</span>
       </div>
-      <h2 data-translate>System message:</h2>
-      <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
     </div>
   </div>
   <div>
+    <h3 data-translate>System message:</h3>
+    <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
+  </div>
+  <div>
     <h3 data-translate>Configuration</h3>
-    <hr/>
-    <p data-ng-if="!(tls_config.running && tls_config.enabled)">
-      <span data-translate>This configuration wizard will guide you through the setup of HTTPS.</span>
-      <span data-translate>The interface can generate a Private Key and a Certificate Signing Request.</span>
-      <span data-translate>The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate.</span>
-      <span data-translate>After having validated your request and your ownership of the domain name the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.</span>
-      <span data-translate>Load the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</span>
-      <span data-translate>Please note that the file format expected for all files uploaded is PEM.</span>
-      <span data-translate>Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</span>
-    </p>
-    <hr/>
+    <div data-ng-if="!(tls_config.running && tls_config.enabled)">
+      <hr/>
+      <p>
+        <span data-translate>This configuration wizard will guide you through the setup of HTTPS.</span>
+        <span data-translate>The interface can generate a Private Key and a Certificate Signing Request.</span>
+        <span data-translate>The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate.</span>
+        <span data-translate>After having validated your request and your ownership of the domain name the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.</span>
+        <span data-translate>Load the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</span>
+        <span data-translate>Please note that the file format expected for all files uploaded is PEM.</span>
+        <span data-translate>Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</span>
+      </p>
+      <hr/>
+    </div>
     <div class="panel panel-default hideable-div">
       <div data-ng-hide="!tls_config.enabled" class="disabling-div"></div>
       <div class="panel-body">
