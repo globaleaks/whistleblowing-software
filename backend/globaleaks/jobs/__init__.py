@@ -1,4 +1,5 @@
-from globaleaks.jobs import session_management_sched, \
+from globaleaks.jobs import exit_nodes_refresh_sched, \
+                            session_management_sched, \
                             statistics_sched, \
                             notification_sched, \
                             delivery_sched, \
@@ -7,10 +8,10 @@ from globaleaks.jobs import session_management_sched, \
 
 jobs_list = [
     delivery_sched.DeliverySchedule,
+    exit_nodes_refresh_sched.ExitNodesRefreshSchedule,
     statistics_sched.AnomaliesSchedule,
     notification_sched.NotificationSchedule,
     session_management_sched.SessionManagementSchedule,
-    session_management_sched.ExitRelayRefreshSchedule,
     cleaning_sched.CleaningSchedule,
     pgp_check_sched.PGPCheckSchedule,
     statistics_sched.StatisticsSchedule
@@ -18,6 +19,7 @@ jobs_list = [
 
 __all__ = [
     'base',
+    'exit_nodes_refresh_sched',
     'delivery_sched',
     'notification_sched',
     'statistics_sched',

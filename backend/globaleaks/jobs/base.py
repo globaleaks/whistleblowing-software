@@ -1,8 +1,4 @@
 # -*- coding: UTF-8
-#   jobs/base
-#   *********
-#
-# Base class for implement the scheduled tasks
 import time
 
 from twisted.internet import task, defer, reactor, threads
