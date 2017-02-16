@@ -54,7 +54,7 @@ class Process(object):
         if self.cfg.get('debug', False):
             self.log = WorkerLogger(self.name)
         else:
-            def do_nothing(s, m): pass
+            def do_nothing(m): pass
             self.log = do_nothing
 
     def start(self):

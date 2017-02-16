@@ -15,41 +15,12 @@ from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 
 
-#class TestHTTPSWorkers(TestCase):
-#    def test_launch_workers(self):
-#        pass
-#        d = {
-#            'cert': '',
-#            #'chain': '',
-#            #'dh': '',
-#            'priv_key': '',
-#        }
-#
-#        for key in d.keys():
-#            with open(os.path.join(helpers.DATA_DIR, 'https', key+'.pem')) as f:
-#                d[key] = f.read()
-#
-#        pool = https.https_master.launch_worker({}, d['priv_key'], d['cert'], '', '')
-#
-#        d = defer.gatherResults([p.deferredConnect for p in pool])
-#        def test_cb(ignored):
-#            print('Resolving final defered', ignored)
-#
-#        d.addCallback(test_cb)
-#        return d
-#
-#        #from twisted.internet import reactor
-#        #from IPython import embed; embed()
-#        #import time; time.sleep(60)
-
-
 @transact
 def set_dh_params(store, dh_params):
     PrivateFactory(store).set_val('https_dh_params', dh_params)
 
 
 class TestFileHandler(helpers.TestHandler):
-    
     _handler = https.FileHandler
 
     @inlineCallbacks

@@ -79,7 +79,7 @@ class GLSettingsClass(object):
 
         self.bind_addresses = '127.0.0.1'
 
-        # bind port -- The original port the service is bound on. For the next 
+        # bind port -- The original port the service is bound on. For the next
         # hot second GL will also try to bind on port 80.
         self.bind_port = 8082
 
@@ -417,7 +417,7 @@ class GLSettingsClass(object):
             self.orm_debug = self.cmdline_options.orm_debug
             self.log_timing_stats = self.cmdline_options.log_timing_stats
             self.log_requests_responses = self.cmdline_options.log_requests_responses
-            # Replace port 80 with 9080 to duck priviledge issues for non-root 
+            # Replace port 80 with 9080 to duck priviledge issues for non-root
             # users
             self.bind_ports = (self.bind_ports - {80}) | {9080}
 
