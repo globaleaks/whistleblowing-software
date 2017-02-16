@@ -72,16 +72,19 @@ var GLClient = angular.module('GLClient', [
   ]).
   config(['$compileProvider',
           '$httpProvider',
+          '$locationProvider',
           '$routeProvider',
           '$rootScopeProvider',
           '$translateProvider',
           '$uibTooltipProvider',
           'tmhDynamicLocaleProvider',
-    function($compileProvider, $httpProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
+    function($compileProvider, $httpProvider, $locationProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
+
+    $locationProvider.hashPrefix("");
 
     function requireAuth(role) {
       return ['Access', function(Access) { return Access.isAuthenticated(role); }];
