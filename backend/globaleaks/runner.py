@@ -56,8 +56,7 @@ class GlobaLeaksRunner(UnixApplicationRunner):
 
             GLSettings.state.process_supervisor = ProcessSupervisor(https_socks,
                                                                     '127.0.0.1',
-                                                                    GLSettings.bind_port,
-                                                                    GLSettings.worker_path)
+                                                                    GLSettings.bind_port)
 
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
 

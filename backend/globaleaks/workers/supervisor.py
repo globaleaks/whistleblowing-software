@@ -6,6 +6,7 @@ import signal
 from sys import executable
 
 from twisted.internet import reactor
+from twisted.internet import defer
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.orm import transact
@@ -24,7 +25,7 @@ class ProcessSupervisor(object):
     # is excessive.
     MAX_MORTALITY_RATE = 4 # 0.2
 
-    def __init__(self, net_sockets, proxy_ip, proxy_port, bin_dir):
+    def __init__(self, net_sockets, proxy_ip, proxy_port):
         log.info("Starting process monitor")
 
         self.shutting_down = False
@@ -55,12 +56,14 @@ class ProcessSupervisor(object):
     def maybe_launch_https_workers(self, store):
         self.db_maybe_launch_https_workers(store)
 
+    @defer.inlineCallbacks
     def db_maybe_launch_https_workers(self, store):
         privFact = PrivateFactory(store)
 
         on = privFact.get_val('https_enabled')
         if not on:
             log.info("Not launching workers")
+            yield defer.succeed(None)
             return
 
         db_cfg = load_tls_dict(store)
@@ -71,22 +74,27 @@ class ProcessSupervisor(object):
 
         if ok and err is None:
             log.info("Decided to launch https workers")
-            self.launch_https_workers()
+            yield self.launch_https_workers()
         else:
             log.info("Not launching https workers due to %s" % err)
+            yield defer.fail(err)
 
     def launch_https_workers(self):
         self.tls_process_state['deaths'] = 0
         self.tls_process_state['last_death'] = datetime_now()
 
+        d_lst = []
         for i in range(self.tls_process_state['target_proc_num']):
-            self.launch_worker()
+            d_lst.append(self.launch_worker())
+        d = defer.DeferredList(d_lst)
+        return d
 
     def launch_worker(self):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
         reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
         self.tls_process_pool.append(pp)
         log.info('Launched: %s' % (pp))
+        return pp.startup_promise
 
     def handle_worker_death(self, pp, reason):
         '''
@@ -104,7 +112,9 @@ class ProcessSupervisor(object):
             self.launch_worker()
         elif self.last_one_out():
             self.shutting_down = False
-            log.err("Supervisor has turned off all children")
+            self.shutdown_d.callback(None)
+            self.shutdown_d = None
+            log.info("Supervisor has turned off all children")
         else:
             log.err("Not relaunching child process")
 
@@ -165,9 +175,14 @@ class ProcessSupervisor(object):
         return s
 
     def shutdown(self):
-        self.shutting_down = True
-
         log.debug('Starting shutdown of %d children' % len(self.tls_process_pool))
+
+        # Handle condition where shutdown is called with no active children
+        if not self.is_running():
+            return defer.succeed(None)
+
+        self.shutdown_d = defer.Deferred()
+        self.shutting_down = True
 
         for pp in self.tls_process_pool:
             try:
@@ -175,3 +190,5 @@ class ProcessSupervisor(object):
                 os.kill(pp.transport.pid, signal.SIGINT)
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s' % (pp.transport.pid, e))
+
+        return self.shutdown_d

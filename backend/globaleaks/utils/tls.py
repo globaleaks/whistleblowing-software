@@ -130,13 +130,13 @@ class PrivKeyValidator(CtxValidator):
     parents = []
 
     def _validate(self, cfg, ctx):
-        # Note that the empty string here prevents valid PKCS8 encrypted
-        # keys from being used instead of plain pem keys.
         raw_str = cfg['ssl_key']
-        if raw_str == u'':
+        if raw_str == '':
             raise ValidationException('No private key is set')
 
-        priv_key = load_privatekey(FILETYPE_PEM, raw_str, "")
+        # Note that the empty string here prevents valid PKCS8 encrypted
+        # keys from being used instead of plain pem keys.
+        priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase="")
 
         # TODO fix cffi dep for 14.04
         # if priv_key.type() == TYPE_RSA:
@@ -150,7 +150,7 @@ class CertValidator(CtxValidator):
 
     def _validate(self, cfg, ctx):
         certificate = cfg['ssl_cert']
-        if certificate == u'':
+        if certificate == '':
             raise ValidationException('There is no certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
@@ -176,7 +176,7 @@ class ChainValidator(CtxValidator):
         store = ctx.get_cert_store()
 
         intermediate = cfg['ssl_intermediate']
-        if intermediate != u'':
+        if intermediate != '':
             x509 = load_certificate(FILETYPE_PEM, intermediate)
 
             if x509.has_expired():
@@ -193,8 +193,6 @@ class ChainValidator(CtxValidator):
 
 class ContextValidator(CtxValidator):
     parents = [PrivKeyValidator, CertValidator, ChainValidator]
-
-    # TODO unused but ressurected :)
 
     def _validate(self, cfg, ctx):
         if cfg['ssl_dh'] == u'':
