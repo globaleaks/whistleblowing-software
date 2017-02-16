@@ -13,8 +13,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
 controller('AdminNetFormCtrl', [function() {
     // Scoped for future use.
 }]).
-controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', '$uibModal', 'FileReader', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource',
-  function($window, $q, $http, $scope, $uibModal, FileReader, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource) {
+controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource', 'Utils',
+  function($http, $scope, $timeout, $uibModal, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource, Utils) {
   $scope.tls_config = tlsConfigResource.get();
 
   function refreshPromise() {
@@ -48,7 +48,7 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', '$uibMod
   // TODO(nskelsey) this implementation for download and upload
   $scope.postFile = function(fileList, fileRes) {
     var file = fileList.item(0);
-    FileReader.readAsText(file, $scope).then(function(str) {
+    Utils.readFileAsText(file).then(function(str) {
       fileRes.content = str;
       return fileRes.$save();
     }).then(refreshPromise);
@@ -89,14 +89,8 @@ controller('AdminHTTPSConfigCtrl', ['$window', '$q', '$http', '$scope', '$uibMod
   // A helper function to give us a bit more resolution on the status of the
   // tls_config...
   function scheduleWithTimeouts(p, f, num, delay) {
-    var delayProm = function() {
-        var d = $q.defer();
-        $window.setTimeout(function() { d.resolve(); }, delay);
-        return d.promise;
-    };
-
     for (var i = 0; i < num; i++) {
-        p = p.then(f).then(delayProm);
+        p = p.then(f).then($timeout(function(){}, delay));
     }
     return p;
   }

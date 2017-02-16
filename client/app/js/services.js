@@ -812,8 +812,8 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal', 'Authentication',
-  function($rootScope, $location, $filter, $sce, $uibModal, Authentication) {
+  factory('Utils', ['$rootScope', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
+  function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
       getXOrderProperty: function() {
         return 'x';
@@ -1044,6 +1044,20 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
         e.setUTCHours(0, 0, 0, 0);
         e.setDate(ttl + 1);
         return e;
+      },
+
+      readFileAsText: function (file) {
+        var deferred = $q.defer();
+
+        var reader = new $window.FileReader();
+
+        reader.onload = function () {
+          deferred.resolve(reader.result);
+        };
+
+        reader.readAsText(file);
+
+        return deferred.promise;
       }
     }
 }]).
