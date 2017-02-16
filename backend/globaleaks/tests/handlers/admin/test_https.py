@@ -159,7 +159,7 @@ class TestConfigHandler(helpers.TestHandler):
 
         self.test_reactor.pump([50])
 
-        # TODO improve resilience of shutdown. The child processes will complain 
+        # TODO improve resilience of shutdown. The child processes will complain
         # loudly as they die.
         yield handler.put()
         yield handler.get()

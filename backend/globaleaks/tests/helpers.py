@@ -27,10 +27,10 @@ from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
 from globaleaks.utils import tempdict, token, utility
-from globaleaks.utils.tls_master import ProcessSupervisor
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
+from globaleaks.workers.supervisor import ProcessSupervisor
 
 from . import TEST_DIR, config as test_config
 
@@ -225,7 +225,7 @@ class TestGL(unittest.TestCase):
 
         yield db.refresh_memory_variables()
 
-        sup = ProcessSupervisor([], '127.0.0.1', 18082, GLSettings.worker_path)
+        sup = ProcessSupervisor([], '127.0.0.1', 18082)
         GLSettings.state.process_supervisor = sup
 
         Alarm.reset()
