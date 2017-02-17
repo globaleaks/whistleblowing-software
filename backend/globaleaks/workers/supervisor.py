@@ -13,7 +13,7 @@ from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
 from globaleaks.utils import tls
 from globaleaks.utils.utility import log, datetime_now, datetime_to_ISO8601
-from globaleaks.workers.https_procproto import HTTPSProcProtocol
+from globaleaks.workers.process import HTTPSProcProtocol
 
 
 class ProcessSupervisor(object):
@@ -186,8 +186,7 @@ class ProcessSupervisor(object):
 
         for pp in self.tls_process_pool:
             try:
-                os.kill(pp.transport.pid, signal.SIGUSR1)
-                os.kill(pp.transport.pid, signal.SIGINT)
+                pp.transport.signalProcess('KILL')
             except OSError as e:
                 log.debug('Tried to signal: %d got: %s' % (pp.transport.pid, e))
 
