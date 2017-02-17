@@ -37,6 +37,7 @@ class BodyGzipStreamer(BodyStreamer):
 
     def connectionLost(self, reason=connectionDone):
         data = self.encoderGzip.flush()
+        # This attempt to write will fail b/c the connection has been lost.
         BodyStreamer.dataReceived(self, data)
         BodyStreamer.connectionLost(self, reason)
 
@@ -126,8 +127,7 @@ class HTTPStreamProxyRequest(http.Request):
                                                   uri=proxy_url,
                                                   headers=hdrs,
                                                   bodyProducer=prod)
-
-        reactor.callLater(15, proxy_d.cancel)
+        proxy_d.addTimeout(120, reactor)
 
         if prod is not None:
             proxy_d.addBoth(self.proxyUnregister)
@@ -155,7 +155,7 @@ class HTTPStreamProxyRequest(http.Request):
         d_forward.addBoth(self.forwardClose)
 
     def proxyError(self, fail):
-        self.setResponseCode(500)
+        self.setResponseCode(502)
         self.forwardClose()
 
     def proxyUnregister(self, o):

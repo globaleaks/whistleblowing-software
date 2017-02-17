@@ -11,15 +11,18 @@ from urlparse import urlparse
 
 from twisted.internet import reactor
 
-from globaleaks.utils.process import Process
+from globaleaks.workers.process import Process
 from globaleaks.utils.sock import listen_tls_on_sock
 from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.httpsproxy import HTTPStreamFactory
 
 class HTTPSProcess(Process):
     name = 'gl-https-proxy'
+    ports = []
 
-    def start(self):
+    def __init__(self, *args, **kwargs):
+        super(HTTPSProcess, self).__init__(*args, **kwargs)
+
         proxy_url = 'http://' + self.cfg['proxy_ip'] + ':' + str(self.cfg['proxy_port'])
         res = urlparse(proxy_url)
         if not res.hostname in ['127.0.0.1', 'localhost']:
@@ -47,14 +50,18 @@ class HTTPSProcess(Process):
                                       contextFactory=tls_factory,
                                       factory=http_proxy_factory)
 
+            self.ports.append(port)
             self.log("HTTPS proxy listening on %s" % port)
 
-        Process.start(self)
+    def shutdown(self):
+        for port in self.ports:
+            port.loseConnection()
 
 
-try:
-    https_process = HTTPSProcess()
-    https_process.start()
-except Exception as e:
-    print("setup failed with %s" % e)
-    raise
+if __name__ == '__main__':
+    try:
+        https_process = HTTPSProcess()
+        https_process.start()
+    except Exception as e:
+        print("setup failed with %s" % e)
+        raise

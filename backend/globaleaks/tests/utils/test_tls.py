@@ -30,9 +30,7 @@ def get_valid_setup():
 
 @transact
 def commit_valid_config(store):
-    print('commit_valid_config')
     cfg = get_valid_setup()
-    print('got setup')
 
     priv_fact = PrivateFactory(store)
     priv_fact.set_val('https_dh_params', cfg['dh_params'])
@@ -40,7 +38,6 @@ def commit_valid_config(store):
     priv_fact.set_val('https_cert', cfg['cert'])
     priv_fact.set_val('https_chain', cfg['chain'])
     priv_fact.set_val('https_enabled', True)
-    print('finished')
 
 
 class TestObjectValidators(TestCase):
