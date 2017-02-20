@@ -70,6 +70,16 @@ def https_disabled(f):
 class PrivKeyFileRes(FileResource):
     validator = tls.PrivKeyValidator
 
+    @staticmethod
+    def gen_dh_params_if_none(prv_fact):
+         dh_params = prv_fact.get_val('https_dh_params')
+
+         if dh_params == u'':
+             log.info("Generating https dh params")
+             dh_params = tls.generate_dh_params()
+             prv_fact.set_val('https_dh_params', dh_params)
+             log.info("DH param generated and stored")
+
     @classmethod
     @transact
     @https_disabled
@@ -81,6 +91,7 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, err = pkv.validate(db_cfg)
         if ok:
+            PrivKeyFileRes.gen_dh_params_if_none(prv_fact)
             prv_fact.set_val('https_priv_key', raw_key)
         else:
             log.info('Key validation failed')
@@ -91,9 +102,9 @@ class PrivKeyFileRes(FileResource):
     @https_disabled
     def perform_file_action(store):
         prv_fact = PrivateFactory(store)
+        PrivKeyFileRes.gen_dh_params_if_none(prv_fact)
 
         log.info("Generating a new TLS key")
-
         prv_key = tls.gen_RSA_key()
         pem_prv_key = crypto.dump_privatekey(SSL.FILETYPE_PEM, prv_key)
         prv_fact.set_val('https_priv_key', pem_prv_key)
