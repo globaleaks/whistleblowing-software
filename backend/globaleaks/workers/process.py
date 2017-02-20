@@ -62,7 +62,7 @@ class Process(object):
         reactor.run()
 
 
-class ProcessProtocol(ProcessProtocol):
+class CfgFDProcProtocol(ProcessProtocol):
     def __init__(self, supervisor, cfg, cfg_fd=42):
         self.supervisor = supervisor
         self.cfg = json.dumps(cfg)
@@ -89,9 +89,9 @@ class ProcessProtocol(ProcessProtocol):
         return "<%s: %s:%s>" % (self.__class__.__name__, id(self), self.transport)
 
 
-class HTTPSProcProtocol(ProcessProtocol):
+class HTTPSProcProtocol(CfgFDProcProtocol):
     def __init__(self, supervisor, cfg, cfg_fd=42):
-        ProcessProtocol.__init__(self, supervisor, cfg, cfg_fd)
+        CfgFDProcProtocol.__init__(self, supervisor, cfg, cfg_fd)
 
         for tls_socket_fd in cfg['tls_socket_fds']:
             self.fd_map[tls_socket_fd] = tls_socket_fd
