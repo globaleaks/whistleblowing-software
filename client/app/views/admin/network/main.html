@@ -2,17 +2,17 @@
   <div class="row">
     <div class="col-md-12">
       <div class="form-group" data-ng-class="{'has-error': adminNetForm.public_site.$error.pattern}">
-        <label data-translate>Host name</label>
+        <label data-translate>Hostname</label>
         <input class="form-control" name="public_site" type="url" data-ng-model="admin.node.public_site" data-ng-pattern="https_regexp">
         <p class="text-danger" data-ng-show="adminNetForm.public_site.$error.pattern">
-          <span data-translate>Invalid format for public site (similar to https://thirteenchars123.tor2web.org)</span>
+          <span data-translate>Invalid input format.</span> <span data-translate>Input should be simliar to:</span> <span>www.domain.tld</span>
         </p>
       </div>
       <div class="form-group" data-ng-class="{'has-error': adminNetForm.hidden_service.$error.pattern}">
         <label data-translate>Tor Onion Service</label>
         <input class="form-control" name="hidden_service" type="text" data-ng-model="admin.node.hidden_service" data-ng-pattern="tor_regexp">
         <p class="text-danger" data-ng-show="adminNetForm.hidden_service.$error.pattern">
-          <span data-translate>Invalid format for hidden service (similar to http://thirteenchars123.onion)</span>
+          <span data-translate>Invalid input format.</span> <span data-translate>Input should be simliar to:</span> <span>thirteenchars123.onion</span>
         </p>
       </div>
       <div class="form-group" data-ng-class="{'has-error': contentForm.tb_download_link.$error.pattern}">
