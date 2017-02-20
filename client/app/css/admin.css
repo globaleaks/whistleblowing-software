@@ -109,3 +109,11 @@ text.axis-worktime {
   opacity: 0.75;
   filter: alpha(opacity=0.75);
 }
+
+#HttpsSettings .status-line h3 {
+    display: inline-block;
+}
+
+#HttpsSettings .status-line .label {
+    font-size: 100%;
+}

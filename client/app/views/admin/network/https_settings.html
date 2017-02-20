@@ -1,15 +1,22 @@
 <div id="HttpsSettings" data-ng-controller="AdminHTTPSConfigCtrl">
-  <div>
-    <h3>
-      <span data-translate>Status</span>
+  <div class="info-section">
+
+    <div class="status-line">
+      <h3><span data-translate>Status</span></h3>
       <span data-ng-if="tls_config.enabled">
-        <span class="label label-success" data-translate>Enabled</span>
+          <span class="label label-success"><span data-translate>Enabled</span>
+            <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+          </span>
         <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
         <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
       </span>
-      <span data-ng-if="!tls_config.enabled" class="label label-danger" data-translate>Disabled</span>
-    </h3>
-    <div>
+
+      <span data-ng-if="!tls_config.enabled" class="label label-danger"><span data-translate>Disabled</span>
+        <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+      </span>
+    </div>
+
+    <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
         <span data-translate>Host name</span><span>:</span>
         <a data-ng-show="admin.node.public_site != ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.public_site }}">{{ admin.node.public_site }}</a>
@@ -21,8 +28,8 @@
       </div>
     </div>
   </div>
-  <div>
-    <h3 data-translate>System message:</h3>
+  <div data-ng-show="show_expert_status">
+    <h3 data-translate >System message:</h3>
     <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
   </div>
   <div>
