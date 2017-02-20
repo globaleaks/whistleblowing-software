@@ -286,10 +286,7 @@ def serialize_https_config_summary(store):
     for key, file_res_cls in FileHandler.mapped_file_resources.iteritems():
         file_summaries[key] = file_res_cls.db_serialize(store)
 
-    url = NodeFactory(store).get_val('public_site')
-
     ret = {
-      'https_url': url,
       'enabled': prv_fact.get_val('https_enabled'),
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
