@@ -17,6 +17,11 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   function($http, $scope, $timeout, $uibModal, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource, Utils) {
   $scope.tls_config = tlsConfigResource.get();
 
+  $scope.show_expert_status = false;
+  $scope.invertExpertStatus = function() {
+    $scope.show_expert_status = !$scope.show_expert_status;
+  }
+
   function refreshPromise() {
     return $scope.tls_config.$get().$promise;
   }
