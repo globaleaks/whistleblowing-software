@@ -12,6 +12,7 @@ import re
 import shutil
 import sys
 import time
+import urlparse
 
 from cyclone import web, template
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler

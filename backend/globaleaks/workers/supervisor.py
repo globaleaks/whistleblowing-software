@@ -166,7 +166,10 @@ class ProcessSupervisor(object):
 
         if self.is_running():
             r = self.calc_mort_rate()
-            m = "The supervisor has a mort rate of r=%1.2f deaths/minute" % r
+            if r == 0:
+                m = "Everything is running normally."
+            else:
+                m = "The supervisor has a mortality rate of r=%1.2f deaths/minute" % r
         else:
             m = "Nothing is being served"
 
