@@ -146,7 +146,7 @@ class GLSettingsClass(object):
                 'unauth': True,
             },
             'private': {
-                'https_enabled': True,
+                'https_enabled': False,
             },
         })
 
