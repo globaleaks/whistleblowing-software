@@ -53,13 +53,8 @@ def gen_RSA_key():
 
     :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
     '''
-    pub_key = crypto.PKey()
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    #TODO(evilaliv3|nskelsey) pick real params
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    pub_key.generate_key(crypto.TYPE_RSA, 1024)
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
+    pub_key = PKey()
+    pub_key.generate_key(TYPE_RSA, 2048)
 
     return pub_key
 
