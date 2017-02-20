@@ -94,7 +94,7 @@ class PrivKeyFileRes(FileResource):
 
         log.info("Generating a new TLS key")
 
-        prv_key = gen_RSA_key()
+        prv_key = tls.gen_RSA_key()
         pem_prv_key = crypto.dump_privatekey(SSL.FILETYPE_PEM, prv_key)
         prv_fact.set_val('https_priv_key', pem_prv_key)
 
@@ -354,80 +354,6 @@ class ConfigHandler(BaseHandler):
         self.set_status(200)
 
 
-def gen_RSA_key():
-    '''
-    gen_x509_key uses the default settings to generate the key params.
-    TODO evaluate how defaults are selected...........................
-
-    :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
-    '''
-    pub_key = crypto.PKey()
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    #TODO(evilaliv3|nskelsey) pick real params
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    pub_key.generate_key(crypto.TYPE_RSA, 1024)
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
-
-    return pub_key
-
-
-@transact
-def gen_x509_csr(store, csr_fields):
-    '''
-    gen_x509_csr creates a certificate signature request by applying the passed
-    fields to the subject of the request, attaches the public key's fingerprint
-    and signs the request using the private key.
-
-    csr_fields dictionary and generates a
-    certificate request using the passed keypair. Note that the default digest
-    is sha256.
-
-    :param key_pair: The key pair that will sign the request
-    :type key_pair: :py:data:`OpenSSL.crypto.PKey` the key must have an attached
-    private component.
-
-    :param csr_fields: The certifcate issuer's details in X.509 Distinguished
-    Name format.
-    :type csr_fields: :py:data:`dict`
-        C     - Country name
-        ST    - State or province name
-        L     - Locality name
-        O     - Organization name
-        OU    - Organizational unit name
-        CN    - Common name
-        emailAddress - E-mail address
-
-    :rtype: A `pyopenssl.OpenSSL.crypto.X509Req`
-    '''
-    db_cfg = load_tls_dict(store)
-    pkv = tls.PrivKeyValidator()
-    ok, err = pkv.validate(db_cfg)
-    if not ok or not err is None:
-        raise err
-    try:
-        req = crypto.X509Req()
-        subj = req.get_subject()
-
-        for field, value in csr_fields.iteritems():
-            setattr(subj, field, value)
-
-        prv_key = crypto.load_privatekey(SSL.FILETYPE_PEM, db_cfg['ssl_key'])
-
-        req.set_pubkey(prv_key)
-        req.sign(prv_key, 'sha512')
-        # TODO clean prv_key and str_prv_key from memory
-
-        pem_csr = crypto.dump_certificate_request(SSL.FILETYPE_PEM, req)
-        # TODO clean req from memory
-
-        log.info("Generated a new CSR")
-        return pem_csr
-    except Exception as e:
-        log.err(e)
-        raise errors.ValidationError('CSR gen failed')
-
-
 class CSRConfigHandler(BaseHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -447,7 +373,27 @@ class CSRConfigHandler(BaseHandler):
         if 'department' in request:
             csr_fields['OU'] = request['department']
 
-        csr_txt = yield gen_x509_csr(csr_fields)
 
+        csr_txt = yield self.perform_action(csr_fields)
         self.set_status(200)
         self.write(csr_txt)
+
+    @staticmethod
+    @transact
+    @https_disabled
+    def perform_action(store, csr_fields):
+        db_cfg = load_tls_dict(store)
+
+        pkv = tls.PrivKeyValidator()
+        ok, err = pkv.validate(db_cfg)
+        if not ok or not err is None:
+            raise err
+
+        key_pair = db_cfg['ssl_key']
+        try:
+            csr_txt = tls.gen_x509_csr(key_pair, csr_fields)
+            log.info("Generated a new CSR")
+            return csr_txt
+        except Exception as e:
+            log.err(e)
+            raise errors.ValidationError('CSR gen failed')

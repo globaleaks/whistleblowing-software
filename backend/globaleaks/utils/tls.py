@@ -6,7 +6,7 @@ from datetime import datetime
 from twisted.internet import ssl
 
 from OpenSSL import SSL
-from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext
+from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext, PKey, dump_certificate_request, X509Req
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
 
@@ -44,6 +44,69 @@ def generate_dh_params():
     # TODO TODO TODO TODO TODO TODO TODO TODO
 
     return dh_params
+
+
+def gen_RSA_key():
+    '''
+    gen_x509_key uses the default settings to generate the key params.
+    TODO evaluate how defaults are selected...........................
+
+    :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
+    '''
+    pub_key = crypto.PKey()
+    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
+    #TODO(evilaliv3|nskelsey) pick real params
+    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
+    pub_key.generate_key(crypto.TYPE_RSA, 1024)
+    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
+    #TODO TODO TODO TODO TODO TODO TODO TODO TODO
+
+    return pub_key
+
+
+def gen_x509_csr(key_pair, csr_fields):
+    '''
+    gen_x509_csr creates a certificate signature request by applying the passed
+    fields to the subject of the request, attaches the public key's fingerprint
+    and signs the request using the private key.
+
+    csr_fields dictionary and generates a
+    certificate request using the passed keypair. Note that the default digest
+    is sha256.
+
+    :param key_pair: The key pair that will sign the request
+    :type key_pair: :py:data:`OpenSSL.crypto.PKey` the key must have an attached
+    private component.
+
+    :param csr_fields: The certifcate issuer's details in X.509 Distinguished
+    Name format.
+    :type csr_fields: :py:data:`dict`
+        C     - Country name
+        ST    - State or province name
+        L     - Locality name
+        O     - Organization name
+        OU    - Organizational unit name
+        CN    - Common name
+        emailAddress - E-mail address
+
+    :rtype: A `pyopenssl.OpenSSL.crypto.X509Req`
+    '''
+    req = X509Req()
+    subj = req.get_subject()
+
+    for field, value in csr_fields.iteritems():
+        setattr(subj, field, value)
+
+    prv_key = load_privatekey(SSL.FILETYPE_PEM, key_pair)
+
+    req.set_pubkey(prv_key)
+    req.sign(prv_key, 'sha512')
+    # TODO clean prv_key and str_prv_key from memory
+
+    pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
+    # TODO clean req from memory
+
+    return pem_csr
 
 
 def new_tls_context():
