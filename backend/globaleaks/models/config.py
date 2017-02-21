@@ -156,6 +156,7 @@ class NotificationFactory(ConfigFactory):
 class PrivateFactory(ConfigFactory):
     non_mem_vars = {
         'https_priv_key',
+        'https_priv_gen',
         'https_cert',
         'https_chain',
         'https_dh_params',

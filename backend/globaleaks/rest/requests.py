@@ -377,17 +377,21 @@ AdminTLSCertFilesConfigDesc = {
 }
 
 AdminTLSCfgFileResourceDesc = {
+    'name': unicode,
     'content': unicode,
 }
 
-AdminCSRConfigDesc = {
-    'commonname': unicode,
-    'country': '[A-Za-z]{2}',
-    'province': unicode,
-    'city': unicode,
-    'company': unicode,
-    'department': unicode,
-    'email': email_regexp,
+AdminCSRFileDesc = {
+    'name': unicode,
+    'content': {
+      'commonname': unicode,
+      'country': '[A-Za-z]{2}',
+      'province': unicode,
+      'city': unicode,
+      'company': unicode,
+      'department': unicode,
+      'email': email_regexp
+    }
 }
 
 AdminShortURLDesc = {

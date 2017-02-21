@@ -19,9 +19,28 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
 controller('AdminNetFormCtrl', [function() {
     // Scoped for future use.
 }]).
-controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminCSRConfigResource', 'AdminTLSCfgFileResource', 'Utils',
-  function($http, $scope, $timeout, $uibModal, FileSaver, tlsConfigResource, csrCfgResource, cfgFileResource, Utils) {
-  $scope.tls_config = tlsConfigResource.get();
+controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'Utils',
+  function($http, $scope, $timeout, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, Utils) {
+
+  $scope.state = 0;
+
+  $scope.parseTLSConfig = function(tlsConfig) {
+    $scope.tls_config = tlsConfig;
+
+    if (!$scope.admin.node.public_site || !tlsConfig.files.priv_key.set) {
+      $scope.state = 0;
+    } else if (tlsConfig.files.priv_key.gen && !tlsConfig.files.csr.set) {
+      $scope.state = 1;
+    } else if (!tlsConfig.files.cert.set) {
+      $scope.state = 2
+    } else if (!tlsConfig.files.chain.set) {
+      $scope.state = 3;
+    } else {
+      $scope.state = 4;
+    }
+  }
+
+  tlsConfigResource.get({}, $scope.parseTLSConfig);
 
   $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
@@ -29,16 +48,17 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   }
 
   function refreshPromise() {
-    return $scope.tls_config.$get().$promise;
+    return tlsConfigResource.get({}, $scope.parseTLSConfig);
   }
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: 'priv_key'}),
     cert:     new cfgFileResource({name: 'cert'}),
     chain:    new cfgFileResource({name: 'chain'}),
+    csr:      new cfgFileResource({name: 'csr'}),
   };
 
-  $scope.csr_cfg = new csrCfgResource({
+  $scope.csr_cfg = {
     country: '',
     province: '',
     city: '',
@@ -46,7 +66,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
     department: '',
     email: '',
     commonname: '',
-  });
+  };
 
   $scope.csr_state = {
     open: false,
@@ -56,12 +76,10 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
     return $scope.file_resources.priv_key.$update().then(refreshPromise);
   }
 
-  // TODO(nskelsey) this implementation for download and upload
-  $scope.postFile = function(fileList, fileRes) {
-    var file = fileList.item(0);
+  $scope.postFile = function(file, resource) {
     Utils.readFileAsText(file).then(function(str) {
-      fileRes.content = str;
-      return fileRes.$save();
+      resource.content = str;
+      return resource.$save();
     }).then(refreshPromise);
   };
 
@@ -71,8 +89,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
         url: 'admin/config/tls/files/' + resource.name, // NOTE path
         responseType: 'blob',
      }).then(function (response) {
-        var blob = response.data;
-        FileSaver.saveAs(blob, resource.name + '.pem');
+        FileSaver.saveAs(response.data, resource.name + '.pem');
      });
   };
 
@@ -124,15 +141,11 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   };
 
   $scope.submitCSR = function() {
-    $scope.csr_state.tried = true;
-    $http({
-        method: 'POST',
-        url: 'admin/config/tls/csr',
-        responseType: 'blob',
-        data: $scope.csr_cfg,
-    }).then(function(response) {
-      var blob = response.data;
-      FileSaver.saveAs(blob, 'cert_sig_req.pem');
+    $scope.file_resources.content = $scope.csr_cfg;
+    $scope.file_resources['csr'].content = $scope.csr_cfg;
+    $scope.file_resources['csr'].$save().then(function() {
+      $scope.csr_state.open = false;
+      refreshPromise();
     });
   };
 }]);

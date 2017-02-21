@@ -574,9 +574,6 @@ factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
         'disable': { method: 'PUT', params: {}},
     });
 }]).
-factory('AdminCSRConfigResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/config/tls/csr');
-}]).
 factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files');
 }]).

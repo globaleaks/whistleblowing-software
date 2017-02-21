@@ -123,7 +123,7 @@ spec = [
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/config/tls', https.ConfigHandler),
-    (r'/admin/config/tls/csr', https.CSRConfigHandler),
+    (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
     (r'/admin/staticfiles', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
