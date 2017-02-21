@@ -1,8 +1,19 @@
+import os
+from datetime import datetime
+
+def log():
+    pid = os.getpid()
+    def prefix(m):
+        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S%z')
+        print('%s [gl-https-proxy:%d] %s' % (now, pid, m))
+    return prefix
+
+if __name__ == '__main__': log()("Started")
+
+
 # TODO: make this conditional and abstract it with a worker class
 # When this executable is not within the systems standard path, the globaleaks
 # module must add it to sys path manually. Hence the following line.
-import os
-
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
