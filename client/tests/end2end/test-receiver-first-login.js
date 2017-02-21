@@ -5,7 +5,7 @@ var receiver = new pages.receiver();
 
 var fs = require('fs');
 var opts = { encoding: 'utf8', flag: 'r' };
-var pgp_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
+var pgp_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB', opts);
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
