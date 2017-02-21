@@ -30,7 +30,7 @@ def toggle_https(store, enabled):
 class TestProcessSupervisor(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
-        helpers.TestHandler.setUp(self)
+        super(TestProcessSupervisor, self).setUp()
         yield test_tls.commit_valid_config()
 
     @inlineCallbacks
@@ -79,7 +79,7 @@ class TestSubprocessRun(helpers.TestGL):
 
     @inlineCallbacks
     def setUp(self):
-        helpers.TestGL.setUp(self)
+        super(TestSubprocessRun, self).setUp()
 
         with open('hello.txt', 'w') as f:
             f.write('Hello, world!\n')
@@ -150,6 +150,7 @@ class TestSubprocessRun(helpers.TestGL):
         if self.http_process is not None:
             self.http_process.shutdown()
         if self.pp is not None:
+            self.pp.transport.loseConnection()
             self.pp.transport.signalProcess('KILL')
 
         helpers.TestGL.tearDown(self)
