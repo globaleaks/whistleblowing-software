@@ -7,7 +7,6 @@
 
 import base64
 import binascii
-import hmac
 import json
 import os
 import random
@@ -326,7 +325,7 @@ def hash_password(password, salt):
 
 
 def check_password(guessed_password, salt, password_hash):
-    return hmac.compare_digest(hash_password(guessed_password, salt), password_hash)
+    return hash_password(guessed_password, salt) == password_hash
 
 
 def change_password(old_password_hash, old_password, new_password, salt):
