@@ -524,7 +524,7 @@ class BaseHandler(RequestHandler):
             RequestHandler.write_error(self, status_code, **kw)
 
     def write_file(self, filepath):
-        if not os.path.exists(filepath):
+        if not os.path.exists(filepath) and os.path.isfile(filepath):
           raise HTTPError(404)
 
         mime_type, encoding = mimetypes.guess_type(filepath)
@@ -534,7 +534,7 @@ class BaseHandler(RequestHandler):
         StaticFileProducer(self, open(filepath, "rb")).start()
 
     def force_file_download(self, filename, filepath):
-        if not os.path.exists(filepath):
+        if not os.path.exists(filepath) and os.path.isfile(filepath):
           raise HTTPError(404)
 
         self.set_header('X-Download-Options', 'noopen')
