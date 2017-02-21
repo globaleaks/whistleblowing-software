@@ -51,12 +51,12 @@ class TestFileHandler(helpers.TestHandler):
 
         # Try to upload an invalid key
         bad_key = 'donk donk donk donk donk donk'
-        handler = self.request({'content': bad_key}, role='admin')
+        handler = self.request({'name': 'priv_key', 'content': bad_key}, role='admin')
         yield self.assertFailure(handler.post(n), errors.ValidationError)
 
         # Upload a valid key
         good_key = self.valid_setup['key']
-        handler = self.request({'content': good_key}, role='admin')
+        handler = self.request({'name': 'priv_key', 'content': good_key}, role='admin')
         yield handler.post(n)
         yield self.is_set(n, True)
 
@@ -85,12 +85,12 @@ class TestFileHandler(helpers.TestHandler):
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
 
         # Test bad cert
-        body = {'content': 'bonk bonk bonk'}
+        body = {'name': 'cert', 'content': 'bonk bonk bonk'}
         handler = self.request(body, role='admin')
         yield self.assertFailure(handler.post(n), errors.ValidationError)
 
         # Upload a valid cert
-        body = {'content': self.valid_setup[n]}
+        body = {'name': 'cert', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
         yield handler.post(n)
         yield self.is_set(n, True)
@@ -112,7 +112,7 @@ class TestFileHandler(helpers.TestHandler):
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
         yield https.CertFileRes.create_file(self.valid_setup['cert'])
 
-        body = {'content': self.valid_setup[n]}
+        body = {'name': 'chain', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
 
         res = yield handler.post(n)
@@ -135,7 +135,7 @@ class TestFileHandler(helpers.TestHandler):
             yield self.assertFailure(handler.delete(n), errors.FailedSanityCheck)
             yield self.assertFailure(handler.put(n), errors.FailedSanityCheck,
                                                      errors.MethodNotImplemented)
-            handler = self.request({'content':''}, role='admin')
+            handler = self.request({'name': n, 'content':''}, role='admin')
             yield self.assertFailure(handler.post(n), errors.FailedSanityCheck)
             yield self.assertFailure(handler.get(n), errors.FailedSanityCheck,
                                                      errors.MethodNotImplemented)
@@ -173,10 +173,12 @@ class TestConfigHandler(helpers.TestHandler):
 
 
 class TestCSRHandler(helpers.TestHandler):
-    _handler = https.CSRConfigHandler
+    _handler = https.CSRFileHandler
 
     @inlineCallbacks
     def test_post(self):
+        n = 'csr'
+
         valid_setup = test_tls.get_valid_setup()
         yield set_dh_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
@@ -191,8 +193,11 @@ class TestCSRHandler(helpers.TestHandler):
            'email': 'indrizzio@email',
         }
 
-        handler = self.request(d, role='admin')
-        res = yield handler.post()
+        body = {'name': 'csr', 'content': d}
+        handler = self.request(body, role='admin')
+        res = yield handler.post(n)
+
+        yield handler.get(n)
 
         csr_pem = self.responses[-1]
 
