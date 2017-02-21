@@ -147,9 +147,9 @@ class TestSubprocessRun(helpers.TestGL):
         for sock in self.https_socks:
             sock.close()
 
-        if self.http_process is not None:
+        if hasattr(self, 'http_process'):
             self.http_process.shutdown()
-        if self.pp is not None:
+        if hasattr(self, 'pp'):
             self.pp.transport.loseConnection()
             self.pp.transport.signalProcess('KILL')
 
