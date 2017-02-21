@@ -1,14 +1,20 @@
 GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
+  $scope.active = 1;
+
   $scope.tabs = [
     {
       title:"Main configuration",
       template: "views/admin/network/main.html"
     },
     {
-      title:"HTTPS Settings",
+      title:"HTTPS settings",
       template: "views/admin/network/https_settings.html"
     },
   ];
+
+  $scope.setActiveTab = function(index) {
+    $scope.active = index;
+  }
 }]).
 controller('AdminNetFormCtrl', [function() {
     // Scoped for future use.
