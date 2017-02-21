@@ -108,14 +108,14 @@ for TARGET in $TARGETS; do
 
   cp -r $BUILDSRC $BUILDDIR
   cd $BUILDDIR/GlobaLeaks
-  rm debian/control
+  rm debian/control backend/requrements.txt
 
-  if [ "$TARGET" == 'xenial' ]; then
+  if [ "$TARGET" == 'unstable' ]; then
     ln -s controlX/control.$TARGET debian/control
-  elif [ "$TARGET" == 'unstable' ]; then
-    ln -s controlX/control.$TARGET debian/control
+    ln -s backend/requirements/requirements-xenial.txt backend/requirements.txt
   else
-    ln -s controlX/control.trusty debian/control
+    ln -s controlX/control.$TARGET  debian/control
+    ln -s backend/requirements/requirements-$TARGET.txt backend/requirements.txt
   fi
 
   sed -i "s/stable; urgency=/$TARGET; urgency=/g" debian/changelog
