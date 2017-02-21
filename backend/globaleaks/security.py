@@ -7,7 +7,6 @@
 
 import base64
 import binascii
-import hmac
 import json
 import os
 import random
@@ -18,7 +17,7 @@ from tempfile import _TemporaryFileWrapper
 
 import scrypt
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives import constant_time, hashes
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from datetime import datetime
 from gnupg import GPG
@@ -326,8 +325,7 @@ def hash_password(password, salt):
 
 
 def check_password(guessed_password, salt, password_hash):
-    return hmac.compare_digest(hash_password(guessed_password, salt), password_hash)
-
+    return constant_time.bytes_eq(hash_password(guessed_password, salt), password_hash)
 
 def change_password(old_password_hash, old_password, new_password, salt):
     """
