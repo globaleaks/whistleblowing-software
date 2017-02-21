@@ -3,9 +3,10 @@
     <div class="status-line">
       <h3><span data-translate>Status</span></h3>
       <span data-ng-if="tls_config.enabled">
-          <span class="label label-success"><span data-translate>Enabled</span>
-            <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
-          </span>
+        <span class="label label-success"><span data-translate>Enabled</span>
+          <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+        </span>
+        <span>&nbsp;</span>
         <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
         <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
       </span>
@@ -31,9 +32,9 @@
     <h3 data-translate >System message:</h3>
     <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
   </div>
-  <div>
+  <div data-ng-if="!tls_config.running && admin.node_public_site != ''">
     <h3 data-translate>Configuration</h3>
-    <div data-ng-if="!(tls_config.running && tls_config.enabled)">
+    <div>
       <hr/>
       <p>
         <span data-translate>This configuration wizard will guide you through the setup of HTTPS.</span>
@@ -57,8 +58,7 @@
         <span class="pull-right">
           <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
             <label for="certUpload" class="btn btn-xs btn-primary">
-              <input id="certUpload" type="file" file-change
-              handler="postFile(files, file_resources.priv_key)"  />
+              <input id="certUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)"  />
               <span data-translate>Upload</span>
             </label>
           </span>
@@ -72,34 +72,43 @@
       </div>
     </div>
 
-    <div class="panel panel-default hideable-div">
-      <div data-ng-hide="tls_config.files.priv_key.set && !tls_config.files.cert.set && !tls_config.enabled" class="disabling-div"></div>
+    <div data-ng-if="tls_config.files.priv_key.gen" class="panel panel-default hideable-div">
+      <div data-ng-hide="state > 0" class="disabling-div"></div>
       <div class="panel-body">
-        <span data-ng-class="statusClass(tls_config.files.cert)">
+        <span data-ng-class="statusClass(tls_config.files.csr)">
           <span class="text-bold">2</span>
           <span class="text-bold" data-translate>Certificate Signing Request</span>
           <span>(PEM)</span>
         </span>
-        <span class="pull-right">
-          <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
-            <span data-translate>Generate</span>
-          </button>
-          <button type="button" class="close" data-ng-show="csr_state.open" data-ng-click="csr_state.open = false" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
+        <span data-ng-if="!tls_config.files.csr.set">
+          <span class="pull-right">
+            <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
+              <span data-translate>Generate</span>
+            </button>
+            <button type="button" class="close" data-ng-show="csr_state.open" data-ng-click="csr_state.open = false" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+          <div data-ng-show="csr_state.open">
+            <hr />
+            <div ng-include="'views/admin/network/csr_gen.html'"></div>
+          </div>
         </span>
-        <div data-ng-show="csr_state.open">
-           <hr />
-           <div ng-include="'views/admin/network/csr_gen.html'"></div>
-        </div>
+        <span data-ng-if="tls_config.files.csr.set">
+          <span class="pull-right">
+            <button class="btn btn-xs btn-primary"
+                data-ng-click="downloadFile(file_resources.csr)" data-translate>Download</button>
+            <button class="btn btn-xs btn-danger"
+                data-ng-click="deleteFile(file_resources.csr)" data-translate>Delete</button>
+          </span>
       </div>
     </div>
 
     <div class="panel panel-default hideable-div">
-        <div data-ng-hide="(tls_config.files.cert.set || tls_config.files.priv_key.set) && !tls_config.enabled" class="disabling-div"></div>
+      <div data-ng-hide="state > 1" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.cert)">
-          <span class="text-bold">3</span>
+          <span class="text-bold">{{tls_config.files.key.gen ? '3' : '2'}}</span>
           <span class="text-bold" data-translate>Certificate</span>
           <span>(PEM)</span>
         </span>
@@ -108,10 +117,9 @@
           <span data-translate>Issuer:</span> <b>{{ tls_config.files.cert.issuer }}</b>
         </span>
         <span class="pull-right">
-          <span class="file-upload" data-ng-if="tls_config.files.priv_key.set && !tls_config.files.cert.set">
+          <span class="file-upload" data-ng-if="!tls_config.files.cert.set">
             <label for="certUpload" class="btn btn-xs btn-primary">
-              <input id="certUpload" type="file" file-change
-              handler="postFile(files, file_resources.cert)"  />
+              <input id="certUpload" type="file" file-change handler="postFile(files[0], file_resources.cert)"  />
               <span data-translate>Upload</span>
             </label>
           </span>
@@ -126,10 +134,10 @@
     </div>
 
     <div class="panel panel-default hideable-div">
-      <div data-ng-hide="(tls_config.files.chain.set || (tls_config.files.cert.set && tls_config.files.priv_key.set)) && !tls_config.enabled" class="disabling-div"></div>
+      <div data-ng-hide="state > 2" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.chain)">
-          <span class="text-bold" data-ng-class="tls_config.files.chain.set">4</span>
+          <span class="text-bold">{{tls_config.files.key.gen ? '4' : '3'}}</span>
           <span class="text-bold" data-translate>Intermediate Certificates</span>
           <span>(PEM)</span>
         </span>
@@ -138,10 +146,9 @@
           <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
         </span>
         <div class="pull-right">
-          <span class="file-upload" data-ng-if="tls_config.files.priv_key.set && !tls_config.files.chain.set">
+          <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
             <label for="chainUpload" class="btn btn-xs btn-primary">
-              <input id="chainUpload" type="file" file-change
-              handler="postFile(files, file_resources.chain)" />
+              <input id="chainUpload" type="file" file-change handler="postFile(files[0], file_resources.chain)" />
               <span data-translate>Upload</span>
             </label>
           </span>
@@ -157,13 +164,10 @@
 
   </div>
 
-  <button class="btn btn-md btn-success" data-ng-if="!tls_config.enabled"
-      data-ng-disabled="!tls_config.files.priv_key.set || !tls_config.files.cert.set"
-      data-ng-click="toggleCfg()"
-      data-translate>Enable
-  </button>
-  <button class="btn btn-md btn-danger" data-ng-if="tls_config.enabled"
-      data-ng-click="toggleCfg()"
-      data-translate>Disable
-  </button>
+  <div data-ng-if="state > 2">
+    <button class="btn" data-ng-class="{'btn-danger': tls_config.enabled, 'btn-success': !tls_config.enabled}" data-ng-click="toggleCfg()">
+      <span data-ng-if="!tls_config.enabled" data-translate>Enable</span>
+      <span data-ng-if="tls_config.enabled" data-translate>Disable</span>
+    </button>
+  </div>
 </div>

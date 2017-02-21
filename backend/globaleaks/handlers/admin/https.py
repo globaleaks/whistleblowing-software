@@ -19,7 +19,6 @@ class FileResource(object):
     '''
     An interface for interacting with files stored on disk or in the db
     '''
-
     @classmethod
     @transact
     def create_file(store, content):
@@ -93,6 +92,7 @@ class PrivKeyFileRes(FileResource):
         if ok:
             PrivKeyFileRes.gen_dh_params_if_none(prv_fact)
             prv_fact.set_val('https_priv_key', raw_key)
+            prv_fact.set_val('https_priv_gen', False)
         else:
             log.info('Key validation failed')
         return ok
@@ -108,6 +108,7 @@ class PrivKeyFileRes(FileResource):
         prv_key = tls.gen_RSA_key()
         pem_prv_key = crypto.dump_privatekey(SSL.FILETYPE_PEM, prv_key)
         prv_fact.set_val('https_priv_key', pem_prv_key)
+        prv_fact.set_val('https_priv_gen', True)
 
         log.info("Finished key generation and storage")
 
@@ -119,14 +120,15 @@ class PrivKeyFileRes(FileResource):
         # TODO(nskelsey) wipe key in a safer fashion or blame naif if it
         # all goes wrong.
         prv_fact.set_val('https_priv_key', u'')
+        prv_fact.set_val('https_priv_gen', False)
 
     @staticmethod
     def db_serialize(store):
-        k = PrivateFactory(store).get_val('https_priv_key')
-        is_key_set = k != u''
+        prv_fact = PrivateFactory(store)
 
         return {
-            'set': is_key_set,
+            'set': prv_fact.get_val('https_priv_key') != u'',
+            'gen': prv_fact.get_val('https_priv_gen')
         }
 
 
@@ -218,7 +220,7 @@ class ChainFileRes(FileResource):
     @staticmethod
     def db_serialize(store):
         c = PrivateFactory(store).get_val('https_chain')
-        if c == u'':
+        if len(c) == 0:
             return {'name': 'chain', 'set': False}
 
         x509 = load_certificate(FILETYPE_PEM, c)
@@ -232,11 +234,49 @@ class ChainFileRes(FileResource):
         }
 
 
+class CsrFileRes(FileResource):
+    @classmethod
+    @transact
+    @https_disabled
+    def create_file(store, cls, raw_csr):
+        prv_fact = PrivateFactory(store)
+
+        prv_fact.set_val('https_csr', raw_csr)
+
+        return True
+
+    @staticmethod
+    @transact
+    @https_disabled
+    def delete_file(store):
+        prv_fact = PrivateFactory(store)
+        prv_fact.set_val('https_csr', u'')
+
+    @staticmethod
+    @transact
+    @https_disabled
+    def get_file(store):
+        prv_fact = PrivateFactory(store)
+        return prv_fact.get_val('https_csr')
+
+    @staticmethod
+    def db_serialize(store):
+        c = PrivateFactory(store).get_val('https_csr')
+        if len(c) == 0:
+            return {'name': 'csr', 'set': False}
+
+        return {
+            'name': 'csr',
+            'set': True,
+        }
+
+
 class FileHandler(BaseHandler):
     mapped_file_resources = {
         'priv_key': PrivKeyFileRes,
         'cert':  CertFileRes,
         'chain': ChainFileRes,
+        'csr': CsrFileRes,
     }
 
     def get_file_res_or_raise(self, name):
@@ -362,29 +402,37 @@ class ConfigHandler(BaseHandler):
         self.set_status(200)
 
 
-class CSRConfigHandler(BaseHandler):
+class CSRFileHandler(FileHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @inlineCallbacks
-    def post(self):
+    def post(self, name):
         request = self.validate_message(self.request.body,
-                                        requests.AdminCSRConfigDesc)
+                                        requests.AdminCSRFileDesc)
+
+        desc = request['content']
+
         csr_fields = {
-                'C':  request['country'].upper(),
-                'ST': request['province'],
-                'L':  request['city'],
-                'O':  request['company'],
-                'CN': request['commonname'],
-                'emailAddress': request['email'],
+                'C':  desc['country'].upper(),
+                'ST': desc['province'],
+                'L':  desc['city'],
+                'O':  desc['company'],
+                'OU': desc['department'],
+                'CN': desc['commonname'],
+                'emailAddress': desc['email'],
         }
 
-        if 'department' in request:
-            csr_fields['OU'] = request['department']
-
-
         csr_txt = yield self.perform_action(csr_fields)
+
+        file_res_cls = self.get_file_res_or_raise(name)
+
+        ok = yield file_res_cls.create_file(csr_txt)
+        if ok:
+            self.set_status(201, 'Wrote everything')
+        else:
+            raise errors.ValidationError()
+
         self.set_status(200)
-        self.write(csr_txt)
 
     @staticmethod
     @transact
