@@ -1,6 +1,5 @@
 <div id="HttpsSettings" data-ng-controller="AdminHTTPSConfigCtrl">
   <div class="info-section">
-
     <div class="status-line">
       <h3><span data-translate>Status</span></h3>
       <span data-ng-if="tls_config.enabled">
@@ -19,12 +18,12 @@
     <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
         <span data-translate>Hostname</span><span>:</span>
-        <a data-ng-show="admin.node.public_site != ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.public_site }}">{{ admin.node.public_site }}</a>
+        <a data-ng-show="admin.node.public_site != ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.public_site }}">{{admin.node.public_site}}</a>
       </div>
       <div data-ng-show="admin.node.public_site == ''"
           class="alert alert-warning">
           <span data-translate>Hostname is not set!</span>
-          <span data-translate>Set the HTTPS host name in network settings.</span>
+          <span><a data-ng-click="setActiveTab(0)"><span data-translate>Click here to configure it.</span></a></span>
       </div>
     </div>
   </div>
