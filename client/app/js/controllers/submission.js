@@ -68,7 +68,7 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.wait = true;
     $scope.submission.pow = false;
 
-    $scope.submission.countdown = $scope.node.submission_minimum_delay;
+    $scope.submission.countdown = 10; // aligned to backend submission_minimum_delay
 
     var countDown = function () {
       $scope.submission.countdown -= 1;

@@ -131,5 +131,4 @@ class MigrationScript(MigrationBase):
     def epilogue(self):
         nf = NodeFactory(self.store_new)
         self.trim_value_to_range(nf, 'wbtip_timetolive')
-        self.trim_value_to_range(nf, 'submission_maximum_ttl')
         self.store_new.commit()

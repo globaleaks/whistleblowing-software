@@ -200,6 +200,9 @@ class GLSettingsClass(object):
 
         self.enable_input_length_checks = True
 
+        self.submission_minimum_delay = 10 # seconds
+        self.submission_maximum_ttl = 3600 # 1 hour
+
         self.mail_counters = {}
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit

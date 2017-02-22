@@ -212,8 +212,6 @@ AdminNodeDesc = {
     'landing_page': landing_page_regexp,
     'context_selector_type': context_selector_type_regexp,
     'contexts_clarification': unicode,
-    'submission_minimum_delay': int,
-    'submission_maximum_ttl': int,
     'show_contexts_in_alphabetical_order': bool,
     'show_small_context_cards': bool,
     'widget_comments_title': unicode,
