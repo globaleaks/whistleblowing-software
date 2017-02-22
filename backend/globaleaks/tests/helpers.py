@@ -219,13 +219,14 @@ class TestGL(unittest.TestCase):
         allow_unencrypted = self.encryption_scenario in ['PLAINTEXT', 'MIXED']
 
         yield update_node_setting('allow_unencrypted', allow_unencrypted)
-        yield update_node_setting('submission_minimum_delay', 0)
 
         yield db.refresh_memory_variables()
 
         Alarm.reset()
         event.EventTrackQueue.clear()
         GLSettings.reset_hourly()
+
+        GLSettings.submission_minimum_delay = 0
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
 
@@ -895,8 +896,6 @@ class MockDict:
             'contexts_clarification': u'',
             'show_contexts_in_alphabetical_order': False,
             'show_small_context_cards': False,
-            'submission_minimum_delay': 123,
-            'submission_maximum_ttl': 1111,
             'widget_comments_title': '',
             'widget_messages_title': '',
             'widget_files_title': '',

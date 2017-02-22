@@ -24,8 +24,8 @@ class TokenListClass(TempDict):
         TempDict.__init__(self, *args, **kwds)
 
     def get_timeout(self):
-        return GLSettings.memory_copy.submission_minimum_delay + \
-               GLSettings.memory_copy.submission_maximum_ttl
+        return GLSettings.submission_minimum_delay + \
+               GLSettings.submission_maximum_ttl
 
     def expireCallback(self, item):
         for f in item.uploaded_files:
@@ -120,12 +120,12 @@ class Token(object):
         timedelta_check verifies that the current time is between the start
         validity time and the end validity time.
         """
-        min_delay = GLSettings.memory_copy.submission_minimum_delay
+        min_delay = GLSettings.submission_minimum_delay
 
         if GLSettings.devel_mode:
             min_delay = 0
 
-        max_ttl = GLSettings.memory_copy.submission_maximum_ttl
+        max_ttl = GLSettings.submission_maximum_ttl
 
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=min_delay))

@@ -45,9 +45,6 @@ def db_serialize_node(store, language):
 
     ret = disjoint_union(ro_node, l10n_dict, misc_dict)
 
-    if GLSettings.devel_mode:
-        ret['submission_minimum_delay'] = 0
-
     return ret
 
 
