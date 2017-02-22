@@ -18,7 +18,7 @@
 
     <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
-        <span data-translate>Hostname</span><span>:</span>
+        <span data-translate>URL</span><span>:</span>
         <a data-ng-show="admin.node.public_site != ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.public_site }}">{{admin.node.public_site}}</a>
       </div>
       <div data-ng-show="admin.node.public_site == ''"

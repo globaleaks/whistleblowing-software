@@ -5,7 +5,7 @@ from datetime import datetime
 
 from twisted.internet import ssl
 
-from OpenSSL import SSL
+from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext, PKey, dump_certificate_request, X509Req
 from OpenSSL._util import lib as _lib, ffi as _ffi
 
@@ -25,7 +25,7 @@ def load_dh_params_from_string(ctx, dh_params_string):
         ctx.load_tmp_dh(temp.name)
 
 
-def generate_dh_params():
+def gen_dh_params():
     # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable
     # and not easily abused
     dh = _lib.DH_new()
@@ -46,17 +46,15 @@ def generate_dh_params():
     return dh_params
 
 
-def gen_RSA_key():
+def gen_rsa_key():
     '''
-    gen_x509_key uses the default settings to generate the key params.
-    TODO evaluate how defaults are selected...........................
-
+    Generate an RSA key and returns it in PEM format.
     :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
     '''
-    pub_key = PKey()
-    pub_key.generate_key(TYPE_RSA, 2048)
+    key = PKey()
+    key.generate_key(TYPE_RSA, 2048)
 
-    return pub_key
+    return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
 
 
 def gen_x509_csr(key_pair, csr_fields):

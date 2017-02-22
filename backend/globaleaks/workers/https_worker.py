@@ -8,8 +8,6 @@ def log():
         print('%s [gl-https-proxy:%d] %s' % (now, pid, m))
     return prefix
 
-if __name__ == '__main__': log()("Started")
-
 
 # TODO: make this conditional and abstract it with a worker class
 # When this executable is not within the systems standard path, the globaleaks
