@@ -5,6 +5,7 @@ from functools import wraps
 from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet.threads import deferToThread
 
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
@@ -25,8 +26,7 @@ class FileResource(object):
         raise errors.MethodNotImplemented()
 
     @staticmethod
-    @transact
-    def perform_file_action(store):
+    def perform_file_action():
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -54,34 +54,33 @@ class FileResource(object):
         '''
         raise errors.MethodNotImplemented()
 
+    @classmethod
+    @transact
+    def should_gen_dh_params(store, cls):
+        return PrivateFactory(store).get_val('https_dh_params') == u''
 
-def https_disabled(f):
-    @wraps(f)
-    def wrapper(store, *args, **kwargs):
-        on = PrivateFactory(store).get_val('https_enabled')
-        if on:
-            raise errors.FailedSanityCheck()
-        return f(store, *args, **kwargs)
+    @staticmethod
+    @transact
+    def save_dh_params(store, dh_params):
+        PrivateFactory(store).set_val('https_dh_params', dh_params)
 
-    return wrapper
+    @classmethod
+    @inlineCallbacks
+    def generate_dh_params_if_missing(cls):
+        gen_dh = yield cls.should_gen_dh_params()
+        if gen_dh:
+            log.debug("Generating the HTTPS DH params")
+            dh_params = yield deferToThread(tls.gen_dh_params)
+
+            log.debug("Storing the HTTPS DH params")
+            yield cls.save_dh_params(dh_params)
 
 
 class PrivKeyFileRes(FileResource):
     validator = tls.PrivKeyValidator
 
-    @staticmethod
-    def gen_dh_params_if_none(prv_fact):
-         dh_params = prv_fact.get_val('https_dh_params')
-
-         if dh_params == u'':
-             log.info("Generating https dh params")
-             dh_params = tls.generate_dh_params()
-             prv_fact.set_val('https_dh_params', dh_params)
-             log.info("DH param generated and stored")
-
     @classmethod
     @transact
-    @https_disabled
     def create_file(store, cls, raw_key):
         db_cfg = load_tls_dict(store)
         db_cfg['ssl_key'] = raw_key
@@ -90,35 +89,33 @@ class PrivKeyFileRes(FileResource):
         pkv = cls.validator()
         ok, err = pkv.validate(db_cfg)
         if ok:
-            PrivKeyFileRes.gen_dh_params_if_none(prv_fact)
             prv_fact.set_val('https_priv_key', raw_key)
             prv_fact.set_val('https_priv_gen', False)
         else:
-            log.info('Key validation failed')
+            log.debug('Key validation failed')
+
         return ok
 
-    @staticmethod
     @transact
-    @https_disabled
-    def perform_file_action(store):
+    def save_tls_key(store, prv_key):
         prv_fact = PrivateFactory(store)
-        PrivKeyFileRes.gen_dh_params_if_none(prv_fact)
-
-        log.info("Generating a new TLS key")
-        prv_key = tls.gen_RSA_key()
-        pem_prv_key = crypto.dump_privatekey(SSL.FILETYPE_PEM, prv_key)
-        prv_fact.set_val('https_priv_key', pem_prv_key)
+        prv_fact.set_val('https_priv_key', prv_key)
         prv_fact.set_val('https_priv_gen', True)
 
-        log.info("Finished key generation and storage")
+    @classmethod
+    @inlineCallbacks
+    def perform_file_action(cls):
+        log.debug("Generating the HTTPS key")
+        key = yield deferToThread(tls.gen_rsa_key)
+
+        log.debug("Saving the HTTPS key")
+        yield cls.save_tls_key(key)
 
     @staticmethod
     @transact
-    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        # TODO(nskelsey) wipe key in a safer fashion or blame naif if it
-        # all goes wrong.
+        prv_fact.set_val('https_dh_params', '')
         prv_fact.set_val('https_priv_key', u'')
         prv_fact.set_val('https_priv_gen', False)
 
@@ -137,7 +134,6 @@ class CertFileRes(FileResource):
 
     @classmethod
     @transact
-    @https_disabled
     def create_file(store, cls, raw_cert):
         prv_fact = PrivateFactory(store)
 
@@ -149,19 +145,17 @@ class CertFileRes(FileResource):
         if ok:
             prv_fact.set_val('https_cert', raw_cert)
         else:
-            log.info("Cert validation failed")
+            log.debug("Cert validation failed")
         return ok
 
     @staticmethod
     @transact
-    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_cert', u'')
 
     @staticmethod
     @transact
-    @https_disabled
     def get_file(store):
         prv_fact = PrivateFactory(store)
         return prv_fact.get_val('https_cert')
@@ -188,7 +182,6 @@ class ChainFileRes(FileResource):
 
     @classmethod
     @transact
-    @https_disabled
     def create_file(store, cls, raw_chain):
         prv_fact = PrivateFactory(store)
 
@@ -200,19 +193,17 @@ class ChainFileRes(FileResource):
         if ok:
             prv_fact.set_val('https_chain', raw_chain)
         else:
-            log.info('Chain validation failed')
+            log.debug('Chain validation failed')
         return ok
 
     @staticmethod
     @transact
-    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_chain', u'')
 
     @staticmethod
     @transact
-    @https_disabled
     def get_file(store):
         prv_fact = PrivateFactory(store)
         return prv_fact.get_val('https_chain')
@@ -237,7 +228,6 @@ class ChainFileRes(FileResource):
 class CsrFileRes(FileResource):
     @classmethod
     @transact
-    @https_disabled
     def create_file(store, cls, raw_csr):
         prv_fact = PrivateFactory(store)
 
@@ -247,14 +237,12 @@ class CsrFileRes(FileResource):
 
     @staticmethod
     @transact
-    @https_disabled
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_csr', u'')
 
     @staticmethod
     @transact
-    @https_disabled
     def get_file(store):
         prv_fact = PrivateFactory(store)
         return prv_fact.get_val('https_csr')
@@ -287,6 +275,7 @@ class FileHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def delete(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
@@ -294,6 +283,7 @@ class FileHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
         req = self.validate_message(self.request.body,
@@ -301,30 +291,36 @@ class FileHandler(BaseHandler):
 
         file_res_cls = self.get_file_res_or_raise(name)
 
+        yield file_res_cls.generate_dh_params_if_missing()
+
         ok = yield file_res_cls.create_file(req['content'])
         if ok:
             self.set_status(201, 'Wrote everything')
         else:
             raise errors.ValidationError()
 
-
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
-        yield file_res_cls.perform_file_action()
-        self.set_status(201, 'Accepted changes')
+        yield file_res_cls.generate_dh_params_if_missing()
 
+        yield file_res_cls.perform_file_action()
+
+        self.set_status(201, 'Accepted changes')
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def get(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
         file_blob = yield file_res_cls.get_file()
+
         self.write(file_blob)
 
 
@@ -365,7 +361,7 @@ def try_to_enable_and_launch_https(store):
 @transact
 def disable_https(store):
     prv_fact = PrivateFactory(store)
-    log.info('Disabling https on the node.')
+    log.debug('Disabling https on the node.')
     prv_fact.set_val('https_enabled', False)
 
 
@@ -379,11 +375,9 @@ class ConfigHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        '''
-        '''
-        # TODO(nskelsey) rate limit me
         ok = yield try_to_enable_and_launch_https()
         if ok:
             self.set_status(200)
@@ -392,10 +386,11 @@ class ConfigHandler(BaseHandler):
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_enabled
     @inlineCallbacks
     def put(self):
         '''
-        This post disables and deactivates TLS config and subprocesses.
+        Disables HTTPS config and shutdown subprocesses.
         '''
         yield disable_https()
         GLSettings.state.process_supervisor.shutdown()
@@ -405,6 +400,7 @@ class ConfigHandler(BaseHandler):
 class CSRFileHandler(FileHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
         request = self.validate_message(self.request.body,
@@ -436,7 +432,6 @@ class CSRFileHandler(FileHandler):
 
     @staticmethod
     @transact
-    @https_disabled
     def perform_action(store, csr_fields):
         db_cfg = load_tls_dict(store)
 
@@ -448,7 +443,7 @@ class CSRFileHandler(FileHandler):
         key_pair = db_cfg['ssl_key']
         try:
             csr_txt = tls.gen_x509_csr(key_pair, csr_fields)
-            log.info("Generated a new CSR")
+            log.debug("Generated a new CSR")
             return csr_txt
         except Exception as e:
             log.err(e)

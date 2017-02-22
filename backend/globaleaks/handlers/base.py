@@ -217,7 +217,7 @@ class BaseHandler(RequestHandler):
         Decorator for authenticated sessions.
         If the user is not authenticated, return a http 412 error.
         """
-        def wrapper(method_handler):
+        def wrapper(f):
             def call_handler(cls, *args, **kwargs):
                 """
                 If not yet auth, is redirected
@@ -232,7 +232,7 @@ class BaseHandler(RequestHandler):
 
                 if role == '*' or role == cls.current_user.user_role:
                     log.debug("Authentication OK (%s)" % cls.current_user.user_role)
-                    return method_handler(cls, *args, **kwargs)
+                    return f(cls, *args, **kwargs)
 
                 raise errors.InvalidAuthentication
 
@@ -241,18 +241,18 @@ class BaseHandler(RequestHandler):
         return wrapper
 
     @staticmethod
-    def unauthenticated(method_handler):
+    def unauthenticated(f):
         """
         Decorator for unauthenticated requests.
         If the user is logged in an authenticated sessions it does refresh the session.
         """
-        def call_handler(cls, *args, **kwargs):
+        def wrapper(cls, *args, **kwargs):
             if GLSettings.memory_copy.basic_auth:
                 cls.basic_auth()
 
-            return method_handler(cls, *args, **kwargs)
+            return f(cls, *args, **kwargs)
 
-        return call_handler
+        return wrapper
 
     @staticmethod
     def transport_security_check(role):
@@ -275,6 +275,34 @@ class BaseHandler(RequestHandler):
                 return method_handler(cls, *args, **kwargs)
 
             return call_handler
+
+        return wrapper
+
+    @staticmethod
+    def https_enabled(f):
+        """
+        Decorator that enforce that https_disabled requirement
+        """
+        def wrapper(*args, **kwargs):
+            log.debug(GLSettings.memory_copy)
+            if not GLSettings.memory_copy.private.https_enabled:
+                raise errors.FailedSanityCheck()
+
+            return f(*args, **kwargs)
+
+        return wrapper
+
+    @staticmethod
+    def https_disabled(f):
+        """
+        Decorator that enforce that https_disabled requirement
+        """
+        def wrapper(*args, **kwargs):
+            log.debug(GLSettings.memory_copy)
+            if GLSettings.memory_copy.private.https_enabled:
+                raise errors.FailedSanityCheck()
+
+            return f(*args, **kwargs)
 
         return wrapper
 
