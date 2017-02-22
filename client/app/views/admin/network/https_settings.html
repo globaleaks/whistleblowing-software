@@ -32,7 +32,7 @@
     <h3 data-translate >System message:</h3>
     <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
   </div>
-  <div data-ng-if="!tls_config.running && admin.node_public_site != ''">
+  <div data-ng-if="!tls_config.running && admin.node.public_site != ''">
     <h3 data-translate>Configuration</h3>
     <div>
       <hr/>
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div data-ng-if="tls_config.files.priv_key.gen" class="panel panel-default hideable-div">
+    <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default hideable-div">
       <div data-ng-hide="state > 0" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.csr)">
@@ -108,7 +108,7 @@
       <div data-ng-hide="state > 1" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.cert)">
-          <span class="text-bold">{{tls_config.files.key.gen ? '3' : '2'}}</span>
+          <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '3' : '2'}}</span>
           <span class="text-bold" data-translate>Certificate</span>
           <span>(PEM)</span>
         </span>
@@ -137,7 +137,7 @@
       <div data-ng-hide="state > 2" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.chain)">
-          <span class="text-bold">{{tls_config.files.key.gen ? '4' : '3'}}</span>
+          <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '4' : '3'}}</span>
           <span class="text-bold" data-translate>Intermediate Certificates</span>
           <span>(PEM)</span>
         </span>
