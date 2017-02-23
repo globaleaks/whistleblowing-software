@@ -31,22 +31,20 @@ def getPageSecurely(url):
     request = Agent(reactor, connectTimeout=4).request('GET', url)
 
     def cbResponse(response):
-        data = readBody(response)
-        return data
+        return readBody(response)
 
     request.addCallback(cbResponse)
+
     return request
 
 
 def downloadPageSecurely(url, filename):
-    try:
-        request = Agent(reactor, connectTimeout=4).request('GET', url)
-        finished = defer.Deferred()
+    request = Agent(reactor, connectTimeout=4).request('GET', url)
+    finished = defer.Deferred()
 
-        def cbResponse(response):
-            response.deliverBody(SaveContents(finished, response.length, filename))
+    def cbResponse(response):
+        response.deliverBody(SaveContents(finished, response.length, filename))
 
-        request.addCallback(cbResponse)
-        return finished
-    except:
-        return defer.fail()
+    request.addCallback(cbResponse)
+
+    return finished
