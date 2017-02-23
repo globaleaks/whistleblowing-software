@@ -115,7 +115,6 @@ class PrivKeyFileRes(FileResource):
     @transact
     def delete_file(store):
         prv_fact = PrivateFactory(store)
-        prv_fact.set_val('https_dh_params', '')
         prv_fact.set_val('https_priv_key', u'')
         prv_fact.set_val('https_priv_gen', False)
 

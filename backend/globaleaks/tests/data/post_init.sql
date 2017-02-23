@@ -1,0 +1,3 @@
+-- Inject data to speed up execution of the backend during end2end testing
+
+INSERT OR REPLACE INTO config (var_group, var_name, customized, value) VALUES ('private', 'https_dh_params', 1, '{"v": "-----BEGIN DH PARAMETERS-----\nMIIBCAKCAQEA+x0nUjatEONy5LP/PMSVxQ2Vws7CwG4xmnIUBviK+TUMnX0oFz2U\n9D9mUSsjFQpiPEynz+tUJYbcPb/vqLESNn1l/Gd7abaQlMAdrj7GujOR1hHqBfcU\n1+5566VuIAzO/+xlVvZZb53CgoqBg4Qv7h+NEQbKQ2XDu2RPzwIGU2Hna4l2b+1P\ncAeprKIbr7qxwJlvwq22TVjOoiZFwjzLFZgp0oIbULizOEH76miLz3c3L3Tgn7Cg\n5NkdxuV61fstn9Q/nqDpqf8XdbR8dUWNgITRF1f6MPLtgJD+ebD3fbmAZEj0kxsl\nbOdCqwQRsuQGpD05QE5CLRQecSt47isD6wIBAg==\n-----END DH PARAMETERS-----\n"}');
