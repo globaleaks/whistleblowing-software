@@ -26,8 +26,6 @@ from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.tls import should_redirect_https
-from globaleaks.utils.tor_exit_set import should_redirect_tor
 from globaleaks.utils.utility import log, datetime_now, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
@@ -51,6 +49,27 @@ mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
 mimetypes.add_type('application/x-font-ttf', '.ttf')
 mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
+
+
+def should_redirect_tor(request, tor_addr, exit_relay_set):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if forwarded_ip is None:
+        forwarded_ip = request.remote_ip
+
+    if tor_addr is not None and forwarded_ip in exit_relay_set:
+        return True
+    return False
+
+
+def should_redirect_https(request, https_enabled, local_hosts):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if request.remote_ip in local_hosts and forwarded_ip is not None:
+        # This connection has been properly proxied through some transport locally
+        return False
+    elif https_enabled and not request.remote_ip in local_hosts:
+        return True
+    else:
+        return False
 
 
 def write_upload_plaintext_to_disk(uploaded_file, destination):
@@ -504,16 +523,16 @@ class BaseHandler(RequestHandler):
             raise errors.InvalidHostSpecified
 
         log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
-        if should_redirect_https(GLSettings.memory_copy.private.https_enabled,
-                                 GLSettings.local_hosts,
-                                 self.request):
+        if should_redirect_https(self.request,
+                                 GLSettings.memory_copy.private.https_enabled,
+                                 GLSettings.local_hosts)
             log.debug('Decided to redirect')
             self.redirect_https()
 
         # TODO handle the case where we are not interested in applying the exit list
-        if should_redirect_tor(GLSettings.tor_address,
-                               GLSettings.state.tor_exit_set,
-                               self.request):
+        if should_redirect_tor(self.request,
+                               GLSettings.tor_address,
+                               GLSettings.state.tor_exit_set)
             self.redirect_tor(GLSettings.tor_address)
 
     def redirect_https(self):
