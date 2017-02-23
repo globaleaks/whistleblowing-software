@@ -14,12 +14,14 @@ from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db import migration, perform_system_update
+from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.models import config, Field
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers, config as test_config
+from globaleaks.rest import errors
 
 
 class TestMigrationRoutines(unittest.TestCase):
@@ -139,6 +141,21 @@ class TestConfigUpdates(unittest.TestCase):
         prv = config.PrivateFactory(store)
         self.assertEqual(prv.get_val('version'), self.dummy_ver)
         store.close()
+
+    def test_trim_value_to_range(self):
+        store = Store(create_database(GLSettings.db_uri))
+
+        nf = config.NodeFactory(store)
+        fake_cfg = nf.get_cfg('wbtip_timetolive')
+
+        self.assertRaises(errors.InvalidModelInput, fake_cfg.set_v, 3650)
+
+        fake_cfg.value = {'v': 3650}
+        store.commit()
+
+        MigrationBase.trim_value_to_range(nf, 'wbtip_timetolive')
+        self.assertEqual(nf.get_val('wbtip_timetolive'), 365*2)
+
 
 def apply_gen(f):
     gen = f()
