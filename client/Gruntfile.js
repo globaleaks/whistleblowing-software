@@ -177,7 +177,7 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /components\/angular-i18n\/([^\'\"\)]+)*/g,
+              pattern: /js\/locale\/([^\'\"\)]+)*/g,
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
               }
