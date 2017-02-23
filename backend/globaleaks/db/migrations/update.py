@@ -203,7 +203,8 @@ class MigrationBase(object):
 
         return generateCreateQuery(model_obj)
 
-    def trim_value_to_range(self, factory, name):
+    @staticmethod
+    def trim_value_to_range(factory, name):
         cfg_v = factory.get_val(name)
         cfg_d = factory.group_desc[name]
         if cfg_v > cfg_d.validator.stop:
