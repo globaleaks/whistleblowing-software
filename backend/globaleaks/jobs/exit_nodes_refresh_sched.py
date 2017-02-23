@@ -18,8 +18,11 @@ class ExitNodesRefreshSchedule(GLJob):
 
     @inlineCallbacks
     def _operation(self):
-        """Issue an request to tor.checkstatus to update the exit relay list"""
+        """Issue a request to check.torproject.org to update the exit relay list"""
         log.debug('Fetching exit relays')
-        yield GLSettings.state.tor_exit_set.update()
+        try:
+            yield GLSettings.state.tor_exit_set.update()
+        except Exception as e:
+            log.err('Exit relay fetch failed: %s' % e)
         log.debug('Retrieved: %d exit relays' % len(GLSettings.state.tor_exit_set))
 
