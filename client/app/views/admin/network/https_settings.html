@@ -47,7 +47,7 @@
       </p>
       <hr/>
     </div>
-    <div class="panel panel-default hideable-div">
+    <div class="panel panel-default hideable-div priv-key">
       <div data-ng-hide="!tls_config.enabled" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.priv_key)">
@@ -72,7 +72,7 @@
       </div>
     </div>
 
-    <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default hideable-div">
+    <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default hideable-div csr">
       <div data-ng-hide="state > 0" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.csr)">
@@ -104,7 +104,7 @@
       </div>
     </div>
 
-    <div class="panel panel-default hideable-div">
+    <div class="panel panel-default hideable-div cert">
       <div data-ng-hide="state > 1" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.cert)">
@@ -133,7 +133,7 @@
       </div>
     </div>
 
-    <div class="panel panel-default hideable-div">
+    <div class="panel panel-default hideable-div chain">
       <div data-ng-hide="state > 2" class="disabling-div"></div>
       <div class="panel-body">
         <span data-ng-class="statusClass(tls_config.files.chain)">
