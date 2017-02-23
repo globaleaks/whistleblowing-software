@@ -28,18 +28,14 @@ class SaveContents(Protocol):
 
 
 def getPageSecurely(url):
-    try:
-        request = Agent(reactor).request('GET', url)
-        finished = defer.Deferred()
+    request = Agent(reactor, connectTimeout=4).request('GET', url)
 
-        def cbResponse(response):
-            d = readBody(response)
-            d.addCallback(finished.callback)
+    def cbResponse(response):
+        data = readBody(response)
+        return data
 
-        request.addCallback(cbResponse)
-        return finished
-    except:
-        return defer.fail()
+    request.addCallback(cbResponse)
+    return request
 
 
 def downloadPageSecurely(url, filename):
