@@ -525,14 +525,14 @@ class BaseHandler(RequestHandler):
         log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
         if should_redirect_https(self.request,
                                  GLSettings.memory_copy.private.https_enabled,
-                                 GLSettings.local_hosts)
+                                 GLSettings.local_hosts):
             log.debug('Decided to redirect')
             self.redirect_https()
 
         # TODO handle the case where we are not interested in applying the exit list
         if should_redirect_tor(self.request,
                                GLSettings.tor_address,
-                               GLSettings.state.tor_exit_set)
+                               GLSettings.state.tor_exit_set):
             self.redirect_tor(GLSettings.tor_address)
 
     def redirect_https(self):
