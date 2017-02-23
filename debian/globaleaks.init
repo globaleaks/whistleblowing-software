@@ -30,10 +30,23 @@ if test -e "/etc/default/globaleaks" ; then
    . "/etc/default/globaleaks"
 fi
 
-ALLOWED_SRC_IP=$(echo $ALLOWED_SRC_IP 127.0.0.1 | tr ' ' '\n' | sort -u)
-ALLOWED_DST_IP=$(echo $ALLOWED_DST_IP 127.0.0.1 | tr ' ' '\n' | sort -u)
-LISTENING_PORTS=$(echo $LISTENING_PORT 80 443 | tr ' ' '\n' | sort -u)
+ALLOWED_SRC_IP=($(echo $ALLOWED_SRC_IP 127.0.0.1 | tr ' ' '\n' | sort -u | tr '\n' ' '))
+ALLOWED_DST_IP=($(echo $ALLOWED_DST_IP 127.0.0.1 | tr ' ' '\n' | sort -u | tr '\n' ' '))
+LISTENING_PORTS=($(echo "$LISTENING_PORT 80 443" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 
+SRCIP=("${ALLOWED_SRC_IP[@]}")
+for ((i = 0; i < ${#SRCIP[@]}; ++i)); do
+  if [ "${SRCIP[$i]}" == "0.0.0.0" ]; then
+    SRCIP[$i]='0.0.0.0/0'
+  fi
+done
+
+DSTIP=("${ALLOWED_DST_IP[@]}")
+for ((i = 0; i < ${#DSTIP[@]}; ++i)); do
+  if [ "${DSTIP[$i]}" == "0.0.0.0" ]; then
+    DSTIP[$i]='0.0.0.0/0'
+  fi
+done
 ##################################################################
 
 . /lib/init/vars.sh
@@ -127,25 +140,23 @@ network_sandboxing_start()
     fi
 
     # INBOUND
-    LISTENING_PORTS=$(echo $LISTENING_PORT 80 443 | tr ' ' '\n' | sort -u)
-    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    for IP_DST in "${DSTIP[@]}"
     do
         for PORT in "${LISTENING_PORTS}"
         do
-            for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+            for IP_SRC in "${SRCIP[@]}"
             do
                 iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${PORT} -s ${IP_SRC} -j ACCEPT
             done
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${PORT} -j DROP
         done
-
-        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d ${IP_DST} --dport ${PORT} -j DROP
     done
 
     # OUTBOUND
     # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
-    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    for IP_DST in "${DSTIP[@]}"
     do
-        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        for IP_SRC in "${SRCIP[@]}"
         do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED -d ${IP_SRC} -s ${IP_DST} -j ACCEPT
         done

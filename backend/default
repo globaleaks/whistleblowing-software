@@ -30,13 +30,13 @@ DISABLE_SWAP=0
 # API_PREFIX = [prefix]
 API_PREFIX=
 
-# ALLOWED_SRC_IP = ( ip_address1 ip_address2 ... )
+# ALLOWED_SRC_IP = ip_address1,ip_address2,...
 #   permits to configure a list of ip address used for outbound connections
-ALLOWED_SRC_IP=( 127.0.0.1 )
+ALLOWED_SRC_IP=127.0.0.1
 
-# ALLOWED_DST_IP = ( ip_address1 ip_address2 ... )
+# ALLOWED_DST_IP = ip_address1,ip_address2,...
 #   permits to configure a list of ip address used for inbound connections
-ALLOWED_DST_IP=( 127.0.0.1 )
+ALLOWED_DST_IP=127.0.0.1
 
 # DISABLE_MAIL_TORIFICATION = [0/1]
 DISABLE_MAIL_TORIFICATION=0
