@@ -26,12 +26,3 @@ class TorExitSet(set):
         pageFetchedDeferred.addErrback(errback)
 
         return pageFetchedDeferred
-
-def should_redirect_tor(tor_addr, exit_relay_set, request):
-    forwarded_ip = request.headers.get('X-Forwarded-For', None)
-    if forwarded_ip is None:
-        forwarded_ip = request.remote_ip
-
-    if tor_addr is not None and forwarded_ip in exit_relay_set:
-        return True
-    return False
