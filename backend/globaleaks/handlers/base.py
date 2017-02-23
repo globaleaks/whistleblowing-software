@@ -300,10 +300,9 @@ class BaseHandler(RequestHandler):
     @staticmethod
     def https_enabled(f):
         """
-        Decorator that enforce that https_disabled requirement
+        Decorator that enforces https_enabled is set to True
         """
         def wrapper(*args, **kwargs):
-            log.debug(GLSettings.memory_copy)
             if not GLSettings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
@@ -314,10 +313,9 @@ class BaseHandler(RequestHandler):
     @staticmethod
     def https_disabled(f):
         """
-        Decorator that enforce that https_disabled requirement
+        Decorator that enforces https_enabled is set to False
         """
         def wrapper(*args, **kwargs):
-            log.debug(GLSettings.memory_copy)
             if GLSettings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
