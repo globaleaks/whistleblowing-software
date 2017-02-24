@@ -331,6 +331,8 @@ class GLSettingsClass(object):
         log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
         self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
+        if '0.0.0.0' in self.bind_addresses:
+            self.bind_addresses = ['0.0.0.0']
 
         if not self.validate_port(self.cmdline_options.port):
             quit(-1)
