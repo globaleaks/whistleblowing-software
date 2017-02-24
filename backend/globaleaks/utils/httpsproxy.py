@@ -127,8 +127,6 @@ class HTTPStreamProxyRequest(http.Request):
                                                   uri=proxy_url,
                                                   headers=hdrs,
                                                   bodyProducer=prod)
-        proxy_d.addTimeout(120, reactor)
-
         if prod is not None:
             proxy_d.addBoth(self.proxyUnregister)
 
