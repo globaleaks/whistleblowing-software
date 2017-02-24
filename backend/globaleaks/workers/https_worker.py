@@ -1,18 +1,9 @@
+# -*- encoding: utf-8 -*-
 import os
-from datetime import datetime
-
-def log():
-    pid = os.getpid()
-    def prefix(m):
-        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S%z')
-        print('%s [gl-https-proxy:%d] %s' % (now, pid, m))
-    return prefix
-
-# TODO: make this conditional and abstract it with a worker class
-# When this executable is not within the systems standard path, the globaleaks
-# module must add it to sys path manually. Hence the following line.
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+if os.path.dirname(__file__) != '/usr/lib/python2.7/dist-packages/globaleaks/workers':
+    sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from datetime import datetime
 from urlparse import urlparse
@@ -33,8 +24,6 @@ class HTTPSProcess(Process):
 
         proxy_url = 'http://' + self.cfg['proxy_ip'] + ':' + str(self.cfg['proxy_port'])
         res = urlparse(proxy_url)
-        if not res.hostname in ['127.0.0.1', 'localhost']:
-            raise Exception('Attempting to proxy to an external host: %s . . aborting' % proxy_url)
 
         http_proxy_factory = HTTPStreamFactory(proxy_url)
 
