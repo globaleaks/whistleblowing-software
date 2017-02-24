@@ -45,6 +45,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
     $scope.show_expert_status = !$scope.show_expert_status;
+    refreshPromise();
   }
 
   function refreshPromise() {

@@ -57,12 +57,12 @@
         </span>
         <span class="pull-right">
           <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
-            <label for="certUpload" class="btn btn-xs btn-primary">
-              <input id="certUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)"  />
-              <span data-translate>Upload</span>
+            <label for="keyUpload" class="btn btn-xs btn-primary">
+              <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)"  />
+              <span id='keyUploadBtn' data-translate>Upload</span>
             </label>
           </span>
-          <button class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set"
+          <button id="pkGen" class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set"
               data-ng-click="gen_priv_key()" data-translate>Generate</button>
           <span data-ng-if="tls_config.files.priv_key.set">
             <button class="btn btn-xs btn-danger"
@@ -82,7 +82,7 @@
         </span>
         <span data-ng-if="!tls_config.files.csr.set">
           <span class="pull-right">
-            <button class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
+            <button id="csrGen" class="btn btn-xs btn-success" data-ng-hide="csr_state.open" data-ng-click="csr_state.open = true">
               <span data-translate>Generate</span>
             </button>
             <button type="button" class="close" data-ng-show="csr_state.open" data-ng-click="csr_state.open = false" aria-label="Close">
@@ -96,7 +96,7 @@
         </span>
         <span data-ng-if="tls_config.files.csr.set">
           <span class="pull-right">
-            <button class="btn btn-xs btn-primary"
+            <button id="csrDown" class="btn btn-xs btn-primary"
                 data-ng-click="downloadFile(file_resources.csr)" data-translate>Download</button>
             <button class="btn btn-xs btn-danger"
                 data-ng-click="deleteFile(file_resources.csr)" data-translate>Delete</button>
@@ -164,7 +164,7 @@
 
   </div>
 
-  <div data-ng-if="state > 2">
+  <div class="launch-btns" data-ng-if="state > 2">
     <button class="btn" data-ng-class="{'btn-danger': tls_config.enabled, 'btn-success': !tls_config.enabled}" data-ng-click="toggleCfg()">
       <span data-ng-if="!tls_config.enabled" data-translate>Enable</span>
       <span data-ng-if="tls_config.enabled" data-translate>Disable</span>
