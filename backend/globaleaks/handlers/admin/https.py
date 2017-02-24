@@ -67,6 +67,7 @@ class FileResource(object):
     @classmethod
     @inlineCallbacks
     def generate_dh_params_if_missing(cls):
+        dh_params = yield deferToThread(tls.gen_dh_params)
         gen_dh = yield cls.should_gen_dh_params()
         if gen_dh:
             log.debug("Generating the HTTPS DH params")
@@ -117,6 +118,7 @@ class PrivKeyFileRes(FileResource):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_priv_key', u'')
         prv_fact.set_val('https_priv_gen', False)
+        prv_fact.set_val('https_dh_params', u'')
 
     @staticmethod
     def db_serialize(store):
