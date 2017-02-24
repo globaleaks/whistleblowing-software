@@ -145,7 +145,7 @@ class CertFileRes(FileResource):
         if ok:
             prv_fact.set_val('https_cert', raw_cert)
         else:
-            log.debug("Cert validation failed")
+            log.err("Cert validation failed")
         return ok
 
     @staticmethod
@@ -343,7 +343,7 @@ def serialize_https_config_summary(store):
 
 
 @transact
-def try_to_enable_and_launch_https(store):
+def try_to_enable_https(store):
     prv_fact = PrivateFactory(store)
 
     cv = tls.ChainValidator()
@@ -353,10 +353,9 @@ def try_to_enable_and_launch_https(store):
     ok, err = cv.validate(db_cfg)
     if ok:
         prv_fact.set_val('https_enabled', True)
-        # TODO move process launch out of transact or resolve when launch succeeds
-        GLSettings.state.process_supervisor.db_maybe_launch_https_workers(store)
-    return ok
-
+        GLSettings.memory_copy.private.https_enabled = True
+    else:
+        raise err
 
 @transact
 def disable_https(store):
@@ -378,10 +377,12 @@ class ConfigHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        ok = yield try_to_enable_and_launch_https()
-        if ok:
+        try:
+            yield try_to_enable_https()
+            yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
             self.set_status(200)
-        else:
+        except Exception as e:
+            log.err(e)
             self.set_status(406)
 
     @BaseHandler.transport_security_check('admin')
@@ -393,7 +394,8 @@ class ConfigHandler(BaseHandler):
         Disables HTTPS config and shutdown subprocesses.
         '''
         yield disable_https()
-        GLSettings.state.process_supervisor.shutdown()
+        GLSettings.memory_copy.private.https_enabled = False
+        yield GLSettings.state.process_supervisor.shutdown()
         self.set_status(200)
 
 

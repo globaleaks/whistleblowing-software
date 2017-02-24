@@ -262,7 +262,7 @@ class NotAuthenticated(GLException):
 
 
 class ValidationError(GLException):
-    error_code = 31
+    error_code = 28
     status_code = 403  # Forbidden
 
     def __init__(self, reason='Extended validation failed'):
