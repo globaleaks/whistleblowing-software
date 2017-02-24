@@ -96,6 +96,7 @@ class PrivKeyFileRes(FileResource):
 
         return ok
 
+    @staticmethod
     @transact
     def save_tls_key(store, prv_key):
         prv_fact = PrivateFactory(store)
