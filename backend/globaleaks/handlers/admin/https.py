@@ -118,7 +118,6 @@ class PrivKeyFileRes(FileResource):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_priv_key', u'')
         prv_fact.set_val('https_priv_gen', False)
-        prv_fact.set_val('https_dh_params', u'')
 
     @staticmethod
     def db_serialize(store):
