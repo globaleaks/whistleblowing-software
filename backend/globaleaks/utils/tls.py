@@ -1,14 +1,12 @@
 import os
 
-from tempfile import NamedTemporaryFile
 from datetime import datetime
 
 from twisted.internet import ssl
 
 from OpenSSL import crypto, SSL
-from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext, PKey, dump_certificate_request, X509Req
+from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, X509StoreContext, PKey, dump_certificate_request, X509Req, _new_mem_buf, _bio_to_string
 from OpenSSL._util import lib as _lib, ffi as _ffi
-
 
 from pyasn1.type import univ, constraint, char, namedtype, tag
 from pyasn1.codec.der.decoder import decode
@@ -19,31 +17,21 @@ class ValidationException(Exception):
 
 
 def load_dh_params_from_string(ctx, dh_params_string):
-    with NamedTemporaryFile() as temp:
-        temp.write(dh_params_string)
-        temp.flush()
-        ctx.load_tmp_dh(temp.name)
+    bio = _new_mem_buf()
+
+    _lib.BIO_write(bio, str(dh_params_string), len(str(dh_params_string)))
+    dh = _lib.PEM_read_bio_DHparams(bio, _ffi.NULL, _ffi.NULL, _ffi.NULL)
+    dh = _ffi.gc(dh, _lib.DH_free)
+    _lib.SSL_CTX_set_tmp_dh(ctx._context, dh)
 
 
 def gen_dh_params():
-    # TODO(nskelsey|evilaliv3) ensure chosen params and generation is reasonable
-    # and not easily abused
     dh = _lib.DH_new()
-    s = datetime.now()
     _lib.DH_generate_parameters_ex(dh, 2048, 2L, _ffi.NULL)
 
-    # TODO TODO TODO TODO TODO TODO TODO TODO
-    # Move dhparam load and generate off of temporary files.
-    # TODO TODO TODO TODO TODO TODO TODO TODO
-    with NamedTemporaryFile() as f_dh:
-        bio = _lib.BIO_new_file(f_dh.name, "w")
-        _lib.PEM_write_bio_DHparams(bio, dh)
-        _lib.BIO_free(bio)
-        f_dh.flush()
-        dh_params = f_dh.read()
-    # TODO TODO TODO TODO TODO TODO TODO TODO
-
-    return dh_params
+    bio = _new_mem_buf()
+    _lib.PEM_write_bio_DHparams(bio, dh)
+    return _bio_to_string(bio)
 
 
 def gen_rsa_key():
@@ -254,11 +242,7 @@ class ContextValidator(CtxValidator):
         if cfg['ssl_dh'] == u'':
             raise ValidationException('There is not dh parameter set')
 
-        with NamedTemporaryFile() as f_dh:
-            f_dh.write(cfg['ssl_dh'])
-            f_dh.flush()
-            # TODO ensure load can deal with untrusted input
-            ctx.load_tmp_dh(f_dh.name)
+        load_dh_params_from_string(ctx, cfg['ssl_dh'])
 
         ecdh = _lib.EC_KEY_new_by_curve_name(_lib.NID_X9_62_prime256v1)
         ecdh = _ffi.gc(ecdh, _lib.EC_KEY_free)
