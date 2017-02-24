@@ -67,7 +67,6 @@ class FileResource(object):
     @classmethod
     @inlineCallbacks
     def generate_dh_params_if_missing(cls):
-        dh_params = yield deferToThread(tls.gen_dh_params)
         gen_dh = yield cls.should_gen_dh_params()
         if gen_dh:
             log.debug("Generating the HTTPS DH params")
