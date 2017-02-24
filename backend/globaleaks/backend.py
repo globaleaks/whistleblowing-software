@@ -97,6 +97,19 @@ class GLService(service.Service):
         GLSettings.jobs_monitor = GLJobsMonitor(GLSettings.jobs)
         GLSettings.jobs_monitor.schedule()
 
+        print("GlobaLeaks is now running and accessible at the following urls:")
+
+        for ip in GLSettings.bind_addresses:
+            print("- http://%s:%d%s" % (ip, GLSettings.bind_port, GLSettings.api_prefix))
+
+        for host in GLSettings.accepted_hosts:
+            if host not in GLSettings.bind_addresses:
+                print("- http://%s:%d%s" % (host, GLSettings.bind_port, GLSettings.api_prefix))
+
+        if GLSettings.tor_address is not None:
+            print("- http://%s%s" % (GLSettings.tor_address, GLSettings.api_prefix))
+
+
     @defer.inlineCallbacks
     def deferred_start(self):
         try:
