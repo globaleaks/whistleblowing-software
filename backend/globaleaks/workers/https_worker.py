@@ -8,6 +8,7 @@ def log():
         print('%s [gl-https-proxy:%d] %s' % (now, pid, m))
     return prefix
 
+log("started")
 
 # TODO: make this conditional and abstract it with a worker class
 # When this executable is not within the systems standard path, the globaleaks
