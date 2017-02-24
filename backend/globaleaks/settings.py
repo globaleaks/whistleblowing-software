@@ -65,7 +65,7 @@ class GLSettingsClass(object):
         # This variable is to be able to hook/bypass code when unit-tests are runned
         self.testing = False
 
-        # daemon
+        # daemonize the process
         self.nodaemon = False
 
         # thread pool size of 1
@@ -73,8 +73,7 @@ class GLSettingsClass(object):
 
         self.bind_addresses = '127.0.0.1'
 
-        # bind port -- The original port the service is bound on. For the next
-        # hot second GL will also try to bind on port 80.
+        # bind_port is the original port the service is bound on - notice bind_ports
         self.bind_port = 8082
 
         # store name

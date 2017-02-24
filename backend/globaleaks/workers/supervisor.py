@@ -147,12 +147,12 @@ class ProcessSupervisor(object):
         d = self.tls_process_state['deaths']
         window = (datetime_now() - self.start_time).total_seconds()
         r = d / (window / 60.0) # deaths per minute
-        log.debug('process death accountant: r=%3f, d=%2f, window=%2f' % (r, d, window))
         return r
 
     def account_death(self):
         self.tls_process_state['deaths'] += 1
         r = self.calc_mort_rate()
+        log.debug('process death accountant: r=%3f, d=%2f'  % (r, self.tls_process_state['deaths']))
         return r
 
     def is_running(self):
@@ -165,12 +165,15 @@ class ProcessSupervisor(object):
             'type': 'info'
         }
 
+        r = self.calc_mort_rate()
+
         if self.is_running():
-            r = self.calc_mort_rate()
             if r == 0:
                 m = "Everything is running normally."
             else:
                 m = "The supervisor has a mortality rate of r=%1.2f deaths/minute" % r
+        elif not self.should_spawn_child(r):
+            m = "The supervisor will not create new workers"
         else:
             m = "Nothing is being served"
 
