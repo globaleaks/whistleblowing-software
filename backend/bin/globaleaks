@@ -95,11 +95,11 @@ if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
 
 
 from twisted.python import usage
-from twisted.scripts._twistd_unix import ServerOptions
+from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
+
 
 from globaleaks import DATABASE_VERSION
 from globaleaks.db import perform_system_update
-from globaleaks.runner import GlobaLeaksRunner
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
@@ -299,7 +299,7 @@ def run_backend():
         sys.exit(50) # differentiated error codes lets a script change behaivor based on output
     try:
         # This blocks until the app exits
-        GlobaLeaksRunner(config).run()
+        UnixApplicationRunner(config).run()
         print("Exiting GlobaLeaks")
     except Exception as excep:
         print("Unable to start GlobaLeaks: %s" % excep)

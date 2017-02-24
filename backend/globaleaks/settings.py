@@ -406,9 +406,6 @@ class GLSettingsClass(object):
             self.orm_debug = self.cmdline_options.orm_debug
             self.log_timing_stats = self.cmdline_options.log_timing_stats
             self.log_requests_responses = self.cmdline_options.log_requests_responses
-            # Replace port 80 with 9080 to duck priviledge issues for non-root
-            # users
-            self.bind_ports = (self.bind_ports - {80}) | {9080}
 
         self.skip_wizard = self.cmdline_options.skip_wizard
 
@@ -521,6 +518,12 @@ class GLSettingsClass(object):
             dir_util.remove_tree(self.working_path, 0)
 
     def drop_privileges(self):
+        for port in GLSettings.http_socks:
+            os.fchown(port.fileno(), self.uid, self.gid)
+
+        for port in GLSettings.https_socks:
+            os.fchown(port.fileno(), self.uid, self.gid)
+
         if os.getgid() != self.gid:
             try:
                 self.print_msg("switching group privileges since %d to %d" % (os.getgid(), self.gid))
@@ -548,7 +551,6 @@ class GLSettingsClass(object):
         temporally_encrypted_dir
             (XXX change submission now used to too much thing)
         """
-
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSettings.tmp_upload_path):
             path = os.path.join(GLSettings.tmp_upload_path, f)
@@ -578,18 +580,6 @@ class GLSettingsClass(object):
     @staticmethod
     def make_db_uri(db_file_path):
         return 'sqlite:' + db_file_path + '?foreign_keys=ON'
-
-    def start_jobs(self):
-        from globaleaks.jobs import jobs_list
-        from globaleaks.jobs.base import GLJobsMonitor
-
-        for job in jobs_list:
-            j = job()
-            GLSettings.jobs.append(j)
-            j.schedule()
-
-        self.jobs_monitor = GLJobsMonitor(GLSettings.jobs)
-        self.jobs_monitor.schedule()
 
 # GLSettings is a singleton class exported once
 GLSettings = GLSettingsClass()
