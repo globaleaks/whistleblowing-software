@@ -10,6 +10,7 @@ from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.utils import tls
+from globaleaks.settings import GLSettings
 
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
@@ -42,6 +43,7 @@ class TestFileHandler(helpers.TestHandler):
     @transact
     def set_enabled(self, store):
         PrivateFactory(store).set_val('https_enabled', True)
+        GLSettings.memory_copy.private.https_enabled = True
 
     @inlineCallbacks
     def test_priv_key_file(self):
@@ -131,14 +133,12 @@ class TestFileHandler(helpers.TestHandler):
         yield self.set_enabled()
 
         handler = self.request(role='admin')
-        for n in ['priv_key', 'cert', 'chain']:
-            yield self.assertFailure(handler.delete(n), errors.FailedSanityCheck)
-            yield self.assertFailure(handler.put(n), errors.FailedSanityCheck,
-                                                     errors.MethodNotImplemented)
+        for n in ['priv_key', 'cert', 'chain', 'csr']:
+            self.assertRaises(errors.FailedSanityCheck, handler.delete, n)
+            self.assertRaises(errors.FailedSanityCheck, handler.put, n)
             handler = self.request({'name': n, 'content':''}, role='admin')
-            yield self.assertFailure(handler.post(n), errors.FailedSanityCheck)
-            yield self.assertFailure(handler.get(n), errors.FailedSanityCheck,
-                                                     errors.MethodNotImplemented)
+            self.assertRaises(errors.FailedSanityCheck, handler.post, n)
+            self.assertRaises(errors.FailedSanityCheck, handler.get, n)
 
 
 class TestConfigHandler(helpers.TestHandler):
