@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 from globaleaks.models.config import Config, NodeFactory
