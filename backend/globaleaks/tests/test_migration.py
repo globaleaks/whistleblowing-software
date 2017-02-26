@@ -48,7 +48,7 @@ def test(path, f):
     return lambda self: self._test(path, f)
 
 
-for directory in ['empty', 'populated']:
+for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)
     for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
         setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, 'glbackend-%d.db' % i))
