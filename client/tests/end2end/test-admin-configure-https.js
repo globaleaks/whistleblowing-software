@@ -5,6 +5,7 @@ describe('admin configure network settings', function() {
     browser.setLocation('admin/network');
 
     element(by.model('admin.node.hostname')).clear().sendKeys('localhost');
+    element(by.model('admin.node.onionservice')).clear().sendKeys('1234567890123456.onion');
 
     expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
 
