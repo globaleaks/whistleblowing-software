@@ -26,7 +26,7 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
         handler = self.request()
 
         GLSettings.memory_copy.allow_indexing = True
-        GLSettings.memory_copy.public_site = "https://www.globaleaks.org"
+        GLSettings.memory_copy.hostname = "www.globaleaks.org"
 
         yield handler.get()
 

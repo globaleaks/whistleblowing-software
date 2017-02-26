@@ -1,4 +1,6 @@
 # -*- coding: UTF-8
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
 from globaleaks.models.config import NodeFactory
@@ -59,7 +61,6 @@ class InternalTip_v_34(ModelWithID):
 
 
 class MigrationScript(MigrationBase):
-
     def migrate_Context(self):
         old_objs = self.store_old.find(self.model_from['Context'])
         for old_obj in old_objs:

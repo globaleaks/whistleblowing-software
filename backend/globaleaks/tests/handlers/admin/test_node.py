@@ -24,8 +24,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node(self):
-        self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
-        self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
+        self.dummyNode['onionservice'] = 'abcdef1234567890.onion'
+        self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
 
         for attrname in NodeL10NFactory.localized_keys:
             self.dummyNode[attrname] = stuff
@@ -72,8 +72,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
-        self.dummyNode['hidden_service'] = 'http://www.scroogle.com'
-        self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
+        self.dummyNode['onionservice'] = 'invalid'
+        self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
 
@@ -81,8 +81,8 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
-        self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
-        self.dummyNode['public_site'] = 'blogleaks.blogspot.com'
+        self.dummyNode['onionservice'] = 'abcdef1234567890.onion'
+        self.dummyNode['hostname'] = 'invalid'
 
         handler = self.request(self.dummyNode, role='admin')
 

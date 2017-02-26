@@ -26,6 +26,7 @@ class ConfigFactory(object):
     def _query_group(self):
         if self.res is not None:
             return
+
         cur = self.store.find(Config, And(Config.var_group == self.group))
         self.res = {c.var_name : c for c in cur}
 
@@ -177,40 +178,42 @@ class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
 
+    config = GLConfig
     var_group = Unicode()
     var_name = Unicode()
     value = JSON()
     customized = Bool(default=False)
 
-    def __init__(self, group=None, name=None, value=None, migrate=False):
+    def __init__(self, group=None, name=None, value=None, config=None, migrate=False):
+        if config is not None:
+            self.config = config
+
         if migrate:
             return
+
         self.var_group = unicode(group)
         self.var_name = unicode(name)
 
         self.set_v(value)
-        # If the value initializing the config item does not equal the default
-        # record the fact that it was customized.
-        if value != self.desc.default:
-            self.customized = True
 
-    @classmethod
-    def find_descriptor(cls, var_group, var_name):
-        d = GLConfig.get(var_group, {}).get(var_name, None)
+    @staticmethod
+    def find_descriptor(config, var_group, var_name):
+        d = config.get(var_group, {}).get(var_name, None)
         if d is None:
             raise ValueError('%s.%s descriptor cannot be None' % (var_group, var_name))
+
         return d
 
     def set_v(self, val):
-        self.desc = Config.find_descriptor(self.var_group, self.var_name)
+        desc = self.find_descriptor(self.config, self.var_group, self.var_name)
         if val is None:
-            val = self.desc._type()
-        if isinstance(self.desc, config_desc.Unicode) and isinstance(val, str):
+            val = desc._type()
+        if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
             val = unicode(val)
-        if not isinstance(val, self.desc._type):
+        if not isinstance(val, desc._type):
             raise ValueError("Cannot assign %s with %s" % (self, type(val)))
-        if self.desc.validator is not None:
-            self.desc.validator(self, self.var_name, val)
+        if desc.validator is not None:
+            desc.validator(self, self.var_name, val)
 
         if self.value is not None and self.value['v'] != val:
             self.customized = True
@@ -230,8 +233,7 @@ factories = [NodeFactory, NotificationFactory, PrivateFactory]
 def system_cfg_init(store):
     for gname, group in GLConfig.iteritems():
         for var_name, cfg_desc in group.iteritems():
-            item = Config(gname, var_name, cfg_desc.default)
-            store.add(item)
+            store.add(Config(gname, var_name, cfg_desc.default))
 
 
 def del_cfg_not_in_groups(store):

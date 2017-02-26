@@ -4,7 +4,7 @@ describe('admin configure network settings', function() {
   it('should enable whistleblowers over https', function() {
     browser.setLocation('admin/network');
 
-    element(by.model('admin.node.public_site')).clear().sendKeys('https://127.0.0.1');
+    element(by.model('admin.node.hostname')).clear().sendKeys('localhost');
 
     expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
 

@@ -1180,12 +1180,12 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
 }]).
   constant('CONSTANTS', {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
-     "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,
+     "email_regexp": /^([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100}$/,
      "number_regexp": /^\d+$/,
      "phonenumber_regexp": /^[\+]?[\ \d]+$/,
-     "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,
+     "hostname_regexp": /^([a-z0-9-]+)\.(.*)$|^$/,
+     "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
+     "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
      "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/
 }).
