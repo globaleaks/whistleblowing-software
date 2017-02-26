@@ -27,7 +27,7 @@ class MigrationScript(MigrationBase):
         domain = o.netloc.split(':')[0]
 
         delConfig(self.store_new, u'node', u'public_site')
-        addConfig(self.store_new, u'node', u'hostname', domain != '', domain)
+        addConfig(self.store_new, u'node', u'hostname', domain != '', unicode(domain))
 
         nnf = NodeFactory(self.store_new)
         url = nnf.get_val('hidden_service')
@@ -35,6 +35,6 @@ class MigrationScript(MigrationBase):
         domain = o.netloc.split(':')[0]
 
         delConfig(self.store_new, u'node', u'hidden_service')
-        addConfig(self.store_new, u'node', u'onionservice', domain != '', domain)
+        addConfig(self.store_new, u'node', u'onionservice', domain != '', unicode(domain))
 
         self.store_new.commit()
