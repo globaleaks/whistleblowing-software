@@ -21,8 +21,9 @@ class RobotstxtHandler(BaseHandler):
         self.write("User-agent: *\n")
 
         if GLSettings.memory_copy.allow_indexing:
+            site = 'https://' + GLSettings.memory_copy.hostname
             self.write("Allow: /\n")
-            self.write("Sitemap: %s/sitemap.xml" % GLSettings.memory_copy.public_site)
+            self.write("Sitemap: %s/sitemap.xml" % site)
         else:
             self.write("Disallow: /")
 
@@ -38,6 +39,8 @@ class SitemapHandler(BaseHandler):
             self.set_status(404)
             return
 
+        site = 'https://' + GLSettings.memory_copy.hostname
+
         self.set_header('Content-Type', 'text/xml')
 
         self.write("<?xml version='1.0' encoding='UTF-8' ?>\n" +
@@ -45,7 +48,7 @@ class SitemapHandler(BaseHandler):
 
         for url in ['/#/', '/#/submission']:
             self.write("  <url>\n" +
-                       "    <loc>" + GLSettings.memory_copy.public_site + url + "</loc>\n" +
+                       "    <loc>" + site + url + "</loc>\n" +
                        "    <changefreq>weekly</changefreq>\n" +
                        "    <priority>1.00</priority>\n")
 
@@ -53,7 +56,7 @@ class SitemapHandler(BaseHandler):
                 if lang != GLSettings.memory_copy.default_language:
                     l = lang.lower()
                     l = l.replace('_', '-')
-                    self.write("    <xhtml:link rel='alternate' hreflang='" + l + "' href='" + GLSettings.memory_copy.public_site + "/#/?lang=" + lang + "' />\n")
+                    self.write("    <xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + "/#/?lang=" + lang + "' />\n")
 
             self.write("  </url>\n")
 

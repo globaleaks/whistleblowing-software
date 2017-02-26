@@ -2,15 +2,17 @@
 
 import os
 
+from storm.locals import Int, Bool, Unicode, DateTime, JSON
+
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin import files
 from globaleaks.models import *
 from globaleaks.models import l10n, properties
 from globaleaks.models.config import Config
-from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import ConfigL10N
 from globaleaks.settings import GLSettings
 
+from globaleaks.db.migrations.update_34.config import GLConfig_v_35
 
 class Node_v_33(ModelWithID):
     __storm_table__ = 'node'
@@ -27,7 +29,6 @@ class Node_v_33(ModelWithID):
     receipt_salt = Unicode(validator=shorttext_v)
     languages_enabled = JSON()
     default_language = Unicode(validator=shorttext_v, default=u'en')
-    # TODO align with latest DB
     default_password = Unicode(validator=longtext_v, default=u'globaleaks')
     description = JSON(validator=longlocal_v, default=empty_localization)
     presentation = JSON(validator=longlocal_v, default=empty_localization)
@@ -239,23 +240,18 @@ class MigrationScript(MigrationBase):
         #### Create Config table and rows ####
 
         # Migrate Config saved in Node
-        for var_name, _ in GLConfig['node'].iteritems():
+        for var_name, _ in GLConfig_v_35['node'].iteritems():
             old_val = getattr(old_node, var_name)
-
-            # XXX this can throw errors if the validators run
-            item = Config('node', var_name, old_val)
-            self.store_new.add(item)
+            self.store_new.add(Config('node', var_name, old_val, GLConfig_v_35))
 
         # Migrate Config saved in Notification
-        for var_name, _ in GLConfig['notification'].iteritems():
+        for var_name, _ in GLConfig_v_35['notification'].iteritems():
             old_val = getattr(old_notif, var_name)
 
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = properties.iso_strf_time(old_val)
 
-            # NOTE this will throw errors if the validators run
-            item = Config('notification', var_name, old_val)
-            self.store_new.add(item)
+            self.store_new.add(Config('notification', var_name, old_val, GLConfig_v_35))
 
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))

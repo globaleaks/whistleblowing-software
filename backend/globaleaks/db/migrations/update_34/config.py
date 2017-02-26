@@ -1,5 +1,4 @@
-# -*- coding: UTF-8
-
+from globaleaks.models.config_desc import Unicode, Int, Bool
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.properties import iso_strf_time
 from globaleaks.models.validators import shorttext_v, longtext_v, \
@@ -8,37 +7,12 @@ from globaleaks.security import generateRandomSalt as salt
 from globaleaks.utils.utility import datetime_null
 
 
-class Item:
-    def __init__(self, *args, **kwargs):
-        if 'default' in kwargs:
-            self.default = kwargs['default']
-        else:
-            raise KeyError('No default set! %s, %s' % (args, kwargs))
-
-        self.validator = kwargs.get('validator', None)
-
-
-class Unicode(Item):
-    _type = unicode
-
-    def __init__(self, default=u'', *args, **kwargs):
-        Item.__init__(self,  default=default, *args, **kwargs)
-
-
-class Int(Item):
-    _type = int
-
-
-class Bool(Item):
-    _type = bool
-
-
-GLConfig = {
+GLConfig_v_35 = {
     'private': {
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()), # is always customized
         'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
 
-        'version': Unicode(default=unicode(__version__)),
+        'version': Unicode(default=Unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
 
         'https_priv_key': Unicode(),
@@ -79,8 +53,8 @@ GLConfig = {
         'basic_auth_username': Unicode(default=u''),
         'basic_auth_password': Unicode(default=u''),
 
-        'hostname': Unicode(validator=shorttext_v, default=u''),
-        'onionservice': Unicode(validator=shorttext_v, default=u''),
+        'public_site': Unicode(validator=shorttext_v, default=u''),
+        'hidden_service': Unicode(validator=shorttext_v, default=u''),
         'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download'),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),

@@ -8,7 +8,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-from globaleaks import db, models, security, event, runner, jobs
+from globaleaks import db, models, security, event, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -203,7 +203,6 @@ class TestGL(unittest.TestCase):
         jobs.base.test_reactor = self.test_reactor
         tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
-        runner.test_reactor = self.test_reactor
         GLSessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
@@ -851,8 +850,8 @@ class MockDict:
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
             'whistleblowing_receipt_prompt': u'',
-            'hidden_service': u'http://1234567890123456.onion',
-            'public_site': u'https://globaleaks.org',
+            'hostname': u'www.globaleaks.org',
+            'hidden_service': u'1234567890123456.onion',
             'tb_download_link': u'https://www.torproject.org/download/download',
             'email': u'email@dummy.net',
             'languages_supported': [],  # ignored

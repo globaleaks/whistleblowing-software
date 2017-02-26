@@ -111,10 +111,10 @@ class NodeKeyword(Keyword):
         return self.data['node']['name']
 
     def HiddenService(self):
-        return self.data['node']['hidden_service']
+        return 'http://' + self.data['node']['hidden_service']
 
     def PublicSite(self):
-        return self.data['node']['public_site']
+        return 'https://' + self.data['node']['hostname']
 
 
 class ContextKeyword(Keyword):
@@ -216,7 +216,10 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         return self.data['tip']['id']
 
     def TorURL(self):
-        hidden_service = self.data['node']['hidden_service']
+        if self.data['node']['onionservice']:
+            hidden_service = 'http://' + self.data['node']['onionservice']
+        else:
+            hidden_servie = ''
 
         if len(hidden_service):
             retstr = '%s/#/status/%s' % (hidden_service, self.data['tip']['id'])
@@ -226,7 +229,10 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         return retstr
 
     def T2WURL(self):
-        public_site = self.data['node']['public_site']
+        if self.data['node']['hostname']:
+            public_site = 'https://' + self.data['node']['hostname']
+        else:
+            public_site = ''
 
         if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
             retstr = 'DISABLED'
@@ -332,7 +338,10 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         return ISO8601_to_pretty_str(self.data['earliest_expiration_date'])
 
     def TorURL(self):
-        hidden_service = self.data['node']['hidden_service']
+        if self.data['node']['onionservice']:
+            hidden_service = 'http://' + self.data['node']['onionservice']
+        else:
+            hidden_servie = ''
 
         if len(hidden_service):
             retstr = '%s/#/receiver/tips' % hidden_service
@@ -342,7 +351,10 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         return retstr
 
     def T2WURL(self):
-        public_site = self.data['node']['public_site']
+        if self.data['node']['hostname']:
+            public_site = 'https://' + self.data['node']['hostname']
+        else:
+            public_site = ''
 
         if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
             retstr = 'DISABLED'

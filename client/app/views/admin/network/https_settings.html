@@ -19,9 +19,9 @@
     <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
         <span data-translate>URL</span><span>:</span>
-        <a data-ng-show="admin.node.public_site != ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.public_site }}">{{admin.node.public_site}}</a>
+        <a data-ng-show="admin.node.hostname !== ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.hostname }}">{{admin.node.hostname}}</a>
       </div>
-      <div data-ng-show="admin.node.public_site == ''"
+      <div data-ng-show="admin.node.hostname === ''"
           class="alert alert-warning">
           <span data-translate>Hostname is not set!</span>
           <span><a data-ng-click="setActiveTab(0)"><span data-translate>Click here to configure it.</span></a></span>
@@ -32,7 +32,7 @@
     <h3 data-translate >System message:</h3>
     <div class="alert alert-info"><b>{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }}</b> {{ tls_config.status.msg }}</div>
   </div>
-  <div data-ng-if="!tls_config.running && admin.node.public_site != ''">
+  <div data-ng-if="!tls_config.running && admin.node.hostname !== ''">
     <h3 data-translate>Configuration</h3>
     <div>
       <hr/>

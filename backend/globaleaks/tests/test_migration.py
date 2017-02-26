@@ -160,6 +160,7 @@ def mod_bool():
         yield i % 2 == 0
         i += 1
 
+
 class TestMigrationRegression(unittest.TestCase):
     def _initStartDB(self, target_ver):
         helpers.init_glsettings_for_unit_tests()

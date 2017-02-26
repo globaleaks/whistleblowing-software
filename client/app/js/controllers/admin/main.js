@@ -2,8 +2,9 @@ GLClient.controller('AdminCtrl',
     ['$scope', '$route', '$location', '$filter', 'Admin', 'AdminUtils', 'CONSTANTS',
     function($scope, $route, $location, $filter, Admin, AdminUtils, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
+  $scope.hostname_regexp = CONSTANTS.hostname_regexp;
+  $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
-  $scope.tor_regexp = CONSTANTS.tor_regexp;
 
   // XXX convert this to a directive
   // This is used for setting the current menu in the sidebar
