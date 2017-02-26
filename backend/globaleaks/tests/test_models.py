@@ -24,7 +24,7 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(c, stated_conf)
 
     @inlineCallbacks
-    def test_valid_confg(self):
+    def test_valid_config(self):
         yield self._test_valid_cfg()
 
     @transact
