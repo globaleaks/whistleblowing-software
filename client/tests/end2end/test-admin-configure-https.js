@@ -19,7 +19,7 @@ describe('admin configure network settings', function() {
   });
 });
 
-fdescribe('admin configure https', function() {
+describe('admin configure https', function() {
   var files = {
     priv_key: path.resolve('../backend/globaleaks/tests/data/https/privkey.pem'),
     cert: path.resolve('../backend/globaleaks/tests/data/https/cert.pem'),
