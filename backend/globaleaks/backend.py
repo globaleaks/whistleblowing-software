@@ -16,8 +16,6 @@ from twisted.python import log as txlog, logfile as txlogfile
 
 from globaleaks.db import init_db, clean_untracked_files, \
     refresh_memory_variables
-from globaleaks.jobs import jobs_list
-from globaleaks.jobs.base import GLJobsMonitor
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, GLLogObserver
@@ -88,14 +86,7 @@ class GLService(service.Service):
 
         yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
 
-        GLSettings.jobs = []
-        for job in jobs_list:
-            j = job()
-            GLSettings.jobs.append(j)
-            j.schedule()
-
-        GLSettings.jobs_monitor = GLJobsMonitor(GLSettings.jobs)
-        GLSettings.jobs_monitor.schedule()
+        GLSettings.start_jobs()
 
         print("GlobaLeaks is now running and accessible at the following urls:")
 

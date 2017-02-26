@@ -111,7 +111,7 @@ class NodeKeyword(Keyword):
         return self.data['node']['name']
 
     def HiddenService(self):
-        return 'http://' + self.data['node']['hidden_service']
+        return 'http://' + self.data['node']['onionservice']
 
     def PublicSite(self):
         return 'https://' + self.data['node']['hostname']
@@ -219,7 +219,7 @@ class TipKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         if self.data['node']['onionservice']:
             hidden_service = 'http://' + self.data['node']['onionservice']
         else:
-            hidden_servie = ''
+            hidden_service = ''
 
         if len(hidden_service):
             retstr = '%s/#/status/%s' % (hidden_service, self.data['tip']['id'])
@@ -341,7 +341,7 @@ class ExpirationSummaryKeyword(NodeKeyword, ContextKeyword, ReceiverKeyword):
         if self.data['node']['onionservice']:
             hidden_service = 'http://' + self.data['node']['onionservice']
         else:
-            hidden_servie = ''
+            hidden_service = ''
 
         if len(hidden_service):
             retstr = '%s/#/receiver/tips' % hidden_service

@@ -581,5 +581,18 @@ class GLSettingsClass(object):
     def make_db_uri(db_file_path):
         return 'sqlite:' + db_file_path + '?foreign_keys=ON'
 
+    def start_jobs(self):
+        from globaleaks.jobs import jobs_list
+        from globaleaks.jobs.base import GLJobsMonitor
+
+        for job in jobs_list:
+            j = job()
+            self.jobs.append(j)
+            j.schedule()
+
+        self.jobs_monitor = GLJobsMonitor(self.jobs)
+        self.jobs_monitor.schedule()
+
+
 # GLSettings is a singleton class exported once
 GLSettings = GLSettingsClass()
