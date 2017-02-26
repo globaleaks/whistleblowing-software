@@ -48,18 +48,16 @@ class GLService(service.Service):
 
         GLSettings.http_socks = []
         for port in GLSettings.bind_ports:
-            try:
-                port = port+mask if port < 1024 else port
-                http_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, port)
-            except Exception as err:
-                log.err('Failed to listen on %s:%d due to: %s' % (ip, port, err))
+            port = port+mask if port < 1024 else port
+            http_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, port)
+            GLSettings.http_socks += http_socks
 
-            else:
-                GLSettings.http_socks += http_socks
+            for addr, err in fails:
+                log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
 
         GLSettings.https_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
         for addr, err in fails:
-            log.err("Could not reserve socket for %s because %s!" % (addr, err))
+            log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
 
         GLSettings.fix_file_permissions()
         GLSettings.drop_privileges()
