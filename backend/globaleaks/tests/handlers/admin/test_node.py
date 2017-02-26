@@ -82,7 +82,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
         self.dummyNode['onionservice'] = 'abcdef1234567890.onion'
-        self.dummyNode['hostname'] = 'invalid'
+        self.dummyNode['hostname'] = '!invalid!'
 
         handler = self.request(self.dummyNode, role='admin')
 
