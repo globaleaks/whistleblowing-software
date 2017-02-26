@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 from globaleaks.models.config_desc import Unicode, Int, Bool
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.models.properties import iso_strf_time
