@@ -851,7 +851,7 @@ class MockDict:
             'whistleblowing_button': u'',
             'whistleblowing_receipt_prompt': u'',
             'hostname': u'www.globaleaks.org',
-            'hidden_service': u'1234567890123456.onion',
+            'onionservice': u'1234567890123456.onion',
             'tb_download_link': u'https://www.torproject.org/download/download',
             'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
