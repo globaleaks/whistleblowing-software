@@ -101,6 +101,9 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   set -e # re-enable to fail in case of errors
   sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
+  # Inject content into the db while its hot. #TODO move hardcoded paths
+  sleep 5
+  sudo sh -c 'sqlite3 /var/globaleaks/db/glbackend-35.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
   sudo /etc/init.d/globaleaks restart
   sleep 5
   setupClientDependencies
@@ -137,6 +140,8 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000 --disable-mail-torification
   sleep 5
+  #TODO move hardcoded paths
+  sudo sh -c 'sqlite3 /var/globaleaks/db/glbackend-35.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
 

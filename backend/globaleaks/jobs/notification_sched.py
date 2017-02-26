@@ -1,8 +1,6 @@
 # -*- encoding: utf-8 -*-
-#
-#   notification_sched
-#   ******************
-#
+# Implement the notification of new submissions
+
 import copy
 
 from twisted.internet import reactor, threads

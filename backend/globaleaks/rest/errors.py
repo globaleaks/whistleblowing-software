@@ -41,6 +41,18 @@ class InternalServerError(GLException):
         self.arguments = [error_str]
 
 
+class MethodNotImplemented(GLException):
+    """
+    The expected format described in the REST specification is not
+    respected by the data body in the HTTP request.
+    """
+    error_code = 2
+    status_code = 405  # Not Acceptable
+
+    def __init__(self):
+        self.reason = "Method not implemented"
+
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not
@@ -249,7 +261,15 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
 
 
-# UNUSED ERROR CODE 31 32 33 HERE!
+class ValidationError(GLException):
+    error_code = 28
+    status_code = 403  # Forbidden
+
+    def __init__(self, reason='Extended validation failed'):
+        self.reason = reason
+
+
+# UNUSED ERROR CODE 32 33 HERE!
 
 
 class InvalidOldPassword(GLException):

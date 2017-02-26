@@ -217,6 +217,13 @@ class Logger(object):
             twlog.msg("[ ] %s" % self._str(msg))
 
 
+def WorkerLogger(name='worker'):
+    pid = os.getpid()
+    def prefix(m):
+        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S%z')
+        print('%s [%s:%d] %s' % (name, now, pid, m))
+    return prefix
+
 log = Logger()
 
 
@@ -388,6 +395,30 @@ def ISO8601_to_pretty_str(isodate, tz=0):
         return date.strftime("%A %d %B %Y %H:%M")
 
     return datetime_to_pretty_str(date)
+
+
+def asn1_datestr_to_datetime(s):
+    """
+    Returns a datetime for the passed asn1 formatted string or None if the date.
+    cannot be converted.
+    """
+    s = s[:14]
+    try:
+        return datetime.strptime(s, "%Y%m%d%H%M%S")
+    except:
+        return None
+
+
+def format_cert_expr_date(s):
+    """
+    Takes a asn1 formatted date string and tries to create an expiration date
+    out of it. If that does not work, the returned expiration date is never.
+    """
+
+    dt = asn1_datestr_to_datetime(s)
+    if dt is None:
+        return datetime_never()
+    return dt
 
 
 def iso_year_start(iso_year):

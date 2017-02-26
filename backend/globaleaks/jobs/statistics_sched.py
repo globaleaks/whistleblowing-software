@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
-#
-#   statistics_sched
-#   ****************
-#
-#  Statistics works collecting every N-th minutes the amount of important
-#  operations happened
-#
-#  This impact directly the statistics collection for OpenData purpose and
-#  private information.
-#  The anomaly detection based on stress level measurement.
+# Implement collection of statistics
 
 import os
 

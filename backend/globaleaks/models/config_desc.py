@@ -21,6 +21,9 @@ class Item:
 class Unicode(Item):
     _type = unicode
 
+    def __init__(self, default=u'', *args, **kwargs):
+        Item.__init__(self,  default=default, *args, **kwargs)
+
 
 class Int(Item):
     _type = int
@@ -37,6 +40,14 @@ GLConfig = {
 
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
+
+        'https_priv_key': Unicode(),
+        'https_priv_gen': Bool(default=False),
+        'https_csr': Unicode(),
+        'https_cert': Unicode(),
+        'https_chain': Unicode(),
+        'https_dh_params': Unicode(),
+        'https_enabled': Bool(default=False),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
@@ -68,8 +79,8 @@ GLConfig = {
         'basic_auth_username': Unicode(default=u''),
         'basic_auth_password': Unicode(default=u''),
 
-        'public_site': Unicode(validator=shorttext_v, default=u''),
-        'hidden_service': Unicode(validator=shorttext_v, default=u''),
+        'hostname': Unicode(validator=shorttext_v, default=u''),
+        'onionservice': Unicode(validator=shorttext_v, default=u''),
         'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download'),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),

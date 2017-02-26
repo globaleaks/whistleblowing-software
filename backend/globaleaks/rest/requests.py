@@ -18,8 +18,10 @@ user_roles_regexp                 = r'^(admin|custodian|receiver)$'
 user_states_regexp                = r'^(enabled|disabled)$'
 email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
-hidden_service_regexp             = r'^http(s?)://[0-9a-z]{16}\.onion$'
-hidden_service_regexp_or_empty    = r'^http(s?)://[0-9a-z]{16}\.onion$$|^$'
+onionservice_regexp               = r'^[0-9a-z]{16}\.onion$'
+onionservice_regexp_or_empty      = r'^[0-9a-z]{16}\.onion$|^$'
+hostname_regexp                   = r'^[0-9a-z\-\.]+$'
+hostname_regexp_or_empty          = r'^[0-9a-z\-\.]+$|^$'
 https_url_regexp                  = r'^https://([0-9a-z\-]+)\.(.*)$'
 https_url_regexp_or_empty         = r'^https://([0-9a-z\-]+)\.(.*)$|^$'
 landing_page_regexp               = r'^(homepage|submissionpage)$'
@@ -27,6 +29,8 @@ context_selector_type_regexp      = r'^(list|cards)$'
 tip_operation_regexp              = r'^(postpone|set)$'
 shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
+
+# TODO(@nskelsey) define hostname regex
 
 token_regexp                      = r'([a-zA-Z0-9]{42})'
 token_type_regexp                 = r'^submission$'
@@ -170,8 +174,8 @@ AdminNodeDesc = {
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
     'whistleblowing_receipt_prompt': unicode,
-    'hidden_service': hidden_service_regexp_or_empty,
-    'public_site': https_url_regexp_or_empty,
+    'onionservice': onionservice_regexp_or_empty,
+    'hostname': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,
@@ -366,6 +370,30 @@ AdminReceiverDesc = {
     'configuration': unicode
 }
 
+AdminTLSCertFilesConfigDesc = {
+    'priv_key': unicode,
+    'chain': unicode,
+    'cert': unicode,
+}
+
+AdminTLSCfgFileResourceDesc = {
+    'name': unicode,
+    'content': unicode,
+}
+
+AdminCSRFileDesc = {
+    'name': unicode,
+    'content': {
+      'commonname': unicode,
+      'country': '[A-Za-z]{2}',
+      'province': unicode,
+      'city': unicode,
+      'company': unicode,
+      'department': unicode,
+      'email': email_regexp
+    }
+}
+
 AdminShortURLDesc = {
     'shorturl': shorturl_regexp,
     'longurl': longurl_regexp
@@ -378,8 +406,8 @@ NodeDesc = {
     'footer': unicode,
     'security_awareness_title': unicode,
     'security_awareness_text': unicode,
-    'hidden_service': hidden_service_regexp_or_empty,
-    'public_site': https_url_regexp_or_empty,
+    'onionservice': onionservice_regexp_or_empty,
+    'hostname': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],
     'languages_supported': list,

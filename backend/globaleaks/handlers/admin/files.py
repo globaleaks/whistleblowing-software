@@ -6,6 +6,7 @@
 # API handling db files upload/download/delete
 
 import base64
+import os
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -13,6 +14,9 @@ from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.security import overwrite_and_remove, directory_traversal_check
+from globaleaks.settings import GLSettings
+from globaleaks.models.config import NodeFactory
 
 
 def db_add_file(store, data, key = None):

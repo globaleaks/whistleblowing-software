@@ -2,8 +2,9 @@ GLClient.controller('AdminCtrl',
     ['$scope', '$route', '$location', '$filter', 'Admin', 'AdminUtils', 'CONSTANTS',
     function($scope, $route, $location, $filter, Admin, AdminUtils, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
+  $scope.hostname_regexp = CONSTANTS.hostname_regexp;
+  $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
-  $scope.tor_regexp = CONSTANTS.tor_regexp;
 
   // XXX convert this to a directive
   // This is used for setting the current menu in the sidebar
@@ -220,12 +221,8 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
       template:"views/admin/advanced/tab1.html"
     },
     {
-      title:"HTTPS settings",
-      template:"views/admin/advanced/tab2.html"
-    },
-    {
       title:"Anomaly detection thresholds",
-      template:"views/admin/advanced/tab3.html"
+      template:"views/admin/advanced/tab2.html"
     }
   ];
 
@@ -277,5 +274,13 @@ controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResou
   $scope.updateThenTestMail = function() {
     AdminNotificationResource.update($scope.admin.notification)
     .$promise.then(function() { sendTestMail(); }, function() { });
+  };
+}]).
+controller('AdminReviewModalCtrl', ['$scope', '$uibModalInstance', 'targetFunc',
+  function($scope, $uibModalInstance, targetFunc) {
+  $scope.cancel = $uibModalInstance.close;
+
+  $scope.ok = function() {
+    return targetFunc().then($uibModalInstance.close);
   };
 }]);
