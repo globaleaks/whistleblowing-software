@@ -364,7 +364,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('RTipIdentityAccessRequestResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/:id/identityaccessrequests', {id: '@id'});
 }]).
- factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
+  factory('RTipDownloadRFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
       $http({
         method: 'GET',
@@ -376,10 +376,10 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       });
     };
 }]).
- factory('RTipWBFileResource', ['GLResource', function(GLResource) {
+  factory('RTipWBFileResource', ['GLResource', function(GLResource) {
     return new GLResource('rtip/wbfile/:id', {id: '@id'});
 }]).
- factory('RTipDownloadWBFile', ['$http', 'FileSaver', function($http, FileSaver) {
+  factory('RTipDownloadWBFile', ['$http', 'FileSaver', function($http, FileSaver) {
     return function(file) {
       return $http({
         method: 'GET',
@@ -568,6 +568,18 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('AdminL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/l10n/:lang', {lang: '@lang'});
 }]).
+factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls', {}, {
+        'enable':  { method: 'POST', params: {}},
+        'disable': { method: 'PUT', params: {}},
+    });
+}]).
+factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls/files');
+}]).
+factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('admin/config/tls/files/:name', {name: '@name'});
+}]).
   factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return {
@@ -712,7 +724,15 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     new_shorturl: function () {
       return new AdminShorturlResource();
-    }
+    },
+
+    delete_resource: function(url, refresh) {
+      return $http.delete(url).success(function () {
+        if (refresh) {
+          $scope.$emit("REFRESH");
+        }
+      });
+    },
   };
 }]).
   factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
@@ -789,8 +809,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('DefaultL10NResource', ['GLResource', function(GLResource) {
     return new GLResource('l10n/:lang.json', {lang: '@lang'});
 }]).
-  factory('Utils', ['$rootScope', '$location', '$filter', '$sce', '$uibModal', 'Authentication',
-  function($rootScope, $location, $filter, $sce, $uibModal, Authentication) {
+  factory('Utils', ['$rootScope', '$q', '$location', '$filter', '$sce', '$uibModal', '$window', 'Authentication',
+  function($rootScope, $q, $location, $filter, $sce, $uibModal, $window, Authentication) {
     return {
       getXOrderProperty: function() {
         return 'x';
@@ -1021,6 +1041,20 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         e.setUTCHours(0, 0, 0, 0);
         e.setDate(ttl + 1);
         return e;
+      },
+
+      readFileAsText: function (file) {
+        var deferred = $q.defer();
+
+        var reader = new $window.FileReader();
+
+        reader.onload = function () {
+          deferred.resolve(reader.result);
+        };
+
+        reader.readAsText(file);
+
+        return deferred.promise;
       }
     }
 }]).
@@ -1146,12 +1180,12 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   constant('CONSTANTS', {
      /* The email regexp restricts email addresses to less than 400 chars. See #1215 */
-     "email_regexp": /^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$/,
+     "email_regexp": /^([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100}$/,
      "number_regexp": /^\d+$/,
      "phonenumber_regexp": /^[\+]?[\ \d]+$/,
-     "https_regexp": /^(https:\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "http_or_https_regexp": /^(http(s?):\/\/([a-z0-9-]+)\.(.*)$|^)$/,
-     "tor_regexp": /^http(s?):\/\/[0-9a-z]{16}\.onion$/,
+     "hostname_regexp": /^[a-z0-9-.]+$|^$/,
+     "onionservice_regexp": /^[0-9a-z]{16}\.onion$/,
+     "https_regexp": /^https:\/\/([a-z0-9-]+)\.(.*)$|^$/,
      "shortener_shorturl_regexp": /\/s\/[a-z0-9]{1,30}$/,
      "shortener_longurl_regexp": /\/[a-z0-9#=_&?/-]{1,255}$/
 }).

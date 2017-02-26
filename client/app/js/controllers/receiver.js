@@ -60,7 +60,7 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope',  '$http', '$route', '$locatio
   };
 }]).
 controller('TipBulkOperationsCtrl', ['$scope', '$http', '$route', '$location', '$uibModalInstance', 'selected_tips', 'operation',
-                        function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
+  function ($scope, $http, $route, $location, $uibModalInstance, selected_tips, operation) {
   $scope.selected_tips = selected_tips;
   $scope.operation = operation;
 

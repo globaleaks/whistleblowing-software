@@ -46,7 +46,7 @@ class TestSystemConfigModels(helpers.TestGL):
         self.assertEqual(False, config.is_cfg_valid(store))
 
         node = config.NodeFactory(store)
-        c = node.get_cfg('public_site')
+        c = node.get_cfg('hostname')
         store.remove(c)
         store.commit()
 

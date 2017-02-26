@@ -90,8 +90,8 @@ function submissionUploadSuite() {
     var rec = new pages.receiver();
 
     var opts = { encoding: 'utf8', flag: 'r' };
-    var priv_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PRV', opts);
-    var pub_key = fs.readFileSync('../backend/globaleaks/tests/keys/VALID_PGP_KEY1_PUB', opts);
+    var priv_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PRV', opts);
+    var pub_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB', opts);
 
     wb.performSubmission('Test file openpgp consistency').then(function(receipt) {
       // attach files to submission

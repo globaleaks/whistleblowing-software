@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <form class="row" name="preferencesForm" novalidate>
       <uib-tabset>
-        <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}" active="tab.active" disable="tab.disabled">
+        <uib-tab data-ng-repeat="tab in tabs" heading="{{tab.title | translate}}">
           <div class="tab-content" data-ng-include="tab.template"></div>
         </uib-tab>
       </uib-tabset>

@@ -14,12 +14,14 @@ import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
 
+from twisted.python.threadpool import ThreadPool
 from cyclone.util import ObjectDict as OD
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.utility import datetime_now#, log
+from globaleaks.utils.utility import datetime_now, log
+from globaleaks.utils.tor_exit_set import TorExitSet
 
 this_directory = os.path.dirname(__file__)
 
@@ -63,7 +65,7 @@ class GLSettingsClass(object):
         # This variable is to be able to hook/bypass code when unit-tests are runned
         self.testing = False
 
-        # daemon
+        # daemonize the process
         self.nodaemon = False
 
         # thread pool size of 1
@@ -71,7 +73,7 @@ class GLSettingsClass(object):
 
         self.bind_addresses = '127.0.0.1'
 
-        # bind port
+        # bind_port is the original port the service is bound on - notice bind_ports
         self.bind_port = 8082
 
         # store name
@@ -90,6 +92,8 @@ class GLSettingsClass(object):
         self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
 
+        # TODO(bug-fix-italian-style) why is this set to the 2nd entry in the possible
+        # client paths...? please fix.
         self.client_path = '/usr/share/globaleaks/client'
         for path in possible_client_paths:
             if os.path.exists(path):
@@ -139,6 +143,9 @@ class GLSettingsClass(object):
                 'custodian': False,
                 'receiver': False,
                 'unauth': True,
+            },
+            'private': {
+                'https_enabled': False,
             },
         })
 
@@ -207,6 +214,12 @@ class GLSettingsClass(object):
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
+        # TODO holds global state until GLSettings is inverted and this
+        # state managed as an object by the application
+        self.state = OD()
+        self.state.process_supervisor = None
+        self.state.tor_exit_set = TorExitSet()
+
     def reset_hourly(self):
         self.RecentEventQ[:] = []
         self.RecentAnomaliesQ.clear()
@@ -233,6 +246,7 @@ class GLSettingsClass(object):
         self.static_path = os.path.abspath(os.path.join(self.files_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
+        self.ssl_file_path = os.path.abspath(os.path.join(self.files_path, 'ssl'))
 
         self.db_schema = os.path.join(self.static_db_source, 'sqlite.sql')
         self.db_file_name = 'glbackend-%d.db' % DATABASE_VERSION
@@ -253,6 +267,8 @@ class GLSettingsClass(object):
         self.appdata_file = os.path.join(self.client_path, 'data/appdata.json')
         self.fields_path = os.path.join(self.client_path, 'data/fields')
         self.field_attrs_file = os.path.join(self.client_path, 'data/field_attrs.json')
+
+        self.torbrowser_path = os.path.join(self.working_path, 'torbrowser')
 
     def set_ramdisk_path(self):
         self.ramdisk_path = '/dev/shm/globaleaks'
@@ -314,16 +330,23 @@ class GLSettingsClass(object):
         if self.cmdline_options.disable_swap:
             self.disable_swap = True
 
-        #log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
+        log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
         self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
+        if '0.0.0.0' in self.bind_addresses:
+            self.bind_addresses = ['0.0.0.0']
 
         if not self.validate_port(self.cmdline_options.port):
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        self.accepted_hosts = list(set(self.bind_addresses + \
-                                   self.cmdline_options.host_list.replace(" ", "").split(",")))
+        self.bind_ports = {80, self.bind_port}
+
+        self.local_hosts = ['127.0.0.1', 'localhost']
+
+        self.accepted_hosts = list(set(self.local_hosts + \
+                                       self.bind_addresses + \
+                                       self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
@@ -498,6 +521,12 @@ class GLSettingsClass(object):
             dir_util.remove_tree(self.working_path, 0)
 
     def drop_privileges(self):
+        for port in GLSettings.http_socks:
+            os.fchown(port.fileno(), self.uid, self.gid)
+
+        for port in GLSettings.https_socks:
+            os.fchown(port.fileno(), self.uid, self.gid)
+
         if os.getgid() != self.gid:
             try:
                 self.print_msg("switching group privileges since %d to %d" % (os.getgid(), self.gid))
@@ -525,7 +554,6 @@ class GLSettingsClass(object):
         temporally_encrypted_dir
             (XXX change submission now used to too much thing)
         """
-
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSettings.tmp_upload_path):
             path = os.path.join(GLSettings.tmp_upload_path, f)
@@ -562,11 +590,12 @@ class GLSettingsClass(object):
 
         for job in jobs_list:
             j = job()
-            GLSettings.jobs.append(j)
+            self.jobs.append(j)
             j.schedule()
 
-        self.jobs_monitor = GLJobsMonitor(GLSettings.jobs)
+        self.jobs_monitor = GLJobsMonitor(self.jobs)
         self.jobs_monitor.schedule()
+
 
 # GLSettings is a singleton class exported once
 GLSettings = GLSettingsClass()

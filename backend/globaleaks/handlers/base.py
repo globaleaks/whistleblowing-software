@@ -12,6 +12,7 @@ import re
 import shutil
 import sys
 import time
+import urlparse
 
 from cyclone import web, template
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
@@ -48,6 +49,27 @@ mimetypes.add_type('application/vnd.ms-fontobject', '.eot')
 mimetypes.add_type('application/x-font-ttf', '.ttf')
 mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
+
+
+def should_redirect_tor(request, tor_addr, exit_relay_set):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if forwarded_ip is None:
+        forwarded_ip = request.remote_ip
+
+    if tor_addr is not None and forwarded_ip in exit_relay_set:
+        return True
+    return False
+
+
+def should_redirect_https(request, https_enabled, local_hosts):
+    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    if request.remote_ip in local_hosts and forwarded_ip is not None:
+        # This connection has been properly proxied through some transport locally
+        return False
+    elif https_enabled and not request.remote_ip in local_hosts:
+        return True
+    else:
+        return False
 
 
 def write_upload_plaintext_to_disk(uploaded_file, destination):
@@ -214,7 +236,7 @@ class BaseHandler(RequestHandler):
         Decorator for authenticated sessions.
         If the user is not authenticated, return a http 412 error.
         """
-        def wrapper(method_handler):
+        def wrapper(f):
             def call_handler(cls, *args, **kwargs):
                 """
                 If not yet auth, is redirected
@@ -229,7 +251,7 @@ class BaseHandler(RequestHandler):
 
                 if role == '*' or role == cls.current_user.user_role:
                     log.debug("Authentication OK (%s)" % cls.current_user.user_role)
-                    return method_handler(cls, *args, **kwargs)
+                    return f(cls, *args, **kwargs)
 
                 raise errors.InvalidAuthentication
 
@@ -238,18 +260,18 @@ class BaseHandler(RequestHandler):
         return wrapper
 
     @staticmethod
-    def unauthenticated(method_handler):
+    def unauthenticated(f):
         """
         Decorator for unauthenticated requests.
         If the user is logged in an authenticated sessions it does refresh the session.
         """
-        def call_handler(cls, *args, **kwargs):
+        def wrapper(cls, *args, **kwargs):
             if GLSettings.memory_copy.basic_auth:
                 cls.basic_auth()
 
-            return method_handler(cls, *args, **kwargs)
+            return f(cls, *args, **kwargs)
 
-        return call_handler
+        return wrapper
 
     @staticmethod
     def transport_security_check(role):
@@ -272,6 +294,32 @@ class BaseHandler(RequestHandler):
                 return method_handler(cls, *args, **kwargs)
 
             return call_handler
+
+        return wrapper
+
+    @staticmethod
+    def https_enabled(f):
+        """
+        Decorator that enforces https_enabled is set to True
+        """
+        def wrapper(*args, **kwargs):
+            if not GLSettings.memory_copy.private.https_enabled:
+                raise errors.FailedSanityCheck()
+
+            return f(*args, **kwargs)
+
+        return wrapper
+
+    @staticmethod
+    def https_disabled(f):
+        """
+        Decorator that enforces https_enabled is set to False
+        """
+        def wrapper(*args, **kwargs):
+            if GLSettings.memory_copy.private.https_enabled:
+                raise errors.FailedSanityCheck()
+
+            return f(*args, **kwargs)
 
         return wrapper
 
@@ -407,10 +455,10 @@ class BaseHandler(RequestHandler):
                     # strip whatever is not validated
                     #
                     # reminder: it's not possible to raise an exception for the
-                    # in case more values are presenct because it's normal that the
+                    # in case more values are present because it's normal that the
                     # client will send automatically more data.
                     #
-                    # e.g. the client will always send 'creation_date' attributs of
+                    # e.g. the client will always send 'creation_date' attributes of
                     #      objects and attributes like this are present generally only
                     #      from the second request on.
                     #
@@ -469,13 +517,43 @@ class BaseHandler(RequestHandler):
         pass
 
     def prepare(self):
-        """
-        Here is implemented:
-          - The performance analysts
-          - the Request/Response logging
-        """
         if not self.validate_host(self.request.host):
             raise errors.InvalidHostSpecified
+
+        log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
+        if should_redirect_https(self.request,
+                                 GLSettings.memory_copy.private.https_enabled,
+                                 GLSettings.local_hosts):
+            log.debug('Decided to redirect')
+            self.redirect_https()
+
+        # TODO handle the case where we are not interested in applying the exit list
+        if should_redirect_tor(self.request,
+                               GLSettings.tor_address,
+                               GLSettings.state.tor_exit_set):
+            self.redirect_tor(GLSettings.tor_address)
+
+    def redirect_https(self):
+        in_url = self.request.full_url()
+
+        pr = urlparse.urlsplit(self.request.full_url())
+
+        out_url = urlparse.urlunsplit(('https', pr.hostname, pr.path, pr.query, pr.fragment))
+
+        if out_url == in_url:
+            raise errors.InternalServerError('Should redirect to https: %s' % out_url)
+        self.redirect(out_url, status=301) # permanently redirect
+
+    def redirect_tor(self, onion_addr):
+        in_url = self.request.full_url()
+
+        _, _, path, query, frag = urlparse.urlsplit(in_url)
+
+        out_url = urlparse.urlunsplit(('http', onion_addr, path, query, frag))
+
+        if out_url == in_url:
+            raise errors.InternalServerError('Should redirect to tor: %s' % out_url)
+        self.redirect(out_url, status=301) # permanently redirect
 
     def on_finish(self):
         """

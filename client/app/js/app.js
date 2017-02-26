@@ -243,6 +243,15 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('admin'),
         }
       }).
+      when('/admin/network', {
+        templateUrl: 'views/admin/network.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration interface',
+        header_subtitle: 'Network settings',
+        resolve: {
+          access: requireAuth('admin'),
+        }
+      }).
       when('/admin/advanced_settings', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',

@@ -8,7 +8,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-from globaleaks import db, models, security, event, runner, jobs
+from globaleaks import db, models, security, event, jobs
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -30,6 +30,7 @@ from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
+from globaleaks.workers.supervisor import ProcessSupervisor
 
 from . import TEST_DIR, config as test_config
 
@@ -59,9 +60,10 @@ INVALID_PASSWORD = u'antani'
 
 PGPKEYS = {}
 
-KEYS_PATH = os.path.join(TEST_DIR, 'keys')
-for filename in os.listdir(KEYS_PATH):
-    with open(os.path.join(KEYS_PATH, filename)) as pgp_file:
+DATA_DIR = os.path.join(TEST_DIR, 'data')
+kp = os.path.join(DATA_DIR, 'gpg')
+for filename in os.listdir(kp):
+    with open(os.path.join(kp, filename)) as pgp_file:
         PGPKEYS[filename] = unicode(pgp_file.read())
 
 def deferred_sleep_mock(seconds):
@@ -201,7 +203,6 @@ class TestGL(unittest.TestCase):
         jobs.base.test_reactor = self.test_reactor
         tempdict.test_reactor = self.test_reactor
         token.TokenList.reactor = self.test_reactor
-        runner.test_reactor = self.test_reactor
         GLSessions.reactor = self.test_reactor
 
         init_glsettings_for_unit_tests()
@@ -222,6 +223,9 @@ class TestGL(unittest.TestCase):
 
         yield db.refresh_memory_variables()
 
+        sup = ProcessSupervisor([], '127.0.0.1', 18082)
+        GLSettings.state.process_supervisor = sup
+
         Alarm.reset()
         event.EventTrackQueue.clear()
         GLSettings.reset_hourly()
@@ -229,6 +233,7 @@ class TestGL(unittest.TestCase):
         GLSettings.submission_minimum_delay = 0
 
         self.internationalized_text = load_appdata()['node']['whistleblowing_button']
+
 
     def call_spigot(self):
         """
@@ -729,7 +734,6 @@ class TestHandler(TestGLWithPopulatedDB):
 
         handler_cls.write = mock_write
 
-
         def mock_finish(cls):
             pass
 
@@ -847,8 +851,8 @@ class MockDict:
             'whistleblowing_question': u'',
             'whistleblowing_button': u'',
             'whistleblowing_receipt_prompt': u'',
-            'hidden_service': u'http://1234567890123456.onion',
-            'public_site': u'https://globaleaks.org',
+            'hostname': u'www.globaleaks.org',
+            'onionservice': u'1234567890123456.onion',
             'tb_download_link': u'https://www.torproject.org/download/download',
             'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
