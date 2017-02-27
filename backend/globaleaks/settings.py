@@ -213,6 +213,9 @@ class GLSettingsClass(object):
         self.mail_timeout = 15 # seconds
         self.mail_attempts_limit = 3 # per mail limit
 
+        self.https_socks = []
+        self.http_socks = []
+
         # TODO holds global state until GLSettings is inverted and this
         # state managed as an object by the application
         self.state = OD()
