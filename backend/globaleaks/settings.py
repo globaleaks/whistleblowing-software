@@ -158,6 +158,7 @@ class GLSettingsClass(object):
         self.socks_port = 9050
 
         self.key_bits = 2048
+        self.csr_sign_bits = 512
 
         self.notification_limit = 30
         self.jobs_operation_limit = 20
@@ -290,6 +291,7 @@ class GLSettingsClass(object):
 
         # when running in development mode lower the key bits to 512
         self.key_bits = 512
+        self.csr_sign_bits = 256
 
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')

@@ -45,7 +45,7 @@ def gen_rsa_key(bits):
     return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
 
 
-def gen_x509_csr(key_pair, csr_fields):
+def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     '''
     gen_x509_csr creates a certificate signature request by applying the passed
     fields to the subject of the request, attaches the public key's fingerprint
@@ -81,7 +81,7 @@ def gen_x509_csr(key_pair, csr_fields):
     prv_key = load_privatekey(SSL.FILETYPE_PEM, key_pair)
 
     req.set_pubkey(prv_key)
-    req.sign(prv_key, 'sha512')
+    req.sign(prv_key, 'sha'+str(csr_sign_bits))
     # TODO clean prv_key and str_prv_key from memory
 
     pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)

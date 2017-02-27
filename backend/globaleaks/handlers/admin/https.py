@@ -444,7 +444,7 @@ class CSRFileHandler(FileHandler):
 
         key_pair = db_cfg['ssl_key']
         try:
-            csr_txt = tls.gen_x509_csr(key_pair, csr_fields)
+            csr_txt = tls.gen_x509_csr(key_pair, csr_fields, GLSettings.csr_sign_bits)
             log.debug("Generated a new CSR")
             return csr_txt
         except Exception as e:
