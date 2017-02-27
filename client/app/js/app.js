@@ -1,5 +1,7 @@
 /* eslint no-unused-vars: ["error", { "varsIgnorePattern": "GLClient" }] */
 
+var _flowFactoryProvider;
+
 function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
     var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
     var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
@@ -387,15 +389,8 @@ var GLClient = angular.module('GLClient', [
       );
 }]).
   config(['flowFactoryProvider', function (flowFactoryProvider) {
-    flowFactoryProvider.defaults = {
-        chunkSize: 1000 * 1024,
-        forceChunkSize: true,
-        testChunks: false,
-        simultaneousUploads: 1,
-        generateUniqueIdentifier: function () {
-          return Math.random() * 1000000 + 1000000;
-        }
-    };
+    // Trick to move the flowFactoryProvider config inside run block.
+    _flowFactoryProvider = flowFactoryProvider;
 }]).
   run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
       function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
@@ -409,6 +404,19 @@ var GLClient = angular.module('GLClient', [
     $rootScope.successes = [];
     $rootScope.errors = [];
     $rootScope.embedded = $location.search().embedded === 'true';
+
+    _flowFactoryProvider.defaults = {
+        chunkSize: 1000 * 1024,
+        forceChunkSize: true,
+        testChunks: false,
+        simultaneousUploads: 1,
+        generateUniqueIdentifier: function () {
+          return Math.random() * 1000000 + 1000000;
+        },
+        headers: function() {
+          return $rootScope.Authentication.get_headers();
+        }
+    };
 
     $rootScope.closeAlert = function (list, index) {
       list.splice(index, 1);
@@ -620,11 +628,10 @@ var GLClient = angular.module('GLClient', [
     return {
      'request': function(config) {
        var $rootScope = $injector.get('$rootScope');
-       var Authentication = $injector.get('Authentication');
 
        $rootScope.showLoadingPanel = true;
 
-       angular.extend(config.headers, Authentication.get_headers());
+       angular.extend(config.headers, $rootScope.Authentication.get_headers());
 
        return config;
      },
@@ -648,7 +655,6 @@ var GLClient = angular.module('GLClient', [
        var $rootScope = $injector.get('$rootScope');
        var $q = $injector.get('$q');
        var $window = $injector.get('$window');
-       var Authentication = $injector.get('Authentication');
 
        if ($http.pendingRequests.length <= 1) {
           $rootScope.showLoadingPanel = false;
@@ -676,7 +682,7 @@ var GLClient = angular.module('GLClient', [
 
          /* 30: Not Authenticated */
          if (error.code === 30) {
-           Authentication.loginRedirect(false);
+           $rootScope.Authentication.loginRedirect(false);
          }
 
          $rootScope.errors.push(error);

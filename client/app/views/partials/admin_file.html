@@ -1,6 +1,6 @@
 <label>{{admin_file.title | translate}}</label>
 <div class="well well-large uploadfile file-{{ admin_file.varname }}"
-    flow-init="{target: 'admin/files/' + admin_file.varname, headers: Authentication.get_headers()}"
+    flow-init="{target: 'admin/files/' + admin_file.varname}"
     flow-files-submitted="$flow.upload()"
     flow-file-success="reload()"
     flow-file-single

@@ -1,6 +1,6 @@
 <div data-ng-init="fileinput = field ? field.id : 'status_page'; uploads[fileinput] = {}">
     <div data-ng-controller="RFileUploadCtrl"
-         flow-init="{target: fileupload_url, headers: Authentication.get_headers()}"
+         flow-init="{target: fileupload_url}"
          flow-files-submitted="$flow.upload()"
          flow-name="uploads[fileinput]"
          extend-flow-valid-size="node.maximum_filesize*1024*1024">

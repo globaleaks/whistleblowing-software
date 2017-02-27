@@ -9,7 +9,7 @@
     <div class="form-group">
       <label data-translate>Project favicon</label>
       <div class="well well-large uploadfile file-favicon">
-        <span flow-init="{target: 'admin/files/favicon', headers: Authentication.get_headers()}"
+        <span flow-init="{target: 'admin/files/favicon'}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()"
               extend-flow-valid-size="node.maximum_filesize*1024*1024"
@@ -30,7 +30,7 @@
       <br />
       <span data-translate>The file will be available at URL: /s/$filename</span>
       <div class="well well-large uploadfile file-custom">
-        <span flow-init="{target: 'admin/staticfiles/upload', headers: Authentication.get_headers()}"
+        <span flow-init="{target: 'admin/staticfiles/upload'}"
               flow-files-submitted="$flow.upload()"
               flow-file-success="reload()"
               extend-flow-valid-size="node.maximum_filesize*1024*1024">
