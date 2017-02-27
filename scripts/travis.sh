@@ -103,7 +103,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
   # Inject content into the db while its hot. #TODO move hardcoded paths
   sleep 5
-  sudo sh -c 'sqlite3 $TRAVIS_BUILD_DIR/backend//var/globaleaks/db/glbackend-36.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
+  sudo sh -c 'sqlite3 $TRAVIS_BUILD_DIR/backend/workingdir/db/glbackend-36.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
   sudo /etc/init.d/globaleaks restart
   sleep 5
   setupClientDependencies
