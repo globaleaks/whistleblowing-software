@@ -58,17 +58,7 @@ class TestObjectValidators(TestCase):
             # DER formatted key
             'rsa_key.der',
             # PKCS8 encrypted private key
-            'rsa_key_monalisa_pass.pem',
-            # X.509 cert for the wrong project
-            'wonka_cert.pem',
-            # Broken X.509 cert
-            # 'broken_cert.pem',
-            # Expired X.509 cert
-            ##'expired_cert.pem',
-            # X.509 chain for the wrong project
-            # 'nskelsey_dev_chain.pem',
-            # X.509 with a broken intermediate
-            # 'broken_chain.pem',
+            'rsa_key_monalisa_pass.pem'
         ]
 
         self.valid_setup = get_valid_setup()
@@ -100,8 +90,7 @@ class TestObjectValidators(TestCase):
         pkv = tls.PrivKeyValidator()
 
         good_keys = [
-            'priv_key.pem',
-            'dh_key.pem',
+            'priv_key.pem'
         ]
 
         self.cfg['ssl_dh'] = self.valid_setup['dh_params']
@@ -132,8 +121,7 @@ class TestObjectValidators(TestCase):
         crtv = tls.CertValidator()
 
         good_certs = [
-            'self_signed_cert.pem',
-            'cert.pem',
+            'cert.pem'
         ]
 
         self.cfg['ssl_dh'] = self.valid_setup['dh_params']
@@ -154,7 +142,7 @@ class TestObjectValidators(TestCase):
         self.cfg['ssl_key'] = self.valid_setup['key']
         self.cfg['ssl_cert'] = self.valid_setup['cert']
 
-        exceptions_from_validation = {'empty.txt', 'wonka_cert.pem'}
+        exceptions_from_validation = {'empty.txt'}
 
         for fname in self.invalid_files:
             p = os.path.join(self.test_data_dir, 'invalid', fname)
