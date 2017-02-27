@@ -1,7 +1,7 @@
 <div class="imageUploadBox"
      data-ng-controller="ImageUploadCtrl"
      flow-name="imageUploadObj.flow"
-     flow-init="{target: imageUploadUrl, headers: Authentication.get_headers()}"
+     flow-init="{target: imageUploadUrl}"
      flow-files-submitted="$flow.upload()"
      extend-flow-valid-types="['png']">
   <div class="imageUpload">

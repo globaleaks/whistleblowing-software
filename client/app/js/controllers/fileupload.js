@@ -55,14 +55,12 @@ controller('RFileUploadCtrl', ['$scope', function($scope) {
     }
   });
 }]).
-controller('WBFileUploadCtrl', ['$scope', 'Authentication', function($scope, Authentication) {
+controller('WBFileUploadCtrl', ['$scope', function($scope) {
   $scope.file_upload_description = "";
 
   $scope.beginUpload = function($files, $event, $flow) {
     $scope.file_error_msgs = [];
 
-    var h = Authentication.get_headers();
-    $flow.opts.headers = h;
     $flow.opts.query = {'description': $scope.file_upload_description};
     $flow.upload();
   };
