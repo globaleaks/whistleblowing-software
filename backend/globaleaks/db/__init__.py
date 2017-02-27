@@ -40,11 +40,6 @@ def init_db(store, use_single_lang=False):
 
     config.system_cfg_init(store)
 
-    if GLSettings.skip_wizard:
-        NodeFactory(store).set_val('wizard_done', True)
-
-    log.debug("Inserting internationalized strings...")
-
     if not use_single_lang:
         EnabledLanguage.add_all_supported_langs(store, appdata_dict)
     else:
