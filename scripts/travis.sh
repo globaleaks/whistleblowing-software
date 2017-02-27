@@ -94,6 +94,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo apt-get install -y nodejs
   cd $TRAVIS_BUILD_DIR
   sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
+  sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
   rm debian/control backend/requirements.txt
   cp debian/controlX/control.trusty  debian/control
   cp backend/requirements/requirements-trusty.txt backend/requirements.txt
