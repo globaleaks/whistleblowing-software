@@ -93,17 +93,23 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   curl -sL https://deb.nodesource.com/setup | sudo bash -
   sudo apt-get install -y nodejs
   cd $TRAVIS_BUILD_DIR
-  ./scripts/build.sh -d trusty -t $TRAVIS_COMMIT -n
+  sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
+  rm debian/control backend/requirements.txt
+  cp debian/controlX/control.trusty  debian/control
+  cp backend/requirements/requirements-trusty.txt backend/requirements.txt
+  cd client
+  npm install grunt-cli
+  npm install
+  grunt build
+  cd ..
+  debuild -i -us -uc -b
   sudo mkdir -p /data/globaleaks/deb/
-  sudo cp GLRelease-trusty/globaleaks*deb /data/globaleaks/deb/
+  sudo cp ../globaleaks*deb /data/globaleaks/deb/
   set +e # avoid to fail in case of errors cause apparmor will always cause the failure
   sudo ./scripts/install.sh
   set -e # re-enable to fail in case of errors
   sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
-  # Inject content into the db while its hot. #TODO move hardcoded paths
-  sleep 5
-  sudo sh -c 'sqlite3 /var/globaleaks/db/glbackend-36.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
   sudo /etc/init.d/globaleaks restart
   sleep 5
   setupClientDependencies
@@ -140,7 +146,6 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   eval $capability
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000 --disable-mail-torification
   sleep 5
-  sudo sh -c 'sqlite3 $TRAVIS_BUILD_DIR/backend/workingdir/db/glbackend-36.db < $TRAVIS_BUILD_DIR/backend/globaleaks/tests/data/post_init.sql'
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
 
