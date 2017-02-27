@@ -2,7 +2,7 @@
 
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.models import *
-from globaleaks.models.config import Config, NodeFactory, addUnicodeConfig, delConfig
+from globaleaks.models.config import Config, NodeFactory, add_raw_config, del_config
 from globaleaks.models.l10n import EnabledLanguage
 
 from urlparse import urlparse
@@ -10,20 +10,20 @@ from urlparse import urlparse
 
 class MigrationScript(MigrationBase):
     def epilogue(self):
-        nnf = NodeFactory(self.store_new)
-        url = nnf.get_val('public_site')
+        nf = NodeFactory(self.store_new)
+        url = nf.get_val('public_site')
         o = urlparse(url)
-        domain = o.netloc.split(':')[0]
+        domain = o.hostname if not o.hostname is None else ''
 
-        delConfig(self.store_new, u'node', u'public_site')
-        addUnicodeConfig(self.store_new, u'node', u'hostname', domain != '', unicode(domain))
+        del_config(self.store_new, u'node', u'public_site')
+        add_raw_config(self.store_new, u'node', u'hostname', domain != '', unicode(domain))
 
-        nnf = NodeFactory(self.store_new)
-        url = nnf.get_val('hidden_service')
+        nf = NodeFactory(self.store_new)
+        url = nf.get_val('hidden_service')
         o = urlparse(url)
-        domain = o.netloc.split(':')[0]
+        domain = o.hostname if not o.hostname is None else ''
 
-        delConfig(self.store_new, u'node', u'hidden_service')
-        addUnicodeConfig(self.store_new, u'node', u'onionservice', domain != '', unicode(domain))
+        del_config(self.store_new, u'node', u'hidden_service')
+        add_raw_config(self.store_new, u'node', u'onionservice', domain != '', unicode(domain))
 
         self.store_new.commit()
