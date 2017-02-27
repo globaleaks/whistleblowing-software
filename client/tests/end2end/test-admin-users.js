@@ -63,9 +63,6 @@ describe('admin add, configure, and delete users', function() {
     descriptBox.clear();
     descriptBox.sendKeys(words);
 
-    element(by.model('user.password')).sendKeys(utils.vars['user_password']);
-    element(by.model('user.password_change_needed')).click();
-
     // Click Save and check the fields
     editUsrForm.element(by.css('.actionButtonSave')).click();
     editUsrForm.element(by.css('.actionButtonEdit')).click();
