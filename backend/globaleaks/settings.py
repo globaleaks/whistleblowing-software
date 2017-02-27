@@ -157,6 +157,8 @@ class GLSettingsClass(object):
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050
 
+        self.key_bits = 2048
+
         self.notification_limit = 30
         self.jobs_operation_limit = 20
 
@@ -285,6 +287,9 @@ class GLSettingsClass(object):
             self.developer_name = u"Random GlobaLeaks Developer"
         else:
             self.developer_name = unicode(self.cmdline_options.developer_name)
+
+        # when running in development mode lower the key bits to 512
+        self.key_bits = 512
 
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')

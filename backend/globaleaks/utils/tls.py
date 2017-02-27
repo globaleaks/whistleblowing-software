@@ -25,22 +25,22 @@ def load_dh_params_from_string(ctx, dh_params_string):
     _lib.SSL_CTX_set_tmp_dh(ctx._context, dh)
 
 
-def gen_dh_params():
+def gen_dh_params(bits):
     dh = _lib.DH_new()
-    _lib.DH_generate_parameters_ex(dh, 2048, 2L, _ffi.NULL)
+    _lib.DH_generate_parameters_ex(dh, bits, 2L, _ffi.NULL)
 
     bio = _new_mem_buf()
     _lib.PEM_write_bio_DHparams(bio, dh)
     return _bio_to_string(bio)
 
 
-def gen_rsa_key():
+def gen_rsa_key(bits):
     '''
     Generate an RSA key and returns it in PEM format.
     :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
     '''
     key = PKey()
-    key.generate_key(TYPE_RSA, 2048)
+    key.generate_key(TYPE_RSA, bits)
 
     return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
 
