@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$GLREQUIREMENTS" ]; then
-  GLREQUIREMENTS="trusty"
+  GLREQUIREMENTS="xenial"
 fi
 
 TRAVIS_USR="travis-`git rev-parse --short HEAD`"
@@ -45,7 +45,7 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
-  if [ "$GLREQUIREMENTS" = "trusty" ]; then
+  if [ "$GLREQUIREMENTS" = "xenial" ]; then
     echo "Extracting firefox and setting PATH variable..."
     tar -xjf /tmp/firefox-46.0.tar.bz2 --directory /tmp
     export PATH="/tmp/firefox:$PATH"
