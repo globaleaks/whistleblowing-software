@@ -288,3 +288,16 @@ def load_tls_dict(store):
         'https_enabled': privFact.get_val('https_enabled'),
     }
     return tls_cfg
+
+
+def addUnicodeConfig(store, group, name, customized, value):
+    c = Config(migrate=True)
+    c.var_group = group
+    c.var_name =  name
+    c.customixed = customized
+    c.value = {'v': value}
+    store.add(c)
+
+
+def delConfig(store, group, name):
+    store.find(Config, Config.var_group == group, Config.var_name == name).remove()

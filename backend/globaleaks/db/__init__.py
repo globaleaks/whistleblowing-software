@@ -13,7 +13,7 @@ from globaleaks import models, security, DATABASE_VERSION
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n, User
-from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
+from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory, addUnicodeConfig
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact
 from globaleaks.settings import GLSettings
