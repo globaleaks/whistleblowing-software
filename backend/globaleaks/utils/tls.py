@@ -182,11 +182,8 @@ class PrivKeyValidator(CtxValidator):
         # keys from being used instead of plain pem keys.
         priv_key = load_privatekey(FILETYPE_PEM, raw_str, passphrase="")
 
-        # TODO fix cffi dep for 14.04
-        # if priv_key.type() == TYPE_RSA:
-        #     ok = priv_key.check()
-        #     if not ok:
-        #         raise ValidationException('Invalid RSA key')
+        if priv_key.type() != TYPE_RSA or not priv_key.check():
+            raise ValidationException('Invalid RSA key')
 
 
 class CertValidator(CtxValidator):
