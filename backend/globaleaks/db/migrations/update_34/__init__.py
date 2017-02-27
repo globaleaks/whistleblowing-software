@@ -242,7 +242,7 @@ class MigrationScript(MigrationBase):
         # Migrate Config saved in Node
         for var_name, _ in GLConfig_v_35['node'].iteritems():
             old_val = getattr(old_node, var_name)
-            self.store_new.add(Config('node', var_name, old_val, GLConfig_v_35))
+            self.store_new.add(Config('node', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate Config saved in Notification
         for var_name, _ in GLConfig_v_35['notification'].iteritems():
@@ -251,7 +251,7 @@ class MigrationScript(MigrationBase):
             if var_name == 'exception_email_pgp_key_expiration' and old_val is not None:
                 old_val = properties.iso_strf_time(old_val)
 
-            self.store_new.add(Config('notification', var_name, old_val, GLConfig_v_35))
+            self.store_new.add(Config('notification', var_name, old_val, cfg_desc=GLConfig_v_35))
 
         # Migrate private fields
         self.store_new.add(Config('private', 'receipt_salt', old_node.receipt_salt))

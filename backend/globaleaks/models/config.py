@@ -178,15 +178,23 @@ class Config(Storm):
     __storm_table__ = 'config'
     __storm_primary__ = ('var_group', 'var_name')
 
-    config = GLConfig
+    cfg_desc = GLConfig
     var_group = Unicode()
     var_name = Unicode()
     value = JSON()
     customized = Bool(default=False)
 
-    def __init__(self, group=None, name=None, value=None, config=None, migrate=False):
-        if config is not None:
-            self.config = config
+    def __init__(self, group=None, name=None, value=None, cfg_desc=None, migrate=False):
+        """
+        :param value:    This input is passed directly into set_v
+        :param migrate:  Added to comply with models.Model constructor which is
+                         used to copy every field returned by storm from the db
+                         from an old_obj to a new one.
+        :param cfg_desc: Used to specify where to look for the Config objs descripitor.
+                         This is used in mig 34.
+        """
+        if cfg_desc is not None:
+            self.cfg_desc = cfg_desc
 
         if migrate:
             return
@@ -197,15 +205,15 @@ class Config(Storm):
         self.set_v(value)
 
     @staticmethod
-    def find_descriptor(config, var_group, var_name):
-        d = config.get(var_group, {}).get(var_name, None)
+    def find_descriptor(config_desc_root, var_group, var_name):
+        d = config_desc_root.get(var_group, {}).get(var_name, None)
         if d is None:
             raise ValueError('%s.%s descriptor cannot be None' % (var_group, var_name))
 
         return d
 
     def set_v(self, val):
-        desc = self.find_descriptor(self.config, self.var_group, self.var_name)
+        desc = self.find_descriptor(self.cfg_desc, self.var_group, self.var_name)
         if val is None:
             val = desc._type()
         if isinstance(desc, config_desc.Unicode) and isinstance(val, str):
@@ -290,7 +298,7 @@ def load_tls_dict(store):
     return tls_cfg
 
 
-def addUnicodeConfig(store, group, name, customized, value):
+def add_raw_config(store, group, name, customized, value):
     c = Config(migrate=True)
     c.var_group = group
     c.var_name =  name
@@ -299,5 +307,5 @@ def addUnicodeConfig(store, group, name, customized, value):
     store.add(c)
 
 
-def delConfig(store, group, name):
+def del_config(store, group, name):
     store.find(Config, Config.var_group == group, Config.var_name == name).remove()
