@@ -1,11 +1,12 @@
 <label>{{admin_file.title | translate}}</label>
-<div class="well well-large uploadfile file-{{ admin_file.varname }}">
-  <span flow-init="{target: 'admin/files/' + admin_file.varname, headers: Authentication.get_headers()}"
-        flow-files-submitted="$flow.upload()"
-        flow-file-success="reload()"
-        flow-file-single
-        extend-flow-valid-types="[admin_file.type]"
-        extend-flow-valid-size="admin_file.size">
+<div class="well well-large uploadfile file-{{ admin_file.varname }}"
+    flow-init="{target: 'admin/files/' + admin_file.varname, headers: Authentication.get_headers()}"
+    flow-files-submitted="$flow.upload()"
+    flow-file-success="reload()"
+    flow-file-single
+    extend-flow-valid-types="[admin_file.type]"
+    extend-flow-valid-size="admin_file.size">
+  <span>
     <div class="btn btn-success fileinput-button">
       <span class="uploadfile" flow-btn>
         <span class="glyphicon glyphicon-plus"></span>
@@ -13,7 +14,7 @@
       </span>
     </div>
   </span>
-  <span data-ng-if="node[admin_file.flag]">
+  <span data-ng-if="node[admin_file.varname]">
     <a class="btn btn-primary" href="data:application/octet-stream;base64,{{node[admin_file.varname]}}" download={{admin_file.filename}}>
       <span class="glyphicon glyphicon-download"></span>
       <span data-translate>Download</span>
