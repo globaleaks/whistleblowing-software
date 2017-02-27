@@ -90,7 +90,7 @@ class AnomaliesSchedule(GLJob):
 
 class StatisticsSchedule(GLJob):
     """
-    Statistics collection scheduler runned hourly
+    Statistics collection scheduler run hourly
     """
     name = "Statistics"
     interval = 3600
