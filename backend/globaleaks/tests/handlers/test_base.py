@@ -166,14 +166,6 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(BaseHandler.validate_regexp('Foca', '\w+'))
         self.assertFalse(BaseHandler.validate_regexp('Foca', '\d+'))
 
-    def test_validate_host(self):
-        self.assertFalse(BaseHandler.validate_host(""))
-        self.assertTrue(BaseHandler.validate_host("127.0.0.1"))
-        self.assertTrue(BaseHandler.validate_host("thirteenchars123.onion"))
-        self.assertTrue(BaseHandler.validate_host("thirteenchars123.onion:31337"))
-        self.assertFalse(BaseHandler.validate_host("invalid.onion"))
-        self.assertFalse(BaseHandler.validate_host("invalid.onion:12345"))  # gabanbus i miss you!
-
 
 class TestBaseStaticFileHandler(helpers.TestHandler):
     _handler = BaseStaticFileHandler

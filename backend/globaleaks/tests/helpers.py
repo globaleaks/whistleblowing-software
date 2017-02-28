@@ -912,5 +912,7 @@ class MockDict:
             'wbtip_timetolive': 90,
             'basic_auth': False,
             'basic_auth_username': '',
-            'basic_auth_password': ''
+            'basic_auth_password': '',
+            'reachable_via_web': False,
+            'anonymize_outgoing_connections': False,
         }
