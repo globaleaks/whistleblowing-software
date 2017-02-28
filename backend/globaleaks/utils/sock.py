@@ -23,13 +23,9 @@ def open_socket_listen(ip, port):
     return s
 
 
-def reserve_port_for_ifaces(ifaces, port):
-    socks = []
-    failed_binds = [] # (ip_addr, err) pairs
-    for ip in ifaces:
-        try:
-            new_sock = open_socket_listen(ip, port)
-            socks.append(new_sock)
-        except Exception as err:
-            failed_binds.append((ip, err))
-    return socks, failed_binds
+def reserve_port_for_ip(ip, port):
+    try:
+        sock = open_socket_listen(ip, port)
+        return [sock, None]
+    except Exception as err:
+        return [None, err]

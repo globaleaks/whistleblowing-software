@@ -114,8 +114,8 @@ GLSettings.parser.add_option("-l", "--loglevel", type="choice",
     dest="loglevel", default="ERROR")
 
 GLSettings.parser.add_option("-i", "--ip", type="string",
-    help="IP address(s) used for listening [default: %default]",
-    dest="ip", default=GLSettings.bind_addresses)
+    help="IP address used for listening [default: %default]",
+    dest="ip", default=GLSettings.bind_address)
 
 GLSettings.parser.add_option("-p", "--port", type="int",
     help="TCP port used for listening [default: %default]",

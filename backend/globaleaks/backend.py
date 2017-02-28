@@ -19,7 +19,7 @@ from globaleaks.db import init_db, clean_untracked_files, \
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, GLLogObserver
-from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ifaces
+from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
@@ -40,15 +40,17 @@ def pre_listen_startup():
     GLSettings.http_socks = []
     for port in GLSettings.bind_ports:
         port = port+mask if port < 1024 else port
-        http_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, port)
-        GLSettings.http_socks += http_socks
+        http_sock, fail = reserve_port_for_ip(GLSettings.bind_address, port)
+        if fail is not None:
+            log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+        else:
+            GLSettings.http_socks += [http_sock]
 
-        for addr, err in fails:
-            log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
-
-    GLSettings.https_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
-    for addr, err in fails:
-        log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
+    https_sock, fail = reserve_port_for_ip(GLSettings.bind_address, 443+mask)
+    if fail is not None:
+        log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+    else:
+        GLSettings.https_socks = [https_sock]
 
     GLSettings.fix_file_permissions()
     GLSettings.drop_privileges()
@@ -92,8 +94,7 @@ class GLService(service.Service):
 
         print("GlobaLeaks is now running and accessible at the following urls:")
 
-        for ip in GLSettings.bind_addresses:
-            print("- http://%s:%d%s" % (ip, GLSettings.bind_port, GLSettings.api_prefix))
+        print("- http://%s:%d%s" % (GLSettings.bind_address, GLSettings.bind_port, GLSettings.api_prefix))
 
         if GLSettings.memory_copy.hostname:
             print("- http://%s:%d%s" % (host, GLSettings.memory_copy, GLSettings.api_prefix))
