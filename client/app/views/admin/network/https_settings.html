@@ -20,7 +20,7 @@
     <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
         <span data-translate>URL</span><span>:</span>
-        <a data-ng-show="admin.node.hostname !== ''" target="_blank" rel="noreferrer noopener" href="{{ admin.node.hostname }}">{{admin.node.hostname}}</a>
+        <a data-ng-show="admin.node.hostname !== ''" target="_blank" rel="noreferrer noopener" href="https://{{ admin.node.hostname }}">https://{{admin.node.hostname}}</a>
       </div>
       <div data-ng-show="admin.node.hostname === ''"
           class="alert alert-warning">
