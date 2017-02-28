@@ -71,7 +71,7 @@ class GLSettingsClass(object):
         # thread pool size of 1
         self.orm_tp = ThreadPool(1, 1)
 
-        self.bind_addresses = '127.0.0.1'
+        self.bind_addresses = '0.0.0.0'
 
         # bind_port is the original port the service is bound on - notice bind_ports
         self.bind_port = 8082
@@ -121,9 +121,7 @@ class GLSettingsClass(object):
         self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
 
-        # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = '127.0.0.1,localhost'
-        self.local_hosts = self.accepted_hosts.split(',')
+        self.local_hosts = ['127.0.0.1', 'localhost']
 
         self.tor_address = None
 
@@ -148,8 +146,7 @@ class GLSettingsClass(object):
             },
             'private': {
                 'https_enabled': False,
-            },
-            'accepted_hosts': set(self.local_hosts),
+            }
         })
 
 
@@ -205,8 +202,6 @@ class GLSettingsClass(object):
         self.exceptions_email_count = 0
         self.exceptions_email_hourly_limit = 20
 
-        self.disable_mail_torification = False
-        self.disable_mail_notification = False
         self.disable_backend_exception_notification = False
         self.disable_client_exception_notification = False
 
@@ -354,12 +349,6 @@ class GLSettingsClass(object):
 
         self.bind_ports = {80, self.bind_port}
 
-        self.accepted_hosts = set(self.local_hosts + \
-                                  self.bind_addresses + \
-                                  self.cmdline_options.host_list.replace(" ", "").split(","))
-
-        self.disable_mail_torification = self.cmdline_options.disable_mail_torification
-        self.disable_mail_notification = self.cmdline_options.disable_mail_notification
         self.disable_backend_exception_notification = self.cmdline_options.disable_backend_exception_notification
         self.disable_client_exception_notification = self.cmdline_options.disable_client_exception_notification
 

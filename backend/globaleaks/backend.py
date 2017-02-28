@@ -95,9 +95,8 @@ class GLService(service.Service):
         for ip in GLSettings.bind_addresses:
             print("- http://%s:%d%s" % (ip, GLSettings.bind_port, GLSettings.api_prefix))
 
-        for host in GLSettings.accepted_hosts:
-            if host not in GLSettings.bind_addresses:
-                print("- http://%s:%d%s" % (host, GLSettings.bind_port, GLSettings.api_prefix))
+        if GLSettings.memory_copy.hostname:
+            print("- http://%s:%d%s" % (host, GLSettings.memory_copy, GLSettings.api_prefix))
 
         if GLSettings.tor_address is not None:
             print("- http://%s%s" % (GLSettings.tor_address, GLSettings.api_prefix))

@@ -342,30 +342,6 @@ class BaseHandler(RequestHandler):
             raise web.HTTPAuthenticationRequired(log_message=msg, auth_type="Basic", realm="")
 
     @staticmethod
-    def validate_host(host_key):
-        """
-        validate_host checks in the GLSettings list of valid 'Host:' values
-        and if matched, return True, else return False
-        Is used by all the Web handlers inherit from Cyclone
-        """
-        # strip eventually port
-        hostchunk = str(host_key).split(":")
-        if len(hostchunk) == 2:
-            host_key = hostchunk[0]
-
-        # hidden service has not a :port
-        if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
-            return True
-
-        if host_key != '' and host_key in GLSettings.memory_copy.accepted_hosts:
-            return True
-
-        log.debug("Error in host requested: %s not accepted between: %s " %
-                  (host_key, GLSettings.accepted_hosts))
-
-        return False
-
-    @staticmethod
     def validate_python_type(value, python_type):
         """
         Return True if the python class instantiates the specified python_type.
@@ -517,9 +493,6 @@ class BaseHandler(RequestHandler):
         pass
 
     def prepare(self):
-        if not self.validate_host(self.request.host):
-            raise errors.InvalidHostSpecified
-
         log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
         if should_redirect_https(self.request,
                                  GLSettings.memory_copy.private.https_enabled,

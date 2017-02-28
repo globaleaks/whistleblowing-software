@@ -282,17 +282,7 @@ class InvalidOldPassword(GLException):
     status_code = 406
 
 
-# UNUSED ERROR CODE 35 HERE!
-
-
-class InvalidHostSpecified(GLException):
-    """
-    The host declared by the client 'Host:' field is not between
-    the list of the acceptable hosts
-    """
-    reason = "The specified host does not match a configured one"
-    error_code = 36
-    status_code = 403  # Forbidden
+# UNUSED ERROR CODE 35 36 HERE!
 
 
 class TorNetworkRequired(GLException):

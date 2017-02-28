@@ -121,11 +121,6 @@ GLSettings.parser.add_option("-p", "--port", type="int",
     help="TCP port used for listening [default: %default]",
     dest="port", default=GLSettings.bind_port)
 
-GLSettings.parser.add_option("-a", "--accept-host", type="string",
-    help="Specify a list comma separated of hostname acceptable to the HTTP server."\
-         "If some hosts are specified, none of the defaults are used [default: %default].",
-    dest="host_list", default=GLSettings.accepted_hosts)
-
 GLSettings.parser.add_option("-s", "--socks-host", type="string",
     help="set Socks host to use for Tor [default: %default]",
     dest="socks_host", default=GLSettings.socks_host)
@@ -137,14 +132,6 @@ GLSettings.parser.add_option("-r", "--socks-port", type="int",
 GLSettings.parser.add_option("-t", "--side-channels-guard", type="int",
     help="security guard time to which uniform request times to reduce side channels analysis (ms) [default: 150]",
     dest="side_channels_guard", default=150)
-
-GLSettings.parser.add_option("-d", "--disable-mail-torification", action='store_true',
-    help="disable mail torification [default: False]",
-    dest="disable_mail_torification", default=False)
-
-GLSettings.parser.add_option("-f", "--disable-mail-notification", action='store_true',
-    help="disable mail notification [default: False]",
-    dest="disable_mail_notification", default=False)
 
 GLSettings.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
     help="disable backend_exception_notification [default: False]",
