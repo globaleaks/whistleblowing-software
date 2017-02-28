@@ -194,12 +194,6 @@ do_start()
                     --tor-dir=${TOR_DIR}
                     --loglevel=${LOGLEVEL}"
 
-    if [ "${DISABLE_SWAP}" -eq "1" ]; then
-        # Raise the mlock limit to the max
-        ulimit -l unlimited
-        GLBACKEND_ARGS+=" --disable-swap"
-    fi
-
     if [ "${API_PREFIX}" != "" ]; then
         GLBACKEND_ARGS+=" --api-prefix ${API_PREFIX}"
     fi
