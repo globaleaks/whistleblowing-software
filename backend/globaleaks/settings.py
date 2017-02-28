@@ -528,12 +528,6 @@ class GLSettingsClass(object):
             dir_util.remove_tree(self.working_path, 0)
 
     def drop_privileges(self):
-        for port in GLSettings.http_socks:
-            os.fchown(port.fileno(), self.uid, self.gid)
-
-        for port in GLSettings.https_socks:
-            os.fchown(port.fileno(), self.uid, self.gid)
-
         if os.getgid() != self.gid:
             try:
                 self.print_msg("switching group privileges since %d to %d" % (os.getgid(), self.gid))

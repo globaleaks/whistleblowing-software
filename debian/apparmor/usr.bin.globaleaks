@@ -17,8 +17,9 @@ profile usr.bin.globaleaks {
     /etc/python2.7/** r,
 
     @{PROC}/ r,
+    @{PROC}/@{pid}/fd/ r,
+    @{PROC}/@{pid}/status r,
     owner @{PROC}/@{pid}/mounts r,
-    owner @{PROC}/@{pid}/status r,
 
     /usr/bin/ r,
     /usr/bin/globaleaks r,
@@ -28,6 +29,8 @@ profile usr.bin.globaleaks {
     /bin/sh ix,
     /bin/dash ix,
     /usr/bin/gpg ix,
+
+    /usr/bin/python2.7 ix,
 
     /usr/share/** r,
     /usr/include/python2.7/** r,
