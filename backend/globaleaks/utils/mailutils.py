@@ -75,9 +75,6 @@ def sendmail(to_address, subject, body):
     @param event: the event description, needed to keep track of failure/success
     """
     try:
-        if GLSettings.disable_mail_notification:
-            return defer.succeed(None)
-
         if to_address == "":
             return
 
@@ -135,7 +132,7 @@ def sendmail(to_address, subject, body):
             #  Hooking the test down to here is a trick to be able to test all the above code :)
             return defer.succeed(None)
 
-        if not GLSettings.disable_mail_torification:
+        if GLSettings.memory_copy.anonymize_outgoing_connections:
             socksProxy = TCP4ClientEndpoint(reactor, GLSettings.socks_host, GLSettings.socks_port, timeout=GLSettings.mail_timeout)
             endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:

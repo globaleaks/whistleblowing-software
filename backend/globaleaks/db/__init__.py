@@ -178,7 +178,6 @@ def db_refresh_memory_variables(store):
 
     enabled_langs = models.l10n.EnabledLanguage.list(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
-    GLSettings.memory_copy.accepted_hosts = GLSettings.accepted_hosts | {node_ro.hostname}
 
     notif_fact = NotificationFactory(store)
     notif_ro = ObjectDict(notif_fact.admin_export())
@@ -187,11 +186,6 @@ def db_refresh_memory_variables(store):
 
     if GLSettings.developer_name:
         GLSettings.memory_copy.notif.source_name = GLSettings.developer_name
-
-    if GLSettings.disable_mail_notification:
-        GLSettings.memory_copy.notif.disable_admin_notification_emails = True
-        GLSettings.memory_copy.notif.disable_custodian_notification_emails = True
-        GLSettings.memory_copy.notif.disable_receiver_notification_emails = True
 
     db_refresh_exception_delivery_list(store)
 

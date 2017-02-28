@@ -230,7 +230,9 @@ AdminNodeDesc = {
     'wbtip_timetolive': int,
     'basic_auth': bool,
     'basic_auth_username': unicode,
-    'basic_auth_password': unicode
+    'basic_auth_password': unicode,
+    'reachable_via_web': bool,
+    'anonymize_outgoing_connections': bool
 }
 
 AdminNotificationDesc = disjoint_union({
