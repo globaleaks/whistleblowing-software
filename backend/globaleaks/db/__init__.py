@@ -178,6 +178,7 @@ def db_refresh_memory_variables(store):
 
     enabled_langs = models.l10n.EnabledLanguage.list(store)
     GLSettings.memory_copy.languages_enabled = enabled_langs
+    GLSettings.memory_copy.accepted_hosts = GLSettings.accepted_hosts | {node_ro.hostname}
 
     notif_fact = NotificationFactory(store)
     notif_ro = ObjectDict(notif_fact.admin_export())

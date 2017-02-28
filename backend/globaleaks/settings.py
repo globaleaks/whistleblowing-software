@@ -122,7 +122,9 @@ class GLSettingsClass(object):
         self.staticfile_overwrite = False
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = "127.0.0.1, localhost"
+        self.accepted_hosts = '127.0.0.1,localhost'
+        self.local_hosts = self.accepted_hosts.split(',')
+
         self.tor_address = None
 
         self.receipt_regexp = u'[0-9]{16}'
@@ -147,6 +149,7 @@ class GLSettingsClass(object):
             'private': {
                 'https_enabled': False,
             },
+            'accepted_hosts': set(self.local_hosts),
         })
 
 
@@ -351,11 +354,9 @@ class GLSettingsClass(object):
 
         self.bind_ports = {80, self.bind_port}
 
-        self.local_hosts = ['127.0.0.1', 'localhost']
-
-        self.accepted_hosts = list(set(self.local_hosts + \
-                                       self.bind_addresses + \
-                                       self.cmdline_options.host_list.replace(" ", "").split(",")))
+        self.accepted_hosts = set(self.local_hosts + \
+                                  self.bind_addresses + \
+                                  self.cmdline_options.host_list.replace(" ", "").split(","))
 
         self.disable_mail_torification = self.cmdline_options.disable_mail_torification
         self.disable_mail_notification = self.cmdline_options.disable_mail_notification
