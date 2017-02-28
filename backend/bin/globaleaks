@@ -228,8 +228,6 @@ if GLSettings.cmdline_options.version:
     print("GlobaLeaks DB version:", DATABASE_VERSION)
     sys.exit(53)
 
-print("Starting Globaleaks")
-
 GLSettings.load_cmdline_options()
 
 if GLSettings.cmdline_options.kill:

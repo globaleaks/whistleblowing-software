@@ -15,7 +15,7 @@ from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n, User
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
@@ -31,7 +31,7 @@ def db_create_tables(store):
                 log.err(exc)
 
 
-@transact
+@transact_sync
 def init_db(store, use_single_lang=False):
     db_create_tables(store)
     appdata_dict = db_update_appdata(store)
@@ -106,13 +106,13 @@ def perform_system_update():
 
         else:
             log.msg('Performing data update')
+            # TODO on normal startup this line is run. We need better control flow here.
             migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
     return db_version
 
 
-@transact
-def get_tracked_files(store):
+def db_get_tracked_files(store):
     """
     returns a list the basenames of files tracked by InternalFile and ReceiverFile.
     """
@@ -123,13 +123,13 @@ def get_tracked_files(store):
     return [os.path.basename(files) for files in list(set(ifiles + rfiles + wbfiles))]
 
 
-@inlineCallbacks
-def clean_untracked_files():
+@transact_sync
+def clean_untracked_files(store):
     """
     removes files in GLSettings.submission_path that are not
     tracked by InternalFile/ReceiverFile.
     """
-    tracked_files = yield get_tracked_files()
+    tracked_files = db_get_tracked_files(store)
     for filesystem_file in os.listdir(GLSettings.submission_path):
         if filesystem_file not in tracked_files:
             file_to_remove = os.path.join(GLSettings.submission_path, filesystem_file)
@@ -199,4 +199,8 @@ def db_refresh_memory_variables(store):
 
 @transact
 def refresh_memory_variables(*args):
+    return db_refresh_memory_variables(*args)
+
+@transact_sync
+def sync_refresh_memory_variables(*args):
     return db_refresh_memory_variables(*args)
