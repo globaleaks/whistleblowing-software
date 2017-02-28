@@ -193,26 +193,14 @@ do_start()
         exit 1
     fi
 
-    IPS=`echo ${ALLOWED_DST_IP[@]} | tr ' ' ','`
-    HOSTS=`echo ${HOSTS_LIST} | tr ' ' ','`
-
-    GLBACKEND_ARGS="--ip=${IPS}
+    GLBACKEND_ARGS="--ip=${LISTENING_IP}
                     --port=${LISTENING_PORT}
-                    --accept-host=${HOSTS}
                     --user=${USERNAME}
                     --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
                     --tor-dir=${TOR_DIR}
                     --loglevel=${LOGLEVEL}"
-
-    if [ "${DISABLE_MAIL_TORIFICATION}" -eq "1" ]; then
-        GLBACKEND_ARGS+=" --disable-mail-torification"
-    fi
-
-    if [ "${DISABLE_MAIL_NOTIFICATION}" -eq "1" ]; then
-        GLBACKEND_ARGS+=" --disable-mail-notification"
-    fi
 
     if [ "${DISABLE_SWAP}" -eq "1" ]; then
         # Raise the mlock limit to the max

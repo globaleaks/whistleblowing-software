@@ -15,7 +15,7 @@ from twisted.internet.defer import inlineCallbacks, Deferred
 from twisted.internet.protocol import ProcessProtocol
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict
-from globaleaks.utils.sock import reserve_port_for_ifaces
+from globaleaks.utils.sock import reserve_port_for_ip
 from globaleaks.orm import transact
 from globaleaks.workers import supervisor, process
 from globaleaks.workers.https_worker import HTTPSProcess
@@ -36,12 +36,12 @@ class TestProcessSupervisor(helpers.TestGL):
     @inlineCallbacks
     def test_init_with_no_launch(self):
         yield toggle_https(enabled=False)
-        socks, fails = reserve_port_for_ifaces(['127.0.0.1'], 43434)
-        self.assertEquals(len(fails), 0)
+        sock, fail = reserve_port_for_ip('127.0.0.1', 43434)
+        self.assertIsNone(fail)
 
         ip, port = '127.0.0.1', 43435
 
-        p_s = supervisor.ProcessSupervisor(socks, ip, port)
+        p_s = supervisor.ProcessSupervisor([sock], ip, port)
         yield p_s.maybe_launch_https_workers()
 
         self.assertFalse(p_s.is_running())
@@ -55,12 +55,12 @@ class TestProcessSupervisor(helpers.TestGL):
     @inlineCallbacks
     def test_init_with_launch(self):
         yield toggle_https(enabled=True)
-        socks, fails = reserve_port_for_ifaces(['localhost'], 43434)
-        self.assertEquals(len(fails), 0)
+        sock, fail = reserve_port_for_ip('localhost', 43434)
+        self.assertIsNone(fail)
 
         ip, port = '127.0.0.1', 43435
 
-        p_s = supervisor.ProcessSupervisor(socks, ip, port)
+        p_s = supervisor.ProcessSupervisor([sock], ip, port)
         yield p_s.maybe_launch_https_workers()
 
         self.assertTrue(p_s.is_running())
@@ -84,7 +84,8 @@ class TestSubprocessRun(helpers.TestGL):
         with open('hello.txt', 'w') as f:
             f.write('Hello, world!\n')
 
-        self.https_socks, _ = reserve_port_for_ifaces(['127.0.0.1'], 9443)
+        https_sock, _ = reserve_port_for_ip('127.0.0.1', 9443)
+        self.https_socks = [https_sock]
         ssl._https_verify_certificates(enable=False)
         yield test_tls.commit_valid_config()
 

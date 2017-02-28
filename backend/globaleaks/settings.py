@@ -71,7 +71,7 @@ class GLSettingsClass(object):
         # thread pool size of 1
         self.orm_tp = ThreadPool(1, 1)
 
-        self.bind_addresses = '0.0.0.0'
+        self.bind_address = '0.0.0.0'
 
         # bind_port is the original port the service is bound on - notice bind_ports
         self.bind_port = 8082
@@ -338,9 +338,7 @@ class GLSettingsClass(object):
 
         log.setloglevel(verbosity_dict[self.cmdline_options.loglevel])
 
-        self.bind_addresses = list(set(['127.0.0.1'] + self.cmdline_options.ip.replace(" ", "").split(",")))
-        if '0.0.0.0' in self.bind_addresses:
-            self.bind_addresses = ['0.0.0.0']
+        self.bind_address = self.cmdline_options.ip
 
         if not self.validate_port(self.cmdline_options.port):
             quit(-1)
