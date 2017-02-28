@@ -121,7 +121,7 @@ class HTTPStreamProxyRequest(http.Request):
         if content_length is not None:
             hdrs.removeHeader('Content-Length')
             prod = BodyProducer(self.content, self.reset_buffer, int(content_length))
-            self.channel.registerProducer(prod, streaming=True)
+            self.registerProducer(prod, streaming=True)
 
         proxy_d = self.channel.http_agent.request(method=self.method,
                                                   uri=proxy_url,
@@ -157,7 +157,7 @@ class HTTPStreamProxyRequest(http.Request):
         self.forwardClose()
 
     def proxyUnregister(self, o):
-        self.channel.unregisterProducer()
+        self.unregisterProducer()
         return o
 
     def forwardClose(self, *args):
