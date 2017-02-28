@@ -1,7 +1,7 @@
 GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource',
   function($scope, $uibModal, AdminUserResource) {
 
-  $scope.save_user = function(user, cb) {
+  $scope.save_user = function(user) {
     if (user.pgp_key_remove === true) {
       user.pgp_key_public = '';
     }
@@ -13,7 +13,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
 
     var updated_user = new AdminUserResource(user);
 
-    return $scope.Utils.update(updated_user, cb);
+    return $scope.Utils.update(updated_user);
   };
 
   $scope.perform_delete = function(user) {
@@ -44,7 +44,7 @@ controller('AdminUserEditorCtrl', ['$scope',
     };
 
     $scope.save = function() {
-      $scope.save_user($scope.user, false);
+      $scope.save_user($scope.user);
     };
 
     $scope.updateUserImgUrl = function() {

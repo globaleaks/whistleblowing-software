@@ -32,6 +32,5 @@ GLClient
       forcedLocation = null;
       deregister();
     },
-
   };
 }]);
