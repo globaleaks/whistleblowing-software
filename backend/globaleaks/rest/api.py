@@ -137,8 +137,6 @@ spec = [
     (r'/s/(.+)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
-    (r'/x/timingstats', base.TimingStatsHandler),
-
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
 ]

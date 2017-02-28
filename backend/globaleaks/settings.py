@@ -171,7 +171,6 @@ class GLSettingsClass(object):
         self.devel_mode = False
         self.developer_name = ''
         self.disable_swap = False
-        self.log_timing_stats = False
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
@@ -406,7 +405,6 @@ class GLSettingsClass(object):
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
-            self.log_timing_stats = self.cmdline_options.log_timing_stats
             self.log_requests_responses = self.cmdline_options.log_requests_responses
 
         self.api_prefix = self.cmdline_options.api_prefix

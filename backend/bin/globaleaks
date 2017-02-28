@@ -198,21 +198,16 @@ GLSettings.parser.add_option("-j", "--request-log", action="store_true",
     help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",
     dest="log_requests_responses", default=False)
 
-GLSettings.parser.add_option("-S", "--request-stats", action='store_true',
-    help="enable requests timing stats (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="log_timing_stats", default=False)
-
 GLSettings.parser.add_option("-v", "--version", action='store_true',
-    help="show the version of the software (spoiler: %s)" % GLSettings.version_string,
-    dest="version")
+    help="show the version of the software")
 
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSettings.cmdline_options, args) = GLSettings.parser.parse_args()
 
 if GLSettings.cmdline_options.version:
-    print("GlobaLeaks Version:", GLSettings.version_string)
-    print("GlobaLeaks DB version:", DATABASE_VERSION)
+    print("GlobaLeaks version:", GLSettings.version_string)
+    print("Database version:", DATABASE_VERSION)
     sys.exit(53)
 
 GLSettings.load_cmdline_options()
