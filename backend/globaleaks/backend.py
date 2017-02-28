@@ -8,14 +8,14 @@
 # We also set to kill the threadpool (the one used by Storm) when the
 # application shuts down.
 
-import os
+import os, sys
 
 from twisted.application import internet, service
 from twisted.internet import reactor, defer
 from twisted.python import log as txlog, logfile as txlogfile
 
 from globaleaks.db import init_db, clean_untracked_files, \
-    refresh_memory_variables
+    sync_refresh_memory_variables
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, GLLogObserver
@@ -26,53 +26,57 @@ from globaleaks.workers.supervisor import ProcessSupervisor
 import globaleaks.mocks.cyclone_mocks
 
 
-class GLService(service.Service):
-    def startService(self):
-        if not GLSettings.nodaemon and GLSettings.logfile:
-            name = os.path.basename(GLSettings.logfile)
-            directory = os.path.dirname(GLSettings.logfile)
+def fail_startup(excep):
+    log.err("ERROR: Cannot start GlobaLeaks. Please manually examine the exception.")
+    log.err("EXCEPTION: %s" % excep)
+    reactor.stop()
 
-            gl_logfile = txlogfile.LogFile(name, directory,
-                                         rotateLength=GLSettings.log_file_size,
-                                         maxRotatedFiles=GLSettings.num_log_files)
 
-            application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
+def pre_listen_startup():
+    mask = 0
+    if GLSettings.devel_mode:
+        mask = 9000
 
-        reactor.callLater(0, self.deferred_start)
+    GLSettings.http_socks = []
+    for port in GLSettings.bind_ports:
+        port = port+mask if port < 1024 else port
+        http_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, port)
+        GLSettings.http_socks += http_socks
 
-    @defer.inlineCallbacks
-    def _deferred_start(self):
-        mask = 0
-        if GLSettings.devel_mode:
-            mask = 9000
-
-        GLSettings.http_socks = []
-        for port in GLSettings.bind_ports:
-            port = port+mask if port < 1024 else port
-            http_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, port)
-            GLSettings.http_socks += http_socks
-
-            for addr, err in fails:
-                log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
-
-        GLSettings.https_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
         for addr, err in fails:
             log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
 
-        GLSettings.fix_file_permissions()
-        GLSettings.drop_privileges()
-        GLSettings.check_directories()
+    GLSettings.https_socks, fails = reserve_port_for_ifaces(GLSettings.bind_addresses, 443+mask)
+    for addr, err in fails:
+        log.err("Could not reserve socket for %s (error: %s)" % (addr, err))
+
+    GLSettings.fix_file_permissions()
+    GLSettings.drop_privileges()
+    GLSettings.check_directories()
+
+    if GLSettings.initialize_db:
+        init_db()
+
+    clean_untracked_files()
+    sync_refresh_memory_variables()
+
+
+class GLService(service.Service):
+    def startService(self):
+        reactor.callLater(0, self.deferred_start)
+
+    @defer.inlineCallbacks
+    def deferred_start(self):
+        try:
+            yield self._deferred_start()
+        except Exception as excep:
+            fail_startup(excep)
+
+    @defer.inlineCallbacks
+    def _deferred_start(self):
 
         GLSettings.orm_tp.start()
         reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
-
-        if GLSettings.initialize_db:
-            yield init_db()
-
-        yield clean_untracked_files()
-
-        yield refresh_memory_variables()
-
         GLSettings.api_factory = api.get_api_factory()
 
         for sock in GLSettings.http_socks:
@@ -99,16 +103,25 @@ class GLService(service.Service):
             print("- http://%s%s" % (GLSettings.tor_address, GLSettings.api_prefix))
 
 
-    @defer.inlineCallbacks
-    def deferred_start(self):
-        try:
-            yield self._deferred_start()
-
-        except Exception as excep:
-            log.err("ERROR: Cannot start GlobaLeaks; please manually check the error.")
-            log.err("EXCEPTION: %s" % excep)
-            reactor.stop()
-
 application = service.Application('GLBackend')
-service = GLService()
-service.setServiceParent(application)
+
+if not GLSettings.nodaemon and GLSettings.logfile:
+    name = os.path.basename(GLSettings.logfile)
+    directory = os.path.dirname(GLSettings.logfile)
+
+    gl_logfile = txlogfile.LogFile(name, directory,
+                                 rotateLength=GLSettings.log_file_size,
+                                 maxRotatedFiles=GLSettings.num_log_files)
+
+    application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
+
+try:
+    pre_listen_startup()
+
+    service = GLService()
+    service.setServiceParent(application)
+
+except Exception as excep:
+    fail_startup(excep)
+    # Exit with non-zero exit code to signal systemd/system5
+    sys.exit(55)
