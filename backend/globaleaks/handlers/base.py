@@ -357,7 +357,7 @@ class BaseHandler(RequestHandler):
         if re.match(r'^[0-9a-z]{16}\.onion$', host_key):
             return True
 
-        if host_key != '' and host_key in GLSettings.accepted_hosts:
+        if host_key != '' and host_key in GLSettings.memory_copy.accepted_hosts:
             return True
 
         log.debug("Error in host requested: %s not accepted between: %s " %
