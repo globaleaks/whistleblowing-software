@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
+import json
 import os
 import sys
 import sqlite3
@@ -113,15 +114,16 @@ def reset_pass(args):
 
     hashed_password = hash_password(args.password, salt)
 
-    QUERY = """
-    UPDATE user SET salt=?, password=? WHERE username=?;
-    """
+    QUERY = "UPDATE user SET salt=?, password=? WHERE username=?;"
+
     conn = sqlite3.connect(args.dbpath)
     c = conn.cursor()
     c.execute(QUERY, (salt, hashed_password, args.username))
+
     if c.rowcount != 1:
         print "Failed! The user '%s' does not exist." % args.username
         quit(1)
+
     conn.commit()
     conn.close()
 
@@ -131,6 +133,23 @@ def reset_pass(args):
     print "     Username: %s" % args.username
     print "     Password: %s" % args.password
     print "================================="
+
+
+def read_var(args):
+    QUERY = "SELECT value FROM config WHERE var_name=?"
+
+    conn = sqlite3.connect(args.dbpath)
+    c = conn.cursor()
+    c.execute(QUERY, (args.varname, ))
+    ret = c.fetchone()
+    if ret is None:
+        print "Failed to read value of var '%s'." % args.varname
+        quit(1)
+
+    conn.close()
+
+    print json.loads(str(ret[0]))['v']
+
 
 GLSettings.eval_paths()
 
@@ -159,6 +178,12 @@ pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
                   default=generateRandomPassword())
 pw_p.set_defaults(func=reset_pass)
+
+rv_p = subp.add_parser("readvar", help="read database variable")
+rv_p.add_argument("--dbpath", help="the path to the globaleaks db", default=normal_db_path())
+rv_p.add_argument("--varname", help="the path to the globaleaks db", default='version')
+rv_p.set_defaults(func=read_var)
+
 
 if __name__ == '__main__':
     args = parser.parse_args()
