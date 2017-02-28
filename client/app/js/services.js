@@ -834,11 +834,16 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
 
       update: function (model, cb, errcb) {
         var success = {};
-        model.$update(function() {
-          $rootScope.successes.push(success);
-        }).then(
-          function() { if (cb !== undefined){ cb(); } },
-          function() { if (errcb !== undefined){ errcb(); } }
+        model.$update(
+          function() {
+            $rootScope.successes.push(success);
+            if (cb !== undefined) { cb(); }
+          },
+          function(response) {
+            if (errcb !== undefined) {
+              errcb();
+            }
+          }
         );
       },
 

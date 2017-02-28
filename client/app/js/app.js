@@ -75,18 +75,38 @@ var GLClient = angular.module('GLClient', [
   config(['$compileProvider',
           '$httpProvider',
           '$locationProvider',
+          '$provide',
+          '$qProvider',
           '$routeProvider',
           '$rootScopeProvider',
           '$translateProvider',
           '$uibTooltipProvider',
           'tmhDynamicLocaleProvider',
-    function($compileProvider, $httpProvider, $locationProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
+    function($compileProvider, $httpProvider, $locationProvider, $provide, $qProvider, $routeProvider, $rootScopeProvider, $translateProvider, $uibTooltipProvider, tmhDynamicLocaleProvider) {
     $compileProvider.debugInfoEnabled(false);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|local|data):/);
+
+    $qProvider.errorOnUnhandledRejections(false);
 
     $httpProvider.interceptors.push('globaleaksRequestInterceptor');
 
     $locationProvider.hashPrefix("");
+
+    $provide.decorator('$templateRequest', ['$delegate', function($delegate) {
+      // This decorator is required in order to inject the 'true' for setting ignoreRequestError
+      // in relation to https://docs.angularjs.org/error/$compile/tpload
+      var fn = $delegate;
+
+      $delegate = function(tpl) {
+        for (var key in fn) {
+          $delegate[key] = fn[key];
+        }
+
+        return fn.apply(this, [tpl, true]);
+      };
+
+      return $delegate;
+    }]);
 
     function requireAuth(role) {
       return ['Access', function(Access) { return Access.isAuthenticated(role); }];
