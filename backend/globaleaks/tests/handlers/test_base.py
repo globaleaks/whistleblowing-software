@@ -4,7 +4,7 @@ import json
 from cyclone.web import HTTPError, HTTPAuthenticationRequired
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, BaseStaticFileHandler, TimingStatsHandler
+from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, BaseStaticFileHandler
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
@@ -187,74 +187,3 @@ class TestBaseStaticFileHandler(helpers.TestHandler):
     def test_get_unexistent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
         self.assertRaises(HTTPError, handler.get, 'unexistent')
-
-
-class TestTimingStats(helpers.TestHandler):
-    _handler = TimingStatsHandler
-
-    @inlineCallbacks
-    def setUp(self):
-        yield super(TestTimingStats, self).setUp()
-        TimingStatsHandler.TimingsTracker = []
-
-    @inlineCallbacks
-    def test_get_feature_disabled(self):
-        GLSettings.log_timing_stats = False
-
-        TimingStatsHandler.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
-        TimingStatsHandler.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
-
-        handler = self.request()
-
-        yield handler.get()
-
-        splits = self.responses[0].split("\n")
-
-        self.assertEqual(len(splits), 2)
-
-        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
-        self.assertEqual(splits[1], "")
-
-    @inlineCallbacks
-    def test_get_feature_enabled(self):
-        GLSettings.log_timing_stats = True
-
-        TimingStatsHandler.log_measured_timing("JOB", "Session Management", 1443252274.44, 0)
-        TimingStatsHandler.log_measured_timing("GET", "/styles/main.css", 1443252277.68, 0)
-        TimingStatsHandler.log_measured_timing("JOB", "Delivery", 1443252279.0, 0)
-        TimingStatsHandler.log_measured_timing("POST", "/token", 1443252280.0, 0)
-        TimingStatsHandler.log_measured_timing("PUT", "/submission/XXA82cSXFHTOoVroWlOGqg2VF8XtJQ57QIYM09YanY", 1443252281.0, 0)
-        TimingStatsHandler.log_measured_timing("POST", "/wbtip/comments", 1443252282.0, 0)
-        handler = self.request()
-
-        yield handler.get()
-
-        splits = self.responses[0].split("\n")
-
-        self.assertEqual(len(splits), 8)
-
-        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
-        self.assertEqual(splits[1], "uncategorized,JOB,Session Management,1443252274.44,0")
-        self.assertEqual(splits[2], "uncategorized,GET,/styles/main.css,1443252277.68,0")
-        self.assertEqual(splits[3], "delivery,JOB,Delivery,1443252279.0,0")
-        self.assertEqual(splits[4], "token,POST,/token,1443252280.0,0")
-        self.assertEqual(splits[5], "submission,PUT,/submission/XXA82cSXFHTOoVroWlOGqg2VF8XtJQ57QIYM09YanY,1443252281.0,0")
-        self.assertEqual(splits[6], "comment,POST,/wbtip/comments,1443252282.0,0")
-        self.assertEqual(splits[7], "")
-
-    @inlineCallbacks
-    def test_get_feature_enabled_discard_timingstatss_handler_logging(self):
-        GLSettings.log_timing_stats = True
-
-        TimingStatsHandler.log_measured_timing("GET", "/s/timings", 1443252274.44, 0)
-
-        handler = self.request()
-
-        yield handler.get()
-
-        splits = self.responses[0].split("\n")
-
-        self.assertEqual(len(splits), 2)
-
-        self.assertEqual(splits[0], "category,method,uri,start_time,run_time")
-        self.assertEqual(splits[1], "")

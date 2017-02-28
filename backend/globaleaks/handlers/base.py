@@ -688,11 +688,6 @@ class BaseHandler(RequestHandler):
         self.start_time = time.time()
 
     def handler_time_analysis_end(self):
-        """
-        If the software is running with the option -S --stats (GLSetting.log_timing_stats)
-        then we are doing performance testing, having our mailbox spammed is not important,
-        so we just skip to report the anomaly.
-        """
         current_run_time = time.time() - self.start_time
 
         if current_run_time > self.handler_exec_time_threshold:
@@ -701,10 +696,6 @@ class BaseHandler(RequestHandler):
             log.err(error)
 
             send_exception_email(error)
-
-        if GLSettings.log_timing_stats:
-            TimingStatsHandler.log_measured_timing(self.request.method, self.request.uri, self.start_time, current_run_time)
-
 
     def handler_request_logging_begin(self):
         if GLSettings.devel_mode and GLSettings.log_requests_responses:
@@ -766,47 +757,3 @@ class BaseStaticFileHandler(BaseHandler):
 
 class BaseRedirectHandler(BaseHandler, RedirectHandler):
     pass
-
-
-class TimingStatsHandler(BaseHandler):
-    TimingsTracker = []
-
-    @staticmethod
-    def log_measured_timing(method, uri, start_time, run_time):
-        if not GLSettings.log_timing_stats:
-            return
-
-        if uri == '/s/timings':
-            return
-
-        TimingStatsHandler.TimingsTracker = \
-            TimingStatsHandler.TimingsTracker[999:] if len(TimingStatsHandler.TimingsTracker) > 999 else TimingStatsHandler.TimingsTracker
-
-        if method == 'POST' and uri == '/token':
-            category = 'token'
-        elif method == 'PUT' and uri.startswith('/submission'):
-            category = 'submission'
-        elif method == 'POST' and uri == '/wbtip/comments':
-            category = 'comment'
-        elif method == 'JOB' and uri == 'Delivery':
-            category = 'delivery'
-        else:
-            category = 'uncategorized'
-
-        TimingStatsHandler.TimingsTracker.append({
-            'category': category,
-            'method': method,
-            'uri': uri,
-            'start_time': start_time,
-            'run_time': run_time
-        })
-
-    def get(self):
-        csv = "category,method,uri,start_time,run_time\n"
-        for measure in TimingStatsHandler.TimingsTracker:
-            csv += "%s,%s,%s,%s,%d\n" % (measure['category'],
-                                         measure['method'],
-                                         measure['uri'],
-                                         measure['start_time'],
-                                         measure['run_time'])
-        self.write(csv)
