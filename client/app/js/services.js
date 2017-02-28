@@ -371,8 +371,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: 'rtip/rfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
-        var blob = response.data;
-        FileSaver.saveAs(blob, file.name);
+        FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
@@ -386,8 +385,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: 'rtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
-        var blob = response.data;
-        FileSaver.saveAs(blob, file.name);
+        FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
@@ -398,9 +396,8 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: 'rtip/' + tip.id + '/export',
         responseType: 'blob',
       }).then(function (response) {
-        var blob = response.data;
         var filename = $filter('tipFileName')(tip) + '.zip';
-        FileSaver.saveAs(blob, filename);
+        FileSaver.saveAs(response.data, filename);
       });
     };
 }]).
@@ -469,8 +466,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: 'wbtip/wbfile/' + file.id,
         responseType: 'blob',
       }).then(function (response) {
-        var blob = response.data;
-        FileSaver.saveAs(blob, file.name);
+        FileSaver.saveAs(response.data, file.name);
       });
     };
 }]).
@@ -839,7 +835,7 @@ factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
             $rootScope.successes.push(success);
             if (cb !== undefined) { cb(); }
           },
-          function(response) {
+          function() {
             if (errcb !== undefined) {
               errcb();
             }
