@@ -19,7 +19,7 @@
 
     <div class="hostname">
       <div data-ng-if="tls_config.enabled && tls_config.running">
-        <span data-translate>URL</span><span>:</span>
+        <span>URL</span><span>:</span>
         <a data-ng-show="admin.node.hostname !== ''" target="_blank" rel="noreferrer noopener" href="https://{{ admin.node.hostname }}">https://{{admin.node.hostname}}</a>
       </div>
       <div data-ng-show="admin.node.hostname === ''"
@@ -37,15 +37,7 @@
     <h3 data-translate>Configuration</h3>
     <div>
       <hr/>
-      <p>
-        <span data-translate>This configuration wizard will guide you through the setup of HTTPS.</span>
-        <span data-translate>The interface can generate a Private Key and a Certificate Signing Request.</span>
-        <span data-translate>The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate.</span>
-        <span data-translate>After having validated your request and your ownership of the hostname the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates.</span>
-        <span data-translate>Load the certificate and the file containing the Intermadiate Certificates to complete the HTTPS setup.</span>
-        <span data-translate>Please note that the file format expected for all files uploaded is PEM.</span>
-        <span data-translate>Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</span>
-      </p>
+      <p data-translate>This configuration wizard will guide you through the setup of HTTPS. The interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup. Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
       <hr/>
     </div>
     <div class="panel panel-default hideable-div priv-key">
