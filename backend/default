@@ -15,10 +15,6 @@ GROUP=globaleaks
 #   permits to enable apparmor sandboxing; requires apparmor
 APPARMOR_SANDBOXING=1
 
-# DISABLE_SWAP = [0/1]
-#  disable usage of swap
-DISABLE_SWAP=0
-
 # API_PREFIX = [prefix]
 API_PREFIX=
 
@@ -35,18 +31,6 @@ LISTENING_IP=0.0.0.0
 # LISTENING_PORT = [port_number]
 #   permits to configure a port on which the platoform will listen
 LISTENING_PORT=8082
-
-# TORSOCKSPORT = [port_number]
-#   permits to configure a Tor Sock Port for outbound connections
-TORSOCKSPORT=9050
-
-# TORTRANSPORT = [port_number]
-#   permits to configure a Tor Trans Port for outbound connections
-TORTRANSPORT=9040
-
-# TORDNSPORT = [port_number]
-#   permits to configure a Tor DNS Port for outbound connections
-TORDNSPORT=5353
 
 # WORKING_DIR
 #   must be configured with the daemon working directory
