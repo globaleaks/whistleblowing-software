@@ -46,13 +46,13 @@ fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
 
-if [[ "$(./bin/gl-admin readvar --varname=reachable_via_web)" == "True" ]]; then
+if [[ "$(gl-admin readvar --varname=reachable_via_web)" == "True" ]]; then
   ENABLE_NETWORK_SANDBOXING=0
 else
   ENABLE_NETWORK_SANDBOXING=1
 fi
 
-if [[ "$(./bin/gl-admin readvar --varname=anonymize_outgoing_connections)" == "True" ]]; then
+if [[ "$(gl-admin readvar --varname=anonymize_outgoing_connections)" == "True" ]]; then
   ANONYMIZE_OUTGOING_CONNECTIONS=1
 else
   ANONYMIZE_OUTGOING_CONNECTIONS=0
