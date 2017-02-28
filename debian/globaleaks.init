@@ -19,11 +19,22 @@ NAME=$(basename $(readlink -nf $0))
 SCRIPTNAME=$0
 
 ##################################################################
-# load defaults from /usr/share/globaleaks/default and then from
-# /etc/default/globaleaks so that we assure that new variables are
-# always present regardless of user errors on updates
+# GLobaLeaks configuration is read with the following order:
+# 1) /usr/share/globaleaks/default
+# 2) web configuration
+# 3) /etc/default/globaleaks
+
+# The /etc/default/globaleaks is the place where one can force
+# settings that could not be overridden from the configuration
+# that can be issued from the web interface
 if test -e "/usr/share/globaleaks/default" ; then
    . "/usr/share/globaleaks/default"
+fi
+
+if [[ "$(gl-admin readvar --varname=reachable_via_web)" == "True" ]]; then
+  ENABLE_NETWORK_SANDBOXING=1
+else
+  ENABLE_NETWORK_SANDBOXING=0
 fi
 
 if test -e "/etc/default/globaleaks" ; then
@@ -32,7 +43,6 @@ fi
 
 LISTENING_PORTS=($(echo 80,443,$LISTENING_PORT | tr ',' '\n' | sort -u | tr '\n' ' '))
 ##################################################################
-
 . /lib/init/vars.sh
 
 . /lib/lsb/init-functions
@@ -46,21 +56,8 @@ fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
 
-if [[ "$(gl-admin readvar --varname=reachable_via_web)" == "True" ]]; then
-  ENABLE_NETWORK_SANDBOXING=0
-else
-  ENABLE_NETWORK_SANDBOXING=1
-fi
-
-if [[ "$(gl-admin readvar --varname=anonymize_outgoing_connections)" == "True" ]]; then
-  ANONYMIZE_OUTGOING_CONNECTIONS=1
-else
-  ANONYMIZE_OUTGOING_CONNECTIONS=0
-fi
-
 if [ "${TRAVIS}" = "true" ]; then
   ENABLE_NETWORK_SANDBOXING=0
-  ANONYMIZE_OUTGOING_CONNECTIONS=0
 fi
 
 # Let's try to figure our some sane defaults:
@@ -136,26 +133,21 @@ network_sandboxing_start()
         return
     fi
 
-    # INBOUND
     if [ "$ENABLE_NETWORK_SANDBOXING" -eq "1"]; then
-      for PORT in "${LISTENING_PORTS}"
-      do
-          iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport ${PORT} -s 127.0.0.1 -j ACCEPT
-          iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport ${PORT} -j DROP
-      done
-    fi
+        # INBOUND
+        for PORT in "${LISTENING_PORTS}"
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
 
-    # OUTBOUND
-    if [ "$ANONYMIZE_OUTGOING_CONNECTIONS" -eq "1"]; then
-      # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
-      iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED --uid-owner -j ACCEPT
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport ${TORTRANSPORT} -j ACCEPT
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-      iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-
+        # OUTBOUND
+        # All outbound connections from GlobaLeaks goes through Tor except of allowed and enstablished connections.
+        iptables -m comment --comment "globaleaks-network-sandboxing" -A OUTPUT -m state --state RELATED,ESTABLISHED --uid-owner -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USERNAME} -m tcp -j REDIRECT --to-ports 9050
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USERNAME} -m udp --dport 53 -j REDIRECT --to-ports 5353
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport 9040 -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport 9050 -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
     fi
 
     log_action_end_msg 0

@@ -76,7 +76,6 @@ class GLService(service.Service):
 
     @defer.inlineCallbacks
     def _deferred_start(self):
-
         GLSettings.orm_tp.start()
         reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
         GLSettings.api_factory = api.get_api_factory()
