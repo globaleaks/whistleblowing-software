@@ -22,6 +22,7 @@ from globaleaks import __version__, DATABASE_VERSION
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tor_exit_set import TorExitSet
+from globaleaks.utils.agent import get_tor_agent, get_web_agent
 
 this_directory = os.path.dirname(__file__)
 
@@ -146,7 +147,8 @@ class GLSettingsClass(object):
             },
             'private': {
                 'https_enabled': False,
-            }
+            },
+            'anonymize_outgoing_connections': True,
         })
 
 
@@ -582,6 +584,12 @@ class GLSettingsClass(object):
 
         self.jobs_monitor = GLJobsMonitor(self.jobs)
         self.jobs_monitor.schedule()
+
+    def get_agent(self):
+        if self.memory_copy.anonymize_outgoing_connections:
+            return get_tor_agent(self.socks_host, self.socks_port)
+        else:
+            return get_web_agent()
 
 
 # GLSettings is a singleton class exported once
