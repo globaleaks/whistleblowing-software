@@ -24,6 +24,7 @@ from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.cyclone_mocks
+import globaleaks.mocks.twisted_mocks
 
 
 def fail_startup(excep):
