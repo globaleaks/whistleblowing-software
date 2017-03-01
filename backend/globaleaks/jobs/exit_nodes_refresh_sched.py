@@ -2,11 +2,11 @@
 # Implement refresh of the list of exit nodes IPs.
 
 from twisted.internet.defer import inlineCallbacks
+from twisted.web.client import Agent, readBody
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
-from globaleaks.utils.mailutils import extract_exception_traceback_and_send_email
 
 __all__ = ['ExitNodesRefreshSchedule']
 
@@ -20,4 +20,5 @@ class ExitNodesRefreshSchedule(GLJob):
 
     @inlineCallbacks
     def _operation(self):
-        yield GLSettings.state.tor_exit_set.update()
+        net_agent = GLSettings.get_agent()
+        yield GLSettings.state.tor_exit_set.update(net_agent)
