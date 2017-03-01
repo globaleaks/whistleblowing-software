@@ -37,6 +37,8 @@ def pre_listen_startup():
     if GLSettings.devel_mode:
         mask = 9000
 
+    address = GLSettings.bind_address
+
     GLSettings.http_socks = []
     for port in GLSettings.bind_ports:
         port = port+mask if port < 1024 else port
@@ -93,7 +95,10 @@ class GLService(service.Service):
 
         print("GlobaLeaks is now running and accessible at the following urls:")
 
-        print("- http://%s:%d%s" % (GLSettings.bind_address, GLSettings.bind_port, GLSettings.api_prefix))
+        if GLSettings.memory_copy.reachable_via_web:
+            print("- http://%s:%d%s" % (GLSettings.bind_address, GLSettings.bind_port, GLSettings.api_prefix))
+        else:
+            print("- http://127.0.0.1:%d%s" % (GLSettings.bind_port, GLSettings.api_prefix))
 
         if GLSettings.memory_copy.hostname:
             print("- http://%s:%d%s" % (host, GLSettings.memory_copy, GLSettings.api_prefix))
