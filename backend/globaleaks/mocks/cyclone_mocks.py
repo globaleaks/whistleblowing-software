@@ -1,3 +1,5 @@
+# -*- coding: UTF-8
+
 from StringIO import StringIO
 
 from cyclone import httputil
