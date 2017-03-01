@@ -55,10 +55,4 @@ class HTTPSProcess(Process):
             port.loseConnection()
 
 
-if __name__ == '__main__':
-    try:
-        https_process = HTTPSProcess()
-        https_process.start()
-    except Exception as e:
-        print("setup failed with %s" % e)
-        raise
+HTTPSProcess().start()
