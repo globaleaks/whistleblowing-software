@@ -40,7 +40,7 @@ if [ "$GLTEST" = "test" ]; then
   coverage run setup.py test
 
   echo "Running API tests"
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --disable-mail-notification
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR
   sleep 3
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
@@ -58,7 +58,7 @@ if [ "$GLTEST" = "test" ]; then
 
     grunt end2end-coverage-instrument
 
-    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9 --disable-mail-notification
+    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9
     sleep 3
 
     cd $TRAVIS_BUILD_DIR/client
@@ -145,7 +145,7 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
   echo "Testing Configuration: ${testkey}"
   setupDependencies 1
   eval $capability
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000 --disable-mail-torification
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR --port 3000
   sleep 5
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/protractor tests/end2end/protractor-sauce.config.js
