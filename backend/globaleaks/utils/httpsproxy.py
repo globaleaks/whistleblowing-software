@@ -130,7 +130,6 @@ class HTTPStreamProxyRequest(http.Request):
         if prod is not None:
             proxy_d.addBoth(self.proxyUnregister)
 
-        reactor.callLater(300, proxy_d.cancel)
         proxy_d.addCallback(self.proxySuccess)
         proxy_d.addErrback(self.proxyError)
 
