@@ -3,6 +3,7 @@ import ctypes
 import json
 import os
 import signal
+import sys
 
 from twisted.internet import defer, reactor
 from twisted.internet.protocol import ProcessProtocol
@@ -12,7 +13,10 @@ from globaleaks.utils.utility import WorkerLogger
 def SigQUIT(SIG, FRM):
     WorkerLogger()('Received signal %s . . . quitting' % (SIG))
     try:
-        reactor.stop()
+        if reactor.running:
+            reactor.stop()
+        else:
+            sys.exit(0)
     except Exception:
         pass
 
@@ -30,6 +34,9 @@ def set_pdeathsig(sig):
     libc.prctl.argtypes = (ctypes.c_int, ctypes.c_ulong, ctypes.c_ulong,
                            ctypes.c_ulong, ctypes.c_ulong)
     libc.prctl(PR_SET_PDEATHSIG, sig, 0, 0, 0)
+    # If the parent has already died, kill this process.
+    if os.getppid() == 1:
+        os.kill(os.getpid(), sig)
 
 
 class Process(object):
@@ -39,8 +46,8 @@ class Process(object):
     def __init__(self, fd=42):
         signal.signal(signal.SIGTERM, SigQUIT)
         signal.signal(signal.SIGINT, SigQUIT)
-        set_pdeathsig(signal.SIGINT)
         set_proctitle(self.name)
+        set_pdeathsig(signal.SIGINT)
 
         f = os.fdopen(fd, 'r')
 
