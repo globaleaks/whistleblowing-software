@@ -141,7 +141,7 @@ GLConfig = {
 
         'context_selector_type': Unicode(validator=shorttext_v, default=u'list'),
 
-        'reachable_via_web': Bool(default=False),
+        'reachable_via_web': Bool(default=True),
         'anonymize_outgoing_connections': Bool(default=True)
     },
 }
