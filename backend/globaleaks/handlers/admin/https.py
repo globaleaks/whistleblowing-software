@@ -69,10 +69,10 @@ class FileResource(object):
     def generate_dh_params_if_missing(cls):
         gen_dh = yield cls.should_gen_dh_params()
         if gen_dh:
-            log.debug("Generating the HTTPS DH params")
+            log.info("Generating the HTTPS DH params with %d bits" % GLSettings.key_bits)
             dh_params = yield deferToThread(tls.gen_dh_params, GLSettings.key_bits)
 
-            log.debug("Storing the HTTPS DH params")
+            log.info("Storing the HTTPS DH params")
             yield cls.save_dh_params(dh_params)
 
 
@@ -106,7 +106,7 @@ class PrivKeyFileRes(FileResource):
     @classmethod
     @inlineCallbacks
     def perform_file_action(cls):
-        log.debug("Generating the HTTPS key")
+        log.info("Generating the HTTPS key with %d bits" % GLSettings.key_bits)
         key = yield deferToThread(tls.gen_rsa_key, GLSettings.key_bits)
 
         log.debug("Saving the HTTPS key")
