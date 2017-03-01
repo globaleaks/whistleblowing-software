@@ -32,9 +32,9 @@ if test -e "/usr/share/globaleaks/default" ; then
 fi
 
 if [[ "$(gl-admin readvar --varname=reachable_via_web)" == "True" ]]; then
-  NETWORK_SANDBOXING=1
-else
   NETWORK_SANDBOXING=0
+else
+  NETWORK_SANDBOXING=1
 fi
 
 if test -e "/etc/default/globaleaks" ; then
