@@ -94,7 +94,7 @@
       <div class="fieldEditor" data-ng-if="editing">
         <hr />
         <div class="row">
-          <div class="col-md-6" data-ng-if="editable">
+          <div class="col-md-12" data-ng-if="editable">
             <div class="form-group">
               <label data-translate>Name</label>
               <input name="label" class="form-control" maxlength="{{node.maximum_namesize}}" data-ng-model="field.label" type="text" required />
@@ -147,7 +147,9 @@
               <input class="form-control" data-ng-model="field.triggered_by_score" type="number" min="0" max="1000">
             </div>
           </div>
-          <div class="col-md-6">
+        </div>
+        <div class="row">
+          <div class="col-md-12">
             <div class="form-group" data-ng-if="showConfiguration(field)">
               <label data-translate>Configuration</label>
               <div class="col-md-12">
