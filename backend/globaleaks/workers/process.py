@@ -4,14 +4,14 @@ import json
 import os
 import signal
 import sys
+import traceback
 
 from twisted.internet import defer, reactor
 from twisted.internet.protocol import ProcessProtocol
 
-from globaleaks.utils.utility import WorkerLogger
+from globaleaks.utils.utility import log
 
 def SigQUIT(SIG, FRM):
-    WorkerLogger()('Received signal %s . . . quitting' % (SIG))
     try:
         if reactor.running:
             reactor.stop()
@@ -44,10 +44,19 @@ class Process(object):
     name = ''
 
     def __init__(self, fd=42):
+        self.pid = os.getpid()
+
         signal.signal(signal.SIGTERM, SigQUIT)
         signal.signal(signal.SIGINT, SigQUIT)
         set_proctitle(self.name)
         set_pdeathsig(signal.SIGINT)
+
+        self._log = os.fdopen(0, 'w', 1).write
+
+        def excepthook(*exc_info):
+            self.log("".join(traceback.format_exception(*exc_info)))
+
+        sys.excepthook = excepthook
 
         f = os.fdopen(fd, 'r')
 
@@ -60,14 +69,12 @@ class Process(object):
 
         self.cfg = json.loads(s)
 
-        if self.cfg.get('debug', False):
-            self.log = WorkerLogger(self.name)
-        else:
-            def do_nothing(m): pass
-            self.log = do_nothing
-
     def start(self):
         reactor.run()
+
+    def log(self, m):
+        if self.cfg.get('debug', False):
+            self._log('[%s:%d] %s\n' % (self.name, self.pid, m))
 
 
 class CfgFDProcProtocol(ProcessProtocol):
@@ -76,8 +83,7 @@ class CfgFDProcProtocol(ProcessProtocol):
         self.cfg = json.dumps(cfg)
         self.cfg_fd = cfg_fd
 
-        self.fd_map = {0:0, 1:1, 2:2}
-        self.fd_map[cfg_fd] = 'w'
+        self.fd_map = {0:'r', cfg_fd:'w'}
 
         self.startup_promise = defer.Deferred()
 
@@ -85,10 +91,12 @@ class CfgFDProcProtocol(ProcessProtocol):
         self.transport.writeToChild(self.cfg_fd, self.cfg)
         self.transport.closeChildFD(self.cfg_fd)
 
-        # TODO Wipe the cfg dict safely
-        del self.cfg
-
         self.startup_promise.callback(None)
+
+    def childDataReceived(self, childFD, data):
+        for line in data.split('\n'):
+            if line != '':
+                log.debug(line)
 
     def processEnded(self, reason):
         self.supervisor.handle_worker_death(self, reason)

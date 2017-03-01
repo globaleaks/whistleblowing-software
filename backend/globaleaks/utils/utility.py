@@ -217,13 +217,6 @@ class Logger(object):
             twlog.msg("[ ] %s" % self._str(msg))
 
 
-def WorkerLogger(name='worker'):
-    pid = os.getpid()
-    def prefix(m):
-        now = datetime.now().strftime('%Y-%m-%d %H:%M:%S%z')
-        print('%s [%s:%d] %s' % (name, now, pid, m))
-    return prefix
-
 log = Logger()
 
 
