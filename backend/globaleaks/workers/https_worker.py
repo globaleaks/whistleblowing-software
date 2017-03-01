@@ -55,4 +55,5 @@ class HTTPSProcess(Process):
             port.loseConnection()
 
 
-HTTPSProcess().start()
+if __name__ == '__main__':
+    HTTPSProcess().start()
