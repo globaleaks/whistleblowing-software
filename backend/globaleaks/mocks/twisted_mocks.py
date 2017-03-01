@@ -10,7 +10,7 @@ HTTPFactory__init__orig = HTTPFactory.__init__
 def mock_HTTPFactory__init__(self, logPath=None, timeout=60, logFormatter=None):
     """
     The mock is required to fix tx bug #3746 with the patch introduced in Twisted 17.1.0
-    timeout is set to 60 instead of 60 * 60 * 12. 
+    timeout is set to 60 instead of 60 * 60 * 12.
     """
     HTTPFactory__init__orig(self, logPath=None, timeout=60, logFormatter=None)
 
