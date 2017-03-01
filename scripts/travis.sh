@@ -45,31 +45,29 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
-  if [ "$GLREQUIREMENTS" = "xenial" ]; then
-    echo "Extracting firefox and setting PATH variable..."
-    tar -xjf /tmp/firefox-46.0.tar.bz2 --directory /tmp
-    export PATH="/tmp/firefox:$PATH"
-    echo "Using firefox version `firefox --version`"
+  echo "Extracting firefox and setting PATH variable..."
+  tar -xjf /tmp/firefox-46.0.tar.bz2 --directory /tmp
+  export PATH="/tmp/firefox:$PATH"
+  echo "Using firefox version `firefox --version`"
 
-    npm install -g istanbul
+  npm install -g istanbul
 
-    echo "Running BrowserTesting locally collecting code coverage"
-    cd $TRAVIS_BUILD_DIR/client
+  echo "Running BrowserTesting locally collecting code coverage"
+  cd $TRAVIS_BUILD_DIR/client
 
-    grunt end2end-coverage-instrument
+  grunt end2end-coverage-instrument
 
-    $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9
-    sleep 3
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9
+  sleep 3
 
-    cd $TRAVIS_BUILD_DIR/client
-    node_modules/protractor/bin/webdriver-manager update
-    node_modules/protractor/bin/protractor tests/end2end/protractor-coverage.config.js
-    grunt end2end-coverage-report
+  cd $TRAVIS_BUILD_DIR/client
+  node_modules/protractor/bin/webdriver-manager update
+  node_modules/protractor/bin/protractor tests/end2end/protractor-coverage.config.js
+  grunt end2end-coverage-report
 
-    cd $TRAVIS_BUILD_DIR/backend
+  cd $TRAVIS_BUILD_DIR/backend
 
-    coveralls --merge=../client/coverage/coveralls.json
-  fi
+  coveralls --merge=../client/coverage/coveralls.json
 
 elif [ "$GLTEST" = "lint" ]; then
 
