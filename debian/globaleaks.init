@@ -56,10 +56,6 @@ fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
 
-if [ "${TRAVIS}" = "true" ]; then
-  NETWORK_SANDBOXING=0
-fi
-
 # Let's try to figure our some sane defaults:
 if [ -r /proc/sys/fs/file-max ]; then
     system_max=`cat /proc/sys/fs/file-max`
