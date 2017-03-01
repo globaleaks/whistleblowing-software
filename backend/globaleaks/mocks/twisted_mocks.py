@@ -18,11 +18,11 @@ def mock_HTTPFactory__init__(self, logPath=None, timeout=60, logFormatter=None):
 def mock_HTTPPageGetter_timeout(self, data):
     """
     This mock is required to fix tx bug #8318 with patch introduced in 16.2.0
-    self.transport.loseConnection() is used in place of self.transport.loseConnection()
+    self.transport.abortConnection() is used in place of self.transport.loseConnection()
     """
     def timeout(self):
         self.quietLoss = True
-        self.transport.loseConnection()
+        self.transport.abortConnection()
         self.factory.noPage(defer.TimeoutError("Getting %s took longer than %s seconds." % (self.factory.url, self.factory.timeout)))
 
 
