@@ -124,7 +124,7 @@ def db_get_tracked_files(store):
 
 
 @transact_sync
-def clean_untracked_files(store):
+def sync_clean_untracked_files(store):
     """
     removes files in GLSettings.submission_path that are not
     tracked by InternalFile/ReceiverFile.
