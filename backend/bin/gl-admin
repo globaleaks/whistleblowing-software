@@ -136,19 +136,27 @@ def reset_pass(args):
 
 
 def read_var(args):
-    QUERY = "SELECT value FROM config WHERE var_name=?"
+    check_file(args.dbpath)
+    try:
+        QUERY = "SELECT value FROM config WHERE var_name=?"
 
-    conn = sqlite3.connect(args.dbpath)
-    c = conn.cursor()
-    c.execute(QUERY, (args.varname, ))
-    ret = c.fetchone()
-    if ret is None:
-        print "Failed to read value of var '%s'." % args.varname
-        quit(1)
+        conn = sqlite3.connect(args.dbpath)
+        c = conn.cursor()
+        c.execute(QUERY, (args.varname, ))
+        ret = c.fetchone()
+        if ret is None:
+            print "Failed to read value of var '%s'." % args.varname
+            quit(1)
 
-    conn.close()
+        conn.close()
 
-    print json.loads(str(ret[0]))['v']
+        print json.loads(str(ret[0]))['v']
+    except Exception as e:
+        # This string is dumped into stdout to ensure that an exact string match
+        # will fail
+        print "ERROR"
+        raise e
+
 
 
 GLSettings.eval_paths()
