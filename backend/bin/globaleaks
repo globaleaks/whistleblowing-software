@@ -227,6 +227,7 @@ if GLSettings.start_clean:
         GLSettings.remove_directories()
 
 os.umask(077)
+# TODO move function calls out of bin/globaleaks and into backend.py
 GLSettings.create_directories()
 GLSettings.cleaning_dead_files()
 
