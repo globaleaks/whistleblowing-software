@@ -17,17 +17,18 @@ from globaleaks import DATABASE_VERSION
 
 def check_file(f):
     if not os.path.isfile(f):
-        print "Missing file: %s" % f
+        print >> sys.stderr, "Missing file: %s" % f
     try:
-        open(f, 'r')
+        with open(f, 'r'):
+            pass
     except IOError as err:
-        print err
+        print >> sys.stderr, err
         sys.exit(1)
 
 
 def check_dir(d):
     if not os.path.isdir(d):
-        print "Missing dir: %s" % d
+        print >> sys.stderr, "Missing dir: %s" % d
         sys.exit(1)
 
 
