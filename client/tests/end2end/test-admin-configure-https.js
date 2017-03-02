@@ -65,8 +65,10 @@ describe('admin configure https', function() {
     csr_submit.click();
 
     // Download and delete CSR
-    var csr_download = csr_panel.element(by.cssContainingText('button', 'Download'));
-    csr_download.click();
+    if (utils.testFileDownload()) {
+        var csr_download = csr_panel.element(by.cssContainingText('button', 'Download'));
+        csr_download.click();
+    }
     csr_panel.element(by.cssContainingText('button', 'Delete')).click();
     element(by.id('modal-action-ok')).click();
 
@@ -90,6 +92,13 @@ describe('admin configure https', function() {
     var chain_panel = element(by.css("div.panel.chain"));
     browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     chain_panel.element(by.css("input")).sendKeys(files.chain);
+
+
+    // Download the cert and chain
+    if (utils.testFileDownload()) {
+      cert_panel.element(by.cssContainingText('button', 'Download'));
+      chain_panel.element(by.cssContainingText('button', 'Download'));
+    }
 
     // Enable and disable HTTPS
     enable_https();
