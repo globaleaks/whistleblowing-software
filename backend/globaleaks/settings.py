@@ -312,8 +312,8 @@ class GLSettingsClass(object):
 
     def validate_tor_dir_struct(self, tor_dir):
         """
-        Return False instead of quit(-1) because at the startup this struct
-        can in fact be empty
+        Return False instead of sys.exit(-1) because at the startup this directory
+        can be empty
         """
         if not os.path.isdir(tor_dir):
             self.print_msg("Invalid directory provided as -D argument (%s)" % self.cmdline_options.tor_dir)
@@ -327,12 +327,6 @@ class GLSettingsClass(object):
         return True
 
     def load_cmdline_options(self):
-        """
-        This function is called by runner.py and operate in cmdline_options,
-        interpreted and filled in bin/startglobaleaks script.
-
-        happen in startglobaleaks before the sys.argv is modified
-        """
         self.nodaemon = self.cmdline_options.nodaemon
 
         if self.cmdline_options.disable_swap:
@@ -343,7 +337,7 @@ class GLSettingsClass(object):
         self.bind_address = self.cmdline_options.ip
 
         if not self.validate_port(self.cmdline_options.port):
-            quit(-1)
+            sys.exit(-1)
         self.bind_port = self.cmdline_options.port
 
         self.bind_ports = {80, self.bind_port}
@@ -370,7 +364,7 @@ class GLSettingsClass(object):
 
             if not os.access(hostname_tor_file, os.R_OK):
                 self.print_msg("Tor HS file in %s cannot be read" % hostname_tor_file)
-                quit(-1)
+                sys.exit(-1)
 
             with file(hostname_tor_file, 'r') as htf:
                 self.tor_address = htf.read(22)
@@ -539,9 +533,8 @@ class GLSettingsClass(object):
     def cleaning_dead_files(self):
         """
         This function is called at the start of GlobaLeaks, in
-        bin/globaleaks, and checks if the file present in
+        bin/globaleaks, and checks if the file is present in
         temporally_encrypted_dir
-            (XXX change submission now used to too much thing)
         """
         # temporary .aes files must be simply deleted
         for f in os.listdir(GLSettings.tmp_upload_path):
