@@ -28,7 +28,7 @@ class ConfigFactory(object):
             return
 
         cur = self.store.find(Config, And(Config.var_group == self.group))
-        self.res = {c.var_name : c for c in cur}
+        self.res = {c.var_name: c for c in cur}
 
     def update(self, request):
         self._query_group()
@@ -89,7 +89,6 @@ class ConfigFactory(object):
         for key in missing:
             desc = self.group_desc[key]
             c = Config(self.group, key, desc.default)
-            log.info("Adding new config %s" % c)
             self.store.add(c)
 
         extra = actual - allowed
@@ -223,10 +222,12 @@ class Config(Storm):
         if desc.validator is not None:
             desc.validator(self, self.var_name, val)
 
-        if self.value is not None and self.value['v'] != val:
-            self.customized = True
+        if self.value is None:
+            self.value = {'v': val}
 
-        self.value = {'v': val}
+        elif self.value['v'] != val:
+            self.customized = True
+            self.value = {'v': val}
 
     def get_v(self):
         return self.value['v']
