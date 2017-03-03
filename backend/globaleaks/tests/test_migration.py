@@ -35,6 +35,7 @@ class TestMigrationRoutines(unittest.TestCase):
         final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
         GLSettings.db_uri = GLSettings.make_db_uri(final_db_file)
 
+        shutil.rmtree(GLSettings.db_path)
         os.mkdir(GLSettings.db_path)
         dbpath = os.path.join(path, f)
         dbfile = os.path.join(GLSettings.db_path, f)
