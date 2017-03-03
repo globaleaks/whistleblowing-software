@@ -35,7 +35,7 @@ class TestMigrationRoutines(unittest.TestCase):
         final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
         GLSettings.db_uri = GLSettings.make_db_uri(final_db_file)
 
-        shutil.rmtree(GLSettings.db_path)
+        shutil.rmtree(GLSettings.db_path, True)
         os.mkdir(GLSettings.db_path)
         dbpath = os.path.join(path, f)
         dbfile = os.path.join(GLSettings.db_path, f)
@@ -51,7 +51,7 @@ def test(path, f):
 
 for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)
-    for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
+    for i in set(range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION, 3) + [DATABASE_VERSION]):
         setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, 'glbackend-%d.db' % i))
 
 
@@ -60,6 +60,7 @@ class TestConfigUpdates(unittest.TestCase):
         helpers.init_glsettings_for_unit_tests()
 
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
+        shutil.rmtree(GLSettings.db_path, True)
         os.mkdir(GLSettings.db_path)
         db_name = 'glbackend-%d.db' % DATABASE_VERSION
         db_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', 'populated', db_name)
@@ -184,6 +185,7 @@ class TestMigrationRegression(unittest.TestCase):
         helpers.init_glsettings_for_unit_tests()
 
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
+        shutil.rmtree(GLSettings.db_path, True)
         os.mkdir(GLSettings.db_path)
         db_name = 'glbackend-%d.db' % target_ver
         db_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', 'populated', db_name)
