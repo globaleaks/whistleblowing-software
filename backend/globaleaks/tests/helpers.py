@@ -92,11 +92,14 @@ def init_glsettings_for_unit_tests():
     GLSettings.logging = None
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
-    GLSettings.ramdisk_path = os.path.join(GLSettings.working_path, 'ramdisk')
 
     GLSettings.eval_paths()
+
+    GLSettings.set_ramdisk_path()
+
     GLSettings.remove_directories()
     GLSettings.create_directories()
+
     GLSettings.orm_tp = FakeThreadPool()
 
     GLSessions.clear()
