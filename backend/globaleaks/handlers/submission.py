@@ -359,7 +359,7 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
 
     if submission.context.maximum_selectable_receivers > 0 and \
                     len(request['receivers']) > submission.context.maximum_selectable_receivers:
-        raise errors.SubmissionValidationFailure("provided an invalid number of receivers")
+        raise errors.SubmissionValidationFailure("selected an invalid number of recipients")
 
     rtips = []
     for receiver in store.find(models.Receiver, In(models.Receiver.id, request['receivers'])):
@@ -372,7 +372,7 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
         rtips.append(db_create_receivertip(store, receiver, submission))
 
     if len(rtips) == 0:
-        raise errors.SubmissionValidationFailure("needed almost one receiver")
+        raise errors.SubmissionValidationFailure("need at least one recipient")
 
     log.debug("The finalized submission had created %d models.ReceiverTip(s)" % len(rtips))
 
