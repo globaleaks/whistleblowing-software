@@ -40,18 +40,17 @@
       <p data-translate>This configuration wizard will guide you through the setup of HTTPS. The interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup. Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
       <hr/>
     </div>
-    <div class="panel panel-default hideable-div priv-key">
-      <div data-ng-hide="!tls_config.enabled" class="disabling-div"></div>
-      <div class="panel-body">
+    <div class="panel panel-default priv-key">
+      <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled}">
         <span data-ng-class="statusClass(tls_config.files.priv_key)">
           <span class="text-bold">1</span>
           <span class="text-bold" data-translate>Private Key</span>
           <span>(PEM)</span>
         </span>
         <span class="pull-right">
-          <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
+          <span class="file-upload" data-ng-if="{'disabled-interface': tls_config.files.priv_key.set}">
             <label for="keyUpload" class="btn btn-xs btn-primary">
-              <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)"  />
+              <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)" />
               <span id='keyUploadBtn' data-translate>Upload</span>
             </label>
           </span>
@@ -65,9 +64,8 @@
       </div>
     </div>
 
-    <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default hideable-div csr">
-      <div data-ng-hide="state > 0" class="disabling-div"></div>
-      <div class="panel-body">
+    <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default csr">
+      <div class="panel-body" data-ng-class="{'disabled-interface': state < 1}">
         <span data-ng-class="statusClass(tls_config.files.csr)">
           <span class="text-bold">2</span>
           <span class="text-bold" data-translate>Certificate Signing Request</span>
@@ -97,9 +95,8 @@
       </div>
     </div>
 
-    <div class="panel panel-default hideable-div cert">
-      <div data-ng-hide="state > 1" class="disabling-div"></div>
-      <div class="panel-body">
+    <div class="panel panel-default cert">
+      <div class="panel-body" data-ng-class="{'disabled-interface': state < 2}">
         <span data-ng-class="statusClass(tls_config.files.cert)">
           <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '3' : '2'}}</span>
           <span class="text-bold" data-translate>Certificate</span>
@@ -126,9 +123,8 @@
       </div>
     </div>
 
-    <div class="panel panel-default hideable-div chain">
-      <div data-ng-hide="state > 2" class="disabling-div"></div>
-      <div class="panel-body">
+    <div class="panel panel-default chain">
+      <div class="panel-body" data-ng-class="{'disabled-interface': state < 3}">
         <span data-ng-class="statusClass(tls_config.files.chain)">
           <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '4' : '3'}}</span>
           <span class="text-bold" data-translate>Intermediate Certificates</span>

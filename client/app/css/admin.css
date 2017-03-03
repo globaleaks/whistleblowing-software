@@ -93,27 +93,10 @@ text.axis-worktime {
   display: none;
 }
 
-.hideable-div {
-  position: relative;
-}
-
-.disabling-div {
-  display: block;
-  z-index: 100;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #eee;
-  opacity: 0.75;
-  filter: alpha(opacity=0.75);
-}
-
 #HttpsSettings .status-line h3 {
-    display: inline-block;
+  display: inline-block;
 }
 
 #HttpsSettings .status-line .label {
-    font-size: 100%;
+  font-size: 100%;
 }
