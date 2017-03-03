@@ -6,12 +6,11 @@ cyclone==1.1
 enum34==0.9.23
 idna==2.0
 pyOpenSSL==0.15.1
-pyasn1==0.1.8
+pyasn1==0.1.9
 pycparser==2.10
 python_gnupg==0.3.6
 scrypt==0.6.1
 service_identity==16.0.0
-setuptools==3.3
 six==1.5.2
 storm==0.19
 transaction==1.1.1
