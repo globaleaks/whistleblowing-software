@@ -12,7 +12,8 @@
         <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
       </span>
 
-      <span data-ng-if="!tls_config.enabled" class="label label-danger"><span data-translate>Disabled</span>
+      <span data-ng-if="!tls_config.enabled" class="label label-danger">
+        <span data-translate>Disabled</span>
         <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
       </span>
     </div>
