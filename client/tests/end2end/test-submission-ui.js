@@ -1,7 +1,6 @@
 var utils = require('./utils.js');
 
 describe('submission error elements', function() {
-
   it('submission should be blocked until recipients are selected', function() {
     browser.get('/#/submission');
 
@@ -20,5 +19,4 @@ describe('submission error elements', function() {
     var submitBtn = element(by.id('SubmitButton'));
     expect(submitBtn.isEnabled()).toEqual(true);
   });
-
 });
