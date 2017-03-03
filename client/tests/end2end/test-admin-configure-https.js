@@ -45,11 +45,14 @@ describe('admin configure https', function() {
 
     // Generate key and CSR
     var pk_panel = element(by.css('div.panel.priv-key'));
+    var cert_panel = element(by.css("div.panel.cert"));
+    var csr_panel = element(by.css('div.panel.csr'));
+    var csr_gen = element(by.id('csrGen'));
+    var csr_submit = element(by.id('csrSubmit'));
+    var chain_panel = element(by.css("div.panel.chain"));
 
     pk_panel.element(by.cssContainingText('button', 'Generate')).click();
 
-    var csr_panel = element(by.css('div.panel.csr'));
-    var csr_gen = element(by.id('csrGen'));
     csr_gen.click()
 
     // Insert data into fields
@@ -61,7 +64,6 @@ describe('admin configure https', function() {
     csr_panel.element(by.model('csr_cfg.department')).sendKeys('Suite reviews');
     csr_panel.element(by.model('csr_cfg.email')).sendKeys('nocontact@certs.may.hurt');
 
-    var csr_submit = element(by.id('csrSubmit'));
     csr_submit.click();
 
     // Download and delete CSR
@@ -78,13 +80,7 @@ describe('admin configure https', function() {
     element(by.id('modal-action-ok')).click();
 
     // Upload key and cert
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-
     pk_panel.element(by.css("input")).sendKeys(files.priv_key);
-
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-
-    var cert_panel = element(by.css("div.panel.cert"));
     cert_panel.element(by.css("input")).sendKeys(files.cert);
 
     // Enable and disable HTTPS
@@ -92,8 +88,6 @@ describe('admin configure https', function() {
     disable_https();
 
     // Upload chain
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-    var chain_panel = element(by.css("div.panel.chain"));
     chain_panel.element(by.css("input")).sendKeys(files.chain);
 
 
