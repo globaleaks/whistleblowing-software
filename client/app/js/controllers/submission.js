@@ -1,6 +1,6 @@
 GLClient.controller('SubmissionCtrl',
-    ['$scope', 'Utils', '$filter', '$location', '$timeout', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
-      function ($scope, Utils, $filter, $location, $timeout, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+    ['$scope', 'Utils', '$filter', '$location', '$interval', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
+      function ($scope, Utils, $filter, $location, $interval, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
@@ -70,16 +70,13 @@ GLClient.controller('SubmissionCtrl',
 
     $scope.submission.countdown = 10; // aligned to backend submission_minimum_delay
 
-    var countDown = function () {
+    $scope.stop = $interval(function() {
       $scope.submission.countdown -= 1;
       if ($scope.submission.countdown < 0) {
         $scope.submission.wait = false;
-      } else {
-        $timeout(countDown, 1000);
+        $interval.cancel($scope.stop);
       }
-    };
-
-    $timeout(countDown, 1000);
+    }, 1000);
   };
 
   $scope.selectable = function () {

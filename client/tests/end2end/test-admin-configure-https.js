@@ -69,6 +69,7 @@ describe('admin configure https', function() {
         var csr_download = csr_panel.element(by.cssContainingText('button', 'Download'));
         csr_download.click();
     }
+
     csr_panel.element(by.cssContainingText('button', 'Delete')).click();
     element(by.id('modal-action-ok')).click();
 
@@ -78,10 +79,12 @@ describe('admin configure https', function() {
 
     // Upload key and cert
     browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-    pk_panel.element(by.id("keyUpload")).sendKeys(files.priv_key);
+
+    pk_panel.element(by.css("input")).sendKeys(files.priv_key);
+
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
 
     var cert_panel = element(by.css("div.panel.cert"));
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
     cert_panel.element(by.css("input")).sendKeys(files.cert);
 
     // Enable and disable HTTPS
@@ -89,8 +92,8 @@ describe('admin configure https', function() {
     disable_https();
 
     // Upload chain
-    var chain_panel = element(by.css("div.panel.chain"));
     browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    var chain_panel = element(by.css("div.panel.chain"));
     chain_panel.element(by.css("input")).sendKeys(files.chain);
 
 
