@@ -26,5 +26,6 @@ class MigrationScript(MigrationBase):
         add_raw_config(self.store_new, u'node', u'onionservice', domain != '', unicode(domain))
 
         add_raw_config(self.store_new, u'node', u'reachable_via_web', False, False)
+        self.entries_count['Config'] += 1
 
         self.store_new.commit()
