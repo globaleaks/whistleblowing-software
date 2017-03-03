@@ -1,3 +1,27 @@
+Changes in version 2.66.0 - 2017-03-03
+    o Implement HTTPS configuration and support configurable via admin panel
+    o Simplify network sandboxing rules and reduce custom vars in config file.
+      Note that the platform now tries to reserve sockets for port 80 and 443
+      on public interfaces and relies on the iptables rules to drop traffic
+      in cases where NETWORKING_SANDBOXING=1.
+    o Updated app armor rules to support sub processing
+    o Employ timing independent check_password comparison #1904
+    o Add detection of tor clients via an exit relay IP check
+    o Add admin statistics job timing panel
+    o Fix an issue with admin image uploads
+    o Fix minor ui issues and update frontend libraries
+    o Update translations
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1908
+    - https://github.com/globaleaks/GlobaLeaks/issues/1904
+    - https://github.com/globaleaks/GlobaLeaks/issues/1906
+    - https://github.com/globaleaks/GlobaLeaks/issues/1890
+    - https://github.com/globaleaks/GlobaLeaks/issues/1891
+    - https://github.com/globaleaks/GlobaLeaks/issues/1870
+    - https://github.com/globaleaks/GlobaLeaks/issues/1550
+    - https://github.com/globaleaks/GlobaLeaks/issues/1852
+
 Changes in version 2.65.19 - 2017-02-07
     o Set request size limit to 1MB (with server side cap at 2MB)
 
