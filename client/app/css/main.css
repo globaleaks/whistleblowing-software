@@ -453,3 +453,11 @@ table {
 .text-bold {
   font-weight: bold;
 }
+
+.disabled-interface {
+  pointer-events: none;
+  user-select: none;
+  background-color: #eee;
+  opacity: 0.60;
+  filter: alpha(opacity=0.60);
+}
