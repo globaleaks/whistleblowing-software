@@ -45,7 +45,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
     $scope.show_expert_status = !$scope.show_expert_status;
-    refreshConfig();
+    return refreshConfig();
   }
 
   function refreshConfig() {
@@ -126,7 +126,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
       p = $scope.tls_config.$enable();
     }
 
-    p.then(refreshConfig);
+    return p.then(refreshConfig);
   };
 
   $scope.deleteAll = function() {
@@ -138,7 +138,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     $scope.file_resources['csr'].content = $scope.csr_cfg;
     $scope.file_resources['csr'].$save().then(function() {
       $scope.csr_state.open = false;
-      refreshConfig();
+      return refreshConfig();
     });
   };
 }]);

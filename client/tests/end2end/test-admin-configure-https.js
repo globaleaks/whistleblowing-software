@@ -27,16 +27,14 @@ describe('admin configure https', function() {
   };
 
   function enable_https() {
-    var enable_btn = element(by.cssContainingText('div.launch-btns span', 'Enable'));
-    enable_btn.click()
+    element(by.cssContainingText('div.launch-btns span', 'Enable')).click();
 
     var status_label = element(by.cssContainingText('div.status-line span span', 'Running'));
     expect(status_label.isDisplayed()).toBe(true);
   }
 
   function disable_https() {
-    var disable_btn = element(by.cssContainingText('div.launch-btns span', 'Disable'));
-    disable_btn.click()
+    element(by.cssContainingText('div.launch-btns span', 'Disable')).click();
   }
 
   it('should interact with all ui elements', function() {
@@ -44,18 +42,20 @@ describe('admin configure https', function() {
     element(by.cssContainingText("a", "HTTPS settings")).click();
 
     // Generate key and CSR
-    var pk_panel = element(by.css('div.panel.priv-key'));
-    var cert_panel = element(by.css("div.panel.cert"));
-    var csr_panel = element(by.css('div.panel.csr'));
-    var csr_gen = element(by.id('csrGen'));
-    var csr_submit = element(by.id('csrSubmit'));
-    var chain_panel = element(by.css("div.panel.chain"));
+    var pk_panel,
+        cert_panel,
+        csr_gen,
+        csr_submit,
+        chain_panel,
+        modal_action;
 
+    pk_panel = element(by.css('div.panel.priv-key'));
     pk_panel.element(by.cssContainingText('button', 'Generate')).click();
 
-    csr_gen.click()
+    element(by.id('csrGen')).click();
 
     // Insert data into fields
+    csr_panel = element(by.css('div.panel.csr'));
     csr_panel.element(by.model('csr_cfg.commonname')).sendKeys('certs.may.hurt');
     csr_panel.element(by.model('csr_cfg.country')).sendKeys('IT');
     csr_panel.element(by.model('csr_cfg.province')).sendKeys('Liguria');
@@ -64,23 +64,28 @@ describe('admin configure https', function() {
     csr_panel.element(by.model('csr_cfg.department')).sendKeys('Suite reviews');
     csr_panel.element(by.model('csr_cfg.email')).sendKeys('nocontact@certs.may.hurt');
 
-    csr_submit.click();
+    element(by.id('csrSubmit')).click();
 
     // Download and delete CSR
     if (utils.testFileDownload()) {
-        var csr_download = csr_panel.element(by.cssContainingText('button', 'Download'));
-        csr_download.click();
+      csr_panel.element(by.id('downloadCsr')).click();
     }
 
-    csr_panel.element(by.cssContainingText('button', 'Delete')).click();
-    element(by.id('modal-action-ok')).click();
+    element(by.id('deleteCsr')).click();
+    modal_action = by.id('modal-action-ok');
+    utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
 
     // Delete key
-    pk_panel.element(by.cssContainingText('button', 'Delete')).click();
-    element(by.id('modal-action-ok')).click();
+    element(by.id('deleteKey')).click();
+    modal_action = by.id('modal-action-ok');
+    utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
 
     // Upload key and cert
+    pk_panel = element(by.css('div.panel.priv-key'));
     pk_panel.element(by.css("input")).sendKeys(files.priv_key);
+    cert_panel = element(by.css("div.panel.cert"));
     cert_panel.element(by.css("input")).sendKeys(files.cert);
 
     // Enable and disable HTTPS
@@ -88,13 +93,13 @@ describe('admin configure https', function() {
     disable_https();
 
     // Upload chain
+    chain_panel = element(by.css("div.panel.chain"));
     chain_panel.element(by.css("input")).sendKeys(files.chain);
-
 
     // Download the cert and chain
     if (utils.testFileDownload()) {
-      cert_panel.element(by.cssContainingText('button', 'Download'));
-      chain_panel.element(by.cssContainingText('button', 'Download'));
+      cert_panel.element(by.id('downloadCert')).click();
+      chain_panel.element(by.id('downloadChain')).click();
     }
 
     // Enable and disable HTTPS
@@ -102,11 +107,19 @@ describe('admin configure https', function() {
     disable_https();
 
     // Delete chain, cert, key
-    chain_panel.element(by.cssContainingText('button', 'Delete')).click();
-    element(by.id('modal-action-ok')).click();
-    cert_panel.element(by.cssContainingText('button', 'Delete')).click();
-    element(by.id('modal-action-ok')).click();
-    pk_panel.element(by.cssContainingText('button', 'Delete')).click();
-    element(by.id('modal-action-ok')).click();
+    chain_panel.element(by.id('deleteChain')).click();
+    modal_action = by.id('modal-action-ok');
+    utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
+
+    cert_panel.element(by.id('deleteCert')).click();
+    modal_action = by.id('modal-action-ok');
+    utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
+
+    pk_panel.element(by.id('deleteKey')).click();
+    modal_action = by.id('modal-action-ok');
+    utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
   });
 });
