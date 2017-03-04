@@ -98,11 +98,10 @@ class GLService(service.Service):
 
         if GLSettings.memory_copy.reachable_via_web:
             print("- http://%s:%d%s" % (GLSettings.bind_address, GLSettings.bind_port, GLSettings.api_prefix))
+            if GLSettings.memory_copy.hostname:
+                print("- http://%s:%d%s" % (GLSettings.memory_copy.hostname, GLSettings.bind_port, GLSettings.api_prefix))
         else:
             print("- http://127.0.0.1:%d%s" % (GLSettings.bind_port, GLSettings.api_prefix))
-
-        if GLSettings.memory_copy.hostname:
-            print("- http://%s:%d%s" % (GLSettings.memory_copy.hostname, GLSettings.bind_port, GLSettings.api_prefix))
 
         if GLSettings.tor_address is not None:
             print("- http://%s%s" % (GLSettings.tor_address, GLSettings.api_prefix))
