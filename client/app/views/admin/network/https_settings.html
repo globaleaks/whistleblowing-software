@@ -57,7 +57,7 @@
           </span>
           <button id="pkGen" class="btn btn-xs btn-success" data-ng-if="!tls_config.files.priv_key.set" data-ng-click="gen_priv_key()" data-translate>Generate</button>
           <span data-ng-if="tls_config.files.priv_key.set">
-            <button class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.priv_key)" data-translate>Delete</button>
+            <button id="deleteKey" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.priv_key)" data-translate>Delete</button>
           </span>
         </span>
       </div>
@@ -82,8 +82,8 @@
         </span>
         <span data-ng-if="tls_config.files.csr.set">
           <span class="pull-right">
-            <button id="csrDown" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.csr)" data-translate>Download</button>
-            <button class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.csr)" data-translate>Delete</button>
+            <button id="downloadCsr" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.csr)" data-translate>Download</button>
+            <button id="deleteCsr" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.csr)" data-translate>Delete</button>
           </span>
         </span>
       </div>
@@ -108,8 +108,8 @@
             </label>
           </span>
           <span data-ng-if="tls_config.files.cert.set">
-            <button class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.cert)" data-translate>Download</button>
-            <button class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.cert)" data-translate>Delete</button>
+            <button id="downloadCert" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.cert)" data-translate>Download</button>
+            <button id="deleteCert" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.cert)" data-translate>Delete</button>
           </span>
         </span>
       </div>
@@ -134,8 +134,8 @@
             </label>
           </span>
           <span data-ng-if="tls_config.files.chain.set">
-            <button class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.chain)" data-translate>Download</button>
-            <button class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.chain)" data-translate>Delete</button>
+            <button id="downloadChain" class="btn btn-xs btn-primary" data-ng-click="downloadFile(file_resources.chain)" data-translate>Download</button>
+            <button id="deleteChain" class="btn btn-xs btn-danger" data-ng-click="deleteFile(file_resources.chain)" data-translate>Delete</button>
           </span>
         </div>
       </div>
