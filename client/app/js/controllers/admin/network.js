@@ -19,8 +19,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
 controller('AdminNetFormCtrl', [function() {
     // Scoped for future use.
 }]).
-controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'Utils',
-  function($http, $scope, $timeout, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, Utils) {
+controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'Utils',
+  function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, Utils) {
 
   $scope.state = 0;
 
@@ -45,10 +45,10 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
     $scope.show_expert_status = !$scope.show_expert_status;
-    refreshPromise();
+    refreshConfig();
   }
 
-  function refreshPromise() {
+  function refreshConfig() {
     return tlsConfigResource.get({}, $scope.parseTLSConfig);
   }
 
@@ -74,20 +74,20 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
   };
 
   $scope.gen_priv_key = function() {
-    return $scope.file_resources.priv_key.$update().then(refreshPromise);
+    return $scope.file_resources.priv_key.$update().then(refreshConfig);
   }
 
   $scope.postFile = function(file, resource) {
     Utils.readFileAsText(file).then(function(str) {
       resource.content = str;
       return resource.$save();
-    }).then(refreshPromise);
+    }).then(refreshConfig);
   };
 
   $scope.downloadFile = function(resource) {
      $http({
         method: 'GET',
-        url: 'admin/config/tls/files/' + resource.name, // NOTE path
+        url: 'admin/config/tls/files/' + resource.name,
         responseType: 'blob',
      }).then(function (response) {
         FileSaver.saveAs(response.data, resource.name + '.pem');
@@ -104,7 +104,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
 
   $scope.deleteFile = function(resource) {
     var targetFunc = function() {
-      return resource.$delete().then(refreshPromise);
+      return resource.$delete().then(refreshConfig);
     };
     $uibModal.open({
       templateUrl: 'views/partials/admin_review_action.html',
@@ -114,15 +114,6 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
       },
     });
   };
-
-  // A helper function to give us a bit more resolution on the status of the
-  // tls_config...
-  function scheduleWithTimeouts(p, f, num, delay) {
-    for (var i = 0; i < num; i++) {
-        p = p.then(f).then($timeout(function(){}, delay));
-    }
-    return p;
-  }
 
   $scope.toggleCfg = function() {
     var p;
@@ -134,11 +125,12 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
     } else {
       p = $scope.tls_config.$enable();
     }
-    scheduleWithTimeouts(p, refreshPromise, 3, 2000);
+
+    p.then(refreshConfig);
   };
 
   $scope.deleteAll = function() {
-    $scope.tls_config.$delete().then(refreshPromise);
+    $scope.tls_config.$delete().then(refreshConfig);
   };
 
   $scope.submitCSR = function() {
@@ -146,7 +138,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$timeout', '$uibModal', 
     $scope.file_resources['csr'].content = $scope.csr_cfg;
     $scope.file_resources['csr'].$save().then(function() {
       $scope.csr_state.open = false;
-      refreshPromise();
+      refreshConfig();
     });
   };
 }]);
