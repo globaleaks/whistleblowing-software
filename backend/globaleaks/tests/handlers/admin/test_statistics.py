@@ -3,11 +3,9 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import anomaly
 from globaleaks.handlers.admin import statistics
-from globaleaks.jobs import jobs_list
 from globaleaks.jobs.statistics_sched import AnomaliesSchedule, StatisticsSchedule
 from globaleaks.models import Stats
 from globaleaks.orm import transact
-from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
 
@@ -133,7 +131,6 @@ class TestJobsTiming(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         # TODO: start job mocking the reactor
-        # GLSettings.start_jobs()
 
         handler = self.request({}, role='admin')
 

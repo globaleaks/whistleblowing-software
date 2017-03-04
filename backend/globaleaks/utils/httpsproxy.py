@@ -4,9 +4,9 @@ import zlib
 
 from zope.interface import implements
 
-from twisted.web import http, client, _newclient
+from twisted.web import http
 from twisted.web.client import Agent
-from twisted.internet import reactor, protocol, defer, address
+from twisted.internet import reactor, protocol, defer
 from twisted.internet.protocol import connectionDone
 from twisted.web.iweb import IBodyProducer
 from twisted.web.server import NOT_DONE_YET

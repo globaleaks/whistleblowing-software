@@ -2,14 +2,8 @@
 
 from twisted.internet import defer, reactor
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from twisted.internet.protocol import Protocol
 from twisted.web.client import Agent, readBody
 from txsocksx.http import SOCKS5Agent
-
-try:
-    from twisted.web.client import URI
-except ImportError:
-    from twisted.web.client import _URI as URI
 
 
 def get_tor_agent(socks_host='127.0.0.1', socks_port=9050):

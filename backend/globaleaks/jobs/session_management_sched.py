@@ -1,6 +1,5 @@
 # -*- coding: UTF-8
 # Implement reset of variables related to sessions
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.settings import GLSettings

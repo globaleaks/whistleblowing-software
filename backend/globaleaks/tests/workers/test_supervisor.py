@@ -1,6 +1,5 @@
 import gzip
 import json
-import os
 import ssl
 import time
 from StringIO import StringIO

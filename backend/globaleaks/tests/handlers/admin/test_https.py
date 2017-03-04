@@ -1,7 +1,6 @@
 import os
 
 import twisted
-from twisted.trial.unittest import TestCase
 from twisted.internet.defer import inlineCallbacks
 from OpenSSL import crypto, SSL
 
@@ -9,7 +8,6 @@ from globaleaks.handlers.admin import https
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
-from globaleaks.utils import tls
 from globaleaks.settings import GLSettings
 
 from globaleaks.tests import helpers
