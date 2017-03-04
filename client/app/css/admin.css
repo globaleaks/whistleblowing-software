@@ -75,11 +75,6 @@
   left: -40px;
 }
 
-.bordered {
-  stroke: #FFFFFF;
-  stroke-width: 2px;
-}
-
 text.axis-workweek {
   fill: #000;
 }

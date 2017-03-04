@@ -15,8 +15,7 @@ function TmpFileMeta(filename) {
     this.unlinkTmpPath();
 
     var s = fs.readFileSync(this.origin_path);
-    var c = utils.checksum(s);
-    this.chksum = c;
+    this.chksum = utils.checksum(s);
     if (browser.params.verifyFileDownload) {
       this.waitForDownload = function() {}; // noop
     }

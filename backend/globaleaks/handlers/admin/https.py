@@ -54,9 +54,9 @@ class FileResource(object):
         '''
         raise errors.MethodNotImplemented()
 
-    @classmethod
+    @staticmethod
     @transact
-    def should_gen_dh_params(store, cls):
+    def should_gen_dh_params(store):
         return PrivateFactory(store).get_val('https_dh_params') == u''
 
     @staticmethod
@@ -67,7 +67,7 @@ class FileResource(object):
     @classmethod
     @inlineCallbacks
     def generate_dh_params_if_missing(cls):
-        gen_dh = yield cls.should_gen_dh_params()
+        gen_dh = yield FileResource.should_gen_dh_params()
         if gen_dh:
             log.info("Generating the HTTPS DH params with %d bits" % GLSettings.key_bits)
             dh_params = yield deferToThread(tls.gen_dh_params, GLSettings.key_bits)

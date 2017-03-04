@@ -127,6 +127,7 @@
               <span data-ng-switch-when="phonenumber">
                 <span class="text-danger" data-translate>please enter numbers only.</span>
               </span>
+            </span>
           </div>
           <div data-ng-if="maxlength >= 0 && (maxlength- entry['value'].length) <= 50"
                data-translate-values="{available_characters_count: maxlength - entry['value'].length}"

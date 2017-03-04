@@ -117,7 +117,7 @@ class TestFileHandler(helpers.TestHandler):
         body = {'name': 'chain', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
 
-        res = yield handler.post(n)
+        yield handler.post(n)
         yield self.is_set(n, True)
 
         handler = self.request(role='admin')
@@ -195,7 +195,7 @@ class TestCSRHandler(helpers.TestHandler):
 
         body = {'name': 'csr', 'content': d}
         handler = self.request(body, role='admin')
-        res = yield handler.post(n)
+        yield handler.post(n)
 
         yield handler.get(n)
 

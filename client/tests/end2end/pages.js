@@ -36,12 +36,6 @@ exports.receiver = function() {
     element(by.model('preferences.pgp_key_remove')).click();
     return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
   }
-
-  this.removePublicKey = function() {
-    browser.setLocation('receiver/preferences');
-    element(by.cssContainingText('a', 'Encryption settings')).click();
-    return clickDelPubKey();
-  };
 };
 
 exports.whistleblower = function() {

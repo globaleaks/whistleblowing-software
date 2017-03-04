@@ -428,9 +428,7 @@ controller('SubmissionFormFieldCtrl', ['$scope',
 }])
 .
 controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
-
-  var fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id);
-  $scope.fieldFormVarName = fieldFormVarName;
+  $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id);
 
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
