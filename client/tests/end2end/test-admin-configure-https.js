@@ -43,9 +43,8 @@ describe('admin configure https', function() {
 
     // Generate key and CSR
     var pk_panel,
+        csr_panel,
         cert_panel,
-        csr_gen,
-        csr_submit,
         chain_panel,
         modal_action;
 
