@@ -24,7 +24,7 @@
     "angular-ui-bootstrap": "2.5.0",
     "angular-zxcvbn": "3.2.2",
     "bootstrap-inline-rtl": "3.3.6",
-    "d3": "4.6.0",
+    "d3": "4.7.1",
     "@flowjs/flow.js": "2.11.2",
     "@flowjs/ng-flow": "2.7.4",
     "openpgp": "2.3.8",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "coveralls": "2.11.16",
-    "eslint": "3.16.1",
+    "eslint": "3.17.0",
     "firefox-profile": "0.4.8",
     "grunt": "1.0.1",
     "grunt-angular-templates": "1.1.0",
