@@ -215,8 +215,10 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_single_session_per_whistleblower(self):
-        '''Asserts that the first_id is dropped from GLSessions and requests
-        using that session id are rejected'''
+        """
+        Asserts that the first_id is dropped from GLSessions and requests
+        using that session id are rejected
+        """
         yield self.perform_full_submission_actions()
         handler = self.request({
             'receipt': self.dummySubmission['receipt']

@@ -168,7 +168,7 @@ html[dir="rtl"] #KeyCodeHintBox:after {
 
 .tos-clause {
   display: block;
-  padding: 9.5px;
+  padding: 10px;
   margin: 0 0 0.8em;
   font-size: 13px;
   line-height: 1.42857143;

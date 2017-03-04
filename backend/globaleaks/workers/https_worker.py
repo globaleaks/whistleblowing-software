@@ -5,9 +5,6 @@ import sys
 if os.path.dirname(__file__) != '/usr/lib/python2.7/dist-packages/globaleaks/workers':
     sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
-from datetime import datetime
-from urlparse import urlparse
-
 from twisted.internet import reactor
 
 from globaleaks.workers.process import Process
@@ -23,7 +20,6 @@ class HTTPSProcess(Process):
         super(HTTPSProcess, self).__init__(*args, **kwargs)
 
         proxy_url = 'http://' + self.cfg['proxy_ip'] + ':' + str(self.cfg['proxy_port'])
-        res = urlparse(proxy_url)
 
         http_proxy_factory = HTTPStreamFactory(proxy_url)
 

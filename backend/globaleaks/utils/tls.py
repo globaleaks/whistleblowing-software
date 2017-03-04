@@ -35,10 +35,10 @@ def gen_dh_params(bits):
 
 
 def gen_rsa_key(bits):
-    '''
+    """
     Generate an RSA key and returns it in PEM format.
     :rtype: An RSA key as an `pyopenssl.OpenSSL.crypto.PKey`
-    '''
+    """
     key = PKey()
     key.generate_key(TYPE_RSA, bits)
 
@@ -46,7 +46,7 @@ def gen_rsa_key(bits):
 
 
 def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
-    '''
+    """
     gen_x509_csr creates a certificate signature request by applying the passed
     fields to the subject of the request, attaches the public key's fingerprint
     and signs the request using the private key.
@@ -71,7 +71,7 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
         emailAddress - E-mail address
 
     :rtype: A `pyopenssl.OpenSSL.crypto.X509Req`
-    '''
+    """
     req = X509Req()
     subj = req.get_subject()
 
@@ -224,12 +224,6 @@ class ChainValidator(CtxValidator):
                 raise ValidationException('The intermediate cert has expired')
 
             store.add_cert(x509)
-
-        #for value in certificateAuthorityMap.values():
-        #    store.add_cert(value)
-
-        x509 = load_certificate(FILETYPE_PEM, cfg['ssl_cert'])
-        #X509StoreContext(store, x509).verify_certificate()
 
 
 class ContextValidator(CtxValidator):

@@ -121,7 +121,7 @@ class TestSubprocessRun(helpers.TestGL):
 
     def fetch_resource_with_fail(self):
         try:
-            req = urllib2.urlopen('https://127.0.0.1:9443')
+            urllib2.urlopen('https://127.0.0.1:9443')
             self.fail('Request had to throw a 502')
         except urllib2.HTTPError as e:
             self.assertEqual(e.code, 502)
