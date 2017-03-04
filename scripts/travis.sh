@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$GLREQUIREMENTS" ]; then
-  GLREQUIREMENTS="xenial"
+  GLREQUIREMENTS="trusty"
 fi
 
 TRAVIS_USR="travis-`git rev-parse --short HEAD`"
@@ -94,7 +94,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sed -ie 's/key_bits = 2048/key_bits = 512/g' backend/globaleaks/settings.py
   sed -ie 's/csr_sign_bits = 512/csr_sign_bits = 256/g' backend/globaleaks/settings.py
   rm debian/control backend/requirements.txt
-  cp debian/controlX/control.trusty  debian/control
+  cp debian/controlX/control.trusty debian/control
   cp backend/requirements/requirements-trusty.txt backend/requirements.txt
   cd client
   npm install grunt-cli
