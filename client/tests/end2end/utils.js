@@ -50,7 +50,7 @@ exports.waitUntilPresent = function (locator, timeout) {
   return browser.wait(function() {
     return element(locator).isDisplayed().then(function(present) {
       return present;
-    }, function(err) {
+    }, function() {
       return false;
     });
   }, t);
