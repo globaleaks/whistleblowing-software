@@ -207,7 +207,7 @@ class GLSettingsClass(object):
 
         self.enable_input_length_checks = True
 
-        self.submission_minimum_delay = 10 # seconds
+        self.submission_minimum_delay = 3 # seconds
         self.submission_maximum_ttl = 3600 # 1 hour
 
         self.mail_counters = {}
