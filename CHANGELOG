@@ -4,16 +4,16 @@ Changes in version 2.66.0 - 2017-03-03
       Note that the platform now tries to reserve sockets for port 80 and 443
       on public interfaces and relies on the iptables rules to drop traffic
       in cases where NETWORKING_SANDBOXING=1.
-    o Updated app armor rules to support sub processing
+    o Update app armor rules to support sub processing
+    o Implement sub processes pool for HTTPS proxys
+    o Move gzip out of main process into HTTPS proxys
     o Employ timing independent check_password comparison #1904
     o Add detection of tor clients via an exit relay IP check
     o Add admin statistics job timing panel
     o Fix an issue with admin image uploads
     o Fix minor ui issues and update frontend libraries
-    o Implemented HTTPS pool of subprocesses
-    o HTTP GZIP moved to HTTPS workers; No gzip enabled on HTTP
-    o Removed bower usage, simplifying client build using only npm
     o Update translations
+    o Remove bower usage for front end dependencies
 
     Closed tickets:
     - https://github.com/globaleaks/GlobaLeaks/issues/1908
