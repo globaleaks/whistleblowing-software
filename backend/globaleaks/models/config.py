@@ -3,7 +3,6 @@ from storm.locals import Storm, Bool, Unicode, JSON
 
 from globaleaks import __version__
 from globaleaks.utils.utility import log
-from globaleaks.utils import tls
 
 import config_desc
 from .config_desc import GLConfig

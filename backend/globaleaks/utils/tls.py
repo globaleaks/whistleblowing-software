@@ -1,7 +1,3 @@
-import os
-
-from datetime import datetime
-
 from twisted.internet import ssl
 
 from OpenSSL import crypto, SSL
