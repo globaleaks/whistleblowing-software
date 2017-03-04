@@ -51,9 +51,6 @@ exports.waitUntilPresent = function (locator, timeout) {
     return element(locator).isDisplayed().then(function(present) {
       return present;
     }, function(err) {
-      /* eslint-disable no-console */
-      console.log("Waiting for locator threw:\n", err, "\n");
-      /* eslint-enable no-console */
       return false;
     });
   }, t);
