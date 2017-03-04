@@ -45,11 +45,6 @@ if [ "$GLTEST" = "test" ]; then
   cd $TRAVIS_BUILD_DIR/client
   grunt mochaTest
 
-  echo "Extracting firefox and setting PATH variable..."
-  tar -xjf /tmp/firefox-46.0.tar.bz2 --directory /tmp
-  export PATH="/tmp/firefox:$PATH"
-  echo "Using firefox version `firefox --version`"
-
   npm install -g istanbul
 
   echo "Running BrowserTesting locally collecting code coverage"

@@ -17,8 +17,6 @@ matrix:
 
     - env: GLTEST='test'
       python: "2.7"
-      addons:
-        firefox: "46.0"
 
     - env: GLTEST='lint'
       python: "2.7"
