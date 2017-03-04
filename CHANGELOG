@@ -12,9 +12,6 @@ Changes in version 2.66.0 - 2017-03-03
     o Add admin statistics job timing panel
     o Fix an issue with admin image uploads
     o Fix minor ui issues and update frontend libraries
-    o Implemented HTTPS pool of subprocesses
-    o HTTP GZIP moved to HTTPS workers; No gzip enabled on HTTP
-    o Removed bower usage, simpplifying client build using only npm
     o Update translations
     o Remove bower usage for front end dependencies
 
