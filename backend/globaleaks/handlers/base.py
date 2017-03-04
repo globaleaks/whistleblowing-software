@@ -509,12 +509,13 @@ class BaseHandler(RequestHandler):
     def redirect_https(self):
         in_url = self.request.full_url()
 
-        pr = urlparse.urlsplit(self.request.full_url())
+        pr = urlparse.urlsplit(in_url)
 
         out_url = urlparse.urlunsplit(('https', pr.hostname, pr.path, pr.query, pr.fragment))
 
         if out_url == in_url:
             raise errors.InternalServerError('Should redirect to https: %s' % out_url)
+
         self.redirect(out_url, status=301) # permanently redirect
 
     def redirect_tor(self, onion_addr):
@@ -526,6 +527,7 @@ class BaseHandler(RequestHandler):
 
         if out_url == in_url:
             raise errors.InternalServerError('Should redirect to tor: %s' % out_url)
+
         self.redirect(out_url, status=301) # permanently redirect
 
     def on_finish(self):
