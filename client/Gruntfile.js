@@ -85,8 +85,10 @@ module.exports = function(grunt) {
             cwd: 'app/',
             src: [
               '**',
-              '!js/**/*.js', // Don't copy scripts that will be instrumented.
-              'js/crypto/lib/*.js' // Copy scripts that should not be instrumented.
+              '!js/**/*.js', // Don't copy scripts that will be instrumented,
+              'js/lib/*.js', // and copy scripts that should not be instrumented.
+              'js/locale/*.js',
+              'js/crypto/lib/*.js'
             ],
             expand: true
           }]
