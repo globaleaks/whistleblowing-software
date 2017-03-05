@@ -1,4 +1,4 @@
-Changes in version 2.66.0 - 2017-03-03
+Changes in version 2.66.0 - 2017-03-05
     o Implement HTTPS configuration and support configurable via admin panel
     o Simplify network sandboxing rules and reduce custom vars in config file.
       Note that the platform now tries to reserve sockets for port 80 and 443
