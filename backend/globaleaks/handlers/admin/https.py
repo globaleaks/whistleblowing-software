@@ -274,8 +274,8 @@ class FileHandler(BaseHandler):
     def get_file_res_or_raise(self, name):
         if name not in self.mapped_file_resources:
             raise errors.MethodNotImplemented()
-        else:
-            return self.mapped_file_resources[name]
+
+        return self.mapped_file_resources[name]
 
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
