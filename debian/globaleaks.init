@@ -119,17 +119,17 @@ check_iptables()
 
 network_sandboxing_start()
 {
-    log_action_begin_msg "Enabling GlobaLeaks Network Sandboxing"
-
-    check_iptables
-
-    iptables -L | grep "globaleaks-network-sandboxing" >/dev/null 2>&1
-    if [ "$?" -eq "0" ]; then
-        log_action_end_msg 0 "already enabled."
-        return
-    fi
-
     if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
+        log_action_begin_msg "Enabling GlobaLeaks Network Sandboxing"
+
+        check_iptables
+
+        iptables -L | grep "globaleaks-network-sandboxing" >/dev/null 2>&1
+        if [ "$?" -eq "0" ]; then
+            log_action_end_msg 0 "already enabled."
+            return
+        fi
+
         # INBOUND
         for PORT in "${LISTENING_PORTS}"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
@@ -145,27 +145,29 @@ network_sandboxing_start()
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p udp -m owner --uid-owner ${USERNAME} -m udp -s 127.0.0.1 -d 127.0.0.1 --dport 53 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USERNAME} -m tcp -s 127.0.0.1 -d 127.0.0.1 --dport 9050 -j ACCEPT
         iptables -m comment --comment "globaleaks-network-sandboxing" -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USERNAME} -j DROP
-    fi
 
-    log_action_end_msg 0
+        log_action_end_msg 0
+    fi
 }
 
 network_sandboxing_stop()
 {
-    log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
+    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
+        log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
-    check_iptables
+        check_iptables
 
-    iptables -L | grep ${USERNAME} >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
-        log_action_end_msg 0 "already disabled."
-        return
+        iptables -L | grep ${USERNAME} >/dev/null 2>&1
+        if [ "$?" -ne "0" ]; then
+            log_action_end_msg 0 "already disabled."
+            return
+        fi
+
+        # remove all rules with the comment: "globaleaks-network-sandboxing"
+        iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
+
+        log_action_end_msg 0
     fi
-
-    # remove all rules with the comment: "globaleaks-network-sandboxing"
-    iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
-
-    log_action_end_msg 0
 }
 
 do_start()
