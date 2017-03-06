@@ -1,3 +1,6 @@
+Changes in version 2.66.1 - 2017-03-06
+    o Revise iptables detection inside init script
+
 Changes in version 2.66.0 - 2017-03-05
     o Implement HTTPS configuration and support configurable via admin panel
     o Simplify network sandboxing rules and reduce custom vars in config file.
