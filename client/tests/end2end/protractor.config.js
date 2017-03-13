@@ -40,12 +40,6 @@ exports.config = {
 
   plugins: [
     {
-      package: 'protractor-accessibility-plugin',
-      chromeA11YDevTools: {
-        treatWarningsAsFailures: false
-      }
-    },
-    {
       package: 'protractor-console-plugin',
       failOnWarning: false,
       failOnError: true,
