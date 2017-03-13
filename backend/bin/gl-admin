@@ -10,6 +10,7 @@ from datetime import datetime
 import argparse
 
 from globaleaks import models
+from globaleaks.db import get_db_file
 from globaleaks.settings import GLSettings
 from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
 from globaleaks import DATABASE_VERSION
@@ -32,19 +33,18 @@ def check_dir(d):
         sys.exit(1)
 
 
-def normal_backup_path():
+def default_backup_path():
     t = datetime.now().strftime("%y_%m_%d")
     name = "globaleaks_backup_%s.tar.gz" % t
     return os.path.join("/tmp", name)
 
 
-def normal_workdir():
+def default_workdir():
     return GLSettings.working_path
 
 
-def normal_db_path():
-    return GLSettings.db_file_path
-
+def default_db_path():
+    return GLSettings.db_path
 
 def is_gl_running():
     try:
@@ -109,7 +109,12 @@ def restore(args):
 
 
 def reset_pass(args):
-    check_file(args.dbpath)
+    db_version, db_path = get_db_file(args.dbpath)
+
+    if db_version <= 0:
+        return
+
+    check_file(db_path)
 
     salt = generateRandomSalt()
 
@@ -117,7 +122,7 @@ def reset_pass(args):
 
     QUERY = "UPDATE user SET salt=?, password=? WHERE username=?;"
 
-    conn = sqlite3.connect(args.dbpath)
+    conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute(QUERY, (salt, hashed_password, args.username))
 
@@ -137,11 +142,16 @@ def reset_pass(args):
 
 
 def read_var(args):
-    check_file(args.dbpath)
+    db_version, db_path = get_db_file(GLSettings.db_path)
+
+    if db_version <= 0:
+        return
+
+    check_file(db_path)
     try:
         QUERY = "SELECT value FROM config WHERE var_name=?"
 
-        conn = sqlite3.connect(args.dbpath)
+        conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute(QUERY, (args.varname, ))
         ret = c.fetchone()
@@ -159,7 +169,6 @@ def read_var(args):
         raise e
 
 
-
 GLSettings.eval_paths()
 
 parser = argparse.ArgumentParser(prog="gl-admin",
@@ -169,27 +178,27 @@ subp = parser.add_subparsers(title="commands")
 
 bck_p = subp.add_parser("backup", help="create a zipped backup of the gl working dir")
 bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
-                   default=normal_workdir())
+                   default=default_workdir())
 bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
-                   default=normal_backup_path())
+                   default=default_backup_path())
 bck_p.set_defaults(func=backup)
 
 res_p = subp.add_parser("restore", help="unpack a zipped backup of globaleaks")
 res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
-                   default=normal_workdir())
+                   default=default_workdir())
 res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
-                   default=normal_backup_path())
+                   default=default_backup_path())
 res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
-pw_p.add_argument("--dbpath", help="the path to the globaleaks db", default=normal_db_path())
+pw_p.add_argument("--dbpath", help="the path to the globaleaks db", default=default_db_path())
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
                   default=generateRandomPassword())
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("readvar", help="read database variable")
-rv_p.add_argument("--dbpath", help="the path to the globaleaks db", default=normal_db_path())
+rv_p.add_argument("--dbpath", help="the path to the globaleaks db", default=default_db_path())
 rv_p.add_argument("--varname", help="the path to the globaleaks db", default='version')
 rv_p.set_defaults(func=read_var)
 

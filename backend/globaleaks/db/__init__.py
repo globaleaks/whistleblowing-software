@@ -9,7 +9,7 @@ from cyclone.util import ObjectDict
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import models, security, DATABASE_VERSION
+from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
 from globaleaks.models import config, l10n, User
@@ -18,6 +18,16 @@ from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
+
+
+def get_db_file(db_path):
+    for i in reversed(range(0, DATABASE_VERSION + 1)):
+        file_name = 'glbackend-%d.db' % i
+        db_file_path = os.path.join(db_path, file_name)
+        if os.path.exists(db_file_path):
+            return (i, db_file_path)
+
+    return (0, '')
 
 
 def db_create_tables(store):
@@ -54,62 +64,38 @@ def init_db(store, use_single_lang=False):
         files.db_add_file(store, data, u'favicon')
 
 
-def perform_system_update():
+def update_db():
     """
-    This function checks the system and database versions and executes migration
-    routines based on the system's state. After this function has completed the
-    node is either ready for initialization (0), running a version of the DB
-    (>1), or broken (-1).
+    This function handles update of an existing database
     """
     from globaleaks.db import migration
-    db_files = []
-    max_version = 0
-    min_version = 0
-    for filename in os.listdir(GLSettings.db_path):
-        if filename.startswith('glbackend'):
-            filepath = os.path.join(GLSettings.db_path, filename)
-            if filename.endswith('.db'):
-                db_files.append(filepath)
-                nameindex = filename.rfind('glbackend')
-                extensindex = filename.rfind('.db')
-                fileversion = int(filename[nameindex + len('glbackend-'):extensindex])
-                max_version = fileversion if fileversion > max_version else max_version
-                min_version = fileversion if fileversion < min_version else min_version
 
-    db_version = max_version
+    db_version, db_file_path = get_db_file(GLSettings.db_path)
 
-    if len(db_files) > 1:
-        log.msg("Error: Cannot start the application because more than one database file are present in: %s" % GLSettings.db_path)
-        log.msg("Manual check needed and is suggested to first make a backup of %s\n" % GLSettings.working_path)
-        log.msg("Files found:")
+    if db_version is 0:
+        return
 
-        for f in db_files:
-            log.msg("\t%s" % f)
+    GLSettings.initialize_db = False
 
-        return -1
+    log.msg("Found an already initialized database version: %d" % db_version)
 
-    if len(db_files) == 1:
-        log.msg("Found an already initialized database version: %d" % db_version)
+    if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
+        log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
+        try:
+            migration.perform_schema_migration(db_version)
+        except Exception as exception:
+            log.msg("Migration failure: %s" % exception)
+            log.msg("Verbose exception traceback:")
+            etype, value, tback = sys.exc_info()
+            log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
+            return -1
 
-        if db_version < DATABASE_VERSION:
-            log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
-            try:
-                migration.perform_schema_migration(db_version)
-            except Exception as exception:
-                log.msg("Migration failure: %s" % exception)
-                log.msg("Verbose exception traceback:")
-                etype, value, tback = sys.exc_info()
-                log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
-                return -1
+        log.msg("Migration completed with success!")
 
-            log.msg("Migration completed with success!")
-
-        else:
-            log.msg('Performing data update')
-            # TODO on normal startup this line is run. We need better control flow here.
-            migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
-
-    return db_version
+    else:
+        log.msg('Performing data update')
+        # TODO on normal startup this line is run. We need better control flow here.
+        migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
 
 def db_get_tracked_files(store):

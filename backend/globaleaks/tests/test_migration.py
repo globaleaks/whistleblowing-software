@@ -13,7 +13,7 @@ from storm.locals import create_database, Store
 from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db import migration, perform_system_update
+from globaleaks.db import migration, update_db
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.models import config, Field
@@ -40,7 +40,7 @@ class TestMigrationRoutines(unittest.TestCase):
         dbpath = os.path.join(path, f)
         dbfile = os.path.join(GLSettings.db_path, f)
         shutil.copyfile(dbpath, dbfile)
-        ret = perform_system_update()
+        ret = update_db()
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
 
@@ -222,7 +222,7 @@ class TestMigrationRegression(unittest.TestCase):
         db_create_field(self.store, field_dict, u'en')
         self.store.commit()
 
-        ret = perform_system_update()
+        ret = update_db()
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
 
