@@ -24,7 +24,7 @@
     "angular-ui-bootstrap": "2.5.0",
     "angular-zxcvbn": "3.2.2",
     "bootstrap-inline-rtl": "3.3.6",
-    "d3": "4.7.2",
+    "d3": "4.7.3",
     "@flowjs/flow.js": "2.11.2",
     "@flowjs/ng-flow": "2.7.4",
     "openpgp": "2.4.0",
