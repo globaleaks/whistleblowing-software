@@ -31,12 +31,10 @@ if which lsb_release >/dev/null; then
   DISTRO_CODENAME="$( lsb_release -cs )"
 fi
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial)$" ; then
-  echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
-  echo "You are attempting to install GlobaLeaks on an unsupported platform."
-  echo "Supported platforms are:"
-  echo "  -  Ubuntu Trusty (14.04)"
-  echo "  -  Ubuntu Xenial (16.04)"
+echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
+
+if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
+  echo "WARNING: The up-to-date required platform is Ubuntu Xenial (16.04)"
 
   while true; do
     read -p "Do you wish to continue anyway? [y|n]?" yn
@@ -48,25 +46,19 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^(trusty|xenial)$" ; then
   done
 fi
 
-echo "Performing GlobaLeaks installation on $DISTRO - $DISTRO_CODENAME"
-
 # The supported platforms are experimentally more than only Ubuntu as
 # publicly communicated to users.
 #
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
-# or trusty as fallback.
-if [ $DISTRO_CODENAME != "precise" ] &&
-   [ $DISTRO_CODENAME != "trusty" ] &&
-   [ $DISTRO_CODENAME != "xenial" ] &&
-   [ $DISTRO_CODENAME != "wheezy" ] &&
-   [ $DISTRO_CODENAME != "jessie" ]; then
+# or xenial as fallback.
+if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|trusty|xenial|wheezy|jessie)$" ; then
   # In case of unsupported platforms we fallback on Trusty
-  echo "Given that the platform is not supported the install script will use the trusty repository."
+  echo "No packages available for the current distribution; the install script will use the xenial repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
   echo "GlobaLeaks Wiki: https://github.com/globaleaks/GlobaLeaks/wiki"
   DISTRO="Ubuntu"
-  DISTRO_CODENAME="trusty"
+  DISTRO_CODENAME="xenial"
 fi
 
 DO () {
