@@ -336,15 +336,6 @@ var GLClient = angular.module('GLClient', [
           access: noAuth(),
         }
       }).
-      when('/autologin', {
-        templateUrl: 'views/autologin.html',
-        controller: 'AutoLoginCtrl',
-        header_title: 'Login',
-        header_subtitle: '',
-        resolve: {
-          access: noAuth(),
-        }
-      }).
       when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
