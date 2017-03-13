@@ -23,7 +23,7 @@ distro='unknown'
 if platform.system() == 'Linux':
     distro = platform.linux_distribution()[2]
 
-if distro != 'xeniala':
+if distro != 'xenial':
     print("WARNING: The up-to-date long term support platform is Ubuntu Xenial (16.04)")
     print("WARNING: It is recommended to perform the platform update whenever possible")
     print("WARNING: Read more about platform update at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#platform-update")
