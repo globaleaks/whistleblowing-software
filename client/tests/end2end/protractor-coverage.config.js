@@ -1,6 +1,13 @@
 var fs = require('fs');
 var specs = JSON.parse(fs.readFileSync('tests/end2end/specs.json'));
 
+var tmp = [];
+for (var i=0; i<specs.length; i++) {
+  tmp.push('tests/end2end/' + specs[i]);
+}
+
+specs = tmp;
+
 // The test directory for downloaded files
 var tmpDir = '/tmp/globaleaks-downloads';
 
@@ -36,9 +43,5 @@ exports.config = {
     isVerbose: true,
     includeStackTrace: true,
     defaultTimeoutInterval: 180000
-  },
-
-  plugins : [{
-    path: '../../node_modules/protractor-istanbul-plugin'
-  }]
+  }
 };

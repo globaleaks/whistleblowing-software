@@ -246,6 +246,14 @@ module.exports = function(grunt) {
       }
     },
 
+    protractor_coverage: {
+      local: {
+        options: {
+          configFile: 'tests/end2end/protractor-coverage.config.js'
+        }
+      }
+    },
+
     makeReport: {
       src: 'coverage/*.json',
       options: {
@@ -267,6 +275,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-protractor-coverage');
   grunt.loadNpmTasks('grunt-string-replace');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-mocha-test');
