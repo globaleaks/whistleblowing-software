@@ -152,22 +152,20 @@ network_sandboxing_start()
 
 network_sandboxing_stop()
 {
-    if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
-        log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
+    log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
-        check_iptables
+    check_iptables
 
-        iptables -L | grep ${USERNAME} >/dev/null 2>&1
-        if [ "$?" -ne "0" ]; then
-            log_action_end_msg 0 "already disabled."
-            return
-        fi
-
-        # remove all rules with the comment: "globaleaks-network-sandboxing"
-        iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
-
-        log_action_end_msg 0
+    iptables -L | grep ${USERNAME} >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        log_action_end_msg 0 "already disabled."
+        return
     fi
+
+    # remove all rules with the comment: "globaleaks-network-sandboxing"
+    iptables-save | grep -v "globaleaks-network-sandboxing" | iptables-restore
+
+    log_action_end_msg 0
 }
 
 do_start()
