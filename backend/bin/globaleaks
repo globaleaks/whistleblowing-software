@@ -17,9 +17,18 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
-    ('trusty', 'precise', 'wheezy', 'jessie')):
+print("Starting GlobaLeaks . . .")
 
+distro='unknown'
+if platform.system() == 'Linux':
+    distro = platform.linux_distribution()[2]
+
+if distro != 'xeniala':
+    print("WARNING: The up-to-date long term support platform is Ubuntu Xenial (16.04)")
+    print("WARNING: It is recommended to perform the platform update whenever possible")
+    print("WARNING: Read more about platform update at: https://github.com/globaleaks/GlobaLeaks/wiki/Upgrade-Guide#platform-update")
+
+if distro in ('trusty', 'precise', 'wheezy', 'jessie'):
     from globaleaks.utils.pip_utils import pip_version_check
 
     requirements_path = os.path.join(root, 'requirements.txt')
@@ -27,7 +36,6 @@ if (platform.system() == 'Linux' and platform.linux_distribution()[2] in
         requirements_path = '/usr/share/globaleaks/requirements.txt'
 
     pip_version_check(requirements_path)
-
 
 from twisted.python import usage
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
@@ -177,8 +185,6 @@ args +=['--pidfile', GLSettings.pidfile_path]
 sys.argv[1:] = args
 
 def run_backend():
-    print("Starting GlobaLeaks")
-
     # Check presence of an existing database and eventually perform its migration
     update_db()
 
