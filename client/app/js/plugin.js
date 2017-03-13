@@ -1,12 +1,7 @@
-/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "startGlobaLeaks|receiptAutoLogin" }] */
+/* eslint no-unused-vars: ["error", { "varsIgnorePattern": "startGlobaLeaks" }] */
 
 (function () {
    'use strict';
-
-  function get_domain(url) {
-    var arr = url.split("/");
-    return arr[0] + "//" + arr[2];
-  }
 
   function closeGlobaLeaks() {
     function deleteElementById(id) {
@@ -18,7 +13,7 @@
     deleteElementById('globaleaks-container');
   }
 
-  function create_iframe(url) {
+  function startGlobaLeaks(url) {
     var linkText = document.createTextNode('\u274C');
 
     var a = document.createElement('a');
@@ -85,33 +80,5 @@
     document.body.appendChild(container);
     document.body.appendChild(overlay);
     return ifrm;
-  }
-
-  function startGlobaLeaks(url) {
-    if (url === undefined) {
-      url = get_domain(window.location.href) + '/#/';
-    }
-
-    create_iframe(url);
-  }
-
-  function receiptAutoLogin(receipt, url) {
-    if (url === undefined) {
-      url = get_domain(window.location.href) + '/#/autologin';
-    }
-
-    var domain = get_domain(url);
-
-    var ifrm = create_iframe(url);
-
-    function receiveMessage(event) {
-      if (event.origin !== domain) {
-        return;
-      }
-
-      ifrm.contentWindow.postMessage(receipt, domain);
-    }
-
-    window.addEventListener("message", receiveMessage, false);
   }
 }());

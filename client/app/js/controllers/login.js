@@ -14,16 +14,3 @@ GLClient.controller('LoginCtrl', ['$scope', '$location', 'Authentication',
 
   $scope.simplifiedLogin = !!($location.path() === '/login' && $scope.node.simplified_login);
 }]);
-
-GLClient.controller('AutoLoginCtrl', ['Authentication', function(Authentication) {
-  function receiveMessage(event) {
-    window.removeEventListener('message', this, false);
-    Authentication.login('whistleblower', event.data);
-  }
-
-  window.addEventListener("message", receiveMessage, false);
-
-  var arr = window.parent.location.href.split("/");
-  var parent_domain = arr[0] + "//" + arr[2];
-  window.parent.postMessage("Ready", parent_domain);
-}]);
