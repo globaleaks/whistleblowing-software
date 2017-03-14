@@ -3,7 +3,7 @@
 import os
 from twisted.internet import defer
 from twisted.web.client import HTTPPageGetter
-from twisted.web.http import combinedLogFormatter, HTTPFactory
+from twisted.web.http import HTTPFactory
 
 HTTPFactory__init__orig = HTTPFactory.__init__
 
