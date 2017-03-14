@@ -111,7 +111,7 @@ class TestSubprocessRun(helpers.TestGL):
 
         # Start the HTTP server proxy requests will be forwarded to.
         self.pp = SimpleServerPP()
-        reactor.spawnProcess(self.pp, 'python', args=['python', '-m', 'SimpleHTTPServer', '43434'])
+        reactor.spawnProcess(self.pp, 'python', args=['python', '-m', 'SimpleHTTPServer', '43434'], usePTY=True)
         yield self.pp.start_defer
 
         # Check that requests are routed successfully
@@ -158,15 +158,13 @@ class TestSubprocessRun(helpers.TestGL):
 
 class SimpleServerPP(ProcessProtocol):
     def __init__(self):
+        self.welcome_msg = False
         self.start_defer = Deferred()
         process.set_pdeathsig(signal.SIGINT)
 
-    def connectionMade(self):
-        self.start_defer.callback(None)
-        # You might think that you can accept connections at this point,
-        # but actually the subprocess is not ready.
-        time.sleep(1)
-        pass
-
-    def processEnded(self, reason):
-        pass
+    def outReceived(self, data):
+        # When the HTTPServer is ready it will produce a msg which we can hook
+        # the start_defer callback to.
+        if not self.welcome_msg:
+            self.start_defer.callback(None)
+            self.welcome_msg = True
