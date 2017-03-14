@@ -49,7 +49,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   }
 
   function refreshConfig() {
-    return tlsConfigResource.get({}, $scope.parseTLSConfig);
+    return tlsConfigResource.get({}, $scope.parseTLSConfig).$promise;
   }
 
   $scope.file_resources = {
