@@ -12,7 +12,7 @@ usage() {
   echo " -h"
   echo -e " -t tagname (build specific release/branch)"
   echo -e " -l (Use local repository & enviroment)"
-  echo -e " -d distribution (available: precise, trusty, xenial, wheezy, jessie, unstable)"
+  echo -e " -d distribution (available: precise, trusty, xenial, wheezy, jessie)"
   echo -e " -n (do not sign)"
   echo -e " -p (push on repository)"
 }
@@ -46,7 +46,7 @@ while getopts "d:t:np:h:l" opt; do
   esac
 done
 
-if ! [[ $TARGETS =~ $DISTRIBUTION ]] && [[ $DISTRIBUTION != 'unstable' ]] && [[ $DISTRIBUTION != 'all' ]]; then
+if ! [[ $TARGETS =~ $DISTRIBUTION ]] && [[ $DISTRIBUTION != 'all' ]]; then
  usage
  exit 1
 fi
