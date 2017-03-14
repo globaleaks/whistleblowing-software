@@ -6,10 +6,12 @@ if [ ! $(id -u) = 0 ]; then
     exit 1
 fi
 
+ASSUMEYES=0
 EXPERIMENTAL=0
 for arg in "$@"; do
   shift
   case "$arg" in
+    --assume-yes ) ASSUMEYES=1; shift ;;
     --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift ;;
     -- ) shift; break ;;
     * ) break ;;
@@ -36,14 +38,16 @@ echo "Detected OS: $DISTRO - $DISTRO_CODENAME"
 if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
   echo "WARNING: The up-to-date required platform is Ubuntu Xenial (16.04)"
 
-  while true; do
-    read -p "Do you wish to continue anyway? [y|n]?" yn
-    case $yn in
-      [Yy]*) break;;
-      [Nn]*) echo "Installation aborted."; exit;;
-      *) echo $yn; echo "Please answer y/n."; continue;;
-    esac
-  done
+  if [ $ASSUMEYES -eq 0 ]; then
+    while true; do
+      read -p "Do you wish to continue anyway? [y|n]?" yn
+      case $yn in
+        [Yy]*) break;;
+        [Nn]*) echo "Installation aborted."; exit;;
+        *) echo $yn; echo "Please answer y/n."; continue;;
+      esac
+    done
+  fi
 fi
 
 # The supported platforms are experimentally more than only Ubuntu as
