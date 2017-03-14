@@ -55,9 +55,7 @@ if [ "$GLTEST" = "test" ]; then
   $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9
   sleep 3
 
-  cd $TRAVIS_BUILD_DIR/client
-  node_modules/protractor/bin/webdriver-manager update
-  node_modules/protractor/bin/protractor tests/end2end/protractor-coverage.config.js
+  grunt protractor_coverage
   grunt end2end-coverage-report
 
   cd $TRAVIS_BUILD_DIR/backend
