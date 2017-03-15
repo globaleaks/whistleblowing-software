@@ -49,7 +49,7 @@
           <span>(PEM)</span>
         </span>
         <span class="pull-right">
-          <span class="file-upload" data-ng-if="{'disabled-interface': tls_config.files.priv_key.set}">
+          <span class="file-upload" data-ng-class="{'disabled-interface': tls_config.files.priv_key.set}">
             <label for="keyUpload" class="btn btn-xs btn-primary">
               <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)" />
               <span id='keyUploadBtn' data-translate>Upload</span>
