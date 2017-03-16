@@ -3,7 +3,7 @@
 set -e
 
 if which pycompile >/dev/null 2>&1; then
-    pycompile -p globaleaks
+  pycompile -p globaleaks
 fi
 
 CHECK_PIP_VERSION="
@@ -42,17 +42,27 @@ if ! id -u globaleaks >/dev/null 2>&1; then
   # Create globaleaks and tor hidden service directories with proper permissions.
   gl-fix-permissions
 
-  if [ -f /etc/tor/torrc ]; then
-    if [ ! -h /etc/apparmor.d/usr.sbin.tor ]; then
-      ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
-    fi
+  # Add AppArmor rules for allowing tor to access to directory /var/globaleaks/torhs/
+  if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
+    echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
+    echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 
-    # Add rules for allowing tor to access to directory /var/globaleaks/torhs/
-    if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
-      echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
-      echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
-    fi
+    # restart apparmor service in order to load tor rules
+    service apparmor reload
+  fi
 
+  # Add Systemd rules for allowing Tor to access to directory /var/globaleaks/torhs/
+  if [ -d '/etc/systemd/system' ]; then
+    mkdir -p /etc/systemd/system/tor\@default.service.d
+    cat <<EOF >> /etc/systemd/system/tor\@default.service.d/directory.conf
+[Service]
+ReadWriteDirectories=-/var/globaleaks/torhs/
+EOF
+
+    systemctl daemon-reload
+  fi
+
+  if [ -d '/etc/tor/' ]; then
     # Add Tor HS configuration to file /etc/tor/torrc
     cat <<EOF >> /etc/tor/torrc
 # BEGIN GlobaLeaks Configuration - DO NOT EDIT!
@@ -64,9 +74,6 @@ HiddenServiceDir /var/globaleaks/torhs/
 HiddenServicePort 80 127.0.0.1:8082
 # END GlobaLeaks Configuration - DO NOT EDIT!
 EOF
-
-    # restart apparmor service in order to load tor rules
-    service apparmor restart
 
     # restart our kind friend Tor!
     service tor restart
