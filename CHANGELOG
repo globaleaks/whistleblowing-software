@@ -1,3 +1,7 @@
+Changes in version 2.67.0 - 2017-03-17
+    o Add Ubuntu Xenial 16.04 support
+    o Add (readd) Bulgarian support thanks to volunteers translations
+
 Changes in version 2.66.1 - 2017-03-06
     o Revise iptables detection inside init script
 
