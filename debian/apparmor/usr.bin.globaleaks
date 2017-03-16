@@ -32,6 +32,7 @@ profile usr.bin.globaleaks {
 
     /usr/bin/python2.7 ix,
 
+    /usr/ r,
     /usr/share/** r,
     /usr/include/python2.7/** r,
     /usr/lib/python2.7/** mr,
