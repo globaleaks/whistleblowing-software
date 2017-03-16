@@ -27,9 +27,13 @@ Depends:
  , python-zope.component
  , python-zope.event
  , python-zope.interface
- , ${python:Depends}
-Recommends:
- tor
+ , tor
+# The following packages are required in order to use pip
+# to install globaleaks dependencies.
+ , gcc
+ , python-dev
+ , libffi-dev
+ , libssl-dev
 Description: Opensource whistleblowing platform.
  GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
  censorship-resistant, distributed whistleblowing platform.
