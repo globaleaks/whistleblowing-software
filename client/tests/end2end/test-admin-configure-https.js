@@ -74,12 +74,14 @@ describe('admin configure https', function() {
     modal_action = by.id('modal-action-ok');
     utils.waitUntilPresent(modal_action);
     element(modal_action).click();
+    browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteCsr'))));
 
     // Delete key
     element(by.id('deleteKey')).click();
     modal_action = by.id('modal-action-ok');
     utils.waitUntilPresent(modal_action);
     element(modal_action).click();
+    browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
     // Upload key and cert
     pk_panel = element(by.css('div.panel.priv-key'));
