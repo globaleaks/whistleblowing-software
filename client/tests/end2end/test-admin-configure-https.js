@@ -41,20 +41,17 @@ describe('admin configure https', function() {
     browser.setLocation('admin/network');
     element(by.cssContainingText("a", "HTTPS settings")).click();
 
-    // Generate key and CSR
-    var pk_panel,
-        csr_panel,
-        cert_panel,
-        chain_panel,
-        modal_action;
+    var pk_panel = element(by.css('div.panel.priv-key'));
+    var csr_panel = element(by.css('div.panel.csr'));
+    var cert_panel = element(by.css('div.panel.cert'));
+    var chain_panel = element(by.css('div.panel.chain'));
+    var modal_action = by.id('modal-action-ok');
 
-    pk_panel = element(by.css('div.panel.priv-key'));
+    // Generate key
     pk_panel.element(by.cssContainingText('button', 'Generate')).click();
 
+    // Generate csr
     element(by.id('csrGen')).click();
-
-    // Insert data into fields
-    csr_panel = element(by.css('div.panel.csr'));
     csr_panel.element(by.model('csr_cfg.commonname')).sendKeys('certs.may.hurt');
     csr_panel.element(by.model('csr_cfg.country')).sendKeys('IT');
     csr_panel.element(by.model('csr_cfg.province')).sendKeys('Liguria');
@@ -62,40 +59,36 @@ describe('admin configure https', function() {
     csr_panel.element(by.model('csr_cfg.company')).sendKeys('Internet Widgets LTD');
     csr_panel.element(by.model('csr_cfg.department')).sendKeys('Suite reviews');
     csr_panel.element(by.model('csr_cfg.email')).sendKeys('nocontact@certs.may.hurt');
-
     element(by.id('csrSubmit')).click();
 
-    // Download and delete CSR
+    // Download csr
     if (utils.testFileDownload()) {
       csr_panel.element(by.id('downloadCsr')).click();
     }
 
+    // Delete csr
     element(by.id('deleteCsr')).click();
-    modal_action = by.id('modal-action-ok');
     utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteCsr'))));
 
     // Delete key
     element(by.id('deleteKey')).click();
-    modal_action = by.id('modal-action-ok');
     utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
-    // Upload key and cert
-    pk_panel = element(by.css('div.panel.priv-key'));
-    pk_panel.element(by.css("input")).sendKeys(files.priv_key);
-    cert_panel = element(by.css("div.panel.cert"));
-    cert_panel.element(by.css("input")).sendKeys(files.cert);
+    // Upload key
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    element(by.css("div.panel.priv-key input")).sendKeys(files.priv_key);
 
-    // Enable and disable HTTPS
-    enable_https();
-    disable_https();
+    // Upload cert
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    element(by.css("div.panel.cert input")).sendKeys(files.cert);
 
     // Upload chain
-    chain_panel = element(by.css("div.panel.chain"));
-    chain_panel.element(by.css("input")).sendKeys(files.chain);
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    element(by.css("div.panel.chain input")).sendKeys(files.chain);
 
     // Download the cert and chain
     if (utils.testFileDownload()) {
