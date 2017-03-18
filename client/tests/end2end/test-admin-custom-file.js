@@ -14,7 +14,7 @@ describe('Admin upload custom file', function() {
 
     var customFile = utils.makeTestFilePath('nyancat.pdf');
 
-    browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "visibility: visible")');
     element(by.css("div.uploadfile.file-custom")).element(by.css("input")).sendKeys(customFile);
 
     utils.waitUntilPresent(by.cssContainingText("label", "Project name"));

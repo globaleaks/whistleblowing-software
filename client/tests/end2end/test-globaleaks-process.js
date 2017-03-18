@@ -42,7 +42,7 @@ describe('globaLeaks process', function() {
 
     element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text);
     if (utils.testFileUpload()) {
-      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
       element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
         browser.waitForAngular();
         element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
