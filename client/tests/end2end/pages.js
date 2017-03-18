@@ -26,7 +26,7 @@ exports.receiver = function() {
   };
 
   this.uploadWBFile = function(fname) {
-    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
       return browser.waitForAngular();
     });
@@ -74,7 +74,7 @@ exports.whistleblower = function() {
   };
 
   this.submitFile = function(fname) {
-    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
     return element(by.xpath("//input[@type='file']")).sendKeys(fname).then(function() {
       return browser.waitForAngular();
     });

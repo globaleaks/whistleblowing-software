@@ -69,26 +69,24 @@ describe('admin configure https', function() {
 
     // Delete csr
     element(by.id('deleteCsr')).click();
-    utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteCsr'))));
 
     // Delete key
     element(by.id('deleteKey')).click();
-    utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
     // Upload key
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "visibility: visible")');
     element(by.css("div.panel.priv-key input")).sendKeys(files.priv_key);
 
     // Upload cert
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "visibility: visible")');
     element(by.css("div.panel.cert input")).sendKeys(files.cert);
 
     // Upload chain
-    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "opacity:0; visibility: visible; display: inline;");');
+    browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "visibility: visible")');
     element(by.css("div.panel.chain input")).sendKeys(files.chain);
 
     // Download the cert and chain

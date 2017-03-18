@@ -16,7 +16,7 @@ describe('Admin configure custom CSS', function() {
 
     var customCSSFile = utils.makeTestFilePath('custom_css.css');
 
-    browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
+    browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
     utils.waitUntilPresent(by.cssContainingText("label", "Project name"));

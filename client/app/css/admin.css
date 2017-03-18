@@ -85,7 +85,7 @@ text.axis-worktime {
 
 
 .file-upload input[type='file'] {
-  display: none;
+  visibility: hidden;
 }
 
 #HttpsSettings .status-line h3 {
