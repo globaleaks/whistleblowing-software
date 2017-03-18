@@ -27,13 +27,14 @@ describe('admin configure https', function() {
   };
 
   function enable_https() {
+    utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Enable'));
     element(by.cssContainingText('div.launch-btns span', 'Enable')).click();
 
-    var status_label = element(by.cssContainingText('div.status-line span span', 'Running'));
-    expect(status_label.isDisplayed()).toBe(true);
+    utils.waitUntilPresent(by.cssContainingText('div.status-line span span', 'Running'));
   }
 
   function disable_https() {
+    utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Disable'));
     element(by.cssContainingText('div.launch-btns span', 'Disable')).click();
   }
 
