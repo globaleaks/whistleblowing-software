@@ -155,16 +155,16 @@ class User(ModelWithID):
 
     deletable = Bool(default=True)
 
-    name = Unicode(validator=shorttext_v)
-    description = JSON(validator=longlocal_v)
+    name = Unicode(validator=shorttext_v, default=u'')
+    description = JSON(validator=longlocal_v, default={})
 
-    public_name = Unicode(validator=shorttext_v)
+    public_name = Unicode(validator=shorttext_v, default=u'')
 
-    role = Unicode()
-    state = Unicode()
+    role = Unicode(default=u'receiver')
+    state = Unicode(default=u'enabled')
     last_login = DateTime(default_factory=datetime_null)
-    mail_address = Unicode()
-    language = Unicode()
+    mail_address = Unicode(default=u'')
+    language = Unicode(default=u'en')
     password_change_needed = Bool(default=True)
     password_change_date = DateTime(default_factory=datetime_null)
 
@@ -208,11 +208,11 @@ class Context(ModelWithID):
     tip_timetolive = Int(validator=range_v(-1, 5*365), default=15) # in days, -1 indicates no expiration
 
     # localized strings
-    name = JSON(validator=shortlocal_v)
-    description = JSON(validator=longlocal_v)
-    recipients_clarification = JSON(validator=longlocal_v)
+    name = JSON(validator=shortlocal_v, default={})
+    description = JSON(validator=longlocal_v, default={})
+    recipients_clarification = JSON(validator=longlocal_v, default={})
 
-    status_page_message = JSON(validator=longlocal_v)
+    status_page_message = JSON(validator=longlocal_v, default={})
 
     show_receivers_in_alphabetical_order = Bool(default=False)
 
