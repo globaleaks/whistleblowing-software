@@ -6,7 +6,7 @@ from globaleaks.handlers.admin import shorturl
 from globaleaks.tests import helpers
 
 
-class TesShortURLCollection(helpers.TestHandlerWithPopulatedDB):
+class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURLCollection
 
     @inlineCallbacks
@@ -26,7 +26,7 @@ class TesShortURLCollection(helpers.TestHandlerWithPopulatedDB):
         yield handler.post()
 
 
-class TesShortURLInstance(helpers.TestHandlerWithPopulatedDB):
+class TestShortURLInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = shorturl.ShortURLInstance
 
     @inlineCallbacks
