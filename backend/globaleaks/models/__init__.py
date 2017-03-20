@@ -160,15 +160,14 @@ class User(ModelWithID):
 
     public_name = Unicode(validator=shorttext_v, default=u'')
 
-    role = Unicode(default=u'receiver')
+    # roles: 'admin', 'receiver', 'custodian'
+    role = Unicode()
     state = Unicode(default=u'enabled')
     last_login = DateTime(default_factory=datetime_null)
     mail_address = Unicode(default=u'')
-    language = Unicode(default=u'en')
+    language = Unicode()
     password_change_needed = Bool(default=True)
     password_change_date = DateTime(default_factory=datetime_null)
-
-    # roles: 'admin', 'receiver', 'custodian'
 
     # BEGIN of PGP key fields
     pgp_key_fingerprint = Unicode(default=u'')
