@@ -17,13 +17,15 @@ from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 
 
-def admin_serialize_receiver(receiver, language):
+def admin_serialize_receiver(store, receiver, language):
     """
     Serialize the specified receiver
 
     :param language: the language in which to localize data
     :return: a dictionary representing the serialization of the receiver
     """
+    contexts = [rc.context_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id)]
+
     ret_dict = user_serialize_user(receiver.user, language)
 
     ret_dict.update({
@@ -32,7 +34,7 @@ def admin_serialize_receiver(receiver, language):
         'can_grant_permissions': receiver.can_grant_permissions,
         'mail_address': receiver.user.mail_address,
         'configuration': receiver.configuration,
-        'contexts': [c.id for c in receiver.contexts],
+        'contexts': contexts,
         'tip_notification': receiver.tip_notification,
         'presentation_order': receiver.presentation_order
     })
@@ -46,7 +48,7 @@ def get_receiver_list(store, language):
     Returns:
         (list) the list of receivers
     """
-    return [admin_serialize_receiver(receiver, language)
+    return [admin_serialize_receiver(store, receiver, language)
         for receiver in store.find(models.Receiver)]
 
 
@@ -54,7 +56,7 @@ def get_receiver_list(store, language):
 def create_receiver(store, request, language):
     request['tip_expiration_threshold'] = GLSettings.memory_copy.notif.tip_expiration_threshold
     receiver = db_create_receiver(store, request, language)
-    return admin_serialize_receiver(receiver, language)
+    return admin_serialize_receiver(store, receiver, language)
 
 
 def db_get_receiver(store, receiver_id):
@@ -74,7 +76,7 @@ def db_get_receiver(store, receiver_id):
 
 @transact
 def get_receiver(store, receiver_id, language):
-    return admin_serialize_receiver(db_get_receiver(store, receiver_id), language)
+    return admin_serialize_receiver(store, db_get_receiver(store, receiver_id), language)
 
 
 @transact
@@ -103,7 +105,7 @@ def update_receiver(store, receiver_id, request, language):
 
     receiver.update(request)
 
-    return admin_serialize_receiver(receiver, language)
+    return admin_serialize_receiver(store, receiver, language)
 
 
 class ReceiversCollection(BaseHandler):

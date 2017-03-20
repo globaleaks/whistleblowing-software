@@ -38,7 +38,7 @@ def get_tip_export(store, user_id, rtip_id, language):
         'notification': db_get_notification(store, language),
         'tip': serialize_rtip(store, rtip, language),
         'context': admin_serialize_context(store, rtip.internaltip.context, language),
-        'receiver': admin_serialize_receiver(receiver, language),
+        'receiver': admin_serialize_receiver(store, receiver, language),
         'comments': rtip_dict['comments'],
         'messages': rtip_dict['messages'],
         'files': []

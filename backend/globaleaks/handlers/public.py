@@ -61,6 +61,8 @@ def serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
+    receivers = [rc.receiver_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id)]
+
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
@@ -79,7 +81,7 @@ def serialize_context(store, context, language):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire': serialize_questionnaire(store, context.questionnaire, language),
-        'receivers': [r.id for r in context.receivers],
+        'receivers': receivers,
         'picture': context.picture.data if context.picture is not None else ''
     }
 
@@ -226,7 +228,7 @@ def serialize_step(store, step, language):
     return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
-def serialize_receiver(receiver, language):
+def serialize_receiver(store, receiver, language):
     """
     Serialize a receiver description
 
@@ -234,6 +236,8 @@ def serialize_receiver(receiver, language):
     :param language: the language in which to localize data
     :return: a serializtion of the object
     """
+    contexts = [rc.context_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id)]
+
     ret_dict = {
         'id': receiver.id,
         'name': receiver.user.public_name,
@@ -241,7 +245,7 @@ def serialize_receiver(receiver, language):
         'state': receiver.user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
-        'contexts': [c.id for c in receiver.contexts],
+        'contexts': contexts,
         'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
     }
 
@@ -267,7 +271,7 @@ def db_get_public_receiver_list(store, language):
     for receiver in store.find(models.Receiver,
                                models.Receiver.id == models.User.id,
                                models.User.state != u'disabled'):
-        receiver_list.append(serialize_receiver(receiver, language))
+        receiver_list.append(serialize_receiver(store, receiver, language))
 
     return receiver_list
 

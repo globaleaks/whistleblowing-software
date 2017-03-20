@@ -26,6 +26,8 @@ def admin_serialize_context(store, context, language):
     :param language: the language in which to localize data.
     :return: a dictionary representing the serialization of the context.
     """
+    receivers = [rc.receiver_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id)]
+
     ret_dict = {
         'id': context.id,
         'tip_timetolive': context.tip_timetolive,
@@ -44,7 +46,7 @@ def admin_serialize_context(store, context, language):
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire.id,
-        'receivers': [r.id for r in context.receivers],
+        'receivers': receivers,
         'picture': context.picture.data if context.picture is not None else ''
     }
 
