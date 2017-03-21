@@ -253,7 +253,7 @@ class AlarmClass(object):
                 subject, body = Templating().get_mail_subject_and_body(data)
 
                 store.add(models.Mail({
-                    'address': user_desc['mail_adddress'],
+                    'address': user_desc['mail_address'],
                     'subject': subject,
                     'body': body
                 }))
