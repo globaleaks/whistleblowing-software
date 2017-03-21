@@ -457,14 +457,14 @@ class GLSettingsClass(object):
             self.create_directory(dirpath)
 
     def check_directories(self):
-        for path in (self.working_path, self.root_path, self.client_path,
+        for path in (self.working_path, self.root_path, self.client_path, self.ramdisk_path,
                      self.files_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
                 raise Exception("%s does not exist!" % path)
 
         # Directory with Write + Read access
-        for rdwr in (self.working_path,
-                     self.files_path, self.static_path, self.submission_path, self.log_path):
+        for rdwr in (self.working_path, self.ramdisk_path, self.files_path, self.static_path,
+                     self.submission_path, self.log_path):
             if not os.access(rdwr, os.W_OK | os.X_OK):
                 raise Exception("write capability missing in: %s" % rdwr)
 
