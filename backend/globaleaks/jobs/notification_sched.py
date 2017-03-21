@@ -64,7 +64,7 @@ class MailGenerator(object):
             elif key == 'context':
                 cache_obj = admin_serialize_context(store, obj, language)
             elif key == 'receiver':
-                cache_obj = admin_serialize_receiver(obj, language)
+                cache_obj = admin_serialize_receiver(store, obj, language)
             elif key == 'message':
                 cache_obj = serialize_message(obj)
             elif key == 'comment':

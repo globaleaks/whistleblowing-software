@@ -79,7 +79,7 @@ def receiverfile_planning(store):
                 'status': u'processing',
                 'path': ifile.file_path,
                 'size': ifile.size,
-                'receiver': admin_serialize_receiver(rtip.receiver, GLSettings.memory_copy.default_language)
+                'receiver': admin_serialize_receiver(store, rtip.receiver, GLSettings.memory_copy.default_language)
             })
 
     return receiverfiles_maps
