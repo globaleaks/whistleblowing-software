@@ -477,9 +477,19 @@ var GLClient = angular.module('GLClient', [
           $templateCache.put('custom_homepage.html', atob(result.node.homepage));
         }
 
+
         $rootScope.node = result.node;
         $rootScope.contexts = result.contexts;
         $rootScope.receivers = result.receivers;
+
+        var questionnaires = {};
+        angular.forEach(result.questionnaires, function(element) {
+          questionnaires[element.id] = element;
+        });
+
+        angular.forEach(result.contexts, function(element, key) {
+          $rootScope.contexts[key].questionnaire = questionnaires[$rootScope.contexts[key].questionnaire_id];
+        });
 
         if (result.node.favicon) {
           document.getElementById('favicon').setAttribute("href", "data:image/x-icon;base64," + result.node.favicon);

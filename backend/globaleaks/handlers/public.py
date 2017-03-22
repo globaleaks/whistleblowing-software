@@ -80,7 +80,7 @@ def serialize_context(store, context, language):
         'enable_attachments': context.enable_attachments,
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'questionnaire': serialize_questionnaire(store, context.questionnaire, language),
+        'questionnaire_id': context.questionnaire_id,
         'receivers': receivers,
         'picture': context.picture.data if context.picture is not None else ''
     }
@@ -264,6 +264,14 @@ def db_get_public_context_list(store, language):
 
     return context_list
 
+def db_get_questionnaire_list(store, language):
+    questionnaire_list = []
+    for questionnaire in store.find(models.Questionnaire):
+        questionnaire_list.append(serialize_questionnaire(store, questionnaire, language))
+
+    return questionnaire_list
+
+
 
 def db_get_public_receiver_list(store, language):
     receiver_list = []
@@ -281,7 +289,8 @@ def get_public_resources(store, language):
     return {
         'node': db_serialize_node(store, language),
         'contexts': db_get_public_context_list(store, language),
-        'receivers': db_get_public_receiver_list(store, language)
+        'questionnaires': db_get_questionnaire_list(store, language),
+        'receivers': db_get_public_receiver_list(store, language),
     }
 
 
