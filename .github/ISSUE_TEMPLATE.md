@@ -34,13 +34,13 @@ v2.?.?
 - [ ] Other: <!-- specify browser and version -->
 - [ ] Not Applicable
 
-* **Server Operating System and Version (if appliable):**
+**Server Operating System and Version (if applicable):**
 <!--
 Indicate the server operating system and its version
 e.g.: Ubuntu(14.04)
 --> 
 
-* **Client Operating System and Version (if appliable):**
+**Client Operating System and Version (if applicable):**
 <!--
 Indicate the client operating system and its version
 e.g. Windows 10
