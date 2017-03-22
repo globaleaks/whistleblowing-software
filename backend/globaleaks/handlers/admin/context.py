@@ -45,7 +45,7 @@ def admin_serialize_context(store, context, language):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'presentation_order': context.presentation_order,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
-        'questionnaire_id': context.questionnaire.id,
+        'questionnaire_id': context.questionnaire_id,
         'receivers': receivers,
         'picture': context.picture.data if context.picture is not None else ''
     }
