@@ -9,8 +9,10 @@ from twisted.internet import reactor
 
 from globaleaks.workers.process import Process
 from globaleaks.utils.sock import listen_tls_on_sock
+from globaleaks.utils.sni import SNIMap
 from globaleaks.utils.tls import TLSServerContextFactory, ChainValidator
 from globaleaks.utils.httpsproxy import HTTPStreamFactory
+
 
 class HTTPSProcess(Process):
     name = 'gl-https-proxy'
@@ -28,10 +30,12 @@ class HTTPSProcess(Process):
         if not ok or not err is None:
             raise err
 
-        tls_factory = TLSServerContextFactory(self.cfg['ssl_key'],
-                                              self.cfg['ssl_cert'],
-                                              self.cfg['ssl_intermediate'],
-                                              self.cfg['ssl_dh'])
+        snimap = SNIMap({
+            'DEFAULT': TLSServerContextFactory(self.cfg['ssl_key'],
+                                               self.cfg['ssl_cert'],
+                                               self.cfg['ssl_intermediate'],
+                                               self.cfg['ssl_dh'])
+        })
 
         socket_fds = self.cfg['tls_socket_fds']
 
@@ -40,7 +44,7 @@ class HTTPSProcess(Process):
 
             port = listen_tls_on_sock(reactor,
                                       fd=socket_fd,
-                                      contextFactory=tls_factory,
+                                      contextFactory=snimap,
                                       factory=http_proxy_factory)
 
             self.ports.append(port)
