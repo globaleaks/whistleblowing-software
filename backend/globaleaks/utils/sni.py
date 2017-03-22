@@ -129,18 +129,15 @@ class SNIMap(object):
         )
 
     def selectContext(self, connection):
-        oldContext = connection.get_context()
+        common_name = connection.get_servername()
 
-        try:
-            newContext = self.mapping[connection.get_servername()].getContext()
-        except:
-            newContext = self.mapping['DEFAULT'].getContext()
+        if common_name in self.mapping:
+            newContext = self.mapping[common_name].getContext()
 
-        negotiationData = self._negotiationDataForContext[oldContext]
-        negotiationData.negotiateNPN(newContext)
-        negotiationData.negotiateALPN(newContext)
-
-        connection.set_context(newContext)
+            negotiationData = self._negotiationDataForContext[connection.get_context()]
+            negotiationData.negotiateNPN(newContext)
+            negotiationData.negotiateALPN(newContext)
+            connection.set_context(newContext)
 
     def serverConnectionForTLS(self, protocol):
         return _ConnectionProxy(Connection(self.context, None), self)
