@@ -6,6 +6,7 @@ for each version one an empty and a populated db must be stored in directories:
  - db/populated
 """
 
+import re
 import os
 import shutil
 
@@ -43,6 +44,26 @@ class TestMigrationRoutines(unittest.TestCase):
         ret = update_db()
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
+
+    def test_assert_complete(self):
+        '''This test asserts that every table defined in the schema is migrated
+
+        Each CREATE TABLE statement is checked against a corresponding class name
+        in the migration_table dict.
+        '''
+
+        mig_class_names = {n.lower() for n in migration.migration_mapping.keys()}
+
+        rel_path = os.path.join(os.path.abspath(__file__), '../../db/sqlite.sql')
+        with open(os.path.abspath(rel_path), 'r') as f:
+            s = f.read()
+            raw_lst = re.findall(r'CREATE TABLE (\w+)', s)
+            db_table_names = set()
+            for name in raw_lst:
+                db_table_names.add(name.replace('_', ''))
+
+        diff = db_table_names - mig_class_names
+        self.assertTrue(len(diff) == 0)
 
 
 def test(path, f):
