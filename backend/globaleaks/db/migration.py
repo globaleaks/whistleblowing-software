@@ -39,8 +39,8 @@ from globaleaks.settings import GLSettings
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0]),
-    ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ApplicationData', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.ApplicationData, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
+    ('ArchivedSchema', [-1, -1, -1, -1, -1, -1, -1, -1, ArchivedSchema_v_23, models.ArchivedSchema, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Comment', [Comment_v_19, 0, 0, 0, 0, Comment_v_22, 0, 0, Comment_v_31, 0, 0, 0, 0, 0, 0, 0, 0, models.Comment, 0, 0, 0, 0]),
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, config.Config, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.ConfigL10N, 0, 0]),
@@ -68,9 +68,9 @@ migration_mapping = OrderedDict([
     ('ReceiverContext', [models.ReceiverContext, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverFile', [ReceiverFile_v_19, 0, 0, 0, 0, models.ReceiverFile, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('ReceiverTip', [ReceiverTip_v_19, 0, 0, 0, 0, ReceiverTip_v_23, 0, 0, 0, ReceiverTip_v_30, 0, 0, 0, 0, 0, 0, models.ReceiverTip, 0, 0, 0, 0, 0]),
+    ('SecureFileDelete', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Step', [Step_v_20, 0, 0, 0, 0, 0, Step_v_23, 0, 0, Step_v_27, 0, 0, 0, Step_v_29, 0, models.Step, 0, 0, 0, 0, 0, 0]),
     ('StepField', [StepField_v_27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1]),
-    ('SecureFileDelete', [-1, -1, -1, -1, -1, -1, -1, -1, -1, models.SecureFileDelete, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('Stats', [Stats_v_16, 0, models.Stats, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('User', [User_v_20, 0, 0, 0, 0, 0, User_v_23, 0, 0, User_v_24, User_v_30, 0, 0, 0, 0, 0, User_v_31, User_v_32, models.User, 0, 0, 0]),
     ('WhistleblowerFile', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.WhistleblowerFile, 0]),
