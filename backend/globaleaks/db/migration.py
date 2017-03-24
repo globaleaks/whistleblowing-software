@@ -45,6 +45,7 @@ migration_mapping = OrderedDict([
     ('Config', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, config.Config, 0, 0]),
     ('ConfigL10N', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.ConfigL10N, 0, 0]),
     ('Context', [Context_v_19, 0, 0, 0, 0, Context_v_20, Context_v_21, Context_v_22, Context_v_23, Context_v_26, 0, 0, Context_v_28, 0, Context_v_29, Context_v_30, Context_v_34, 0, 0, 0, models.Context, 0]),
+    ('Counter', [-1, -1, -1, -1, models.Counter, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]),
     ('CustomTexts', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.CustomTexts, 0, 0, 0, 0]),
     ('EnabledLanguage', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, l10n.EnabledLanguage, 0, 0]),
     ('Field', [Field_v_20, 0, 0, 0, 0, 0, Field_v_22, 0, Field_v_23, Field_v_27, 0, 0, 0, models.Field, 0, 0, 0, 0, 0, 0, 0, 0]),
