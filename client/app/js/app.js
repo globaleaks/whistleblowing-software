@@ -561,9 +561,11 @@ var GLClient = angular.module('GLClient', [
 
     //////////////////////////////////////////////////////////////////
 
-    $rootScope.$watch('GLTranslate.indirect.appLanguage', function() {
+    $rootScope.$watch('GLTranslate.indirect.appLanguage', function(new_val, old_val) {
       GLTranslate.setLang();
-      $rootScope.reload();
+      if(old_val != new_val) {
+        $rootScope.reload();
+      }
     });
 
     $rootScope.$on("$routeChangeStart", function() {
