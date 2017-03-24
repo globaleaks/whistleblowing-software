@@ -81,7 +81,7 @@ GLConfig = {
 
         'hostname': Unicode(validator=shorttext_v, default=u''),
         'onionservice': Unicode(validator=shorttext_v, default=u''),
-        'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download'),
+        'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download-easy.html.en'),
 
         'default_language': Unicode(validator=shorttext_v, default=u'en'),
         'default_password': Unicode(validator=longtext_v, default=u'globaleaks'),
