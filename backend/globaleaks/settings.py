@@ -179,9 +179,6 @@ class GLSettingsClass(object):
         # Number of minutes in which a user is prevented to login in case of triggered alarm
         self.failed_login_block_time = 5
 
-        # Alarm to be ignored: can be raise with the -A command line switch
-        self.disk_alarm_threshold = 0
-
         # Limit for log sizes and number of log files
         # https://github.com/globaleaks/GlobaLeaks/issues/1578
         self.log_size = 10000000 # 10MB
@@ -327,9 +324,6 @@ class GLSettingsClass(object):
 
         self.disable_backend_exception_notification = self.cmdline_options.disable_backend_exception_notification
         self.disable_client_exception_notification = self.cmdline_options.disable_client_exception_notification
-
-        if self.cmdline_options.disk_alarm_threshold:
-            self.disk_alarm_threshold = self.cmdline_options.disk_alarm_threshold
 
         self.socks_host = self.cmdline_options.socks_host
 
