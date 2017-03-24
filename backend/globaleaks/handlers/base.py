@@ -502,9 +502,9 @@ class BaseHandler(RequestHandler):
 
         # TODO handle the case where we are not interested in applying the exit list
         if should_redirect_tor(self.request,
-                               GLSettings.tor_address,
+                               GLSettings.onionservice,
                                GLSettings.state.tor_exit_set):
-            self.redirect_tor(GLSettings.tor_address)
+            self.redirect_tor(GLSettings.onionservice)
 
     def redirect_https(self):
         in_url = self.request.full_url()
