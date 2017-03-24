@@ -12,12 +12,13 @@ chmod 750 /var/globaleaks
 
 [ -d /var/globaleaks/torhs ] || mkdir -p /var/globaleaks/torhs/
 chown debian-tor:debian-tor /var/globaleaks/torhs/
+chmod 600 /var/globaleaks/torhs/ -R
 chmod 700 /var/globaleaks/torhs
 
 [ -d /var/run/globaleaks ] || mkdir -p /var/run/globaleaks
 chown -R globaleaks:globaleaks /var/run/globaleaks
-chmod 750 /var/run/globaleaks
+chmod 700 /var/run/globaleaks
 
 [ -d /dev/shm/globaleaks ] || mkdir -p /dev/shm/globaleaks
 chown -R globaleaks:globaleaks /dev/shm/globaleaks
-chmod 750 /dev/shm/globaleaks
+chmod 700 /dev/shm/globaleaks

@@ -37,7 +37,7 @@ fi
 
 # simple check to ensure to run the below commands once at the first install.
 if ! id -u globaleaks >/dev/null 2>&1; then
-  useradd globaleaks -b /var/globaleaks/ -s /bin/false
+  useradd globaleaks -b /var/globaleaks/ -s /bin/false -G debian-tor
 
   # Create globaleaks and tor hidden service directories with proper permissions.
   gl-fix-permissions

@@ -123,7 +123,7 @@ class GLSettingsClass(object):
 
         self.local_hosts = ['127.0.0.1', 'localhost']
 
-        self.tor_address = None
+        self.onionservice = None
 
         self.receipt_regexp = u'[0-9]{16}'
 
@@ -309,22 +309,6 @@ class GLSettingsClass(object):
 
         signal.signal(signal.SIGQUIT, start_pdb)
 
-    def validate_tor_dir_struct(self, tor_dir):
-        """
-        Return False instead of sys.exit(-1) because at the startup this directory
-        can be empty
-        """
-        if not os.path.isdir(tor_dir):
-            self.print_msg("Invalid directory provided as -D argument (%s)" % self.cmdline_options.tor_dir)
-            return False
-
-        hostname_tor_file = os.path.join(tor_dir, 'hostname')
-        if not os.path.isfile(hostname_tor_file):
-            self.print_msg("Not found 'hostname' file as expected in Tor dir (-D %s): skipped" % tor_dir)
-            return False
-
-        return True
-
     def load_cmdline_options(self):
         self.nodaemon = self.cmdline_options.nodaemon
 
@@ -357,16 +341,6 @@ class GLSettingsClass(object):
 
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
-
-        if self.cmdline_options.tor_dir and self.validate_tor_dir_struct(self.cmdline_options.tor_dir):
-            hostname_tor_file = os.path.join(self.cmdline_options.tor_dir, 'hostname')
-
-            if not os.access(hostname_tor_file, os.R_OK):
-                self.print_msg("Tor HS file in %s cannot be read" % hostname_tor_file)
-                sys.exit(-1)
-
-            with file(hostname_tor_file, 'r') as htf:
-                self.tor_address = htf.read(22)
 
         if self.cmdline_options.user and self.cmdline_options.group:
             self.user = self.cmdline_options.user
@@ -414,6 +388,13 @@ class GLSettingsClass(object):
         else:
             self.print_msg("Unable to find a directory where to load the client")
             sys.exit(1)
+
+        if self.torhs_path != '':
+            hostname_tor_file = os.path.join(self.torhs_path, 'hostname')
+
+            if os.access(hostname_tor_file, os.R_OK):
+                with file(hostname_tor_file, 'r') as htf:
+                    self.onionservice = htf.read(22)
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:

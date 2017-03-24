@@ -88,10 +88,6 @@ GLSettings.parser.add_option("-m", "--disks-alarm-threshold", type='int',
     help="takes 1, 2, 3, set disk alarm threshold [default: 0]",
     dest="disk_alarm_threshold", default=0)
 
-GLSettings.parser.add_option("-x", "--tor-dir", type="string",
-    help="Tor directory, acquire hidden service and set onion.to proxy [default: None]",
-    dest="tor_dir")
-
 GLSettings.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user")

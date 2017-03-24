@@ -188,7 +188,6 @@ do_start()
                     --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --ramdisk=${RAM_DISK}
-                    --tor-dir=${TOR_DIR}
                     --loglevel=${LOGLEVEL}"
 
     if [ "${API_PREFIX}" != "" ]; then
