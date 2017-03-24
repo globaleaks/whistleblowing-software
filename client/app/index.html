@@ -31,7 +31,11 @@
         user-select: none;
       }
 
-      .PageOverlay {
+      #BrowserNotSupported {
+        display: none;
+      }
+
+      #PageOverlay {
         position: fixed;
         width: 100%;
         height: 100%;
@@ -40,6 +44,8 @@
         align-items: center;
         text-align: center;
         z-index: 2147483647;
+        pointer-events: none;
+        user-select: none;
       }
 
       #LoaderBox {
@@ -92,37 +98,26 @@
       [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
         display: none !important;
       }
-
-      #BrowserNotSupported {
-        display: none;
-      }
-
-      .preload_error {
-        margin: 0 auto;
-        padding: 30px;
-      }
     </style>
 
     <noscript>
-      <div class="preload_error">
-        <h1>Error! :(</h1>
-        <br /><br />
-        <p>
-          Your browser is not running Javascript that is required to
-          use the whistleblowing client.<br /><br />
+      <h1>Error! :(</h1>
+      <br /><br />
+      <p>
+        Your browser is not running Javascript that is required to
+        use the whistleblowing client.<br /><br />
 
-          It's common believe that Javascript and security don't sound
-          well together, for this reason we suggest to use the Tor Browser,
-          an extremely tuned FireFox browser with Tor integrated.
+        It's common believe that Javascript and security don't sound
+        well together, for this reason we suggest to use the Tor Browser,
+        an extremely tuned FireFox browser with Tor integrated.
 
-          Here you can found and download the latest release of:
-          <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>.
-        </p>
-      </div>
+        Here you can found and download the latest release of:
+        <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser</a>.
+      </p>
     </noscript>
 
     <div class="ng-cloak">
-      <div id="BrowserNotSupported" class="preload_error block-user-input">
+      <div id="BrowserNotSupported">
         <div>
           <h1>[EN] Warning! :(</h1><br /><br />
           <div>
@@ -163,7 +158,7 @@
       <div id="BrowserSupported" data-ng-class="{'block-user-input': showLoadingPanel}">
         <div data-ng-if="started" data-ng-include="'app.html'"></div>
 
-        <div data-ng-hide="started && !showLoadingPanel" class="PageOverlay block-user-input">
+        <div id="PageOverlay" data-ng-hide="started && !showLoadingPanel">
           <div id="LoaderBox">
             <div id="LoaderBoxContent">
               <div class="glyphicon glyphicon-cog gly-spin"></div>
