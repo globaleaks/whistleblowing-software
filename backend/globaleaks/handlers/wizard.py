@@ -14,6 +14,7 @@ from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
 
