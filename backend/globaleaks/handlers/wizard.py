@@ -30,8 +30,7 @@ def wizard(store, request, language):
     try:
         node._query_group()
 
-        nn = unicode(request['node']['name'])
-        node.set_val('name', nn)
+        node.set_val('name', request['node']['name'])
         node.set_val('default_language', language)
         node.set_val('wizard_done', True)
 
@@ -40,9 +39,8 @@ def wizard(store, request, language):
 
         node_l10n = NodeL10NFactory(store)
 
-        node_l10n.set_val('description', language, nn)
-        node_l10n.set_val('header_title_homepage', language, nn)
-        node_l10n.set_val('presentation', language, nn)
+        node_l10n.set_val('description', language, request['node']['description'])
+        node_l10n.set_val('header_title_homepage', language, request['node']['name'])
 
         context = db_create_context(store, request['context'], language)
 
