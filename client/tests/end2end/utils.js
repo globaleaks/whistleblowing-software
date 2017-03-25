@@ -20,6 +20,12 @@ exports.vars = {
 };
 
 browser.getCapabilities().then(function(capabilities) {
+  exports.isMobile = function() {
+    var platformName = capabilities.get('platformName') || capabilities.get('platform');
+    platformName = platformName.toLowerCase();
+    return (['android', 'ios'].indexOf(platformName) !== -1);
+  };
+
   exports.testFileUpload = function() {
     var browserName = capabilities.get('browserName').toLowerCase();
     return (['chrome', 'firefox', 'internet explorer', 'edge'].indexOf(browserName) !== -1);
