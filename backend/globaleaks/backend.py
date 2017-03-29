@@ -16,12 +16,53 @@ from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
+from globaleaks import utils
 from globaleaks.utils.utility import log, GLLogObserver
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
 import globaleaks.mocks.twisted_mocks
+
+
+# Used by configure_tor_hs
+import txtorcon
+from txtorcon import TCPHiddenServiceEndpoint, build_local_tor_connection
+from globaleaks.models.config import PrivateFactory, Config
+
+from twisted.internet import reactor
+from twisted.internet.defer import inlineCallbacks, returnValue
+
+from globaleaks.orm import transact_sync
+
+@transact_sync
+@inlineCallbacks
+def configure_tor_hs(store):
+    priv_key = PrivateFactory(store).get_val('tor_onion_priv_key')
+
+    log.msg('Starting up tor connection')
+    tor_conn = yield txtorcon.build_local_tor_connection(reactor)
+
+    hs_loc = ('80 localhost:8082')
+    if priv_key == '':
+        log.msg('Creating new onion service')
+        ephs = txtorcon.EphemeralHiddenService(hs_loc)
+        yield ephs.add_to_tor(tor_conn.protocol)
+        cfg = Config('private', 'tor_onion_priv_key', ephs.private_key)
+        store.add(cfg)
+    else:
+        log.msg('Setting up existing onion service')
+        ephs = txtorcon.EphemeralHiddenService(hs_loc, priv_key)
+        yield ephs.add_to_tor(tor_conn.protocol)
+
+    @inlineCallbacks
+    def shutdown_hs():
+        # TODO(nskelsey) Evaluate if it is worth cleaning up after the fact.
+        log.msg('Shutting down onion service:%s' % ephs.hostname)
+        yield ephs.remove_from_tor(tor_conn.protocol)
+
+    reactor.addSystemEventTrigger('before', 'shutdown', shutdown_hs)
+    log.msg('Added ephemeral service to tor: %s, %s' % (ephs.hostname, ephs.private_key))
 
 
 def fail_startup(excep):
@@ -55,8 +96,8 @@ def pre_listen_startup():
         GLSettings.https_socks = [https_sock]
 
     GLSettings.fix_file_permissions()
-    GLSettings.drop_privileges()
-    GLSettings.check_directories()
+    #GLSettings.drop_privileges()
+    #GLSettings.check_directories()
 
 def timedLogFormatter(timestamp, request):
     duration = -1
@@ -105,6 +146,8 @@ class GLService(service.Service):
         arw = APIResourceWrapper()
 
         GLSettings.api_factory = Site(arw, logFormatter=timedLogFormatter)
+
+        yield configure_tor_hs()
 
         for sock in GLSettings.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)
