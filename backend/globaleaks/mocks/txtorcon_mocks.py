@@ -56,7 +56,8 @@ class EphemeralHiddenService(object):
         if self._key_blob == 'NEW:BEST':
             self.private_key = ans['PrivateKey']
 
-        log.msg('Created hidden-service at', self.hostname)
+        # NOTE line changed to give indication when using mocks
+        log.msg('Created onion-service at', self.hostname)
 
         # Now we want to wait for the descriptor uploads. This doesn't
         # quite work, as the UPLOADED events always say "UNKNOWN" for

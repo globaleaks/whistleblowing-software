@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
+from distutils.version import StrictVersion as V
+
+import txtorcon
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
 from twisted.internet.error import ConnectionRefusedError
 from twisted.internet.defer import inlineCallbacks, Deferred
 
 from globaleaks.orm import transact_sync
-from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 from globaleaks.models.config import PrivateFactory
 from globaleaks.utils.utility import log
+
+# Only use mock if txtorcon does not support ephemeral services.
+if V(txtorcon.__version__) < V('0.15.1'):
+   from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
+else:
+   from txtorcon.torconfig import EphemeralHiddenService
 
 
 @transact_sync
