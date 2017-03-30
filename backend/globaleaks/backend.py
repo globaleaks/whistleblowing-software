@@ -35,10 +35,12 @@ from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
 from twisted.internet.error import ConnectionRefusedError
 
 from globaleaks.orm import transact_sync
+from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 
 @transact_sync
 def configure_tor_hs(store):
     return db_configure_tor_hs(store)
+
 
 @transact_sync
 def db_commit_priv_key(store, priv_key):
@@ -61,13 +63,13 @@ def db_configure_tor_hs(store):
     hs_loc = ('80 localhost:8082')
     if priv_key == '':
         log.msg('Creating new onion service')
-        ephs = txtorcon.EphemeralHiddenService(hs_loc)
+        ephs = EphemeralHiddenService(hs_loc)
         yield ephs.add_to_tor(tor_conn.protocol)
         log.msg('Received hidden service descriptor')
         db_commit_priv_key(ephs.private_key)
     else:
         log.msg('Setting up existing onion service')
-        ephs = txtorcon.EphemeralHiddenService(hs_loc, priv_key)
+        ephs = EphemeralHiddenService(hs_loc, priv_key)
         yield ephs.add_to_tor(tor_conn.protocol)
 
     @inlineCallbacks
@@ -78,7 +80,7 @@ def db_configure_tor_hs(store):
         # the hidden service and thus start a new control conntection to bring
         # ensure that the hidden service is closed cleanly.
         log.msg('Shutting down tor onion service %s' % ephs.hostname)
-        if not tor_conn.protocol.on_disconnect.called:
+        if not getattr(tor_conn.protocol.on_disconnect, 'called', True):
             log.debug('Removing onion service')
             yield ephs.remove_from_tor(tor_conn.protocol)
         log.debug('Successfully handled tor cleanup')
