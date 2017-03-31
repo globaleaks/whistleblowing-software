@@ -2,18 +2,13 @@
 
 # user permission check
 if [ ! $(id -u) = 0 ]; then
-    echo "Error: gl-fix-permissions script must be runned by root"
+    echo "Error: gl-fix-permissions script must be run as root"
     exit 1
 fi
 
 [ -d /var/globaleaks ] ||  mkdir -p /var/globaleaks
-chown globaleaks:debian-tor /var/globaleaks
-chmod 750 /var/globaleaks
-
-[ -d /var/globaleaks/torhs ] || mkdir -p /var/globaleaks/torhs/
-chown debian-tor:debian-tor /var/globaleaks/torhs/
-chmod 600 /var/globaleaks/torhs/ -R
-chmod 700 /var/globaleaks/torhs
+chown globaleaks:globaleaks /var/globaleaks
+chmod 700 /var/globaleaks
 
 [ -d /var/run/globaleaks ] || mkdir -p /var/run/globaleaks
 chown -R globaleaks:globaleaks /var/run/globaleaks

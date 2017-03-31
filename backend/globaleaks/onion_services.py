@@ -24,13 +24,16 @@ def configure_tor_hs(store, bind_port):
 
 
 @transact_sync
-def db_commit_priv_key(store, priv_key):
-    PrivateFactory(store).set_val('tor_onion_priv_key', priv_key)
+def db_store_onion_service(store, priv_key, hostname):
+    priv_fact = PrivateFactory(store)
+    priv_fact.set_val('tor_onion_priv_key', priv_key)
+    priv_fact.set_val('tor_onion_hostname', hostname)
 
 
 @inlineCallbacks
 def db_configure_tor_hs(store, bind_port):
     priv_key = PrivateFactory(store).get_val('tor_onion_priv_key')
+    hostname = PrivateFactory(store).get_val('tor_onion_hostname')
 
     log.msg('Starting up tor connection')
     try:
@@ -47,7 +50,7 @@ def db_configure_tor_hs(store, bind_port):
         ephs = EphemeralHiddenService(hs_loc)
         yield ephs.add_to_tor(tor_conn.protocol)
         log.msg('Received hidden service descriptor')
-        db_commit_priv_key(ephs.private_key)
+        db_store_onion_service(ephs.private_key, ephs.hostname)
     else:
         log.msg('Setting up existing onion service')
         ephs = EphemeralHiddenService(hs_loc, priv_key)
