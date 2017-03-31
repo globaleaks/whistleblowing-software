@@ -150,8 +150,11 @@ else
   DO "apt-get install globaleaks -y"
 fi
 
-if [ -r /var/globaleaks/torhs/hostname ]; then
-  TORHS=`cat /var/globaleaks/torhs/hostname`
+#TODO this is timing dependent
+echo "Waiting for onion service to configure"
+sleep 60
+if [ -r /var/run/globaleaks/globaleaks.pid ]; then
+  TORHS=`gl-admin readvar --varname=tor_onion_hostname`
   echo "To access and configure your GlobaLeaks node use the following Tor HS URL: $TORHS"
   echo "Use the Tor Browser to connect, You can download it from https://www.torproject.org/download"
   echo "If you need to access the node directly on your public IP address, edit /etc/default/globaleaks and restart globaleaks"
