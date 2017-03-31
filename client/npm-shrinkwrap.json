@@ -43,9 +43,9 @@
       "dev": true
     },
     "acorn": {
-      "version": "4.0.4",
-      "from": "acorn@4.0.4",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-4.0.4.tgz",
+      "version": "5.0.2",
+      "from": "acorn@>=5.0.1 <6.0.0",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.0.2.tgz",
       "dev": true
     },
     "acorn-jsx": {
@@ -107,14 +107,14 @@
       "dev": true
     },
     "angular": {
-      "version": "1.6.3",
-      "from": "angular@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.4.tgz"
     },
     "angular-aria": {
-      "version": "1.6.3",
-      "from": "angular-aria@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular-aria@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.4.tgz"
     },
     "angular-dynamic-locale": {
       "version": "0.1.32",
@@ -137,19 +137,19 @@
       "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.3.tgz"
     },
     "angular-resource": {
-      "version": "1.6.3",
-      "from": "angular-resource@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular-resource@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.4.tgz"
     },
     "angular-route": {
-      "version": "1.6.3",
-      "from": "angular-route@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular-route@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.4.tgz"
     },
     "angular-sanitize": {
-      "version": "1.6.3",
-      "from": "angular-sanitize@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular-sanitize@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.4.tgz"
     },
     "angular-translate": {
       "version": "2.15.1",
@@ -730,9 +730,9 @@
       }
     },
     "coveralls": {
-      "version": "2.12.0",
-      "from": "coveralls@2.12.0",
-      "resolved": "https://registry.npmjs.org/coveralls/-/coveralls-2.12.0.tgz",
+      "version": "2.13.0",
+      "from": "coveralls@2.13.0",
+      "resolved": "https://registry.npmjs.org/coveralls/-/coveralls-2.13.0.tgz",
       "dev": true
     },
     "cryptiles": {
@@ -1105,15 +1105,15 @@
       "dev": true
     },
     "eslint": {
-      "version": "3.18.0",
-      "from": "eslint@3.18.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.18.0.tgz",
+      "version": "3.19.0",
+      "from": "eslint@3.19.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-3.19.0.tgz",
       "dev": true
     },
     "espree": {
-      "version": "3.4.0",
+      "version": "3.4.1",
       "from": "espree@>=3.4.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/espree/-/espree-3.4.0.tgz",
+      "resolved": "https://registry.npmjs.org/espree/-/espree-3.4.1.tgz",
       "dev": true
     },
     "esprima": {
@@ -1360,9 +1360,9 @@
       "dev": true
     },
     "globals": {
-      "version": "9.16.0",
+      "version": "9.17.0",
       "from": "globals@>=9.14.0 <10.0.0",
-      "resolved": "https://registry.npmjs.org/globals/-/globals-9.16.0.tgz",
+      "resolved": "https://registry.npmjs.org/globals/-/globals-9.17.0.tgz",
       "dev": true
     },
     "globby": {
@@ -2075,9 +2075,9 @@
       "dev": true
     },
     "interpret": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "from": "interpret@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/interpret/-/interpret-1.0.1.tgz",
+      "resolved": "https://registry.npmjs.org/interpret/-/interpret-1.0.2.tgz",
       "dev": true
     },
     "is-arrayish": {
@@ -2686,9 +2686,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.5.1",
-      "from": "openpgp@2.5.1",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.1.tgz"
+      "version": "2.5.3",
+      "from": "openpgp@2.5.3",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.3.tgz"
     },
     "opn": {
       "version": "4.0.2",
