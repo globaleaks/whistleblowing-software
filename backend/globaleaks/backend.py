@@ -56,8 +56,8 @@ def pre_listen_startup():
         GLSettings.https_socks = [https_sock]
 
     GLSettings.fix_file_permissions()
-    #GLSettings.drop_privileges()
-    #GLSettings.check_directories()
+    GLSettings.drop_privileges()
+    GLSettings.check_directories()
 
 def timedLogFormatter(timestamp, request):
     duration = -1
