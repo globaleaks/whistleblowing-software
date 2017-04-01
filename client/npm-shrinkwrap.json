@@ -132,9 +132,9 @@
       "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.15.tgz"
     },
     "angular-i18n": {
-      "version": "1.6.3",
-      "from": "angular-i18n@1.6.3",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.3.tgz"
+      "version": "1.6.4",
+      "from": "angular-i18n@1.6.4",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.4.tgz"
     },
     "angular-resource": {
       "version": "1.6.4",
