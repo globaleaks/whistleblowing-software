@@ -1,3 +1,9 @@
+Changes in version 2.76.2 - 2017-04-01
+    o Fix e2e tests for HTTPS configuration
+    o Update messaging and tor download link
+      shown when javascript is disabled
+    o Optimize loading reducing public API get
+
 Changes in version 2.67.1 - 2017-03-17
     o Start (restart) apparmor upon globaleaks install
 
