@@ -79,7 +79,7 @@ if [ "$TAG" != "master"]; then
 fi
 
 echo "Step 5/9: install npm and node"
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Step 6/9: install grunt"
