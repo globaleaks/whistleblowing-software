@@ -8,7 +8,7 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone.web import RequestHandler
 
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, datetime_now
+from globaleaks.utils.utility import log
 
 
 def mock_RequestHandler_set_default_headers(self):
@@ -16,8 +16,6 @@ def mock_RequestHandler_set_default_headers(self):
     This mock is required to force some HTTP Headers on all
     the handlers included the internal error handlers of cyclone.
     """
-    self.request.start_time = datetime_now()
-
     # to avoid version attacks
     self.set_header("Server", "globaleaks")
 

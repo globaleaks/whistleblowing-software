@@ -26,7 +26,7 @@ from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
-from globaleaks.utils.utility import log, datetime_now, deferred_sleep
+from globaleaks.utils.utility import log, deferred_sleep
 
 HANDLER_EXEC_TIME_THRESHOLD = 30
 
@@ -187,8 +187,6 @@ class BaseHandler(RequestHandler):
 
         self.req_id = GLSettings.requests_counter
         GLSettings.requests_counter += 1
-
-        self.request.start_time = datetime_now()
 
         self.request.request_type = None
         if 'import' in self.request.arguments:
