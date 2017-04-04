@@ -83,12 +83,12 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 echo "Step 6/9: install grunt"
-sudo npm install -g grunt-cli
+npm install grunt-cli
 
 echo "Step 7/9: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
-grunt copy:sources
+./node_modules/grunt-cli/bin/grunt copy:sources
 cd ../../
 
 echo "Step 8/9: prepare backend virtualenv"

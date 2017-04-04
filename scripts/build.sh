@@ -82,7 +82,7 @@ mkdir $BUILDSRC && cd $BUILDSRC
 
 if [ $LOCAL_ENV -eq 1 ]; then
   cd ../client/
-  grunt build
+  ./node_modules/grunt-cli/bin/grunt build
   cd ../GLRelease
   git clone --branch="$TAG" --depth=1 file://$(pwd)/../../GlobaLeaks
   cp -rf ../client/build GlobaLeaks/client/
@@ -91,9 +91,8 @@ else
   cd GlobaLeaks
   git checkout $TAG
   cd client
-  npm install grunt-cli
   npm install
-  grunt build
+  ./node_modules/grunt-cli/bin/grunt build
 fi
 
 cd $ROOTDIR
