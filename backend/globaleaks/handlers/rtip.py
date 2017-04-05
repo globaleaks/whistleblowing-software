@@ -443,13 +443,12 @@ class RTipInstance(BaseHandler):
             internal_var_lst = ['enable_two_way_comments',
                                 'enable_two_way_messages',
                                 'enable_attachments']
-            if key == 'label' and isinstance(value, unicode):
-                set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
-            elif key == 'enable_notifications' and isinstance(value, bool):
-                set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
+            if ((key == 'label'                and isinstance(value, unicode)) or
+                (key == 'enable_notifications' and isinstance(value, bool))):
+                yield set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
             elif key in internal_var_lst and isinstance(value, bool):
                 # Elements of internal_var_lst are not stored in the receiver's tip table
-                set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
+                yield set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
 
         # TODO A 202 is returned regardless of whether or not an update was performed.
         self.set_status(202)  # Updated
