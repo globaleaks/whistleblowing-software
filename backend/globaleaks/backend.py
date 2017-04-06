@@ -29,8 +29,12 @@ import globaleaks.mocks.twisted_mocks
 
 def fail_startup(excep):
     log.err("ERROR: Cannot start GlobaLeaks. Please manually examine the exception.")
-    log.err("EXCEPTION: %s" % excep)
-    reactor.stop()
+    if GLSettings.nodaemon and GLSettings.devel_mode:
+        print("EXCEPTION: %s" %  traceback.format_exc(excep))
+    else:
+        log.err("EXCEPTION: %s" %  excep)
+    if reactor.running:
+        reactor.stop()
 
 
 def pre_listen_startup():
