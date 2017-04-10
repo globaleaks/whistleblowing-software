@@ -9,6 +9,7 @@
 # application shuts down.
 
 import os, sys
+import traceback
 
 from twisted.application import internet, service
 from twisted.internet import reactor, defer
