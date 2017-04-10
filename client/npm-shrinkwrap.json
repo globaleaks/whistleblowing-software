@@ -127,9 +127,9 @@
       "resolved": "https://registry.npmjs.org/angular-file-saver/-/angular-file-saver-1.1.3.tgz"
     },
     "angular-filter": {
-      "version": "0.5.15",
-      "from": "angular-filter@0.5.15",
-      "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.15.tgz"
+      "version": "0.5.16",
+      "from": "angular-filter@0.5.16",
+      "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.16.tgz"
     },
     "angular-i18n": {
       "version": "1.6.4",
@@ -1432,9 +1432,9 @@
       "dev": true
     },
     "grunt-confirm": {
-      "version": "1.0.6",
-      "from": "grunt-confirm@1.0.6",
-      "resolved": "https://registry.npmjs.org/grunt-confirm/-/grunt-confirm-1.0.6.tgz",
+      "version": "1.0.7",
+      "from": "grunt-confirm@1.0.7",
+      "resolved": "https://registry.npmjs.org/grunt-confirm/-/grunt-confirm-1.0.7.tgz",
       "dev": true
     },
     "grunt-contrib-clean": {
@@ -2686,9 +2686,9 @@
       "dev": true
     },
     "openpgp": {
-      "version": "2.5.3",
-      "from": "openpgp@2.5.3",
-      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.3.tgz"
+      "version": "2.5.4",
+      "from": "openpgp@2.5.4",
+      "resolved": "https://registry.npmjs.org/openpgp/-/openpgp-2.5.4.tgz"
     },
     "opn": {
       "version": "4.0.2",
@@ -2955,9 +2955,9 @@
       "dev": true
     },
     "readline-sync": {
-      "version": "1.3.1",
-      "from": "readline-sync@>=1.3.0 <1.4.0",
-      "resolved": "https://registry.npmjs.org/readline-sync/-/readline-sync-1.3.1.tgz",
+      "version": "1.4.7",
+      "from": "readline-sync@>=1.4.7 <1.5.0",
+      "resolved": "https://registry.npmjs.org/readline-sync/-/readline-sync-1.4.7.tgz",
       "dev": true
     },
     "readline2": {
