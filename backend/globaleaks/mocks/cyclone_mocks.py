@@ -40,9 +40,6 @@ def mock_RequestHandler_set_default_headers(self):
     if not GLSettings.memory_copy.allow_iframes_inclusion:
         self.set_header("X-Frame-Options", "sameorigin")
 
-    if GLSettings.memory_copy.private.https_enabled:
-        self.set_header('Strict-Transport-Security', 'max-age=31536000')
-
 
 def mock_HTTPConnection_on_headers(self, data):
     """

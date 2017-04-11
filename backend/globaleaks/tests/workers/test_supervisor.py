@@ -120,21 +120,27 @@ class TestSubprocessRun(helpers.TestGL):
 
     def fetch_resource_with_fail(self):
         try:
-            urllib2.urlopen('https://127.0.0.1:9443')
+            response = urllib2.urlopen('https://127.0.0.1:9443')
             self.fail('Request had to throw a 502')
         except urllib2.HTTPError as e:
+            # Ensure the connection always has an HSTS header
+            self.assertEqual(e.headers.get('Strict-Transport-Security'), 'max-age=31536000')
             self.assertEqual(e.code, 502)
             return
 
     def fetch_resource(self):
-        urllib2.urlopen('https://127.0.0.1:9443/')
+        response = urllib2.urlopen('https://127.0.0.1:9443/')
+        hdrs = response.info()
+        self.assertEqual(hdrs.get('Strict-Transport-Security'), 'max-age=31536000')
 
     def fetch_resource_with_gzip(self):
         request = urllib2.Request('https://127.0.0.1:9443/hello.txt')
         request.add_header('Accept-encoding', 'gzip')
         response = urllib2.urlopen(request)
-        is_gzipped = response.info().get('Content-Encoding') == 'gzip'
-        self.assertTrue(is_gzipped)
+        hdrs = response.info()
+
+        # Ensure the connection uses gzip
+        self.assertEqual(hdrs.get('Content-Encoding'), 'gzip')
 
         s = response.read()
         buf = StringIO(s)
