@@ -48,6 +48,7 @@ module.exports = function(grunt) {
       sources: {
         files: [
           { dest: 'app/css', cwd: '.', src: ['node_modules/bootstrap-inline-rtl/dist/css/bootstrap.css'], expand: true, flatten: true },
+          { dest: 'app/css', cwd: '.', src: ['node_modules/ui-select/dist/select.min.css'], expand: true, flatten: true },
           { dest: 'app/fonts', cwd: '.', src: ['node_modules/bootstrap-inline-rtl/fonts/*'], expand: true, flatten: true },
           { dest: 'app/js/locale', cwd: '.', src: ['node_modules/angular-i18n/angular-locale*'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/stacktrace-js/dist/stacktrace.min.js'], expand: true, flatten: true },
@@ -71,6 +72,7 @@ module.exports = function(grunt) {
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/zxcvbn/dist/zxcvbn.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-zxcvbn/dist/angular-zxcvbn.js'], expand: true, flatten: true },
           { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/angular-dynamic-locale/tmhDynamicLocale.min.js'], expand: true, flatten: true },
+          { dest: 'app/js/lib/', cwd: '.', src: ['node_modules/ui-select/dist/select.min.js'], expand: true, flatten: true },
           { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.min.js'], expand: true, flatten: true },
           { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/openpgp/dist/openpgp.worker.min.js'], expand: true, flatten: true },
           { dest: 'app/js/crypto/lib/', cwd: '.', src: ['node_modules/scrypt-async/scrypt-async.min.js'], expand: true, flatten: true }
