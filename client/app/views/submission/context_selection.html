@@ -29,4 +29,20 @@
       </div>
     </div>
   </div>
+  <div data-ng-switch-when="dropdown">
+    <div id="ContextSelectionDropdown" class="row">
+      <div class="col-md-12">
+        <h4 id="contextClarification" data-ng-if="node.contexts_clarification">{{node.contexts_clarification}}</h4>
+        <ui-select data-ng-model="selected.value" data-theme="bootstrap" data-on-select='selectContext($item)'>
+          <ui-select-match data-placeholder="Search by name or description">
+            <span data-ng-bind="$select.selected.name"></span>
+          </ui-select-match>
+          <ui-select-choices data-repeat="context in selectable_contexts | filter: {name: $select.search} track by context.id">
+            <span data-ng-bind-html="context.name | highlight: $select.search"></span>
+            <small data-ng-bind="context.description"></small>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+  </div>
 </div>
