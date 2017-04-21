@@ -122,11 +122,24 @@ directive('zxPasswordMeter', function() {
     }
   };
 }).
+directive('singleErrorUpload', function() {
+  return {
+    restrict: 'A',
+    controller: ['$scope', function($scope) {
+       $scope.$watch('file_error_msgs.length', function(v) {
+          // Reset the error display flag when a new error is pushed
+          $scope.displayErr = true;
+       });
+       $scope.displayErr = true;
+    }],
+    templateUrl: 'views/partials/upload_error_msg.html',
+  };
+}).
 directive('errorsUpload', function() {
   // Depends on file_error_msgs is defined in parent scope.
   return {
     restrict: 'A',
-    templateUrl: 'views/partials/upload_error_msg.html',
+    templateUrl: 'views/partials/upload_error_msgs.html',
   };
 }).
 directive('extendFlowValidTypes', ['uploadUtils', function(uploadUtils) {
