@@ -505,7 +505,7 @@ var GLClient = angular.module('GLClient', [
             var headers = getResponseHeaders();
             if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
               $rootScope.anonymous = true;
-              if ($rootScope.node.onion_service && !Utils.iframeCheck()) {
+              if ($rootScope.node.onionservice && !Utils.iframeCheck()) {
                 // the check on the iframe is in order to avoid redirects
                 // when the application is included inside iframes in order to not
                 // mix HTTPS resources with HTTP resources.
