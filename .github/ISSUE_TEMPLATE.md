@@ -19,26 +19,25 @@
 
 
 **GlobaLeaks version:**
-<!-- Check whether this is still an issue in the most recent GlobaLeaks version -->
+<!--
+Check whether this is still an issue in the most recent version of the software
+e.g.: v2.67.5
+-->
 
-v2.?.?
 
 **Browser:**
-<!-- Indicate which browsers exhibit the bug. Mark the following box with an [x] -->
+<!--
+Indicate which browsers exhibit the bug and their version
+e.g.: Chrome 42
+-->
 
-- [x] All browsers
-- [ ] Chrome: <!-- specify versions --> v45.0.1
-- [ ] Firefox: v55.0.1
-- [ ] Safari:
-- [ ] Mobile Chrome:
-- [ ] Other: <!-- specify browser and version -->
-- [ ] Not Applicable
 
 **Server Operating System and Version (if applicable):**
 <!--
 Indicate the server operating system and its version
 e.g.: Ubuntu(14.04)
 --> 
+
 
 **Client Operating System and Version (if applicable):**
 <!--
