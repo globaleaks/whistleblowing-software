@@ -6,17 +6,16 @@
 # exposed API.
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 
 
 class RobotstxtHandler(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
     def get(self):
         """
         Get the robots.txt
         """
-        self.set_header('Content-Type', 'text/plain')
+        self.request.setHeader('Content-Type', 'text/plain')
 
         self.write("User-agent: *\n")
 
@@ -29,19 +28,16 @@ class RobotstxtHandler(BaseHandler):
 
 
 class SitemapHandler(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
     def get(self):
         """
         Get the sitemap.xml
         """
         if not GLSettings.memory_copy.allow_indexing:
-            self.set_status(404)
-            return
+            raise errors.ResourceNotFound()
 
         site = 'https://' + GLSettings.memory_copy.hostname
 
-        self.set_header('Content-Type', 'text/xml')
+        self.request.setHeader('Content-Type', 'text/xml')
 
         self.write("<?xml version='1.0' encoding='UTF-8' ?>\n" +
                    "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n")

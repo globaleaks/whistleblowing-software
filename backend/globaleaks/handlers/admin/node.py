@@ -114,8 +114,9 @@ def update_node(*args):
 
 
 class NodeInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    check_tsc = 'admin'
+    check_role = 'admina'
+
     @inlineCallbacks
     def get(self):
         """
@@ -127,8 +128,6 @@ class NodeInstance(BaseHandler):
         node_description = yield admin_serialize_node(self.request.language)
         self.write(node_description)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self):
         """
@@ -138,11 +137,10 @@ class NodeInstance(BaseHandler):
         Response: AdminNodeDesc
         Errors: InvalidInputFormat
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminNodeDesc)
 
         node_description = yield update_node(request, self.request.language)
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
         self.write(node_description)

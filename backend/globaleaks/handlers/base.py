@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
-"""
-Implementation of BaseHandler, the Cyclone class RequestHandler postponeed with
-our needs.
-"""
 import base64
 import collections
+import functools
 import json
 import mimetypes
 import os
@@ -12,13 +9,16 @@ import re
 import shutil
 import sys
 import time
+import types
 import urlparse
 
-from cyclone import web, template
-from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, RedirectHandler
-from twisted.internet import fdesc
+from datetime import datetime
+
+from twisted.internet import fdesc, defer
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
+from twisted.web.resource import Resource
+from twisted.web.static import File
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
@@ -52,7 +52,7 @@ mimetypes.add_type('application/woff2', '.woff2')
 
 
 def should_redirect_tor(request, tor_addr, exit_relay_set):
-    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    forwarded_ip = request.headers.get('x-forwarded-for', None)
     if forwarded_ip is None:
         forwarded_ip = request.remote_ip
 
@@ -62,7 +62,7 @@ def should_redirect_tor(request, tor_addr, exit_relay_set):
 
 
 def should_redirect_https(request, https_enabled, local_hosts):
-    forwarded_ip = request.headers.get('X-Forwarded-For', None)
+    forwarded_ip = request.headers.get('x-forwarded-for', None)
     if request.remote_ip in local_hosts and forwarded_ip is not None:
         # This connection has been properly proxied through some transport locally
         return False
@@ -126,32 +126,39 @@ class StaticFileProducer(object):
     """
     bufferSize = GLSettings.file_chunk_size
 
-    def __init__(self, handler, fileObject):
+    def __init__(self, handler, filePath):
+        self.finish = defer.Deferred()
         self.handler = handler
-        self.fileObject = fileObject
+        self.fileSize = os.stat(filePath).st_size
+        self.fileObject = open(filePath, "rb")
+        self.bytesWritten = 0
 
     def start(self):
-        self.handler.request.connection.transport.registerProducer(self, False)
+        self.handler.request.registerProducer(self, False)
+        return self.finish
 
     def resumeProducing(self):
         try:
             if not self.handler:
                 return
+
             data = self.fileObject.read(self.bufferSize)
             if data:
-                self.handler.write(data)
-                self.handler.flush()
-            else:
-                self.handler.request.connection.transport.unregisterProducer()
-                self.handler.finish()
+                self.bytesWritten += len(data)
+                self.handler.request.write(data)
+
+            if self.bytesWritten == self.fileSize:
                 self.stopProducing()
         except:
-            self.handler.finish()
+            self.stopProducing()
             raise
 
     def stopProducing(self):
         self.fileObject.close()
+        self.handler.request.unregisterProducer()
+        self.handler.request.finish()
         self.handler = None
+        self.finish.callback(None)
 
 
 class GLSession(object):
@@ -172,29 +179,37 @@ class GLSession(object):
         return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
 
 
-class BaseHandler(RequestHandler):
+class BaseHandler(object):
     serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
-    filehandler = False
 
-    def __init__(self, application, request, **kwargs):
-        RequestHandler.__init__(self, application, request, **kwargs)
+    def __init__(self, request):
+        self.request = request
+        self.request.start_time = datetime.now()
+        self.request.remote_ip = self.request.getClientIP()
 
         self.name = type(self).__name__
-
-        self.handler_time_analysis_begin()
-        self.handler_request_logging_begin()
 
         self.req_id = GLSettings.requests_counter
         GLSettings.requests_counter += 1
 
         self.request.request_type = None
-        if 'import' in self.request.arguments:
-            self.request.request_type = 'import'
-        elif 'export' in self.request.arguments:
-            self.request.request_type = 'export'
 
-        language = self.request.headers.get('GL-Language')
+        self.request.headers = self.request.getAllHeaders()
+
+        log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
+        if should_redirect_https(self.request,
+                                 GLSettings.memory_copy.private.https_enabled,
+                                 GLSettings.local_hosts):
+            log.debug('Decided to redirect')
+            self.redirect_https()
+
+        if should_redirect_tor(self.request,
+                               GLSettings.onionservice,
+                               GLSettings.state.tor_exit_set):
+            self.redirect_tor(GLSettings.onionservice)
+
+        language = self.request.headers.get('gl-language')
 
         if language is None:
             for l in self.parse_accept_language_header():
@@ -206,11 +221,46 @@ class BaseHandler(RequestHandler):
             language = GLSettings.memory_copy.default_language
 
         self.request.language = language
-        self.set_header("Content-Language", language)
+        self.request.setHeader(b'content-language', language)
+
+        self.set_default_headers()
+
+    def set_default_headers(self):
+        # to avoid version attacks
+        self.request.setHeader("Server", "Globaleaks")
+
+        # to reduce possibility for XSS attacks.
+        self.request.setHeader("X-Content-Type-Options", "nosniff")
+        self.request.setHeader("X-XSS-Protection", "1; mode=block")
+
+        # to disable caching
+        self.request.setHeader("Cache-control", "no-cache, no-store, must-revalidate")
+        self.request.setHeader("Pragma", "no-cache")
+        self.request.setHeader("Expires", "-1")
+
+        # to avoid information leakage via referrer
+        self.request.setHeader("Referrer-Policy", "no-referrer")
+
+        # to avoid Robots spidering, indexing, caching
+        if not GLSettings.memory_copy.allow_indexing:
+            self.request.setHeader("X-Robots-Tag", "noindex")
+
+        # to mitigate clickjaking attacks on iframes allowing only same origin
+        # same origin is needed in order to include svg and other html <object>
+        if not GLSettings.memory_copy.allow_iframes_inclusion:
+            self.request.setHeader("X-Frame-Options", "sameorigin")
+
+
+    def write(self, chunk):
+        if (isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType)):
+            chunk = json.dumps(chunk)
+            self.request.setHeader(b'content-type', b'application/json')
+
+        self.request.write(bytes(chunk))
 
     def parse_accept_language_header(self):
-        if "Accept-Language" in self.request.headers:
-            languages = self.request.headers["Accept-Language"].split(",")
+        if "accept-language" in self.request.headers:
+            languages = self.request.headers["accept-language"].split(",")
             locales = []
             for language in languages:
                 parts = language.strip().split(";")
@@ -228,70 +278,51 @@ class BaseHandler(RequestHandler):
 
         return GLSettings.memory_copy.default_language
 
-    @staticmethod
-    def authenticated(role):
+    def authenticated(self, f, role):
         """
         Decorator for authenticated sessions.
         If the user is not authenticated, return a http 412 error.
         """
-        def wrapper(f):
-            def call_handler(cls, *args, **kwargs):
-                """
-                If not yet auth, is redirected
-                If is logged with the right account, is accepted
-                If is logged with the wrong account, is rejected with a special message
-                """
-                if GLSettings.memory_copy.basic_auth:
-                    cls.basic_auth()
+        def wrapper(*args, **kwargs):
+            """
+            If not yet auth, is redirected
+            If is logged with the right account, is accepted
+            If is logged with the wrong account, is rejected with a special message
+            """
+            if GLSettings.memory_copy.basic_auth:
+                self.basic_auth()
 
-                if not cls.current_user:
+            if role == 'none':
+                return f(*args)
+            else:
+                if not self.current_user:
                     raise errors.NotAuthenticated
 
-                if role == '*' or role == cls.current_user.user_role:
-                    log.debug("Authentication OK (%s)" % cls.current_user.user_role)
-                    return f(cls, *args, **kwargs)
+                if role == '*' or role == self.current_user.user_role:
+                    log.debug("Authentication OK (%s)" % self.current_user.user_role)
+                    return f(*args, **kwargs)
 
                 raise errors.InvalidAuthentication
 
-            return call_handler
-
         return wrapper
 
-    @staticmethod
-    def unauthenticated(f):
-        """
-        Decorator for unauthenticated requests.
-        If the user is logged in an authenticated sessions it does refresh the session.
-        """
-        def wrapper(cls, *args, **kwargs):
-            if GLSettings.memory_copy.basic_auth:
-                cls.basic_auth()
-
-            return f(cls, *args, **kwargs)
-
-        return wrapper
-
-    @staticmethod
-    def transport_security_check(role):
+    def transport_security_check(self, f, role):
         """
         Decorator for enforcing the required transport security: Tor/HTTPS
         """
-        def wrapper(method_handler):
-            def call_handler(cls, *args, **kwargs):
-                using_tor2web = cls.check_tor2web()
+        def wrapper(*args, **kwargs):
+            using_tor2web = self.check_tor2web()
 
-                if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[role]:
-                    log.err("Denied request on Tor2web for role %s and resource '%s'" %
-                            (role, cls.request.uri))
-                    raise errors.TorNetworkRequired
+            if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[role]:
+                log.err("Denied request on Tor2web for role %s and resource '%s'" %
+                        (role, self.request.uri))
+                raise errors.TorNetworkRequired
 
-                if using_tor2web:
-                    log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
-                              (role, cls.request.uri))
+            if using_tor2web:
+                log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
+                          (role, self.request.uri))
 
-                return method_handler(cls, *args, **kwargs)
-
-            return call_handler
+            return f(*args, **kwargs)
 
         return wrapper
 
@@ -323,9 +354,9 @@ class BaseHandler(RequestHandler):
 
     def basic_auth(self):
         msg = None
-        if "Authorization" in self.request.headers:
+        if "authorization" in self.request.headers:
             try:
-                auth_type, data = self.request.headers["Authorization"].split()
+                auth_type, data = self.request.headers["authorization"].split()
                 usr, pwd = base64.b64decode(data).split(":", 1)
                 if auth_type != "Basic" or \
                     usr != GLSettings.memory_copy.basic_auth_username or \
@@ -337,7 +368,8 @@ class BaseHandler(RequestHandler):
             msg = "Authentication required"
 
         if msg is not None:
-            raise web.HTTPAuthenticationRequired(log_message=msg, auth_type="Basic", realm="")
+            self.request.setHeader("WWW-Authenticate", "Basic realm=\"globaleaks\"")
+            raise errors.HTTPAuthenticationRequired()
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -487,25 +519,13 @@ class BaseHandler(RequestHandler):
 
         raise errors.InvalidInputFormat("Unexpected condition!?")
 
-    def on_connection_close(self, *args, **kwargs):
-        pass
-
-    def prepare(self):
-        log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
-        if should_redirect_https(self.request,
-                                 GLSettings.memory_copy.private.https_enabled,
-                                 GLSettings.local_hosts):
-            log.debug('Decided to redirect')
-            self.redirect_https()
-
-        # TODO handle the case where we are not interested in applying the exit list
-        if should_redirect_tor(self.request,
-                               GLSettings.onionservice,
-                               GLSettings.state.tor_exit_set):
-            self.redirect_tor(GLSettings.onionservice)
+    def redirect(self, url):
+        self.request.setResponseCode(301)
+        self.request.setHeader(b"location", url)
+        self.request.finish()
 
     def redirect_https(self):
-        in_url = self.request.full_url()
+        in_url = self.request.uri
 
         pr = urlparse.urlsplit(in_url)
 
@@ -514,10 +534,10 @@ class BaseHandler(RequestHandler):
         if out_url == in_url:
             raise errors.InternalServerError('Should redirect to https: %s' % out_url)
 
-        self.redirect(out_url, status=301) # permanently redirect
+        self.redirect(out_url)
 
     def redirect_tor(self, onion_addr):
-        in_url = self.request.full_url()
+        in_url = self.request.uri
 
         _, _, path, query, frag = urlparse.urlsplit(in_url)
 
@@ -526,73 +546,27 @@ class BaseHandler(RequestHandler):
         if out_url == in_url:
             raise errors.InternalServerError('Should redirect to tor: %s' % out_url)
 
-        self.redirect(out_url, status=301) # permanently redirect
-
-    def on_finish(self):
-        """
-        Here is implemented:
-          - The performance analysts
-          - the Request/Response logging
-        """
-        # file uploads works on chunk basis so that we count 1 the file upload
-        # as a whole in function get_file_upload()
-        if not self.filehandler:
-            track_handler(self)
-
-        self.handler_time_analysis_end()
-        self.handler_request_logging_end()
-
-    def do_verbose_log(self, content):
-        """
-        Record in the verbose log the content as defined by Cyclone wrappers.
-
-        This option is only available in devel mode and intentionally does not filter
-        any input/output; It should be used only for debug purposes.
-        """
-
-        try:
-            with open(GLSettings.httplogfile, 'a+') as fd:
-                fdesc.writeToFD(fd.fileno(), content + "\n")
-        except Exception as excep:
-            log.err("Unable to open %s: %s" % (GLSettings.httplogfile, excep))
-
-    def write_error(self, status_code, **kw):
-        exception = kw.get('exception')
-        if exception and hasattr(exception, 'error_code'):
-            error_dict = {
-                'error_message': exception.reason,
-                'error_code': exception.error_code
-            }
-
-            if hasattr(exception, 'arguments'):
-                error_dict.update({'arguments': exception.arguments})
-            else:
-                error_dict.update({'arguments': []})
-
-            self.set_status(status_code)
-            self.write(error_dict)
-        else:
-            RequestHandler.write_error(self, status_code, **kw)
+        self.redirect(out_url)
 
     def write_file(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
-          raise HTTPError(404)
+          raise errors.ResourceNotFound()
 
         mime_type, encoding = mimetypes.guess_type(filepath)
         if mime_type:
             self.set_header("Content-Type", mime_type)
 
-        StaticFileProducer(self, open(filepath, "rb")).start()
+        return StaticFileProducer(self, filepath).start()
 
     def force_file_download(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
-          raise HTTPError(404)
+          raise errors.ResourceNotFound()
 
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
+        self.request.setHeader('X-Download-Options', 'noopen')
+        self.request.setHeader('Content-Type', 'application/octet-stream')
+        self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
 
-        StaticFileProducer(self, open(filepath, "rb")).start()
+        return StaticFileProducer(self, filepath).start()
 
     @inlineCallbacks
     def uniform_answers_delay(self):
@@ -603,8 +577,8 @@ class BaseHandler(RequestHandler):
         defined in GLSettings.side_channels_guard in order to counteract some
         side channel attacks.
         """
-        request_time = self.request.request_time()
-        needed_delay = GLSettings.side_channels_guard - request_time
+        #request_time = self.request.request_time()
+        needed_delay = 0#GLSettings.side_channels_guard - request_time
 
         if needed_delay > 0:
             yield deferred_sleep(needed_delay)
@@ -612,7 +586,7 @@ class BaseHandler(RequestHandler):
     @property
     def current_user(self):
         # Check for header based authentication
-        session_id = self.request.headers.get('X-Session')
+        session_id = self.request.headers.get('x-session')
 
         if session_id is None:
             return None
@@ -620,16 +594,13 @@ class BaseHandler(RequestHandler):
         return GLSessions.get(session_id)
 
     def check_tor2web(self):
-        return False if self.request.headers.get('X-Tor2Web', None) is None else True
+        return False if self.request.headers.get('x-tor2web', None) is None else True
 
     def get_file_upload(self):
         try:
-            if len(self.request.files) != 1:
-                raise errors.InvalidInputFormat("cannot accept more than a file upload at once")
-
-            chunk_size = len(self.request.files['file'][0]['body'])
-            total_file_size = int(self.request.arguments['flowTotalSize'][0]) if 'flowTotalSize' in self.request.arguments else chunk_size
-            flow_identifier = self.request.arguments['flowIdentifier'][0] if 'flowIdentifier' in self.request.arguments else generateRandomKey(10)
+            chunk_size = len(self.request.args['file'][0])
+            total_file_size = int(self.request.args['flowTotalSize'][0]) if 'flowTotalSize' in self.request.args else chunk_size
+            flow_identifier = self.request.args['flowIdentifier'][0] if 'flowIdentifier' in self.request.args else generateRandomKey(10)
 
             if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
                 (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
@@ -642,23 +613,22 @@ class BaseHandler(RequestHandler):
             else:
                 f = GLUploads[flow_identifier]
 
-            f.write(self.request.files['file'][0]['body'])
+            f.write(self.request.args['file'][0])
 
-            if 'flowChunkNumber' in self.request.arguments and 'flowTotalChunks' in self.request.arguments:
-                if self.request.arguments['flowChunkNumber'][0] != self.request.arguments['flowTotalChunks'][0]:
+            if 'flowChunkNumber' in self.request.args and 'flowTotalChunks' in self.request.args:
+                if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
                     return None
 
+            mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
+
             uploaded_file = {
-                'name': self.request.files['file'][0]['filename'],
-                'type': self.request.files['file'][0]['content_type'],
+                'name': self.request.args['flowFilename'][0],
+                'type': mime_type,
                 'size': total_file_size,
                 'path': f.filepath,
                 'body': f,
-                'description': self.request.arguments.get('description', [''])[0]
+                'description': self.request.args.get('description', [''])[0]
             }
-
-            self.request._start_time = f.creation_date
-            track_handler(self)
 
             return uploaded_file
 
@@ -669,81 +639,35 @@ class BaseHandler(RequestHandler):
             log.err("Error while handling file upload %s" % exc)
             return None
 
-    def _handle_request_exception(self, e):
-        ret = RequestHandler._handle_request_exception(self, e)
+    def execution_check(self):
+        self.request.execution_time = datetime.now() - self.request.start_time
 
-        if isinstance(e, Failure):
-            exc_type, exc_value, exc_tb = [e.type, e.value, e.getTracebackObject()]
-            e = e.value
-        else:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-
-        if not isinstance(e, (template.TemplateError,
-                              HTTPError, HTTPAuthenticationRequired)):
-            mail_exception_handler(exc_type, exc_value, exc_tb)
-
-        return ret
-
-    def handler_time_analysis_begin(self):
-        self.start_time = time.time()
-
-    def handler_time_analysis_end(self):
-        current_run_time = time.time() - self.start_time
-
-        if current_run_time > self.handler_exec_time_threshold:
+        if self.request.execution_time.seconds > self.handler_exec_time_threshold:
             error = "Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds" % \
                     (self.name, self.handler_exec_time_threshold, current_run_time)
             log.err(error)
 
             send_exception_email(error)
 
-    def handler_request_logging_begin(self):
-        if GLSettings.devel_mode and GLSettings.log_requests_responses:
-            try:
-                content = (">" * 15)
-                content += (" Request %d " % GLSettings.requests_counter)
-                content += (">" * 15) + "\n\n"
-
-                content += self.request.method + " " + self.request.full_url() + "\n\n"
-
-                content += "request-headers:\n"
-                for k, v in self.request.headers.get_all():
-                    content += "%s: %s\n" % (k, v)
-
-                if type(self.request.body) == dict and 'body' in self.request.body:
-                    # this is needed due to cyclone hack for file uploads
-                    body = self.request.body['body'].read()
-                else:
-                    body = self.request.body
-
-                if len(body):
-                    content += "\nrequest-body:\n" + body + "\n"
-
-                self.do_verbose_log(content)
-
-            except Exception as excep:
-                log.err("HTTP Request logging fail: %s" % excep.message)
-                return
-
-    def handler_request_logging_end(self):
-        if GLSettings.devel_mode and GLSettings.log_requests_responses:
-            try:
-                content = ("<" * 15)
-                content += (" Response %d " % self.req_id)
-                content += ("<" * 15) + "\n\n"
-                content += "\nbody: " + str(self._write_buffer) + "\n"
-
-                self.do_verbose_log(content)
-            except Exception as excep:
-                log.err("HTTP Requests/Responses logging fail (end): %s" % excep.message)
+        track_handler(self)
 
 
 class BaseStaticFileHandler(BaseHandler):
-    def initialize(self, path):
+    def __init__(self, request, path):
+        BaseHandler.__init__(self, request)
+
         self.root = "%s%s" % (os.path.abspath(path), "/")
 
-    @BaseHandler.unauthenticated
-    @web.asynchronous
+    def write_file(self, filepath):
+        if not os.path.exists(filepath) or not os.path.isfile(filepath):
+          raise errors.ResourceNotFound()
+
+        mime_type, encoding = mimetypes.guess_type(filepath)
+        if mime_type:
+            self.request.setHeader(b'content-type', mime_type)
+
+        return StaticFileProducer(self, filepath).start()
+
     def get(self, path):
         if path == '':
             path = 'index.html'
@@ -752,8 +676,4 @@ class BaseStaticFileHandler(BaseHandler):
 
         directory_traversal_check(self.root, abspath)
 
-        self.write_file(abspath)
-
-
-class BaseRedirectHandler(BaseHandler, RedirectHandler):
-    pass
+        return self.write_file(abspath)

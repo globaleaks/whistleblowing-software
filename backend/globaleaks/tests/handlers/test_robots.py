@@ -3,6 +3,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import robots
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
@@ -44,9 +45,7 @@ class TestSitemapHandlerHandler(helpers.TestHandler):
 
         GLSettings.memory_copy.allow_indexing = False
 
-        yield handler.get()
-
-        self.assertEqual(handler.get_status(), 404)
+        yield self.assertRaises(errors.ResourceNotFound, handler.get)
 
     @inlineCallbacks
     def test_get_with_indexing_enabled(self):
@@ -56,4 +55,4 @@ class TestSitemapHandlerHandler(helpers.TestHandler):
 
         yield handler.get()
 
-        self.assertEqual(handler.get_status(), 200)
+        self.assertEqual(handler.request.code, 200)

@@ -109,8 +109,6 @@ def update_receiver(store, receiver_id, request, language):
 
 
 class ReceiversCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -126,8 +124,6 @@ class ReceiversCollection(BaseHandler):
 
 
 class ReceiverInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, receiver_id):
         """
@@ -141,8 +137,6 @@ class ReceiverInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, receiver_id):
         """
@@ -153,10 +147,9 @@ class ReceiverInstance(BaseHandler):
         Response: AdminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound, ContextIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.AdminReceiverDesc)
+        request = self.validate_message(self.request.content.read(), requests.AdminReceiverDesc)
 
         response = yield update_receiver(receiver_id, request, self.request.language)
         GLApiCache.invalidate()
 
-        self.set_status(201)
         self.write(response)

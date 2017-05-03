@@ -138,7 +138,6 @@ class UserInstance(BaseHandler):
         - notification settings
         - pgp key
     """
-    @BaseHandler.authenticated('*')
     @inlineCallbacks
     def get(self):
         """
@@ -151,8 +150,6 @@ class UserInstance(BaseHandler):
 
         self.write(user_status)
 
-
-    @BaseHandler.authenticated('*')
     @inlineCallbacks
     def put(self):
         """
@@ -161,7 +158,7 @@ class UserInstance(BaseHandler):
         Response: UserUserDesc
         Errors: UserIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        request = self.validate_message(self.request.body, requests.UserUserDesc)
+        request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
         user_status = yield update_user_settings(self.current_user.user_id,
                                                  request, self.request.language)

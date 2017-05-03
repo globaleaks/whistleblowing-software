@@ -9,7 +9,6 @@
 import os
 import string
 
-from cyclone.web import asynchronous
 from storm.expr import In
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -406,8 +405,6 @@ class RTipInstance(BaseHandler):
     """
     This interface exposes the Receiver's Tip
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -426,14 +423,12 @@ class RTipInstance(BaseHandler):
 
         self.write(answer)
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self, tip_id):
         """
         Some special operations that manipulate a Tip are handled here
         """
-        request = self.validate_message(self.request.body, requests.TipOpsDesc)
+        request = self.validate_message(self.request.content.read(), requests.TipOpsDesc)
 
         if request['operation'] == 'postpone':
             yield postpone_expiration_date(self.current_user.user_id, tip_id)
@@ -450,11 +445,6 @@ class RTipInstance(BaseHandler):
                 # Elements of internal_var_lst are not stored in the receiver's tip table
                 yield set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
 
-        # TODO A 202 is returned regardless of whether or not an update was performed.
-        self.set_status(202)  # Updated
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def delete(self, tip_id):
         """
@@ -470,8 +460,6 @@ class RTipCommentCollection(BaseHandler):
     """
     Interface use to write rtip comments
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -479,11 +467,10 @@ class RTipCommentCollection(BaseHandler):
         Response: CommentDesc
         Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
-        request = self.validate_message(self.request.body, requests.CommentDesc)
+        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
         answer = yield create_comment(self.current_user.user_id, tip_id, request)
 
-        self.set_status(201)  # Created
         self.write(answer)
 
 
@@ -491,8 +478,6 @@ class ReceiverMsgCollection(BaseHandler):
     """
     Interface use to write rtip messages
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -500,11 +485,10 @@ class ReceiverMsgCollection(BaseHandler):
         Response: CommentDesc
         Errors: InvalidAuthentication, InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
-        request = self.validate_message(self.request.body, requests.CommentDesc)
+        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
         message = yield create_message(self.current_user.user_id, tip_id, request)
 
-        self.set_status(201)  # Created
         self.write(message)
 
 
@@ -512,9 +496,6 @@ class WhistleblowerFileHandler(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
     """
-    handler_exec_time_threshold = 3600
-    filehandler = True
-
     @transact
     def can_perform_action(self, store, tip_id):
         rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
@@ -527,14 +508,12 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip_dict = serialize_rtip(store, rtip, self.request.language)
         wbfile_names = [f['name'] for f in rtip_dict['wbfiles']]
         # The next line will throw a KeyError if the file is not set
-        new_name = self.request.files['file'][0]['filename']
+        new_name = self.request.args['file'][0]['filename']
         if new_name in wbfile_names:
             return errors.FailedSanityCheck()
 
         return None
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -572,8 +551,6 @@ class WhistleblowerFileHandler(BaseHandler):
         except Exception as excep:
             raise errors.InternalServerError("Unable to accept new files: %s" % excep)
 
-        self.set_status(201)  # Created
-
 
 class WhistleblowerFileInstanceHandler(BaseHandler):
     """
@@ -599,7 +576,6 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
         return serializers.serialize_wbfile(wbfile)
 
     @inlineCallbacks
-    @asynchronous
     def _get(self, wbfile_id):
         wbfile = yield self.download_wbfile(self.current_user.user_id, wbfile_id)
 
@@ -619,13 +595,9 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
         r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
         return self.current_user.user_id in r_ids
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     def get(self, file_id):
         self._get(file_id)
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def delete(self, file_id):
         """
@@ -655,10 +627,7 @@ class ReceiverFileDownload(BaseHandler):
 
         return serializers.serialize_rfile(rfile)
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
-    @asynchronous
     def get(self, rfile_id):
         rfile = yield self.download_rfile(self.current_user.user_id, rfile_id)
 
@@ -673,8 +642,6 @@ class IdentityAccessRequestsCollection(BaseHandler):
     """
     This interface allow to perform identity access requests.
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -682,12 +649,11 @@ class IdentityAccessRequestsCollection(BaseHandler):
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        request = self.validate_message(self.request.body, requests.ReceiverIdentityAccessRequestDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
 
         identityaccessrequest = yield create_identityaccessrequest(self.current_user.user_id,
                                                                    tip_id,
                                                                    request,
                                                                    self.request.language)
 
-        self.set_status(201)
         self.write(identityaccessrequest)

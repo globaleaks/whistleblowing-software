@@ -40,12 +40,12 @@ import json
 import os
 import shutil
 
-from cyclone import httpserver
-from cyclone.web import Application
+from twisted.web.test.requesthelper import DummyChannel
 from twisted.internet import threads, defer, task
+from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
-from twisted.test import proto_helpers
+from twisted.web import server
 from storm.twisted.testing import FakeThreadPool
 
 
@@ -691,8 +691,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 HTTP method, e.g. "GET" or "POST"
 
             headers:
-                (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP
-                headers to pass on the request
+                Dict of headers to pass on the request
 
             remote_ip:
                 If a particular remote_ip should be set.
@@ -711,25 +710,25 @@ class TestHandler(TestGLWithPopulatedDB):
         if handler_cls is None:
             handler_cls = self._handler
 
-        if attached_file is None:
-            fake_files = {}
-        else:
-            fake_files = {'file': [attached_file]} # Yes this is ugly, but it's the format
+        request = server.Request(DummyChannel(), False)
+        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
 
-        application = Application([])
+        request.args = {}
+        if attached_file is not None:
+            request.args = {'file': [attached_file]}
 
-        tr = proto_helpers.StringTransport()
-        connection = httpserver.HTTPConnection()
-        connection.factory = application
-        connection.makeConnection(tr)
+        if headers is not None:
+            for k, v in headers.iteritems():
+                request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
 
-        request = httpserver.HTTPRequest(uri='mock',
-                                         method=method,
-                                         headers=headers,
-                                         body=body,
-                                         remote_ip=remote_ip,
-                                         connection=connection,
-                                         files=fake_files)
+        class fakeBody(object):
+            def read(self):
+                return body
+
+            def close(self):
+                pass
+
+        request.content = fakeBody()
 
         def mock_write(cls, response=None):
             if response:
@@ -742,7 +741,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         handler_cls.finish = mock_finish
 
-        handler = handler_cls(application, request, **kwargs)
+        handler = handler_cls(request, **kwargs)
 
         if user_id is None and role is not None:
             if role == 'admin':
@@ -754,7 +753,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if role is not None:
             session = GLSession(user_id, role, 'enabled')
-            handler.request.headers['X-Session'] = session.id
+            handler.request.headers['x-session'] = session.id
 
         return handler
 

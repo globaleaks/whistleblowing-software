@@ -22,7 +22,6 @@ from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
-# https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
     ret_dict = user_serialize_user(receiver.user, language)
 
@@ -129,8 +128,6 @@ class ReceiverInstance(BaseHandler):
         - pgp key
     """
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self):
         """
@@ -144,8 +141,6 @@ class ReceiverInstance(BaseHandler):
         self.write(receiver_status)
 
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self):
         """
@@ -154,7 +149,7 @@ class ReceiverInstance(BaseHandler):
         Response: ReceiverReceiverDesc
         Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        request = self.validate_message(self.request.body, requests.ReceiverReceiverDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user.user_id,
                                                          request,
@@ -170,8 +165,6 @@ class TipsCollection(BaseHandler):
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def get(self):
         """
@@ -189,8 +182,6 @@ class TipsOperations(BaseHandler):
     This interface receive some operation (postpone or delete) and a list of
     tips to apply.
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
     def put(self):
         """
@@ -198,7 +189,7 @@ class TipsOperations(BaseHandler):
         Res
         Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
         """
-        request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
 
         if request['operation'] not in ['postpone', 'delete']:
             raise errors.ForbiddenOperation

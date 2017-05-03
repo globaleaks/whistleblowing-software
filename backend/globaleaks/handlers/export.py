@@ -6,7 +6,6 @@
 # Tip export utils
 import copy
 
-from cyclone.web import asynchronous
 from storm.expr import In
 from twisted.internet.defer import inlineCallbacks
 
@@ -83,7 +82,7 @@ class ZipStreamProducer(object):
         self.zipstreamObject = zipstreamObject
 
     def start(self):
-        self.handler.request.connection.transport.registerProducer(self, False)
+        self.handler.request.registerProducer(self, False)
 
     def resumeProducing(self):
         try:
@@ -95,14 +94,14 @@ class ZipStreamProducer(object):
                 self.handler.write(data)
                 self.handler.flush()
             else:
-                self.handler.request.connection.transport.unregisterProducer()
-                self.handler.finish()
                 self.stopProducing()
         except:
-            self.handler.finish()
+            self.stopProducting()
             raise
 
     def stopProducing(self):
+        self.handler.request.unregisterProducer()
+        self.handler.finish()
         self.handler = None
 
     def zip_chunk(self):
@@ -122,16 +121,13 @@ class ZipStreamProducer(object):
 class ExportHandler(BaseHandler):
     handler_exec_time_threshold = 3600
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
-    @asynchronous
     def get(self, rtip_id):
         tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
 
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
+        self.request.setHeader('X-Download-Options', 'noopen')
+        self.request.setHeader('Content-Type', 'application/octet-stream')
+        self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
 
         self.zip_stream = iter(ZipStream(tip_export['files']))
 

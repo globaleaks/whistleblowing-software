@@ -167,8 +167,6 @@ def delete_questionnaire(store, questionnaire_id):
 
 
 class QuestionnairesCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -183,8 +181,6 @@ class QuestionnairesCollection(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -196,19 +192,16 @@ class QuestionnairesCollection(BaseHandler):
         """
         validator = requests.AdminQuestionnaireDesc if self.request.language is not None else requests.AdminQuestionnaireDescRaw
 
-        request = self.validate_message(self.request.body, validator)
+        request = self.validate_message(self.request.content.read(), validator)
 
         response = yield create_questionnaire(request, self.request.language)
 
         GLApiCache.invalidate()
 
-        self.set_status(201)
         self.write(response)
 
 
 class QuestionnaireInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, questionnaire_id):
         """
@@ -222,8 +215,6 @@ class QuestionnaireInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, questionnaire_id):
         """
@@ -236,18 +227,15 @@ class QuestionnaireInstance(BaseHandler):
 
         Updates the specified questionnaire.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
         response = yield update_questionnaire(questionnaire_id, request, self.request.language)
 
         GLApiCache.invalidate()
 
-        self.set_status(202)
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, questionnaire_id):
         """

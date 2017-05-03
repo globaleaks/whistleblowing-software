@@ -118,8 +118,6 @@ class StepCollection(BaseHandler):
 
     /admin/steps
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -129,14 +127,13 @@ class StepCollection(BaseHandler):
         :rtype: StepDesc
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
         response = yield create_step(request, self.request.language)
 
         GLApiCache.invalidate()
 
-        self.set_status(201)
         self.write(response)
 
 
@@ -146,8 +143,6 @@ class StepInstance(BaseHandler):
 
     /admin/step
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, step_id):
         """
@@ -163,9 +158,6 @@ class StepInstance(BaseHandler):
 
         self.write(response)
 
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, step_id):
         """
@@ -177,19 +169,15 @@ class StepInstance(BaseHandler):
         :raises StepIdNotFound: if there is no step with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
         response = yield update_step(step_id, request, self.request.language)
 
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
         self.write(response)
 
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, step_id):
         """

@@ -317,8 +317,6 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
 
 class FieldTemplatesCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -332,8 +330,6 @@ class FieldTemplatesCollection(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -341,17 +337,14 @@ class FieldTemplatesCollection(BaseHandler):
         """
         validator = requests.AdminFieldDesc if self.request.language is not None else requests.AdminFieldDescRaw
 
-        request = self.validate_message(self.request.body, validator)
+        request = self.validate_message(self.request.content.read(), validator)
 
         response = yield create_field(request, self.request.language, self.request.request_type)
 
-        self.set_status(201)
         self.write(response)
 
 
 class FieldTemplateInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -368,8 +361,6 @@ class FieldTemplateInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, field_id):
         """
@@ -380,7 +371,7 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         response = yield update_field(field_id,
@@ -390,11 +381,8 @@ class FieldTemplateInstance(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, field_id):
         """
@@ -414,8 +402,6 @@ class FieldCollection(BaseHandler):
 
     /admin/fields
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -425,7 +411,7 @@ class FieldCollection(BaseHandler):
         :rtype: AdminFieldDesc
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         response = yield create_field(request,
@@ -434,7 +420,6 @@ class FieldCollection(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(201)
         self.write(response)
 
 
@@ -444,8 +429,6 @@ class FieldInstance(BaseHandler):
 
     /admin/fields
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -465,8 +448,6 @@ class FieldInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, field_id):
         """
@@ -478,7 +459,7 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
         response = yield update_field(field_id,
@@ -488,11 +469,8 @@ class FieldInstance(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, field_id):
         """

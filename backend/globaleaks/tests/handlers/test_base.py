@@ -15,12 +15,10 @@ FUTURE = 100
 class BaseHandlerMock(BaseHandler):
     @BaseHandler.authenticated('admin')
     def get_authenticated(self):
-        self.set_status(200)
         self.finish()
 
     @BaseHandler.unauthenticated
     def get_unauthenticated(self):
-        self.set_status(200)
         self.finish()
 
 
@@ -32,7 +30,7 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         session = GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
         self.test_reactor.pump([1] * FUTURE)
-        handler = self.request({}, headers={'X-Session': session.id})
+        handler = self.request({}, headers={'x-session': session.id})
         yield handler.get_unauthenticated()
         date2 = GLSessions.get(session.id).getTime()
         self.assertEqual(date1 + FUTURE, date2)
@@ -42,16 +40,10 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         session = GLSession('admin', 'admin', 'enabled')
         date1 = session.getTime()
         self.test_reactor.pump([1] * FUTURE)
-        handler = self.request({}, headers={'X-Session': session.id})
+        handler = self.request({}, headers={'x-session': session.id})
         yield handler.get_authenticated()
         date2 = GLSessions.get(session.id).getTime()
         self.assertEqual(date1 + FUTURE, date2)
-
-    @inlineCallbacks
-    def test_base_handler_on_finish(self):
-        handler = self.request({})
-        yield handler.get_unauthenticated()
-        handler.on_finish()
 
     @inlineCallbacks
     def test_basic_auth_on_and_valid_authentication(self):
@@ -174,7 +166,6 @@ class TestBaseStaticFileHandler(helpers.TestHandler):
     def test_get_existent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
         yield handler.get('')
-        self.assertEqual(handler.get_status(), 200)
 
     def test_get_unexistent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})

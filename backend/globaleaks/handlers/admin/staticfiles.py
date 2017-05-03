@@ -4,8 +4,7 @@
 #  *****
 #
 # API handling static files upload/download/delete
-
-from cyclone.web import os
+import os
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
@@ -38,10 +37,7 @@ class StaticFileInstance(BaseHandler):
     Handler for files stored on the filesystem
     """
     handler_exec_time_threshold = 3600
-    filehandler = True
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self, filename):
         """
@@ -49,7 +45,6 @@ class StaticFileInstance(BaseHandler):
         """
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
-            self.set_status(201)
             return
 
         if filename == 'upload':
@@ -63,10 +58,6 @@ class StaticFileInstance(BaseHandler):
         finally:
             uploaded_file['body'].close()
 
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     def delete(self, filename):
         """
         Parameter: filename
@@ -81,8 +72,6 @@ class StaticFileInstance(BaseHandler):
 
 
 class StaticFileList(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     def get(self):
         """
         Return the list of static files, with few filesystem info

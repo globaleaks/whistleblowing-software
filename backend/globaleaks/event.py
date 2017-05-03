@@ -100,12 +100,11 @@ events_monitored = [
 
 
 def track_handler(handler):
-    request_time = handler.request.request_time()
     for event in events_monitored:
         if event['handler_check'](handler.request.uri) and \
-                        event['method'] == handler.request.method and \
-                event['status_check'](handler._status_code):
-            EventTrack(event, request_time)
+           event['method'] == handler.request.method and \
+           event['status_check'](handler.request.code):
+            EventTrack(event, handler.request.execution_time)
             break
 
 
@@ -125,7 +124,7 @@ class EventTrack(object):
             'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
             'event': self.event_type,
             'id': self.event_id,
-            'duration': round(self.request_time, 1)
+            'duration': self.request_time
         }
 
     def __init__(self, event_obj, request_time, debug=False):
@@ -133,7 +132,7 @@ class EventTrack(object):
         self.creation_date = datetime_now()
         self.event_id = EventTrackQueue.event_number()
         self.event_type = event_obj['name']
-        self.request_time = request_time
+        self.request_time = round(request_time.total_seconds(), 1)
 
         if self.debug:
             log.debug("Creation of Event %s" % self.serialize_event())
@@ -148,7 +147,7 @@ class EventTrack(object):
             'id': self.event_id,
             'creation_date': datetime_to_ISO8601(self.creation_date)[:-8],
             'event': self.event_type,
-            'duration': round(self.request_time, 1),
+            'duration': self.request_time
         }
 
 

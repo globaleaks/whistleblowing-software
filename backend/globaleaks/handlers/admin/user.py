@@ -202,8 +202,6 @@ def get_user_list(store, language):
 
 
 class UsersCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -217,8 +215,6 @@ class UsersCollection(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -228,7 +224,7 @@ class UsersCollection(BaseHandler):
         Response: AdminUserDesc
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
         if request['role'] == 'receiver':
@@ -242,13 +238,10 @@ class UsersCollection(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(201) # Created
         self.write(response)
 
 
 class UserInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, user_id):
         """
@@ -262,8 +255,6 @@ class UserInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, user_id):
         """
@@ -274,17 +265,14 @@ class UserInstance(BaseHandler):
         Response: AdminUserDesc
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.AdminUserDesc)
+        request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
         response = yield admin_update_user(user_id, request, self.request.language)
         GLApiCache.invalidate()
 
-        self.set_status(201)
         self.write(response)
 
     @inlineCallbacks
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     def delete(self, user_id):
         """
         Delete the specified user.
