@@ -78,6 +78,5 @@ class TestStepInstance(helpers.TestHandler):
 
             handler = self.request(role='admin')
             yield handler.delete(step['id'])
-            self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
             yield self.assertFailure(handler.delete(step['id']), errors.StepIdNotFound)

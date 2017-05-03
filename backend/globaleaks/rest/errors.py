@@ -7,10 +7,8 @@
 # GLException is the class inherit by the other Errors, and define the
 # class variables expected in the Error handler routine
 
-from cyclone.web import HTTPError
 
-
-class GLException(HTTPError):
+class GLException(BaseException):
     reason = "GLTypesError not set"
     log_message = "GLException"
     error_code = 0
@@ -58,7 +56,7 @@ class InvalidInputFormat(GLException):
     The expected format described in the REST specification is not
     respected by the data body in the HTTP request.
     """
-    error_code = 2
+    ddderror_code = 3
     status_code = 406  # Not Acceptable
 
     def __init__(self, wrong_source):
@@ -70,11 +68,29 @@ class TokenFailure(GLException):
     """
     Some kind of reason to reject a submission Token
     """
-    error_code = 3
+    error_code = 4
     status_code = 401  # Unauthorized
 
     def __init__(self, reason):
         self.reason = ("Unacceptable condition for usage of Token: %s" % reason)
+
+
+class HTTPAuthenticationRequired(GLException):
+    """
+    Basic Authentication Required
+    """
+    reason = "Basic Authentication Required"
+    error_code = 5
+    status_code = 401  # Not Found
+
+
+class ResourceNotFound(GLException):
+    """
+    Resource not found
+    """
+    reason = "Resource not found"
+    error_code = 6
+    status_code = 404  # Not Found
 
 
 class ContextIdNotFound(GLException):

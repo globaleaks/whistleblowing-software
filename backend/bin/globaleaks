@@ -129,10 +129,6 @@ GLSettings.parser.add_option("-o", "--orm-debug", action='store_true',
     help="enable ORM debugging (AVAILABLE ONLY IN DEVEL MODE)",
     dest="orm_debug", default=False)
 
-GLSettings.parser.add_option("-j", "--request-log", action="store_true",
-    help="enable request/response logging (AVAILABLE ONLY IN DEVEL MODE)",
-    dest="log_requests_responses", default=False)
-
 GLSettings.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software")
 

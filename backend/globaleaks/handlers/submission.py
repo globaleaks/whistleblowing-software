@@ -392,8 +392,6 @@ class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.unauthenticated
     @defer.inlineCallbacks
     def put(self, token_id):
         """
@@ -403,7 +401,7 @@ class SubmissionInstance(BaseHandler):
 
         PUT finalize the submission
         """
-        request = self.validate_message(self.request.body, requests.SubmissionDesc)
+        request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
         # The get and use method will raise if the token is invalid
         token = TokenList.get(token_id)
@@ -416,5 +414,4 @@ class SubmissionInstance(BaseHandler):
         # Delete the token only when a valid submission has been stored in the DB
         TokenList.delete(token_id)
 
-        self.set_status(202)  # Updated, also if submission if effectively created (201)
         self.write(submission)

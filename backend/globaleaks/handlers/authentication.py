@@ -102,7 +102,6 @@ class AuthenticationHandler(BaseHandler):
     """
     handler_exec_time_threshold = 60
 
-    @BaseHandler.authenticated('*')
     def get(self):
         if self.current_user and self.current_user.id not in GLSessions:
             raise errors.NotAuthenticated
@@ -116,13 +115,12 @@ class AuthenticationHandler(BaseHandler):
             'password_change_needed': False
         })
 
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def post(self):
         """
         Login
         """
-        request = self.validate_message(self.request.body, requests.AuthDesc)
+        request = self.validate_message(self.request.content.read(), requests.AuthDesc)
 
         username = request['username']
         password = request['password']
@@ -151,7 +149,6 @@ class AuthenticationHandler(BaseHandler):
             'password_change_needed': pcn
         })
 
-    @BaseHandler.authenticated('*')
     def delete(self):
         """
         Logout
@@ -166,13 +163,12 @@ class AuthenticationHandler(BaseHandler):
 class ReceiptAuthHandler(AuthenticationHandler):
     handler_exec_time_threshold = 60
 
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def post(self):
         """
         Receipt login handler used by whistleblowers
         """
-        request = self.validate_message(self.request.body, requests.ReceiptAuthDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiptAuthDesc)
 
         receipt = request['receipt']
 

@@ -234,8 +234,6 @@ def delete_context(store, context_id):
 
 
 class ContextsCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -249,8 +247,6 @@ class ContextsCollection(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self):
         """
@@ -262,19 +258,16 @@ class ContextsCollection(BaseHandler):
         """
         validator = requests.AdminContextDesc if self.request.language is not None else requests.AdminContextDescRaw
 
-        request = self.validate_message(self.request.body, validator)
+        request = self.validate_message(self.request.content.read(), validator)
 
         response = yield create_context(request, self.request.language)
 
         GLApiCache.invalidate()
 
-        self.set_status(201) # Created
         self.write(response)
 
 
 class ContextInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self, context_id):
         """
@@ -288,8 +281,6 @@ class ContextInstance(BaseHandler):
 
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def put(self, context_id):
         """
@@ -302,17 +293,14 @@ class ContextInstance(BaseHandler):
 
         Updates the specified context.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
         response = yield update_context(context_id, request, self.request.language)
         GLApiCache.invalidate()
 
-        self.set_status(202) # Updated
         self.write(response)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, context_id):
         """

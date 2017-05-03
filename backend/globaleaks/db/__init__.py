@@ -5,7 +5,6 @@ import os
 import sys
 import traceback
 
-from cyclone.util import ObjectDict
 from storm import exceptions
 from twisted.internet.defer import inlineCallbacks
 
@@ -17,6 +16,7 @@ from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFa
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
+from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
 

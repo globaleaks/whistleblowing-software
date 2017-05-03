@@ -158,15 +158,11 @@ def delete_anomaly_history(store):
 
 
 class AnomalyCollection(BaseHandler):
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def get(self):
         anomaly_history = yield get_anomaly_history(limit=20)
         self.write(anomaly_history)
 
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def delete(self):
         log.info("Received anomalies history delete command")
@@ -180,8 +176,6 @@ class StatsCollection(BaseHandler):
     count of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def get(self, week_delta):
         week_delta = int(week_delta)
@@ -195,8 +189,6 @@ class StatsCollection(BaseHandler):
 
         self.write(ret)
 
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     @inlineCallbacks
     def delete(self):
         log.info("Received statistic history delete command")
@@ -219,8 +211,6 @@ class RecentEventsCollection(BaseHandler):
 
         return eventmap
 
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     def get(self, kind):
         templist = []
 
@@ -241,8 +231,6 @@ class JobsTiming(BaseHandler):
     """
     This handler return the timing for the latest scheduler execution
     """
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     def get(self):
         response = []
 

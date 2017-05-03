@@ -68,9 +68,6 @@ class Tips(BaseHandler):
     /admin/overview/tips
     Dump the list of the active tips with various information
     """
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """
@@ -90,9 +87,6 @@ class Files(BaseHandler):
     Return the list of the files in InternalFile, ReceiverFile
     and the files in
     """
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         """

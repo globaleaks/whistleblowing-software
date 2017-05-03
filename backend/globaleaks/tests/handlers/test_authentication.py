@@ -30,7 +30,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
-        }, headers={'X-Tor2Web': 'whatever'})
+        }, headers={'x-tor2web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -41,7 +41,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
-        }, headers={'X-Tor2Web': 'whatever'})
+        }, headers={'x-tor2web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
@@ -59,13 +59,13 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         # Logout
         session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'X-Session': session_id})
+        handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSessions.keys()), 0)
 
-        # A second logout must not be accepted (this validate also X-Session reuse)
-        handler = self.request({}, headers={'X-Session': session_id})
+        # A second logout must not be accepted (this validate also x-session reuse)
+        handler = self.request({}, headers={'x-session': session_id})
 
         self.assertRaises(errors.NotAuthenticated, handler.delete)
 
@@ -123,7 +123,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         first_session_id = self.responses[0]['session_id']
 
-        user_handler = self.request({}, headers={'X-Session': first_session_id},
+        user_handler = self.request({}, headers={'x-session': first_session_id},
                                         handler_cls=UserInstance)
         # The first_session is valid and the request should work
         yield user_handler.get()
@@ -141,7 +141,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             pass
 
         # The second_session should have no problems.
-        user_handler = self.request({}, headers={'X-Session': second_session_id},
+        user_handler = self.request({}, headers={'x-session': second_session_id},
                                         handler_cls=UserInstance)
 
         yield user_handler.get()
@@ -200,13 +200,13 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
         # Logout
         session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'X-Session': session_id})
+        handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSessions.keys()), 0)
 
-        # A second logout must not be accepted (this validate also X-Session reuse)
-        handler = self.request({}, headers={'X-Session': session_id})
+        # A second logout must not be accepted (this validate also x-session reuse)
+        handler = self.request({}, headers={'x-session': session_id})
 
         self.assertRaises(errors.NotAuthenticated, handler.delete)
 
@@ -224,9 +224,9 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
             'receipt': self.dummySubmission['receipt']
         })
         yield handler.post()
-
         first_id = self.responses[0]['session_id']
-        wbtip_handler = self.request(headers={'X-Session': first_id},
+
+        wbtip_handler = self.request(headers={'x-session': first_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
 
@@ -246,6 +246,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
 
         self.assertEqual(valid_session.user_role, 'whistleblower')
 
-        wbtip_handler = self.request(headers={'X-Session': second_id},
+        wbtip_handler = self.request(headers={'x-session': second_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()

@@ -277,20 +277,16 @@ class FileHandler(BaseHandler):
 
         return self.mapped_file_resources[name]
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def delete(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
         yield file_res_cls.delete_file()
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
-        req = self.validate_message(self.request.body,
+        req = self.validate_message(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
 
         file_res_cls = self.get_file_res_or_raise(name)
@@ -298,13 +294,9 @@ class FileHandler(BaseHandler):
         yield file_res_cls.generate_dh_params_if_missing()
 
         ok = yield file_res_cls.create_file(req['content'])
-        if ok:
-            self.set_status(201, 'Wrote everything')
-        else:
+        if not ok:
             raise errors.ValidationError()
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self, name):
@@ -314,10 +306,6 @@ class FileHandler(BaseHandler):
 
         yield file_res_cls.perform_file_action()
 
-        self.set_status(201, 'Accepted changes')
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def get(self, name):
@@ -369,28 +357,21 @@ def disable_https(store):
 
 
 class ConfigHandler(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def get(self):
         https_cfg = yield serialize_https_config_summary()
         self.write(https_cfg)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
         try:
             yield try_to_enable_https()
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
-            self.set_status(200)
         except Exception as e:
             log.err(e)
-            self.set_status(406)
+            raise InternalServerError(str(e))
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_enabled
     @inlineCallbacks
     def put(self):
@@ -400,16 +381,13 @@ class ConfigHandler(BaseHandler):
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
         yield GLSettings.state.process_supervisor.shutdown()
-        self.set_status(200)
 
 
 class CSRFileHandler(FileHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminCSRFileDesc)
 
         desc = request['content']
@@ -429,12 +407,8 @@ class CSRFileHandler(FileHandler):
         file_res_cls = self.get_file_res_or_raise(name)
 
         ok = yield file_res_cls.create_file(csr_txt)
-        if ok:
-            self.set_status(201, 'Wrote everything')
-        else:
+        if not ok:
             raise errors.ValidationError()
-
-        self.set_status(200)
 
     @staticmethod
     @transact

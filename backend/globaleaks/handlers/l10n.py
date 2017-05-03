@@ -41,12 +41,8 @@ class L10NHandler(BaseHandler):
     This class is used to return the custom translation files;
     if the file are not present, default translations are returned
     """
-    @BaseHandler.transport_security_check('unauth')
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self, lang):
-        self.set_header('Content-Type', 'application/json')
-
         l10n = yield GLApiCache.get('l10n', self.request.language,
                                     get_l10n, self.request.language)
 

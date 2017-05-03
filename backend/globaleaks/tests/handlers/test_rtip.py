@@ -40,11 +40,11 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.get(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 200)
+            self.assertEqual(handler.request.code, 200)
 
 
 
@@ -64,7 +64,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0][key], True)
@@ -79,7 +79,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[1][key], False)
@@ -94,7 +94,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[2][key], True)
@@ -131,7 +131,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0]['label'], operation['args']['value'])
@@ -152,7 +152,7 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(operation, role='receiver', user_id = rtip_desc['receiver_id'])
             yield handler.put(rtip_desc['id'])
-            self.assertEqual(handler.get_status(), 202)
+            self.assertEqual(handler.request.code, 200)
 
             yield handler.get(rtip_desc['id'])
             self.assertEqual(self.responses[0]['enable_notifications'], operation['args']['value'])

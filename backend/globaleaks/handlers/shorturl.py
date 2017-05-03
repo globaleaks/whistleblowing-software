@@ -20,8 +20,6 @@ class ShortUrlInstance(BaseHandler):
     """
     handler_exec_time_threshold = 30
 
-    @BaseHandler.transport_security_check('unauth')
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self, shorturl):
         longurl = yield translate_shorturl(shorturl)

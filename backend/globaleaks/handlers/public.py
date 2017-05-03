@@ -390,8 +390,6 @@ def get_public_resources(store, language):
 
 
 class PublicResource(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self):
         """

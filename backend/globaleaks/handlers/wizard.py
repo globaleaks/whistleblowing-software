@@ -82,10 +82,9 @@ class Wizard(BaseHandler):
     """
     Setup Wizard handler
     """
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
         # Wizard will raise exceptions if there are any errors with the request
@@ -93,5 +92,3 @@ class Wizard(BaseHandler):
         # cache must be updated in order to set wizard_done = True
         yield serialize_node(self.request.language)
         GLApiCache.invalidate()
-
-        self.set_status(201)  # Created

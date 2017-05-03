@@ -16,7 +16,6 @@ class TokenCreate(BaseHandler):
     """
     This class implement the handler for requesting a token.
     """
-    @BaseHandler.unauthenticated
     def post(self):
         """
         Request: None
@@ -28,7 +27,7 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        request = self.validate_message(self.request.body, requests.TokenReqDesc)
+        request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
         if request['type'] == 'submission':
             if not GLSettings.accept_submissions:
@@ -39,7 +38,6 @@ class TokenCreate(BaseHandler):
 
         token = Token(request['type'])
 
-        self.set_status(201) # Created
         self.write(token.serialize())
 
 
@@ -47,19 +45,17 @@ class TokenInstance(BaseHandler):
     """
     This class impleement the handler for updating a token (e.g.: solving a captcha)
     """
-    @BaseHandler.unauthenticated
     def put(self, token_id):
         """
         Parameter: token_id
         Request: TokenAnswerDesc
         Response: TokenDesc
         """
-        request = self.validate_message(self.request.body, requests.TokenAnswerDesc)
+        request = self.validate_message(self.request.content.read(), requests.TokenAnswerDesc)
 
         token = TokenList.get(token_id)
 
         if not token.update(request):
             raise errors.TokenFailure('failed challenge')
 
-        self.set_status(202) # Updated
         self.write(token.serialize())

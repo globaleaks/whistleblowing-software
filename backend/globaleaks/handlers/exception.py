@@ -16,12 +16,10 @@ class ExceptionHandler(BaseHandler):
     This handler is responsible of receiving exceptions by the client
     and delivering them to the configured exception mail.
     """
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
     def post(self):
         """
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.ExceptionDesc)
 
         if not GLSettings.disable_client_exception_notification:
@@ -32,6 +30,3 @@ class ExceptionHandler(BaseHandler):
             exception_email += json.dumps(request['stackTrace'], indent=2)
             send_exception_email(exception_email)
             log.debug("Received client exception and passed error to exception mail handler")
-
-        self.set_status(201)  # Created
-

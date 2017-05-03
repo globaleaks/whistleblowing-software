@@ -48,13 +48,10 @@ def del_model_img(store, model, obj_id):
 
 
 class ModelImgInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def post(self, obj_key, obj_id):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
-            self.set_status(201)
             return
 
         try:
@@ -64,10 +61,6 @@ class ModelImgInstance(BaseHandler):
 
         GLApiCache.invalidate()
 
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self, obj_key, obj_id):
         yield del_model_img(model_map[obj_key], obj_id)

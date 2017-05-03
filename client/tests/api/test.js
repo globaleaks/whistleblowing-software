@@ -26,22 +26,16 @@ var public_resources = [
   },
   {
     'url': '/unexistent',
-    'type': 'text/html; charset=UTF-8',
-    'status': 404
-  },
-  {
-    'url': '/@invalid@',
-    'type': 'text/html; charset=UTF-8',
+    'type': 'text/html',
     'status': 404
   }
 ];
 
 var validate_mandatory_headers = function(headers) {
   var mandatory_headers = {
-    'X-XSS-Protection': '1; mode=block',
     'X-Content-Type-Options': 'nosniff',
     'Expires': '-1',
-    'Server': 'globaleaks',
+    'Server': 'Globaleaks',
     'Pragma': 'no-cache',
     'Cache-control': 'no-cache, no-store, must-revalidate',
     'Referrer-Policy': 'no-referrer',
