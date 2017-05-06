@@ -197,7 +197,7 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/admin/landing.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
-        header_subtitle: 'Landing page',
+        header_subtitle: 'Home page',
         resolve: {
           access: requireAuth('admin'),
           changelog: ['ChangeLogRes', function(ChangeLogRes) { return ChangeLogRes; }],
