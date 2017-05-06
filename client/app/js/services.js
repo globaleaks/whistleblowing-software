@@ -531,8 +531,11 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
     return new GLResource('custodian/identityaccessrequests');
 }]).
-  factory('StaticFileResource', ['GLResource', function(GLResource) {
-    return new GLResource('data/:name', {name: '@name'});
+service('ChangeLogRes', ['$resource', function($resource) {
+  var res = $resource('data/changelog.json').get();
+  return res.$promise.then(function(r) {
+    return r.v;
+  });
 }]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/contexts/:id', {id: '@id'});

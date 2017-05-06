@@ -213,21 +213,20 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-service('ChangeLogRes', ['$resource', function($resource) {
-  var res = $resource('data/changelog.json').get();
-  return res.$promise.then(function(r) {
-    return r.v;
-  });
-}]).
-controller('AdminAboutCtrl', ['$scope', 'StaticFileResource', function($scope, StaticFileResource) {
+controller('AdminAboutCtrl', ['$scope', function($scope) {
   // NOTE tabs structure is defined in the related view.
-  // TODO use variable in preferences last login admin/node
   $scope.changelog = $scope.$resolve.changelog;
-  $scope.displayNum = 30;
-  $scope.displayAll = function() { $scope.displayNum = $scope.changelog.length };
+  $scope.displayNum = 10;
 
   $scope.onlyShowMajor = false;
   $scope.setMajor = function(b) { $scope.onlyShowMajor = b; };
+  $scope.searchFun = function(value, index, array) {
+    if ($scope.onlyShowMajor) {
+      return angular.isDefined(value.alert) && value.alert;
+    } else {
+      return true;
+    }
+  };
 }]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   function($scope, $uibModal){

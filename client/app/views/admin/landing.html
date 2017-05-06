@@ -4,7 +4,7 @@
     <div class="row">
       <div data-ng-controller="AdminAboutCtrl">
         <uib-tabset>
-          <uib-tab data-index="0" heading="{{'Contact' | translate}}">
+          <uib-tab data-index="0" heading="{{'Home' | translate}}">
             <div class="tab-content" data-ng-include="'views/admin/about/contact.html'"></div>
           </uib-tab>
 
@@ -25,18 +25,19 @@
                         data-ng-disabled="onlyShowMajor"
                         data-ng-click="setMajor(true)"
                         data-ng-class="{'active': onlyShowMajor}">
-                   <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
+                  <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
                 </button>
               </div>
-              <br/>
               <div class="row">
                 <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | filter:searchFun | limitTo:displayNum">
                   <hr/>
                   <span data-release-msg></span>
                 </div>
               </div>
+              <hr/>
               <a type="button" class="btn btn-default"
-                href="https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/CHANGELOG">
+                 href="https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/CHANGELOG"
+                 target="_blank" rel="noreferrer noopener">
                 <span data-translate>More</span>
                 <i class="glyphicon glyphicon glyphicon-link"></i>
               </a>
