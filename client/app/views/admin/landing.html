@@ -2,40 +2,111 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div class="row">
-      <div>
-        <div class="title1" data-translate>Welcome to the administration interface!</div>
-        <br />
-        <div data-translate>This interface may help you understand how the server can be configured and provides some info on how to connect to other GlobaLeaks users and experts.</div>
-        <ul>
-          <li>
-            <span data-translate>You can reach GlobaLeaks's support chat via IRC on OFTC server on channel #globaleaks:</span> <a href="https://webchat.oftc.net/?channels=globaleaks" target="_blank" rel="noreferrer noopener"  data-translate>GlobaLeaks Support Chat</a>
-          </li>
-          <li>
-            <span data-translate>To properly organize your project, please read the following guidelines:</span> <a href="https://docs.google.com/document/d/1Y5h_lSZq-MsefH1LkEjHN5uOfEccyyI4oJgd7tm2Iho/pub" target="_blank" rel="noreferrer noopener"  data-translate>Guidelines on how to start up Whistleblowing Projects</a>
-          </li>
-          <li>
-            <span data-translate>To report a bug or request a feature in GlobaLeaks software, please open a ticket describing the issue you're encountering or the new feature request:</span> <a href="https://github.com/globaleaks/GlobaLeaks/issues" target="_blank" rel="noreferrer noopener"  data-translate>GlobaLeaks Ticketing System</a>
-          </li>
-          <li>
-            <span data-translate>Remember to provide proper security advice to Whistleblowers:</span> <a href="https://docs.google.com/document/d/1ZrndvBj9eTg-ooIRfKbXxX18Ie-ODlcjnHjKXSY78Ew/edit?usp=sharing" target="_blank" rel="noreferrer noopener" data-translate>Security advice for whistleblowers</a>
-          </li>
-          <li>
-            <span data-translate>To know more about GlobaLeaks Security you can read the following document:</span> <a href="https://github.com/globaleaks/globaleaks/wiki#software-security" target="_blank" rel="noreferrer noopener"  data-translate>GlobaLeaks Security</a>
-          </li>
-        </ul>
-        <div class="title3" data-translate>Contacts</div>
-        <ul>
-          <li>
-            <span data-translate>If you want to tell us more about your project, or you need some help, write us at:</span> <a href="mailto:projects@hermescenter.org">projects@hermescenter.org</a>
-          </li>
-          <li>
-            <span data-translate>For technical support inquiries you can write us at:</span> <a href="mailto:support@hermescenter.org">support@hermescenter.org</a>
-          </li>
-          <li>
-            <span data-translate>Follow us on Twitter if you like to be profiled by NSA:</span> <a target="_blank" rel="noreferrer noopener"  href="https://twitter.com/globaleaks">https://twitter.com/globaleaks</a>
-          </li>
-        </ul>
+      <div data-ng-controller="AdminAboutCtrl">
+        <uib-tabset>
+          <uib-tab data-index="0" heading="{{'Contact' | translate}}">
+            <div class="tab-content" data-ng-include="'views/admin/about/contact.html'"></div>
+          </uib-tab>
+
+          <uib-tab data-index="1">
+            <uib-tab-heading>
+              <span data-translate>Change log</span> <i data-ng-hide="tabset.active == 1" class="glyphicon glyphicon-exclamation-sign text-danger"></i>
+            </uib-tab-heading>
+            <div class="tab-content">
+              <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default"
+                        data-ng-disabled="showNewAlerts"
+                        data-ng-class="{'active': showNewAlerts}"
+                        data-ng-click="showNewAlerts = true">
+                   <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
+                </button>
+                <button type="button" class="btn btn-default"
+                        data-ng-disabled="!showNewAlerts"
+                        data-ng-class="{'active': !showNewAlerts}"
+                        data-ng-click="showNewAlerts = false">
+                  <span data-translate>All</span>
+                </button>
+                <span class="btn btn-default" style=""><span data-translate>Displaying from</span> 2017-03-03</span>
+              </div>
+              <br/>
+              <div class="row">
+                <div class="col-md-12" data-ng-repeat="change in changelog | filter:searchFun track by change.version">
+                  <hr/>
+                  <span data-release-msg change=change></span>
+                </div>
+              </div>
+            </div>
+          </uib-tab>
+
+          <uib-tab data-index="2" heading="{{ 'License' | translate}}">
+            <div class="tab-content">
+<pre style="width: 85ch;">
+-------------------------------------------------------------------------------
+GlobaLeaks
+Copyright (c) 2011-2017 - Hermes Center for Transparency and Digital Human Rights
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+
+The full text of the license is available at <a href="/data/license.txt" target="_blank" rel="noreferrer noopener">Full text</a> of the GNU Affero
+General Public License is available. If not, see <http://www.gnu.org/licenses/>.
+-------------------------------------------------------------------------------
+</pre>
+<pre style="width: 85ch;">
+-------------------------------------------------------------------------------
+           ADDITIONAL TERMS AS PERMITTED BY SECTION 7b OF AGPLv3
+-------------------------------------------------------------------------------
+This program was created by Hermes Center for Transparency and Digital
+Human Rights (https://www.hermescenter.org) and by Whistleblowing
+Solutions I.S. SRL (https://whistleblowingsolutions.it) under the
+name "GlobaLeaks" (https://www.globaleaks.org).
+
+As permitted by section 7b of the AGPLv3, we require the preservation of the
+legal notices, copyrights notices and author attributions in the program and
+in its documentation or in the Appropriate Legal Notices displayed by works
+containing it.
+
+This program displays such notices in each user interface screen with an
+author attribution that includes "Powered by GlobaLeaks".
+The author attribution must be clearly visible with size of the fonts
+and icons proportionate to the user interface being used.
+
+For works containing this program or any covered work, each interactive
+user interface must include a prominent and conveniently accessible
+feature for the display of Appropriate Legal Notices. This display
+must include author attributions and copyright notices as found in this
+program. This display of these author attributions must be convenient
+for a user wishing to browse credits, shown in a manner separate and
+distinct from license texts, and commensurately prominent with respect
+to other author attributions. To the extent that it is technically
+feasible and not obtrusive, the graphical form of these author
+attributions, such as a "Powered by GlobaLeaks" logo, must be preserved;
+otherwise, a textual equivalent is permitted. When users click on the
+"Powered by GlobaLeaks" logo it must direct them back to the
+https://www.globaleaks.org website.
+
+Any party that wishes to remove the author attribution from the user
+interfaces is required to obtain written consent from
+Whistleblowing Solutions I.S. SRL.
+
+The purpose of this non-profit social enterprise is to support the
+development of the GlobaLeaks software while maintaining it entirely
+as free software available for public interests purposes pursuing the
+social goal of protecting whistleblowers and increasing transparency.
+-------------------------------------------------------------------------------
+</pre>
+              <!--<pre style="width: 85ch;" ng-include="'data/license.txt'"></pre>-->
+            </div>
+          </uib-tab>
+        </uib-tabset>
       </div>
-    </div>
   </div>
 </div>

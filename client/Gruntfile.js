@@ -797,17 +797,20 @@ module.exports = function(grunt) {
       for (var i = 0; i < lines.length; i++) {
         var l = lines[i];
         // Format of the first line of every new release is:
-        // Changes in version 2.76.4 - 2017-04-12
+        // Changes in version 2.76.4 - 2017-04-12 - alert:notice
         if (/^(Changes in version)/.test(l)) {
-            obj = {};
-            // Matches version and date
-            var res = l.match(/(\d+\.\d+(\.\d+)?) - (\d{4}-\d{2}-\d{2})$/);
-            obj.version = res[1];
-            obj.date = res[3];
-            obj.txt = l
-            chnglog.push(obj);
+          obj = {};
+          // Matches version and date
+          var res = l.match(/(\d+\.\d+(\.\d+)?) - (\d{4}-\d{2}-\d{2})/);
+          obj.version = res[1];
+          obj.date = res[3];
+          obj.txt = l
+          if (/- alert\:notice$/.test(l)) {
+            obj.alert = true;
+          }
+          chnglog.push(obj);
         } else {
-            obj.txt = obj.txt + '\n' + l;
+          obj.txt = obj.txt + '\n' + l;
         }
       }
       // Intentionally drop the first release because does not conform to the format.
