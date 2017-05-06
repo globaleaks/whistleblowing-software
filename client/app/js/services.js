@@ -531,6 +531,9 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   factory('IdentityAccessRequests', ['GLResource', function(GLResource) {
     return new GLResource('custodian/identityaccessrequests');
 }]).
+  factory('StaticFileResource', ['GLResource', function(GLResource) {
+    return new GLResource('data/:name', {name: '@name'});
+}]).
   factory('AdminContextResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/contexts/:id', {id: '@id'});
 }]).
