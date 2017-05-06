@@ -10,31 +10,36 @@
 
           <uib-tab data-index="1">
             <uib-tab-heading>
-              <span data-translate>Change log</span> <i data-ng-hide="tabset.active == 1" class="glyphicon glyphicon-exclamation-sign text-danger"></i>
+              <span data-translate>Change log</span>
             </uib-tab-heading>
             <div class="tab-content">
-              <div class="btn-group" role="group" aria-label="...">
+              <div class="btn-group" role="group" aria-label="Release notes toggle.">
                 <button type="button" class="btn btn-default"
-                        data-ng-disabled="showNewAlerts"
-                        data-ng-class="{'active': showNewAlerts}"
-                        data-ng-click="showNewAlerts = true">
-                   <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
-                </button>
-                <button type="button" class="btn btn-default"
-                        data-ng-disabled="!showNewAlerts"
-                        data-ng-class="{'active': !showNewAlerts}"
-                        data-ng-click="showNewAlerts = false">
+                        data-ng-disabled="!onlyShowMajor"
+                        data-ng-click="setMajor(false)"
+                        data-ng-class="{'active': !onlyShowMajor}"
+                        >
                   <span data-translate>All</span>
                 </button>
-                <span class="btn btn-default" style=""><span data-translate>Displaying from</span> 2017-03-03</span>
+                <button type="button" class="btn btn-default"
+                        data-ng-disabled="onlyShowMajor"
+                        data-ng-click="setMajor(true)"
+                        data-ng-class="{'active': onlyShowMajor}">
+                   <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
+                </button>
               </div>
               <br/>
               <div class="row">
-                <div class="col-md-12" data-ng-repeat="change in changelog | filter:searchFun track by change.version">
+                <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | filter:searchFun | limitTo:displayNum">
                   <hr/>
-                  <span data-release-msg change=change></span>
+                  <span data-release-msg></span>
                 </div>
               </div>
+              <a type="button" class="btn btn-default"
+                href="https://raw.githubusercontent.com/globaleaks/GlobaLeaks/master/CHANGELOG">
+                <span data-translate>More</span>
+                <i class="glyphicon glyphicon glyphicon-link"></i>
+              </a>
             </div>
           </uib-tab>
 

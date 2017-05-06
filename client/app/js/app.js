@@ -200,6 +200,7 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: 'Landing page',
         resolve: {
           access: requireAuth('admin'),
+          changelog: ['ChangeLogRes', function(ChangeLogRes) { return ChangeLogRes; }],
         }
       }).
       when('/admin/content', {

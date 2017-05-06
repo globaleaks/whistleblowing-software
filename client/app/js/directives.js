@@ -359,9 +359,6 @@ directive('requiredAsterisk', function() {
 directive('releaseMsg', function() {
   return {
     restrict: 'A',
-    scope: {
-      change: '=',
-    },
     templateUrl: 'views/admin/about/releasemsg.html',
   };
 });
