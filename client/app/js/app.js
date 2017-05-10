@@ -61,6 +61,7 @@ var GLClient = angular.module('GLClient', [
     'ngAria',
     'ngRoute',
     'ui.bootstrap',
+    'ui.select',
     'tmh.dynamicLocale',
     'flow',
     'pascalprecht.translate',
