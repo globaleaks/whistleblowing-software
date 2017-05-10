@@ -10,6 +10,10 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
       title:"HTTPS settings",
       template: "views/admin/network/https_settings.html"
     },
+    {
+      title:"Access control",
+      template: "views/admin/network/access_control.html"
+    }
   ];
 
   $scope.setActiveTab = function(index) {
