@@ -1,3 +1,13 @@
+Changes in version 2.67.5 - 2017-04-12
+    o Implement search based select box for contexts
+    o Fix visualization of file upload errors showing just last error
+    o Update NPM dependencies
+    o Create search based select box for contexts
+
+    Closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1950
+    - https://github.com/globaleaks/GlobaLeaks/issues/1408
+
 Changes in version 2.67.4 - 2017-04-12
     o Inject Strict Transport Security header only HTTPS connections
 
