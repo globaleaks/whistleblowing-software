@@ -4,7 +4,7 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
-from storm.expr import In
+from storm.expr import In, Select
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
@@ -350,7 +350,9 @@ def serialize_receiver(store, receiver, language, data=None):
 
 
 def db_get_public_context_list(store, language):
-    contexts = store.find(models.Context)
+    subselect = Select(models.ReceiverContext.context_id, distinct=True)
+
+    contexts = store.find(models.Context, models.Context.id.is_in(subselect))
 
     data = db_prepare_contexts_serialization(store, contexts)
 

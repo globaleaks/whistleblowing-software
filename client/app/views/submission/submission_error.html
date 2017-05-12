@@ -1,30 +1,27 @@
 <div id="SubmissionErrors" class="panel panel-danger">
-  <div class="panel-heading">
-    <b data-translate>Submission errors</b>
-  </div>
+  <div class="panel-heading" data-translate>Submission errors</div>
   <div class="panel-body text-danger">
-    <div data-ng-if="submission.count_selected_receivers() === 0">
-      <p data-translate>You must select at least one recipient.</p>
-      <ul>
-        <p><span class="err-link" ng-click="goToStep(receiver_selection_step_index)">
-          <i class="glyphicon glyphicon-arrow-right"></i>
-          <code><span data-translate>Recipient selection</span></code>
-        </span></p>
-      </ul>
+    <div data-ng-if="!hasPreviousStep() || !hasNextStep()">
+      <div data-ng-if="submission.count_selected_receivers() === 0">
+        <p data-translate>You must select at least one recipient.</p>
+        <ul data-ng-if="!hasNextStep()">
+          <li class="err-link" ng-click="goToStep(receiver_selection_step_index)" data-translate>Recipient selection</li>
+        </ul>
+      </div>
     </div>
-    <div data-ng-if="Utils.isUploading(uploads)">
-      <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
-      <i class="glyphicon glyphicon-refresh gly-spin"></i>
+    <div data-ng-if="!hasNextStep()">
+      <div data-ng-if="Utils.isUploading(uploads)">
+        <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
+        <i class="glyphicon glyphicon-refresh gly-spin"></i>
+      </div>
+      <div data-ng-if="!singleStepForm && submissionForm.$invalid">
+        <p data-translate>The following steps have errors:</p>
+        <ul data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
+            data-ng-controller="SubmissionStepFormErrCtrl">
+          <li data-ng-if="stepForm.$invalid" class="err-link" ng-click="goToStep($index, true)">{{step.label}}</li>
+        </ul>
+      </div>
     </div>
-    <div data-ng-if="submissionForm.$invalid"><p data-translate>The following steps have errors:</p>
-      <ul>
-        <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
-             data-ng-controller="SubmissionStepFormErrCtrl">
-           <p data-ng-if="stepForm.$invalid"><span class="err-link" ng-click="goToStep($index, true)">
-            <i class="glyphicon glyphicon-arrow-right"></i> <code><span>{{ step.label }}</span></code>
-          </span></p>
-        </div>
-      </ul>
-    </div>
+    <div data-ng-controller="SubmissionStepFormErrCtrl" data-ng-include="'views/submission/step_error.html'"></div>
   </div>
 </div>

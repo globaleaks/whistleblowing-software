@@ -20,19 +20,13 @@
         <div id="step-receiver-selection" data-ng-if="receiver_selection_step">
           <div data-ng-if="selection === receiver_selection_step_index" data-ng-include="'views/submission/receiver_selection.html'"></div>
         </div>
-        <div data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-init="stepId = 'step-' + $index" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
-          <ng-form id="{{stepId}}" class="SubmissionStep" data-ng-show="selection === $index" name="{{ stepFormVarName }}">
+        <div data-ng-if="selection !== receiver_selection_step_index" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'" data-ng-controller="SubmissionStepCtrl" data-ng-if="fieldUtilities.isStepTriggered(step, answers, total_score)">
+          <div data-ng-if="displayErrors()" data-ng-include="'views/submission/submission_error.html'"></div>
+          <div id="{{::stepId}}" data-ng-form="{{::stepId}}" class="SubmissionStep" data-ng-show="selection === $index">
             <div id="StepTitle" data-ng-if="!show_steps_navigation_bar">{{::step.label}}</div>
             <div id="StepDescription" class="preformatted" data-ng-if="step.description">{{step.description}}</div>
-            <div class="row" data-ng-controller="SubmissionStepFormErrCtrl">
-                <div ng-if="stepHasErrors(submissionForm)" class="col-md-12" data-ng-include="'views/submission/step_error.html'"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div data-ng-include="'views/submission/form.html'"></div>
-              </div>
-            </div>
-          </ng-form>
+            <div data-ng-include="'views/submission/form.html'"></div>
+          </div>
         </div>
         <div class="clearfix"></div>
       </div>
@@ -49,14 +43,13 @@
           <i class="glyphicon glyphicon-circle-arrow-right"></i>
         </button>
 
-        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="checkForInvalidFields() && completeSubmission()" data-ng-disabled="submission.wait || !submission.pow" type="submit">
+        <button id="SubmitButton" class="btn btn-success" data-ng-show="!hasNextStep()" data-ng-click="completeSubmission(submissionForm)" data-ng-disabled="submission.wait || !submission.pow" type="submit">
           <i data-ng-show="submission.wait || !submission.pow" id="SubmitIconWait" class="glyphicon glyphicon-time"></i>
           <i data-ng-hide="submission.wait || !submission.pow" id="SubmitIconOK" class="glyphicon glyphicon-ok"></i>
           <span data-translate>Submit</span>
           <span data-ng-show="submission.wait">({{submission.countdown}})</span>
         </button>
       </div>
-      <div data-ng-if="displaySubmissionErrors(submissionForm)" data-ng-include="'views/submission/submission_error.html'"></div>
-    </div></div>
+    </div>
   </form>
 </div>

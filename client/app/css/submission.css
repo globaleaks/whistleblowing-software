@@ -196,3 +196,10 @@ html[dir="rtl"] #KeyCodeHintBox:after {
   width: 20em;
   direction: ltr;
 }
+
+.err-link {
+  padding: 2px 4px;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+  color: #c7254e;
+}

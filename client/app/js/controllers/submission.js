@@ -6,6 +6,10 @@ GLClient.controller('SubmissionCtrl',
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
 
+  $scope.singleStepForm = false;
+  $scope.receiversSelected = false;
+  $scope.navigationPressed = false;
+  $scope.submitPressed = false;
   $scope.problemToBeSolved = false;
   $scope.problemModal = undefined;
 
@@ -44,6 +48,8 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.selectContext = function(context) {
     $scope.selected_context = context;
+    $scope.field_id_map = fieldUtilities.build_field_id_map(context);
+    $scope.singleStepForm = $scope.firstStepIndex() == $scope.lastStepIndex();
   };
 
   if ($scope.receivers_ids) {
@@ -92,8 +98,8 @@ GLClient.controller('SubmissionCtrl',
       return;
     }
 
-    if ($scope.submission.receivers_selected[receiver.id] || $scope.selectable()) {
-      $scope.submission.receivers_selected[receiver.id] = !$scope.submission.receivers_selected[receiver.id];
+    if ($scope.submission.selected_receivers[receiver.id] || $scope.selectable()) {
+      $scope.submission.selected_receivers[receiver.id] = !$scope.submission.selected_receivers[receiver.id];
     }
   };
 
@@ -107,12 +113,6 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.goToStep = function(index, activateErrPanel) {
     $scope.selection = index;
-    if (angular.isDefined(activateErrPanel)) {
-      $scope.getCurrentStep().errPanelActive = true;
-    }
-    if (index === $scope.receiver_selection_step_index) {
-      $scope.receiver_selection_step_show_err_panel = true;
-    }
     $anchorScroll('top');
   };
 
@@ -149,37 +149,25 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.checkForInvalidFields = function() {
-    // find the first invalid element
-    var form = document.getElementById('step-' + $scope.selection);
-    var firstInvalid = form.querySelector('.inputelem.ng-invalid');
+    for(var i = 0; i <= $scope.selection; i++) {
+      // find the first invalid element
+      var form = document.getElementById('step-' + i);
+      var firstInvalid = form.querySelector('.inputelem.ng-invalid');
 
-    // if we find one, set focus
-    if (firstInvalid) {
-      $scope.getCurrentStep().errPanelActive = true;
-      $anchorScroll('top');
-      return false;
+      // if we find one, set focus
+      if (firstInvalid) {
+        $anchorScroll('top');
+        return false;
+      }
     }
 
     return true;
   };
 
-  $scope.displaySubmissionErrors = function(submissionForm) {
-    var t = angular.isDefined(submissionForm) &&
-            submissionForm.$dirty &&
-            $scope.submissionHasErrors(submissionForm) &&
-            !$scope.hasNextStep();
-    if (angular.isDefined($scope.submission)) {
-      // Prevents the flash of error panel after submission btn is clicked
-      t = t && !$scope.submission.done;
-      // Prevents the display of errors before a user can possibly submit
-      t = t && !$scope.submission.wait;
-    }
-    return t;
-  };
-
   $scope.incrementStep = function(submissionForm) {
-    if ($scope.selection === $scope.receiver_selection_step_index && $scope.receiverSelectionError()) {
-      $scope.receiver_selection_step_show_err_panel = true;
+    $scope.navigationPressed = true;
+
+    if (!$scope.receiversSelected && $scope.selection === $scope.receiver_selection_step_index) {
       $anchorScroll('top');
       return;
     }
@@ -203,6 +191,8 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.decrementStep = function(submissionForm) {
+    $scope.navigationPressed = true;
+
     if ($scope.hasPreviousStep()) {
       submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
@@ -324,7 +314,7 @@ GLClient.controller('SubmissionCtrl',
       if ($scope.submission.context.allow_recipients_selection) {
         $scope.receiver_selection_step = true;
         $scope.selection = -1;
-        $scope.receiver_selection_step_show_err_panel = false;
+        $scope.receiversSelected = false;
       }
 
       $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
@@ -333,8 +323,25 @@ GLClient.controller('SubmissionCtrl',
   };
 
   $scope.completeSubmission = function() {
+    $scope.submitPressed = true;
+
+    if (!$scope.receiversSelected || !$scope.checkForInvalidFields()) {
+      $anchorScroll('top');
+      return;
+    }
+
     $scope.submission._submission.answers = $scope.answers;
     $scope.submission.submit();
+  };
+
+  $scope.displayReceiversErrors = function() {
+    if (!($scope.navigationPressed || $scope.submitPressed)) {
+      return false;
+    }
+
+    console.log($scope.receiversSelected);
+
+    return !$scope.receiversSelected;
   };
 
   new Submission(function(submission) {
@@ -350,9 +357,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     if (context) {
-      $scope.selected_context = context;
-
-      $scope.field_id_map = fieldUtilities.build_field_id_map(context);
+      $scope.selectContext(context);
     }
 
     // Watch for changes in certain variables
@@ -362,39 +367,53 @@ GLClient.controller('SubmissionCtrl',
       }
     });
 
+    // Watch for changes in certain variables
+    $scope.$watch('submission.selected_receivers', function () {
+      for (var rec_id in $scope.submission.selected_receivers) {
+        if ($scope.submission.selected_receivers[rec_id]) {
+          $scope.receiversSelected = true;
+          return;
+        }
+      }
+
+      $scope.receiversSelected = false;
+    }, true);
+
     $scope.submissionHasErrors = function(submissionForm) {
       if (angular.isDefined(submissionForm)) {
         return submission.isDisabled() ||
                submissionForm.$invalid ||
                Utils.isUploading($scope.uploads);
       }
+
       return false;
     };
-
-    $scope.receiverSelectionError = function() {
-      for (var rec_id in submission.receivers_selected) {
-        if (submission.receivers_selected[rec_id]) {
-          return false;
-        }
-      }
-      return true;
-    };
-
   });
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
   function($scope, $filter, fieldUtilities) {
   $scope.fields = $scope.step.children;
-  $scope.step.errPanelActive = false;
+  $scope.stepId = 'step-' + $scope.$index;
 
-  var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
-  $scope.stepFormVarName = stepFormVarName;
+  $scope.displayErrors = function() {
+    if (!($scope.navigationPressed || $scope.submitPressed)) {
+      return false;
+    }
 
-  $scope.stepHasErrors = function(submissionForm) {
-    var sf_ref = submissionForm[stepFormVarName];
-    if (angular.isDefined(sf_ref) && $scope.step.errPanelActive) {
+    if (!$scope.hasNextStep() && $scope.submissionHasErrors()) {
+      return true;
+    }
+
+    if (!$scope.receiversSelected) {
+      return true;
+    }
+
+    var sf_ref = $scope.submissionForm[$scope.stepId];
+
+    if (angular.isDefined(sf_ref)) {
       return sf_ref.$invalid;
     }
+
     return false;
   };
 
@@ -404,20 +423,22 @@ controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
     opened: false,
   };
 }]).
-controller('SubmissionStepFormErrCtrl', ['$scope', 'fieldUtilities',
-  function($scope, fieldUtilities) {
-    var stepFormVarName = fieldUtilities.stepFormName($scope.step.id);
+controller('SubmissionStepFormErrCtrl', ['$scope', function($scope) {
+    var stepFormVarName = 'step-' + $scope.$index;
     $scope.stepForm = $scope.submissionForm[stepFormVarName];
 }]).
 controller('SubmissionFieldErrKeyCtrl', ['$scope',
   function($scope) {
     var pre = 'fieldForm_';
-    var f_id = $scope.err.$name.slice(pre.length).replace(new RegExp('_', 'g'), '-');
+
+    var f_id =  $scope.err.$name;
+    f_id = f_id.substring(0, f_id.indexOf('$'));
+    f_id = f_id.slice(pre.length).replace(new RegExp('_', 'g'), '-');
     $scope.field = $scope.field_id_map[f_id];
 
     $scope.goToQuestion = function() {
       var form = document.getElementById('step-' + $scope.selection);
-      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .inputelem';
+      var s = 'div[data-ng-form="' + $scope.err.$name + '"] .inputelem.ng-invalid';
       var formFieldSel = form.querySelector(s);
       formFieldSel.focus();
     };
@@ -425,10 +446,13 @@ controller('SubmissionFieldErrKeyCtrl', ['$scope',
 controller('SubmissionFormFieldCtrl', ['$scope',
   function($scope) {
     $scope.f = $scope[$scope.fieldFormVarName];
-}])
-.
+}]).
+controller('SubmissionFieldEntryCtrl', ['$scope',
+  function($scope) {
+    $scope.fieldEntry = $scope.fieldId + '-input-' + $scope.$index;
+}]).
 controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope, fieldUtilities) {
-  $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id);
+  $scope.fieldFormVarName = fieldUtilities.fieldFormName($scope.field.id + '$' + $scope.$index);
 
   $scope.getClass = function(field, row_length) {
     if (field.width !== 0) {
@@ -460,6 +484,7 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
     var options = {
       showWeeks: false, // Just a sample option
     };
+
     var max = $scope.field.attrs.max_date.value;
     var min = $scope.field.attrs.min_date.value;
     if (angular.isDefined(max)) {
@@ -496,4 +521,6 @@ controller('SubmissionFieldCtrl', ['$scope', 'fieldUtilities', function ($scope,
 
     return false;
   };
+
+  $scope.fieldId = $scope.stepId + '-field-' + $scope.fieldRow + '-' + $scope.fieldCol;
 }]);

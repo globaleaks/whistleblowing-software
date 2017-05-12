@@ -239,7 +239,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self._submission = null;
       self.context = undefined;
       self.receivers = [];
-      self.receivers_selected = {};
+      self.selected_receivers = {};
       self.done = false;
 
       self.isDisabled = function() {
@@ -252,7 +252,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       self.count_selected_receivers = function () {
         var count = 0;
 
-        angular.forEach(self.receivers_selected, function (selected) {
+        angular.forEach(self.selected_receivers, function (selected) {
           if (selected) {
             count += 1;
           }
@@ -264,27 +264,27 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
       var setCurrentContextReceivers = function(context_id, receivers_ids) {
         self.context = angular.copy($filter('filter')($rootScope.contexts, {"id": context_id})[0]);
 
-        self.receivers_selected = {};
+        self.selected_receivers = {};
         self.receivers = [];
         angular.forEach($rootScope.receivers, function(receiver) {
           if (self.context.receivers.indexOf(receiver.id) !== -1) {
             self.receivers.push(receiver);
 
-            self.receivers_selected[receiver.id] = false;
+            self.selected_receivers[receiver.id] = false;
 
             if (receivers_ids.length) {
               if (receivers_ids.indexOf(receiver.id) !== -1) {
                 if ((receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) ||
                     receiver.configuration !== 'unselectable') {
-                  self.receivers_selected[receiver.id] = true;
+                  self.selected_receivers[receiver.id] = true;
                 }
               }
             } else {
               if (receiver.pgp_key_public !== '' || $rootScope.node.allow_unencrypted) {
                 if (receiver.configuration === 'default') {
-                  self.receivers_selected[receiver.id] = self.context.select_all_receivers;
+                  self.selected_receivers[receiver.id] = self.context.select_all_receivers;
                 } else if (receiver.configuration === 'forcefully_selected') {
-                  self.receivers_selected[receiver.id] = true;
+                  self.selected_receivers[receiver.id] = true;
                 }
               }
             }
@@ -334,7 +334,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         self.done = true;
 
         self._submission.receivers = [];
-        angular.forEach(self.receivers_selected, function(selected, id){
+        angular.forEach(self.selected_receivers, function(selected, id){
           if (selected) {
             self._submission.receivers.push(id);
           }
