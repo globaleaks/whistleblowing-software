@@ -1,17 +1,19 @@
 <div class="fieldAnswerEntry" data-ng-repeat="entry in entries" data-ng-class="{'fieldAnswerEntryFirst': $first, 'fieldAnswerEntryLast': $last}" data-ng-init="entryIndex=$index">
-  <div class="fieldAnswerEntryLabel" data-ng-if="entries.length > 1">
-    <span class="pull-left">
-      <label class="text-muted">
-        <span>#{{entryIndex + 1}}</span>
-      </label>
-    </span>
-    <span class="pull-right">
-      <span class="text-danger" href="" uib-popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="'mouseenter'" data-ng-click="Utils.deleteFromList(entries, entry)">
-        <i class="glyphicon glyphicon-remove"></i>
+  <div data-ng-controller="SubmissionFieldEntryCtrl">
+    <div class="fieldAnswerEntryLabel" data-ng-if="entries.length > 1">
+      <span class="pull-left">
+        <label class="text-muted">
+          <span>#{{entryIndex + 1}}</span>
+        </label>
       </span>
-    </span>
+      <span class="pull-right">
+        <span class="text-danger" href="" uib-popover="{{'Remove' | translate}}" popover-placement="right" popover-trigger="'mouseenter'" data-ng-click="Utils.deleteFromList(entries, entry)">
+          <i class="glyphicon glyphicon-remove"></i>
+        </span>
+      </span>
+    </div>
+    <div data-ng-include="'views/submission/form_field_input.html'"></div>
   </div>
-  <div data-ng-include="'views/submission/form_field_input.html'"></div>
 </div>
 <div data-ng-if="::field.multi_entry && field.type != 'fileupload'" class="pull-right">
   <button class="btn btn-primary" data-ng-click="addAnswerEntry(entries, field.id)">

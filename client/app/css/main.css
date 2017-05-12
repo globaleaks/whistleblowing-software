@@ -396,3 +396,7 @@ table {
   opacity: 0.60;
   filter: alpha(opacity=0.60);
 }
+
+.panel-heading {
+  font-weight: bold;
+}

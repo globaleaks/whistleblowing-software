@@ -30,6 +30,12 @@ describe('globaLeaks process', function() {
       });
     });
 
+    utils.waitUntilPresent(by.id('submissionForm'));
+
+    element(by.id('NextStepButton')).click();
+
+    utils.waitUntilPresent(by.id('SubmissionErrors'));
+
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
 
     element(by.id('NextStepButton')).click();
