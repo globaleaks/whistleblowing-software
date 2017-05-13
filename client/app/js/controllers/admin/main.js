@@ -213,6 +213,21 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
+controller('AdminAboutCtrl', ['$scope', function($scope) {
+  // NOTE tabs structure is defined in the related view.
+  $scope.changelog = $scope.$resolve.changelog;
+  $scope.displayNum = 10;
+
+  $scope.onlyShowMajor = false;
+  $scope.setMajor = function(b) { $scope.onlyShowMajor = b; };
+  $scope.searchFun = function(value, index, array) {
+    if ($scope.onlyShowMajor) {
+      return angular.isDefined(value.alert) && value.alert;
+    } else {
+      return true;
+    }
+  };
+}]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   function($scope, $uibModal){
   $scope.tabs = [

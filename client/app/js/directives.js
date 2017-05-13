@@ -368,4 +368,10 @@ directive('requiredAsterisk', function() {
     // TODO Lacks a binding for field.required
     templateUrl: 'views/partials/required_aster.html',
   }
+}).
+directive('releaseMsg', function() {
+  return {
+    restrict: 'A',
+    templateUrl: 'views/admin/about/releasemsg.html',
+  };
 });
