@@ -100,7 +100,7 @@ exports.login_admin = function() {
   element(by.model('loginUsername')).sendKeys('admin');
   element(by.model('loginPassword')).sendKeys(exports.vars['user_password']);
   element(by.id('login-button')).click();
-  exports.waitForUrl('/admin/landing');
+  exports.waitForUrl('/admin/home');
 };
 
 exports.login_whistleblower = function(receipt) {

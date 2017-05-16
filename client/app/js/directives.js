@@ -372,6 +372,6 @@ directive('requiredAsterisk', function() {
 directive('releaseMsg', function() {
   return {
     restrict: 'A',
-    templateUrl: 'views/admin/about/releasemsg.html',
+    templateUrl: 'views/admin/home/releasemsg.html',
   };
 });

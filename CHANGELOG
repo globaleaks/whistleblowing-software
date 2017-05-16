@@ -23,7 +23,7 @@ Changes in version 2.67.2 - 2017-04-01
 Changes in version 2.67.1 - 2017-03-17
     o Start (restart) apparmor upon globaleaks install
 
-Changes in version 2.67.0 - 2017-03-17 - alert:notice
+Changes in version 2.67.0 - 2017-03-17
     o Add Ubuntu Xenial 16.04 support
     o Add (readd) Bulgarian support thanks to volunteers translations
 
