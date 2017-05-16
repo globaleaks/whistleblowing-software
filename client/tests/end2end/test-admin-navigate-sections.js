@@ -3,7 +3,7 @@ describe('verify navigation of admin sections', function() {
   // navigation of the admin section without triggering any exception
 
   it('should should navigate through admin sections', function() {
-    element(by.cssContainingText("a", "About")).click();
+    element(by.cssContainingText("a", "Home")).click();
     element(by.cssContainingText("a", "General settings")).click();
     element(by.cssContainingText("a", "Main configuration")).click();
     element(by.cssContainingText("a", "Theme customization")).click();

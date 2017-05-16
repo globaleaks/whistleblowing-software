@@ -111,7 +111,7 @@ GLClient.controller('SubmissionCtrl',
     return $scope.submission.context.questionnaire.steps[$scope.selection];
   };
 
-  $scope.goToStep = function(index, activateErrPanel) {
+  $scope.goToStep = function(index) {
     $scope.selection = index;
     $anchorScroll('top');
   };
@@ -338,8 +338,6 @@ GLClient.controller('SubmissionCtrl',
     if (!($scope.navigationPressed || $scope.submitPressed)) {
       return false;
     }
-
-    console.log($scope.receiversSelected);
 
     return !$scope.receiversSelected;
   };

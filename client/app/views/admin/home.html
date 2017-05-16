@@ -2,7 +2,7 @@
   <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
   <div class="col-md-9">
     <div class="row">
-      <div data-ng-controller="AdminAboutCtrl">
+      <div data-ng-controller="AdminHomeCtrl">
         <uib-tabset>
           <uib-tab data-index="0" heading="{{'Home' | translate}}">
             <div class="tab-content" data-ng-include="'views/admin/home/main.html'"></div>
@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                   <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
                 </div>
-                <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | filter:searchFun | limitTo:displayNum">
+                <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | limitTo:displayNum">
                   <hr/>
                   <span data-release-msg></span>
                 </div>
