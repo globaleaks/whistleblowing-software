@@ -5,7 +5,7 @@
       <div data-ng-controller="AdminAboutCtrl">
         <uib-tabset>
           <uib-tab data-index="0" heading="{{'Home' | translate}}">
-            <div class="tab-content" data-ng-include="'views/admin/about/contact.html'"></div>
+            <div class="tab-content" data-ng-include="'views/admin/home/main.html'"></div>
           </uib-tab>
 
           <uib-tab data-index="1">
@@ -13,22 +13,10 @@
               <span data-translate>Change log</span>
             </uib-tab-heading>
             <div class="tab-content">
-              <div class="btn-group" role="group" aria-label="Release notes toggle.">
-                <button type="button" class="btn btn-default"
-                        data-ng-disabled="!onlyShowMajor"
-                        data-ng-click="setMajor(false)"
-                        data-ng-class="{'active': !onlyShowMajor}"
-                        >
-                  <span data-translate>All</span>
-                </button>
-                <button type="button" class="btn btn-default"
-                        data-ng-disabled="onlyShowMajor"
-                        data-ng-click="setMajor(true)"
-                        data-ng-class="{'active': onlyShowMajor}">
-                  <span data-translate>Major changes</span> <i class="glyphicon glyphicon-exclamation-sign text-danger"></i>
-                </button>
-              </div>
               <div class="row">
+                <div class="col-md-12">
+                  <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
+                </div>
                 <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | filter:searchFun | limitTo:displayNum">
                   <hr/>
                   <span data-release-msg></span>
@@ -46,7 +34,7 @@
 
           <uib-tab data-index="2" heading="{{ 'License' | translate}}">
             <div class="tab-content">
-              <div data-ng-include="'views/admin/about/license.html'"></div>
+              <div data-ng-include="'views/admin/home/license.html'"></div>
             </div>
           </uib-tab>
         </uib-tabset>

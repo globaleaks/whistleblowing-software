@@ -194,8 +194,8 @@ var GLClient = angular.module('GLClient', [
           access: requireAuth('receiver'),
         }
       }).
-      when('/admin/landing', {
-        templateUrl: 'views/admin/landing.html',
+      when('/admin/home', {
+        templateUrl: 'views/admin/home.html',
         controller: 'AdminCtrl',
         header_title: 'Administration interface',
         header_subtitle: 'Home page',

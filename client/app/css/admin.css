@@ -95,3 +95,8 @@ text.axis-worktime {
 #HttpsSettings .status-line .label {
   font-size: 100%;
 }
+
+.changelogmsg {
+  white-space: pre-line;
+  width: 85ch;
+}

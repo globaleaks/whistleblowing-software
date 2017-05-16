@@ -788,37 +788,36 @@ module.exports = function(grunt) {
   // Processes misc files included in the GlobaLeaks repository that need to be
   // included as data like the license and changelog
   grunt.registerTask('includeExternalFiles', function() {
-      var cnt = grunt.file.read('../LICENSE');
-      fs.writeFileSync('tmp/data/license.txt', cnt)
+      var content = grunt.file.read('../LICENSE');
+      fs.writeFileSync('tmp/data/license.txt', content)
 
-      cnt = grunt.file.read('../CHANGELOG');
-      var lines = cnt.split("\n"),
-          chnglog = [],
+      content = grunt.file.read('../CHANGELOG');
+      var lines = content.split("\n"),
+          changelog = [],
           obj;
 
       for (var i = 0; i < lines.length; i++) {
         var l = lines[i];
         // Format of the first line of every new release is:
-        // Changes in version 2.76.4 - 2017-04-12 - alert:notice
+        // Changes in version 2.76.4 - 2017-04-12
         if (/^(Changes in version)/.test(l)) {
           obj = {};
           // Matches version and date
           var res = l.match(/(\d+\.\d+(\.\d+)?) - (\d{4}-\d{2}-\d{2})/);
+          obj.title = l;
           obj.version = res[1];
           obj.date = res[3];
-          obj.txt = l
-          if (/- alert\:notice$/.test(l)) {
-            obj.alert = true;
-          }
-          chnglog.push(obj);
+          obj.txt = '';
+          changelog.push(obj);
         } else {
-          obj.txt = obj.txt + '\n' + l;
+          obj.txt += l + '\n';
         }
       }
-      // Intentionally drop the first release because does not conform to the format.
+
+      obj.txt = obj.txt.replace(/^\s+|\s+$/g, "");
 
       // Using object here due to issues with exporting raw lists via json
-      var output = JSON.stringify({'v': chnglog});
+      var output = JSON.stringify({'v': changelog});
       fs.writeFileSync('tmp/data/changelog.json', output);
 
       console.log('Copied misc files into ./tmp');

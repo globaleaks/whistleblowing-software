@@ -43,8 +43,8 @@ angular.module('GLServices', ['ngResource']).
             }
 
             if (self.session.role === 'admin') {
-              self.session.homepage = '#/admin/landing';
-              self.session.auth_landing_page = '/admin/landing';
+              self.session.homepage = '#/admin/home';
+              self.session.auth_landing_page = '/admin/home';
               self.session.preferencespage = '#/user/preferences';
               UserPreferences.get().$promise.then(initPreferences);
             } else if (self.session.role === 'custodian') {
