@@ -792,6 +792,7 @@ module.exports = function(grunt) {
       fs.writeFileSync('tmp/data/license.txt', content)
 
       content = grunt.file.read('../CHANGELOG');
+      fs.writeFileSync('tmp/data/changelog.txt', content)
       var lines = content.split("\n"),
           changelog = [],
           obj;
