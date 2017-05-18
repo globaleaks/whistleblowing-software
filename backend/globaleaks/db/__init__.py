@@ -159,7 +159,7 @@ def db_refresh_memory_variables(store):
         'custodian': node_ro.tor2web_custodian,
         'whistleblower': node_ro.tor2web_whistleblower,
         'receiver': node_ro.tor2web_receiver,
-        'unauth': node_ro.tor2web_unauth
+        'unauth': node_ro.allow_unencrypted,
     }
 
     enabled_langs = models.l10n.EnabledLanguage.list(store)
