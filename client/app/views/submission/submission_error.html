@@ -1,12 +1,9 @@
 <div id="SubmissionErrors" class="panel panel-danger">
   <div class="panel-heading" data-translate>Submission errors</div>
   <div class="panel-body text-danger">
-    <div data-ng-if="!hasPreviousStep() || !hasNextStep()">
-      <div data-ng-if="submission.count_selected_receivers() === 0">
+    <div data-ng-if="!hasPreviousStep()">
+      <div data-ng-if="!areReceiversSelected()">
         <p data-translate>You must select at least one recipient.</p>
-        <ul data-ng-if="!hasNextStep()">
-          <li class="err-link" ng-click="goToStep(receiver_selection_step_index)" data-translate>Recipient selection</li>
-        </ul>
       </div>
     </div>
     <div data-ng-if="!hasNextStep()">
@@ -14,14 +11,18 @@
         <span data-translate>Waiting for the file(s) to finish uploading.</span>&nbsp;
         <i class="glyphicon glyphicon-refresh gly-spin"></i>
       </div>
-      <div data-ng-if="!singleStepForm && submissionForm.$invalid">
-        <p data-translate>The following steps have errors:</p>
-        <ul data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'"
-            data-ng-controller="SubmissionStepFormErrCtrl">
-          <li data-ng-if="stepForm.$invalid" class="err-link" ng-click="goToStep($index)">{{step.label}}</li>
-        </ul>
+      <div data-ng-if="!singleStepForm()">
+        <div data-ng-if="!areReceiversSelected() || vars.submissionForm.$invalid">
+          <p data-translate>The following steps have errors:</p>
+          <ul>
+            <li data-ng-if="!areReceiversSelected()" class="err-link" ng-click="goToStep(receiver_selection_step_index)" data-translate>Recipient selection</li>
+          </ul>
+          <ul data-ng-if="vars.submissionForm.$invalid" data-ng-repeat="step in submission.context.questionnaire.steps | orderBy:'presentation_order'">
+            <li data-ng-if="displayStepErrors($index)" class="err-link" ng-click="goToStep($index, true)">{{step.label}}</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div data-ng-controller="SubmissionStepFormErrCtrl" data-ng-include="'views/submission/step_error.html'"></div>
+    <div data-ng-include="'views/submission/step_error.html'"></div>
   </div>
 </div>

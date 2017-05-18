@@ -1,14 +1,14 @@
 GLClient.controller('SubmissionCtrl',
     ['$scope', 'Utils', '$filter', '$location', '$interval', '$uibModal', '$anchorScroll', 'tmhDynamicLocale', 'Submission', 'glbcProofOfWork', 'fieldUtilities',
       function ($scope, Utils, $filter, $location, $interval, $uibModal, $anchorScroll, tmhDynamicLocale, Submission, glbcProofOfWork, fieldUtilities) {
+  $scope.vars = {};
 
   $scope.fieldUtilities = fieldUtilities;
   $scope.context_id = $location.search().context || undefined;
   $scope.receivers_ids = $location.search().receivers || [];
 
-  $scope.singleStepForm = false;
-  $scope.receiversSelected = false;
-  $scope.navigationPressed = false;
+  $scope.navigation = -1;
+
   $scope.submitPressed = false;
   $scope.problemToBeSolved = false;
   $scope.problemModal = undefined;
@@ -49,8 +49,11 @@ GLClient.controller('SubmissionCtrl',
   $scope.selectContext = function(context) {
     $scope.selected_context = context;
     $scope.field_id_map = fieldUtilities.build_field_id_map(context);
-    $scope.singleStepForm = $scope.firstStepIndex() == $scope.lastStepIndex();
   };
+
+  $scope.singleStepForm = function() {
+    return $scope.firstStepIndex() === $scope.lastStepIndex();
+  }
 
   if ($scope.receivers_ids) {
     try {
@@ -111,7 +114,12 @@ GLClient.controller('SubmissionCtrl',
     return $scope.submission.context.questionnaire.steps[$scope.selection];
   };
 
-  $scope.goToStep = function(index) {
+  $scope.goToStep = function(index, bypassErrors) {
+    if (!bypassErrors && $scope.displayErrors()) {
+      // if some errors are already triggered avoid navigation
+      return;
+    }
+
     $scope.selection = index;
     $anchorScroll('top');
   };
@@ -164,10 +172,14 @@ GLClient.controller('SubmissionCtrl',
     return true;
   };
 
-  $scope.incrementStep = function(submissionForm) {
-    $scope.navigationPressed = true;
+  $scope.incrementStep = function() {
+    if ($scope.hasNextStep()) {
+      if ($scope.navigation < $scope.selection + 1) {
+        $scope.navigation = $scope.selection + 1;
+      }
+    }
 
-    if (!$scope.receiversSelected && $scope.selection === $scope.receiver_selection_step_index) {
+    if (!$scope.areReceiversSelected() && $scope.selection === $scope.receiver_selection_step_index) {
       $anchorScroll('top');
       return;
     }
@@ -179,7 +191,7 @@ GLClient.controller('SubmissionCtrl',
     }
 
     if ($scope.hasNextStep()) {
-      submissionForm.$dirty = false;
+      $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection + 1; i <= $scope.lastStepIndex(); i++) {
         if (fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
@@ -190,11 +202,9 @@ GLClient.controller('SubmissionCtrl',
     }
   };
 
-  $scope.decrementStep = function(submissionForm) {
-    $scope.navigationPressed = true;
-
+  $scope.decrementStep = function() {
     if ($scope.hasPreviousStep()) {
-      submissionForm.$dirty = false;
+      $scope.vars.submissionForm.$dirty = false;
       for (var i = $scope.selection - 1; i >= $scope.firstStepIndex(); i--) {
         if (i === -1 || fieldUtilities.isStepTriggered($scope.submission.context.questionnaire.steps[i], $scope.answers, $scope.total_score)) {
           $scope.selection = i;
@@ -203,6 +213,26 @@ GLClient.controller('SubmissionCtrl',
         }
       }
     }
+  };
+
+  $scope.areReceiversSelected = function() {
+    for (var rec_id in $scope.submission.selected_receivers) {
+      if ($scope.submission.selected_receivers[rec_id]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  $scope.submissionHasErrors = function() {
+    if (angular.isDefined($scope.vars.submissionForm)) {
+      return $scope.submission.isDisabled() ||
+             $scope.vars.submissionForm.$invalid ||
+             Utils.isUploading($scope.uploads);
+    }
+
+    return false;
   };
 
   $scope.fileupload_url = function() {
@@ -299,33 +329,33 @@ GLClient.controller('SubmissionCtrl',
         $scope.openProblemDialog($scope.submission);
       }
 
-      if ($scope.submission.context.show_receivers_in_alphabetical_order) {
-        $scope.receiversOrderPredicate = 'name';
-      } else {
-        $scope.receiversOrderPredicate = 'presentation_order';
-      }
+     if ($scope.submission.context.show_receivers_in_alphabetical_order) {
+       $scope.receiversOrderPredicate = 'name';
+     } else {
+       $scope.receiversOrderPredicate = 'presentation_order';
+     }
 
-      // --------------------------------------------------------------------------
-      // fix steps numbering adding receiver selection step if neeeded
-      $scope.receiver_selection_step = false;
-      $scope.receiver_selection_step_index = -1;
-      $scope.selection = 0;
+     // --------------------------------------------------------------------------
+     // fix steps numbering adding receiver selection step if neeeded
+     $scope.receiver_selection_step = false;
+     $scope.receiver_selection_step_index = -1;
+     $scope.selection = 0;
 
-      if ($scope.submission.context.allow_recipients_selection) {
-        $scope.receiver_selection_step = true;
-        $scope.selection = -1;
-        $scope.receiversSelected = false;
-      }
+     if ($scope.submission.context.allow_recipients_selection) {
+       $scope.receiver_selection_step = true;
+       $scope.selection = -1;
+     }
 
-      $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
-                                          ($scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1));
+     $scope.show_steps_navigation_bar = ($scope.submission.context.questionnaire.show_steps_navigation_bar &&
+                                         ($scope.receiver_selection_step || $scope.submission.context.questionnaire.steps.length > 1));
+
     });
   };
 
   $scope.completeSubmission = function() {
     $scope.submitPressed = true;
 
-    if (!$scope.receiversSelected || !$scope.checkForInvalidFields()) {
+    if (!$scope.areReceiversSelected() || !$scope.checkForInvalidFields()) {
       $anchorScroll('top');
       return;
     }
@@ -334,12 +364,37 @@ GLClient.controller('SubmissionCtrl',
     $scope.submission.submit();
   };
 
-  $scope.displayReceiversErrors = function() {
-    if (!($scope.navigationPressed || $scope.submitPressed)) {
+
+  $scope.stepForm = function(index) {
+    if (index !== -1) {
+      return $scope.vars.submissionForm['step-' + index];
+    }
+  }
+
+  $scope.displayStepErrors = function(index) {
+    if (index !== -1) {
+      return $scope.stepForm(index).$invalid;
+    }
+  }
+
+  $scope.displayErrors = function() {
+    if (!($scope.navigation > $scope.selection || $scope.submitPressed)) {
       return false;
     }
 
-    return !$scope.receiversSelected;
+    if (!($scope.hasPreviousStep() || !$scope.hasNextStep()) && !$scope.areReceiversSelected()) {
+      return true;
+    }
+
+    if (!$scope.hasNextStep() && $scope.submissionHasErrors()) {
+      return true;
+    }
+
+    if ($scope.displayStepErrors($scope.selection)) {
+      return true;
+    }
+
+    return false;
   };
 
   new Submission(function(submission) {
@@ -364,28 +419,6 @@ GLClient.controller('SubmissionCtrl',
         $scope.prepareSubmission($scope.selected_context, $scope.receivers_ids);
       }
     });
-
-    // Watch for changes in certain variables
-    $scope.$watch('submission.selected_receivers', function () {
-      for (var rec_id in $scope.submission.selected_receivers) {
-        if ($scope.submission.selected_receivers[rec_id]) {
-          $scope.receiversSelected = true;
-          return;
-        }
-      }
-
-      $scope.receiversSelected = false;
-    }, true);
-
-    $scope.submissionHasErrors = function(submissionForm) {
-      if (angular.isDefined(submissionForm)) {
-        return submission.isDisabled() ||
-               submissionForm.$invalid ||
-               Utils.isUploading($scope.uploads);
-      }
-
-      return false;
-    };
   });
 }]).
 controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
@@ -393,37 +426,11 @@ controller('SubmissionStepCtrl', ['$scope', '$filter', 'fieldUtilities',
   $scope.fields = $scope.step.children;
   $scope.stepId = 'step-' + $scope.$index;
 
-  $scope.displayErrors = function() {
-    if (!($scope.navigationPressed || $scope.submitPressed)) {
-      return false;
-    }
-
-    if (!$scope.hasNextStep() && $scope.submissionHasErrors()) {
-      return true;
-    }
-
-    if (!$scope.receiversSelected) {
-      return true;
-    }
-
-    var sf_ref = $scope.submissionForm[$scope.stepId];
-
-    if (angular.isDefined(sf_ref)) {
-      return sf_ref.$invalid;
-    }
-
-    return false;
-  };
-
   $scope.rows = fieldUtilities.splitRows($scope.fields);
 
   $scope.status = {
     opened: false,
   };
-}]).
-controller('SubmissionStepFormErrCtrl', ['$scope', function($scope) {
-    var stepFormVarName = 'step-' + $scope.$index;
-    $scope.stepForm = $scope.submissionForm[stepFormVarName];
 }]).
 controller('SubmissionFieldErrKeyCtrl', ['$scope',
   function($scope) {
