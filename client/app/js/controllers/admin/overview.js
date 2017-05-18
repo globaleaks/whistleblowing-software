@@ -25,7 +25,7 @@ GLClient.controller('AdminOverviewCtrl', ['$scope', function($scope){
       template:"views/admin/overview/tab6.html"
     },
     {
-      title:"Scheduled Jobs",
+      title:"Scheduled jobs",
       template:"views/admin/overview/tab7.html"
     }
   ];
