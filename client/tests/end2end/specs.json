@@ -11,7 +11,7 @@
   "test-admin-configure-custom-texts.js",
   "test-admin-configure-mail.js",
   "test-admin-configure-shorturls.js",
-  "test-admin-configure-https.js",
+  "test-admin-configure-network.js",
   "test-admin-configure-advanced.js",
   "test-admin-users.js",
   "test-admin-contexts.js",
