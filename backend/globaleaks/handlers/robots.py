@@ -11,6 +11,8 @@ from globaleaks.settings import GLSettings
 
 
 class RobotstxtHandler(BaseHandler):
+    check_roles = '*'
+
     def get(self):
         """
         Get the robots.txt
@@ -28,6 +30,8 @@ class RobotstxtHandler(BaseHandler):
 
 
 class SitemapHandler(BaseHandler):
+    check_roles = '*'
+
     def get(self):
         """
         Get the sitemap.xml

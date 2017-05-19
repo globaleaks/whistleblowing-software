@@ -85,7 +85,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], True)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
@@ -120,7 +120,6 @@ class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenar
 
     counters_check = {
         'encrypted': 3,
-        'unavailable': 3,
         'reference': 0
     }
 

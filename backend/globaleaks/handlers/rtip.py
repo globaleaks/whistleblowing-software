@@ -405,6 +405,8 @@ class RTipInstance(BaseHandler):
     """
     This interface exposes the Receiver's Tip
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -460,6 +462,8 @@ class RTipCommentCollection(BaseHandler):
     """
     Interface use to write rtip comments
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -478,6 +482,8 @@ class ReceiverMsgCollection(BaseHandler):
     """
     Interface use to write rtip messages
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def post(self, tip_id):
         """
@@ -496,6 +502,8 @@ class WhistleblowerFileHandler(BaseHandler):
     """
     Receiver interface to upload a file intended for the whistleblower
     """
+    check_roles = 'receiver'
+
     @transact
     def can_perform_action(self, store, tip_id):
         rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
@@ -556,6 +564,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
     """
     This class is used in both RTip and WBTip to define a base for respective handlers
     """
+    check_roles = 'receiver'
 
     def user_can_access(self, wbfile):
         raise NotImplementedError("This class defines the user_can_access interface.")
@@ -591,6 +600,8 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     This handler lets the recipient download and delete wbfiles, which are files
     intended for delivery to the whistleblower.
     """
+    check_roles = 'receiver'
+
     def user_can_access(self, wbfile):
         r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
         return self.current_user.user_id in r_ids
@@ -610,6 +621,8 @@ class ReceiverFileDownload(BaseHandler):
     """
     This handler exposes rfiles for download.
     """
+    check_roles = 'receiver'
+
     @transact
     def download_rfile(self, store, user_id, file_id):
         rfile = store.find(ReceiverFile,
@@ -642,6 +655,8 @@ class IdentityAccessRequestsCollection(BaseHandler):
     """
     This interface allow to perform identity access requests.
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def post(self, tip_id):
         """

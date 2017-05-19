@@ -44,6 +44,8 @@ def delete_shorturl(store, shorturl_id):
 
 
 class ShortURLCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -66,6 +68,8 @@ class ShortURLCollection(BaseHandler):
 
 
 class ShortURLInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def delete(self, shorturl_id):
         """

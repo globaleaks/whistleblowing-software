@@ -114,8 +114,7 @@ def update_node(*args):
 
 
 class NodeInstance(BaseHandler):
-    check_tsc = 'admin'
-    check_role = 'admina'
+    check_roles = 'admin'
 
     @inlineCallbacks
     def get(self):

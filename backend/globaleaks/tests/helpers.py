@@ -711,6 +711,7 @@ class TestHandler(TestGLWithPopulatedDB):
             handler_cls = self._handler
 
         request = server.Request(DummyChannel(), False)
+
         request.client = IPv4Address('TCP', '1.2.3.4', 12345)
 
         request.args = {}
@@ -742,6 +743,11 @@ class TestHandler(TestGLWithPopulatedDB):
         handler_cls.finish = mock_finish
 
         handler = handler_cls(request, **kwargs)
+
+        from globaleaks.rest.api import decorate_method
+        for method in ['get', 'post', 'put', 'delete']:
+            if getattr(handler, method, None) is not None:
+                decorate_method(handler, method)
 
         if user_id is None and role is not None:
             if role == 'admin':
@@ -867,7 +873,6 @@ class MockDict:
             'tor2web_custodian': True,
             'tor2web_whistleblower': True,
             'tor2web_receiver': True,
-            'tor2web_unauth': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'can_grant_permissions': False,

@@ -48,7 +48,7 @@ def random_login_delay():
 
 
 @transact
-def login_whistleblower(store, receipt, using_tor2web):
+def login_whistleblower(store, receipt, tor):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
@@ -61,11 +61,9 @@ def login_whistleblower(store, receipt, using_tor2web):
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+    if not tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
         log.err("Denied login request on Tor2web for role 'whistleblower'")
         raise errors.TorNetworkRequired
-    else:
-        log.debug("Accepted login request on Tor2web for role 'whistleblower'")
 
     log.debug("Whistleblower login: Valid receipt")
     wbtip.last_access = datetime_now()
@@ -73,7 +71,7 @@ def login_whistleblower(store, receipt, using_tor2web):
 
 
 @transact
-def login(store, username, password, using_tor2web):
+def login(store, username, password, tor):
     """
     login returns a tuple (user_id, state, pcn)
     """
@@ -85,11 +83,9 @@ def login(store, username, password, using_tor2web):
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[user.role]:
+    if not tor and not GLSettings.memory_copy.accept_tor2web_access[user.role]:
         log.err("Denied login request on Tor2web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
-    else:
-        log.debug("Accepted login request on Tor2web for role '%s'" % user.role)
 
     log.debug("Login: Success (%s)" % user.role)
     user.last_login = datetime_now()
@@ -100,20 +96,7 @@ class AuthenticationHandler(BaseHandler):
     """
     Login handler for admins and recipents and custodians
     """
-    handler_exec_time_threshold = 60
-
-    def get(self):
-        if self.current_user and self.current_user.id not in GLSessions:
-            raise errors.NotAuthenticated
-
-        self.write({
-            'session_id': self.current_user.id,
-            'role': self.current_user.user_role,
-            'user_id': self.current_user.user_id,
-            'session_expiration': int(self.current_user.getTime()),
-            'status': self.current_user.user_status,
-            'password_change_needed': False
-        })
+    check_roles = 'unauthenticated'
 
     @inlineCallbacks
     def post(self):
@@ -129,10 +112,8 @@ class AuthenticationHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        using_tor2web = self.check_tor2web()
-
         try:
-            user_id, status, role, pcn = yield login(username, password, using_tor2web)
+            user_id, status, role, pcn = yield login(username, password, self.client_using_tor)
             # Revoke all other sessions for the newly authenticated user
             GLSessions.revoke_all_sessions(user_id)
         finally:
@@ -149,19 +130,9 @@ class AuthenticationHandler(BaseHandler):
             'password_change_needed': pcn
         })
 
-    def delete(self):
-        """
-        Logout
-        """
-        if self.current_user:
-            try:
-                del GLSessions[self.current_user.id]
-            except KeyError:
-                raise errors.NotAuthenticated
 
-
-class ReceiptAuthHandler(AuthenticationHandler):
-    handler_exec_time_threshold = 60
+class ReceiptAuthHandler(BaseHandler):
+    check_roles = 'unauthenticated'
 
     @inlineCallbacks
     def post(self):
@@ -176,10 +147,8 @@ class ReceiptAuthHandler(AuthenticationHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        using_tor2web = self.check_tor2web()
-
         try:
-            user_id = yield login_whistleblower(receipt, using_tor2web)
+            user_id = yield login_whistleblower(receipt, self.client_using_tor)
             GLSessions.revoke_all_sessions(user_id)
         finally:
             yield self.uniform_answers_delay()
@@ -192,3 +161,34 @@ class ReceiptAuthHandler(AuthenticationHandler):
             'user_id': session.user_id,
             'session_expiration': int(session.getTime())
         })
+
+
+class SessionHandler(BaseHandler):
+    """
+    Session handler for authenticated users
+    """
+    check_roles = 'admin,receiver,custodian,whistleblower'
+
+    def get(self):
+        """
+        Refresh and retrive session
+        """
+
+        self.write({
+            'session_id': self.current_user.id,
+            'role': self.current_user.user_role,
+            'user_id': self.current_user.user_id,
+            'session_expiration': int(self.current_user.getTime()),
+            'status': self.current_user.user_status,
+            'password_change_needed': False
+        })
+
+    def delete(self):
+        """
+        Logout
+        """
+        if self.current_user:
+            try:
+                del GLSessions[self.current_user.id]
+            except KeyError:
+                raise errors.NotAuthenticated

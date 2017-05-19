@@ -177,6 +177,7 @@ class WBTipInstance(BaseHandler):
     Whistleblower can discuss about the submission, comments, collaborative voting, forward,
     promote, and perform other operations in this protected environment.
     """
+    check_roles = 'whistleblower'
 
     @inlineCallbacks
     def get(self):
@@ -199,6 +200,8 @@ class WBTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
+    check_roles = 'whistleblower'
+
     @inlineCallbacks
     def post(self):
         """
@@ -219,6 +222,8 @@ class WBTipMessageCollection(BaseHandler):
 
     Supports the creation of a new message for the requested receiver
     """
+    check_roles = 'whistleblower'
+
     @inlineCallbacks
     def get(self, receiver_id):
         messages = yield get_itip_message_list(self.current_user.user_id, receiver_id)
@@ -235,6 +240,8 @@ class WBTipMessageCollection(BaseHandler):
 
 
 class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
+    check_roles = 'whistleblower'
+
     def user_can_access(self, wbfile):
         return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
 
@@ -251,6 +258,8 @@ class WBTipIdentityHandler(BaseHandler):
     """
     This is the interface that securely allows the whistleblower to provide his identity
     """
+    check_roles = 'whistleblower'
+
     @inlineCallbacks
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.WhisleblowerIdentityAnswers)

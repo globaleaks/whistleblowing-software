@@ -260,6 +260,8 @@ class CsrFileRes(FileResource):
 
 
 class FileHandler(BaseHandler):
+    check_roles = 'admin'
+
     mapped_file_resources = {
         'priv_key': PrivKeyFileRes,
         'cert':  CertFileRes,
@@ -357,6 +359,8 @@ def disable_https(store):
 
 
 class ConfigHandler(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         https_cfg = yield serialize_https_config_summary()
@@ -384,6 +388,8 @@ class ConfigHandler(BaseHandler):
 
 
 class CSRFileHandler(FileHandler):
+    check_roles = 'admin'
+
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):

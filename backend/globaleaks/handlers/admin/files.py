@@ -56,6 +56,8 @@ def del_file(store, key):
 
 
 class FileInstance(BaseHandler):
+    check_roles = 'admin'
+
     key = None
 
     @inlineCallbacks

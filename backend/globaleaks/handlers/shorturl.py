@@ -18,7 +18,7 @@ class ShortUrlInstance(BaseHandler):
     """
     This handler implement the platform url shortener
     """
-    handler_exec_time_threshold = 30
+    check_roles = '*'
 
     @inlineCallbacks
     def get(self, shorturl):

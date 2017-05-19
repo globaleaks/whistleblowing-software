@@ -83,6 +83,7 @@ def db_create_receiver(store, request, language):
 
     return receiver
 
+
 @transact
 def create_receiver_user(store, request, language):
     receiver = db_create_receiver(store, request, language)
@@ -202,6 +203,8 @@ def get_user_list(store, language):
 
 
 class UsersCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -242,6 +245,8 @@ class UsersCollection(BaseHandler):
 
 
 class UserInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, user_id):
         """

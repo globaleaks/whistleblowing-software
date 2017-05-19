@@ -129,13 +129,8 @@ angular.module('GLServices', ['ngResource']).
             self.loginRedirect(true);
           };
 
-          if (self.session.role === 'whistleblower') {
-            $http.delete('receiptauth').then(logoutPerformed,
-                                             logoutPerformed);
-          } else {
-            $http.delete('authentication').then(logoutPerformed,
-                                                logoutPerformed);
-          }
+          $http.delete('session').then(logoutPerformed,
+                                       logoutPerformed);
         };
 
         self.loginRedirect = function(isLogout) {

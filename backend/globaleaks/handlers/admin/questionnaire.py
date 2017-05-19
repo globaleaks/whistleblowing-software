@@ -167,6 +167,8 @@ def delete_questionnaire(store, questionnaire_id):
 
 
 class QuestionnairesCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -202,6 +204,8 @@ class QuestionnairesCollection(BaseHandler):
 
 
 class QuestionnaireInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, questionnaire_id):
         """

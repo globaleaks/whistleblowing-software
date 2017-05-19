@@ -48,6 +48,8 @@ def del_model_img(store, model, obj_id):
 
 
 class ModelImgInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def post(self, obj_key, obj_id):
         uploaded_file = self.get_file_upload()

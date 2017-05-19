@@ -109,6 +109,8 @@ def update_receiver(store, receiver_id, request, language):
 
 
 class ReceiversCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -124,6 +126,8 @@ class ReceiversCollection(BaseHandler):
 
 
 class ReceiverInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, receiver_id):
         """

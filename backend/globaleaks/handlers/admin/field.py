@@ -164,11 +164,11 @@ def db_create_field(store, field_dict, language):
 
 
 @transact
-def create_field(store, field_dict, language, request_type=None):
+def create_field(store, field_dict, language):
     """
     Transaction that perform db_create_field
     """
-    field = db_create_field(store, field_dict, language if request_type != 'import' else None)
+    field = db_create_field(store, field_dict, language)
 
     return serialize_field(store, field, language)
 
@@ -213,7 +213,7 @@ def db_update_field(store, field_id, field_dict, language):
 
 
 @transact
-def update_field(store, field_id, field, language, request_type=None):
+def update_field(store, field_id, field, language):
     """
     Update the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
@@ -225,13 +225,13 @@ def update_field(store, field_id, field, language, request_type=None):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    field = db_update_field(store, field_id, field, language if request_type != 'import' else None)
+    field = db_update_field(store, field_id, field, language)
 
     return serialize_field(store, field, language)
 
 
 @transact
-def get_field(store, field_id, language, request_type=None):
+def get_field(store, field_id, language):
     """
     Serialize a specified field
 
@@ -245,7 +245,7 @@ def get_field(store, field_id, language, request_type=None):
     if not field:
         raise errors.FieldIdNotFound
 
-    return serialize_field(store, field, language if request_type != 'export' else None)
+    return serialize_field(store, field, language)
 
 
 @transact
@@ -297,7 +297,7 @@ def fieldtree_ancestors(store, field_id):
 
 
 @transact
-def get_fieldtemplate_list(store, language, request_type=None):
+def get_fieldtemplate_list(store, language):
     """
     Serialize all the field templates localizing their content depending on the language.
 
@@ -306,8 +306,6 @@ def get_fieldtemplate_list(store, language, request_type=None):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    language = language if request_type != 'export' else None
-
     ret = []
     for f in store.find(models.Field, And(models.Field.instance == u'template',
                                           models.Field.fieldgroup_id == None)):
@@ -317,6 +315,8 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
 
 class FieldTemplatesCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -326,7 +326,7 @@ class FieldTemplatesCollection(BaseHandler):
         :rtype: list
         """
         response = yield GLApiCache.get('fieldtemplates', self.request.language,
-                                        get_fieldtemplate_list, self.request.language, self.request.request_type)
+                                        get_fieldtemplate_list, self.request.language)
 
         self.write(response)
 
@@ -339,12 +339,14 @@ class FieldTemplatesCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        response = yield create_field(request, self.request.language, self.request.request_type)
+        response = yield create_field(request, self.request.language)
 
         self.write(response)
 
 
 class FieldTemplateInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -356,8 +358,7 @@ class FieldTemplateInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         response = yield get_field(field_id,
-                                   self.request.language,
-                                   self.request.request_type)
+                                   self.request.language)
 
         self.write(response)
 
@@ -376,8 +377,7 @@ class FieldTemplateInstance(BaseHandler):
 
         response = yield update_field(field_id,
                                       request,
-                                      self.request.language,
-                                      self.request.request_type)
+                                      self.request.language)
 
         GLApiCache.invalidate()
 
@@ -402,6 +402,8 @@ class FieldCollection(BaseHandler):
 
     /admin/fields
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def post(self):
         """
@@ -415,8 +417,7 @@ class FieldCollection(BaseHandler):
                                         requests.AdminFieldDesc)
 
         response = yield create_field(request,
-                                      self.request.language,
-                                      self.request.request_type)
+                                      self.request.language)
 
         GLApiCache.invalidate()
 
@@ -429,6 +430,8 @@ class FieldInstance(BaseHandler):
 
     /admin/fields
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, field_id):
         """
@@ -441,8 +444,7 @@ class FieldInstance(BaseHandler):
         :raises InvalidInputFormat: if validation fails.
         """
         response = yield get_field(field_id,
-                                   self.request.language,
-                                   self.request.request_type)
+                                   self.request.language)
 
         GLApiCache.invalidate()
 
@@ -464,8 +466,7 @@ class FieldInstance(BaseHandler):
 
         response = yield update_field(field_id,
                                       request,
-                                      self.request.language,
-                                      self.request.request_type)
+                                      self.request.language)
 
         GLApiCache.invalidate()
 

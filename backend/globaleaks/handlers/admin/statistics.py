@@ -158,6 +158,8 @@ def delete_anomaly_history(store):
 
 
 class AnomalyCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         anomaly_history = yield get_anomaly_history(limit=20)
@@ -176,6 +178,8 @@ class StatsCollection(BaseHandler):
     count of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, week_delta):
         week_delta = int(week_delta)
@@ -201,6 +205,8 @@ class RecentEventsCollection(BaseHandler):
     This handler is refreshed constantly by an admin page
     and provide real time update about the GlobaLeaks status
     """
+    check_roles = 'admin'
+
     def get_summary(self, templist):
         eventmap = dict()
         for event in events_monitored:
@@ -231,6 +237,8 @@ class JobsTiming(BaseHandler):
     """
     This handler return the timing for the latest scheduler execution
     """
+    check_roles = 'admin'
+
     def get(self):
         response = []
 
