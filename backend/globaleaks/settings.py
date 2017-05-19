@@ -140,8 +140,7 @@ class GLSettingsClass(object):
                 'admin': True,
                 'whistleblower': False,
                 'custodian': False,
-                'receiver': False,
-                'unauth': True,
+                'receiver': False
             },
             'private': {
                 'https_enabled': False,

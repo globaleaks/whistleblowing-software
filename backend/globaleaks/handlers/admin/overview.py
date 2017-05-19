@@ -68,6 +68,8 @@ class Tips(BaseHandler):
     /admin/overview/tips
     Dump the list of the active tips with various information
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -87,6 +89,8 @@ class Files(BaseHandler):
     Return the list of the files in InternalFile, ReceiverFile
     and the files in
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """

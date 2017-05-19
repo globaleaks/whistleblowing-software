@@ -82,6 +82,8 @@ class Wizard(BaseHandler):
     """
     Setup Wizard handler
     """
+    check_roles = 'unauthenticated'
+
     @inlineCallbacks
     def post(self):
         request = self.validate_message(self.request.content.read(),

@@ -11,6 +11,7 @@ custom_texts = {
    '12345': '54321'
 }
 
+
 class TestL10NHandler(helpers.TestHandler):
     _handler = l10n.L10NHandler
 

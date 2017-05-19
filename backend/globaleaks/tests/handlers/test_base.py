@@ -4,8 +4,8 @@ import json
 from cyclone.web import HTTPError, HTTPAuthenticationRequired
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, BaseStaticFileHandler
-from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, StaticFileHandler
+from globaleaks.rest.errors import InvalidInputFormat, ResourceNotFound
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
 
@@ -13,97 +13,51 @@ FUTURE = 100
 
 
 class BaseHandlerMock(BaseHandler):
-    @BaseHandler.authenticated('admin')
-    def get_authenticated(self):
-        self.finish()
+    check_roles = 'unauthenticated'
 
-    @BaseHandler.unauthenticated
-    def get_unauthenticated(self):
+    def get(self):
         self.finish()
-
 
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
 
     @inlineCallbacks
-    def test_successful_session_update_on_unauth_request(self):
-        session = GLSession('admin', 'admin', 'enabled')
-        date1 = session.getTime()
-        self.test_reactor.pump([1] * FUTURE)
-        handler = self.request({}, headers={'x-session': session.id})
-        yield handler.get_unauthenticated()
-        date2 = GLSessions.get(session.id).getTime()
-        self.assertEqual(date1 + FUTURE, date2)
-
-    @inlineCallbacks
-    def test_successful_session_update_on_auth_request(self):
-        session = GLSession('admin', 'admin', 'enabled')
-        date1 = session.getTime()
-        self.test_reactor.pump([1] * FUTURE)
-        handler = self.request({}, headers={'x-session': session.id})
-        yield handler.get_authenticated()
-        date2 = GLSessions.get(session.id).getTime()
-        self.assertEqual(date1 + FUTURE, date2)
-
-    @inlineCallbacks
-    def test_basic_auth_on_and_valid_authentication(self):
-        GLSettings.memory_copy.basic_auth = True
-        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
-        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
-        handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczpnbG9iYWxlYWtz'})
-        yield handler.get_unauthenticated()
-
-    def test_basic_auth_on_and_invalid_authentication(self):
-        GLSettings.memory_copy.basic_auth = True
-        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
-        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
-        handler = self.request({}, headers={'Authorization': 'Basic Z2xvYmFsZWFrczp3cm9uZ3Bhc3N3b3Jk'})
-        self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
-
-    def test_basic_auth_on_and_missing_authentication(self):
-        GLSettings.memory_copy.basic_auth = True
-        GLSettings.memory_copy.basic_auth_username = 'globaleaks'
-        GLSettings.memory_copy.basic_auth_password = 'globaleaks'
-        handler = self.request({})
-        self.assertRaises(HTTPAuthenticationRequired, handler.get_unauthenticated)
-
-    @inlineCallbacks
     def test_get_with_no_language_header(self):
         handler = self.request({})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'en')
 
     @inlineCallbacks
     def test_get_with_gl_language_header(self):
         handler = self.request({}, headers={'GL-Language': 'it'})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'it')
 
     @inlineCallbacks
     def test_get_with_accept_language_header(self):
         handler = self.request({}, headers={'Accept-Language': 'ar;q=0.8,it;q=0.6'})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'ar')
 
     @inlineCallbacks
     def test_get_with_gl_language_header_and_accept_language_header_1(self):
         handler = self.request({}, headers={'GL-Language': 'en',
                                             'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'en')
 
     @inlineCallbacks
     def test_get_with_gl_language_header_and_accept_language_header_2(self):
         handler = self.request({}, headers={'GL-Language': 'antani',
                                             'Accept-Language': 'en-US,en;it;q=0.6'})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'en')
 
     @inlineCallbacks
     def test_get_with_gl_language_header_and_accept_language_header_3(self):
         handler = self.request({}, headers={'GL-Language': 'antani',
                                             'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
-        yield handler.get_unauthenticated()
+        yield handler.get()
         self.assertEqual(handler.request.language, 'en')
 
     def test_validate_jmessage_valid(self):
@@ -159,14 +113,21 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertFalse(BaseHandler.validate_regexp('Foca', '\d+'))
 
 
-class TestBaseStaticFileHandler(helpers.TestHandler):
-    _handler = BaseStaticFileHandler
+class TestStaticFileHandler(helpers.TestHandler):
+    _handler = StaticFileHandler
 
-    @inlineCallbacks
+    #@inlineCallbacks
     def test_get_existent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
-        yield handler.get('')
+        #yield handler.get('')
 
+    @inlineCallbacks
     def test_get_unexistent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
-        self.assertRaises(HTTPError, handler.get, 'unexistent')
+
+        try:
+            yield handler.get('unexistent')
+        except ResourceNotFound:
+            return
+
+        self.fail('should throw resource not found error')

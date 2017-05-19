@@ -51,27 +51,6 @@ mimetypes.add_type('application/woff', '.woff')
 mimetypes.add_type('application/woff2', '.woff2')
 
 
-def should_redirect_tor(request, tor_addr, exit_relay_set):
-    forwarded_ip = request.headers.get('x-forwarded-for', None)
-    if forwarded_ip is None:
-        forwarded_ip = request.remote_ip
-
-    if tor_addr is not None and forwarded_ip in exit_relay_set:
-        return True
-    return False
-
-
-def should_redirect_https(request, https_enabled, local_hosts):
-    forwarded_ip = request.headers.get('x-forwarded-for', None)
-    if request.remote_ip in local_hosts and forwarded_ip is not None:
-        # This connection has been properly proxied through some transport locally
-        return False
-    elif https_enabled and not request.remote_ip in local_hosts:
-        return True
-    else:
-        return False
-
-
 def write_upload_plaintext_to_disk(uploaded_file, destination):
     """
     @param uploaded_file: uploaded_file data struct
@@ -186,28 +165,25 @@ class BaseHandler(object):
     def __init__(self, request):
         self.request = request
         self.request.start_time = datetime.now()
-        self.request.remote_ip = self.request.getClientIP()
 
         self.name = type(self).__name__
 
         self.req_id = GLSettings.requests_counter
         GLSettings.requests_counter += 1
 
-        self.request.request_type = None
-
         self.request.headers = self.request.getAllHeaders()
 
-        log.debug('Received request from: %s: %s' % (self.request.remote_ip, self.request.headers))
-        if should_redirect_https(self.request,
-                                 GLSettings.memory_copy.private.https_enabled,
-                                 GLSettings.local_hosts):
-            log.debug('Decided to redirect')
-            self.redirect_https()
+        self.client_ip = request.headers.get('X-Forwarded-For', None)
+        if self.client_ip is None:
+            self.client_ip = self.request.getClientIP()
 
-        if should_redirect_tor(self.request,
-                               GLSettings.onionservice,
-                               GLSettings.state.tor_exit_set):
-            self.redirect_tor(GLSettings.onionservice)
+        self.client_using_tor = self.client_ip in GLSettings.state.tor_exit_set
+
+        if self.should_redirect_tor():
+           self.redirect_tor()
+
+        if self.should_redirect_https():
+            self.redirect_https()
 
         language = self.request.headers.get('gl-language')
 
@@ -278,51 +254,31 @@ class BaseHandler(object):
 
         return GLSettings.memory_copy.default_language
 
-    def authenticated(self, f, role):
+    def authentication(self, f, roles):
         """
         Decorator for authenticated sessions.
-        If the user is not authenticated, return a http 412 error.
         """
         def wrapper(*args, **kwargs):
-            """
-            If not yet auth, is redirected
-            If is logged with the right account, is accepted
-            If is logged with the wrong account, is rejected with a special message
-            """
             if GLSettings.memory_copy.basic_auth:
                 self.basic_auth()
 
-            if role == 'none':
-                return f(*args)
-            else:
-                if not self.current_user:
-                    raise errors.NotAuthenticated
+            if '*' in roles:
+               return f(*args, **kwargs)
 
-                if role == '*' or role == self.current_user.user_role:
-                    log.debug("Authentication OK (%s)" % self.current_user.user_role)
-                    return f(*args, **kwargs)
+            if 'unauthenticated' in roles:
+                if self.current_user:
+                    raise errors.InvalidAuthentication
 
-                raise errors.InvalidAuthentication
+                return f(*args, **kwargs)
 
-        return wrapper
+            if not self.current_user:
+               raise errors.NotAuthenticated
 
-    def transport_security_check(self, f, role):
-        """
-        Decorator for enforcing the required transport security: Tor/HTTPS
-        """
-        def wrapper(*args, **kwargs):
-            using_tor2web = self.check_tor2web()
+            if self.current_user.user_role in roles:
+               log.debug("Authentication OK (%s)" % self.current_user.user_role)
+               return f(*args, **kwargs)
 
-            if using_tor2web and not GLSettings.memory_copy.accept_tor2web_access[role]:
-                log.err("Denied request on Tor2web for role %s and resource '%s'" %
-                        (role, self.request.uri))
-                raise errors.TorNetworkRequired
-
-            if using_tor2web:
-                log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
-                          (role, self.request.uri))
-
-            return f(*args, **kwargs)
+            raise errors.InvalidAuthentication
 
         return wrapper
 
@@ -593,8 +549,18 @@ class BaseHandler(object):
 
         return GLSessions.get(session_id)
 
-    def check_tor2web(self):
-        return False if self.request.headers.get('x-tor2web', None) is None else True
+    def should_redirect_tor(self):
+        if GLSettings.onionservice is not None and self.client_using_tor:
+            return True
+
+        return False
+
+    def should_redirect_https(self):
+        if GLSettings.memory_copy.private.https_enabled and \
+           self.client_ip not in GLSettings.local_hosts:
+            return True
+        else:
+            return False
 
     def get_file_upload(self):
         try:
@@ -652,7 +618,9 @@ class BaseHandler(object):
         track_handler(self)
 
 
-class BaseStaticFileHandler(BaseHandler):
+class StaticFileHandler(BaseHandler):
+    check_roles = '*'
+
     def __init__(self, request, path):
         BaseHandler.__init__(self, request)
 

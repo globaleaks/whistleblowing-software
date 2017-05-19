@@ -119,6 +119,7 @@ class ZipStreamProducer(object):
 
 
 class ExportHandler(BaseHandler):
+    check_roles = 'receiver'
     handler_exec_time_threshold = 3600
 
     @inlineCallbacks

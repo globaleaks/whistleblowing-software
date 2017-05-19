@@ -94,6 +94,8 @@ class NotificationInstance(BaseHandler):
     """
     Manage Notification settings (account details and template)
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -128,6 +130,8 @@ class NotificationTestInstance(BaseHandler):
     successful and unsucessful requests. Understand that this handler blocks
     its thread until both the db query and the SMTP round trip return.
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def post(self):
         """

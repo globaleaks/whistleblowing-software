@@ -45,6 +45,8 @@ def delete_custom_texts(store, lang):
 
 
 class AdminL10NHandler(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, lang):
         custom_texts = yield get_custom_texts(lang)

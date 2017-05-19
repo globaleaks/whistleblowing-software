@@ -127,6 +127,7 @@ class ReceiverInstance(BaseHandler):
         - notification settings
         - pgp key
     """
+    check_roles = 'receiver'
 
     @inlineCallbacks
     def get(self):
@@ -139,7 +140,6 @@ class ReceiverInstance(BaseHandler):
                                                       self.request.language)
 
         self.write(receiver_status)
-
 
     @inlineCallbacks
     def put(self):
@@ -165,6 +165,8 @@ class TipsCollection(BaseHandler):
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def get(self):
         """
@@ -182,6 +184,8 @@ class TipsOperations(BaseHandler):
     This interface receive some operation (postpone or delete) and a list of
     tips to apply.
     """
+    check_roles = 'receiver'
+
     @inlineCallbacks
     def put(self):
         """

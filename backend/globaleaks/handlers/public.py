@@ -390,6 +390,8 @@ def get_public_resources(store, language):
 
 
 class PublicResource(BaseHandler):
+    check_roles = '*'
+
     @inlineCallbacks
     def get(self):
         """

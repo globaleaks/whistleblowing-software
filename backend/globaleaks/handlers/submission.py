@@ -285,7 +285,7 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, request, uploaded_files, t2w, language):
+def db_create_submission(store, request, uploaded_files, tor, language):
     answers = request['answers']
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
@@ -309,7 +309,7 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
 
     # The use of Tor2Web is detected by the basehandler and the status forwared  here;
     # The status is used to keep track of the security level adopted by the whistleblower
-    submission.tor2web = t2w
+    submission.tor2web = not tor
 
     submission.context_id = context.id
 
@@ -384,14 +384,16 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
 
 
 @transact
-def create_submission(store, request, uploaded_files, t2w, language):
-    return db_create_submission(store, request, uploaded_files, t2w, language)
+def create_submission(store, request, uploaded_files, tor, language):
+    return db_create_submission(store, request, uploaded_files, tor, language)
 
 
 class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
     """
+    check_roles = 'unauthenticated'
+
     @defer.inlineCallbacks
     def put(self, token_id):
         """
@@ -409,7 +411,7 @@ class SubmissionInstance(BaseHandler):
 
         submission = yield create_submission(request,
                                              token.uploaded_files,
-                                             self.check_tor2web(),
+                                             self.client_using_tor,
                                              self.request.language)
         # Delete the token only when a valid submission has been stored in the DB
         TokenList.delete(token_id)

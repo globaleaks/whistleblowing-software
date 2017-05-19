@@ -118,6 +118,8 @@ class StepCollection(BaseHandler):
 
     /admin/steps
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def post(self):
         """
@@ -143,6 +145,8 @@ class StepInstance(BaseHandler):
 
     /admin/step
     """
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, step_id):
         """

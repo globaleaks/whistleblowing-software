@@ -41,6 +41,8 @@ class L10NHandler(BaseHandler):
     This class is used to return the custom translation files;
     if the file are not present, default translations are returned
     """
+    check_roles = '*'
+
     @inlineCallbacks
     def get(self, lang):
         l10n = yield GLApiCache.get('l10n', self.request.language,

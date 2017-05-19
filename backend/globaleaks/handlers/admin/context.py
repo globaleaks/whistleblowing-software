@@ -234,6 +234,8 @@ def delete_context(store, context_id):
 
 
 class ContextsCollection(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self):
         """
@@ -268,6 +270,8 @@ class ContextsCollection(BaseHandler):
 
 
 class ContextInstance(BaseHandler):
+    check_roles = 'admin'
+
     @inlineCallbacks
     def get(self, context_id):
         """

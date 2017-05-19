@@ -8,14 +8,11 @@
 # class variables expected in the Error handler routine
 
 
-class GLException(BaseException):
+class GLException(Exception):
     reason = "GLTypesError not set"
     log_message = "GLException"
     error_code = 0
     status_code = 500  # generic Server error
-
-    def __init__(self):
-        pass
 
     def __str__(self):
         return self.__repr__()
@@ -308,7 +305,7 @@ class TorNetworkRequired(GLException):
     """
     reason = "Resource can be accessed only within Tor network"
     error_code = 37
-    status_code = 413  # Forbidden
+    status_code = 403  # Forbidden
 
 
 class FileTooBig(GLException):
@@ -394,6 +391,7 @@ class ModelNotFound(GLException):
     status_code = 404
 
     def __init__(self, model=None):
+        Exception.__init__(self)
         if model is None:
             self.reason = "Model not found"
         else:

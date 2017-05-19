@@ -36,6 +36,8 @@ class StaticFileInstance(BaseHandler):
     """
     Handler for files stored on the filesystem
     """
+    check_roles = 'admin'
+
     handler_exec_time_threshold = 3600
 
     @inlineCallbacks
@@ -72,6 +74,8 @@ class StaticFileInstance(BaseHandler):
 
 
 class StaticFileList(BaseHandler):
+    check_roles = 'admin'
+
     def get(self):
         """
         Return the list of static files, with few filesystem info

@@ -30,7 +30,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
-        }, headers={'x-tor2web': 'whatever'})
+        })
         GLSettings.memory_copy.accept_tor2web_access['admin'] = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
@@ -41,36 +41,9 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
-        }, headers={'x-tor2web': 'whatever'})
+        })
         GLSettings.memory_copy.accept_tor2web_access['admin'] = False
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
-
-    @inlineCallbacks
-    def test_successful_logout(self):
-        # Login
-        handler = self.request({
-            'username': 'admin',
-            'password': helpers.VALID_PASSWORD1
-        })
-        yield handler.post()
-        self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSessions.keys()), 1)
-
-        # Logout
-        session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'x-session': session_id})
-        yield handler.delete()
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSessions.keys()), 0)
-
-        # A second logout must not be accepted (this validate also x-session reuse)
-        handler = self.request({}, headers={'x-session': session_id})
-
-        self.assertRaises(errors.NotAuthenticated, handler.delete)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSessions.keys()), 0)
 
     @inlineCallbacks
     def test_invalid_login_wrong_password(self):
@@ -146,6 +119,7 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
 
         yield user_handler.get()
 
+
 class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
     _handler = authentication.ReceiptAuthHandler
 
@@ -163,6 +137,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
+        handler.client_using_tor = True
         yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
         self.assertEqual(len(GLSessions.keys()), 1)
@@ -188,32 +163,6 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         yield self.assertFailure(handler.post(), errors.TorNetworkRequired)
 
     @inlineCallbacks
-    def test_successful_whistleblower_logout(self):
-        yield self.perform_full_submission_actions()
-        handler = self.request({
-            'receipt': self.dummySubmission['receipt']
-        })
-        yield handler.post()
-        self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
-        self.assertEqual(len(GLSessions.keys()), 1)
-
-        # Logout
-        session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'x-session': session_id})
-        yield handler.delete()
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSessions.keys()), 0)
-
-        # A second logout must not be accepted (this validate also x-session reuse)
-        handler = self.request({}, headers={'x-session': session_id})
-
-        self.assertRaises(errors.NotAuthenticated, handler.delete)
-
-        self.assertTrue(handler.current_user is None)
-        self.assertEqual(len(GLSessions.keys()), 0)
-
-    @inlineCallbacks
     def test_single_session_per_whistleblower(self):
         """
         Asserts that the first_id is dropped from GLSessions and requests
@@ -223,6 +172,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
+        handler.client_using_tor = True
         yield handler.post()
         first_id = self.responses[0]['session_id']
 
@@ -249,3 +199,54 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         wbtip_handler = self.request(headers={'x-session': second_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
+
+
+class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
+    @inlineCallbacks
+    def test_successful_admin_logout(self):
+        self._handler = authentication.AuthenticationHandler
+
+        # Login
+        handler = self.request({
+            'username': 'admin',
+            'password': helpers.VALID_PASSWORD1
+        })
+        yield handler.post()
+        self.assertTrue(handler.current_user is None)
+        self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSessions.keys()), 1)
+
+        self._handler = authentication.SessionHandler
+
+        # Logout
+        session_id = self.responses[0]['session_id']
+        handler = self.request({}, headers={'x-session': session_id})
+        yield handler.delete()
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSessions.keys()), 0)
+
+    @inlineCallbacks
+    def test_successful_whistleblower_logout(self):
+        yield self.perform_full_submission_actions()
+
+        self._handler = authentication.ReceiptAuthHandler
+
+        handler = self.request({
+            'receipt': self.dummySubmission['receipt']
+        })
+
+        handler.client_using_tor = True
+
+        yield handler.post()
+        self.assertTrue(handler.current_user is None)
+        self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSessions.keys()), 1)
+
+        self._handler = authentication.SessionHandler
+
+        # Logout
+        session_id = self.responses[0]['session_id']
+        handler = self.request({}, headers={'x-session': session_id})
+        yield handler.delete()
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSessions.keys()), 0)

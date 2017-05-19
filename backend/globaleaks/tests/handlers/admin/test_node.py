@@ -60,7 +60,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         self.dummyNode['default_language'] = "en"
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), Exception)
+        yield self.assertFailure(handler.put(), InvalidInputFormat)
 
     @inlineCallbacks
     def test_put_update_node_languages_removing_en_adding_fr(self):

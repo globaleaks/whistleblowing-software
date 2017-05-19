@@ -138,6 +138,8 @@ class UserInstance(BaseHandler):
         - notification settings
         - pgp key
     """
+    check_roles = 'admin,receiver,custodian'
+
     @inlineCallbacks
     def get(self):
         """

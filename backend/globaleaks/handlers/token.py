@@ -16,6 +16,8 @@ class TokenCreate(BaseHandler):
     """
     This class implement the handler for requesting a token.
     """
+    check_roles = 'unauthenticated'
+
     def post(self):
         """
         Request: None
@@ -27,14 +29,14 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
+        if not self.client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+            raise errors.TorNetworkRequired
+
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
         if request['type'] == 'submission':
             if not GLSettings.accept_submissions:
                 raise errors.SubmissionDisabled
-
-            # TODO implement further validations for different token options based on type
-            # params = self.validate_message(request['params'], requests.TokenParamsSubmissionDesc)
 
         token = Token(request['type'])
 
@@ -45,6 +47,8 @@ class TokenInstance(BaseHandler):
     """
     This class impleement the handler for updating a token (e.g.: solving a captcha)
     """
+    check_roles = 'unauthenticated'
+
     def put(self, token_id):
         """
         Parameter: token_id

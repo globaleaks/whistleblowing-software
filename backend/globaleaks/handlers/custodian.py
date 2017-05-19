@@ -68,6 +68,8 @@ class IdentityAccessRequestInstance(BaseHandler):
     """
     This handler allow custodians to manage an identity access request by a receiver
     """
+    check_roles = 'custodian'
+
     @inlineCallbacks
     def get(self, identityaccessrequest_id):
         """
@@ -103,6 +105,8 @@ class IdentityAccessRequestsCollection(BaseHandler):
     This interface return the list of the requests of access to whislteblower identities
     GET /identityrequests
     """
+    check_roles = 'custodian'
+
     @inlineCallbacks
     def get(self):
         """

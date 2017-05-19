@@ -54,6 +54,7 @@ api_spec = [
     ## Authentication Handlers ##
     (r'/authentication', authentication.AuthenticationHandler, None),
     (r'/receiptauth', authentication.ReceiptAuthHandler, None),
+    (r'/session', authentication.SessionHandler, None),
 
     ## Public API ##
     (r'/public', public.PublicResource, None),
@@ -137,21 +138,19 @@ api_spec = [
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler, None),
     (r'/sitemap.xml', robots.SitemapHandler, None),
-    (r'/s/(.+)', base.BaseStaticFileHandler, {'path': GLSettings.static_path}),
+    (r'/s/(.+)', base.StaticFileHandler, {'path': GLSettings.static_path}),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler, None),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
-    (r'/([a-zA-Z0-9_\-\/\.]*)', base.BaseStaticFileHandler, {'path': GLSettings.client_path})
+    (r'/([a-zA-Z0-9_\-\/\.]*)', base.StaticFileHandler, {'path': GLSettings.client_path})
 ]
 
 def decorate_method(h, method):
-   decorator = getattr(h, 'transport_security_check')
-   value = getattr(h, 'check_tsc', '*')
+   decorator = getattr(h, 'authentication')
+   value = getattr(h, 'check_roles')
+   value = re.split("[ ,]", value)
    setattr(h, method, decorator(getattr(h, method), value))
 
-   decorator = getattr(h, 'authenticated')
-   value = getattr(h, 'check_role', 'none')
-   setattr(h, method, decorator(getattr(h, method), value))
 
 class APIResourceWrapper(Resource):
     _registry = None
@@ -162,13 +161,11 @@ class APIResourceWrapper(Resource):
         self._registry = []
 
         for pattern, handler, args, in api_spec:
-
             if not pattern.startswith("^"):
                 pattern = "^" + pattern;
 
             if not pattern.endswith("$"):
                 pattern += "$"
-
 
             self._registry.append((re.compile(pattern), handler, args))
 
@@ -196,15 +193,18 @@ class APIResourceWrapper(Resource):
             request.write(bytes(error_dict))
 
     def render(self, request):
-        self.request_finished = False
+        request_finished = [False]
 
         def _finish(self):
-            self.request_finished = True
+            request_finished[0] = True
 
         request.notifyFinish().addBoth(_finish)
 
         for regexp, handler, args in self._registry:
             method = request.method.lower()
+
+            if method not in ['get', 'post', 'put', 'delete']:
+                continue
 
             match = regexp.match(request.path)
             if not match:
@@ -219,7 +219,7 @@ class APIResourceWrapper(Resource):
 
             if not hasattr(handler, method):
                 self.handle_exception(errors.MethodNotImplemented(), request)
-                return
+                return ''
 
             decorate_method(h, method)
 
@@ -229,7 +229,7 @@ class APIResourceWrapper(Resource):
 
             def both(ret):
                 h.execution_check()
-                if not self.request_finished:
+                if not request_finished[0]:
                    request.finish()
 
             d.addErrback(self.handle_exception, request)
