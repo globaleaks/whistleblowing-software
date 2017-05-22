@@ -4,15 +4,12 @@
 #   *****
 # Implementation of the code executed on handler /admin/receivers
 #
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.admin.user import db_create_receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 
@@ -111,7 +108,6 @@ def update_receiver(store, receiver_id, request, language):
 class ReceiversCollection(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
         """
         Return all the receivers.
@@ -120,15 +116,12 @@ class ReceiversCollection(BaseHandler):
         Response: adminReceiverList
         Errors: None
         """
-        response = yield get_receiver_list(self.request.language)
-
-        self.write(response)
+        return get_receiver_list(self.request.language)
 
 
 class ReceiverInstance(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self, receiver_id):
         """
         Get the specified receiver.
@@ -137,11 +130,8 @@ class ReceiverInstance(BaseHandler):
         Response: AdminReceiverDesc
         Errors: InvalidInputFormat, ReceiverIdNotFound
         """
-        response = yield get_receiver(receiver_id, self.request.language)
+        return get_receiver(receiver_id, self.request.language)
 
-        self.write(response)
-
-    @inlineCallbacks
     def put(self, receiver_id):
         """
         Update the specified receiver.
@@ -153,7 +143,4 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.AdminReceiverDesc)
 
-        response = yield update_receiver(receiver_id, request, self.request.language)
-        GLApiCache.invalidate()
-
-        self.write(response)
+        return update_receiver(receiver_id, request, self.request.language)

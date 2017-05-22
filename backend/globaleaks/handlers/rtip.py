@@ -407,7 +407,6 @@ class RTipInstance(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def get(self, tip_id):
         """
         Parameters: None
@@ -421,11 +420,8 @@ class RTipInstance(BaseHandler):
         This method is decorated as @BaseHandler.unauthenticated because in the handler
         the various cases are managed differently.
         """
-        answer = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
+        return get_rtip(self.current_user.user_id, tip_id, self.request.language)
 
-        self.write(answer)
-
-    @inlineCallbacks
     def put(self, tip_id):
         """
         Some special operations that manipulate a Tip are handled here
@@ -433,7 +429,7 @@ class RTipInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(), requests.TipOpsDesc)
 
         if request['operation'] == 'postpone':
-            yield postpone_expiration_date(self.current_user.user_id, tip_id)
+            return postpone_expiration_date(self.current_user.user_id, tip_id)
         elif request['operation'] == 'set':
             key = request['args']['key']
             value = request['args']['value']
@@ -442,12 +438,11 @@ class RTipInstance(BaseHandler):
                                 'enable_attachments']
             if ((key == 'label'                and isinstance(value, unicode)) or
                 (key == 'enable_notifications' and isinstance(value, bool))):
-                yield set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
+                return set_receivertip_variable(self.current_user.user_id, tip_id, key, value)
             elif key in internal_var_lst and isinstance(value, bool):
                 # Elements of internal_var_lst are not stored in the receiver's tip table
-                yield set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
+                return set_internaltip_variable(self.current_user.user_id, tip_id, key, value)
 
-    @inlineCallbacks
     def delete(self, tip_id):
         """
         Response: None
@@ -455,7 +450,7 @@ class RTipInstance(BaseHandler):
 
         delete: remove the Internaltip and all the associated data
         """
-        yield delete_rtip(self.current_user.user_id, tip_id)
+        return delete_rtip(self.current_user.user_id, tip_id)
 
 
 class RTipCommentCollection(BaseHandler):
@@ -464,7 +459,6 @@ class RTipCommentCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def post(self, tip_id):
         """
         Request: CommentDesc
@@ -473,9 +467,7 @@ class RTipCommentCollection(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        answer = yield create_comment(self.current_user.user_id, tip_id, request)
-
-        self.write(answer)
+        return create_comment(self.current_user.user_id, tip_id, request)
 
 
 class ReceiverMsgCollection(BaseHandler):
@@ -484,7 +476,6 @@ class ReceiverMsgCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def post(self, tip_id):
         """
         Request: CommentDesc
@@ -493,9 +484,7 @@ class ReceiverMsgCollection(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        message = yield create_message(self.current_user.user_id, tip_id, request)
-
-        self.write(message)
+        return create_message(self.current_user.user_id, tip_id, request)
 
 
 class WhistleblowerFileHandler(BaseHandler):
@@ -585,7 +574,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
         return serializers.serialize_wbfile(wbfile)
 
     @inlineCallbacks
-    def _get(self, wbfile_id):
+    def get(self, wbfile_id):
         wbfile = yield self.download_wbfile(self.current_user.user_id, wbfile_id)
 
         filelocation = os.path.join(GLSettings.submission_path, wbfile['path'])
@@ -609,12 +598,11 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
     def get(self, file_id):
         self._get(file_id)
 
-    @inlineCallbacks
     def delete(self, file_id):
         """
         This interface allow the recipient to set the description of a WhistleblowerFile
         """
-        yield delete_wbfile(self.current_user.user_id, file_id)
+        return delete_wbfile(self.current_user.user_id, file_id)
 
 
 class ReceiverFileDownload(BaseHandler):
@@ -666,9 +654,7 @@ class IdentityAccessRequestsCollection(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.ReceiverIdentityAccessRequestDesc)
 
-        identityaccessrequest = yield create_identityaccessrequest(self.current_user.user_id,
-                                                                   tip_id,
-                                                                   request,
-                                                                   self.request.language)
-
-        self.write(identityaccessrequest)
+        return create_identityaccessrequest(self.current_user.user_id,
+                                            tip_id,
+                                            request,
+                                            self.request.language)

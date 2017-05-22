@@ -1,9 +1,6 @@
 # -*- coding: UTF-8
 #
 # wizard
-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
@@ -13,7 +10,6 @@ from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
@@ -84,7 +80,6 @@ class Wizard(BaseHandler):
     """
     check_roles = 'unauthenticated'
 
-    @inlineCallbacks
     def post(self):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
@@ -93,4 +88,3 @@ class Wizard(BaseHandler):
         yield wizard(request, self.request.language)
         # cache must be updated in order to set wizard_done = True
         yield serialize_node(self.request.language)
-        GLApiCache.invalidate()

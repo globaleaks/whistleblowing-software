@@ -13,7 +13,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
 
 
@@ -120,7 +119,6 @@ class StepCollection(BaseHandler):
     """
     check_roles = 'admin'
 
-    @inlineCallbacks
     def post(self):
         """
         Create a new step.
@@ -132,11 +130,7 @@ class StepCollection(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        response = yield create_step(request, self.request.language)
-
-        GLApiCache.invalidate()
-
-        self.write(response)
+        return create_step(request, self.request.language)
 
 
 class StepInstance(BaseHandler):
@@ -147,7 +141,6 @@ class StepInstance(BaseHandler):
     """
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self, step_id):
         """
         Get the step identified by step_id
@@ -158,11 +151,8 @@ class StepInstance(BaseHandler):
         :raises StepIdNotFound: if there is no step with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_step(step_id, self.request.language)
+        return get_step(step_id, self.request.language)
 
-        self.write(response)
-
-    @inlineCallbacks
     def put(self, step_id):
         """
         Update attributes of the specified step
@@ -176,13 +166,8 @@ class StepInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminStepDesc)
 
-        response = yield update_step(step_id, request, self.request.language)
+        return update_step(step_id, request, self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.write(response)
-
-    @inlineCallbacks
     def delete(self, step_id):
         """
         Delete the specified step.
@@ -191,6 +176,4 @@ class StepInstance(BaseHandler):
         :raises StepIdNotFound: if there is no step with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        yield delete_step(step_id)
-
-        GLApiCache.invalidate()
+        return delete_step(step_id)

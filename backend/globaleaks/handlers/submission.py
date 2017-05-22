@@ -409,11 +409,7 @@ class SubmissionInstance(BaseHandler):
         token = TokenList.get(token_id)
         token.use()
 
-        submission = yield create_submission(request,
-                                             token.uploaded_files,
-                                             self.client_using_tor,
-                                             self.request.language)
-        # Delete the token only when a valid submission has been stored in the DB
-        TokenList.delete(token_id)
-
-        self.write(submission)
+        return create_submission(request,
+                                 token.uploaded_files,
+                                 self.client_using_tor,
+                                 self.request.language)

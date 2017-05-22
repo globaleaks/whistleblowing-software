@@ -184,16 +184,13 @@ class Token(object):
         return passed
 
     def use(self):
-        try:
-            self.decrement()
-            self.timedelta_check()
-        except errors.TokenFailure as e:
-            # Unrecoverable failures so immediately delete the token.
-            TokenList.delete(self.id)
-            raise e
+        self.decrement()
+        self.timedelta_check()
 
         if not self.human_captcha['solved'] or not self.proof_of_work['solved']:
             raise errors.TokenFailure("Token is not solved")
+
+        TokenList.delete(self.id)
 
     def solve(self):
         self.human_captcha = {'solved': True}

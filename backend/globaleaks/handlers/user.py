@@ -4,8 +4,6 @@
 #
 # Implement the classes handling the requests performed to /user/* URI PATH
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -140,19 +138,15 @@ class UserInstance(BaseHandler):
     """
     check_roles = 'admin,receiver,custodian'
 
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: ReceiverReceiverDesc
         Errors: UserIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        user_status = yield get_user_settings(self.current_user.user_id,
-                                              self.request.language)
+        return get_user_settings(self.current_user.user_id,
+                                 self.request.language)
 
-        self.write(user_status)
-
-    @inlineCallbacks
     def put(self):
         """
         Parameters: None
@@ -162,7 +156,5 @@ class UserInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.UserUserDesc)
 
-        user_status = yield update_user_settings(self.current_user.user_id,
-                                                 request, self.request.language)
-
-        self.write(user_status)
+        return update_user_settings(self.current_user.user_id,
+                                    request, self.request.language)

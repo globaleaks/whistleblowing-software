@@ -6,8 +6,6 @@
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
 from globaleaks.handlers.submission import serialize_usertip, \
@@ -179,7 +177,6 @@ class WBTipInstance(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
@@ -188,9 +185,7 @@ class WBTipInstance(BaseHandler):
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
         """
-        answer = yield get_wbtip(self.current_user.user_id, self.request.language)
-
-        self.write(answer)
+        return get_wbtip(self.current_user.user_id, self.request.language)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -202,7 +197,6 @@ class WBTipCommentCollection(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    @inlineCallbacks
     def post(self):
         """
         Request: CommentDesc
@@ -210,9 +204,7 @@ class WBTipCommentCollection(BaseHandler):
         Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
-        answer = yield create_comment(self.current_user.user_id, request)
-
-        self.write(answer)
+        return create_comment(self.current_user.user_id, request)
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -224,19 +216,13 @@ class WBTipMessageCollection(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    @inlineCallbacks
     def get(self, receiver_id):
-        messages = yield get_itip_message_list(self.current_user.user_id, receiver_id)
+        return get_itip_message_list(self.current_user.user_id, receiver_id)
 
-        self.write(messages)
-
-    @inlineCallbacks
     def post(self, receiver_id):
         request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        message = yield create_message(self.current_user.user_id, receiver_id, request)
-
-        self.write(message)
+        return create_message(self.current_user.user_id, receiver_id, request)
 
 
 class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
@@ -260,11 +246,10 @@ class WBTipIdentityHandler(BaseHandler):
     """
     check_roles = 'whistleblower'
 
-    @inlineCallbacks
     def post(self, tip_id):
         request = self.validate_message(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
 
-        yield update_identity_information(tip_id,
-                                          request['identity_field_id'],
-                                          request['identity_field_answers'],
-                                          self.request.language)
+        return update_identity_information(tip_id,
+                                           request['identity_field_id'],
+                                           request['identity_field_answers'],
+                                           self.request.language)

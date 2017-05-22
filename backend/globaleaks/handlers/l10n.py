@@ -6,12 +6,9 @@
 import json
 import os
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.security import directory_traversal_check
 from globaleaks.settings import GLSettings
 
@@ -43,9 +40,5 @@ class L10NHandler(BaseHandler):
     """
     check_roles = '*'
 
-    @inlineCallbacks
     def get(self, lang):
-        l10n = yield GLApiCache.get('l10n', self.request.language,
-                                    get_l10n, self.request.language)
-
-        self.write(l10n)
+        return get_l10n(self.request.language)

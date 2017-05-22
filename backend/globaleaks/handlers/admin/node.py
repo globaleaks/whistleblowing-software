@@ -7,7 +7,6 @@
 import os
 
 from storm.expr import In
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, utils, LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.db import db_refresh_memory_variables
@@ -17,7 +16,6 @@ from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
@@ -116,7 +114,6 @@ def update_node(*args):
 class NodeInstance(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
         """
         Get the node infos.
@@ -124,10 +121,8 @@ class NodeInstance(BaseHandler):
         Parameters: None
         Response: AdminNodeDesc
         """
-        node_description = yield admin_serialize_node(self.request.language)
-        self.write(node_description)
+        return admin_serialize_node(self.request.language)
 
-    @inlineCallbacks
     def put(self):
         """
         Update the node infos.
@@ -139,7 +134,4 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminNodeDesc)
 
-        node_description = yield update_node(request, self.request.language)
-        GLApiCache.invalidate()
-
-        self.write(node_description)
+        return update_node(request, self.request.language)
