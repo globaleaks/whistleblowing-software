@@ -6,7 +6,6 @@
 # API handling static files upload/download/delete
 import os
 from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler, write_upload_plaintext_to_disk
 from globaleaks.rest import errors
@@ -40,7 +39,6 @@ class StaticFileInstance(BaseHandler):
 
     handler_exec_time_threshold = 3600
 
-    @inlineCallbacks
     def post(self, filename):
         """
         Upload a new file
@@ -55,10 +53,9 @@ class StaticFileInstance(BaseHandler):
         path = os.path.join(GLSettings.static_path, filename)
         directory_traversal_check(GLSettings.static_path, path)
 
-        try:
-            yield threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, path)
-        finally:
-            uploaded_file['body'].close()
+        d = threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, path)
+        d.addBoth(uploaded_file['body'].close)
+        return d
 
     def delete(self, filename):
         """
@@ -80,4 +77,4 @@ class StaticFileList(BaseHandler):
         """
         Return the list of static files, with few filesystem info
         """
-        self.write(get_stored_files())
+        return get_stored_files()

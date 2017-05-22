@@ -38,9 +38,7 @@ class TokenCreate(BaseHandler):
             if not GLSettings.accept_submissions:
                 raise errors.SubmissionDisabled
 
-        token = Token(request['type'])
-
-        self.write(token.serialize())
+        return Token(request['type']).serialize()
 
 
 class TokenInstance(BaseHandler):
@@ -62,4 +60,4 @@ class TokenInstance(BaseHandler):
         if not token.update(request):
             raise errors.TokenFailure('failed challenge')
 
-        self.write(token.serialize())
+        return token.serialize()

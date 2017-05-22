@@ -96,17 +96,14 @@ class NotificationInstance(BaseHandler):
     """
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: AdminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
-        notification_desc = yield get_notification(self.request.language)
-        self.write(notification_desc)
+        return get_notification(self.request.language)
 
-    @inlineCallbacks
     def put(self):
         """
         Request: AdminNotificationDesc
@@ -118,9 +115,7 @@ class NotificationInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminNotificationDesc)
 
-        response = yield update_notification(request, self.request.language)
-
-        self.write(response)
+        return update_notification(request, self.request.language)
 
 
 class NotificationTestInstance(BaseHandler):

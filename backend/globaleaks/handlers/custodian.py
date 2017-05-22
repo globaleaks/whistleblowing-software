@@ -3,7 +3,6 @@
 # ********
 #
 # Implement the classes handling the requests performed to /custodian/* URI PATH
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
@@ -70,17 +69,14 @@ class IdentityAccessRequestInstance(BaseHandler):
     """
     check_roles = 'custodian'
 
-    @inlineCallbacks
     def get(self, identityaccessrequest_id):
         """
         Parameters: the id of the identity access request
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        identityaccessrequest = yield get_identityaccessrequest(identityaccessrequest_id,
-                                                                self.request.language)
-
-        self.write(identityaccessrequest)
+        return get_identityaccessrequest(identityaccessrequest_id,
+                                         self.request.language)
 
     @inlineCallbacks
     def put(self, identityaccessrequest_id):
@@ -92,12 +88,10 @@ class IdentityAccessRequestInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
-        identityaccessrequest = yield update_identityaccessrequest(self.current_user.user_id,
-                                                                   identityaccessrequest_id,
-                                                                   request,
-                                                                   self.request.language)
-
-        self.write(identityaccessrequest)
+        return update_identityaccessrequest(self.current_user.user_id,
+                                            identityaccessrequest_id,
+                                            request,
+                                            self.request.language)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
@@ -107,12 +101,9 @@ class IdentityAccessRequestsCollection(BaseHandler):
     """
     check_roles = 'custodian'
 
-    @inlineCallbacks
     def get(self):
         """
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequest_list(self.request.language)
-
-        self.write(answer)
+        return get_identityaccessrequest_list(self.request.language)

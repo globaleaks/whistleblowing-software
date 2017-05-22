@@ -41,7 +41,7 @@ from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
 from globaleaks.handlers.admin import user as admin_user
 
-from globaleaks.rest import requests, errors
+from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import randbits
 
@@ -145,6 +145,7 @@ api_spec = [
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.StaticFileHandler, {'path': GLSettings.client_path})
 ]
 
+
 def decorate_method(h, method):
    decorator = getattr(h, 'authentication')
    value = getattr(h, 'check_roles')
@@ -180,17 +181,11 @@ class APIResourceWrapper(Resource):
         if handle:
             request.setResponseCode(e.status_code)
 
-            error_dict = {
+            request.write({
                 'error_message': e.reason,
-                'error_code': e.error_code
-            }
-
-            if hasattr(e, 'arguments'):
-                error_dict.update({'arguments': e.arguments})
-            else:
-                error_dict.update({'arguments': []})
-
-            request.write(error_dict)
+                'error_code': e.error_code,
+                'arguments': getattr(e, 'arguments', [])
+            })
 
     def render(self, request):
         request_finished = [False]

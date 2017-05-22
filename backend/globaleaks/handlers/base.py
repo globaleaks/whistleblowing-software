@@ -163,6 +163,8 @@ class BaseHandler(object):
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
 
+    cache = False
+
     def __init__(self, request):
         self.request = request
         self.request.start_time = datetime.now()

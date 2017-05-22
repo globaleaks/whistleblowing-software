@@ -280,10 +280,9 @@ class FileHandler(BaseHandler):
         return self.mapped_file_resources[name]
 
     @BaseHandler.https_disabled
-    @inlineCallbacks
     def delete(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
-        yield file_res_cls.delete_file()
+        return file_res_cls.delete_file()
 
     @BaseHandler.https_disabled
     @inlineCallbacks
@@ -309,13 +308,10 @@ class FileHandler(BaseHandler):
         yield file_res_cls.perform_file_action()
 
     @BaseHandler.https_disabled
-    @inlineCallbacks
     def get(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
-        file_blob = yield file_res_cls.get_file()
-
-        self.write(file_blob)
+        return file_res_cls.get_file()
 
 
 @transact
@@ -361,10 +357,8 @@ def disable_https(store):
 class ConfigHandler(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
-        https_cfg = yield serialize_https_config_summary()
-        self.write(https_cfg)
+        return serialize_https_config_summary()
 
     @BaseHandler.https_disabled
     @inlineCallbacks

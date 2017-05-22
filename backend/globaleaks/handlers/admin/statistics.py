@@ -8,7 +8,6 @@
 import operator
 from datetime import timedelta
 from storm.expr import Desc, And
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.event import EventTrackQueue, events_monitored
@@ -116,13 +115,8 @@ def get_stats(store, week_delta):
 
 @transact
 def delete_weekstats_history(store):
-    allws = store.find(Stats)
-
-    log.info("Deleting %d entries from Stats table" % allws.count())
-
-    allws.remove()
-
-    log.info("Week statistics removal completed.")
+    store.find(Stats).remove()
+    return []
 
 
 @transact
@@ -148,28 +142,20 @@ def get_anomaly_history(store, limit):
 
 @transact
 def delete_anomaly_history(store):
-    allanom = store.find(Anomalies)
+    store.find(Anomalies).remove()
 
-    log.info("Deleting %d entries from Anomalies table" % allanom.count())
-
-    allanom.remove()
-
-    log.info("Anomalies collection removal completed.")
+    return []
 
 
 class AnomalyCollection(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
-        anomaly_history = yield get_anomaly_history(limit=20)
-        self.write(anomaly_history)
+        return get_anomaly_history(limit=20)
 
-    @inlineCallbacks
     def delete(self):
         log.info("Received anomalies history delete command")
-        yield delete_anomaly_history()
-        self.write([])
+        return delete_anomaly_history()
 
 
 class StatsCollection(BaseHandler):
@@ -180,7 +166,6 @@ class StatsCollection(BaseHandler):
     """
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self, week_delta):
         week_delta = int(week_delta)
 
@@ -189,15 +174,11 @@ class StatsCollection(BaseHandler):
         else:
             log.debug("Asking statistics for current week")
 
-        ret = yield get_stats(week_delta)
+        return get_stats(week_delta)
 
-        self.write(ret)
-
-    @inlineCallbacks
     def delete(self):
         log.info("Received statistic history delete command")
-        yield delete_weekstats_history()
-        self.write([])
+        return delete_weekstats_history()
 
 
 class RecentEventsCollection(BaseHandler):
@@ -228,9 +209,9 @@ class RecentEventsCollection(BaseHandler):
         templist.sort(key=operator.itemgetter('id'))
 
         if kind == 'details':
-            self.write(templist)
+            return templist
         else:  # kind == 'summary':
-            self.write(self.get_summary(templist))
+            return self.get_summary(templist)
 
 
 class JobsTiming(BaseHandler):

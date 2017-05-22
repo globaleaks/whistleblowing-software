@@ -6,7 +6,6 @@
 # Used by receivers to update personal preferences and access to personal data
 
 from storm.expr import And, In
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
@@ -16,7 +15,6 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
@@ -129,19 +127,15 @@ class ReceiverInstance(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: ReceiverReceiverDesc
         Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        receiver_status = yield get_receiver_settings(self.current_user.user_id,
-                                                      self.request.language)
+        return get_receiver_settings(self.current_user.user_id,
+                                     self.request.language)
 
-        self.write(receiver_status)
-
-    @inlineCallbacks
     def put(self):
         """
         Parameters: None
@@ -151,14 +145,9 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
-        receiver_status = yield update_receiver_settings(self.current_user.user_id,
-                                                         request,
-                                                         self.request.language)
-
-        GLApiCache.invalidate()
-
-        self.write(receiver_status)
-
+        return update_receiver_settings(self.current_user.user_id,
+                                        request,
+                                        self.request.language)
 
 class TipsCollection(BaseHandler):
     """
@@ -167,16 +156,13 @@ class TipsCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def get(self):
         """
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receivertip_list(self.current_user.user_id,
-                                            self.request.language)
-
-        self.write(answer)
+        return get_receivertip_list(self.current_user.user_id,
+                                    self.request.language)
 
 
 class TipsOperations(BaseHandler):
@@ -186,7 +172,6 @@ class TipsOperations(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def put(self):
         """
         Parameters: ReceiverOperationDesc
@@ -198,4 +183,4 @@ class TipsOperations(BaseHandler):
         if request['operation'] not in ['postpone', 'delete']:
             raise errors.ForbiddenOperation
 
-        yield perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])
+        return perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])

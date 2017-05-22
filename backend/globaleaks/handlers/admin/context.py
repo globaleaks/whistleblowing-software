@@ -4,8 +4,6 @@
 #   *****
 # Implementation of the code executed on handler /admin/contexts
 #
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.admin.questionnaire import db_get_default_questionnaire_id
 from globaleaks.handlers.admin.step import db_create_step
@@ -13,7 +11,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys, get_localized_values
 from globaleaks.utils.utility import log
 
@@ -236,7 +233,6 @@ def delete_context(store, context_id):
 class ContextsCollection(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self):
         """
         Return all the contexts.
@@ -245,11 +241,8 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-        response = yield get_context_list(self.request.language)
+        return get_context_list(self.request.language)
 
-        self.write(response)
-
-    @inlineCallbacks
     def post(self):
         """
         Create a new context.
@@ -262,17 +255,12 @@ class ContextsCollection(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), validator)
 
-        response = yield create_context(request, self.request.language)
-
-        GLApiCache.invalidate()
-
-        self.write(response)
+        return create_context(request, self.request.language)
 
 
 class ContextInstance(BaseHandler):
     check_roles = 'admin'
 
-    @inlineCallbacks
     def get(self, context_id):
         """
         Get the specified context.
@@ -281,11 +269,8 @@ class ContextInstance(BaseHandler):
         Response: AdminContextDesc
         Errors: ContextIdNotFound, InvalidInputFormat
         """
-        response = yield get_context(context_id, self.request.language)
+        return get_context(context_id, self.request.language)
 
-        self.write(response)
-
-    @inlineCallbacks
     def put(self, context_id):
         """
         Update the specified context.
@@ -300,12 +285,8 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.content.read(),
                                         requests.AdminContextDesc)
 
-        response = yield update_context(context_id, request, self.request.language)
-        GLApiCache.invalidate()
+        return update_context(context_id, request, self.request.language)
 
-        self.write(response)
-
-    @inlineCallbacks
     def delete(self, context_id):
         """
         Delete the specified context.
@@ -314,5 +295,4 @@ class ContextInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, ContextIdNotFound
         """
-        yield delete_context(context_id)
-        GLApiCache.invalidate()
+        return delete_context(context_id)
