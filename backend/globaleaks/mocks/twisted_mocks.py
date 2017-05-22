@@ -1,7 +1,6 @@
 # -*- coding: UTF-8
-
-import os
-import tempfile
+import json
+import types
 from io import BytesIO as StringIO
 
 from twisted.internet import defer
@@ -13,6 +12,7 @@ from globaleaks.security import GLSecureTemporaryFile
 
 
 HTTPFactory__init__orig = HTTPFactory.__init__
+Request__write__orig = Request.write
 
 
 def mock_Request_gotLength(self, length):
@@ -20,6 +20,14 @@ def mock_Request_gotLength(self, length):
         self.content = StringIO()
     else:
         self.content = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+
+
+def mock_Request_write(self, chunk):
+    if (isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType)):
+        chunk = json.dumps(chunk)
+        self.setHeader(b'content-type', b'application/json')
+
+    Request__write__orig(self, bytes(chunk))
 
 
 def mock_HTTPFactory__init__(self, logPath=None, timeout=60, logFormatter=None):
@@ -42,5 +50,6 @@ def mock_HTTPPageGetter_timeout(self, data):
 
 
 Request.gotLength = mock_Request_gotLength
+Request.write = mock_Request_write
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__

@@ -227,13 +227,8 @@ class BaseHandler(object):
         if not GLSettings.memory_copy.allow_iframes_inclusion:
             self.request.setHeader("X-Frame-Options", "sameorigin")
 
-
     def write(self, chunk):
-        if (isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType)):
-            chunk = json.dumps(chunk)
-            self.request.setHeader(b'content-type', b'application/json')
-
-        self.request.write(bytes(chunk))
+        self.request.write(chunk)
 
     def parse_accept_language_header(self):
         if "accept-language" in self.request.headers:
