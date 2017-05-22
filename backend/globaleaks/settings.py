@@ -150,7 +150,7 @@ class GLSettingsClass(object):
 
 
         # Default request time uniform value
-        self.side_channels_guard = 0.150
+        self.side_channels_guard = 150
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
@@ -328,8 +328,6 @@ class GLSettingsClass(object):
         if not self.validate_port(self.cmdline_options.socks_port):
             sys.exit(1)
         self.socks_port = self.cmdline_options.socks_port
-
-        self.side_channels_guard = self.cmdline_options.side_channels_guard / 1000.0
 
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk

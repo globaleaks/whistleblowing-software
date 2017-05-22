@@ -161,6 +161,7 @@ class GLSession(object):
 class BaseHandler(object):
     serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
+    uniform_answer_time = False
 
     def __init__(self, request):
         self.request = request
@@ -524,21 +525,6 @@ class BaseHandler(object):
 
         return StaticFileProducer(self, filepath).start()
 
-    @inlineCallbacks
-    def uniform_answers_delay(self):
-        """
-        @return: nothing.
-
-        the function perform a sleep uniforming requests to the side_channels_guard
-        defined in GLSettings.side_channels_guard in order to counteract some
-        side channel attacks.
-        """
-        #request_time = self.request.request_time()
-        needed_delay = 0#GLSettings.side_channels_guard - request_time
-
-        if needed_delay > 0:
-            yield deferred_sleep(needed_delay)
-
     @property
     def current_user(self):
         # Check for header based authentication
@@ -605,6 +591,7 @@ class BaseHandler(object):
             log.err("Error while handling file upload %s" % exc)
             return None
 
+    @inlineCallbacks
     def execution_check(self):
         self.request.execution_time = datetime.now() - self.request.start_time
 
@@ -616,6 +603,12 @@ class BaseHandler(object):
             send_exception_email(error)
 
         track_handler(self)
+
+        if self.uniform_answer_time:
+            needed_delay = (GLSettings.side_channels_guard - (self.request.execution_time.microseconds / 1000)) / 1000
+            if needed_delay > 0:
+                yield deferred_sleep(needed_delay)
+
 
 
 class StaticFileHandler(BaseHandler):

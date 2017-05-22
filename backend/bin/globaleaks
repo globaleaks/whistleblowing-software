@@ -72,10 +72,6 @@ GLSettings.parser.add_option("-r", "--socks-port", type="int",
     help="set Socks port to use for Tor [default: %default]",
     dest="socks_port", default=GLSettings.socks_port)
 
-GLSettings.parser.add_option("-t", "--side-channels-guard", type="int",
-    help="security guard time to which uniform request times to reduce side channels analysis (ms) [default: 150]",
-    dest="side_channels_guard", default=150)
-
 GLSettings.parser.add_option("-b", "--disable-backend-exception-notification", action='store_true',
     help="disable backend_exception_notification [default: False]",
     dest="disable_backend_exception_notification", default=False)
