@@ -190,7 +190,7 @@ class APIResourceWrapper(Resource):
             else:
                 error_dict.update({'arguments': []})
 
-            request.write(bytes(error_dict))
+            request.write(error_dict)
 
     def render(self, request):
         request_finished = [False]
