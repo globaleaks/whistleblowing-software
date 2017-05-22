@@ -227,8 +227,13 @@ class APIResourceWrapper(Resource):
 
             d = defer.maybeDeferred(f, *groups)
 
+            @defer.inlineCallbacks
             def both(ret):
-                h.execution_check()
+                yield h.execution_check()
+
+                if ret is not None:
+                    h.write(ret)
+
                 if not request_finished[0]:
                    request.finish()
 

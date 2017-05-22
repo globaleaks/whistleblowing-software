@@ -6,7 +6,7 @@
 # Files collection handlers and utils
 
 from storm.expr import And
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
@@ -97,6 +97,7 @@ class AuthenticationHandler(BaseHandler):
     Login handler for admins and recipents and custodians
     """
     check_roles = 'unauthenticated'
+    uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):
@@ -108,20 +109,14 @@ class AuthenticationHandler(BaseHandler):
         username = request['username']
         password = request['password']
 
-        delay = random_login_delay()
-        if delay:
-            yield deferred_sleep(delay)
+        user_id, status, role, pcn = yield login(username, password, self.client_using_tor)
 
-        try:
-            user_id, status, role, pcn = yield login(username, password, self.client_using_tor)
-            # Revoke all other sessions for the newly authenticated user
-            GLSessions.revoke_all_sessions(user_id)
-        finally:
-            yield self.uniform_answers_delay()
+        # Revoke all other sessions for the newly authenticated user
+        GLSessions.revoke_all_sessions(user_id)
 
         session = GLSession(user_id, role, status)
 
-        self.write({
+        returnValue({
             'session_id': session.id,
             'role': session.user_role,
             'user_id': session.user_id,
@@ -133,6 +128,7 @@ class AuthenticationHandler(BaseHandler):
 
 class ReceiptAuthHandler(BaseHandler):
     check_roles = 'unauthenticated'
+    uniform_answer_time = True
 
     @inlineCallbacks
     def post(self):
@@ -147,15 +143,11 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        try:
-            user_id = yield login_whistleblower(receipt, self.client_using_tor)
-            GLSessions.revoke_all_sessions(user_id)
-        finally:
-            yield self.uniform_answers_delay()
+        GLSessions.revoke_all_sessions(user_id)
 
         session = GLSession(user_id, 'whistleblower', 'Enabled')
 
-        self.write({
+        returnValue({
             'session_id': session.id,
             'role': session.user_role,
             'user_id': session.user_id,
@@ -174,21 +166,17 @@ class SessionHandler(BaseHandler):
         Refresh and retrive session
         """
 
-        self.write({
+        return {
             'session_id': self.current_user.id,
             'role': self.current_user.user_role,
             'user_id': self.current_user.user_id,
             'session_expiration': int(self.current_user.getTime()),
             'status': self.current_user.user_status,
             'password_change_needed': False
-        })
+        }
 
     def delete(self):
         """
         Logout
         """
-        if self.current_user:
-            try:
-                del GLSessions[self.current_user.id]
-            except KeyError:
-                raise errors.NotAuthenticated
+        del GLSessions[self.current_user.id]
