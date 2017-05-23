@@ -380,7 +380,7 @@ class GLSettingsClass(object):
         if os.path.isfile(indexfile):
             self.print_msg("Serving the client from directory: %s" % self.client_path)
         else:
-            self.print_msg("Unable to find a directory where to load the client")
+            self.print_msg("Unable to find a directory to load the client from")
             sys.exit(1)
 
         if self.torhs_path != '':
