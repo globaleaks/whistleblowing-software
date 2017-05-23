@@ -1,3 +1,4 @@
+acme==0.14.1
 Parsley==1.2
 Twisted==16.0.0
 cffi==1.5.2
