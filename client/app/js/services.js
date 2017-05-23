@@ -573,6 +573,9 @@ factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
 factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files');
 }]).
+factory('AdminAcmeResource', ['GLResource', function(GLResource) {
+    return new GLResource('/admin/config/acme/run');
+}]).
 factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files/:name', {name: '@name'});
 }]).

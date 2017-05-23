@@ -2,17 +2,22 @@
 from datetime import datetime
 from functools import wraps
 
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.serialization import load_pem_private_key
+from cryptography.hazmat.primitives import serialization
 from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet.threads import deferToThread
 
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import errors, requests
 from globaleaks.utils import tls
+from globaleaks.utils.lets_enc import run_acme_reg_to_finish
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 
 
@@ -420,8 +425,8 @@ class CSRFileHandler(FileHandler):
                 'L':  desc['city'],
                 'O':  desc['company'],
                 'OU': desc['department'],
-                'CN': desc['commonname'],
-                'emailAddress': desc['email'],
+                'CN': GLSettings.memory_copy.hostname,
+                'emailAddress': desc['email'], # TODO use current admin user mail
         }
 
         csr_txt = yield self.perform_action(csr_fields)
@@ -448,9 +453,87 @@ class CSRFileHandler(FileHandler):
 
         key_pair = db_cfg['ssl_key']
         try:
-            csr_txt = tls.gen_x509_csr(key_pair, csr_fields, GLSettings.csr_sign_bits)
+            csr_txt = tls.gen_x509_csr_pem(key_pair, csr_fields, GLSettings.csr_sign_bits)
             log.debug("Generated a new CSR")
             return csr_txt
         except Exception as e:
             log.err(e)
             raise errors.ValidationError('CSR gen failed')
+
+
+class AcmeAccntKeyResource(FileResource):
+    @classmethod
+    def create_file(cls, store):
+        log.info("Generating an ACME account key with %d bits" % GLSettings.key_bits)
+
+        # TODO change format to OpenSSL key to normalize types of keys used
+        priv_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048, # TODO development key size of 512 doesn't work
+            backend=default_backend())
+
+        log.debug("Saving the ACME key")
+        prv_fact = PrivateFactory(store)
+
+        b = priv_key.private_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PrivateFormat.PKCS8,
+                encryption_algorithm=serialization.NoEncryption(),
+        )
+        prv_fact.set_val('acme_accnt_key', b)
+        return priv_key
+
+
+from globaleaks.utils.tempdict import TempDict
+tmp_chall_dict = TempDict(86500*365)
+
+
+class AcmeHandler(BaseHandler):
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def post(self):
+        request = self.validate_message(self.request.body,
+                                        requests.AdminCSRFileDesc)
+        # TODO check state of Lets Enc registration
+        yield deferToThread(self.acmeCertIssuance, request)
+
+        self.set_status(200)
+
+    @transact_sync
+    def acmeCertIssuance(self, store, request):
+        hostname = GLSettings.memory_copy.hostname
+
+        # Generate acme private key using file res
+        accnt_key = AcmeAccntKeyResource.create_file(store)
+
+        # Create CSR using params
+        desc = request['content']
+        csr_fields = {
+                'C':  desc['country'].upper(),
+                'ST': desc['province'],
+                'L':  desc['city'],
+                'O':  desc['company'],
+                'OU': desc['department'],
+                'CN': hostname,
+                'emailAddress': desc['email'],
+        }
+
+        priv_key = PrivateFactory(store).get_val('https_priv_key')
+        csr = tls.gen_x509_csr(priv_key, csr_fields, 256) # TODO devel values do not work.
+
+        print(csr)
+        # Run ACME registration all the way to resolution
+        cert = run_acme_reg_to_finish(hostname, accnt_key, priv_key, csr, tmp_chall_dict)
+        log.info('Retrieved cert from CA')
+        PrivateFactory(store).set_val('https_cert', cert)
+
+
+class AcmeChallResolver(BaseHandler):
+    def get(self, token):
+        if token in tmp_chall_dict:
+            self.write(tmp_chall_dict[token].tok)
+            log.info('Responded to .well-known request')
+            return
+        raise HTTPError(404)
