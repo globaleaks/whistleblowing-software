@@ -23,8 +23,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
 controller('AdminNetFormCtrl', [function() {
     // Scoped for future use.
 }]).
-controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'Utils',
-  function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, Utils) {
+controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
+  function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
 
   $scope.state = 0;
 
@@ -96,6 +96,14 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
      }).then(function (response) {
         FileSaver.saveAs(response.data, resource.name + '.pem');
      });
+  };
+
+  $scope.letsEncryptor = function() {
+    var aRes = new adminAcmeResource({content:$scope.csr_cfg, name: 'acme_run'});
+    aRes.$save().then(function() {
+      $scope.csr_state.open = false;
+      return refreshConfig();
+    });
   };
 
   $scope.statusClass = function(fileSum) {

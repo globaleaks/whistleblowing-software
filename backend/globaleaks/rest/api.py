@@ -131,6 +131,9 @@ spec = [
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),
 
+    (r'/admin/config/acme/run', https.AcmeHandler),
+    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallResolver),
+
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),

@@ -41,6 +41,8 @@ GLConfig = {
         'version': Unicode(default=unicode(__version__)),
         'version_db': Int(default=DATABASE_VERSION),
 
+        'acme_accnt_key': Unicode(),
+
         'https_priv_key': Unicode(),
         'https_priv_gen': Bool(default=False),
         'https_csr': Unicode(),

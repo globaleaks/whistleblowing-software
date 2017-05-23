@@ -43,6 +43,12 @@ def gen_rsa_key(bits):
     return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
 
 
+def gen_x509_csr_pem(key_pair, csr_fields, csr_sign_bits):
+    req = gen_x509_csr(key_pair, csr_fields, csr_sign_bits)
+    pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
+    return pem_csr
+
+
 def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     """
     gen_x509_csr creates a certificate signature request by applying the passed
@@ -81,11 +87,7 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     req.set_pubkey(prv_key)
     req.sign(prv_key, 'sha'+str(csr_sign_bits))
     # TODO clean prv_key and str_prv_key from memory
-
-    pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
-    # TODO clean req from memory
-
-    return pem_csr
+    return req
 
 
 def new_tls_context():

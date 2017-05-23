@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from OpenSSL import crypto, SSL
 
 from globaleaks.handlers.admin import https
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
@@ -205,3 +205,50 @@ class TestCSRHandler(helpers.TestHandler):
         self.assertIn(('CN', 'notreal.ns.com'), comps)
         self.assertIn(('C', 'IT'), comps)
         self.assertIn(('L', 'citta'), comps)
+
+
+from globaleaks.utils.lets_enc import ChallTok
+
+
+class TestAcmeHandler(helpers.TestHandler):
+    _handler = https.AcmeHandler
+
+    @inlineCallbacks
+    def test_post(self):
+        valid_setup = test_tls.get_valid_setup()
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        hostname = 'gl.dl.localhost.com'
+        GLSettings.memory_copy.hostname = hostname
+
+        d = {
+           'commonname': hostname,
+           'country': 'it',
+           'province': 'regione',
+           'city': 'citta',
+           'company': 'azienda',
+           'department': 'reparto',
+           'email': 'indrizzio@email',
+        }
+        body = {'name': 'xxx', 'content': d}
+
+        handler = self.request(body, role='admin')
+        yield handler.post()
+
+
+class TestAcmeChallResolver(helpers.TestHandler):
+    _handler = https.AcmeChallResolver
+
+    @inlineCallbacks
+    def test_get(self):
+        # tmp_chall_dict pollutes scope
+        from globaleaks.handlers.admin.https import tmp_chall_dict
+        tok = 'yT-RDI9dU7dJPxaTYOgY_YnYYByT4CVAVCC7W3zUDIw'
+        v = '{}.5vh2ZRCJGmNUKEEBn-SN6esbMnSl1w8ZT0LDUwexTAM'.format(tok)
+        ct = ChallTok(v)
+
+        tmp_chall_dict.set(tok, ct)
+
+        handler = self.request(role='admin')
+        resp = yield handler.get(tok)
+
+        self.assertEqual(self.responses[0], v)
