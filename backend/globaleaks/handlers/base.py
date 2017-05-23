@@ -162,7 +162,6 @@ class BaseHandler(object):
     serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
-
     cache = False
 
     def __init__(self, request):
@@ -252,29 +251,30 @@ class BaseHandler(object):
 
         return GLSettings.memory_copy.default_language
 
-    def authentication(self, f, roles):
+    @staticmethod
+    def authentication(f, roles):
         """
         Decorator for authenticated sessions.
         """
-        def wrapper(*args, **kwargs):
+        def wrapper(self, *args, **kwargs):
             if GLSettings.memory_copy.basic_auth:
-                self.basic_auth()
+                cls.basic_auth()
 
             if '*' in roles:
-               return f(*args, **kwargs)
+               return f(self, *args, **kwargs)
 
             if 'unauthenticated' in roles:
                 if self.current_user:
                     raise errors.InvalidAuthentication
 
-                return f(*args, **kwargs)
+                return f(self, *args, **kwargs)
 
             if not self.current_user:
                raise errors.NotAuthenticated
 
             if self.current_user.user_role in roles:
                log.debug("Authentication OK (%s)" % self.current_user.user_role)
-               return f(*args, **kwargs)
+               return f(self, *args, **kwargs)
 
             raise errors.InvalidAuthentication
 

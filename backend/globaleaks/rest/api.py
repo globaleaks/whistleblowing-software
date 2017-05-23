@@ -168,6 +168,10 @@ class APIResourceWrapper(Resource):
             if not pattern.endswith("$"):
                 pattern += "$"
 
+            for m in ['get', 'put', 'post', 'delete']:
+                if hasattr(handler, m):
+                    decorate_method(handler, m)
+
             self._registry.append((re.compile(pattern), handler, args))
 
     def handle_exception(self, e, request):
@@ -212,13 +216,11 @@ class APIResourceWrapper(Resource):
 
             h = handler(request, **args)
 
-            if not hasattr(handler, method):
+            f = getattr(h, method, None)
+
+            if f is not None::
                 self.handle_exception(errors.MethodNotImplemented(), request)
                 return ''
-
-            decorate_method(h, method)
-
-            f = getattr(h, method)
 
             d = defer.maybeDeferred(f, *groups)
 
@@ -230,7 +232,7 @@ class APIResourceWrapper(Resource):
                     h.write(ret)
 
                 if not request_finished[0]:
-                   request.finish()
+                    request.finish()
 
             d.addErrback(self.handle_exception, request)
             d.addBoth(both)
