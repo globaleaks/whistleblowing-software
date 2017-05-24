@@ -26,6 +26,10 @@ class ChallTok():
 
 
 def run_acme_reg_to_finish(domain, accnt_key, site_key, csr, tmp_chall_dict):
+    '''
+
+    :returns: ``cert`` of `OpenSSL.crypto.X509` certificate wrapped in `acme.jose.util.ComparableX509`
+    '''
     accnt_key = jose.JWKRSA(key=accnt_key)
 
     acme = client.Client(DIRECTORY_URL, accnt_key)
@@ -70,10 +74,10 @@ def run_acme_reg_to_finish(domain, accnt_key, site_key, csr, tmp_chall_dict):
     log.debug('Acme CA responded to challenge with: %s' % cr)
 
     try:
-        cert = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
+        (cert, _) = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
     except messages.Error as error:
         log.err("Failed in last step {0}".format(error))
         raise error
 
     #TODO(nskelsey) assert returned certificate forms a chain to LEx3 CA
-    return cert
+    return cert.body
