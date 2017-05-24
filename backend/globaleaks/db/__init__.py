@@ -6,7 +6,6 @@ import sys
 import traceback
 
 from storm import exceptions
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs

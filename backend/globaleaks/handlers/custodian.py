@@ -3,8 +3,6 @@
 # ********
 #
 # Implement the classes handling the requests performed to /custodian/* URI PATH
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
 from globaleaks.orm import transact

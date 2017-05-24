@@ -5,8 +5,6 @@
 # Implementation of the code executed on handler /admin/steps
 #
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.admin.field import db_create_field, db_update_field
 from globaleaks.handlers.base import BaseHandler
