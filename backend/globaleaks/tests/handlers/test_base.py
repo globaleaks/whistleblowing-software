@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from cyclone.web import HTTPError, HTTPAuthenticationRequired
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import GLSession, GLSessions, BaseHandler, StaticFileHandler

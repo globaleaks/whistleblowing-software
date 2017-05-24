@@ -700,7 +700,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 The type of handler that will respond to the request. If this is not set self._handler is used.
 
             attached_file:
-                A cyclone.httputil.HTTPFiles or a dict to place in the request.files obj
+                A dict to place in the request.args.files obj
         """
         if jbody and not body:
             body = json.dumps(jbody)
