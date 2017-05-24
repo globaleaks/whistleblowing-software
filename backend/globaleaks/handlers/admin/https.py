@@ -527,7 +527,7 @@ class AcmeHandler(BaseHandler):
         # Run ACME registration all the way to resolution
         cert = run_acme_reg_to_finish(hostname, accnt_key, priv_key, csr, tmp_chall_dict)
         log.info('Retrieved cert from CA')
-        PrivateFactory(store).set_val('https_cert', cert)
+        PrivateFactory(store).set_val('https_cert', cert._dump(FILETYPE_PEM))
 
 
 class AcmeChallResolver(BaseHandler):
