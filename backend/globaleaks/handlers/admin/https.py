@@ -19,6 +19,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils import tls
 from globaleaks.utils.lets_enc import run_acme_reg_to_finish
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
+from globaleaks.utils.tempdict import TempDict
+
 
 
 class FileResource(object):
@@ -484,8 +486,8 @@ class AcmeAccntKeyResource(FileResource):
         return priv_key
 
 
-from globaleaks.utils.tempdict import TempDict
-tmp_chall_dict = TempDict(86500*365)
+# Access auth tokens expire after a few minutes
+tmp_chall_dict = TempDict(300)
 
 
 class AcmeHandler(BaseHandler):
