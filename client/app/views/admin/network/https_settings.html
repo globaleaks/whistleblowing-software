@@ -136,7 +136,7 @@
 
   </div>
 
-  <div class="launch-btns" data-ng-if="state > 2">
+  <div class="launch-btns" data-ng-if="state > 1">
     <button class="btn" data-ng-class="{'btn-danger': tls_config.enabled, 'btn-success': !tls_config.enabled}" data-ng-click="toggleCfg()">
       <span data-ng-if="!tls_config.enabled" data-translate>Enable</span>
       <span data-ng-if="tls_config.enabled" data-translate>Disable</span>
