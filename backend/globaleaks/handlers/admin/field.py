@@ -337,6 +337,7 @@ class FieldTemplatesCollection(BaseHandler):
 
 class FieldTemplateInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, field_id):
         """
@@ -383,6 +384,7 @@ class FieldCollection(BaseHandler):
     /admin/fields
     """
     check_roles = 'admin'
+    invalidate_cache = True
 
     def post(self):
         """
@@ -406,6 +408,7 @@ class FieldInstance(BaseHandler):
     /admin/fields
     """
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, field_id):
         """

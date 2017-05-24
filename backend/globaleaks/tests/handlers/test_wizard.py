@@ -43,9 +43,4 @@ class TestWizard(helpers.TestHandler):
         yield handler.post()
 
         handler = self.request(self.wizard_blob)
-        try:
-            yield handler.post()
-        except errors.ForbiddenOperation:
-            return
-
-        self.fail("should return ForbiddenOperation")
+        yield self.assertFailure(handler.post(), errors.ForbiddenOperation)

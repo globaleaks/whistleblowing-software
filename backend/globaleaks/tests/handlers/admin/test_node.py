@@ -18,9 +18,9 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertTrue(self.responses[0]['version'], __version__)
+        self.assertTrue(response['version'], __version__)
 
     @inlineCallbacks
     def test_put_update_node(self):
@@ -31,12 +31,12 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
             self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')
-        yield handler.put()
+        response = yield handler.put()
 
-        self.assertTrue(isinstance(self.responses[0], dict))
-        self.assertTrue(self.responses[0]['version'], __version__)
+        self.assertTrue(isinstance(response, dict))
+        self.assertTrue(response['version'], __version__)
 
-        for response_key in self.responses[0].keys():
+        for response_key in response.keys():
             # some keys are added by GLB, and can't be compared
             if response_key in ['password', 'languages_supported',
                                 'version', 'version_db',
@@ -44,7 +44,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
                                 'receipt_salt', 'languages_enabled']:
                 continue
 
-            self.assertEqual(self.responses[0][response_key],
+            self.assertEqual(response[response_key],
                              self.dummyNode[response_key])
 
     @inlineCallbacks
@@ -77,7 +77,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
+        yield self.assertRaises(InvalidInputFormat, handler.put)
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
@@ -86,7 +86,7 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertFailure(handler.put(), InvalidInputFormat)
+        yield self.assertRaises(InvalidInputFormat, handler.put)
 
     @inlineCallbacks
     def test_put_update_node_invalid_wbtip_ttl(self):

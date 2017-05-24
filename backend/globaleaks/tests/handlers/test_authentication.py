@@ -21,8 +21,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
     @inlineCallbacks
@@ -32,8 +32,8 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'password': helpers.VALID_PASSWORD1
         })
         GLSettings.memory_copy.accept_tor2web_access['admin'] = True
-        success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
     @inlineCallbacks
@@ -74,17 +74,12 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        yield handler.post()
-        yield handler.post()
-        first_id = self.responses[0]['session_id']
-        second_id = self.responses[1]['session_id']
 
-        self.assertTrue(GLSessions.get(first_id) is None)
+        r1 = yield handler.post()
+        r2 = yield handler.post()
 
-        valid_session = GLSessions.get(second_id)
-        self.assertTrue(valid_session is not None)
-
-        self.assertEqual(valid_session.user_role, 'admin')
+        self.assertTrue(GLSessions.get(r1['session_id']) is None)
+        self.assertTrue(GLSessions.get(r2['session_id']) is not None)
 
     @inlineCallbacks
     def test_session_is_revoked(self):
@@ -92,29 +87,23 @@ class TestAuthentication(helpers.TestHandlerWithPopulatedDB):
             'username': 'receiver1',
             'password': helpers.VALID_PASSWORD1
         })
-        yield auth_handler.post()
 
-        first_session_id = self.responses[0]['session_id']
+        r1 = yield auth_handler.post()
 
-        user_handler = self.request({}, headers={'x-session': first_session_id},
+        user_handler = self.request({}, headers={'x-session': r1['session_id']},
                                         handler_cls=UserInstance)
+
         # The first_session is valid and the request should work
         yield user_handler.get()
 
         # The second authentication invalidates the first session
-        yield auth_handler.post()
-        second_session_id = self.responses[2]['session_id']
+        r2 = yield auth_handler.post()
 
         # The first_session should now deny access to authenticated resources
-        try:
-            yield user_handler.get()
-            # cannot use self.assertFailure here because self points else where
-            self.fail('user_handler.get must throw')
-        except errors.NotAuthenticated:
-            pass
+        yield self.assertRaises(errors.NotAuthenticated, user_handler.get)
 
         # The second_session should have no problems.
-        user_handler = self.request({}, headers={'x-session': second_session_id},
+        user_handler = self.request({}, headers={'x-session': r2['session_id']},
                                         handler_cls=UserInstance)
 
         yield user_handler.get()
@@ -138,8 +127,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
             'receipt': self.dummySubmission['receipt']
         })
         handler.client_using_tor = True
-        yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
     @inlineCallbacks
@@ -149,8 +138,8 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
             'receipt': self.dummySubmission['receipt']
         }, headers={'X-Tor2Web': 'whatever'})
         GLSettings.memory_copy.accept_tor2web_access['whistleblower'] = True
-        success = yield handler.post()
-        self.assertTrue('session_id' in self.responses[0])
+        response = yield handler.post()
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
     @inlineCallbacks
@@ -173,15 +162,15 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
             'receipt': self.dummySubmission['receipt']
         })
         handler.client_using_tor = True
-        yield handler.post()
-        first_id = self.responses[0]['session_id']
+        response = yield handler.post()
+        first_id = response['session_id']
 
         wbtip_handler = self.request(headers={'x-session': first_id},
                                      handler_cls=WBTipInstance)
         yield wbtip_handler.get()
 
-        yield handler.post()
-        second_id = self.responses[2]['session_id']
+        response = yield handler.post()
+        second_id = response['session_id']
 
         try:
             wbtip_handler.get()
@@ -211,15 +200,15 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
             'username': 'admin',
             'password': helpers.VALID_PASSWORD1
         })
-        yield handler.post()
+        response = yield handler.post()
         self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
         self._handler = authentication.SessionHandler
 
         # Logout
-        session_id = self.responses[0]['session_id']
+        session_id = response['session_id']
         handler = self.request({}, headers={'x-session': session_id})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
@@ -237,16 +226,15 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
 
         handler.client_using_tor = True
 
-        yield handler.post()
+        response = yield handler.post()
         self.assertTrue(handler.current_user is None)
-        self.assertTrue('session_id' in self.responses[0])
+        self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
 
         self._handler = authentication.SessionHandler
 
         # Logout
-        session_id = self.responses[0]['session_id']
-        handler = self.request({}, headers={'x-session': session_id})
+        handler = self.request({}, headers={'x-session': response['session_id']})
         yield handler.delete()
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSessions.keys()), 0)

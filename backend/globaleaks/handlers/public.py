@@ -5,7 +5,6 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 from storm.expr import In, Select
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.admin.files import db_get_file
@@ -385,7 +384,7 @@ def get_public_resources(store, language):
 
 class PublicResource(BaseHandler):
     check_roles = '*'
-    cache = True
+    cache_resource = True
 
     def get(self):
         """

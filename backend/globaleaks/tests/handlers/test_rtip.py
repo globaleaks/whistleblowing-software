@@ -31,7 +31,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_postpone(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            self.responses = []
 
             operation = {
               'operation': 'postpone',
@@ -52,8 +51,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def switch_enabler(self, key):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            self.responses = []
-
             operation = {
                 'operation': 'set',
                 'args': {
@@ -66,8 +63,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            yield handler.get(rtip_desc['id'])
-            self.assertEqual(self.responses[0][key], True)
+            response = yield handler.get(rtip_desc['id'])
+            self.assertEqual(response[key], True)
 
             operation = {
                 'operation': 'set',
@@ -81,8 +78,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            yield handler.get(rtip_desc['id'])
-            self.assertEqual(self.responses[1][key], False)
+            response = yield handler.get(rtip_desc['id'])
+            self.assertEqual(response[key], False)
 
             operation = {
                 'operation': 'set',
@@ -96,8 +93,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            yield handler.get(rtip_desc['id'])
-            self.assertEqual(self.responses[2][key], True)
+            response = yield handler.get(rtip_desc['id'])
+            self.assertEqual(response[key], True)
 
     @inlineCallbacks
     def test_put_enable_two_way_comments(self):
@@ -119,8 +116,6 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
     def test_put_label(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            self.responses = []
-
             operation = {
               'operation': 'set',
               'args': {
@@ -133,14 +128,13 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            yield handler.get(rtip_desc['id'])
-            self.assertEqual(self.responses[0]['label'], operation['args']['value'])
+            response = yield handler.get(rtip_desc['id'])
+            self.assertEqual(response['label'], operation['args']['value'])
 
     @inlineCallbacks
     def test_put_silence_notify(self):
         rtips_desc = yield self.get_rtips()
         for rtip_desc in rtips_desc:
-            self.responses = []
 
             operation = {
               'operation': 'set',
@@ -154,8 +148,8 @@ class TestRTipInstance(helpers.TestHandlerWithPopulatedDB):
             yield handler.put(rtip_desc['id'])
             self.assertEqual(handler.request.code, 200)
 
-            yield handler.get(rtip_desc['id'])
-            self.assertEqual(self.responses[0]['enable_notifications'], operation['args']['value'])
+            response = yield handler.get(rtip_desc['id'])
+            self.assertEqual(response['enable_notifications'], operation['args']['value'])
 
     @inlineCallbacks
     def test_delete(self):

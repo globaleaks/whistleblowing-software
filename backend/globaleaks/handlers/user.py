@@ -137,6 +137,7 @@ class UserInstance(BaseHandler):
         - pgp key
     """
     check_roles = 'admin,receiver,custodian'
+    invalidate_cache = True
 
     def get(self):
         """

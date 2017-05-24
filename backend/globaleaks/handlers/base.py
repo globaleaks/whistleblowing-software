@@ -159,10 +159,12 @@ class GLSession(object):
 
 
 class BaseHandler(object):
+    decorated = False
     serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
-    cache = False
+    cache_resource = False
+    invalidate_cache = False
 
     def __init__(self, request):
         self.request = request

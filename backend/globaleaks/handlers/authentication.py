@@ -143,6 +143,8 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
+        user_id = yield login_whistleblower(receipt, self.client_using_tor)
+
         GLSessions.revoke_all_sessions(user_id)
 
         session = GLSession(user_id, 'whistleblower', 'Enabled')

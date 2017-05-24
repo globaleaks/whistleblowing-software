@@ -147,10 +147,23 @@ api_spec = [
 
 
 def decorate_method(h, method):
-   decorator = getattr(h, 'authentication')
+   decorator_authentication = getattr(h, 'authentication')
    value = getattr(h, 'check_roles')
    value = re.split("[ ,]", value)
-   setattr(h, method, decorator(getattr(h, method), value))
+
+   f = getattr(h, method)
+
+   if method == 'get':
+       if h.cache_resource:
+           f = apicache.decorator_cache_get(f)
+
+   else:
+       if h.invalidate_cache:
+           f = apicache.decorator_cache_invalidate(f)
+
+   f = decorator_authentication(f, value)
+
+   setattr(h, method, f)
 
 
 class APIResourceWrapper(Resource):
@@ -161,6 +174,8 @@ class APIResourceWrapper(Resource):
         Resource.__init__(self)
         self._registry = []
 
+        decorated_handlers = set()
+
         for pattern, handler, args, in api_spec:
             if not pattern.startswith("^"):
                 pattern = "^" + pattern;
@@ -168,9 +183,11 @@ class APIResourceWrapper(Resource):
             if not pattern.endswith("$"):
                 pattern += "$"
 
-            for m in ['get', 'put', 'post', 'delete']:
-                if hasattr(handler, m):
-                    decorate_method(handler, m)
+            if handler not in decorated_handlers:
+                decorated_handlers.add(handler)
+                for m in ['get', 'put', 'post', 'delete']:
+                    if hasattr(handler, m):
+                        decorate_method(handler, m)
 
             self._registry.append((re.compile(pattern), handler, args))
 
@@ -218,7 +235,7 @@ class APIResourceWrapper(Resource):
 
             f = getattr(h, method, None)
 
-            if f is not None::
+            if f is None:
                 self.handle_exception(errors.MethodNotImplemented(), request)
                 return ''
 

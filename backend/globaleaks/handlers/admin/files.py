@@ -63,7 +63,7 @@ class FileInstance(BaseHandler):
             return
 
         d = add_file(uploaded_file['body'].read(), key)
-        d.addBoth(uploaded_file['body'].close)
+        d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
 
     def delete(self, key):

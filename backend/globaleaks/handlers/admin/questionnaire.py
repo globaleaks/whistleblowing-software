@@ -193,6 +193,7 @@ class QuestionnairesCollection(BaseHandler):
 
 class QuestionnaireInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, questionnaire_id):
         """

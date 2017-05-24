@@ -44,12 +44,10 @@ class TestStaticFileList(helpers.TestHandler):
         yield write_upload_plaintext_to_disk(self.fakeFile, realpath)
 
         handler = self.request(role='admin')
-        yield handler.get()
-        self.assertTrue(isinstance(self.responses[0], list))
+        response = yield handler.get()
 
         found = False
-
-        for f in self.responses[0]:
+        for f in response:
             if f['name'] == self.fakeFile['name']:
                 found = True
                 break

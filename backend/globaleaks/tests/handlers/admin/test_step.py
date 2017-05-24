@@ -22,12 +22,9 @@ class TestStepCollection(helpers.TestHandler):
             step = helpers.get_dummy_step()
             step['questionnaire_id'] = context['questionnaire_id']
             handler = self.request(step, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp = self.responses[0]
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('questionnaire_id'), None)
+            response = yield handler.post()
+            self.assertIn('id', response)
+            self.assertNotEqual(response.get('questionnaire_id'), None)
 
 
 class TestStepInstance(helpers.TestHandler):
@@ -44,9 +41,8 @@ class TestStepInstance(helpers.TestHandler):
             step = yield create_step(step, 'en')
 
             handler = self.request(role='admin')
-            yield handler.get(step['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(step['id'], self.responses[0]['id'])
+            response = yield handler.get(step['id'])
+            self.assertEqual(step['id'], response['id'])
 
         @inlineCallbacks
         def test_put(self):
@@ -61,10 +57,9 @@ class TestStepInstance(helpers.TestHandler):
             step['presentation_order'] = 666
 
             handler = self.request(step, role='admin')
-            yield handler.put(step['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(step['id'], self.responses[0]['id'])
-            self.assertEqual(self.responses[0]['presentation_order'], 666)
+            response = yield handler.put(step['id'])
+            self.assertEqual(step['id'], response['id'])
+            self.assertEqual(response['presentation_order'], 666)
 
         @inlineCallbacks
         def test_delete(self):

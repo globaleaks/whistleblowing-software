@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from twisted.internet import defer
+
 
 class GLApiCache(object):
     memory_cache_dict = {}
@@ -18,11 +20,34 @@ class GLApiCache(object):
 
     @classmethod
     def invalidate(cls, resource=None):
-        """
-        When a function has an update, all the languages need to be
-        invalidated, because the change is still effective
-        """
         if resource is None:
             cls.memory_cache_dict = {}
         else:
             cls.memory_cache_dict.pop(resource, None)
+
+
+def decorator_cache_get(f):
+    def wrapper(self, *args, **kwargs):
+        c = GLApiCache.get(self.request.path, 'en')
+        if c is None:
+            c = f(self, *args, **kwargs)
+            if isinstance(c, defer.Deferred):
+                def callback(data):
+                    GLApiCache.set(self.request.path, 'en', data)
+
+                    return data
+
+                c.addCallback(callback)
+
+        return c
+
+    return wrapper
+
+
+def decorator_cache_invalidate(f):
+    def wrapper(self, *args, **kwargs):
+        GLApiCache.invalidate(self.request.path)
+
+        return f(self, *args, **kwargs)
+
+    return wrapper

@@ -16,7 +16,7 @@ class BaseHandlerMock(BaseHandler):
     check_roles = 'unauthenticated'
 
     def get(self):
-        self.finish()
+        return
 
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
