@@ -54,7 +54,7 @@ class StaticFileInstance(BaseHandler):
         directory_traversal_check(GLSettings.static_path, path)
 
         d = threads.deferToThread(write_upload_plaintext_to_disk, uploaded_file, path)
-        d.addBoth(uploaded_file['body'].close)
+        d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
 
     def delete(self, filename):

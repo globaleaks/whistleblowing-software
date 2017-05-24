@@ -329,6 +329,7 @@ def serialize_https_config_summary(store):
       'status': GLSettings.state.process_supervisor.get_status(),
       'files': file_summaries,
     }
+
     return ret
 
 

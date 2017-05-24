@@ -229,4 +229,4 @@ class JobsTiming(BaseHandler):
               'timings': job.last_executions
             })
 
-        self.write(response)
+        return response

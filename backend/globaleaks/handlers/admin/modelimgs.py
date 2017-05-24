@@ -45,6 +45,7 @@ def del_model_img(store, model, obj_id):
 
 class ModelImgInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def post(self, obj_key, obj_id):
         uploaded_file = self.get_file_upload()
@@ -52,7 +53,7 @@ class ModelImgInstance(BaseHandler):
             return
 
         d = add_model_img(model_map[obj_key], obj_id, uploaded_file['body'].read())
-        d.addBoth(uploaded_file['body'].close)
+        d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
 
     def delete(self, obj_key, obj_id):

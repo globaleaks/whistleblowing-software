@@ -645,7 +645,6 @@ class IdentityAccessRequestsCollection(BaseHandler):
     """
     check_roles = 'receiver'
 
-    @inlineCallbacks
     def post(self, tip_id):
         """
         Request: IdentityAccessRequestDesc

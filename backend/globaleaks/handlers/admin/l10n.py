@@ -40,6 +40,7 @@ def delete_custom_texts(store, lang):
 
 class AdminL10NHandler(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, lang):
         return get_custom_texts(lang)

@@ -394,7 +394,6 @@ class SubmissionInstance(BaseHandler):
     """
     check_roles = 'unauthenticated'
 
-    @defer.inlineCallbacks
     def put(self, token_id):
         """
         Parameter: token_id

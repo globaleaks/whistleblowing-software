@@ -1,6 +1,8 @@
 # -*- coding: UTF-8
 #
 # wizard
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
@@ -79,7 +81,9 @@ class Wizard(BaseHandler):
     Setup Wizard handler
     """
     check_roles = 'unauthenticated'
+    invalidate_cache = True
 
+    @inlineCallbacks
     def post(self):
         request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)

@@ -78,7 +78,6 @@ class IdentityAccessRequestInstance(BaseHandler):
         return get_identityaccessrequest(identityaccessrequest_id,
                                          self.request.language)
 
-    @inlineCallbacks
     def put(self, identityaccessrequest_id):
         """
         Parameters: the id of the identity access request

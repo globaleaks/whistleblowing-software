@@ -236,9 +236,6 @@ class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
                   (wbfile.id, self.current_user.user_id))
         wbfile.downloads += 1
 
-    def get(self, wbfile_id):
-        self._get(wbfile_id)
-
 
 class WBTipIdentityHandler(BaseHandler):
     """

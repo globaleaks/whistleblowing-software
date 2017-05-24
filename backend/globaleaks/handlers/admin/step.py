@@ -140,6 +140,7 @@ class StepInstance(BaseHandler):
     /admin/step
     """
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, step_id):
         """

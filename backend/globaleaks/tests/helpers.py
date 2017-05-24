@@ -40,6 +40,8 @@ import json
 import os
 import shutil
 
+from datetime import timedelta
+
 from twisted.web.test.requesthelper import DummyChannel
 from twisted.internet import threads, defer, task
 from twisted.internet.address import IPv4Address
@@ -439,13 +441,13 @@ class TestGL(unittest.TestCase):
         for _ in xrange(number_of_times):
             for event_obj in event.events_monitored:
                 for x in xrange(2):
-                    event.EventTrack(event_obj, 1.0 * x)
+                    event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
 
     def pollute_events_and_perform_synthesis(self, number_of_times=10):
         for _ in xrange(number_of_times):
             for event_obj in event.events_monitored:
                 for x in xrange(2):
-                    event.EventTrack(event_obj, 1.0 * x).synthesis()
+                    event.EventTrack(event_obj, timedelta(seconds=1.0 * x)).synthesis()
     @transact
     def get_rtips(self, store):
         ret = []
@@ -657,8 +659,6 @@ class TestHandler(TestGLWithPopulatedDB):
         self.initialization()
 
     def initialization(self):
-        self.responses = []
-
         # we need to reset settings.session to keep each test independent
         GLSessions.clear()
 
@@ -731,23 +731,14 @@ class TestHandler(TestGLWithPopulatedDB):
 
         request.content = fakeBody()
 
-        def mock_write(cls, response=None):
-            if response:
-                self.responses.append(response)
-
-        handler_cls.write = mock_write
-
-        def mock_finish(cls):
-            pass
-
-        handler_cls.finish = mock_finish
+        from globaleaks.rest.api import decorate_method
+        if not handler_cls.decorated:
+            handler_cls.decorated = True
+            for method in ['get', 'post', 'put', 'delete']:
+                if getattr(handler_cls, method, None) is not None:
+                    decorate_method(handler_cls, method)
 
         handler = handler_cls(request, **kwargs)
-
-        from globaleaks.rest.api import decorate_method
-        for method in ['get', 'post', 'put', 'delete']:
-            if getattr(handler, method, None) is not None:
-                decorate_method(handler, method)
 
         if user_id is None and role is not None:
             if role == 'admin':

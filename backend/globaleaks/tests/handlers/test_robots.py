@@ -17,10 +17,10 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
 
         GLSettings.memory_copy.allow_indexing = False
 
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertEqual(self.responses[0], "User-agent: *\n")
-        self.assertEqual(self.responses[1], "Disallow: /")
+        self.assertEqual(response, "User-agent: *\n" \
+                                   "Disallow: /")
 
     @inlineCallbacks
     def test_get_with_indexing_enabled(self):
@@ -29,11 +29,11 @@ class TestRobotstxtHandlerHandler(helpers.TestHandler):
         GLSettings.memory_copy.allow_indexing = True
         GLSettings.memory_copy.hostname = "www.globaleaks.org"
 
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertEqual(self.responses[0], "User-agent: *\n")
-        self.assertEqual(self.responses[1], "Allow: /\n")
-        self.assertEqual(self.responses[2], "Sitemap: https://www.globaleaks.org/sitemap.xml")
+        self.assertEqual(response, "User-agent: *\n" \
+                                   "Allow: /\n" \
+                                   "Sitemap: https://www.globaleaks.org/sitemap.xml")
 
 
 class TestSitemapHandlerHandler(helpers.TestHandler):
