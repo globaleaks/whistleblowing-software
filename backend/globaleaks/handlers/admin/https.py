@@ -17,7 +17,7 @@ from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import errors, requests
 from globaleaks.utils import tls
-from globaleaks.utils.lets_enc import run_acme_reg_to_finish
+from globaleaks.utils import lets_enc
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 from globaleaks.utils.tempdict import TempDict
 
@@ -131,6 +131,7 @@ class PrivKeyFileRes(FileResource):
         prv_fact = PrivateFactory(store)
 
         return {
+            #TODO(remove) places key material in memory
             'set': prv_fact.get_val('https_priv_key') != u'',
             'gen': prv_fact.get_val('https_priv_gen')
         }
@@ -463,9 +464,10 @@ class CSRFileHandler(FileHandler):
             raise errors.ValidationError('CSR gen failed')
 
 
-class AcmeAccntKeyResource(FileResource):
+class AcmeAccntKeyRes():
     @classmethod
-    def create_file(cls, store):
+    @transact
+    def create_file(store, cls):
         log.info("Generating an ACME account key with %d bits" % GLSettings.key_bits)
 
         # TODO change format to OpenSSL key to normalize types of keys used
@@ -474,20 +476,64 @@ class AcmeAccntKeyResource(FileResource):
             key_size=2048, # TODO development key size of 512 doesn't work
             backend=default_backend())
 
-        log.debug("Saving the ACME key")
-        prv_fact = PrivateFactory(store)
 
+        log.debug("Saving the ACME key")
         b = priv_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
                 format=serialization.PrivateFormat.PKCS8,
                 encryption_algorithm=serialization.NoEncryption(),
         )
-        prv_fact.set_val('acme_accnt_key', b)
+
+        PrivateFactory(store).set_val('acme_accnt_key', b)
         return priv_key
+
+    @classmethod
+    @transact
+    def save_accnt_uri(store, cls, uri):
+        PrivateFactory(store).set_val('acme_accnt_uri', uri)
 
 
 # Access auth tokens expire after a few minutes
 tmp_chall_dict = TempDict(300)
+
+
+@transact
+def can_create_acme_res(store):
+    prv_fact = PrivateFactory(store)
+    no_accnt_key = prv_fact.get_val('acme_accnt_key') == u''
+    no_accnt_uri = prv_fact.get_val('acme_accnt_uri') == u''
+    priv_key = prv_fact.get_val('https_priv_key') != u''
+    no_csr_set  = prv_fact.get_val('https_csr') == u''
+    no_cert_set = prv_fact.get_val('https_cert') == u''
+    #return no_accnt_key and no_accnt_uri and priv_key and no_csr_set and no_cert_set
+    return True
+
+
+@transact
+def can_perform_acme_run(store):
+    prv_fact = PrivateFactory(store)
+    prv_key_set = prv_fact.get_val('https_priv_key') != u''
+    acme_accnt_uri = prv_fact.get_val('acme_accnt_uri') != u''
+    autorenew = prv_fact.get_val('acme_autorenew')
+    empty_csr = prv_fact.get_val('https_csr') == ''
+    #return acme_accnt_uri and prv_key_set and empty_csr and not autorenew
+    return True
+
+
+@transact
+def is_acme_confd(store):
+    prv_fact = PrivateFactory(store)
+    autorenew = prv_fact.get_val('acme_autorenew')
+    acme_uri_set = prv_fact.get_val('acme_acccnt_uri')
+    return acme_uri_set and autorenew
+
+
+@transact
+def can_perform_acme_renewal(store):
+    a = is_acme_confd(store)
+    b = PrivateFactory(store).get_val('https_enabled')
+    c = PrivateFactory(store).get_val('https_cert')
+    return a and b and c
 
 
 class AcmeHandler(BaseHandler):
@@ -496,19 +542,46 @@ class AcmeHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.body,
-                                        requests.AdminCSRFileDesc)
-        # TODO check state of Lets Enc registration
-        yield deferToThread(self.acmeCertIssuance, request)
+        is_ready = yield can_create_acme_res()
+        if not is_ready:
+            raise errors.ForbiddenOperation()
+
+        accnt_key = yield AcmeAccntKeyRes.create_file()
+
+        # TODO should throw if key is already registered
+        regr_uri, tos_url = lets_enc.register_account_key(accnt_key)
+
+        yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
 
         self.set_status(200)
+        self.write({
+            'terms_of_service': tos_url,
+        })
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def put(self):
+        request = self.validate_message(self.request.body,
+                                        requests.AdminCSRFileDesc)
+
+        is_ready = yield can_perform_acme_run()
+        if not is_ready:
+            raise errors.ForbiddenOperation()
+
+        yield deferToThread(self.acme_cert_issuance, request)
+        self.set_status(202)
 
     @transact_sync
-    def acmeCertIssuance(self, store, request):
+    def acme_cert_issuance(self, store, request):
         hostname = GLSettings.memory_copy.hostname
 
-        # Generate acme private key using file res
-        accnt_key = AcmeAccntKeyResource.create_file(store)
+        raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
+        # serialize cryptography key
+        accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
+                                                       password=None,
+                                                       backend=default_backend())
 
         # Create CSR using params
         desc = request['content']
@@ -523,11 +596,13 @@ class AcmeHandler(BaseHandler):
         }
 
         priv_key = PrivateFactory(store).get_val('https_priv_key')
+        regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
         csr = tls.gen_x509_csr(priv_key, csr_fields, 256) # TODO devel values do not work.
 
-        print(csr)
+        # TODO save csr in DB here.
+
         # Run ACME registration all the way to resolution
-        cert = run_acme_reg_to_finish(hostname, accnt_key, priv_key, csr, tmp_chall_dict)
+        cert = lets_enc.run_acme_reg_to_finish(hostname, regr_uri, accnt_key, priv_key, csr, tmp_chall_dict)
         log.info('Retrieved cert from CA')
         PrivateFactory(store).set_val('https_cert', cert._dump(FILETYPE_PEM))
 

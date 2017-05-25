@@ -1,0 +1,17 @@
+<h3 data-translate>Setup HTTPS on the server</h3>
+<div>
+  <hr/>
+  <p data-translate>This configuration wizard will guide you through the setup of HTTPS. The interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup. Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
+  <hr/>
+  <div data-ng-show="admin.node.hostname === ''" class="alert alert-warning">
+    <span data-translate>Hostname is not set!</span>
+    <span><a data-ng-click="setActiveTab(0)" data-translate>Click here to configure it.</a></span>
+  </div>
+  <span data-ng-hide="admin.node.hostname === ''">
+    <p data-translate>The easiest way to setup SSL on the server is to use the Automatic setup.</p>
+    <button class="btn btn-md" data-ng-click="runInitAutoAcme()">Automatic</button>
+
+    <p data-translate>You can use your own certificate authority and manually configure SSL as well.</p>
+    <button class="btn btn-md" data-ng-click="setMenu('fileRes')">Manual</button>
+  </span>
+</div>

@@ -1,5 +1,5 @@
 GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
-  $scope.active = 0;
+  $scope.active = 1; //TODO change to 0
 
   $scope.tabs = [
     {
@@ -8,7 +8,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     },
     {
       title:"HTTPS settings",
-      template: "views/admin/network/https_settings.html"
+      template: "views/admin/network/https_menu.html"
     },
     {
       title:"Access control",
@@ -27,6 +27,11 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
 
   $scope.state = 0;
+  $scope.menuState = 'setup';
+
+  $scope.setMenu = function(state) {
+    $scope.menuState = state;
+  };
 
   $scope.parseTLSConfig = function(tlsConfig) {
     $scope.tls_config = tlsConfig;
@@ -42,7 +47,16 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     } else {
       $scope.state = 4;
     }
-  }
+
+    // Determine which window we need to show
+    var choice = 'setup';
+    if ($scope.state > 0) {
+      $scope.menuState = 'fileRes';
+    } else if (tlsConfig.https_enabled) {
+      $scope.menuState = 'status';
+    }
+    $scope.menuState = choice;
+  };
 
   tlsConfigResource.get({}, $scope.parseTLSConfig);
 
@@ -50,11 +64,11 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   $scope.invertExpertStatus = function() {
     $scope.show_expert_status = !$scope.show_expert_status;
     return refreshConfig();
-  }
+  };
 
   function refreshConfig() {
     return tlsConfigResource.get({}, $scope.parseTLSConfig).$promise;
-  }
+  };
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: 'priv_key'}),
@@ -79,7 +93,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
 
   $scope.gen_priv_key = function() {
     return $scope.file_resources.priv_key.$update().then(refreshConfig);
-  }
+  };
 
   $scope.postFile = function(file, resource) {
     Utils.readFileAsText(file).then(function(str) {
@@ -98,9 +112,21 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
      });
   };
 
+  $scope.runInitAutoAcme = function() {
+    var aRes = new adminAcmeResource();
+    $scope.file_resources.priv_key.$update()
+    .then(function() {
+        return aRes.$save();
+    })
+    .then(function(resp) {
+      $scope.le_terms_of_service = resp.terms_of_service;
+      setMenu('acmeCfg');
+    });
+  };
+
   $scope.letsEncryptor = function() {
     var aRes = new adminAcmeResource({content:$scope.csr_cfg, name: 'acme_run'});
-    aRes.$save().then(function() {
+    aRes.$update().then(function() {
       $scope.csr_state.open = false;
       return refreshConfig();
     });

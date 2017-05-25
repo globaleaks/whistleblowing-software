@@ -48,10 +48,10 @@
       </div>
     </div>
   </div>
-
-  <button id="LetsCry" class="btn btn-xs btn-primary" data-ng-click="letsEncryptor()" data-translate>Lets Crypt</button>
-
-  <button id="csrSubmit" class="btn btn-success pull-right" ng-click="submitCSR()" ng-disabled="certSigRequestForm.$invalid">
-    <span data-translate>Generate</span>
+  <button id="csrSubmit" class="btn btn-success pull-right"
+      ng-click="submitCSR()"
+      ng-disabled="certSigRequestForm.$invalid"
+      ng-hide="menuState === 'acmeCfg'"
+      data-translate>Generate
   </button>
 </div>

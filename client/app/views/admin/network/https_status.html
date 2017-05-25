@@ -1,0 +1,32 @@
+<div class="info-section">
+  <div class="status-line">
+    <h3 data-translate>Status</h3>
+    <span data-ng-if="tls_config.enabled">
+      <span class="label label-success">
+        <span data-translate>Enabled</span>
+        <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+      </span>
+      <span>&nbsp;</span>
+      <span data-ng-if="tls_config.running" class="label label-success" data-translate>Running</span>
+      <span data-ng-if="!tls_config.running" class="label label-warning" data-translate>Not running</span>
+    </span>
+
+    <span data-ng-if="!tls_config.enabled" class="label label-danger">
+      <span data-translate>Disabled</span>
+      <i class="glyphicon glyphicon-info-sign" data-ng-click="invertExpertStatus()"></i>
+    </span>
+  </div>
+
+  <div class="hostname">
+    <div data-ng-if="tls_config.enabled && tls_config.running">
+      <span>URL</span><span>:</span>
+      <a target="_blank" rel="noreferrer noopener" href="https://{{ admin.node.hostname }}">https://{{admin.node.hostname}}</a>
+    </div>
+  </div>
+</div>
+<p>Cert Issuer TODO</p>
+<p>Cert expiration date</p>
+<div data-ng-show="show_expert_status">
+  <h3 data-translate >System message:</h3>
+  <div class="alert alert-info">{{tls_config.status.timestamp | date:'dd-MM-yyyy HH:mm' }} {{ tls_config.status.msg }}</div>
+</div>
