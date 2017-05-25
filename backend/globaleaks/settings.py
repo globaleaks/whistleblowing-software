@@ -80,7 +80,6 @@ class GLSettingsClass(object):
         self.store_name = 'main_store'
 
         self.db_type = 'sqlite'
-        self.initialize_db = True
 
         # debug defaults
         self.orm_debug = False
@@ -374,6 +373,9 @@ class GLSettingsClass(object):
             self.set_client_path(self.cmdline_options.client_path)
 
         self.eval_paths()
+
+        if self.nodaemon:
+            self.print_msg("Going in background; log available at %s" % GLSettings.logfile)
 
         # special evaluation of client directory:
         indexfile = os.path.join(self.client_path, 'index.html')

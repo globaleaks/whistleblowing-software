@@ -15,8 +15,8 @@ from twisted.application import internet, service
 from twisted.internet import reactor, defer
 from twisted.python import log as txlog, logfile as txlogfile
 
-from globaleaks.db import init_db, sync_clean_untracked_files, \
-    sync_refresh_memory_variables
+from globaleaks.db import init_db, update_db, \
+    sync_clean_untracked_files, sync_refresh_memory_variables
 from globaleaks.rest import api
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, GLLogObserver
@@ -64,13 +64,6 @@ def pre_listen_startup():
     GLSettings.drop_privileges()
     GLSettings.check_directories()
 
-    if GLSettings.initialize_db:
-        init_db()
-
-    sync_clean_untracked_files()
-    sync_refresh_memory_variables()
-
-
 class GLService(service.Service):
     def startService(self):
         reactor.callLater(0, self.deferred_start)
@@ -84,7 +77,19 @@ class GLService(service.Service):
 
     @defer.inlineCallbacks
     def _deferred_start(self):
+        ret = update_db()
+
+        if ret == -1:
+            reactor.stop()
+
+        if ret == 0:
+            init_db()
+
+        sync_clean_untracked_files()
+        sync_refresh_memory_variables()
+
         GLSettings.orm_tp.start()
+
         reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
         GLSettings.api_factory = api.get_api_factory()
 

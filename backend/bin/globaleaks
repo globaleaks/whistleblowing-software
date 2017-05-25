@@ -17,7 +17,7 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-print("Starting GlobaLeaks . . .")
+print("Starting GlobaLeaks…")
 
 distro='unknown'
 if platform.system() == 'Linux':
@@ -42,7 +42,6 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.db import update_db
 from globaleaks.utils.utility import log, query_yes_no
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
@@ -177,16 +176,13 @@ args +=['--pidfile', GLSettings.pidfile_path]
 sys.argv[1:] = args
 
 def run_backend():
-    # Check presence of an existing database and eventually perform its migration
-    update_db()
-
     sys.excepthook = mail_exception_handler
     config = ServerOptions()
     try:
         config.parseOptions()
     except usage.error, ue:
         print("%s: %s" % (sys.argv[0], ue))
-        sys.exit(50) # differentiated error codes lets a script change behaivor based on output
+        sys.exit(50)
     try:
         # This blocks until the app exits
         UnixApplicationRunner(config).run()

@@ -68,34 +68,31 @@ def update_db():
     """
     This function handles update of an existing database
     """
-    from globaleaks.db import migration
+    try:
+        db_version, db_file_path = get_db_file(GLSettings.db_path)
+        if db_version == 0:
+            return 0
 
-    db_version, db_file_path = get_db_file(GLSettings.db_path)
+        from globaleaks.db import migration
 
-    if db_version is 0:
-        return
+        log.msg("Found an already initialized database version: %d" % db_version)
 
-    GLSettings.initialize_db = False
-
-    log.msg("Found an already initialized database version: %d" % db_version)
-
-    if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
-        log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
-        try:
+        if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
+            log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
             migration.perform_schema_migration(db_version)
-        except Exception as exception:
-            log.msg("Migration failure: %s" % exception)
-            log.msg("Verbose exception traceback:")
-            etype, value, tback = sys.exc_info()
-            log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
-            return -1
+            log.msg("Migration completed with success!")
 
-        log.msg("Migration completed with success!")
+        else:
+            log.msg('Performing data update')
+            # TODO on normal startup this line is run. We need better control flow here.
+            migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
-    else:
-        log.msg('Performing data update')
-        # TODO on normal startup this line is run. We need better control flow here.
-        migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
+    except Exception as exception:
+        log.msg("Migration failure: %s" % exception)
+        log.msg("Verbose exception traceback:")
+        etype, value, tback = sys.exc_info()
+        log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
+        return -1
 
 
 def db_get_tracked_files(store):
