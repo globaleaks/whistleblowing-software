@@ -215,7 +215,24 @@ class TestAcmeHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
+        hostname = 'gl.dl.localhost.com'
+        GLSettings.memory_copy.hostname = hostname
         valid_setup = test_tls.get_valid_setup()
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+
+        handler = self.request(role='admin')
+        yield handler.post()
+
+        resp = self.responses[0]
+
+        current_le_tos = 'https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf'
+        self.assertEqual(resp['terms_of_service'], current_le_tos)
+
+    @inlineCallbacks
+    def test_put(self):
+        valid_setup = test_tls.get_valid_setup()
+        yield https.AcmeAccntKeyRes.create_file()
+        yield https.AcmeAccntKeyRes.save_accnt_uri('TODO-keep-test-data-around')
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
         hostname = 'gl.dl.localhost.com'
         GLSettings.memory_copy.hostname = hostname
@@ -232,7 +249,7 @@ class TestAcmeHandler(helpers.TestHandler):
         body = {'name': 'xxx', 'content': d}
 
         handler = self.request(body, role='admin')
-        yield handler.post()
+        yield handler.put()
 
 
 class TestAcmeChallResolver(helpers.TestHandler):

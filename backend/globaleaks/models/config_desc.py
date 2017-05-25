@@ -42,12 +42,15 @@ GLConfig = {
         'version_db': Int(default=DATABASE_VERSION),
 
         'acme_accnt_key': Unicode(),
+        'acme_accnt_uri': Unicode(),
+        'acme_autorenew': Bool(default=False),
 
         'https_priv_key': Unicode(),
         'https_priv_gen': Bool(default=False),
         'https_csr': Unicode(),
         'https_cert': Unicode(),
         'https_chain': Unicode(),
+        'https_cert_expire_date': Unicode(), # TODO Add date type
         'https_dh_params': Unicode(),
         'https_enabled': Bool(default=False),
     },

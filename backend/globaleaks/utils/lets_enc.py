@@ -25,16 +25,24 @@ class ChallTok():
         self.tok = tok
 
 
-def run_acme_reg_to_finish(domain, accnt_key, site_key, csr, tmp_chall_dict):
+def register_account_key(accnt_key):
+    accnt_key = jose.JWKRSA(key=accnt_key)
+    acme = client.Client(DIRECTORY_URL, accnt_key)
+
+    regr = acme.register()
+    return regr.uri, regr.terms_of_service
+
+
+def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall_dict):
     '''
 
     :returns: ``cert`` of `OpenSSL.crypto.X509` certificate wrapped in `acme.jose.util.ComparableX509`
     '''
     accnt_key = jose.JWKRSA(key=accnt_key)
-
     acme = client.Client(DIRECTORY_URL, accnt_key)
+    msg = messages.RegistrationResource(uri=regr_uri)
+    regr = acme.query_registration(msg)
 
-    regr = acme.register()
     log.info('Auto-accepting TOS: %s from: %s' % (regr.terms_of_service, DIRECTORY_URL))
     acme.agree_to_tos(regr)
 

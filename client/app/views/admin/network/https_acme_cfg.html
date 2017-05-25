@@ -1,0 +1,23 @@
+<div>
+  <h3>Fill out this form</h3>
+  <hr/>
+  <div class="row">
+    <div class="col-md-8" data-ng-include="'/views/admin/network/csr_gen.html'"></div>
+  </div>
+
+  <hr/>
+  <h4 data-translate>Let's Encrypt terms of Service</h4>
+  <a data-ng-href="{{ le_terms_of_service }}" target="_blank" rel="noreferrer noopener">{{ le_terms_of_service }}</a>
+
+  <div class="form-group">
+    <input data-ng-model="accepted_le_terms" type="checkbox"></input>
+    <label data-translate>I accept the terms</label>
+  </div>
+
+  <hr/>
+  <button id="LetsCry" class="btn btn-med btn-success"
+      data-ng-disabled="!accepted_le_terms"
+      data-ng-click="letsEncryptor()" 
+      data-translate>Proceed</button>
+  <button class="btn btn-primary" data-ng-click="setMenu('setup')" data-translate>Cancel</button>
+</div>
