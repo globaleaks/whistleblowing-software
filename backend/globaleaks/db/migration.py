@@ -36,6 +36,8 @@ from globaleaks.db.migrations.update_35 import Context_v_34, InternalTip_v_34, W
 from globaleaks.models import config, l10n
 from globaleaks.models.config import PrivateFactory
 from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import log
+
 
 migration_mapping = OrderedDict([
     ('Anomalies', [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, models.Anomalies, 0, 0, 0, 0, 0, 0]),
@@ -133,7 +135,7 @@ def perform_schema_migration(version):
     to_delete_on_success = []
 
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
-        GLSettings.print_msg("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
+        log.msg("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
     tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
@@ -157,7 +159,7 @@ def perform_schema_migration(version):
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
 
-            GLSettings.print_msg("Updating DB from version %d to version %d" % (version, version + 1))
+            log.msg("Updating DB from version %d to version %d" % (version, version + 1))
 
             store_old = Store(create_database('sqlite:' + old_db_file))
             store_new = Store(create_database('sqlite:' + new_db_file))
@@ -166,13 +168,13 @@ def perform_schema_migration(version):
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
             migration_script = MigrationModule.MigrationScript(migration_mapping, version, store_old, store_new)
 
-            GLSettings.print_msg("Migrating table:")
+            log.msg("Migrating table:")
 
             try:
                 try:
                     migration_script.prologue()
                 except Exception as exception:
-                    GLSettings.print_msg("Failure while executing migration prologue: %s" % exception)
+                    log.failure("Failure while executing migration prologue: %s" % exception)
                     raise exception
 
                 for model_name, _ in migration_mapping.iteritems():
@@ -184,13 +186,13 @@ def perform_schema_migration(version):
                             # the precise migration that may fail.
                             migration_script.commit()
                         except Exception as exception:
-                            GLSettings.print_msg("Failure while migrating table %s: %s " % (model_name, exception))
+                            log.failure("Failure while migrating table %s: %s " % (model_name, exception))
                             raise exception
                 try:
                     migration_script.epilogue()
                     migration_script.commit()
                 except Exception as exception:
-                    GLSettings.print_msg("Failure while executing migration epilogue: %s " % exception)
+                    log.failure("Failure while executing migration epilogue: %s " % exception)
                     raise exception
 
             finally:
@@ -198,7 +200,7 @@ def perform_schema_migration(version):
                 # in order to not keep leaking journal files.
                 migration_script.close()
 
-            GLSettings.print_msg("Migration stats:")
+            log.msg("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
             store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
@@ -214,10 +216,10 @@ def perform_schema_migration(version):
                              raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
                                                   (model_name, count, migration_script.entries_count[model_name]))
                          else:
-                             GLSettings.print_msg(" * %s table migrated (entries count changed from %d to %d)" % \
+                             log.msg(" * %s table migrated (entries count changed from %d to %d)" % \
                                                   (model_name, migration_script.entries_count[model_name], count))
                      else:
-                         GLSettings.print_msg(" * %s table migrated (%d entry(s))" % \
+                         log.msg(" * %s table migrated (%d entry(s))" % \
                                               (model_name, migration_script.entries_count[model_name]))
 
             version += 1
@@ -225,10 +227,9 @@ def perform_schema_migration(version):
             store_verify.close()
 
         perform_data_update(new_db_file)
-    except Exception as exception:
-        GLSettings.print_msg("[FATAL]: ", exception)
-        print exception
-        raise exception
+
+    except Exception:
+        raise
 
     else:
         # in case of success first copy the new migrated db, then as last action delete the original db file
@@ -240,4 +241,5 @@ def perform_schema_migration(version):
         for f in os.listdir(tmpdir):
             tmp_db_file = os.path.join(tmpdir, f)
             security.overwrite_and_remove(tmp_db_file)
+
         shutil.rmtree(tmpdir)

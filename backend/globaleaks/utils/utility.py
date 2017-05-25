@@ -132,10 +132,6 @@ class GLLogObserver(twlog.FileLogObserver):
     """
     Tracks and logs exceptions generated within the application
     """
-    suppressed = 0
-    limit_suppressed = 1
-    last_exception_msg = ""
-
     def emit(self, eventDict):
         """
         Handles formatting system log messages along with incrementing the objs
@@ -155,18 +151,8 @@ class GLLogObserver(twlog.FileLogObserver):
         fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
-        if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
-            GLLogObserver.suppressed = 0
-            GLLogObserver.limit_suppressed += 5
-            GLLogObserver.last_exception_msg = ""
-
-        try:
-            # in addition to escape sequence removal on logfiles we also quote html chars
-            util.untilConcludes(self.write, timeStr + " " + log_encode_html(msgStr))
-            util.untilConcludes(self.flush) # Hoorj!
-        except Exception as excep:
-            GLLogObserver.suppressed += 1
-            GLLogObserver.last_exception_msg = str(excep)
+        util.untilConcludes(self.write, timeStr + " " + log_encode_html(msgStr))
+        util.untilConcludes(self.flush)
 
 
 class Logger(object):
@@ -206,11 +192,6 @@ class Logger(object):
     def debug(self, msg):
         if self.loglevel and self.loglevel <= logging.DEBUG:
             print("[D] %s" % self._str(msg))
-
-    def time_debug(self, msg):
-        # read the command in settings.py near 'verbosity_dict'
-        if self.loglevel and self.loglevel <= (logging.DEBUG - 1):
-            print("[T] %s" % self._str(msg))
 
     def msg(self, msg):
         if self.loglevel:
