@@ -127,7 +127,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   };
 
   $scope.letsEncryptor = function() {
-    var aRes = new adminAcmeResource({content:$scope.csr_cfg, name: 'acme_run'});
+    var aRes = new adminAcmeResource({});
     aRes.$update().then(function() {
       $scope.csr_state.open = false;
       $scope.setMenu('acmeFin');

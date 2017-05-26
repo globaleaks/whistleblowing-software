@@ -397,6 +397,8 @@ AdminCSRFileDesc = {
     }
 }
 
+AdminAcmeSubscribeDesc = {}
+
 AdminShortURLDesc = {
     'shorturl': shorturl_regexp,
     'longurl': longurl_regexp

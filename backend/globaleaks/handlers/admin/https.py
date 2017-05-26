@@ -564,7 +564,7 @@ class AcmeHandler(BaseHandler):
     @inlineCallbacks
     def put(self):
         request = self.validate_message(self.request.body,
-                                        requests.AdminCSRFileDesc)
+                                        requests.AdminAcmeSubscribeDesc)
 
         is_ready = yield can_perform_acme_run()
         if not is_ready:
@@ -583,16 +583,16 @@ class AcmeHandler(BaseHandler):
                                                        password=None,
                                                        backend=default_backend())
 
-        # Create CSR using params
-        desc = request['content']
+        # TODO decide if LE will honor CSR using params
+        #desc = request['content']
         csr_fields = {
-                'C':  desc['country'].upper(),
-                'ST': desc['province'],
-                'L':  desc['city'],
-                'O':  desc['company'],
-                'OU': desc['department'],
+        #       'C':  desc['country'].upper(),
+        #       'ST': desc['province'],
+        #       'L':  desc['city'],
+        #       'O':  desc['company'],
+        #       'OU': desc['department'],
                 'CN': hostname,
-                'emailAddress': desc['email'],
+        #       'emailAddress': desc['email'],
         }
 
         priv_key = PrivateFactory(store).get_val('https_priv_key')
@@ -602,9 +602,21 @@ class AcmeHandler(BaseHandler):
         # TODO save csr in DB here.
 
         # Run ACME registration all the way to resolution
-        cert = lets_enc.run_acme_reg_to_finish(hostname, regr_uri, accnt_key, priv_key, csr, tmp_chall_dict)
-        log.info('Retrieved cert from CA')
+        cert, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
+                                                            regr_uri,
+                                                            accnt_key,
+                                                            priv_key,
+                                                            csr,
+                                                            tmp_chall_dict)
+        raw_expr = cert.wrapped.getNotAfter()
+        expr_date = datetime.strptime(raw_expr,'%y%m%d%H%M%SZ')
+        log.info('Retrieved cert from CA that expires %s' % expr_date)
+
+        # TODO Use CertFileRes.create_file to save the cert
         PrivateFactory(store).set_val('https_cert', cert._dump(FILETYPE_PEM))
+        PrivateFactory(store).set_val('https_cert_expire_date', str(expr_date))
+        # TODO decide if it is worth changing chain with cert renew
+        PrivateFactory(store).set_val('https_chain', chain_cert)
 
 
 class AcmeChallResolver(BaseHandler):
