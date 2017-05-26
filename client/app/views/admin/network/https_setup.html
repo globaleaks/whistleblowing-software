@@ -1,17 +1,29 @@
-<h3 data-translate>Setup HTTPS on the server</h3>
-<div>
-  <hr/>
-  <p data-translate>This configuration wizard will guide you through the setup of HTTPS. The interface can generate a Private Key and a Certificate Signing Request. The Certificate Signing Request can be provided to a Certificate Authority to retrieve a Certificate. After having validated your request and your ownership of the hostname, the Certificate Authority will issue you a Certificate and provide a file containing Intermediate Certificates. Load the Certificate and the file containing the Intermediate Certificates to complete the HTTPS setup. Please note that the file format expected for all files uploaded is PEM. Sometimes Certificate Authorities will provide certificates in DER format which must be converted to PEM.</p>
-  <hr/>
-  <div data-ng-show="admin.node.hostname === ''" class="alert alert-warning">
-    <span data-translate>Hostname is not set!</span>
-    <span><a data-ng-click="setActiveTab(0)" data-translate>Click here to configure it.</a></span>
+<h3 data-translate>Setup HTTPS on the platform</h3>
+<p data-translate>The platform supports the setup, configuration, and usage of HTTPS through this interface. After HTTPS is configured the application will be accessible to different user roles specified in the access control tab. The platform must be reachable from a public IP address and the hostname selected must have a corresponding DNS record that references that address.</p>
+<hr/>
+<div data-ng-show="admin.node.hostname === ''" class="alert alert-warning">
+<span data-translate>Hostname is not set!</span>
+<span><a data-ng-click="setActiveTab(0)" data-translate>Click here to configure it.</a></span>
+</div>
+<div class="row" data-ng-hide="admin.node.hostname === ''">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading" data-translate>Automatic</div>
+      <div class="panel-body">
+        <p>
+          <span data-translate>Using automatic HTTPS configuration will handle the entire process of requesting enabling and renewing certificates from the Let's Encrypt Certificate Authority. The parent orginazation, the Internet Security Research Group, is committed to providing the service for free.</span>
+          <span data-translate>To learn more about it visit:</span> <a href="https://letsencrypt.org" rel="noreferrer noopener">https://letsencrypt.org</a>.
+        </p>
+        <button class="btn btn-success" data-ng-click="runInitAutoAcme()">Proceed</button>
+      </div>
+    </div>
   </div>
-  <span data-ng-hide="admin.node.hostname === ''">
-    <p data-translate>The easiest way to setup SSL on the server is to use the Automatic setup.</p>
-    <button class="btn btn-md" data-ng-click="runInitAutoAcme()">Automatic</button>
-
-    <p data-translate>You can use your own certificate authority and manually configure SSL as well.</p>
-    <button class="btn btn-md" data-ng-click="setMenu('fileRes')">Manual</button>
-  </span>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading" data-translate>Manual</div>
+      <div class="panel-body">
+      <p data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</p>
+      <button class="btn btn-default" data-ng-click="chooseManCfg()">Proceed</button>
+    </div>
+  </div>
 </div>

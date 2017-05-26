@@ -51,9 +51,9 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     // Determine which window we need to show
     var choice = 'setup';
     if ($scope.state > 0) {
-      $scope.menuState = 'fileRes';
+      choice = 'fileRes';
     } else if (tlsConfig.https_enabled) {
-      $scope.menuState = 'status';
+      choice = 'status';
     }
     $scope.menuState = choice;
   };
@@ -69,6 +69,8 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   function refreshConfig() {
     return tlsConfigResource.get({}, $scope.parseTLSConfig).$promise;
   };
+
+  $scope.refreshCfg = refreshConfig;
 
   $scope.file_resources = {
     priv_key: new cfgFileResource({name: 'priv_key'}),
@@ -120,7 +122,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     })
     .then(function(resp) {
       $scope.le_terms_of_service = resp.terms_of_service;
-      setMenu('acmeCfg');
+      $scope.setMenu('acmeCfg');
     });
   };
 
@@ -128,7 +130,7 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     var aRes = new adminAcmeResource({content:$scope.csr_cfg, name: 'acme_run'});
     aRes.$update().then(function() {
       $scope.csr_state.open = false;
-      return refreshConfig();
+      $scope.setMenu('acmeFin');
     });
   };
 
@@ -152,6 +154,12 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
       },
     });
   };
+
+  $scope.choseManCfg = false;
+  $scope.chooseManCfg = function() {
+    $scope.choseManCfg = true;
+    $scope.setMenu('fileRes');
+  }
 
   $scope.toggleCfg = function() {
     var p;
