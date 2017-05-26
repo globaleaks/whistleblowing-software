@@ -95,3 +95,7 @@ text.axis-worktime {
 #HttpsSettings .status-line .label {
   font-size: 100%;
 }
+
+.https-file-res input[type="file"] {
+  display: none;
+}
