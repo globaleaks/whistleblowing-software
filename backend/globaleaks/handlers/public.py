@@ -81,7 +81,7 @@ def db_prepare_fields_serialization(store, fields):
             tmp.append(f.id)
             if f.template_id is not None:
                 fields_ids.append(f.template_id)
-                tmp.append(t.template_id)
+                tmp.append(f.template_id)
 
         del fields_ids[:]
         for f in tmp:
