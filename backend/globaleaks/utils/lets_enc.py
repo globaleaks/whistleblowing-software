@@ -36,7 +36,7 @@ def register_account_key(accnt_key):
 def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall_dict):
     '''
 
-    :returns: ``cert`` of `OpenSSL.crypto.X509` certificate wrapped in `acme.jose.util.ComparableX509`
+    :returns: ``cert of type `OpenSSL.crypto.X509` certificate wrapped in `acme.jose.util.ComparableX509`
     '''
     accnt_key = jose.JWKRSA(key=accnt_key)
     acme = client.Client(DIRECTORY_URL, accnt_key)
@@ -82,10 +82,12 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     log.debug('Acme CA responded to challenge with: %s' % cr)
 
     try:
-        (cert, _) = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
+        (cert_res, _) = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
+        chain_certs = client.fetch_chain(cert_res)
+        chain_str = crypto.dump_certificate(OpenSSL.crypto.FILETYPE_PEM, chain_certs[0])
     except messages.Error as error:
         log.err("Failed in last step {0}".format(error))
         raise error
 
     #TODO(nskelsey) assert returned certificate forms a chain to LEx3 CA
-    return cert.body
+    return cert.body, chain_str
