@@ -174,7 +174,7 @@ def perform_schema_migration(version):
                 try:
                     migration_script.prologue()
                 except Exception as exception:
-                    log.failure("Failure while executing migration prologue: %s" % exception)
+                    log.err("Failure while executing migration prologue: %s" % exception)
                     raise exception
 
                 for model_name, _ in migration_mapping.iteritems():
@@ -186,13 +186,13 @@ def perform_schema_migration(version):
                             # the precise migration that may fail.
                             migration_script.commit()
                         except Exception as exception:
-                            log.failure("Failure while migrating table %s: %s " % (model_name, exception))
+                            log.err("Failure while migrating table %s: %s " % (model_name, exception))
                             raise exception
                 try:
                     migration_script.epilogue()
                     migration_script.commit()
                 except Exception as exception:
-                    log.failure("Failure while executing migration epilogue: %s " % exception)
+                    log.err("Failure while executing migration epilogue: %s " % exception)
                     raise exception
 
             finally:
