@@ -868,7 +868,6 @@ class MockDict:
             'tor2web_custodian': True,
             'tor2web_whistleblower': True,
             'tor2web_receiver': True,
-            'tor2web_unauth': True,
             'can_postpone_expiration': False,
             'can_delete_submission': False,
             'can_grant_permissions': False,
