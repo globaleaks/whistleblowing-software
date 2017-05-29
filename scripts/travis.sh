@@ -22,7 +22,6 @@ setupBackendDependencies() {
   rm -rf requirements.txt
   ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
   pip install -r requirements.txt
-  pip install coverage coveralls
 }
 
 setupDependencies() {
@@ -33,6 +32,8 @@ setupDependencies() {
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
+
+  sudo apt-get install -y python-coverage python-coveralls
 
   echo "Running backend unit tests"
   setupDependencies
