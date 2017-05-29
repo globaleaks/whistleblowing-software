@@ -16,8 +16,8 @@ from acme import challenges
 from globaleaks.utils.utility import log
 
 
-DIRECTORY_URL = 'https://acme-staging.api.letsencrypt.org/directory'
-#DIRECTORY_URL = 'https://acme-v01.api.letsencrypt.org/directory'
+#DIRECTORY_URL = 'https://acme-staging.api.letsencrypt.org/directory'
+DIRECTORY_URL = 'https://acme-v01.api.letsencrypt.org/directory'
 BITS = 2048  # TODO minimum for Boulder
 
 
