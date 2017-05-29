@@ -50,7 +50,6 @@ GLConfig = {
         'https_csr': Unicode(),
         'https_cert': Unicode(),
         'https_chain': Unicode(),
-        'https_cert_expire_date': Unicode(), # TODO Add date type
         'https_dh_params': Unicode(),
         'https_enabled': Bool(default=False),
     },

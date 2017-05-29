@@ -1,0 +1,14 @@
+Dear Administrator,
+
+The HTTPS certificate loaded on the platform is expiring or has already expired.
+
+Without a valid HTTPS certificate, the users will not be able to connect to the platform using the following URL.
+
+%PublicSite%
+
+To resolve this issue acquire a new certificate from your Certificate Authority and load it on the system using the following URL.
+
+%TorURL%
+
+Kind Regards,
+%NodeName%

@@ -79,6 +79,11 @@ admin_anomaly_keywords = [
     '%TotalMemory%'
 ]
 
+x509_expr_keywords = [
+    '%ExpirationDate%',
+    '%TorURL%',
+]
+
 
 def indent(n=1):
     return '  ' * n
@@ -436,6 +441,28 @@ class AnomalyKeyword(NodeKeyword):
         return '%s' % bytes_to_pretty_str(self.data['alert']['latest_measured_totalspace'])
 
 
+class CertificateExprKeyword(NodeKeyword):
+    NodeKeyword.keyword_list + x509_expr_keywords
+
+    def ExpirationDate(self):
+        # is not time zone dependent, is UTC for everyone
+        return ISO8601_to_day_str(self.data['expiration_date'])
+
+    # TODO convert this into a reusable function under Node
+    def TorURL(self):
+        if self.data['node']['onionservice']:
+            hidden_service = 'http://' + self.data['node']['onionservice']
+        else:
+            hidden_service = ''
+
+        if len(hidden_service):
+            retstr = '%s/#/admin/network' % hidden_service
+        else:
+            retstr = '[NOT CONFIGURED]'
+
+        return retstr
+
+
 supported_template_types = {
     u'tip': TipKeyword,
     u'comment': CommentKeyword,
@@ -449,7 +476,8 @@ supported_template_types = {
     u'export_template': TipKeyword,
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword,
-    u'admin_test_static': NodeKeyword
+    u'admin_test_static': NodeKeyword,
+    u'x509_certificate_expiration': CertificateExprKeyword,
 }
 
 
