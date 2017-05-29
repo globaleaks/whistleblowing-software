@@ -19,9 +19,9 @@ def should_try_acme_renewal(failures):
     # TODO check num failures isn't high
     acme_autorenew = GLSettings.memory_copy.private.acme_autorenew
     https_enabled = GLSettings.memory_copy.private.https_enabled
-    if not (https_enabled and acme_autorenew):
-        return False
-    return True
+    if https_enabled and acme_autorenew:
+        return True
+    return False
 
 
 class X509CertCheckSchedule(GLJob):
@@ -68,7 +68,7 @@ class X509CertCheckSchedule(GLJob):
         t = timedelta(days=self.notify_expr_within)
         expiration_window = datetime.now() + t
         if not expiration_date < expiration_window:
-            # The certificate is not going to expire within window.
+            log.debug('The HTTPS certificate is not going to expire within target window.')
             return
 
         # The certificate is going to expire. Mail the administrator
