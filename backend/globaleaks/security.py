@@ -430,6 +430,22 @@ class GLBPGP(object):
             log.err("Unable to clean temporary PGP environment: %s: %s" % (self.gnupg.gnupghome, excep))
 
 
+def encrypt_pgp_message(pgp_key_public, pgp_key_fingerprint, msg):
+    gpob = GLBPGP()
+
+    try:
+        gpob.load_key(pgp_key_public)
+        body = gpob.encrypt_message(pgp_key_fingerprint, msg)
+    except Exception as excep:
+        log.err("Error in PGP interface object: %s" % excep)
+        raise excep
+    finally:
+        # The finally statement is always called also if except contains a
+        # return or a raise
+        gpob.destroy_environment()
+    return body
+
+
 def parse_pgp_key(key):
     """
     Used for parsing a PGP key

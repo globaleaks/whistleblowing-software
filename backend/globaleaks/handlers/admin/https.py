@@ -570,53 +570,50 @@ class AcmeHandler(BaseHandler):
         if not is_ready:
             raise errors.ForbiddenOperation()
 
-        yield deferToThread(self.acme_cert_issuance, request)
+        yield deferToThread(acme_cert_issuance, request)
         self.set_status(202)
 
-    @transact_sync
-    def acme_cert_issuance(self, store, request):
-        hostname = GLSettings.memory_copy.hostname
+@transact_sync
+def acme_cert_issuance(store, request):
+    return db_acme_cert_issuance(store, request)
 
-        raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
-        # serialize cryptography key
-        accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
-                                                       password=None,
-                                                       backend=default_backend())
+def db_acme_cert_issuance(store, request):
+    hostname = GLSettings.memory_copy.hostname
 
-        # TODO decide if LE will honor CSR using params
-        #desc = request['content']
-        csr_fields = {
-        #       'C':  desc['country'].upper(),
-        #       'ST': desc['province'],
-        #       'L':  desc['city'],
-        #       'O':  desc['company'],
-        #       'OU': desc['department'],
-                'CN': hostname,
-        #       'emailAddress': desc['email'],
-        }
+    raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
+    # serialize cryptography key
+    accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
+                                                   password=None,
+                                                   backend=default_backend())
 
-        priv_key = PrivateFactory(store).get_val('https_priv_key')
-        regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
-        csr = tls.gen_x509_csr(priv_key, csr_fields, 256) # TODO devel values do not work.
+    # TODO decide if LE will honor CSR using params
+    #desc = request['content']
+    csr_fields = {
+    #       'C':  desc['country'].upper(),
+    #       'ST': desc['province'],
+    #       'L':  desc['city'],
+    #       'O':  desc['company'],
+    #       'OU': desc['department'],
+            'CN': hostname,
+    #       'emailAddress': desc['email'],
+    }
 
-        # TODO save csr in DB here.
+    priv_key = PrivateFactory(store).get_val('https_priv_key')
+    regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
+    csr = tls.gen_x509_csr(priv_key, csr_fields, 256) # TODO devel values do not work.
 
-        # Run ACME registration all the way to resolution
-        cert, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
-                                                            regr_uri,
-                                                            accnt_key,
-                                                            priv_key,
-                                                            csr,
-                                                            tmp_chall_dict)
-        raw_expr = cert.wrapped.getNotAfter()
-        expr_date = datetime.strptime(raw_expr,'%y%m%d%H%M%SZ')
-        log.info('Retrieved cert from CA that expires %s' % expr_date)
+    # TODO save csr in DB here.
 
-        # TODO Use CertFileRes.create_file to save the cert
-        PrivateFactory(store).set_val('https_cert', cert._dump(FILETYPE_PEM))
-        PrivateFactory(store).set_val('https_cert_expire_date', str(expr_date))
-        # TODO decide if it is worth changing chain with cert renew
-        PrivateFactory(store).set_val('https_chain', chain_cert)
+    # Run ACME registration all the way to resolution
+    cert_str, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
+                                                      regr_uri,
+                                                      accnt_key,
+                                                      priv_key,
+                                                      csr,
+                                                      tmp_chall_dict)
+
+    PrivateFactory(store).set_val('https_cert', cert_str)
+    PrivateFactory(store).set_val('https_chain', chain_str)
 
 
 class AcmeChallResolver(BaseHandler):
@@ -625,4 +622,4 @@ class AcmeChallResolver(BaseHandler):
             self.write(tmp_chall_dict[token].tok)
             log.info('Responded to .well-known request')
             return
-        raise HTTPError(404)
+        raise errors.HTTPError(404)
