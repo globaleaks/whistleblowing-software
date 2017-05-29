@@ -66,9 +66,10 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
+  sudo apt-get install -y pylint
+
   setupDependencies
 
-  pip install pylint
   echo "Running pylint checks"
   cd $TRAVIS_BUILD_DIR/backend
   pylint globaleaks -E --disable=no-value-for-parameter
