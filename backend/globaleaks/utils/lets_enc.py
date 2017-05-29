@@ -26,7 +26,7 @@ class ChallTok():
         self.tok = tok
 
 def convert_asn1_date(asn1_bytes):
-    return datetime.strptime(asn1_bytes,'%y%m%d%H%M%SZ')
+    return datetime.strptime(asn1_bytes,'%Y%m%d%H%M%SZ')
 
 def register_account_key(accnt_key):
     accnt_key = jose.JWKRSA(key=accnt_key)
