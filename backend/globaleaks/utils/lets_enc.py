@@ -77,7 +77,7 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     challr = challenges.HTTP01Response()
 
     cr = acme.answer_challenge(challb, challb.chall.response(accnt_key))
-    log.debug('Acme CA responded to challenge with: %s' % cr)
+    log.debug('Acme CA responded to challenge request with: %s' % cr)
 
     try:
         # Wrap this step and log the failure particularly here because this is
@@ -85,7 +85,7 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
         # from the public internet.
         cert_res, _ = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
     except messages.Error as error:
-        log.err("Failed in request issueance step {0}".format(error))
+        log.err("Failed in request issuance step {0}".format(error))
         raise error
 
     chain_certs = acme.fetch_chain(cert_res)

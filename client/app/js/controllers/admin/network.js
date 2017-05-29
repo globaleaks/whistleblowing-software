@@ -50,10 +50,10 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
 
     // Determine which window we need to show
     var choice = 'setup';
-    if ($scope.state > 0) {
-      choice = 'fileRes';
-    } else if (tlsConfig.https_enabled) {
+    if (tlsConfig.enabled) {
       choice = 'status';
+    } else if ($scope.state > 0) {
+      choice = 'fileRes';
     }
     $scope.menuState = choice;
   };
