@@ -177,11 +177,14 @@ class BaseHandler(object):
 
         self.request.headers = self.request.getAllHeaders()
 
+        # TODO this header must be lower-cased
         self.client_ip = request.headers.get('X-Forwarded-For', None)
         if self.client_ip is None:
             self.client_ip = self.request.getClientIP()
 
         self.client_using_tor = self.client_ip in GLSettings.state.tor_exit_set
+        if 'x-tor2web' in self.request.headers:
+           self.client_using_tor = False
 
         if self.should_redirect_tor():
            self.redirect_tor()
