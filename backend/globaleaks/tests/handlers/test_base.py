@@ -111,6 +111,23 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         self.assertTrue(BaseHandler.validate_regexp('Foca', '\w+'))
         self.assertFalse(BaseHandler.validate_regexp('Foca', '\d+'))
 
+    @inlineCallbacks
+    def test_client_using_tor(self):
+        handler = self.request({}, headers={})
+        yield handler.get()
+        self.assertFalse(handler.client_using_tor)
+
+        GLSettings.state.tor_exit_set.add('1.2.3.4')
+
+        handler = self.request({}, headers={})
+        yield handler.get()
+        self.assertTrue(handler.client_using_tor)
+
+        # Now test if the Tor2Web catching logic does its job.
+        handler = self.request({}, headers={'X-Tor2Web': '1'})
+        yield handler.get()
+        self.assertFalse(handler.client_using_tor)
+
 
 class TestStaticFileHandler(helpers.TestHandler):
     _handler = StaticFileHandler
