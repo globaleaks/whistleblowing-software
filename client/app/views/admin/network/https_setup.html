@@ -1,11 +1,31 @@
 <h3 data-translate>Setup HTTPS on the platform</h3>
 <p data-translate>The platform supports the setup, configuration, and usage of HTTPS through this interface. After HTTPS is configured the application will be accessible to different user roles specified in the access control tab. The platform must be reachable from a public IP address and the hostname selected must have a corresponding DNS record that references that address.</p>
 <hr/>
-<div data-ng-show="admin.node.hostname === ''" class="alert alert-warning">
-<span data-translate>Hostname is not set!</span>
-<span><a data-ng-click="setActiveTab(0)" data-translate>Click here to configure it.</a></span>
+<div data-ng-show="admin.node.hostname === '' && !showHostnameSetter" class="alert alert-warning">
+  <i class="glyphicon glyphicon-alert"></i>
+  <span data-translate>Hostname is not set!</span>
+  <span>
+    <a data-ng-click="toggleShowHostname()" data-translate>Click here to configure it.</a>
+  </span>
 </div>
-<div class="row" data-ng-hide="admin.node.hostname === ''">
+<div data-ng-show="" class="alert alert-warning">
+  <i class="glyphicon glyphicon-alert"></i>
+  <span data-translate>The connection to the domain name failed.</span>
+</div>
+<form class="row" data-ng-if="showHostnameSetter" data-ng-controller="AdminNetFormController">
+  <div class="form-group col-sm-4" data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
+    <label data-translate>Hostname</label>
+    <input class="form-control input-group" name="hostname" type="text" data-ng-model="admin.node.hostname" data-ng-pattern="hostname_regexp"></input>
+    <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
+      <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
+    </p>
+    <button class="btn btn-success" data-ng-disabled="adminNetForm.$invalid" data-ng-click="updateHostname()">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span data-translate>Verify and Save</span>
+    </button>
+  </div>
+</form>
+<div class="row" data-ng-hide="admin.node.hostname === '' || showHostnameSetter">
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading" data-translate>Automatic</div>

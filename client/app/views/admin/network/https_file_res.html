@@ -50,7 +50,7 @@
   </div>
 
   <div class="panel panel-default cert">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state < 2}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state < 1}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '3' : '2'}}</span>
         <span class="text-bold" data-translate>Certificate</span>

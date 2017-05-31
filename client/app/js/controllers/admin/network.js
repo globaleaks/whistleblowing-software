@@ -20,14 +20,23 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     $scope.active = index;
   }
 }]).
-controller('AdminNetFormCtrl', [function() {
-    // Scoped for future use.
+controller('AdminNetFormCtrl', ['$scope', function($scope) {
+  // Scoped for future use.
+  $scope.updateHostname = function() {
+    $scope.Utils.update($scope.admin.node, function() {
+      console.log('suceeded');
+    }, function() {
+      console.log('failed');
+    })
+    $scope.showHostnameSetter = false;
+  }
 }]).
 controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
   function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
 
   $scope.state = 0;
   $scope.menuState = 'setup';
+  $scope.showHostnameSetter = false;
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -36,9 +45,9 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   $scope.parseTLSConfig = function(tlsConfig) {
     $scope.tls_config = tlsConfig;
 
-    if (!$scope.admin.node.hostname || !tlsConfig.files.priv_key.set) {
+    if (!tlsConfig.files.priv_key.set) {
       $scope.state = 0;
-    } else if (tlsConfig.files.priv_key.gen) { // TODO Handle the fact that the CSR is less useful now.
+    } else if (tlsConfig.files.priv_key.set) {
       $scope.state = 1;
     } else if (!tlsConfig.files.cert.set) {
       $scope.state = 2
@@ -167,15 +176,22 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     // better for them to be removed.
     if ($scope.tls_config.enabled) {
       p = $scope.tls_config.$disable();
-
     } else {
+      var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
+      $uibModal.open({
+        backdrop: 'static',
+        keyboad: false,
+        templateUrl: '/views/admin/network/redirect_to_https.html',
+        controller: 'redirectHTTPSCtrl',
+        resolve: {
+          https_url: function() { return go_url },
+        },
+      });
+
       p = $scope.tls_config.$enable();
     }
 
-    //return p.then(refreshConfig);
-    return p.then(function() {
-      location.reload();
-    })
+    return p.then(refreshConfig);
   };
 
   $scope.deleteAll = function() {
@@ -190,4 +206,19 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
       return refreshConfig();
     });
   };
+
+
+  $scope.toggleShowHostname = function() {
+    $scope.showHostnameSetter = !$scope.showHostnameSetter;
+  }
+
+  $scope.deleteEverything = function() {
+    $scope.tls_config.$delete().promise.then(refreshConfig);
+  }
+}])
+.controller('redirectHTTPSCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+    console.log($scope);
+    $timeout(function() {
+      location.reload();
+    }, 30000);
 }]);

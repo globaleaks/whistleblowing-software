@@ -152,6 +152,7 @@ class CertFileRes(FileResource):
         ok, err = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val('https_cert', raw_cert)
+            GLSettings.memory_copy.https_cert = raw_cert
         else:
             log.err("Cert validation failed")
         return ok
@@ -161,6 +162,7 @@ class CertFileRes(FileResource):
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_cert', u'')
+        GLSettings.memory_copy.https_cert = ''
 
     @staticmethod
     @transact
@@ -411,6 +413,30 @@ class ConfigHandler(BaseHandler):
         self.set_status(200)
 
 
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @inlineCallbacks
+    def delete(self):
+        yield disable_https()
+        GLSettings.memory_copy.private.https_enabled = False
+        yield GLSettings.state.process_supervisor.shutdown()
+        yield _delete_all_cfg()
+
+
+@transact
+def _delete_all_cfg(store):
+    prv_fact = PrivateFactory(store)
+    prv_fact.set_val('https_enabled', False)
+    prv_fact.set_val('https_priv_gen', False)
+    prv_fact.set_val('https_priv_key', '')
+    prv_fact.set_val('https_cert', '')
+    prv_fact.set_val('https_chain', '')
+    prv_fact.set_val('https_csr', '')
+    prv_fact.set_val('acme_accnt_key', '')
+    prv_fact.set_val('acme_accnt_uri', '')
+    prv_fact.set_val('acme_autorenew', False)
+
+
 class CSRFileHandler(FileHandler):
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
@@ -506,6 +532,7 @@ def can_create_acme_res(store):
     no_csr_set  = prv_fact.get_val('https_csr') == u''
     no_cert_set = prv_fact.get_val('https_cert') == u''
     #return no_accnt_key and no_accnt_uri and priv_key and no_csr_set and no_cert_set
+    # TODO TODO TODO correct
     return True
 
 
@@ -517,6 +544,7 @@ def can_perform_acme_run(store):
     autorenew = prv_fact.get_val('acme_autorenew')
     empty_csr = prv_fact.get_val('https_csr') == ''
     #return acme_accnt_uri and prv_key_set and empty_csr and not autorenew
+    # TODO TODO TODO correct
     return True
 
 
