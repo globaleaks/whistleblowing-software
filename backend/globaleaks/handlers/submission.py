@@ -285,7 +285,7 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, request, uploaded_files, tor, language):
+def db_create_submission(store, request, uploaded_files, client_using_tor, language):
     answers = request['answers']
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
@@ -307,9 +307,8 @@ def db_create_submission(store, request, uploaded_files, tor, language):
     # be fooled by the malicious user.
     submission.total_score = request['total_score']
 
-    # The use of Tor2Web is detected by the basehandler and the status forwared  here;
-    # The status is used to keep track of the security level adopted by the whistleblower
-    submission.tor2web = not tor
+    # The status tor2web is used to keep track of the security level adopted by the whistleblower
+    submission.tor2web = not client_using_tor
 
     submission.context_id = context.id
 
