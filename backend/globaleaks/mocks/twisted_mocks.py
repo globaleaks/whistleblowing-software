@@ -4,8 +4,9 @@ import types
 from io import BytesIO as StringIO
 
 from twisted.internet import defer
+from twisted.protocols import policies
 from twisted.web.client import HTTPPageGetter
-from twisted.web.http import HTTPFactory, Request
+from twisted.web.http import HTTPChannel, HTTPFactory, Request
 
 from globaleaks.settings import GLSettings
 from globaleaks.security import GLSecureTemporaryFile
@@ -49,7 +50,16 @@ def mock_HTTPPageGetter_timeout(self, data):
         self.factory.noPage(defer.TimeoutError("Getting %s took longer than %s seconds." % (self.factory.url, self.factory.timeout)))
 
 
+def mock_HTTChannel__timeoutConnection(self):
+    """
+    This mock is required to just comment a log line
+    """
+    # log.msg("Timing out client: %s" % str(self.transport.getPeer()))
+    policies.TimeoutMixin.timeoutConnection(self)
+
+
 Request.gotLength = mock_Request_gotLength
 Request.write = mock_Request_write
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
+HTTPChannel.timeoutConnection = mock_HTTChannel__timeoutConnection
