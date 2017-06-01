@@ -22,10 +22,9 @@ def get_l10n(store, lang):
     path = langfile_path(lang)
     directory_traversal_check(GLSettings.client_path, path)
 
-    #with open(path, 'rb') as f:
-    #    texts = json.loads(f.read())
+    with open(path, 'rb') as f:
+        texts = json.loads(f.read())
 
-    texts = {}
     custom_texts = store.find(models.CustomTexts, models.CustomTexts.lang == unicode(lang)).one()
     custom_texts = custom_texts.texts if custom_texts is not None else {}
 
