@@ -369,7 +369,7 @@ class ConfigHandler(BaseHandler):
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
-            raise InternalServerError(str(e))
+            raise errors.InternalServerError(e)
 
     @BaseHandler.https_enabled
     @inlineCallbacks

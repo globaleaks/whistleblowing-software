@@ -596,7 +596,7 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
         return self.current_user.user_id in r_ids
 
     def get(self, file_id):
-        self._get(file_id)
+        self.get(file_id)
 
     def delete(self, file_id):
         """

@@ -96,7 +96,7 @@ class ZipStreamProducer(object):
             else:
                 self.stopProducing()
         except:
-            self.stopProducting()
+            self.stopProducing()
             raise
 
     def stopProducing(self):

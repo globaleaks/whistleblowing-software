@@ -96,9 +96,8 @@ def write_upload_encrypted_to_disk(uploaded_file, destination):
     return uploaded_file
 
 
-
 class StaticFileProducer(object):
-    """Streaming producter for files
+    """Streaming producer for files
 
     @ivar handler: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
@@ -263,7 +262,7 @@ class BaseHandler(object):
         """
         def wrapper(self, *args, **kwargs):
             if GLSettings.memory_copy.basic_auth:
-                cls.basic_auth()
+                self.basic_auth()
 
             if '*' in roles:
                return f(self, *args, **kwargs)
@@ -513,7 +512,7 @@ class BaseHandler(object):
 
         mime_type, encoding = mimetypes.guess_type(filepath)
         if mime_type:
-            self.set_header("Content-Type", mime_type)
+            self.request.setHeader("Content-Type", mime_type)
 
         return StaticFileProducer(self, filepath).start()
 
@@ -599,7 +598,7 @@ class BaseHandler(object):
 
         if self.request.execution_time.seconds > self.handler_exec_time_threshold:
             error = "Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds" % \
-                    (self.name, self.handler_exec_time_threshold, current_run_time)
+                    (self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
             log.err(error)
 
             send_exception_email(error)
