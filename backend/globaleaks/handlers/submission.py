@@ -383,8 +383,8 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
 
 
 @transact
-def create_submission(store, request, uploaded_files, tor, language):
-    return db_create_submission(store, request, uploaded_files, tor, language)
+def create_submission(store, request, uploaded_files, client_using_tor, language):
+    return db_create_submission(store, request, uploaded_files, client_using_tor, language)
 
 
 class SubmissionInstance(BaseHandler):
@@ -407,7 +407,10 @@ class SubmissionInstance(BaseHandler):
         token = TokenList.get(token_id)
         token.use()
 
-        return create_submission(request,
-                                 token.uploaded_files,
-                                 self.client_using_tor,
-                                 self.request.language)
+        submission = create_submission(request,
+                                       token.uploaded_files,
+                                       self.client_using_tor,
+                                       self.request.language)
+
+        # Delete the token only when a valid submission has been stored in the DB
+        TokenList.delete(token_id)
