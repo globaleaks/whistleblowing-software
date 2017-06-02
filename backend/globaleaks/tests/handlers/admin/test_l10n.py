@@ -19,9 +19,9 @@ class TestAdminL10NHandler(helpers.TestHandler):
     def test_get(self):
         handler = self.request(role='admin')
 
-        yield handler.get(lang=u'en')
+        response = yield handler.get(lang=u'en')
 
-        self.assertEqual(len(self.responses), 0)
+        self.assertEqual(response, {})
 
     @inlineCallbacks
     def test_put(self):

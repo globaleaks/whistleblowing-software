@@ -40,12 +40,14 @@ import json
 import os
 import shutil
 
-from cyclone import httpserver
-from cyclone.web import Application
+from datetime import timedelta
+
+from twisted.web.test.requesthelper import DummyChannel
 from twisted.internet import threads, defer, task
+from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
-from twisted.test import proto_helpers
+from twisted.web import server
 from storm.twisted.testing import FakeThreadPool
 
 
@@ -439,13 +441,13 @@ class TestGL(unittest.TestCase):
         for _ in xrange(number_of_times):
             for event_obj in event.events_monitored:
                 for x in xrange(2):
-                    event.EventTrack(event_obj, 1.0 * x)
+                    event.EventTrack(event_obj, timedelta(seconds=1.0 * x))
 
     def pollute_events_and_perform_synthesis(self, number_of_times=10):
         for _ in xrange(number_of_times):
             for event_obj in event.events_monitored:
                 for x in xrange(2):
-                    event.EventTrack(event_obj, 1.0 * x).synthesis()
+                    event.EventTrack(event_obj, timedelta(seconds=1.0 * x)).synthesis()
     @transact
     def get_rtips(self, store):
         ret = []
@@ -657,8 +659,6 @@ class TestHandler(TestGLWithPopulatedDB):
         self.initialization()
 
     def initialization(self):
-        self.responses = []
-
         # we need to reset settings.session to keep each test independent
         GLSessions.clear()
 
@@ -691,8 +691,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 HTTP method, e.g. "GET" or "POST"
 
             headers:
-                (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP
-                headers to pass on the request
+                Dict of headers to pass on the request
 
             remote_ip:
                 If a particular remote_ip should be set.
@@ -701,7 +700,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 The type of handler that will respond to the request. If this is not set self._handler is used.
 
             attached_file:
-                A cyclone.httputil.HTTPFiles or a dict to place in the request.files obj
+                A dict to place in the request.args.files obj
         """
         if jbody and not body:
             body = json.dumps(jbody)
@@ -711,38 +710,35 @@ class TestHandler(TestGLWithPopulatedDB):
         if handler_cls is None:
             handler_cls = self._handler
 
-        if attached_file is None:
-            fake_files = {}
-        else:
-            fake_files = {'file': [attached_file]} # Yes this is ugly, but it's the format
+        request = server.Request(DummyChannel(), False)
 
-        application = Application([])
+        request.client = IPv4Address('TCP', '1.2.3.4', 12345)
 
-        tr = proto_helpers.StringTransport()
-        connection = httpserver.HTTPConnection()
-        connection.factory = application
-        connection.makeConnection(tr)
+        request.args = {}
+        if attached_file is not None:
+            request.args = {'file': [attached_file]}
 
-        request = httpserver.HTTPRequest(uri='mock',
-                                         method=method,
-                                         headers=headers,
-                                         body=body,
-                                         remote_ip=remote_ip,
-                                         connection=connection,
-                                         files=fake_files)
+        if headers is not None:
+            for k, v in headers.iteritems():
+                request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
 
-        def mock_write(cls, response=None):
-            if response:
-                self.responses.append(response)
+        class fakeBody(object):
+            def read(self):
+                return body
 
-        handler_cls.write = mock_write
+            def close(self):
+                pass
 
-        def mock_finish(cls):
-            pass
+        request.content = fakeBody()
 
-        handler_cls.finish = mock_finish
+        from globaleaks.rest.api import decorate_method
+        if not handler_cls.decorated:
+            handler_cls.decorated = True
+            for method in ['get', 'post', 'put', 'delete']:
+                if getattr(handler_cls, method, None) is not None:
+                    decorate_method(handler_cls, method)
 
-        handler = handler_cls(application, request, **kwargs)
+        handler = handler_cls(request, **kwargs)
 
         if user_id is None and role is not None:
             if role == 'admin':
@@ -754,7 +750,7 @@ class TestHandler(TestGLWithPopulatedDB):
 
         if role is not None:
             session = GLSession(user_id, role, 'enabled')
-            handler.request.headers['X-Session'] = session.id
+            handler.request.headers['x-session'] = session.id
 
         return handler
 

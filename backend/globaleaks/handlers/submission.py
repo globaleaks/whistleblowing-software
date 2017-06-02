@@ -285,7 +285,7 @@ def create_whistleblowertip(*args):
     return db_create_whistleblowertip(*args)[0] # here is exported only the receipt
 
 
-def db_create_submission(store, request, uploaded_files, t2w, language):
+def db_create_submission(store, request, uploaded_files, client_using_tor, language):
     answers = request['answers']
 
     context = store.find(models.Context, models.Context.id == request['context_id']).one()
@@ -307,9 +307,8 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
     # be fooled by the malicious user.
     submission.total_score = request['total_score']
 
-    # The use of Tor2Web is detected by the basehandler and the status forwared  here;
-    # The status is used to keep track of the security level adopted by the whistleblower
-    submission.tor2web = t2w
+    # The status tor2web is used to keep track of the security level adopted by the whistleblower
+    submission.tor2web = not client_using_tor
 
     submission.context_id = context.id
 
@@ -384,17 +383,16 @@ def db_create_submission(store, request, uploaded_files, t2w, language):
 
 
 @transact
-def create_submission(store, request, uploaded_files, t2w, language):
-    return db_create_submission(store, request, uploaded_files, t2w, language)
+def create_submission(store, request, uploaded_files, tor, language):
+    return db_create_submission(store, request, uploaded_files, tor, language)
 
 
 class SubmissionInstance(BaseHandler):
     """
     This is the interface for create, populate and complete a submission.
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.unauthenticated
-    @defer.inlineCallbacks
+    check_roles = 'unauthenticated'
+
     def put(self, token_id):
         """
         Parameter: token_id
@@ -403,18 +401,13 @@ class SubmissionInstance(BaseHandler):
 
         PUT finalize the submission
         """
-        request = self.validate_message(self.request.body, requests.SubmissionDesc)
+        request = self.validate_message(self.request.content.read(), requests.SubmissionDesc)
 
         # The get and use method will raise if the token is invalid
         token = TokenList.get(token_id)
         token.use()
 
-        submission = yield create_submission(request,
-                                             token.uploaded_files,
-                                             self.check_tor2web(),
-                                             self.request.language)
-        # Delete the token only when a valid submission has been stored in the DB
-        TokenList.delete(token_id)
-
-        self.set_status(202)  # Updated, also if submission if effectively created (201)
-        self.write(submission)
+        return create_submission(request,
+                                 token.uploaded_files,
+                                 self.client_using_tor,
+                                 self.request.language)

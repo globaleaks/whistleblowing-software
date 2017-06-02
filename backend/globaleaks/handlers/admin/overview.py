@@ -3,9 +3,6 @@
 # overview
 #   ********
 # Implementation of the code executed when an HTTP client reach /overview/* URI
-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
@@ -68,19 +65,15 @@ class Tips(BaseHandler):
     /admin/overview/tips
     Dump the list of the active tips with various information
     """
+    check_roles = 'admin'
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: TipsOverviewDescList
         Errors: None
         """
-        tips_complete_list = yield collect_tip_overview(self.request.language)
-
-        self.write(tips_complete_list)
+        return collect_tip_overview(self.request.language)
 
 
 class Files(BaseHandler):
@@ -90,16 +83,12 @@ class Files(BaseHandler):
     Return the list of the files in InternalFile, ReceiverFile
     and the files in
     """
+    check_roles = 'admin'
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: FilesOverviewDescList
         Errors: None
         """
-        file_complete_list = yield collect_files_overview()
-
-        self.write(file_complete_list)
+        return collect_files_overview()

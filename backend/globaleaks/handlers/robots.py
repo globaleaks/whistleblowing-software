@@ -6,58 +6,62 @@
 # exposed API.
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
 
 
 class RobotstxtHandler(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
+    check_roles = '*'
+
     def get(self):
         """
         Get the robots.txt
         """
-        self.set_header('Content-Type', 'text/plain')
+        self.request.setHeader('Content-Type', 'text/plain')
 
-        self.write("User-agent: *\n")
+        data = "User-agent: *\n"
 
         if GLSettings.memory_copy.allow_indexing:
             site = 'https://' + GLSettings.memory_copy.hostname
-            self.write("Allow: /\n")
-            self.write("Sitemap: %s/sitemap.xml" % site)
+            data += "Allow: /\n"
+            data += "Sitemap: %s/sitemap.xml" % site
         else:
-            self.write("Disallow: /")
+            data += "Disallow: /"
+
+        return data
 
 
 class SitemapHandler(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
+    check_roles = '*'
+
     def get(self):
         """
         Get the sitemap.xml
         """
         if not GLSettings.memory_copy.allow_indexing:
-            self.set_status(404)
-            return
+            raise errors.ResourceNotFound()
 
         site = 'https://' + GLSettings.memory_copy.hostname
 
-        self.set_header('Content-Type', 'text/xml')
+        self.request.setHeader('Content-Type', 'text/xml')
 
-        self.write("<?xml version='1.0' encoding='UTF-8' ?>\n" +
-                   "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n")
+        data = "<?xml version='1.0' encoding='UTF-8' ?>\n" + \
+               "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9' xmlns:xhtml='http://www.w3.org/1999/xhtml'>\n"
 
         for url in ['/#/', '/#/submission']:
-            self.write("  <url>\n" +
-                       "    <loc>" + site + url + "</loc>\n" +
-                       "    <changefreq>weekly</changefreq>\n" +
-                       "    <priority>1.00</priority>\n")
+            data += "  <url>\n" + \
+                    "    <loc>" + site + url + "</loc>\n" + \
+                    "    <changefreq>weekly</changefreq>\n" + \
+                    "    <priority>1.00</priority>\n"
 
             for lang in sorted(GLSettings.memory_copy.languages_enabled):
                 if lang != GLSettings.memory_copy.default_language:
                     l = lang.lower()
                     l = l.replace('_', '-')
-                    self.write("    <xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + "/#/?lang=" + lang + "' />\n")
+                    data += "<xhtml:link rel='alternate' hreflang='" + l + "' href='" + site + "/#/?lang=" + lang + "' />\n"
 
-            self.write("  </url>\n")
+            data += "  </url>\n"
 
-        self.write("</urlset>")
+        data += "</urlset>"
+
+        return data

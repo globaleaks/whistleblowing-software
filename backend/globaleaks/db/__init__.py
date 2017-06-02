@@ -5,9 +5,7 @@ import os
 import sys
 import traceback
 
-from cyclone.util import ObjectDict
 from storm import exceptions
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
@@ -17,6 +15,7 @@ from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFa
 from globaleaks.models.l10n import EnabledLanguage
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
+from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.utility import log
 
 
@@ -155,8 +154,7 @@ def db_refresh_memory_variables(store):
         'admin': node_ro.tor2web_admin,
         'custodian': node_ro.tor2web_custodian,
         'whistleblower': node_ro.tor2web_whistleblower,
-        'receiver': node_ro.tor2web_receiver,
-        'unauth': node_ro.allow_unencrypted,
+        'receiver': node_ro.tor2web_receiver
     }
 
     enabled_langs = models.l10n.EnabledLanguage.list(store)

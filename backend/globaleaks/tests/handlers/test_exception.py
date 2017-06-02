@@ -19,4 +19,4 @@ class TestExceptionHandler(helpers.TestHandler):
 
         handler = self.request(exception_data)
         yield handler.post()
-        self.assertEqual(handler.get_status(), 201)
+        self.assertEqual(handler.request.code, 200)

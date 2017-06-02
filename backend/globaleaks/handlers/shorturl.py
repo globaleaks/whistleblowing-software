@@ -18,10 +18,8 @@ class ShortUrlInstance(BaseHandler):
     """
     This handler implement the platform url shortener
     """
-    handler_exec_time_threshold = 30
+    check_roles = '*'
 
-    @BaseHandler.transport_security_check('unauth')
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def get(self, shorturl):
         longurl = yield translate_shorturl(shorturl)

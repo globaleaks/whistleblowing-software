@@ -26,11 +26,11 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     def test_disable_tip_notification(self):
         handler = self.request(user_id = self.rcvr_id, role='receiver')
 
-        yield handler.get()
+        response = yield handler.get()
 
-        self.responses[0]['tip_notification'] = False
+        response['tip_notification'] = False
 
-        handler = self.request(self.responses[0], user_id = self.rcvr_id, role='receiver')
+        handler = self.request(response, user_id = self.rcvr_id, role='receiver')
         yield handler.put()
 
 

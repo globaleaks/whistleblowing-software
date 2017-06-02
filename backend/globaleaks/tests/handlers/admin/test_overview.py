@@ -21,12 +21,10 @@ class TestTipsOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request({}, role='admin')
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self.assertEqual(len(self.responses[0]), self.population_of_submissions)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.TipsOverviewDesc)
+        self.assertEqual(len(response), self.population_of_submissions)
+        self._handler.validate_message(json.dumps(response), requests.TipsOverviewDesc)
 
 
 class TestFilesOverviewDesc(helpers.TestHandlerWithPopulatedDB):
@@ -41,8 +39,6 @@ class TestFilesOverviewDesc(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request({}, role='admin')
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.FilesOverviewDesc)
+        self._handler.validate_message(json.dumps(response), requests.FilesOverviewDesc)

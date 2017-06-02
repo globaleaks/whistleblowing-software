@@ -30,12 +30,9 @@ class TestFieldCreate(helpers.TestHandler):
             context = yield create_context(self.dummyContext, 'en')
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             handler = self.request(values, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp = self.responses[0]
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
+            response = yield handler.post()
+            self.assertIn('id', response)
+            self.assertNotEqual(response.get('options'), None)
 
         @inlineCallbacks
         def test_post_create_from_template(self):
@@ -54,12 +51,9 @@ class TestFieldCreate(helpers.TestHandler):
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
 
             handler = self.request(values, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp = self.responses[0]
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
+            response = yield handler.post()
+            self.assertIn('id', response)
+            self.assertNotEqual(response.get('options'), None)
 
 
 class TestFieldInstance(helpers.TestHandler):
@@ -77,9 +71,8 @@ class TestFieldInstance(helpers.TestHandler):
             field = yield create_field(values, 'en')
 
             handler = self.request(role='admin')
-            yield handler.get(field['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(field['id'], self.responses[0]['id'])
+            response = yield handler.get(field['id'])
+            self.assertEqual(field['id'], response['id'])
 
         @inlineCallbacks
         def test_put(self):
@@ -98,17 +91,17 @@ class TestFieldInstance(helpers.TestHandler):
             updated_sample_field['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             updated_sample_field.update(type='inputbox')
             handler = self.request(updated_sample_field, role='admin')
-            yield handler.put(field['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(field['id'], self.responses[0]['id'])
-            self.assertEqual(self.responses[0]['type'], 'inputbox')
+            response = yield handler.put(field['id'])
+            self.assertEqual(field['id'], response['id'])
+            self.assertEqual(response['type'], 'inputbox')
 
             wrong_sample_field = helpers.get_dummy_field()
             values['instance'] = 'instance'
             values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
-            yield self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
+
+            self.assertRaises(errors.InvalidInputFormat,  handler.put, field['id'])
 
         @inlineCallbacks
         def test_delete(self):
@@ -123,7 +116,6 @@ class TestFieldInstance(helpers.TestHandler):
 
             handler = self.request(role='admin')
             yield handler.delete(field['id'])
-            self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
             yield self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
@@ -141,9 +133,8 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             field = yield create_field(values, 'en')
 
             handler = self.request(role='admin')
-            yield handler.get(field['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(field['id'], self.responses[0]['id'])
+            response = yield handler.get(field['id'])
+            self.assertEqual(field['id'], response['id'])
 
         @inlineCallbacks
         def test_put(self):
@@ -158,15 +149,15 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
             updated_sample_field['instance'] = 'template'
             updated_sample_field['type'] ='inputbox'
             handler = self.request(updated_sample_field, role='admin')
-            yield handler.put(field['id'])
-            self.assertEqual(len(self.responses), 1)
-            self.assertEqual(field['id'], self.responses[0]['id'])
-            self.assertEqual(self.responses[0]['type'], 'inputbox')
+            response = yield handler.put(field['id'])
+            self.assertEqual(field['id'], response['id'])
+            self.assertEqual(response['type'], 'inputbox')
 
             wrong_sample_field = helpers.get_dummy_field()
             wrong_sample_field.update(type='nonexistingfieldtype')
             handler = self.request(wrong_sample_field, role='admin')
-            yield self.assertFailure(handler.put(field['id']), errors.InvalidInputFormat)
+
+            self.assertRaises(errors.InvalidInputFormat,  handler.put, field['id'])
 
         @inlineCallbacks
         def test_delete(self):
@@ -179,7 +170,6 @@ class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
 
             handler = self.request(role='admin')
             yield handler.delete(field['id'])
-            self.assertEqual(handler.get_status(), 200)
             # second deletion operation should fail
             yield self.assertFailure(handler.delete(field['id']), errors.FieldIdNotFound)
 
@@ -199,13 +189,11 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
                 values = helpers.get_dummy_field()
                 values['instance'] = 'template'
                 handler = self.request(values, role='admin')
-                yield handler.post()
-                ids.append(self.responses[i]['id'])
+                response = yield handler.post()
+                ids.append(response['id'])
 
-            self.responses = []
             handler = self.request(role='admin')
-            yield handler.get()
-            fields, = self.responses
+            fields = yield handler.get()
 
             check_ids = [field.get('id') for field in fields]
             self.assertGreater(len(fields), n)
@@ -228,9 +216,6 @@ class TestFieldTemplatesCollection(helpers.TestHandlerWithPopulatedDB):
             values = helpers.get_dummy_field()
             values['instance'] = 'template'
             handler = self.request(values, role='admin')
-            yield handler.post()
-            self.assertEqual(len(self.responses), 1)
-
-            resp = self.responses[0]
-            self.assertIn('id', resp)
-            self.assertNotEqual(resp.get('options'), None)
+            response = yield handler.post()
+            self.assertIn('id', response)
+            self.assertNotEqual(response.get('options'), None)

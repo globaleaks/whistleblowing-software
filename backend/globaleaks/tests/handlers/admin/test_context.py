@@ -26,10 +26,10 @@ class TestContextsCollection(helpers.TestHandlerWithPopulatedDB):
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
-        yield handler.post()
+        response = yield handler.post()
 
-        self.dummyContext['id'] = self.responses[0]['id']
-        self.assertEqual(self.responses[0]['description'], stuff)
+        self.dummyContext['id'] = response['id']
+        self.assertEqual(response['description'], stuff)
 
 
 class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
@@ -38,8 +38,8 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyContext['id'])
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminContextDesc)
+        response = yield handler.get(self.dummyContext['id'])
+        self._handler.validate_message(json.dumps(response), requests.AdminContextDesc)
 
     @inlineCallbacks
     def test_put(self):
@@ -47,8 +47,8 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
-        yield handler.put(self.dummyContext['id'])
-        self.assertEqual(self.responses[0]['description'], stuff)
+        response = yield handler.put(self.dummyContext['id'])
+        self.assertEqual(response['description'], stuff)
 
     @inlineCallbacks
     def test_update_context_timetolive(self):
@@ -58,9 +58,9 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
             self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
-        yield handler.put(self.dummyContext['id'])
+        response = yield handler.put(self.dummyContext['id'])
 
-        self.assertEqual(self.responses[0]['tip_timetolive'], self.dummyContext['tip_timetolive'])
+        self.assertEqual(response['tip_timetolive'], self.dummyContext['tip_timetolive'])
 
     @inlineCallbacks
     def test_delete(self):

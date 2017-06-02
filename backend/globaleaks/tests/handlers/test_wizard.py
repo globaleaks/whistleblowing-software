@@ -32,15 +32,15 @@ class TestWizard(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        handler = self.request(self.wizard_blob, role='admin')
+        handler = self.request(self.wizard_blob)
         yield handler.post()
 
     @inlineCallbacks
     def test_fail_after_first_post(self):
         self.dummyContext['steps'] = []
 
-        handler = self.request(self.wizard_blob, role='admin')
+        handler = self.request(self.wizard_blob)
         yield handler.post()
 
-        handler = self.request(self.wizard_blob, role='admin')
+        handler = self.request(self.wizard_blob)
         yield self.assertFailure(handler.post(), errors.ForbiddenOperation)

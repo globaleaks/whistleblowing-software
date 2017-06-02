@@ -6,8 +6,6 @@
 #   Contains all the logic for handling tip related operations, managed by
 #   the whistleblower, handled and executed within /wbtip/* URI PATH interaction.
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
 from globaleaks.handlers.submission import serialize_usertip, \
@@ -177,10 +175,8 @@ class WBTipInstance(BaseHandler):
     Whistleblower can discuss about the submission, comments, collaborative voting, forward,
     promote, and perform other operations in this protected environment.
     """
+    check_roles = 'whistleblower'
 
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
@@ -189,9 +185,7 @@ class WBTipInstance(BaseHandler):
         Check the user id (in the whistleblower case, is authenticated and
         contain the internaltip)
         """
-        answer = yield get_wbtip(self.current_user.user_id, self.request.language)
-
-        self.write(answer)
+        return get_wbtip(self.current_user.user_id, self.request.language)
 
 
 class WBTipCommentCollection(BaseHandler):
@@ -201,20 +195,16 @@ class WBTipCommentCollection(BaseHandler):
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
     permitted.
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
+    check_roles = 'whistleblower'
+
     def post(self):
         """
         Request: CommentDesc
         Response: CommentDesc
         Errors: InvalidInputFormat, TipIdNotFound, TipReceiptNotFound
         """
-        request = self.validate_message(self.request.body, requests.CommentDesc)
-        answer = yield create_comment(self.current_user.user_id, request)
-
-        self.set_status(201)  # Created
-        self.write(answer)
+        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
+        return create_comment(self.current_user.user_id, request)
 
 
 class WBTipMessageCollection(BaseHandler):
@@ -224,27 +214,20 @@ class WBTipMessageCollection(BaseHandler):
 
     Supports the creation of a new message for the requested receiver
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
+    check_roles = 'whistleblower'
+
     def get(self, receiver_id):
-        messages = yield get_itip_message_list(self.current_user.user_id, receiver_id)
+        return get_itip_message_list(self.current_user.user_id, receiver_id)
 
-        self.write(messages)
-
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
     def post(self, receiver_id):
-        request = self.validate_message(self.request.body, requests.CommentDesc)
+        request = self.validate_message(self.request.content.read(), requests.CommentDesc)
 
-        message = yield create_message(self.current_user.user_id, receiver_id, request)
-
-        self.set_status(201)  # Created
-        self.write(message)
+        return create_message(self.current_user.user_id, receiver_id, request)
 
 
 class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
+    check_roles = 'whistleblower'
+
     def user_can_access(self, wbfile):
         return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
 
@@ -253,25 +236,17 @@ class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
                   (wbfile.id, self.current_user.user_id))
         wbfile.downloads += 1
 
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    def get(self, wbfile_id):
-        self._get(wbfile_id)
-
 
 class WBTipIdentityHandler(BaseHandler):
     """
     This is the interface that securely allows the whistleblower to provide his identity
     """
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
-    @inlineCallbacks
+    check_roles = 'whistleblower'
+
     def post(self, tip_id):
-        request = self.validate_message(self.request.body, requests.WhisleblowerIdentityAnswers)
+        request = self.validate_message(self.request.content.read(), requests.WhisleblowerIdentityAnswers)
 
-        yield update_identity_information(tip_id,
-                                          request['identity_field_id'],
-                                          request['identity_field_answers'],
-                                          self.request.language)
-
-        self.set_status(202)  # Updated
+        return update_identity_information(tip_id,
+                                           request['identity_field_id'],
+                                           request['identity_field_answers'],
+                                           self.request.language)

@@ -19,11 +19,10 @@ class TestStatsCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request({}, role='admin')
-        yield handler.get(0)
+        response = yield handler.get(0)
 
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses[0]), 3)
-        self.assertEqual(len(self.responses[0]['heatmap']), 7 * 24)
+        self.assertEqual(len(response), 3)
+        self.assertEqual(len(response['heatmap']), 7 * 24)
 
         self.pollute_events_and_perform_synthesis(10)
 
@@ -32,9 +31,9 @@ class TestStatsCollection(helpers.TestHandler):
 
         for i in range(0, 2):
             handler = self.request({}, role='admin')
-            yield handler.get(i)
-            self.assertEqual(len(self.responses[1 + i]), 3)
-            self.assertEqual(len(self.responses[1 + i]['heatmap']), 7 * 24)
+            response = yield handler.get(i)
+            self.assertEqual(len(response), 3)
+            self.assertEqual(len(response['heatmap']), 7 * 24)
 
     @inlineCallbacks
     def test_delete(self):
@@ -67,10 +66,7 @@ class TestAnomalyCollection(helpers.TestHandler):
         yield StatisticsSchedule().run()
 
         handler = self.request({}, role='admin')
-        yield handler.get()
-
-        self.assertTrue(isinstance(self.responses, list))
-        self.assertEqual(len(self.responses), 1)
+        response = yield handler.get()
 
     @inlineCallbacks
     def test_delete(self):
@@ -81,23 +77,19 @@ class TestAnomalyCollection(helpers.TestHandler):
 
         # be sure that AnomalyHistory is populated
         handler = self.request({}, role='admin')
-        yield handler.get()
-        self.assertEqual(len(self.responses), 1)
-        self.assertTrue(isinstance(self.responses, list))
-
-        self.responses = []
+        response = yield handler.get()
+        self.assertTrue(isinstance(response, list))
+        self.assertEqual(len(response), 1)
 
         # delete stats
         handler = self.request({}, role='admin')
         yield handler.delete()
 
-        self.responses = []
-
         # test that AnomalyHistory is not populated anymore
         handler = self.request({}, role='admin')
-        yield handler.get()
-        self.assertEqual(len(self.responses), 0)
-        self.assertTrue(isinstance(self.responses, list))
+        response = yield handler.get()
+        self.assertTrue(isinstance(response, list))
+        self.assertEqual(len(response), 0)
 
 
 class TestRecentEventsCollection(helpers.TestHandler):
@@ -111,18 +103,18 @@ class TestRecentEventsCollection(helpers.TestHandler):
 
         handler = self.request({}, role='admin')
 
-        yield handler.get('details')
-        yield handler.get('summary')
-
-        self.assertTrue(isinstance(self.responses[0], list))
-        self.assertTrue(isinstance(self.responses[1], dict))
+        response = yield handler.get('details')
+        self.assertTrue(isinstance(response, list))
 
         for k in ['id', 'duration', 'event', 'creation_date']:
-            for elem in self.responses[0]:
+            for elem in response:
                 self.assertTrue(k in elem)
 
+        response = yield handler.get('summary')
+        self.assertTrue(isinstance(response, dict))
+
         for k in anomaly.ANOMALY_MAP.keys():
-            self.assertTrue(k in self.responses[1])
+            self.assertTrue(k in response)
 
 
 class TestJobsTiming(helpers.TestHandler):

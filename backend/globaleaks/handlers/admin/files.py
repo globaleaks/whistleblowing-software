@@ -4,15 +4,11 @@
 #  *****
 #
 # API handling db files upload/download/delete
-
 import base64
-
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
 
 
 def db_add_file(store, data, key = None):
@@ -56,30 +52,19 @@ def del_file(store, key):
 
 
 class FileInstance(BaseHandler):
+    check_roles = 'admin'
+
     key = None
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def post(self, key):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
-            self.set_status(201)
+            self.request.setResponseCode(201)
             return
 
-        try:
-            yield add_file(uploaded_file['body'].read(), key)
-        finally:
-            uploaded_file['body'].close()
+        d = add_file(uploaded_file['body'].read(), key)
+        d.addBoth(lambda ignore: uploaded_file['body'].close)
+        return d
 
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def delete(self, key):
-        yield del_file(key)
-
-        GLApiCache.invalidate()
+        return del_file(key)
