@@ -49,97 +49,97 @@ from globaleaks.utils.utility import randbits
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
 api_spec = [
-    (r'/exception', exception.ExceptionHandler, None),
+    (r'/exception', exception.ExceptionHandler),
 
     ## Authentication Handlers ##
-    (r'/authentication', authentication.AuthenticationHandler, None),
-    (r'/receiptauth', authentication.ReceiptAuthHandler, None),
-    (r'/session', authentication.SessionHandler, None),
+    (r'/authentication', authentication.AuthenticationHandler),
+    (r'/receiptauth', authentication.ReceiptAuthHandler),
+    (r'/session', authentication.SessionHandler),
 
     ## Public API ##
-    (r'/public', public.PublicResource, None),
+    (r'/public', public.PublicResource),
 
     # User Preferences Handler
-    (r'/preferences', user.UserInstance, None),
+    (r'/preferences', user.UserInstance),
 
     ## Token Handlers ##
-    (r'/token', token.TokenCreate, None),
-    (r'/token/' + requests.token_regexp, token.TokenInstance, None),
+    (r'/token', token.TokenCreate),
+    (r'/token/' + requests.token_regexp, token.TokenInstance),
 
     # Shorturl Handler
-    (requests.shorturl_regexp, shorturl.ShortUrlInstance, None),
+    (requests.shorturl_regexp, shorturl.ShortUrlInstance),
 
     ## Submission Handlers ##
-    (r'/submission/' + requests.token_regexp, submission.SubmissionInstance, None),
-    (r'/submission/' + requests.token_regexp + r'/file', files.FileInstance, None),
+    (r'/submission/' + requests.token_regexp, submission.SubmissionInstance),
+    (r'/submission/' + requests.token_regexp + r'/file', files.FileInstance),
 
     ## Receiver Tip Handlers ##
-    (r'/rtip/' + uuid_regexp, rtip.RTipInstance, None),
-    (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection, None),
-    (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection, None),
-    (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection, None),
-    (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler, None),
-    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler, None),
-    (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload, None),
-    (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileInstanceHandler, None),
+    (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
+    (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
+    (r'/rtip/' + uuid_regexp + r'/messages', rtip.ReceiverMsgCollection),
+    (r'/rtip/' + uuid_regexp + r'/identityaccessrequests', rtip.IdentityAccessRequestsCollection),
+    (r'/rtip/' + uuid_regexp + r'/export', export.ExportHandler),
+    (r'/rtip/' + uuid_regexp + r'/wbfile', rtip.WhistleblowerFileHandler),
+    (r'/rtip/rfile/' + uuid_regexp, rtip.ReceiverFileDownload),
+    (r'/rtip/wbfile/' + uuid_regexp, rtip.RTipWBFileInstanceHandler),
 
     ## Whistleblower Tip Handlers
-    (r'/wbtip', wbtip.WBTipInstance, None),
-    (r'/wbtip/comments', wbtip.WBTipCommentCollection, None),
-    (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection, None),
-    (r'/wbtip/rfile', files.FileAdd, None),
-    (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileInstanceHandler, None),
-    (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler, None),
+    (r'/wbtip', wbtip.WBTipInstance),
+    (r'/wbtip/comments', wbtip.WBTipCommentCollection),
+    (r'/wbtip/messages/' + uuid_regexp, wbtip.WBTipMessageCollection),
+    (r'/wbtip/rfile', files.FileAdd),
+    (r'/wbtip/wbfile/' + uuid_regexp, wbtip.WBTipWBFileInstanceHandler),
+    (r'/wbtip/' + uuid_regexp + r'/provideidentityinformation', wbtip.WBTipIdentityHandler),
 
     ## Receiver Handlers ##
-    (r'/receiver/preferences', receiver.ReceiverInstance, None),
-    (r'/receiver/tips', receiver.TipsCollection, None),
-    (r'/rtip/operations', receiver.TipsOperations, None),
+    (r'/receiver/preferences', receiver.ReceiverInstance),
+    (r'/receiver/tips', receiver.TipsCollection),
+    (r'/rtip/operations', receiver.TipsOperations),
 
-    (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection, None),
-    (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance, None),
+    (r'/custodian/identityaccessrequests', custodian.IdentityAccessRequestsCollection),
+    (r'/custodian/identityaccessrequest/' + uuid_regexp, custodian.IdentityAccessRequestInstance),
 
     ## Admin Handlers ##
-    (r'/admin/node', admin_node.NodeInstance, None),
-    (r'/admin/users', admin_user.UsersCollection, None),
-    (r'/admin/users/' + uuid_regexp, admin_user.UserInstance, None),
-    (r'/admin/contexts', admin_context.ContextsCollection, None),
-    (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance, None),
-    (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance, None),
-    (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection, None),
-    (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance, None),
-    (r'/admin/receivers', admin_receiver.ReceiversCollection, None),
-    (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance, None),
-    (r'/admin/notification', admin_notification.NotificationInstance, None),
-    (r'/admin/notification/mail', admin_notification.NotificationTestInstance, None),
-    (r'/admin/fields', admin_field.FieldCollection, None),
-    (r'/admin/fields/' + uuid_regexp, admin_field.FieldInstance, None),
-    (r'/admin/steps', admin_step.StepCollection, None),
-    (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance, None),
-    (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection, None),
-    (r'/admin/fieldtemplates/' + uuid_regexp, admin_field.FieldTemplateInstance, None),
-    (r'/admin/shorturls', admin_shorturl.ShortURLCollection, None),
-    (r'/admin/shorturls/' + uuid_regexp, admin_shorturl.ShortURLInstance, None),
-    (r'/admin/stats/(\d+)', admin_statistics.StatsCollection, None),
-    (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection, None),
-    (r'/admin/anomalies', admin_statistics.AnomalyCollection, None),
-    (r'/admin/jobs', admin_statistics.JobsTiming, None),
-    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler, None),
-    (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance, None),
-    (r'/admin/config/tls', https.ConfigHandler, None),
-    (r'/admin/config/tls/files/(csr)', https.CSRFileHandler, None),
-    (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler, None),
-    (r'/admin/staticfiles$', admin_staticfiles.StaticFileList, None),
-    (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance, None),
-    (r'/admin/overview/tips', admin_overview.Tips, None),
-    (r'/admin/overview/files', admin_overview.Files, None),
-    (r'/wizard', wizard.Wizard, None),
+    (r'/admin/node', admin_node.NodeInstance),
+    (r'/admin/users', admin_user.UsersCollection),
+    (r'/admin/users/' + uuid_regexp, admin_user.UserInstance),
+    (r'/admin/contexts', admin_context.ContextsCollection),
+    (r'/admin/contexts/' + uuid_regexp, admin_context.ContextInstance),
+    (r'/admin/(users|contexts)/' + uuid_regexp  + r'/img', admin_modelimgs.ModelImgInstance),
+    (r'/admin/questionnaires', admin_questionnaire.QuestionnairesCollection),
+    (r'/admin/questionnaires/' + uuid_regexp, admin_questionnaire.QuestionnaireInstance),
+    (r'/admin/receivers', admin_receiver.ReceiversCollection),
+    (r'/admin/receivers/' + uuid_regexp, admin_receiver.ReceiverInstance),
+    (r'/admin/notification', admin_notification.NotificationInstance),
+    (r'/admin/notification/mail', admin_notification.NotificationTestInstance),
+    (r'/admin/fields', admin_field.FieldCollection),
+    (r'/admin/fields/' + uuid_regexp, admin_field.FieldInstance),
+    (r'/admin/steps', admin_step.StepCollection),
+    (r'/admin/steps/' + uuid_regexp, admin_step.StepInstance),
+    (r'/admin/fieldtemplates', admin_field.FieldTemplatesCollection),
+    (r'/admin/fieldtemplates/' + uuid_regexp, admin_field.FieldTemplateInstance),
+    (r'/admin/shorturls', admin_shorturl.ShortURLCollection),
+    (r'/admin/shorturls/' + uuid_regexp, admin_shorturl.ShortURLInstance),
+    (r'/admin/stats/(\d+)', admin_statistics.StatsCollection),
+    (r'/admin/activities/(summary|details)', admin_statistics.RecentEventsCollection),
+    (r'/admin/anomalies', admin_statistics.AnomalyCollection),
+    (r'/admin/jobs', admin_statistics.JobsTiming),
+    (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
+    (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
+    (r'/admin/config/tls', https.ConfigHandler),
+    (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
+    (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
+    (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),
+    (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
+    (r'/admin/overview/tips', admin_overview.Tips),
+    (r'/admin/overview/files', admin_overview.Files),
+    (r'/wizard', wizard.Wizard),
 
     ## Special Files Handlers##
-    (r'/robots.txt', robots.RobotstxtHandler, None),
-    (r'/sitemap.xml', robots.SitemapHandler, None),
+    (r'/robots.txt', robots.RobotstxtHandler),
+    (r'/sitemap.xml', robots.SitemapHandler),
     (r'/s/(.+)', base.StaticFileHandler, {'path': GLSettings.static_path}),
-    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler, None),
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
     ## This Handler should remain the last one as it works like a last resort catch 'em all
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.StaticFileHandler, {'path': GLSettings.client_path})
@@ -149,7 +149,8 @@ api_spec = [
 def decorate_method(h, method):
    decorator_authentication = getattr(h, 'authentication')
    value = getattr(h, 'check_roles')
-   value = re.split("[ ,]", value)
+   if type(value) is str:
+       value = {value}
 
    f = getattr(h, method)
 
@@ -176,7 +177,13 @@ class APIResourceWrapper(Resource):
 
         decorated_handlers = set()
 
-        for pattern, handler, args, in api_spec:
+        for tup in api_spec:
+            args = None
+            if len(tup) == 2:
+                pattern, handler = tup
+            else:
+                pattern, handler, args = tup
+
             if not pattern.startswith("^"):
                 pattern = "^" + pattern;
 
@@ -209,19 +216,21 @@ class APIResourceWrapper(Resource):
             })
 
     def render(self, request):
-        request_finished = [False]
+        self.request_finished = False
 
-        def _finish(self):
-            request_finished[0] = True
+        def _finish(_):
+            # The param '_' is either None or err returned by notifyFinish
+            self.request_finished = True
 
         request.notifyFinish().addBoth(_finish)
 
+        method = request.method.lower()
+
+        if method not in ['get', 'post', 'put', 'delete']:
+            self.handle_exception(errors.MethodNotImplemented(), request)
+            return NOT_DONE_YET
+
         for regexp, handler, args in self._registry:
-            method = request.method.lower()
-
-            if method not in ['get', 'post', 'put', 'delete']:
-                continue
-
             match = regexp.match(request.path)
             if not match:
                 continue
@@ -248,7 +257,7 @@ class APIResourceWrapper(Resource):
                 if ret is not None:
                     h.write(ret)
 
-                if not request_finished[0]:
+                if not self.request_finished:
                     request.finish()
 
             d.addErrback(self.handle_exception, request)
@@ -263,7 +272,9 @@ class APIResourceWrapper(Resource):
         return self.render(self, request)
 
     def render_PUT(self, request):
+        request.setReponseCode(202)
         return self.render(self, request)
 
     def render_POST(self, request):
+        request.setReponseCode(201)
         return self.render(self, request)

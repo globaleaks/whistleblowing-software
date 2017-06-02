@@ -48,7 +48,7 @@ def random_login_delay():
 
 
 @transact
-def login_whistleblower(store, receipt, tor):
+def login_whistleblower(store, receipt, client_using_tor):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
@@ -61,8 +61,8 @@ def login_whistleblower(store, receipt, tor):
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
-        log.err("Denied login request on Tor2web for role 'whistleblower'")
+    if not client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+        log.err("Denied login request over clear Web for role 'whistleblower'")
         raise errors.TorNetworkRequired
 
     log.debug("Whistleblower login: Valid receipt")
@@ -71,20 +71,20 @@ def login_whistleblower(store, receipt, tor):
 
 
 @transact
-def login(store, username, password, tor):
+def login(store, username, password, client_using_tor):
     """
     login returns a tuple (user_id, state, pcn)
     """
     user = store.find(User, And(User.username == username,
                                 User.state != u'disabled')).one()
 
-    if not user or not security.check_password(password,  user.salt, user.password):
+    if not user or not security.check_password(password, user.salt, user.password):
         log.debug("Login: Invalid credentials")
         GLSettings.failed_login_attempts += 1
         raise errors.InvalidAuthentication
 
-    if not tor and not GLSettings.memory_copy.accept_tor2web_access[user.role]:
-        log.err("Denied login request on Tor2web for role '%s'" % user.role)
+    if not client_using_tor and not GLSettings.memory_copy.accept_tor2web_access[user.role]:
+        log.err("Denied login request over Web for role '%s'" % user.role)
         raise errors.TorNetworkRequired
 
     log.debug("Login: Success (%s)" % user.role)
@@ -161,7 +161,7 @@ class SessionHandler(BaseHandler):
     """
     Session handler for authenticated users
     """
-    check_roles = 'admin,receiver,custodian,whistleblower'
+    check_roles = {'admin','receiver','custodian','whistleblower'}
 
     def get(self):
         """

@@ -158,7 +158,6 @@ class GLSession(object):
 
 
 class BaseHandler(object):
-    decorated = False
     serialize_lists = True
     handler_exec_time_threshold = HANDLER_EXEC_TIME_THRESHOLD
     uniform_answer_time = False
@@ -176,8 +175,7 @@ class BaseHandler(object):
 
         self.request.headers = self.request.getAllHeaders()
 
-        # TODO this header must be lower-cased
-        self.client_ip = request.headers.get('X-Forwarded-For', None)
+        self.client_ip = request.headers.get('x-forwarded-for', None)
         if self.client_ip is None:
             self.client_ip = self.request.getClientIP()
 
@@ -203,7 +201,7 @@ class BaseHandler(object):
             language = GLSettings.memory_copy.default_language
 
         self.request.language = language
-        self.request.setHeader(b'content-language', language)
+        self.request.setHeader('Content-Language', language)
 
         self.set_default_headers()
 
@@ -265,7 +263,7 @@ class BaseHandler(object):
                 self.basic_auth()
 
             if '*' in roles:
-               return f(self, *args, **kwargs)
+                return f(self, *args, **kwargs)
 
             if 'unauthenticated' in roles:
                 if self.current_user:
@@ -546,8 +544,8 @@ class BaseHandler(object):
         if GLSettings.memory_copy.private.https_enabled and \
            self.client_ip not in GLSettings.local_hosts:
             return True
-        else:
-            return False
+
+        return False
 
     def get_file_upload(self):
         try:
@@ -603,6 +601,7 @@ class BaseHandler(object):
 
             send_exception_email(error)
 
+        # TODO (nskelsey) move into rest/api.py Resource
         track_handler(self)
 
         if self.uniform_answer_time:
@@ -611,8 +610,8 @@ class BaseHandler(object):
                 yield deferred_sleep(needed_delay)
 
 
-
 class StaticFileHandler(BaseHandler):
+    # TODO(nskelsey) test to ensure this does not break refreshes with X-Session passed.
     check_roles = '*'
 
     def __init__(self, request, path):
@@ -626,7 +625,7 @@ class StaticFileHandler(BaseHandler):
 
         mime_type, encoding = mimetypes.guess_type(filepath)
         if mime_type:
-            self.request.setHeader(b'content-type', mime_type)
+            self.request.setHeader('Content-Type', mime_type)
 
         return StaticFileProducer(self, filepath).start()
 
