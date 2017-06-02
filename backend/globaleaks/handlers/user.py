@@ -136,7 +136,7 @@ class UserInstance(BaseHandler):
         - notification settings
         - pgp key
     """
-    check_roles = 'admin,receiver,custodian'
+    check_roles = {'admin', 'receiver', 'custodian'}
     invalidate_cache = True
 
     def get(self):
