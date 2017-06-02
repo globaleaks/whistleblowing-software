@@ -12,6 +12,7 @@ from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, datetime_null
 
@@ -81,7 +82,6 @@ class Wizard(BaseHandler):
     Setup Wizard handler
     """
     check_roles = 'unauthenticated'
-    invalidate_cache = True
 
     @inlineCallbacks
     def post(self):
@@ -90,5 +90,9 @@ class Wizard(BaseHandler):
 
         # Wizard will raise exceptions if there are any errors with the request
         yield wizard(request, self.request.language)
-        # cache must be updated in order to set wizard_done = True
+
         yield serialize_node(self.request.language)
+
+        # Invalidation is performed at this stage only after the asserts within
+        # wizard have ensured that the wizard can be executed.
+        GLApiCache.invalidate()

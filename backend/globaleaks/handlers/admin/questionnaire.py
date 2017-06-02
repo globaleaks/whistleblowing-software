@@ -165,6 +165,7 @@ def delete_questionnaire(store, questionnaire_id):
 
 class QuestionnairesCollection(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self):
         """

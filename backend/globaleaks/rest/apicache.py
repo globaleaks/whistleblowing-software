@@ -47,7 +47,6 @@ def decorator_cache_get(f):
 def decorator_cache_invalidate(f):
     def wrapper(self, *args, **kwargs):
         GLApiCache.invalidate(self.request.path)
-
         return f(self, *args, **kwargs)
 
     return wrapper
