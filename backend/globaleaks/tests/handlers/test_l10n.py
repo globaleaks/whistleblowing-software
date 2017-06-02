@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers import l10n
@@ -11,22 +12,22 @@ custom_texts = {
    '12345': '54321'
 }
 
+
 class TestL10NHandler(helpers.TestHandler):
     _handler = l10n.L10NHandler
 
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
+        response = yield handler.get(lang=u'en')
+        self.assertNotIn('12345', response)
 
-        yield handler.get(lang=u'en')
+        self._handler = admin_l10n.AdminL10NHandler
+        handler = self.request({}, role='admin', body=json.dumps(custom_texts))
+        yield handler.put(lang=u'en')
 
-        self.assertNotIn('12345', self.responses[0])
-
-        yield admin_l10n.update_custom_texts(u'en', custom_texts)
-
-        GLApiCache.invalidate('l10n')
-
-        yield handler.get(lang=u'en')
-
-        self.assertIn('12345', self.responses[1])
-        self.assertEqual('54321', self.responses[1]['12345'])
+        self._handler = l10n.L10NHandler
+        handler = self.request()
+        response = yield handler.get(lang=u'en')
+        self.assertIn('12345', response)
+        self.assertEqual('54321', response['12345'])

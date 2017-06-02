@@ -22,11 +22,11 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request({'type': 'submission'})
 
-        yield handler.post()
+        handler.client_using_tor = True
 
-        token = self.responses[0]
+        response = yield handler.post()
 
-        self.assert_default_token_values(token)
+        self.assert_default_token_values(response)
 
 
 class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
@@ -46,11 +46,11 @@ class Test_TokenInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(request_payload)
 
-        yield handler.put(token.id)
+        response = yield handler.put(token.id)
 
         token.use()
 
-        self.assertFalse(self.responses[0]['human_captcha'])
+        self.assertFalse(response['human_captcha'])
         self.assertTrue(token.human_captcha['solved'])
 
     @inlineCallbacks

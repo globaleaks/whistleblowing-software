@@ -26,10 +26,10 @@ class TestQuestionnaireCollection(helpers.TestHandlerWithPopulatedDB):
             self.dummyQuestionnaire[attrname] = stuff
 
         handler = self.request(self.dummyQuestionnaire, role='admin')
-        yield handler.post()
+        response = yield handler.post()
 
         for attrname in Questionnaire.unicode_keys:
-            self.assertEqual(self.responses[0][attrname], stuff)
+            self.assertEqual(response[attrname], stuff)
 
 
 class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
@@ -38,8 +38,8 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyQuestionnaire['id'])
-        self._handler.validate_message(json.dumps(self.responses[0]), requests.AdminQuestionnaireDesc)
+        response = yield handler.get(self.dummyQuestionnaire['id'])
+        self._handler.validate_message(json.dumps(response), requests.AdminQuestionnaireDesc)
 
     @inlineCallbacks
     def test_put(self):
@@ -47,10 +47,10 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
             self.dummyQuestionnaire[attrname] = stuff
 
         handler = self.request(self.dummyQuestionnaire, role='admin')
-        yield handler.put(self.dummyQuestionnaire['id'])
+        response = yield handler.put(self.dummyQuestionnaire['id'])
 
         for attrname in Questionnaire.unicode_keys:
-            self.assertEqual(self.responses[0][attrname], stuff)
+            self.assertEqual(response[attrname], stuff)
 
     @inlineCallbacks
     def test_delete(self):

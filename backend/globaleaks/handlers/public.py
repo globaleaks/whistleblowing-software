@@ -5,7 +5,6 @@
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
 from storm.expr import In, Select
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.admin.files import db_get_file
@@ -14,7 +13,6 @@ from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.sets import disjoint_union
 from globaleaks.utils.structures import get_localized_values
@@ -304,7 +302,6 @@ def serialize_step(store, step, language):
         'option': trigger.id
     } for trigger in step.triggered_by_options]
 
-
     data = db_prepare_fields_serialization(store, step.children)
 
     ret_dict = {
@@ -360,16 +357,12 @@ def db_get_public_context_list(store, language):
 
 
 def db_get_questionnaire_list(store, language):
-    questionnaire_list = []
-    for questionnaire in store.find(models.Questionnaire):
-        questionnaire_list.append(serialize_questionnaire(store, questionnaire, language))
+    questionnaires = store.find(models.Questionnaire)
 
-    return questionnaire_list
+    return [serialize_questionnaire(store, questionnaire, language) for questionnaire in questionnaires]
 
 
 def db_get_public_receiver_list(store, language):
-    receiver_list = []
-
     receivers = store.find(models.Receiver,
                            models.Receiver.id == models.User.id,
                            models.User.state != u'disabled')
@@ -390,13 +383,11 @@ def get_public_resources(store, language):
 
 
 class PublicResource(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
+    check_roles = '*'
+    cache_resource = True
+
     def get(self):
         """
         Get all the public resources.
         """
-        ret = yield GLApiCache.get('public', self.request.language,
-                                   get_public_resources, self.request.language)
-        self.write(ret)
+        return get_public_resources(self.request.language)

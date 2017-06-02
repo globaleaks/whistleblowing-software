@@ -34,7 +34,7 @@ describe('Admin configure custom CSS', function() {
     browser.get('/');
     expect(EC.invisibilityOf($('#LogoBox')));
 
-    browser.get('/admin');
+    browser.get('/#/admin');
     expect(EC.visibilityOf($('#LogoBox')));
 
     browser.get('/');

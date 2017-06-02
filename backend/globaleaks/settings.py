@@ -14,10 +14,10 @@ import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
 from optparse import OptionParser
 
-from cyclone.util import ObjectDict as OD
 from twisted.python.threadpool import ThreadPool
 
 from globaleaks import __version__, DATABASE_VERSION
+from globaleaks.utils.objectdict import ObjectDict
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.utility import datetime_now, log
 from globaleaks.utils.tor_exit_set import TorExitSet
@@ -83,7 +83,6 @@ class GLSettingsClass(object):
 
         # debug defaults
         self.orm_debug = False
-        self.log_requests_responses = -1
         self.requests_counter = 0
 
         # files and paths
@@ -131,7 +130,7 @@ class GLSettingsClass(object):
         # it is important to keep this variables in memory
         #
         # Initialization is handled by db_refresh_memory_variables
-        self.memory_copy = OD({
+        self.memory_copy = ObjectDict({
             'maximum_namesize': 128,
             'maximum_textsize': 4096,
             'maximum_filesize': 30,
@@ -140,8 +139,7 @@ class GLSettingsClass(object):
                 'admin': True,
                 'whistleblower': False,
                 'custodian': False,
-                'receiver': False,
-                'unauth': True,
+                'receiver': False
             },
             'private': {
                 'https_enabled': False,
@@ -151,7 +149,7 @@ class GLSettingsClass(object):
 
 
         # Default request time uniform value
-        self.side_channels_guard = 0.150
+        self.side_channels_guard = 150
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
@@ -215,7 +213,7 @@ class GLSettingsClass(object):
 
         # TODO holds global state until GLSettings is inverted and this
         # state managed as an object by the application
-        self.state = OD()
+        self.state = ObjectDict()
         self.state.process_supervisor = None
         self.state.tor_exit_set = TorExitSet()
 
@@ -330,8 +328,6 @@ class GLSettingsClass(object):
             sys.exit(1)
         self.socks_port = self.cmdline_options.socks_port
 
-        self.side_channels_guard = self.cmdline_options.side_channels_guard / 1000.0
-
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
 
@@ -365,7 +361,6 @@ class GLSettingsClass(object):
             self.developer_name = unicode(self.cmdline_options.developer_name)
             self.set_devel_mode()
             self.orm_debug = self.cmdline_options.orm_debug
-            self.log_requests_responses = self.cmdline_options.log_requests_responses
 
         self.api_prefix = self.cmdline_options.api_prefix
 

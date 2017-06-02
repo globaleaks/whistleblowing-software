@@ -4,15 +4,12 @@
 #   *****
 # Implementation of the User model functionalities
 #
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models, security
 from globaleaks.db import db_refresh_exception_delivery_list
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.user import parse_pgp_options, user_serialize_user
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log, datetime_now
@@ -82,6 +79,7 @@ def db_create_receiver(store, request, language):
     log.debug("Created new receiver")
 
     return receiver
+
 
 @transact
 def create_receiver_user(store, request, language):
@@ -202,9 +200,8 @@ def get_user_list(store, language):
 
 
 class UsersCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+
     def get(self):
         """
         Return all the users.
@@ -213,13 +210,8 @@ class UsersCollection(BaseHandler):
         Response: adminUsersList
         Errors: None
         """
-        response = yield get_user_list(self.request.language)
+        return get_user_list(self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def post(self):
         """
         Create a new user
@@ -228,28 +220,23 @@ class UsersCollection(BaseHandler):
         Response: AdminUserDesc
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminUserDesc)
 
         if request['role'] == 'receiver':
-            response = yield create_receiver_user(request, self.request.language)
+            return create_receiver_user(request, self.request.language)
         elif request['role'] == 'custodian':
-            response = yield create_custodian_user(request, self.request.language)
+            return create_custodian_user(request, self.request.language)
         elif request['role'] == 'admin':
-            response = yield create_admin_user(request, self.request.language)
-        else:
-            raise errors.InvalidInputFormat
+            return create_admin_user(request, self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.set_status(201) # Created
-        self.write(response)
+        raise errors.InvalidInputFormat
 
 
 class UserInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def get(self, user_id):
         """
         Get the specified user.
@@ -258,13 +245,8 @@ class UserInstance(BaseHandler):
         Response: AdminUserDesc
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        response = yield get_user(user_id, self.request.language)
+        return get_user(user_id, self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def put(self, user_id):
         """
         Update the specified user.
@@ -274,17 +256,10 @@ class UserInstance(BaseHandler):
         Response: AdminUserDesc
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        request = self.validate_message(self.request.body, requests.AdminUserDesc)
+        request = self.validate_message(self.request.content.read(), requests.AdminUserDesc)
 
-        response = yield admin_update_user(user_id, request, self.request.language)
-        GLApiCache.invalidate()
+        return admin_update_user(user_id, request, self.request.language)
 
-        self.set_status(201)
-        self.write(response)
-
-    @inlineCallbacks
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     def delete(self, user_id):
         """
         Delete the specified user.
@@ -294,6 +269,4 @@ class UserInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, UserIdNotFound
         """
-        yield delete_user(user_id)
-
-        GLApiCache.invalidate()
+        return delete_user(user_id)
