@@ -326,7 +326,7 @@ class AlarmClass(object):
                 "True" if old_accept_submissions else "False",
                 "False" if old_accept_submissions else "True"))
 
-            # Invalidate the cache of node avoiding accesses to the db from here
+            # Must invalidate the cache here becuase accept_subs served in /public has changed
             GLApiCache.invalidate()
 
 # Alarm is a singleton class exported once

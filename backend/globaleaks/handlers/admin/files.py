@@ -53,13 +53,13 @@ def del_file(store, key):
 
 class FileInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     key = None
 
     def post(self, key):
         uploaded_file = self.get_file_upload()
         if uploaded_file is None:
-            self.request.setResponseCode(201)
             return
 
         d = add_file(uploaded_file['body'].read(), key)
