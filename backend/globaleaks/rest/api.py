@@ -216,11 +216,10 @@ class APIResourceWrapper(Resource):
             })
 
     def render(self, request):
-        self.request_finished = False
+        request_finished = [False]
 
         def _finish(_):
-            # The param '_' is either None or err returned by notifyFinish
-            self.request_finished = True
+            request_finished[0] = True
 
         request.notifyFinish().addBoth(_finish)
 
@@ -257,7 +256,7 @@ class APIResourceWrapper(Resource):
                 if ret is not None:
                     h.write(ret)
 
-                if not self.request_finished:
+                if not request_finished[0]:
                     request.finish()
 
             d.addErrback(self.handle_exception, request)
