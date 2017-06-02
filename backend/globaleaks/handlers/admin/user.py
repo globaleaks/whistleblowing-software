@@ -230,8 +230,8 @@ class UsersCollection(BaseHandler):
             return create_custodian_user(request, self.request.language)
         elif request['role'] == 'admin':
             return create_admin_user(request, self.request.language)
-
-        raise errors.InvalidInputFormat
+        else:
+            raise errors.InvalidInputFormat
 
 
 class UserInstance(BaseHandler):

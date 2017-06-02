@@ -595,9 +595,6 @@ class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
         r_ids = [rtip.receiver_id for rtip in wbfile.receivertip.internaltip.receivertips]
         return self.current_user.user_id in r_ids
 
-    def get(self, file_id):
-        self.get(file_id)
-
     def delete(self, file_id):
         """
         This interface allow the recipient to set the description of a WhistleblowerFile

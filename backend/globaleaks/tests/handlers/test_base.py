@@ -132,10 +132,11 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
 class TestStaticFileHandler(helpers.TestHandler):
     _handler = StaticFileHandler
 
-    #@inlineCallbacks
+    @inlineCallbacks
     def test_get_existent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
-        #yield handler.get('')
+        yield handler.get('')
+        self.assertEqual(handler.get_status(), 200)
 
     @inlineCallbacks
     def test_get_unexistent(self):

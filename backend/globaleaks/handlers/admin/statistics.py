@@ -153,10 +153,6 @@ class AnomalyCollection(BaseHandler):
     def get(self):
         return get_anomaly_history(limit=20)
 
-    def delete(self):
-        log.info("Received anomalies history delete command")
-        return delete_anomaly_history()
-
 
 class StatsCollection(BaseHandler):
     """
