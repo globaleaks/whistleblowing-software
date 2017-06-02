@@ -389,7 +389,7 @@ def create_submission(store, request, uploaded_files, client_using_tor, language
 
 class SubmissionInstance(BaseHandler):
     """
-    This is the interface for create, populate and complete a submission.
+    The interface that creates, populates and finishes a submission.
     """
     check_roles = 'unauthenticated'
 

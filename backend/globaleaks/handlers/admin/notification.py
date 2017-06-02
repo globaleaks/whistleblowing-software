@@ -120,19 +120,15 @@ class NotificationInstance(BaseHandler):
 
 class NotificationTestInstance(BaseHandler):
     """
-    Send Test Email Notifications to the admin that clicked the button.
+    Send test email notifications to the admin that clicked the button.
     This post takes no arguments and generates an empty response to both
-    successful and unsucessful requests. Understand that this handler blocks
-    its thread until both the db query and the SMTP round trip return.
+    successful and unsucessful requests. This handler does not return
+    until both the db query and the SMTP round trip return.
     """
     check_roles = 'admin'
 
     @inlineCallbacks
     def post(self):
-        """
-        Parameters: None
-        Response: None
-        """
         user = yield get_user_settings(self.current_user.user_id,
                                      GLSettings.memory_copy.default_language)
 

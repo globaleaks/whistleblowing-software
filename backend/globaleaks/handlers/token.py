@@ -34,9 +34,8 @@ class TokenCreate(BaseHandler):
 
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)
 
-        if request['type'] == 'submission':
-            if not GLSettings.accept_submissions:
-                raise errors.SubmissionDisabled
+        if request['type'] == 'submission' and not GLSettings.accept_submissions:
+            raise errors.SubmissionDisabled
 
         return Token(request['type']).serialize()
 

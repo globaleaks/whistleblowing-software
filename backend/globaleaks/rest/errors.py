@@ -53,7 +53,7 @@ class InvalidInputFormat(GLException):
     The expected format described in the REST specification is not
     respected by the data body in the HTTP request.
     """
-    ddderror_code = 3
+    error_code = 3
     status_code = 406  # Not Acceptable
 
     def __init__(self, wrong_source):

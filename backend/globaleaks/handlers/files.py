@@ -58,7 +58,7 @@ def get_itip_id_by_wbtip_id(store, wbtip_id):
 # This is different from FileInstance, just because there are a different authentication requirements
 class FileAdd(BaseHandler):
     """
-    WhistleBlower interface for upload a new file in an already completed submission
+    WhistleBlower interface to upload a new file for an already completed submission
     """
     check_roles = 'whistleblower'
     handler_exec_time_threshold = 3600
@@ -104,7 +104,7 @@ class FileAdd(BaseHandler):
 
 class FileInstance(BaseHandler):
     """
-    WhistleBlower interface for upload a new file in a not yet completed submission
+    WhistleBlower interface to upload a new file for an yet to be completed submission
     """
     handler_exec_time_threshold = 3600
     check_roles = 'unauthenticated'
