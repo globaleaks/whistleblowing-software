@@ -33,7 +33,8 @@ npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
 
-  sudo apt-get install -y python-coverage python-coveralls
+  pip install coveralls==1.0b1
+  sudo apt-get install -y python-coverage
 
   echo "Running backend unit tests"
   setupDependencies
