@@ -25,7 +25,7 @@ class TestGLApiCache(helpers.TestGL):
         self.assertTrue("en" in GLApiCache.memory_cache_dict['passante_di_professione'])
         self.assertEqual(GLApiCache.get("passante_di_professione", "it"), 'ititit')
         self.assertEqual(GLApiCache.get("passante_di_professione", "en"), 'enenen')
-        GLApiCache.invalidate("passante_di_professione")
+        GLApiCache.invalidate()
         self.assertEqual(GLApiCache.memory_cache_dict, {})
 
 
@@ -34,17 +34,12 @@ class TestCacheWithHandlers(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_handler_cache_hit(self):
-        GLApiCache.invalidate('public')
+        GLApiCache.invalidate()
+
         handler = self.request()
         response = yield handler.get()
 
         self.assertEqual(len(GLApiCache.memory_cache_dict), 1)
 
-        GLApiCache.get("public")
+        GLApiCache.get("public", 'en')
         # TODO assert that the cache is placed. 
-
-    @inlineCallbacks
-    def test_handler_cache_miss(self):
-        # TODO assert that when an async get is fired the cache is filled
-        # also assert that when a sync response fills the cache fills it
-        pass
