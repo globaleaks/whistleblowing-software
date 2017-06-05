@@ -35,25 +35,6 @@ class TestStatsCollection(helpers.TestHandler):
             self.assertEqual(len(response), 3)
             self.assertEqual(len(response['heatmap']), 7 * 24)
 
-    @inlineCallbacks
-    def test_delete(self):
-        self.pollute_events_and_perform_synthesis(10)
-
-        yield AnomaliesSchedule().run()
-        yield StatisticsSchedule().run()
-
-        # be sure that Stats is populated
-        count = yield self.get_stats_count()
-        self.assertEqual(count, 1)
-
-        # delete stats
-        handler = self.request({}, role='admin')
-        yield handler.delete()
-
-        # verify that stats are now empty
-        count = yield self.get_stats_count()
-        self.assertEqual(count, 0)
-
 
 class TestAnomalyCollection(helpers.TestHandler):
     _handler = statistics.AnomalyCollection
