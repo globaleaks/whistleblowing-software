@@ -68,7 +68,7 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
-  sudo apt-get install -y pylint
+  pip install pylint==1.6.5
 
   setupDependencies
 
