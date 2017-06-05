@@ -68,28 +68,9 @@ class TestAnomalyCollection(helpers.TestHandler):
         handler = self.request({}, role='admin')
         response = yield handler.get()
 
-    @inlineCallbacks
-    def test_delete(self):
-        self.pollute_events_and_perform_synthesis(10)
-
-        yield AnomaliesSchedule().run()
-        yield StatisticsSchedule().run()
-
         # be sure that AnomalyHistory is populated
-        handler = self.request({}, role='admin')
-        response = yield handler.get()
         self.assertTrue(isinstance(response, list))
         self.assertEqual(len(response), 1)
-
-        # delete stats
-        handler = self.request({}, role='admin')
-        yield handler.delete()
-
-        # test that AnomalyHistory is not populated anymore
-        handler = self.request({}, role='admin')
-        response = yield handler.get()
-        self.assertTrue(isinstance(response, list))
-        self.assertEqual(len(response), 0)
 
 
 class TestRecentEventsCollection(helpers.TestHandler):

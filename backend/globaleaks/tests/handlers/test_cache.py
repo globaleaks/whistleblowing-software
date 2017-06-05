@@ -3,6 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
+from globaleaks.handlers import public
 from globaleaks.tests import helpers
 
 

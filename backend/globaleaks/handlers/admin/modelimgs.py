@@ -52,7 +52,9 @@ class ModelImgInstance(BaseHandler):
         if uploaded_file is None:
             return
 
-        # pylint: disable=assingment-from-no-return
+        # The error is suppressed here because add_model_img is wrapped with a
+        # transact returns a deferred which we attach events to.
+        # pylint: disable=assignment-from-no-return
         d = add_model_img(model_map[obj_key], obj_id, uploaded_file['body'].read())
         d.addBoth(lambda ignore: uploaded_file['body'].close)
         return d
