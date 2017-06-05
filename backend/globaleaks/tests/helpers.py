@@ -665,7 +665,7 @@ class TestHandler(TestGLWithPopulatedDB):
         # we need to reset GLApiCache to keep each test independent
         GLApiCache.invalidate()
 
-    def request(self, jbody=None, user_id=None, role=None, headers=None, body='',
+    def request(self, jbody=None, user_id=None, role=None, headers=None, body='', path=None,
                 remote_ip='0.0.0.0', method='MOCK', handler_cls=None, attached_file={}, kwargs={}):
         """
         Constructs a handler for preforming mock requests using the bag of params described below.
@@ -721,6 +721,11 @@ class TestHandler(TestGLWithPopulatedDB):
         if headers is not None:
             for k, v in headers.iteritems():
                 request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
+
+        if path is not None:
+            if not path.startswith('/'):
+                raise ValueError('Must pass a valid url path')
+            request.path = path
 
         class fakeBody(object):
             def read(self):
