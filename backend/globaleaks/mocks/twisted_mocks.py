@@ -9,7 +9,6 @@ from twisted.web.client import HTTPPageGetter
 from twisted.web.http import HTTPChannel, HTTPFactory, Request
 
 from globaleaks.settings import GLSettings
-from globaleaks.security import GLSecureTemporaryFile
 
 
 HTTPFactory__init__orig = HTTPFactory.__init__
@@ -17,10 +16,7 @@ Request__write__orig = Request.write
 
 
 def mock_Request_gotLength(self, length):
-    if length is not None and length < 100000:
-        self.content = StringIO()
-    else:
-        self.content = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
+    self.content = StringIO()
 
 
 def mock_Request_write(self, chunk):
