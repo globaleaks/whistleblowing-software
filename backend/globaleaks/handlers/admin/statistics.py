@@ -114,12 +114,6 @@ def get_stats(store, week_delta):
 
 
 @transact
-def delete_weekstats_history(store):
-    store.find(Stats).remove()
-    return []
-
-
-@transact
 def get_anomaly_history(store, limit):
     anomalies = store.find(Anomalies).order_by(Desc(Anomalies.date))[:limit]
 
@@ -138,13 +132,6 @@ def get_anomaly_history(store, limit):
         anomaly_history.append(anomaly_entry)
 
     return anomaly_history
-
-
-@transact
-def delete_anomaly_history(store):
-    store.find(Anomalies).remove()
-
-    return []
 
 
 class AnomalyCollection(BaseHandler):
@@ -171,10 +158,6 @@ class StatsCollection(BaseHandler):
             log.debug("Asking statistics for current week")
 
         return get_stats(week_delta)
-
-    def delete(self):
-        log.info("Received statistic history delete command")
-        return delete_weekstats_history()
 
 
 class RecentEventsCollection(BaseHandler):
