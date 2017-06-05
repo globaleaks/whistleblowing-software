@@ -19,11 +19,8 @@ class GLApiCache(object):
         cls.memory_cache_dict[resource][language] = value
 
     @classmethod
-    def invalidate(cls, resource=None):
-        if resource is None:
-            cls.memory_cache_dict = {}
-        else:
-            cls.memory_cache_dict.pop(resource, None)
+    def invalidate(cls):
+        cls.memory_cache_dict.clear()
 
 
 def decorator_cache_get(f):
@@ -46,7 +43,7 @@ def decorator_cache_get(f):
 
 def decorator_cache_invalidate(f):
     def wrapper(self, *args, **kwargs):
-        GLApiCache.invalidate(self.request.path)
+        GLApiCache.invalidate()
         return f(self, *args, **kwargs)
 
     return wrapper
