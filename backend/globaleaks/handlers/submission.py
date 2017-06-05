@@ -414,3 +414,5 @@ class SubmissionInstance(BaseHandler):
 
         # Delete the token only when a valid submission has been stored in the DB
         TokenList.delete(token_id)
+
+        return submission

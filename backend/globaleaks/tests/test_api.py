@@ -10,7 +10,9 @@ class TestAPI(TestGL):
             check_roles = getattr(spec[1], 'check_roles')
             self.assertIsNotNone(check_roles)
 
-            check_roles = re.split("[ ,]", check_roles)
+            if type(check_roles) == str:
+                check_roles = {check_roles}
+
             self.assertTrue(len(check_roles) >= 1)
             self.assertTrue('*' not in check_roles or len(check_roles) == 1)
             self.assertTrue('unauthenticated' not in check_roles or len(check_roles) == 1)
