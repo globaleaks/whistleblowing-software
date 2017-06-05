@@ -131,6 +131,8 @@ class TestToken(helpers.TestGL):
         for i in range(100):
             Token('submission')
 
+        self.assertTrue(len(TokenList) == 100)
+
         self.test_reactor.advance(TokenList.get_timeout()+1)
 
         self.assertTrue(len(TokenList) == 0)

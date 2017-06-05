@@ -8,7 +8,7 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
-# and here, our protagonist character:
+# eccolo quel grand genio del mio amico
 
 
 class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
