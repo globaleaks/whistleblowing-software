@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks import handlers
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
+from globaleaks.rest.apicache import GLApiCache, decorator_cache_get
 from globaleaks.handlers import public
 from globaleaks.tests import helpers
 
@@ -29,17 +30,57 @@ class TestGLApiCache(helpers.TestGL):
         self.assertEqual(GLApiCache.memory_cache_dict, {})
 
 
-class TestCacheWithHandlers(helpers.TestHandlerWithPopulatedDB):
+class TestCacheWithHandlers(helpers.TestHandler):
     _handler = public.PublicResource
 
     @inlineCallbacks
     def test_handler_cache_hit(self):
         GLApiCache.invalidate()
 
-        handler = self.request()
-        response = yield handler.get()
+        handler = self.request(path='/public')
+        resp = yield handler.get()
 
         self.assertEqual(len(GLApiCache.memory_cache_dict), 1)
 
-        GLApiCache.get("public", 'en')
-        # TODO assert that the cache is placed. 
+        cached_resp = GLApiCache.get("/public", "en")
+
+        second_resp = yield handler.get()
+        self.assertEqual(resp, cached_resp)
+        self.assertEqual(resp, second_resp)
+
+        # Check that a different language doesn't blow away a different resource
+        handler_fr = self.request(path='/public', headers={'gl-language': 'fr'})
+        self.maxDiff = None
+        resp_fr = yield handler_fr.get()
+        cached_resp_fr = GLApiCache.get("/public", "fr")
+
+        self.assertEqual(resp_fr, cached_resp_fr)
+
+
+        s = reduce(lambda x, y: x+len(y), GLApiCache.memory_cache_dict.values(), 0)
+
+        self.assertEqual(s, 2)
+        self.assertNotEqual(resp_fr, cached_resp)
+
+    def test_handler_sync_cache_miss(self):
+        # Asserts that the cases where the result of f returns immediately,
+        # the caching implementation does not fall over and die.
+        GLApiCache.invalidate()
+
+        p = '/fake/sync/res'
+        handler = self.request(handler_cls=FakeSyncHandler, path=p)
+        resp = handler.get()
+
+        cached_resp = GLApiCache.get(p, "en")
+
+        second_resp = handler.get()
+        self.assertEqual(resp, cached_resp)
+        self.assertEqual(resp, second_resp)
+
+
+class FakeSyncHandler(handlers.base.BaseHandler):
+    check_roles='*'
+
+    @decorator_cache_get
+    def get(self):
+        return {'meta': 'fa paura'}

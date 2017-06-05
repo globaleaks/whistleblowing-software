@@ -25,16 +25,18 @@ class GLApiCache(object):
 
 def decorator_cache_get(f):
     def wrapper(self, *args, **kwargs):
-        c = GLApiCache.get(self.request.path, 'en')
+        c = GLApiCache.get(self.request.path, self.request.language)
         if c is None:
             c = f(self, *args, **kwargs)
             if isinstance(c, defer.Deferred):
                 def callback(data):
-                    GLApiCache.set(self.request.path, 'en', data)
+                    GLApiCache.set(self.request.path, self.request.language, data)
 
                     return data
 
                 c.addCallback(callback)
+            else:
+                GLApiCache.set(self.request.path, self.request.language, c)
 
         return c
 
