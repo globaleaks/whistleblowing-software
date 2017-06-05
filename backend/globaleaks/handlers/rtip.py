@@ -581,7 +581,7 @@ class WhistleblowerFileInstanceHandler(BaseHandler):
 
         directory_traversal_check(GLSettings.submission_path, filelocation)
 
-        self.force_file_download(wbfile['name'], filelocation)
+        yield self.force_file_download(wbfile['name'], filelocation)
 
 
 class RTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
@@ -633,7 +633,7 @@ class ReceiverFileDownload(BaseHandler):
 
         directory_traversal_check(GLSettings.submission_path, filelocation)
 
-        self.force_file_download(rfile['name'], filelocation)
+        yield self.force_file_download(rfile['name'], filelocation)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
