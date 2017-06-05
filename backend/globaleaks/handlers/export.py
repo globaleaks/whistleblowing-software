@@ -7,7 +7,7 @@
 import copy
 
 from storm.expr import In
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
@@ -78,11 +78,13 @@ class ZipStreamProducer(object):
         """
         Initialize the instance.
         """
+        self.finish = Deferred()
         self.handler = handler
         self.zipstreamObject = zipstreamObject
 
     def start(self):
         self.handler.request.registerProducer(self, False)
+        return self.finish
 
     def resumeProducing(self):
         try:
@@ -92,7 +94,6 @@ class ZipStreamProducer(object):
             data = self.zip_chunk()
             if data:
                 self.handler.write(data)
-                self.handler.flush()
             else:
                 self.stopProducing()
         except:
@@ -101,8 +102,9 @@ class ZipStreamProducer(object):
 
     def stopProducing(self):
         self.handler.request.unregisterProducer()
-        self.handler.finish()
+        self.handler.request.finish()
         self.handler = None
+        self.finish.callback(None)
 
     def zip_chunk(self):
         chunk = []
@@ -132,4 +134,4 @@ class ExportHandler(BaseHandler):
 
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
-        ZipStreamProducer(self, self.zip_stream).start()
+        yield ZipStreamProducer(self, self.zip_stream).start()

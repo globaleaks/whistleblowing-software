@@ -42,10 +42,11 @@ import shutil
 
 from datetime import timedelta
 
-from twisted.web.test.requesthelper import DummyChannel
+from twisted.web.test.requesthelper import DummyRequest
 from twisted.internet import threads, defer, task
 from twisted.internet.address import IPv4Address
 from twisted.internet.defer import inlineCallbacks
+from twisted.test.proto_helpers import StringTransport
 from twisted.trial import unittest
 from twisted.web import server
 from storm.twisted.testing import FakeThreadPool
@@ -710,7 +711,14 @@ class TestHandler(TestGLWithPopulatedDB):
         if handler_cls is None:
             handler_cls = self._handler
 
-        request = server.Request(DummyChannel(), False)
+        request = DummyRequest([''])
+
+        def getResponseBody():
+            return ''.join(request.written)
+
+        request.path = ''
+        request.code = 200
+        request.getResponseBody = getResponseBody
 
         request.client = IPv4Address('TCP', '1.2.3.4', 12345)
 

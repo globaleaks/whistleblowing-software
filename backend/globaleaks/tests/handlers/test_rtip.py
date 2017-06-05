@@ -242,6 +242,7 @@ class TestReceiverFileDownload(helpers.TestHandlerWithPopulatedDB):
             for rfile_desc in rfiles_desc:
                 handler = self.request(role='receiver', user_id = rtip_desc['receiver_id'])
                 yield handler.get(rfile_desc['id'])
+                self.assertNotEqual(handler.request.getResponseBody(), '')
 
 
 class TestIdentityAccessRequestsCollection(helpers.TestHandlerWithPopulatedDB):

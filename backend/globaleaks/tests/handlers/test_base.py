@@ -137,8 +137,8 @@ class TestStaticFileHandler(helpers.TestHandler):
     @inlineCallbacks
     def test_get_existent(self):
         handler = self.request(kwargs={'path': GLSettings.client_path})
-        resp = yield handler.get('')
-        self.assertTrue(resp.startswith('<!doctype html>'))
+        yield handler.get('')
+        self.assertTrue(handler.request.getResponseBody().startswith('<!doctype html>'))
 
     @inlineCallbacks
     def test_get_unexistent(self):

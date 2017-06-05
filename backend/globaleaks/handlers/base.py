@@ -123,7 +123,7 @@ class StaticFileProducer(object):
             data = self.fileObject.read(self.bufferSize)
             if data:
                 self.bytesWritten += len(data)
-                self.handler.request.write(data)
+                self.handler.write(data)
 
             if self.bytesWritten == self.fileSize:
                 self.stopProducing()
