@@ -732,10 +732,11 @@ class TestHandler(TestGLWithPopulatedDB):
         request.content = fakeBody()
 
         from globaleaks.rest.api import decorate_method
-        if not handler_cls.decorated:
+        if not getattr(handler_cls, 'decorated', False):
             for method in ['get', 'post', 'put', 'delete']:
                 if getattr(handler_cls, method, None) is not None:
                     decorate_method(handler_cls, method)
+                    handler_cls.decorated = True
 
         handler = handler_cls(request, **kwargs)
 
