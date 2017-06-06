@@ -128,6 +128,8 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
         yield handler.get()
         self.assertFalse(handler.client_using_tor)
 
+        GLSettings.state.tor_exit_set.clear()
+
 
 class TestStaticFileHandler(helpers.TestHandler):
     _handler = StaticFileHandler
