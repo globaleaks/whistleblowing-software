@@ -268,6 +268,7 @@ class APIResourceWrapper(Resource):
         return NOT_DONE_YET
 
     def render_GET(self, request):
+        request.setReponseCode(200)
         return self.render(self, request)
 
     def render_PUT(self, request):
