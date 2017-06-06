@@ -5,6 +5,11 @@ from globaleaks.jobs.exit_nodes_refresh_sched import ExitNodesRefreshSchedule
 from globaleaks.tests import helpers
 
 class TestExitNodesRefresh(helpers.TestGL):
+    def setUp(self):
+        GLSettings.state.tor_exit_set.clear()
+
+    def tearDown(self):
+        GLSettings.state.tor_exit_set.clear()
 
     @inlineCallbacks
     def test_refresh_works(self):
