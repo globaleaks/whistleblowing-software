@@ -12,17 +12,25 @@
   <i class="glyphicon glyphicon-alert"></i>
   <span data-translate>The connection to the domain name failed.</span>
 </div>
-<form class="row" data-ng-if="showHostnameSetter" data-ng-controller="AdminNetFormController">
-  <div class="form-group col-sm-4" data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
-    <label data-translate>Hostname</label>
-    <input class="form-control input-group" name="hostname" type="text" data-ng-model="admin.node.hostname" data-ng-pattern="hostname_regexp"></input>
+<form class="row" data-ng-if="showHostnameSetter" data-ng-controller="AdminNetFormCtrl" novalidate>
+  <div class="col-sm-9" >
+    <span class="input-group">
+      <span class="input-group-addon" data-translate>Hostname</span>
+      <input class="form-control" type="text"
+        data-ng-model="admin.node.hostname"
+        data-ng-pattern="hostname_regexp"
+        data-ng-class="{'has-error': adminNetForm.hostname.$error.pattern}">
+      </input>
+      <span class="input-group-btn">
+        <button class="btn btn-success" data-ng-disabled="adminNetForm.$invalid" data-ng-click="updateHostname()">
+          <i class="glyphicon glyphicon-ok"></i>
+          <span data-translate>Verify and Save</span>
+        </button>
+      </span>
+    </span>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
       <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
     </p>
-    <button class="btn btn-success" data-ng-disabled="adminNetForm.$invalid" data-ng-click="updateHostname()">
-      <i class="glyphicon glyphicon-ok"></i>
-      <span data-translate>Verify and Save</span>
-    </button>
   </div>
 </form>
 <div class="row" data-ng-hide="admin.node.hostname === '' || showHostnameSetter">
