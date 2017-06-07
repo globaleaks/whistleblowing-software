@@ -21,15 +21,7 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
   }
 }]).
 controller('AdminNetFormCtrl', ['$scope', function($scope) {
-  // Scoped for future use.
-  $scope.updateHostname = function() {
-    $scope.Utils.update($scope.admin.node, function() {
-      console.log('suceeded');
-    }, function() {
-      console.log('failed');
-    })
-    $scope.showHostnameSetter = false;
-  }
+
 }]).
 controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
   function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
@@ -42,20 +34,30 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     $scope.menuState = state;
   };
 
+  // Scoped for future use.
+  $scope.updateHostname = function() {
+    return $scope.Utils.update($scope.admin.node, function() {
+      $scope.showHostnameSetter = false;
+    });
+  }
+
   $scope.parseTLSConfig = function(tlsConfig) {
     $scope.tls_config = tlsConfig;
 
-    if (!tlsConfig.files.priv_key.set) {
-      $scope.state = 0;
-    } else if (tlsConfig.files.priv_key.set) {
-      $scope.state = 1;
-    } else if (!tlsConfig.files.cert.set) {
-      $scope.state = 2
-    } else if (!tlsConfig.files.chain.set) {
-      $scope.state = 3;
-    } else {
-      $scope.state = 4;
+    var t = 0;
+    if (tlsConfig.files.priv_key.set) {
+      t = 1;
     }
+    if (tlsConfig.files.cert.set) {
+      t = 2
+    }
+    if (tlsConfig.files.chain.set) {
+      t = 3;
+    }
+    if (tlsConfg.enabled) {
+      t = -1;
+    }
+    $scope.state = t
 
     // Determine which window we need to show
     var choice = 'setup';
@@ -178,19 +180,22 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
       p = $scope.tls_config.$disable();
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
-      $uibModal.open({
-        backdrop: 'static',
-        keyboad: false,
-        templateUrl: '/views/admin/network/redirect_to_https.html',
-        controller: 'redirectHTTPSCtrl',
-        resolve: {
-          https_url: function() { return go_url },
-        },
+
+      p = $scope.tls_config.$enable().then(function() {
+        return $uibModal.open({
+          backdrop: 'static',
+          keyboad: false,
+          templateUrl: '/views/admin/network/redirect_to_https.html',
+          controller: 'safeRedirectModalCtrl',
+          resolve: {
+            https_url: function() { return go_url },
+          },
+        });
+      }, function(err) {
+        console.log('something broke', err);
+
       });
-
-      p = $scope.tls_config.$enable();
     }
-
     return p.then(refreshConfig);
   };
 
@@ -216,9 +221,18 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     $scope.tls_config.$delete().promise.then(refreshConfig);
   }
 }])
-.controller('redirectHTTPSCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-    console.log($scope);
-    $timeout(function() {
-      location.reload();
-    }, 30000);
+.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
+    console.log('landed in modal ctrl', $scope);
+    $scope.state = '1';
+    var p = $http({
+        method: 'GET',
+        //url: 'https://' + $scope.admin.node.hostname + '/robots.txt',
+    }).then(function() { // Succeeded
+        $scope.state = '2';
+        $timeout(function() {
+          location.reload();
+        }, 15000);
+    }, function() { // Failed
+        $scope.state = '3';
+    });
 }]);
