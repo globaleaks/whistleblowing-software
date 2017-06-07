@@ -21,6 +21,7 @@ class TestToken(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGL.setUp(self)
+        TokenList.clear()
 
         self.pollute_events()
         yield Alarm.compute_activity_level()
