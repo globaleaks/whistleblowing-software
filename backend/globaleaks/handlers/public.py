@@ -145,11 +145,6 @@ def serialize_context(store, context, language, data=None):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    if data is None:
-        data = db_prepare_contexts_serialization(store, [context])
-
-    receivers = [rc.receiver_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id)]
-
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
@@ -168,8 +163,8 @@ def serialize_context(store, context, language, data=None):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
-        'receivers': receivers,
-        'picture': context.picture.data if context.picture is not None else ''
+        'receivers': data['receivers'][context.id],
+        'picture': data['imgs'][context.id]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -327,17 +322,17 @@ def serialize_receiver(store, receiver, language, data=None):
     if data is None:
         data = db_prepare_receivers_serialization(store, [receiver])
 
-    contexts = [rc.context_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id)]
+    user = data['users'][receiver.id]
 
     ret_dict = {
         'id': receiver.id,
-        'name': receiver.user.public_name,
+        'name': user.public_name,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
-        'state': receiver.user.state,
+        'state': user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
-        'contexts': contexts,
-        'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
+        'contexts': data['contexts'][receiver.id],
+        'picture': data['imgs'][receiver.id]
     }
 
     # description and eventually other localized strings should be taken from user model
