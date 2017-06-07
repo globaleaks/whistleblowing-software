@@ -20,7 +20,7 @@ def mock_Request_gotLength(self, length):
 
 
 def mock_Request_write(self, chunk):
-    if (isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType)):
+    if isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType):
         chunk = json.dumps(chunk)
         self.setHeader(b'content-type', b'application/json')
 

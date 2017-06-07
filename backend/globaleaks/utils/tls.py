@@ -164,8 +164,8 @@ class CtxValidator(object):
             self._validate_parents(cfg, ctx)
             self._validate(cfg, ctx)
         except Exception as err:
-            return (False, err)
-        return (True, None)
+            return False, err
+        return True, None
 
 
 class PrivKeyValidator(CtxValidator):

@@ -39,8 +39,6 @@ def pre_listen_startup():
     if GLSettings.devel_mode:
         mask = 9000
 
-    address = GLSettings.bind_address
-
     GLSettings.http_socks = []
     for port in GLSettings.bind_ports:
         port = port+mask if port < 1024 else port

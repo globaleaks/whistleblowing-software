@@ -24,9 +24,9 @@ def get_db_file(db_path):
         file_name = 'glbackend-%d.db' % i
         db_file_path = os.path.join(db_path, file_name)
         if os.path.exists(db_file_path):
-            return (i, db_file_path)
+            return i, db_file_path
 
-    return (0, '')
+    return 0, ''
 
 
 def db_create_tables(store):

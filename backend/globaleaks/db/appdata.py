@@ -85,11 +85,11 @@ def update_appdata(store):
 
 
 def db_fix_fields_attrs(store):
-    '''
+    """
     Ensures that the current store and the field_attrs.json file correspond.
     The content of the field_attrs dict is used to add and remove all of the
     excepted forms of field_attrs for FieldAttrs in the db.
-    '''
+    """
 
     # Load the field attributes descriptors
     field_attrs = {}

@@ -17,9 +17,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date,
 
 
 class FileResource(object):
-    '''
+    """
     An interface for interacting with files stored on disk or in the db
-    '''
+    """
     @classmethod
     @transact
     def create_file(store, content):
@@ -32,9 +32,9 @@ class FileResource(object):
     @staticmethod
     @transact
     def get_file(store):
-        '''
+        """
         :rtype: A `unicode` string
-        '''
+        """
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -49,9 +49,9 @@ class FileResource(object):
 
     @staticmethod
     def db_serialize(store):
-        '''
+        """
         :rtype: A `dict` to be converted into JSON for delivery to a client
-        '''
+        """
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -374,9 +374,9 @@ class ConfigHandler(BaseHandler):
     @BaseHandler.https_enabled
     @inlineCallbacks
     def put(self):
-        '''
+        """
         Disables HTTPS config and shutdown subprocesses.
-        '''
+        """
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
         yield GLSettings.state.process_supervisor.shutdown()

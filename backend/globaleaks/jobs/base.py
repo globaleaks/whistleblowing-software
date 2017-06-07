@@ -135,4 +135,4 @@ class GLJobsMonitor(GLJob):
                 log.err(error)
 
         if error_msg != "":
-            send_exception_email(error)
+            send_exception_email(error_msg)

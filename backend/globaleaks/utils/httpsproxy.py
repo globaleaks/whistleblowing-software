@@ -116,7 +116,7 @@ class HTTPStreamProxyRequest(http.Request):
         if accept_encoding is not None and 'gzip' in accept_encoding:
             self.gzip = True
 
-	prod = None
+        prod = None
         content_length = self.getHeader('Content-Length')
         if content_length is not None:
             hdrs.removeHeader('Content-Length')
