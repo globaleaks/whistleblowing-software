@@ -72,10 +72,16 @@ public_resources.forEach(function(req){
 
           validate_mandatory_headers(res.headers);
 
+          /*
+
+          TODO Maybe implement some validation of the format?
+
           if (req['type'] === 'application/json') {
-            // TODO JSON FORMAT VALIDATION
             // https://npmjs.org/package/jsonschema
           }
+
+          */
+
           done();
         }
       });
@@ -94,8 +100,6 @@ public_resources.forEach(function(req){
           return done(err);
         } else {
           validate_mandatory_headers(res.headers);
-
-          if (req['type'] === 'application/json') { }
           done();
         }
       });
@@ -114,8 +118,6 @@ public_resources.forEach(function(req){
           return done(err);
         } else {
           validate_mandatory_headers(res.headers);
-
-          if (req['type'] === 'application/json') { }
           done();
         }
       });
@@ -134,8 +136,6 @@ public_resources.forEach(function(req){
           return done(err);
         } else {
           validate_mandatory_headers(res.headers);
-
-          if (req['type'] === 'application/json') { }
           done();
         }
       });
