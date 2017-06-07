@@ -203,33 +203,6 @@ class BaseHandler(object):
         self.request.language = language
         self.request.setHeader('Content-Language', language)
 
-        self.set_default_headers()
-
-    def set_default_headers(self):
-        # to avoid version attacks
-        self.request.setHeader("Server", "Globaleaks")
-
-        # to reduce possibility for XSS attacks.
-        self.request.setHeader("X-Content-Type-Options", "nosniff")
-        self.request.setHeader("X-XSS-Protection", "1; mode=block")
-
-        # to disable caching
-        self.request.setHeader("Cache-control", "no-cache, no-store, must-revalidate")
-        self.request.setHeader("Pragma", "no-cache")
-        self.request.setHeader("Expires", "-1")
-
-        # to avoid information leakage via referrer
-        self.request.setHeader("Referrer-Policy", "no-referrer")
-
-        # to avoid Robots spidering, indexing, caching
-        if not GLSettings.memory_copy.allow_indexing:
-            self.request.setHeader("X-Robots-Tag", "noindex")
-
-        # to mitigate clickjaking attacks on iframes allowing only same origin
-        # same origin is needed in order to include svg and other html <object>
-        if not GLSettings.memory_copy.allow_iframes_inclusion:
-            self.request.setHeader("X-Frame-Options", "sameorigin")
-
     def write(self, chunk):
         self.request.write(chunk)
 

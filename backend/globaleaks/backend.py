@@ -61,7 +61,9 @@ def pre_listen_startup():
     GLSettings.check_directories()
 
 def timedLogFormatter(timestamp, request):
-    duration = round((datetime.now() - request.start_time).microseconds / 1000, 4)
+    duration = -1
+    if hasattr(request, 'start_time'):
+        duration = round((datetime.now() - request.start_time).microseconds / 1000, 4)
 
     line = (u'%(code)s %(method)s %(uri)s %(length)s %(duration)dms' % dict(
               duration=duration,
