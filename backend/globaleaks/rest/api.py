@@ -11,6 +11,7 @@ from urlparse import parse_qs
 from twisted.internet import reactor, defer
 from twisted.web.resource import Resource, NoResource
 from twisted.web.server import NOT_DONE_YET
+from twisted.python.failure import Failure
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
@@ -44,6 +45,7 @@ from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import randbits
+from globaleaks.utils.mailutils import extract_exception_traceback_and_send_email
 
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
@@ -141,7 +143,7 @@ api_spec = [
     (r'/s/(.+)', base.StaticFileHandler, {'path': GLSettings.static_path}),
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', l10n.L10NHandler),
 
-    ## This Handler should remain the last one as it works like a last resort catch 'em all
+    ## This handler attempts to route all non routed get requests
     (r'/([a-zA-Z0-9_\-\/\.]*)', base.StaticFileHandler, {'path': GLSettings.client_path})
 ]
 
@@ -178,7 +180,7 @@ class APIResourceWrapper(Resource):
         decorated_handlers = set()
 
         for tup in api_spec:
-            args = None
+            args = {}
             if len(tup) == 2:
                 pattern, handler = tup
             else:
@@ -199,72 +201,94 @@ class APIResourceWrapper(Resource):
             self._registry.append((re.compile(pattern), handler, args))
 
     def handle_exception(self, e, request):
-        handle = False
+        """
+        handle_exception is a callback that decorators all deferreds in render
+
+        It responds to properly handled GL Exceptions by pushing the error msgs
+        to the client and it spools a mail in the case the exception is unknown
+        and unhandled.
+
+        @param e: A `Twisted.python.Failure` instance that wraps a `GLException`
+                  or a normal `Exception`
+        @param request: The `twisted.web.Request`
+        """
         if isinstance(e, errors.GLException):
-            handle = True
+            pass
         elif isinstance(e.value, errors.GLException):
             e = e.value
-            handle = True
+        else:
+            # TODO(evilaliv3) defer extract_and_email
+            extract_exception_traceback_and_send_email(e)
+            e = errors.InternalServerError('Unexpected')
 
-        if handle:
-            request.setResponseCode(e.status_code)
-
-            request.write({
-                'error_message': e.reason,
-                'error_code': e.error_code,
-                'arguments': getattr(e, 'arguments', [])
-            })
+        request.setResponseCode(e.status_code)
+        request.write({
+            'error_message': e.reason,
+            'error_code': e.error_code,
+            'arguments': getattr(e, 'arguments', [])
+        })
 
     def render(self, request):
-        request_finished = [False]
+        """
+        @param request: `twisted.web.Request`
 
+        @return: empty `str` or `NOT_DONE_YET`
+        """
+
+        self.set_default_headers(request)
+
+        request_finished = [False]
         def _finish(_):
             request_finished[0] = True
 
         request.notifyFinish().addBoth(_finish)
 
-        method = request.method.lower()
-
-        if method not in ['get', 'post', 'put', 'delete']:
-            self.handle_exception(errors.MethodNotImplemented(), request)
-            return NOT_DONE_YET
-
+        match = None
         for regexp, handler, args in self._registry:
             match = regexp.match(request.path)
-            if not match:
-                continue
+            if match:
+                break
 
-            if args is None:
-                args = {}
+        if match is None:
+            self.handle_exception(errors.ResourceNotFound(), request)
+            return b''
 
-            groups = [unicode(g) for g in match.groups()]
+        method = request.method.lower()
+        if not method in ['get', 'post', 'put', 'delete'] or not hasattr(handler, method):
+            self.handle_exception(errors.MethodNotImplemented(), request)
+            return b''
 
-            h = handler(request, **args)
+        f = getattr(handler, method)
 
-            f = getattr(h, method, None)
+        groups = [unicode(g) for g in match.groups()]
+        h = handler(request, **args)
+        d = defer.maybeDeferred(f, h, *groups)
 
-            if f is None:
-                self.handle_exception(errors.MethodNotImplemented(), request)
-                return ''
+        @defer.inlineCallbacks
+        def concludeHandlerFailure(err):
+            yield h.execution_check()
 
-            d = defer.maybeDeferred(f, *groups)
+            self.handle_exception(err, request)
 
-            @defer.inlineCallbacks
-            def both(ret):
-                yield h.execution_check()
+            if not request_finished[0]:
+                request.finish()
 
-                if ret is not None:
-                    h.write(ret)
+        @defer.inlineCallbacks
+        def concludeHandlerSuccess(ret):
+            """Concludes successful execution of a `BaseHandler` instance
 
-                if not request_finished[0]:
-                    request.finish()
+            @param ret: A `dict`, `str`, `None` or something unexpected
+            """
+            yield h.execution_check()
 
-            d.addErrback(self.handle_exception, request)
-            d.addBoth(both)
-            return NOT_DONE_YET
+            if not ret is None:
+                h.write(ret)
 
-        self.handle_exception(errors.ResourceNotFound(), request)
+            if not request_finished[0]:
+                request.finish()
 
+        d.addErrback(concludeHandlerFailure)
+        d.addCallback(concludeHandlerSuccess)
         return NOT_DONE_YET
 
     def render_GET(self, request):
@@ -278,3 +302,31 @@ class APIResourceWrapper(Resource):
     def render_POST(self, request):
         request.setReponseCode(201)
         return self.render(self, request)
+
+    @staticmethod
+    def set_default_headers(request):
+        # to avoid version attacks
+        request.setHeader("Server", "Globaleaks")
+
+        # to reduce possibility for XSS attacks.
+        request.setHeader("X-Content-Type-Options", "nosniff")
+        request.setHeader("X-XSS-Protection", "1; mode=block")
+
+        # to disable caching
+        request.setHeader("Cache-control", "no-cache, no-store, must-revalidate")
+        request.setHeader("Pragma", "no-cache")
+        request.setHeader("Expires", "-1")
+
+        # to avoid information leakage via referrer
+        request.setHeader("Referrer-Policy", "no-referrer")
+
+        request.setHeader("Connection", "close")
+
+        # to avoid Robots spidering, indexing, caching
+        if not GLSettings.memory_copy.allow_indexing:
+            request.setHeader("X-Robots-Tag", "noindex")
+
+        # to mitigate clickjaking attacks on iframes allowing only same origin
+        # same origin is needed in order to include svg and other html <object>
+        if not GLSettings.memory_copy.allow_iframes_inclusion:
+            request.setHeader("X-Frame-Options", "sameorigin")
