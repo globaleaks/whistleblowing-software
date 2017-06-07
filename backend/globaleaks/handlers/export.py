@@ -53,7 +53,7 @@ def get_tip_export(store, user_id, rtip_id, language):
         rf.downloads += 1
         file_dict = models.serializers.serialize_rfile(rf)
         file_dict['name'] = 'files/' + file_dict['name']
-        export_dict['files'].append(copy.deepcopy(file_dict))
+        export_dict['files'].append(file_dict)
 
     rtips_ids = [rt.id for rt in rtip.internaltip.receivertips]
     wfs = store.find(models.WhistleblowerFile, In(models.WhistleblowerFile.receivertip_id, rtips_ids))
@@ -61,7 +61,7 @@ def get_tip_export(store, user_id, rtip_id, language):
     for wf in wfs:
         file_dict = models.serializers.serialize_wbfile(wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
-        export_dict['files'].append(copy.deepcopy(file_dict))
+        export_dict['files'].append(file_dict)
 
     return export_dict
 
