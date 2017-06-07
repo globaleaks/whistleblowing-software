@@ -70,7 +70,7 @@ def db_prepare_fields_serialization(store, fields):
          ret['options'][f] = []
          ret['triggers'][f] = []
 
-    while(len(fields_ids)):
+    while len(fields_ids):
         fs = store.find(models.Field, In(models.Field.fieldgroup_id, fields_ids))
 
         tmp = []

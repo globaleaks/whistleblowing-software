@@ -42,6 +42,7 @@ class MailGenerator(object):
 
     def serialize_config(self, store, key, language):
         cache_key = key + '-' + language
+        cache_obj = None
 
         if cache_key not in self.cache:
             if key == 'node':
@@ -57,6 +58,7 @@ class MailGenerator(object):
         obj_id = obj.id
 
         cache_key = key + '-' + obj_id + '-' + language
+        cache_obj = None
 
         if cache_key not in self.cache:
             if key == 'tip':

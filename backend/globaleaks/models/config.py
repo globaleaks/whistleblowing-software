@@ -281,9 +281,9 @@ def update_defaults(store):
 
 
 def load_tls_dict(store):
-    '''
+    """
     A quick and dirty function to grab all of the tls config for use in subprocesses
-    '''
+    """
     privFact = PrivateFactory(store)
 
     # /START ssl_* is used here to indicate the quality of the implementation

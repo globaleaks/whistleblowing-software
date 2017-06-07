@@ -482,6 +482,9 @@ class Templating(object):
         return raw_template
 
     def get_mail_subject_and_body(self, data):
+        subject_template = ''
+        body_template = ''
+
         if data['type'] == 'export_template':
             # this is currently the only template not used for mail notifications
             pass

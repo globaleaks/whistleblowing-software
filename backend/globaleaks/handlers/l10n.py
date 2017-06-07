@@ -42,4 +42,4 @@ class L10NHandler(BaseHandler):
     cache_resource = True
 
     def get(self, lang):
-        return get_l10n(self.request.language)
+        return get_l10n(lang)

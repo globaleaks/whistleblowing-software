@@ -33,7 +33,7 @@ HANDLER_EXEC_TIME_THRESHOLD = 30
 GLUploads = {}
 
 class GLSessionsFactory(TempDict):
-  '''Extends TempDict to provide session management functions ontop of temp session keys'''
+  """Extends TempDict to provide session management functions ontop of temp session keys"""
 
   def revoke_all_sessions(self, user_id):
       for other_session in GLSessions.values():
