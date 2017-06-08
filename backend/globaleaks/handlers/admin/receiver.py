@@ -121,6 +121,7 @@ class ReceiversCollection(BaseHandler):
 
 class ReceiverInstance(BaseHandler):
     check_roles = 'admin'
+    invalidate_cache = True
 
     def get(self, receiver_id):
         """
