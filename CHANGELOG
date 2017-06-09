@@ -1,4 +1,12 @@
-Changes in version 2.67.5 - 2017-04-12
+Changes in version 2.67.6 - 2017-06-09
+    o Reimplement minimal REST server removing cyclone dependency
+    o Enforce authentication decorators to be loaded at startup on all REST handlers
+    o Enforce cache decorator to be loaded at startup on all REST handlers
+    o Optimize serialization of objects exposed via /public API
+    o Apply minor style fixes on UI paddings and margins
+    o Move database initialization after daemon startup
+
+Changes in version 2.67.5 - 2017-05-10
     o Implement search based select box for contexts
     o Fix visualization of file upload errors showing just last error
     o Update NPM dependencies
