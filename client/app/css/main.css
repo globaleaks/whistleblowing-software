@@ -27,12 +27,12 @@ body {
 
 .container-fluid {
   width: 95%;
-  padding: 3em;
   margin: 0;
 }
 
 #ContentBox {
-  padding: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 #FooterBox {
@@ -103,10 +103,23 @@ table {
 }
 
 #LogoBox, #TitleBox, #UserBox {
-  margin: 1em;
   z-index: 10;
-  height: 10em;
   width: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 0;
+  padding-right: 1em;
+}
+
+html[dir="rtl"] #LogoBox,
+html[dir="rtl"] #TitleBox,
+html[dir="rtl"] #UserBox  {
+  padding-left: 1em;
+  padding-right: 0;
+}
+
+#LogoBox {
+  height: 14em;
 }
 
 #PageTitle {
