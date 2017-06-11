@@ -171,32 +171,28 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     $scope.choseManCfg = true;
     $scope.setMenu('fileRes');
   }
-
-  $scope.toggleCfg = function() {
-    var p;
-    // TODO these posts send the entire tls_config object.
-    // better for them to be removed.
+$scope.toggleCfg = function() {
+    // TODO these posts send the entire tls_config object. They should be removed.
     if ($scope.tls_config.enabled) {
-      p = $scope.tls_config.$disable();
+      var p = $scope.tls_config.$disable();
+      return p.then(refreshConfig);
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
+      var open_promise = $q.defer();
 
-      p = $scope.tls_config.$enable().then(function() {
-        return $uibModal.open({
-          backdrop: 'static',
-          keyboad: false,
-          templateUrl: '/views/admin/network/redirect_to_https.html',
-          controller: 'safeRedirectModalCtrl',
-          resolve: {
-            https_url: function() { return go_url },
-          },
-        });
-      }, function(err) {
-        console.log('something broke', err);
-
+      $uibModal.open({
+        backdrop: 'static',
+        keyboad: false,
+        templateUrl: '/views/admin/network/redirect_to_https.html',
+        controller: 'safeRedirectModalCtrl',
+        resolve: {
+          https_url: function() { return go_url; },
+          open_promise: function() { return open_promise; },
+        },
       });
+
+      open_promise.then($scope.tls_config.$enable);
     }
-    return p.then(refreshConfig);
   };
 
   $scope.deleteAll = function() {
@@ -222,11 +218,13 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
   }
 }])
 .controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
-    console.log('landed in modal ctrl', $scope);
+    // NOTE this resolves a creation promise for the containing ctrl
+    $scope.$resolve.open_promise.resolve();
+
     $scope.state = '1';
     var p = $http({
         method: 'GET',
-        //url: 'https://' + $scope.admin.node.hostname + '/robots.txt',
+        url: 'https://' + $scope.admin.node.hostname + '/robots.txt',
     }).then(function() { // Succeeded
         $scope.state = '2';
         $timeout(function() {

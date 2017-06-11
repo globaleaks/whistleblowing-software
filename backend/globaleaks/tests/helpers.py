@@ -30,6 +30,7 @@ from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
+from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 from . import TEST_DIR, config as test_config
@@ -39,14 +40,16 @@ import copy
 import json
 import os
 import shutil
+import signal
 
 from cyclone import httpserver
 from cyclone.web import Application
+from storm.twisted.testing import FakeThreadPool
 from twisted.internet import threads, defer, task
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, Deferred
+from twisted.internet.protocol import ProcessProtocol
 from twisted.trial import unittest
 from twisted.test import proto_helpers
-from storm.twisted.testing import FakeThreadPool
 
 
 ## constants
@@ -919,3 +922,17 @@ class MockDict:
             'reachable_via_web': False,
             'anonymize_outgoing_connections': False,
         }
+
+
+class SimpleServerPP(ProcessProtocol):
+    def __init__(self):
+        self.welcome_msg = False
+        self.start_defer = Deferred()
+        process.set_pdeathsig(signal.SIGINT)
+
+    def outReceived(self, data):
+        # When the HTTPServer is ready it will produce a msg which we can hook
+        # the start_defer callback to.
+        if not self.welcome_msg:
+            self.start_defer.callback(None)
+            self.welcome_msg = True

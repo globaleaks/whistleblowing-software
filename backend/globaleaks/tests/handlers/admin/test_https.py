@@ -1,6 +1,8 @@
 import os
-
+import SimpleHTTPServer
 import twisted
+
+from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks
 from OpenSSL import crypto, SSL
 
@@ -269,3 +271,43 @@ class TestAcmeChallResolver(helpers.TestHandler):
         resp = yield handler.get(tok)
 
         self.assertEqual(self.responses[0], v)
+
+class TestAdminTestHostnameHandler(helpers.TestHandler):
+    _handler = https.AdminTestHostnameHandler
+
+    @inlineCallbacks
+    def setUp(self):
+        yield super(TestAdminTestHostnameHandler, self).setUp()
+        self.tmp_hn = GLSettings.memory_copy.hostname
+        GLSettings.memory_copy.hostname = 'localhost:43434'
+
+    @inlineCallbacks
+    def test_post(self):
+        handler = self.request(role='admin')
+
+        # The first request must fail to the non-existent resource
+        yield self.assertFailure(handler.post(), errors.ExternalResourceError)
+
+        # Add a file to the tmp dir
+        with open('./robots.txt', 'w') as f:
+            f.write("User-agent: *\n" +
+                    "Allow: /\n"+
+                    "Sitemap: http://localhost/sitemap.xml")
+
+        # Start the HTTP server proxy requests will be forwarded to.
+        self.pp = helpers.SimpleServerPP()
+        yield reactor.spawnProcess(self.pp, 'python', args=['python', '-m', 'SimpleHTTPServer', '43434'], usePTY=True)
+
+        yield self.pp.start_defer
+
+        yield handler.post()
+
+        # TODO the sub proc startup is dying in strange ways
+        # print(dir(self.pp), dir(self.pp.transport))
+        os.kill(self.pp.transport.pid)
+
+    @inlineCallbacks
+    def tearDown(self):
+        yield super(TestAdminTestHostnameHandler, self).tearDown()
+        self.tmp_hn = GLSettings.memory_copy.hostname
+        GLSettings.memory_copy.hostname = 'localhost'

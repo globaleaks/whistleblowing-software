@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import urlparse
+
 from datetime import datetime
 from functools import wraps
 
@@ -651,3 +653,32 @@ class AcmeChallResolver(BaseHandler):
             log.info('Responded to .well-known request')
             return
         raise errors.HTTPError(404)
+
+
+class AdminTestHostnameHandler(BaseHandler):
+    reqs = 0
+
+    @BaseHandler.transport_security_check('admin')
+    @BaseHandler.authenticated('admin')
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def post(self):
+        if GLSettings.memory_copy.hostname == '':
+            raise errors.ValidationError('hostname is not set')
+
+        if self.reqs > 1000:
+            raise error.FailedSanityCheck('Issued to many Hostname tests')
+        self.reqs += 1
+
+        net_agent = GLSettings.get_agent()
+
+        t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
+        url = urlparse.urlunsplit(t)
+        try:
+            req = yield get_page(net_agent, url)
+            if not req.startswith('User-agent: *'):
+                raise Exception('Unexpected response body')
+            self.set_status(200)
+        except Exception as e:
+            log.err(e)
+            raise errors.ExternalResourceError()
