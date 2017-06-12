@@ -611,7 +611,6 @@ def db_acme_cert_issuance(store, request):
     hostname = GLSettings.memory_copy.hostname
 
     raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
-    # serialize cryptography key
     accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
                                                    password=None,
                                                    backend=default_backend())
@@ -669,7 +668,7 @@ class HostnameTestHandler(BaseHandler):
         net_agent = GLSettings.get_agent()
 
         t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
-        url = urlparse.urlunsplit(t)
+        url = bytes(urlparse.urlunsplit(t))
         try:
             req = yield agent.get_page(net_agent, url)
             if not req.startswith('User-agent: *'):
