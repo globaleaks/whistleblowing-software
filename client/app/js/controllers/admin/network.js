@@ -23,8 +23,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
 controller('AdminNetFormCtrl', ['$scope', function($scope) {
 
 }]).
-controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
-  function($http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
+controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
+  function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
 
   $scope.state = 0;
   $scope.menuState = 'setup';
@@ -34,10 +34,18 @@ controller('AdminHTTPSConfigCtrl', ['$http', '$scope', '$uibModal', 'FileSaver',
     $scope.menuState = state;
   };
 
-  // Scoped for future use.
+  $scope.verifyFailed = false;
   $scope.updateHostname = function() {
-    return $scope.Utils.update($scope.admin.node, function() {
+    return $scope.admin.node.$update().$promise.then(function() {
       $scope.showHostnameSetter = false;
+      return $http({
+        method: 'POST',
+        url: '/admin/config/tls/hostname',
+      })
+    }).then(function() {
+      $scope.verifyFailed = false;
+    }, function() {
+      $scope.verifyFailed = true;
     });
   }
 
@@ -208,13 +216,12 @@ $scope.toggleCfg = function() {
     });
   };
 
-
   $scope.toggleShowHostname = function() {
     $scope.showHostnameSetter = !$scope.showHostnameSetter;
   }
 
   $scope.deleteEverything = function() {
-    $scope.tls_config.$delete().promise.then(refreshConfig);
+    $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
 .controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
