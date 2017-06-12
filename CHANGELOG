@@ -1,3 +1,6 @@
+Changes in version 2.67.7 - 2017-06-12
+    o Fix check_roles configuration for exception handler
+
 Changes in version 2.67.6 - 2017-06-09
     o Reimplement minimal REST server removing cyclone dependency
     o Enforce authentication decorators to be loaded at startup on all REST handlers
