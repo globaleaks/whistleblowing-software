@@ -227,5 +227,8 @@ $scope.toggleCfg = function() {
 .controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', '$uibModalInstance', function($scope, $timeout, $http, $uibModalInstance) {
   // NOTE the next line resolves a creation promise for the containing ctrl
   $scope.$resolve.open_promise.resolve();
-  $scope.cancel = $uibModalInstance.close;
+  $timeout(function() {
+    location.reload();
+  }, 15000);
+
 }]);

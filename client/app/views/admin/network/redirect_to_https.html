@@ -4,31 +4,12 @@
   </div>
 </div>
 <div class="modal-body">
-  <div data-ng-switch="state">
-    <div data-ng-when="1" class="alert alert-info">
-      <p>
-        <i class="glyphicon glyphicon-cog gly-spin"></i>
-        <span data-translate>Testing connection to:</span>
-      </p>
-    </div>
-    <div data-ng-when="2" class="alert alert-success">
-      <p>
-        <i class="glyphicon glyphicon-cog gly-spin"></i>
-        <span data-translate>Your browser will be redirected to the following URL.</span>
-        <span data-translate>You will need to login once again.</span>
-      </p>
-    </div>
-    <div data-ng-when="3" class="alert alert-danger">
-      <p>
-        <i class="glyphicon glyphicon-exclamation-sign"></i>
-        <span data-translate>Encountered an unexpected error.</span>
-        <button data-ng-click="cancel()"
-          type="close"
-          class="btn btn-md btn-default pull-right"
-          data-translate>Close
-        </button>
-      </p>
-    </div>
+  <div class="alert alert-info">
+    <p>
+      <i class="glyphicon glyphicon-cog gly-spin"></i>
+      <span data-translate>Your browser will be redirected to the following URL.</span>
+      <span data-translate>You will need to login once again.</span>
+    </p>
   </div>
   <div class="well text-center">
     <code>{{ $resolve.https_url }}</code>

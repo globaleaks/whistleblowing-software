@@ -675,8 +675,8 @@ class HostnameTestHandler(BaseHandler):
             resp = yield net_agent.request('GET', url)
             body = yield readBody(resp)
 
-            server_h = resp.headers.getRawHeaders('Server', [None])[-1]
-            if not body.startswith('User-agent: *') or server_h != 'GlobaLeaks':
+            server_h = resp.headers.getRawHeaders('Server', [None])[-1].lower()
+            if not body.startswith('User-agent: *') or server_h != 'globaleaks':
                 raise EnvironmentError('Response unexpected')
             self.set_status(200)
         except (EnvironmentError, ConnectError) as e:
