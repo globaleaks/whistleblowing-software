@@ -224,20 +224,8 @@ $scope.toggleCfg = function() {
     $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
-.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
-    // NOTE this resolves a creation promise for the containing ctrl
-    $scope.$resolve.open_promise.resolve();
-
-    $scope.state = '1';
-    var p = $http({
-        method: 'GET',
-        url: 'https://' + $scope.admin.node.hostname + '/robots.txt',
-    }).then(function() { // Succeeded
-        $scope.state = '2';
-        $timeout(function() {
-          location.reload();
-        }, 15000);
-    }, function() { // Failed
-        $scope.state = '3';
-    });
+.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', '$uibModalInstance', function($scope, $timeout, $http, $uibModalInstance) {
+  // NOTE the next line resolves a creation promise for the containing ctrl
+  $scope.$resolve.open_promise.resolve();
+  $scope.cancel = $uibModalInstance.close;
 }]);
