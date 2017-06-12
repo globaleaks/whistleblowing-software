@@ -1,7 +1,7 @@
 <div class="modal-header">
   <div class="modal-title">
     <span data-translate>Attention!</span>
-  </div> 
+  </div>
 </div>
 <div class="modal-body">
   <div data-ng-switch="state">
@@ -22,7 +22,11 @@
       <p>
         <i class="glyphicon glyphicon-exclamation-sign"></i>
         <span data-translate>Encountered an unexpected error.</span>
-        <button ng-click="close()" class="btn btn-md btn-default pull-right" data-translate>Close</button>
+        <button data-ng-click="cancel()"
+          type="close"
+          class="btn btn-md btn-default pull-right"
+          data-translate>Close
+        </button>
       </p>
     </div>
   </div>

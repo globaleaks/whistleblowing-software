@@ -273,12 +273,13 @@ class TestAcmeChallResolver(helpers.TestHandler):
         self.assertEqual(self.responses[0], v)
 
 class TestHostnameTestHandler(helpers.TestHandler):
-    _handler = https.TestHostnameTestHandler
+    _handler = https.HostnameTestHandler
 
     @inlineCallbacks
     def setUp(self):
         yield super(TestHostnameTestHandler, self).setUp()
         self.tmp_hn = GLSettings.memory_copy.hostname
+        self.tmp_hn = GLSettings.memory_copy.anonymize_outgoing_connections = False
         GLSettings.memory_copy.hostname = 'localhost:43434'
 
     @inlineCallbacks
@@ -296,18 +297,26 @@ class TestHostnameTestHandler(helpers.TestHandler):
 
         # Start the HTTP server proxy requests will be forwarded to.
         self.pp = helpers.SimpleServerPP()
-        yield reactor.spawnProcess(self.pp, 'python', args=['python', '-m', 'SimpleHTTPServer', '43434'], usePTY=True)
+
+        # An extended SimpleHTTPServer to handle the addition of the globaleaks header
+        e = ""+\
+        "from SimpleHTTPServer import SimpleHTTPRequestHandler as rH; "+\
+        "from SimpleHTTPServer import test as t; "+\
+        "of = rH.end_headers; rH.end_headers = lambda s: s.send_header('Server', 'GlobaLeaks') or of(s); "+\
+        "t(HandlerClass=rH)"
+
+        yield reactor.spawnProcess(self.pp, 'python', args=['python', '-c', e, '43434'], usePTY=True)
 
         yield self.pp.start_defer
 
         yield handler.post()
 
-        # TODO the sub proc startup is dying in strange ways
-        # print(dir(self.pp), dir(self.pp.transport))
-        os.kill(self.pp.transport.pid)
-
     @inlineCallbacks
     def tearDown(self):
-        yield super(TestAdminTestHostnameHandler, self).tearDown()
+        yield super(TestHostnameTestHandler, self).tearDown()
         self.tmp_hn = GLSettings.memory_copy.hostname
+        self.tmp_hn = GLSettings.memory_copy.anonymize_outgoing_connections = True
         GLSettings.memory_copy.hostname = 'localhost'
+
+        if hasattr(self, 'pp'):
+            os.kill(self.pp.transport.pid, 9)
