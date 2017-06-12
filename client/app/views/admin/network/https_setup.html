@@ -31,7 +31,7 @@
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
       <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
     </p>
-    <p class="alert alert-danger" data-ng-if="verifyFailed" data-translate>The hostname configured for the platform may be inaccurate!</p>
+    <p class="alert alert-danger" data-ng-if="verifyFailed" data-translate>The platform does not seem to be reachable with the hostname configured.</p>
   </div>
 </form>
 <div class="row" data-ng-hide="admin.node.hostname === '' || showHostnameSetter">

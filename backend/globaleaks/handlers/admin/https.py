@@ -12,6 +12,8 @@ from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.internet.defer import inlineCallbacks
 from twisted.internet.threads import deferToThread
+from twisted.internet.error import ConnectError
+from twisted.web.client import Agent, readBody
 
 from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
@@ -528,6 +530,7 @@ tmp_chall_dict = TempDict(300)
 @transact
 def can_create_acme_res(store):
     prv_fact = PrivateFactory(store)
+
     no_accnt_key = prv_fact.get_val('acme_accnt_key') == u''
     no_accnt_uri = prv_fact.get_val('acme_accnt_uri') == u''
     priv_key = prv_fact.get_val('https_priv_key') != u''
@@ -541,6 +544,7 @@ def can_create_acme_res(store):
 @transact
 def can_perform_acme_run(store):
     prv_fact = PrivateFactory(store)
+
     prv_key_set = prv_fact.get_val('https_priv_key') != u''
     acme_accnt_uri = prv_fact.get_val('acme_accnt_uri') != u''
     autorenew = prv_fact.get_val('acme_autorenew')
@@ -655,8 +659,6 @@ class AcmeChallResolver(BaseHandler):
 
 
 class HostnameTestHandler(BaseHandler):
-    reqs = 0
-
     @BaseHandler.transport_security_check('admin')
     @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
@@ -670,10 +672,13 @@ class HostnameTestHandler(BaseHandler):
         t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
         url = bytes(urlparse.urlunsplit(t))
         try:
-            req = yield agent.get_page(net_agent, url)
-            if not req.startswith('User-agent: *'):
-                raise Exception('Unexpected response body')
+            resp = yield net_agent.request('GET', url)
+            body = yield readBody(resp)
+
+            server_h = resp.headers.getRawHeaders('Server', [None])[-1]
+            if not body.startswith('User-agent: *') or server_h != 'GlobaLeaks':
+                raise EnvironmentError('Response unexpected')
             self.set_status(200)
-        except Exception as e:
+        except (EnvironmentError, ConnectError) as e:
             log.err(e)
             raise errors.ExternalResourceError()
