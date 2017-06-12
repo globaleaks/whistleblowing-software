@@ -191,7 +191,7 @@ $scope.toggleCfg = function() {
       $uibModal.open({
         backdrop: 'static',
         keyboad: false,
-        templateUrl: '/views/admin/network/redirect_to_https.html',
+        templateUrl: 'views/admin/network/redirect_to_https.html',
         controller: 'safeRedirectModalCtrl',
         resolve: {
           https_url: function() { return go_url; },
@@ -199,7 +199,7 @@ $scope.toggleCfg = function() {
         },
       });
 
-      open_promise.then($scope.tls_config.$enable);
+      open_promise.promise.then($scope.tls_config.$enable);
     }
   };
 
