@@ -36,7 +36,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
 
   $scope.verifyFailed = false;
   $scope.updateHostname = function() {
-    return $scope.admin.node.$update().$promise.then(function() {
+    return $scope.admin.node.$update().then(function() {
       $scope.showHostnameSetter = false;
       return $http({
         method: 'POST',
