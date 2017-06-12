@@ -272,12 +272,12 @@ class TestAcmeChallResolver(helpers.TestHandler):
 
         self.assertEqual(self.responses[0], v)
 
-class TestAdminTestHostnameHandler(helpers.TestHandler):
-    _handler = https.AdminTestHostnameHandler
+class TestHostnameTestHandler(helpers.TestHandler):
+    _handler = https.TestHostnameTestHandler
 
     @inlineCallbacks
     def setUp(self):
-        yield super(TestAdminTestHostnameHandler, self).setUp()
+        yield super(TestHostnameTestHandler, self).setUp()
         self.tmp_hn = GLSettings.memory_copy.hostname
         GLSettings.memory_copy.hostname = 'localhost:43434'
 

@@ -18,7 +18,7 @@ from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import errors, requests
-from globaleaks.utils import tls
+from globaleaks.utils import tls, agent
 from globaleaks.utils import lets_enc
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 from globaleaks.utils.tempdict import TempDict
@@ -655,7 +655,7 @@ class AcmeChallResolver(BaseHandler):
         raise errors.HTTPError(404)
 
 
-class AdminTestHostnameHandler(BaseHandler):
+class HostnameTestHandler(BaseHandler):
     reqs = 0
 
     @BaseHandler.transport_security_check('admin')
@@ -666,16 +666,12 @@ class AdminTestHostnameHandler(BaseHandler):
         if GLSettings.memory_copy.hostname == '':
             raise errors.ValidationError('hostname is not set')
 
-        if self.reqs > 1000:
-            raise error.FailedSanityCheck('Issued to many Hostname tests')
-        self.reqs += 1
-
         net_agent = GLSettings.get_agent()
 
         t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
         url = urlparse.urlunsplit(t)
         try:
-            req = yield get_page(net_agent, url)
+            req = yield agent.get_page(net_agent, url)
             if not req.startswith('User-agent: *'):
                 raise Exception('Unexpected response body')
             self.set_status(200)
