@@ -83,7 +83,7 @@ class GLSettingsClass(object):
         self.initialize_db = True
 
         # debug defaults
-        self.orm_debug = True
+        self.orm_debug = False
         self.log_requests_responses = -1
         self.requests_counter = 0
 
