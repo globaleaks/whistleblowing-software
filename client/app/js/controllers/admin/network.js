@@ -62,7 +62,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     if (tlsConfig.files.chain.set) {
       t = 3;
     }
-    if (tlsConfg.enabled) {
+    if (tlsConfig.enabled) {
       t = -1;
     }
     $scope.state = t
@@ -77,7 +77,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.menuState = choice;
   };
 
-  tlsConfigResource.get({}, $scope.parseTLSConfig);
+  tlsConfigResource.get({}).$promise.then($scope.parseTLSConfig);
 
   $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
@@ -86,7 +86,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
   };
 
   function refreshConfig() {
-    return tlsConfigResource.get({}, $scope.parseTLSConfig).$promise;
+    return tlsConfigResource.get().$promise.then($scope.parseTLSConfig);
   };
 
   $scope.refreshCfg = refreshConfig;

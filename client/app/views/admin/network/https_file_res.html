@@ -24,7 +24,7 @@
   </div>
 
   <div data-ng-if="!tls_config.files.priv_key.set || tls_config.files.priv_key.gen" class="panel panel-default csr">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state < 1}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state < 0}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
         <span class="text-bold">2</span>
         <span class="text-bold" data-translate>Certificate Signing Request</span>
@@ -50,7 +50,7 @@
   </div>
 
   <div class="panel panel-default cert">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state < 1}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state < 0}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '3' : '2'}}</span>
         <span class="text-bold" data-translate>Certificate</span>
@@ -74,7 +74,7 @@
   </div>
 
   <div class="panel panel-default chain">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state < 2}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state < 1}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
         <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '4' : '3'}}</span>
         <span class="text-bold" data-translate>Intermediate Certificates</span>
@@ -97,7 +97,7 @@
     </div>
   </div>
 
-  <div class="launch-btns" data-ng-if="state > 2">
+  <div class="launch-btns" data-ng-if="state > 1">
     <button class="btn btn-success" data-ng-click="toggleCfg()" data-translate>Enable</button>
   </div>
 </div>
