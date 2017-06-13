@@ -4,6 +4,7 @@ from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 
 from globaleaks import models
 from globaleaks.handlers.admin.node import db_admin_serialize_node
+from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.https import db_acme_cert_issuance
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.jobs.base import GLJob
@@ -39,7 +40,6 @@ class X509CertCheckSchedule(GLJob):
 
     @transact_sync
     def acme_cert_renewal_checks(self, store):
-
         cert = load_certificate(FILETYPE_PEM, GLSettings.memory_copy.private.https_cert)
         expiration_date = lets_enc.convert_asn1_date(cert.get_notAfter())
 
@@ -89,7 +89,9 @@ class X509CertCheckSchedule(GLJob):
                 'type': 'x509_certificate_expiration',
                 'expiration_date': expiration_date,
                 'node': db_admin_serialize_node(store, lang),
+                'notification': db_get_notification(store, lang)
             }
+
             subject, body = Templating().get_mail_subject_and_body(template_vars)
 
             # encrypt the notification if the admin has configured the issue.
