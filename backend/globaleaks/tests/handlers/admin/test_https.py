@@ -11,6 +11,7 @@ from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
+from globaleaks.utils.lets_enc import ChallTok
 
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
@@ -209,9 +210,6 @@ class TestCSRHandler(helpers.TestHandler):
         self.assertIn(('L', 'citta'), comps)
 
 
-from globaleaks.utils.lets_enc import ChallTok
-
-
 class TestAcmeHandler(helpers.TestHandler):
     _handler = https.AcmeHandler
 
@@ -271,6 +269,7 @@ class TestAcmeChallResolver(helpers.TestHandler):
         resp = yield handler.get(tok)
 
         self.assertEqual(self.responses[0], v)
+
 
 class TestHostnameTestHandler(helpers.TestHandler):
     _handler = https.HostnameTestHandler
