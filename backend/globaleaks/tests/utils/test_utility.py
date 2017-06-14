@@ -121,10 +121,9 @@ class TestUtility(unittest.TestCase):
         self.assertEqual(utility.bytes_to_pretty_str("1001"), "1KB")
 
     def test_log(self):
-        utility.log.info("info")
         utility.log.err("err")
+        utility.log.info("info")
         utility.log.debug("debug")
-        utility.log.msg("msg")
 
     def test_caller_name(self):
         def abcdef():
@@ -157,8 +156,6 @@ class TestLogging(unittest.TestCase):
         # Emit logs through twisted's interface. Import is required now b/c of stdout hack
         from twisted.python import log as twlog
         twlog.err("error-msg")
-        twlog.err("info-msg")
-        twlog.msg("msg-msg")
         observer.stop()
 
         s = output_buff.getvalue()

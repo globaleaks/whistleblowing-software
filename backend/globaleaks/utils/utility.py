@@ -164,11 +164,31 @@ class Logger(object):
     def setloglevel(self, loglevel):
         self.loglevel = loglevel
 
-    def _str(self, msg):
+    def _print_logline(self, prefix, msg, *args):
+        if not isinstance(msg, str) and not isinstance(msg, unicode):
+            msg = str(msg)
+
         if isinstance(msg, unicode):
             msg = msg.encode('utf-8')
 
-        return log_remove_escapes(msg)
+        if len(args) > 0:
+            msg = (msg % args)
+
+        msg = log_remove_escapes(msg)
+
+        print('[' + prefix + '] ' + msg)
+
+    def debug(self, msg, *args):
+        if self.loglevel and self.loglevel <= logging.DEBUG:
+            self._print_logline('D', msg, *args)
+
+    def info(self, msg, *args):
+        if self.loglevel and self.loglevel <= logging.INFO:
+            self._print_logline('I', msg, *args)
+
+    def err(self, msg, *args):
+        if self.loglevel:
+            self._print_logline('E', msg, *args)
 
     def exception(self, error):
         """
@@ -180,22 +200,6 @@ class Logger(object):
         else:
             exc_type, exc_value, exc_traceback = sys.exc_info()
             traceback.print_exception(exc_type, exc_value, exc_traceback)
-
-    def info(self, msg, *args):
-        if self.loglevel and self.loglevel <= logging.INFO:
-            print("[-] %s" % self._str(msg % args))
-
-    def err(self, msg, *args):
-        if self.loglevel:
-            twlog.err("[!] %s" % self._str(msg % args))
-
-    def debug(self, msg, *args):
-        if self.loglevel and self.loglevel <= logging.DEBUG:
-            print("[D] %s" % self._str(msg % args))
-
-    def msg(self, msg, *args):
-        if self.loglevel:
-            twlog.msg("[ ] %s" % self._str(msg % args))
 
 
 log = Logger()
