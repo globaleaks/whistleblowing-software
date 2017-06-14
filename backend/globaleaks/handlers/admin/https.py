@@ -184,7 +184,7 @@ class CertFileRes(FileResource):
 
         return {
             'name': 'cert',
-            'issuer': x509.get_issuer().organizationName,
+            'issuer': tls.parse_issuer_name(x509),
             'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }
@@ -232,7 +232,7 @@ class ChainFileRes(FileResource):
 
         return {
             'name': 'chain',
-            'issuer': x509.get_issuer().organizationName,
+            'issuer': tls.parse_issuer_name(x509),
             'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }

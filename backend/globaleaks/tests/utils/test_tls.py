@@ -1,5 +1,7 @@
 import os
 
+from OpenSSL import crypto
+from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.trial.unittest import TestCase
 
 from globaleaks.models.config import PrivateFactory
@@ -170,3 +172,20 @@ class TestObjectValidators(TestCase):
         ok, err = chn_v.validate(self.cfg)
         self.assertTrue(ok)
         self.assertIsNone(err)
+
+
+    def test_get_issuer_name(self):
+        test_cases = [
+            ('invalid/le-staging-chain.pem', 'Fake LE Root X1'),
+            ('invalid/glbc_le_stage_cert.pem', 'Fake LE Intermediate X1'),
+            ('invalid/expired_cert.pem', 'Zintermediate'),
+            ('valid/cert.pem', 'Whistleblowing Solutions I.S. S.r.l.'),
+        ]
+        for cert_path, issuer_name in test_cases:
+            p = os.path.join(self.test_data_dir, cert_path)
+            with open(p, 'r') as f:
+                x509 = crypto.load_certificate(FILETYPE_PEM, f.read())
+
+            res = tls.parse_issuer_name(x509)
+
+            self.assertEqual(res, issuer_name)
