@@ -90,6 +90,21 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     return req
 
 
+def parse_issuer_name(x509):
+    '''Returns the issuer's name from a `OpenSSL.crypto.X509` cert'''
+    name = x509.get_issuer()
+    if name.O is not None:
+        return name.organizationName
+    elif name.OU is not None:
+        return name.organizationalUnitName
+    elif name.CN is not None:
+        return name.commonName
+    elif name.emailAddress is not None:
+        return name.emailAddress
+    else:
+        return ''
+
+
 def new_tls_context():
     # As discussed on https://trac.torproject.org/projects/tor/ticket/11598
     # there is no way to enable all TLS methods excluding SSL.
