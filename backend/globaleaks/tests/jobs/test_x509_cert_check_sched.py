@@ -45,3 +45,9 @@ class TestX509CertCheckSched(helpers.TestGLWithPopulatedDB):
         yield X509CertCheckSchedule().run()
         count = yield get_scheduled_email_count()
         self.assertEqual(count, 1)
+
+        GLSettings.memory_copy.notif.disable_admin_notification_emails = True
+
+        yield X509CertCheckSchedule().run()
+        count = yield get_scheduled_email_count()
+        self.assertEqual(count, 1)
