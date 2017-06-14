@@ -34,21 +34,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.menuState = state;
   };
 
-  $scope.verifyFailed = false;
-  $scope.updateHostname = function() {
-    return $scope.admin.node.$update().then(function() {
-      $scope.showHostnameSetter = false;
-      return $http({
-        method: 'POST',
-        url: '/admin/config/tls/hostname',
-      })
-    }).then(function() {
-      $scope.verifyFailed = false;
-    }, function() {
-      $scope.verifyFailed = true;
-    });
-  }
-
   $scope.parseTLSConfig = function(tlsConfig) {
     $scope.tls_config = tlsConfig;
 
@@ -174,12 +159,28 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     });
   };
 
+  $scope.saveClicked = false;
+  $scope.skipVerify = $scope.admin.node.hostname !== '';
+  $scope.updateHostname = function() {
+    return $scope.admin.node.$update().then(function() {
+      $scope.saveClicked = true;
+      return $http({
+        method: 'POST',
+        url: '/admin/config/tls/hostname',
+      })
+    }).then(function() {
+      $scope.verifyFailed = false;
+    }, function() {
+      $scope.verifyFailed = true;
+    });
+  }
+
   $scope.choseManCfg = false;
   $scope.chooseManCfg = function() {
     $scope.choseManCfg = true;
     $scope.setMenu('fileRes');
   }
-$scope.toggleCfg = function() {
+  $scope.toggleCfg = function() {
     // TODO these posts send the entire tls_config object. They should be removed.
     if ($scope.tls_config.enabled) {
       var p = $scope.tls_config.$disable();

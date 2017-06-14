@@ -1,20 +1,13 @@
 <h3 data-translate>Setup HTTPS on the platform</h3>
 <p data-translate>The platform supports the setup, configuration, and usage of HTTPS through this interface. After HTTPS is configured the application will be accessible to different user roles specified in the access control tab. The platform must be reachable from a public IP address and the hostname selected must have a corresponding DNS record that references that address.</p>
 <hr/>
-<div data-ng-show="admin.node.hostname === '' && !showHostnameSetter" class="alert alert-warning">
-  <i class="glyphicon glyphicon-alert"></i>
-  <span data-translate>Hostname is not set!</span>
-  <span>
-    <a data-ng-click="toggleShowHostname()" data-translate>Click here to configure it.</a>
-  </span>
-</div>
-<div data-ng-show="" class="alert alert-warning">
+<div data-ng-show="verifyFailures" class="alert alert-warning">
   <i class="glyphicon glyphicon-alert"></i>
   <span data-translate>The connection to the domain name failed.</span>
 </div>
-<form class="row" data-ng-if="showHostnameSetter" data-ng-controller="AdminNetFormCtrl" novalidate>
+<form class="row"  data-ng-controller="AdminNetFormCtrl" novalidate>
   <div class="col-sm-9" >
-    <span class="input-group">
+    <p class="input-group">
       <span class="input-group-addon" data-translate>Hostname</span>
       <input class="form-control" type="text"
         data-ng-model="admin.node.hostname"
@@ -24,35 +17,21 @@
       <span class="input-group-btn">
         <button class="btn btn-success" data-ng-disabled="adminNetForm.$invalid" data-ng-click="updateHostname()">
           <i class="glyphicon glyphicon-ok"></i>
-          <span data-translate>Verify and Save</span>
+          <span data-translate>Save</span>
         </button>
       </span>
-    </span>
+    </p>
     <p class="text-danger" data-ng-show="adminNetForm.hostname.$error.pattern">
       <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
     </p>
-    <p class="alert alert-danger" data-ng-if="verifyFailed" data-translate>The platform does not seem to be reachable with the hostname configured.</p>
+    <p class="alert alert-danger" data-ng-if="verifyFailed">
+      <i class="glyphicon glyphicon-warning-sign"></i>
+      <span data-translate>Warning!</span>
+      <span data-translate>The platform does not seem to be reachable with the hostname configured.</span>
+    </p>
   </div>
 </form>
-<div class="row" data-ng-hide="admin.node.hostname === '' || showHostnameSetter">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading" data-translate>Automatic</div>
-      <div class="panel-body">
-        <p>
-          <span data-translate>Using automatic HTTPS configuration will handle the entire process of requesting enabling and renewing certificates from the Let's Encrypt Certificate Authority. The parent orginazation, the Internet Security Research Group, is committed to providing the service for free.</span>
-          <span data-translate>To learn more about it visit:</span> <a href="https://letsencrypt.org" rel="noreferrer noopener">https://letsencrypt.org</a>.
-        </p>
-        <button class="btn btn-success" data-ng-click="runInitAutoAcme()">Proceed</button>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading" data-translate>Manual</div>
-      <div class="panel-body">
-      <p data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</p>
-      <button class="btn btn-default" data-ng-click="chooseManCfg()">Proceed</button>
-    </div>
-  </div>
-</div>
+<button class="btn btn-success btn-md"
+  data-ng-click="setMenu('autoChoice')"
+  data-ng-disabled="!saveClicked && !skipVerify"
+  data-translate>Proceed</button>

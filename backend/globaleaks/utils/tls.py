@@ -239,3 +239,7 @@ class ChainValidator(CtxValidator):
                 raise ValidationException('The intermediate cert has expired')
 
             store.add_cert(x509)
+
+        # TODO checks here must be moved into an environment validator after ChainValidator
+        if cfg['hostname'] == '':
+            raise ValidationException('No hostname set')
