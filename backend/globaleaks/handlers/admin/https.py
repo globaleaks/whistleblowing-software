@@ -355,6 +355,7 @@ def serialize_https_config_summary(store):
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
       'files': file_summaries,
+      'acme_autorenew': prv_fact.get_val('acme_autorenew')
     }
     return ret
 
@@ -618,32 +619,30 @@ def db_acme_cert_issuance(store, request):
                                                    password=None,
                                                    backend=default_backend())
 
-    # TODO decide if LE will honor CSR using params
+    # TODO remove below code
     #desc = request['content']
     csr_fields = {
-    #       'C':  desc['country'].upper(),
-    #       'ST': desc['province'],
-    #       'L':  desc['city'],
-    #       'O':  desc['company'],
-    #       'OU': desc['department'],
+            'C':  'IT',
+            'ST': 'Milano',
+            'L':  'Milano',
+            'O':  'Tanto tanto',
+            'OU': 'Tanto tanto',
             'CN': hostname,
-    #       'emailAddress': desc['email'],
     }
 
     priv_key = PrivateFactory(store).get_val('https_priv_key')
     regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
-    csr = tls.gen_x509_csr(priv_key, csr_fields, 256) # TODO devel values do not work.
-
-    # TODO save csr in DB here.
+    csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
 
     # Run ACME registration all the way to resolution
     cert_str, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
-                                                      regr_uri,
-                                                      accnt_key,
-                                                      priv_key,
-                                                      csr,
-                                                      tmp_chall_dict)
+                                                          regr_uri,
+                                                          accnt_key,
+                                                          priv_key,
+                                                          csr,
+                                                          tmp_chall_dict)
 
+    PrivateFactory(store).set_val('acme_autorenew', True)
     PrivateFactory(store).set_val('https_cert', cert_str)
     PrivateFactory(store).set_val('https_chain', chain_str)
 

@@ -30,8 +30,9 @@ class X509CertCheckSchedule(GLJob):
     interval = 3 * 24 * 3600
 
     notify_expr_within = 15
-    acme_failures = 0
     acme_try_renewal = 30
+
+    acme_failures = 0
 
     def operation(self):
         if should_try_acme_renewal(self.acme_failures):
@@ -78,8 +79,10 @@ class X509CertCheckSchedule(GLJob):
             log.debug('The HTTPS certificate is not going to expire within target window.')
             return
 
-        # The certificate is going to expire. Mail the administrator
-        self.certificate_mail_creation(store, expiration_date)
+        if GLSettings.memory_copy.notif.disable_admin_notification_emails:
+            log.info('Certificate expiring on %s, admin notif email suppressed' % expiration_date)
+        else:
+            self.certificate_mail_creation(store, expiration_date)
 
     def certificate_mail_creation(self, store, expiration_date):
         for user_desc in db_get_admin_users(store):
