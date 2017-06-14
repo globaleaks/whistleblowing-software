@@ -237,16 +237,18 @@ class TestAcmeHandler(helpers.TestHandler):
         hostname = 'gl.dl.localhost.com'
         GLSettings.memory_copy.hostname = hostname
 
-        d = {
-           'commonname': hostname,
-           'country': 'it',
-           'province': 'regione',
-           'city': 'citta',
-           'company': 'azienda',
-           'department': 'reparto',
-           'email': 'indrizzio@email',
+        body = {
+           'name': 'xxx',
+           'content': {
+               'commonname': hostname,
+               'country': 'it',
+               'province': 'regione',
+               'city': 'citta',
+               'company': 'azienda',
+               'department': 'reparto',
+               'email': 'indrizzio@email',
+           }
         }
-        body = {'name': 'xxx', 'content': d}
 
         handler = self.request(body, role='admin')
         yield handler.put()

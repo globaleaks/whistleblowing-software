@@ -436,9 +436,8 @@ def encrypt_pgp_message(pgp_key_public, pgp_key_fingerprint, msg):
     try:
         gpob.load_key(pgp_key_public)
         body = gpob.encrypt_message(pgp_key_fingerprint, msg)
-    except Exception as excep:
-        log.err("Error in PGP interface object: %s" % excep)
-        raise excep
+    except:
+        raise
     finally:
         # The finally statement is always called also if except contains a
         # return or a raise
