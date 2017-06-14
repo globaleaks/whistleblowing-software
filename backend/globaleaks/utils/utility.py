@@ -181,21 +181,21 @@ class Logger(object):
             exc_type, exc_value, exc_traceback = sys.exc_info()
             traceback.print_exception(exc_type, exc_value, exc_traceback)
 
-    def info(self, msg):
+    def info(self, msg, *args):
         if self.loglevel and self.loglevel <= logging.INFO:
-            print("[-] %s" % self._str(msg))
+            print("[-] %s" % self._str(msg % args))
 
-    def err(self, msg):
+    def err(self, msg, *args):
         if self.loglevel:
-            twlog.err("[!] %s" % self._str(msg))
+            twlog.err("[!] %s" % self._str(msg % args))
 
-    def debug(self, msg):
+    def debug(self, msg, *args):
         if self.loglevel and self.loglevel <= logging.DEBUG:
-            print("[D] %s" % self._str(msg))
+            print("[D] %s" % self._str(msg % args))
 
-    def msg(self, msg):
+    def msg(self, msg, *args):
         if self.loglevel:
-            twlog.msg("[ ] %s" % self._str(msg))
+            twlog.msg("[ ] %s" % self._str(msg % args))
 
 
 log = Logger()
