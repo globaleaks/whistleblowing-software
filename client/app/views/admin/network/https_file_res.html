@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div data-ng-if="tls_config.files.priv_key.gen && !tls_config." class="panel panel-default csr">
+  <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme_autorenew" class="panel panel-default csr">
     <div class="panel-body" data-ng-class="{'disabled-interface': state < 0}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
         <span class="text-bold">2</span>
