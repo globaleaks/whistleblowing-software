@@ -81,7 +81,7 @@
         <span>(PEM)</span>
       </span>
       <span data-ng-show="tls_config.files.chain.set" class="label label-info">
-        <span data-translate>Valid until:</span>{{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm' }}
+        <span data-translate>Valid until:</span> {{ tls_config.files.chain.expiration_date | date:'dd-MM-yyyy HH:mm' }}
         <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
       </span>
       <div class="pull-right">

@@ -135,7 +135,6 @@ class PrivKeyFileRes(FileResource):
         prv_fact = PrivateFactory(store)
 
         return {
-            #TODO(remove) places key material in memory
             'set': prv_fact.get_val('https_priv_key') != u'',
             'gen': prv_fact.get_val('https_priv_gen')
         }

@@ -28,6 +28,7 @@ def db_get_expired_or_expiring_pgp_users(store):
 class PGPCheckSchedule(GLJob):
     name = "PGP Check"
     interval = 24 * 3600
+    monitor_interval = 5 * 60
 
     def get_start_time(self):
          current_time = datetime_now()
