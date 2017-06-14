@@ -50,7 +50,7 @@ def mock_HTTChannel__timeoutConnection(self):
     """
     This mock is required to just comment a log line
     """
-    # log.msg("Timing out client: %s" % str(self.transport.getPeer()))
+    # log.info("Timing out client: %s" % str(self.transport.getPeer()))
     policies.TimeoutMixin.timeoutConnection(self)
 
 

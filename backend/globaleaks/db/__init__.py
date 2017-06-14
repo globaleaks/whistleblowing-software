@@ -74,23 +74,23 @@ def update_db():
 
         from globaleaks.db import migration
 
-        log.msg("Found an already initialized database version: %d" % db_version)
+        log.info("Found an already initialized database version: %d" % db_version)
 
         if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
-            log.msg("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
+            log.info("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
             migration.perform_schema_migration(db_version)
-            log.msg("Migration completed with success!")
+            log.info("Migration completed with success!")
 
         else:
-            log.msg('Performing data update')
+            log.info('Performing data update')
             # TODO on normal startup this line is run. We need better control flow here.
             migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
     except Exception as exception:
-        log.msg("Migration failure: %s" % exception)
-        log.msg("Verbose exception traceback:")
+        log.info("Migration failure: %s" % exception)
+        log.info("Verbose exception traceback:")
         etype, value, tback = sys.exc_info()
-        log.msg('\n'.join(traceback.format_exception(etype, value, tback)))
+        log.info('\n'.join(traceback.format_exception(etype, value, tback)))
         return -1
 
 
