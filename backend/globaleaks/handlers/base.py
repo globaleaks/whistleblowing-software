@@ -456,28 +456,10 @@ class BaseHandler(object):
         self.request.finish()
 
     def redirect_https(self):
-        in_url = self.request.uri
-
-        pr = urlparse.urlsplit(in_url)
-
-        out_url = urlparse.urlunsplit(('https', pr.hostname, pr.path, pr.query, pr.fragment))
-
-        if out_url == in_url:
-            raise errors.InternalServerError('Should redirect to https: %s' % out_url)
-
-        self.redirect(out_url)
+        self.redirect('https://' + self.getRequestHostname() + self.request.uri)
 
     def redirect_tor(self, onion_addr):
-        in_url = self.request.uri
-
-        _, _, path, query, frag = urlparse.urlsplit(in_url)
-
-        out_url = urlparse.urlunsplit(('http', onion_addr, path, query, frag))
-
-        if out_url == in_url:
-            raise errors.InternalServerError('Should redirect to tor: %s' % out_url)
-
-        self.redirect(out_url)
+        self.redirect('http://' + onion_path + self.request.uri)
 
     def write_file(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
@@ -517,7 +499,7 @@ class BaseHandler(object):
 
     def should_redirect_https(self):
         if GLSettings.memory_copy.private.https_enabled and \
-           self.client_proto is 'http':
+           self.client_proto is 'http' and self.client_ip not in GLSettings.local_hosts:
             return True
 
         return False
