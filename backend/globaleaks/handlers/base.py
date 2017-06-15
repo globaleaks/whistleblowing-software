@@ -175,9 +175,11 @@ class BaseHandler(object):
 
         self.request.headers = self.request.getAllHeaders()
 
-        self.client_ip = request.headers.get('x-forwarded-for', None)
+        self.client_ip = request.headers.get('gl-forwarded-for', None)
+        self.client_proto = 'https'
         if self.client_ip is None:
             self.client_ip = self.request.getClientIP()
+            self.client_proto = 'http'
 
         self.client_using_tor = self.client_ip in GLSettings.state.tor_exit_set
         if 'x-tor2web' in self.request.headers:
@@ -515,7 +517,7 @@ class BaseHandler(object):
 
     def should_redirect_https(self):
         if GLSettings.memory_copy.private.https_enabled and \
-           self.client_ip not in GLSettings.local_hosts:
+           self.client_proto is 'http':
             return True
 
         return False
