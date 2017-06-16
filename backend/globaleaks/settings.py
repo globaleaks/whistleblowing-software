@@ -217,6 +217,8 @@ class GLSettingsClass(object):
         self.state.process_supervisor = None
         self.state.tor_exit_set = TorExitSet()
 
+        self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
+
     def reset_hourly(self):
         self.RecentEventQ[:] = []
         self.RecentAnomaliesQ.clear()
@@ -284,6 +286,8 @@ class GLSettingsClass(object):
         # when running in development mode lower the key bits to 512
         self.key_bits = 512
         self.csr_sign_bits = 256
+
+        self.acme_directory_url = 'https://acme-staging.api.letsencrypt.org/directory'
 
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')

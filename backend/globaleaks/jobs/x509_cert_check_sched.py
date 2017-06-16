@@ -35,7 +35,7 @@ class X509CertCheckSchedule(GLJob):
     acme_failures = 0
 
     def operation(self):
-        if should_try_acme_renewal(self.acme_failures):
+        if should_try_acme_renewal(self.acme_failures) and self.acme_failures > 30:
              self.acme_cert_renewal_checks()
         self.cert_expiration_checks()
 
@@ -52,7 +52,7 @@ class X509CertCheckSchedule(GLJob):
             return
 
         try:
-            db_acme_cert_issuance(store, None)
+            db_acme_cert_issuance(store)
         except Exception as e:
             self.acme_failures =+ 1
             log.err('ACME certificate renewal failed with: %s' % e)
