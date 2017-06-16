@@ -5,15 +5,12 @@
 # Implementation of the code executed on handler /admin/questionnaires
 #
 
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks import models
 from globaleaks.handlers.admin.step import db_create_step
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_step, serialize_questionnaire
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
@@ -167,9 +164,9 @@ def delete_questionnaire(store, questionnaire_id):
 
 
 class QuestionnairesCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def get(self):
         """
         Return all the questionnaires.
@@ -178,14 +175,8 @@ class QuestionnairesCollection(BaseHandler):
         Response: adminQuestionnaireList
         Errors: None
         """
-        response = yield GLApiCache.get('questionnaires', self.request.language,
-                                        get_questionnaire_list, self.request.language)
+        return get_questionnaire_list(self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def post(self):
         """
         Create a new questionnaire.
@@ -196,20 +187,15 @@ class QuestionnairesCollection(BaseHandler):
         """
         validator = requests.AdminQuestionnaireDesc if self.request.language is not None else requests.AdminQuestionnaireDescRaw
 
-        request = self.validate_message(self.request.body, validator)
+        request = self.validate_message(self.request.content.read(), validator)
 
-        response = yield create_questionnaire(request, self.request.language)
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-        self.write(response)
+        return create_questionnaire(request, self.request.language)
 
 
 class QuestionnaireInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def get(self, questionnaire_id):
         """
         Get the specified questionnaire.
@@ -218,13 +204,8 @@ class QuestionnaireInstance(BaseHandler):
         Response: AdminQuestionnaireDesc
         Errors: QuestionnaireIdNotFound, InvalidInputFormat
         """
-        response = yield get_questionnaire(questionnaire_id, self.request.language)
+        return get_questionnaire(questionnaire_id, self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def put(self, questionnaire_id):
         """
         Update the specified questionnaire.
@@ -236,19 +217,11 @@ class QuestionnaireInstance(BaseHandler):
 
         Updates the specified questionnaire.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminQuestionnaireDesc)
 
-        response = yield update_questionnaire(questionnaire_id, request, self.request.language)
+        return update_questionnaire(questionnaire_id, request, self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.set_status(202)
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def delete(self, questionnaire_id):
         """
         Delete the specified questionnaire.
@@ -257,5 +230,4 @@ class QuestionnaireInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, QuestionnaireIdNotFound
         """
-        yield delete_questionnaire(questionnaire_id)
-        GLApiCache.invalidate()
+        return delete_questionnaire(questionnaire_id)

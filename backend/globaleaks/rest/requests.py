@@ -29,9 +29,6 @@ context_selector_type_regexp      = r'^(list|cards|search)$'
 tip_operation_regexp              = r'^(postpone|set)$'
 shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
-
-# TODO(@nskelsey) define hostname regex
-
 short_text_regexp                 = r'^.{1,255}$'
 
 token_regexp                      = r'([a-zA-Z0-9]{42})'
@@ -190,7 +187,6 @@ AdminNodeDesc = {
     'tor2web_custodian': bool,
     'tor2web_whistleblower': bool,
     'tor2web_receiver': bool,
-    'tor2web_unauth': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,
@@ -424,7 +420,6 @@ NodeDesc = {
     'tor2web_custodian': bool,
     'tor2web_whistleblower': bool,
     'tor2web_receiver': bool,
-    'tor2web_unauth': bool,
     'can_postpone_expiration': bool,
     'can_delete_submission': bool,
     'can_grant_permissions': bool,

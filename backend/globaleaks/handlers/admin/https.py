@@ -10,7 +10,7 @@ from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from cryptography.hazmat.primitives import serialization
 from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
 from twisted.internet.error import ConnectError
 from twisted.web.client import Agent, readBody
@@ -28,9 +28,9 @@ from globaleaks.utils.tempdict import TempDict
 
 
 class FileResource(object):
-    '''
+    """
     An interface for interacting with files stored on disk or in the db
-    '''
+    """
     @classmethod
     @transact
     def create_file(store, content):
@@ -43,9 +43,9 @@ class FileResource(object):
     @staticmethod
     @transact
     def get_file(store):
-        '''
+        """
         :rtype: A `unicode` string
-        '''
+        """
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -60,9 +60,9 @@ class FileResource(object):
 
     @staticmethod
     def db_serialize(store):
-        '''
+        """
         :rtype: A `dict` to be converted into JSON for delivery to a client
-        '''
+        """
         raise errors.MethodNotImplemented()
 
     @staticmethod
@@ -273,6 +273,8 @@ class CsrFileRes(FileResource):
 
 
 class FileHandler(BaseHandler):
+    check_roles = 'admin'
+
     mapped_file_resources = {
         'priv_key': PrivKeyFileRes,
         'cert':  CertFileRes,
@@ -290,20 +292,15 @@ class FileHandler(BaseHandler):
 
         return self.mapped_file_resources[name]
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
-    @inlineCallbacks
     def delete(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
-        yield file_res_cls.delete_file()
+        return file_res_cls.delete_file()
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
-        req = self.validate_message(self.request.body,
+        req = self.validate_message(self.request.content.read(),
                                     requests.AdminTLSCfgFileResourceDesc)
 
         file_res_cls = self.get_file_res_or_raise(name)
@@ -311,13 +308,9 @@ class FileHandler(BaseHandler):
         yield file_res_cls.generate_dh_params_if_missing()
 
         ok = yield file_res_cls.create_file(req['content'])
-        if ok:
-            self.set_status(201, 'Wrote everything')
-        else:
+        if not ok:
             raise errors.ValidationError()
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self, name):
@@ -327,18 +320,11 @@ class FileHandler(BaseHandler):
 
         yield file_res_cls.perform_file_action()
 
-        self.set_status(201, 'Accepted changes')
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
-    @inlineCallbacks
     def get(self, name):
         file_res_cls = self.get_file_res_or_raise(name)
 
-        file_blob = yield file_res_cls.get_file()
-
-        self.write(file_blob)
+        return file_res_cls.get_file()
 
 
 @transact
@@ -357,6 +343,7 @@ def serialize_https_config_summary(store):
       'files': file_summaries,
       'acme_autorenew': prv_fact.get_val('acme_autorenew')
     }
+
     return ret
 
 
@@ -383,42 +370,31 @@ def disable_https(store):
 
 
 class ConfigHandler(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
-    def get(self):
-        https_cfg = yield serialize_https_config_summary()
-        self.write(https_cfg)
+    check_roles = 'admin'
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    def get(self):
+        return serialize_https_config_summary()
+
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
         try:
             yield try_to_enable_https()
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
-            self.set_status(200)
         except Exception as e:
             log.err(e)
-            self.set_status(406)
+            raise errors.InternalServerError(e)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_enabled
     @inlineCallbacks
     def put(self):
-        '''
+        """
         Disables HTTPS config and shutdown subprocesses.
-        '''
+        """
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
         yield GLSettings.state.process_supervisor.shutdown()
-        self.set_status(200)
 
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @inlineCallbacks
     def delete(self):
         yield disable_https()
@@ -442,12 +418,12 @@ def _delete_all_cfg(store):
 
 
 class CSRFileHandler(FileHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    check_roles = 'admin'
+
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self, name):
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminCSRFileDesc)
 
         desc = request['content']
@@ -467,12 +443,8 @@ class CSRFileHandler(FileHandler):
         file_res_cls = self.get_file_res_or_raise(name)
 
         ok = yield file_res_cls.create_file(csr_txt)
-        if ok:
-            self.set_status(201, 'Wrote everything')
-        else:
+        if not ok:
             raise errors.ValidationError()
-
-        self.set_status(200)
 
     @staticmethod
     @transact
@@ -571,8 +543,8 @@ def can_perform_acme_renewal(store):
 
 
 class AcmeHandler(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    check_roles='admin'
+
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
@@ -587,13 +559,8 @@ class AcmeHandler(BaseHandler):
 
         yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
 
-        self.set_status(200)
-        self.write({
-            'terms_of_service': tos_url,
-        })
+        returnValue({'terms_of_service': tos_url})
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
     @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self):
@@ -605,11 +572,12 @@ class AcmeHandler(BaseHandler):
             raise errors.ForbiddenOperation()
 
         yield deferToThread(acme_cert_issuance, request)
-        self.set_status(202)
+
 
 @transact_sync
 def acme_cert_issuance(store, request):
     return db_acme_cert_issuance(store, request)
+
 
 def db_acme_cert_issuance(store, request):
     hostname = GLSettings.memory_copy.hostname
@@ -648,17 +616,19 @@ def db_acme_cert_issuance(store, request):
 
 
 class AcmeChallResolver(BaseHandler):
+    check_roles = 'unauthenticated'
+
     def get(self, token):
         if token in tmp_chall_dict:
             self.write(tmp_chall_dict[token].tok)
             log.info('Responded to .well-known request')
             return
-        raise errors.HTTPError(404)
+        raise errors.ResourceNotFound
 
 
 class HostnameTestHandler(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    check_roles = 'admin'
+
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
@@ -676,7 +646,6 @@ class HostnameTestHandler(BaseHandler):
             server_h = resp.headers.getRawHeaders('Server', [None])[-1].lower()
             if not body.startswith('User-agent: *') or server_h != 'globaleaks':
                 raise EnvironmentError('Response unexpected')
-            self.set_status(200)
         except (EnvironmentError, ConnectError) as e:
             log.err(e)
             raise errors.ExternalResourceError()

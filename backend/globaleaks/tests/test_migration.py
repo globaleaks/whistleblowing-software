@@ -46,11 +46,11 @@ class TestMigrationRoutines(unittest.TestCase):
         self.assertNotEqual(ret, -1)
 
     def test_assert_complete(self):
-        '''This test asserts that every table defined in the schema is migrated
+        """This test asserts that every table defined in the schema is migrated
 
         Each CREATE TABLE statement is checked against a corresponding class name
         in the migration_table dict.
-        '''
+        """
 
         mig_class_names = {n.lower() for n in migration.migration_mapping.keys()}
 

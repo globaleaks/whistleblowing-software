@@ -21,6 +21,7 @@ class TestToken(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         yield helpers.TestGL.setUp(self)
+        TokenList.clear()
 
         self.pollute_events()
         yield Alarm.compute_activity_level()
@@ -130,6 +131,8 @@ class TestToken(helpers.TestGL):
 
         for i in range(100):
             Token('submission')
+
+        self.assertTrue(len(TokenList) == 100)
 
         self.test_reactor.advance(TokenList.get_timeout()+1)
 

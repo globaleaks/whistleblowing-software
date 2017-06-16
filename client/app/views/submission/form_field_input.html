@@ -5,7 +5,7 @@
     </div>
     <div data-ng-switch-default data-ng-switch="field.type">
       <div data-ng-switch-when="textarea" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
-        <textarea id="{{::stepId}}-field-{{::fieldRow}}-{{::fieldCol}}-input-{{::entryIndex}}"
+        <textarea id="{{::fieldEntry}}"
                   data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_textsize"
                   name="input-{{::entryIndex}}"
                   class="form-control inputelem"
@@ -28,22 +28,22 @@
       </div>
       <div data-ng-switch-when="multichoice" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
         <div data-ng-class="{'radio': (field.attrs.layout_orientation.value != 'horizontal')}">
-          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}">
-            <input class="inputelem" type="radio" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
+          <label data-ng-class="{'radio-inline': (field.attrs.layout_orientation.value == 'horizontal')}" data-ng-repeat="option in field.options | orderBy:'presentation_order'" name="{{'input-' +  entryIndex}}">
+            <input class="inputelem" type="radio" id="{{::fieldEntry}}-option-{{::$index}}" data-ng-model="entry['value']" value="{{option.id}}" data-ng-required="field.required" />
             <span>{{::option.label}}</span>
           </label>
         </div>
       </div>
       <div data-ng-switch-when="selectbox" data-ng-class="{'has-error': f['input-' + entryIndex].$error.required}">
-        <select id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="field.required">
+        <select id="{{::fieldEntry}}" name="{{'input-' +  entryIndex}}" class="form-control inputelem" data-ng-model="entry['value']" data-ng-required="field.required">
           <option style="display:none" value=""></option>
-          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}-option-{{$index}}" value="{{option.id}}">{{::option.label}}</option>
+          <option data-ng-repeat="option in field.options | orderBy:'presentation_order'" id="{{::fieldEntry}}-option-{{::$index}}" value="{{option.id}}">{{::option.label}}</option>
         </select>
       </div>
       <div data-ng-switch-when="checkbox" data-ng-class="{'has-error': field.required_check}">
         <div data-ng-class="{'checkbox': (field.attrs.layout_orientation.value != 'horizontal')}">
           <label data-ng-repeat="option in field.options | orderBy:'presentation_order'" data-ng-class="{'checkbox-inline': (field.attrs.layout_orientation.value == 'horizontal'), 'has-error': !f['input-' + $parent.entryIndex + '-option-' + entryIndex].$valid}">
-            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+            <input id="{{::fieldEntry}}"
                    name="{{'input-' + $parent.entryIndex + '-option-' + entryIndex}}"
                    class="inputelem"
                    data-ng-init="field.required_check = !validateRequiredCheckbox(field, entry)"
@@ -58,7 +58,7 @@
       </div>
       <div data-ng-switch-when="date" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
         <div class="input-group">
-          <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+          <input id="{{::fieldEntry}}"
                  name="input-{{entryIndex}}"
                  class="form-control inputelem"
                  type="text"
@@ -82,7 +82,7 @@
         <div class="form-group tos-clause" data-ng-click="entry['value'] = !entry['value']">{{field.attrs.clause.value}}</div>
         <div class="checkbox" data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
           <label>
-            <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+            <input id="{{::fieldEntry}}"
                    name="input-{{entryIndex}}"
                    class="inputelem"
                    data-ng-model="entry['value']"
@@ -95,13 +95,13 @@
         </div>
       </div>
       <div data-ng-switch-when="fileupload">
-        <div id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
+        <div id="{{::fieldEntry}}" data-ng-include="'views/partials/rfile_upload_button.html'"></div>
       </div>
       <div data-ng-switch-when="fieldgroup">
         <div data-ng-include="'views/submission/form.html'"></div>
       </div>
       <div data-ng-switch-default data-ng-class="{'has-error': !f['input-' + entryIndex].$valid}">
-        <input id="{{::stepId}}-field-{{fieldRow}}-{{fieldCol}}-input-{{entryIndex}}"
+        <input id="{{::fieldEntry}}"
                name="input-{{entryIndex}}"
                class="form-control inputelem"
                data-ng-init="maxlength = field.attrs.max_len.value > 0 ? field.attrs.max_len.value : node.maximum_namesize"

@@ -7,13 +7,15 @@ describe('admin configure network settings', function() {
     element(by.model('admin.node.hostname')).clear().sendKeys('localhost');
     element(by.model('admin.node.onionservice')).clear().sendKeys('1234567890123456.onion');
 
-    expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
+    element.all(by.cssContainingText("button", "Save")).get(0).click();
 
     // grant tor2web permissions
+    element(by.cssContainingText("a", "Access control")).click();
+    expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
     element(by.model('admin.node.tor2web_whistleblower')).click();
 
     // save settings
-    element(by.cssContainingText("button", "Save")).click().then(function() {
+    element.all(by.cssContainingText("button", "Save")).get(1).click().then(function() {
       expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeTruthy();
     });
   });
@@ -69,11 +71,13 @@ describe('admin configure https', function() {
 
     // Delete csr
     element(by.id('deleteCsr')).click();
+    utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteCsr'))));
 
     // Delete key
     element(by.id('deleteKey')).click();
+    utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
@@ -102,17 +106,13 @@ describe('admin configure https', function() {
 
       // Delete chain, cert, key
       chain_panel.element(by.id('deleteChain')).click();
-      modal_action = by.id('modal-action-ok');
-      utils.waitUntilPresent(modal_action);
       element(modal_action).click();
 
       cert_panel.element(by.id('deleteCert')).click();
-      modal_action = by.id('modal-action-ok');
       utils.waitUntilPresent(modal_action);
       element(modal_action).click();
 
       pk_panel.element(by.id('deleteKey')).click();
-      modal_action = by.id('modal-action-ok');
       utils.waitUntilPresent(modal_action);
       element(modal_action).click();
     }

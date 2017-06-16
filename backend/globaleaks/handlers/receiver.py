@@ -6,7 +6,6 @@
 # Used by receivers to update personal preferences and access to personal data
 
 from storm.expr import And, In
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
@@ -16,13 +15,11 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.structures import Rosetta, get_localized_values
 from globaleaks.utils.utility import log, datetime_to_ISO8601
 
 
-# https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language):
     ret_dict = user_serialize_user(receiver.user, language)
 
@@ -128,25 +125,17 @@ class ReceiverInstance(BaseHandler):
         - notification settings
         - pgp key
     """
+    check_roles = 'receiver'
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: ReceiverReceiverDesc
         Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        receiver_status = yield get_receiver_settings(self.current_user.user_id,
-                                                      self.request.language)
+        return get_receiver_settings(self.current_user.user_id,
+                                     self.request.language)
 
-        self.write(receiver_status)
-
-
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
     def put(self):
         """
         Parameters: None
@@ -154,34 +143,26 @@ class ReceiverInstance(BaseHandler):
         Response: ReceiverReceiverDesc
         Errors: ReceiverIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        request = self.validate_message(self.request.body, requests.ReceiverReceiverDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiverReceiverDesc)
 
-        receiver_status = yield update_receiver_settings(self.current_user.user_id,
-                                                         request,
-                                                         self.request.language)
-
-        GLApiCache.invalidate()
-
-        self.write(receiver_status)
-
+        return update_receiver_settings(self.current_user.user_id,
+                                        request,
+                                        self.request.language)
 
 class TipsCollection(BaseHandler):
     """
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
+    check_roles = 'receiver'
+
     def get(self):
         """
         Response: receiverTipList
         Errors: InvalidAuthentication
         """
-        answer = yield get_receivertip_list(self.current_user.user_id,
-                                            self.request.language)
-
-        self.write(answer)
+        return get_receivertip_list(self.current_user.user_id,
+                                    self.request.language)
 
 
 class TipsOperations(BaseHandler):
@@ -189,18 +170,17 @@ class TipsOperations(BaseHandler):
     This interface receive some operation (postpone or delete) and a list of
     tips to apply.
     """
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
-    @inlineCallbacks
+    check_roles = 'receiver'
+
     def put(self):
         """
         Parameters: ReceiverOperationDesc
         Res
         Errors: InvalidAuthentication, TipIdNotFound, ForbiddenOperation
         """
-        request = self.validate_message(self.request.body, requests.ReceiverOperationDesc)
+        request = self.validate_message(self.request.content.read(), requests.ReceiverOperationDesc)
 
         if request['operation'] not in ['postpone', 'delete']:
             raise errors.ForbiddenOperation
 
-        yield perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])
+        return perform_tips_operation(self.current_user.user_id, request['operation'], request['rtips'])

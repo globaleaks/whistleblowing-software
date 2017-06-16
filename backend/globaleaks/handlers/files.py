@@ -58,13 +58,11 @@ def get_itip_id_by_wbtip_id(store, wbtip_id):
 # This is different from FileInstance, just because there are a different authentication requirements
 class FileAdd(BaseHandler):
     """
-    WhistleBlower interface for upload a new file in an already completed submission
+    WhistleBlower interface to upload a new file for an already completed submission
     """
+    check_roles = 'whistleblower'
     handler_exec_time_threshold = 3600
-    filehandler = True
 
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.authenticated('whistleblower')
     @inlineCallbacks
     def post(self):
         """
@@ -103,18 +101,14 @@ class FileAdd(BaseHandler):
             log.err("Unable to register (append) file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-        self.set_status(201)  # Created
-
 
 class FileInstance(BaseHandler):
     """
-    WhistleBlower interface for upload a new file in a not yet completed submission
+    WhistleBlower interface to upload a new file for an yet to be completed submission
     """
     handler_exec_time_threshold = 3600
-    filehandler = True
+    check_roles = 'unauthenticated'
 
-    @BaseHandler.transport_security_check('whistleblower')
-    @BaseHandler.unauthenticated
     @inlineCallbacks
     def post(self, token_id):
         """
@@ -149,5 +143,3 @@ class FileInstance(BaseHandler):
         except Exception as excep:
             log.err("Unable to save file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept files")
-
-        self.set_status(201)  # Created

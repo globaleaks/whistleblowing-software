@@ -3,7 +3,7 @@ import SimpleHTTPServer
 import twisted
 
 from twisted.internet import reactor
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from OpenSSL import crypto, SSL
 
 from globaleaks.handlers.admin import https
@@ -33,13 +33,14 @@ class TestFileHandler(helpers.TestHandler):
         yield set_dh_params(self.valid_setup['dh_params'])
 
     @inlineCallbacks
-    def is_set(self, name, is_set):
+    def get_and_check(self, name, is_set):
         handler = self.request(role='admin', handler_cls=https.ConfigHandler)
 
-        yield handler.get()
-        resp = self.responses[-1]
+        response = yield handler.get()
 
-        self.assertEqual(resp['files'][name]['set'], is_set)
+        self.assertEqual(response['files'][name]['set'], is_set)
+
+        returnValue(response)
 
     @transact
     def set_enabled(self, store):
@@ -50,7 +51,7 @@ class TestFileHandler(helpers.TestHandler):
     def test_priv_key_file(self):
         n = 'priv_key'
 
-        yield self.is_set(n, False)
+        yield self.get_and_check(n, False)
 
         # Try to upload an invalid key
         bad_key = 'donk donk donk donk donk donk'
@@ -60,10 +61,10 @@ class TestFileHandler(helpers.TestHandler):
         # Upload a valid key
         good_key = self.valid_setup['key']
         handler = self.request({'name': 'priv_key', 'content': good_key}, role='admin')
-        yield handler.post(n)
-        yield self.is_set(n, True)
+        response = yield handler.post(n)
+        response = yield self.get_and_check(n, True)
 
-        was_generated = self.responses[-1]['files']['priv_key']['gen']
+        was_generated = response['files']['priv_key']['gen']
         self.assertFalse(was_generated)
 
         handler = self.request(role='admin')
@@ -71,20 +72,22 @@ class TestFileHandler(helpers.TestHandler):
 
         # Test key generation
         yield handler.put(n)
-        yield self.is_set(n, True)
 
-        was_generated = self.responses[-1]['files']['priv_key']['gen']
+        response = yield self.get_and_check(n, True)
+
+        was_generated = response['files']['priv_key']['gen']
         self.assertTrue(was_generated)
 
         # Try delete actions
         yield handler.delete(n)
-        yield self.is_set(n, False)
+
+        yield self.get_and_check(n, False)
 
     @inlineCallbacks
     def test_cert_file(self):
         n = 'cert'
 
-        yield self.is_set(n, False)
+        yield self.get_and_check(n, False)
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
 
         # Test bad cert
@@ -96,38 +99,38 @@ class TestFileHandler(helpers.TestHandler):
         body = {'name': 'cert', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
         yield handler.post(n)
-        yield self.is_set(n, True)
+
+        yield self.get_and_check(n, True)
 
         handler = self.request(role='admin')
-        yield handler.get(n)
-        content = self.responses[-1]
-        self.assertEqual(content, self.valid_setup[n])
+        response = yield handler.get(n)
+        self.assertEqual(response, self.valid_setup[n])
 
         # Finally delete the cert
         yield handler.delete(n)
-        yield self.is_set(n, False)
+        yield self.get_and_check(n, False)
 
     @inlineCallbacks
     def test_chain_file(self):
         n = 'chain'
 
-        yield self.is_set(n, False)
+        yield self.get_and_check(n, False)
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
         yield https.CertFileRes.create_file(self.valid_setup['cert'])
+        GLSettings.memory_copy.hostname = 'localhost'
 
         body = {'name': 'chain', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
 
         yield handler.post(n)
-        yield self.is_set(n, True)
+        yield self.get_and_check(n, True)
 
         handler = self.request(role='admin')
-        yield handler.get(n)
-        content = self.responses[-1]
-        self.assertEqual(content, self.valid_setup[n])
+        response = yield handler.get(n)
+        self.assertEqual(response, self.valid_setup[n])
 
         yield handler.delete(n)
-        yield self.is_set(n, False)
+        yield self.get_and_check(n, False)
 
     @inlineCallbacks
     def test_file_res_disabled(self):
@@ -156,21 +159,21 @@ class TestConfigHandler(helpers.TestHandler):
 
         handler = self.request(role='admin')
 
-        yield handler.get()
-        self.assertTrue(len(self.responses[-1]['status']['msg']) > 0)
+        response = yield handler.get()
+        self.assertTrue(len(response['status']['msg']) > 0)
 
         # Config is ready to go. So launch the subprocesses.
         yield handler.post()
-        yield handler.get()
-        self.assertTrue(self.responses[-1]['enabled'])
+        response = yield handler.get()
+        self.assertTrue(response['enabled'])
 
         self.test_reactor.pump([50])
 
         # TODO improve resilience of shutdown. The child processes will complain
         # loudly as they die.
         yield handler.put()
-        yield handler.get()
-        self.assertFalse(self.responses[-1]['enabled'])
+        response = yield handler.get()
+        self.assertFalse(response['enabled'])
 
 
 class TestCSRHandler(helpers.TestHandler):
@@ -198,11 +201,9 @@ class TestCSRHandler(helpers.TestHandler):
         handler = self.request(body, role='admin')
         yield handler.post(n)
 
-        yield handler.get(n)
+        response = yield handler.get(n)
 
-        csr_pem = self.responses[-1]
-
-        pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, csr_pem)
+        pem_csr = crypto.load_certificate_request(SSL.FILETYPE_PEM, response)
 
         comps = pem_csr.get_subject().get_components()
         self.assertIn(('CN', 'notreal.ns.com'), comps)
@@ -221,9 +222,7 @@ class TestAcmeHandler(helpers.TestHandler):
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
 
         handler = self.request(role='admin')
-        yield handler.post()
-
-        resp = self.responses[0]
+        resp = yield handler.post()
 
         current_le_tos = 'https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf'
         self.assertEqual(resp['terms_of_service'], current_le_tos)
@@ -270,7 +269,7 @@ class TestAcmeChallResolver(helpers.TestHandler):
         handler = self.request(role='admin')
         resp = yield handler.get(tok)
 
-        self.assertEqual(self.responses[0], v)
+        self.assertEqual(resp, v)
 
 
 class TestHostnameTestHandler(helpers.TestHandler):

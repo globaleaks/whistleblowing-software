@@ -14,9 +14,8 @@ class TestReceiversCollection(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get()
-
-        self.assertEqual(len(self.responses[0]), 2)
+        response = yield handler.get()
+        self.assertEqual(len(response), 2)
 
 
 class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
@@ -25,10 +24,10 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        yield handler.get(self.dummyReceiver_1['id'])
+        response = yield handler.get(self.dummyReceiver_1['id'])
         del self.dummyReceiver_1['contexts']
-        del self.responses[0]['contexts']
-        self.assertEqual(self.responses[0]['id'], self.dummyReceiver_1['id'])
+        del response['contexts']
+        self.assertEqual(response['id'], self.dummyReceiver_1['id'])
 
     @inlineCallbacks
     def test_put_invalid_context_id(self):
