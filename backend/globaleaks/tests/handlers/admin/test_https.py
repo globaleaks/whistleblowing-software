@@ -321,6 +321,7 @@ class TestHostnameTestHandler(helpers.TestHandler):
         GLSettings.memory_copy.hostname = 'localhost'
 
         if hasattr(self, 'pp'):
+            self.pp.transport.loseConnection()
             self.pp.transport.signalProcess('KILL')
 
         yield super(TestHostnameTestHandler, self).tearDown()

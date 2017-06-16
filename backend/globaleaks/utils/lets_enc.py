@@ -16,33 +16,30 @@ from acme import challenges
 from globaleaks.utils.utility import log
 
 
-#DIRECTORY_URL = 'https://acme-staging.api.letsencrypt.org/directory'
-DIRECTORY_URL = 'https://acme-v01.api.letsencrypt.org/directory'
-BITS = 2048  # TODO minimum for Boulder
-
-
 class ChallTok():
     def __init__(self, tok):
         self.tok = tok
 
+
 def convert_asn1_date(asn1_bytes):
     return datetime.strptime(asn1_bytes,'%Y%m%d%H%M%SZ')
 
-def register_account_key(accnt_key):
+
+def register_account_key(directory_url, accnt_key):
     accnt_key = jose.JWKRSA(key=accnt_key)
-    acme = client.Client(DIRECTORY_URL, accnt_key)
+    acme = client.Client(directory_url, accnt_key)
 
     regr = acme.register()
     return regr.uri, regr.terms_of_service
 
 
-def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall_dict):
+def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall_dict, directory_url):
     accnt_key = jose.JWKRSA(key=accnt_key)
-    acme = client.Client(DIRECTORY_URL, accnt_key)
+    acme = client.Client(directory_url, accnt_key)
     msg = messages.RegistrationResource(uri=regr_uri)
     regr = acme.query_registration(msg)
 
-    log.info('Auto-accepting TOS: %s from: %s' % (regr.terms_of_service, DIRECTORY_URL))
+    log.info('Auto-accepting TOS: %s from: %s' % (regr.terms_of_service, directory_url))
     acme.agree_to_tos(regr)
 
     authzr = acme.request_challenges(
@@ -58,7 +55,6 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     challb = reduce(get_http_challenge, authzr.body.challenges, None)
     chall_tok = challb.chall.validation(accnt_key)
 
-    # TODO author tests to ensure that chall token expires
     v = chall_tok.split('.')[0]
     log.info('Exposing challenge on %s' % v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))
@@ -84,6 +80,11 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
         # the expected point of failure for applications that are not reachable
         # from the public internet.
         cert_res, _ = acme.poll_and_request_issuance(jose.util.ComparableX509(csr), (authzr,))
+
+        # NOTE pylint disabled due to spurious reporting. See docs:
+        # https://letsencrypt.readthedocs.io/projects/acme/en/latest/api/jose/util.html#acme.jose.util.ComparableX509
+        # pylint: disable=no-member
+        cert_str = cert_res.body._dump(FILETYPE_PEM)
     except messages.Error as error:
         log.err("Failed in request issuance step {0}".format(error))
         raise error
@@ -95,7 +96,8 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     # behave differently, but we aren't using them.
     chain_str = dump_certificate(FILETYPE_PEM, chain_certs[0])
 
+    # pylint: disable=no-member
     expr_date = convert_asn1_date(cert_res.body.wrapped.get_notAfter())
     log.info('Retrieved cert using ACME that expires on %s' % expr_date)
 
-    return cert_res.body._dump(FILETYPE_PEM), chain_str
+    return cert_str, chain_str

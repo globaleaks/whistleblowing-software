@@ -472,10 +472,11 @@ class AcmeAccntKeyRes():
     def create_file(store, cls):
         log.info("Generating an ACME account key with %d bits" % GLSettings.key_bits)
 
+        # NOTE key size is hard coded to align with minimum CA requirements
         # TODO change format to OpenSSL key to normalize types of keys used
         priv_key = rsa.generate_private_key(
             public_exponent=65537,
-            key_size=2048, # TODO development key size of 512 doesn't work
+            key_size=2048,
             backend=default_backend())
 
 
@@ -508,9 +509,7 @@ def can_create_acme_res(store):
     priv_key = prv_fact.get_val('https_priv_key') != u''
     no_csr_set  = prv_fact.get_val('https_csr') == u''
     no_cert_set = prv_fact.get_val('https_cert') == u''
-    #return no_accnt_key and no_accnt_uri and priv_key and no_csr_set and no_cert_set
-    # TODO TODO TODO correct
-    return True
+    return no_accnt_key and no_accnt_uri and priv_key and no_csr_set and no_cert_set
 
 
 @transact
@@ -521,9 +520,7 @@ def can_perform_acme_run(store):
     acme_accnt_uri = prv_fact.get_val('acme_accnt_uri') != u''
     autorenew = prv_fact.get_val('acme_autorenew')
     empty_csr = prv_fact.get_val('https_csr') == ''
-    #return acme_accnt_uri and prv_key_set and empty_csr and not autorenew
-    # TODO TODO TODO correct
-    return True
+    return acme_accnt_uri and prv_key_set and empty_csr and not autorenew
 
 
 @transact
@@ -555,7 +552,7 @@ class AcmeHandler(BaseHandler):
         accnt_key = yield AcmeAccntKeyRes.create_file()
 
         # TODO should throw if key is already registered
-        regr_uri, tos_url = lets_enc.register_account_key(accnt_key)
+        regr_uri, tos_url = lets_enc.register_account_key(GLSettings.acme_directory_url, accnt_key)
 
         yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
 
@@ -564,22 +561,19 @@ class AcmeHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self):
-        request = self.validate_message(self.request.content.read(),
-                                        requests.AdminAcmeSubscribeDesc)
-
         is_ready = yield can_perform_acme_run()
         if not is_ready:
             raise errors.ForbiddenOperation()
 
-        yield deferToThread(acme_cert_issuance, request)
+        yield deferToThread(acme_cert_issuance)
 
 
 @transact_sync
-def acme_cert_issuance(store, request):
-    return db_acme_cert_issuance(store, request)
+def acme_cert_issuance(store):
+    return db_acme_cert_issuance(store)
 
 
-def db_acme_cert_issuance(store, request):
+def db_acme_cert_issuance(store):
     hostname = GLSettings.memory_copy.hostname
 
     raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
@@ -587,19 +581,12 @@ def db_acme_cert_issuance(store, request):
                                                    password=None,
                                                    backend=default_backend())
 
-    # TODO remove below code
-    #desc = request['content']
-    csr_fields = {
-            'C':  'IT',
-            'ST': 'Milano',
-            'L':  'Milano',
-            'O':  'Tanto tanto',
-            'OU': 'Tanto tanto',
-            'CN': hostname,
-    }
 
     priv_key = PrivateFactory(store).get_val('https_priv_key')
     regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
+
+    csr_fields = {'CN': hostname}
+    # NOTE sha256 is always employed as hash fnc here.
     csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
 
     # Run ACME registration all the way to resolution
@@ -608,7 +595,8 @@ def db_acme_cert_issuance(store, request):
                                                           accnt_key,
                                                           priv_key,
                                                           csr,
-                                                          tmp_chall_dict)
+                                                          tmp_chall_dict,
+                                                          GLSettings.acme_directory_url)
 
     PrivateFactory(store).set_val('acme_autorenew', True)
     PrivateFactory(store).set_val('https_cert', cert_str)
