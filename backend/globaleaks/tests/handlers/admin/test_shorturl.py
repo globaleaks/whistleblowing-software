@@ -15,9 +15,9 @@ class TestShortURLCollection(helpers.TestHandlerWithPopulatedDB):
             yield shorturl.create_shorturl(self.get_dummy_shorturl(str(i)))
 
         handler = self.request(role='admin')
-        yield handler.get()
+        response = yield handler.get()
 
-        self.assertEqual(len(self.responses[0]), 3)
+        self.assertEqual(len(response), 3)
 
     @inlineCallbacks
     def test_post_new_shorturl(self):

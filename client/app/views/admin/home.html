@@ -1,0 +1,40 @@
+<div class="row">
+  <div id="ConfigSidebarBox" class="col-md-3" data-ng-include="'views/admin/sidebar.html'"></div>
+  <div class="col-md-9">
+    <div class="row">
+      <div data-ng-controller="AdminHomeCtrl">
+        <uib-tabset>
+          <uib-tab data-index="0" heading="{{'Home' | translate}}">
+            <div class="tab-content" data-ng-include="'views/admin/home/main.html'"></div>
+          </uib-tab>
+
+          <uib-tab data-index="1" heading="{{ 'Changelog' | translate}}">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-md-12">
+                  <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
+                </div>
+                <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | limitTo:displayNum">
+                  <hr/>
+                  <span data-release-msg></span>
+                </div>
+              </div>
+              <hr/>
+              <a type="button" class="btn btn-default"
+                 href="/data/changelog.txt"
+                 target="_blank" rel="noreferrer noopener">
+                <span data-translate>Show more</span>
+                <i class="glyphicon glyphicon glyphicon-link"></i>
+              </a>
+            </div>
+          </uib-tab>
+
+          <uib-tab data-index="2" heading="{{ 'License' | translate }}">
+            <div class="tab-content">
+              <div data-ng-include="'views/admin/home/license.html'"></div>
+            </div>
+          </uib-tab>
+        </uib-tabset>
+      </div>
+  </div>
+</div>

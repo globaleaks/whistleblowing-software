@@ -22,7 +22,6 @@ setupBackendDependencies() {
   rm -rf requirements.txt
   ln -s requirements/requirements-${GLREQUIREMENTS}.txt requirements.txt
   pip install -r requirements.txt
-  pip install coverage coveralls
 }
 
 setupDependencies() {
@@ -33,6 +32,9 @@ setupDependencies() {
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
+
+  pip install coveralls==1.0b1
+  sudo apt-get install -y python-coverage
 
   echo "Running backend unit tests"
   setupDependencies
@@ -66,9 +68,10 @@ if [ "$GLTEST" = "test" ]; then
 
 elif [ "$GLTEST" = "lint" ]; then
 
+  pip install pylint==1.6.5
+
   setupDependencies
 
-  pip install pylint
   echo "Running pylint checks"
   cd $TRAVIS_BUILD_DIR/backend
   pylint globaleaks -E --disable=no-value-for-parameter

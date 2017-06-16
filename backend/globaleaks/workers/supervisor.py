@@ -15,9 +15,9 @@ from globaleaks.workers.process import HTTPSProcProtocol
 
 
 class ProcessSupervisor(object):
-    '''
+    """
     A supervisor for all subprocesses that the main globaleaks process can launch
-    '''
+    """
 
     # TODO One child process death every 5 minutes is acceptable. Four every minute
     # is excessive.
@@ -91,21 +91,21 @@ class ProcessSupervisor(object):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
         reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
         self.tls_process_pool.append(pp)
-        log.info('Launched: %s' % (pp))
+        log.info('Launched: %s' % pp)
         return pp.startup_promise
 
     def handle_worker_death(self, pp, reason):
-        '''
+        """
         handle_worker_death accounts the worker's death and creates a new process
         in its place if the reason for death is reasonable and we haven't
         restarted the child an unreasonable number of times.
-        '''
+        """
         log.debug("Subprocess: %s exited with: %s" % (pp, reason))
         mortatility_rate = self.account_death()
         self.tls_process_pool.pop(self.tls_process_pool.index(pp))
         del pp
 
-        if (self.should_spawn_child(mortatility_rate)):
+        if self.should_spawn_child(mortatility_rate):
             log.debug('Decided to respawn a child')
             self.launch_worker()
         elif self.last_one_out():
@@ -134,10 +134,10 @@ class ProcessSupervisor(object):
                (mort_rate < self.MAX_MORTALITY_RATE or num_deaths < nrml_deaths)
 
     def last_one_out(self):
-        '''
+        """
         last_one_out captures the condition of the last shutdown process before
         the process supervisor has closed all children.
-        '''
+        """
         return self.shutting_down and len(self.tls_process_pool) == 0
 
     def calc_mort_rate(self):

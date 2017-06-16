@@ -4,7 +4,7 @@ from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
 
 from globaleaks.tests import helpers
-from globaleaks.jobs.tests.test_base import get_scheduled_email_count
+from globaleaks.tests.jobs.test_base import get_scheduled_email_count
 
 
 class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
@@ -45,8 +45,8 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         for i in range(0, 10):
             yield notification_schedule.run()
 
-            count = yield self.get_scheduled_email_count()
-            self.assertEqual(count, 40)
+            count = yield get_scheduled_email_count()
+            self.assertEqual(count, 28)
 
         yield notification_schedule.run()
 

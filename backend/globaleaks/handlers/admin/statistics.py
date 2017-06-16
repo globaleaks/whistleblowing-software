@@ -8,7 +8,6 @@
 import operator
 from datetime import timedelta
 from storm.expr import Desc, And
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.orm import transact
 from globaleaks.event import EventTrackQueue, events_monitored
@@ -115,17 +114,6 @@ def get_stats(store, week_delta):
 
 
 @transact
-def delete_weekstats_history(store):
-    allws = store.find(Stats)
-
-    log.info("Deleting %d entries from Stats table" % allws.count())
-
-    allws.remove()
-
-    log.info("Week statistics removal completed.")
-
-
-@transact
 def get_anomaly_history(store, limit):
     anomalies = store.find(Anomalies).order_by(Desc(Anomalies.date))[:limit]
 
@@ -146,32 +134,11 @@ def get_anomaly_history(store, limit):
     return anomaly_history
 
 
-@transact
-def delete_anomaly_history(store):
-    allanom = store.find(Anomalies)
-
-    log.info("Deleting %d entries from Anomalies table" % allanom.count())
-
-    allanom.remove()
-
-    log.info("Anomalies collection removal completed.")
-
-
 class AnomalyCollection(BaseHandler):
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
-    @inlineCallbacks
-    def get(self):
-        anomaly_history = yield get_anomaly_history(limit=20)
-        self.write(anomaly_history)
+    check_roles = 'admin'
 
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
-    @inlineCallbacks
-    def delete(self):
-        log.info("Received anomalies history delete command")
-        yield delete_anomaly_history()
-        self.write([])
+    def get(self):
+        return get_anomaly_history(limit=20)
 
 
 class StatsCollection(BaseHandler):
@@ -180,9 +147,8 @@ class StatsCollection(BaseHandler):
     count of activities recorded in the delta defined in GLSettingss
     /admin/stats
     """
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
-    @inlineCallbacks
+    check_roles = 'admin'
+
     def get(self, week_delta):
         week_delta = int(week_delta)
 
@@ -191,17 +157,7 @@ class StatsCollection(BaseHandler):
         else:
             log.debug("Asking statistics for current week")
 
-        ret = yield get_stats(week_delta)
-
-        self.write(ret)
-
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
-    @inlineCallbacks
-    def delete(self):
-        log.info("Received statistic history delete command")
-        yield delete_weekstats_history()
-        self.write([])
+        return get_stats(week_delta)
 
 
 class RecentEventsCollection(BaseHandler):
@@ -209,6 +165,8 @@ class RecentEventsCollection(BaseHandler):
     This handler is refreshed constantly by an admin page
     and provide real time update about the GlobaLeaks status
     """
+    check_roles = 'admin'
+
     def get_summary(self, templist):
         eventmap = dict()
         for event in events_monitored:
@@ -219,8 +177,6 @@ class RecentEventsCollection(BaseHandler):
 
         return eventmap
 
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
     def get(self, kind):
         templist = []
 
@@ -232,17 +188,17 @@ class RecentEventsCollection(BaseHandler):
         templist.sort(key=operator.itemgetter('id'))
 
         if kind == 'details':
-            self.write(templist)
+            return templist
         else:  # kind == 'summary':
-            self.write(self.get_summary(templist))
+            return self.get_summary(templist)
 
 
 class JobsTiming(BaseHandler):
     """
     This handler return the timing for the latest scheduler execution
     """
-    @BaseHandler.transport_security_check("admin")
-    @BaseHandler.authenticated("admin")
+    check_roles = 'admin'
+
     def get(self):
         response = []
 
@@ -252,4 +208,4 @@ class JobsTiming(BaseHandler):
               'timings': job.last_executions
             })
 
-        self.write(response)
+        return response

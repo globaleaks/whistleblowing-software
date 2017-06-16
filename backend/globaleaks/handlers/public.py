@@ -4,8 +4,7 @@
 #
 # Implementation of classes handling the HTTP request to /node, public
 # exposed API.
-
-from twisted.internet.defer import inlineCallbacks
+from storm.expr import In, Select
 
 from globaleaks import models, LANGUAGES_SUPPORTED
 from globaleaks.handlers.admin.files import db_get_file
@@ -14,10 +13,95 @@ from globaleaks.models import l10n
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import NodeL10NFactory
 from globaleaks.orm import transact
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
 from globaleaks.utils.sets import disjoint_union
 from globaleaks.utils.structures import get_localized_values
+
+
+def db_prepare_contexts_serialization(store, contexts):
+    data = {'imgs': {}, 'receivers': {}}
+
+    contexts_ids = []
+    for c in contexts:
+        data['imgs'][c.id] = None
+        data['receivers'][c.id] = []
+        contexts_ids.append(c.id)
+
+    for o in store.find(models.ReceiverContext, In(models.ReceiverContext.context_id, contexts_ids)):
+        data['receivers'][o.context_id].append(o.receiver_id)
+
+    return data
+
+
+def db_prepare_receivers_serialization(store, receivers):
+    data = {'users': {}, 'imgs': {}, 'contexts': {}}
+
+    receivers_ids = []
+    for r in receivers:
+        data['imgs'][r.id] = None
+        data['contexts'][r.id] = []
+        receivers_ids.append(r.id)
+
+    for o in store.find(models.User, In(models.User.id, receivers_ids)):
+        data['users'][o.id] = o
+
+    for o in store.find(models.ReceiverContext, In(models.ReceiverContext.receiver_id, receivers_ids)):
+        data['contexts'][o.receiver_id].append(o.context_id)
+
+    return data
+
+
+def db_prepare_fields_serialization(store, fields):
+    ret = {
+        'fields': {},
+        'attrs': {},
+        'options': {},
+        'triggers': {}
+    }
+
+    fields_ids = [f.id for f in fields]
+    for f in fields:
+        if f.template_id is not None:
+            fields_ids.append(f.template_id)
+
+    for f in fields_ids:
+         ret['fields'][f] = []
+         ret['attrs'][f] = []
+         ret['options'][f] = []
+         ret['triggers'][f] = []
+
+    while len(fields_ids):
+        fs = store.find(models.Field, In(models.Field.fieldgroup_id, fields_ids))
+
+        tmp = []
+        for f in fs:
+            ret['fields'][f.fieldgroup_id].append(f)
+            tmp.append(f.id)
+            if f.template_id is not None:
+                fields_ids.append(f.template_id)
+                tmp.append(f.template_id)
+
+        del fields_ids[:]
+        for f in tmp:
+            ret['fields'][f] = []
+            ret['attrs'][f] = []
+            ret['options'][f] = []
+            ret['triggers'][f] = []
+            fields_ids.append(f)
+
+    objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, ret['fields'].keys()))
+    for obj in objs:
+       ret['attrs'][obj.field_id].append(obj)
+
+    objs = store.find(models.FieldOption, In(models.FieldOption.field_id, ret['fields'].keys()))
+    for obj in objs:
+       ret['options'][obj.field_id].append(obj)
+
+    objs = store.find(models.FieldOption, In(models.FieldOption.trigger_field, ret['fields'].keys()))
+    for obj in objs:
+       ret['triggers'][obj.field_id].append(obj)
+
+    return ret
 
 
 def db_serialize_node(store, language):
@@ -53,7 +137,7 @@ def serialize_node(store, language):
     return db_serialize_node(store, language)
 
 
-def serialize_context(store, context, language):
+def serialize_context(store, context, language, data=None):
     """
     Serialize context description
 
@@ -61,8 +145,6 @@ def serialize_context(store, context, language):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    receivers = [rc.receiver_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.context_id == context.id)]
-
     ret_dict = {
         'id': context.id,
         'presentation_order': context.presentation_order,
@@ -81,8 +163,8 @@ def serialize_context(store, context, language):
         'enable_rc_to_wb_files': context.enable_rc_to_wb_files,
         'show_receivers_in_alphabetical_order': context.show_receivers_in_alphabetical_order,
         'questionnaire_id': context.questionnaire_id,
-        'receivers': receivers,
-        'picture': context.picture.data if context.picture is not None else ''
+        'receivers': data['receivers'][context.id],
+        'picture': data['imgs'][context.id]
     }
 
     return get_localized_values(ret_dict, context, context.localized_keys, language)
@@ -151,7 +233,7 @@ def serialize_field_attr(attr, language):
     return ret_dict
 
 
-def serialize_field(store, field, language):
+def serialize_field(store, field, language, data=None):
     """
     Serialize a field, localizing its content depending on the language.
 
@@ -159,9 +241,8 @@ def serialize_field(store, field, language):
     :param language: the language in which to localize data
     :return: a serialization of the object
     """
-    # naif likes if we add reference links
-    # this code is inspired by:
-    #  - https://www.youtube.com/watch?v=KtNsUgKgj9g
+    if data is None:
+        data = db_prepare_fields_serialization(store, [field])
 
     if field.template:
         f_to_serialize = field.template
@@ -216,19 +297,21 @@ def serialize_step(store, step, language):
         'option': trigger.id
     } for trigger in step.triggered_by_options]
 
+    data = db_prepare_fields_serialization(store, step.children)
+
     ret_dict = {
         'id': step.id,
         'questionnaire_id': step.questionnaire_id,
         'presentation_order': step.presentation_order,
         'triggered_by_score': step.triggered_by_score,
         'triggered_by_options': triggered_by_options,
-        'children': [serialize_field(store, f, language) for f in step.children]
+        'children': [serialize_field(store, f, language, data) for f in step.children]
     }
 
     return get_localized_values(ret_dict, step, step.localized_keys, language)
 
 
-def serialize_receiver(store, receiver, language):
+def serialize_receiver(store, receiver, language, data=None):
     """
     Serialize a receiver description
 
@@ -236,17 +319,20 @@ def serialize_receiver(store, receiver, language):
     :param language: the language in which to localize data
     :return: a serializtion of the object
     """
-    contexts = [rc.context_id for rc in store.find(models.ReceiverContext, models.ReceiverContext.receiver_id == receiver.id)]
+    if data is None:
+        data = db_prepare_receivers_serialization(store, [receiver])
+
+    user = data['users'][receiver.id]
 
     ret_dict = {
         'id': receiver.id,
-        'name': receiver.user.public_name,
+        'name': user.public_name,
         'username': receiver.user.username if GLSettings.memory_copy.simplified_login else '',
-        'state': receiver.user.state,
+        'state': user.state,
         'configuration': receiver.configuration,
         'presentation_order': receiver.presentation_order,
-        'contexts': contexts,
-        'picture': receiver.user.picture.data if receiver.user.picture is not None else ''
+        'contexts': data['contexts'][receiver.id],
+        'picture': data['imgs'][receiver.id]
     }
 
     # description and eventually other localized strings should be taken from user model
@@ -256,32 +342,29 @@ def serialize_receiver(store, receiver, language):
 
 
 def db_get_public_context_list(store, language):
-    context_list = []
+    subselect = Select(models.ReceiverContext.context_id, distinct=True)
 
-    for context in store.find(models.Context):
-        if context.receivers.count():
-            context_list.append(serialize_context(store, context, language))
+    contexts = store.find(models.Context, models.Context.id.is_in(subselect))
 
-    return context_list
+    data = db_prepare_contexts_serialization(store, contexts)
+
+    return [serialize_context(store, context, language, data) for context in contexts]
+
 
 def db_get_questionnaire_list(store, language):
-    questionnaire_list = []
-    for questionnaire in store.find(models.Questionnaire):
-        questionnaire_list.append(serialize_questionnaire(store, questionnaire, language))
+    questionnaires = store.find(models.Questionnaire)
 
-    return questionnaire_list
-
+    return [serialize_questionnaire(store, questionnaire, language) for questionnaire in questionnaires]
 
 
 def db_get_public_receiver_list(store, language):
-    receiver_list = []
+    receivers = store.find(models.Receiver,
+                           models.Receiver.id == models.User.id,
+                           models.User.state != u'disabled')
 
-    for receiver in store.find(models.Receiver,
-                               models.Receiver.id == models.User.id,
-                               models.User.state != u'disabled'):
-        receiver_list.append(serialize_receiver(store, receiver, language))
+    data = db_prepare_receivers_serialization(store, receivers)
 
-    return receiver_list
+    return [serialize_receiver(store, receiver, language, data) for receiver in receivers]
 
 
 @transact
@@ -295,13 +378,11 @@ def get_public_resources(store, language):
 
 
 class PublicResource(BaseHandler):
-    @BaseHandler.transport_security_check("unauth")
-    @BaseHandler.unauthenticated
-    @inlineCallbacks
+    check_roles = '*'
+    cache_resource = True
+
     def get(self):
         """
         Get all the public resources.
         """
-        ret = yield GLApiCache.get('public', self.request.language,
-                                   get_public_resources, self.request.language)
-        self.write(ret)
+        return get_public_resources(self.request.language)

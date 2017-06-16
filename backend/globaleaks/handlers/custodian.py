@@ -3,9 +3,6 @@
 # ********
 #
 # Implement the classes handling the requests performed to /custodian/* URI PATH
-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import IdentityAccessRequest
 from globaleaks.orm import transact
@@ -68,24 +65,17 @@ class IdentityAccessRequestInstance(BaseHandler):
     """
     This handler allow custodians to manage an identity access request by a receiver
     """
-    @BaseHandler.transport_security_check('custodian')
-    @BaseHandler.authenticated('custodian')
-    @inlineCallbacks
+    check_roles = 'custodian'
+
     def get(self, identityaccessrequest_id):
         """
         Parameters: the id of the identity access request
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        identityaccessrequest = yield get_identityaccessrequest(identityaccessrequest_id,
-                                                                self.request.language)
+        return get_identityaccessrequest(identityaccessrequest_id,
+                                         self.request.language)
 
-        self.write(identityaccessrequest)
-
-
-    @BaseHandler.transport_security_check('custodian')
-    @BaseHandler.authenticated('custodian')
-    @inlineCallbacks
     def put(self, identityaccessrequest_id):
         """
         Parameters: the id of the identity access request
@@ -93,14 +83,12 @@ class IdentityAccessRequestInstance(BaseHandler):
         Response: IdentityAccessRequestDesc
         Errors: IdentityAccessRequestIdNotFound, InvalidInputFormat, InvalidAuthentication
         """
-        request = self.validate_message(self.request.body, requests.CustodianIdentityAccessRequestDesc)
+        request = self.validate_message(self.request.content.read(), requests.CustodianIdentityAccessRequestDesc)
 
-        identityaccessrequest = yield update_identityaccessrequest(self.current_user.user_id,
-                                                                   identityaccessrequest_id,
-                                                                   request,
-                                                                   self.request.language)
-
-        self.write(identityaccessrequest)
+        return update_identityaccessrequest(self.current_user.user_id,
+                                            identityaccessrequest_id,
+                                            request,
+                                            self.request.language)
 
 
 class IdentityAccessRequestsCollection(BaseHandler):
@@ -108,15 +96,11 @@ class IdentityAccessRequestsCollection(BaseHandler):
     This interface return the list of the requests of access to whislteblower identities
     GET /identityrequests
     """
+    check_roles = 'custodian'
 
-    @BaseHandler.transport_security_check('custodian')
-    @BaseHandler.authenticated('custodian')
-    @inlineCallbacks
     def get(self):
         """
         Response: identityaccessrequestsList
         Errors: InvalidAuthentication
         """
-        answer = yield get_identityaccessrequest_list(self.request.language)
-
-        self.write(answer)
+        return get_identityaccessrequest_list(self.request.language)

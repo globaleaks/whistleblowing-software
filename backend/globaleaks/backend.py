@@ -1,30 +1,26 @@
 # -*- coding: UTF-8
 #   backend
 #   *******
-# Here is the logic for creating a twisted service. In this part of the code we
-# do all the necessary high level wiring to make everything work together.
-# Specifically we create the cyclone web.Application from the API specification,
-# we create a TCPServer for it and setup logging.
-# We also set to kill the threadpool (the one used by Storm) when the
-# application shuts down.
-
 import os, sys
 import traceback
+
+from datetime import datetime
 
 from twisted.application import internet, service
 from twisted.internet import reactor, defer
 from twisted.python import log as txlog, logfile as txlogfile
+from twisted.web.http import _escape
+from twisted.web.server import Site
 
-from globaleaks.db import init_db, sync_clean_untracked_files, \
-    sync_refresh_memory_variables
-from globaleaks.rest import api
+from globaleaks.db import init_db, update_db, \
+    sync_refresh_memory_variables, sync_clean_untracked_files
+from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log, GLLogObserver
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
-import globaleaks.mocks.cyclone_mocks
 import globaleaks.mocks.twisted_mocks
 
 
@@ -42,8 +38,6 @@ def pre_listen_startup():
     mask = 0
     if GLSettings.devel_mode:
         mask = 9000
-
-    address = GLSettings.bind_address
 
     GLSettings.http_socks = []
     for port in GLSettings.bind_ports:
@@ -64,11 +58,20 @@ def pre_listen_startup():
     GLSettings.drop_privileges()
     GLSettings.check_directories()
 
-    if GLSettings.initialize_db:
-        init_db()
+def timedLogFormatter(timestamp, request):
+    duration = -1
+    if hasattr(request, 'start_time'):
+        duration = round((datetime.now() - request.start_time).microseconds / 1000, 4)
 
-    sync_clean_untracked_files()
-    sync_refresh_memory_variables()
+    line = (u'%(code)s %(method)s %(uri)s %(length)s %(duration)dms' % dict(
+              duration=duration,
+              method=_escape(request.method),
+              uri=_escape(request.uri),
+              proto=_escape(request.clientproto),
+              code=request.code,
+              length=request.sentLength or u"-"))
+
+    return line
 
 
 class GLService(service.Service):
@@ -84,9 +87,24 @@ class GLService(service.Service):
 
     @defer.inlineCallbacks
     def _deferred_start(self):
+        ret = update_db()
+
+        if ret == -1:
+            reactor.stop()
+
+        if ret == 0:
+            init_db()
+
+        sync_clean_untracked_files()
+        sync_refresh_memory_variables()
+
         GLSettings.orm_tp.start()
+
         reactor.addSystemEventTrigger('after', 'shutdown', GLSettings.orm_tp.stop)
-        GLSettings.api_factory = api.get_api_factory()
+
+        arw = APIResourceWrapper()
+
+        GLSettings.api_factory = Site(arw, logFormatter=timedLogFormatter)
 
         for sock in GLSettings.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)

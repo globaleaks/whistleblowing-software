@@ -6,9 +6,8 @@
 # Tip export utils
 import copy
 
-from cyclone.web import asynchronous
 from storm.expr import In
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import Deferred, inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.admin.context import admin_serialize_context
@@ -54,7 +53,7 @@ def get_tip_export(store, user_id, rtip_id, language):
         rf.downloads += 1
         file_dict = models.serializers.serialize_rfile(rf)
         file_dict['name'] = 'files/' + file_dict['name']
-        export_dict['files'].append(copy.deepcopy(file_dict))
+        export_dict['files'].append(file_dict)
 
     rtips_ids = [rt.id for rt in rtip.internaltip.receivertips]
     wfs = store.find(models.WhistleblowerFile, In(models.WhistleblowerFile.receivertip_id, rtips_ids))
@@ -62,7 +61,7 @@ def get_tip_export(store, user_id, rtip_id, language):
     for wf in wfs:
         file_dict = models.serializers.serialize_wbfile(wf)
         file_dict['name'] = 'files_from_recipients/' + file_dict['name']
-        export_dict['files'].append(copy.deepcopy(file_dict))
+        export_dict['files'].append(file_dict)
 
     return export_dict
 
@@ -79,11 +78,13 @@ class ZipStreamProducer(object):
         """
         Initialize the instance.
         """
+        self.finish = Deferred()
         self.handler = handler
         self.zipstreamObject = zipstreamObject
 
     def start(self):
-        self.handler.request.connection.transport.registerProducer(self, False)
+        self.handler.request.registerProducer(self, False)
+        return self.finish
 
     def resumeProducing(self):
         try:
@@ -93,17 +94,17 @@ class ZipStreamProducer(object):
             data = self.zip_chunk()
             if data:
                 self.handler.write(data)
-                self.handler.flush()
             else:
-                self.handler.request.connection.transport.unregisterProducer()
-                self.handler.finish()
                 self.stopProducing()
         except:
-            self.handler.finish()
+            self.stopProducing()
             raise
 
     def stopProducing(self):
+        self.handler.request.unregisterProducer()
+        self.handler.request.finish()
         self.handler = None
+        self.finish.callback(None)
 
     def zip_chunk(self):
         chunk = []
@@ -120,19 +121,17 @@ class ZipStreamProducer(object):
 
 
 class ExportHandler(BaseHandler):
+    check_roles = 'receiver'
     handler_exec_time_threshold = 3600
 
-    @BaseHandler.transport_security_check('receiver')
-    @BaseHandler.authenticated('receiver')
     @inlineCallbacks
-    @asynchronous
     def get(self, rtip_id):
         tip_export = yield get_tip_export(self.current_user.user_id, rtip_id, self.request.language)
 
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
+        self.request.setHeader('X-Download-Options', 'noopen')
+        self.request.setHeader('Content-Type', 'application/octet-stream')
+        self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s.zip\"' % tip_export['tip']['sequence_number'])
 
         self.zip_stream = iter(ZipStream(tip_export['files']))
 
-        ZipStreamProducer(self, self.zip_stream).start()
+        yield ZipStreamProducer(self, self.zip_stream).start()

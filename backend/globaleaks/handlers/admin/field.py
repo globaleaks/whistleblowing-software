@@ -7,14 +7,12 @@
 import copy
 
 from storm.expr import And, Not, In
-from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_field
 from globaleaks.orm import transact
 from globaleaks.rest import errors, requests
-from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import log
 
@@ -164,11 +162,11 @@ def db_create_field(store, field_dict, language):
 
 
 @transact
-def create_field(store, field_dict, language, request_type=None):
+def create_field(store, field_dict, language):
     """
     Transaction that perform db_create_field
     """
-    field = db_create_field(store, field_dict, language if request_type != 'import' else None)
+    field = db_create_field(store, field_dict, language)
 
     return serialize_field(store, field, language)
 
@@ -213,7 +211,7 @@ def db_update_field(store, field_id, field_dict, language):
 
 
 @transact
-def update_field(store, field_id, field, language, request_type=None):
+def update_field(store, field_id, field, language):
     """
     Update the specified field with the details.
     raises :class:`globaleaks.errors.FieldIdNotFound` if the field does
@@ -225,13 +223,13 @@ def update_field(store, field_id, field, language, request_type=None):
     :param language: the language of the field definition dict
     :return: a serialization of the object
     """
-    field = db_update_field(store, field_id, field, language if request_type != 'import' else None)
+    field = db_update_field(store, field_id, field, language)
 
     return serialize_field(store, field, language)
 
 
 @transact
-def get_field(store, field_id, language, request_type=None):
+def get_field(store, field_id, language):
     """
     Serialize a specified field
 
@@ -245,7 +243,7 @@ def get_field(store, field_id, language, request_type=None):
     if not field:
         raise errors.FieldIdNotFound
 
-    return serialize_field(store, field, language if request_type != 'export' else None)
+    return serialize_field(store, field, language)
 
 
 @transact
@@ -297,7 +295,7 @@ def fieldtree_ancestors(store, field_id):
 
 
 @transact
-def get_fieldtemplate_list(store, language, request_type=None):
+def get_fieldtemplate_list(store, language):
     """
     Serialize all the field templates localizing their content depending on the language.
 
@@ -306,8 +304,6 @@ def get_fieldtemplate_list(store, language, request_type=None):
     :return: the current field list serialized.
     :rtype: list of dict
     """
-    language = language if request_type != 'export' else None
-
     ret = []
     for f in store.find(models.Field, And(models.Field.instance == u'template',
                                           models.Field.fieldgroup_id == None)):
@@ -317,9 +313,8 @@ def get_fieldtemplate_list(store, language, request_type=None):
 
 
 class FieldTemplatesCollection(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+
     def get(self):
         """
         Return a list of all the fields templates available.
@@ -327,32 +322,23 @@ class FieldTemplatesCollection(BaseHandler):
         :return: the list of field templates registered on the node.
         :rtype: list
         """
-        response = yield GLApiCache.get('fieldtemplates', self.request.language,
-                                        get_fieldtemplate_list, self.request.language, self.request.request_type)
+        return get_fieldtemplate_list(self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def post(self):
         """
         Create a new field template.
         """
         validator = requests.AdminFieldDesc if self.request.language is not None else requests.AdminFieldDescRaw
 
-        request = self.validate_message(self.request.body, validator)
+        request = self.validate_message(self.request.content.read(), validator)
 
-        response = yield create_field(request, self.request.language, self.request.request_type)
-
-        self.set_status(201)
-        self.write(response)
+        return create_field(request, self.request.language)
 
 
 class FieldTemplateInstance(BaseHandler):
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def get(self, field_id):
         """
         Get the field identified by field_id
@@ -362,15 +348,9 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id,
-                                   self.request.language,
-                                   self.request.request_type)
+        return get_field(field_id,
+                         self.request.language)
 
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def put(self, field_id):
         """
         Update a single field template's attributes.
@@ -380,22 +360,13 @@ class FieldTemplateInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        response = yield update_field(field_id,
-                                      request,
-                                      self.request.language,
-                                      self.request.request_type)
+        return update_field(field_id,
+                            request,
+                            self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.set_status(202) # Updated
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def delete(self, field_id):
         """
         Delete a single field template.
@@ -403,9 +374,7 @@ class FieldTemplateInstance(BaseHandler):
         :param field_id:
         :raises FieldIdNotFound: if there is no field with such id.
         """
-        yield delete_field(field_id)
-
-        GLApiCache.invalidate()
+        return delete_field(field_id)
 
 
 class FieldCollection(BaseHandler):
@@ -414,9 +383,9 @@ class FieldCollection(BaseHandler):
 
     /admin/fields
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def post(self):
         """
         Create a new field.
@@ -425,17 +394,11 @@ class FieldCollection(BaseHandler):
         :rtype: AdminFieldDesc
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        response = yield create_field(request,
-                                      self.request.language,
-                                      self.request.request_type)
-
-        GLApiCache.invalidate()
-
-        self.set_status(201)
-        self.write(response)
+        return create_field(request,
+                            self.request.language)
 
 
 class FieldInstance(BaseHandler):
@@ -444,9 +407,9 @@ class FieldInstance(BaseHandler):
 
     /admin/fields
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
+    check_roles = 'admin'
+    invalidate_cache = True
+
     def get(self, field_id):
         """
         Get the field identified by field_id
@@ -457,17 +420,9 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        response = yield get_field(field_id,
-                                   self.request.language,
-                                   self.request.request_type)
+        return get_field(field_id,
+                         self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def put(self, field_id):
         """
         Update attributes of the specified step.
@@ -478,22 +433,13 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminFieldDesc)
 
-        response = yield update_field(field_id,
-                                      request,
-                                      self.request.language,
-                                      self.request.request_type)
+        return update_field(field_id,
+                            request,
+                            self.request.language)
 
-        GLApiCache.invalidate()
-
-        self.set_status(202) # Updated
-        self.write(response)
-
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def delete(self, field_id):
         """
         Delete a single field.
@@ -502,6 +448,4 @@ class FieldInstance(BaseHandler):
         :raises FieldIdNotFound: if there is no field with such id.
         :raises InvalidInputFormat: if validation fails.
         """
-        yield delete_field(field_id)
-
-        GLApiCache.invalidate()
+        return delete_field(field_id)

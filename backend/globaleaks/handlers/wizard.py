@@ -1,7 +1,6 @@
 # -*- coding: UTF-8
 #
 # wizard
-
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.admin.context import db_create_context
@@ -82,16 +81,18 @@ class Wizard(BaseHandler):
     """
     Setup Wizard handler
     """
-    @BaseHandler.unauthenticated
+    check_roles = 'unauthenticated'
+
     @inlineCallbacks
     def post(self):
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.WizardDesc)
 
         # Wizard will raise exceptions if there are any errors with the request
         yield wizard(request, self.request.language)
-        # cache must be updated in order to set wizard_done = True
-        yield serialize_node(self.request.language)
-        GLApiCache.invalidate()
 
-        self.set_status(201)  # Created
+        yield serialize_node(self.request.language)
+
+        # Invalidation is performed at this stage only after the asserts within
+        # wizard have ensured that the wizard can be executed.
+        GLApiCache.invalidate()

@@ -98,7 +98,6 @@ GLConfig = {
         'tor2web_custodian': Bool(default=True),
         'tor2web_whistleblower': Bool(default=False),
         'tor2web_receiver': Bool(default=True),
-        'tor2web_unauth': Bool(default=True),
         'allow_unencrypted': Bool(default=True),
         'disable_encryption_warnings': Bool(default=False),
         'allow_iframes_inclusion': Bool(default=False),

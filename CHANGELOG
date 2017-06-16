@@ -1,4 +1,12 @@
-Changes in version 2.67.5 - 2017-04-12
+Changes in version 2.67.6 - 2017-06-09
+    o Reimplement minimal REST server removing cyclone dependency
+    o Enforce authentication decorators to be loaded at startup on all REST handlers
+    o Enforce cache decorator to be loaded at startup on all REST handlers
+    o Optimize serialization of objects exposed via /public API
+    o Apply minor style fixes on UI paddings and margins
+    o Move database initialization after daemon startup
+
+Changes in version 2.67.5 - 2017-05-10
     o Implement search based select box for contexts
     o Fix visualization of file upload errors showing just last error
     o Update NPM dependencies
@@ -110,7 +118,7 @@ Changes in version 2.65.11 - 2017-01-12
     - https://github.com/globaleaks/GlobaLeaks/issues/1771
     - https://github.com/globaleaks/GlobaLeaks/issues/1868
 
-Changes in version 2.65.10 -2016-12-13
+Changes in version 2.65.10 - 2016-12-13
     o Apply minor fixes
 
 Changes in version 2.65.9 - 2016-12-08
@@ -1333,12 +1341,12 @@ Changes in version 2.30 - 2013-12-05
       - https://github.com/globaleaks/GlobaLeaks/issues/708
       - https://github.com/globaleaks/GlobaLeaks/issues/709
 
-Changes in version 2.29
+Changes in version 2.29 - 2013-12-05
     o updated to Angular 1.2.0, js codebase reduced (~700~ -> ~400k)
     o implemented UI to view/delete custom uploaded files.
     o added authentication over file download and collection download
 
-Changes in version 2.28
+Changes in version 2.28 - 2013-11-05
     o added new translations (Serbian, Serbian@latin, German Czech)
 
     The following is the comprehensive list of closed tickets:
@@ -1381,24 +1389,24 @@ Changes in version 2.28
       - https://github.com/globaleaks/GlobaLeaks/issues/614
       - https://github.com/globaleaks/GlobaLeaks/issues/598
 
-Changes in version 2.26
+Changes in version 2.26 - 2013-09-09
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/166
       - https://github.com/globaleaks/GlobaLeaks/issues/605
 
-Changes in version 2.25
+Changes in version 2.25 - 2013-09-08
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/600
       - https://github.com/globaleaks/GlobaLeaks/issues/606
 
-Changes in version 2.24.15
+Changes in version 2.24.15 - 2013-09-08
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/572
       - https://github.com/globaleaks/GlobaLeaks/issues/571
       - https://github.com/globaleaks/GlobaLeaks/issues/592
       - https://github.com/globaleaks/GlobaLeaks/issues/575
 
-Changes in version 2.24.13
+Changes in version 2.24.13 - 2013-09-08
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/565
       - https://github.com/globaleaks/GlobaLeaks/issues/561
@@ -1409,7 +1417,7 @@ Changes in version 2.24.13
       - https://github.com/globaleaks/GlobaLeaks/issues/581
       - https://github.com/globaleaks/GlobaLeaks/issues/589
 
-Changes in version 2.24.10
+Changes in version 2.24.10 - 2013-08-30
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/512
       - https://github.com/globaleaks/GlobaLeaks/issues/510
@@ -1424,7 +1432,7 @@ Changes in version 2.24.10
       - https://github.com/globaleaks/GlobaLeaks/issues/548
       - https://github.com/globaleaks/GlobaLeaks/issues/558
 
-Changes in version 2.24.9
+Changes in version 2.24.9 - 2013-08-18
     The following is the comprehensive list of closed tickets:
       - https://github.com/globaleaks/GlobaLeaks/issues/514
       - https://github.com/globaleaks/GlobaLeaks/issues/498
@@ -1435,7 +1443,7 @@ Changes in version 2.24.9
       - https://github.com/globaleaks/GlobaLeaks/issues/491
       - https://github.com/globaleaks/GlobaLeaks/issues/316
 
-Changes in version 2.24.3
+Changes in version 2.24.3 - 2013-08-14
     o updated translations
 
     The following is the comprehensive list of closed tickets:

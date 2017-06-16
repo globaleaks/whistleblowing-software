@@ -27,12 +27,12 @@ class TestIdentityAccessRequestInstance(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request(user_id = self.dummyCustodianUser['id'], role='custodian')
 
-        yield handler.get(iars[0]['id'])
+        response = yield handler.get(iars[0]['id'])
 
-        self.responses[0]['response'] = 'authorized'
-        self.responses[0]['response_motivation'] = 'oh yeah!'
+        response['response'] = 'authorized'
+        response['response_motivation'] = 'oh yeah!'
 
-        handler = self.request(self.responses[0], user_id = self.dummyCustodianUser['id'], role='custodian')
+        handler = self.request(response, user_id = self.dummyCustodianUser['id'], role='custodian')
         yield handler.put(iars[0]['id'])
 
         yield handler.get(iars[0]['id'])

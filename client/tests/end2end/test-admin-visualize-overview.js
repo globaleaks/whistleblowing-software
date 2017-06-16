@@ -10,5 +10,6 @@ describe('verify navigation of admin overview sections', function() {
     element(by.cssContainingText("a", "Users")).click();
     element(by.cssContainingText("a", "Files")).click();
     element(by.cssContainingText("a", "Anomalies")).click();
+    element(by.cssContainingText("a", "Scheduled jobs")).click();
   });
 });

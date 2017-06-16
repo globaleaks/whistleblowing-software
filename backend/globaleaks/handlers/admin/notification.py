@@ -94,22 +94,16 @@ class NotificationInstance(BaseHandler):
     """
     Manage Notification settings (account details and template)
     """
+    check_roles = 'admin'
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def get(self):
         """
         Parameters: None
         Response: AdminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
-        notification_desc = yield get_notification(self.request.language)
-        self.write(notification_desc)
+        return get_notification(self.request.language)
 
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
-    @inlineCallbacks
     def put(self):
         """
         Request: AdminNotificationDesc
@@ -118,30 +112,23 @@ class NotificationInstance(BaseHandler):
 
         Changes the node notification settings.
         """
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminNotificationDesc)
 
-        response = yield update_notification(request, self.request.language)
-
-        self.set_status(202)
-        self.write(response)
+        return update_notification(request, self.request.language)
 
 
 class NotificationTestInstance(BaseHandler):
     """
-    Send Test Email Notifications to the admin that clicked the button.
+    Send test email notifications to the admin that clicked the button.
     This post takes no arguments and generates an empty response to both
-    successful and unsucessful requests. Understand that this handler blocks
-    its thread until both the db query and the SMTP round trip return.
+    successful and unsucessful requests. This handler does not return
+    until both the db query and the SMTP round trip return.
     """
-    @BaseHandler.transport_security_check('admin')
-    @BaseHandler.authenticated('admin')
+    check_roles = 'admin'
+
     @inlineCallbacks
     def post(self):
-        """
-        Parameters: None
-        Response: None
-        """
         user = yield get_user_settings(self.current_user.user_id,
                                      GLSettings.memory_copy.default_language)
 

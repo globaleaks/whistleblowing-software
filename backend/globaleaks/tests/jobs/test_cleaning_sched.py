@@ -12,7 +12,7 @@ from globaleaks.utils.utility import datetime_null
 
 
 class TestCleaningSched(helpers.TestGLWithPopulatedDB):
-    population_of_submissions = 10
+    #population_of_submissions = 10
 
     @transact
     def force_wbtip_expiration(self, store):
@@ -47,8 +47,8 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(store, models.WhistleblowerTip, self.population_of_submissions)
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverFile, 0)
-        self.db_test_model_count(store, models.Comment, self.population_of_submissions * self.population_of_comments)
-        self.db_test_model_count(store, models.Message, self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
+        self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
+        self.db_test_model_count(store, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
 
     @transact
     def check2(self, store):
@@ -59,8 +59,8 @@ class TestCleaningSched(helpers.TestGLWithPopulatedDB):
         self.db_test_model_count(store, models.WhistleblowerTip, 0) # Note the diff
         self.db_test_model_count(store, models.InternalFile, self.population_of_attachments * self.population_of_submissions)
         self.db_test_model_count(store, models.ReceiverFile, 0)
-        self.db_test_model_count(store, models.Comment, self.population_of_submissions * self.population_of_comments)
-        self.db_test_model_count(store, models.Message, self.population_of_submissions * self.population_of_recipients * self.population_of_messages)
+        self.db_test_model_count(store, models.Comment, self.population_of_submissions * (self.population_of_recipients + 1))
+        self.db_test_model_count(store, models.Message, self.population_of_submissions * (self.population_of_recipients + 2))
 
 
     @inlineCallbacks

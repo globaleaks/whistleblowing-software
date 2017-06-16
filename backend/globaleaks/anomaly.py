@@ -322,11 +322,10 @@ class AlarmClass(object):
         GLSettings.accept_submissions = accept_submissions if not GLSettings.testing else True
 
         if old_accept_submissions != GLSettings.accept_submissions:
-            log.info("Switching disk space availability from: %s to %s" % (
-                "True" if old_accept_submissions else "False",
-                "False" if old_accept_submissions else "True"))
+            log.info("Switching disk space availability from: %s to %s" % \
+                     (old_accept_submissions, accept_submissions))
 
-            # Invalidate the cache of node avoiding accesses to the db from here
+            # Must invalidate the cache here becuase accept_subs served in /public has changed
             GLApiCache.invalidate()
 
 # Alarm is a singleton class exported once

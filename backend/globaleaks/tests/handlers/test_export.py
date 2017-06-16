@@ -16,8 +16,10 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
 
         yield self.perform_full_submission_actions()
+
         # populates alarms conditions
         self.pollute_events(10)
+
         # creates the receiver files
         yield DeliverySchedule().run()
 
@@ -28,12 +30,5 @@ class TestExportHandler(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({}, role='receiver')
         handler.current_user.user_id = rtips_desc[0]['receiver_id']
 
-        # As the handler calls internally the flush() we should
-        # mock that function because during tests the flush could not
-        # be called as the handler is not fully run.
-        def flush_mock():
-            pass
-
-        handler.flush = flush_mock
-
         yield handler.get(rtips_desc[0]['id'])
+        self.assertNotEqual(handler.request.getResponseBody(), '')

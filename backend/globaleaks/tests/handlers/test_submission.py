@@ -8,7 +8,7 @@ from globaleaks.rest import errors
 from globaleaks.tests import helpers
 from globaleaks.utils.token import Token
 
-# and here, our protagonist character:
+# eccolo quel grand genio del mio amico
 
 
 class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
@@ -31,8 +31,8 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         token.solve()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        yield handler.put(token.id)
-        returnValue(self.responses[0])
+        response = yield handler.put(token.id)
+        returnValue(response)
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
@@ -41,8 +41,8 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         yield self.emulate_file_upload(token, 3)
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        result = yield handler.put(token.id)
-        returnValue(self.responses[0])
+        response = yield handler.put(token.id)
+        returnValue(response)
 
     @inlineCallbacks
     def test_create_submission_valid_submission(self):
@@ -85,7 +85,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
         self.submission_desc = yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], False)
+        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], True)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
@@ -99,18 +99,20 @@ class TestSubmissionTokenInteract(helpers.TestHandlerWithPopulatedDB):
         token = Token()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
-        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
+        yield self.assertRaises(errors.TokenFailure, handler.put, token.id)
 
 
     @inlineCallbacks
     def test_token_reuse_blocked(self):
-        token = Token()
-        token.solve()
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         handler = self.request(self.submission_desc)
+
+        token = Token()
+        token.solve()
         yield handler.put(token.id)
-        yield self.assertFailure(handler.put(token.id), errors.TokenFailure)
+
+        yield self.assertRaises(errors.TokenFailure, handler.put, token.id)
 
 
 class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenario):
@@ -120,7 +122,6 @@ class TestSubmissionEncryptedScenarioOneKeyExpired(TestSubmissionEncryptedScenar
 
     counters_check = {
         'encrypted': 3,
-        'unavailable': 3,
         'reference': 0
     }
 

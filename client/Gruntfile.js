@@ -784,15 +784,55 @@ module.exports = function(grunt) {
 
   });
 
+
+  // Processes misc files included in the GlobaLeaks repository that need to be
+  // included as data like the license and changelog
+  grunt.registerTask('includeExternalFiles', function() {
+      var content = grunt.file.read('../LICENSE');
+      fs.writeFileSync('tmp/data/license.txt', content)
+
+      content = grunt.file.read('../CHANGELOG');
+      fs.writeFileSync('tmp/data/changelog.txt', content)
+      var lines = content.split("\n"),
+          changelog = [],
+          obj;
+
+      for (var i = 0; i < lines.length; i++) {
+        var l = lines[i];
+        // Format of the first line of every new release is:
+        // Changes in version 2.76.4 - 2017-04-12
+        if (/^(Changes in version)/.test(l)) {
+          obj = {};
+          // Matches version and date
+          var res = l.match(/(\d+\.\d+(\.\d+)?) - (\d{4}-\d{2}-\d{2})/);
+          obj.title = l;
+          obj.version = res[1];
+          obj.date = res[3];
+          obj.txt = '';
+          changelog.push(obj);
+        } else {
+          obj.txt += l + '\n';
+        }
+      }
+
+      obj.txt = obj.txt.replace(/^\s+|\s+$/g, "");
+
+      // Using object here due to issues with exporting raw lists via json
+      var output = JSON.stringify({'v': changelog});
+      fs.writeFileSync('tmp/data/changelog.json', output);
+
+      console.log('Copied misc files into ./tmp');
+  });
+
+
   // Run this task to push translations on transifex
   grunt.registerTask('pushTranslationsSource', ['confirm', '☠☠☠pushTranslationsSource☠☠☠']);
 
   // Run this task to fetch translations from transifex and create application files
   grunt.registerTask('updateTranslations', ['fetchTranslations', 'makeAppData']);
-
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy:sources', 'copy:build', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
+    ['clean', 'copy:sources', 'copy:build', 'includeExternalFiles', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'string-replace', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('generateCoverallsJson', function() {
     var done = this.async();

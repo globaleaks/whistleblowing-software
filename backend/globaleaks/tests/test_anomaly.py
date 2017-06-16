@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-
+from datetime import timedelta
 from twisted.internet import defer
 
 from globaleaks import event
@@ -16,7 +16,7 @@ class TestAlarm(helpers.TestGL):
 
         # create one event per type.
         for event_obj in event.events_monitored:
-            event.EventTrack(event_obj, 1.0)
+            event.EventTrack(event_obj, timedelta(seconds=1.0))
 
         x = event.EventTrackQueue.take_current_snapshot()
         self.assertTrue(len(x) > 1)

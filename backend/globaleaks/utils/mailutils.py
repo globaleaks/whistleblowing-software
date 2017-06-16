@@ -218,10 +218,9 @@ def mail_exception_handler(etype, value, tback):
 
 def extract_exception_traceback_and_send_email(e):
     if isinstance(e, Failure):
-        exc_type = [e.type, e.value, e.getTracebackObject()]
+        exc_type, exc_value, exc_tb = e.type, e.value, e.getTracebackObject()
     else:
         exc_type, exc_value, exc_tb = sys.exc_info()
-
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 

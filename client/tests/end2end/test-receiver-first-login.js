@@ -9,7 +9,7 @@ var pgp_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KE
 
 describe('receiver first login', function() {
   it('should redirect to /firstlogin upon successful authentication', function() {
-    utils.login_receiver('Recipient1', utils.vars['default_password'], '/login', true);
+    utils.login_receiver('Recipient1', utils.vars['default_password'], '/#/login', true);
   });
 
   it('should be able to change password from the default one', function() {

@@ -213,6 +213,11 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
+controller('AdminHomeCtrl', ['$scope', function($scope) {
+  // NOTE tabs structure is defined in the related view.
+  $scope.changelog = $scope.$resolve.changelog;
+  $scope.displayNum = 10;
+}]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   function($scope, $uibModal){
   $scope.tabs = [
