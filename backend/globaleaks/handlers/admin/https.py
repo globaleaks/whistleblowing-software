@@ -564,7 +564,7 @@ class AcmeHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def put(self):
-        request = self.validate_message(self.request.body,
+        request = self.validate_message(self.request.content.read(),
                                         requests.AdminAcmeSubscribeDesc)
 
         is_ready = yield can_perform_acme_run()
@@ -620,9 +620,8 @@ class AcmeChallResolver(BaseHandler):
 
     def get(self, token):
         if token in tmp_chall_dict:
-            self.write(tmp_chall_dict[token].tok)
-            log.info('Responded to .well-known request')
-            return
+            log.info('Responding to valid .well-known request')
+            return tmp_chall_dict[token].tok
         raise errors.ResourceNotFound
 
 

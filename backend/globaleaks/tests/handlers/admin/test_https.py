@@ -2,9 +2,10 @@ import os
 import SimpleHTTPServer
 import twisted
 
+from OpenSSL import crypto, SSL
+from requests.exceptions import ConnectionError
 from twisted.internet import reactor
 from twisted.internet.defer import inlineCallbacks, returnValue
-from OpenSSL import crypto, SSL
 
 from globaleaks.handlers.admin import https
 from globaleaks.models.config import PrivateFactory, NodeFactory
@@ -18,8 +19,10 @@ from globaleaks.tests.utils import test_tls
 
 
 @transact
-def set_dh_params(store, dh_params):
+def set_init_params(store, dh_params, hostname='localhost:9999'):
     PrivateFactory(store).set_val('https_dh_params', dh_params)
+    NodeFactory(store).set_val('hostname', hostname)
+    GLSettings.memory_copy.hostname = 'localhost:9999'
 
 
 class TestFileHandler(helpers.TestHandler):
@@ -30,7 +33,7 @@ class TestFileHandler(helpers.TestHandler):
         yield super(TestFileHandler, self).setUp()
 
         self.valid_setup = test_tls.get_valid_setup()
-        yield set_dh_params(self.valid_setup['dh_params'])
+        yield set_init_params(self.valid_setup['dh_params'])
 
     @inlineCallbacks
     def get_and_check(self, name, is_set):
@@ -152,7 +155,7 @@ class TestConfigHandler(helpers.TestHandler):
     def test_all_methods(self):
         valid_setup = test_tls.get_valid_setup()
 
-        yield set_dh_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
         yield https.CertFileRes.create_file(valid_setup['cert'])
         yield https.ChainFileRes.create_file(valid_setup['chain'])
@@ -184,11 +187,11 @@ class TestCSRHandler(helpers.TestHandler):
         n = 'csr'
 
         valid_setup = test_tls.get_valid_setup()
-        yield set_dh_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        GLSettings.memory_copy.hostname = 'notreal.ns.com'
 
         d = {
-           'commonname': 'notreal.ns.com',
            'country': 'it',
            'province': 'regione',
            'city': 'citta',
@@ -231,7 +234,7 @@ class TestAcmeHandler(helpers.TestHandler):
     def test_put(self):
         valid_setup = test_tls.get_valid_setup()
         yield https.AcmeAccntKeyRes.create_file()
-        yield https.AcmeAccntKeyRes.save_accnt_uri('TODO-keep-test-data-around')
+        yield https.AcmeAccntKeyRes.save_accnt_uri('http://localhost:9999')
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
         hostname = 'gl.dl.localhost.com'
         GLSettings.memory_copy.hostname = hostname
@@ -250,7 +253,7 @@ class TestAcmeHandler(helpers.TestHandler):
         }
 
         handler = self.request(body, role='admin')
-        yield handler.put()
+        yield self.assertFailure(handler.put(), ConnectionError)
 
 
 class TestAcmeChallResolver(helpers.TestHandler):
@@ -266,7 +269,7 @@ class TestAcmeChallResolver(helpers.TestHandler):
 
         tmp_chall_dict.set(tok, ct)
 
-        handler = self.request(role='admin')
+        handler = self.request()
         resp = yield handler.get(tok)
 
         self.assertEqual(resp, v)
@@ -313,10 +316,11 @@ class TestHostnameTestHandler(helpers.TestHandler):
 
     @inlineCallbacks
     def tearDown(self):
-        yield super(TestHostnameTestHandler, self).tearDown()
         self.tmp_hn = GLSettings.memory_copy.hostname
         self.tmp_hn = GLSettings.memory_copy.anonymize_outgoing_connections = True
         GLSettings.memory_copy.hostname = 'localhost'
 
         if hasattr(self, 'pp'):
-            os.kill(self.pp.transport.pid, 9)
+            self.pp.transport.signalProcess('KILL')
+
+        yield super(TestHostnameTestHandler, self).tearDown()

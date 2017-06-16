@@ -108,6 +108,8 @@ def init_glsettings_for_unit_tests():
 
     GLSettings.orm_tp = FakeThreadPool()
 
+    GLSettings.memory_copy.hostname = 'localhost'
+
     GLSessions.clear()
 
 
