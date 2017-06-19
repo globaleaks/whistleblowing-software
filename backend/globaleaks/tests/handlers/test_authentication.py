@@ -126,7 +126,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
-        handler.client_using_tor = True
+        handler.request.client_using_tor = True
         response = yield handler.post()
         self.assertTrue('session_id' in response)
         self.assertEqual(len(GLSessions.keys()), 1)
@@ -161,7 +161,7 @@ class TestReceiptAuth(helpers.TestHandlerWithPopulatedDB):
         handler = self.request({
             'receipt': self.dummySubmission['receipt']
         })
-        handler.client_using_tor = True
+        handler.request.client_using_tor = True
         response = yield handler.post()
         first_id = response['session_id']
 
@@ -224,7 +224,7 @@ class TestSessionHandler(helpers.TestHandlerWithPopulatedDB):
             'receipt': self.dummySubmission['receipt']
         })
 
-        handler.client_using_tor = True
+        handler.request.client_using_tor = True
 
         response = yield handler.post()
         self.assertTrue(handler.current_user is None)

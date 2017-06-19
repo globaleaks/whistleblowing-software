@@ -20,45 +20,6 @@ class BaseHandlerMock(BaseHandler):
 class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     _handler = BaseHandlerMock
 
-    @inlineCallbacks
-    def test_get_with_no_language_header(self):
-        handler = self.request({})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'en')
-
-    @inlineCallbacks
-    def test_get_with_gl_language_header(self):
-        handler = self.request({}, headers={'GL-Language': 'it'})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'it')
-
-    @inlineCallbacks
-    def test_get_with_accept_language_header(self):
-        handler = self.request({}, headers={'Accept-Language': 'ar;q=0.8,it;q=0.6'})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'ar')
-
-    @inlineCallbacks
-    def test_get_with_gl_language_header_and_accept_language_header_1(self):
-        handler = self.request({}, headers={'GL-Language': 'en',
-                                            'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'en')
-
-    @inlineCallbacks
-    def test_get_with_gl_language_header_and_accept_language_header_2(self):
-        handler = self.request({}, headers={'GL-Language': 'antani',
-                                            'Accept-Language': 'en-US,en;it;q=0.6'})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'en')
-
-    @inlineCallbacks
-    def test_get_with_gl_language_header_and_accept_language_header_3(self):
-        handler = self.request({}, headers={'GL-Language': 'antani',
-                                            'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
-        yield handler.get()
-        self.assertEqual(handler.request.language, 'en')
-
     def test_validate_jmessage_valid(self):
         dummy_message = {'spam': 'ham', 'firstd': {3: 4}, 'fields': "CIAOCIAO", 'nest': [{1: 2, 3: 4}]}
         dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
@@ -110,25 +71,6 @@ class TestBaseHandler(helpers.TestHandlerWithPopulatedDB):
     def test_validate_regexp_valid(self):
         self.assertTrue(BaseHandler.validate_regexp('Foca', '\w+'))
         self.assertFalse(BaseHandler.validate_regexp('Foca', '\d+'))
-
-    @inlineCallbacks
-    def test_client_using_tor(self):
-        handler = self.request({}, headers={})
-        yield handler.get()
-        self.assertFalse(handler.client_using_tor)
-
-        GLSettings.state.tor_exit_set.add('1.2.3.4')
-
-        handler = self.request({}, headers={})
-        yield handler.get()
-        self.assertTrue(handler.client_using_tor)
-
-        # Now test if the Tor2Web catching logic does its job.
-        handler = self.request({}, headers={'X-Tor2Web': '1'})
-        yield handler.get()
-        self.assertFalse(handler.client_using_tor)
-
-        GLSettings.state.tor_exit_set.clear()
 
 
 class TestStaticFileHandler(helpers.TestHandler):

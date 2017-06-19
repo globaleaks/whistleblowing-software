@@ -5,6 +5,7 @@ from io import BytesIO as StringIO
 
 from twisted.internet import defer
 from twisted.protocols import policies
+from twisted.web import http
 from twisted.web.client import HTTPPageGetter
 from twisted.web.http import HTTPChannel, HTTPFactory, Request
 
@@ -17,14 +18,6 @@ Request__write__orig = Request.write
 
 def mock_Request_gotLength(self, length):
     self.content = StringIO()
-
-
-def mock_Request_write(self, chunk):
-    if isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType):
-        chunk = json.dumps(chunk)
-        self.setHeader(b'content-type', b'application/json')
-
-    Request__write__orig(self, bytes(chunk))
 
 
 def mock_HTTPFactory__init__(self, logPath=None, timeout=60, logFormatter=None):
@@ -55,7 +48,6 @@ def mock_HTTChannel__timeoutConnection(self):
 
 
 Request.gotLength = mock_Request_gotLength
-Request.write = mock_Request_write
 HTTPPageGetter.timeout = mock_HTTPPageGetter_timeout
 HTTPFactory.__init__ = mock_HTTPFactory__init__
 HTTPChannel.timeoutConnection = mock_HTTChannel__timeoutConnection

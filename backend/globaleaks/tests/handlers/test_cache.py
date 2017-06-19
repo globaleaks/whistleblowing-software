@@ -50,7 +50,6 @@ class TestCacheWithHandlers(helpers.TestHandler):
 
         # Check that a different language doesn't blow away a different resource
         handler_fr = self.request(path='/public', headers={'gl-language': 'fr'})
-        self.maxDiff = None
         resp_fr = yield handler_fr.get()
         cached_resp_fr = GLApiCache.get("/public", "fr")
 

@@ -155,7 +155,7 @@ class TestLogging(unittest.TestCase):
 
         # Emit logs through twisted's interface. Import is required now b/c of stdout hack
         from twisted.python import log as twlog
-        twlog.err("error-msg")
+        twlog.err("error")
         observer.stop()
 
         s = output_buff.getvalue()
@@ -163,4 +163,4 @@ class TestLogging(unittest.TestCase):
         gex = r".+ \[ut\] x\n"
         m = re.findall(gex, s)
         self.assertTrue(len(m) == 2)
-        self.assertTrue(s.endswith("[-] msg-msg\n"))
+        self.assertTrue(s.endswith("[-] 'error'\n"))
