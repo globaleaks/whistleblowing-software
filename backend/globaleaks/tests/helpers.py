@@ -95,6 +95,7 @@ def init_glsettings_for_unit_tests():
     GLSettings.logging = None
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
+    GLSettings.onionservice = 'kpvz7ki2v5agwt35.onion'
 
     GLSettings.eval_paths()
 
@@ -716,6 +717,11 @@ class TestHandler(TestGLWithPopulatedDB):
 
         request.path = ''
         request.code = 200
+        request.language = 'en'
+        request.client_ip = '127.0.0.1'
+        request.client_proto = 'https'
+        request.client_using_tor = False
+
         request.getResponseBody = getResponseBody
 
         request.client = IPv4Address('TCP', '1.2.3.4', 12345)
@@ -727,6 +733,12 @@ class TestHandler(TestGLWithPopulatedDB):
         if headers is not None:
             for k, v in headers.iteritems():
                 request.requestHeaders.setRawHeaders(bytes(k), [bytes(v)])
+
+        request.headers = request.getAllHeaders()
+
+        from globaleaks.rest import api
+        x = api.APIResourceWrapper()
+        x.preprocess(request)
 
         if path is not None:
             if not path.startswith('/'):

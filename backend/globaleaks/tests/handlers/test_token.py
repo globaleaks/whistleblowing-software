@@ -22,7 +22,7 @@ class Test_TokenCreate(helpers.TestHandlerWithPopulatedDB):
 
         handler = self.request({'type': 'submission'})
 
-        handler.client_using_tor = True
+        handler.request.client_using_tor = True
 
         response = yield handler.post()
 

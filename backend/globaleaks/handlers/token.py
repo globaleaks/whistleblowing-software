@@ -29,7 +29,7 @@ class TokenCreate(BaseHandler):
         submission will require some actions to be performed before the
         submission can be concluded (e.g. hashcash and captchas).
         """
-        if not self.client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
+        if not self.request.client_using_tor and not GLSettings.memory_copy.accept_tor2web_access['whistleblower']:
             raise errors.TorNetworkRequired
 
         request = self.validate_message(self.request.content.read(), requests.TokenReqDesc)

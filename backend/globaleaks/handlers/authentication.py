@@ -109,7 +109,7 @@ class AuthenticationHandler(BaseHandler):
         username = request['username']
         password = request['password']
 
-        user_id, status, role, pcn = yield login(username, password, self.client_using_tor)
+        user_id, status, role, pcn = yield login(username, password, self.request.client_using_tor)
 
         # Revoke all other sessions for the newly authenticated user
         GLSessions.revoke_all_sessions(user_id)
@@ -143,7 +143,7 @@ class ReceiptAuthHandler(BaseHandler):
         if delay:
             yield deferred_sleep(delay)
 
-        user_id = yield login_whistleblower(receipt, self.client_using_tor)
+        user_id = yield login_whistleblower(receipt, self.request.client_using_tor)
 
         GLSessions.revoke_all_sessions(user_id)
 

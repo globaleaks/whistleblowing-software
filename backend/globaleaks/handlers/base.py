@@ -97,33 +97,34 @@ def write_upload_encrypted_to_disk(uploaded_file, destination):
 
 
 class StaticFileProducer(object):
-    """Streaming producer for files
+    """
+    Streaming producer for files
 
     @ivar handler: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
     bufferSize = GLSettings.file_chunk_size
 
-    def __init__(self, handler, filePath):
+    def __init__(self, request, filePath):
         self.finish = defer.Deferred()
-        self.handler = handler
+        self.request = request
         self.fileSize = os.stat(filePath).st_size
         self.fileObject = open(filePath, "rb")
         self.bytesWritten = 0
 
     def start(self):
-        self.handler.request.registerProducer(self, False)
+        self.request.registerProducer(self, False)
         return self.finish
 
     def resumeProducing(self):
-        try:
-            if not self.handler:
-                return
+        if self.request is None:
+            return
 
+        try:
             data = self.fileObject.read(self.bufferSize)
-            if data:
+            if len(data) > 0:
                 self.bytesWritten += len(data)
-                self.handler.write(data)
+                self.request.write(data)
 
             if self.bytesWritten == self.fileSize:
                 self.stopProducing()
@@ -132,11 +133,12 @@ class StaticFileProducer(object):
             raise
 
     def stopProducing(self):
-        self.fileObject.close()
-        self.handler.request.unregisterProducer()
-        self.handler.request.finish()
-        self.handler = None
-        self.finish.callback(None)
+        if self.request is not None:
+            self.fileObject.close()
+            self.request.unregisterProducer()
+            self.request.finish()
+            self.request = None
+            self.finish.callback(None)
 
 
 class GLSession(object):
@@ -165,68 +167,16 @@ class BaseHandler(object):
     invalidate_cache = False
 
     def __init__(self, request):
+        self.name = type(self).__name__
         self.request = request
         self.request.start_time = datetime.now()
 
-        self.name = type(self).__name__
-
-        self.req_id = GLSettings.requests_counter
-        GLSettings.requests_counter += 1
-
-        self.request.headers = self.request.getAllHeaders()
-
-        self.client_ip = request.headers.get('gl-forwarded-for', None)
-        self.client_proto = 'https'
-        if self.client_ip is None:
-            self.client_ip = self.request.getClientIP()
-            self.client_proto = 'http'
-
-        self.client_using_tor = self.client_ip in GLSettings.state.tor_exit_set
-        if 'x-tor2web' in self.request.headers:
-           self.client_using_tor = False
-
-        if self.should_redirect_tor():
-           self.redirect_tor()
-
-        if self.should_redirect_https():
-            self.redirect_https()
-
-        language = self.request.headers.get('gl-language')
-
-        if language is None:
-            for l in self.parse_accept_language_header():
-                if l in GLSettings.memory_copy.languages_enabled:
-                    language = l
-                    break
-
-        if language is None or language not in GLSettings.memory_copy.languages_enabled:
-            language = GLSettings.memory_copy.default_language
-
-        self.request.language = language
-        self.request.setHeader('Content-Language', language)
-
     def write(self, chunk):
-        self.request.write(chunk)
+        if isinstance(chunk, types.DictType) or isinstance(chunk, types.ListType):
+            chunk = json.dumps(chunk)
+            self.request.setHeader(b'content-type', b'application/json')
 
-    def parse_accept_language_header(self):
-        if "accept-language" in self.request.headers:
-            languages = self.request.headers["accept-language"].split(",")
-            locales = []
-            for language in languages:
-                parts = language.strip().split(";")
-                if len(parts) > 1 and parts[1].startswith("q="):
-                    try:
-                        score = float(parts[1][2:])
-                    except (ValueError, TypeError):
-                        score = 0.0
-                else:
-                    score = 1.0
-                locales.append((parts[0], score))
-            if locales:
-                locales.sort(key=lambda pair: pair[1], reverse=True)
-                return [l[0] for l in locales]
-
-        return GLSettings.memory_copy.default_language
+        self.request.write(bytes(chunk))
 
     @staticmethod
     def authentication(f, roles):
@@ -455,12 +405,6 @@ class BaseHandler(object):
         self.request.setHeader(b"location", url)
         self.request.finish()
 
-    def redirect_https(self):
-        self.redirect('https://' + self.getRequestHostname() + self.request.uri)
-
-    def redirect_tor(self, onion_addr):
-        self.redirect('http://' + onion_path + self.request.uri)
-
     def write_file(self, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
           raise errors.ResourceNotFound()
@@ -469,7 +413,7 @@ class BaseHandler(object):
         if mime_type:
             self.request.setHeader("Content-Type", mime_type)
 
-        return StaticFileProducer(self, filepath).start()
+        return StaticFileProducer(self.request, filepath).start()
 
     def force_file_download(self, filename, filepath):
         if not os.path.exists(filepath) or not os.path.isfile(filepath):
@@ -479,7 +423,7 @@ class BaseHandler(object):
         self.request.setHeader('Content-Type', 'application/octet-stream')
         self.request.setHeader('Content-Disposition', 'attachment; filename=\"%s\"' % filename)
 
-        return StaticFileProducer(self, filepath).start()
+        return StaticFileProducer(self.request, filepath).start()
 
     @property
     def current_user(self):
@@ -490,19 +434,6 @@ class BaseHandler(object):
             return None
 
         return GLSessions.get(session_id)
-
-    def should_redirect_tor(self):
-        if GLSettings.onionservice is not None and self.client_using_tor:
-            return True
-
-        return False
-
-    def should_redirect_https(self):
-        if GLSettings.memory_copy.private.https_enabled and \
-           self.client_proto is 'http' and self.client_ip not in GLSettings.local_hosts:
-            return True
-
-        return False
 
     def get_file_upload(self):
         try:
@@ -558,7 +489,6 @@ class BaseHandler(object):
 
             send_exception_email(error)
 
-        # TODO (nskelsey) move into rest/api.py Resource
         track_handler(self)
 
         if self.uniform_answer_time:
@@ -568,23 +498,12 @@ class BaseHandler(object):
 
 
 class StaticFileHandler(BaseHandler):
-    # TODO(nskelsey) test to ensure this does not break refreshes with X-Session passed.
     check_roles = '*'
 
     def __init__(self, request, path):
         BaseHandler.__init__(self, request)
 
         self.root = "%s%s" % (os.path.abspath(path), "/")
-
-    def write_file(self, filepath):
-        if not os.path.exists(filepath) or not os.path.isfile(filepath):
-          raise errors.ResourceNotFound()
-
-        mime_type, encoding = mimetypes.guess_type(filepath)
-        if mime_type:
-            self.request.setHeader('Content-Type', mime_type)
-
-        return StaticFileProducer(self, filepath).start()
 
     def get(self, path):
         if path == '':
