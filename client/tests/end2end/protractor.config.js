@@ -46,5 +46,12 @@ exports.config = {
       logWarnings: true,
       exclude: []
     }
-  ]
+  ],
+
+  onPrepare: function() {
+    browser.gl = {
+      'utils': require('./utils.js'),
+      'pages': require('./pages.js')
+    }
+  }
 };

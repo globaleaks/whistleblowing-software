@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('admin configure, add, and delete contexts', function() {
   it('should configure an existing context', function() {
     browser.setLocation('admin/contexts');
@@ -11,7 +9,7 @@ describe('admin configure, add, and delete contexts', function() {
     element(by.id('context-0')).element(by.css('.actionButtonAdvanced')).click();
     element(by.id('context-0')).element(by.model('context.allow_recipients_selection')).click();
 
-    utils.waitUntilPresent(by.model('context.select_all_receivers'));
+    browser.gl.utils.waitUntilPresent(by.model('context.select_all_receivers'));
 
     element(by.id('context-0')).element(by.model('context.select_all_receivers')).click();
 
@@ -26,7 +24,7 @@ describe('admin configure, add, and delete contexts', function() {
     var add_context = function(context_name) {
       element(by.model('new_context.name')).sendKeys(context_name);
       element(by.id('add-button')).click();
-      utils.waitUntilPresent(by.xpath(".//*[text()='" + context_name + "']"));
+      browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + context_name + "']"));
     };
 
     add_context('Context 2');

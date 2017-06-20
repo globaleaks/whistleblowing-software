@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('admin add, configure, and delete users', function() {
   var new_users = [
     {
@@ -30,7 +28,7 @@ describe('admin add, configure, and delete users', function() {
   ];
 
   it('should add new users', function() {
-    utils.login_admin();
+    browser.gl.utils.login_admin();
     browser.setLocation('admin/users');
 
     var make_account = function(user) {
@@ -43,7 +41,7 @@ describe('admin add, configure, and delete users', function() {
 
       element(by.model('new_user.role')).element(by.xpath(".//*[text()='" + user.role + "']")).click();
       element(by.id('add-button')).click();
-      utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
+      browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + user.name + "']"));
     };
 
     new_users.forEach(make_account);

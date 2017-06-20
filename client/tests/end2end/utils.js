@@ -19,6 +19,8 @@ exports.vars = {
   'testFileDir': './tests/end2end/files'
 };
 
+console.log(123);
+
 browser.getCapabilities().then(function(capabilities) {
   exports.isMobile = function() {
     var platformName = capabilities.get('platformName') || capabilities.get('platform');
@@ -45,11 +47,11 @@ browser.getCapabilities().then(function(capabilities) {
   exports.verifyFileDownload = function() {
     return browser.params.verifyFileDownload;
   };
-});
 
-exports.browserTimeout = function() {
-  return 30000;
-};
+  exports.browserTimeout = function() {
+    return 30000;
+  };
+});
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
@@ -180,7 +182,7 @@ exports.checksum = function(input) {
   return crypto.createHash('sha1').update(input, 'utf8').digest('hex');
 };
 
-exports.TestFileEquality = function(a_path, b_path) {
+exports.testFileEquality = function(a_path, b_path) {
   var a_hash = exports.checksum(fs.readFileSync(a_path));
   var b_hash = exports.checksum(fs.readFileSync(b_path));
   expect(a_hash).toEqual(b_hash);
