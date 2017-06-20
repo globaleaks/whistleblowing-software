@@ -1,8 +1,6 @@
-var utils = require('./utils.js');
-
 describe('verify navigation of admin overview sections', function() {
   it('should should navigate through overview sections', function() {
-    utils.login_admin();
+    browser.gl.utils.login_admin();
     element(by.cssContainingText("a", "System overview")).click();
     element(by.cssContainingText("a", "Stats")).click();
     element(by.cssContainingText("a", "Activities")).click();

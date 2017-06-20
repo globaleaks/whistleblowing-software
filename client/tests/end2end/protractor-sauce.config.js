@@ -32,5 +32,12 @@ exports.config = {
     isVerbose: true,
     includeStackTrace: true,
     defaultTimeoutInterval: 360000
+  },
+
+  onPrepare: function() {
+    browser.gl = {
+      'utils': require('./utils.js'),
+      'pages': require('./pages.js')
+    }
   }
 };
