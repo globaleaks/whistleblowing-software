@@ -505,8 +505,7 @@ class WhistleblowerFileHandler(BaseHandler):
         rtip_dict = serialize_rtip(store, rtip, self.request.language)
         wbfile_names = [f['name'] for f in rtip_dict['wbfiles']]
         # The next line will throw a KeyError if the file is not set
-        new_name = self.request.args['file'][0]['filename']
-        if new_name in wbfile_names:
+        if self.request.args['flowFilename'] in wbfile_names:
             return errors.FailedSanityCheck()
 
         return None
