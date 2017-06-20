@@ -19,8 +19,6 @@ exports.vars = {
   'testFileDir': './tests/end2end/files'
 };
 
-console.log(123);
-
 browser.getCapabilities().then(function(capabilities) {
   exports.isMobile = function() {
     var platformName = capabilities.get('platformName') || capabilities.get('platform');
