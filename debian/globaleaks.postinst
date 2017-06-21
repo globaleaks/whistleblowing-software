@@ -38,22 +38,22 @@ fi
 # simple check to ensure to run the below commands once at the first install.
 if ! id -u globaleaks >/dev/null 2>&1; then
   useradd globaleaks -b /var/globaleaks/ -s /bin/false -G debian-tor
+fi
 
-  # Create globaleaks and tor hidden service directories with proper permissions.
-  gl-fix-permissions
+# Create globaleaks and tor hidden service directories with proper permissions.
+gl-fix-permissions
 
-  # Add AppArmor rules for allowing tor to access to directory /var/globaleaks/torhs/
-  if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
-    echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
-    echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
+# Add AppArmor rules for allowing tor to access to directory /var/globaleaks/torhs/
+if ! $(grep -q -i globaleaks /etc/apparmor.d/local/system_tor); then
+  echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor
+  echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 
-    # restart apparmor service in order to load tor rules
-    set +e
-    service apparmor restart
-    set -e
-  fi
+  # restart apparmor service in order to load tor rules
+  service apparmor restart
+fi
 
-  # Add Systemd rules for allowing Tor to access to directory /var/globaleaks/torhs/
+# Add Systemd rules for allowing Tor to access to directory /var/globaleaks/torhs/
+if ! $(grep -q -i globaleaks /etc/systemd/system/tor@default.service.d/directory.conf); then
   if [ -d '/etc/systemd/system' ]; then
     mkdir -p /etc/systemd/system/tor\@default.service.d
     cat <<EOF >> /etc/systemd/system/tor\@default.service.d/directory.conf
@@ -61,11 +61,11 @@ if ! id -u globaleaks >/dev/null 2>&1; then
 ReadWriteDirectories=-/var/globaleaks/torhs/
 EOF
 
-    set +e
     systemctl daemon-reload
-    set -e
   fi
+fi
 
+if ! $(grep -q -i globaleaks /etc/tor/torrc); then
   if [ -d '/etc/tor/' ]; then
     # Add Tor HS configuration to file /etc/tor/torrc
     cat <<EOF >> /etc/tor/torrc
@@ -80,16 +80,14 @@ HiddenServicePort 80 127.0.0.1:8082
 EOF
 
     # restart our kind friend Tor!
-    set +e
     service tor restart
-    set -e
   fi
-
-  # raise havege default water mark to 4067 bits
-  # for the reason for the 4067 bits see:
-  #   - https://github.com/globaleaks/GlobaLeaks/issues/1722
-  sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
-  service haveged restart
 fi
+
+# raise havege default water mark to 4067 bits
+# for the reason for the 4067 bits see:
+#   - https://github.com/globaleaks/GlobaLeaks/issues/1722
+sed -i 's/DAEMON_ARGS="-w 1024"/DAEMON_ARGS="-w 4067"/g' /etc/default/haveged
+service haveged restart
 
 #DEBHELPER#
