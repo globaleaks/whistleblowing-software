@@ -24,7 +24,7 @@ class GLApiCache(object):
 
 
 def decorator_cache_get(f):
-    def wrapper(self, *args, **kwargs):
+    def decorator_cache_get_wrapper(self, *args, **kwargs):
         c = GLApiCache.get(self.request.path, self.request.language)
         if c is None:
             c = f(self, *args, **kwargs)
@@ -40,12 +40,12 @@ def decorator_cache_get(f):
 
         return c
 
-    return wrapper
+    return decorator_cache_get_wrapper
 
 
 def decorator_cache_invalidate(f):
-    def wrapper(self, *args, **kwargs):
+    def decorator_cache_invalidate_wrapper(self, *args, **kwargs):
         GLApiCache.invalidate()
         return f(self, *args, **kwargs)
 
-    return wrapper
+    return decorator_cache_invalidate_wrapper

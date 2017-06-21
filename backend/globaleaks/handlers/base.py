@@ -212,26 +212,26 @@ class BaseHandler(object):
         """
         Decorator that enforces https_enabled is set to True
         """
-        def wrapper(*args, **kwargs):
+        def https_enabled_wrapper(*args, **kwargs):
             if not GLSettings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
             return f(*args, **kwargs)
 
-        return wrapper
+        return https_enabled_wrapper
 
     @staticmethod
     def https_disabled(f):
         """
         Decorator that enforces https_enabled is set to False
         """
-        def wrapper(*args, **kwargs):
+        def https_disabled_wrapper(*args, **kwargs):
             if GLSettings.memory_copy.private.https_enabled:
                 raise errors.FailedSanityCheck()
 
             return f(*args, **kwargs)
 
-        return wrapper
+        return https_disabled_wrapper
 
     def basic_auth(self):
         msg = None

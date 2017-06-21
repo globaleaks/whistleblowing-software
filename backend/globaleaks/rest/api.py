@@ -178,8 +178,6 @@ class APIResourceWrapper(Resource):
         Resource.__init__(self)
         self._registry = []
 
-        decorated_handlers = set()
-
         for tup in api_spec:
             args = {}
             if len(tup) == 2:
@@ -193,8 +191,8 @@ class APIResourceWrapper(Resource):
             if not pattern.endswith("$"):
                 pattern += "$"
 
-            if handler not in decorated_handlers:
-                decorated_handlers.add(handler)
+            if not hasattr(handler, '_decorated'):
+                handler._decorated = True
                 for m in ['get', 'put', 'post', 'delete']:
                     if hasattr(handler, m):
                         decorate_method(handler, m)
