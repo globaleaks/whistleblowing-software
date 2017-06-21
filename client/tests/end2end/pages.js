@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 exports.receiver = function() {
   this.viewMostRecentSubmission = function() {
     return element(by.id('tip-0')).click();
@@ -47,7 +45,7 @@ exports.whistleblower = function() {
       return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
         return submission.pow === true;
       });
-    }, utils.browserTimeout());
+    }, browser.gl.utils.browserTimeout());
 
     element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
     element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
@@ -58,7 +56,7 @@ exports.whistleblower = function() {
     var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
     browser.wait(isClickable);
     submit_button.click();
-    utils.waitForUrl('/receipt');
+    browser.gl.utils.waitForUrl('/receipt');
     return element(by.id('KeyCode')).getText();
   };
 
@@ -67,7 +65,7 @@ exports.whistleblower = function() {
 
     return element(by.model('formatted_keycode')).sendKeys(receipt).then(function() {
       element(by.id('ReceiptButton')).click().then(function() {
-        utils.waitForUrl('/status');
+        browser.gl.utils.waitForUrl('/status');
       });
     });
 

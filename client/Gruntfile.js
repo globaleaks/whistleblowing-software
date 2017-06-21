@@ -181,13 +181,13 @@ module.exports = function(grunt) {
               }
             },
             {
-              pattern: /js\/locale\/([^\'\"\)]+)*/g,
+              pattern: /js\/locale\/([^'")]+)*/g,
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
               }
             },
             {
-              pattern: /inlinefiles\/([^\'\"\)]+)*/g,
+              pattern: /inlinefiles\/([^'")]+)*/g,
               replacement: function (match) {
                 return fileToDataURI('tmp/' + match);
               }
@@ -240,11 +240,13 @@ module.exports = function(grunt) {
     },
 
     instrument: {
-      files: 'js/**/*.js',
-      options: {
-        lazy: true,
-        cwd: 'app/',
-        basePath: 'build'
+      build: {
+        files: 'js/**/*.js',
+        options: {
+          lazy: true,
+          cwd: 'app/',
+          basePath: 'build/'
+        }
       }
     },
 
@@ -804,7 +806,7 @@ module.exports = function(grunt) {
         if (/^(Changes in version)/.test(l)) {
           obj = {};
           // Matches version and date
-          var res = l.match(/(\d+\.\d+(\.\d+)?) - (\d{4}-\d{2}-\d{2})/);
+          var res = l.match(/(\d+.\d+(.\d+)?) - (\d{4}-\d{2}-\d{2})/);
           obj.title = l;
           obj.version = res[1];
           obj.date = res[3];

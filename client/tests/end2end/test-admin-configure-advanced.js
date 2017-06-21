@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('admin configure advanced settings', function() {
   it('should perform main configuration', function() {
     browser.setLocation('admin/advanced_settings');
@@ -14,7 +12,7 @@ describe('admin configure advanced settings', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      utils.emulateUserRefresh();
+      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('1337');
     });
   });
@@ -31,7 +29,7 @@ describe('admin configure advanced settings - Anomaly detection thresholds', fun
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      utils.emulateUserRefresh();
+      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
     });
   });
@@ -45,7 +43,7 @@ describe('admin disable submissions', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      utils.emulateUserRefresh();
+      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
     });
 
@@ -53,7 +51,7 @@ describe('admin disable submissions', function() {
 
     expect(browser.isElementPresent(element(by.cssContainingText("span", "Submissions disabled")))).toBe(true);
 
-    utils.login_admin();
+    browser.gl.utils.login_admin();
 
     browser.setLocation('admin/advanced_settings');
 
@@ -61,7 +59,7 @@ describe('admin disable submissions', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      utils.emulateUserRefresh();
+      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
     });
 
@@ -69,6 +67,6 @@ describe('admin disable submissions', function() {
 
     expect(browser.isElementPresent(element(by.cssContainingText("button", "Blow the whistle")))).toBe(true);
 
-    utils.login_admin();
+    browser.gl.utils.login_admin();
   });
 });

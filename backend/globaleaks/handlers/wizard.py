@@ -33,8 +33,8 @@ def wizard(store, request, language):
         node.set_val('default_language', language)
         node.set_val('wizard_done', True)
 
-        if GLSettings.onionservice is not None:
-            node.set_val('onionservice', GLSettings.onionservice)
+        if GLSettings.memory_copy.onionservice is not None:
+            node.set_val('onionservice', GLSettings.memory_copy.onionservice)
 
         node_l10n = NodeL10NFactory(store)
 

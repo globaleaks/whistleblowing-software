@@ -181,7 +181,7 @@ class AlarmClass(object):
         # next evaluation.
 
         if self.number_of_anomalies >= 2:
-            report_function = log.msg
+            report_function = log.info
             self.stress_levels['activity'] = 2
         elif self.number_of_anomalies == 1:
             report_function = log.info

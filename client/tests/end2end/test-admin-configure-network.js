@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('admin configure network settings', function() {
   it('should enable whistleblowers over https', function() {
     browser.setLocation('admin/network');
@@ -23,20 +21,20 @@ describe('admin configure network settings', function() {
 
 describe('admin configure https', function() {
   var files = {
-    priv_key: utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/priv_key.pem'),
-    cert: utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/cert.pem'),
-    chain: utils.makeTestFilePath('../../../..//backend/globaleaks/tests/data/https/valid/chain.pem'),
+    priv_key: browser.gl.utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/priv_key.pem'),
+    cert: browser.gl.utils.makeTestFilePath('../../../../backend/globaleaks/tests/data/https/valid/cert.pem'),
+    chain: browser.gl.utils.makeTestFilePath('../../../..//backend/globaleaks/tests/data/https/valid/chain.pem'),
   };
 
   function enable_https() {
-    utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Enable'));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Enable'));
     element(by.cssContainingText('div.launch-btns span', 'Enable')).click();
 
-    utils.waitUntilPresent(by.cssContainingText('div.status-line span span', 'Running'));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.status-line span span', 'Running'));
   }
 
   function disable_https() {
-    utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Disable'));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Disable'));
     element(by.cssContainingText('div.launch-btns span', 'Disable')).click();
   }
 
@@ -65,23 +63,23 @@ describe('admin configure https', function() {
     element(by.id('csrSubmit')).click();
 
     // Download csr
-    if (utils.testFileDownload()) {
+    if (browser.gl.utils.testFileDownload()) {
       csr_panel.element(by.id('downloadCsr')).click();
     }
 
     // Delete csr
     element(by.id('deleteCsr')).click();
-    utils.waitUntilPresent(modal_action);
+    browser.gl.utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteCsr'))));
 
     // Delete key
     element(by.id('deleteKey')).click();
-    utils.waitUntilPresent(modal_action);
+    browser.gl.utils.waitUntilPresent(modal_action);
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
-    if (utils.testFileUpload()) {
+    if (browser.gl.utils.testFileUpload()) {
       // Upload key
       browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "visibility: visible")');
       element(by.css("div.panel.priv-key input")).sendKeys(files.priv_key);
@@ -95,7 +93,7 @@ describe('admin configure https', function() {
       element(by.css("div.panel.chain input")).sendKeys(files.chain);
 
       // Download the cert and chain
-      if (utils.testFileDownload()) {
+      if (browser.gl.utils.testFileDownload()) {
         cert_panel.element(by.id('downloadCert')).click();
         chain_panel.element(by.id('downloadChain')).click();
       }
@@ -109,11 +107,11 @@ describe('admin configure https', function() {
       element(modal_action).click();
 
       cert_panel.element(by.id('deleteCert')).click();
-      utils.waitUntilPresent(modal_action);
+      browser.gl.utils.waitUntilPresent(modal_action);
       element(modal_action).click();
 
       pk_panel.element(by.id('deleteKey')).click();
-      utils.waitUntilPresent(modal_action);
+      browser.gl.utils.waitUntilPresent(modal_action);
       element(modal_action).click();
     }
   });

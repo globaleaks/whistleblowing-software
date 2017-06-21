@@ -84,8 +84,11 @@ text.axis-worktime {
 }
 
 
-.file-upload input[type='file'] {
+.file-picker input[type='file'] {
   visibility: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
 }
 
 #HttpsSettings .status-line h3 {

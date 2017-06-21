@@ -494,7 +494,7 @@ class WhistleblowerFileHandler(BaseHandler):
     check_roles = 'receiver'
 
     @transact
-    def can_perform_action(self, store, tip_id):
+    def can_perform_action(self, store, tip_id, filename):
         rtip = db_access_rtip(store, self.current_user.user_id, tip_id)
         if not rtip.internaltip.context.enable_rc_to_wb_files:
             return errors.ForbiddenOperation()
@@ -504,9 +504,8 @@ class WhistleblowerFileHandler(BaseHandler):
 
         rtip_dict = serialize_rtip(store, rtip, self.request.language)
         wbfile_names = [f['name'] for f in rtip_dict['wbfiles']]
-        # The next line will throw a KeyError if the file is not set
-        new_name = self.request.args['file'][0]['filename']
-        if new_name in wbfile_names:
+
+        if filename in wbfile_names:
             return errors.FailedSanityCheck()
 
         return None
@@ -516,15 +515,15 @@ class WhistleblowerFileHandler(BaseHandler):
         """
         Errors: TipIdNotFound, ForbiddenOperation
         """
-        err = yield self.can_perform_action(tip_id)
+        uploaded_file = self.get_file_upload()
+        if uploaded_file is None:
+            return
+
+        err = yield self.can_perform_action(tip_id, uploaded_file['name'])
         if err is not None:
             raise err
 
         rtip = yield get_rtip(self.current_user.user_id, tip_id, self.request.language)
-
-        uploaded_file = self.get_file_upload()
-        if uploaded_file is None:
-            return
 
         try:
             # First: dump the file in the filesystem

@@ -48,7 +48,9 @@ if ! id -u globaleaks >/dev/null 2>&1; then
     echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 
     # restart apparmor service in order to load tor rules
+    set +e
     service apparmor restart
+    set -e
   fi
 
   # Add Systemd rules for allowing Tor to access to directory /var/globaleaks/torhs/
@@ -59,7 +61,9 @@ if ! id -u globaleaks >/dev/null 2>&1; then
 ReadWriteDirectories=-/var/globaleaks/torhs/
 EOF
 
+    set +e
     systemctl daemon-reload
+    set -e
   fi
 
   if [ -d '/etc/tor/' ]; then
@@ -76,7 +80,9 @@ HiddenServicePort 80 127.0.0.1:8082
 EOF
 
     # restart our kind friend Tor!
+    set +e
     service tor restart
+    set -e
   fi
 
   # raise havege default water mark to 4067 bits
