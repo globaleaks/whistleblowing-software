@@ -16,7 +16,7 @@ class ExceptionHandler(BaseHandler):
     This handler is responsible of receiving exceptions by the client
     and delivering them to the configured exception mail.
     """
-    check_roles = 'unauthenticated'
+    check_roles = '*'
 
     def post(self):
         """

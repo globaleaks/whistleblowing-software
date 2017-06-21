@@ -53,7 +53,7 @@ GLSettings.parser.add_option("-n", "--nodaemon", action='store_true',
 GLSettings.parser.add_option("-l", "--loglevel", type="choice",
     choices=['CRITICAL', 'ERROR', 'INFO', 'DEBUG', 'TIMEDEBUG'],
     help="set log level [default: %default]",
-    dest="loglevel", default="ERROR")
+    dest="loglevel", default="INFO")
 
 GLSettings.parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",

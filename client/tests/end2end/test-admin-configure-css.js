@@ -1,8 +1,6 @@
-var utils = require('./utils.js');
-
 describe('Admin configure custom CSS', function() {
   it('should be able to configure a custom CSS', function() {
-    if (!utils.testFileUpload()) {
+    if (!browser.gl.utils.testFileUpload()) {
       return;
     }
 
@@ -10,24 +8,24 @@ describe('Admin configure custom CSS', function() {
 
     browser.setLocation('admin/content');
 
-    utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText("a", "Theme customization"));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    var customCSSFile = utils.makeTestFilePath('custom_css.css');
+    var customCSSFile = browser.gl.utils.makeTestFilePath('custom_css.css');
 
     browser.executeScript('angular.element(document.querySelectorAll(\'input[type="file"]\')).attr("style", "visibility: visible;");');
     element(by.css("div.uploadfile.file-css")).element(by.css("input")).sendKeys(customCSSFile);
 
-    utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
 
     element(by.cssContainingText("a", "Theme customization")).click();
 
-    if (utils.testFileDownload() && utils.verifyFileDownload()) {
+    if (browser.gl.utils.testFileDownload() && browser.gl.utils.verifyFileDownload()) {
       element(by.css("div.uploadfile.file-css")).element(by.cssContainingText("a", "Download"))
       .click().then(function() {
-        var actualFile = utils.makeSavedFilePath('custom_stylesheet.css');
-        utils.TestFileEquality(customCSSFile, actualFile);
+        var actualFile = browser.gl.utils.makeSavedFilePath('custom_stylesheet.css');
+        browser.gl.utils.testFileEquality(customCSSFile, actualFile);
       });
     }
 
@@ -43,12 +41,12 @@ describe('Admin configure custom CSS', function() {
     browser.get('/#/login?embed=true');
     expect(EC.invisibilityOf($('#login-button')));
 
-    utils.login_admin();
+    browser.gl.utils.login_admin();
     browser.setLocation('admin/content');
     element(by.cssContainingText("a", "Theme customization")).click();
     element(by.cssContainingText("a", "Delete")).click();
 
     // wait until redirect to the first tab of the admin/content section
-    utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
+    browser.gl.utils.waitUntilPresent(by.cssContainingText("label", "Project name"));
   });
 });

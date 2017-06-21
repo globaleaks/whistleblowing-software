@@ -6,7 +6,7 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
     var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
     var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
     // Note this RE is different from our usual email validator
-    var emailRE = /(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}\.[\w]{1,100})/g;
+    var emailRE = /(([\w+-.]){0,100}[\w]{1,100}@([\w+-.]){0,100}.[\w]{1,100})/g;
     var emailEmpt = "~~~~~~@~~~~~~";
 
     function scrub(s) {

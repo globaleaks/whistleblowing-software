@@ -83,7 +83,6 @@ class GLSettingsClass(object):
 
         # debug defaults
         self.orm_debug = False
-        self.requests_counter = 0
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

@@ -227,8 +227,7 @@ GLClient.controller('SubmissionCtrl',
 
   $scope.submissionHasErrors = function() {
     if (angular.isDefined($scope.vars.submissionForm)) {
-      return $scope.submission.isDisabled() ||
-             $scope.vars.submissionForm.$invalid ||
+      return $scope.vars.submissionForm.$invalid ||
              Utils.isUploading($scope.uploads);
     }
 
@@ -378,7 +377,7 @@ GLClient.controller('SubmissionCtrl',
   }
 
   $scope.displayErrors = function() {
-    if (!($scope.navigation > $scope.selection || $scope.submitPressed)) {
+    if (!($scope.navigation > $scope.selection || $scope.submitPressed || $scope.submission.done)) {
       return false;
     }
 

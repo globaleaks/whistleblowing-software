@@ -135,7 +135,7 @@ def perform_schema_migration(version):
     to_delete_on_success = []
 
     if version < FIRST_DATABASE_VERSION_SUPPORTED:
-        log.msg("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
+        log.info("Migrations from DB version lower than %d are no longer supported!" % FIRST_DATABASE_VERSION_SUPPORTED)
         quit()
 
     tmpdir =  os.path.abspath(os.path.join(GLSettings.db_path, 'tmp'))
@@ -159,7 +159,7 @@ def perform_schema_migration(version):
             to_delete_on_fail.append(new_db_file)
             to_delete_on_success.append(old_db_file)
 
-            log.msg("Updating DB from version %d to version %d" % (version, version + 1))
+            log.info("Updating DB from version %d to version %d" % (version, version + 1))
 
             store_old = Store(create_database('sqlite:' + old_db_file))
             store_new = Store(create_database('sqlite:' + new_db_file))
@@ -168,7 +168,7 @@ def perform_schema_migration(version):
             MigrationModule = importlib.import_module("globaleaks.db.migrations.update_%d" % (version + 1))
             migration_script = MigrationModule.MigrationScript(migration_mapping, version, store_old, store_new)
 
-            log.msg("Migrating table:")
+            log.info("Migrating table:")
 
             try:
                 try:
@@ -200,7 +200,7 @@ def perform_schema_migration(version):
                 # in order to not keep leaking journal files.
                 migration_script.close()
 
-            log.msg("Migration stats:")
+            log.info("Migration stats:")
 
             # we open a new db in order to verify integrity of the generated file
             store_verify = Store(create_database(GLSettings.make_db_uri(new_db_file)))
@@ -216,10 +216,10 @@ def perform_schema_migration(version):
                              raise AssertionError("Integrity check failed on count equality for table %s: %d != %d" % \
                                                   (model_name, count, migration_script.entries_count[model_name]))
                          else:
-                             log.msg(" * %s table migrated (entries count changed from %d to %d)" % \
+                             log.info(" * %s table migrated (entries count changed from %d to %d)" % \
                                                   (model_name, migration_script.entries_count[model_name], count))
                      else:
-                         log.msg(" * %s table migrated (%d entry(s))" % \
+                         log.info(" * %s table migrated (%d entry(s))" % \
                                               (model_name, migration_script.entries_count[model_name]))
 
             version += 1

@@ -4,9 +4,10 @@
 #
 #   This file defines the URI mapping for the GlobaLeaks API and its factory
 
+import json
 import re
 
-from urlparse import parse_qs
+import urlparse
 
 from twisted.internet import reactor, defer
 from twisted.web.resource import Resource, NoResource
@@ -176,12 +177,11 @@ def decorate_method(h, method):
 class APIResourceWrapper(Resource):
     _registry = None
     isLeaf = True
+    method_map = {'get': 200, 'post': 201, 'put': 202, 'delete': 200}
 
     def __init__(self):
         Resource.__init__(self)
         self._registry = []
-
-        decorated_handlers = set()
 
         for tup in api_spec:
             args = {}
@@ -196,13 +196,43 @@ class APIResourceWrapper(Resource):
             if not pattern.endswith("$"):
                 pattern += "$"
 
-            if handler not in decorated_handlers:
-                decorated_handlers.add(handler)
+            if not hasattr(handler, '_decorated'):
+                handler._decorated = True
                 for m in ['get', 'put', 'post', 'delete']:
                     if hasattr(handler, m):
                         decorate_method(handler, m)
 
             self._registry.append((re.compile(pattern), handler, args))
+
+    def should_redirect_tor(self, request):
+        if request.client_using_tor and \
+           GLSettings.memory_copy.onionservice != '' and \
+           request.getRequestHostname() != GLSettings.memory_copy.onionservice:
+            return True
+
+        return False
+
+    def should_redirect_https(self, request):
+        if GLSettings.memory_copy.private.https_enabled and \
+           request.client_proto == 'http' and \
+           request.client_ip not in GLSettings.local_hosts:
+            return True
+
+        return False
+
+    def redirect(self, request, url):
+        request.setResponseCode(301)
+        request.setHeader(b"location", url)
+
+    def redirect_https(self, request):
+        _, host, path, query, frag = urlparse.urlsplit(request.uri)
+        redirect_url = urlparse.urlunsplit(('https', GLSettings.memory_copy.hostname, path, query, frag))
+        self.redirect(request, redirect_url)
+
+    def redirect_tor(self, request):
+        _, host, path, query, frag = urlparse.urlsplit(request.uri)
+        redirect_url = urlparse.urlunsplit(('http', GLSettings.memory_copy.onionservice, path, query, frag))
+        self.redirect(request, redirect_url)
 
     def handle_exception(self, e, request):
         """
@@ -226,11 +256,33 @@ class APIResourceWrapper(Resource):
             e = errors.InternalServerError('Unexpected')
 
         request.setResponseCode(e.status_code)
-        request.write({
+        request.setHeader(b'content-type', b'application/json')
+
+        response = json.dumps({
             'error_message': e.reason,
             'error_code': e.error_code,
             'arguments': getattr(e, 'arguments', [])
         })
+
+        request.write(bytes(response))
+
+    def preprocess(self, request):
+        request.headers = request.getAllHeaders()
+
+        request.client_ip = request.headers.get('gl-forwarded-for', None)
+        request.client_proto = 'https'
+        if request.client_ip is None:
+            request.client_ip = request.getClientIP()
+            request.client_proto = 'http'
+
+        request.client_using_tor = request.client_ip in GLSettings.state.tor_exit_set
+
+        if 'x-tor2web' in request.headers:
+            request.client_using_tor = False
+
+        self.detect_language(request)
+
+        self.set_default_headers(request)
 
     def render(self, request):
         """
@@ -238,8 +290,15 @@ class APIResourceWrapper(Resource):
 
         @return: empty `str` or `NOT_DONE_YET`
         """
+        self.preprocess(request)
 
-        self.set_default_headers(request)
+        if self.should_redirect_tor(request):
+            self.redirect_tor(request)
+            return b''
+
+        if self.should_redirect_https(request):
+            self.redirect_https(request)
+            return b''
 
         request_finished = [False]
         def _finish(_):
@@ -258,15 +317,18 @@ class APIResourceWrapper(Resource):
             return b''
 
         method = request.method.lower()
-        if not method in ['get', 'post', 'put', 'delete'] or not hasattr(handler, method):
+        if not method in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
+        else:
+            request.setResponseCode(self.method_map[method])
 
         f = getattr(handler, method)
 
         groups = [unicode(g) for g in match.groups()]
         h = handler(request, **args)
         d = defer.maybeDeferred(f, h, *groups)
+        request.notifyFinish().addErrback(lambda _: d.cancel())
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
@@ -279,9 +341,10 @@ class APIResourceWrapper(Resource):
 
         @defer.inlineCallbacks
         def concludeHandlerSuccess(ret):
-            """Concludes successful execution of a `BaseHandler` instance
+            """
+            Concludes successful execution of a `BaseHandler` instance
 
-            @param ret: A `dict`, `str`, `None` or something unexpected
+            @param ret: A `dict`, `list`, `str`, `None` or something unexpected
             """
             yield h.execution_check()
 
@@ -294,18 +357,6 @@ class APIResourceWrapper(Resource):
         d.addErrback(concludeHandlerFailure)
         d.addCallback(concludeHandlerSuccess)
         return NOT_DONE_YET
-
-    def render_GET(self, request):
-        request.setReponseCode(200)
-        return self.render(self, request)
-
-    def render_PUT(self, request):
-        request.setReponseCode(202)
-        return self.render(self, request)
-
-    def render_POST(self, request):
-        request.setReponseCode(201)
-        return self.render(self, request)
 
     @staticmethod
     def set_default_headers(request):
@@ -334,3 +385,41 @@ class APIResourceWrapper(Resource):
         # same origin is needed in order to include svg and other html <object>
         if not GLSettings.memory_copy.allow_iframes_inclusion:
             request.setHeader("X-Frame-Options", "sameorigin")
+
+    def parse_accept_language_header(self, request):
+        if "accept-language" in request.headers:
+            languages = request.headers["accept-language"].split(",")
+            locales = []
+            for language in languages:
+                parts = language.strip().split(";")
+                if len(parts) > 1 and parts[1].startswith("q="):
+                    try:
+                        score = float(parts[1][2:])
+                    except (ValueError, TypeError):
+                        score = 0.0
+                else:
+                    score = 1.0
+                locales.append((parts[0], score))
+
+            if locales:
+                locales.sort(key=lambda pair: pair[1], reverse=True)
+                return [l[0] for l in locales]
+
+        return GLSettings.memory_copy.default_language
+
+    def detect_language(self, request):
+        language = request.headers.get('gl-language')
+
+        if language is None:
+            for l in self.parse_accept_language_header(request):
+                if l in GLSettings.memory_copy.languages_enabled:
+                    language = l
+                    break
+
+        if language is None or language not in GLSettings.memory_copy.languages_enabled:
+            language = GLSettings.memory_copy.default_language
+
+        request.language = language
+        request.setHeader('Content-Language', language)
+
+        return language

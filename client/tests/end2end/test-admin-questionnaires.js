@@ -1,10 +1,8 @@
-var utils = require('./utils.js');
-
 describe('admin add, configure and delete questionnaires', function() {
   var add_questionnaires = function(questionnaire_name) {
     element(by.model('new_questionnaire.name')).sendKeys(questionnaire_name);
     element(by.id('add-questionnaire-button')).click();
-    utils.waitUntilPresent(by.xpath(".//*[text()='" + questionnaire_name + "']"));
+    browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + questionnaire_name + "']"));
   };
 
   var add_question = function(question_type) {
@@ -22,20 +20,20 @@ describe('admin add, configure and delete questionnaires', function() {
 
       element.all(by.css('[data-ng-click="delOption(field, option)"]')).get(2).click();
 
-      utils.clickFirstDisplayed(by.css('[data-ng-click="save_field(field)"]'));
+      browser.gl.utils.clickFirstDisplayed(by.css('[data-ng-click="save_field(field)"]'));
     }
   };
 
   var add_step = function(step_label) {
     element(by.model('new_step.label')).sendKeys(step_label);
     element(by.id('add-step-button')).click();
-    utils.waitUntilPresent(by.xpath(".//*[text()='" + step_label + "']"));
+    browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='" + step_label + "']"));
   };
 
   it('should add new questionnaires', function() {
     browser.setLocation('admin/questionnaires');
 
-    utils.waitUntilPresent(by.xpath(".//*[text()='Default']"));
+    browser.gl.utils.waitUntilPresent(by.xpath(".//*[text()='Default']"));
 
     add_questionnaires('Questionnaire 1');
     add_questionnaires('Questionnaire 2');
@@ -52,8 +50,8 @@ describe('admin add, configure and delete questionnaires', function() {
     // Open Step 1
     element(by.xpath(".//*[text()='Step 1']")).click();
 
-    for(var i=0; i<utils.vars.field_types.length; i++){
-      add_question(utils.vars.field_types[i]);
+    for(var i=0; i<browser.gl.utils.vars.field_types.length; i++){
+      add_question(browser.gl.utils.vars.field_types[i]);
     }
 
     // Close Step 1
@@ -75,8 +73,8 @@ describe('admin add, configure and delete questionnaires', function() {
 
     element(by.cssContainingText("span", "Do you want to provide your identification information?")).click();
 
-    for(var i=0; i<utils.vars.field_types.length; i++){
-      add_question(utils.vars.field_types[i]);
+    for(var i=0; i<browser.gl.utils.vars.field_types.length; i++){
+      add_question(browser.gl.utils.vars.field_types[i]);
     }
   });
 });

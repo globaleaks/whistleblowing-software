@@ -110,7 +110,7 @@ class HTTPStreamProxyRequest(http.Request):
         proxy_url = bytes(urlparse.urljoin(self.channel.proxy_url, self.uri))
 
         hdrs = self.requestHeaders
-        hdrs.setRawHeaders('X-Forwarded-For', [self.getClientIP()])
+        hdrs.setRawHeaders('GL-Forwarded-For', [self.getClientIP()])
 
         accept_encoding = self.getHeader('Accept-Encoding')
         if accept_encoding is not None and 'gzip' in accept_encoding:

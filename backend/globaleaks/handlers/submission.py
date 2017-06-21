@@ -409,7 +409,7 @@ class SubmissionInstance(BaseHandler):
 
         submission = create_submission(request,
                                        token.uploaded_files,
-                                       self.client_using_tor,
+                                       self.request.client_using_tor,
                                        self.request.language)
 
         # Delete the token only when a valid submission has been stored in the DB

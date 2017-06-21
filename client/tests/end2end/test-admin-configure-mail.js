@@ -1,5 +1,3 @@
-var utils = require('./utils.js');
-
 describe('adming configure mail', function() {
   it('should configure mail', function() {
     browser.setLocation('admin/mail');
@@ -10,7 +8,7 @@ describe('adming configure mail', function() {
 
     // save settings
     element(by.css('[data-ng-click="Utils.update(admin.notification)"]')).click();
-    utils.emulateUserRefresh();
+    browser.gl.utils.emulateUserRefresh();
     expect(element(by.model('admin.notification.tip_expiration_threshold')).getAttribute('value')).toEqual('24');
   });
 });

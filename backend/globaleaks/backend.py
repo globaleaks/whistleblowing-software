@@ -126,8 +126,8 @@ class GLService(service.Service):
         else:
             print("- http://127.0.0.1:%d%s" % (GLSettings.bind_port, GLSettings.api_prefix))
 
-        if GLSettings.onionservice is not None:
-            print("- http://%s%s" % (GLSettings.onionservice, GLSettings.api_prefix))
+        if GLSettings.memory_copy.onionservice != '':
+            print("- http://%s%s" % (GLSettings.memory_copy.onionservice, GLSettings.api_prefix))
 
 
 application = service.Application('GLBackend')
