@@ -818,6 +818,7 @@ module.exports = function(grunt) {
       }
 
       obj.txt = obj.txt.replace(/^\s+|\s+$/g, "");
+      obj.txt = obj.txt.slice(0,-1);
 
       // Using object here due to issues with exporting raw lists via json
       var output = JSON.stringify({'v': changelog});
