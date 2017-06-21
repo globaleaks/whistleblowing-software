@@ -240,11 +240,13 @@ module.exports = function(grunt) {
     },
 
     instrument: {
-      files: 'js/**/*.js',
-      options: {
-        lazy: true,
-        cwd: 'app/',
-        basePath: 'build'
+      build: {
+        files: 'js/**/*.js',
+        options: {
+          lazy: true,
+          cwd: 'app/',
+          basePath: 'build/'
+        }
       }
     },
 
