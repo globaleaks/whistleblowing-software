@@ -1,3 +1,10 @@
+Changes in version 2.67.9 - 2017-06-20
+    o Fix HTTPS and Tor redirect logic
+    o Fix bug with and improve the testing of wbfile upload
+    o Update client dependencies to latest versions
+    o Adjust the submission interface's spacing
+    o Minor changes to REST routing
+
 Changes in version 2.67.8 - 2017-06-15
     o Fix check_roles configuration for exception handler
 
