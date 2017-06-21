@@ -9,12 +9,13 @@ from globaleaks.settings import GLSettings
 from globaleaks.tests.helpers import TestGL
 
 
-def forgeRequest(uri='https://www.globaleaks.org/', headers={}):
+def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET'):
     _, host, path, query, frag = urlparse.urlsplit(uri)
 
     ret = DummyRequest([''])
+    ret.method = method
     ret.uri = uri
-    ret.path = path 
+    ret.path = path
     ret._serverName = bytes(host)
     ret.client = IPv4Address('TCP', '1.2.3.4', 12345)
 
@@ -63,55 +64,69 @@ class TestAPI(TestGL):
 
     def test_get_with_no_language_header(self):
         api = getAPI()
-        request = forgeRequest()
+        request = forge_request()
         self.assertEqual(api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header(self):
         api = getAPI()
-        request = forgeRequest(headers={'GL-Language': 'it'})
+        request = forge_request(headers={'GL-Language': 'it'})
         self.assertEqual(api.detect_language(request), 'it')
 
     def test_get_with_accept_language_header(self):
         api = getAPI()
-        request = forgeRequest(headers={'Accept-Language': 'ar;q=0.8,it;q=0.6'})
+        request = forge_request(headers={'Accept-Language': 'ar;q=0.8,it;q=0.6'})
         self.assertEqual(api.detect_language(request), 'ar')
 
     def test_get_with_gl_language_header_and_accept_language_header_1(self):
         api = getAPI()
-        request = forgeRequest(headers={'GL-Language': 'en',
+        request = forge_request(headers={'GL-Language': 'en',
                                 'Accept-Language': 'en-US,en;q=0.8,it;q=0.6'})
         self.assertEqual(api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_2(self):
         api = getAPI()
-        request = forgeRequest(headers={'GL-Language': 'antani',
+        request = forge_request(headers={'GL-Language': 'antani',
                                 'Accept-Language': 'en-US,en;it;q=0.6'})
         self.assertEqual(api.detect_language(request), 'en')
 
     def test_get_with_gl_language_header_and_accept_language_header_3(self):
         api = getAPI()
-        request = forgeRequest(headers={'GL-Language': 'antani',
+        request = forge_request(headers={'GL-Language': 'antani',
                                 'Accept-Language': 'antani1,antani2;q=0.8,antani3;q=0.6'})
         self.assertEqual(api.detect_language(request), 'en')
 
+    def test_status_codes_assigned(self):
+        api = getAPI()
+
+        test_cases = [
+            (b'GET', 200),
+            (b'POST', 405),
+            (b'PUT', 405),
+        ]
+
+        for meth, status_code in test_cases:
+            request = forge_request(uri="https://www.globaleaks.org/", method=meth)
+            api.render(request)
+            self.assertEqual(request.responseCode, status_code)
+
     def test_tor_and_https_redirect(self):
         api = getAPI()
-        request = forgeRequest(uri="https://www.globaleaks.org/")
+        request = forge_request(uri="https://www.globaleaks.org/")
         api.render(request)
         self.assertFalse(request.client_using_tor)
-        self.assertEqual(request.responseCode, None)
+        self.assertEqual(request.responseCode, 200)
 
         GLSettings.memory_copy.onionservice = '1234567890123456.onion'
         GLSettings.state.tor_exit_set.add('1.2.3.4')
 
         api = getAPI()
-        request = forgeRequest('http://1234567890123456.onion/')
+        request = forge_request('http://1234567890123456.onion/')
         api.render(request)
         self.assertTrue(request.client_using_tor)
-        self.assertEqual(request.responseCode, None)
+        self.assertEqual(request.responseCode, 200)
 
         GLSettings.memory_copy.onionservice = '1234567890123456.onion'
-        request = forgeRequest(uri="https://www.globaleaks.org/")
+        request = forge_request(uri="https://www.globaleaks.org/")
         api.render(request)
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
@@ -120,7 +135,7 @@ class TestAPI(TestGL):
 
         GLSettings.state.tor_exit_set.add('1.2.3.4')
         GLSettings.memory_copy.onionservice = '1234567890123456.onion'
-        request = forgeRequest(uri="https://www.globaleaks.org/")
+        request = forge_request(uri="https://www.globaleaks.org/")
         api.render(request)
         self.assertTrue(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
@@ -130,13 +145,13 @@ class TestAPI(TestGL):
         GLSettings.state.tor_exit_set.clear()
 
         api = getAPI()
-        request = forgeRequest(uri="https://www.globaleaks.org/")
+        request = forge_request(uri="https://www.globaleaks.org/")
         api.render(request)
-        self.assertEqual(request.responseCode, None)
+        self.assertEqual(request.responseCode, 200)
 
         GLSettings.memory_copy.private.https_enabled = True
         GLSettings.memory_copy.hostname = 'www.globaleaks.org'
-        request = forgeRequest(uri="https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
+        request = forge_request(uri="https://www.globaleaks.org/", headers={'X-Tor2Web': '1'})
         api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
@@ -145,7 +160,7 @@ class TestAPI(TestGL):
 
         GLSettings.memory_copy.private.https_enabled = True
         GLSettings.memory_copy.hostname = 'www.globaleaks.org'
-        request = forgeRequest(uri="http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
+        request = forge_request(uri="http://www.globaleaks.org/public", headers={'X-Tor2Web': '1'})
         api.render(request)
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 301)
