@@ -42,13 +42,13 @@
     </div>
     <div class="panel panel-default priv-key">
       <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled}">
-        <span data-ng-class="statusClass(tls_config.files.priv_key)">
+        <span class="pull-left" data-ng-class="statusClass(tls_config.files.priv_key)">
           <span class="text-bold">1</span>
           <span class="text-bold" data-translate>Private Key</span>
           <span>(PEM)</span>
         </span>
         <span class="pull-right">
-          <span class="file-upload" data-ng-if="!tls_config.files.priv_key.set">
+          <span class="file-picker" data-ng-if="!tls_config.files.priv_key.set">
             <label for="keyUpload" class="btn btn-xs btn-primary" data-translate>Upload</label>
             <input id="keyUpload" type="file" file-change handler="postFile(files[0], file_resources.priv_key)" />
           </span>
@@ -98,7 +98,7 @@
           <span data-translate>Issuer:</span> <b>{{ tls_config.files.cert.issuer }}</b>
         </span>
         <span class="pull-right">
-          <span class="file-upload" data-ng-if="!tls_config.files.cert.set">
+          <span class="file-picker" data-ng-if="!tls_config.files.cert.set">
             <label for="certUpload" class="btn btn-xs btn-primary" data-ng-translate>Upload</label>
             <input id="certUpload" type="file" file-change handler="postFile(files[0], file_resources.cert)"  />
           </span>
@@ -122,7 +122,7 @@
           <span data-translate>Issuer:</span> <b>{{ tls_config.files.chain.issuer }}</b>
         </span>
         <div class="pull-right">
-          <span class="file-upload" data-ng-if="!tls_config.files.chain.set">
+          <span class="file-picker" data-ng-if="!tls_config.files.chain.set">
             <label for="chainUpload" class="btn btn-xs btn-primary" data-translate>Upload</label>
             <input id="chainUpload" type="file" file-change handler="postFile(files[0], file_resources.chain)" />
           </span>
