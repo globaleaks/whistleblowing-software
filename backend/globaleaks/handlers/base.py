@@ -100,7 +100,7 @@ class StaticFileProducer(object):
     """
     Streaming producer for files
 
-    @ivar handler: The L{IRequest} to write the contents of the file to.
+    @ivar request: The L{IRequest} to write the contents of the file to.
     @ivar fileObject: The file the contents of which to write to the request.
     """
     bufferSize = GLSettings.file_chunk_size
@@ -489,6 +489,7 @@ class BaseHandler(object):
 
             send_exception_email(error)
 
+        # TODO (nskelsey) move into rest/api.py Resource
         track_handler(self)
 
         if self.uniform_answer_time:

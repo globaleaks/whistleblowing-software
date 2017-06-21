@@ -173,6 +173,7 @@ def decorate_method(h, method):
 class APIResourceWrapper(Resource):
     _registry = None
     isLeaf = True
+    method_map = {'get': 200, 'post': 201, 'put': 202, 'delete': 200}
 
     def __init__(self):
         Resource.__init__(self)
@@ -312,9 +313,11 @@ class APIResourceWrapper(Resource):
             return b''
 
         method = request.method.lower()
-        if not method in ['get', 'post', 'put', 'delete'] or not hasattr(handler, method):
+        if not method in self.method_map.keys() or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
+        else:
+            request.setResponseCode(self.method_map[method])
 
         f = getattr(handler, method)
 
@@ -337,7 +340,7 @@ class APIResourceWrapper(Resource):
             """
             Concludes successful execution of a `BaseHandler` instance
 
-            @param ret: A `dict`, `str`, `None` or something unexpected
+            @param ret: A `dict`, `list`, `str`, `None` or something unexpected
             """
             yield h.execution_check()
 
@@ -350,18 +353,6 @@ class APIResourceWrapper(Resource):
         d.addErrback(concludeHandlerFailure)
         d.addCallback(concludeHandlerSuccess)
         return NOT_DONE_YET
-
-    def render_GET(self, request):
-        request.setReponseCode(200)
-        return self.render(self, request)
-
-    def render_PUT(self, request):
-        request.setReponseCode(202)
-        return self.render(self, request)
-
-    def render_POST(self, request):
-        request.setReponseCode(201)
-        return self.render(self, request)
 
     @staticmethod
     def set_default_headers(request):
