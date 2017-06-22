@@ -58,7 +58,7 @@ fi
 
 echo "GlobaLeaks Setup Development Environment Script"
 
-echo "Step 1/9: add universe repository"
+echo "Step 1/8: add universe repository"
 if [ "$DISTRO_CODENAME" = "precise" ]; then
   sudo apt-get install python-software-properties -y
 else
@@ -66,32 +66,32 @@ else
 fi
 sudo add-apt-repository universe
 
-echo "Step 2/9: update"
+echo "Step 2/8: update"
 sudo apt-get update
 
-echo "Step 3/9: apt-get install"
+echo "Step 3/8: apt-get install"
 sudo apt-get install build-essential curl git python-pip libssl-dev libffi-dev python-virtualenv python-dev
 
-echo "Step 4/9: git clone"
+echo "Step 4/8: git clone"
 git clone https://github.com/globaleaks/GlobaLeaks.git
 if [ "$TAG" != "master"]; then
   cd GlobaLeaks/ && git checkout $TAG && cd ..
 fi
 
-echo "Step 5/9: install npm and node"
+echo "Step 5/8: install npm and node"
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-echo "Step 6/9: install grunt"
+echo "Step 6/8: install grunt"
 npm install grunt-cli
 
-echo "Step 7/9: setup client dependencies"
+echo "Step 7/8: setup client dependencies"
 cd GlobaLeaks/client
 npm install -d
-./node_modules/grunt-cli/bin/grunt copy:sources
+./node_modules/grunt/bin/grunt copy:sources
 cd ../../
 
-echo "Step 8/9: prepare backend virtualenv"
+echo "Step 8/8: prepare backend virtualenv"
 cd GlobaLeaks/backend
 virtualenv -p python2.7 glenv
 source glenv/bin/activate
