@@ -2,18 +2,19 @@ describe('admin configure network settings', function() {
   it('should enable whistleblowers over https', function() {
     browser.setLocation('admin/network');
 
-    element(by.model('admin.node.hostname')).clear().sendKeys('localhost');
+    element.all(by.model('admin.node.hostname')).get(0).clear().sendKeys('localhost');
     element(by.model('admin.node.onionservice')).clear().sendKeys('1234567890123456.onion');
 
     element.all(by.cssContainingText("button", "Save")).get(0).click();
 
     // grant tor2web permissions
     element(by.cssContainingText("a", "Access control")).click();
+
     expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
     element(by.model('admin.node.tor2web_whistleblower')).click();
 
     // save settings
-    element.all(by.cssContainingText("button", "Save")).get(1).click().then(function() {
+    element.all(by.id("AccessControlSave")).click().then(function() {
       expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeTruthy();
     });
   });
@@ -26,21 +27,19 @@ describe('admin configure https', function() {
     chain: browser.gl.utils.makeTestFilePath('../../../..//backend/globaleaks/tests/data/https/valid/chain.pem'),
   };
 
-  function enable_https() {
-    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Enable'));
-    element(by.cssContainingText('div.launch-btns span', 'Enable')).click();
-
-    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.status-line span span', 'Running'));
-  }
-
-  function disable_https() {
-    browser.gl.utils.waitUntilPresent(by.cssContainingText('div.launch-btns span', 'Disable'));
-    element(by.cssContainingText('div.launch-btns span', 'Disable')).click();
-  }
-
   it('should interact with all ui elements', function() {
     browser.setLocation('admin/network');
     element(by.cssContainingText("a", "HTTPS settings")).click();
+
+    element(by.cssContainingText("button", "Proceed")).click();
+
+    element(by.id("HTTPSAutoMode")).click()
+
+    element(by.cssContainingText("button", "Cancel")).click();
+
+    element(by.cssContainingText("button", "Proceed")).click();
+
+    element(by.id("HTTPSManualMode")).click()
 
     var pk_panel = element(by.css('div.panel.priv-key'));
     var csr_panel = element(by.css('div.panel.csr'));
@@ -53,7 +52,8 @@ describe('admin configure https', function() {
 
     // Generate csr
     element(by.id('csrGen')).click();
-    csr_panel.element(by.model('csr_cfg.commonname')).sendKeys('certs.may.hurt');
+
+    var csr_panel = element(by.css('div.panel.csr'));
     csr_panel.element(by.model('csr_cfg.country')).sendKeys('IT');
     csr_panel.element(by.model('csr_cfg.province')).sendKeys('Liguria');
     csr_panel.element(by.model('csr_cfg.city')).sendKeys('Genova');
@@ -79,28 +79,28 @@ describe('admin configure https', function() {
     element(modal_action).click();
     browser.wait(protractor.ExpectedConditions.stalenessOf(element(by.id('deleteKey'))));
 
+    element(by.cssContainingText("button", "Proceed")).click();
+
+    element(by.id("HTTPSManualMode")).click()
+
     if (browser.gl.utils.testFileUpload()) {
       // Upload key
-      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "visibility: visible")');
-      element(by.css("div.panel.priv-key input")).sendKeys(files.priv_key);
+      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.priv-key input[type="file"]\')).attr("style", "display: block; visibility: visible")');
+      element(by.id("keyUpload")).sendKeys(files.priv_key);
 
       // Upload cert
-      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "visibility: visible")');
-      element(by.css("div.panel.cert input")).sendKeys(files.cert);
+      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.cert input[type="file"]\')).attr("style", "display: block; visibility: visible")');
+      element(by.id("certUpload")).sendKeys(files.cert);
 
       // Upload chain
-      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "visibility: visible")');
-      element(by.css("div.panel.chain input")).sendKeys(files.chain);
+      browser.executeScript('angular.element(document.querySelectorAll(\'div.panel.chain input[type="file"]\')).attr("style", "display: block; visibility: visible")');
+      element(by.id("chainUpload")).sendKeys(files.chain);
 
       // Download the cert and chain
       if (browser.gl.utils.testFileDownload()) {
         cert_panel.element(by.id('downloadCert')).click();
         chain_panel.element(by.id('downloadChain')).click();
       }
-
-      // Enable and disable HTTPS
-      enable_https();
-      disable_https();
 
       // Delete chain, cert, key
       chain_panel.element(by.id('deleteChain')).click();
