@@ -17,11 +17,11 @@ from globaleaks.utils.utility import log
 
 
 def should_try_acme_renewal(failures):
-    # TODO check num failures isn't high
-    acme_autorenew = GLSettings.memory_copy.private.acme_autorenew
+    acme = GLSettings.memory_copy.private.acme
     https_enabled = GLSettings.memory_copy.private.https_enabled
-    if https_enabled and acme_autorenew:
+    if https_enabled and acme:
         return True
+
     return False
 
 

@@ -1,6 +1,4 @@
 GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
-  $scope.active = 1; //TODO change to 0
-
   $scope.tabs = [
     {
       title:"Main configuration",
@@ -8,27 +6,26 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     },
     {
       title:"HTTPS settings",
-      template: "views/admin/network/https_menu.html"
+      template: "views/admin/network/https.html"
     },
     {
       title:"Access control",
       template: "views/admin/network/access_control.html"
     }
   ];
-
-  $scope.setActiveTab = function(index) {
-    $scope.active = index;
-  }
 }]).
 controller('AdminNetFormCtrl', ['$scope', function($scope) {
 
 }]).
 controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
   function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
-
   $scope.state = 0;
   $scope.menuState = 'setup';
   $scope.showHostnameSetter = false;
+  $scope.choseManCfg = false;
+  $scope.saveClicked = false;
+  $scope.skipVerify = $scope.admin.node.hostname !== '';
+  $scope.show_expert_status = false;
 
   $scope.setMenu = function(state) {
     $scope.menuState = state;
@@ -38,33 +35,36 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.tls_config = tlsConfig;
 
     var t = 0;
-    if (tlsConfig.files.priv_key.set) {
+
+    if (!tlsConfig.acme && tlsConfig.files.priv_key.set) {
       t = 1;
     }
+
     if (tlsConfig.files.cert.set) {
       t = 2
     }
+
     if (tlsConfig.files.chain.set) {
       t = 3;
     }
+
     if (tlsConfig.enabled) {
       t = -1;
     }
-    $scope.state = t
 
-    // Determine which window we need to show
     var choice = 'setup';
     if (tlsConfig.enabled) {
       choice = 'status';
-    } else if ($scope.state > 0) {
-      choice = 'fileRes';
+    } else if (t > 0) {
+      choice = 'files';
     }
+
+    $scope.state = t;
     $scope.menuState = choice;
   };
 
   tlsConfigResource.get({}).$promise.then($scope.parseTLSConfig);
 
-  $scope.show_expert_status = false;
   $scope.invertExpertStatus = function() {
     $scope.show_expert_status = !$scope.show_expert_status;
     return refreshConfig();
@@ -159,8 +159,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     });
   };
 
-  $scope.saveClicked = false;
-  $scope.skipVerify = $scope.admin.node.hostname !== '';
   $scope.updateHostname = function() {
     return $scope.admin.node.$update().then(function() {
       $scope.saveClicked = true;
@@ -175,11 +173,11 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     });
   }
 
-  $scope.choseManCfg = false;
   $scope.chooseManCfg = function() {
     $scope.choseManCfg = true;
-    $scope.setMenu('fileRes');
+    $scope.setMenu('files');
   }
+
   $scope.toggleCfg = function() {
     // TODO these posts send the entire tls_config object. They should be removed.
     if ($scope.tls_config.enabled) {
@@ -221,7 +219,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.showHostnameSetter = !$scope.showHostnameSetter;
   }
 
-  $scope.deleteEverything = function() {
+  $scope.resetCfg = function() {
     $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
@@ -231,5 +229,4 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
   $timeout(function() {
     location.reload();
   }, 15000);
-
 }]);

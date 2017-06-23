@@ -10,7 +10,7 @@
         <span data-translate>The parent orginazation, the Internet Security Research Group, is committed to providing the service for free.</span>
           <span data-translate>Read more</span> <a href="https://letsencrypt.org" rel="noreferrer noopener">https://letsencrypt.org</a>.
         </p>
-        <button class="btn btn-success" data-ng-click="runInitAutoAcme()">Proceed</button>
+        <button id="HTTPSAutoMode" class="btn btn-success" data-ng-click="runInitAutoAcme()">Proceed</button>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
       <div class="panel-heading" data-translate>Manual</div>
       <div class="panel-body">
       <p data-translate>The manual configuration wizard will guide you through the setup of HTTPS from an alternative Certificate Authority.</p>
-      <button class="btn btn-default" data-ng-click="chooseManCfg()">Proceed</button>
+      <button id="HTTPSManualMode" class="btn btn-default" data-ng-click="chooseManCfg()">Proceed</button>
     </div>
   </div>
 </div>
