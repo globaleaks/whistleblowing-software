@@ -92,7 +92,6 @@ def db_fix_fields_attrs(store):
     """
 
     # Load the field attributes descriptors
-    field_attrs = {}
     with file(GLSettings.field_attrs_file, 'r') as f:
         json_string = f.read()
         field_attrs = json.loads(json_string)

@@ -35,26 +35,30 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.tls_config = tlsConfig;
 
     var t = 0;
-
-    if (!tlsConfig.acme && tlsConfig.files.priv_key.set) {
-      t = 1;
-    }
-
-    if (tlsConfig.files.cert.set) {
-      t = 2
-    }
-
-    if (tlsConfig.files.chain.set) {
-      t = 3;
-    }
-
-    if (tlsConfig.enabled) {
-      t = -1;
-    }
-
     var choice = 'setup';
+
+    if (!tlsConfig.acme) {
+      if (tlsConfig.files.priv_key.set) {
+        t = 1;
+      }
+
+      if (tlsConfig.files.cert.set) {
+        t = 2
+      }
+
+      if (tlsConfig.files.chain.set) {
+        t = 3;
+      }
+
+      if (tlsConfig.enabled) {
+        t = -1;
+      }
+    }
+
     if (tlsConfig.enabled) {
       choice = 'status';
+    } else if (tlsConfig.acme && !tlsConfig.files.cert.set) {
+      choice = 'acmeCfg';
     } else if (t > 0) {
       choice = 'files';
     }
@@ -118,7 +122,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
      });
   };
 
-  $scope.runInitAutoAcme = function() {
+  $scope.initAcme = function() {
     var aRes = new adminAcmeResource();
     $scope.file_resources.priv_key.$update()
     .then(function() {
@@ -130,10 +134,9 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     });
   };
 
-  $scope.letsEncryptor = function() {
+  $scope.completeAcme = function() {
     var aRes = new adminAcmeResource({});
     aRes.$update().then(function() {
-      $scope.csr_state.open = false;
       $scope.setMenu('acmeFin');
     });
   };
@@ -200,10 +203,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
 
       open_promise.promise.then($scope.tls_config.$enable);
     }
-  };
-
-  $scope.deleteAll = function() {
-    $scope.tls_config.$delete().then(refreshConfig);
   };
 
   $scope.submitCSR = function() {
