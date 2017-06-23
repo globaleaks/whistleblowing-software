@@ -43,6 +43,12 @@ def gen_rsa_key(bits):
     return crypto.dump_privatekey(SSL.FILETYPE_PEM, key)
 
 
+def gen_x509_csr_pem(key_pair, csr_fields, csr_sign_bits):
+    req = gen_x509_csr(key_pair, csr_fields, csr_sign_bits)
+    pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
+    return pem_csr
+
+
 def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     """
     gen_x509_csr creates a certificate signature request by applying the passed
@@ -81,11 +87,22 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
     req.set_pubkey(prv_key)
     req.sign(prv_key, 'sha'+str(csr_sign_bits))
     # TODO clean prv_key and str_prv_key from memory
+    return req
 
-    pem_csr = dump_certificate_request(SSL.FILETYPE_PEM, req)
-    # TODO clean req from memory
 
-    return pem_csr
+def parse_issuer_name(x509):
+    '''Returns the issuer's name from a `OpenSSL.crypto.X509` cert'''
+    name = x509.get_issuer()
+    if name.O is not None:
+        return name.organizationName
+    elif name.OU is not None:
+        return name.organizationalUnitName
+    elif name.CN is not None:
+        return name.commonName
+    elif name.emailAddress is not None:
+        return name.emailAddress
+    else:
+        return ''
 
 
 def new_tls_context():
@@ -222,3 +239,7 @@ class ChainValidator(CtxValidator):
                 raise ValidationException('The intermediate cert has expired')
 
             store.add_cert(x509)
+
+        # TODO checks here must be moved into an environment validator after ChainValidator
+        if cfg['hostname'] == '':
+            raise ValidationException('No hostname set')

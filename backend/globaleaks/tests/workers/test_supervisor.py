@@ -11,7 +11,6 @@ import signal
 
 from twisted.internet import threads, reactor
 from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.internet.protocol import ProcessProtocol
 
 from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.utils.sock import reserve_port_for_ip
@@ -110,7 +109,7 @@ class TestSubprocessRun(helpers.TestGL):
         yield threads.deferToThread(self.fetch_resource_with_fail)
 
         # Start the HTTP server proxy requests will be forwarded to.
-        self.pp = SimpleServerPP()
+        self.pp = helpers.SimpleServerPP()
         reactor.spawnProcess(self.pp, 'python', args=['python', '-m', 'SimpleHTTPServer', '43434'], usePTY=True)
         yield self.pp.start_defer
 
@@ -160,17 +159,3 @@ class TestSubprocessRun(helpers.TestGL):
             self.pp.transport.signalProcess('KILL')
 
         helpers.TestGL.tearDown(self)
-
-
-class SimpleServerPP(ProcessProtocol):
-    def __init__(self):
-        self.welcome_msg = False
-        self.start_defer = Deferred()
-        process.set_pdeathsig(signal.SIGINT)
-
-    def outReceived(self, data):
-        # When the HTTPServer is ready it will produce a msg which we can hook
-        # the start_defer callback to.
-        if not self.welcome_msg:
-            self.start_defer.callback(None)
-            self.welcome_msg = True

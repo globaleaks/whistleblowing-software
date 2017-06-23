@@ -1,8 +1,10 @@
 # -*- encoding: utf-8 -*-
 
+from globaleaks import models
 from globaleaks.jobs.base import GLJob
-from globaleaks.tests import helpers
+from globaleaks.orm import transact
 
+from globaleaks.tests import helpers
 
 class GLJobX(GLJob):
     interval = 2
@@ -36,3 +38,9 @@ class TestGLJob(helpers.TestGL):
             self.assertEqual(job.operation_called, i)
 
         job.stop()
+
+
+@transact
+def get_scheduled_email_count(store):
+    """Returns the number of mails scheduled in db"""
+    return store.find(models.Mail).count()

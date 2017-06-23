@@ -574,10 +574,13 @@ factory('AdminTLSConfigResource', ['GLResource', function(GLResource) {
 factory('AdminTLSCertFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files');
 }]).
+factory('AdminAcmeResource', ['GLResource', function(GLResource) {
+    return new GLResource('/admin/config/acme/run');
+}]).
 factory('AdminTLSCfgFileResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/config/tls/files/:name', {name: '@name'});
 }]).
-  factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
+factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource',
     function(AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource) {
   return {
     new_context: function() {

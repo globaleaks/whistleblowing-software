@@ -1,8 +1,10 @@
 import os
 
+from OpenSSL import crypto
+from OpenSSL.crypto import load_certificate, FILETYPE_PEM
 from twisted.trial.unittest import TestCase
 
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.utils import tls
 
@@ -23,10 +25,12 @@ def get_valid_setup():
         'dh_params': 'dh_params.pem'
     }
 
-    return {
+    d = {
         k : open(os.path.join(test_data_dir, 'valid', fname), 'r').read() \
             for k, fname in valid_setup_files.iteritems()
     }
+    d['hostname'] = 'localhost:9999'
+    return d
 
 @transact
 def commit_valid_config(store):
@@ -38,6 +42,8 @@ def commit_valid_config(store):
     priv_fact.set_val('https_cert', cfg['cert'])
     priv_fact.set_val('https_chain', cfg['chain'])
     priv_fact.set_val('https_enabled', True)
+
+    NodeFactory(store).set_val('hostname', 'localhost:9999')
 
 
 class TestObjectValidators(TestCase):
@@ -71,6 +77,7 @@ class TestObjectValidators(TestCase):
             'dh_params': '',
             'ssl_intermediate': '',
             'https_enabled': False,
+            'hostname': 'localhost:9999',
         }
 
     def test_private_key_invalid(self):
@@ -148,6 +155,7 @@ class TestObjectValidators(TestCase):
             p = os.path.join(self.test_data_dir, 'invalid', fname)
             with open(p, 'r') as f:
                 self.cfg['ssl_intermediate'] = f.read()
+
             ok, err = chn_v.validate(self.cfg)
             if not fname in exceptions_from_validation:
                 self.assertFalse(ok)
@@ -170,3 +178,20 @@ class TestObjectValidators(TestCase):
         ok, err = chn_v.validate(self.cfg)
         self.assertTrue(ok)
         self.assertIsNone(err)
+
+
+    def test_get_issuer_name(self):
+        test_cases = [
+            ('invalid/le-staging-chain.pem', 'Fake LE Root X1'),
+            ('invalid/glbc_le_stage_cert.pem', 'Fake LE Intermediate X1'),
+            ('invalid/expired_cert.pem', 'Zintermediate'),
+            ('valid/cert.pem', 'Whistleblowing Solutions I.S. S.r.l.'),
+        ]
+        for cert_path, issuer_name in test_cases:
+            p = os.path.join(self.test_data_dir, cert_path)
+            with open(p, 'r') as f:
+                x509 = crypto.load_certificate(FILETYPE_PEM, f.read())
+
+            res = tls.parse_issuer_name(x509)
+
+            self.assertEqual(res, issuer_name)
