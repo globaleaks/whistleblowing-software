@@ -91,14 +91,6 @@ text.axis-worktime {
   height: 1px;
 }
 
-#HttpsSettings .status-line h3 {
-  display: inline-block;
-}
-
-#HttpsSettings .status-line .label {
-  font-size: 100%;
-}
-
 .https-file-res input[type="file"] {
   display: none;
 }

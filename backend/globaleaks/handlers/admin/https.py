@@ -26,6 +26,9 @@ from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date,
 from globaleaks.utils.tempdict import TempDict
 
 
+# Access auth tokens expire after a 5 minutes
+tmp_chall_dict = TempDict(300)
+
 
 class FileResource(object):
     """
@@ -341,7 +344,7 @@ def serialize_https_config_summary(store):
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
       'files': file_summaries,
-      'acme_autorenew': prv_fact.get_val('acme_autorenew')
+      'acme': prv_fact.get_val('acme')
     }
 
     return ret
@@ -383,7 +386,7 @@ class ConfigHandler(BaseHandler):
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
-            raise errors.InternalServerError(e)
+            raise errors.InternalServerError(str(e))
 
     @BaseHandler.https_enabled
     @inlineCallbacks
@@ -412,9 +415,9 @@ def _delete_all_cfg(store):
     prv_fact.set_val('https_cert', '')
     prv_fact.set_val('https_chain', '')
     prv_fact.set_val('https_csr', '')
+    prv_fact.set_val('acme', False)
     prv_fact.set_val('acme_accnt_key', '')
     prv_fact.set_val('acme_accnt_uri', '')
-    prv_fact.set_val('acme_autorenew', False)
 
 
 class CSRFileHandler(FileHandler):
@@ -487,7 +490,9 @@ class AcmeAccntKeyRes():
                 encryption_algorithm=serialization.NoEncryption(),
         )
 
+        PrivateFactory(store).set_val('acme', True)
         PrivateFactory(store).set_val('acme_accnt_key', b)
+
         return priv_key
 
     @classmethod
@@ -496,44 +501,25 @@ class AcmeAccntKeyRes():
         PrivateFactory(store).set_val('acme_accnt_uri', uri)
 
 
-# Access auth tokens expire after a few minutes
-tmp_chall_dict = TempDict(300)
-
-
-@transact
-def can_create_acme_res(store):
-    prv_fact = PrivateFactory(store)
-
-    no_accnt_key = prv_fact.get_val('acme_accnt_key') == u''
-    no_accnt_uri = prv_fact.get_val('acme_accnt_uri') == u''
-    priv_key = prv_fact.get_val('https_priv_key') != u''
-    no_csr_set  = prv_fact.get_val('https_csr') == u''
-    no_cert_set = prv_fact.get_val('https_cert') == u''
-    return no_accnt_key and no_accnt_uri and priv_key and no_csr_set and no_cert_set
-
-
 @transact
 def can_perform_acme_run(store):
     prv_fact = PrivateFactory(store)
-
-    prv_key_set = prv_fact.get_val('https_priv_key') != u''
-    acme_accnt_uri = prv_fact.get_val('acme_accnt_uri') != u''
-    autorenew = prv_fact.get_val('acme_autorenew')
-    empty_csr = prv_fact.get_val('https_csr') == ''
-    return acme_accnt_uri and prv_key_set and empty_csr and not autorenew
+    acme = prv_fact.get_val('acme')
+    no_cert_set = prv_fact.get_val('https_cert') == u''
+    return acme and no_cert_set
 
 
 @transact
-def is_acme_confd(store):
+def is_acme_configured(store):
     prv_fact = PrivateFactory(store)
-    autorenew = prv_fact.get_val('acme_autorenew')
-    acme_uri_set = prv_fact.get_val('acme_acccnt_uri')
-    return acme_uri_set and autorenew
+    acme = prv_fact.get_val('acme')
+    cert_set = prv_fact.get_val('https_cert') != u''
+    return acme and cert_set
 
 
 @transact
 def can_perform_acme_renewal(store):
-    a = is_acme_confd(store)
+    a = is_acme_configured(store)
     b = PrivateFactory(store).get_val('https_enabled')
     c = PrivateFactory(store).get_val('https_cert')
     return a and b and c
@@ -545,10 +531,6 @@ class AcmeHandler(BaseHandler):
     @BaseHandler.https_disabled
     @inlineCallbacks
     def post(self):
-        is_ready = yield can_create_acme_res()
-        if not is_ready:
-            raise errors.ForbiddenOperation()
-
         accnt_key = yield AcmeAccntKeyRes.create_file()
 
         # TODO should throw if key is already registered
@@ -598,7 +580,6 @@ def db_acme_cert_issuance(store):
                                                           tmp_chall_dict,
                                                           GLSettings.acme_directory_url)
 
-    PrivateFactory(store).set_val('acme_autorenew', True)
     PrivateFactory(store).set_val('https_cert', cert_str)
     PrivateFactory(store).set_val('https_chain', chain_str)
 
