@@ -219,6 +219,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'export_template',
         'export_message_whistleblower',
         'export_message_recipient',
+        'x509_certificate_expiration_mail_template',
+        'x509_certificate_expiration_mail_title',
     })
 
     # These strings are not exposed in admin the interface for customization
@@ -242,6 +244,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_anomaly_disk_low',
         'admin_test_static_mail_template',
         'admin_test_static_mail_title',
+        'x509_certificate_expiration_mail_template',
+        'x509_certificate_expiration_mail_title',
     })
 
     # These strings are modifiable via the admin/notification handler

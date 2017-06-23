@@ -1,22 +1,28 @@
 import os
-
+import SimpleHTTPServer
 import twisted
-from twisted.internet.defer import inlineCallbacks, returnValue
+
 from OpenSSL import crypto, SSL
+from requests.exceptions import ConnectionError
+from twisted.internet import reactor
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.handlers.admin import https
-from globaleaks.models.config import PrivateFactory
+from globaleaks.models.config import PrivateFactory, NodeFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
 from globaleaks.settings import GLSettings
+from globaleaks.utils.lets_enc import ChallTok
 
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
 
 
 @transact
-def set_dh_params(store, dh_params):
+def set_init_params(store, dh_params, hostname='localhost:9999'):
     PrivateFactory(store).set_val('https_dh_params', dh_params)
+    NodeFactory(store).set_val('hostname', hostname)
+    GLSettings.memory_copy.hostname = 'localhost:9999'
 
 
 class TestFileHandler(helpers.TestHandler):
@@ -27,7 +33,7 @@ class TestFileHandler(helpers.TestHandler):
         yield super(TestFileHandler, self).setUp()
 
         self.valid_setup = test_tls.get_valid_setup()
-        yield set_dh_params(self.valid_setup['dh_params'])
+        yield set_init_params(self.valid_setup['dh_params'])
 
     @inlineCallbacks
     def get_and_check(self, name, is_set):
@@ -114,6 +120,7 @@ class TestFileHandler(helpers.TestHandler):
         yield self.get_and_check(n, False)
         yield https.PrivKeyFileRes.create_file(self.valid_setup['key'])
         yield https.CertFileRes.create_file(self.valid_setup['cert'])
+        GLSettings.memory_copy.hostname = 'localhost'
 
         body = {'name': 'chain', 'content': self.valid_setup[n]}
         handler = self.request(body, role='admin')
@@ -148,7 +155,7 @@ class TestConfigHandler(helpers.TestHandler):
     def test_all_methods(self):
         valid_setup = test_tls.get_valid_setup()
 
-        yield set_dh_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
         yield https.CertFileRes.create_file(valid_setup['cert'])
         yield https.ChainFileRes.create_file(valid_setup['chain'])
@@ -180,11 +187,11 @@ class TestCSRHandler(helpers.TestHandler):
         n = 'csr'
 
         valid_setup = test_tls.get_valid_setup()
-        yield set_dh_params(valid_setup['dh_params'])
+        yield set_init_params(valid_setup['dh_params'])
         yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        GLSettings.memory_copy.hostname = 'notreal.ns.com'
 
         d = {
-           'commonname': 'notreal.ns.com',
            'country': 'it',
            'province': 'regione',
            'city': 'citta',
@@ -205,3 +212,116 @@ class TestCSRHandler(helpers.TestHandler):
         self.assertIn(('CN', 'notreal.ns.com'), comps)
         self.assertIn(('C', 'IT'), comps)
         self.assertIn(('L', 'citta'), comps)
+
+
+class TestAcmeHandler(helpers.TestHandler):
+    _handler = https.AcmeHandler
+
+    @inlineCallbacks
+    def test_post(self):
+        hostname = 'gl.dl.localhost.com'
+        GLSettings.memory_copy.hostname = hostname
+        valid_setup = test_tls.get_valid_setup()
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+
+        handler = self.request(role='admin')
+        resp = yield handler.post()
+
+        current_le_tos = 'https://letsencrypt.org/documents/LE-SA-v1.1.1-August-1-2016.pdf'
+        self.assertEqual(resp['terms_of_service'], current_le_tos)
+
+    @inlineCallbacks
+    def test_put(self):
+        valid_setup = test_tls.get_valid_setup()
+        yield https.AcmeAccntKeyRes.create_file()
+        yield https.AcmeAccntKeyRes.save_accnt_uri('http://localhost:9999')
+        yield https.PrivKeyFileRes.create_file(valid_setup['key'])
+        hostname = 'gl.dl.localhost.com'
+        GLSettings.memory_copy.hostname = hostname
+
+        body = {
+           'name': 'xxx',
+           'content': {
+               'commonname': hostname,
+               'country': 'it',
+               'province': 'regione',
+               'city': 'citta',
+               'company': 'azienda',
+               'department': 'reparto',
+               'email': 'indrizzio@email',
+           }
+        }
+
+        handler = self.request(body, role='admin')
+        yield self.assertFailure(handler.put(), ConnectionError)
+
+
+class TestAcmeChallResolver(helpers.TestHandler):
+    _handler = https.AcmeChallResolver
+
+    @inlineCallbacks
+    def test_get(self):
+        # tmp_chall_dict pollutes scope
+        from globaleaks.handlers.admin.https import tmp_chall_dict
+        tok = 'yT-RDI9dU7dJPxaTYOgY_YnYYByT4CVAVCC7W3zUDIw'
+        v = '{}.5vh2ZRCJGmNUKEEBn-SN6esbMnSl1w8ZT0LDUwexTAM'.format(tok)
+        ct = ChallTok(v)
+
+        tmp_chall_dict.set(tok, ct)
+
+        handler = self.request()
+        resp = yield handler.get(tok)
+
+        self.assertEqual(resp, v)
+
+
+class TestHostnameTestHandler(helpers.TestHandler):
+    _handler = https.HostnameTestHandler
+
+    @inlineCallbacks
+    def setUp(self):
+        yield super(TestHostnameTestHandler, self).setUp()
+        self.tmp_hn = GLSettings.memory_copy.hostname
+        self.tmp_hn = GLSettings.memory_copy.anonymize_outgoing_connections = False
+        GLSettings.memory_copy.hostname = 'localhost:43434'
+
+    @inlineCallbacks
+    def test_post(self):
+        handler = self.request(role='admin')
+
+        # The first request must fail to the non-existent resource
+        yield self.assertFailure(handler.post(), errors.ExternalResourceError)
+
+        # Add a file to the tmp dir
+        with open('./robots.txt', 'w') as f:
+            f.write("User-agent: *\n" +
+                    "Allow: /\n"+
+                    "Sitemap: http://localhost/sitemap.xml")
+
+        # Start the HTTP server proxy requests will be forwarded to.
+        self.pp = helpers.SimpleServerPP()
+
+        # An extended SimpleHTTPServer to handle the addition of the globaleaks header
+        e = ""+\
+        "from SimpleHTTPServer import SimpleHTTPRequestHandler as rH; "+\
+        "from SimpleHTTPServer import test as t; "+\
+        "of = rH.end_headers; rH.end_headers = lambda s: s.send_header('Server', 'GlobaLeaks') or of(s); "+\
+        "t(HandlerClass=rH)"
+
+        yield reactor.spawnProcess(self.pp, 'python', args=['python', '-c', e, '43434'], usePTY=True)
+
+        yield self.pp.start_defer
+
+        yield handler.post()
+
+    @inlineCallbacks
+    def tearDown(self):
+        self.tmp_hn = GLSettings.memory_copy.hostname
+        self.tmp_hn = GLSettings.memory_copy.anonymize_outgoing_connections = True
+        GLSettings.memory_copy.hostname = 'localhost'
+
+        if hasattr(self, 'pp'):
+            self.pp.transport.loseConnection()
+            self.pp.transport.signalProcess('KILL')
+
+        yield super(TestHostnameTestHandler, self).tearDown()

@@ -1,19 +1,33 @@
 # -*- coding: utf-8 -*-
+import urlparse
+
 from datetime import datetime
 from functools import wraps
 
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.backends import default_backend
+from cryptography.hazmat.primitives.serialization import load_pem_private_key
+from cryptography.hazmat.primitives import serialization
 from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, FILETYPE_PEM
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.threads import deferToThread
+from twisted.internet.error import ConnectError
+from twisted.web.client import Agent, readBody
 
-from globaleaks.orm import transact
+from globaleaks.orm import transact, transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import errors, requests
-from globaleaks.utils import tls
+from globaleaks.utils import tls, agent
+from globaleaks.utils import lets_enc
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
+from globaleaks.utils.tempdict import TempDict
+
+
+# Access auth tokens expire after a 5 minutes
+tmp_chall_dict = TempDict(300)
 
 
 class FileResource(object):
@@ -144,6 +158,7 @@ class CertFileRes(FileResource):
         ok, err = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val('https_cert', raw_cert)
+            GLSettings.memory_copy.https_cert = raw_cert
         else:
             log.err("Cert validation failed")
         return ok
@@ -153,6 +168,7 @@ class CertFileRes(FileResource):
     def delete_file(store):
         prv_fact = PrivateFactory(store)
         prv_fact.set_val('https_cert', u'')
+        GLSettings.memory_copy.https_cert = ''
 
     @staticmethod
     @transact
@@ -171,7 +187,7 @@ class CertFileRes(FileResource):
 
         return {
             'name': 'cert',
-            'issuer': x509.get_issuer().organizationName,
+            'issuer': tls.parse_issuer_name(x509),
             'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }
@@ -219,7 +235,7 @@ class ChainFileRes(FileResource):
 
         return {
             'name': 'chain',
-            'issuer': x509.get_issuer().organizationName,
+            'issuer': tls.parse_issuer_name(x509),
             'expiration_date': datetime_to_ISO8601(expr_date),
             'set': True,
         }
@@ -328,6 +344,7 @@ def serialize_https_config_summary(store):
       'running': GLSettings.state.process_supervisor.is_running(),
       'status': GLSettings.state.process_supervisor.get_status(),
       'files': file_summaries,
+      'acme': prv_fact.get_val('acme')
     }
 
     return ret
@@ -369,7 +386,7 @@ class ConfigHandler(BaseHandler):
             yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
-            raise errors.InternalServerError(e)
+            raise errors.InternalServerError(str(e))
 
     @BaseHandler.https_enabled
     @inlineCallbacks
@@ -380,6 +397,27 @@ class ConfigHandler(BaseHandler):
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
         yield GLSettings.state.process_supervisor.shutdown()
+
+    @inlineCallbacks
+    def delete(self):
+        yield disable_https()
+        GLSettings.memory_copy.private.https_enabled = False
+        yield GLSettings.state.process_supervisor.shutdown()
+        yield _delete_all_cfg()
+
+
+@transact
+def _delete_all_cfg(store):
+    prv_fact = PrivateFactory(store)
+    prv_fact.set_val('https_enabled', False)
+    prv_fact.set_val('https_priv_gen', False)
+    prv_fact.set_val('https_priv_key', '')
+    prv_fact.set_val('https_cert', '')
+    prv_fact.set_val('https_chain', '')
+    prv_fact.set_val('https_csr', '')
+    prv_fact.set_val('acme', False)
+    prv_fact.set_val('acme_accnt_key', '')
+    prv_fact.set_val('acme_accnt_uri', '')
 
 
 class CSRFileHandler(FileHandler):
@@ -399,8 +437,8 @@ class CSRFileHandler(FileHandler):
                 'L':  desc['city'],
                 'O':  desc['company'],
                 'OU': desc['department'],
-                'CN': desc['commonname'],
-                'emailAddress': desc['email'],
+                'CN': GLSettings.memory_copy.hostname,
+                'emailAddress': desc['email'], # TODO use current admin user mail
         }
 
         csr_txt = yield self.perform_action(csr_fields)
@@ -423,9 +461,159 @@ class CSRFileHandler(FileHandler):
 
         key_pair = db_cfg['ssl_key']
         try:
-            csr_txt = tls.gen_x509_csr(key_pair, csr_fields, GLSettings.csr_sign_bits)
+            csr_txt = tls.gen_x509_csr_pem(key_pair, csr_fields, GLSettings.csr_sign_bits)
             log.debug("Generated a new CSR")
             return csr_txt
         except Exception as e:
             log.err(e)
             raise errors.ValidationError('CSR gen failed')
+
+
+class AcmeAccntKeyRes():
+    @classmethod
+    @transact
+    def create_file(store, cls):
+        log.info("Generating an ACME account key with %d bits" % GLSettings.key_bits)
+
+        # NOTE key size is hard coded to align with minimum CA requirements
+        # TODO change format to OpenSSL key to normalize types of keys used
+        priv_key = rsa.generate_private_key(
+            public_exponent=65537,
+            key_size=2048,
+            backend=default_backend())
+
+
+        log.debug("Saving the ACME key")
+        b = priv_key.private_bytes(
+                encoding=serialization.Encoding.PEM,
+                format=serialization.PrivateFormat.PKCS8,
+                encryption_algorithm=serialization.NoEncryption(),
+        )
+
+        PrivateFactory(store).set_val('acme', True)
+        PrivateFactory(store).set_val('acme_accnt_key', b)
+
+        return priv_key
+
+    @classmethod
+    @transact
+    def save_accnt_uri(store, cls, uri):
+        PrivateFactory(store).set_val('acme_accnt_uri', uri)
+
+
+@transact
+def can_perform_acme_run(store):
+    prv_fact = PrivateFactory(store)
+    acme = prv_fact.get_val('acme')
+    no_cert_set = prv_fact.get_val('https_cert') == u''
+    return acme and no_cert_set
+
+
+@transact
+def is_acme_configured(store):
+    prv_fact = PrivateFactory(store)
+    acme = prv_fact.get_val('acme')
+    cert_set = prv_fact.get_val('https_cert') != u''
+    return acme and cert_set
+
+
+@transact
+def can_perform_acme_renewal(store):
+    a = is_acme_configured(store)
+    b = PrivateFactory(store).get_val('https_enabled')
+    c = PrivateFactory(store).get_val('https_cert')
+    return a and b and c
+
+
+class AcmeHandler(BaseHandler):
+    check_roles='admin'
+
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def post(self):
+        accnt_key = yield AcmeAccntKeyRes.create_file()
+
+        # TODO should throw if key is already registered
+        regr_uri, tos_url = lets_enc.register_account_key(GLSettings.acme_directory_url, accnt_key)
+
+        yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
+
+        returnValue({'terms_of_service': tos_url})
+
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def put(self):
+        is_ready = yield can_perform_acme_run()
+        if not is_ready:
+            raise errors.ForbiddenOperation()
+
+        yield deferToThread(acme_cert_issuance)
+
+
+@transact_sync
+def acme_cert_issuance(store):
+    return db_acme_cert_issuance(store)
+
+
+def db_acme_cert_issuance(store):
+    hostname = GLSettings.memory_copy.hostname
+
+    raw_accnt_key = PrivateFactory(store).get_val('acme_accnt_key')
+    accnt_key = serialization.load_pem_private_key(str(raw_accnt_key),
+                                                   password=None,
+                                                   backend=default_backend())
+
+
+    priv_key = PrivateFactory(store).get_val('https_priv_key')
+    regr_uri = PrivateFactory(store).get_val('acme_accnt_uri')
+
+    csr_fields = {'CN': hostname}
+    # NOTE sha256 is always employed as hash fnc here.
+    csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
+
+    # Run ACME registration all the way to resolution
+    cert_str, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
+                                                          regr_uri,
+                                                          accnt_key,
+                                                          priv_key,
+                                                          csr,
+                                                          tmp_chall_dict,
+                                                          GLSettings.acme_directory_url)
+
+    PrivateFactory(store).set_val('https_cert', cert_str)
+    PrivateFactory(store).set_val('https_chain', chain_str)
+
+
+class AcmeChallResolver(BaseHandler):
+    check_roles = 'unauthenticated'
+
+    def get(self, token):
+        if token in tmp_chall_dict:
+            log.info('Responding to valid .well-known request')
+            return tmp_chall_dict[token].tok
+        raise errors.ResourceNotFound
+
+
+class HostnameTestHandler(BaseHandler):
+    check_roles = 'admin'
+
+    @BaseHandler.https_disabled
+    @inlineCallbacks
+    def post(self):
+        if GLSettings.memory_copy.hostname == '':
+            raise errors.ValidationError('hostname is not set')
+
+        net_agent = GLSettings.get_agent()
+
+        t = ('http', GLSettings.memory_copy.hostname, 'robots.txt', None, None)
+        url = bytes(urlparse.urlunsplit(t))
+        try:
+            resp = yield net_agent.request('GET', url)
+            body = yield readBody(resp)
+
+            server_h = resp.headers.getRawHeaders('Server', [None])[-1].lower()
+            if not body.startswith('User-agent: *') or server_h != 'globaleaks':
+                raise EnvironmentError('Response unexpected')
+        except (EnvironmentError, ConnectError) as e:
+            log.err(e)
+            raise errors.ExternalResourceError()

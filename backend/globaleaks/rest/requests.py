@@ -29,6 +29,7 @@ context_selector_type_regexp      = r'^(list|cards|search)$'
 tip_operation_regexp              = r'^(postpone|set)$'
 shorturl_regexp                   = r'^(/s/[a-z0-9]{1,30})$'
 longurl_regexp                    = r'^(/[a-z0-9#=_&?/-]{1,255})$'
+short_text_regexp                 = r'^.{1,255}$'
 
 token_regexp                      = r'([a-zA-Z0-9]{42})'
 token_type_regexp                 = r'^submission$'
@@ -381,14 +382,13 @@ AdminTLSCfgFileResourceDesc = {
 }
 
 AdminCSRFileDesc = {
-    'name': unicode,
+    'name': short_text_regexp,
     'content': {
-      'commonname': unicode,
-      'country': '[A-Za-z]{2}',
-      'province': unicode,
-      'city': unicode,
-      'company': unicode,
-      'department': unicode,
+      'country': r'[A-Za-z]{2}',
+      'province': short_text_regexp,
+      'city': short_text_regexp,
+      'company': short_text_regexp,
+      'department': short_text_regexp,
       'email': email_regexp
     }
 }

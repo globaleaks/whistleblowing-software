@@ -159,7 +159,7 @@ GLSettings.cleaning_dead_files()
 
 backend_script = os.path.join(GLSettings.root_path, 'globaleaks', 'backend.py')
 
-args =['-y', backend_script]
+args = ['-y', backend_script]
 if GLSettings.nodaemon:
     args += ['-n']
 

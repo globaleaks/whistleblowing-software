@@ -130,6 +130,7 @@ api_spec = [
     (r'/admin/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ')', admin_l10n.AdminL10NHandler),
     (r'/admin/files/(logo|favicon|css|homepage|script)', admin_files.FileInstance),
     (r'/admin/config/tls', https.ConfigHandler),
+    (r'/admin/config/tls/hostname', https.HostnameTestHandler),
     (r'/admin/config/tls/files/(csr)', https.CSRFileHandler),
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
     (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),
@@ -137,6 +138,9 @@ api_spec = [
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),
+
+    (r'/admin/config/acme/run', https.AcmeHandler),
+    (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallResolver),
 
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),

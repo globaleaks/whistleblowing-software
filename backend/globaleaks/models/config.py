@@ -154,9 +154,9 @@ class NotificationFactory(ConfigFactory):
 
 class PrivateFactory(ConfigFactory):
     non_mem_vars = {
+        'acme_accnt_key'
         'https_priv_key',
         'https_priv_gen',
-        'https_cert',
         'https_chain',
         'https_dh_params',
     }
@@ -294,6 +294,7 @@ def load_tls_dict(store):
         'ssl_intermediate': privFact.get_val('https_chain'),
         'ssl_dh': privFact.get_val('https_dh_params'),
         'https_enabled': privFact.get_val('https_enabled'),
+        'hostname': NodeFactory(store).get_val('hostname'),
     }
     return tls_cfg
 
