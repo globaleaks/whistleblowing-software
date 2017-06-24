@@ -163,4 +163,4 @@ class TestLogging(unittest.TestCase):
         gex = r".+ \[ut\] x\n"
         m = re.findall(gex, s)
         self.assertTrue(len(m) == 2)
-        self.assertTrue(s.endswith("[-] 'error'\n"))
+        self.assertTrue(s.endswith("[-] &#39;error&#39;\n"))
