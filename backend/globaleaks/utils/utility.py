@@ -152,7 +152,7 @@ class GLLogObserver(twlog.FileLogObserver):
 
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
-        util.untilConcludes(self.write, timeStr + " " + msgStr)
+        util.untilConcludes(self.write, timeStr + " " + log_encode_html(msgStr))
         util.untilConcludes(self.flush)
 
 
@@ -176,8 +176,6 @@ class Logger(object):
             msg = (msg % args)
 
         msg = log_remove_escapes(msg)
-
-        msg = log_encode_html(msg)
 
         print('[' + prefix + '] ' + msg)
 
