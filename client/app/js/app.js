@@ -565,7 +565,7 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.$watch('GLTranslate.indirect.appLanguage', function(new_val, old_val) {
       GLTranslate.setLang();
-      if(old_val != new_val) {
+      if(old_val !== new_val) {
         $rootScope.reload();
       }
     });

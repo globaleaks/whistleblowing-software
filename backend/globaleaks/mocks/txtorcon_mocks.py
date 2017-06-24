@@ -7,13 +7,13 @@ from twisted.internet import defer
 from txtorcon.util import find_keywords
 
 class EphemeralHiddenService(object):
-    '''
+    """
     This uses the ephemeral hidden-service APIs (in comparison to
     torrc or SETCONF). This means your hidden-service private-key is
     never in a file. It also means that when the process exits, that
     HS goes away. See documentation for ADD_ONION in torspec:
     https://gitweb.torproject.org/torspec.git/tree/control-spec.txt#n1295
-    '''
+    """
 
     # XXX the "ports" stuff is still kind of an awkward API, especialy
     # making the actual list public (since it'll have
@@ -43,11 +43,11 @@ class EphemeralHiddenService(object):
 
     @defer.inlineCallbacks
     def add_to_tor(self, protocol):
-        '''
+        """
         Returns a Deferred which fires with 'self' after at least one
         descriptor has been uploaded. Errback if no descriptor upload
         succeeds.
-        '''
+        """
         ports = ' '.join(map(lambda x: 'Port=' + x.strip(), self._ports))
         cmd = 'ADD_ONION %s %s' % (self._key_blob, ports)
         ans = yield protocol.queue_command(cmd)
@@ -57,7 +57,7 @@ class EphemeralHiddenService(object):
             self.private_key = ans['PrivateKey']
 
         # NOTE line changed to give indication when using mocks
-        log.msg('Created onion-service at', self.hostname)
+        log.info('Created onion-service at', self.hostname)
 
         # Now we want to wait for the descriptor uploads. This doesn't
         # quite work, as the UPLOADED events always say "UNKNOWN" for
@@ -92,7 +92,7 @@ class EphemeralHiddenService(object):
                 # HS to be reachable. (addr is args[1])
                 if args[3] in attempted_uploads:
                     confirmed_uploads.add(args[3])
-                    log.msg("Uploaded '{}' to '{}'".format(self.hostname, args[3]))
+                    log.info("Uploaded '{}' to '{}'".format(self.hostname, args[3]))
                     uploaded.callback(self)
 
             elif subtype == 'FAILED':
@@ -105,16 +105,16 @@ class EphemeralHiddenService(object):
                         )
                         uploaded.errback(RuntimeError(msg))
 
-        log.msg("Created '{}', waiting for descriptor uploads.".format(self.hostname))
+        log.info("Created '{}', waiting for descriptor uploads.".format(self.hostname))
         yield protocol.add_event_listener('HS_DESC', hs_desc)
         yield uploaded
         yield protocol.remove_event_listener('HS_DESC', hs_desc)
 
     @defer.inlineCallbacks
     def remove_from_tor(self, protocol):
-        '''
+        """
         Returns a Deferred which fires with None
-        '''
+        """
         r = yield protocol.queue_command('DEL_ONION %s' % self.hostname[:-6])
         if r.strip() != 'OK':
             raise RuntimeError('Failed to remove hidden service: "%s".' % r)

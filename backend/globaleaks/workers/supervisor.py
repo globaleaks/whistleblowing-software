@@ -36,7 +36,7 @@ class ProcessSupervisor(object):
             'target_proc_num': multiprocessing.cpu_count(),
         }
 
-        self.worker_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'https_worker.py')
+        self.worker_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'worker_https.py')
 
         self.tls_cfg = {
           'proxy_ip': proxy_ip,

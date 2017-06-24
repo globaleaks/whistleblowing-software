@@ -3,7 +3,7 @@ import os
 from OpenSSL import crypto
 from twisted.trial.unittest import TestCase
 
-from globaleaks.utils import lets_enc
+from globaleaks.utils import letsencrypt
 
 from globaleaks.tests import helpers
 
@@ -16,7 +16,7 @@ class TestRunAcmeReg(TestCase):
     def test_format_asn1_date(self):
         s = '20170827153000Z'
 
-        d = lets_enc.convert_asn1_date(s)
+        d = letsencrypt.convert_asn1_date(s)
 
         self.assertEqual(d.year, 2017)
         self.assertEqual(d.month, 8)
@@ -47,7 +47,7 @@ class TestRunAcmeReg(TestCase):
                 cert = crypto.load_certificate(crypto.FILETYPE_PEM, f.read())
 
             s = cert.get_notAfter()
-            date = lets_enc.convert_asn1_date(s)
+            date = letsencrypt.convert_asn1_date(s)
             self.assertEquals(date.year, tc['year'])
             self.assertEquals(date.month, tc['month'])
             self.assertEquals(date.day, tc['day'])

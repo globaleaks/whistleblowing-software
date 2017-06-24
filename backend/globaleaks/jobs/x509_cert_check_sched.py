@@ -11,7 +11,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import encrypt_pgp_message
 from globaleaks.settings import GLSettings
-from globaleaks.utils import lets_enc
+from globaleaks.utils import letsencrypt
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log
 
@@ -42,7 +42,7 @@ class X509CertCheckSchedule(GLJob):
     @transact_sync
     def acme_cert_renewal_checks(self, store):
         cert = load_certificate(FILETYPE_PEM, GLSettings.memory_copy.private.https_cert)
-        expiration_date = lets_enc.convert_asn1_date(cert.get_notAfter())
+        expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.acme_try_renewal)
         renewal_window = datetime.now() + t
@@ -71,7 +71,7 @@ class X509CertCheckSchedule(GLJob):
             return
 
         cert = load_certificate(FILETYPE_PEM, GLSettings.memory_copy.private.https_cert)
-        expiration_date = lets_enc.convert_asn1_date(cert.get_notAfter())
+        expiration_date = letsencrypt.convert_asn1_date(cert.get_notAfter())
 
         t = timedelta(days=self.notify_expr_within)
         expiration_window = datetime.now() + t

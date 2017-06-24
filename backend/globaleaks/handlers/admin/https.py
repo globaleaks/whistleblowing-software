@@ -21,7 +21,7 @@ from globaleaks.handlers.base import BaseHandler, HANDLER_EXEC_TIME_THRESHOLD
 from globaleaks.models.config import PrivateFactory, NodeFactory, load_tls_dict
 from globaleaks.rest import errors, requests
 from globaleaks.utils import tls, agent
-from globaleaks.utils import lets_enc
+from globaleaks.utils import letsencrypt
 from globaleaks.utils.utility import datetime_to_ISO8601, format_cert_expr_date, log
 from globaleaks.utils.tempdict import TempDict
 
@@ -534,7 +534,7 @@ class AcmeHandler(BaseHandler):
         accnt_key = yield AcmeAccntKeyRes.create_file()
 
         # TODO should throw if key is already registered
-        regr_uri, tos_url = lets_enc.register_account_key(GLSettings.acme_directory_url, accnt_key)
+        regr_uri, tos_url = letsencrypt.register_account_key(GLSettings.acme_directory_url, accnt_key)
 
         yield AcmeAccntKeyRes.save_accnt_uri(regr_uri)
 
@@ -572,13 +572,13 @@ def db_acme_cert_issuance(store):
     csr = tls.gen_x509_csr(priv_key, csr_fields, 256)
 
     # Run ACME registration all the way to resolution
-    cert_str, chain_str = lets_enc.run_acme_reg_to_finish(hostname,
-                                                          regr_uri,
-                                                          accnt_key,
-                                                          priv_key,
-                                                          csr,
-                                                          tmp_chall_dict,
-                                                          GLSettings.acme_directory_url)
+    cert_str, chain_str = letsencrypt.run_acme_reg_to_finish(hostname,
+                                                             regr_uri,
+                                                             accnt_key,
+                                                             priv_key,
+                                                             csr,
+                                                             tmp_chall_dict,
+                                                             GLSettings.acme_directory_url)
 
     PrivateFactory(store).set_val('https_cert', cert_str)
     PrivateFactory(store).set_val('https_chain', chain_str)

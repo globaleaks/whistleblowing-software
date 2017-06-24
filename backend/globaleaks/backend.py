@@ -16,7 +16,7 @@ from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
-from globaleaks.onion_services import configure_tor_hs
+from globaleaks.utils.onion_services import configure_tor_hs
 from globaleaks.utils.utility import log, GLLogObserver
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor

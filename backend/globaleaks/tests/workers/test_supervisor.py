@@ -16,7 +16,7 @@ from globaleaks.models.config import PrivateFactory, load_tls_dict
 from globaleaks.utils.sock import reserve_port_for_ip
 from globaleaks.orm import transact
 from globaleaks.workers import supervisor, process
-from globaleaks.workers.https_worker import HTTPSProcess
+from globaleaks.workers.worker_https import HTTPSProcess
 
 from globaleaks.tests import helpers
 from globaleaks.tests.utils import test_tls
