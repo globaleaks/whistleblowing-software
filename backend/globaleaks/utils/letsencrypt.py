@@ -70,8 +70,6 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
        log.info('Resolving challenge locally failed. ACME request will fail. %s' % test_path)
        raise e
 
-    challr = challenges.HTTP01Response()
-
     cr = acme.answer_challenge(challb, challb.chall.response(accnt_key))
     log.debug('Acme CA responded to challenge request with: %s' % cr)
 

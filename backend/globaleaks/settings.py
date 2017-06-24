@@ -382,13 +382,6 @@ class GLSettingsClass(object):
             self.print_msg("Unable to find a directory to load the client from")
             sys.exit(1)
 
-        if self.torhs_path != '':
-            hostname_tor_file = os.path.join(self.torhs_path, 'hostname')
-
-            if os.access(hostname_tor_file, os.R_OK):
-                with file(hostname_tor_file, 'r') as htf:
-                    self.onionservice = htf.read(22)
-
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
             self.print_msg("Invalid port number ( > than 65535 can't work! )")
