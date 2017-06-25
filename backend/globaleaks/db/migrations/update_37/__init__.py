@@ -1,18 +1,14 @@
 # -*- coding: UTF-8
 
+import os, re, shutil
+
 from globaleaks.db.migrations.update import MigrationBase
-from globaleaks.models import *
-from globaleaks.models.config import Config, NodeFactory, add_raw_config, del_config
-from globaleaks.models.l10n import EnabledLanguage
+from globaleaks.models.config import add_raw_config
+from globaleaks.utils.utility import log
 
-from urlparse import urlparse
-
-import os, re
-from globaleaks.models.config import PrivateFactory, add_raw_config
 
 class MigrationScript(MigrationBase):
-    def migrate_hs_dir(self):
-        print self
+    def epilogue(self):
         """
         Imports the contents of the tor_hs directory into the config table
 
@@ -22,7 +18,7 @@ class MigrationScript(MigrationBase):
         tor_dir = '/var/globaleaks/torhs'
         pk_path = os.path.join(tor_dir, 'private_key')
         hn_path = os.path.join(tor_dir, 'hostname')
-        if os.path.exists(pk_path) and os.path.exists(hn_path):
+        if os.path.exists(tor_dir) and os.path.exists(pk_path) and os.path.exists(hn_path):
             with open(pk_path, 'r') as f:
                r = f.read()
                if not r.startswith('-----BEGIN RSA PRIVATE KEY-----\n'):
@@ -39,7 +35,10 @@ class MigrationScript(MigrationBase):
                 if not re.match(r'[A-Za-z0-9]{16}\.onion', hostname):
                     raise Exception('The hostname format does not match')
             add_raw_config(self.store_new, u'private', u'tor_onion_hostname', True, hostname)
+            shutil.rmtree(tor_dir)
         else:
-           raise Exception('The structure of %s is incorrect. Cannot load onion service keys' % tor_dir)
+           log.err('The structure of %s is incorrect. Cannot load onion service keys' % tor_dir)
+           add_raw_config(self.store_new, u'private', u'tor_onion_priv_key', True, '')
+           add_raw_config(self.store_new, u'private', u'tor_onion_hostname', True, '')
 
         self.entries_count['Config'] += 2
