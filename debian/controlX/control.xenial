@@ -30,8 +30,9 @@ Depends:
  , python-gnupg
  , python-scrypt
  , python-storm
- , python-twisted-core,
- , python-txsocksx,
+ , python-twisted-core
+ , python-txtorcon
+ , python-txsocksx
  , tor
 Description: Opensource whistleblowing platform.
  GlobaLeaks is an open source project aimed to create a worldwide, anonymous,
