@@ -89,7 +89,7 @@ class X509CertCheckSchedule(GLJob):
             lang = user_desc['language']
 
             template_vars = {
-                'type': 'x509_certificate_expiration',
+                'type': 'https_certificate_expiration',
                 'expiration_date': expiration_date,
                 'node': db_admin_serialize_node(store, lang),
                 'notification': db_get_notification(store, lang)

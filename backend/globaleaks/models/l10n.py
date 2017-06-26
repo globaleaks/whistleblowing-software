@@ -218,7 +218,9 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'identity_provided_mail_title',
         'export_template',
         'export_message_whistleblower',
-        'export_message_recipient'
+        'export_message_recipient',
+        'https_certificate_expiration_mail_template',
+        'https_certificate_expiration_mail_title'
     })
 
     # These strings are not exposed in admin the interface for customization
