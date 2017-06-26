@@ -2,7 +2,6 @@
 
 import types
 
-from twisted.python import log
 from twisted.internet import defer
 from txtorcon.util import find_keywords
 
