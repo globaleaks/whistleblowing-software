@@ -8,7 +8,7 @@ from globaleaks.utils.utility import log
 EXIT_ADDR_URL = 'https://check.torproject.org/exit-addresses'
 
 class TorExitSet(set):
-    """Set that keep the list of tor exit nodes ip using check.torproject.org"""
+    """Set that keep the list of Tor exit nodes ip using check.torproject.org"""
     def processData(self, data):
         log.debug('Fetching exit nodes\'s ip list')
 

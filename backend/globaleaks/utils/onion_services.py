@@ -30,14 +30,14 @@ def db_store_onion_service(store, priv_key, hostname):
 def db_configure_tor_hs(store, bind_port):
     priv_key = PrivateFactory(store).get_val('tor_onion_priv_key')
 
-    log.info('Starting up tor connection')
+    log.info('Starting up Tor connection')
     try:
         tor_conn = yield build_local_tor_connection(reactor)
         tor_conn.protocol.on_disconnect = Deferred()
     except ConnectionRefusedError as e:
         log.err('Tor daemon is down or misconfigured . . . starting up anyway')
         return
-    log.debug('Successfully connected to tor control port')
+    log.debug('Successfully connected to Tor control port')
 
     hs_loc = ('80 localhost:%d' % bind_port)
     if priv_key == '':
@@ -55,17 +55,17 @@ def db_configure_tor_hs(store, bind_port):
     def shutdown_hs():
         # TODO(nskelsey) move out of configure_tor_hs. Closure is used here for
         # ephs.hostname and tor_conn which must be reused to shutdown the onion
-        # service. In later versions of tor 2.7 > it is possible to detach the
+        # service. In later versions of Tor 2.7 > it is possible to detach the
         # the hidden service and thus start a new control conntection to bring
         # ensure that the hidden service is closed cleanly.
-        log.info('Shutting down tor onion service %s' % ephs.hostname)
+        log.info('Shutting down Tor onion service %s' % ephs.hostname)
         if not getattr(tor_conn.protocol.on_disconnect, 'called', True):
             log.debug('Removing onion service')
             yield ephs.remove_from_tor(tor_conn.protocol)
-        log.debug('Successfully handled tor cleanup')
+        log.debug('Successfully handled Tor cleanup')
 
     reactor.addSystemEventTrigger('before', 'shutdown', shutdown_hs)
-    log.info('Succeeded configuring tor to server %s' % (ephs.hostname))
+    log.info('Succeeded configuring Tor to server %s' % (ephs.hostname))
 
 
 @transact_sync
