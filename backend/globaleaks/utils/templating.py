@@ -79,7 +79,7 @@ admin_anomaly_keywords = [
     '%TotalMemory%'
 ]
 
-x509_expr_keywords = [
+https_expr_keywords = [
     '%ExpirationDate%',
     '%TorURL%',
 ]
@@ -442,7 +442,7 @@ class AnomalyKeyword(NodeKeyword):
 
 
 class CertificateExprKeyword(NodeKeyword):
-    NodeKeyword.keyword_list + x509_expr_keywords
+    NodeKeyword.keyword_list + https_expr_keywords
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
@@ -477,7 +477,7 @@ supported_template_types = {
     u'export_message': ExportMessageKeyword,
     u'admin_anomaly': AnomalyKeyword,
     u'admin_test_static': NodeKeyword,
-    u'x509_certificate_expiration': CertificateExprKeyword,
+    u'https_certificate_expiration': CertificateExprKeyword,
 }
 
 

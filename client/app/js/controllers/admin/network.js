@@ -54,8 +54,6 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
 
     if (tlsConfig.enabled) {
       choice = 'status';
-    } else if (tlsConfig.acme && !tlsConfig.files.cert.set) {
-      choice = 'acmeCfg';
     } else if (t > 0) {
       choice = 'files';
     }
