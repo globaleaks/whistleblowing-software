@@ -53,7 +53,6 @@ describe('admin configure https', function() {
     // Generate csr
     element(by.id('csrGen')).click();
 
-    var csr_panel = element(by.css('div.panel.csr'));
     csr_panel.element(by.model('csr_cfg.country')).sendKeys('IT');
     csr_panel.element(by.model('csr_cfg.province')).sendKeys('Liguria');
     csr_panel.element(by.model('csr_cfg.city')).sendKeys('Genova');
