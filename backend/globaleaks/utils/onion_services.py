@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# pylint: disable=no-member,import-error
 from distutils.version import StrictVersion as V
 
 import txtorcon
@@ -34,7 +35,6 @@ def db_configure_tor_hs(store, bind_port):
         tor_conn = yield build_local_tor_connection(reactor)
         tor_conn.protocol.on_disconnect = Deferred()
     except ConnectionRefusedError as e:
-        print e
         log.err('Tor daemon is down or misconfigured . . . starting up anyway')
         return
     log.debug('Successfully connected to tor control port')
