@@ -42,7 +42,7 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 
 
 from globaleaks import DATABASE_VERSION
-from globaleaks.utils.utility import log, query_yes_no
+from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import mail_exception_handler
 from globaleaks.settings import GLSettings
 
@@ -90,10 +90,6 @@ GLSettings.parser.add_option("-g", "--group", type="string",
 GLSettings.parser.add_option("-w", "--working-path", type="string",
     help="set the backend working directory",
     dest="working_path", default=None)
-
-GLSettings.parser.add_option("-c", "--start-clean", action='store_true',
-    help="start a clean globaleks install [default: %default]",
-    dest="start_clean", default=False)
 
 GLSettings.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current globaleaks process (if exists)",
@@ -146,11 +142,6 @@ if GLSettings.cmdline_options.kill:
         os.remove(GLSettings.pidfile_path)
     except Exception as excep:
         print("Unable kill PID found in %s: kill option ignored (%s)" % (GLSettings.pidfile_path, excep))
-
-if GLSettings.start_clean:
-    if GLSettings.devel_mode or \
-      query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSettings.working_path, "no"):
-        GLSettings.remove_directories()
 
 os.umask(077)
 # TODO move function calls out of bin/globaleaks and into backend.py
