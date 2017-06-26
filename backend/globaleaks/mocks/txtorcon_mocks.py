@@ -6,6 +6,9 @@ from twisted.python import log
 from twisted.internet import defer
 from txtorcon.util import find_keywords
 
+from globaleaks.utils.utility import log
+
+
 class EphemeralHiddenService(object):
     """
     This uses the ephemeral hidden-service APIs (in comparison to
