@@ -5,8 +5,9 @@ from twisted.internet import reactor
 from twisted.internet.error import ConnectionRefusedError
 from twisted.internet.defer import inlineCallbacks, Deferred
 
-from globaleaks.orm import transact_sync
-from globaleaks.models.config import PrivateFactory
+from globaleaks.orm import transact
+from globaleaks.models.config import NodeFactory, PrivateFactory
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import log
 
 try:
@@ -15,16 +16,29 @@ except ImportError:
    from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 
 
-@transact_sync
-def db_store_onion_service(store, priv_key, hostname):
+@transact
+def get_onion_service_info(store):
+    node_fact = NodeFactory(store)
+    hostname = node_fact.get_val('onionservice')
+
     priv_fact = PrivateFactory(store)
-    priv_fact.set_val('tor_onion_priv_key', priv_key)
-    priv_fact.set_val('tor_onion_hostname', hostname)
+    key = priv_fact.get_val('tor_onion_key')
+
+    return hostname, key
+
+
+@transact
+def set_onion_service_info(store, hostname, key):
+    node_fact = NodeFactory(store)
+    node_fact.set_val('onionservice', hostname)
+
+    priv_fact = PrivateFactory(store)
+    priv_fact.set_val('tor_onion_key', key)
 
 
 @inlineCallbacks
-def db_configure_tor_hs(store, bind_port):
-    priv_key = PrivateFactory(store).get_val('tor_onion_priv_key')
+def configure_tor_hs(bind_port):
+    hostname, key = yield get_onion_service_info()
 
     log.info('Starting up Tor connection')
     try:
@@ -36,34 +50,27 @@ def db_configure_tor_hs(store, bind_port):
     log.debug('Successfully connected to Tor control port')
 
     hs_loc = ('80 localhost:%d' % bind_port)
-    if priv_key == '':
+    if hostname == '':
         log.info('Creating new onion service')
         ephs = EphemeralHiddenService(hs_loc)
-        yield ephs.add_to_tor(tor_conn.protocol)
-        log.info('Received hidden service descriptor')
-        db_store_onion_service(ephs.private_key, ephs.hostname)
     else:
-        log.info('Setting up existing onion service')
-        ephs = EphemeralHiddenService(hs_loc, priv_key)
-        yield ephs.add_to_tor(tor_conn.protocol)
+        log.info('Setting up existing onion service %s', hostname)
+        ephs = EphemeralHiddenService(hs_loc, key)
 
     @inlineCallbacks
-    def shutdown_hs():
-        # TODO(nskelsey) move out of configure_tor_hs. Closure is used here for
-        # ephs.hostname and tor_conn which must be reused to shutdown the onion
-        # service. In later versions of Tor 2.7 > it is possible to detach the
-        # the hidden service and thus start a new control conntection to bring
-        # ensure that the hidden service is closed cleanly.
+    def shutdown_callback():
         log.info('Shutting down Tor onion service %s' % ephs.hostname)
         if not getattr(tor_conn.protocol.on_disconnect, 'called', True):
             log.debug('Removing onion service')
             yield ephs.remove_from_tor(tor_conn.protocol)
         log.debug('Successfully handled Tor cleanup')
 
-    reactor.addSystemEventTrigger('before', 'shutdown', shutdown_hs)
-    log.info('Succeeded configuring Tor to server %s' % (ephs.hostname))
+    @inlineCallbacks
+    def initialization_callback(ret):
+        log.info('Initialization of hidden-service %s completed.' % (ephs.hostname))
+        if hasattr(ephs, 'private_key'):
+            yield set_onion_service_info(ephs.hostname, ephs.private_key)
 
+        reactor.addSystemEventTrigger('before', 'shutdown', shutdown_callback)
 
-@transact_sync
-def configure_tor_hs(store, bind_port):
-    return db_configure_tor_hs(store, bind_port)
+    ephs.add_to_tor(tor_conn.protocol).addCallback(initialization_callback)

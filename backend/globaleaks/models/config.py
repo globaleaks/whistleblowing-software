@@ -154,7 +154,8 @@ class NotificationFactory(ConfigFactory):
 
 class PrivateFactory(ConfigFactory):
     non_mem_vars = {
-        'acme_accnt_key'
+        'acme_accnt_key',
+        'tor_private_key',
         'https_priv_key',
         'https_priv_gen',
         'https_chain',

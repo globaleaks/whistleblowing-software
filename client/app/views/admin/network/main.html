@@ -10,12 +10,8 @@
               <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>www.domain.tld</span>
             </p>
           </div>
-          <div class="form-group" data-ng-class="{'has-error': adminNetForm.onionservice.$error.pattern}">
-            <label data-translate>Tor Onion Service</label>
-            <input class="form-control" name="onionservice" type="text" data-ng-model="admin.node.onionservice" data-ng-pattern="onionservice_regexp">
-            <p class="text-danger" data-ng-show="adminNetForm.onionservice.$error.pattern">
-              <span data-translate>Invalid input format.</span> <span data-translate>Input should be similar to:</span> <span>thirteenchars123.onion</span>
-            </p>
+          <div class="form-group">
+            <label><span data-translate>Tor Onion Service</span>: <span class="label label-primary">{{admin.node.onionservice}}</span></label>
           </div>
           <div class="form-group" data-ng-class="{'has-error': adminNetForm.tb_download_link.$error.pattern}">
             <label data-translate>Tor Browser download link</label>
