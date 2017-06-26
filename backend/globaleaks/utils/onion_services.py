@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=no-member,import-error
-from distutils.version import StrictVersion as V
-
 import txtorcon
 from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
@@ -12,11 +9,10 @@ from globaleaks.orm import transact_sync
 from globaleaks.models.config import PrivateFactory
 from globaleaks.utils.utility import log
 
-# Only use mock if txtorcon does not support ephemeral services.
-if V(txtorcon.__version__) < V('0.15.1'):
-   from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
-else:
+try:
    from txtorcon.torconfig import EphemeralHiddenService
+except ImportError:
+   from globaleaks.mocks.txtorcon_mocks import EphemeralHiddenService
 
 
 @transact_sync
