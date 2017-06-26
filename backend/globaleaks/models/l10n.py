@@ -182,18 +182,18 @@ class NodeL10NFactory(ConfigL10NFactory):
 
 class NotificationL10NFactory(ConfigL10NFactory):
     localized_keys = frozenset({
-        'admin_anomaly_mail_title',
         'admin_anomaly_mail_template',
+        'admin_anomaly_mail_title',
         'admin_anomaly_disk_low',
         'admin_anomaly_disk_medium',
         'admin_anomaly_disk_high',
         'admin_anomaly_activities',
-        'admin_pgp_alert_mail_title',
         'admin_pgp_alert_mail_template',
+        'admin_pgp_alert_mail_title',
         'admin_test_static_mail_template',
         'admin_test_static_mail_title',
-        'pgp_alert_mail_title',
         'pgp_alert_mail_template',
+        'pgp_alert_mail_title',
         'tip_mail_template',
         'tip_mail_title',
         'file_mail_template',
@@ -218,9 +218,7 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'identity_provided_mail_title',
         'export_template',
         'export_message_whistleblower',
-        'export_message_recipient',
-        'x509_certificate_expiration_mail_template',
-        'x509_certificate_expiration_mail_title',
+        'export_message_recipient'
     })
 
     # These strings are not exposed in admin the interface for customization
@@ -244,8 +242,8 @@ class NotificationL10NFactory(ConfigL10NFactory):
         'admin_anomaly_disk_low',
         'admin_test_static_mail_template',
         'admin_test_static_mail_title',
-        'x509_certificate_expiration_mail_template',
-        'x509_certificate_expiration_mail_title',
+        'https_certificate_expiration_mail_template',
+        'https_certificate_expiration_mail_title'
     })
 
     # These strings are modifiable via the admin/notification handler

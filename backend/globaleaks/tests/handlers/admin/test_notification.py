@@ -54,7 +54,8 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
 
         appdata_dict = load_appdata()
         for k in appdata_dict['templates']:
-            self.assertEqual(response[k], appdata_dict['templates'][k]['en'])
+            if k in requests.AdminNotificationDesc:
+                self.assertEqual(response[k], appdata_dict['templates'][k]['en'])
 
     @inlineCallbacks
     def test_parse_pgp_options(self):
