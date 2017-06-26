@@ -217,7 +217,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
-.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
+.controller('safeRedirectModalCtrl', ['$scope', '$timeout', function($scope, $timeout) {
   // NOTE the next line resolves a creation promise for the containing ctrl
   $scope.$resolve.open_promise.resolve();
   $timeout(function() {
