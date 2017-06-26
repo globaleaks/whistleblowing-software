@@ -14,9 +14,6 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     }
   ];
 }]).
-controller('AdminNetFormCtrl', ['$scope', function($scope) {
-
-}]).
 controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
   function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
   $scope.state = 0;
@@ -76,7 +73,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
 
   function refreshConfig() {
     return tlsConfigResource.get().$promise.then($scope.parseTLSConfig);
-  };
+  }
 
   $scope.refreshCfg = refreshConfig;
 
@@ -222,7 +219,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
     $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
-.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', '$uibModalInstance', function($scope, $timeout, $http, $uibModalInstance) {
+.controller('safeRedirectModalCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
   // NOTE the next line resolves a creation promise for the containing ctrl
   $scope.$resolve.open_promise.resolve();
   $timeout(function() {
