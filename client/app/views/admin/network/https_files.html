@@ -52,7 +52,7 @@
   <div class="panel panel-default cert">
     <div class="panel-body" data-ng-class="{'disabled-interface': state <= 0}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
-        <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '3' : '2'}}</span>
+        <span class="text-bold">{{(!tls_config.acme && tls_config.files.key.gen) ? '3' : '2'}}</span>
         <span class="text-bold" data-translate>Certificate</span>
         <span>(PEM)</span>
       </span>
@@ -76,7 +76,7 @@
   <div class="panel panel-default chain">
     <div class="panel-body" data-ng-class="{'disabled-interface': state <= 1}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
-        <span class="text-bold">{{!tls_config.files.priv_key.set || tls_config.files.key.gen ? '4' : '3'}}</span>
+        <span class="text-bold">{{(tls_config.acme && tls_config.files.key.gen) ? '4' : '3'}}</span>
         <span class="text-bold" data-translate>Intermediate Certificates</span>
         <span>(PEM)</span>
       </span>
