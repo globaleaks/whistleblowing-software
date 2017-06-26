@@ -74,4 +74,4 @@ def configure_tor_hs(bind_port):
         reactor.addSystemEventTrigger('before', 'shutdown', shutdown_callback)
 
     d = ephs.add_to_tor(tor_conn.protocol)
-    d.addCallback(initialization_callback)
+    d.addCallback(initialization_callback) # pylint: disable=no-member
