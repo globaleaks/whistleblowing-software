@@ -164,7 +164,6 @@ class GLSettingsClass(object):
         self.group = getpass.getuser()
         self.uid = os.getuid()
         self.gid = os.getgid()
-        self.start_clean = False
         self.devel_mode = False
         self.developer_name = ''
         self.disable_swap = False
@@ -352,8 +351,6 @@ class GLSettingsClass(object):
         if self.uid == 0 or self.gid == 0:
             self.print_msg("Invalid user: cannot run as root")
             sys.exit(1)
-
-        self.start_clean = self.cmdline_options.start_clean
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
