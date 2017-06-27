@@ -11,7 +11,7 @@ pycparser==2.10
 python_gnupg==0.3.6
 scrypt==0.6.1
 service_identity==16.0.0
-six==1.5.2
+six==1.10.0
 storm==0.19
 transaction==1.1.1
 txsocksx==1.15.0.2
