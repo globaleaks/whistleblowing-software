@@ -304,9 +304,9 @@ class TestMigrationRegression(unittest.TestCase):
         hs = config.NodeFactory(store).get_val('onionservice')
         pk = config.PrivateFactory(store).get_val('tor_onion_key')
 
-        self.assertEqual('ogvvajjv4pccmpq2.onion', hs)
-        with open(os.path.join(helpers.DATA_DIR, 'tor/ephem_service_key')) as f:
-            saved_key = f.read()
+        self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
+        with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
+            saved_key = f.read().strip()
         self.assertEqual(saved_key, pk)
 
         store.close()
