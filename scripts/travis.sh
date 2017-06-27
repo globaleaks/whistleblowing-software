@@ -54,7 +54,7 @@ if [ "$GLTEST" = "test" ]; then
 
   grunt end2end-coverage-instrument
 
-  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -c -k9
+  $TRAVIS_BUILD_DIR/backend/bin/globaleaks -z $TRAVIS_USR -k9
   sleep 3
 
   node_modules/protractor/bin/webdriver-manager update
