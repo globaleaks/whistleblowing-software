@@ -41,7 +41,7 @@ if test -e "/etc/default/globaleaks" ; then
    . "/etc/default/globaleaks"
 fi
 
-LISTENING_PORTS=($(echo 80,443,$LISTENING_PORT | tr ',' '\n' | sort -u | tr '\n' ' '))
+LISTENING_PORTS=($(echo 80,443,8083,$LISTENING_PORT | tr ',' '\n' | sort -u | tr '\n' ' '))
 ##################################################################
 . /lib/init/vars.sh
 
@@ -129,6 +129,9 @@ network_sandboxing_start()
             log_action_end_msg 0 "already enabled."
             return
         fi
+
+        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport 8083 -s 127.0.0.1 -j ACCEPT
+        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport 8083 -j DROP
 
         # INBOUND
         for PORT in "${LISTENING_PORTS}"; do

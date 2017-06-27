@@ -38,9 +38,15 @@ def fail_startup(excep):
 def pre_listen_startup():
     mask = 0
     if GLSettings.devel_mode:
-        mask = 9000
+        mask = 8000
 
     GLSettings.http_socks = []
+    http_sock, fail = reserve_port_for_ip('127.0.0.1', 8083)
+    if fail is not None:
+        log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+    else:
+        GLSettings.http_socks += [http_sock]
+
     for port in GLSettings.bind_ports:
         port = port+mask if port < 1024 else port
         http_sock, fail = reserve_port_for_ip(GLSettings.bind_address, port)
@@ -107,7 +113,7 @@ class GLService(service.Service):
 
         GLSettings.api_factory = Site(arw, logFormatter=timedLogFormatter)
 
-        yield configure_tor_hs(GLSettings.bind_port)
+        yield configure_tor_hs(8083)
 
         for sock in GLSettings.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)
