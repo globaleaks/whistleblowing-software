@@ -21,12 +21,11 @@ from globaleaks.models import config, Field
 from globaleaks.models.config_desc import GLConfig
 from globaleaks.models.l10n import EnabledLanguage, NotificationL10NFactory
 from globaleaks.settings import GLSettings
-from globaleaks.tests import helpers, config as test_config
 from globaleaks.rest import errors
 
+from globaleaks.tests import helpers, config as test_config
 
 class TestMigrationRoutines(unittest.TestCase):
-
     def setUp(self):
         test_config.skipIf('migration')
 
@@ -282,3 +281,35 @@ class TestMigrationRegression(unittest.TestCase):
         store.close()
 
         shutil.rmtree(GLSettings.db_path)
+
+    def test_mig_37_valid_tor_hs_key(self):
+        self._initStartDB(36)
+
+        from globaleaks.db.migrations import update_37
+        t = update_37.TOR_DIR
+        update_37.TOR_DIR = GLSettings.db_path
+
+
+        pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
+        hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
+
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), pk_path)
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
+
+        ret = update_db()
+        self.assertEqual(ret, None)
+
+        new_uri = GLSettings.make_db_uri(os.path.join(GLSettings.db_path, GLSettings.db_file_name))
+        store = Store(create_database(new_uri))
+        hs = config.NodeFactory(store).get_val('onionservice')
+        pk = config.PrivateFactory(store).get_val('tor_onion_key')
+
+        self.assertEqual('ogvvajjv4pccmpq2.onion', hs)
+        with open(os.path.join(helpers.DATA_DIR, 'tor/ephem_service_key')) as f:
+            saved_key = f.read()
+        self.assertEqual(saved_key, pk)
+
+        store.close()
+
+        shutil.rmtree(GLSettings.db_path)
+        update_37.TOR_DIR = t
