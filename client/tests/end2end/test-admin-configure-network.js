@@ -3,7 +3,6 @@ describe('admin configure network settings', function() {
     browser.setLocation('admin/network');
 
     element.all(by.model('admin.node.hostname')).get(0).clear().sendKeys('localhost');
-    element(by.model('admin.node.onionservice')).clear().sendKeys('1234567890123456.onion');
 
     element.all(by.cssContainingText("button", "Save")).get(0).click();
 
