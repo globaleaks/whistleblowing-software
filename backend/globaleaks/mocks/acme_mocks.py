@@ -16,4 +16,11 @@ import sys
 
 if sys.version_info < (2, 7, 9):  # pragma: no cover
     import requests, urllib3
+    class Object():
+        pass
+
+    requests.packages = Object()
+    requests.packages.urllib3 = Object()
+    requests.packages.urllib3.contrib = Object()
+    requests.packages.urllib3.contrib.pyopenssl = Object()
     requests.packages.urllib3.contrib.pyopenssl.inject_into_urllib3 = urllib3.contrib.pyopenssl.inject_into_urllib3
