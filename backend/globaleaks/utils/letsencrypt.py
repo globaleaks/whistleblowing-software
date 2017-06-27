@@ -8,10 +8,9 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from OpenSSL.crypto import FILETYPE_PEM, dump_certificate
 
-from acme import client
-from acme import messages
-from acme import jose
-from acme import challenges
+from globaleaks.mocks import acme_mocks
+
+from acme import challenges, client, jose, messages, util
 
 from globaleaks.utils.utility import log
 
