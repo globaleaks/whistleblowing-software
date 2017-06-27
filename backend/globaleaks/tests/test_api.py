@@ -16,6 +16,12 @@ def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET', 
     """
     _, host, path, query, frag = urlparse.urlsplit(uri)
 
+    x = host.split (':')
+    if len(x) > 1:
+        port = int(x[1])
+    else:
+        port = 80
+
     ret = DummyRequest([''])
     ret.method = method
     ret.uri = uri
@@ -26,6 +32,11 @@ def forge_request(uri='https://www.globaleaks.org/', headers={}, method=b'GET', 
         ret.client = IPv4Address('TCP', '1.2.3.4', 12345)
     else:
         ret.client = client_addr
+
+    def getHost():
+        return IPv4Address('TCP', '127.0.0.1', port)
+
+    ret.getHost = getHost
 
     def notifyFinish():
         return Deferred()
@@ -124,6 +135,12 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
+        request = forge_request(uri='http://127.0.0.1:8083/', client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
+        self.api.render(request)
+        self.assertTrue(request.client_using_tor)
+        self.assertEqual(request.responseCode, 200)
+
+
     def test_tor_detection(self):
         url = 'http://1234567890123456.onion/'
 
@@ -137,7 +154,7 @@ class TestAPI(TestGL):
 
         request = forge_request(url, client_addr=IPv4Address('TCP', '127.0.0.1', 12345))
         self.api.render(request)
-        self.assertTrue(request.client_using_tor)
+        self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
         GLSettings.state.tor_exit_set.clear()
