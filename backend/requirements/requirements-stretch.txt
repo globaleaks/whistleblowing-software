@@ -9,6 +9,7 @@ pyOpenSSL==0.15.1
 pyasn1==0.1.9
 pycparser==2.14
 python_gnupg==0.3.8
+requests==2.12.4
 scrypt==0.6.1
 service_identity==16.0.0
 six==1.10.0
