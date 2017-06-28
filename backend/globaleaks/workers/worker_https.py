@@ -26,7 +26,7 @@ class HTTPSProcess(Process):
         http_proxy_factory = HTTPStreamFactory(proxy_url)
 
         cv = ChainValidator()
-        ok, err = cv.validate(self.cfg, must_be_disabled=False)
+        ok, err = cv.validate(self.cfg, must_be_disabled=False, check_expiration=False)
         if not ok or not err is None:
             raise err
 

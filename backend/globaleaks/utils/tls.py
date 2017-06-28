@@ -164,22 +164,32 @@ class TLSServerContextFactory(ssl.ContextFactory):
 class CtxValidator(object):
     parents = []
 
-    def _validate_parents(self, cfg, ctx):
+    def _validate_parents(self, cfg, ctx, check_expiration):
         for parent in self.parents:
             p_v = parent()
-            p_v._validate(cfg, ctx)
+            p_v._validate(cfg, ctx, check_expiration)
 
     def _validate(self, cfg, ctx):
         raise NotImplementedError()
 
-    def validate(self, cfg, must_be_disabled=True):
+    def validate(self, cfg, must_be_disabled=True, check_expiration=True):
+        """
+        Checks the validity of the passed config for usage in an OpenSSLContext
+
+        :param cfg: A `dict` composed of SSL material
+        :param must_be_disabled: A flag to toggle checking of https_enabled
+        :param check_expiration: A flag to toggle certificate expiration checks
+
+        :rtype: A tuple of (Bool, Exception) where True, None signifies success
+
+        """
         if must_be_disabled and cfg['https_enabled']:
             raise ValidationException('HTTPS must not be enabled')
 
         ctx = new_tls_context()
         try:
-            self._validate_parents(cfg, ctx)
-            self._validate(cfg, ctx)
+            self._validate_parents(cfg, ctx, check_expiration)
+            self._validate(cfg, ctx, check_expiration)
         except Exception as err:
             return False, err
         return True, None
@@ -188,7 +198,7 @@ class CtxValidator(object):
 class PrivKeyValidator(CtxValidator):
     parents = []
 
-    def _validate(self, cfg, ctx):
+    def _validate(self, cfg, ctx, check_expiration):
         raw_str = cfg['ssl_key']
         if raw_str == '':
             raise ValidationException('No private key is set')
@@ -204,15 +214,14 @@ class PrivKeyValidator(CtxValidator):
 class CertValidator(CtxValidator):
     parents = [PrivKeyValidator]
 
-    def _validate(self, cfg, ctx):
+    def _validate(self, cfg, ctx, check_expiration):
         certificate = cfg['ssl_cert']
         if certificate == '':
             raise ValidationException('There is no certificate')
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
-        # NOTE when a cert expires it will fail validation.
-        if x509.has_expired():
+        if check_expiration and x509.has_expired():
             raise ValidationException('The certficate has expired')
 
         ctx.use_certificate(x509)
@@ -228,14 +237,14 @@ class CertValidator(CtxValidator):
 class ChainValidator(CtxValidator):
     parents = [PrivKeyValidator, CertValidator]
 
-    def _validate(self, cfg, ctx):
+    def _validate(self, cfg, ctx, check_expiration):
         store = ctx.get_cert_store()
 
         intermediate = cfg['ssl_intermediate']
         if intermediate != '':
             x509 = load_certificate(FILETYPE_PEM, intermediate)
 
-            if x509.has_expired():
+            if check_expiration and x509.has_expired():
                 raise ValidationException('The intermediate cert has expired')
 
             store.add_cert(x509)
