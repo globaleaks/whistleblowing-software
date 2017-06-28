@@ -10,7 +10,7 @@ browser_capabilities['tags'] = [process.env.TRAVIS_BRANCH];
 exports.config = {
   framework: 'jasmine',
 
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:8080/',
 
   troubleshoot: false,
   directConnect: false,
