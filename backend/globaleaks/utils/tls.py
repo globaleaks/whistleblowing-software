@@ -169,7 +169,7 @@ class CtxValidator(object):
             p_v = parent()
             p_v._validate(cfg, ctx, check_expiration)
 
-    def _validate(self, cfg, ctx):
+    def _validate(self, cfg, ctx, must_be_disabled):
         raise NotImplementedError()
 
     def validate(self, cfg, must_be_disabled=True, check_expiration=True):
