@@ -68,7 +68,7 @@ class ProcessSupervisor(object):
         self.tls_cfg.update(db_cfg)
 
         chnv = tls.ChainValidator()
-        ok, err = chnv.validate(db_cfg, must_be_disabled=False)
+        ok, err = chnv.validate(db_cfg, must_be_disabled=False, check_expiration=False)
 
         if ok and err is None:
             log.info("Decided to launch https workers")

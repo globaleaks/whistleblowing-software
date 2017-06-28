@@ -179,6 +179,24 @@ class TestObjectValidators(TestCase):
         self.assertTrue(ok)
         self.assertIsNone(err)
 
+    def test_check_expiration(self):
+        chn_v = tls.ChainValidator()
+
+        self.cfg['ssl_dh'] = self.valid_setup['dh_params']
+        self.cfg['ssl_key'] = self.valid_setup['key']
+
+        p = os.path.join(self.test_data_dir, 'invalid/expired_cert_with_valid_prv.pem')
+        with open(p, 'r') as f:
+            self.cfg['ssl_cert'] = f.read()
+
+        ok, err = chn_v.validate(self.cfg)
+        self.assertFalse(ok)
+        self.assertTrue(isinstance(err, tls.ValidationException))
+
+        ok, err = chn_v.validate(self.cfg, check_expiration=False)
+
+        self.assertTrue(ok)
+        self.assertIsNone(None)
 
     def test_get_issuer_name(self):
         test_cases = [
