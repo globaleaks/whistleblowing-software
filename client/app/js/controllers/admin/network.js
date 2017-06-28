@@ -14,8 +14,8 @@ GLClient.controller('AdminNetworkCtrl', ['$scope', function($scope) {
     }
   ];
 }]).
-controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
-  function($q, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
+controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibModal', 'FileSaver', 'AdminTLSConfigResource', 'AdminTLSCfgFileResource', 'AdminAcmeResource', 'Utils',
+  function($q, $location, $http, $scope, $uibModal, FileSaver, tlsConfigResource, cfgFileResource, adminAcmeResource, Utils) {
   $scope.state = 0;
   $scope.menuState = 'setup';
   $scope.showHostnameSetter = false;
@@ -177,17 +177,33 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
   }
 
   $scope.toggleCfg = function() {
-    // TODO these posts send the entire tls_config object. They should be removed.
+    var open_promise = $q.defer();
+
     if ($scope.tls_config.enabled) {
-      var p = $scope.tls_config.$disable();
-      return p.then(refreshConfig);
+      if ($location.protocol() === 'https') {
+        // The next request is about to disable https meaning the interface is
+        // about to be unreachable.
+        $uibModal.open({
+          backdrop: 'static',
+          keyboard: false,
+          templateUrl: 'views/partials/disable_input.html',
+          controller: 'safeRedirectModalCtrl',
+          resolve: {
+            open_promise: function() { return open_promise; },
+          },
+        });
+
+      } else {
+        open_promise.resolve();
+      }
+
+      open_promise.then($scope.tls_config.$disable);
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
-      var open_promise = $q.defer();
 
       $uibModal.open({
         backdrop: 'static',
-        keyboad: false,
+        keyboard: false,
         templateUrl: 'views/admin/network/redirect_to_https.html',
         controller: 'safeRedirectModalCtrl',
         resolve: {
@@ -196,6 +212,8 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$http', '$scope', '$uibModal', 'FileS
         },
       });
 
+      // TODO tls_config is polluted with angular state. It should be cleaned
+      // for the POST.
       open_promise.promise.then($scope.tls_config.$enable);
     }
   };
