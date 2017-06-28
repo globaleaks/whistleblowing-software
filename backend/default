@@ -24,13 +24,9 @@ DISABLE_BACKEND_EXCEPTION_NOTIFICATION=0
 # DISABLE_CLIENT_EXCEPTION_NOTIFICATION = [0/1]
 DISABLE_CLIENT_EXCEPTION_NOTIFICATION=0
 
-# LISTENING_PORT = [ip]
+# LISTENING_IP = [ip]
 #   permits to configure an ip on which the platform will listen
 LISTENING_IP=0.0.0.0
-
-# LISTENING_PORT = [port_number]
-#   permits to configure a port on which the platoform will listen
-LISTENING_PORT=8082
 
 # WORKING_DIR
 #   must be configured with the daemon working directory

@@ -235,7 +235,7 @@ class TestGL(unittest.TestCase):
 
         yield db.refresh_memory_variables()
 
-        sup = ProcessSupervisor([], '127.0.0.1', 18082)
+        sup = ProcessSupervisor([], '127.0.0.1', 8082)
         GLSettings.state.process_supervisor = sup
 
         Alarm.reset()

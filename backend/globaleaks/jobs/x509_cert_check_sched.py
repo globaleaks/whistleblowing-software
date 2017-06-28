@@ -37,6 +37,7 @@ class X509CertCheckSchedule(GLJob):
     def operation(self):
         if should_try_acme_renewal(self.acme_failures) and self.acme_failures > 30:
              self.acme_cert_renewal_checks()
+
         self.cert_expiration_checks()
 
     @transact_sync

@@ -59,10 +59,6 @@ GLSettings.parser.add_option("-i", "--ip", type="string",
     help="IP address used for listening [default: %default]",
     dest="ip", default=GLSettings.bind_address)
 
-GLSettings.parser.add_option("-p", "--port", type="int",
-    help="TCP port used for listening [default: %default]",
-    dest="port", default=GLSettings.bind_port)
-
 GLSettings.parser.add_option("-s", "--socks-host", type="string",
     help="set Socks host to use for Tor [default: %default]",
     dest="socks_host", default=GLSettings.socks_host)

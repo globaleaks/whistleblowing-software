@@ -72,9 +72,8 @@ class GLSettingsClass(object):
         self.orm_tp = ThreadPool(1, 1)
 
         self.bind_address = '0.0.0.0'
-
-        # bind_port is the original port the service is bound on - notice bind_ports
-        self.bind_port = 8082
+        self.bind_remote_ports = [80, 443]
+        self.bind_local_ports = [8082, 8083]
 
         # store name
         self.store_name = 'main_store'
@@ -314,12 +313,6 @@ class GLSettingsClass(object):
 
         self.bind_address = self.cmdline_options.ip
 
-        if not self.validate_port(self.cmdline_options.port):
-            sys.exit(-1)
-        self.bind_port = self.cmdline_options.port
-
-        self.bind_ports = {80, self.bind_port}
-
         self.disable_backend_exception_notification = self.cmdline_options.disable_backend_exception_notification
         self.disable_client_exception_notification = self.cmdline_options.disable_client_exception_notification
 
@@ -380,7 +373,7 @@ class GLSettingsClass(object):
             sys.exit(1)
 
     def validate_port(self, inquiry_port):
-        if inquiry_port >= 65535 or inquiry_port < 0:
+        if inquiry_port <= 0 or inquiry_port > 65535:
             self.print_msg("Invalid port number ( > than 65535 can't work! )")
             return False
         return True
