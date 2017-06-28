@@ -41,13 +41,17 @@ def pre_listen_startup():
         mask = 8000
 
     GLSettings.http_socks = []
-    http_sock, fail = reserve_port_for_ip('127.0.0.1', 8083)
-    if fail is not None:
-        log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
-    else:
-        GLSettings.http_socks += [http_sock]
 
-    for port in GLSettings.bind_ports:
+    # Local ports
+    for port in GLSettings.bind_local_ports:
+        http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
+        if fail is not None:
+            log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+        else:
+            GLSettings.http_socks += [http_sock]
+
+    # Remote ports
+    for port in GLSettings.bind_remote_ports:
         port = port+mask if port < 1024 else port
         http_sock, fail = reserve_port_for_ip(GLSettings.bind_address, port)
         if fail is not None:
@@ -120,7 +124,7 @@ class GLService(service.Service):
 
         GLSettings.state.process_supervisor = ProcessSupervisor(GLSettings.https_socks,
                                                                 '127.0.0.1',
-                                                                GLSettings.bind_port)
+                                                                8082)
 
         yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
 
@@ -128,15 +132,18 @@ class GLService(service.Service):
 
         print("GlobaLeaks is now running and accessible at the following urls:")
 
+        for port in [8082, 8083]:
+            print("- [LOCAL HTTP]\t--> http://127.0.0.1:%d%s" % (port, GLSettings.api_prefix))
+
         if GLSettings.memory_copy.reachable_via_web:
-            print("- http://%s:%d%s" % (GLSettings.bind_address, GLSettings.bind_port, GLSettings.api_prefix))
-            if GLSettings.memory_copy.hostname:
-                print("- http://%s:%d%s" % (GLSettings.memory_copy.hostname, GLSettings.bind_port, GLSettings.api_prefix))
-        else:
-            print("- http://127.0.0.1:%d%s" % (GLSettings.bind_port, GLSettings.api_prefix))
+            hostname = GLSettings.memory_copy.hostname if GLSettings.memory_copy.hostname != '' else '0.0.0.0'
+            print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, GLSettings.api_prefix))
+
+            if GLSettings.memory_copy.private.https_enabled:
+                print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, GLSettings.api_prefix))
 
         if GLSettings.memory_copy.onionservice != '':
-            print("- http://%s%s" % (GLSettings.memory_copy.onionservice, GLSettings.api_prefix))
+            print("- [REMOTE Tor]:\t--> http://%s%s" % (GLSettings.memory_copy.onionservice, GLSettings.api_prefix))
 
 
 application = service.Application('GLBackend')

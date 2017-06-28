@@ -41,7 +41,6 @@ if test -e "/etc/default/globaleaks" ; then
     . "/etc/default/globaleaks"
 fi
 
-LISTENING_PORTS=($(echo 80,443,8083,$LISTENING_PORT | tr ',' '\n' | sort -u | tr '\n' ' '))
 ##################################################################
 . /lib/init/vars.sh
 
@@ -130,11 +129,14 @@ network_sandboxing_start()
             return
         fi
 
-        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport 8083 -s 127.0.0.1 -j ACCEPT
-        iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport 8083 -j DROP
+        # INBOUND LOCAL
+        for PORT in "8082 8083"; do
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 127.0.0.1 --dport $PORT -s 127.0.0.1 -j ACCEPT
+            iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
+        done
 
-        # INBOUND
-        for PORT in "${LISTENING_PORTS}"; do
+        # INBOUND REMOTE
+        for PORT in "80 443"; do
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -s 127.0.0.1 -j ACCEPT
             iptables -m comment --comment "globaleaks-network-sandboxing" -A INPUT -p tcp -d 0.0.0.0/0 --dport $PORT -j DROP
         done
@@ -184,7 +186,6 @@ do_start()
     fi
 
     GLBACKEND_ARGS="--ip=${LISTENING_IP}
-                    --port=${LISTENING_PORT}
                     --user=${USERNAME}
                     --group=${GROUP}
                     --working-path=${WORKING_DIR}
