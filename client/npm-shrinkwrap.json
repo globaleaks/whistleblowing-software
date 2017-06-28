@@ -3,14 +3,14 @@
   "version": "2.67.9",
   "dependencies": {
     "@flowjs/flow.js": {
-      "version": "2.11.2",
-      "from": "@flowjs/flow.js@2.11.2",
-      "resolved": "https://registry.npmjs.org/@flowjs/flow.js/-/flow.js-2.11.2.tgz"
+      "version": "2.13.0",
+      "from": "@flowjs/flow.js@2.13.0",
+      "resolved": "https://registry.npmjs.org/@flowjs/flow.js/-/flow.js-2.13.0.tgz"
     },
     "@flowjs/ng-flow": {
-      "version": "2.7.4",
-      "from": "@flowjs/ng-flow@2.7.4",
-      "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.4.tgz"
+      "version": "2.7.7",
+      "from": "@flowjs/ng-flow@2.7.7",
+      "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz"
     },
     "@types/node": {
       "version": "6.0.78",
@@ -152,19 +152,19 @@
       "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.4.tgz"
     },
     "angular-translate": {
-      "version": "2.15.1",
-      "from": "angular-translate@2.15.1",
-      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.15.1.tgz"
+      "version": "2.15.2",
+      "from": "angular-translate@2.15.2",
+      "resolved": "https://registry.npmjs.org/angular-translate/-/angular-translate-2.15.2.tgz"
     },
     "angular-translate-loader-static-files": {
-      "version": "2.15.1",
-      "from": "angular-translate-loader-static-files@2.15.1",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.15.1.tgz"
+      "version": "2.15.2",
+      "from": "angular-translate-loader-static-files@2.15.2",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-static-files/-/angular-translate-loader-static-files-2.15.2.tgz"
     },
     "angular-translate-loader-url": {
-      "version": "2.15.1",
-      "from": "angular-translate-loader-url@2.15.1",
-      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.15.1.tgz"
+      "version": "2.15.2",
+      "from": "angular-translate-loader-url@2.15.2",
+      "resolved": "https://registry.npmjs.org/angular-translate-loader-url/-/angular-translate-loader-url-2.15.2.tgz"
     },
     "angular-ui-bootstrap": {
       "version": "2.5.0",
@@ -518,9 +518,9 @@
       "dev": true
     },
     "commander": {
-      "version": "2.9.0",
+      "version": "2.10.0",
       "from": "commander@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz"
+      "resolved": "https://registry.npmjs.org/commander/-/commander-2.10.0.tgz"
     },
     "component-emitter": {
       "version": "1.2.1",
@@ -1039,9 +1039,9 @@
       }
     },
     "eslint": {
-      "version": "4.0.0",
-      "from": "eslint@4.0.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.0.0.tgz",
+      "version": "4.1.1",
+      "from": "eslint@4.1.1",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-4.1.1.tgz",
       "dev": true,
       "dependencies": {
         "esprima": {
@@ -1825,9 +1825,9 @@
       "dev": true,
       "dependencies": {
         "async": {
-          "version": "2.4.1",
+          "version": "2.5.0",
           "from": "async@>=2.0.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/async/-/async-2.4.1.tgz",
+          "resolved": "https://registry.npmjs.org/async/-/async-2.5.0.tgz",
           "dev": true
         }
       }
@@ -1921,16 +1921,24 @@
       "dev": true
     },
     "hosted-git-info": {
-      "version": "2.4.2",
+      "version": "2.5.0",
       "from": "hosted-git-info@>=2.1.4 <3.0.0",
-      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.4.2.tgz",
+      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.5.0.tgz",
       "dev": true
     },
     "html-minifier": {
       "version": "2.1.7",
       "from": "html-minifier@>=2.1.2 <2.2.0",
       "resolved": "https://registry.npmjs.org/html-minifier/-/html-minifier-2.1.7.tgz",
-      "dev": true
+      "dev": true,
+      "dependencies": {
+        "commander": {
+          "version": "2.9.0",
+          "from": "commander@>=2.9.0 <2.10.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz",
+          "dev": true
+        }
+      }
     },
     "http-errors": {
       "version": "1.6.1",
@@ -1957,9 +1965,9 @@
       "dev": true
     },
     "iconv": {
-      "version": "2.2.3",
+      "version": "2.3.0",
       "from": "iconv@>=1.2.0",
-      "resolved": "https://registry.npmjs.org/iconv/-/iconv-2.2.3.tgz",
+      "resolved": "https://registry.npmjs.org/iconv/-/iconv-2.3.0.tgz",
       "dev": true
     },
     "iconv-lite": {
@@ -2422,7 +2430,7 @@
     },
     "minimatch": {
       "version": "3.0.4",
-      "from": "minimatch@>=3.0.4 <4.0.0",
+      "from": "minimatch@>=3.0.2 <4.0.0",
       "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-3.0.4.tgz",
       "dev": true
     },
@@ -2452,6 +2460,12 @@
       "resolved": "https://registry.npmjs.org/mocha/-/mocha-3.4.2.tgz",
       "dev": true,
       "dependencies": {
+        "commander": {
+          "version": "2.9.0",
+          "from": "commander@2.9.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.9.0.tgz",
+          "dev": true
+        },
         "debug": {
           "version": "2.6.0",
           "from": "debug@2.6.0",
@@ -2549,9 +2563,9 @@
       "dev": true
     },
     "normalize-package-data": {
-      "version": "2.3.8",
+      "version": "2.4.0",
       "from": "normalize-package-data@>=2.3.4 <3.0.0",
-      "resolved": "https://registry.npmjs.org/normalize-package-data/-/normalize-package-data-2.3.8.tgz",
+      "resolved": "https://registry.npmjs.org/normalize-package-data/-/normalize-package-data-2.4.0.tgz",
       "dev": true
     },
     "nue": {
@@ -2854,9 +2868,9 @@
       "dev": true
     },
     "readable-stream": {
-      "version": "2.3.0",
+      "version": "2.3.2",
       "from": "readable-stream@>=2.2.2 <3.0.0",
-      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.0.tgz",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.2.tgz",
       "dev": true
     },
     "readline-sync": {
@@ -2955,9 +2969,9 @@
       "dev": true
     },
     "safe-buffer": {
-      "version": "5.1.0",
+      "version": "5.1.1",
       "from": "safe-buffer@>=5.1.0 <5.2.0",
-      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.0.tgz",
+      "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz",
       "dev": true
     },
     "saucelabs": {
@@ -2967,9 +2981,9 @@
       "dev": true
     },
     "sax": {
-      "version": "1.2.2",
+      "version": "1.2.4",
       "from": "sax@>=0.6.0",
-      "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.2.tgz",
+      "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
       "dev": true
     },
     "scrypt-async": {
@@ -3146,24 +3160,30 @@
       "dev": true
     },
     "string_decoder": {
-      "version": "1.0.2",
+      "version": "1.0.3",
       "from": "string_decoder@>=1.0.0 <1.1.0",
-      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.0.2.tgz",
+      "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.0.3.tgz",
+      "dev": true
+    },
+    "string-width": {
+      "version": "2.1.0",
+      "from": "string-width@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/string-width/-/string-width-2.1.0.tgz",
       "dev": true,
       "dependencies": {
-        "safe-buffer": {
-          "version": "5.0.1",
-          "from": "safe-buffer@>=5.0.1 <5.1.0",
-          "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.0.1.tgz",
+        "ansi-regex": {
+          "version": "3.0.0",
+          "from": "ansi-regex@>=3.0.0 <4.0.0",
+          "resolved": "https://registry.npmjs.org/ansi-regex/-/ansi-regex-3.0.0.tgz",
+          "dev": true
+        },
+        "strip-ansi": {
+          "version": "4.0.0",
+          "from": "strip-ansi@>=4.0.0 <5.0.0",
+          "resolved": "https://registry.npmjs.org/strip-ansi/-/strip-ansi-4.0.0.tgz",
           "dev": true
         }
       }
-    },
-    "string-width": {
-      "version": "2.0.0",
-      "from": "string-width@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/string-width/-/string-width-2.0.0.tgz",
-      "dev": true
     },
     "stringstream": {
       "version": "0.0.5",
