@@ -28,17 +28,17 @@ SCRIPTNAME=$0
 # settings that could not be overridden from the configuration
 # that can be issued from the web interface
 if test -e "/usr/share/globaleaks/default" ; then
-   . "/usr/share/globaleaks/default"
+    . "/usr/share/globaleaks/default"
 fi
 
 if [[ "$(gl-admin readvar --varname=reachable_via_web)" != "True" ]]; then
-  NETWORK_SANDBOXING=1
+    NETWORK_SANDBOXING=1
 else
-  NETWORK_SANDBOXING=0
+    NETWORK_SANDBOXING=0
 fi
 
 if test -e "/etc/default/globaleaks" ; then
-   . "/etc/default/globaleaks"
+    . "/etc/default/globaleaks"
 fi
 
 LISTENING_PORTS=($(echo 80,443,8083,$LISTENING_PORT | tr ',' '\n' | sort -u | tr '\n' ' '))
@@ -50,8 +50,8 @@ LISTENING_PORTS=($(echo 80,443,8083,$LISTENING_PORT | tr ',' '\n' | sort -u | tr
 test $DEBIAN_SCRIPT_DEBUG && set -v -x
 
 if [ "$EUID" -ne "0" ]; then
-   echo "Error: GlobaLeaks init script must be run as root" 1>&2
-   exit 1
+    echo "Error: GlobaLeaks init script must be run as root" 1>&2
+    exit 1
 fi
 
 GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks.pid
@@ -95,34 +95,34 @@ check_iptables()
 {
     if ! which iptables >/dev/null 2>&1 ; then
         echo "GlobaLeaks Network Sandboxing Failure: requires iptables"
-        exit 1
+        return 0
     fi
 
     iptables -nvL -t nat >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables nat support"
-        exit 1
+        return 0
     fi
 
     iptables -nvL -t filter >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables filter support"
-        exit 1
+        return 0
     fi
 
     iptables -m owner -h >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
         echo "GlobaLeaks Network Sandboxing Failure: missing iptables owner support"
-        exit 1
+        return 0
     fi
+
+    return 1
 }
 
 network_sandboxing_start()
 {
     if [[ "$NETWORK_SANDBOXING" -eq "1" ]]; then
         log_action_begin_msg "Enabling GlobaLeaks Network Sandboxing"
-
-        check_iptables
 
         iptables -L | grep "globaleaks-network-sandboxing" >/dev/null 2>&1
         if [ "$?" -eq "0" ]; then
@@ -156,8 +156,6 @@ network_sandboxing_start()
 network_sandboxing_stop()
 {
     log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
-
-    check_iptables
 
     iptables -L | grep ${USERNAME} >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
@@ -274,10 +272,21 @@ do_restart()
     do_start
 }
 
+
+if [[ "$APPARMOR_SANDBOXING" -eq "1" && "$(cat /sys/module/apparmor/parameters/enabled 2>/dev/null)" != 'Y' ]]; then
+    echo "WARNING: Missing Apparmor Sandboxing support"
+    APPARMOR_SANDBOXING=0
+fi
+
+if [[ "$NETWORK_SANDBOXING" -eq "1" && check_iptables ]]; then
+    echo "WARNING: Missing Network Sandboxing support"
+    NETWORK_SANDBOXING=0
+fi
+
+
 #
 # Function that queries the status of the daemon/service
 #
-
 case "$1" in
   start)
 	do_start
