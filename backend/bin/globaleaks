@@ -108,7 +108,7 @@ GLSettings.parser.add_option("-R", "--ramdisk", type="string",
     dest="ramdisk")
 
 GLSettings.parser.add_option("-z", "--devel-mode", type='string',
-    help="hacks some config. Specify your name to receive personalized exceptions [default: %default]."\
+    help="hacks some config. Specify your name to receive personalized exceptions [default: %default]. "\
          "Note that all exceptions when this mode is enabled are routed to globaleaks-stackexception-devel@globaleaks.org",
     dest="developer_name")
 
