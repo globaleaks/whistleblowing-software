@@ -47,7 +47,7 @@ gl-fix-permissions
 
 # Remove old configuration of Tor used before txtorcon adoption
 if $(grep -q -i globaleaks /etc/tor/torrc >/dev/null 2>&1); then
-  sed -i '/BEGIN GlobaLeaks/,/END GlobaLeaks/d'
+  sed -i '/BEGIN GlobaLeaks/,/END GlobaLeaks/d' /etc/tor/torrc
   service tor restart
 fi
 
