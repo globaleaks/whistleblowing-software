@@ -442,7 +442,8 @@ class AnomalyKeyword(NodeKeyword):
 
 
 class CertificateExprKeyword(NodeKeyword):
-    NodeKeyword.keyword_list + https_expr_keywords
+    keyword_list = NodeKeyword.keyword_list + https_expr_keywords
+    data_keys = NodeKeyword.data_keys + ['expiration_date']
 
     def ExpirationDate(self):
         # is not time zone dependent, is UTC for everyone
@@ -457,6 +458,21 @@ class CertificateExprKeyword(NodeKeyword):
 
         if len(hidden_service):
             retstr = '%s/#/admin/network' % hidden_service
+        else:
+            retstr = '[NOT CONFIGURED]'
+
+        return retstr
+
+    def T2WURL(self):
+        if self.data['node']['hostname']:
+            public_site = 'https://' + self.data['node']['hostname']
+        else:
+            public_site = ''
+
+        if not GLSettings.memory_copy.accept_tor2web_access['receiver']:
+            retstr = 'DISABLED'
+        elif len(public_site):
+            retstr =  '%s/#/admin/network' % public_site
         else:
             retstr = '[NOT CONFIGURED]'
 
