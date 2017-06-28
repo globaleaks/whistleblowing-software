@@ -305,8 +305,6 @@ class APIResourceWrapper(Resource):
         def _finish(_):
             request_finished[0] = True
 
-        request.notifyFinish().addBoth(_finish)
-
         match = None
         for regexp, handler, args in self._registry:
             match = regexp.match(request.path)
@@ -328,8 +326,8 @@ class APIResourceWrapper(Resource):
 
         groups = [unicode(g) for g in match.groups()]
         h = handler(request, **args)
+
         d = defer.maybeDeferred(f, h, *groups)
-        request.notifyFinish().addErrback(lambda _: d.cancel())
 
         @defer.inlineCallbacks
         def concludeHandlerFailure(err):
@@ -355,8 +353,17 @@ class APIResourceWrapper(Resource):
             if not request_finished[0]:
                 request.finish()
 
+        def notifyFinishCallback():
+            if not d.called:
+                d.callback(None)
+                d.cancel()
+
         d.addErrback(concludeHandlerFailure)
         d.addCallback(concludeHandlerSuccess)
+
+        request.notifyFinish().addErrback(lambda _: notifyFinishCallback)
+        request.notifyFinish().addBoth(_finish)
+
         return NOT_DONE_YET
 
     @staticmethod
