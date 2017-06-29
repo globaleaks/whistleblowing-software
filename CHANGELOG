@@ -1,3 +1,11 @@
+Changes in version 2.70.0 - 2017-06-29
+    o Automate SSL certificate management with Let's Encrypt and python-acme #1546
+    o Use Tor ephemeral services and the control port with python-txtorcon #1909
+    o Adjust HTTPS and Tor redirect logic #1982
+    o Fix and allow first setup without iptables or apparmor support #1177
+    o Fix issue on serialization of Context and Recipients images #1986
+    o Updated client dependencies to latest versions
+
 Changes in version 2.67.9 - 2017-06-20
     o Fix HTTPS and Tor redirect logic
     o Fix bug with and improve the testing of wbfile upload
