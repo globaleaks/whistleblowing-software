@@ -290,6 +290,10 @@ class BaseHandler(object):
 
     @staticmethod
     def validate_type(value, type):
+        if value is None:
+            log.err("-- Invalid python_type, in [%s] expected %s" % (value, type))
+            return False
+
         # if it's callable, than assumes is a primitive class
         if callable(type):
             retval = BaseHandler.validate_python_type(value, type)
