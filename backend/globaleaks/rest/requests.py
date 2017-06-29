@@ -488,7 +488,10 @@ ReceiverDesc = {
     'description': unicode,
     'presentation_order': int,
     'id': uuid_regexp,
-    'state': user_states_regexp
+    'state': user_states_regexp,
+    'can_delete_submission': bool,
+    'can_postpone_expiration': bool,
+    'can_grant_permissions': bool
 }
 
 ReceiverCollectionDesc = [ReceiverDesc]
@@ -510,7 +513,8 @@ ContextDesc = {
     'enable_messages': bool,
     'enable_two_way_messages': bool,
     'enable_attachments': bool,
-    'show_receivers_in_alphabetical_order': bool
+    'show_receivers_in_alphabetical_order': bool,
+    'picture': unicode
 }
 
 ContextCollectionDesc = [ContextDesc]

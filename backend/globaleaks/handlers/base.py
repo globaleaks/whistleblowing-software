@@ -372,6 +372,10 @@ class BaseHandler(object):
                     raise errors.InvalidInputFormat("Key (%s) double validation failure" % key)
                 success_check += 1
 
+                if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
+                    if (message_template[key]):
+                        BaseHandler.validate_jmessage(jmessage[key], message_template[key])
+
             if success_check == len(message_template.keys()) * 2:
                 return True
             else:
