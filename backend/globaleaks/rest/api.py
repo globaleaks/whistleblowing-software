@@ -361,7 +361,7 @@ class APIResourceWrapper(Resource):
         d.addErrback(concludeHandlerFailure)
         d.addCallback(concludeHandlerSuccess)
 
-        request.notifyFinish().addErrback(lambda _: notifyFinishCallback)
+        request.notifyFinish().addErrback(notifyFinishCallback)
         request.notifyFinish().addBoth(_finish)
 
         return NOT_DONE_YET
