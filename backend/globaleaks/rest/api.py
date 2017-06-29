@@ -291,6 +291,13 @@ class APIResourceWrapper(Resource):
 
         @return: empty `str` or `NOT_DONE_YET`
         """
+        request_finished = [False]
+
+        def _finish(ret):
+            request_finished[0] = True
+
+        request.notifyFinish().addBoth(_finish)
+
         self.preprocess(request)
 
         if self.should_redirect_tor(request):
@@ -300,10 +307,6 @@ class APIResourceWrapper(Resource):
         if self.should_redirect_https(request):
             self.redirect_https(request)
             return b''
-
-        request_finished = [False]
-        def _finish(_):
-            request_finished[0] = True
 
         match = None
         for regexp, handler, args in self._registry:
@@ -353,16 +356,8 @@ class APIResourceWrapper(Resource):
 
                 request.finish()
 
-        def notifyFinishCallback(err):
-            if not d.called:
-                d.callback(None)
-                d.cancel()
-
         d.addErrback(concludeHandlerFailure)
         d.addCallback(concludeHandlerSuccess)
-
-        request.notifyFinish().addErrback(notifyFinishCallback)
-        request.notifyFinish().addBoth(_finish)
 
         return NOT_DONE_YET
 
