@@ -108,12 +108,6 @@ class NodeFactory(ConfigFactory):
         'default_password',
         'default_timezone',
 
-        'can_postpone_expiration',
-        'can_delete_submission',
-        'can_grant_permissions',
-
-        'allow_indexing',
-
         'threshold_free_disk_megabytes_high',
         'threshold_free_disk_megabytes_medium',
         'threshold_free_disk_megabytes_low',

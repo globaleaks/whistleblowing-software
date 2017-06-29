@@ -17,5 +17,4 @@ class TestPublicResource(helpers.TestHandlerWithPopulatedDB):
         handler = self.request()
         response = yield handler.get()
 
-        resp_desc = self.ss_serial_desc(config.NodeFactory.public_node, requests.PublicResourcesDesc)
-        self._handler.validate_message(json.dumps(response), resp_desc)
+        self._handler.validate_message(json.dumps(response), requests.PublicResourcesDesc)
