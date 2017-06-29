@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 
-# This mock is required in order to make python-acmne 0.4.1 compatible with:
+# This mock is required in order to make python-acme 0.4.1 compatible with:
 # - https://community.letsencrypt.org/t/adding-random-entries-to-the-directory/33417
 # - https://github.com/certbot/certbot/issues/4877
 from acme import messages, util
@@ -15,12 +15,15 @@ messages.Directory.__init__ = mock_Directory__init__
 import sys
 
 if sys.version_info < (2, 7, 9):  # pragma: no cover
-    import requests, urllib3
-    class Object():
-        pass
+    import requests
 
-    requests.packages = Object()
-    requests.packages.urllib3 = Object()
-    requests.packages.urllib3.contrib = Object()
-    requests.packages.urllib3.contrib.pyopenssl = Object()
-    requests.packages.urllib3.contrib.pyopenssl.inject_into_urllib3 = urllib3.contrib.pyopenssl.inject_into_urllib3
+    try:
+        requests.packages.urllib3.contrib.pyopenssl.inject_into_urllib3()
+    except AttributeError:
+        import urllib3
+
+        class Object():
+            pass
+
+        requests.packages = Object()
+        requests.packages.urllib3 = urllib3
