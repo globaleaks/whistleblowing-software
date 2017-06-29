@@ -353,7 +353,7 @@ class APIResourceWrapper(Resource):
             if not request_finished[0]:
                 request.finish()
 
-        def notifyFinishCallback():
+        def notifyFinishCallback(_):
             if not d.called:
                 d.callback(None)
                 d.cancel()
