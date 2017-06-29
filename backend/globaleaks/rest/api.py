@@ -347,13 +347,13 @@ class APIResourceWrapper(Resource):
             """
             yield h.execution_check()
 
-            if not ret is None:
-                h.write(ret)
-
             if not request_finished[0]:
+                if not ret is None:
+                    h.write(ret)
+
                 request.finish()
 
-        def notifyFinishCallback(_):
+        def notifyFinishCallback(err):
             if not d.called:
                 d.callback(None)
                 d.cancel()
