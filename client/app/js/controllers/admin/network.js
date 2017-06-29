@@ -187,7 +187,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
           backdrop: 'static',
           keyboard: false,
           templateUrl: 'views/partials/disable_input.html',
-          controller: 'safeRedirectModalCtrl',
+          controller: 'disableInputModalCtrl',
           resolve: {
             open_promise: function() { return open_promise; },
           },
@@ -197,7 +197,7 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
         open_promise.resolve();
       }
 
-      open_promise.then($scope.tls_config.$disable);
+      open_promise.promise.then($scope.tls_config.$disable);
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
 
@@ -235,8 +235,10 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
     $scope.tls_config.$delete().then(refreshConfig);
   }
 }])
+.controller('disableInputModalCtrl', ['$scope', function($scope) {
+  $scope.$resolve.open_promise.resolve();
+}])
 .controller('safeRedirectModalCtrl', ['$scope', '$timeout', function($scope, $timeout) {
-  // NOTE the next line resolves a creation promise for the containing ctrl
   $scope.$resolve.open_promise.resolve();
   $timeout(function() {
     location.reload();
