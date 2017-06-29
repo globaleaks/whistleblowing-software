@@ -1,3 +1,6 @@
+Changes in version 2.70.1 - 2017-06-29
+    o Apply minor fix to python-acme mocks for python<2.7.9
+
 Changes in version 2.70.0 - 2017-06-29
     o Automate SSL certificate management with Let's Encrypt and python-acme #1546
     o Use Tor ephemeral services and the control port with python-txtorcon #1909
