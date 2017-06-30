@@ -43,6 +43,9 @@ profile usr.bin.globaleaks {
     /{,var/}run/globaleaks/globaleaks.pid rw,
     /{,var/}run/tor/control rw,
 
+    /run/tor/control.authcookie r,
+    /run/tor/control rw,
+
     /{run,dev}/shm/ r,
     /{run,dev}/shm/globaleaks/ rwk,
     /{run,dev}/shm/globaleaks/** lrwk,
