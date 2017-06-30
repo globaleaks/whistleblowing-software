@@ -544,14 +544,9 @@ class GLSettingsClass(object):
 
         if self.memory_copy.reachable_via_web:
             hostname = self.memory_copy.hostname if self.memory_copy.hostname != '' else '0.0.0.0'
-            if self.devel_mode:
-                print("- [DEVEL HTTP]\t--> http://localhost:8080")
-                if self.memory_copy.private.https_enabled:
-                    print("- [DEVEL HTTPS]\t--> https://localhost:8443")
-            else:
-                print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, self.api_prefix))
-                if self.memory_copy.private.https_enabled:
-                    print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, self.api_prefix))
+            print("- [REMOTE HTTP]\t--> http://%s%s" % (hostname, self.api_prefix))
+            if self.memory_copy.private.https_enabled:
+                print("- [REMOTE HTTPS]\t--> https://%s%s" % (hostname, self.api_prefix))
 
         if self.memory_copy.onionservice != '':
             print("- [REMOTE Tor]:\t--> http://%s%s" % (self.memory_copy.onionservice, self.api_prefix))
