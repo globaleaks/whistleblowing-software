@@ -50,7 +50,7 @@ def configure_tor_hs(bind_port):
     log.debug('Successfully connected to Tor control port')
 
     hs_loc = ('80 localhost:%d' % bind_port)
-    if hostname == '':
+    if hostname == '' and key == '':
         log.info('Creating new onion service')
         ephs = EphemeralHiddenService(hs_loc)
     else:
@@ -68,10 +68,11 @@ def configure_tor_hs(bind_port):
     @inlineCallbacks
     def initialization_callback(ret):
         log.info('Initialization of hidden-service %s completed.' % (ephs.hostname))
-        if hasattr(ephs, 'private_key'):
+        if hostname == '' and key == '':
             yield set_onion_service_info(ephs.hostname, ephs.private_key)
 
-        reactor.addSystemEventTrigger('before', 'shutdown', shutdown_callback)
+
+    reactor.addSystemEventTrigger('before', 'shutdown', shutdown_callback)
 
     d = ephs.add_to_tor(tor_conn.protocol)
     d.addCallback(initialization_callback) # pylint: disable=no-member
