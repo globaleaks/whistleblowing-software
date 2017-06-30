@@ -40,11 +40,10 @@ profile usr.bin.globaleaks {
 
     /var/globaleaks/ r,
     /var/globaleaks/** lrwk,
+
     /{,var/}run/globaleaks/globaleaks.pid rw,
     /{,var/}run/tor/control rw,
-
-    /run/tor/control.authcookie r,
-    /run/tor/control rw,
+    /{,var/}run/tor/control.authcookie r,
 
     /{run,dev}/shm/ r,
     /{run,dev}/shm/globaleaks/ rwk,
