@@ -2,8 +2,8 @@
 
 # user permission check
 if [ ! $(id -u) = 0 ]; then
-    echo "Error: GlobaLeaks install script must be run by root"
-    exit 1
+  echo "Error: GlobaLeaks install script must be run by root"
+  exit 1
 fi
 
 ASSUMEYES=0
@@ -56,7 +56,7 @@ fi
 # Depending on the intention of the user to proceed anyhow installing on
 # a not supported distro we using the experimental package if it exists
 # or xenial as fallback.
-if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|trusty|xenial|wheezy|jessie)$" ; then
+if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|trusty|xenial|wheezy|jessie)$"; then
   # In case of unsupported platforms we fallback on Trusty
   echo "No packages available for the current distribution; the install script will use the xenial repository."
   echo "In case of a failure refer to the wiki for manual setup possibilities."
@@ -91,7 +91,7 @@ DO () {
 # Preliminary Requirements Check
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
-for REQ in apt-key apt-get
+for REQ in apt-key apt-get gpg
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
@@ -114,19 +114,21 @@ DO "rm -f $TMPFILE"
 
 DO "apt-get update -y"
 
-# on Ubuntu python-pip requires universe repository
-if [ $DISTRO == "Ubuntu" ]; then
-  if [ $DISTRO_CODENAME == "precise" ]; then
-    echo "Installing python-software-properties"
-    DO "apt-get install python-software-properties -y"
-  else
-    echo "Installing software-properties-common"
-    DO "apt-get install software-properties-common -y"
-  fi
-
-  echo "Adding Ubuntu Universe repository"
-  add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|wheezy)$"; then
+  echo "Installing python-software-properties"
+  DO "apt-get install python-software-properties -y"
+else
+  echo "Installing software-properties-common"
+  DO "apt-get install software-properties-common -y"
 fi
+
+echo "Adding Ubuntu Universe repository"
+add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+
+echo "Adding Tor repository"
+add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main"
+gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
 if [ -d /data/globaleaks/deb ]; then
   DO "apt-get update -y"
