@@ -58,7 +58,7 @@ class EphemeralHiddenService(object):
             self.private_key = ans['PrivateKey']
 
         # NOTE line changed to give indication when using mocks
-        log.info('Created onion-service at', self.hostname) # pylint: disable=no-member
+        log.msg('Created onion-service at', self.hostname)
 
         # Now we want to wait for the descriptor uploads. This doesn't
         # quite work, as the UPLOADED events always say "UNKNOWN" for
@@ -93,7 +93,7 @@ class EphemeralHiddenService(object):
                 # HS to be reachable. (addr is args[1])
                 if args[3] in attempted_uploads:
                     confirmed_uploads.add(args[3])
-                    log.info("Uploaded '{}' to '{}'".format(self.hostname, args[3])) # pylint: disable=no-member
+                    log.msg("Uploaded '{}' to '{}'".format(self.hostname, args[3]))
                     uploaded.callback(self)
 
             elif subtype == 'FAILED':
@@ -106,7 +106,7 @@ class EphemeralHiddenService(object):
                         )
                         uploaded.errback(RuntimeError(msg))
 
-        log.info("Created '{}', waiting for descriptor uploads.".format(self.hostname)) # pylint: disable=no-member
+        log.msg("Created '{}', waiting for descriptor uploads.".format(self.hostname))
         yield protocol.add_event_listener('HS_DESC', hs_desc)
         yield uploaded
         yield protocol.remove_event_listener('HS_DESC', hs_desc)
