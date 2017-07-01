@@ -42,8 +42,7 @@ setup(
     scripts=[
         'bin/globaleaks',
         'bin/gl-admin',
-        'bin/gl-fix-permissions',
-        'bin/gl-update'
+        'bin/gl-fix-permissions'
     ],
     install_requires=install_requires
 )

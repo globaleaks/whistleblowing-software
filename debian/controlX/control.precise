@@ -27,7 +27,7 @@ Depends:
  , python-zope.component
  , python-zope.event
  , python-zope.interface
- , tor
+ , tor (>= 0.2.9.11)
 # The following packages, are required in order to use pip
 # to install globaleaks dependencies.
  , gcc
