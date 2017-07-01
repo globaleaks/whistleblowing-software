@@ -2,7 +2,7 @@ Dear Administrator,
 
 The HTTPS certificate loaded on the platform is expiring or has already expired.
 
-Without a valid certificate, the platform will be accessible only via Tor.
+Without a valid certificate, the platform will be accessible in a secure way only via Tor.
 
 Log in to solve the issue.
 
