@@ -116,7 +116,6 @@ echo "Adding Tor PGP key to trusted APT"
 gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
 gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
-
 DO "apt-get update -y"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|wheezy)$"; then

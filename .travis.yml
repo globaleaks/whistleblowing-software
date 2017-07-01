@@ -100,6 +100,7 @@ before_install:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - sudo dpkg -i google-chrome*.deb
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1280x1024x16
+  - sudo rm -rf ~/.gnupg
 install: true
 script:
   - $TRAVIS_BUILD_DIR/scripts/travis.sh
