@@ -91,7 +91,7 @@ DO () {
 # Preliminary Requirements Check
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
-for REQ in apt-key apt-get
+for REQ in apt-key apt-get gpg
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
@@ -112,6 +112,11 @@ DO "wget https://deb.globaleaks.org/globaleaks.asc -O $TMPFILE"
 DO "apt-key add $TMPFILE"
 DO "rm -f $TMPFILE"
 
+echo "Adding Tor PGP key to trusted APT"
+gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+
+
 DO "apt-get update -y"
 
 if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|wheezy)$"; then
@@ -122,11 +127,15 @@ else
   DO "apt-get install software-properties-common -y"
 fi
 
-echo "Adding Ubuntu Universe repository"
-add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+  echo "Adding Ubuntu Universe repository"
+  add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+fi
 
-echo "Adding Tor repository"
-add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main"
+if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
+  echo "Adding Tor repository"
+  add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main"
+fi
 
 if [ -d /data/globaleaks/deb ]; then
   DO "apt-get update -y"
@@ -150,12 +159,5 @@ else
   DO "apt-get install globaleaks -y"
 fi
 
-#TODO this is timing dependent
-echo "Waiting for onion service to configure"
-sleep 60
-if [ -r /var/run/globaleaks/globaleaks.pid ]; then
-  TORHS=`gl-admin readvar --varname=tor_onion_hostname`
-  echo "To access and configure your GlobaLeaks node use the following Tor HS URL: $TORHS"
-  echo "Use the Tor Browser to connect, You can download it from https://www.torproject.org/download"
-  echo "If you need to access the node directly on your public IP address, edit /etc/default/globaleaks and restart globaleaks"
-fi
+echo "Install script completed."
+echo "GlobaLeaks should be reachable at http://127.0.0.1:8082"

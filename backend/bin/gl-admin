@@ -142,7 +142,7 @@ def reset_pass(args):
 
 
 def read_var(args):
-    db_version, db_path = get_db_file(GLSettings.db_path)
+    db_version, db_path = get_db_file(args.dbpath)
 
     if db_version <= 0:
         return
