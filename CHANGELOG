@@ -1,3 +1,9 @@
+Changes in version 2.70.1 - 2017-07-02
+    o Set requirement for Tor package >= 0.2.9.11
+    o Improve install script to fix common missing requirements
+      and allow to be executed twice for updating an existing instance
+    o Update translations
+
 Changes in version 2.70.1 - 2017-06-29
     o Apply minor fix to python-acme mocks for python<2.7.9
 
