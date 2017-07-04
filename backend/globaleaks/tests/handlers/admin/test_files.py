@@ -5,7 +5,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.admin import files
 from globaleaks.tests import helpers
 
-
 class TestFileInstance(helpers.TestHandler):
     _handler = files.FileInstance
 
@@ -14,6 +13,9 @@ class TestFileInstance(helpers.TestHandler):
         handler = self.request({}, role='admin')
 
         yield handler.post(u'antani')
+
+        img = yield files.get_file(u'antani')
+        self.assertEqual(img, helpers.VALID_BASE64_IMG)
 
     @inlineCallbacks
     def test_delete(self):
