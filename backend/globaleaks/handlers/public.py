@@ -357,7 +357,7 @@ def serialize_receiver(store, receiver, language, data=None):
         'can_delete_submission': receiver.can_delete_submission,
         'can_postpone_expiration': receiver.can_postpone_expiration,
         'can_grant_permissions': receiver.can_grant_permissions,
-        'picture': data['imgs'][receiver.id],
+        'picture': img,
         'contexts': data['contexts'][receiver.id]
     }
 
