@@ -281,6 +281,8 @@ class APIResourceWrapper(Resource):
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False
 
+        request.setHeader(b'x-check-tor', bytes(request.client_using_tor))
+
         self.detect_language(request)
 
         self.set_default_headers(request)
