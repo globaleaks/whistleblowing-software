@@ -118,7 +118,7 @@ gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
 
 DO "apt-get update -y"
 
-if echo "$DISTRO_CODENAME" | grep -vqE "^(precise|wheezy)$"; then
+if echo "$DISTRO_CODENAME" | grep -qE "^(precise|wheezy)$"; then
   echo "Installing python-software-properties"
   DO "apt-get install python-software-properties -y"
 else
