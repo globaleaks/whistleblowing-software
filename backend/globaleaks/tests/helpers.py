@@ -35,7 +35,7 @@ from globaleaks.workers.supervisor import ProcessSupervisor
 
 from . import TEST_DIR, config as test_config
 
-
+import base64
 import copy
 import json
 import os
@@ -62,6 +62,7 @@ VALID_SALT1 = security.generateRandomSalt()
 VALID_SALT2 = security.generateRandomSalt()
 VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
 VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
+VALID_BASE64_IMG = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII='
 INVALID_PASSWORD = u'antani'
 
 PGPKEYS = {}
@@ -180,7 +181,7 @@ def get_dummy_file(filename=None, content_type=None, content=None):
 
     content_type = 'application/octet'
 
-    content = ''.join(unichr(x) for x in range(0x400, 0x40A))
+    content = base64.b64decode(VALID_BASE64_IMG)
 
     temporary_file = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
