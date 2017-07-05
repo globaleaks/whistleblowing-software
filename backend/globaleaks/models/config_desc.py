@@ -50,7 +50,7 @@ GLConfig = {
         'acme_accnt_key': Unicode(),
         'acme_accnt_uri': Unicode(),
         
-        'tor_onion_key': Unicode(validators=range_v(820, 825)), # Limits from txtorcon
+        'tor_onion_key': Unicode(validator=longtext_v), # Limits from txtorcon
 
         'https_priv_key': Unicode(),
         'https_priv_gen': Bool(default=False),
@@ -62,7 +62,7 @@ GLConfig = {
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
-        'port': Int(default=9267),
+        'port': Int(validator=natnum_v, default=9267),
 
         'username': Unicode(validator=shorttext_v, default=u'hey_you_should_change_me'),
         # See smtp_password in private for password
@@ -91,7 +91,7 @@ GLConfig = {
         'basic_auth_password': Unicode(default=u''),
 
         'hostname': Unicode(validator=shorttext_v, default=u''),
-        'onionservice': Unicode(validators=range_v(22, 22), default=u''),
+        'onionservice': Unicode(validator=shorttext_v, default=u''),
 
         'tb_download_link': Unicode(validator=shorttext_v, default=u'https://www.torproject.org/download/download-easy.html.en'),
 
