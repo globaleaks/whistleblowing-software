@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 import json
+import re
 import os
 import sys
 import sqlite3
@@ -17,6 +18,7 @@ from globaleaks.db import get_db_file
 from globaleaks.settings import GLSettings
 from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
 from globaleaks.models import config, config_desc
+from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks import DATABASE_VERSION
 
 
@@ -178,15 +180,16 @@ def read_var(args):
 
 def select_cfg_factory(varname):
     fact_map = {
-        'notification': config.NotificationFactory,
-        'node': config.NodeFactory,
-        'private': config.NodeFactory,
+        'notification': (config.NotificationFactory, AdminNotificationDesc),
+        'node': (config.NodeFactory, AdminNodeDesc),
+        'private': (config.PrivateFactory, {}),
     }
     for fact_key, fact_dict in config_desc.GLConfig.iteritems():
+        factCls, req_validator = fact_map[fact_key]
         for var_key, item in fact_dict.iteritems():
             if var_key == varname:
-                return fact_map[fact_key], item
-    return None, None
+                return factCls, item, req_validator.get(var_key, None)
+    return None, None, None
 
 
 def set_var(args):
@@ -200,12 +203,28 @@ def set_var(args):
     try:
         store = Store(create_database(GLSettings.make_db_uri(db_path)))
 
-        factCls, item = select_cfg_factory(args.varname)
+        factCls, item, regex = select_cfg_factory(args.varname)
         if factCls is None:
             raise ValueError('Invalid varname passed')
 
         fact = factCls(store)
-        fact.set_val(args.varname, item._type(args.value))
+
+        new_val = args.value
+        if item._type == bool:
+            if ('0' == new_val or '1' == new_val):
+                new_val = bool(int(new_val))
+            else:
+                raise ValueError('Invalid boolean passed')
+        elif item._type == int:
+            new_val = int(new_val)
+        elif item._type == unicode:
+            if regex is not None and not re.match(regex, new_val):
+                raise ValueError('Invalid value passed for config option')
+
+        if item.validator is not None:
+            item.validator(None, args.varname, new_val)
+
+        fact.set_val(args.varname, new_val)
         store.commit()
         out_val = fact.get_val(args.varname)
         print "Success! {}:{} set to {}".format(args.varname, item, out_val)
@@ -250,7 +269,7 @@ rv_p.set_defaults(func=read_var)
 sv_p = subp.add_parser("setvar", help="set database config variable")
 sv_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
 sv_p.add_argument("varname", help="the unprefixed name of the config var")
-sv_p.add_argument("value", help="value which must be of the correct type Bool(1/0), Int(0-9^9), String()")
+sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
 
