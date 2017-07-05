@@ -1,5 +1,4 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
-  function($scope, AdminFieldTemplateResource) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -11,35 +10,6 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateRes
     $scope.delField = function(fields, field) {
       field.$delete(function() {
         $scope.Utils.deleteFromList(fields, field);
-      });
-    };
-
-    $scope.exportQuestionTemplates = function() {
-      AdminFieldTemplateResource.query({export: true}).$promise.then(function(fields) {
-        $scope.Utils.exportJSON(fields, 'question-templates.json');
-      });
-    };
-
-    $scope.exportQuestion = function(id) {
-      AdminFieldTemplateResource.get({export: true, id: id}).$promise.then(function(field) {
-        $scope.Utils.exportJSON(field, 'question-' + id + '.json');
-      });
-    };
-
-    $scope.importQuestions = function(fields) {
-      fields = angular.fromJson(fields);
-
-      if (!angular.isArray(fields)) {
-        fields = [fields];
-      }
-
-      angular.forEach(fields, function(field) {
-        field = new AdminFieldTemplateResource(field);
-        field.id = '';
-        field.$save({import: true}, function() {
-          $scope.reload();
-        });
-
       });
     };
   }

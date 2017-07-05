@@ -3,19 +3,9 @@
     <div class="addField col-md-6">
       <form name="newField" class="addField" novalidate>
         <div class="editorTitle row">
-          <span class="col-md-8">
+          <span class="col-md-12">
             <span data-translate>Add new question template</span>
           </span>
-          <!--
-          <span class="col-md-4 text-right">
-            <label class="actionButton btn btn-xs btn-primary" for="import_questions">
-              <span data-translate>Import</span>
-            </label>
-            <span class="hiddenButton">
-              <input type="file" id="import_questions" fileread="importQuestions">
-            </span>
-          </span>
-          -->
         </div>
         <div data-ng-controller="AdminFieldTemplatesAddCtrl" data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
       </form>
@@ -24,16 +14,8 @@
   <div class="adminConfigSection row" data-ng-init="fields = admin.fieldtemplates" data-ng-show="fields.length > 0">
     <div class="col-md-12">
       <div class="editorTitle row">
-        <span class="col-md-8">
+        <span class="col-md-12">
           <span data-translate>Configured question templates:</span>
-        </span>
-        <span class="col-md-4 text-right">
-          <!--
-          <button class="actionButton btn btn-xs btn-primary"
-                  data-ng-click="exportQuestionTemplates()">
-            <span data-translate>Export all</span>
-          </button>
-          -->
         </span>
       </div>
     </div>
