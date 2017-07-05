@@ -11,9 +11,7 @@ GLClient.controller('AdminUsersCtrl', ['$scope', '$uibModal', 'AdminUserResource
       user.pgp_key_remove = false;
     }
 
-    var updated_user = new AdminUserResource(user);
-
-    return $scope.Utils.update(updated_user);
+    return $scope.Utils.update(user);
   };
 
   $scope.perform_delete = function(user) {

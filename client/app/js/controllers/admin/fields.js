@@ -137,17 +137,8 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFiel
     };
 
     $scope.save_field = function(field) {
-      var updated_field;
-
       $scope.Utils.assignUniqueOrderIndex(field.options);
-
-      if (field.instance === 'template') {
-        updated_field = new AdminFieldTemplateResource(field);
-      } else {
-        updated_field = new AdminFieldResource(field);
-      }
-
-      $scope.Utils.update(updated_field);
+      $scope.Utils.update(field);
     };
 
     $scope.moveUpAndSave = function(elem) {

@@ -25,8 +25,7 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
     };
 
     $scope.save_step = function(step) {
-      var updated_step = new AdminStepResource(step);
-      return $scope.Utils.update(updated_step);
+      return $scope.Utils.update(step);
     };
 
     $scope.addField = function(field) {
