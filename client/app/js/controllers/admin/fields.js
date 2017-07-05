@@ -1,5 +1,5 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, AdminFieldResource, AdminFieldTemplateResource) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldTemplateResource',
+  function($scope, AdminFieldTemplateResource) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -9,9 +9,7 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
 
     $scope.delField = function(fields, field) {
-      AdminFieldTemplateResource.delete({
-        id: field.id
-      }, function() {
+      field.$delete(function() {
         $scope.Utils.deleteFromList(fields, field);
       });
     };
@@ -46,8 +44,8 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
-  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter',
+  function($scope, $filter) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
