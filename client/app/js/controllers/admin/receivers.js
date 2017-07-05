@@ -10,9 +10,7 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiver
       receiver.pgp_key_remove = false;
     }
 
-    var updated_receiver = new AdminReceiverResource(receiver);
-
-    return $scope.Utils.update(updated_receiver, cb);
+    return $scope.Utils.update(receiver, cb);
   };
 
   $scope.moveUpAndSave = function(elem) {
