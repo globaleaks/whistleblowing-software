@@ -33,8 +33,6 @@ possible_client_paths = [
 ]
 
 verbosity_dict = {
-    # do not exist anything above DEBUG, so is used a -1)
-    'TIMEDEBUG': (logging.DEBUG - 1),
     'DEBUG': logging.DEBUG,
     'INFO': logging.INFO,
     'WARNING': logging.WARNING,
