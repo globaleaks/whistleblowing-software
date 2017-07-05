@@ -9,10 +9,14 @@ import subprocess as sp
 from datetime import datetime
 import argparse
 
+from storm.store import Store
+from storm.database import create_database
+
 from globaleaks import models
 from globaleaks.db import get_db_file
 from globaleaks.settings import GLSettings
 from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt
+from globaleaks.models import config, config_desc
 from globaleaks import DATABASE_VERSION
 
 
@@ -45,6 +49,7 @@ def default_workdir():
 
 def default_db_path():
     return GLSettings.db_path
+
 
 def is_gl_running():
     try:
@@ -109,6 +114,7 @@ def restore(args):
 
 
 def reset_pass(args):
+    check_dir(args.dbpath)
     db_version, db_path = get_db_file(args.dbpath)
 
     if db_version <= 0:
@@ -142,6 +148,7 @@ def reset_pass(args):
 
 
 def read_var(args):
+    check_dir(args.dbpath)
     db_version, db_path = get_db_file(args.dbpath)
 
     if db_version <= 0:
@@ -163,10 +170,48 @@ def read_var(args):
 
         print json.loads(str(ret[0]))['v']
     except Exception as e:
-        # This string is dumped into stdout to ensure that an exact string match
+        # This string is dumped into stdout to ensure an exact string match
         # will fail
         print "ERROR"
         raise e
+
+
+def select_cfg_factory(varname):
+    fact_map = {
+        'notification': config.NotificationFactory,
+        'node': config.NodeFactory,
+        'private': config.NodeFactory,
+    }
+    for fact_key, fact_dict in config_desc.GLConfig.iteritems():
+        for var_key, item in fact_dict.iteritems():
+            if var_key == varname:
+                return fact_map[fact_key], item
+    return None, None
+
+
+def set_var(args):
+    check_dir(args.dbpath)
+    db_version, db_path = get_db_file(args.dbpath)
+
+    if db_version <= 0:
+        return
+
+    check_file(db_path)
+    try:
+        store = Store(create_database(GLSettings.make_db_uri(db_path)))
+
+        factCls, item = select_cfg_factory(args.varname)
+        if factCls is None:
+            raise ValueError('Invalid varname passed')
+
+        fact = factCls(store)
+        fact.set_val(args.varname, item._type(args.value))
+        store.commit()
+        out_val = fact.get_val(args.varname)
+        print "Success! {}:{} set to {}".format(args.varname, item, out_val)
+    except Exception as e:
+        print >> sys.stderr, "Save failed! {}".format(e)
+        sys.exit(1)
 
 
 GLSettings.eval_paths()
@@ -191,16 +236,22 @@ res_p.add_argument("backuppath", nargs="?", help="the path and name of the backu
 res_p.set_defaults(func=restore)
 
 pw_p = subp.add_parser("resetpass", help="reset a user's password")
-pw_p.add_argument("--dbpath", help="the path to the globaleaks db", default=default_db_path())
+pw_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
                   default=generateRandomPassword())
 pw_p.set_defaults(func=reset_pass)
 
-rv_p = subp.add_parser("readvar", help="read database variable")
-rv_p.add_argument("--dbpath", help="the path to the globaleaks db", default=default_db_path())
-rv_p.add_argument("--varname", help="the path to the globaleaks db", default='version')
+rv_p = subp.add_parser("readvar", help="read database config variable")
+rv_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
+rv_p.add_argument("varname", help="the unprefixed name of the config var", default='version')
 rv_p.set_defaults(func=read_var)
+
+sv_p = subp.add_parser("setvar", help="set database config variable")
+sv_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
+sv_p.add_argument("varname", help="the unprefixed name of the config var")
+sv_p.add_argument("value", help="value which must be of the correct type Bool(1/0), Int(0-9^9), String()")
+sv_p.set_defaults(func=set_var)
 
 
 if __name__ == '__main__':
