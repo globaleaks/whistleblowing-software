@@ -9,6 +9,8 @@ from globaleaks.utils.utility import datetime_null
 
 
 class Item:
+    _type = None
+
     def __init__(self, *args, **kwargs):
         if 'default' in kwargs:
             self.default = kwargs['default']
@@ -16,6 +18,9 @@ class Item:
             raise KeyError('No default set! %s, %s' % (args, kwargs))
 
         self.validator = kwargs.get('validator', None)
+
+    def __repr__(self):
+        return '<Item({})>'.format(self._type.__name__)
 
 
 class Unicode(Item):
