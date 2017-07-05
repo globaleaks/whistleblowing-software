@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import serialize_rtip, serialize_message, serialize_comment
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact, transact_sync
 from globaleaks.security import GLBPGP
 from globaleaks.settings import GLSettings
@@ -240,7 +240,7 @@ def get_mails_from_the_pool(store):
     return ret
 
 
-class NotificationSchedule(GLJob):
+class NotificationSchedule(LoopingJob):
     name = "Notification"
     interval = 5
     monitor_interval = 3 * 60

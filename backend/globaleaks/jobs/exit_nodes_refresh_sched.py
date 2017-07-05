@@ -3,13 +3,13 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import GLSettings
 
 __all__ = ['ExitNodesRefreshSchedule']
 
 
-class ExitNodesRefreshSchedule(GLJob):
+class ExitNodesRefreshSchedule(LoopingJob):
     name = "Exit Nodes Refresh"
     interval = 3600
 

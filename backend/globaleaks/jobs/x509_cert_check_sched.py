@@ -7,7 +7,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.https import db_acme_cert_issuance
 from globaleaks.handlers.admin.user import db_get_admin_users
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import encrypt_pgp_message
 from globaleaks.settings import GLSettings
@@ -25,7 +25,7 @@ def should_try_acme_renewal(failures):
     return False
 
 
-class X509CertCheckSchedule(GLJob):
+class X509CertCheckSchedule(LoopingJob):
     name = "X509 Cert Check"
     interval = 3 * 24 * 3600
 

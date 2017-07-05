@@ -101,6 +101,8 @@ class GLSettingsClass(object):
         self.jobs = []
         self.jobs_monitor = None
 
+        self.services = []
+
         self.RecentEventQ = []
         self.RecentAnomaliesQ = {}
         self.stats_collection_start_time = datetime_now()
@@ -518,15 +520,23 @@ class GLSettingsClass(object):
 
     def start_jobs(self):
         from globaleaks.jobs import jobs_list
-        from globaleaks.jobs.base import GLJobsMonitor
+        from globaleaks.jobs.base import LoopingJobsMonitor
 
         for job in jobs_list:
             j = job()
             self.jobs.append(j)
             j.schedule()
 
-        self.jobs_monitor = GLJobsMonitor(self.jobs)
+        self.jobs_monitor = LoopingJobsMonitor(self.jobs)
         self.jobs_monitor.schedule()
+
+    def start_services(self):
+        from globaleaks.jobs import services_list
+
+        for service in services_list:
+            s = service()
+            self.services.append(s)
+            s.schedule()
 
     def get_agent(self):
         if self.memory_copy.anonymize_outgoing_connections:

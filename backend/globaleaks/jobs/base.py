@@ -11,58 +11,49 @@ test_reactor = None
 TRACK_LAST_N_EXECUTIONS = 10
 
 
-class GLJob(task.LoopingCall):
-    name = "unnamed"
-    interval = 60
-    monitor_interval = 60
+class BaseJob(task.LoopingCall):
+    interval = 1
     low_time = -1
     high_time = -1
     mean_time = -1
     start_time = -1
     active = False
     last_executions = []
-
-    def operation(self):
-        raise NotImplementedError('GLJob does not implement operation')
-
-    # The minimum interval (seconds) the job has taken to execute before an
-    # exception will be recorded. If the job does not finish, every monitor_interval
-    # after the first exception another will be generated.
-    monitor_period = 5 * 60
-    last_monitor_check_failed = 0 # Epoch start
+    threaded = True
 
     def __init__(self):
         self.job = task.LoopingCall.__init__(self, self.run)
         self.clock = reactor if test_reactor is None else test_reactor
 
-    def _errback(self, loopingCall):
-        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
-                      (self.name, self.mean_time, self.low_time, self.high_time)
-
-        log.err(error)
-        send_exception_email(error)
-
     def start(self, interval):
-        task.LoopingCall.start(self, interval).addErrback(self._errback)
-
-    def get_start_time(self):
-        return 0
+        task.LoopingCall.start(self, interval)
 
     def schedule(self):
         delay = self.get_start_time()
-
-        if delay < 1:
-            delay = 1
-
+        delay = delay if delay > 1 else 1
         self.clock.callLater(delay, self.start, self.interval)
 
-    def job_begin(self):
+    @defer.inlineCallbacks
+    def run(self):
+        self.begin()
+
+        try:
+            if self.threaded:
+                yield threads.deferToThread(self.operation)
+            else:
+                yield self.operation()
+        except Exception as e:
+            self.on_error(e)
+
+        self.end()
+
+    def begin(self):
         self.active = True
         self.start_time = int(time.time() * 1000)
         self.last_executions=self.last_executions[:TRACK_LAST_N_EXECUTIONS - 1]
         self.last_executions.append((self.start_time, -1))
 
-    def job_end(self):
+    def end(self):
         self.end_time = int(time.time() * 1000)
         last_execution = self.last_executions.pop()
         self.last_executions.append((last_execution[0], self.end_time))
@@ -83,27 +74,41 @@ class GLJob(task.LoopingCall):
 
         self.active = False
 
-    @defer.inlineCallbacks
-    def run(self):
-        self.job_begin()
+    def operation(self):
+        return
 
-        try:
-            yield threads.deferToThread(self.operation)
-        except Exception as e:
-            log.err("Exception while performing scheduled operation %s: %s" % \
-                    (type(self).__name__, e))
+    def on_error(err):
+        return
 
-            extract_exception_traceback_and_send_email(e)
-
-        self.job_end()
+    def get_start_time(self):
+        return 0
 
 
-class GLJobsMonitor(GLJob):
+class LoopingJob(BaseJob):
+    name = "unnamed"
+    interval = 60
+
+    # The minimum interval (seconds) the job has taken to execute before an
+    # exception will be recorded. If the job does not finish, every monitor_interval
+    # after the first exception another will be generated.
+    monitor_interval = 60
+    monitor_period = 5 * 60
+    last_monitor_check_failed = 0 # Epoch start
+
+    def on_error(self, exc):
+        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
+                      (self.name, self.mean_time, self.low_time, self.high_time)
+
+        log.err(error)
+        send_exception_email(error)
+
+
+class LoopingJobsMonitor(LoopingJob):
     name = "jobs monitor"
     interval = 2
 
     def __init__(self, jobs_list):
-        GLJob.__init__(self)
+        LoopingJob.__init__(self)
         self.jobs_list = jobs_list
 
     def operation(self):
@@ -136,3 +141,10 @@ class GLJobsMonitor(GLJob):
 
         if error_msg != "":
             send_exception_email(error_msg)
+
+
+class ServiceJob(BaseJob):
+    interval = 1
+
+    def on_error(self, exc):
+        print exc

@@ -1,10 +1,11 @@
-from globaleaks.jobs import exit_nodes_refresh_sched, \
+from globaleaks.jobs import cleaning_sched, \
+                            delivery_sched, \
+                            exit_nodes_refresh_sched, \
+                            notification_sched, \
+                            onion_service, \
+                            pgp_check_sched, \
                             session_management_sched, \
                             statistics_sched, \
-                            notification_sched, \
-                            delivery_sched, \
-                            cleaning_sched, \
-                            pgp_check_sched, \
                             x509_cert_check_sched
 
 jobs_list = [
@@ -17,6 +18,10 @@ jobs_list = [
     pgp_check_sched.PGPCheckSchedule,
     statistics_sched.StatisticsSchedule,
     x509_cert_check_sched.X509CertCheckSchedule,
+]
+
+services_list = [
+    onion_service.OnionService
 ]
 
 __all__ = [
