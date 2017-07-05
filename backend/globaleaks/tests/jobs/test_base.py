@@ -1,25 +1,25 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks import models
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact
 
 from globaleaks.tests import helpers
 
-class GLJobX(GLJob):
+class LoopingJobX(LoopingJob):
     interval = 2
     operation_called = 0
 
     def run(self):
         self.operation_called += 1
 
-class TestGLJob(helpers.TestGL):
+class TestLoopingJob(helpers.TestGL):
     def test_base_scheduler(self):
         """
         This function asseses the functionalities of a scheduler in calling
         the run() function periodically.
         """
-        job = GLJobX()
+        job = LoopingJobX()
 
         job.schedule()
 

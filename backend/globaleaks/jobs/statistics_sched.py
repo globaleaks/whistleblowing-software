@@ -4,7 +4,7 @@
 import os
 
 from globaleaks.anomaly import Alarm
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import Stats, Anomalies
 from globaleaks.orm import transact_sync
 from globaleaks.settings import GLSettings
@@ -72,7 +72,7 @@ def save_statistics(store, start, end, activity_collection):
                   (activity_collection, start, end))
 
 
-class AnomaliesSchedule(GLJob):
+class AnomaliesSchedule(LoopingJob):
     """
     This job checks for anomalies and take care of saving them on the db.
     """
@@ -88,7 +88,7 @@ class AnomaliesSchedule(GLJob):
         Alarm.check_disk_anomalies(free_disk_bytes, total_disk_bytes, free_ramdisk_bytes, total_ramdisk_bytes)
 
 
-class StatisticsSchedule(GLJob):
+class StatisticsSchedule(LoopingJob):
     """
     Statistics collection scheduler run hourly
     """
@@ -102,7 +102,7 @@ class StatisticsSchedule(GLJob):
 
     def __init__(self):
         self.stats_collection_start_time = datetime_now()
-        GLJob.__init__(self)
+        LoopingJob.__init__(self)
 
     def operation(self):
         # ------- BEGIN Anomalies section -------

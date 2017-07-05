@@ -16,7 +16,6 @@ from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
-from globaleaks.utils.onion_services import configure_tor_hs
 from globaleaks.utils.utility import log, GLLogObserver
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor
@@ -112,8 +111,6 @@ class GLService(service.Service):
 
         GLSettings.api_factory = Site(arw, logFormatter=timedLogFormatter)
 
-        yield configure_tor_hs(8083)
-
         for sock in GLSettings.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)
 
@@ -124,6 +121,7 @@ class GLService(service.Service):
         yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
 
         GLSettings.start_jobs()
+        GLSettings.start_services()
 
         GLSettings.print_listening_interfaces()
 

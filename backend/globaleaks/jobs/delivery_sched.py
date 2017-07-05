@@ -9,7 +9,7 @@
 import os
 
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.models import InternalFile, ReceiverFile
 from globaleaks.orm import transact_sync
 from globaleaks.security import GLBPGP, GLSecureFile, generateRandomKey
@@ -216,7 +216,7 @@ def update_internalfile_and_store_receiverfiles(store, receiverfiles_maps):
             rfile.size = rf['size']
 
 
-class DeliverySchedule(GLJob):
+class DeliverySchedule(LoopingJob):
     name = "Delivery"
     interval = 5
     monitor_interval = 180

@@ -8,7 +8,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.settings import GLSettings
 from globaleaks.utils.templating import Templating
@@ -25,7 +25,7 @@ def db_get_expired_or_expiring_pgp_users(store):
                                    models.User.pgp_key_expiration < threshold)
 
 
-class PGPCheckSchedule(GLJob):
+class PGPCheckSchedule(LoopingJob):
     name = "PGP Check"
     interval = 24 * 3600
     monitor_interval = 5 * 60

@@ -1,14 +1,14 @@
 # -*- coding: UTF-8
 # Implement reset of variables related to sessions
 
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import GLSettings
 from globaleaks.utils.utility import log
 
 __all__ = ['SessionManagementSchedule']
 
 
-class SessionManagementSchedule(GLJob):
+class SessionManagementSchedule(LoopingJob):
     name = "Session Management"
     interval = 60
     monitor_interval = 10

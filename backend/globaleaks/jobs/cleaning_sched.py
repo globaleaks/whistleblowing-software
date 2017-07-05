@@ -11,7 +11,7 @@ from globaleaks.handlers.admin.node import db_admin_serialize_node
 from globaleaks.handlers.admin.notification import db_get_notification
 from globaleaks.handlers.admin.receiver import admin_serialize_receiver
 from globaleaks.handlers.rtip import db_delete_itips, serialize_rtip
-from globaleaks.jobs.base import GLJob
+from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.security import overwrite_and_remove
 from globaleaks.settings import GLSettings
@@ -34,7 +34,7 @@ def db_clean_expired_wbtips(store):
         store.remove(wbtip)
 
 
-class CleaningSchedule(GLJob):
+class CleaningSchedule(LoopingJob):
     name = "Cleaning"
     interval = 24 * 3600
     monitor_interval = 5 * 60
