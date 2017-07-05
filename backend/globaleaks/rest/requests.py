@@ -18,7 +18,6 @@ user_roles_regexp                 = r'^(admin|custodian|receiver)$'
 user_states_regexp                = r'^(enabled|disabled)$'
 email_regexp                      = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$'
 email_regexp_or_empty             = r'^(([\w+-\.]){0,100}[\w]{1,100}@([\w+-\.]){0,100}[\w]{1,100})$|^$'
-onionservice_regexp               = r'^[0-9a-z]{16}\.onion$'
 onionservice_regexp_or_empty      = r'^[0-9a-z]{16}\.onion$|^$'
 hostname_regexp                   = r'^[0-9a-z\-\.]+$'
 hostname_regexp_or_empty          = r'^[0-9a-z\-\.]+$|^$'
@@ -173,7 +172,6 @@ AdminNodeDesc = {
     'whistleblowing_question': unicode,
     'whistleblowing_button': unicode,
     'whistleblowing_receipt_prompt': unicode,
-    'onionservice': onionservice_regexp_or_empty,
     'hostname': hostname_regexp_or_empty,
     'tb_download_link': https_url_regexp,
     'languages_enabled': [unicode],

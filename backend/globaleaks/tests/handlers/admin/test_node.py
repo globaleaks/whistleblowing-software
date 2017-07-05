@@ -71,13 +71,18 @@ class TestNodeInstance(helpers.TestHandlerWithPopulatedDB):
         yield handler.put()
 
     @inlineCallbacks
-    def test_put_update_node_invalid_hidden(self):
+    def test_update_ignore_onionservice(self):
         self.dummyNode['onionservice'] = 'invalid'
-        self.dummyNode['hostname'] = 'blogleaks.blogspot.com'
+
+        valid_hs = 'xxxxxxxxxxxxxxxx.onion'
+        self.dummyNode['onionservice'] = valid_hs
 
         handler = self.request(self.dummyNode, role='admin')
 
-        yield self.assertRaises(InvalidInputFormat, handler.put)
+        resp = yield handler.put()
+
+        self.assertIn('onionservice', resp)
+        self.assertNotEqual(valid_hs, resp['onionservice'])
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
