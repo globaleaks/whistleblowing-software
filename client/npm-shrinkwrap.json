@@ -13,9 +13,9 @@
       "resolved": "https://registry.npmjs.org/@flowjs/ng-flow/-/ng-flow-2.7.7.tgz"
     },
     "@types/node": {
-      "version": "6.0.78",
+      "version": "6.0.79",
       "from": "@types/node@>=6.0.46 <7.0.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.78.tgz",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.79.tgz",
       "dev": true
     },
     "@types/q": {
@@ -43,9 +43,9 @@
       "dev": true
     },
     "acorn": {
-      "version": "5.0.3",
+      "version": "5.1.1",
       "from": "acorn@>=5.0.1 <6.0.0",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.0.3.tgz",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-5.1.1.tgz",
       "dev": true
     },
     "acorn-jsx": {
@@ -107,14 +107,14 @@
       "dev": true
     },
     "angular": {
-      "version": "1.6.4",
-      "from": "angular@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular/-/angular-1.6.5.tgz"
     },
     "angular-aria": {
-      "version": "1.6.4",
-      "from": "angular-aria@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular-aria@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular-aria/-/angular-aria-1.6.5.tgz"
     },
     "angular-dynamic-locale": {
       "version": "0.1.32",
@@ -132,24 +132,24 @@
       "resolved": "https://registry.npmjs.org/angular-filter/-/angular-filter-0.5.16.tgz"
     },
     "angular-i18n": {
-      "version": "1.6.4",
-      "from": "angular-i18n@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular-i18n@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular-i18n/-/angular-i18n-1.6.5.tgz"
     },
     "angular-resource": {
-      "version": "1.6.4",
-      "from": "angular-resource@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular-resource@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular-resource/-/angular-resource-1.6.5.tgz"
     },
     "angular-route": {
-      "version": "1.6.4",
-      "from": "angular-route@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular-route@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular-route/-/angular-route-1.6.5.tgz"
     },
     "angular-sanitize": {
-      "version": "1.6.4",
-      "from": "angular-sanitize@1.6.4",
-      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.4.tgz"
+      "version": "1.6.5",
+      "from": "angular-sanitize@1.6.5",
+      "resolved": "https://registry.npmjs.org/angular-sanitize/-/angular-sanitize-1.6.5.tgz"
     },
     "angular-translate": {
       "version": "2.15.2",
@@ -518,9 +518,9 @@
       "dev": true
     },
     "commander": {
-      "version": "2.10.0",
+      "version": "2.11.0",
       "from": "commander@>=2.0.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/commander/-/commander-2.10.0.tgz"
+      "resolved": "https://registry.npmjs.org/commander/-/commander-2.11.0.tgz"
     },
     "component-emitter": {
       "version": "1.2.1",
@@ -1319,7 +1319,8 @@
     "graceful-readlink": {
       "version": "1.0.1",
       "from": "graceful-readlink@>=1.0.0",
-      "resolved": "https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/graceful-readlink/-/graceful-readlink-1.0.1.tgz",
+      "dev": true
     },
     "growl": {
       "version": "1.9.2",
@@ -2180,9 +2181,9 @@
       "dev": true
     },
     "js-tokens": {
-      "version": "3.0.1",
+      "version": "3.0.2",
       "from": "js-tokens@>=3.0.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.1.tgz",
+      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.2.tgz",
       "dev": true
     },
     "js-yaml": {
@@ -2868,9 +2869,9 @@
       "dev": true
     },
     "readable-stream": {
-      "version": "2.3.2",
+      "version": "2.3.3",
       "from": "readable-stream@>=2.2.2 <3.0.0",
-      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.2.tgz",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.3.tgz",
       "dev": true
     },
     "readline-sync": {
@@ -2970,7 +2971,7 @@
     },
     "safe-buffer": {
       "version": "5.1.1",
-      "from": "safe-buffer@>=5.1.0 <5.2.0",
+      "from": "safe-buffer@>=5.1.1 <5.2.0",
       "resolved": "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz",
       "dev": true
     },
@@ -3161,7 +3162,7 @@
     },
     "string_decoder": {
       "version": "1.0.3",
-      "from": "string_decoder@>=1.0.0 <1.1.0",
+      "from": "string_decoder@>=1.0.3 <1.1.0",
       "resolved": "https://registry.npmjs.org/string_decoder/-/string_decoder-1.0.3.tgz",
       "dev": true
     },
