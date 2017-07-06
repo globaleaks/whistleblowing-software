@@ -12,6 +12,7 @@ TRACK_LAST_N_EXECUTIONS = 10
 
 
 class BaseJob(task.LoopingCall):
+    name = "unnamed"
     interval = 1
     low_time = -1
     high_time = -1
@@ -85,7 +86,6 @@ class BaseJob(task.LoopingCall):
 
 
 class LoopingJob(BaseJob):
-    name = "unnamed"
     interval = 60
 
     # The minimum interval (seconds) the job has taken to execute before an
