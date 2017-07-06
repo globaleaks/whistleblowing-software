@@ -147,4 +147,4 @@ class ServiceJob(BaseJob):
     interval = 1
 
     def on_error(self, exc):
-        log.err("Exception while running %s: %s", self.name, exc)
+        log.err("Exception while running %s: %s" % (self.name, exc))
