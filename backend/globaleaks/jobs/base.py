@@ -77,7 +77,7 @@ class BaseJob(task.LoopingCall):
     def operation(self):
         return
 
-    def on_error(err):
+    def on_error(self, err):
         return
 
     def get_start_time(self):
@@ -147,4 +147,4 @@ class ServiceJob(BaseJob):
     interval = 1
 
     def on_error(self, exc):
-        print exc
+        log.err("Exception while running %s: %s", self.name, exc)
