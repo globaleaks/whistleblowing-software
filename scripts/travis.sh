@@ -74,7 +74,7 @@ elif [ "$GLTEST" = "lint" ]; then
 
   echo "Running pylint checks"
   cd $TRAVIS_BUILD_DIR/backend
-  pylint globaleaks -E --disable=no-value-for-parameter
+  pylint -r n globaleaks
 
   echo "Running eslint checks"
   cd $TRAVIS_BUILD_DIR/client
