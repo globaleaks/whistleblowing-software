@@ -142,6 +142,8 @@ api_spec = [
     (r'/admin/config/acme/run', https.AcmeHandler),
     (r'/.well-known/acme-challenge/([a-zA-Z0-9_\-]{42,44})', https.AcmeChallResolver),
 
+    (r'/(data/[a-zA-Z0-9_\-\/\.]*)', base.AdminStaticFileHandler, {'path': GLSettings.client_path}),
+
     ## Special Files Handlers##
     (r'/robots.txt', robots.RobotstxtHandler),
     (r'/sitemap.xml', robots.SitemapHandler),
