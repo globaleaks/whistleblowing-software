@@ -95,7 +95,7 @@ text.axis-worktime {
   display: none;
 }
 
-.changelogmsg {
+.license, .changelogmsg {
   white-space: pre-line;
   width: 85ch;
 }

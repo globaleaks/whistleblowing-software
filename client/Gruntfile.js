@@ -790,17 +790,19 @@ module.exports = function(grunt) {
   // Processes misc files included in the GlobaLeaks repository that need to be
   // included as data like the license and changelog
   grunt.registerTask('includeExternalFiles', function() {
-      var content = grunt.file.read('../LICENSE');
-      fs.writeFileSync('tmp/data/license.txt', content)
+      var manifest = {};
 
-      content = grunt.file.read('../CHANGELOG');
-      fs.writeFileSync('tmp/data/changelog.txt', content)
-      var lines = content.split("\n"),
-          changelog = [],
-          obj;
+      var obj;
+      var changelog_content = grunt.file.read('../CHANGELOG');
+      var changelog_lines = changelog_content.split("\n");
+      var license_content = grunt.file.read('../LICENSE');
 
-      for (var i = 0; i < lines.length; i++) {
-        var l = lines[i];
+      manifest.version = JSON.parse(grunt.file.read("package.json")).version;
+      manifest.license = license_content;
+
+      manifest.changelog = [];
+      for (var i = 0; i < changelog_lines.length; i++) {
+        var l = changelog_lines[i];
         // Format of the first line of every new release is:
         // Changes in version 2.76.4 - 2017-04-12
         if (/^(Changes in version)/.test(l)) {
@@ -811,7 +813,7 @@ module.exports = function(grunt) {
           obj.version = res[1];
           obj.date = res[3];
           obj.txt = '';
-          changelog.push(obj);
+          manifest.changelog.push(obj);
         } else {
           obj.txt += l + '\n';
         }
@@ -820,11 +822,9 @@ module.exports = function(grunt) {
       obj.txt = obj.txt.replace(/^\s+|\s+$/g, "");
       obj.txt = obj.txt.slice(0,-1);
 
-      // Using object here due to issues with exporting raw lists via json
-      var output = JSON.stringify({'v': changelog});
-      fs.writeFileSync('tmp/data/changelog.json', output);
+      manifest = JSON.stringify(manifest);
 
-      console.log('Copied misc files into ./tmp');
+      fs.writeFileSync('tmp/data/manifest.json', manifest);
   });
 
 
