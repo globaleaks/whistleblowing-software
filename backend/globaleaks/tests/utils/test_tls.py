@@ -64,7 +64,11 @@ class TestObjectValidators(TestCase):
             # DER formatted key
             'rsa_key.der',
             # PKCS8 encrypted private key
-            'rsa_key_monalisa_pass.pem'
+            'rsa_key_monalisa_pass.pem',
+            # A cert and chain for the key that are mistakenly combinded
+            'cert_and_chain.pem',
+            # A certficate repeated a few times
+            'duplicated_chain.pem',
         ]
 
         self.valid_setup = get_valid_setup()
@@ -213,3 +217,27 @@ class TestObjectValidators(TestCase):
             res = tls.parse_issuer_name(x509)
 
             self.assertEqual(res, issuer_name)
+
+    def test_split_pem_chain(self):
+        test_cases = [
+            ('invalid/bytes.out', 0),
+            ('invalid/garbage_key.pem', 0),
+            ('invalid/glbc_le_stage_cert.pem', 1),
+            ('invalid/expired_cert.pem', 1),
+            ('invalid/le-staging-chain.pem', 1),
+            ('invalid/cert_and_chain.pem', 2),
+            ('invalid/duplicated_chain.pem', 4),
+            ('valid/chains/comodo_chain.pem', 3),
+        ]
+
+        for chain_path, chain_len in test_cases:
+            p = os.path.join(self.test_data_dir, chain_path)
+            with open(p, 'r') as f:
+                chain = tls.split_pem_chain(f.read())
+
+            self.assertEqual(len(chain), chain_len)
+
+            # Check one time that the parse produced real results
+            if chain_path == 'invalid/cert_and_chain.pem':
+                self.assertEqual(self.valid_setup['cert'], chain[0])
+                self.assertEqual(self.valid_setup['chain'], chain[1])

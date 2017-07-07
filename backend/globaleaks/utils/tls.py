@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from twisted.internet import ssl
+import re
 
 from OpenSSL import crypto, SSL
 from OpenSSL.crypto import load_certificate, dump_certificate, load_privatekey, FILETYPE_PEM, TYPE_RSA, PKey, dump_certificate_request, X509Req, _new_mem_buf, _bio_to_string
 from OpenSSL._util import lib as _lib, ffi as _ffi
-
 from pyasn1.type import univ, constraint, char, namedtype, tag
 from pyasn1.codec.der.decoder import decode
+from twisted.internet import ssl
 
 
 class ValidationException(Exception):
@@ -91,7 +91,7 @@ def gen_x509_csr(key_pair, csr_fields, csr_sign_bits):
 
 
 def parse_issuer_name(x509):
-    '''Returns the issuer's name from a `OpenSSL.crypto.X509` cert'''
+    """Returns the issuer's name from a `OpenSSL.crypto.X509` cert"""
     name = x509.get_issuer()
     if name.O is not None:
         return name.organizationName
@@ -103,6 +103,15 @@ def parse_issuer_name(x509):
         return name.emailAddress
     else:
         return ''
+
+
+def split_pem_chain(s):
+    """Splits an ascii armored cert chain into a list of strings which could be valid certs"""
+    gex_str = r"-----BEGIN CERTIFICATE-----\r?.+?\r?-----END CERTIFICATE-----\r?\n?"
+    gex = re.compile(gex_str, re.DOTALL)
+
+    matches = [m.group(0) for m in gex.finditer(s)]
+    return matches
 
 
 def new_tls_context():
@@ -219,6 +228,13 @@ class CertValidator(CtxValidator):
         if certificate == '':
             raise ValidationException('There is no certificate')
 
+        possible_chain = split_pem_chain(certificate)
+        if len(possible_chain) < 1:
+            raise ValidationException('The certificate is not in the right format.')
+
+        if len(possible_chain) > 1:
+            raise ValidationException('There is more than one certificate loaded.')
+
         x509 = load_certificate(FILETYPE_PEM, certificate)
 
         if check_expiration and x509.has_expired():
@@ -240,12 +256,17 @@ class ChainValidator(CtxValidator):
     def _validate(self, cfg, ctx, check_expiration):
         store = ctx.get_cert_store()
 
-        intermediate = cfg['ssl_intermediate']
-        if intermediate != '':
-            x509 = load_certificate(FILETYPE_PEM, intermediate)
+        raw_chain = cfg['ssl_intermediate']
+        chain = split_pem_chain(raw_chain)
+
+        if len(chain) == 0 and raw_chain != '':
+            raise ValidationException('The certificate chain is invalid')
+
+        for cert in chain:
+            x509 = load_certificate(FILETYPE_PEM, cert)
 
             if check_expiration and x509.has_expired():
-                raise ValidationException('The intermediate cert has expired')
+                raise ValidationException('An intermediate certificate has expired')
 
             store.add_cert(x509)
 
