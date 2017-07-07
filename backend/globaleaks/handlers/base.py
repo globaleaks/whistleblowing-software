@@ -497,7 +497,6 @@ class BaseHandler(object):
 
             send_exception_email(error)
 
-        # TODO (nskelsey) move into rest/api.py Resource
         track_handler(self)
 
         if self.uniform_answer_time:
@@ -523,3 +522,7 @@ class StaticFileHandler(BaseHandler):
         directory_traversal_check(self.root, abspath)
 
         return self.write_file(abspath)
+
+
+class AdminStaticFileHandler(StaticFileHandler):
+    check_roles = 'admin'
