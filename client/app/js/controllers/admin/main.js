@@ -213,10 +213,15 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminHomeCtrl', ['$scope', function($scope) {
-  // NOTE tabs structure is defined in the related view.
-  $scope.changelog = $scope.$resolve.changelog;
+controller('AdminHomeCtrl', ['$scope', 'ManifestResource', function($scope, ManifestResource) {
+  ManifestResource.get().$promise.then(function(manifest) {
+    $scope.manifest = manifest;
+  });
+
   $scope.displayNum = 10;
+  $scope.showMore = function() {
+    $scope.displayNum = undefined;
+  }
 }]).
 controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
   function($scope, $uibModal){

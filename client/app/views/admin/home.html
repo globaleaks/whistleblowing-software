@@ -14,18 +14,19 @@
                 <div class="col-md-12">
                   <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
                 </div>
-                <div class="col-md-12" data-ng-repeat="change in $resolve.changelog | limitTo:displayNum">
+                <div class="col-md-12" data-ng-repeat="change in manifest.changelog | limitTo:displayNum">
                   <hr/>
                   <span data-release-msg></span>
                 </div>
               </div>
               <hr/>
-              <a type="button" class="btn btn-default"
-                 href="/data/changelog.txt"
-                 target="_blank" rel="noreferrer noopener">
+              <button data-ng-if="displayNum"
+                      type="button"
+                      class="btn btn-default"
+                      data-ng-click="showMore()">
                 <span data-translate>Show more</span>
                 <i class="glyphicon glyphicon glyphicon-link"></i>
-              </a>
+              </button>
             </div>
           </uib-tab>
 
