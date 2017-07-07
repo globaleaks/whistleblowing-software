@@ -91,7 +91,7 @@ DO () {
 # Preliminary Requirements Check
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
-for REQ in apt-key apt-get gpg
+for REQ in apt-key apt-get gpg wget
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
