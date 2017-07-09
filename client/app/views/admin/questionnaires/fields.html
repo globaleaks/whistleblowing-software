@@ -59,6 +59,7 @@
                 <span data-translate>Cancel</span>
               </button>
               <button class="btn btn-xs btn-danger"
+                data-ng-if="editable"
                 data-ng-click="delField($parent.fields, field); $event.stopPropagation();"
                 popover-placement="right"
                 popover-trigger="'mouseenter'">
@@ -269,6 +270,10 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
             <div class="form-group" data-ng-if="showOptions(field)">
               <label data-translate>Options</label>
               <div class="col-md-12">
@@ -312,20 +317,23 @@
                 </div>
               </div>
             </div>
-            <div data-ng-if="editable && field.type === 'fieldgroup'">
-              <div class="col-md-12">
-                <label data-translate>Add new question</label>
-                <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
-              </div>
-              <div class="col-md-12" data-ng-if="admin.node.enable_experimental_features && field.instance === 'instance' && admin.fieldtemplates.length > 0">
-                <label data-translate>Add question from template</label>
-                <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
-              </div>
+          </div>
+        </div>
+        <div data-ng-if="editable && field.instance !== 'reference' && field.type === 'fieldgroup'">
+          <div class="row" data-ng-if="editable && field.type === 'fieldgroup'">
+            <div class="col-md-12">
+              <label data-translate>Add new question</label>
+              <div data-ng-include="'views/admin/questionnaires/add_field.html'"></div>
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group" data-ng-if="editable && (field.instance !== 'reference' && fields.length > 0)">
-                  <div class="editorTitle" data-translate>Configured questions:</div>
+            <div class="col-md-12" data-ng-if="admin.node.enable_experimental_features && field.instance === 'instance' && admin.fieldtemplates.length > 0">
+            <label data-translate>Add question from template</label>
+              <div data-ng-include="'views/admin/questionnaires/add_field_from_template.html'"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group" data-ng-if="fields.length > 0">
+                <div class="editorTitle" data-translate>Configured questions:</div>
                   <div class="configuredFields">
                     <div data-ng-repeat="field in fields | orderBy:['y', 'x']">
                       <div data-ng-include="'views/admin/questionnaires/fields.html'"></div>
