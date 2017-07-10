@@ -77,7 +77,7 @@ DO () {
     CMD=$3
   fi
   echo -n "Running: \"$CMD\"... "
-  $CMD &>${LOGFILE}
+  eval $CMD &>${LOGFILE}
   if [ "$?" -eq "$RET" ]; then
     echo "SUCCESS"
   else
@@ -113,8 +113,11 @@ DO "apt-key add $TMPFILE"
 DO "rm -f $TMPFILE"
 
 echo "Adding Tor PGP key to trusted APT"
-gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
-gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+TMPFILE=/tmp/torproject_key.$RANDOM
+DO "gpg --keyserver keys.gnupg.net --recv A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89"
+DO "gpg --output $TMPFILE --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89"
+DO "apt-key add $TMPFILE"
+DO "rm -f $TMPFILE"
 
 DO "apt-get update -y"
 
@@ -128,12 +131,12 @@ fi
 
 if ! grep -q "^deb .*universe" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
   echo "Adding Ubuntu Universe repository"
-  add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe"
+  DO "add-apt-repository 'deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe'"
 fi
 
 if ! grep -q "^deb .*torproject" /etc/apt/sources.list /etc/apt/sources.list.d/*; then
   echo "Adding Tor repository"
-  add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main"
+  DO "add-apt-repository 'deb http://deb.torproject.org/torproject.org $(lsb_release -sc) main'"
 fi
 
 if [ -d /globaleaks/deb ]; then
