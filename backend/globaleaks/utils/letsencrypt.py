@@ -15,7 +15,7 @@ from acme import challenges, client, jose, messages, util
 from globaleaks.utils.utility import log
 
 
-class ChallTok():
+class ChallTok:
     def __init__(self, tok):
         self.tok = tok
 

@@ -22,7 +22,7 @@ if sys.version_info < (2, 7, 9):  # pragma: no cover
     except AttributeError:
         import urllib3
 
-        class Object():
+        class Object:
             pass
 
         requests.packages = Object()

@@ -193,7 +193,7 @@ class APIResourceWrapper(Resource):
                 pattern, handler, args = tup
 
             if not pattern.startswith("^"):
-                pattern = "^" + pattern;
+                pattern = "^" + pattern
 
             if not pattern.endswith("$"):
                 pattern += "$"
