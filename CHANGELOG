@@ -1,4 +1,12 @@
-Changes in version 2.70.1 - 2017-07-02
+Changes in version 2.70.3 - 2017-07-10
+    o Fix serialization of contexts and recipients images #1986
+    o Make it possible to load a custom (pre-existing) hidden service key #1993
+    o Add retries to HS Tor setup and improve debugging of failures #1994
+    o Fix upload of files with unknown file type #1999
+    o Update LICENSE #1975 #1980
+    o Update translations
+
+Changes in version 2.70.2 - 2017-07-02
     o Set requirement for Tor package >= 0.2.9.11
     o Improve install script to fix common missing requirements
       and allow to be executed twice for updating an existing instance
