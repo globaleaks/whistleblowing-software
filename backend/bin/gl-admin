@@ -240,14 +240,14 @@ parser = argparse.ArgumentParser(prog="gl-admin",
 
 subp = parser.add_subparsers(title="commands")
 
-bck_p = subp.add_parser("backup", help="create a zipped backup of the gl working dir")
+bck_p = subp.add_parser("backup", help="create a backup of the setup")
 bck_p.add_argument("-w", "--workdir", help="the location of dynamic globaleaks content",
                    default=default_workdir())
 bck_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
                    default=default_backup_path())
 bck_p.set_defaults(func=backup)
 
-res_p = subp.add_parser("restore", help="unpack a zipped backup of globaleaks")
+res_p = subp.add_parser("restore", help="restore a backup of the setup")
 res_p.add_argument("-w", "--workdir", help="the location of dynamic gl content",
                    default=default_workdir())
 res_p.add_argument("backuppath", nargs="?", help="the path and name of the backup",
@@ -263,12 +263,12 @@ pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("readvar", help="read database config variable")
 rv_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
-rv_p.add_argument("varname", help="the unprefixed name of the config var", default='version')
+rv_p.add_argument("varname", help="the name of the config var", default='version')
 rv_p.set_defaults(func=read_var)
 
 sv_p = subp.add_parser("setvar", help="set database config variable")
 sv_p.add_argument("--dbpath", help="the path to the globaleaks db directory", default=default_db_path())
-sv_p.add_argument("varname", help="the unprefixed name of the config var")
+sv_p.add_argument("varname", help="the name of the config var")
 sv_p.add_argument("value", help="value which must be of the correct type Bool(0|1), Int(0-9^9), String(everything else)")
 sv_p.set_defaults(func=set_var)
 
