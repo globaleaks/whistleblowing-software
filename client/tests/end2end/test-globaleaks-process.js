@@ -1,6 +1,7 @@
 var path = require('path');
 
-var fileToUpload = path.resolve(__filename);
+var fileToUpload1 = browser.gl.utils.makeTestFilePath('antani.txt');
+var fileToUpload2 = browser.gl.utils.makeTestFilePath('unknown.filetype');
 
 describe('globaLeaks process', function() {
   var tip_text = 'topsecret';
@@ -47,9 +48,9 @@ describe('globaLeaks process', function() {
     element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text);
     if (browser.gl.utils.testFileUpload()) {
       browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
-      element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+      element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
         browser.waitForAngular();
-        element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+        element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
           browser.waitForAngular();
         });
       });
@@ -169,9 +170,9 @@ describe('globaLeaks process', function() {
     browser.gl.utils.login_whistleblower(receipts[0]);
 
     browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "opacity:0; visibility: visible;");');
-    element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+    element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
       browser.waitForAngular();
-      element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload).then(function() {
+      element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
         browser.waitForAngular();
         // TODO: test file addition
         browser.gl.utils.logout();

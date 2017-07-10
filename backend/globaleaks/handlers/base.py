@@ -467,6 +467,8 @@ class BaseHandler(object):
                     return None
 
             mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
+            if mime_type is None:
+                mime_type = 'application/octet-stream'
 
             uploaded_file = {
                 'name': self.request.args['flowFilename'][0],
