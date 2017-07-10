@@ -162,7 +162,6 @@ describe('Test file upload/download consistency', function() {
       element(by.id('tip-0')).click();
 
       rec.wbfile_widget().element(by.css('input[type="text"]')).sendKeys(f1_text);
-      rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
       rec.uploadWBFile(f1_info.origin_path);
 
       browser.gl.utils.waitUntilPresent(by.css('#wbfile-0 p.description')).then(function() {
@@ -171,7 +170,6 @@ describe('Test file upload/download consistency', function() {
 
         browser.gl.utils.waitUntilPresent(by.css('#TipPageWBFileUpload input[type="text"]')).then(function() {
           rec.wbfile_widget().element(by.css('input[type="text"]')).sendKeys(f2_text);
-          rec.wbfile_widget().element(by.css('.input-group-btn button')).click();
           rec.uploadWBFile(f2_info.origin_path);
 
           browser.gl.utils.waitUntilPresent(by.css('#wbfile-1 p.description')).then(function() {
