@@ -65,7 +65,7 @@ class OnionService(ServiceJob):
         control_socket = FilePath('/var/run/tor/control')
 
         log.info('Waiting for Tor to become available')
-        while(not control_socket.exists()):
+        while not control_socket.exists():
             yield deferred_sleep(1)
 
         log.info('Starting up Tor connection')
@@ -97,7 +97,7 @@ class OnionService(ServiceJob):
 
         @inlineCallbacks
         def initialization_callback(ret):
-            log.info('Initialization of hidden-service %s completed.' % (ephs.hostname))
+            log.info('Initialization of hidden-service %s completed.', ephs.hostname)
             if hostname == '' and key == '':
                 yield set_onion_service_info(ephs.hostname, ephs.private_key)
 

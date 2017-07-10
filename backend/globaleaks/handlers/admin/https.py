@@ -469,7 +469,7 @@ class CSRFileHandler(FileHandler):
             raise errors.ValidationError('CSR gen failed')
 
 
-class AcmeAccntKeyRes():
+class AcmeAccntKeyRes:
     @classmethod
     @transact
     def create_file(store, cls):

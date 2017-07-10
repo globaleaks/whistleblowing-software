@@ -377,7 +377,7 @@ class BaseHandler(object):
                 success_check += 1
 
                 if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
-                    if (message_template[key]):
+                    if message_template[key]:
                         BaseHandler.validate_jmessage(jmessage[key], message_template[key])
 
             if success_check == len(message_template.keys()) * 2:

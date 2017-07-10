@@ -158,7 +158,7 @@ def serialize_context(store, context, language, data=None):
     @return: a dict describing the contexts available for submission,
         (e.g. checks if almost one receiver is associated)
     """
-    if (context.img_id is not None and context.img_id in data['imgs']):
+    if context.img_id is not None and context.img_id in data['imgs']:
         img = data['imgs'][context.img_id]
     else:
         img = ''
@@ -342,7 +342,7 @@ def serialize_receiver(store, receiver, language, data=None):
 
     user = data['users'][receiver.id]
 
-    if (user.img_id is not None and user.img_id in data['imgs']):
+    if user.img_id is not None and user.img_id in data['imgs']:
         img = data['imgs'][user.img_id]
     else:
         img = ''
