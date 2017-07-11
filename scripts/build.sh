@@ -17,7 +17,7 @@ usage() {
   echo -e " -p (push on repository)"
 }
 
-TARGETS="precise trusty xenial wheezy jessie stretch"
+TARGETS="precise trusty xenial wheezy jessie"
 DISTRIBUTION="trusty"
 TAG="master"
 LOCAL_ENV=0
