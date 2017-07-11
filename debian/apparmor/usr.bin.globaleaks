@@ -1,6 +1,6 @@
 #include <tunables/global>
 
-profile usr.bin.globaleaks {
+profile usr.bin.globaleaks flags=(attach_disconnected) {
     #include <abstractions/base>
     #include <abstractions/nameservice>
 
