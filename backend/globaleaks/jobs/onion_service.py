@@ -1,6 +1,7 @@
 #        -*- encoding: utf-8 -*-
-# Implements periodic checks in order to verify pgp key status and other consistencies:
+# Implements configuration of Tor hidden service
 
+import os
 from datetime import timedelta
 
 from globaleaks import models
@@ -19,7 +20,6 @@ from txtorcon import build_local_tor_connection
 from twisted.internet import reactor
 from twisted.internet.error import ConnectionRefusedError
 from twisted.internet.defer import inlineCallbacks, Deferred
-from twisted.python.filepath import FilePath
 
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.rest.apicache import GLApiCache
@@ -57,33 +57,43 @@ def set_onion_service_info(store, hostname, key):
 class OnionService(ServiceJob):
     name = "OnionService"
     threaded = False
+    print_startup_error = True
 
     @inlineCallbacks
     def service(self, restart_deferred):
         hostname, key = yield get_onion_service_info()
 
-        control_socket = FilePath('/var/run/tor/control')
+        control_socket = '/var/run/tor/control'
 
-        log.info('Waiting for Tor to become available')
-        while not control_socket.exists():
-            yield deferred_sleep(1)
+        if not os.path.exists(control_socket):
+            log.err('Tor control port not open on /var/run/tor/control; waiting for Tor to become available')
+            while not os.path.exists(control_socket):
+                yield deferred_sleep(1)
 
-        log.info('Starting up Tor connection')
-        try:
-            d = build_local_tor_connection(reactor)
+        if not os.access(control_socket, os.R_OK):
+            log.err('Unable to access /var/run/tor/control; manual permission recheck needed')
+            while not os.access(control_socket, os.R_OK):
+                yield deferred_sleep(1)
 
-            def errback(err):
+        def print_startup_failure():
+            if self.print_startup_error:
+                # Print error only on first run or failure or on a failure subsequent to a success condition
+                self.print_startup_error = False
                 log.err('Failed to initialize Tor connection; Tor daemon is down or misconfigured . . .')
-                restart_deferred.callback(None)
-                raise err
 
-            d.addErrback(errback)
+        d1 = build_local_tor_connection(reactor)
 
-            tor_conn = yield d
+        def errback(err):
+            print_startup_failure()
+            restart_deferred.callback(None)
+            raise err
 
-            tor_conn.protocol.on_disconnect = restart_deferred
-        except ConnectionRefusedError as e:
-            return
+        d1.addErrback(errback)
+
+        tor_conn = yield d1
+
+        self.print_startup_error = True
+        tor_conn.protocol.on_disconnect = restart_deferred
 
         log.debug('Successfully connected to Tor control port')
 
@@ -100,6 +110,9 @@ class OnionService(ServiceJob):
             log.info('Initialization of hidden-service %s completed.', ephs.hostname)
             if hostname == '' and key == '':
                 yield set_onion_service_info(ephs.hostname, ephs.private_key)
+
+        d2 = ephs.add_to_tor(tor_conn.protocol)
+        d2.addCallback(initialization_callback) # pylint: disable=no-member
 
     def operation(self):
         deferred = Deferred()
