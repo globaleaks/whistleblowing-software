@@ -77,41 +77,40 @@ def db_prepare_fields_serialization(store, fields):
         if f.template_id is not None:
             fields_ids.append(f.template_id)
 
-    for f in fields_ids:
-         ret['fields'][f] = []
-         ret['attrs'][f] = []
-         ret['options'][f] = []
-         ret['triggers'][f] = []
-
     while len(fields_ids):
         fs = store.find(models.Field, In(models.Field.fieldgroup_id, fields_ids))
 
         tmp = []
         for f in fs:
+            if f.fieldgroup_id not in ret['fields']:
+               ret['fields'][f.fieldgroup_id] = []
             ret['fields'][f.fieldgroup_id].append(f)
             tmp.append(f.id)
             if f.template_id is not None:
                 fields_ids.append(f.template_id)
                 tmp.append(f.template_id)
 
+        # this del/append trick is required to update the same object
         del fields_ids[:]
         for f in tmp:
-            ret['fields'][f] = []
-            ret['attrs'][f] = []
-            ret['options'][f] = []
-            ret['triggers'][f] = []
             fields_ids.append(f)
 
     objs = store.find(models.FieldAttr, In(models.FieldAttr.field_id, ret['fields'].keys()))
     for obj in objs:
+       if obj.field_id not in ret['attrs']:
+           ret['attrs'][obj.field_id] = []
        ret['attrs'][obj.field_id].append(obj)
 
     objs = store.find(models.FieldOption, In(models.FieldOption.field_id, ret['fields'].keys()))
     for obj in objs:
+       if obj.field_id not in ret['options']:
+           ret['options'][obj.field_id] = []
        ret['options'][obj.field_id].append(obj)
 
     objs = store.find(models.FieldOption, In(models.FieldOption.trigger_field, ret['fields'].keys()))
     for obj in objs:
+       if obj.field_id not in ret['triggers']:
+           ret['triggers'][obj.field_id] = []
        ret['triggers'][obj.field_id].append(obj)
 
     return ret
