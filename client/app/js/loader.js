@@ -1,4 +1,5 @@
-/*eslint no-console: "error"*/
+/* eslint no-console: ["error", { allow: ["error"] }] */
+
 var isBrowserCompatible = function() {
   var crawlers = [
     "Googlebot",
@@ -40,7 +41,7 @@ var isBrowserCompatible = function() {
 
   // Check related to WebCrypto compatibility currently disabled as end2end encryption is still not finalized
   if (!(window.crypto && (window.crypto.subtle || window.crypto.webkitSubtle) && window.crypto.getRandomValues) && !(typeof window.msCrypto === 'object' && typeof window.msCrypto.getRandomValues === 'function')) {
-    console.log("GlobaLeaks startup failure: missing end-2-end encryption requirements");
+    console.error("GlobaLeaks startup failure: missing end-2-end encryption requirements");
     return false;
   }
 
