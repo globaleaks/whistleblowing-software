@@ -1,4 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', function($scope) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', '$uibModal', 'AdminReceiverResource',
+  function($scope, $uibModal, AdminReceiverResource) {
   $scope.save_receiver = function(receiver, cb) {
     if (receiver.pgp_key_remove === true) {
       receiver.pgp_key_public = '';
@@ -9,7 +10,9 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', function($scope) {
       receiver.pgp_key_remove = false;
     }
 
-    return $scope.Utils.update(receiver, cb);
+    var updated_receiver = new AdminReceiverResource(receiver);
+
+    return $scope.Utils.update(updated_receiver, cb);
   };
 
   $scope.moveUpAndSave = function(elem) {

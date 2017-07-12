@@ -3,7 +3,9 @@ GLClient.controller('AdminContextsCtrl',
   function($scope, $uibModal, AdminContextResource) {
 
   $scope.save_context = function (context, cb) {
-    return $scope.Utils.update(context, cb);
+    var updated_context = new AdminContextResource(context);
+
+    return $scope.Utils.update(updated_context, cb);
   };
 
   $scope.perform_delete = function(context) {
