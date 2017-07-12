@@ -71,7 +71,7 @@ class OnionService(ServiceJob):
 
             log.debug('Successfully connected to Tor control port')
 
-            hs_loc = ('80 localhost:8082')
+            hs_loc = ('80 localhost:8083')
             if hostname == '' and key == '':
                 log.info('Creating new onion service')
                 ephs = EphemeralHiddenService(hs_loc)
