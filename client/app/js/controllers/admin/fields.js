@@ -1,4 +1,5 @@
-GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
+GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.admin.fieldtemplates.$promise.then(function(fields) {
       $scope.fields = fields;
     });
@@ -8,14 +9,16 @@ GLClient.controller('AdminFieldTemplatesCtrl', ['$scope', function($scope) {
     };
 
     $scope.delField = function(fields, field) {
-      field.$delete(function() {
+      AdminFieldTemplateResource.delete({
+        id: field.id
+      }, function() {
         $scope.Utils.deleteFromList(fields, field);
       });
     };
   }
 ]).
-controller('AdminFieldEditorCtrl', ['$scope', '$filter',
-  function($scope, $filter) {
+controller('AdminFieldEditorCtrl', ['$scope', '$filter', '$uibModal', 'AdminFieldResource', 'AdminFieldTemplateResource',
+  function($scope, $filter, $uibModal, AdminFieldResource, AdminFieldTemplateResource) {
     $scope.editable = $scope.field.editable === true && $scope.field.instance !== 'reference';
     $scope.editing = false;
     $scope.new_field = {};
@@ -105,8 +108,17 @@ controller('AdminFieldEditorCtrl', ['$scope', '$filter',
     };
 
     $scope.save_field = function(field) {
+      var updated_field;
+
       $scope.Utils.assignUniqueOrderIndex(field.options);
-      $scope.Utils.update(field);
+
+      if (field.instance === 'template') {
+        updated_field = new AdminFieldTemplateResource(field);
+      } else {
+        updated_field = new AdminFieldResource(field);
+      }
+
+      $scope.Utils.update(updated_field);
     };
 
     $scope.moveUpAndSave = function(elem) {
