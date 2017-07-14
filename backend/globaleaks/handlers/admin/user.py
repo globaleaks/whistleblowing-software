@@ -201,6 +201,7 @@ def get_user_list(store, language):
 
 class UsersCollection(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
     invalidate_cache = True
 
     def get(self):
