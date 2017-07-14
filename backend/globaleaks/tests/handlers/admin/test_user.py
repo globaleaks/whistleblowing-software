@@ -44,12 +44,6 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = user.UserInstance
 
     @inlineCallbacks
-    def test_get(self):
-        handler = self.request(role='admin')
-        response = yield handler.get(self.dummyAdminUser['id'])
-        self.assertEqual(response['id'], self.dummyAdminUser['id'])
-
-    @inlineCallbacks
     def test_put_change_name(self):
         self.dummyAdminUser['name'] = u'new unique name %d' % random.randint(1, 10000)
 
@@ -73,8 +67,8 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
                                  errors.UserNotDeletable)
 
     @inlineCallbacks
-    def test_delete_receiver_should_succeed(self):
+    def test_delete_receiver(self):
         handler = self.request(role='admin')
         yield handler.delete(self.dummyReceiverUser_1['id'])
-        yield self.assertFailure(handler.get(self.dummyReceiverUser_1['id']),
+        yield self.assertFailure(handler.delete(self.dummyReceiverUser_1['id']),
                                  errors.UserIdNotFound)

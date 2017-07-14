@@ -197,16 +197,6 @@ class QuestionnaireInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    def get(self, questionnaire_id):
-        """
-        Get the specified questionnaire.
-
-        Parameters: questionnaire_id
-        Response: AdminQuestionnaireDesc
-        Errors: QuestionnaireIdNotFound, InvalidInputFormat
-        """
-        return get_questionnaire(questionnaire_id, self.request.language)
-
     def put(self, questionnaire_id):
         """
         Update the specified questionnaire.

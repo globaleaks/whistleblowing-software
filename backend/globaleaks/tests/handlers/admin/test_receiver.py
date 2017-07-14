@@ -22,14 +22,6 @@ class TestReceiverInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = receiver.ReceiverInstance
 
     @inlineCallbacks
-    def test_get(self):
-        handler = self.request(role='admin')
-        response = yield handler.get(self.dummyReceiver_1['id'])
-        del self.dummyReceiver_1['contexts']
-        del response['contexts']
-        self.assertEqual(response['id'], self.dummyReceiver_1['id'])
-
-    @inlineCallbacks
     def test_put_invalid_context_id(self):
         self.dummyReceiver_1['contexts'] = [unicode(uuid4())]
 

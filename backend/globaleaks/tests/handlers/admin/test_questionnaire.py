@@ -36,12 +36,6 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = questionnaire.QuestionnaireInstance
 
     @inlineCallbacks
-    def test_get(self):
-        handler = self.request(role='admin')
-        response = yield handler.get(self.dummyQuestionnaire['id'])
-        self._handler.validate_message(json.dumps(response), requests.AdminQuestionnaireDesc)
-
-    @inlineCallbacks
     def test_put(self):
         for attrname in Questionnaire.unicode_keys:
             self.dummyQuestionnaire[attrname] = stuff
@@ -58,5 +52,5 @@ class TestQuestionnaireInstance(helpers.TestHandlerWithPopulatedDB):
         ctx_handler = self.request({}, handler_cls=ContextInstance, role='admin')
         yield ctx_handler.delete(self.dummyContext['id'])
         yield handler.delete(self.dummyQuestionnaire['id'])
-        yield self.assertFailure(handler.get(self.dummyQuestionnaire['id']),
+        yield self.assertFailure(handler.delete(self.dummyQuestionnaire['id']),
                                  errors.QuestionnaireIdNotFound)

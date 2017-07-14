@@ -229,24 +229,6 @@ def update_field(store, field_id, field, language):
 
 
 @transact
-def get_field(store, field_id, language):
-    """
-    Serialize a specified field
-
-    :param store: the store on which perform queries.
-    :param field_id: the id corresponding to the field.
-    :param language: the language in which to localize data
-    :return: the currently configured field.
-    :rtype: dict
-    """
-    field = store.find(models.Field, models.Field.id == field_id).one()
-    if not field:
-        raise errors.FieldIdNotFound
-
-    return serialize_field(store, field, language)
-
-
-@transact
 def delete_field(store, field_id):
     """
     Delete the field object corresponding to field_id
@@ -339,18 +321,6 @@ class FieldTemplateInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    def get(self, field_id):
-        """
-        Get the field identified by field_id
-
-        :param field_id:
-        :rtype: FieldTemplateDesc
-        :raises FieldIdNotFound: if there is no field with such id.
-        :raises InvalidInputFormat: if validation fails.
-        """
-        return get_field(field_id,
-                         self.request.language)
-
     def put(self, field_id):
         """
         Update a single field template's attributes.
@@ -410,19 +380,6 @@ class FieldInstance(BaseHandler):
     """
     check_roles = 'admin'
     invalidate_cache = True
-
-    def get(self, field_id):
-        """
-        Get the field identified by field_id
-
-        :param field_id:
-        :return: the serialized field
-        :rtype: AdminFieldDesc
-        :raises FieldIdNotFound: if there is no field with such id.
-        :raises InvalidInputFormat: if validation fails.
-        """
-        return get_field(field_id,
-                         self.request.language)
 
     def put(self, field_id):
         """

@@ -264,16 +264,6 @@ class ContextInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    def get(self, context_id):
-        """
-        Get the specified context.
-
-        Parameters: context_id
-        Response: AdminContextDesc
-        Errors: ContextIdNotFound, InvalidInputFormat
-        """
-        return get_context(context_id, self.request.language)
-
     def put(self, context_id):
         """
         Update the specified context.
