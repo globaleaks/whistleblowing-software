@@ -116,6 +116,7 @@ class StepCollection(BaseHandler):
     /admin/steps
     """
     check_roles = 'admin'
+    cache_resource = True
     invalidate_cache = True
 
     def post(self):

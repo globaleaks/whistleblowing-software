@@ -384,6 +384,7 @@ class FieldCollection(BaseHandler):
     /admin/fields
     """
     check_roles = 'admin'
+    cache_resource = True
     invalidate_cache = True
 
     def post(self):

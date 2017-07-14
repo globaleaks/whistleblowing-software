@@ -232,6 +232,7 @@ def delete_context(store, context_id):
 
 class ContextsCollection(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
     invalidate_cache = True
 
     def get(self):

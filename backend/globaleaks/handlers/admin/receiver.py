@@ -107,6 +107,7 @@ def update_receiver(store, receiver_id, request, language):
 
 class ReceiversCollection(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
 
     def get(self):
         """
