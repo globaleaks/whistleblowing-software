@@ -29,6 +29,7 @@ def db_create_admin_user(store, request, language):
 
     return user
 
+
 @transact
 def create_admin_user(store, request, language):
     return user_serialize_user(db_create_admin_user(store, request, language), language)
@@ -238,16 +239,6 @@ class UsersCollection(BaseHandler):
 class UserInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
-
-    def get(self, user_id):
-        """
-        Get the specified user.
-
-        Parameters: user_id
-        Response: AdminUserDesc
-        Errors: InvalidInputFormat, UserIdNotFound
-        """
-        return get_user(user_id, self.request.language)
 
     def put(self, user_id):
         """

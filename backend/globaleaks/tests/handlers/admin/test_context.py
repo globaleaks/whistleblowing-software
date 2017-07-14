@@ -36,12 +36,6 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     _handler = context.ContextInstance
 
     @inlineCallbacks
-    def test_get(self):
-        handler = self.request(role='admin')
-        response = yield handler.get(self.dummyContext['id'])
-        self._handler.validate_message(json.dumps(response), requests.AdminContextDesc)
-
-    @inlineCallbacks
     def test_put(self):
         for attrname in Context.localized_keys:
             self.dummyContext[attrname] = stuff
@@ -66,5 +60,5 @@ class TestContextInstance(helpers.TestHandlerWithPopulatedDB):
     def test_delete(self):
         handler = self.request(self.dummyContext, role='admin')
         yield handler.delete(self.dummyContext['id'])
-        yield self.assertFailure(handler.get(self.dummyContext['id']),
+        yield self.assertFailure(handler.delete(self.dummyContext['id']),
                                  errors.ContextIdNotFound)

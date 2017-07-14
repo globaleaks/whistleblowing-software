@@ -60,21 +60,6 @@ class TestFieldInstance(helpers.TestHandler):
         _handler = admin.field.FieldInstance
 
         @inlineCallbacks
-        def test_get(self):
-            """
-            Create a new field, then get it back using the received id.
-            """
-            values = helpers.get_dummy_field()
-            values['instance'] = 'instance'
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            values['step_id'] = yield get_id_of_first_step_of_questionnaire(context['questionnaire_id'])
-            field = yield create_field(values, 'en')
-
-            handler = self.request(role='admin')
-            response = yield handler.get(field['id'])
-            self.assertEqual(field['id'], response['id'])
-
-        @inlineCallbacks
         def test_put(self):
             """
             Attempt to update a field, changing its type via a put request.
@@ -122,19 +107,6 @@ class TestFieldInstance(helpers.TestHandler):
 
 class TestFieldTemplateInstance(helpers.TestHandlerWithPopulatedDB):
         _handler = admin.field.FieldTemplateInstance
-
-        @inlineCallbacks
-        def test_get(self):
-            """
-            Create a new field, the get it back using the receieved id.
-            """
-            values = helpers.get_dummy_field()
-            values['instance'] = 'template'
-            field = yield create_field(values, 'en')
-
-            handler = self.request(role='admin')
-            response = yield handler.get(field['id'])
-            self.assertEqual(field['id'], response['id'])
 
         @inlineCallbacks
         def test_put(self):

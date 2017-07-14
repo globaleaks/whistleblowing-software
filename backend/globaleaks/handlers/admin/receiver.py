@@ -124,16 +124,6 @@ class ReceiverInstance(BaseHandler):
     check_roles = 'admin'
     invalidate_cache = True
 
-    def get(self, receiver_id):
-        """
-        Get the specified receiver.
-
-        Parameters: receiver_id
-        Response: AdminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverIdNotFound
-        """
-        return get_receiver(receiver_id, self.request.language)
-
     def put(self, receiver_id):
         """
         Update the specified receiver.

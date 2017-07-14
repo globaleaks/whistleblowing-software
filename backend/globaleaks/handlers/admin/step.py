@@ -74,24 +74,6 @@ def update_step(store, step_id, request, language):
 
 
 @transact
-def get_step(store, step_id, language):
-    """
-    Serialize the specified step
-
-    :param store: the store on which perform queries.
-    :param step_id: the id corresponding to the step.
-    :param language: the language in which to localize data
-    :return: the currently configured step.
-    :rtype: dict
-    """
-    step = store.find(models.Step, models.Step.id == step_id).one()
-    if not step:
-        raise errors.StepIdNotFound
-
-    return serialize_step(store, step, language)
-
-
-@transact
 def delete_step(store, step_id):
     """
     Delete the step object corresponding to step_id
@@ -141,18 +123,6 @@ class StepInstance(BaseHandler):
     """
     check_roles = 'admin'
     invalidate_cache = True
-
-    def get(self, step_id):
-        """
-        Get the step identified by step_id
-
-        :param step_id:
-        :return: the serialized step
-        :rtype: StepDesc
-        :raises StepIdNotFound: if there is no step with such id.
-        :raises InvalidInputFormat: if validation fails.
-        """
-        return get_step(step_id, self.request.language)
 
     def put(self, step_id):
         """

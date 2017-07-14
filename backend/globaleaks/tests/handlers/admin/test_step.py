@@ -31,20 +31,6 @@ class TestStepInstance(helpers.TestHandler):
         _handler = admin.step.StepInstance
 
         @inlineCallbacks
-        def test_get(self):
-            """
-            Create a new step, then get it back using the received id.
-            """
-            context = yield create_context(copy.deepcopy(self.dummyContext), 'en')
-            step = helpers.get_dummy_step()
-            step['questionnaire_id'] = context['questionnaire_id']
-            step = yield create_step(step, 'en')
-
-            handler = self.request(role='admin')
-            response = yield handler.get(step['id'])
-            self.assertEqual(step['id'], response['id'])
-
-        @inlineCallbacks
         def test_put(self):
             """
             Attempt to update a step, changing it presentation order
