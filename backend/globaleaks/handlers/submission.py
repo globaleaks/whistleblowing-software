@@ -49,7 +49,7 @@ def db_assign_submission_progressive(store):
     return counter.counter
 
 
-def _db_get_archived_field_recursively(field, language):
+def _db_serialize_archived_field_recursively(field, language):
     for key, value in field.get('attrs', {}).iteritems():
         if key not in field['attrs']: continue
         if 'type' not in field['attrs'][key]: continue
@@ -64,42 +64,38 @@ def _db_get_archived_field_recursively(field, language):
         get_localized_values(o, o, models.FieldOption.localized_keys, language)
 
     for c in field.get('children', []):
-        _db_get_archived_field_recursively(c, language)
+        _db_serialize_archived_field_recursively(c, language)
 
     return get_localized_values(field, field, models.Field.localized_keys, language)
 
 
-def _db_get_archived_questionnaire_schema(store, hash, type, language):
-    aqs = store.find(models.ArchivedSchema,
-                     models.ArchivedSchema.hash == hash,
-                     models.ArchivedSchema.type == type).one()
+def _db_serialize_archived_questionnaire_schema(store, aqs, language):
+    questionnaire = copy.deepcopy(aqs.schema)
 
-    if not aqs:
-        log.err("Unable to find questionnaire schema with hash %s" % hash)
-        questionnaire = []
-    else:
-        questionnaire = copy.deepcopy(aqs.schema)
-
-    if type == 'questionnaire':
+    if aqs.type == 'questionnaire':
         for step in questionnaire:
             for field in step['children']:
-                _db_get_archived_field_recursively(field, language)
+                _db_serialize_archived_field_recursively(field, language)
 
             get_localized_values(step, step, models.Step.localized_keys, language)
 
-    elif type == 'preview':
+    elif aqs.type == 'preview':
         for field in questionnaire:
-            _db_get_archived_field_recursively(field, language)
+            _db_serialize_archived_field_recursively(field, language)
 
     return questionnaire
 
 
-def db_get_archived_questionnaire_schema(store, hash, language):
-    return _db_get_archived_questionnaire_schema(store, hash, u'questionnaire', language)
+def db_serialize_archived_questionnaire_schema(store, hash, language):
+    aqs = store.find(models.ArchivedSchema,
+                     models.ArchivedSchema.hash == hash,
+                     models.ArchivedSchema.type == u'questionnaire').one()
+
+    return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
 
-def db_get_archived_preview_schema(store, hash, language):
-    return _db_get_archived_questionnaire_schema(store, hash, u'preview', language)
+def db_serialize_archived_preview_schema(store, aqs, language):
+    return _db_serialize_archived_questionnaire_schema(store, aqs, language)
 
 
 def db_serialize_questionnaire_answers_recursively(answers):
@@ -117,7 +113,7 @@ def db_serialize_questionnaire_answers_recursively(answers):
 def db_serialize_questionnaire_answers(store, usertip):
     internaltip = usertip.internaltip
 
-    questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
+    questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
     answers_ids = []
     filtered_answers_ids = []
@@ -174,7 +170,7 @@ def extract_answers_preview(questionnaire, answers):
     preview = {}
 
     preview.update({f['id']: copy.deepcopy(answers[f['id']])
-    for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
+        for s in questionnaire for f in s['children'] if f['preview'] and f['id'] in answers})
 
     return preview
 
@@ -220,7 +216,7 @@ def serialize_itip(store, internaltip, language):
         'sequence_number': get_submission_sequence_number(internaltip),
         'context_id': internaltip.context_id,
         'context_name': mo.dump_localized_key('name', language),
-        'questionnaire': db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
+        'questionnaire': db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language),
         'receivers': db_get_itip_receiver_list(store, internaltip, language),
         'tor2web': internaltip.tor2web,
         'timetolive': context.tip_timetolive,
