@@ -9,7 +9,7 @@
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import serialize_comment, serialize_message, db_get_itip_comment_list, WhistleblowerFileInstanceHandler
 from globaleaks.handlers.submission import serialize_usertip, \
-    db_save_questionnaire_answers, db_get_archived_questionnaire_schema
+    db_save_questionnaire_answers, db_serialize_archived_questionnaire_schema
 from globaleaks.models import InternalFile, WhistleblowerFile, \
     ReceiverTip, WhistleblowerTip, Comment, Message
 from globaleaks.orm import transact
@@ -154,7 +154,7 @@ def update_identity_information(store, tip_id, identity_field_id, identity_field
     identity_provided = internaltip.identity_provided
 
     if not identity_provided:
-        questionnaire = db_get_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
+        questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, language)
         for step in questionnaire:
             for field in step['children']:
                 if field['id'] == identity_field_id and field['key'] == 'whistleblower_identity':

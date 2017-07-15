@@ -5,14 +5,14 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers to update personal preferences and access to personal data
 
-from storm.expr import And, In
+from storm.expr import And, In, Count
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.rtip import db_postpone_expiration_date, db_delete_rtip
-from globaleaks.handlers.submission import db_get_archived_preview_schema
+from globaleaks.handlers.submission import db_serialize_archived_preview_schema
 from globaleaks.handlers.user import db_user_update_user
 from globaleaks.handlers.user import user_serialize_user
-from globaleaks.models import Receiver, ReceiverTip
+from globaleaks.models import ArchivedSchema, Comment, Context, InternalFile, InternalTip, Message, Receiver, ReceiverTip
 from globaleaks.orm import transact
 from globaleaks.rest import requests, errors
 from globaleaks.settings import GLSettings
@@ -63,28 +63,61 @@ def update_receiver_settings(store, receiver_id, request, language):
 def get_receivertip_list(store, receiver_id, language):
     rtip_summary_list = []
 
-    for rtip in store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id):
-        mo = Rosetta(rtip.internaltip.context.localized_keys)
-        mo.acquire_storm_object(rtip.internaltip.context)
+    rtips = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver_id)
+    itips_ids = [rtip.internaltip_id for rtip in rtips]
+
+    itips_by_id = {}
+    contexts_by_id = {}
+    aqs_by_itip = {}
+    comments_by_itip = {}
+    internalfiles_by_itip = {}
+    messages_by_rtip = {}
+
+    for itip, context, archivedschema in store.find((InternalTip, Context, ArchivedSchema),
+                                                     In(InternalTip.id, itips_ids),
+                                                     Context.id == InternalTip.context_id,
+                                                     ArchivedSchema.hash == InternalTip.questionnaire_hash,
+                                                     ArchivedSchema.type == u'preview'):
+        itips_by_id[itip.id] = itip
+        contexts_by_id[context.id] = context
+        aqs_by_itip[itip.id] = archivedschema
+
+    result = store.find((ReceiverTip.id, Count()),  ReceiverTip.receiver_id == receiver_id, ReceiverTip.id == Message.receivertip_id).group_by(ReceiverTip)
+    for rtip_id, count in result:
+        messages_by_rtip[rtip_id] = count
+
+    result = store.find((InternalTip.id, Count()), In(InternalTip.id, itips_ids), InternalTip.id == Comment.internaltip_id).group_by(InternalTip)
+    for itip_id, count in result:
+        comments_by_itip[itip_id] = count
+
+    result = store.find((InternalTip.id, Count()), In(InternalTip.id, itips_ids), InternalTip.id == InternalFile.internaltip_id).group_by(InternalTip)
+    for itip_id, count in result:
+        internalfiles_by_itip[itip_id] = count
+
+    for rtip in rtips:
+        internaltip = itips_by_id[rtip.internaltip_id]
+        context = contexts_by_id[internaltip.context_id]
+        archivedschema = aqs_by_itip[rtip.internaltip_id]
+        mo = Rosetta(context.localized_keys)
+        mo.acquire_storm_object(context)
 
         rtip_summary_list.append({
             'id': rtip.id,
-            'creation_date': datetime_to_ISO8601(rtip.internaltip.creation_date),
+            'creation_date': datetime_to_ISO8601(internaltip.creation_date),
             'last_access': datetime_to_ISO8601(rtip.last_access),
-            'update_date': datetime_to_ISO8601(rtip.internaltip.update_date),
-            'expiration_date': datetime_to_ISO8601(rtip.internaltip.expiration_date),
-            'progressive': rtip.internaltip.progressive,
-            'new': rtip.access_counter == 0 or rtip.last_access < rtip.internaltip.update_date,
+            'update_date': datetime_to_ISO8601(internaltip.update_date),
+            'expiration_date': datetime_to_ISO8601(internaltip.expiration_date),
+            'progressive': internaltip.progressive,
+            'new': rtip.access_counter == 0 or rtip.last_access < internaltip.update_date,
             'context_name': mo.dump_localized_key('name', language),
             'access_counter': rtip.access_counter,
-            'file_counter': rtip.internaltip.internalfiles.count(),
-            'comment_counter': rtip.internaltip.comments.count(),
-            'message_counter': rtip.messages.count(),
-            'tor2web': rtip.internaltip.tor2web,
-            'questionnaire_hash': rtip.internaltip.questionnaire_hash,
-            'preview_schema': db_get_archived_preview_schema(store, rtip.internaltip.questionnaire_hash, language),
-            'preview': rtip.internaltip.preview,
-            'total_score': rtip.internaltip.total_score,
+            'file_counter': internalfiles_by_itip.get(internaltip.id, 0),
+            'comment_counter': comments_by_itip.get(internaltip.id, 0),
+            'message_counter': messages_by_rtip.get(rtip.id, 0),
+            'tor2web': internaltip.tor2web,
+            'preview_schema': db_serialize_archived_preview_schema(store, archivedschema, language),
+            'preview': internaltip.preview,
+            'total_score': internaltip.total_score,
             'label': rtip.label
         })
 
