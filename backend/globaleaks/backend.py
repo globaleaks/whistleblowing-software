@@ -63,20 +63,20 @@ def pre_listen_startup():
     GLSettings.drop_privileges()
     GLSettings.check_directories()
 
+
 def timedLogFormatter(timestamp, request):
     duration = -1
     if hasattr(request, 'start_time'):
-        duration = round((datetime.now() - request.start_time).microseconds / 1000, 4)
+        et = datetime.now() - request.start_time
+        duration = (et.microseconds + (et.seconds + et.days * 24 * 3600) * 10**6) / 10**3
 
-    line = (u'%(code)s %(method)s %(uri)s %(length)s %(duration)dms' % dict(
+    return (u'%(code)s %(method)s %(uri)s %(length)s %(duration)dms' % dict(
               duration=duration,
               method=_escape(request.method),
               uri=_escape(request.uri),
               proto=_escape(request.clientproto),
               code=request.code,
               length=request.sentLength or u"-"))
-
-    return line
 
 
 class GLService(service.Service):
