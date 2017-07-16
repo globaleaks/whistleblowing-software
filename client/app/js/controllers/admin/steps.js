@@ -76,15 +76,5 @@ controller('AdminStepEditorCtrl', ['$scope', '$uibModal', 'AdminStepResource', '
       $scope.Utils.moveDown(elem);
       $scope.save_step(elem);
     };
-
-    $scope.moveLeftAndSave = function(elem) {
-      $scope.Utils.moveLeft(elem);
-      $scope.save_step(elem);
-    };
-
-    $scope.moveRightAndSave = function(elem) {
-      $scope.Utils.moveRight(elem);
-      $scope.save_step(elem);
-    };
   }
 ]);
