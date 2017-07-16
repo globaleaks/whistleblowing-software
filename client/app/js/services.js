@@ -391,7 +391,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
         url: 'rtip/' + tip.id + '/export',
         responseType: 'blob',
       }).then(function (response) {
-        var filename = $filter('tipFileName')(tip) + '.zip';
+        var filename = $filter('tipID')(tip) + '.zip';
         FileSaver.saveAs(response.data, filename);
       });
     };

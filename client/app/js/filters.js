@@ -39,7 +39,7 @@ filter('anomalyToString', function() {
     return anomalies[anomaly];
   };
 }).
-filter('tipFileName', ['$filter', function($filter) {
+filter('tipID', ['$filter', function($filter) {
   return function(tip) {
     if (angular.isDefined(tip)) {
       var d = $filter('date')(tip.creation_date, 'yyyyMMdd', '0');
