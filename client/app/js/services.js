@@ -868,11 +868,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         return $location.path() === '/wizard';
       },
 
-      isAdminPage: function() {
-        var path = $location.path();
-        return path.substr(0, 6) == '/admin';
-      },
-
       renderCustomCSS: function() {
         if (angular.isUndefined($rootScope.node)) {
           return false;
@@ -971,13 +966,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
             i += 1;
           });
         }
-      },
-
-      exportJSON: function(data, filename) {
-        var json = angular.toJson(data, 2);
-        var blob = new Blob([json], {type: "application/json"});
-        filename = filename === undefined ? 'data.json' : filename;
-        saveAs(blob, filename);
       },
 
       getUploadStatus: function(uploads) {
