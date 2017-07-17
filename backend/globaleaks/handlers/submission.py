@@ -273,7 +273,7 @@ def db_create_whistleblowertip(store, internaltip):
     wbtip.receipt_hash = hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
     store.add(wbtip)
 
-    return receipt, wbtip
+    return receipt
 
 
 @transact
@@ -350,7 +350,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
         log.err("Submission create: unable to create db entry for files: %s" % excep)
         raise excep
 
-    receipt, wbtip = db_create_whistleblowertip(store, submission)
+    receipt = db_create_whistleblowertip(store, submission)
 
     if submission.context.maximum_selectable_receivers > 0 and \
                     len(request['receivers']) > submission.context.maximum_selectable_receivers:
@@ -371,11 +371,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
 
     log.debug("The finalized submission had created %d models.ReceiverTip(s)" % len(rtips))
 
-    submission_dict = serialize_usertip(store, wbtip, language)
-
-    submission_dict.update({'receipt': receipt})
-
-    return submission_dict
+    return {'receipt': receipt}
 
 
 @transact

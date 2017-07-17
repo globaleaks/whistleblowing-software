@@ -47,15 +47,18 @@ def random_login_delay():
     return 0
 
 
+def db_get_wbtip_by_receipt(store, receipt):
+    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
+    return store.find(WhistleblowerTip,
+                     WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
+
+
 @transact
 def login_whistleblower(store, receipt, client_using_tor):
     """
     login_whistleblower returns the WhistleblowerTip.id
     """
-    hashed_receipt = security.hash_password(receipt, GLSettings.memory_copy.private.receipt_salt)
-    wbtip = store.find(WhistleblowerTip,
-                       WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
-
+    wbtip = db_get_wbtip_by_receipt(store, receipt)
     if not wbtip:
         log.debug("Whistleblower login: Invalid receipt")
         GLSettings.failed_login_attempts += 1

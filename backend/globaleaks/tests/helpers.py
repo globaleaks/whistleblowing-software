@@ -13,6 +13,7 @@ from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
+from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
 from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, \
@@ -488,18 +489,16 @@ class TestGL(unittest.TestCase):
                                                            models.ReceiverTip.internaltip_id == models.WhistleblowerTip.id)]
 
     @transact
-    def get_internalfiles_by_wbtip(self, store, wbtip_id):
-        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
-
+    def get_internalfiles_by_receipt(self, store, receipt):
+        wbtip = db_get_wbtip_by_receipt(store, receipt)
         ifiles = store.find(models.InternalFile, models.InternalFile.internaltip_id == unicode(wbtip.id))
 
         return [models.serializers.serialize_ifile(ifile) for ifile in ifiles]
 
 
     @transact
-    def get_receiverfiles_by_wbtip(self, store, wbtip_id):
-        wbtip = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == unicode(wbtip_id)).one()
-
+    def get_receiverfiles_by_receipt(self, store, receipt):
+        wbtip = db_get_wbtip_by_receipt(store, receipt)
         rfiles = store.find(models.ReceiverFile, models.ReceiverFile.receivertip_id == models.ReceiverTip.id,
                                                  models.ReceiverTip.internaltip_id == unicode(wbtip.id))
 
