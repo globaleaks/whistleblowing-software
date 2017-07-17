@@ -29,6 +29,8 @@ setupDependencies() {
   setupBackendDependencies
 }
 
+sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 9000 -j REDIRECT --to-port 8082
+
 npm install -g grunt grunt-cli
 
 if [ "$GLTEST" = "test" ]; then
