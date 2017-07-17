@@ -32,7 +32,7 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
         response = yield handler.put(token.id)
-        returnValue(response)
+        returnValue(response['receipt'])
 
     @inlineCallbacks
     def create_submission_with_files(self, request):
@@ -42,25 +42,25 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
         handler = self.request(self.submission_desc)
         response = yield handler.put(token.id)
-        returnValue(response)
+        returnValue(response['receipt'])
 
     @inlineCallbacks
     def test_create_submission_valid_submission(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission(self.submission_desc)
+        receipt = yield self.create_submission(self.submission_desc)
 
     @inlineCallbacks
     def test_create_submission_attach_files_finalize_and_verify_file_creation(self):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission_with_files(self.submission_desc)
+        receipt = yield self.create_submission_with_files(self.submission_desc)
 
         yield delivery_sched.DeliverySchedule().run()
 
-        self.fil = yield self.get_internalfiles_by_wbtip(self.submission_desc['id'])
+        self.fil = yield self.get_internalfiles_by_receipt(receipt)
         self.assertTrue(isinstance(self.fil, list))
         self.assertEqual(len(self.fil), 3)
 
-        self.rfi = yield self.get_receiverfiles_by_wbtip(self.submission_desc['id'])
+        self.rfi = yield self.get_receiverfiles_by_receipt(receipt)
         self.assertTrue(isinstance(self.rfi, list))
         self.assertEqual(len(self.rfi), self.files_created)
 
@@ -83,9 +83,9 @@ class TestSubmissionEncryptedScenario(helpers.TestHandlerWithPopulatedDB):
         self.submission_desc = yield self.get_dummy_submission(self.dummyContext['id'])
 
         self.submission_desc['answers'] = yield self.fill_random_answers(self.dummyContext['id'])
-        self.submission_desc = yield self.create_submission(self.submission_desc)
+        receipt = yield self.create_submission(self.submission_desc)
 
-        wbtip_id = yield authentication.login_whistleblower(self.submission_desc['receipt'], True)
+        wbtip_id = yield authentication.login_whistleblower(receipt, True)
 
         wbtip_desc = yield wbtip.get_wbtip(wbtip_id, 'en')
 
