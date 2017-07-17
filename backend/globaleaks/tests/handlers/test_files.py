@@ -40,12 +40,6 @@ class TestFileInstance(helpers.TestHandlerWithPopulatedDB):
             yield self.assertFalse(os.path.exists(f['path']))
 
     @inlineCallbacks
-    def test_post_file_finalized_submission(self):
-        yield self.perform_full_submission_actions()
-        handler = self.request()
-        yield self.assertFailure(handler.post(self.dummySubmission['id']), errors.TokenFailure)
-
-    @inlineCallbacks
     def test_post_file_on_unexistent_submission(self):
         handler = self.request()
         yield self.assertFailure(handler.post(u'unexistent_submission'), errors.TokenFailure)
