@@ -792,7 +792,7 @@ module.exports = function(grunt) {
   grunt.registerTask('includeExternalFiles', function() {
       var manifest = {};
 
-      var obj;
+      var obj = {txt: ''};
       var changelog_content = grunt.file.read('../CHANGELOG');
       var changelog_lines = changelog_content.split("\n");
       var license_content = grunt.file.read('../LICENSE');
@@ -806,6 +806,7 @@ module.exports = function(grunt) {
         // Format of the first line of every new release is:
         // Changes in version 2.76.4 - 2017-04-12
         if (/^(Changes in version)/.test(l)) {
+          obj.txt = obj.txt.trim()
           obj = {};
           // Matches version and date
           var res = l.match(/(\d+.\d+(.\d+)?) - (\d{4}-\d{2}-\d{2})/);
@@ -818,9 +819,6 @@ module.exports = function(grunt) {
           obj.txt += l + '\n';
         }
       }
-
-      obj.txt = obj.txt.replace(/^\s+|\s+$/g, "");
-      obj.txt = obj.txt.slice(0,-1);
 
       manifest = JSON.stringify(manifest);
 
