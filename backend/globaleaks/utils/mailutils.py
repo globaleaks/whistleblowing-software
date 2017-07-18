@@ -239,7 +239,11 @@ def send_exception_email(exception_text):
         mail_subject +=  " [%s]" % GLSettings.developer_name
         delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
 
-    exception_text = bytes("GlobaLeaks version: %s\n\n%s" % (__version__, exception_text))
+    exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
+                           % (GLSettings.memory_copy.hostname,
+                              GLSettings.memory_copy.onionservice,
+                              __version__,
+                              exception_text))
 
     sha256_hash = sha256(exception_text)
 
