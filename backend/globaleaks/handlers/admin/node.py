@@ -113,6 +113,7 @@ def update_node(*args):
 
 class NodeInstance(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
     invalidate_cache = True
 
     def get(self):
