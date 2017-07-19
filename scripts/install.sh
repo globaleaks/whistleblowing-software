@@ -84,6 +84,7 @@ DO () {
     echo "FAIL"
     echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
     cat ${LOGFILE}
+    echo "Please help us diagnose the failure and report the installation error on https://forum.globaleaks.org"
     exit 1
   fi
 }
