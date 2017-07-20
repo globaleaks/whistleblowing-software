@@ -43,6 +43,8 @@ def delete_shorturl(store, shorturl_id):
 
 class ShortURLCollection(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
+    invalidate_cache = True
 
     def get(self):
         """
