@@ -16,7 +16,7 @@ from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, GLLogObserver
+from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
 from globaleaks.workers.supervisor import ProcessSupervisor
 
@@ -67,8 +67,7 @@ def pre_listen_startup():
 def timedLogFormatter(timestamp, request):
     duration = -1
     if hasattr(request, 'start_time'):
-        et = datetime.now() - request.start_time
-        duration = (et.microseconds + (et.seconds + et.days * 24 * 3600) * 10**6) / 10**3
+        duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
 
     return (u'%(code)s %(method)s %(uri)s %(length)s %(duration)dms' % dict(
               duration=duration,

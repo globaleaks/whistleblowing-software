@@ -343,6 +343,10 @@ def ISO8601_to_pretty_str(isodate, tz=0):
     return datetime_to_pretty_str(date)
 
 
+def timedelta_to_milliseconds(t):
+    return (t.microseconds + (t.seconds + t.days * 24 * 3600) * 10**6) / 10**3
+
+
 def asn1_datestr_to_datetime(s):
     """
     Returns a datetime for the passed asn1 formatted string or None if the date.
@@ -397,12 +401,13 @@ def bytes_to_pretty_str(b):
 
 
 def caller_name(skip=2):
-    """Get a name of a caller in the format module.class.method
+    """
+    Get a name of a caller in the format module.class.method
 
-       `skip` specifies how many levels of stack to skip while getting caller
-       name. skip=1 means "who calls me", skip=2 "who calls my caller" etc.
+    skip` specifies how many levels of stack to skip while getting caller
+    name. skip=1 means "who calls me", skip=2 "who calls my caller" etc.
 
-       An empty string is returned if skipped levels exceed stack height
+    An empty string is returned if skipped levels exceed stack height
     """
     stack = inspect.stack()
     start = 0 + skip
