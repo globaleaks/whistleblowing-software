@@ -102,13 +102,9 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   grunt build
   cd ..
   debuild -i -us -uc -b
-  sudo mkdir -p /data/globaleaks/deb/
-  sudo cp ../globaleaks*deb /data/globaleaks/deb/
-  set +e # avoid to fail in case of errors cause apparmor will always cause the failure
+  sudo mkdir -p /globaleaks/deb/
+  sudo cp ../globaleaks*deb /globaleaks/deb/
   sudo ./scripts/install.sh --assume-yes --test
-  set -e # re-enable to fail in case of errors
-  sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
-  sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo /etc/init.d/globaleaks restart
   sleep 5
   setupClientDependencies
