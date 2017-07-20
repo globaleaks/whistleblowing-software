@@ -46,14 +46,15 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
       if (tlsConfig.files.chain.set) {
         t = 3;
       }
-
-      if (tlsConfig.enabled) {
-        t = -1;
-      }
+    } else if (tlsConfig.files.priv_key.set &&
+               tlsConfig.files.cert.set &&
+               tlsConfig.files.chain.set) {
+      t = 3;
     }
 
     if (tlsConfig.enabled) {
       choice = 'status';
+      t = -1;
     } else if (t > 0) {
       choice = 'files';
     }

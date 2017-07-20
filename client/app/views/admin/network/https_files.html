@@ -4,7 +4,7 @@
 </span>
 <div class="https-file-res">
   <div class="panel panel-default priv-key">
-    <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': tls_config.enabled || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.priv_key)">
         <span class="text-bold">1</span>
         <span class="text-bold" data-translate>Private Key</span>
@@ -24,7 +24,7 @@
   </div>
 
   <div data-ng-if="tls_config.files.priv_key.gen && !tls_config.acme" class="panel panel-default csr">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state < 0}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state < 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.csr)">
         <span class="text-bold">2</span>
         <span class="text-bold" data-translate>Certificate Signing Request</span>
@@ -50,7 +50,7 @@
   </div>
 
   <div class="panel panel-default cert">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state <= 0}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state <= 0 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.cert)">
         <span class="text-bold">{{(!tls_config.acme && tls_config.files.priv_key.gen) ? '3' : '2'}}</span>
         <span class="text-bold" data-translate>Certificate</span>
@@ -74,7 +74,7 @@
   </div>
 
   <div class="panel panel-default chain">
-    <div class="panel-body" data-ng-class="{'disabled-interface': state <= 1}">
+    <div class="panel-body" data-ng-class="{'disabled-interface': state <= 1 || tls_config.acme}">
       <span data-ng-class="statusClass(tls_config.files.chain)">
         <span class="text-bold">{{(tls_config.acme && tls_config.files.priv_key.gen) ? '4' : '3'}}</span>
         <span class="text-bold" data-translate>Intermediate Certificates</span>
