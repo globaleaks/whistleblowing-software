@@ -5,14 +5,19 @@ import sys
 import threading
 
 import storm.databases.sqlite
+
+from datetime import datetime
+
 from storm import tracer
 from storm.database import create_database
 from storm.databases.sqlite import sqlite
 from storm.store import Store
-from twisted.internet import reactor
+from twisted.internet import reactor, defer
 from twisted.internet.threads import deferToThreadPool
 
 from globaleaks.settings import GLSettings
+from globaleaks.utils.mailutils import send_exception_email
+from globaleaks.utils.utility import caller_name, log, timedelta_to_milliseconds
 
 
 class SQLite(storm.databases.sqlite.Database):
@@ -63,6 +68,8 @@ class transact(object):
     Class decorator for managing transactions.
     Because Storm sucks.
     """
+    timelimit = 30000
+
     def __init__(self, method):
         self.method = method
         self.instance = None
@@ -79,11 +86,27 @@ class transact(object):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
     def run(self, function, *args, **kwargs):
-        return deferToThreadPool(reactor,
-                                 GLSettings.orm_tp,
-                                 function,
-                                 *args,
-                                 **kwargs)
+        start_time = datetime.now()
+        d = deferToThreadPool(reactor,
+                              GLSettings.orm_tp,
+                              function,
+                              *args,
+                              **kwargs)
+
+        def timecheck(ret):
+            duration = timedelta_to_milliseconds(datetime.now() - start_time)
+            msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
+            if duration > self.timelimit:
+                log.err(msg)
+                send_exception_email(exception_msg)
+            else:
+                log.debug(msg)
+
+            return ret
+
+        d.addCallback(timecheck)
+
+        return d
 
     def _wrap(self, function, *args, **kwargs):
         """
@@ -112,4 +135,16 @@ class transact(object):
 
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
-        return function(*args, **kwargs)
+        start_time = datetime.now()
+
+        ret = function(*args, **kwargs)
+
+        duration = timedelta_to_milliseconds(datetime.now() - start_time)
+        msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
+        if duration > self.timelimit:
+            log.err(msg)
+            send_exception_email(exception_msg)
+        else:
+            log.debug(msg)
+
+        return ret
