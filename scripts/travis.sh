@@ -105,7 +105,7 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo mkdir -p /data/globaleaks/deb/
   sudo cp ../globaleaks*deb /data/globaleaks/deb/
   set +e # avoid to fail in case of errors cause apparmor will always cause the failure
-  sudo ./scripts/install.sh --assume-yes
+  sudo ./scripts/install.sh --assume-yes --test
   set -e # re-enable to fail in case of errors
   sudo sh -c 'echo "NETWORK_SANDBOXING=0" >> /etc/default/globaleaks'
   sudo sh -c 'echo "APPARMOR_SANDBOXING=0" >> /etc/default/globaleaks'
