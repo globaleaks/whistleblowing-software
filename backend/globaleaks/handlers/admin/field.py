@@ -296,6 +296,8 @@ def get_fieldtemplate_list(store, language):
 
 class FieldTemplatesCollection(BaseHandler):
     check_roles = 'admin'
+    cache_resource = True
+    invalidate_cache = True
 
     def get(self):
         """
