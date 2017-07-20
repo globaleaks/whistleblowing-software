@@ -6,7 +6,7 @@ if [ ! $(id -u) = 0 ]; then
   exit 1
 fi
 
-# Preliminary Requirements Check
+# Preliminary requirements check
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
 for REQ in apt-key apt-get gpg curl
@@ -49,7 +49,7 @@ DO () {
     echo "FAIL"
     echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
     cat ${LOGFILE}
-    echo "Please help us diagnose the failure and report the installation error on https://forum.globaleaks.org"
+    echo "Ouch! The installation failed.\nPlease help us out and report the failure on the forum so that others don't have the same issue. https://forum.globaleaks.org"
     exit 1
   fi
 }
@@ -70,6 +70,7 @@ fi
 TMPDIR=`mktemp -d`
 echo '' > $TMPDIR/last_command
 echo '' > $TMPDIR/last_status
+
 function atexit {
   if [ $TEST -eq 1 ]; then
     DISTRO_CODENAME="test-$DISTRO_CODENAME"
@@ -77,7 +78,13 @@ function atexit {
 
   LAST_COMMAND=$(cat $TMPDIR/last_command)
   LAST_STATUS=$(cat $TMPDIR/last_status)
-  curl -G -m10 -data-urlencode "DISTRO=$DISTRO_CODENAME" --data-urlencode "LAST_COMMAND=$LAST_COMMAND" --data-urlencode "LAST_STATUS=$LAST_STATUS" "https://deb.globaleaks.org/install-globaleaks.sh" 2>&1
+
+  curl -G -m 10 \
+       --data-urlencode "DISTRO=$DISTRO_CODENAME"
+       --data-urlencode "LAST_COMMAND=$LAST_COMMAND"
+       --data-urlencode "LAST_STATUS=$LAST_STATUS"
+       "https://deb.globaleaks.org/install-globaleaks.sh" 2>&1
+
   rm  -r $TMPDIR
 }
 trap atexit EXIT
