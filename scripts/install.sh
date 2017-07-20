@@ -79,11 +79,12 @@ function atexit {
   LAST_COMMAND=$(cat $TMPDIR/last_command)
   LAST_STATUS=$(cat $TMPDIR/last_status)
 
-  curl -G -m 10 \
-       --data-urlencode "DISTRO=$DISTRO_CODENAME"
-       --data-urlencode "LAST_COMMAND=$LAST_COMMAND"
-       --data-urlencode "LAST_STATUS=$LAST_STATUS"
-       "https://deb.globaleaks.org/install-globaleaks.sh" 2>&1
+  curl "https://deb.globaleaks.org/install-globaleaks.sh" \
+       -G -m 10 \
+       --data-urlencode "DISTRO=$DISTRO_CODENAME" \
+       --data-urlencode "LAST_COMMAND=$LAST_COMMAND" \
+       --data-urlencode "LAST_STATUS=$LAST_STATUS" \
+       >/dev/null 2>/dev/null
 
   rm  -r $TMPDIR
 }
