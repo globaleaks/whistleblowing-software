@@ -193,12 +193,13 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
             open_promise: function() { return open_promise; },
           },
         });
+        open_promise.promise.then($scope.tls_config.$disable);
 
       } else {
+        // Just disable https and refresh the interface
+        open_promise.promise.then($scope.tls_config.$disable).then(refreshConfig);
         open_promise.resolve();
       }
-
-      open_promise.promise.then($scope.tls_config.$disable);
     } else {
       var go_url = 'https://' + $scope.admin.node.hostname + '/#/admin/network';
 
