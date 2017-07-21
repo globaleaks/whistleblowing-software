@@ -233,7 +233,16 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
   }
 
   $scope.resetCfg = function() {
-    $scope.tls_config.$delete().then(refreshConfig);
+    var targetFunc = function() {
+      return $scope.tls_config.$delete().then(refreshConfig);
+    };
+    $uibModal.open({
+      templateUrl: 'views/partials/admin_review_action.html',
+      controller: 'AdminReviewModalCtrl',
+      resolve: {
+        targetFunc: function() { return targetFunc; },
+      },
+    });
   }
 }])
 .controller('disableInputModalCtrl', ['$scope', function($scope) {
