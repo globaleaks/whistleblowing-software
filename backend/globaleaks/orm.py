@@ -86,27 +86,11 @@ class transact(object):
         return self.run(self._wrap, self.method, *args, **kwargs)
 
     def run(self, function, *args, **kwargs):
-        start_time = datetime.now()
-        d = deferToThreadPool(reactor,
-                              GLSettings.orm_tp,
-                              function,
-                              *args,
-                              **kwargs)
-
-        def timecheck(ret):
-            duration = timedelta_to_milliseconds(datetime.now() - start_time)
-            msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
-            if duration > self.timelimit:
-                log.err(msg)
-                send_exception_email(msg)
-            else:
-                log.debug(msg)
-
-            return ret
-
-        d.addCallback(timecheck)
-
-        return d
+        return deferToThreadPool(reactor,
+                                 GLSettings.orm_tp,
+                                 function,
+                                 *args,
+                                 **kwargs)
 
     def _wrap(self, function, *args, **kwargs):
         """
@@ -114,6 +98,7 @@ class transact(object):
         passing the store to it.
         """
         with transact_lock:
+            start_time = datetime.now()
             store = Store(create_database(GLSettings.db_uri))
 
             try:
@@ -132,19 +117,15 @@ class transact(object):
                 store.reset()
                 store.close()
 
+                duration = timedelta_to_milliseconds(datetime.now() - start_time)
+                msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
+                if duration > self.timelimit:
+                    log.err(msg)
+                    send_exception_email(msg)
+                else:
+                    log.debug(msg)
+
 
 class transact_sync(transact):
     def run(self, function, *args, **kwargs):
-        start_time = datetime.now()
-
-        ret = function(*args, **kwargs)
-
-        duration = timedelta_to_milliseconds(datetime.now() - start_time)
-        msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
-        if duration > self.timelimit:
-            log.err(msg)
-            send_exception_email(msg)
-        else:
-            log.debug(msg)
-
-        return ret
+        return function(*args, **kwargs)
