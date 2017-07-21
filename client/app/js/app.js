@@ -123,7 +123,7 @@ var GLClient = angular.module('GLClient', [
 
     function fetchResources(role, lst) {
       return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource) {
-        var funPromises = {
+        var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
           contexts: function() { return AdminContextResource.query().$promise },
@@ -146,13 +146,13 @@ var GLClient = angular.module('GLClient', [
 
           for (var i = 0; i < lst.length; i++) {
              var name = lst[i]
-             promises[name] = funPromises[name]();
+             promises[name] = resourcesPromises[name]();
           }
 
-          return $q.all(promises)
+          return $q.all(promises);
         });
 
-        return p
+        return p;
       }]
     }
 
@@ -253,7 +253,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Context configuration',
         resolve: {
-          resources: fetchResources('admin', ['contexts', 'node']),
+          resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
         }
       }).
       when('/admin/questionnaires', {
@@ -280,7 +280,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Recipient configuration',
         resolve: {
-          resources: fetchResources('admin', ['node', 'receivers']),
+          resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
         }
       }).
       when('/admin/mail', {
@@ -625,6 +625,8 @@ var GLClient = angular.module('GLClient', [
     });
 
     $rootScope.$on('$routeChangeError', function(event, current, previous) {
+      console.log(current);
+      console.log(previous);
       if (angular.isDefined(previous)) {
         $location.path(previous.$$route.originalPath);
       } else {

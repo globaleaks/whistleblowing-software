@@ -66,7 +66,7 @@ describe('admin add, configure, and delete users', function() {
     editUsrForm.element(by.css('.actionButtonEdit')).click();
 
     descriptBox.getAttribute('value').then(function(savedDescript) {
-        expect(savedDescript).toEqual(words);
+      expect(savedDescript).toEqual(words);
     });
   });
 
