@@ -125,8 +125,8 @@ elif [[ $GLTEST =~ ^end2end-.* ]]; then
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"version\":\"59\", \"platform\":\"Windows 10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Safari\", \"version\":\"8\", \"platform\":\"OS X 10.10\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Safari\", \"version\":\"10\", \"platform\":\"macOS 10.12\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Browser\", \"platformName\":\"Android\", \"platformVersion\": \"4.4\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\"}, \"appiumVersion\":\"1.6.5\"}'"
-    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"platformName\":\"Android\", \"platformVersion\": \"6.0\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\"}, \"appiumVersion\":\"1.6.5\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Browser\", \"platformName\":\"Android\", \"platformVersion\": \"4.4\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\", \"appiumVersion\":\"1.6.5\"}'"
+    "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\":\"Chrome\", \"platformName\":\"Android\", \"platformVersion\": \"6.0\", \"deviceName\": \"Android Emulator\", \"deviceOrientation\": \"portrait\", \"deviceType\": \"tablet\", \"platform\": \"Linux\", \"appiumVersion\":\"1.6.5\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"Safari\", \"platformName\":\"iOS\", \"platformVersion\": \"8.1\", \"deviceName\": \"iPad Simulator\", \"deviceOrientation\": \"portrait\", \"appium-version\":\"1.6.5\"}'"
     "export SELENIUM_BROWSER_CAPABILITIES='{\"browserName\": \"Safari\", \"platformName\":\"iOS\", \"platformVersion\": \"10.3\", \"deviceName\": \"iPad Simulator\", \"deviceOrientation\": \"portrait\", \"appium-version\":\"1.6.5\"}'"
   )
