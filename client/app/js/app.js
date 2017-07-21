@@ -123,8 +123,6 @@ var GLClient = angular.module('GLClient', [
 
     function fetchResources(role, lst) {
       return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource) {
-        var deferred = $q.defer();
-
         var funPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -143,7 +141,7 @@ var GLClient = angular.module('GLClient', [
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise },
         }
 
-        Access.isAuthenticated(role).then(function() {
+        var p = Access.isAuthenticated(role).then(function() {
           var promises = {};
 
           for (var i = 0; i < lst.length; i++) {
@@ -151,12 +149,10 @@ var GLClient = angular.module('GLClient', [
              promises[name] = funPromises[name]();
           }
 
-          $q.all(promises).then(function(res) {
-              deferred.resolve(res);
-          })
-        }); // TODO handle $q reject with throw into global excep handler
+          return $q.all(promises)
+        });
 
-        return deferred.promise;
+        return p
       }]
     }
 
