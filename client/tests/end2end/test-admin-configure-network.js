@@ -27,6 +27,12 @@ describe('admin configure https', function() {
   };
 
   it('should interact with all ui elements', function() {
+    var pk_panel = element(by.css('div.panel.priv-key'));
+    var csr_panel = element(by.css('div.panel.csr'));
+    var cert_panel = element(by.css('div.panel.cert'));
+    var chain_panel = element(by.css('div.panel.chain'));
+    var modal_action = by.id('modal-action-ok');
+
     browser.setLocation('admin/network');
     element(by.cssContainingText("a", "HTTPS settings")).click();
 
@@ -35,16 +41,12 @@ describe('admin configure https', function() {
     element(by.id("HTTPSAutoMode")).click()
 
     element(by.cssContainingText("button", "Cancel")).click();
+    browser.gl.utils.waitUntilPresent(modal_action);
+    element(modal_action).click();
 
     element(by.cssContainingText("button", "Proceed")).click();
 
     element(by.id("HTTPSManualMode")).click()
-
-    var pk_panel = element(by.css('div.panel.priv-key'));
-    var csr_panel = element(by.css('div.panel.csr'));
-    var cert_panel = element(by.css('div.panel.cert'));
-    var chain_panel = element(by.css('div.panel.chain'));
-    var modal_action = by.id('modal-action-ok');
 
     // Generate key
     pk_panel.element(by.cssContainingText('button', 'Generate')).click();

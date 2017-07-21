@@ -214,8 +214,8 @@ controller('AdminHTTPSConfigCtrl', ['$q', '$location', '$http', '$scope', '$uibM
         },
       });
 
-      // TODO tls_config is polluted with angular state. It should be cleaned
-      // for the POST.
+      // TODO tls_config is polluted with angular state.
+      // It should be cleaned for the POST.
       open_promise.promise.then($scope.tls_config.$enable);
     }
   };
