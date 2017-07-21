@@ -1,12 +1,12 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'Admin', 'AdminUtils', 'CONSTANTS',
-    function($scope, $route, $location, $filter, Admin, AdminUtils, CONSTANTS) {
+    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminUtils', 'AdminNodeResource', 'CONSTANTS',
+    function($scope, $route, $location, $filter, resources, AdminUtils, AdminNodeResource, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
   $scope.https_regexp = CONSTANTS.https_regexp;
 
-  // XXX convert this to a directive
+  // TODO convert this to a directive
   // This is used for setting the current menu in the sidebar
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
@@ -14,7 +14,9 @@ GLClient.controller('AdminCtrl',
 
   $scope.admin_utils = AdminUtils;
 
-  $scope.admin = new Admin(function() {
+  $scope.admin = resources;
+
+  if (angular.isDefined($scope.admin.node)) {
     $scope.languages_enabled_edit = {};
     $scope.languages_enabled_selector = [];
 
@@ -76,7 +78,7 @@ GLClient.controller('AdminCtrl',
 
       }
     }, true);
-  });
+  }
 
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
@@ -213,11 +215,7 @@ controller('AdminGeneralSettingsCtrl', ['$scope', '$filter', '$http', 'StaticFil
 
   $scope.update_static_files();
 }]).
-controller('AdminHomeCtrl', ['$scope', 'ManifestResource', function($scope, ManifestResource) {
-  ManifestResource.get().$promise.then(function(manifest) {
-    $scope.manifest = manifest;
-  });
-
+controller('AdminHomeCtrl', ['$scope', function($scope) {
   $scope.displayNum = 10;
   $scope.showMore = function() {
     $scope.displayNum = undefined;
@@ -251,9 +249,8 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
     });
   };
 }]).
-controller('AdminMailCtrl', ['$scope', '$http', 'Admin', 'AdminNotificationResource',
-  function($scope, $http, Admin, AdminNotificationResource){
-  $scope.notif = Admin.notification;
+controller('AdminMailCtrl', ['$scope', '$http', 'AdminNotificationResource',
+  function($scope, $http, AdminNotificationResource){
 
   $scope.tabs = [
     {
