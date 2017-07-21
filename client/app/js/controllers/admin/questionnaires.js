@@ -12,6 +12,14 @@ GLClient.controller('AdminQuestionnaireCtrl',
     }
   ];
 
+  $scope.admin.get_field_attrs = function(type) {
+    if (type in $scope.admin.field_attrs) {
+      return $scope.admin.field_attrs[type];
+    } else {
+      return {};
+    }
+  }
+
   $scope.save_questionnaire = function(questionnaire, cb) {
     var updated_questionnaire = new AdminQuestionnaireResource(questionnaire);
 

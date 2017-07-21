@@ -1,5 +1,5 @@
-GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'Admin', 'AdminUtils', 'CONSTANTS',
-                    function($scope, $location, $route, $http, Authentication, Admin, AdminUtils, CONSTANTS) {
+GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Authentication', 'AdminUtils', 'CONSTANTS',
+                    function($scope, $location, $route, $http, Authentication, AdminUtils, CONSTANTS) {
     $scope.email_regexp = CONSTANTS.email_regexp;
 
     $scope.step = 1;

@@ -185,7 +185,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     isUnauth: function () {
       if (Authentication.session === undefined) {
-        return Access.OK;
+        return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);
       }
@@ -193,7 +193,7 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 
     isAuthenticated: function (role) {
       if (Authentication.session && (role === '*' || Authentication.session.role === role)) {
-        return Access.OK;
+        return $q.resolve(Access.OK);
       } else {
         return $q.reject(Access.FORBIDDEN);
       }
@@ -201,7 +201,6 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
   };
 
   return Access;
-
 }]).
   factory('PublicResource', ['GLResource', function(GLResource) {
     return new GLResource('public');
@@ -723,53 +722,6 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
       return new AdminShorturlResource();
     }
   };
-}]).
-  factory('Admin', ['GLResource', '$q', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview',
-    function(GLResource, $q, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview) {
-  return function(fn) {
-      var self = this;
-
-      self.node = AdminNodeResource.get();
-      self.contexts = AdminContextResource.query();
-      self.questionnaires = AdminQuestionnaireResource.query();
-      self.fieldtemplates = AdminFieldTemplateResource.query();
-      self.users = AdminUserResource.query();
-      self.receivers = AdminReceiverResource.query();
-      self.notification = AdminNotificationResource.get();
-      self.shorturls = AdminShorturlResource.query();
-      self.activities = ActivitiesCollection.query();
-      self.anomalies = AnomaliesCollection.query();
-      self.tip_overview = TipOverview.query();
-      self.file_overview = FileOverview.query();
-      self.jobs_overview = JobsOverview.query();
-
-      self.field_attrs = FieldAttrs.get().$promise.then(function(field_attrs) {
-        self.field_attrs = field_attrs;
-        self.get_field_attrs = function(type) {
-          if (type in self.field_attrs) {
-            return self.field_attrs[type];
-          } else {
-            return {};
-          }
-        };
-      });
-
-      $q.all([self.node.$promise,
-              self.contexts.$promise,
-              self.field_attrs.$promise,
-              self.questionnaires.$promise,
-              self.fieldtemplates.$promise,
-              self.receivers.$promise,
-              self.notification.$promise,
-              self.shorturls.$promise,
-              self.activities.$promise,
-              self.anomalies.$promise,
-              self.tip_overview.$promise,
-              self.file_overview.$promise,
-              self.jobs_overview.$promise]).then(function() {
-        fn(this);
-      });
-    };
 }]).
   factory('UserPreferences', ['GLResource', function(GLResource) {
     return new GLResource('preferences', {}, {'update': {method: 'PUT'}});
