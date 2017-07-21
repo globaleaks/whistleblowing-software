@@ -625,8 +625,6 @@ var GLClient = angular.module('GLClient', [
     });
 
     $rootScope.$on('$routeChangeError', function(event, current, previous) {
-      console.log(current);
-      console.log(previous);
       if (angular.isDefined(previous)) {
         $location.path(previous.$$route.originalPath);
       } else {

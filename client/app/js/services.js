@@ -141,7 +141,6 @@ angular.module('GLServices', ['ngResource']).
           var source_path = $location.path();
 
           var redirect_path = self.getLoginUri(role, source_path);
-          console.log(redirect_path);
 
           // Only redirect if we are not already on the login page
           if (source_path !== redirect_path) {
