@@ -225,7 +225,7 @@ def extract_exception_traceback_and_send_email(e):
 
 
 def send_exception_email(exception_text):
-    if not hasattr(GLSettings.memory_copy.notif, 'exception_delivery_list'):
+    if not hasattr(GLSettings.memory_copy, 'notif'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
 
