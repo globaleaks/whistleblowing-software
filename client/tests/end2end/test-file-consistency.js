@@ -205,7 +205,7 @@ describe('Test file upload/download consistency', function() {
     // Choose the first file which should be f1_info
     element(by.css('#AttachedWBFile #wbfile-0 div.download-button')).click();
     browser.gl.utils.waitUntilPresent(by.css('#modal-action-ok')).then(function() {
-      element(by.css('#modal-action-ok')).element(by.cssContainingText("span", "Download")).click();
+      element(by.css('#modal-action-ok')).click();
       f1_info.waitForDownload();
     });
   });
