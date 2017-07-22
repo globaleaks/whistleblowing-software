@@ -344,7 +344,7 @@ def ISO8601_to_pretty_str(isodate, tz=0):
 
 
 def timedelta_to_milliseconds(t):
-    return (t.microseconds + (t.seconds + t.days * 24 * 3600) * 10**6) / 10**3
+    return (t.microseconds + (t.seconds + t.days * 24 * 3600) * 10**6) / 10**3.0
 
 
 def asn1_datestr_to_datetime(s):
