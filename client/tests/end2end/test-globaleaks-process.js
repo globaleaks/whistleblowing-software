@@ -57,9 +57,9 @@ describe('globaLeaks process', function() {
       });
     }
 
+    browser.gl.utils.waitUntilClickable(by.id('SubmitButton'));
+
     var submit_button = element(by.id('SubmitButton'));
-    var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);
-    browser.wait(isClickable);
 
     submit_button.click().then(function() {
       browser.gl.utils.waitForUrl('/receipt');

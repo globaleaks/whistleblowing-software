@@ -5,17 +5,6 @@ describe('admin configure network settings', function() {
     element.all(by.model('admin.node.hostname')).get(0).clear().sendKeys('localhost');
 
     element.all(by.cssContainingText("button", "Save")).get(0).click();
-
-    // grant tor2web permissions
-    element(by.cssContainingText("a", "Access control")).click();
-
-    expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeFalsy();
-    element(by.model('admin.node.tor2web_whistleblower')).click();
-
-    // save settings
-    element.all(by.id("AccessControlSave")).click().then(function() {
-      expect(element(by.model('admin.node.tor2web_whistleblower')).isSelected()).toBeTruthy();
-    });
   });
 });
 
