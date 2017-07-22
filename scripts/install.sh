@@ -193,4 +193,9 @@ else
 fi
 
 echo "Install script completed."
-echo "GlobaLeaks should be reachable at http://127.0.0.1:8082"
+IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
+echo "GlobaLeaks should be reachable at:"
+for IP in $IPS;
+do
+  echo "- http://$IP"
+done
