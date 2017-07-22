@@ -15,34 +15,34 @@
 
     <div id="answer-1" data-ng-click="answer.value = 'a'">
       <input data-ng-model="answer.value" value="a" type="radio" />
-      <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'a')}" data-translate>HTTPS protects my identity, but not the content of my submission</span><br />
+      <span data-ng-class="{'bg-danger': (answer.value && answer.value === 'a')}" data-translate>HTTPS protects my identity, but not the content of my submission</span><br />
     </div>
     <div id="answer-2" data-ng-click="answer.value = 'b'">
       <input data-ng-model="answer.value" value="b" type="radio" />
-      <span data-ng-class="{'bg-success': (answer.value && answer.value == 'b')}" data-translate>HTTPS protects the content of my submission but not my identity</span><br />
+      <span data-ng-class="{'bg-success': (answer.value && answer.value === 'b')}" data-translate>HTTPS protects the content of my submission but not my identity</span><br />
     </div>
     <div id="answer-3" data-ng-click="answer.value = 'c'">
       <input data-ng-model="answer.value" value="c" type="radio" />
-      <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'c')}" data-translate>HTTPS does not protect the content of my submission nor my identity</span><br />
+      <span data-ng-class="{'bg-danger': (answer.value && answer.value === 'c')}" data-translate>HTTPS does not protect the content of my submission nor my identity</span><br />
     </div>
     <div id="answer-4" data-ng-click="answer.value = 'd'">
       <input data-ng-model="answer.value" value="d" type="radio" />
-      <span data-ng-class="{'bg-danger': (answer.value && answer.value == 'd')}" data-translate>HTTPS does protect both my identity and the content of my submission</span><br />
+      <span data-ng-class="{'bg-danger': (answer.value && answer.value === 'd')}" data-translate>HTTPS does protect both my identity and the content of my submission</span><br />
     </div>
     <br /><br />
 
-    <div data-ng-show="(answer.value && answer.value == 'b')">
+    <div data-ng-show="(answer.value && answer.value === 'b')">
       <div class="bg-warning">
         <span data-translate>You are aware of the risks involved. Go ahead, but consider yourself warned.</span>
       </div>
     </div>
     <div data-ng-show="!answer.value">&nbsp;</div>
-    <div data-ng-show="(answer.value && answer.value != 'b')" class="bg-danger" data-translate>Wrong Answer!</div>
+    <div data-ng-show="(answer.value && answer.value !== 'b')" class="bg-danger" data-translate>Wrong Answer!</div>
   </div>
 </div>
 <div class="modal-footer">
   <a data-ng-click="goToSubmission()"
-      data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value != 'b')"
+      data-ng-disabled="!node.disable_security_awareness_questions && (!answer.value || answer.value !== 'b')"
       class="btn btn-warning">
     <span data-translate>Proceed to submission</span>
   </a>
