@@ -175,7 +175,7 @@ class HTTPStreamChannel(http.HTTPChannel):
         http.HTTPChannel.__init__(self, *args, **kwargs)
 
         self.proxy_url = proxy_url
-        self.http_agent = Agent(reactor, connectTimeout=2)
+        self.http_agent = Agent(reactor, connectTimeout=30)
 
 
 class HTTPStreamFactory(http.HTTPFactory):
