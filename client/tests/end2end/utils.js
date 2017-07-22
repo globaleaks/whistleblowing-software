@@ -62,6 +62,12 @@ exports.waitUntilPresent = function (locator, timeout) {
   }, t);
 };
 
+exports.waitUntilClickable = function (locator, timeout) {
+  var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  var EC = protractor.ExpectedConditions;
+  return browser.wait(EC.elementToBeClickable(element(locator)), t);
+};
+
 exports.waitForUrl = function (url, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   return browser.wait(function() {
