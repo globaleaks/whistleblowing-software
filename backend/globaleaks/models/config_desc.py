@@ -104,7 +104,7 @@ GLConfig = {
         'maximum_filesize': Int(validator=natnum_v, default=30),
         'tor2web_admin': Bool(default=True),
         'tor2web_custodian': Bool(default=True),
-        'tor2web_whistleblower': Bool(default=False),
+        'tor2web_whistleblower': Bool(default=True),
         'tor2web_receiver': Bool(default=True),
         'allow_unencrypted': Bool(default=True),
         'disable_encryption_warnings': Bool(default=False),
