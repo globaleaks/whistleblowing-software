@@ -2,7 +2,7 @@
   <div class="panel-body">
     <div class="top-row">
       <span class="pull-left">
-        <span class="text-muted" ng-if="ctx == 'download'"><span data-translate>Filename</span>:</span>
+        <span class="text-muted" data-ng-if="ctx == 'download'"><span data-translate>Filename</span>:</span>
         <span class="filename">{{::wbfile.name }}</span>
       </span>
       <span class="pull-right">
@@ -10,7 +10,7 @@
           <span class="btn btn-primary btn-xs" data-ng-click="downloadWBFile(wbfile)">
             <span class="glyphicon glyphicon-download"></span> <span data-translate>Download</span>
           </span>
-          <button ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)" data-single-click>
+          <button data-ng-if="showDeleteWBFile(wbfile)" class="btn btn-danger btn-xs" data-ng-click="deleteWBFile(wbfile)" data-single-click>
             <span class="glyphicon glyphicon-trash"></span> <span data-translate>Delete</span>
           </button>
         </span>
