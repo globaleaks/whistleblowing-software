@@ -32,10 +32,11 @@ exports.config = {
     }
   },
 
+  allScriptsTimeout: 60000,
+
   jasmineNodeOpts: {
     isVerbose: true,
     includeStackTrace: true,
-    allScriptsTimeout: 60000,
     defaultTimeoutInterval: 60000
   },
 
