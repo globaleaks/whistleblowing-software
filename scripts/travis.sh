@@ -105,8 +105,6 @@ elif [ "$GLTEST" = "build_and_install" ]; then
   sudo mkdir -p /globaleaks/deb/
   sudo cp ../globaleaks*deb /globaleaks/deb/
   sudo ./scripts/install.sh --assume-yes --test
-  sudo /etc/init.d/globaleaks restart
-  sleep 5
   setupClientDependencies
   cd $TRAVIS_BUILD_DIR/client
   node_modules/protractor/bin/webdriver-manager update
