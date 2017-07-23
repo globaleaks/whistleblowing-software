@@ -116,7 +116,6 @@ def db_serialize_questionnaire_answers(store, usertip):
     questionnaire = db_serialize_archived_questionnaire_schema(store, internaltip.questionnaire_hash, GLSettings.memory_copy.default_language)
 
     answers_ids = []
-    filtered_answers_ids = []
     for s in questionnaire:
         for f in s['children']:
             if 'key' in f and f['key'] == 'whistleblower_identity':
@@ -124,8 +123,6 @@ def db_serialize_questionnaire_answers(store, usertip):
                    f['attrs']['visibility_subject_to_authorization']['value'] == False or \
                    (isinstance(usertip, models.ReceiverTip) and usertip.can_access_whistleblower_identity):
                     answers_ids.append(f['id'])
-                else:
-                    filtered_answers_ids.append(f['id'])
             else:
                 answers_ids.append(f['id'])
 
@@ -161,6 +158,7 @@ def db_save_questionnaire_answers(store, internaltip_id, entries):
         else:
             field_answer.is_leaf = True
             field_answer.value = unicode(value)
+
         ret.append(field_answer)
 
     return ret
