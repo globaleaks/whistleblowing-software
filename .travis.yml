@@ -92,8 +92,8 @@ matrix:
     - env: GLTEST='end2end-11' BROWSER='iphone 10.3'
 
 before_install:
-  - nvm install 6.9
-  - nvm use 6.9
+  - nvm install 6.11
+  - nvm use 6.11
   - export CHROME_BIN=/usr/bin/google-chrome
   - export DISPLAY=:99.0
   - sudo apt-get install -y libappindicator1 fonts-liberation
