@@ -21,6 +21,7 @@ from twisted.internet import reactor
 from twisted.internet.error import ConnectionRefusedError
 from twisted.internet.defer import inlineCallbacks, Deferred
 
+from globaleaks.rest.apicache import GLApiCache
 from globaleaks.models.config import NodeFactory, PrivateFactory
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.utils.utility import deferred_sleep, log
@@ -52,6 +53,8 @@ def set_onion_service_info(store, hostname, key):
 
     priv_fact = PrivateFactory(store)
     priv_fact.set_val('tor_onion_key', key)
+
+    GLApiCache.invalidate()
 
 
 class OnionService(ServiceJob):
