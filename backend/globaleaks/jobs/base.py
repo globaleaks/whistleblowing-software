@@ -63,7 +63,7 @@ class BaseJob(task.LoopingCall):
 
         # discard empty cycles from stats
         if self.mean_time == -1:
-            self.meantime = current_run_time
+            self.mean_time = current_run_time
         else:
             self.mean_time = (self.mean_time * 0.7) + (current_run_time * 0.3)
 
@@ -95,12 +95,12 @@ class LoopingJob(BaseJob):
     monitor_period = 5 * 60
     last_monitor_check_failed = 0 # Epoch start
 
-    def on_error(self, exc):
-        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" % \
-                      (self.name, self.mean_time, self.low_time, self.high_time)
-
+    def on_error(self, excep):
+        error = "Job %s died with runtime %.4f [low: %.4f, high: %.4f]" %\
+                (self.name, self.mean_time, self.low_time, self.high_time)
         log.err(error)
-        send_exception_email(error)
+        log.exception(excep)
+        extract_exception_traceback_and_send_email(excep)
 
 
 class LoopingJobsMonitor(LoopingJob):
@@ -136,7 +136,7 @@ class LoopingJobsMonitor(LoopingJob):
                 else:
                     hours = int(execution_time / 3600)
                     error = "Job %s is taking more than %d hours to execute" % (job.name, hours)
-                error_msg += '\n' + error
+                error_msg += error + '\n'
                 log.err(error)
 
         if error_msg != "":
@@ -146,5 +146,7 @@ class LoopingJobsMonitor(LoopingJob):
 class ServiceJob(BaseJob):
     interval = 1
 
-    def on_error(self, exc):
-        log.err("Exception while running %s: %s" % (self.name, exc))
+    def on_error(self, excep):
+        log.err("Exception while running %s" % (self.name))
+        log.exception(excep)
+        extract_exception_traceback_and_send_email(excep)

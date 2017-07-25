@@ -20,8 +20,7 @@ from datetime import datetime, timedelta
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.python import log as twlog
-from twisted.python import util
-from twisted.python.failure import Failure
+from twisted.python import util, failure
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
@@ -193,10 +192,12 @@ class Logger(object):
 
     def exception(self, error):
         """
-        Error can either be an error message to print to stdout and to the logfile
-        or it can be a twisted.python.failure.Failure instance.
+        Formats exceptions for output to logs and/or stdout
+
+        :param error:
+        :type error: Exception or `twisted.python.failure.Failure`
         """
-        if isinstance(error, Failure):
+        if isinstance(error, failure.Failure):
             error.printTraceback()
         else:
             exc_type, exc_value, exc_traceback = sys.exc_info()
