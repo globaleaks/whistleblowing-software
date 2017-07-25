@@ -10,6 +10,7 @@ from storm import exceptions
 from globaleaks import models, security, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
 from globaleaks.db.appdata import db_update_appdata, db_fix_fields_attrs
 from globaleaks.handlers.admin import files
+from globaleaks.handlers.base import GLSession
 from globaleaks.models import config, l10n, User
 from globaleaks.models.config import NodeFactory, NotificationFactory, PrivateFactory
 from globaleaks.models.l10n import EnabledLanguage
@@ -149,6 +150,11 @@ def db_refresh_memory_variables(store):
     node_ro = ObjectDict(NodeFactory(store).admin_export())
 
     GLSettings.memory_copy = node_ro
+
+    if GLSettings.memory_copy.api_token != '':
+        api_id = store.find(User.id, User.role==u'admin').one()
+        if api_id is not None:
+            GLSettings.api_session = GLSession(api_id, 'admin', 'enabled')
 
     GLSettings.memory_copy.accept_tor2web_access = {
         'admin': node_ro.tor2web_admin,

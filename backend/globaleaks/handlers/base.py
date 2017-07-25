@@ -439,9 +439,13 @@ class BaseHandler(object):
 
     @property
     def current_user(self):
-        # Check for header based authentication
-        session_id = self.request.headers.get('x-session')
+        # Check for API token
+        if GLSettings.memory_copy.api_token:
+            if self.request.headers.get('x-api-token', '') == GLSettings.memory_copy.api_token:
+                return GLSettings.api_session
 
+        # Check for user session
+        session_id = self.request.headers.get('x-session')
         if session_id is None:
             return None
 
