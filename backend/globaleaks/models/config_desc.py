@@ -59,6 +59,8 @@ GLConfig = {
         'https_chain': Unicode(),
         'https_dh_params': Unicode(),
         'https_enabled': Bool(default=False),
+
+        'admin_api_token': Unicode(),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
@@ -154,7 +156,5 @@ GLConfig = {
 
         'reachable_via_web': Bool(default=True),
         'anonymize_outgoing_connections': Bool(default=True),
-
-        'api_token': Unicode()
     },
 }

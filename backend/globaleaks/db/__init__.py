@@ -151,11 +151,6 @@ def db_refresh_memory_variables(store):
 
     GLSettings.memory_copy = node_ro
 
-    if GLSettings.memory_copy.api_token != '':
-        api_id = store.find(User.id, User.role==u'admin').one()
-        if api_id is not None:
-            GLSettings.api_session = GLSession(api_id, 'admin', 'enabled')
-
     GLSettings.memory_copy.accept_tor2web_access = {
         'admin': node_ro.tor2web_admin,
         'custodian': node_ro.tor2web_custodian,
@@ -177,6 +172,11 @@ def db_refresh_memory_variables(store):
     db_refresh_exception_delivery_list(store)
 
     GLSettings.memory_copy.private = ObjectDict(PrivateFactory(store).mem_copy_export())
+
+    if GLSettings.memory_copy.private.admin_api_token != '':
+        api_id = store.find(User.id, User.role==u'admin').order_by(User.creation_date).first()
+        if api_id is not None:
+            GLSettings.state.api_session = GLSession(api_id, 'admin', 'enabled')
 
 
 @transact
