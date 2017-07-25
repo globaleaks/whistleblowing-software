@@ -14,6 +14,7 @@ import urlparse
 
 from datetime import datetime
 
+from cryptography.hazmat.primitives import constant_time
 from twisted.internet import fdesc, defer
 from twisted.internet.defer import inlineCallbacks
 from twisted.python.failure import Failure
@@ -440,9 +441,10 @@ class BaseHandler(object):
     @property
     def current_user(self):
         # Check for API token
-        if GLSettings.memory_copy.api_token:
-            if self.request.headers.get('x-api-token', '') == GLSettings.memory_copy.api_token:
-                return GLSettings.api_session
+        if GLSettings.memory_copy.private.admin_api_token != '':
+            if constant_time.bytes_eq(bytes(self.request.headers.get('x-api-token', '')),
+                                      bytes(GLSettings.memory_copy.private.admin_api_token)):
+                return GLSettings.state.get('api_session', None)
 
         # Check for user session
         session_id = self.request.headers.get('x-session')
