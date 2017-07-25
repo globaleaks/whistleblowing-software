@@ -28,7 +28,7 @@ from globaleaks.utils.mailutils import mail_exception_handler, send_exception_em
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, deferred_sleep
 
-HANDLER_EXEC_TIME_THRESHOLD = 30
+HANDLER_EXEC_TIME_THRESHOLD = 120
 
 GLUploads = {}
 
@@ -509,6 +509,7 @@ class BaseHandler(object):
 
 class StaticFileHandler(BaseHandler):
     check_roles = '*'
+    handler_exec_time_threshold = 30
 
     def __init__(self, request, path):
         BaseHandler.__init__(self, request)
