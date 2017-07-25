@@ -117,8 +117,8 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
       read -p "Do you wish to continue anyway? [y|n]?" yn
       case $yn in
         [Yy]*) break;;
-        [Nn]*) echo "Installation aborted."; exit;;
-        *) echo $yn; echo "Please answer y/n."; continue;;
+        [Nn]*) echo "Installation aborted."; echo "For Community Support (best-effort) please report your issues to our forum at https://forum.globaleaks.org"; echo "For Professional Support (dedicated) contact us at https://www.globaleaks.org/contact/"; exit;;
+        *) echo $yn; echo "Please answer y/n.";  continue;;
       esac
     done
   fi
@@ -199,3 +199,7 @@ for IP in $IPS;
 do
   echo "- http://$IP"
 done
+echo ""
+echo "For Community Support (best-effort) please report your issues to our forum at https://forum.globaleaks.org"
+echo "For Professional Support (dedicated) contact us at https://www.globaleaks.org/contact/"
+echo ""
