@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.handlers.base import GLSession, GLSessions
+from globaleaks.handlers.base import GLSessions, new_session
 from globaleaks.jobs import session_management_sched
 from globaleaks.settings import GLSettings
 from globaleaks.tests import helpers
@@ -10,9 +10,9 @@ from globaleaks.tests import helpers
 class TestSessionManagementSched(helpers.TestGL):
     @inlineCallbacks
     def test_session_management_sched(self):
-        GLSession('admin', 'admin', 'enabled')  # 1!
-        GLSession('admin', 'admin', 'enabled')  # 2!
-        GLSession('admin', 'admin', 'enabled')  # 3!
+        new_session('admin', 'admin', 'enabled')  # 1!
+        new_session('admin', 'admin', 'enabled')  # 2!
+        new_session('admin', 'admin', 'enabled')  # 3!
 
         self.assertEqual(len(GLSessions), 3)
 

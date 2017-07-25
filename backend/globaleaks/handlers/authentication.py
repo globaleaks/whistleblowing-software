@@ -9,7 +9,7 @@ from storm.expr import And
 from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks import security
-from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession
+from globaleaks.handlers.base import BaseHandler, GLSessions, new_session
 from globaleaks.models import User
 from globaleaks.models import WhistleblowerTip
 from globaleaks.orm import transact
@@ -117,7 +117,7 @@ class AuthenticationHandler(BaseHandler):
         # Revoke all other sessions for the newly authenticated user
         GLSessions.revoke_all_sessions(user_id)
 
-        session = GLSession(user_id, role, status)
+        session = new_session(user_id, role, status)
 
         returnValue({
             'session_id': session.id,
@@ -150,7 +150,7 @@ class ReceiptAuthHandler(BaseHandler):
 
         GLSessions.revoke_all_sessions(user_id)
 
-        session = GLSession(user_id, 'whistleblower', 'Enabled')
+        session = new_session(user_id, 'whistleblower', 'Enabled')
 
         returnValue({
             'session_id': session.id,

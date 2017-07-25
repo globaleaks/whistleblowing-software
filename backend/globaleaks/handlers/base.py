@@ -150,13 +150,17 @@ class GLSession(object):
         self.user_role = user_role
         self.user_status = user_status
 
-        GLSessions.set(self.id, self)
-
     def getTime(self):
         return self.expireCall.getTime()
 
     def __repr__(self):
         return "%s %s expire in %s" % (self.user_role, self.user_id, self.expireCall)
+
+
+def new_session(user_id, user_role, user_status):
+    session = GLSession(user_id, user_role, user_status)
+    GLSessions.set(session.id, session)
+    return session
 
 
 class BaseHandler(object):

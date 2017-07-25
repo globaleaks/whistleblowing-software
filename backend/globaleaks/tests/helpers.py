@@ -14,7 +14,7 @@ from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
 from globaleaks.handlers import rtip, wbtip
 from globaleaks.handlers.authentication import db_get_wbtip_by_receipt
-from globaleaks.handlers.base import BaseHandler, GLSessions, GLSession, \
+from globaleaks.handlers.base import BaseHandler, GLSessions, new_session, \
     write_upload_encrypted_to_disk
 from globaleaks.handlers.admin.context import create_context, \
     get_context, db_get_context_steps
@@ -777,7 +777,7 @@ class TestHandler(TestGLWithPopulatedDB):
                 user_id = self.dummyCustodianUser['id']
 
         if role is not None:
-            session = GLSession(user_id, role, 'enabled')
+            session = new_session(user_id, role, 'enabled')
             handler.request.headers['x-session'] = session.id
 
         return handler
