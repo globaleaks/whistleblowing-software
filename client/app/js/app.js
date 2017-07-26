@@ -439,8 +439,8 @@ var GLClient = angular.module('GLClient', [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate) {
+  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate', 'Access',
+      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate, Access) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
@@ -624,14 +624,6 @@ var GLClient = angular.module('GLClient', [
       }
     });
 
-    $rootScope.$on('$routeChangeError', function(event, current, previous) {
-      if (angular.isDefined(previous)) {
-        $location.path(previous.$$route.originalPath);
-      } else {
-        $rootScope.Authentication.loginRedirect(false);
-      }
-    });
-
     $rootScope.$on('$routeChangeSuccess', function (event, current) {
       if (current.$$route) {
         $rootScope.successes = [];
@@ -642,6 +634,12 @@ var GLClient = angular.module('GLClient', [
         if ($rootScope.node) {
           set_title();
         }
+      }
+    });
+
+    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
+      if (rejection === Access.FORBIDDEN) {
+        $rootScope.Authentication.loginRedirect(false);
       }
     });
 
