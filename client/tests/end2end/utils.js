@@ -93,14 +93,6 @@ exports.waitForFile = function (filename, timeout) {
   }, t);
 };
 
-exports.emulateUserRefresh = function () {
-  browser.getCurrentUrl().then(function(current_url) {
-    current_url = current_url.split('#')[1];
-    browser.setLocation('');
-    browser.setLocation(current_url);
-  });
-};
-
 exports.login_admin = function() {
   browser.get('/#/admin');
   element(by.model('loginUsername')).sendKeys('admin');
