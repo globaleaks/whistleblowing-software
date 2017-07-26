@@ -141,7 +141,7 @@ var GLClient = angular.module('GLClient', [
           questionnaires: function() { return AdminQuestionnaireResource.query().$promise },
         }
 
-        var p = Access.isAuthenticated(role).then(function() {
+        return Access.isAuthenticated(role).then(function() {
           var promises = {};
 
           for (var i = 0; i < lst.length; i++) {
@@ -151,8 +151,6 @@ var GLClient = angular.module('GLClient', [
 
           return $q.all(promises);
         });
-
-        return p;
       }]
     }
 
