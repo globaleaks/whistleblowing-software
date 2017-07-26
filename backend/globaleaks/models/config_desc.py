@@ -37,6 +37,9 @@ class Bool(Item):
 
 GLConfig = {
     'private': {
+        'label': Unicode(validator=shorttext_v, default=u''),
+        'active': Bool(default=True),
+        'creation_date': Int(default=0),
         'receipt_salt': Unicode(validator=shorttext_v, default=salt()), # is always customized
         'smtp_password': Unicode(validator=shorttext_v, default=u'yes_you_really_should_change_me'),
 

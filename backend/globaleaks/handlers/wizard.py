@@ -3,6 +3,7 @@
 # wizard
 from globaleaks import models
 from globaleaks.db import db_refresh_memory_variables
+from globaleaks.handlers.admin import tenant
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.user import db_create_admin_user, db_create_receiver_user
 from globaleaks.handlers.base import BaseHandler
@@ -15,6 +16,9 @@ from globaleaks.utils.utility import log, datetime_null
 @transact
 def wizard(store, request, language):
     models.db_delete(store, l10n.EnabledLanguage, l10n.EnabledLanguage.name != language)
+
+    tenant = store.find(models.Tenant, id=1)
+    tenant.label = request['node']['name']
 
     node = config.NodeFactory(store)
 

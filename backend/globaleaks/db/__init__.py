@@ -53,6 +53,8 @@ def init_db(store):
 
     models.l10n.EnabledLanguage.add_all_supported_langs(store, appdata)
 
+    store.add(models.Tenant())
+
     file_descs = [
       (u'logo', 'data/logo.png'),
       (u'favicon', 'data/favicon.ico')
@@ -178,6 +180,7 @@ def db_refresh_memory_variables(store):
 @transact
 def refresh_memory_variables(store):
     return db_refresh_memory_variables(store)
+
 
 
 @transact_sync

@@ -126,6 +126,33 @@ class Model(Storm):
             if k in values and values[k]:
                 setattr(self, k, values[k])
 
+    @classmethod
+    def get(cls, store, id):
+        ret = store.find(cls, id=id).one()
+        if ret is None:
+            raise errors.ModelNotFound(cls)
+
+        return ret
+
+    @classmethod
+    @transact
+    def test(store, cls, *args, **kwargs):
+        try:
+            cls.db_get(store, *args, **kwargs)
+        except:
+            return False
+
+        return True
+
+    @classmethod
+    def db_delete(cls, store, *args, **kwargs):
+        store.find(cls, *args, **kwargs).remove()
+
+    @classmethod
+    @transact
+    def delete(store, cls, **kwargs):
+        cls.db_delete(store, **kwargs)
+
     def __str__(self):
         # pylint: disable=no-member
         values = ['{}={}'.format(attr, getattr(self, attr)) for attr in self.properties]
@@ -170,6 +197,38 @@ class ModelWithID(Model):
     """
     __storm_table__ = None
     id = Unicode(primary=True, default_factory=uuid4)
+
+
+class ModelWithTID(Model):
+    """
+    Base class for models requiring a TID
+    """
+    __storm_table__ = None
+
+    tid = Int(primary=True, default=1)
+
+
+class ModelWithIDandTID(Model):
+    """
+    Base class for models requiring a TID and an ID
+    """
+    __storm_table__ = None
+
+    id = Unicode(primary=True, default_factory=uuid4)
+    tid = Int(default=1)
+
+
+class Tenant(Model):
+    """
+    Class used to implement tenants
+    """
+    id = Int(primary=True)
+    label = Unicode(validator=shorttext_v, default=u'')
+    active = Bool(default=True)
+    creation_date = DateTime(default_factory=datetime_now)
+
+    unicode_keys = ['label']
+    bool_keys = ['active']
 
 
 class User(ModelWithID):
