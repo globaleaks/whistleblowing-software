@@ -120,7 +120,7 @@ var GLClient = angular.module('GLClient', [
     }
 
     function fetchResources(role, lst) {
-      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource) {
+      return ['$q', 'Access', 'AdminContextResource', 'AdminQuestionnaireResource', 'AdminStepResource', 'AdminFieldResource', 'AdminFieldTemplateResource', 'AdminUserResource', 'AdminReceiverResource', 'AdminNodeResource', 'AdminNotificationResource', 'AdminShorturlResource', 'AdminTenantResource', 'FieldAttrs', 'ActivitiesCollection', 'AnomaliesCollection', 'TipOverview', 'FileOverview', 'JobsOverview', 'ManifestResource', function($q, Access, AdminContextResource, AdminQuestionnaireResource, AdminStepResource, AdminFieldResource, AdminFieldTemplateResource, AdminUserResource, AdminReceiverResource, AdminNodeResource, AdminNotificationResource, AdminShorturlResource, AdminTenantResource, FieldAttrs, ActivitiesCollection, AnomaliesCollection, TipOverview, FileOverview, JobsOverview, ManifestResource) {
         var resourcesPromises = {
           node: function() { return AdminNodeResource.get().$promise },
           manifest: function() { return ManifestResource.get().$promise; },
@@ -131,6 +131,7 @@ var GLClient = angular.module('GLClient', [
           receivers: function() { return AdminReceiverResource.query().$promise },
           notification: function() { return AdminNotificationResource.get().$promise },
           shorturls: function() { return AdminShorturlResource.query().$promise },
+          tenants: function() { return AdminTenantResource.query().$promise },
           activities: function() { return ActivitiesCollection.query().$promise },
           anomalies: function() { return AnomaliesCollection.query().$promise },
           tip_overview: function() { return TipOverview.query().$promise },
@@ -322,6 +323,15 @@ var GLClient = angular.module('GLClient', [
         header_subtitle: 'System overview',
         resolve: {
           resources: fetchResources('admin', ['activities', 'anomalies', 'file_overview', 'jobs_overview', 'tip_overview', 'users']),
+        }
+      }).
+      when('/admin/tenants', {
+        templateUrl: 'views/admin/tenants.html',
+        controller: 'AdminCtrl',
+        header_title: 'Administration interfact',
+        header_subtitle: 'Tenant management',
+        resolve: {
+          resources: fetchResources('admin', ['node', 'tenants']),
         }
       }).
       when('/admin', {

@@ -34,6 +34,7 @@ from globaleaks.handlers.admin import shorturl as admin_shorturl
 from globaleaks.handlers.admin import staticfiles as admin_staticfiles
 from globaleaks.handlers.admin import statistics as admin_statistics
 from globaleaks.handlers.admin import step as admin_step
+from globaleaks.handlers.admin import tenant as admin_tenant
 from globaleaks.handlers.admin import user as admin_user
 from globaleaks.rest import apicache, requests, errors
 from globaleaks.settings import Settings
@@ -130,6 +131,8 @@ api_spec = [
     (r'/admin/config/tls/files/(cert|chain|priv_key)', https.FileHandler),
     (r'/admin/staticfiles$', admin_staticfiles.StaticFileList),
     (r'/admin/staticfiles/(.+)', admin_staticfiles.StaticFileInstance),
+    (r'/admin/tenants', admin_tenant.TenantCollection),
+    (r'/admin/tenants/' + '([0-9]{0,20})', admin_tenant.TenantInstance),
     (r'/admin/overview/tips', admin_overview.Tips),
     (r'/admin/overview/files', admin_overview.Files),
     (r'/wizard', wizard.Wizard),

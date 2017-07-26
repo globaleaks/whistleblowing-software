@@ -1,6 +1,13 @@
 PRAGMA foreign_keys = ON;
 PRAGMA auto_vacuum = FULL;
 
+CREATE TABLE tenant (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    label TEXT NOT NULL,
+    active BOOL NOT NULL,
+    creation_date TEXT NOT NULL
+);
+
 CREATE TABLE enabledlanguage (
     name TEXT NOT NULL,
     PRIMARY KEY (name)
