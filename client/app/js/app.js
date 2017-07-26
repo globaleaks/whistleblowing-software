@@ -41,9 +41,7 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
             agent: navigator.userAgent
           });
 
-          var $http = $injector.get('$http');
-
-          $http.post('exception', scrub(errorData));
+          $injector.get('$http').post('exception', scrub(errorData));
         });
     };
 }
@@ -437,8 +435,8 @@ var GLClient = angular.module('GLClient', [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(['$q', '$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate', 'Access',
-      function($q, $rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate, Access) {
+  run(['$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate', 'Access',
+      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate, Access) {
 
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
@@ -472,7 +470,7 @@ var GLClient = angular.module('GLClient', [
         $location.path('/wizard');
       }
 
-      if (($location.path() === '/') && ($rootScope.node.landing_page === 'submissionpage')) {
+      if ($location.path() === '/' && $rootScope.node.landing_page === 'submissionpage') {
         $location.path('/submission');
       }
 
@@ -504,9 +502,7 @@ var GLClient = angular.module('GLClient', [
     };
 
     $rootScope.init = function () {
-      var deferred = $q.defer();
-
-      PublicResource.get(function(result, getResponseHeaders) {
+      return PublicResource.get(function(result, getResponseHeaders) {
         if (result.node.homepage) {
           $templateCache.put('custom_homepage.html', atob(result.node.homepage));
         }
@@ -587,10 +583,7 @@ var GLClient = angular.module('GLClient', [
         }
 
         $rootScope.started = true;
-        deferred.resolve();
-      });
-
-      return deferred.promise;
+      }).$promise;
     };
 
     //////////////////////////////////////////////////////////////////

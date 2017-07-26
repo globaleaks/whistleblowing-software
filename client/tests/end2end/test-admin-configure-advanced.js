@@ -12,7 +12,6 @@ describe('admin configure advanced settings', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.maximum_textsize')).getAttribute('value')).toEqual('1337');
     });
   });
@@ -29,7 +28,6 @@ describe('admin configure advanced settings - Anomaly detection thresholds', fun
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.threshold_free_disk_percentage_high')).getAttribute('value')).toEqual('4');
     });
   });
@@ -43,7 +41,6 @@ describe('admin disable submissions', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeTruthy();
     });
 
@@ -59,7 +56,6 @@ describe('admin disable submissions', function() {
 
     // save settings
     element(by.css('[data-ng-click="updateNode(admin.node)"]')).click().then(function() {
-      browser.gl.utils.emulateUserRefresh();
       expect(element(by.model('admin.node.disable_submissions')).isSelected()).toBeFalsy();
     });
 
