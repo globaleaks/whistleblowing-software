@@ -88,7 +88,14 @@ function atexit {
 
   rm  -r $TMPDIR
 }
+
 trap atexit EXIT
+
+function support_msg {
+  echo ""
+  echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
+  echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
+}
 
 for arg in "$@"; do
   shift
@@ -117,7 +124,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
       read -p "Do you wish to continue anyway? [y|n]?" yn
       case $yn in
         [Yy]*) break;;
-        [Nn]*) echo "Installation aborted."; echo "For Community Support (best-effort) please report your issues to our forum at https://forum.globaleaks.org"; echo "For Professional Support (dedicated) contact us at https://www.globaleaks.org/contact/"; exit;;
+        [Nn]*) support_msg; exit;;
         *) echo $yn; echo "Please answer y/n.";  continue;;
       esac
     done
@@ -199,7 +206,5 @@ for IP in $IPS;
 do
   echo "- http://$IP"
 done
-echo ""
-echo "For Community Support (best-effort) please report your issues to our forum at https://forum.globaleaks.org"
-echo "For Professional Support (dedicated) contact us at https://www.globaleaks.org/contact/"
-echo ""
+
+support_msg
