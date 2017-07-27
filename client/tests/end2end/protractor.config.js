@@ -23,6 +23,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {
+      args: ['--window-size=1280,1024'],
       prefs: {
         'download': {
           'prompt_for_download': false,
