@@ -9,7 +9,7 @@ fi
 # Preliminary requirements check
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
-for REQ in apt-key apt-get gpg curl
+for REQ in apt-key apt-get curl
 do
   if which $REQ >/dev/null; then
     echo " + $REQ requirement meet"
@@ -756,6 +756,10 @@ echo '' > $TMPDIR/last_command
 echo '' > $TMPDIR/last_status
 
 function atexit {
+  echo ""
+  echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
+  echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
+
   if [ $TEST -eq 1 ]; then
     DISTRO_CODENAME="test-$DISTRO_CODENAME"
   fi
@@ -775,20 +779,14 @@ function atexit {
 
 trap atexit EXIT
 
-function support_msg {
-  echo ""
-  echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
-  echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
-}
-
 for arg in "$@"; do
   shift
   case "$arg" in
-    --assume-yes ) ASSUMEYES=1; shift ;;
-    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift ;;
+    --assume-yes ) ASSUMEYES=1; shift;;
+    --install-experimental-version-and-accept-the-consequences ) EXPERIMENTAL=1; shift;;
     --test) TEST=1; shift;;
-    -- ) shift; break ;;
-    * ) break ;;
+    -- ) shift; break;;
+    * ) break;;
   esac
 done
 
@@ -808,7 +806,7 @@ if echo "$DISTRO_CODENAME" | grep -vqE "^xenial$" ; then
       read -p "Do you wish to continue anyway? [y|n]?" yn
       case $yn in
         [Yy]*) break;;
-        [Nn]*) support_msg; exit;;
+        [Nn]*) exit 1;;
         *) echo $yn; echo "Please answer y/n.";  continue;;
       esac
     done
@@ -882,12 +880,24 @@ else
   DO "apt-get install globaleaks -y"
 fi
 
-echo "Install script completed."
-IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
-echo "GlobaLeaks should be reachable at:"
-for IP in $IPS;
+i=0
+while [ $i -lt 30 ]
 do
-  echo "- http://$IP"
+  X=`netstat -tln | grep "127.0.0.1:8082"`
+  if [ $? -eq 0 ]; then
+    #SUCCESS
+    echo "Install script completed."
+    IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
+    echo "GlobaLeaks should be reachable at:"
+    for IP in $IPS;
+    do
+      echo "- http://$IP"
+    done
+    exit 0
+  fi
+  i=$[$i+1]
+  sleep 1
 done
 
-support_msg
+#ERROR
+exit 1
