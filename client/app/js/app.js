@@ -2,7 +2,7 @@
 
 var _flowFactoryProvider;
 
-function extendExceptionHandler($delegate, $injector, $window, stacktraceService) {
+function extendExceptionHandler($delegate, $injector, stacktraceService) {
     var uuid4RE = /([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/g;
     var uuid4Empt = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
     // Note this RE is different from our usual email validator
@@ -35,7 +35,7 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
 
         stacktraceService.fromError(exception).then(function(result) {
           var errorData = angular.toJson({
-            errorUrl: $window.location.href,
+            errorUrl: $injector.get('$location').path(),
             errorMessage: exception.toString(),
             stackTrace: result,
             agent: navigator.userAgent
@@ -46,7 +46,7 @@ function extendExceptionHandler($delegate, $injector, $window, stacktraceService
     };
 }
 
-extendExceptionHandler.$inject = ['$delegate', '$injector', '$window', 'stacktraceService'];
+extendExceptionHandler.$inject = ['$delegate', '$injector', 'stacktraceService'];
 
 function exceptionConfig($provide) {
     $provide.decorator('$exceptionHandler', extendExceptionHandler);
@@ -435,9 +435,8 @@ var GLClient = angular.module('GLClient', [
     // Trick to move the flowFactoryProvider config inside run block.
     _flowFactoryProvider = flowFactoryProvider;
 }]).
-  run(['$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate', 'Access',
-      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate, Access) {
-
+  run(['$rootScope', '$http', '$route', '$routeParams', '$location',  '$filter', '$translate', '$uibModal', '$timeout', '$templateCache', 'Authentication', 'PublicResource', 'Utils', 'fieldUtilities', 'GLTranslate', 'Access', 'Test',
+      function($rootScope, $http, $route, $routeParams, $location, $filter, $translate, $uibModal, $timeout, $templateCache, Authentication, PublicResource, Utils, fieldUtilities, GLTranslate, Access, Test) {
     $rootScope.Authentication = Authentication;
     $rootScope.GLTranslate = GLTranslate;
     $rootScope.Utils = Utils;
@@ -524,6 +523,10 @@ var GLClient = angular.module('GLClient', [
     };
 
     $rootScope.evaluateConfidentialityModalOpening = function () {
+      if (Test) {
+        return;
+      }
+
       if (!$rootScope.connection.https && !$rootScope.confidentiality_warning_accepted) {
         if (!$rootScope.https) {
           if (!$rootScope.confidentiality_warning_opened) {
@@ -575,12 +578,12 @@ var GLClient = angular.module('GLClient', [
         }
 
         $rootScope.connection = {
-          'https': window.location.protocol === 'https:' || window.location.hostname === '127.0.0.1',
+          'https': $location.protocol() === 'https:',
           'tor': false
         }
 
         // Tor detection and enforcing of usage of HS if users are using Tor
-        if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
+        if ($location.host().match(/^[a-z0-9]{16}\.onion$/)) {
           // A better check on this situation would be
           // to fetch https://check.torproject.org/api/ip
           $rootScope.connection.tor = true;
@@ -592,7 +595,7 @@ var GLClient = angular.module('GLClient', [
               // the check on the iframe is in order to avoid redirects
               // when the application is included inside iframes in order to not
               // mix HTTPS resources with HTTP resources.
-              window.location.href = $rootScope.node.onionservice + '/#' + $location.url();
+              $location.path('http://' + $rootScope.node.onionservice + '/#' + $location.url());
             }
           }
         }
@@ -752,7 +755,7 @@ var GLClient = angular.module('GLClient', [
        var $http = $injector.get('$http');
        var $rootScope = $injector.get('$rootScope');
        var $q = $injector.get('$q');
-       var $window = $injector.get('$window');
+       var $location = $injector.get('$location');
 
        if ($http.pendingRequests.length <= 1) {
           $rootScope.showLoadingPanel = false;
@@ -760,7 +763,7 @@ var GLClient = angular.module('GLClient', [
 
        if (response.status === 405) {
          var errorData = angular.toJson({
-             errorUrl: $window.location.href,
+             errorUrl: $location.path(),
              errorMessage: response.statusText,
              stackTrace: [{
                'url': response.config.url,
