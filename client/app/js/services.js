@@ -796,8 +796,8 @@ factory('AdminUtils', ['AdminContextResource', 'AdminQuestionnaireResource', 'Ad
         );
       },
 
-      go: function (hash) {
-        $location.path(hash);
+      go: function (path) {
+        $location.path(path);
       },
 
       randomFluff: function () {

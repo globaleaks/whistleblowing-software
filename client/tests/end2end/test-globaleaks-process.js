@@ -14,62 +14,9 @@ describe('globaLeaks process', function() {
   var receiver_password = browser.gl.utils.vars['user_password'];
 
   var perform_submission = function() {
-    browser.get('/#/');
-    element(by.cssContainingText("button", "Blow the whistle")).click();
-    browser.gl.utils.waitUntilPresent(by.cssContainingText("div.modal-title", "Warning! You are not anonymous."));
-    element(by.id("answer-2")).click();
-    browser.gl.utils.waitUntilClickable(by.cssContainingText("a", "Proceed to submission"));
-    element(by.cssContainingText("a", "Proceed to submission")).click();
-
-    browser.gl.utils.waitUntilPresent(by.id('submissionForm'));
-
-    browser.wait(function(){
-      // Wait until the proof of work is resolved;
-      return element(by.id('submissionForm')).evaluate('submission').then(function(submission) {
-        return submission.pow === true;
-      });
-    });
-
-    browser.gl.utils.waitUntilPresent(by.id('submissionForm'));
-
-    element(by.id('NextStepButton')).click();
-
-    browser.gl.utils.waitUntilPresent(by.id('SubmissionErrors'));
-
-    element(by.id('step-receiver-selection')).element(by.id('receiver-0')).click();
-
-    element(by.id('NextStepButton')).click();
-
-    element(by.id('PreviousStepButton')).click();
-
-    element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
-
-    element(by.id('NextStepButton')).click();
-
-    element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(tip_text);
-    if (browser.gl.utils.testFileUpload()) {
-      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
-      element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
-        browser.waitForAngular();
-        element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
-          browser.waitForAngular();
-        });
-      });
-    }
-
-    browser.gl.utils.waitUntilClickable(by.id('SubmitButton'));
-
-    var submit_button = element(by.id('SubmitButton'));
-
-    submit_button.click().then(function() {
-      browser.gl.utils.waitForUrl('/receipt');
-      element(by.id('KeyCode')).getText().then(function (txt) {
-        receipts.unshift(txt);
-        element(by.id('ReceiptButton')).click().then(function() {
-          browser.gl.utils.waitForUrl('/status');
-          browser.gl.utils.logout();
-        });
-      });
+    var wb = new browser.gl.pages.whistleblower();
+    wb.performSubmission(tip_text, true).then(function(receipt) {
+      receipts.unshift(receipt);
     });
   };
 

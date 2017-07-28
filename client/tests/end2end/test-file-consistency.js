@@ -68,7 +68,7 @@ describe('Test file upload/download consistency', function() {
     var wb = new browser.gl.pages.whistleblower();
     var rec = new browser.gl.pages.receiver();
 
-    wb.performSubmission('Test file consistency').then(function(receipt) {
+    wb.performSubmission('Test file consistency', false).then(function(receipt) {
       wb.viewReceipt(receipt);
        // Add each file as an attachment.
       test_meta_files.forEach(function(m_file) {
@@ -107,10 +107,10 @@ describe('Test file upload/download consistency', function() {
     var priv_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PRV', opts);
     var pub_key = fs.readFileSync('../backend/globaleaks/tests/data/gpg/VALID_PGP_KEY1_PUB', opts);
 
-    wb.performSubmission('Test file openpgp consistency').then(function(receipt) {
+    wb.performSubmission('Test file openpgp consistency', false).then(function(receipt) {
       // attach files to submission
       wb.viewReceipt(receipt);
-       test_meta_files.forEach(function(m_file) {
+      test_meta_files.forEach(function(m_file) {
         wb.submitFile(m_file.origin_path);
       });
 

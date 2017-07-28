@@ -475,7 +475,7 @@ var GLClient = angular.module('GLClient', [
       }
 
       if ($location.path() === '/submission' &&
-          $rootScope.anonymous === false &&
+          $rootScope.tor === false &&
           $rootScope.node.tor2web_whistleblower === false) {
         $location.path("/");
       }
@@ -501,12 +501,61 @@ var GLClient = angular.module('GLClient', [
       }
     };
 
+    $rootScope.open_confidentiality_modal = function () {
+      $uibModal.open({
+        controller: 'ModalCtrl',
+        templateUrl: 'views/partials/security_awareness_confidentiality.html',
+        size: 'lg',
+        scope: $rootScope,
+        backdrop: 'static',
+        keyboard: false
+      });
+    };
+
+    $rootScope.open_anonimity_modal = function () {
+      $uibModal.open({
+        templateUrl: 'views/partials/security_awareness_anonimity.html',
+        controller: 'ModalCtrl',
+        size: 'lg',
+        scope: $rootScope,
+        backdrop: 'static',
+        keyboard: false
+      });
+    };
+
+    $rootScope.evaluateConfidentialityModalOpening = function () {
+      if (!$rootScope.connection.https && !$rootScope.confidentiality_warning_accepted) {
+        if (!$rootScope.https) {
+          if (!$rootScope.confidentiality_warning_opened) {
+            $rootScope.confidentiality_warning_opened = true;
+            $rootScope.open_confidentiality_modal();
+          }
+        }
+      }
+    }
+
+    $rootScope.evaluateAnonimityModalOpening = function () {
+      if ($rootScope.confidentiality_warning_opened) {
+        return;
+      }
+
+      if (!$rootScope.connection.tor && !$rootScope.anonimity_warning_accepted) {
+        if (!$rootScope.tor) {
+          if (!$rootScope.anonimity_warning_opened) {
+            $rootScope.anonimity_warning_opened = true;
+            $rootScope.open_anonimity_modal();
+          }
+        }
+      }
+    }
+
     $rootScope.init = function () {
       return PublicResource.get(function(result, getResponseHeaders) {
         if (result.node.homepage) {
           $templateCache.put('custom_homepage.html', atob(result.node.homepage));
         }
 
+        $rootScope.answer = {value: null};
 
         $rootScope.node = result.node;
         $rootScope.contexts = result.contexts;
@@ -525,27 +574,26 @@ var GLClient = angular.module('GLClient', [
           document.getElementById('favicon').setAttribute("href", "data:image/x-icon;base64," + result.node.favicon);
         }
 
+        $rootScope.connection = {
+          'https': window.location.protocol === 'https:' || window.location.hostname === '127.0.0.1',
+          'tor': false
+        }
+
         // Tor detection and enforcing of usage of HS if users are using Tor
         if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
           // A better check on this situation would be
           // to fetch https://check.torproject.org/api/ip
-          $rootScope.anonymous = true;
-        } else {
-          if (window.location.protocol === 'https:') {
-            var headers = getResponseHeaders();
-            if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
-              $rootScope.anonymous = true;
-              if ($rootScope.node.onionservice && !Utils.iframeCheck()) {
-                // the check on the iframe is in order to avoid redirects
-                // when the application is included inside iframes in order to not
-                // mix HTTPS resources with HTTP resources.
-                window.location.href = $rootScope.node.onionservice + '/#' + $location.url();
-              }
-            } else {
-              $rootScope.anonymous = false;
+          $rootScope.connection.tor = true;
+        } else if ($rootScope.connection.https) {
+          var headers = getResponseHeaders();
+          if (headers['x-check-tor'] !== undefined && headers['x-check-tor'] === 'true') {
+            $rootScope.connection.tor = true;
+            if ($rootScope.node.onionservice && !Utils.iframeCheck()) {
+              // the check on the iframe is in order to avoid redirects
+              // when the application is included inside iframes in order to not
+              // mix HTTPS resources with HTTP resources.
+              window.location.href = $rootScope.node.onionservice + '/#' + $location.url();
             }
-          } else {
-            $rootScope.anonymous = false;
           }
         }
 
@@ -581,6 +629,8 @@ var GLClient = angular.module('GLClient', [
           $rootScope.isStepTriggered = $rootScope.dumb_function;
           $rootScope.isFieldTriggered = $rootScope.dumb_function;
         }
+
+        $rootScope.evaluateConfidentialityModalOpening();
 
         $rootScope.started = true;
       }).$promise;
