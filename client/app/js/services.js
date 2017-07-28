@@ -1,4 +1,7 @@
 angular.module('GLServices', ['ngResource']).
+  factory('Test', function () {
+    return false;
+  }).
   factory('GLResource', ['$resource', function($resource) {
     return function(url, params, actions) {
       var defaults = {
@@ -172,7 +175,6 @@ angular.module('GLServices', ['ngResource']).
 
           return h;
         };
-
       }
 
       return new Session();

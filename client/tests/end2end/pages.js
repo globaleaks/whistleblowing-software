@@ -7,16 +7,9 @@ exports.receiver = function() {
     browser.setLocation('receiver/preferences');
     element(by.cssContainingText("a", "Encryption settings")).click();
     var pgpTxtArea = element(by.model('preferences.pgp_key_public'));
-
-    return pgpTxtArea.isDisplayed().then(function(displayed) {
-      if (!displayed) {
-        clickDelPubKey();
-      }
-
     pgpTxtArea.clear();
     pgpTxtArea.sendKeys(pub_pgp_key);
     return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
-    });
   };
 
   this.wbfile_widget = function() {

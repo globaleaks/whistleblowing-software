@@ -52,5 +52,11 @@ exports.config = {
       'utils': require('./utils.js'),
       'pages': require('./pages.js')
     }
+
+    browser.addMockModule('GLServices', function () {
+      angular.module('GLServices').factory('Test', function () {
+        return true;
+      });
+    });
   }
 };
