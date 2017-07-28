@@ -37,8 +37,15 @@ exports.receiver = function() {
 };
 
 exports.whistleblower = function() {
-  this.performSubmission = function(title) {
+  this.performSubmission = function(title, uploadFiles) {
     browser.get('/#/submission');
+
+    browser.gl.utils.waitUntilPresent(by.cssContainingText("div.modal-title", "Warning! You are not anonymous."));
+    element(by.id("answer-2")).click();
+    browser.gl.utils.waitUntilClickable(by.cssContainingText("a", "Proceed"));
+    element(by.cssContainingText("a", "Proceed")).click();
+
+    browser.gl.utils.waitUntilPresent(by.id('submissionForm'));
 
     browser.wait(function(){
       // Wait until the proof of work is resolved;
@@ -51,6 +58,18 @@ exports.whistleblower = function() {
     element(by.id('step-receiver-selection')).element(by.id('receiver-1')).click();
     element(by.id('NextStepButton')).click();
     element(by.id('step-0')).element(by.id('step-0-field-0-0-input-0')).sendKeys(title);
+
+    if (uploadFiles && browser.gl.utils.testFileUpload()) {
+      var fileToUpload1 = browser.gl.utils.makeTestFilePath('antani.txt');
+      var fileToUpload2 = browser.gl.utils.makeTestFilePath('unknown.filetype');
+      browser.executeScript('angular.element(document.querySelector(\'input[type="file"]\')).attr("style", "visibility: visible")');
+      element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload1).then(function() {
+        browser.waitForAngular();
+        element(by.id('step-0')).element(by.id('step-0-field-2-0')).element(by.xpath("//input[@type='file']")).sendKeys(fileToUpload2).then(function() {
+          browser.waitForAngular();
+        });
+      });
+    }
 
     var submit_button = element(by.id('SubmitButton'));
     var isClickable = protractor.ExpectedConditions.elementToBeClickable(submit_button);

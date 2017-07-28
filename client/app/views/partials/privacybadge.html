@@ -1,5 +1,5 @@
 <div id="PrivacyBadge" data-ng-init="open = true" data-ng-mouseenter="open = true" data-ng-if="!node.enable_custom_privacy_badge">
-  <div data-ng-switch="" on="anonymous" id="PrivacyBadgeTextBox" class="pull-left">
+  <div data-ng-switch="" on="connection.tor" id="PrivacyBadgeTextBox" class="pull-left">
     <div data-ng-switch-when="true">
       <div>
         <span class="label label-success">
@@ -43,7 +43,7 @@
   <div class="clearfix"></div>
 </div>
 <div id="PrivacyBadgeCustom" data-ng-if="node.enable_custom_privacy_badge">
-  <div data-ng-switch="" on="anonymous" id="PrivacyBoxTextBox">
+  <div data-ng-switch="" on="connection.tor" id="PrivacyBoxTextBox">
     <div data-ng-switch-when="true">
       <span id="PrivacyBadgeCustomIconTor"></span>
       <span id="PrivacyBadgeCustomTextTor">{{node.custom_privacy_badge_tor}}</span>

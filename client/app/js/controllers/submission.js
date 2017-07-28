@@ -396,6 +396,8 @@ GLClient.controller('SubmissionCtrl',
     return false;
   };
 
+  $scope.evaluateAnonimityModalOpening();
+
   new Submission(function(submission) {
     $scope.submission = submission;
 
