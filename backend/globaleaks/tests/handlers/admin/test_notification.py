@@ -68,7 +68,7 @@ class TestNotificationInstance(helpers.TestHandlerWithPopulatedDB):
         handler = self.request(admin_notif, role='admin')
         response = yield handler.put()
 
-        test_key1_fp = "ECAF2235E78E71CD95365843C7B190543CAA7585"
+        test_key1_fp = "BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1"
         self.assertEqual(response['exception_email_pgp_key_public'], pk)
         self.assertEqual(response['exception_email_pgp_key_fingerprint'], test_key1_fp)
 

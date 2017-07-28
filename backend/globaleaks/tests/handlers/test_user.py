@@ -51,7 +51,7 @@ class TestUserInstance(helpers.TestHandlerWithPopulatedDB):
         self.assertNotEqual(response['pgp_key_public'], u'')
 
         self.assertEqual(response['pgp_key_fingerprint'],
-                         u'ECAF2235E78E71CD95365843C7B190543CAA7585')
+                         u'BFB3C82D1B5F6A94BDAC55C6E70460ABF9A4C8C1')
 
         self.assertEqual(response['pgp_key_public'],
                          helpers.PGPKEYS['VALID_PGP_KEY1_PUB'])
