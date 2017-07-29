@@ -22,11 +22,6 @@ exports.receiver = function() {
       return browser.waitForAngular();
     });
   };
-
-  function clickDelPubKey() {
-    element(by.model('preferences.pgp_key_remove')).click();
-    return element(by.cssContainingText("span", "Update notification and encryption settings")).click();
-  }
 };
 
 exports.whistleblower = function() {
