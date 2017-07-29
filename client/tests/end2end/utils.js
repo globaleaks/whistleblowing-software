@@ -28,12 +28,19 @@ browser.getCapabilities().then(function(capabilities) {
 
   exports.testFileUpload = function() {
     var browserName = capabilities.get('browserName').toLowerCase();
+    if (exports.isMobile()) {
+      return false;
+    }
     return (['chrome', 'firefox', 'internet explorer', 'edge'].indexOf(browserName) !== -1);
   };
 
   exports.testFileDownload = function() {
     if (browser.params.testFileDownload) {
       return true;
+    }
+
+    if (exports.isMobile()) {
+      return false;
     }
 
     // The only browser that does not ask for user interaction is chrome
