@@ -514,7 +514,7 @@ var GLClient = angular.module('GLClient', [
     $rootScope.open_anonimity_modal = function () {
       $uibModal.open({
         templateUrl: 'views/partials/security_awareness_anonimity.html',
-        controller: 'ModalCtrl',
+        controller: 'AnonimityModalCtrl',
         size: 'lg',
         scope: $rootScope,
         backdrop: 'static',
@@ -524,7 +524,7 @@ var GLClient = angular.module('GLClient', [
 
     $rootScope.evaluateConfidentialityModalOpening = function () {
       if (Test) {
-        return;
+        return false;
       }
 
       if (!$rootScope.connection.https && !$rootScope.confidentiality_warning_accepted) {
@@ -532,14 +532,17 @@ var GLClient = angular.module('GLClient', [
           if (!$rootScope.confidentiality_warning_opened) {
             $rootScope.confidentiality_warning_opened = true;
             $rootScope.open_confidentiality_modal();
+            return true;
           }
         }
       }
+
+      return false;
     }
 
     $rootScope.evaluateAnonimityModalOpening = function () {
       if ($rootScope.confidentiality_warning_opened) {
-        return;
+        return false;
       }
 
       if (!$rootScope.connection.tor && !$rootScope.anonimity_warning_accepted) {
@@ -547,9 +550,12 @@ var GLClient = angular.module('GLClient', [
           if (!$rootScope.anonimity_warning_opened) {
             $rootScope.anonimity_warning_opened = true;
             $rootScope.open_anonimity_modal();
+            return true;
           }
         }
       }
+
+      return false;
     }
 
     $rootScope.init = function () {

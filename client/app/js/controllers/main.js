@@ -1,5 +1,5 @@
 GLClient.
-controller('DisableEncryptionCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
+controller('ModalCtrl', ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     $scope.close = function() {
       $uibModalInstance.close(false);
     };
@@ -17,5 +17,15 @@ controller('ConfirmableDialogCtrl', ['$scope', '$uibModalInstance', 'arg', funct
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
+  };
+}]);
+
+GLClient.controller('AnonimityModalCtrl', ['$scope', '$location', '$uibModalInstance',
+                    function($scope, $location, $uibModalInstance) {
+  $scope.ok = function () {
+    $uibModalInstance.close();
+    if ($location.path() === '/') {
+      $location.path('/submission');
+    }
   };
 }]);

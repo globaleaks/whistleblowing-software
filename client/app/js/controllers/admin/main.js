@@ -241,7 +241,7 @@ controller('AdminAdvancedCtrl', ['$scope', '$uibModal',
 
     var modalInstance = $uibModal.open({
       templateUrl: 'views/partials/disable_encryption.html',
-      controller: 'DisableEncryptionCtrl'
+      controller: 'ModalCtrl'
     });
 
     modalInstance.result.then(function(result){
