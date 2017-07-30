@@ -35,7 +35,5 @@ describe('globaLeaks setup wizard', function() {
     element.all(by.id('ButtonNext')).get(5).click();
 
     browser.gl.utils.waitForUrl('/admin/home');
-
-    browser.gl.utils.logout('/admin');
   });
 });
