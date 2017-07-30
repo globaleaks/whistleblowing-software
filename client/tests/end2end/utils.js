@@ -60,6 +60,7 @@ browser.getCapabilities().then(function(capabilities) {
 
 exports.waitUntilPresent = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  browser.waitForAngular();
   return browser.wait(function() {
     return element(locator).isDisplayed().then(function(present) {
       return present;
@@ -72,11 +73,13 @@ exports.waitUntilPresent = function (locator, timeout) {
 exports.waitUntilClickable = function (locator, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
   var EC = protractor.ExpectedConditions;
+  browser.waitForAngular();
   return browser.wait(EC.elementToBeClickable(element(locator)), t);
 };
 
 exports.waitForUrl = function (url, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  browser.waitForAngular();
   return browser.wait(function() {
     return browser.getCurrentUrl().then(function(current_url) {
       current_url = current_url.split('#')[1];
@@ -87,6 +90,7 @@ exports.waitForUrl = function (url, timeout) {
 
 exports.waitForFile = function (filename, timeout) {
   var t = timeout === undefined ? exports.browserTimeout() : timeout;
+  browser.waitForAngular();
   return browser.wait(function() {
     try {
       var buf = fs.readFileSync(filename);
