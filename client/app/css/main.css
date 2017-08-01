@@ -413,3 +413,9 @@ html[dir="rtl"] #UserBox  {
 .panel-heading {
   font-weight: bold;
 }
+
+.warning-msg {
+  font-weight: bold;
+  padding: 15px;
+  margin-bottom: 10px;
+}

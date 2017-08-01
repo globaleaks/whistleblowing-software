@@ -17,15 +17,11 @@
             <div class="tab-content">
               <div class="row">
                 <div class="col-md-12">
-                  <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
-                  <div data-ng-show="update_service.update_needed">
-                    <label>
-                      <span data-translate>Update available:</span> {{ update_service.new_ver }}
-                    </label>
-                    <span class="label label-danger">
-                      <i class="glyphicon glyphicon-exclamation-sign"></i>
-                      <span data-translate>Warning</span>
-                    </span>
+                  <div>
+                    <label><span data-translate>Software version:</span> {{admin.node.version}}</label>
+                  </div>
+                  <div data-ng-show="update_service.update_needed" class="warning-msg bg-danger">
+                    <span><i class="glyphicon glyphicon-info-sign"></i></span> <span data-translate>An update is available:</span> {{ update_service.new_ver }}
                   </div>
                 </div>
                 <div class="col-md-12" data-ng-repeat="change in admin.manifest.changelog | limitTo:displayNum">
