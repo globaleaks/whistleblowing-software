@@ -557,14 +557,14 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
 service('UpdateService', [function() {
   return {
-    new_data: function(cur_ver, new_ver) {
-      this.new_ver = new_ver;
-      if (this.new_ver !== cur_ver) {
+    new_data: function(installed_ver, latest_ver) {
+      this.latest_ver = latest_ver;
+      if (this.latest_ver !== installed_ver) {
         this.update_needed = true;
       }
     },
     update_needed: false,
-    new_ver: undefined,
+    latest_ver: undefined,
   }
 }]).
   factory('AdminNodeResource', ['GLResource', 'UpdateService', function(GLResource, UpdateService) {

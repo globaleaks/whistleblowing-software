@@ -10,7 +10,7 @@ from globaleaks.utils.agent import get_page
 
 
 class NewVerCheckJob(LoopingJob):
-    name = "New Version Check"
+    name = "Update Check"
     interval = 60*60*24
 
     def operation(self):
@@ -21,11 +21,7 @@ class NewVerCheckJob(LoopingJob):
         net_agent = GLSettings.get_agent()
 
         r = yield get_page(net_agent, 'https://deb.globaleaks.org/xenial/Packages')
-        packages = []
-        for package in deb822.Deb822.iter_paragraphs(r):
-            packages.append(package)
-
-        vers = [v(p['Version']) for p in packages]
+        packages = [p for p in deb822.Deb822.iter_paragraphs(r)]
         new = sorted(packages, key=lambda x: v(x['Version']), reverse=True)
 
         GLSettings.state.latest_version = v(new[0]['Version'])
