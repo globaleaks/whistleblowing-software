@@ -553,9 +553,32 @@ factory("Access", ["$q", "Authentication", function ($q, Authentication) {
 }]).
   factory('AdminReceiverResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/receivers/:id', {id: '@id'});
+
 }]).
-  factory('AdminNodeResource', ['GLResource', function(GLResource) {
-    return new GLResource('admin/node');
+service('UpdateService', [function() {
+  return {
+    new_data: function(cur_ver, new_ver) {
+      this.new_ver = new_ver;
+      if (this.new_ver !== cur_ver) {
+        this.update_needed = true;
+      }
+    },
+    update_needed: false,
+    new_ver: undefined,
+  }
+}]).
+  factory('AdminNodeResource', ['GLResource', 'UpdateService', function(GLResource, UpdateService) {
+    return new GLResource('admin/node', {}, {
+      get: {
+        method: 'get',
+        interceptor: {
+          response: function(response) {
+            UpdateService.new_data(response.resource.version, response.resource.latest_version);
+            return response.resource;
+          },
+        },
+      },
+  });
 }]).
   factory('AdminNotificationResource', ['GLResource', function(GLResource) {
     return new GLResource('admin/notification');

@@ -1,6 +1,7 @@
-GLClient.controller('AdminCtrl',
-    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminUtils', 'AdminNodeResource', 'CONSTANTS',
-    function($scope, $route, $location, $filter, resources, AdminUtils, AdminNodeResource, CONSTANTS) {
+GLClient.
+controller('AdminCtrl',
+    ['$scope', '$route', '$location', '$filter', 'resources', 'AdminUtils', 'AdminNodeResource', 'UpdateService', 'CONSTANTS',
+    function($scope, $route, $location, $filter, resources, AdminUtils, AdminNodeResource, UpdateService, CONSTANTS) {
   $scope.email_regexp = CONSTANTS.email_regexp;
   $scope.hostname_regexp = CONSTANTS.hostname_regexp;
   $scope.onionservice_regexp = CONSTANTS.onionservice_regexp;
@@ -11,6 +12,8 @@ GLClient.controller('AdminCtrl',
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
+
+  $scope.update_service = UpdateService;
 
   $scope.admin_utils = AdminUtils;
 

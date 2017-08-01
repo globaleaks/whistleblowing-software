@@ -12,6 +12,7 @@ import pwd
 import re
 import sys
 from distutils import dir_util # pylint: disable=no-name-in-module
+from distutils.version import StrictVersion
 from optparse import OptionParser
 
 from twisted.python.threadpool import ThreadPool
@@ -213,6 +214,7 @@ class GLSettingsClass(object):
         self.state = ObjectDict()
         self.state.process_supervisor = None
         self.state.tor_exit_set = TorExitSet()
+        self.state.latest_version = StrictVersion(__version__)
 
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
 

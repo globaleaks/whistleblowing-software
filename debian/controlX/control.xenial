@@ -25,6 +25,7 @@ Depends:
  , iptables
  , python:any (>= 2.7.5-5~), python:any (<< 2.8)
  , python-acme
+ , python-debian
  , python-openssl
  , python-gnupg
  , python-scrypt

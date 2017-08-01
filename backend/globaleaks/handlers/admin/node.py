@@ -29,6 +29,7 @@ def db_admin_serialize_node(store, language):
 
     misc_dict = {
         'version': PrivateFactory(store).get_val('version'),
+        'latest_version': str(GLSettings.state.latest_version),
         'languages_supported': LANGUAGES_SUPPORTED,
         'languages_enabled': EnabledLanguage.list(store),
         'configured': configured,
