@@ -3,7 +3,7 @@ from distutils.version import StrictVersion
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSettings
-from globaleaks.jobs.new_version_check_sched import NewVerCheckJob
+from globaleaks.jobs.update_check_sched import NewVerCheckJob
 from globaleaks.tests import helpers
 
 
