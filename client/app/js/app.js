@@ -523,20 +523,15 @@ var GLClient = angular.module('GLClient', [
     };
 
     $rootScope.evaluateConfidentialityModalOpening = function () {
-      if (Test) {
-        return false;
-      }
+      if (!Test && // NOTE used by protractor
+          !$rootScope.connection.https &&
+          !$rootScope.confidentiality_warning_accepted &&
+          ['localhost', '127.0.0.1'].indexOf($location.host()) === -1) {
 
-      if (!$rootScope.connection.https && !$rootScope.confidentiality_warning_accepted) {
-        if (!$rootScope.https) {
-          if (!$rootScope.confidentiality_warning_opened) {
             $rootScope.confidentiality_warning_opened = true;
             $rootScope.open_confidentiality_modal();
             return true;
-          }
-        }
       }
-
       return false;
     }
 
