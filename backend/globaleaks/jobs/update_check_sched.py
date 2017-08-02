@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 from debian import deb822
-from distutils.version import StrictVersion as v
+from distutils.version import StrictVersion as v # pylint: disable=no-name-in-module,import-error
 
 from twisted.internet.defer import inlineCallbacks
 

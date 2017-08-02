@@ -11,8 +11,10 @@ import os
 import pwd
 import re
 import sys
-from distutils import dir_util # pylint: disable=no-name-in-module
+# pylint: disable=no-name-in-module,import-error
+from distutils import dir_util
 from distutils.version import StrictVersion
+# pylint: enable=no-name-in-module,import-error
 from optparse import OptionParser
 
 from twisted.python.threadpool import ThreadPool
