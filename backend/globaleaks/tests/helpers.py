@@ -8,7 +8,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-from globaleaks import db, models, security, event, jobs
+from globaleaks import db, models, security, event, jobs, __version__
 from globaleaks.anomaly import Alarm
 from globaleaks.db.appdata import load_appdata
 from globaleaks.orm import transact
@@ -884,6 +884,7 @@ class MockDict:
             'email': u'email@dummy.net',
             'languages_supported': [],  # ignored
             'languages_enabled': ['it', 'en'],
+            'latest_version': __version__,
             'receipt_salt': '<<the Lannisters send their regards>>',
             'maximum_filesize': 30,
             'maximum_namesize': 120,

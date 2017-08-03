@@ -30,7 +30,7 @@ __all__ = [
     'base',
     'exit_nodes_refresh_sched',
     'delivery_sched',
-    'new_version_check_sched',
+    'update_check_sched',
     'notification_sched',
     'statistics_sched',
     'cleaning_sched',

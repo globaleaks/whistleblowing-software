@@ -883,10 +883,12 @@ fi
 i=0
 while [ $i -lt 30 ]
 do
+  DO "netstat -tln | grep '127.0.0.1:8082'"
   X=`netstat -tln | grep "127.0.0.1:8082"`
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "Install script completed."
+    DO "/sbin/ip -4 -o addr show | awk '{split($4,a);print a[1]}'"
     IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
     echo "GlobaLeaks should be reachable at:"
     for IP in $IPS;
