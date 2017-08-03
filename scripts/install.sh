@@ -883,7 +883,6 @@ fi
 i=0
 while [ $i -lt 30 ]
 do
-  DO "netstat -tln | grep '127.0.0.1:8082'"
   X=`netstat -tln | grep "127.0.0.1:8082"`
   if [ $? -eq 0 ]; then
     #SUCCESS
@@ -897,7 +896,9 @@ do
     done
     exit 0
   fi
+  echo $X
   i=$[$i+1]
+  printf '. '
   sleep 1
 done
 
