@@ -887,7 +887,6 @@ do
   if [ $? -eq 0 ]; then
     #SUCCESS
     echo "Install script completed."
-    DO "/sbin/ip -4 -o addr show | awk '{split($4,a);print a[1]}'"
     IPS=`/sbin/ip -4 -o addr show | awk '{split($4,a,"/");print a[1]}'`
     echo "GlobaLeaks should be reachable at:"
     for IP in $IPS;
@@ -897,9 +896,8 @@ do
     exit 0
   fi
   i=$[$i+1]
-  printf '. '
   sleep 1
 done
 
 #ERROR
-exit 0
+exit 1
