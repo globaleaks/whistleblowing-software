@@ -47,9 +47,9 @@ DO () {
     echo "SUCCESS"
   else
     echo "FAIL"
+    echo "Ouch! The installation failed."
     echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
     cat ${LOGFILE}
-    echo "Ouch! The installation failed.\nPlease help us out and report the failure on the forum so that others don't have the same issue. https://forum.globaleaks.org"
     exit 1
   fi
 }
@@ -756,7 +756,6 @@ echo '' > $TMPDIR/last_command
 echo '' > $TMPDIR/last_status
 
 function atexit {
-  echo ""
   echo "For Professional Support requests please visit: https://www.globaleaks.org/contact/"
   echo "Please report encountered issues to the Community Forum at https://forum.globaleaks.org"
 
@@ -900,4 +899,5 @@ do
 done
 
 #ERROR
+echo "Ouch! The installation is complete but GlobaLeaks failed to start."
 exit 1
