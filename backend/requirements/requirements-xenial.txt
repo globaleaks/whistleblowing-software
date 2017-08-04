@@ -8,7 +8,7 @@ idna==2.0
 pyOpenSSL==0.15.1
 pyasn1==0.1.9
 pycparser==2.14
-python-debian==0.1.27
+python_debian==0.1.28
 python_gnupg==0.3.8
 requests==2.9.1
 scrypt==0.6.1
