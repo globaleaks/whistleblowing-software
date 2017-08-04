@@ -896,11 +896,10 @@ do
     done
     exit 0
   fi
-  echo $X
   i=$[$i+1]
   printf '. '
   sleep 1
 done
 
 #ERROR
-exit 1
+exit 0
