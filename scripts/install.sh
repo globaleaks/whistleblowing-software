@@ -879,6 +879,9 @@ else
   DO "apt-get install globaleaks -y"
 fi
 
+LAST_COMMAND="startup"
+LAST_STATUS="0"
+
 i=0
 while [ $i -lt 30 ]
 do
@@ -900,4 +903,5 @@ done
 
 #ERROR
 echo "Ouch! The installation is complete but GlobaLeaks failed to start."
+LAST_STATUS="1"
 exit 1
