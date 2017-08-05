@@ -1,4 +1,4 @@
-from twisted.internet.defer import inlineCallbacks, fail
+from twisted.internet.defer import inlineCallbacks, succeed
 
 from globaleaks.jobs.delivery_sched import DeliverySchedule
 from globaleaks.jobs.notification_sched import NotificationSchedule
@@ -37,10 +37,11 @@ class TestNotificationSchedule(helpers.TestGLWithPopulatedDB):
         notification_schedule = NotificationSchedule()
         notification_schedule.skip_sleep = True
 
-        def sendmail(x, y, z):
-            return fail(True)
+        def sendmail_failure(x):
+            # simulate the failure just returning with no action
+            return succeed(None)
 
-        notification_schedule.sendmail = sendmail
+        notification_schedule.sendmail = sendmail_failure
 
         for i in range(0, 10):
             yield notification_schedule.run()
