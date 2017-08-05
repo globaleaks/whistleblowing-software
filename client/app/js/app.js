@@ -528,10 +528,11 @@ var GLClient = angular.module('GLClient', [
           !$rootScope.confidentiality_warning_accepted &&
           ['localhost', '127.0.0.1'].indexOf($location.host()) === -1) {
 
-            $rootScope.confidentiality_warning_opened = true;
-            $rootScope.open_confidentiality_modal();
-            return true;
+        $rootScope.confidentiality_warning_opened = true;
+        $rootScope.open_confidentiality_modal();
+        return true;
       }
+
       return false;
     }
 
