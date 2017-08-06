@@ -322,15 +322,6 @@ directive('pgpPubkeyValidator', ['glbcKeyLib', function(glbcKeyLib) {
     }
   };
 }]).
-directive('stopccp', function(){
-  return {
-    link:function(scope,element){
-      element.on('cut copy paste', function (event) {
-        event.preventDefault();
-      });
-    }
-  };
-}).
 directive('singleClick', [function() {
   return {
     restrict: 'A',
