@@ -13,10 +13,9 @@ import argparse
 from storm.store import Store
 from storm.database import create_database
 
-from globaleaks import models
+from globaleaks import models, security
 from globaleaks.db import get_db_file
 from globaleaks.settings import GLSettings
-from globaleaks.security import hash_password, generateRandomPassword, generateRandomSalt, generateRandomKey
 from globaleaks.models import config, config_desc
 from globaleaks.rest.requests import AdminNotificationDesc, AdminNodeDesc
 from globaleaks import DATABASE_VERSION
@@ -124,9 +123,9 @@ def reset_pass(args):
 
     check_file(db_path)
 
-    salt = generateRandomSalt()
+    salt = security.generateRandomSalt()
 
-    hashed_password = hash_password(args.password, salt)
+    hashed_password = security.hash_password(args.password, salt)
 
     QUERY = "UPDATE user SET salt=?, password=? WHERE username=?;"
 
@@ -192,7 +191,7 @@ def select_cfg_factory(varname):
     return None, None, None
 
 
-def set_var(args):
+def set_var(args, silent=False):
     check_dir(args.dbpath)
     db_version, db_path = get_db_file(args.dbpath)
 
@@ -227,22 +226,27 @@ def set_var(args):
         fact.set_val(args.varname, new_val)
         store.commit()
         out_val = fact.get_val(args.varname)
-        print "Success! {}:{} set to '{}'".format(args.varname, item, out_val)
+        if not silent:
+            print "Success! {}:{} set to '{}'".format(args.varname, item, out_val)
     except Exception as e:
         print >> sys.stderr, "Save failed! {}".format(e)
         sys.exit(1)
 
 def enable_api_token(args):
-    args.varname = 'admin_api_token'
-    args.value = generateRandomKey(32)
+    args.varname = 'admin_api_token_digest'
 
-    set_var(args)
+    args.value, token = security.generate_api_token()
+
+    set_var(args, silet=True)
+    print 'The API token is: {}'.format(token)
+    print 'You now have the only copy, keep it somewhere safe.'
 
 def disable_api_token(args):
     args.varname = 'admin_api_token'
     args.value = ''
 
-    set_var(args)
+    set_var(args, silent=True)
+    print 'The API token was deleted'
 
 
 def add_db_path_arg(parser):
@@ -276,7 +280,7 @@ pw_p = subp.add_parser("resetpass", help="reset a user's password")
 add_db_path_arg(pw_p)
 pw_p.add_argument("username", help="the username used to login into GL")
 pw_p.add_argument("password", nargs="?", help="if not set a random password is generated",
-                  default=generateRandomPassword())
+                  default=security.generateRandomPassword())
 pw_p.set_defaults(func=reset_pass)
 
 rv_p = subp.add_parser("readvar", help="read database config variable")
