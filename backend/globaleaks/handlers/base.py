@@ -370,7 +370,7 @@ class BaseHandler(object):
                 del jmessage[key]
 
             for key, value in message_template.iteritems():
-                if key not in jmessage.keys():
+                if key not in jmessage:
                     log.debug("Key %s expected but missing!" % key)
                     log.debug("Received schema %s - Expected %s" %
                               (jmessage.keys(), message_template.keys()))
@@ -379,17 +379,18 @@ class BaseHandler(object):
                 if not BaseHandler.validate_type(jmessage[key], value):
                     log.err("Expected key: %s type validation failure" % key)
                     raise errors.InvalidInputFormat("Key (%s) double validation failure" % key)
-                success_check += 1
 
                 if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
                     if message_template[key]:
                         BaseHandler.validate_jmessage(jmessage[key], message_template[key])
 
-            if success_check == len(message_template.keys()) * 2:
-                return True
-            else:
+                success_check += 1
+
+            if success_check != len(message_template) * 2:
                 log.err("Success counter double check failure: %d" % success_check)
                 raise errors.InvalidInputFormat("Success counter double check failure")
+
+            return True
 
         elif isinstance(message_template, list):
             ret = all(BaseHandler.validate_type(x, message_template[0]) for x in jmessage)
