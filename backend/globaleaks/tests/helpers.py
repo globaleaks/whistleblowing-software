@@ -100,7 +100,6 @@ def init_glsettings_for_unit_tests():
     GLSettings.logging = None
     GLSettings.failed_login_attempts = 0
     GLSettings.working_path = './working_path'
-    GLSettings.onionservice = 'kpvz7ki2v5agwt35.onion'
 
     GLSettings.eval_paths()
 
