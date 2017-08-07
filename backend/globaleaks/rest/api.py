@@ -323,7 +323,7 @@ class APIResourceWrapper(Resource):
             return b''
 
         method = request.method.lower()
-        if not method in self.method_map.keys() or not hasattr(handler, method):
+        if not method in self.method_map or not hasattr(handler, method):
             self.handle_exception(errors.MethodNotImplemented(), request)
             return b''
         else:
