@@ -68,6 +68,25 @@ def generateRandomPassword():
     return generateRandomKey(10)
 
 
+def generate_api_token():
+    """
+    creates an api token along with its corresponding hash digest.
+
+    :rtype: A `tuple` containing (digest `str`, token `str`)
+    """
+    tok = generateRandomKey(GLSettings.api_token_len)
+    return (hash_api_token(tok), tok)
+
+
+def hash_api_token(token):
+    """
+    hashes an api token to produce a digest
+
+    :rtype: A digest `str`
+    """
+    return base64.b64encode(scrypt.hash(token, '\xbe\xef\xca\xfe'))
+
+
 def _overwrite(absolutefpath, pattern):
     filesize = os.path.getsize(absolutefpath)
     bytecnt = 0

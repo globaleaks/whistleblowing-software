@@ -60,7 +60,7 @@ GLConfig = {
         'https_dh_params': Unicode(),
         'https_enabled': Bool(default=False),
 
-        'admin_api_token': Unicode(),
+        'admin_api_token_digest': Unicode(),
     },
     'notification': {
         'server': Unicode(validator=shorttext_v, default=u'demo.globaleaks.org'),
