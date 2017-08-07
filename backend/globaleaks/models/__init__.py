@@ -112,6 +112,7 @@ class Model(Storm):
         # harder better faster stronger
         if isinstance(value, str):
             value = unicode(value)
+
         return super(Model, self).__setattr__(name, value)
 
     def dict(self, *keys):
@@ -126,8 +127,8 @@ class Model(Storm):
         not_allowed_keys = keys - self._public_attrs
         if not_allowed_keys:
             raise KeyError('Invalid keys: {}'.format(not_allowed_keys))
-        else:
-            return {key: getattr(self, key) for key in keys & self._public_attrs}
+
+        return {key: getattr(self, key) for key in keys & self._public_attrs}
 
 
 class ModelWithID(Model):
@@ -281,8 +282,7 @@ class InternalTip(ModelWithID):
     wb_access_counter = Int(default=0)
 
     def wb_revoke_access_date(self):
-        revoke_date = self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
-        return revoke_date
+        return self.wb_last_access + timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
 
     def is_wb_access_revoked(self):
         return self.whistleblowertip is None

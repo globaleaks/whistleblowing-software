@@ -480,7 +480,7 @@ class BaseHandler(object):
             if mime_type is None:
                 mime_type = 'application/octet-stream'
 
-            uploaded_file = {
+            return {
                 'name': self.request.args['flowFilename'][0],
                 'type': mime_type,
                 'size': total_file_size,
@@ -489,14 +489,11 @@ class BaseHandler(object):
                 'description': self.request.args.get('description', [''])[0]
             }
 
-            return uploaded_file
-
         except errors.FileTooBig:
             raise  # propagate the exception
 
         except Exception as exc:
             log.err("Error while handling file upload %s" % exc)
-            return None
 
     @inlineCallbacks
     def execution_check(self):
