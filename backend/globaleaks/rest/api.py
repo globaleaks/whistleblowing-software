@@ -278,7 +278,7 @@ class APIResourceWrapper(Resource):
             request.client_proto = 'http'
 
         request.client_using_tor = request.getHost().port == 8083 or \
-                                   request.client_ip in GLSettings.state.tor_exit_set
+                                   request.client_ip in GLSettings.appstate.tor_exit_set
 
         if 'x-tor2web' in request.headers:
             request.client_using_tor = False

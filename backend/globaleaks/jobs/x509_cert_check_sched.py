@@ -59,8 +59,8 @@ class X509CertCheckSchedule(LoopingJob):
             log.err('ACME certificate renewal failed with: %s' % e)
             raise
         try:
-            yield GLSettings.state.process_supervisor.shutdown()
-            yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+            yield GLSettings.appstate.process_supervisor.shutdown()
+            yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             self.acme_failures =+ 1
             log.err('Restart of HTTPS workers failed with: %s' % e)

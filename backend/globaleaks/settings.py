@@ -215,11 +215,11 @@ class GLSettingsClass(object):
 
         # TODO holds global state until GLSettings is inverted and this
         # state managed as an object by the application
-        self.state = ObjectDict()
-        self.state.process_supervisor = None
-        self.state.tor_exit_set = TorExitSet()
-        self.state.latest_version = StrictVersion(__version__)
-        self.state.api_session = None
+        self.appstate = ObjectDict()
+        self.appstate.process_supervisor = None
+        self.appstate.tor_exit_set = TorExitSet()
+        self.appstate.latest_version = StrictVersion(__version__)
+        self.appstate.api_session = None
 
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
 

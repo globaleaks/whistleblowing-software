@@ -145,7 +145,7 @@ class TestAPI(TestGL):
         url = 'http://1234567890123456.onion/'
 
         GLSettings.memory_copy.onionservice = '1234567890123456.onion'
-        GLSettings.state.tor_exit_set.add('1.2.3.4')
+        GLSettings.appstate.tor_exit_set.add('1.2.3.4')
 
         request = forge_request(url)
         self.api.render(request)
@@ -157,10 +157,10 @@ class TestAPI(TestGL):
         self.assertFalse(request.client_using_tor)
         self.assertEqual(request.responseCode, 200)
 
-        GLSettings.state.tor_exit_set.clear()
+        GLSettings.appstate.tor_exit_set.clear()
 
     def test_tor_redirection(self):
-        GLSettings.state.tor_exit_set.add('1.2.3.4')
+        GLSettings.appstate.tor_exit_set.add('1.2.3.4')
         GLSettings.memory_copy.onionservice = '1234567890123456.onion'
 
         request = forge_request(uri="https://www.globaleaks.org/")
@@ -171,7 +171,7 @@ class TestAPI(TestGL):
         location = request.responseHeaders.getRawHeaders(b'location')[0]
         self.assertEqual('http://1234567890123456.onion/', location)
 
-        GLSettings.state.tor_exit_set.clear()
+        GLSettings.appstate.tor_exit_set.clear()
 
     def test_https_redirect(self):
         GLSettings.memory_copy.private.https_enabled = True

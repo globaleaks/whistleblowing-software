@@ -6,15 +6,15 @@ from globaleaks.tests import helpers
 
 class TestExitNodesRefresh(helpers.TestGL):
     def setUp(self):
-        GLSettings.state.tor_exit_set.clear()
+        GLSettings.appstate.tor_exit_set.clear()
 
     def tearDown(self):
-        GLSettings.state.tor_exit_set.clear()
+        GLSettings.appstate.tor_exit_set.clear()
 
     @inlineCallbacks
     def test_refresh_works(self):
         # NOTE this test will fail without an internet connection
-        self.assertEqual(len(GLSettings.state.tor_exit_set), 0)
+        self.assertEqual(len(GLSettings.appstate.tor_exit_set), 0)
 
         GLSettings.memory_copy.anonymize_outgoing_connections = False
 
@@ -22,4 +22,4 @@ class TestExitNodesRefresh(helpers.TestGL):
         # to the exit set structure
         yield ExitNodesRefreshSchedule()._operation()
 
-        self.assertTrue(len(GLSettings.state.tor_exit_set) > 700)
+        self.assertTrue(len(GLSettings.appstate.tor_exit_set) > 700)

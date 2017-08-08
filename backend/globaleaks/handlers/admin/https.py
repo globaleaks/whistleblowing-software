@@ -341,8 +341,8 @@ def serialize_https_config_summary(store):
 
     ret = {
       'enabled': prv_fact.get_val('https_enabled'),
-      'running': GLSettings.state.process_supervisor.is_running(),
-      'status': GLSettings.state.process_supervisor.get_status(),
+      'running': GLSettings.appstate.process_supervisor.is_running(),
+      'status': GLSettings.appstate.process_supervisor.get_status(),
       'files': file_summaries,
       'acme': prv_fact.get_val('acme')
     }
@@ -383,7 +383,7 @@ class ConfigHandler(BaseHandler):
     def post(self):
         try:
             yield try_to_enable_https()
-            yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+            yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             log.err(e)
             raise errors.InternalServerError(str(e))
@@ -396,13 +396,13 @@ class ConfigHandler(BaseHandler):
         """
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
-        yield GLSettings.state.process_supervisor.shutdown()
+        yield GLSettings.appstate.process_supervisor.shutdown()
 
     @inlineCallbacks
     def delete(self):
         yield disable_https()
         GLSettings.memory_copy.private.https_enabled = False
-        yield GLSettings.state.process_supervisor.shutdown()
+        yield GLSettings.appstate.process_supervisor.shutdown()
         yield _delete_all_cfg()
 
 

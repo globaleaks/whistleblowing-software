@@ -12,8 +12,8 @@ class TestExitNodesRefresh(helpers.TestGL):
     def test_refresh_works(self):
         old_ver = StrictVersion('2.7.9')
         GLSettings.memory_copy.anonymize_outgoing_connections = False
-        GLSettings.state.latest_version = old_ver
+        GLSettings.appstate.latest_version = old_ver
 
         yield NewVerCheckJob()._operation()
 
-        self.assertGreater(GLSettings.state.latest_version, old_ver)
+        self.assertGreater(GLSettings.appstate.latest_version, old_ver)
