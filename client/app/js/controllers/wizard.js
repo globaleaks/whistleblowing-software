@@ -28,25 +28,25 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
 
       $scope.config_profiles = [
         {
-          name:      'default',
-          title:     'Use default settings',
-          active:     true,
+          active: true,
+          name:  'default',
+          title: 'Use default settings',
         },
         {
-          name:      'journos',
-          title:     'Investigative journalism',
+          name:  'journo',
+          title: 'Investigative journalism',
         },
         {
-          name:      'transparency',
-          title:     'NGO anticorruption reporting',
+          name:  'transparency',
+          title: 'NGO anticorruption reporting',
         },
         {
-          name:      'public',
-          title:     'Public administration compliant whistleblowing',
+          name:  'public',
+          title: 'Public administration compliant whistleblowing',
         },
         {
-          name:      'corporate',
-          title:     'Internal corporate fraud reporting',
+          name:  'corporate',
+          title: 'Internal corporate fraud reporting',
         },
       ];
 
