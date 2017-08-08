@@ -22,7 +22,7 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def setUp(self):
-        digest, self.api_tok = generate_api_token()
+        self.api_tok, digest = generate_api_token()
         yield helpers.TestHandlerWithPopulatedDB.setUp(self)
         yield set_api_digest(digest)
         yield db.refresh_memory_variables()
@@ -52,7 +52,7 @@ class TestAPITokenDisabled(helpers.TestHandlerWithPopulatedDB):
     def test_deny_token(self):
         # The active component of this application is the placement of the api key
         # in the private memory copy. When that changes this test will break.
-        digest, self.api_tok = generate_api_token()
+        self.api_tok, digest = generate_api_token()
         yield set_api_digest(digest)
 
         shorturl_desc = self.get_dummy_shorturl()
