@@ -4,6 +4,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers import wizard
 from globaleaks.rest import errors
 from globaleaks.tests import helpers
+from globaleaks.settings import GLSettings
+from globaleaks.orm import transact
 
 
 class TestWizard(helpers.TestHandler):
@@ -26,8 +28,9 @@ class TestWizard(helpers.TestHandler):
         self.wizard_blob = {
             'node': self.dummyNode,
             'admin': admin,
-            'receiver': self.get_dummy_receiver("christianice"),
-            'context': self.dummyContext
+            'receiver': self.get_dummy_receiver("christisnice"),
+            'context': self.dummyContext,
+            'profile': 'default',
         }
 
     @inlineCallbacks
@@ -44,3 +47,23 @@ class TestWizard(helpers.TestHandler):
 
         handler = self.request(self.wizard_blob)
         yield self.assertFailure(handler.post(), errors.ForbiddenOperation)
+
+
+class TestProfileLoad(helpers.TestHandler):
+
+    @inlineCallbacks
+    def setUp(self):
+        yield helpers.TestHandler.setUp(self)
+        self.old_path = GLSettings.client_path
+        GLSettings.client_path = os.path('..', helpers.DATA_DIR)
+
+    @inlineCallbacks
+    def test_invalid_load(self):
+        t = transact(load_profile)
+
+        self.assertFailure(errors.ValidationError, t, 'invalid')
+
+    @inlineCallbacks
+    def tearDown(self):
+        GLSettings.client_path = self.old_path
+        yield helpers.TestHandler.tearDown(self)

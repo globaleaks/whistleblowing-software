@@ -2,10 +2,9 @@ from storm.expr import And, Not
 from storm.locals import Storm, Bool, Unicode, JSON
 
 from globaleaks import __version__
+from globaleaks.models import config_desc
+from globaleaks.models.config_desc import GLConfig
 from globaleaks.utils.utility import log
-
-import config_desc
-from .config_desc import GLConfig
 
 
 class ConfigFactory(object):
