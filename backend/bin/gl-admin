@@ -235,7 +235,7 @@ def set_var(args, silent=False):
 def enable_api_token(args):
     args.varname = 'admin_api_token_digest'
 
-    args.value, token = security.generate_api_token()
+    token, args.value = security.generate_api_token()
 
     set_var(args, silet=True)
     print 'The API token is: {}'.format(token)

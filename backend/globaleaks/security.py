@@ -74,17 +74,9 @@ def generate_api_token():
 
     :rtype: A `tuple` containing (digest `str`, token `str`)
     """
-    tok = generateRandomKey(GLSettings.api_token_len)
-    return (hash_api_token(tok), tok)
-
-
-def hash_api_token(token):
-    """
-    hashes an api token to produce a digest
-
-    :rtype: A digest `str`
-    """
-    return base64.b64encode(scrypt.hash(token, '\xbe\xef\xca\xfe'))
+    token = generateRandomKey(GLSettings.api_token_len)
+    token_hash = sha512(token)
+    return token, token_hash
 
 
 def _overwrite(absolutefpath, pattern):
@@ -339,12 +331,12 @@ def hash_password(password, salt):
     """
     password = password.encode('utf-8')
     salt = salt.encode('utf-8')
-
     return scrypt.hash(password, salt).encode('hex')
 
 
 def check_password(guessed_password, salt, password_hash):
     return constant_time.bytes_eq(hash_password(guessed_password, salt), bytes(password_hash))
+
 
 def change_password(old_password_hash, old_password, new_password, salt):
     """

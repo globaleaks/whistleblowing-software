@@ -23,7 +23,7 @@ from twisted.web.static import File
 
 from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
-from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, hash_api_token
+from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import GLSettings
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
@@ -444,12 +444,13 @@ class BaseHandler(object):
         # Check for API token
         if GLSettings.state.api_session is not None and \
            GLSettings.memory_copy.private.admin_api_token_digest != '':
-            sec = bytes(GLSettings.memory_copy.private.admin_api_token_digest)
-            raw = bytes(self.request.headers.get('x-api-token', ''))
-            if len(raw) != GLSettings.api_token_len:
+            token = bytes(self.request.headers.get('x-api-token', ''))
+            if len(token) != GLSettings.api_token_len:
                 return None
 
-            if constant_time.bytes_eq(hash_api_token(raw), sec):
+            token_hash = bytes(GLSettings.memory_copy.private.admin_api_token_digest)
+
+            if constant_time.bytes_eq(sha512(token), token_hash):
                 return GLSettings.state.api_session
 
         # Check for user session
