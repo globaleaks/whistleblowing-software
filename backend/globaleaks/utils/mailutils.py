@@ -213,7 +213,7 @@ def mail_exception_handler(etype, value, tback):
     log.err("Unhandled exception raised:")
     log.err(mail_body)
 
-    send_exception_email(mail_body)
+    schedule_exception_email(mail_body)
 
 
 def extract_exception_traceback_and_send_email(e):
@@ -224,7 +224,9 @@ def extract_exception_traceback_and_send_email(e):
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 
-def send_exception_email(exception_text):
+def schedule_exception_email(exception_text):
+    from globaleaks.transactions import schedule_email
+
     if not hasattr(GLSettings.memory_copy, 'notif'):
         log.err("Error: Cannot send mail exception before complete initialization.")
         return
@@ -278,7 +280,7 @@ def send_exception_email(exception_text):
                     continue
 
             # avoid waiting for the notification to send and instead rely on threads to handle it
-            sendmail(mail_address, mail_subject, mail_body)
+            schedule_email(mail_address, mail_subject, mail_body)
 
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors

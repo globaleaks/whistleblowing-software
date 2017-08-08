@@ -16,7 +16,7 @@ from twisted.internet import reactor, defer
 from twisted.internet.threads import deferToThreadPool
 
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import send_exception_email
+from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import caller_name, log, timedelta_to_milliseconds
 
 
@@ -121,7 +121,7 @@ class transact(object):
                 msg = "Query [%s] executed in %.1fms" % (self.method.__name__, duration)
                 if duration > self.timelimit:
                     log.err(msg)
-                    send_exception_email(msg)
+                    schedule_exception_email(msg)
                 else:
                     log.debug(msg)
 
