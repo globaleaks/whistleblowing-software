@@ -176,7 +176,7 @@ def db_refresh_memory_variables(store):
     if GLSettings.memory_copy.private.admin_api_token_digest != '':
         api_id = store.find(User.id, User.role==u'admin').order_by(User.creation_date).first()
         if api_id is not None:
-            GLSettings.state.api_session = GLSession(api_id, 'admin', 'enabled')
+            GLSettings.appstate.api_session = GLSession(api_id, 'admin', 'enabled')
 
 
 @transact

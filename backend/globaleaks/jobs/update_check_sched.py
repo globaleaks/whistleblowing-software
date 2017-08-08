@@ -24,4 +24,4 @@ class NewVerCheckJob(LoopingJob):
         packages = [p for p in deb822.Deb822.iter_paragraphs(r)]
         new = sorted(packages, key=lambda x: v(x['Version']), reverse=True)
 
-        GLSettings.state.latest_version = v(new[0]['Version'])
+        GLSettings.appstate.latest_version = v(new[0]['Version'])

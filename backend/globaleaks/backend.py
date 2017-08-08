@@ -113,11 +113,11 @@ class GLService(service.Service):
         for sock in GLSettings.http_socks:
             listen_tcp_on_sock(reactor, sock.fileno(), GLSettings.api_factory)
 
-        GLSettings.state.process_supervisor = ProcessSupervisor(GLSettings.https_socks,
+        GLSettings.appstate.process_supervisor = ProcessSupervisor(GLSettings.https_socks,
                                                                 '127.0.0.1',
                                                                 8082)
 
-        yield GLSettings.state.process_supervisor.maybe_launch_https_workers()
+        yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
 
         GLSettings.start_jobs()
         GLSettings.start_services()

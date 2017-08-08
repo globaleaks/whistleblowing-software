@@ -20,4 +20,4 @@ class ExitNodesRefreshSchedule(LoopingJob):
     @inlineCallbacks
     def _operation(self):
         net_agent = GLSettings.get_agent()
-        yield GLSettings.state.tor_exit_set.update(net_agent)
+        yield GLSettings.appstate.tor_exit_set.update(net_agent)
