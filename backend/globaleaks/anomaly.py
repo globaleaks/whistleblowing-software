@@ -252,13 +252,7 @@ class AlarmClass(object):
 
                 subject, body = Templating().get_mail_subject_and_body(data)
 
-                store.add(models.Mail({
-                    'address': user_desc['mail_address'],
-                    'subject': subject,
-                    'body': body
-                }))
-
-
+                db_schedule_email(store, user_desc['mail_address'], subject, body)
 
         self.last_alarm_email = datetime_now()
         yield _generate_admin_alert_mail(alert)

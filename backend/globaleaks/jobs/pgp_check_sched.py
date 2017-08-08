@@ -11,6 +11,7 @@ from globaleaks.handlers.user import user_serialize_user
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.orm import transact_sync
 from globaleaks.settings import GLSettings
+from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import datetime_now, datetime_null
 
@@ -47,12 +48,7 @@ class PGPCheckSchedule(LoopingJob):
 
             subject, body = Templating().get_mail_subject_and_body(data)
 
-            store.add(models.Mail({
-                'address': user_desc['mail_address'],
-                'subject': subject,
-                'body': body
-            }))
-
+            db_schedule_email(store, user_desc['mail_address'], subject, body)
 
     def prepare_user_pgp_alerts(self, store, user_desc):
         user_language = user_desc['language']
@@ -66,11 +62,7 @@ class PGPCheckSchedule(LoopingJob):
 
         subject, body = Templating().get_mail_subject_and_body(data)
 
-        store.add(models.Mail({
-            'address': user_desc['mail_address'],
-            'subject': subject,
-            'body': body
-        }))
+        db_schedule_email(store, user_desc['mail_address'], subject, body)
 
     @transact_sync
     def perform_pgp_validation_checks(self, store):

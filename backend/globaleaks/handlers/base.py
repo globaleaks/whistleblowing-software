@@ -25,6 +25,7 @@ from globaleaks.event import track_handler
 from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import GLSettings
+from globaleaks.transactions import schedule_email_for_all_admins
 from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, deferred_sleep
@@ -455,6 +456,10 @@ class BaseHandler(object):
                 return GLSettings.appstate.api_token_session
             else:
                 GLSettings.appstate.api_token_session_suspended = True
+                msg = "Warning: API Token temporary suspended due to possible attack"
+                log.err(msg)
+                schedule_email_for_all_admins("%s notification" % GLSettings.memory_copy.name,
+                                             "API Token temporary suspended due to possible attack")
 
         # Check for user session
         session_id = self.request.headers.get('x-session')
