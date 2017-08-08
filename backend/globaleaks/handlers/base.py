@@ -442,7 +442,8 @@ class BaseHandler(object):
     @property
     def current_user(self):
         # Check for API token
-        if GLSettings.state.api_session is not None and \
+        if not GLSettings.appstate.api_token_session_suspended and \
+           GLSettings.appstate.api_token_session is not None and \
            GLSettings.memory_copy.private.admin_api_token_digest != '':
             token = bytes(self.request.headers.get('x-api-token', ''))
             if len(token) != GLSettings.api_token_len:
@@ -451,7 +452,9 @@ class BaseHandler(object):
             token_hash = bytes(GLSettings.memory_copy.private.admin_api_token_digest)
 
             if constant_time.bytes_eq(sha512(token), token_hash):
-                return GLSettings.state.api_session
+                return GLSettings.appstate.api_token_session
+            else:
+                GLSettings.appstate.api_token_session_suspended = True
 
         # Check for user session
         session_id = self.request.headers.get('x-session')

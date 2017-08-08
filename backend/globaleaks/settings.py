@@ -219,7 +219,8 @@ class GLSettingsClass(object):
         self.appstate.process_supervisor = None
         self.appstate.tor_exit_set = TorExitSet()
         self.appstate.latest_version = StrictVersion(__version__)
-        self.appstate.api_session = None
+        self.appstate.api_token_session = None
+        self.appstate.api_token_session_suspended = False
 
         self.acme_directory_url = 'https://acme-v01.api.letsencrypt.org/directory'
 
