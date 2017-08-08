@@ -1,5 +1,7 @@
 {
     "node": {
         "simplified_login": false
-    }
+    },
+    "questionnaries": {},
+    "contexts": {}
 }
