@@ -249,7 +249,7 @@ var GLClient = angular.module('GLClient', [
         header_title: 'Administration interface',
         header_subtitle: 'Context configuration',
         resolve: {
-          resources: fetchResources('admin', ['contexts', 'node', 'receivers']),
+          resources: fetchResources('admin', ['contexts', 'node', 'questionnaires', 'receivers']),
         }
       }).
       when('/admin/questionnaires', {
