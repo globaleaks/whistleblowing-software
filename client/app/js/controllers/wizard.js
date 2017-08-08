@@ -44,10 +44,6 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
           name:  'public',
           title: 'Public administration compliant whistleblowing',
         },
-        {
-          name:  'corporate',
-          title: 'Internal corporate fraud reporting',
-        },
       ];
 
       $scope.selectProfile = function(profile) {
