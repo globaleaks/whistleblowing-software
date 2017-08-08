@@ -69,7 +69,7 @@ def timedLogFormatter(timestamp, request):
     if hasattr(request, 'start_time'):
         duration = timedelta_to_milliseconds(datetime.now() - request.start_time)
 
-    return (u'%(code)s %(method)s %(uri)s %(length)s %(duration).2fms' % dict(
+    return (u'%(code)s %(method)s %(uri)s %(length)sB %(duration)dms' % dict(
               duration=duration,
               method=_escape(request.method),
               uri=_escape(request.uri),
