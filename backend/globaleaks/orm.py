@@ -118,7 +118,7 @@ class transact(object):
                 store.close()
 
                 duration = timedelta_to_milliseconds(datetime.now() - start_time)
-                msg = "Query [%s] took %d ms to execute" % (self.method.__name__, duration)
+                msg = "Query [%s] executed in %.1fms" % (self.method.__name__, duration)
                 if duration > self.timelimit:
                     log.err(msg)
                     send_exception_email(msg)
