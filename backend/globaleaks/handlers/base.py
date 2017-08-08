@@ -469,46 +469,39 @@ class BaseHandler(object):
         return GLSessions.get(session_id)
 
     def get_file_upload(self):
-        try:
-            chunk_size = len(self.request.args['file'][0])
-            total_file_size = int(self.request.args['flowTotalSize'][0]) if 'flowTotalSize' in self.request.args else chunk_size
-            flow_identifier = self.request.args['flowIdentifier'][0] if 'flowIdentifier' in self.request.args else generateRandomKey(10)
+        if 'flowFilename' not in self.request.args:
+            return None
 
-            if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
-                (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
-                log.err("File upload request rejected: file too big")
-                raise errors.FileTooBig(GLSettings.memory_copy.maximum_filesize)
+        total_file_size = int(self.request.args['flowTotalSize'][0])
+        flow_identifier = self.request.args['flowIdentifier'][0]
 
-            if flow_identifier not in GLUploads:
-                f = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
-                GLUploads[flow_identifier] = f
-            else:
-                f = GLUploads[flow_identifier]
+        chunk_size = len(self.request.args['file'][0])
+        if ((chunk_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize or
+            (total_file_size / (1024 * 1024)) > GLSettings.memory_copy.maximum_filesize):
+            log.err("File upload request rejected: file too big")
+            raise errors.FileTooBig(GLSettings.memory_copy.maximum_filesize)
 
-            f.write(self.request.args['file'][0])
+        if flow_identifier not in GLUploads:
+            GLUploads[flow_identifier] = GLSecureTemporaryFile(GLSettings.tmp_upload_path)
 
-            if 'flowChunkNumber' in self.request.args and 'flowTotalChunks' in self.request.args:
-                if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
-                    return None
+        f = GLUploads[flow_identifier]
+        f.write(self.request.args['file'][0])
 
-            mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
-            if mime_type is None:
-                mime_type = 'application/octet-stream'
+        if self.request.args['flowChunkNumber'][0] != self.request.args['flowTotalChunks'][0]:
+            return None
 
-            return {
-                'name': self.request.args['flowFilename'][0],
-                'type': mime_type,
-                'size': total_file_size,
-                'path': f.filepath,
-                'body': f,
-                'description': self.request.args.get('description', [''])[0]
-            }
+        mime_type, encoding = mimetypes.guess_type(self.request.args['flowFilename'][0])
+        if mime_type is None:
+            mime_type = 'application/octet-stream'
 
-        except errors.FileTooBig:
-            raise  # propagate the exception
-
-        except Exception as exc:
-            log.err("Error while handling file upload %s" % exc)
+        return {
+            'name': self.request.args['flowFilename'][0],
+            'type': mime_type,
+            'size': total_file_size,
+            'path': f.filepath,
+            'body': f,
+            'description': self.request.args.get('description', [''])[0]
+        }
 
     @inlineCallbacks
     def execution_check(self):
