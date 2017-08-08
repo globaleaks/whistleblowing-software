@@ -26,6 +26,38 @@ GLClient.controller('WizardCtrl', ['$scope', '$location', '$route', '$http', 'Au
                               // the system will then force the user to change the password
                               // at first login
 
+      $scope.config_profiles = [
+        {
+          name:      'default',
+          title:     'Use default settings',
+          active:     true,
+        },
+        {
+          name:      'journos',
+          title:     'Investigative journalism',
+        },
+        {
+          name:      'transparency',
+          title:     'NGO anticorruption reporting',
+        },
+        {
+          name:      'public',
+          title:     'Public administration compliant whistleblowing',
+        },
+        {
+          name:      'corporate',
+          title:     'Internal corporate fraud reporting',
+        },
+      ];
+
+      $scope.selectProfile = function(profile) {
+        angular.forEach($scope.config_profiles, function(p) {
+          p.active = false;
+        });
+        profile.active = true;
+        $scope.wizard.profile = profile.name;
+      }
+
       var context = AdminUtils.new_context();
 
       $scope.wizard = {

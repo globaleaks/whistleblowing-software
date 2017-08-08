@@ -9,6 +9,7 @@ from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.public import serialize_node
+from globaleaks.models import profiles
 from globaleaks.models.config import NodeFactory
 from globaleaks.models.l10n import EnabledLanguage, NodeL10NFactory
 from globaleaks.orm import transact
@@ -71,6 +72,8 @@ def wizard(store, request, language):
     }
 
     db_create_admin_user(store, admin_dict, language)
+
+    profiles.load_profile(store, request['profile'])
 
     db_refresh_memory_variables(store)
 

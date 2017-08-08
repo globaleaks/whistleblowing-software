@@ -552,10 +552,11 @@ WizardDesc = {
     },
     'admin': {
       'password': unicode,
-      'mail_address': unicode
+      'mail_address': unicode,
     },
     'receiver': AdminUserDesc,
-    'context': AdminContextDesc
+    'context': AdminContextDesc,
+    'profile': r'^(default|public|corporate|transparency|journo)$',
 }
 
 ExceptionDesc = {
