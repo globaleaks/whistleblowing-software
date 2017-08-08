@@ -26,7 +26,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.security import GLSecureTemporaryFile, directory_traversal_check, generateRandomKey, sha512
 from globaleaks.settings import GLSettings
 from globaleaks.transactions import schedule_email_for_all_admins
-from globaleaks.utils.mailutils import mail_exception_handler, send_exception_email
+from globaleaks.utils.mailutils import mail_exception_handler, schedule_exception_email
 from globaleaks.utils.tempdict import TempDict
 from globaleaks.utils.utility import log, deferred_sleep
 
@@ -519,7 +519,7 @@ class BaseHandler(object):
                     (self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
             log.err(error)
 
-            send_exception_email(error)
+            schedule_exception_email(error)
 
         track_handler(self)
 

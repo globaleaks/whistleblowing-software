@@ -3,7 +3,7 @@ import time
 
 from twisted.internet import task, defer, reactor, threads
 
-from globaleaks.utils.mailutils import send_exception_email, extract_exception_traceback_and_send_email
+from globaleaks.utils.mailutils import schedule_exception_email, extract_exception_traceback_and_send_email
 from globaleaks.utils.utility import log
 
 test_reactor = None
@@ -140,7 +140,7 @@ class LoopingJobsMonitor(LoopingJob):
                 log.err(error)
 
         if error_msg != "":
-            send_exception_email(error_msg)
+            schedule_exception_email(error_msg)
 
 
 class ServiceJob(BaseJob):

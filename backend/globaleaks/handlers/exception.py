@@ -7,7 +7,7 @@ import json
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
 from globaleaks.settings import GLSettings
-from globaleaks.utils.mailutils import send_exception_email
+from globaleaks.utils.mailutils import schedule_exception_email
 from globaleaks.utils.utility import log
 
 
@@ -19,8 +19,6 @@ class ExceptionHandler(BaseHandler):
     check_roles = '*'
 
     def post(self):
-        """
-        """
         request = self.validate_message(self.request.content.read(),
                                         requests.ExceptionDesc)
 
@@ -30,5 +28,5 @@ class ExceptionHandler(BaseHandler):
             exception_email += "Error Message: %s\n\n" % request['errorMessage']
             exception_email += "Stacktrace:\n"
             exception_email += json.dumps(request['stackTrace'], indent=2)
-            send_exception_email(exception_email)
+            schedule_exception_email(exception_email)
             log.debug("Received client exception and passed error to exception mail handler")
