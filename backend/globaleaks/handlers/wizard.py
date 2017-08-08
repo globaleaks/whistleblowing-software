@@ -3,6 +3,7 @@
 # wizard
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.db import db_refresh_memory_variables
 from globaleaks.handlers.admin.context import db_create_context
 from globaleaks.handlers.admin.receiver import db_create_receiver
 from globaleaks.handlers.admin.user import db_create_admin_user
@@ -70,6 +71,8 @@ def wizard(store, request, language):
     }
 
     db_create_admin_user(store, admin_dict, language)
+
+    db_refresh_memory_variables(store)
 
 
 class Wizard(BaseHandler):
