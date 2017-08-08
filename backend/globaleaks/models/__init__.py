@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
 """
-GlobaLeaks ORM Models definitions.
+ORM Models definitions.
 """
 from __future__ import absolute_import
 
