@@ -22,6 +22,7 @@ from globaleaks.handlers.admin.user import db_get_admin_users
 from globaleaks.orm import transact
 from globaleaks.rest.apicache import GLApiCache
 from globaleaks.settings import GLSettings
+from globaleaks.transactions import db_schedule_email
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.templating import Templating
 from globaleaks.utils.utility import log, datetime_now, is_expired, bytes_to_pretty_str
