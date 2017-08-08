@@ -237,7 +237,7 @@ def enable_api_token(args):
 
     token, args.value = security.generate_api_token()
 
-    set_var(args, silet=True)
+    set_var(args, silent=True)
     print 'The API token is: {}'.format(token)
     print 'You now have the only copy, keep it somewhere safe.'
 
