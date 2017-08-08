@@ -61,7 +61,34 @@
       </button>
     </div>
   </div>
-  <div id="WizardStep3" data-ng-show="step == 3" data-ng-form="wizardFormStep3">
+  <div id="WizardStep3" data-ng-show="step == 3">
+    <div class="row wizard-block">
+      <div class="col-md-12 title3" data-translate>Please choose a configuration profile:</div>
+      <div class="col-md-6">
+        <div data-ng-include="'views/partials/profiles.html'"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="wizard-help-hint">
+          <p>
+            <span data-translate>These profiles contain settings used by projects that have used GlobaLeaks in the described scenario.</span>
+            <span data-translate>The settings you select can be changed in the administration panel after the wizard is finished.</span>
+            <a href='https://github.com/globaleaks/globaleaks/wiki' target='_blank' rel="noreferrer noopener">Learn more</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="pager pull-right">
+      <button id="ButtonPrevious" class="btn btn-success btn-large" data-ng-click="step=step-1">
+        <i class="glyphicon glyphicon-circle-arrow-left"></i>
+        <span data-translate>previous step</span>
+      </button>
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1">
+        <span data-translate>next step</span>
+        <i class="glyphicon glyphicon-circle-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  <div id="WizardStep4" data-ng-show="step == 4" data-ng-form="wizardFormStep4">
     <div class="row wizard-block">
       <div class="title" data-translate>Admin</div>
        <div class="col-md-6">
@@ -70,9 +97,9 @@
              <span data-translate>Email address</span>
              <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
            </label>
-           <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep3.admin_email.$error.required || wizardFormStep3.admin_email.$error.pattern}">
+           <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep4.admin_email.$error.required || wizardFormStep4.admin_email.$error.pattern}">
              <input name="admin_email" class="form-control" data-ng-model="wizard.admin.mail_address" data-ng-attr-placeholder="{{'Enter an email address for the administrator' | translate}}" maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" required>
-             <div class="text-danger" data-ng-show="wizardFormStep3.admin_email.$error.pattern">
+             <div class="text-danger" data-ng-show="wizardFormStep4.admin_email.$error.pattern">
                <span data-translate>Invalid email address</span>
              </div>
            </div>
@@ -85,7 +112,7 @@
           <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep3.password.$error.required || wizardFormStep3.password.$error.passwordStrength}">
             <input name="password" class="form-control" data-ng-model="wizard.admin.password" type="password" data-ng-attr-placeholder="{{'Enter a password for the administrator' | translate}}" autocomplete="off" data-zxcvbn="passwordStrength" data-zx-min-score="3" required />
             <zx-password-meter value="passwordStrength"></zx-password-meter>
-            <div class="text-danger" data-ng-show="!wizardFormStep3.password.$error.required && wizardFormStep3.password.$error.passwordStrength">
+            <div class="text-danger" data-ng-show="!wizardFormStep4.password.$error.required && wizardFormStep4.password.$error.passwordStrength">
               <p data-translate>The chosen password is too weak. Make it more secure by adding special characters, numbers, and unusual symbols.</p>
             </div>
           </div>
@@ -110,13 +137,13 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep3.$invalid || (wizard.admin.password !== admin_check_password)">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep4.$invalid || (wizard.admin.password !== admin_check_password)">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep4" data-ng-show="step == 4" data-ng-form="wizardFormStep4">
+  <div id="WizardStep5" data-ng-show="step == 5" data-ng-form="wizardFormStep5">
     <div class="row wizard-block">
       <div class="title" data-translate>Context</div>
       <div class="col-md-6">
@@ -125,7 +152,7 @@
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep4.context_name.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.context_name.$error.required}">
             <input name="context_name" class="form-control" data-ng-model="wizard.context.name" type="text" data-ng-attr-placeholder="{{'What is the topic of your whistleblowing project?' | translate}}"  maxlength="{{node.maximum_namesize}}" required>
           </div>
         </div>
@@ -140,13 +167,13 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep4.$invalid">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep5.$invalid">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep5" data-ng-show="step == 5" data-ng-form="wizardFormStep5">
+  <div id="WizardStep6" data-ng-show="step == 6" data-ng-form="wizardFormStep6">
     <div class="row wizard-block">
       <div class="title" data-translate>Recipient</div>
       <div class="col-md-6">
@@ -155,7 +182,7 @@
             <span data-translate>Name</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.receiver_name.$error.required}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep6.receiver_name.$error.required}">
             <input name="receiver_name" class="form-control" data-ng-model="wizard.receiver.name" maxlength="{{node.maximum_namesize}}" type="text" data-ng-attr-placeholder="{{'Enter the name of the recipient' | translate}}" required>
           </div>
         </div>
@@ -164,9 +191,9 @@
             <span data-translate>Email address</span>
             <span class="text-danger" uib-popover="{{'This field is mandatory' | translate}}" popover-placement="right" popover-trigger="'mouseenter'">*</span>
           </label>
-          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep5.receiver_email.$error.required || wizardFormStep5.receiver_email.$error.pattern}">
+          <div class="col-md-8" data-ng-class="{'has-error': wizardFormStep6.receiver_email.$error.required || wizardFormStep6.receiver_email.$error.pattern}">
             <input name="receiver_email" class="form-control" data-ng-model="wizard.receiver.mail_address"  maxlength="{{node.maximum_namesize}}" data-ng-pattern="email_regexp" type="text" data-ng-attr-placeholder="{{'Enter the email address used to notify the recipient' | translate}}" required>
-            <div class="text-danger" data-ng-show="wizardFormStep5.receiver_email.$error.pattern">
+            <div class="text-danger" data-ng-show="wizardFormStep6.receiver_email.$error.pattern">
               <span data-translate>Invalid email address</span>
             </div>
           </div>
@@ -193,13 +220,13 @@
         <i class="glyphicon glyphicon-circle-arrow-left"></i>
         <span data-translate>previous step</span>
       </button>
-      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep5.$invalid">
+      <button id="ButtonNext" class="btn btn-success btn-large" data-ng-click="step=step+1" data-ng-disabled="wizardFormStep6.$invalid">
         <span data-translate>next step</span>
         <i class="glyphicon glyphicon-circle-arrow-right"></i>
       </button>
     </div>
   </div>
-  <div id="WizardStep6" class="row" data-ng-show="step == 6">
+  <div id="WizardStep7" class="row" data-ng-show="step == 7">
     <div class="col-md-10">
       <div class="congratulations">
         <div class="title1" data-translate>Congratulations!</div>
