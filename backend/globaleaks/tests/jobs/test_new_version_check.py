@@ -14,6 +14,6 @@ class TestExitNodesRefresh(helpers.TestGL):
         GLSettings.memory_copy.anonymize_outgoing_connections = False
         GLSettings.appstate.latest_version = old_ver
 
-        yield NewVerCheckJob()._operation()
+        yield NewVerCheckJob().operation()
 
         self.assertGreater(GLSettings.appstate.latest_version, old_ver)
