@@ -2,22 +2,23 @@
 # Implement refresh of the list of exit nodes IPs.
 
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet.error import ConnectionRefusedError
 
 from globaleaks.jobs.base import LoopingJob
 from globaleaks.settings import GLSettings
+from globaleaks.utils.utility import log
 
 __all__ = ['ExitNodesRefreshSchedule']
-
 
 class ExitNodesRefreshSchedule(LoopingJob):
     name = "Exit Nodes Refresh"
     interval = 3600
-
-    def operation(self):
-        # NOTE operation is intended to a be synchronous func. Here it is async
-        self._operation()
+    threaded = False
 
     @inlineCallbacks
-    def _operation(self):
+    def operation(self):
         net_agent = GLSettings.get_agent()
-        yield GLSettings.appstate.tor_exit_set.update(net_agent)
+        try:
+            yield GLSettings.appstate.tor_exit_set.update(net_agent)
+        except ConnectionRefusedError as e:
+            log.err('Exit relay fetch failed: %s' % e)

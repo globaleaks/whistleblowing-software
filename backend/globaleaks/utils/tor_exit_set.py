@@ -5,6 +5,7 @@ import re
 from globaleaks.utils.agent import get_page
 from globaleaks.utils.utility import log
 
+
 EXIT_ADDR_URL = 'https://check.torproject.org/exit-addresses'
 
 class TorExitSet(set):
@@ -19,12 +20,8 @@ class TorExitSet(set):
 
         log.debug('Retrieved: %d exit nodes\' IPs' % len(self))
 
-    def update(self, agent):
-        def errback(fail):
-             log.err('Exit relay fetch failed: %s' % fail.value)
 
+    def update(self, agent):
         pageFetchedDeferred = get_page(agent, EXIT_ADDR_URL)
         pageFetchedDeferred.addCallback(self.processData)
-        pageFetchedDeferred.addErrback(errback)
-
         return pageFetchedDeferred

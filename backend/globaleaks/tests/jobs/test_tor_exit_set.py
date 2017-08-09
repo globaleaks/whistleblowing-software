@@ -20,6 +20,6 @@ class TestExitNodesRefresh(helpers.TestGL):
 
         # TODO mocking the check-status endpoint will help us detect changes 
         # to the exit set structure
-        yield ExitNodesRefreshSchedule()._operation()
+        yield ExitNodesRefreshSchedule().operation()
 
         self.assertTrue(len(GLSettings.appstate.tor_exit_set) > 700)
