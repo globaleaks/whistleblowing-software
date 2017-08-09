@@ -3,6 +3,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import db
 from globaleaks.handlers.admin import shorturl
 from globaleaks.handlers.base import GLSessions
+from globaleaks.jobs.session_management_sched import SessionManagementSchedule
 from globaleaks.models.config import PrivateFactory
 from globaleaks.orm import transact
 from globaleaks.rest import errors
@@ -38,6 +39,26 @@ class TestAPITokenEnabled(helpers.TestHandlerWithPopulatedDB):
         shorturl_desc = self.get_dummy_shorturl()
         handler = self.request(shorturl_desc, headers={'x-api-token': 'a'*32})
         yield self.assertRaises(errors.NotAuthenticated, handler.post)
+
+    @inlineCallbacks
+    def test_anti_bruteforce_mechanism(self):
+        # If an invalid token is submitted the application should revoke the api token
+        shorturl_desc = self.get_dummy_shorturl('a')
+
+        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
+        yield handler.post()
+
+        handler = self.request(shorturl_desc, headers={'x-api-token': 'a'*32})
+        yield self.assertRaises(errors.NotAuthenticated, handler.post)
+
+        handler = self.request(shorturl_desc, headers={'x-api-token': self.api_tok})
+        yield self.assertRaises(errors.NotAuthenticated, handler.post)
+
+        # After the session management job is run the token should be restored
+        yield SessionManagementSchedule().operation()
+
+        handler = self.request(self.get_dummy_shorturl('b'), headers={'x-api-token': self.api_tok})
+        yield handler.post()
 
     @inlineCallbacks
     def tearDown(self):
