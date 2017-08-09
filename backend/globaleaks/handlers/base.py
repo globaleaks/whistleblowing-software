@@ -442,7 +442,12 @@ class BaseHandler(object):
 
     @property
     def current_user(self):
-        # Check for API token
+        if not hasattr(self, '_current_user'):
+            self._current_user = self.get_current_user()
+        return self._current_user
+
+    def get_current_user(self):
+        # Check for the API token
         if not GLSettings.appstate.api_token_session_suspended and \
            GLSettings.appstate.api_token_session is not None and \
            GLSettings.memory_copy.private.admin_api_token_digest != '':

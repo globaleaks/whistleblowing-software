@@ -23,4 +23,4 @@ class SessionManagementSchedule(LoopingJob):
                       % GLSettings.failed_login_attempts)
 
         GLSettings.failed_login_attempts = 0
-        GLSettings.appstate.api_token_suspended = False
+        GLSettings.appstate.api_token_session_suspended = False
