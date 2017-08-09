@@ -14,7 +14,8 @@ from storm.locals import create_database, Store
 from twisted.trial import unittest
 
 from globaleaks import __version__, DATABASE_VERSION, FIRST_DATABASE_VERSION_SUPPORTED
-from globaleaks.db import migration, update_db
+from globaleaks.db import migration, migrations, update_db
+from globaleaks.db.migrations import update_37
 from globaleaks.db.migrations.update import MigrationBase
 from globaleaks.handlers.admin.field import db_create_field
 from globaleaks.models import config, Field
@@ -29,28 +30,44 @@ class TestMigrationRoutines(unittest.TestCase):
     def setUp(self):
         test_config.skipIf('migration')
 
-    def _test(self, path, f):
+    def _test(self, path, version):
+        f = 'glbackend-%d.db' % version
+
         helpers.init_glsettings_for_unit_tests()
         GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
-        final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
-        GLSettings.db_uri = GLSettings.make_db_uri(final_db_file)
+        self.start_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % version))
+        self.final_db_file = os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION))
+        self.start_db_uri = GLSettings.make_db_uri(self.start_db_file)
+        GLSettings.db_uri = GLSettings.make_db_uri(self.final_db_file)
 
         shutil.rmtree(GLSettings.db_path, True)
         os.mkdir(GLSettings.db_path)
         dbpath = os.path.join(path, f)
         dbfile = os.path.join(GLSettings.db_path, f)
         shutil.copyfile(dbpath, dbfile)
+
+        # TESTS PRECONDITIONS
+        preconditions = getattr(self, 'preconditions_%d' % version, None)
+        if preconditions is not None:
+            preconditions()
+
         ret = update_db()
+
+        # TESTS POSTCONDITIONS
+        postconditions = getattr(self, 'postconditions_%d' % version, None)
+        if postconditions is not None:
+            postconditions()
+
         shutil.rmtree(GLSettings.db_path)
         self.assertNotEqual(ret, -1)
 
     def test_assert_complete(self):
-        """This test asserts that every table defined in the schema is migrated
+        """
+        This test asserts that every table defined in the schema is migrated
 
         Each CREATE TABLE statement is checked against a corresponding class name
         in the migration_table dict.
         """
-
         mig_class_names = {n.lower() for n in migration.migration_mapping.keys()}
 
         rel_path = os.path.join(os.path.abspath(__file__), '../../db/sqlite.sql')
@@ -64,15 +81,53 @@ class TestMigrationRoutines(unittest.TestCase):
         diff = db_table_names - mig_class_names
         self.assertTrue(len(diff) == 0)
 
+    def preconditions_34(self):
+        store = Store(create_database(self.start_db_uri))
+        notification_l10n = NotificationL10NFactory(store)
+        notification_l10n.set_val('export_template', 'it', 'unmodifiable')
+        x = notification_l10n.get_val('export_template', 'it')
+        self.assertTrue(x, 'unmodifiable')
+        store.commit()
+        store.close()
 
-def test(path, f):
-    return lambda self: self._test(path, f)
+    def postconditions_34(self):
+        store = Store(create_database(GLSettings.db_uri))
+        notification_l10n = NotificationL10NFactory(store)
+        x = notification_l10n.get_val('export_template', 'it')
+        self.assertNotEqual(x, 'unmodifiable')
+        store.commit()
+        store.close()
+
+    def preconditions_36(self):
+        update_37.TOR_DIR = GLSettings.db_path
+
+        pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
+        hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
+
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), pk_path)
+        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
+
+    def postconditions_36(self):
+        new_uri = GLSettings.make_db_uri(os.path.join(GLSettings.db_path, GLSettings.db_file_name))
+        store = Store(create_database(new_uri))
+        hs = config.NodeFactory(store).get_val('onionservice')
+        pk = config.PrivateFactory(store).get_val('tor_onion_key')
+
+        self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
+        with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
+            saved_key = f.read().strip()
+        self.assertEqual(saved_key, pk)
+        store.close()
+
+
+def test(path, version):
+    return lambda self: self._test(path, version)
 
 
 for directory in ['populated']:
     path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', directory)
     for i in range(FIRST_DATABASE_VERSION_SUPPORTED, DATABASE_VERSION):
-        setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, 'glbackend-%d.db' % i))
+        setattr(TestMigrationRoutines, "test_%s_db_migration_%d" % (directory, i), test(path, i))
 
 
 class TestConfigUpdates(unittest.TestCase):
@@ -198,118 +253,3 @@ def mod_bool():
     while True:
         yield i % 2 == 0
         i += 1
-
-
-class TestMigrationRegression(unittest.TestCase):
-    def _initStartDB(self, target_ver):
-        helpers.init_glsettings_for_unit_tests()
-
-        GLSettings.db_path = os.path.join(GLSettings.ramdisk_path, 'db_test')
-        shutil.rmtree(GLSettings.db_path, True)
-        os.mkdir(GLSettings.db_path)
-        db_name = 'glbackend-%d.db' % target_ver
-        db_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'db', 'populated', db_name)
-        shutil.copyfile(db_path, os.path.join(GLSettings.db_path, db_name))
-
-        self.db_file = os.path.join(GLSettings.db_path, db_name)
-        GLSettings.db_uri = GLSettings.make_db_uri(self.db_file)
-
-        self.store = Store(create_database(GLSettings.db_uri))
-
-    def test_check_field_constraints(self):
-        # This test case asserts that a migration from db ver 32 up to the latest
-        # db with fields that fail the constraints still functions.
-        self._initStartDB(32)
-
-        field_dict = helpers.get_dummy_field()
-        field_dict['instance'] = 'reference'
-        field_dict['step_id'] = None
-        field_dict['field_id'] = None
-
-        db_create_field(self.store, field_dict, u'en')
-
-        field_dict = helpers.get_dummy_field()
-        field_dict['instance'] = 'instance'
-
-        db_create_field(self.store, field_dict, u'en')
-
-        field_dict = helpers.get_dummy_field()
-        field_dict['instance'] = 'template'
-        field_dict['step_id'] = None
-        fld_grp_id = self.store.find(Field, Field.fieldgroup_id is not None)[0].fieldgroup_id
-        field_dict['field_id'] = fld_grp_id
-
-        db_create_field(self.store, field_dict, u'en')
-        self.store.commit()
-
-        ret = update_db()
-        shutil.rmtree(GLSettings.db_path)
-        self.assertNotEqual(ret, -1)
-
-    def test_check_unmodifiable_strings(self):
-        # This test case asserts that data migration updates unmodifiable l10n strings
-        self._initStartDB(34)
-
-        notification_l10n = NotificationL10NFactory(self.store)
-
-        t0 = notification_l10n.get_val('export_template', 'it')
-
-        notification_l10n.set_val('export_template', 'it', '')
-
-        t1 = notification_l10n.get_val('export_template', 'it')
-
-        self.assertEqual(t1, '')
-
-        self.store.commit()
-
-        # place a dummy version in the current db
-        store = Store(create_database(GLSettings.db_uri))
-        prv = config.PrivateFactory(store)
-        self.dummy_ver = '2.XX.XX'
-        prv.set_val('version', self.dummy_ver)
-        self.assertEqual(prv.get_val('version'), self.dummy_ver)
-        store.commit()
-        store.close()
-
-        migration.perform_data_update(self.db_file)
-
-        store = Store(create_database(GLSettings.db_uri))
-        notification_l10n = NotificationL10NFactory(store)
-        t2 = notification_l10n.get_val('export_template', 'it')
-        self.assertEqual(t2, t0)
-        store.commit()
-        store.close()
-
-        shutil.rmtree(GLSettings.db_path)
-
-    def test_mig_37_valid_tor_hs_key(self):
-        self._initStartDB(36)
-
-        from globaleaks.db.migrations import update_37
-        t = update_37.TOR_DIR
-        update_37.TOR_DIR = GLSettings.db_path
-
-
-        pk_path = os.path.join(update_37.TOR_DIR, 'private_key')
-        hn_path = os.path.join(update_37.TOR_DIR, 'hostname')
-
-        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/private_key'), pk_path)
-        shutil.copy(os.path.join(helpers.DATA_DIR, 'tor/hostname'), hn_path)
-
-        ret = update_db()
-        self.assertEqual(ret, None)
-
-        new_uri = GLSettings.make_db_uri(os.path.join(GLSettings.db_path, GLSettings.db_file_name))
-        store = Store(create_database(new_uri))
-        hs = config.NodeFactory(store).get_val('onionservice')
-        pk = config.PrivateFactory(store).get_val('tor_onion_key')
-
-        self.assertEqual('lftx7dbyvlc5txtl.onion', hs)
-        with open(os.path.join(helpers.DATA_DIR, 'tor/ephemeral_service_key')) as f:
-            saved_key = f.read().strip()
-        self.assertEqual(saved_key, pk)
-
-        store.close()
-
-        shutil.rmtree(GLSettings.db_path)
-        update_37.TOR_DIR = t
