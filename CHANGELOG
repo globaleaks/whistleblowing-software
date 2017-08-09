@@ -1,3 +1,25 @@
+Changes in version 2.71.0 - 2017-08-09
+    o Add an admin API token controllable from gl-admin #2032
+    o Add a dismissable HTTP usage warning to the frontend #2034
+    o Show the security awareness modal also on /submission #2037
+    o Check for platform updates and display update needed in admin UI #1493
+    o Allow paste into password fields #2028
+    o Freeze pyasn1_modules and chardet to python package requirements
+    o Remove migration support for DB versions 15 to 19
+    o Fix include of questionnaires in admin/context
+    o Fix frontend redirect during '$routeChangeError' events
+    o Hardcode release public keys in the install script
+    o Improve error handling in the install script
+    o Apply minor UI and logging changes
+    o Update translations
+
+    Other closed tickets:
+    - https://github.com/globaleaks/GlobaLeaks/issues/1493
+    - https://github.com/globaleaks/GlobaLeaks/issues/2028
+    - https://github.com/globaleaks/GlobaLeaks/issues/2032
+    - https://github.com/globaleaks/GlobaLeaks/issues/2034
+    - https://github.com/globaleaks/GlobaLeaks/issues/2037
+
 Changes in version 2.70.10 - 2017-07-24
     o Implement caching on /admin resources
     o Add time tracking of database transactions #2017
