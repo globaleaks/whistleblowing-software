@@ -23,12 +23,12 @@ class NewVerCheckJob(LoopingJob):
     def operation(self):
         net_agent = GLSettings.get_agent()
         try:
-            log.debug('Fetching latest version from repo')
+            log.debug('Fetching latest GlobaLeaks version from repository')
             r = yield get_page(net_agent, DEB_PACKAGE_URL)
             packages = [p for p in deb822.Deb822.iter_paragraphs(r)]
             new = sorted(packages, key=lambda x: v(x['Version']), reverse=True)
 
             GLSettings.appstate.latest_version = v(new[0]['Version'])
-            log.debug('The newest version in the repo: %s' % GLSettings.appstate.latest_version)
+            log.debug('The newest version in the repository is: %s' % GLSettings.appstate.latest_version)
         except ConnectionRefusedError as e:
             log.err('New version check failed: %s' % e)
