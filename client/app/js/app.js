@@ -580,7 +580,7 @@ var GLClient = angular.module('GLClient', [
         }
 
         $rootScope.connection = {
-          'https': $location.protocol() === 'https:',
+          'https': $location.protocol() === 'https',
           'tor': false
         }
 
