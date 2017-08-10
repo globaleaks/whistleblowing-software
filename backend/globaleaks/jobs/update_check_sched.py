@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 from debian import deb822
-from distutils.version import StrictVersion as v # pylint: disable=no-name-in-module,import-error
+from distutils.version import StrictVersion as V # pylint: disable=no-name-in-module,import-error
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
 from twisted.internet.error import ConnectionRefusedError
 
 from globaleaks.settings import GLSettings
@@ -14,21 +14,23 @@ from globaleaks.utils.agent import get_page
 DEB_PACKAGE_URL = 'https://deb.globaleaks.org/xenial/Packages'
 
 
-class NewVerCheckJob(LoopingJob):
+class UpdateCheckJob(LoopingJob):
     name = "Update Check"
     interval = 60*60*24
     threaded = False
 
+    def fetch_packages_file(self):
+        agent = GLSettings.get_agent()
+        return get_page(agent, DEB_PACKAGE_URL)
+
     @inlineCallbacks
     def operation(self):
-        net_agent = GLSettings.get_agent()
         try:
             log.debug('Fetching latest GlobaLeaks version from repository')
-            r = yield get_page(net_agent, DEB_PACKAGE_URL)
-            packages = [p for p in deb822.Deb822.iter_paragraphs(r)]
-            new = sorted(packages, key=lambda x: v(x['Version']), reverse=True)
-
-            GLSettings.appstate.latest_version = v(new[0]['Version'])
+            p = yield self.fetch_packages_file()
+            versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(p)]
+            versions.sort(key=V)
+            GLSettings.appstate.latest_version = versions[-1]
             log.debug('The newest version in the repository is: %s' % GLSettings.appstate.latest_version)
         except ConnectionRefusedError as e:
             log.err('New version check failed: %s' % e)
