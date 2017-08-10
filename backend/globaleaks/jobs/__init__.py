@@ -13,7 +13,7 @@ jobs_list = [
     delivery_sched.DeliverySchedule,
     exit_nodes_refresh_sched.ExitNodesRefreshSchedule,
     statistics_sched.AnomaliesSchedule,
-    update_check_sched.NewVerCheckJob,
+    update_check_sched.UpdateCheckJob,
     notification_sched.NotificationSchedule,
     session_management_sched.SessionManagementSchedule,
     cleaning_sched.CleaningSchedule,
