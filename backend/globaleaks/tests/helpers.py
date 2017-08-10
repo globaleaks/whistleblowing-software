@@ -82,11 +82,15 @@ utility.deferred_sleep = deferred_sleep_mock
 
 class UTlog:
     @staticmethod
-    def log(stuff):
-        with open('./test.log', 'a') as f:
-            f.write(stuff + '\n')
+    def mlog(flag):
+        def log(msg):
+            with open('./test.log', 'a') as f:
+                f.write('[{}] {}\n'.format(flag, msg))
+        return log
 
-log.err = log.debug = log.info = UTlog.log
+log.err = UTlog.mlog('E')
+log.debug = UTlog.mlog('D')
+log.info = UTlog.mlog('I')
 
 
 def init_glsettings_for_unit_tests():
