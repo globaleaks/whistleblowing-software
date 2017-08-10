@@ -1,3 +1,7 @@
+Changes in version 2.71.1 - 2017-08-10
+    o Apply bugfixing to update detection feature
+    o Apply bugfixing to HTTPS detection and warning
+
 Changes in version 2.71.0 - 2017-08-09
     o Add an admin API token controllable from gl-admin #2032
     o Add a dismissable HTTP usage warning to the frontend #2034
