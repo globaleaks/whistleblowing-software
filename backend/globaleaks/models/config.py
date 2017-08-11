@@ -94,7 +94,7 @@ class ConfigFactory(object):
 
         for key in extra:
             c = res[key]
-            log.info("Removing unused config: %s" % c)
+            log.info("Removing unused config: %s", c)
             self.store.remove(c)
 
         return len(missing), len(extra)
@@ -244,7 +244,7 @@ def del_cfg_not_in_groups(store):
                 Not(Config.var_group == u'private'))
     res = store.find(Config, where)
     for c in res:
-        log.info("Removing extra Config <%s>" % c)
+        log.info("Removing extra Config <%s>", c)
     store.find(Config, where).remove()
 
 

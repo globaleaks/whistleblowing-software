@@ -99,7 +99,7 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
     if random.randint(1, 5) == 3:
         iterations_number += 1
 
-    log.debug("Starting secure deletion of file %s" % absolutefpath)
+    log.debug("Starting secure deletion of file %s", absolutefpath)
 
     try:
         # in the following loop, the file is open and closed on purpose, to trigger flush operations
@@ -113,30 +113,25 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
             for _ in xrange(OPTIMIZATION_RANDOM_BLOCK):
                 random_pattern += str(random.randrange(256))
 
-            log.debug("Excecuting rewrite iteration (%d out of %d)" %
-                      (iteration, iterations_number))
+            log.debug("Excecuting rewrite iteration (%d out of %d)",
+                      iteration, iterations_number)
 
             _overwrite(absolutefpath, all_zeros)
-            log.debug("Overwritten file %s with all zeros pattern" % absolutefpath)
-
             _overwrite(absolutefpath, all_ones)
-            log.debug("Overwritten file %s with all ones pattern" % absolutefpath)
-
             _overwrite(absolutefpath, random_pattern)
-            log.debug("Overwritten file %s with random pattern" % absolutefpath)
 
     except Exception as e:
-        log.err("Unable to perform secure overwrite for file %s: %s" %
-                (absolutefpath, e))
+        log.err("Unable to perform secure overwrite for file %s: %s",
+                absolutefpath, e)
 
     finally:
         try:
             os.remove(absolutefpath)
         except OSError as remove_ose:
-            log.err("Unable to perform unlink operation on file %s: %s" %
-                    (absolutefpath, remove_ose))
+            log.err("Unable to perform unlink operation on file %s: %s",
+                    absolutefpath, remove_ose)
 
-    log.debug("Performed deletion of file: %s" % absolutefpath)
+    log.debug("Performed deletion of file: %s", absolutefpath)
 
 
 class GLSecureTemporaryFile(_TemporaryFileWrapper):
@@ -159,7 +154,7 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
         # XXX remind enhance file name with incremental number
         self.filepath = os.path.join(filedir, "%s.aes" % self.key_id)
 
-        log.debug("++ Creating %s filetmp" % self.filepath)
+        log.debug("++ Creating %s filetmp", self.filepath)
 
         self.file = open(self.filepath, 'w+b')
 
@@ -194,17 +189,17 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             'key_counter_nonce': base64.b64encode(self.key_counter_nonce)
         }
 
-        log.debug("Key initialization at %s" % self.keypath)
+        log.debug("Key initialization at %s", self.keypath)
 
         with open(self.keypath, 'w') as kf:
             json.dump(key_json, kf)
 
         if not os.path.isfile(self.keypath):
-            log.err("Unable to write keyfile %s" % self.keypath)
+            log.err("Unable to write keyfile %s", self.keypath)
             raise Exception("Unable to write keyfile %s" % self.keypath)
 
     def avoid_delete(self):
-        log.debug("Avoid delete on: %s " % self.filepath)
+        log.debug("Avoid delete on: %s", self.filepath)
         self.delete = False
 
     def write(self, data):
@@ -216,14 +211,10 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
             raise Exception("Error: Write call performed after read")
 
         self.last_action = 'write'
-        try:
-            if isinstance(data, unicode):
-                data = data.encode('utf-8')
+        if isinstance(data, unicode):
+            data = data.encode('utf-8')
 
-            self.file.write(self.encryptor.update(data))
-        except Exception as wer:
-            log.err("Unable to write() in GLSecureTemporaryFile: %s" % wer.message)
-            raise wer
+        self.file.write(self.encryptor.update(data))
 
     def close(self):
         if not self.close_called:
@@ -255,8 +246,8 @@ class GLSecureTemporaryFile(_TemporaryFileWrapper):
 
             self.seek(0, 0)  # this is a trick just to misc write and read
             self.initialize_cipher()
-            log.debug("First seek on %s" % self.filepath)
             self.last_action = 'read'
+            log.debug("First seek on %s",  self.filepath)
 
         if c is None:
             data = self.file.read()
@@ -275,7 +266,7 @@ class GLSecureFile(GLSecureTemporaryFile):
 
         self.key_id = os.path.basename(self.filepath).split('.')[0]
 
-        log.debug("Opening secure file %s with %s" % (self.filepath, self.key_id))
+        log.debug("Opening secure file %s with %s", self.filepath, self.key_id)
 
         self.file = open(self.filepath, 'r+b')
 
@@ -298,10 +289,10 @@ class GLSecureFile(GLSecureTemporaryFile):
             self.key_counter_nonce = base64.b64decode(key_json['key_counter_nonce'])
             self.initialize_cipher()
 
-        except Exception as axa:
+        except Exception as e:
             # I'm sorry, that file is a dead file!
-            log.err("The file %s has been encrypted with a lost/invalid key (%s)" % (self.keypath, axa.message))
-            raise axa
+            log.err("The file %s has been encrypted with a lost/invalid key (%s)", self.keypath, e.message)
+            raise
 
 
 def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
@@ -315,8 +306,8 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
     untrusted_path = os.path.abspath(untrusted_path)
 
     if trusted_absolute_prefix != os.path.commonprefix([trusted_absolute_prefix, untrusted_path]):
-        log.err("Blocked file operation out of the expected path: (\"%s\], \"%s\"" %
-                (trusted_absolute_prefix, untrusted_path))
+        log.err("Blocked file operation out of the expected path: (\"%s\], \"%s\"",
+                trusted_absolute_prefix, untrusted_path)
 
         raise errors.DirectoryTraversalError
 
@@ -371,7 +362,7 @@ class GLBPGP(object):
             self.gnupg = GPG(gnupghome=temp_pgproot, options=['--trust-model', 'always'])
             self.gnupg.encoding = "UTF-8"
         except OSError as ose:
-            log.err("Critical, OS error in operating with GnuPG home: %s" % ose)
+            log.err("Critical, OS error in operating with GnuPG home: %s",  ose)
             raise
         except Exception as excep:
             log.err("Unable to instance PGP object: %s" % excep)
@@ -385,7 +376,7 @@ class GLBPGP(object):
         try:
             import_result = self.gnupg.import_keys(key)
         except Exception as excep:
-            log.err("Error in PGP import_keys: %s" % excep)
+            log.err("Error in PGP import_keys: %s",  excep)
             raise errors.PGPKeyInvalid
 
         if len(import_result.fingerprints) == 0:
@@ -397,7 +388,7 @@ class GLBPGP(object):
         try:
             all_keys = self.gnupg.list_keys()
         except Exception as excep:
-            log.err("Error in PGP list_keys: %s" % excep)
+            log.err("Error in PGP list_keys: %s", excep)
             raise errors.PGPKeyInvalid
 
         expiration = datetime.utcfromtimestamp(0)
@@ -438,7 +429,7 @@ class GLBPGP(object):
         try:
             shutil.rmtree(self.gnupg.gnupghome)
         except Exception as excep:
-            log.err("Unable to clean temporary PGP environment: %s: %s" % (self.gnupg.gnupghome, excep))
+            log.err("Unable to clean temporary PGP environment: %s: %s", self.gnupg.gnupghome, excep)
 
 
 def encrypt_pgp_message(pgp_key_public, pgp_key_fingerprint, msg):
@@ -453,6 +444,7 @@ def encrypt_pgp_message(pgp_key_public, pgp_key_fingerprint, msg):
         # The finally statement is always called also if except contains a
         # return or a raise
         gpob.destroy_environment()
+
     return body
 
 
@@ -468,7 +460,7 @@ def parse_pgp_key(key):
     try:
         k = gnob.load_key(key)
 
-        log.debug("Parsed the PGP Key: %s" % k['fingerprint'])
+        log.debug("Parsed the PGP Key: %s", k['fingerprint'])
 
         return {
             'public': key,
@@ -477,7 +469,6 @@ def parse_pgp_key(key):
         }
     except:
         raise
-
     finally:
         # the finally statement is always called also if
         # except contains a return or a raise

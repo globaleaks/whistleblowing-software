@@ -180,32 +180,27 @@ def db_update_field(store, field_id, field_dict, language):
     # if not field.editable:
     #     raise errors.FieldNotEditable
 
-    try:
-        # make not possible to change field type
-        field_dict['type'] = field.type
+    # make not possible to change field type
+    field_dict['type'] = field.type
+    if field_dict['instance'] != 'reference':
+        fill_localized_keys(field_dict, models.Field.localized_keys, language)
 
-        if field_dict['instance'] != 'reference':
-            fill_localized_keys(field_dict, models.Field.localized_keys, language)
+        db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
+        db_update_fieldoptions(store, field.id, field_dict['options'], language)
 
-            db_update_fieldattrs(store, field.id, field_dict['attrs'], language)
-            db_update_fieldoptions(store, field.id, field_dict['options'], language)
+        # full update
+        field.update(field_dict)
 
-            # full update
-            field.update(field_dict)
+    else:
+        # partial update
+        partial_update = {
+          'x': field_dict['x'],
+          'y': field_dict['y'],
+          'width': field_dict['width'],
+          'multi_entry': field_dict['multi_entry']
+        }
 
-        else:
-            # partial update
-            partial_update = {
-              'x': field_dict['x'],
-              'y': field_dict['y'],
-              'width': field_dict['width'],
-              'multi_entry': field_dict['multi_entry']
-            }
-
-            field.update(partial_update)
-    except Exception as dberror:
-        log.err('Unable to update field: {e}'.format(e=dberror))
-        raise errors.InvalidInputFormat(dberror)
+        field.update(partial_update)
 
     return field
 

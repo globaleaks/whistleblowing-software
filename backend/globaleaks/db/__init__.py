@@ -37,7 +37,7 @@ def db_create_tables(store):
             try:
                 store.execute(create_query + ';')
             except exceptions.OperationalError as exc:
-                log.err("OperationalError in [%s]" % create_query)
+                log.err("OperationalError in [%s]", create_query)
                 log.err(exc)
 
 
@@ -75,10 +75,10 @@ def update_db():
 
         from globaleaks.db import migration
 
-        log.err("Found an already initialized database version: %d" % db_version)
+        log.err("Found an already initialized database version: %d", db_version)
 
         if db_version >= FIRST_DATABASE_VERSION_SUPPORTED and db_version < DATABASE_VERSION:
-            log.err("Performing schema migration from version %d to version %d" % (db_version, DATABASE_VERSION))
+            log.err("Performing schema migration from version %d to version %d", db_version, DATABASE_VERSION)
             migration.perform_schema_migration(db_version)
             log.err("Migration completed with success!")
 
@@ -88,7 +88,7 @@ def update_db():
             migration.perform_data_update(os.path.abspath(os.path.join(GLSettings.db_path, 'glbackend-%d.db' % DATABASE_VERSION)))
 
     except Exception as exception:
-        log.err("Migration failure: %s" % exception)
+        log.err("Migration failure: %s", exception)
         log.err("Verbose exception traceback:")
         etype, value, tback = sys.exc_info()
         log.info('\n'.join(traceback.format_exception(etype, value, tback)))
@@ -117,10 +117,10 @@ def sync_clean_untracked_files(store):
         if filesystem_file not in tracked_files:
             file_to_remove = os.path.join(GLSettings.submission_path, filesystem_file)
             try:
-                log.debug("Removing untracked file: %s" % file_to_remove)
+                log.debug("Removing untracked file: %s", file_to_remove)
                 security.overwrite_and_remove(file_to_remove)
             except OSError:
-                log.err("Failed to remove untracked file" % file_to_remove)
+                log.err("Failed to remove untracked file", file_to_remove)
 
 
 def db_refresh_exception_delivery_list(store):

@@ -26,8 +26,8 @@ import globaleaks.mocks.twisted_mocks
 
 def fail_startup(excep):
     log.err("ERROR: Cannot start GlobaLeaks. Please manually examine the exception.")
-    log.err("EXCEPTION: %s" %  excep)
-    log.debug('TRACE: %s' % traceback.format_exc(excep))
+    log.err("EXCEPTION: %s",  excep)
+    log.debug('TRACE: %s', traceback.format_exc(excep))
     if reactor.running:
         reactor.stop()
 
@@ -43,7 +43,7 @@ def pre_listen_startup():
     for port in GLSettings.bind_local_ports:
         http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
         if fail is not None:
-            log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+            log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
         else:
             GLSettings.http_socks += [http_sock]
 
@@ -51,7 +51,7 @@ def pre_listen_startup():
     for port in GLSettings.bind_remote_ports:
         sock, fail = reserve_port_for_ip(GLSettings.bind_address, port+mask)
         if fail is not None:
-            log.err("Could not reserve socket for %s (error: %s)" % (fail[0], fail[1]))
+            log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
             continue
 
         if port == 80:

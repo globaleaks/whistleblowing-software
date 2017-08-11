@@ -40,7 +40,7 @@ class GLSessionsFactory(TempDict):
   def revoke_all_sessions(self, user_id):
       for other_session in GLSessions.values():
           if other_session.user_id == user_id:
-              log.debug("Revoking old session for %s" % user_id)
+              log.debug("Revoking old session for %s", user_id)
               GLSessions.delete(other_session.id)
 
 GLSessions = GLSessionsFactory(timeout=GLSettings.authentication_lifetime)
@@ -61,9 +61,9 @@ def write_upload_plaintext_to_disk(uploaded_file, destination):
     """
     try:
         if os.path.exists(destination):
-            log.err('Overwriting file %s with %d bytes' % (destination, uploaded_file['size']))
+            log.err('Overwriting file %s with %d bytes', destination, uploaded_file['size'])
         else:
-            log.debug('Creating file %s with %d bytes' % (destination, uploaded_file['size']))
+            log.debug('Creating file %s with %d bytes', destination, uploaded_file['size'])
 
         with open(destination, 'w+') as fd:
             uploaded_file['body'].seek(0, 0)
@@ -84,12 +84,11 @@ def write_upload_encrypted_to_disk(uploaded_file, destination):
     @param the file destination
     @return: a descriptor dictionary for the saved file
     """
-    log.debug("Moving encrypted bytes %d from file [%s] %s => %s" %
-        (uploaded_file['size'],
-         uploaded_file['name'],
-         uploaded_file['path'],
-         destination)
-    )
+    log.debug("Moving encrypted bytes %d from file [%s] %s => %s",
+              uploaded_file['size'],
+              uploaded_file['name'],
+              uploaded_file['path'],
+              destination)
 
     shutil.move(uploaded_file['path'], destination)
 
@@ -206,7 +205,7 @@ class BaseHandler(object):
                raise errors.NotAuthenticated
 
             if self.current_user.user_role in roles:
-               log.debug("Authentication OK (%s)" % self.current_user.user_role)
+               log.debug("Authentication OK (%s)", self.current_user.user_role)
                return f(self, *args, **kwargs)
 
             raise errors.InvalidAuthentication
@@ -297,26 +296,26 @@ class BaseHandler(object):
     @staticmethod
     def validate_type(value, type):
         if value is None:
-            log.err("-- Invalid python_type, in [%s] expected %s" % (value, type))
+            log.err("-- Invalid python_type, in [%s] expected %s", value, type)
             return False
 
         # if it's callable, than assumes is a primitive class
         if callable(type):
             retval = BaseHandler.validate_python_type(value, type)
             if not retval:
-                log.err("-- Invalid python_type, in [%s] expected %s" % (value, type))
+                log.err("-- Invalid python_type, in [%s] expected %s", value, type)
             return retval
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
             retval = BaseHandler.validate_jmessage(value, type)
             if not retval:
-                log.err("-- Invalid JSON/dict [%s] expected %s" % (value, type))
+                log.err("-- Invalid JSON/dict [%s] expected %s", value, type)
             return retval
         # regexp
         elif isinstance(type, str):
             retval = BaseHandler.validate_regexp(value, type)
             if not retval:
-                log.err("-- Failed Match in regexp [%s] against %s" % (value, type))
+                log.err("-- Failed Match in regexp [%s] against %s", value, type)
             return retval
         # value as "[ type ]"
         elif isinstance(type, collections.Iterable):
@@ -326,7 +325,7 @@ class BaseHandler(object):
             else:
                 retval = all(BaseHandler.validate_type(x, type[0]) for x in value)
                 if not retval:
-                    log.err("-- List validation failed [%s] of %s" % (value, type))
+                    log.err("-- List validation failed [%s] of %s", value, type)
                 return retval
         else:
             raise AssertionError
@@ -363,7 +362,7 @@ class BaseHandler(object):
                     continue
 
                 if not BaseHandler.validate_type(value, message_template[key]):
-                    log.err("Received key %s: type validation fail " % key)
+                    log.err("Received key %s: type validation fail", key)
                     raise errors.InvalidInputFormat("Key (%s) type validation failure" % key)
                 success_check += 1
 
@@ -372,13 +371,13 @@ class BaseHandler(object):
 
             for key, value in message_template.iteritems():
                 if key not in jmessage:
-                    log.debug("Key %s expected but missing!" % key)
-                    log.debug("Received schema %s - Expected %s" %
-                              (jmessage.keys(), message_template.keys()))
+                    log.debug("Key %s expected but missing!",  key)
+                    log.debug("Received schema %s - Expected %s",
+                              jmessage.keys(), message_template.keys())
                     raise errors.InvalidInputFormat("Missing key %s" % key)
 
                 if not BaseHandler.validate_type(jmessage[key], value):
-                    log.err("Expected key: %s type validation failure" % key)
+                    log.err("Expected key: %s type validation failure", key)
                     raise errors.InvalidInputFormat("Key (%s) double validation failure" % key)
 
                 if isinstance(message_template[key], dict) or isinstance(message_template[key], list):
@@ -388,7 +387,7 @@ class BaseHandler(object):
                 success_check += 1
 
             if success_check != len(message_template) * 2:
-                log.err("Success counter double check failure: %d" % success_check)
+                log.err("Success counter double check failure: %d", success_check)
                 raise errors.InvalidInputFormat("Success counter double check failure")
 
             return True
@@ -513,11 +512,10 @@ class BaseHandler(object):
         self.request.execution_time = datetime.now() - self.request.start_time
 
         if self.request.execution_time.seconds > self.handler_exec_time_threshold:
-            error = "Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds" % \
-                    (self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
-            log.err(error)
-
-            schedule_exception_email(error)
+            error = ("Handler [%s] exceeded execution threshold (of %d secs) with an execution time of %.2f seconds",
+                    self.name, self.handler_exec_time_threshold, self.request.execution_time.seconds)
+            log.err(*error)
+            schedule_exception_email(*error)
 
         track_handler(self)
 
