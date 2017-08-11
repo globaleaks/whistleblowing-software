@@ -31,6 +31,7 @@ from globaleaks.utils import tempdict, token, utility
 from globaleaks.utils.structures import fill_localized_keys
 from globaleaks.utils.utility import datetime_null, datetime_now, datetime_to_ISO8601, \
     log, sum_dicts
+
 from globaleaks.workers import process
 from globaleaks.workers.supervisor import ProcessSupervisor
 
@@ -83,9 +84,12 @@ utility.deferred_sleep = deferred_sleep_mock
 class UTlog:
     @staticmethod
     def mlog(flag):
-        def log(msg):
+        def log(msg, *args):
+            msg = (msg % args) if len(args) else msg
+
             with open('./test.log', 'a') as f:
                 f.write('[{}] {}\n'.format(flag, msg))
+
         return log
 
 log.err = UTlog.mlog('E')
