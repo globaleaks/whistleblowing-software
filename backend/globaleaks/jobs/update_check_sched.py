@@ -31,6 +31,6 @@ class UpdateCheckJob(LoopingJob):
             versions = [p['Version'] for p in deb822.Deb822.iter_paragraphs(p)]
             versions.sort(key=V)
             GLSettings.appstate.latest_version = versions[-1]
-            log.debug('The newest version in the repository is: %s' % GLSettings.appstate.latest_version)
+            log.debug('The newest version in the repository is: %s', GLSettings.appstate.latest_version)
         except ConnectionRefusedError as e:
-            log.err('New version check failed: %s' % e)
+            log.err('New version check failed: %s', e)

@@ -26,11 +26,10 @@ __all__ = ['CleaningSchedule']
 def db_clean_expired_wbtips(store):
     threshold = datetime_now() - timedelta(days=GLSettings.memory_copy.wbtip_timetolive)
 
-    wbtips = store.find(models.WhistleblowerTip, models.WhistleblowerTip.id == models.InternalTip.id,
+    wbtips = store.find(models.WhistleblowerTip, models.InternalTip.id == models.WhistleblowerTip.id,
                                                  models.InternalTip.wb_last_access < threshold)
 
     for wbtip in wbtips:
-        log.info("Disabling WB access to %s" % wbtip.id)
         store.remove(wbtip)
 
 
@@ -144,11 +143,9 @@ class CleaningSchedule(LoopingJob):
 
         for file_to_delete in files_to_delete:
             self.start_time = time.time()
-            log.debug("Starting secure delete of file %s" % file_to_delete)
             overwrite_and_remove(file_to_delete)
             self.commit_file_deletion(file_to_delete)
             current_run_time = time.time() - self.start_time
-            log.debug("Ending secure delete of file %s (execution time: %.2f)" % (file_to_delete, current_run_time))
 
     def operation(self):
         self.clean_expired_wbtips()

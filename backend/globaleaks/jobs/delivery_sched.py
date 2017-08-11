@@ -34,19 +34,18 @@ def receiverfile_planning(store):
     for ifile in store.find(InternalFile, InternalFile.new == True):
         if ifile.processing_attempts >= INTERNALFILES_HANDLE_RETRY_MAX:
             ifile.new = False
-            error = "Failed to handle receiverfiles creation for ifile %s (%d retries)" % \
-                    (ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
-            log.err(error)
+            log.err("Failed to handle receiverfiles creation for ifile %s (%d retries)",
+                    ifile.id, INTERNALFILES_HANDLE_RETRY_MAX)
             continue
 
         elif ifile.processing_attempts >= 1:
-            log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)" %
-                    (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
+            log.err("Failed to handle receiverfiles creation for ifile %s (retry %d/%d)",
+                    ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX)
 
 
         if ifile.processing_attempts:
-            log.debug("Starting handling receiverfiles creation for ifile %s retry %d/%d" %
-                  (ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX))
+            log.debug("Starting handling receiverfiles creation for ifile %s retry %d/%d",
+                      ifile.id, ifile.processing_attempts, INTERNALFILES_HANDLE_RETRY_MAX)
 
         ifile.processing_attempts += 1
 
@@ -135,17 +134,16 @@ def process_files(receiverfiles_maps):
                 try:
                     new_path, new_size = fsops_pgp_encrypt(rfileinfo['path'], rfileinfo['receiver'])
 
-                    log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d" %
-                              (rcounter,  rfileinfo['receiver']['name'], rfileinfo['path'],
-                               new_path, rfileinfo['size'], new_size))
+                    log.debug("%d# Switch on Receiver File for %s path %s => %s size %d => %d",
+                              rcounter,  rfileinfo['receiver']['name'], rfileinfo['path'],
+                              new_path, rfileinfo['size'], new_size)
 
                     rfileinfo['path'] = new_path
                     rfileinfo['size'] = new_size
                     rfileinfo['status'] = u'encrypted'
                 except Exception as excep:
-                    log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable." % (
+                    log.err("%d# Unable to complete PGP encrypt for %s on %s: %s. marking the file as unavailable.",
                             rcounter, rfileinfo['receiver']['name'], rfileinfo['path'], excep)
-                    )
                     rfileinfo['status'] = u'unavailable'
             elif GLSettings.memory_copy.allow_unencrypted:
                 receiverfiles_map['plaintext_file_needed'] = True
@@ -155,8 +153,8 @@ def process_files(receiverfiles_maps):
                 rfileinfo['status'] = u'nokey'
 
         if receiverfiles_map['plaintext_file_needed']:
-            log.debug(":( NOT all receivers support PGP and the system allows plaintext version of files: %s saved as plaintext file %s" %
-                      (ifile_path, plain_path))
+            log.debug("Not all receivers support PGP and the system allows plaintext version of files: %s saved as plaintext file %s",
+                      ifile_path, plain_path)
 
             try:
                 with open(plain_path, "wb") as plaintext_f, GLSecureFile(ifile_path) as encrypted_file:
@@ -166,32 +164,32 @@ def process_files(receiverfiles_maps):
                         chunk = encrypted_file.read(chunk_size)
                         if len(chunk) == 0:
                             if written_size != receiverfiles_map['ifile_size']:
-                                log.err("Integrity error on rfile write for ifile %s; ifile_size(%d), rfile_size(%d)" %
-                                        (ifile_id, receiverfiles_map['ifile_size'], written_size))
+                                log.err("Integrity error on rfile write for ifile %s; ifile_size(%d), rfile_size(%d)",
+                                        ifile_id, receiverfiles_map['ifile_size'], written_size)
                             break
                         written_size += len(chunk)
                         plaintext_f.write(chunk)
 
                 receiverfiles_map['ifile_path'] = plain_path
             except Exception as excep:
-                log.err("Unable to create plaintext file %s: %s" % (plain_path, excep))
+                log.err("Unable to create plaintext file %s: %s", plain_path, excep)
         else:
-            log.debug("All Receivers support PGP or the system denies plaintext version of files: marking internalfile as removed")
+            log.debug("All receivers support PGP or the system denies plaintext version of files: marking internalfile as removed")
 
         # the original AES file should always be deleted
-        log.debug("Deleting the submission AES encrypted file: %s" % ifile_path)
+        log.debug("Deleting the submission AES encrypted file: %s", ifile_path)
 
         # Remove the AES file
         try:
             os.remove(ifile_path)
         except OSError as ose:
-            log.err("Unable to remove %s: %s" % (ifile_path, ose.message))
+            log.err("Unable to remove %s: %s", ifile_path, ose.message)
 
         # Remove the AES file key
         try:
             os.remove(os.path.join(GLSettings.ramdisk_path, ("%s%s" % (GLSettings.AES_keyfile_prefix, ifile_name))))
         except OSError as ose:
-            log.err("Unable to remove keyfile associated with %s: %s" % (ifile_path, ose.message))
+            log.err("Unable to remove keyfile associated with %s: %s", ifile_path, ose.message)
 
 
 @transact_sync

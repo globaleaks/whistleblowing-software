@@ -130,14 +130,12 @@ class Token(object):
         now = datetime_now()
         start = (self.creation_date + timedelta(seconds=min_delay))
         if not start < now:
-            log.debug("creation + validity (%d) = %s < now %s, still too early" %
-                      (min_delay, start, now))
+            log.debug("creation + validity (%d) = %s < now %s, still too early", min_delay, start, now)
             raise errors.TokenFailure("Too early to use this token")
 
         end = (self.creation_date + timedelta(max_ttl))
         if now > end:
-            log.debug("creation + end_validity (%d) = %s > now %s, too late" %
-                      (max_ttl, start, now))
+            log.debug("creation + end_validity (%d) = %s > now %s, too late", max_ttl, start, now)
             raise errors.TokenFailure("Too late to use this token")
 
     def captcha_valid(self, request_answer):
@@ -155,12 +153,12 @@ class Token(object):
         resolved = "%s%d" % (self.proof_of_work['question'], request_answer)
         x = sha256(bytes(resolved))
         if not x.endswith(HASH_ENDS_WITH):
-            log.debug("Failed proof of work validation: expected '%s' at the end of the hash %s (seeds %s + %d)" %
-                      (HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer))
+            log.debug("Failed proof of work validation: expected '%s' at the end of the hash %s (seeds %s + %d)",
+                      HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer)
             return
 
-        log.debug("Successful proof of work validation! got '%s' at the end of the hash %s (seeds %s + %d)" %
-                  (HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer))
+        log.debug("Successful proof of work validation! got '%s' at the end of the hash %s (seeds %s + %d)",
+                  HASH_ENDS_WITH, x, self.proof_of_work['question'], request_answer)
 
         self.proof_of_work['solved'] = True
 

@@ -249,7 +249,7 @@ def db_create_receivertip(store, receiver, internaltip):
     """
     Create models.ReceiverTip for the required tier of models.Receiver.
     """
-    log.debug('Creating receivertip for receiver: %s' % receiver.id)
+    log.debug('Creating receivertip for receiver: %s', receiver.id)
 
     receivertip = models.ReceiverTip()
     receivertip.internaltip_id = internaltip.id
@@ -328,7 +328,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
 
         db_save_questionnaire_answers(store, submission.id, answers)
     except Exception as excep:
-        log.err("Submission create: fields validation fail: %s" % excep)
+        log.err("Submission create: fields validation fail: %s", excep)
         raise excep
 
     try:
@@ -342,10 +342,10 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
             new_file.submission = filedesc['submission']
             new_file.file_path = filedesc['path']
             store.add(new_file)
-            log.debug("=> file associated %s|%s (%d bytes)" % (
-                new_file.name, new_file.content_type, new_file.size))
+            log.debug("=> file associated %s|%s (%d bytes)",
+                      new_file.name, new_file.content_type, new_file.size)
     except Exception as excep:
-        log.err("Submission create: unable to create db entry for files: %s" % excep)
+        log.err("Submission create: unable to create db entry for files: %s", excep)
         raise excep
 
     receipt = db_create_whistleblowertip(store, submission)
@@ -367,7 +367,7 @@ def db_create_submission(store, request, uploaded_files, client_using_tor, langu
     if len(rtips) == 0:
         raise errors.SubmissionValidationFailure("need at least one recipient")
 
-    log.debug("The finalized submission had created %d models.ReceiverTip(s)" % len(rtips))
+    log.debug("The finalized submission had created %d models.ReceiverTip(s)", len(rtips))
 
     return {'receipt': receipt}
 

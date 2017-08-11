@@ -82,7 +82,6 @@ def get_context(store, context_id, language):
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
-        log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
     return admin_serialize_context(store, context, language)
@@ -96,7 +95,6 @@ def db_get_context_steps(store, context_id, language):
     context = store.find(models.Context, models.Context.id == context_id).one()
 
     if not context:
-        log.err("Requested invalid context")
         raise errors.ContextIdNotFound
 
     return [serialize_step(store, s, language) for s in context.questionnaire.steps]
@@ -114,7 +112,7 @@ def fill_context_request(request, language):
 
     if request['select_all_receivers']:
         if request['maximum_selectable_receivers']:
-            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True" %
+            log.debug("Resetting maximum_selectable_receivers (%d) because 'select_all_receivers' is True",
                       request['maximum_selectable_receivers'])
         request['maximum_selectable_receivers'] = 0
 
@@ -224,7 +222,6 @@ def delete_context(store, context_id):
     """
     context = store.find(models.Context, models.Context.id == context_id).one()
     if not context:
-        log.err("Invalid context requested in removal")
         raise errors.ContextIdNotFound
 
     store.remove(context)

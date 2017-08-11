@@ -95,7 +95,7 @@ class OnionService(ServiceJob):
             if self.print_startup_error:
                 # Print error only on first run or failure or on a failure subsequent to a success condition
                 self.print_startup_error = False
-                log.err('Failed to initialize Tor connection; error: %s' % err)
+                log.err('Failed to initialize Tor connection; error: %s', err)
 
             restart_deferred.callback(None)
 

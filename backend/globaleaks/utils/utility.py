@@ -445,4 +445,4 @@ def disable_swap():
 
     log.debug("Using mlockall() system call to disable process swap")
     if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
-        log.err("mlockall failure: %s" % os.strerror(ctypes.get_errno()))
+        log.err("mlockall failure: %s", os.strerror(ctypes.get_errno()))

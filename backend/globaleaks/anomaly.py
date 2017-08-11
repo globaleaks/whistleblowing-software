@@ -160,20 +160,20 @@ class AlarmClass(object):
             requests_timing.append(event_obj.request_time)
 
         if len(requests_timing) > 2:
-            log.info("In latest %d seconds: worst RTT %f, best %f" %
-                     (10,
-                      round(max(requests_timing), 2),
-                      round(min(requests_timing), 2)))
+            log.info("In latest %d seconds: worst RTT %f, best %f",
+                     10,
+                     round(max(requests_timing), 2),
+                     round(min(requests_timing), 2))
 
         for event_name, threshold in ANOMALY_MAP.iteritems():
             if event_name in current_event_matrix:
                 if current_event_matrix[event_name] > threshold:
                     self.number_of_anomalies += 1
                 else:
-                    log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)" %
-                              (event_name,
-                               current_event_matrix[event_name],
-                               threshold, self.number_of_anomalies))
+                    log.debug("[compute_activity_level] %s %d < %d: it's OK (Anomalies recorded so far %d)",
+                              event_name,
+                              current_event_matrix[event_name],
+                              threshold, self.number_of_anomalies)
 
         previous_activity_sl = self.stress_levels['activity']
 
@@ -317,8 +317,8 @@ class AlarmClass(object):
         GLSettings.accept_submissions = accept_submissions if not GLSettings.testing else True
 
         if old_accept_submissions != GLSettings.accept_submissions:
-            log.info("Switching disk space availability from: %s to %s" % \
-                     (old_accept_submissions, accept_submissions))
+            log.info("Switching disk space availability from: %s to %s",
+                     old_accept_submissions, accept_submissions)
 
             # Must invalidate the cache here becuase accept_subs served in /public has changed
             GLApiCache.invalidate()

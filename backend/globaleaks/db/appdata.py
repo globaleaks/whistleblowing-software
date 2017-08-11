@@ -114,7 +114,7 @@ def db_fix_fields_attrs(store):
 
         count = res.count()
         if count:
-            log.debug("Removing %d attributes from fields of type %s" % (count, field_type))
+            log.debug("Removing %d attributes from fields of type %s", count, field_type)
             for r in res:
                 store.remove(r)
 
@@ -126,6 +126,6 @@ def db_fix_fields_attrs(store):
             if not store.find(models.FieldAttr,
                               And(models.FieldAttr.field_id == field.id,
                                   models.FieldAttr.name == attr_name)).one():
-                log.debug("Adding new field attr %s.%s" % (typ, attr_name))
+                log.debug("Adding new field attr %s.%s", typ, attr_name)
                 attr_dict['name'] = attr_name
                 field.attrs.add(models.db_forge_obj(store, models.FieldAttr, attr_dict))

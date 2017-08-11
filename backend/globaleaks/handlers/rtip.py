@@ -167,29 +167,20 @@ def db_receiver_get_wbfile_list(store, itip_id):
 
 
 @transact
-def register_wbfile_on_db(store, uploaded_file, receivertip_id):
-    rtip = store.find(ReceiverTip,
-                      ReceiverTip.id == receivertip_id).one()
-
-    if not rtip:
-        log.err("Cannot associate a file to a not existent receivertip!")
-        raise errors.TipIdNotFound
+def register_wbfile_on_db(store, rtip_id, uploaded_file):
+    rtip = store.find(ReceiverTip, ReceiverTip.id == rtip_id).one()
 
     rtip.internaltip.update_date = rtip.last_access = datetime_now()
 
     new_file = WhistleblowerFile()
-
     new_file.name = uploaded_file['name']
     new_file.description = uploaded_file['description']
-
     new_file.content_type = uploaded_file['type']
     new_file.size = uploaded_file['size']
-    new_file.receivertip_id = rtip.id
+    new_file.receivertip_id = rtip_id
     new_file.file_path = uploaded_file['path']
 
     store.add(new_file)
-
-    log.debug("=> Recorded new WhistleblowerFile %s" % uploaded_file['name'])
 
     return serializers.serialize_wbfile(new_file)
 
@@ -541,11 +532,9 @@ class WhistleblowerFileHandler(BaseHandler):
         uploaded_file['creation_date'] = datetime_now()
         uploaded_file['submission'] = False
 
-        try:
-            # Second: register the file in the database
-            yield register_wbfile_on_db(uploaded_file, rtip['id'])
-        except Exception as excep:
-            raise errors.InternalServerError("Unable to accept new files: %s" % excep)
+        yield register_wbfile_on_db(rtip['id'], uploaded_file)
+
+        log.debug("Recorded new WhistleblowerFile %s", uploaded_file['name'])
 
 
 class WhistleblowerFileInstanceHandler(BaseHandler):

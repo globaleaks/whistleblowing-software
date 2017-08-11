@@ -22,6 +22,6 @@ class ExitNodesRefreshSchedule(LoopingJob):
             log.debug('Fetching list of Tor exit nodes')
             yield GLSettings.appstate.tor_exit_set.update(net_agent)
         except ConnectionRefusedError as e:
-            log.err('Exit relay fetch failed: %s' % e)
+            log.err('Exit relay fetch failed: %s', e)
 
-        log.debug('Retrieved a list of %d exit nodes' % len(GLSettings.appstate.tor_exit_set))
+        log.debug('Retrieved a list of %d exit nodes', len(GLSettings.appstate.tor_exit_set))
