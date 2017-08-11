@@ -171,8 +171,7 @@ class Logger(object):
         if isinstance(msg, unicode):
             msg = msg.encode('utf-8')
 
-        if len(args) > 0:
-            msg = (msg % args)
+        msg = (msg % args) if len(args) else msg
 
         msg = log_remove_escapes(msg)
 
