@@ -67,8 +67,8 @@ def db_get_wbtip(store, wbtip_id, language):
     wbtip.internaltip.wb_access_counter += 1
     wbtip.internaltip.wb_last_access = datetime_now()
 
-    log.debug("Tip %s access granted to whistleblower (%d)" %
-              (wbtip.id, wbtip.internaltip.wb_access_counter))
+    log.debug("Tip %s access granted to whistleblower (%d)",
+              wbtip.id, wbtip.internaltip.wb_access_counter)
 
     return serialize_wbtip(store, wbtip, language)
 
@@ -232,8 +232,8 @@ class WBTipWBFileInstanceHandler(WhistleblowerFileInstanceHandler):
         return self.current_user.user_id == wbfile.receivertip.internaltip.whistleblowertip.id
 
     def access_wbfile(self, wbfile):
-        log.debug("Download of file %s by whistleblower %s" %
-                  (wbfile.id, self.current_user.user_id))
+        log.debug("Download of file %s by whistleblower %s",
+                  wbfile.id, self.current_user.user_id)
         wbfile.downloads += 1
 
 

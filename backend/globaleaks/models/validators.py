@@ -21,17 +21,18 @@ def natnum_v(self, attr, value):
     return value
 
 class range_v(object):
-  def __call__(self, model_obj, attr, value):
-    if not isinstance(value, int):
+    def __call__(self, model_obj, attr, value):
+        if not isinstance(value, int):
             raise errors.InvalidModelInput("range_v: expected int (%s)" % attr)
-    if value < self.start or value > self.stop:
-        m = "range_v(%d, %d): value outside of acceptable range (%d)" % (self.start, self.stop, value)
-        raise errors.InvalidModelInput(m)
-    return value
+        if value < self.start or value > self.stop:
+            m = "range_v(%d, %d): value outside of acceptable range (%d)" % (self.start, self.stop, value)
+            raise errors.InvalidModelInput(m)
 
-  def __init__(self, start, stop):
-    self.start = start
-    self.stop = stop
+        return value
+
+    def __init__(self, start, stop):
+        self.start = start
+        self.stop = stop
 
 def shorttext_v(self, attr, value):
     if isinstance(value, str):
@@ -48,8 +49,6 @@ def shorttext_v(self, attr, value):
 
 
 def longtext_v(self, attr, value):
-    """
-    """
     if not attr:
         return value
 
@@ -88,27 +87,19 @@ def dict_v(self, attr, value):
         if isinstance(subvalue, dict):
             dict_v(self, attr, subvalue)
 
-    return value
-
-
-def shortlocal_v(self, attr, value):
-    dict_v(None, attr, value)
-
-    if not value:
-        return value
-
     # If a language does not exist, it does not mean that a malicious input have been provided,
     # this condition in fact may happen when a language is removed from the package and
     # so the proper way to handle it so is simply to log the issue and discard the input.
     # https://github.com/globaleaks/GlobaLeaks/issues/879
     remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
     for k in remove:
-        try:
-            del value[unicode(k)]
-        except KeyError:
-            pass
-        log.debug("shortlocal_v: (%s) Invalid language code in %s, skipped" %
-                  (k, attr))
+        del value[k]
+
+    return value
+
+
+def shortlocal_v(self, attr, value):
+    value = dict_v(self, attr, value)
 
     for lang, text in value.iteritems():
         shorttext_v(None, None, text)
@@ -117,23 +108,7 @@ def shortlocal_v(self, attr, value):
 
 
 def longlocal_v(self, attr, value):
-    dict_v(None, attr, value)
-
-    if not value:
-        return value
-
-    # If a language does not exist, it does not mean that a malicious input have been provided,
-    # this condition in fact may happen when a language is removed from the package and
-    # so the proper way to handle it so is simply to log the issue and discard the input.
-    # https://github.com/globaleaks/GlobaLeaks/issues/879
-    remove = [lang for lang in value if lang not in LANGUAGES_SUPPORTED_CODES]
-    for k in remove:
-        try:
-            del value[unicode(k)]
-        except KeyError:
-            pass
-        log.debug("longlocal_v: (%s) Invalid language code in %s, skipped" %
-                  (k, attr))
+    value = dict_v(self, attr, value)
 
     for lang, text in value.iteritems():
         longtext_v(None, attr, text)

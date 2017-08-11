@@ -56,14 +56,14 @@ class X509CertCheckSchedule(LoopingJob):
             db_acme_cert_issuance(store)
         except Exception as e:
             self.acme_failures =+ 1
-            log.err('ACME certificate renewal failed with: %s' % e)
+            log.err('ACME certificate renewal failed with: %s', e)
             raise
         try:
             yield GLSettings.appstate.process_supervisor.shutdown()
             yield GLSettings.appstate.process_supervisor.maybe_launch_https_workers()
         except Exception as e:
             self.acme_failures =+ 1
-            log.err('Restart of HTTPS workers failed with: %s' % e)
+            log.err('Restart of HTTPS workers failed with: %s', e)
             raise
 
     @transact_sync
@@ -81,7 +81,7 @@ class X509CertCheckSchedule(LoopingJob):
             return
 
         if GLSettings.memory_copy.notif.disable_admin_notification_emails:
-            log.info('Certificate expiring on %s, admin notif email suppressed' % expiration_date)
+            log.info('Certificate expiring on %s, admin notif email suppressed', expiration_date)
         else:
             self.certificate_mail_creation(store, expiration_date)
 

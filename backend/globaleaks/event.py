@@ -135,7 +135,7 @@ class EventTrack(object):
         self.request_time = round(request_time.total_seconds(), 1)
 
         if self.debug:
-            log.debug("Creation of Event %s" % self.serialize_event())
+            log.debug("Creation of Event %s", self.serialize_event())
 
         EventTrackQueue.set(self.event_id, self)
 

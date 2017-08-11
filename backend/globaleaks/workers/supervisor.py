@@ -74,7 +74,7 @@ class ProcessSupervisor(object):
             log.info("Decided to launch https workers")
             yield self.launch_https_workers()
         else:
-            log.info("Not launching https workers due to %s" % err)
+            log.info("Not launching https workers due to %s", err)
             yield defer.fail(err)
 
     def launch_https_workers(self):
@@ -91,7 +91,7 @@ class ProcessSupervisor(object):
         pp = HTTPSProcProtocol(self, self.tls_cfg)
         reactor.spawnProcess(pp, executable, [executable, self.worker_path], childFDs=pp.fd_map, env=os.environ)
         self.tls_process_pool.append(pp)
-        log.info('Launched: %s' % pp)
+        log.info('Launched: %s', pp)
         return pp.startup_promise
 
     def handle_worker_death(self, pp, reason):
@@ -100,7 +100,7 @@ class ProcessSupervisor(object):
         in its place if the reason for death is reasonable and we haven't
         restarted the child an unreasonable number of times.
         """
-        log.debug("Subprocess: %s exited with: %s" % (pp, reason))
+        log.debug("Subprocess: %s exited with: %s", pp, reason)
         mortatility_rate = self.account_death()
         self.tls_process_pool.pop(self.tls_process_pool.index(pp))
         del pp
@@ -149,7 +149,7 @@ class ProcessSupervisor(object):
     def account_death(self):
         self.tls_process_state['deaths'] += 1
         r = self.calc_mort_rate()
-        log.debug('process death accountant: r=%3f, d=%2f'  % (r, self.tls_process_state['deaths']))
+        log.debug('process death accountant: r=%3f, d=%2f', r, self.tls_process_state['deaths'])
         return r
 
     def is_running(self):
@@ -179,7 +179,7 @@ class ProcessSupervisor(object):
         return s
 
     def shutdown(self):
-        log.debug('Starting shutdown of %d children' % len(self.tls_process_pool))
+        log.debug('Starting shutdown of %d children', len(self.tls_process_pool))
 
         # Handle condition where shutdown is called with no active children
         if not self.is_running():
@@ -192,6 +192,6 @@ class ProcessSupervisor(object):
             try:
                 pp.transport.signalProcess('KILL')
             except OSError as e:
-                log.debug('Tried to signal: %d got: %s' % (pp.transport.pid, e))
+                log.debug('Tried to signal: %d got: %s', pp.transport.pid, e)
 
         return self.shutdown_d

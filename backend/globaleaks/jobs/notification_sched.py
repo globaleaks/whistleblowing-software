@@ -135,24 +135,23 @@ class MailGenerator(object):
 
         # Do not spool emails if the receiver has opted out of ntfns for this tip.
         if not data['tip']['enable_notifications']:
-          log.debug("Discarding emails for %s due to receiver's preference." % receiver_id)
+          log.debug("Discarding emails for %s due to receiver's preference.", receiver_id)
           return
 
         # https://github.com/globaleaks/GlobaLeaks/issues/798
         # TODO: the current solution is global and configurable only by the admin
         sent_emails = GLSettings.get_mail_counter(receiver_id)
         if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
-            log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour" %
+            log.debug("Discarding emails for receiver %s due to threshold already exceeded for the current hour",
                       receiver_id)
             return
 
         GLSettings.increment_mail_counter(receiver_id)
         if sent_emails >= GLSettings.memory_copy.notif.notification_threshold_per_hour:
-            log.info("Reached threshold of %d emails with limit of %d for receiver %s" % (
+            log.info("Reached threshold of %d emails with limit of %d for receiver %s",
                      sent_emails,
                      GLSettings.memory_copy.notif.notification_threshold_per_hour,
                      receiver_id)
-            )
 
             # simply changing the type of the notification causes
             # to send the notification_limit_reached
@@ -174,8 +173,8 @@ class MailGenerator(object):
                 gpob.load_key(data['receiver']['pgp_key_public'])
                 body = gpob.encrypt_message(data['receiver']['pgp_key_fingerprint'], body)
             except Exception as excep:
-                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)" %
-                        (data['receiver']['username'], str(excep)))
+                log.err("Error in PGP interface object (for %s: %s)! (notification+encryption)",
+                        data['receiver']['username'], str(excep))
 
                 return
             finally:
@@ -210,8 +209,8 @@ class MailGenerator(object):
 
             count = elements.count()
             if count > 0:
-                log.debug("Notification: generated %d notifications of type %s" %
-                          (count, trigger))
+                log.debug("Notification: generated %d notifications of type %s",
+                          count, trigger)
 
 
 @transact

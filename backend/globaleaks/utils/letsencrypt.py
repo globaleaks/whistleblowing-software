@@ -38,39 +38,36 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
     msg = messages.RegistrationResource(uri=regr_uri)
     regr = acme.query_registration(msg)
 
-    log.info('Auto-accepting TOS: %s from: %s' % (regr.terms_of_service, directory_url))
+    log.info('Auto-accepting TOS: %s from: %s', regr.terms_of_service, directory_url)
     acme.agree_to_tos(regr)
 
     authzr = acme.request_challenges(
         identifier=messages.Identifier(typ=messages.IDENTIFIER_FQDN, value=domain))
-    log.debug('Created auth client %s' % authzr)
+    log.debug('Created auth client %s', authzr)
 
     def get_http_challenge(x, y):
-         if type(y.chall) is challenges.HTTP01:
-            return y
-         else:
-            return x
+         return x if type(y.chall) is challenges.HTTP01 else y
 
     challb = reduce(get_http_challenge, authzr.body.challenges, None)
     chall_tok = challb.chall.validation(accnt_key)
 
     v = chall_tok.split('.')[0]
-    log.info('Exposing challenge on %s' % v)
+    log.info('Exposing challenge on %s', v)
     tmp_chall_dict.set(v, ChallTok(chall_tok))
 
     try:
        domain = 'localhost:8082'
        test_path = 'http://{0}{1}'.format(domain, challb.path)
-       log.debug('Testing local url path: %s' % test_path)
+       log.debug('Testing local url path: %s', test_path)
        resp = urlopen(test_path)
        t = resp.read().decode('utf-8').strip()
        assert t == chall_tok
     except (IOError, AssertionError) as e:
-       log.info('Resolving challenge locally failed. ACME request will fail. %s' % test_path)
-       raise e
+       log.info('Resolving challenge locally failed. ACME request will fail. %s', test_path)
+       raise
 
     cr = acme.answer_challenge(challb, challb.chall.response(accnt_key))
-    log.debug('Acme CA responded to challenge request with: %s' % cr)
+    log.debug('Acme CA responded to challenge request with: %s', cr)
 
     try:
         # Wrap this step and log the failure particularly here because this is
@@ -83,8 +80,8 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
         # pylint: disable=no-member
         cert_str = cert_res.body._dump(FILETYPE_PEM)
     except messages.Error as error:
-        log.err("Failed in request issuance step {0}".format(error))
-        raise error
+        log.err("Failed in request issuance step %s", error)
+        raise
 
     chain_certs = acme.fetch_chain(cert_res)
 
@@ -95,6 +92,6 @@ def run_acme_reg_to_finish(domain, regr_uri, accnt_key, site_key, csr, tmp_chall
 
     # pylint: disable=no-member
     expr_date = convert_asn1_date(cert_res.body.wrapped.get_notAfter())
-    log.info('Retrieved cert using ACME that expires on %s' % expr_date)
+    log.info('Retrieved cert using ACME that expires on %s', expr_date)
 
     return cert_str, chain_str

@@ -27,17 +27,11 @@ def get_ramdisk_space():
 @transact_sync
 def save_anomalies(store, anomaly_list):
     for anomaly in anomaly_list:
-        anomaly_date, anomaly_desc, alarm_raised = anomaly
-
         newanom = Anomalies()
-        newanom.alarm = alarm_raised
-        newanom.date = anomaly_date
-        newanom.events = anomaly_desc
-        log.debug("adding new anomaly in to the record: %s, %s, %s" % (alarm_raised, anomaly_date, anomaly_desc))
+        newanom.alarm = anomaly[2]
+        newanom.date = anomaly[0]
+        newanom.events = anomaly[1]
         store.add(newanom)
-
-    if len(anomaly_list):
-        log.debug("save_anomalies: Saved %d anomalies collected during the last hour" % len(anomaly_list))
 
 
 def get_anomalies():
@@ -66,10 +60,6 @@ def save_statistics(store, start, end, activity_collection):
     newstat.summary = dict(activity_collection)
     newstat.free_disk_space = get_workingdir_space()[0]
     store.add(newstat)
-
-    if activity_collection:
-        log.debug("save_statistics: Saved statistics %s collected from %s to %s" %
-                  (activity_collection, start, end))
 
 
 class AnomaliesSchedule(LoopingJob):
@@ -107,16 +97,22 @@ class StatisticsSchedule(LoopingJob):
     def operation(self):
         # ------- BEGIN Anomalies section -------
         anomalies_to_save = get_anomalies()
-        save_anomalies(anomalies_to_save)
+        if len(anomalies_to_save):
+            save_anomalies(anomalies_to_save)
+            log.debug("Stored %d anomalies collected during the last hour", len(anomalies_to_save))
+
         # ------- END Anomalies section ---------
 
         # ------- BEGIN Stats section -----------
         current_time = datetime_now()
         statistic_summary = get_statistics()
-        save_statistics(GLSettings.stats_collection_start_time, current_time, statistic_summary)
+        if statistic_summary:
+            save_statistics(GLSettings.stats_collection_start_time, current_time, statistic_summary)
+            log.debug("Stored statistics %s collected from %s to %s",
+                      statistic_summary,
+                      GLSettings.stats_collection_start_time,
+                      current_time)
         # ------- END Stats section -------------
 
         # Hourly Resets
         GLSettings.reset_hourly()
-
-        log.debug("Saved stats and time updated, keys saved %d" % len(statistic_summary.keys()))
