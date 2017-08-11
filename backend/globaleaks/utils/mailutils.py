@@ -85,7 +85,7 @@ def sendmail(to_address, subject, body):
             #       errors by writing clear log lines in relation to all the stack:
             #       e.g. it should debugged all errors related to: TCP/SOCKS/TLS/SSL/SMTP/SFIGA
             if isinstance(reason, Failure):
-                log.err("SMTP connection failed (Exception: %s)" % reason.value)
+                log.err("SMTP connection failed (Exception: %s)", reason.value)
                 log.debug(reason)
 
             return result_deferred.errback(reason)
@@ -104,8 +104,11 @@ def sendmail(to_address, subject, body):
                                   subject,
                                   body)
 
-        log.debug('Sending email to %s using SMTP server [%s:%d] [%s]' %
-                  (to_address, smtp_host, smtp_port, security))
+        log.debug('Sending email to %s using SMTP server [%s:%d] [%s]',
+                  to_address,
+                  smtp_host,
+                  smtp_port,
+                  security)
 
         context_factory = GLClientContextFactory()
 
@@ -145,7 +148,7 @@ def sendmail(to_address, subject, body):
 
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
-        log.err("Unexpected exception in sendmail: %s" % str(excep))
+        log.err("Unexpected exception in sendmail: %s", str(excep))
         return defer.fail()
 
 
@@ -199,7 +202,7 @@ def mail_exception_handler(etype, value, tback):
         # 3) can be cause of email storm amplification
         #
         # this kind of exception can be simply logged error logs.
-        log.err("exception mail suppressed for exception (%s) [reason: special exception]" % str(etype))
+        log.err("exception mail suppressed for exception (%s) [reason: special exception]", str(etype))
         return
 
     # collection of the stacktrace info
@@ -224,43 +227,45 @@ def extract_exception_traceback_and_send_email(e):
     mail_exception_handler(exc_type, exc_value, exc_tb)
 
 
-def schedule_exception_email(exception_text):
-    from globaleaks.transactions import schedule_email
-
-    if not hasattr(GLSettings.memory_copy, 'notif'):
-        log.err("Error: Cannot send mail exception before complete initialization.")
-        return
-
-    if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
-        return
-
-    mail_subject = "GlobaLeaks Exception"
-    delivery_list = GLSettings.memory_copy.notif.exception_delivery_list
-
-    if GLSettings.devel_mode:
-        mail_subject +=  " [%s]" % GLSettings.developer_name
-        delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
-
-    exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
-                           % (GLSettings.memory_copy.hostname,
-                              GLSettings.memory_copy.onionservice,
-                              __version__,
-                              exception_text))
-
-    sha256_hash = sha256(exception_text)
-
-    if sha256_hash in GLSettings.exceptions:
-        GLSettings.exceptions[sha256_hash] += 1
-        if GLSettings.exceptions[sha256_hash] > 5:
-            # if the threshold has been exceeded
-            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % sha256_hash)
-            return
-    else:
-        GLSettings.exceptions[sha256_hash] = 1
-
-    GLSettings.exceptions_email_count += 1
-
+def schedule_exception_email(exception_text, *args):
     try:
+
+        from globaleaks.transactions import schedule_email
+
+        if not hasattr(GLSettings.memory_copy, 'notif'):
+            log.err("Error: Cannot send mail exception before complete initialization.")
+            return
+
+        if GLSettings.exceptions_email_count >= GLSettings.exceptions_email_hourly_limit:
+            return
+
+        exception_text = (exception_text % args) if len(args) else exception_text
+
+        sha256_hash = sha256(bytes(exception_text))
+
+        if sha256_hash not in GLSettings.exceptions:
+            GLSettings.exceptions[sha256_hash] = 1
+        else:
+            GLSettings.exceptions[sha256_hash] += 1
+            if GLSettings.exceptions[sha256_hash] > 5:
+                log.err("Exception mail suppressed for (%s) [reason: threshold exceeded]",  sha256_hash)
+                return
+
+        GLSettings.exceptions_email_count += 1
+
+        mail_subject = "GlobaLeaks Exception"
+        delivery_list = GLSettings.memory_copy.notif.exception_delivery_list
+
+        if GLSettings.devel_mode:
+            mail_subject +=  " [%s]" % GLSettings.developer_name
+            delivery_list = [("globaleaks-stackexception-devel@globaleaks.org", '')]
+
+        exception_text = bytes("Platform: %s (%s)\nVersion: %s\n\n%s" \
+                               % (GLSettings.memory_copy.hostname,
+                                  GLSettings.memory_copy.onionservice,
+                                  __version__,
+                                  exception_text))
+
         for mail_address, pub_key in delivery_list:
             mail_body = exception_text
 
@@ -275,7 +280,7 @@ def schedule_exception_email(exception_text):
                 except Exception as excep:
                     # If this exception email is configured to be subject to encryption
                     # and the encryption step throws, log the error and move on.
-                    log.err("Error while encrypting exception email: %s" % str(excep))
+                    log.err("Error while encrypting exception email: %s", str(excep))
                     gpob.destroy_environment()
                     continue
 
@@ -284,4 +289,4 @@ def schedule_exception_email(exception_text):
 
     except Exception as excep:
         # Avoid raising exception inside email logic to avoid chaining errors
-        log.err("Unexpected exception in send_exception_mail: %s" % excep)
+        log.err("Unexpected exception in send_exception_mail: %s", excep)
