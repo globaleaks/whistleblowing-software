@@ -58,7 +58,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_postpone(self):
-        for _ in xrange(3):
+        for _ in range(3):
             yield self.perform_full_submission_actions()
 
         yield set_expiration_of_all_rtips_to_unlimited()
@@ -85,7 +85,7 @@ class TestTipsOperations(helpers.TestHandlerWithPopulatedDB):
 
     @inlineCallbacks
     def test_put_delete(self):
-        for _ in xrange(3):
+        for _ in range(3):
             yield self.perform_full_submission_actions()
 
         rtips = yield receiver.get_receivertip_list(self.dummyReceiver_1['id'], 'en')

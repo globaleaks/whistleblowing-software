@@ -106,11 +106,11 @@ def overwrite_and_remove(absolutefpath, iterations_number=1):
         all_zeros = "\0\0\0\0" * 1024               # 4kb of zeros
         all_ones = "FFFFFFFF".decode("hex") * 1024  # 4kb of ones
 
-        for iteration in xrange(iterations_number):
+        for iteration in range(iterations_number):
             OPTIMIZATION_RANDOM_BLOCK = 4096 + random.randint(1, 4096)
 
             random_pattern = ""
-            for _ in xrange(OPTIMIZATION_RANDOM_BLOCK):
+            for _ in range(OPTIMIZATION_RANDOM_BLOCK):
                 random_pattern += str(random.randrange(256))
 
             log.debug("Excecuting rewrite iteration (%d out of %d)",

@@ -101,7 +101,7 @@ class PrivKeyFileRes(FileResource):
 
         prv_fact = PrivateFactory(store)
         pkv = cls.validator()
-        ok, err = pkv.validate(db_cfg)
+        ok, _ = pkv.validate(db_cfg)
         if ok:
             prv_fact.set_val('https_priv_key', raw_key)
             prv_fact.set_val('https_priv_gen', False)
@@ -155,7 +155,7 @@ class CertFileRes(FileResource):
         db_cfg['ssl_cert'] = raw_cert
 
         cv = cls.validator()
-        ok, err = cv.validate(db_cfg)
+        ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val('https_cert', raw_cert)
             GLSettings.memory_copy.https_cert = raw_cert
@@ -205,7 +205,7 @@ class ChainFileRes(FileResource):
         db_cfg['ssl_intermediate'] = raw_chain
 
         cv = cls.validator()
-        ok, err = cv.validate(db_cfg)
+        ok, _ = cv.validate(db_cfg)
         if ok:
             prv_fact.set_val('https_chain', raw_chain)
         else:

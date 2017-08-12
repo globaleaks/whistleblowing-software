@@ -50,7 +50,7 @@ def db_assign_submission_progressive(store):
 
 
 def _db_serialize_archived_field_recursively(field, language):
-    for key, value in field.get('attrs', {}).iteritems():
+    for key, _ in field.get('attrs', {}).iteritems():
         if key not in field['attrs']: continue
         if 'type' not in field['attrs'][key]: continue
 

@@ -65,7 +65,7 @@ def choice(population):
 
 
 def shuffle(x):
-    for i in reversed(xrange(1, len(x))):
+    for i in reversed(range(1, len(x))):
         j = randint(0, i)
         x[i], x[j] = x[j], x[i]
     return x
