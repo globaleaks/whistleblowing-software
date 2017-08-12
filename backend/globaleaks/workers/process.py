@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import ctypes
 import json
 import os
 import signal
@@ -9,35 +8,8 @@ import traceback
 from twisted.internet import defer, reactor
 from twisted.internet.protocol import ProcessProtocol
 
+from globaleaks.utils.process import set_proc_title, set_pdeathsig, disable_swap, SigQUIT
 from globaleaks.utils.utility import log
-
-def SigQUIT(SIG, FRM):
-    try:
-        if reactor.running:
-            reactor.stop()
-        else:
-            sys.exit(0)
-    except Exception:
-        pass
-
-
-def set_proctitle(title):
-    libc = ctypes.cdll.LoadLibrary('libc.so.6')
-    buff = ctypes.create_string_buffer(len(title) + 1)
-    buff.value = title
-    libc.prctl(15, ctypes.byref(buff), 0, 0, 0)
-
-
-def set_pdeathsig(sig):
-    PR_SET_PDEATHSIG = 1
-    libc = ctypes.cdll.LoadLibrary('libc.so.6')
-    libc.prctl.argtypes = (ctypes.c_int, ctypes.c_ulong, ctypes.c_ulong,
-                           ctypes.c_ulong, ctypes.c_ulong)
-    libc.prctl(PR_SET_PDEATHSIG, sig, 0, 0, 0)
-    # If the parent has already died, kill this process.
-    if os.getppid() == 1:
-        os.kill(os.getpid(), sig)
-
 
 class Process(object):
     cfg = {}
@@ -48,7 +20,7 @@ class Process(object):
 
         signal.signal(signal.SIGTERM, SigQUIT)
         signal.signal(signal.SIGINT, SigQUIT)
-        set_proctitle(self.name)
+        set_proc_title(self.name)
         set_pdeathsig(signal.SIGINT)
 
         self._log = os.fdopen(0, 'w', 1).write
