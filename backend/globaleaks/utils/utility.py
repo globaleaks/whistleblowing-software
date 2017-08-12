@@ -398,17 +398,3 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
 
     return ".".join(name)
-
-
-def disable_swap():
-    """
-    use mlockall() system call to prevent the procss to swap
-    """
-    libc = ctypes.CDLL("libc.so.6", use_errno=True)
-
-    MCL_CURRENT = 1
-    MCL_FUTURE = 2
-
-    log.debug("Using mlockall() system call to disable process swap")
-    if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
-        log.err("mlockall failure: %s", os.strerror(ctypes.get_errno()))

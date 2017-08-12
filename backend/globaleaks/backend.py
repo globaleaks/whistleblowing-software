@@ -16,8 +16,9 @@ from globaleaks.db import init_db, update_db, \
     sync_refresh_memory_variables, sync_clean_untracked_files
 from globaleaks.rest.api import APIResourceWrapper
 from globaleaks.settings import GLSettings
-from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver
+from globaleaks.utils.process import disable_swap
 from globaleaks.utils.sock import listen_tcp_on_sock, reserve_port_for_ip
+from globaleaks.utils.utility import log, timedelta_to_milliseconds, GLLogObserver
 from globaleaks.workers.supervisor import ProcessSupervisor
 
 # this import seems unused but it is required in order to load the mocks
@@ -30,38 +31,6 @@ def fail_startup(excep):
     log.debug('TRACE: %s', traceback.format_exc(excep))
     if reactor.running:
         reactor.stop()
-
-
-def pre_listen_startup():
-    mask = 0
-    if GLSettings.devel_mode:
-        mask = 8000
-
-    GLSettings.http_socks = []
-
-    # Allocate local ports
-    for port in GLSettings.bind_local_ports:
-        http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
-        if fail is not None:
-            log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
-        else:
-            GLSettings.http_socks += [http_sock]
-
-    # Allocate remote ports
-    for port in GLSettings.bind_remote_ports:
-        sock, fail = reserve_port_for_ip(GLSettings.bind_address, port+mask)
-        if fail is not None:
-            log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
-            continue
-
-        if port == 80:
-            GLSettings.http_socks += [sock]
-        elif port == 443:
-            GLSettings.https_socks += [sock]
-
-    GLSettings.fix_file_permissions()
-    GLSettings.drop_privileges()
-    GLSettings.check_directories()
 
 
 def timedLogFormatter(timestamp, request):
@@ -80,6 +49,39 @@ def timedLogFormatter(timestamp, request):
 
 class GLService(service.Service):
     def startService(self):
+        mask = 0
+        if GLSettings.devel_mode:
+            mask = 8000
+
+        GLSettings.http_socks = []
+
+        # Allocate local ports
+        for port in GLSettings.bind_local_ports:
+            http_sock, fail = reserve_port_for_ip('127.0.0.1', port)
+            if fail is not None:
+                log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
+            else:
+                GLSettings.http_socks += [http_sock]
+
+        # Allocate remote ports
+        for port in GLSettings.bind_remote_ports:
+            sock, fail = reserve_port_for_ip(GLSettings.bind_address, port+mask)
+            if fail is not None:
+                log.err("Could not reserve socket for %s (error: %s)", fail[0], fail[1])
+                continue
+
+            if port == 80:
+                GLSettings.http_socks += [sock]
+            elif port == 443:
+                GLSettings.https_socks += [sock]
+
+        if GLSettings.disable_swap:
+            disable_swap()
+
+        GLSettings.fix_file_permissions()
+        GLSettings.drop_privileges()
+        GLSettings.check_directories()
+
         reactor.callLater(0, self.deferred_start)
 
     @defer.inlineCallbacks
@@ -138,11 +140,7 @@ if not GLSettings.nodaemon and GLSettings.logfile:
     application.setComponent(txlog.ILogObserver, GLLogObserver(gl_logfile).emit)
 
 try:
-    pre_listen_startup()
-
-    service = GLService()
-    service.setServiceParent(application)
-
+    GLService().setServiceParent(application)
 except Exception as excep:
     fail_startup(excep)
     # Exit with non-zero exit code to signal systemd/systemV
