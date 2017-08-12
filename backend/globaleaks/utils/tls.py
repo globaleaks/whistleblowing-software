@@ -110,11 +110,11 @@ def split_pem_chain(s):
     gex_str = r"-----BEGIN CERTIFICATE-----\r?.+?\r?-----END CERTIFICATE-----\r?\n?"
     gex = re.compile(gex_str, re.DOTALL)
 
-    matches = [m.group(0) for m in gex.finditer(s)]
-    return matches
+    return [m.group(0) for m in gex.finditer(s)]
 
 
-def new_tls_context():
+def new_tls_client_context():
+    # evilaliv3:
     # As discussed on https://trac.torproject.org/projects/tor/ticket/11598
     # there is no way to enable all TLS methods excluding SSL.
     # the problem lies in the fact that SSL.TLSv1_METHOD | SSL.TLSv1_1_METHOD | SSL.TLSv1_2_METHOD
@@ -126,9 +126,15 @@ def new_tls_context():
     # This trick make openssl consider valid all TLS methods.
     ctx = SSL.Context(SSL.SSLv23_METHOD)
 
-    ctx.set_options(SSL.OP_NO_SSLv2 |
-                    SSL.OP_NO_SSLv3 |
-                    SSL.OP_NO_COMPRESSION |
+    ctx.set_options(SSL.OP_NO_SSLv2 | SSL.OP_NO_SSLv3)
+
+    return ctx
+
+
+def new_tls_server_context():
+    ctx = new_tls_client_context()
+
+    ctx.set_options(SSL.OP_NO_COMPRESSION |
                     SSL.OP_NO_TICKET |
                     SSL.OP_CIPHER_SERVER_PREFERENCE)
 
@@ -140,6 +146,11 @@ def new_tls_context():
     return ctx
 
 
+class TLSClientContextFactory(ssl.ClientContextFactory):
+    def getContext(self):
+        return new_tls_client_context()
+
+
 class TLSServerContextFactory(ssl.ContextFactory):
     def __init__(self, priv_key, certificate, intermediate, dh):
         """
@@ -148,7 +159,7 @@ class TLSServerContextFactory(ssl.ContextFactory):
         @param intermediate: String representation of the intermediate file
         @param dh: String representation of the DH parameters
         """
-        self.ctx = new_tls_context()
+        self.ctx = new_tls_server_context()
 
         x509 = load_certificate(FILETYPE_PEM, certificate)
         self.ctx.use_certificate(x509)
@@ -195,7 +206,7 @@ class CtxValidator(object):
         if must_be_disabled and cfg['https_enabled']:
             raise ValidationException('HTTPS must not be enabled')
 
-        ctx = new_tls_context()
+        ctx = new_tls_server_context()
         try:
             self._validate_parents(cfg, ctx, check_expiration)
             self._validate(cfg, ctx, check_expiration)
