@@ -1,10 +1,12 @@
+# -*- coding: UTF-8
 import ctypes
 import os
 import sys
 
 from twisted.internet import reactor
 
-def set_proctitle(title):
+
+def set_proc_title(title):
     libc = ctypes.cdll.LoadLibrary('libc.so.6')
     buff = ctypes.create_string_buffer(len(title) + 1)
     buff.value = title
@@ -20,6 +22,17 @@ def set_pdeathsig(sig):
     # If the parent has already died, kill this process.
     if os.getppid() == 1:
         os.kill(os.getpid(), sig)
+
+
+def disable_swap():
+    libc = ctypes.CDLL("libc.so.6", use_errno=True)
+
+    MCL_CURRENT = 1
+    MCL_FUTURE = 2
+
+    if libc.mlockall(MCL_CURRENT | MCL_FUTURE):
+        raise Exception("Failure on mlockall: %s" % os.strerror(ctypes.get_errno()))
+
 
 def SigQUIT(SIG, FRM):
     try:
